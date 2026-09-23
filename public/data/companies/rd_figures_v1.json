@@ -1,0 +1,90 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-rd-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c03",
+   "sid": "s6",
+   "kind": "chart",
+   "ord": 1213,
+   "caption": "정격은 200이고 막대는 실제 처리량이다. 2008년 한 칸만 내려앉았다가 제자리로 돌아온다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"마당 실제 처리량\"><text x=\"48\" y=\"16\" font-size=\"12.5\" fill=\"#7a828b\">t/일. 정격은 200 이고 표가 2006~2008 을 감면 전, 2009~2012 를 감면 후로 가른다. 2008년은 이 공장 한 곳이 유럽 승인 명부에서 빠진 해다</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"225.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">0</text><line x1=\"48\" y1=\"187.8\" x2=\"670\" y2=\"187.8\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"191.3\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">40</text><line x1=\"48\" y1=\"153.6\" x2=\"670\" y2=\"153.6\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"157.1\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">80</text><line x1=\"48\" y1=\"119.5\" x2=\"670\" y2=\"119.5\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"123.0\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">120</text><line x1=\"48\" y1=\"85.3\" x2=\"670\" y2=\"85.3\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"88.8\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">160</text><line x1=\"48\" y1=\"51.1\" x2=\"670\" y2=\"51.1\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"54.6\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">200</text><rect x=\"86.7\" y=\"119.5\" width=\"27.0\" height=\"102.5\" fill=\"#1F4E79\"/><text x=\"100.2\" y=\"115.5\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1F4E79\">120</text><text x=\"101.7\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2006</text><rect x=\"174.1\" y=\"119.5\" width=\"27.0\" height=\"102.5\" fill=\"#1F4E79\"/><text x=\"187.6\" y=\"115.5\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1F4E79\">120</text><text x=\"189.1\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2007</text><rect x=\"261.6\" y=\"170.7\" width=\"27.0\" height=\"51.3\" fill=\"#1F4E79\"/><text x=\"275.1\" y=\"166.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1F4E79\">60</text><text x=\"276.6\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2008</text><rect x=\"349.0\" y=\"136.5\" width=\"27.0\" height=\"85.5\" fill=\"#1F4E79\"/><text x=\"362.5\" y=\"132.5\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1F4E79\">100</text><text x=\"364.0\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2009</text><rect x=\"436.4\" y=\"136.5\" width=\"27.0\" height=\"85.5\" fill=\"#1F4E79\"/><text x=\"449.9\" y=\"132.5\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1F4E79\">100</text><text x=\"451.4\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2010</text><rect x=\"523.9\" y=\"136.5\" width=\"27.0\" height=\"85.5\" fill=\"#1F4E79\"/><text x=\"537.4\" y=\"132.5\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1F4E79\">100</text><text x=\"538.9\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2011</text><rect x=\"611.3\" y=\"119.5\" width=\"27.0\" height=\"102.5\" fill=\"#1F4E79\"/><text x=\"624.8\" y=\"115.5\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1F4E79\">120</text><text x=\"626.3\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2012</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#a9aeb5\"/><rect x=\"48\" y=\"256\" width=\"10\" height=\"10\" fill=\"#1F4E79\"/><text x=\"62\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">실제 처리</text></svg>"
+  },
+  {
+   "stage": "c03",
+   "sid": "s6",
+   "kind": "chart",
+   "ord": 4600,
+   "caption": "같은 기간 세 공장의 처음과 끝. 하나는 제자리, 하나는 두 배, 하나는 줄었다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"세 공장\"><text x=\"48\" y=\"16\" font-size=\"12.5\" fill=\"#7a828b\">t/일. 같은 제도 아래에서 세 공장이 서로 다른 방향으로 갔다</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"225.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">0</text><line x1=\"48\" y1=\"195.1\" x2=\"670\" y2=\"195.1\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"198.6\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">20</text><line x1=\"48\" y1=\"168.3\" x2=\"670\" y2=\"168.3\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"171.8\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">40</text><line x1=\"48\" y1=\"141.4\" x2=\"670\" y2=\"141.4\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"144.9\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">60</text><line x1=\"48\" y1=\"114.6\" x2=\"670\" y2=\"114.6\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"118.1\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">80</text><line x1=\"48\" y1=\"87.7\" x2=\"670\" y2=\"87.7\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"91.2\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">100</text><line x1=\"48\" y1=\"60.9\" x2=\"670\" y2=\"60.9\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"64.4\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">120</text><line x1=\"48\" y1=\"34.0\" x2=\"670\" y2=\"34.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"37.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">140</text><rect x=\"130.0\" y=\"60.9\" width=\"27.0\" height=\"161.1\" fill=\"#7a828b\"/><text x=\"143.5\" y=\"56.9\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#7a828b\">120</text><rect x=\"160.0\" y=\"60.9\" width=\"27.0\" height=\"161.1\" fill=\"#B45309\"/><text x=\"173.5\" y=\"56.9\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B45309\">120</text><text x=\"160.0\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">마당</text><rect x=\"334.0\" y=\"181.7\" width=\"27.0\" height=\"40.3\" fill=\"#7a828b\"/><text x=\"347.5\" y=\"177.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#7a828b\">30</text><rect x=\"364.0\" y=\"141.4\" width=\"27.0\" height=\"80.6\" fill=\"#B45309\"/><text x=\"377.5\" y=\"137.4\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B45309\">60</text><text x=\"364.0\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">라에</text><rect x=\"538.0\" y=\"87.7\" width=\"27.0\" height=\"134.3\" fill=\"#7a828b\"/><text x=\"551.5\" y=\"83.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#7a828b\">100</text><rect x=\"568.0\" y=\"114.6\" width=\"27.0\" height=\"107.4\" fill=\"#B45309\"/><text x=\"581.5\" y=\"110.6\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B45309\">80</text><text x=\"568.0\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">웨왁</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#a9aeb5\"/><rect x=\"48\" y=\"256\" width=\"10\" height=\"10\" fill=\"#7a828b\"/><text x=\"62\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">2006</text><rect x=\"112\" y=\"256\" width=\"10\" height=\"10\" fill=\"#B45309\"/><text x=\"126\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">2012</text></svg>"
+  },
+  {
+   "stage": "c06",
+   "sid": "s11",
+   "kind": "shot",
+   "ord": 194,
+   "caption": "Gold Seas 올리브유 185 g. 필리핀 매대에서 kg당 10,75달러다.",
+   "alt": "골드시스 옐로핀 청크 인 올리브오일 185그램 캔 정면",
+   "src": "/data/companies/figures/rd/6a7aaedbe972.jpg"
+  },
+  {
+   "stage": "c06",
+   "sid": "s11",
+   "kind": "shot",
+   "ord": 108767,
+   "caption": "같은 내용물 90 g. 작은 캔이 kg당으로는 더 비싸 12,73달러다.",
+   "alt": "골드시스 옐로핀 청크 인 올리브오일 90그램 캔 정면",
+   "src": "/data/companies/figures/rd/3eeb7d43f75c.jpg"
+  },
+  {
+   "stage": "c06",
+   "sid": "s11",
+   "kind": "shot",
+   "ord": 199955,
+   "caption": "가향 라인의 커리. 라벨의 어종 표기가 「Tuna」뿐이고 상품명에만 황다랑어가 붙는다.",
+   "alt": "골드시스 청크 인 마일드 인디언 커리 185그램 캔 정면",
+   "src": "/data/companies/figures/rd/afa4a2cf66d0.jpg"
+  },
+  {
+   "stage": "c06",
+   "sid": "s11",
+   "kind": "shot",
+   "ord": 302193,
+   "caption": "현지 요리 이름을 붙인 살피카오. 유럽연합 승인 품목 목록에 같은 이름이 올라 있다.",
+   "alt": "골드시스 살피카오 170그램 캔 정면",
+   "src": "/data/companies/figures/rd/639cb89ae985.jpg"
+  },
+  {
+   "stage": "c06",
+   "sid": "s11",
+   "kind": "shot",
+   "ord": 391779,
+   "caption": "같은 매대의 경쟁 브랜드. 성분표에 대두단백농축물이 들어간다.",
+   "alt": "센추리 투나 180그램 캔 정면",
+   "src": "/data/companies/figures/rd/c1e19ccddadb.jpg"
+  },
+  {
+   "stage": "c06",
+   "sid": "s11",
+   "kind": "shot",
+   "ord": 468301,
+   "caption": "프랑스 소매 자체상표. 제품 등록의 제조지 칸이 마당 공장으로 적혀 있다.",
+   "alt": "프랑스 소매 자체상표 위니 185그램 캔 정면",
+   "src": "/data/companies/figures/rd/f11f7ec7d10b.jpg"
+  },
+  {
+   "stage": "c06",
+   "sid": "s11",
+   "kind": "chart",
+   "ord": 546423,
+   "caption": "같은 브랜드 안에서 규격이 작을수록 kg당 값이 올라간다. 세로축을 자르지 않았다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"필리핀 매대\"><text x=\"48\" y=\"16\" font-size=\"12.5\" fill=\"#7a828b\">달러/kg. 순중량 기준이고 같은 브랜드 안에서 작은 캔이 더 비싸다</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"225.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">0</text><line x1=\"48\" y1=\"195.1\" x2=\"670\" y2=\"195.1\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"198.6\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">2</text><line x1=\"48\" y1=\"168.3\" x2=\"670\" y2=\"168.3\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"171.8\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">4</text><line x1=\"48\" y1=\"141.4\" x2=\"670\" y2=\"141.4\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"144.9\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">6</text><line x1=\"48\" y1=\"114.6\" x2=\"670\" y2=\"114.6\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"118.1\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">8</text><line x1=\"48\" y1=\"87.7\" x2=\"670\" y2=\"87.7\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"91.2\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">10</text><line x1=\"48\" y1=\"60.9\" x2=\"670\" y2=\"60.9\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"64.4\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">12</text><line x1=\"48\" y1=\"34.0\" x2=\"670\" y2=\"34.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"37.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">14</text><rect x=\"119.5\" y=\"51.1\" width=\"27.0\" height=\"170.9\" fill=\"#0F766E\"/><text x=\"133.0\" y=\"47.1\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#0F766E\">12,7</text><text x=\"134.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">90 g 올리브유</text><rect x=\"272.5\" y=\"55.8\" width=\"27.0\" height=\"166.2\" fill=\"#0F766E\"/><text x=\"286.0\" y=\"51.8\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#0F766E\">12,4</text><text x=\"287.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">90 g 가향</text><rect x=\"425.5\" y=\"77.6\" width=\"27.0\" height=\"144.4\" fill=\"#0F766E\"/><text x=\"439.0\" y=\"73.6\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#0F766E\">10,8</text><text x=\"440.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">185 g 올리브유</text><rect x=\"578.5\" y=\"82.2\" width=\"27.0\" height=\"139.8\" fill=\"#0F766E\"/><text x=\"592.0\" y=\"78.2\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#0F766E\">10,4</text><text x=\"593.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">185 g 가향</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#a9aeb5\"/><rect x=\"48\" y=\"256\" width=\"10\" height=\"10\" fill=\"#0F766E\"/><text x=\"62\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">$/kg</text></svg>"
+  }
+ ]
+}
