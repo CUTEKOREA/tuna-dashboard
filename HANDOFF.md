@@ -1,3 +1,9 @@
+> 🚀 **2026-09-23 09:05 KST — #1205 `/logistics` 9/23 주간보고 프로덕션 배포** [CC]:
+> - 병합(squash): #1205 `da71d37e`(주간보고 9/23 반영 + 원문 정정 4건) → #1204 `97961e6f`(앞선 배포 기록). #1204 는 대기 중 HANDOFF 충돌이 나 양쪽 블록을 남기는 방식으로 풀었다.
+> - Production `tuna-dashboard-5qqecu3ct`(#1205) → `tuna-dashboard-8hbrhsc30`(#1204) 둘 다 READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
+> - 라이브 실측(Aside 로그인 세션): `/logistics` 기준일 **2026-09-23** · 9월 반입 **7척 26,486MT**(히어로 `data-kpi-value` 7 / 26486) · SEIN QUEEN·ZHONG YU MARINE 표시 · 원어 협의가 **$2,300** · 관제판 「SPA 창고 포화」·「고반려 잔량 불일치」 · overflow 0. 옛 「2026-08-05」·122,300·2,650 잔존 **0**.
+> - 이번 배포에도 `FLEET_DAILY_DETAIL_JSON` 변경은 없다 — 시크릿 교체 불필요.
+
 > 🚀 **2026-09-23 06:10 KST — #1199·#1200 프로덕션 배포** [CC]:
 > - 순차 병합(squash): #1199 `91e5a4da`(SEIN GALAXY 9/22 하역) → #1200 `f39390a6`(PANOFI 주간동향 39주차). #1200 은 병합 대기 중 main 이 두 번 움직여(#1201·#1203) HANDOFF 충돌이 두 번 났고, 양쪽 블록을 모두 남기는 방식으로 풀었다. 재병합 뒤 영향 테스트 2종(panofi-dashboard · unloading-sein-galaxy-data) 66개 GREEN.
 > - Production `tuna-dashboard-ngtnc7gqp` READY(3분), alias `https://leedonggun.co.kr`. 배포 로그 error 0.
