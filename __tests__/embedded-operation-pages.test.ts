@@ -10,12 +10,12 @@ describe('bangkok native dashboard', () => {
 
     expect(intake.bangkokWeeklyKpi).toEqual({
       period: '2020.05~2026.09',
-      // 2026-09-16 주간보고 반영 (매주 sync로 갱신되는 확정 KPI)
-      weeks: 292,
-      latestPrice: 2250,
-      stockMt: 91500,
-      processDays: 41,
-      cumUnloadMt: 354648,
+      // 2026-09-23 주간보고 반영 (매주 sync로 갱신되는 확정 KPI)
+      weeks: 293,
+      latestPrice: 2300,
+      stockMt: 91250,
+      processDays: 42,
+      cumUnloadMt: 359984,
       highSaltUsd: 142000,
     });
 

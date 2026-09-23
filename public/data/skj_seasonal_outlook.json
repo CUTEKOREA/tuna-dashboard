@@ -3,13 +3,13 @@
  "label": "9→12월 과거 같은 달 평균 변화(감쇠 ×0.5)",
  "source": "계절 변화율 Atuna SKJ 1.8kg CFR 방콕 월별 · 앵커 방콕사무소 주간보고 (public/data/bangkok_weekly_payload.json)",
  "asOf": "2026-09",
- "anchorPrice": 2250.0,
+ "anchorPrice": 2300.0,
  "anchorSource": "방콕사무소 주간보고 (public/data/bangkok_weekly_payload.json)",
  "targetMonth": "2026-12",
- "value": 2097,
+ "value": 2144,
  "band80": [
-  1656,
-  2621
+  1693,
+  2678
  ],
  "bandMethod": "S+mom 롤링 백테스트 선행(walk-forward) 잔차 10~90분위, 2010~",
  "history": {
