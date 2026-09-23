@@ -1,3 +1,10 @@
+> 📰 **2026-09-24 07:26 KST — `/market` 2026-09-23 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1215](https://github.com/CUTEKOREA/tuna-dashboard/pull/1215) squash 병합. main commit `45830cb3` (브랜치 커밋 `dd81521f`, `briefing/2026-09-23`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+69/−55). 기준일 `2026-09-23`, 기사 **6건**.
+> - 게이트: 감사 AUDIT_PASS(윤문본 재감사 PASS, 채택) · 07:20 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · 변경분 존재.
+> - pre-push 빌드: 1회차 실패(`Fix the build error` — 코드 변경 없음, 원인 미확인), 재시도에서 75초 통과. 재발하면 원인 조사가 필요하다.
+> - Vercel `pending` 22:22:49Z → `success`(07:25 KST). 라이브 1·2회차는 옛 값 `2026.09.22 · 6건`, 배포 완료 뒤 「기준일 2026.09.23 · 기사 6건 · 파이프라인 동기」 확인(Aside 로그인 세션). 새 기사(태국·EU 통조림 참치 합의, Captain Fresh)가 보이고 9.22 리드 「동원, StarKist 채무보증 연장」은 사라졌다.
+> - 워크트리: PR MERGED + JSON 이 origin/main 과 같은 것을 확인하고 `sync/2026-09-23`(origin/main)로 옮겼다. 이 기록 PR 병합 뒤 `sync/2026-09-23b` 로 옮겨 clean 으로 남긴다.
+
 > ✅ **2026-09-23 13:40 KST — `/gmts` 36주차(9/23) 반영** [CC]:
 > - 원자료: `GMTS Weekly Report 20260923.pdf` SHA-256 `38f95b7f…9588`(476,197 B, 1쪽). `scripts/build_gmts_dashboard.py` 재빌드 → 보고 35 → **36건**, 쪽수 43 → 44, coverageEnd 2026-09-23.
 > - 항만: **하역 중 0척**(지난주 1척). FRANSESCA LT 가 9/17 출항으로 종료 레인으로 넘어갔다 — 양하 1,362.360 MT · SHORT 210.545 MT, 다만 종료 표에는 총화물 칸이 없어 `cargo: null` 이다. 입항 예정은 5 → **6척**(WEBO 307·IZAR ARGIA·MOAMARI·SHIN FUJI·SEIN SAPPHIRE·VOLTA VICTORY), 전부 TBA 라 화물량은 공란 유지.
