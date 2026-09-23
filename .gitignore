@@ -114,3 +114,6 @@ pnpm-workspace.yaml
 seafresh-docs/
 .impeccable/*
 !.impeccable/config.json
+
+# 라이브 화면 증거 (scripts/verify_live.mjs)
+/artifacts/live-evidence/
