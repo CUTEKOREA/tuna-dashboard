@@ -1,3 +1,8 @@
+> 🚀 **2026-09-23 06:10 KST — #1199·#1200 프로덕션 배포** [CC]:
+> - 순차 병합(squash): #1199 `91e5a4da`(SEIN GALAXY 9/22 하역) → #1200 `f39390a6`(PANOFI 주간동향 39주차). #1200 은 병합 대기 중 main 이 두 번 움직여(#1201·#1203) HANDOFF 충돌이 두 번 났고, 양쪽 블록을 모두 남기는 방식으로 풀었다. 재병합 뒤 영향 테스트 2종(panofi-dashboard · unloading-sein-galaxy-data) 66개 GREEN.
+> - Production `tuna-dashboard-ngtnc7gqp` READY(3분), alias `https://leedonggun.co.kr`. 배포 로그 error 0.
+> - 라이브 실측(Aside 로그인 세션): `/panofi` 선단·조업 탭 WESTERN KIM·SEA FRONTIER·기준일 2026-09-22, 어가·채널 탭 SCODI **$1,832**·PFC $1,900, 자금·미수금 탭 **5,284천불 · 2026-09-22 주간동향**. `/unloading` SEIN GALAXY 누계 **887.69** · 잔량 958.31 · 9/22 행 표시, overflow 0.
+> - 이번 배포에 `FLEET_DAILY_DETAIL_JSON` 변경은 없다(선단 일일보고 무변경) — 시크릿 교체 불필요.
 > ✅ **2026-09-23 08:20 KST — `/logistics` 방콕사무소 주간보고 9/23 반영 + 원문·마스터 엑셀 정정** [CC]:
 > - 원자료: `20260923 Bangkok Office Weekly Report.docx`. **원문에 오류가 있어 먼저 고치고 반영했다** — 정정본 SHA-256 `eab43fa3…8e43`(정정 전 `20e12dc2…`, 백업 `…backup_before_fix.docx`).
 > - 정정 4건: ① 입항표에서 SEIN QUEEN(2,902·FCF)·ZHONG YU MARINE(5,025·직거래)이 빠지고 합계가 5척 17,111MT 로 찍혀 있던 것 → **7척 26,486MT** ② 2026 월별표 9월 행이 전주 값(5척 21,150)으로 남아 합계행(89척·359,984)과 어긋나던 것 → FCF 4척 14,539 · 직거래 3척 11,947 ③ 2023 합계 627,248 → **616,440**(2022 소계를 옮긴 값), 2025 FCF 214,135 → **241,235**·ITOCHU 127,276 → **127,006**·합계 615,865 → **615,695** ④ 9/16 부터 「6. High SALT」 절이 빠져 번호가 5 → 7 로 뛰던 것을 6. Other 로 당김.
