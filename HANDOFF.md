@@ -1,3 +1,8 @@
+> 🚀 **2026-09-23 14:10 KST — #1209·#1211 프로덕션 배포 + 시크릿 교체** [CC]:
+> - 순차 병합(squash): #1209 `087467ca`(선단 9/23) → #1211 `4bcba1aa`(GMTS 36주차). **#1210 은 base 브랜치(`data/fleet-260923`)가 병합·삭제되며 자동으로 닫혔다** — 스택 PR 은 아래 PR 이 먼저 병합되면 위 PR 이 닫히므로, 같은 브랜치로 main 기준 PR 을 다시 열어야 한다.
+> - Production `tuna-dashboard-61oboktps` READY → `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `afeeae64…` → **`7b067ac0…`** 로 교체·재배포(`tuna-dashboard-5g25434vt`, 3분). alias `https://leedonggun.co.kr`, 배포 로그 error 0.
+> - 라이브 실측(새 탭): `/fleet` 「2026-09-23 보고 · 2026-09-22 조업 기준」 · 히어로 510 / 7,988 / 89,688.8 / 7,399.3 · 「전체 보고 162건」·「연승 구역 미기재 23건」 · **보호 패널 경고 없음**. `/gmts` 2026.09.23 · 하역 중 0척 · 입항 예정 6척 · 36건 · $2,025 / $2,140 · overflow 0 · 「미확정 MT」 잔존 0.
+
 > ✅ **2026-09-23 13:40 KST — `/gmts` 36주차(9/23) 반영** [CC]:
 > - 원자료: `GMTS Weekly Report 20260923.pdf` SHA-256 `38f95b7f…9588`(476,197 B, 1쪽). `scripts/build_gmts_dashboard.py` 재빌드 → 보고 35 → **36건**, 쪽수 43 → 44, coverageEnd 2026-09-23.
 > - 항만: **하역 중 0척**(지난주 1척). FRANSESCA LT 가 9/17 출항으로 종료 레인으로 넘어갔다 — 양하 1,362.360 MT · SHORT 210.545 MT, 다만 종료 표에는 총화물 칸이 없어 `cargo: null` 이다. 입항 예정은 5 → **6척**(WEBO 307·IZAR ARGIA·MOAMARI·SHIN FUJI·SEIN SAPPHIRE·VOLTA VICTORY), 전부 TBA 라 화물량은 공란 유지.
