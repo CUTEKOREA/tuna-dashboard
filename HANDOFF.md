@@ -1,3 +1,13 @@
+> 🚀 **2026-09-23 11:20 KST — #1208 `/bangkok-office` 293주차 프로덕션 배포** [CC]:
+> - 병합(squash): #1208 `18b656aa`. Production `tuna-dashboard-blgf5ocld` READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
+> - 라이브 실측: 최신 시세 **$2,300** · 방콕 재고 **91,250MT** · 2026 누적 하역 **359,984MT** · 「고유 **293**주」. overflow 0.
+> - **함정 재발**: 배포 직후 열려 있던 탭에서는 2,250·91,500·292주가 그대로 보였다. 새 탭(쿼리 파라미터 포함)으로 열어야 새 값이 나온다 — 라이브 판정은 항상 **새 탭**으로 한다. 배포본 JSON(`/data/bangkok_weekly_kpi.json`)을 직접 받아 293주인 것을 먼저 확인하고 화면을 다시 봤다.
+
+> 🚀 **2026-09-23 09:05 KST — #1205 `/logistics` 9/23 주간보고 프로덕션 배포** [CC]:
+> - 병합(squash): #1205 `da71d37e`(주간보고 9/23 반영 + 원문 정정 4건) → #1204 `97961e6f`(앞선 배포 기록). #1204 는 대기 중 HANDOFF 충돌이 나 양쪽 블록을 남기는 방식으로 풀었다.
+> - Production `tuna-dashboard-5qqecu3ct`(#1205) → `tuna-dashboard-8hbrhsc30`(#1204) 둘 다 READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
+> - 라이브 실측(Aside 로그인 세션): `/logistics` 기준일 **2026-09-23** · 9월 반입 **7척 26,486MT**(히어로 `data-kpi-value` 7 / 26486) · SEIN QUEEN·ZHONG YU MARINE 표시 · 원어 협의가 **$2,300** · 관제판 「SPA 창고 포화」·「고반려 잔량 불일치」 · overflow 0. 옛 「2026-08-05」·122,300·2,650 잔존 **0**.
+> - 이번 배포에도 `FLEET_DAILY_DETAIL_JSON` 변경은 없다 — 시크릿 교체 불필요.
 > ✅ **2026-09-23 11:05 KST — `/bangkok-office` 293주차(9/23) 반영** [CC]:
 > - `/logistics` 와 `/bangkok-office` 는 **원천이 다르다**. 앞서 #1205 로 고친 것은 `lib/logistics-weekly-report.ts` 뿐이고, 방콕사무소 화면은 Drive 종합분석 HTML(292주 payload)을 타므로 9/16 값이 그대로 남아 있었다(사용자 지적).
 > - 절차: `docs/bangkok_week_20260923.json` week-spec 작성 → `scripts/append_bangkok_week.py`(자가검증 7항목 전부 «일치») → `scripts/sync_bangkok_report.sh` 로 저장소 JSON 재추출. 종합분석 HTML 은 `…backup_20260923.html` 로 백업.
