@@ -1,3 +1,12 @@
+> 🚀 **2026-09-24 10:20 KST — #1223 9/24 계획 배포** [CC]:
+> - 병합(squash): #1223 `8473605c`. Production `tuna-dashboard-loaillape` READY, alias `https://leedonggun.co.kr`.
+> - 라이브 확인은 화면 텍스트가 아니라 **API 로 했다** — 명일 계획은 항차 상세 패널 안이라 본문 스캔에 안 잡힌다. `/api/unloading-db` 에서 `"date":"9/24" … "plannedMt":"290"` 확인. 누계 1,174.13 · 잔량 671.87 은 화면에서 확인.
+
+> 🚀 **2026-09-24 09:50 KST — #1213·#1221 프로덕션 배포** [CC]:
+> - 순차 병합(squash): #1213 `81cac029`(SEIN GALAXY 9/23 하역) → #1221 `a25e6fd9`(COSMO 38주차). 둘 다 대기 중 main 이 움직여(#1216·#1219·#1220) HANDOFF 충돌이 한 번씩 났고 양쪽 블록을 남겨 풀었다.
+> - Production `tuna-dashboard-2ytti318x` READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
+> - 라이브 실측(새 탭): `/unloading` 누계 **1,174.13** · 잔량 **671.87** · 9/23 행 · 일평균 **234.8**. `/cosmo` **38주차** · 수주잔고 **319 FCL** · 「가나 공휴일」·「재고 조사」 브리핑 · overflow 0. 지난주 문장(「가나 송금 일시 지연」·「37주차 업무 브리핑」) 잔존 0.
+> - 이번 배포에도 `FLEET_DAILY_DETAIL_JSON` 변경 없음 — 시크릿 교체 불필요.
 > ✅ **2026-09-24 10:00 KST — `/unloading` SEIN GALAXY 9/24 계획 반영** [CC]:
 > - 사용자 전달: 「24/SEP/2026(THU) (W.41) SEIN GALAXY, -UN/H2B1+2C1(MOAKONA) 200 MT 08:00, -CMC/H4C1(MOAMARI) 90 MT 08:00(SONGKHLA)」 = **290 MT**.
 > - 9/23 행의 `next_day.planned_mt` 를 null → **290** 으로 채웠다(문안의 「약 ###톤」이 「약 290톤」으로 바뀐다). 비고에 어창까지 적었다.
