@@ -1,3 +1,10 @@
+> ✅ **2026-09-24 12:10 KST — RYOMA 3,490 → 3,290 MT 정정(문서·엑셀·두 화면)** [CC]:
+> - 사용자 확인: **TTA 운반선 주간동향의 3,290 MT 가 맞다**. 9/23 방콕 주간보고 입항표의 3,490 MT 가 200 MT 과다였다 — 어제 「둘 다 기록」으로 남겨 둔 차이의 답이다.
+> - 고친 곳 4군데: ① 주간보고 docx(입항표 RYOMA·합계 26,486 → **26,286**, SEP 직거래 11,947 → **11,747**, 2026 합계행 직거래 119,649 → **119,449**·총계 359,984 → **359,784**, 요약문 누계) ② 마스터 `데이터 정리.xlsx` F76(9월 직거래) ③ `/logistics` 계약(월별·트레이더·운반선·누계 + `source.corrections` 에 경위) ④ `/bangkok-office` 종합분석 payload — HTML 을 백업본으로 되돌린 뒤 week-spec 을 고쳐 다시 append 했다(주차 293 유지, 2026 누계 **359,784**).
+> - **정정 절차 메모**: 종합분석 HTML 은 append 전용이라 수정이 안 된다. `…backup_20260923.html` 로 복원 → spec 수정 → `append_bangkok_week.py` 재실행 → `sync_bangkok_report.sh` 가 안전한 경로다.
+> - 테스트 4종 갱신(logistics-weekly-data · logistics-command-center · embedded-operation-pages · v2-components-render 경유). `npm run verify` 통과: Vitest **195 files / 1,658** · ESLint 0 errors · bundle 33.
+> - 상태: 브랜치 `fix/ryoma-3290`. **프로덕션 미배포**.
+
 > ✅ **2026-09-24 11:40 KST — `/logistics` TTA 운반선 38주차 반영** [CC]:
 > - 원자료: `Reefer ship movement for week 38th.xlsx` SHA-256 `238f2881…4d34`. `scripts/sync_reefer_weekly.py` 로 `data/reefer_week38.json` 생성(5척, 합계 **18,359 MT**, 기간 2026-09-18~09-24).
 > - 37주차 7척 → 38주차 **5척**. SEIN VENUS·ZHONG YU MARINE·SEIN QUEEN 이 하역을 마치고 빠졌고 **RYOMA(9/22 접안, 3,290 MT)** 가 붙었다. SEIN GALAXY 1,846 MT 는 그대로 남아 있다(`/unloading` 항차와 같은 배).

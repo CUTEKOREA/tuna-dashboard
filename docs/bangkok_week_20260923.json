@@ -6,7 +6,7 @@
   "price": 2300.0,
   "suspect": false,
   "unload_v": 7.0,
-  "unload_mt": 26486.0,
+  "unload_mt": 26286.0,
   "bkk_cur": 2170.0,
   "bkk_max": 4140.0,
   "bkk_util": 52.0,
@@ -132,7 +132,7 @@
   "FCF": 14539.0,
   "ITOCHU": 0,
   "TRI MARINE": 0,
-  "DIRECT": 11947.0,
+  "DIRECT": 11747.0,
   "MALDIVES": 0,
   "ships": {
    "FCF": 4.0,
@@ -141,15 +141,15 @@
    "DIRECT": 3.0,
    "MALDIVES": 0
   },
-  "total_reported": 26486.0,
+  "total_reported": 26286.0,
   "ships_reported": 7.0
  },
  "trader_year_reported": {
-  "total": 359984.0,
+  "total": 359784.0,
   "FCF": 147141.0,
   "ITOCHU": 36731.0,
   "TRI MARINE": 56463.0,
-  "DIRECT": 119649.0,
+  "DIRECT": 119449.0,
   "MALDIVES": 0
  },
  "header": {
@@ -159,7 +159,7 @@
   "latestPrice": "$2,300",
   "stockMt": "91,250 MT",
   "processDays": "42일",
-  "cumUnload": "359,984 MT"
+  "cumUnload": "359,784 MT"
  },
  "snapshot_meta": {
   "BKK": {

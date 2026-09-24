@@ -15,7 +15,7 @@ describe('bangkok native dashboard', () => {
       latestPrice: 2300,
       stockMt: 91250,
       processDays: 42,
-      cumUnloadMt: 359984,
+      cumUnloadMt: 359784,
       highSaltUsd: 142000,
     });
 

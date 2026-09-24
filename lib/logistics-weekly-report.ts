@@ -35,7 +35,7 @@ const monthlyReceipts = [
   { month: '6월', FCF: 13749, ITOCHU: 2924, 'TRI MARINE': 9465, direct: 23719, Maldives: 0, total: 49857 },
   { month: '7월', FCF: 4100, ITOCHU: 3711, 'TRI MARINE': 8283, direct: 3059, Maldives: 0, total: 19153 },
   { month: '8월', FCF: 15710, ITOCHU: 4940, 'TRI MARINE': 0, direct: 4564, Maldives: 0, total: 25214 },
-  { month: '9월', FCF: 14539, ITOCHU: 0, 'TRI MARINE': 0, direct: 11947, Maldives: 0, total: 26486 },
+  { month: '9월', FCF: 14539, ITOCHU: 0, 'TRI MARINE': 0, direct: 11747, Maldives: 0, total: 26286 },
 ] as const;
 
 const bangkokCanneries: CanneryReport[] = [
@@ -107,8 +107,9 @@ export const logisticsWeeklyReport = {
     reportDate: '2026-09-23',
     sha256: 'eab43fa3777620eaab20289138d83b3fc04cadcadbdd7e7fffa7279ea0ce8e43',
     corrections: [
-      '입항표에서 빠져 있던 SEIN QUEEN(2,902MT·FCF)·ZHONG YU MARINE(5,025MT·직거래)을 되살리고 합계를 5척 17,111MT → 7척 26,486MT 로 고쳤다.',
-      '2026년 월별표 9월 행이 전주 값(5척 21,150MT)으로 남아 있어 4척 14,539MT·3척 11,947MT·계 7척 26,486MT 로 고쳤다. 합계행은 이미 갱신돼 있었다.',
+      '입항표에서 빠져 있던 SEIN QUEEN(2,902MT·FCF)·ZHONG YU MARINE(5,025MT·직거래)을 되살리고 합계를 5척 17,111MT → 7척 26,286MT 로 고쳤다.'
+      + ' RYOMA 는 원문 3,490MT 였으나 TTA 운반선 주간동향의 3,290MT 가 맞다(2026-09-24 확인) — 200MT 를 내렸다.',
+      '2026년 월별표 9월 행이 전주 값(5척 21,150MT)으로 남아 있어 4척 14,539MT·3척 11,747MT·계 7척 26,286MT 로 고쳤다. 합계행(직거래 119,449 · 총계 359,784)도 RYOMA 정정분을 반영했다.',
       '2023년 합계 627,248MT → 616,440MT(2022년 소계를 잘못 옮긴 값), 2025년 FCF 214,135 → 241,235MT·ITOCHU 127,276 → 127,006MT·합계 615,865 → 615,695MT.',
       '9/16 부터 「6. High SALT」 절이 빠져 번호가 5 → 7 로 건너뛰던 것을 6. Other 로 당겼다.',
     ],
@@ -120,11 +121,11 @@ export const logisticsWeeklyReport = {
       { key: 'FCF', label: 'FCF', total: 147141 },
       { key: 'ITOCHU', label: 'ITOCHU', total: 36731 },
       { key: 'TRI MARINE', label: 'TRI MARINE', total: 56463 },
-      { key: 'direct', label: '직거래', total: 119649 },
+      { key: 'direct', label: '직거래', total: 119449 },
       { key: 'Maldives', label: '몰디브', total: 0 },
     ],
-    total: 359984,
-    reconciliationNote: '9월 행 정정 후 월별 합산이 원문 합계행 359,984MT와 일치합니다.',
+    total: 359784,
+    reconciliationNote: '9월 행과 RYOMA(3,490 → 3,290MT) 정정 후 월별 합산은 359,784MT입니다.',
   },
   canneries: {
     bangkok: bangkokCanneries,
@@ -139,10 +140,10 @@ export const logisticsWeeklyReport = {
       { trader: 'FCF', name: 'SEIN GALAXY', amount: 1846 },
       { trader: 'DIRECT', name: 'SEITA MARU', amount: 3432 },
       { trader: 'DIRECT', name: 'ZHONG YU MARINE', amount: 5025 },
-      { trader: 'DIRECT', name: 'RYOMA', amount: 3490 },
+      { trader: 'DIRECT', name: 'RYOMA', amount: 3290 },
     ],
-    currentTotal: { vessels: 7, amount: 26486 },
-    monthToDate: { vessels: 7, amount: 26486 },
+    currentTotal: { vessels: 7, amount: 26286 },
+    monthToDate: { vessels: 7, amount: 26286 },
     /** 원문 「Unloading Vessel: BANGKOK 5」 - 보고 시점에 방콕에서 하역 중인 척수 */
     unloadingNow: { port: '방콕', vessels: 5 },
   },
