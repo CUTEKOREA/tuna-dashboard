@@ -6,6 +6,9 @@
 > - 주차 테스트는 파일명을 `reefer-week38-data.test.ts` 로 옮겨 최신 주차 하나만 유지한다(37주차 JSON 은 이력 비교용으로 계속 import).
 > - `npm run verify` 통과: Vitest **195 files / 1,658** · ESLint 0 errors · bundle 33. 로컬 1440·390px: 38주차·18,359 표시, overflow 0, error 0.
 > - 상태: 브랜치 `data/reefer-week38`. **프로덕션 미배포**.
+> 🚀 **2026-09-24 11:00 KST — #1224 모션 선별 적용 배포** [CC]:
+> - 병합(squash): #1224 `5632329c`. Production `tuna-dashboard-abprij5pz` READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
+> - 라이브 실측(`/fleet`, 새 탭): 정지 패널 opacity 1 · `animationName: motionEnter` · duration 0.2s, 탭 클릭 110ms 뒤 opacity 0.92, 정착 후 1. 보호 상세 경고 없음, 패널 본문 3,095자 정상.
 
 > ✅ **2026-09-24 10:50 KST — 모션 선별 적용 (탭 전환·상태 전이만)** [CC]:
 > - 전면 도입은 하지 않았다. 이 화면은 숫자를 읽는 곳이고 모션이 판독을 방해하면 손해다 — 9/22 에 히어로 카운트업 중간값(362)을 라이브 회귀로 오인한 일이 근거다.
