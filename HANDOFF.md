@@ -7,6 +7,12 @@
 > - 일평균 221.9 → **234.8 MT/일**(보고 5회). 남은 671.87 MT 는 이 속도면 약 2.9일이다.
 > - 테스트: 9/23 블록 신설 + 누계·원선별·간트·어종 단정 갱신. `npm run verify` 통과: Vitest **194 files / 1,652** · ESLint 0 errors · bundle 33. 로컬 1440·390px overflow 0, error 0.
 > - 상태: 브랜치 `data/unloading-sein-galaxy-0923`. **프로덕션 미배포**.
+> 📰 **2026-09-24 07:26 KST — `/market` 2026-09-23 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1215](https://github.com/CUTEKOREA/tuna-dashboard/pull/1215) squash 병합. main commit `45830cb3` (브랜치 커밋 `dd81521f`, `briefing/2026-09-23`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+69/−55). 기준일 `2026-09-23`, 기사 **6건**.
+> - 게이트: 감사 AUDIT_PASS(윤문본 재감사 PASS, 채택) · 07:20 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · 변경분 존재.
+> - pre-push 빌드: 1회차 실패(`Fix the build error` — 코드 변경 없음, 원인 미확인), 재시도에서 75초 통과. 재발하면 원인 조사가 필요하다.
+> - Vercel `pending` 22:22:49Z → `success`(07:25 KST). 라이브 1·2회차는 옛 값 `2026.09.22 · 6건`, 배포 완료 뒤 「기준일 2026.09.23 · 기사 6건 · 파이프라인 동기」 확인(Aside 로그인 세션). 새 기사(태국·EU 통조림 참치 합의, Captain Fresh)가 보이고 9.22 리드 「동원, StarKist 채무보증 연장」은 사라졌다.
+> - 워크트리: PR MERGED + JSON 이 origin/main 과 같은 것을 확인하고 `sync/2026-09-23`(origin/main)로 옮겼다. 이 기록 PR 병합 뒤 `sync/2026-09-23b` 로 옮겨 clean 으로 남긴다.
 
 > ✅ **2026-09-23 13:40 KST — `/gmts` 36주차(9/23) 반영** [CC]:
 > - 원자료: `GMTS Weekly Report 20260923.pdf` SHA-256 `38f95b7f…9588`(476,197 B, 1쪽). `scripts/build_gmts_dashboard.py` 재빌드 → 보고 35 → **36건**, 쪽수 43 → 44, coverageEnd 2026-09-23.

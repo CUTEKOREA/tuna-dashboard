@@ -50,7 +50,8 @@
 | ⅩⅬⅣ | Chicken of the Sea (미국 · Tri-Union Seafoods LLC · Thai Union Group 100 % 자회사 · 담합 셋 중 유일하게 기소되지 않았다) | `cosi` | https://claude.ai/code/artifact/3e8f371a-ec87-4caf-b57e-343fc6789787 |
 | ⅩⅬⅤ | Kingfisher Holdings (태국 방콕 야나와 등기 · SEAPAC·KF Foods · 일본 Umios 의결권 50,70 % · 방푸 공장은 감사받은 생산범위 전체가 펫푸드) | `kingfisher` | https://claude.ai/code/artifact/983bb8fd-435e-4f8e-b682-93ce9b52c53c |
 | ⅩⅬⅥ | CAPSEN (세네갈 다카르 몰 10 부두 · 동원산업 49,00 % · 연결 근거는 계열 유일 「실질지배력보유」 · 49 %는 세네갈 해사법 제91조가 정한 천장 · 세네갈 국적 선망 7척 중 4척) | `capsen` | https://claude.ai/code/artifact/d31b875f-9467-4d43-b9c6-ebf144b2f558 |
-| ⅩⅬⅦ | Bounty Seafood (파푸아뉴기니 라에 말라항 Portion 679 · 동원산업 100,00 % · 2012년 로인 공장 계획이 서지 않았다 · 대여금 40만 1.232 달러가 14년째 회수 0 · 가공장 명부 넷에 이름 없음) | `bounty` | https://claude.ai/artifact/RTyVQAkWUQRAKvbgDEkjkU |
+| ⅩⅬⅦ | Bounty Seafood (파푸아뉴기니 라에 말라항 Portion 679 · 동원산업 100,00 % · 2012년 로인 공장 계획이 서지 않았다 · 대여금 40만 1.232 달러가 14년째 회수 0 · 가공장 명부 넷에 이름 없음) | `bounty` | https://claude.ai/artifact/CLfMxp7N6hbMTFieFMJbxH |
+| ⅩⅬⅧ | RD Corporation (파푸아뉴기니 마당 R.D. Tuna Canners 1-22587 + 필리핀 탐블러 PHIL. BEST CANNING CORP. · 두 공장 다 유럽 무관세인데 원산지 규칙이 다르다 · 마당 2차 공장은 열세 해째 말) | `rd` | https://claude.ai/artifact/5reFe6aDRVx4oAzJNQWa45 |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 
@@ -71,6 +72,13 @@ d34b480c 9409968d 164384b0 a2fc9379 0004def0 05ad0389 86536b25 83c55ae4
 **교훈 — `not found`·`artifact-deleted` 를 삭제로 판정하지 마라.**
 조회 실패와 삭제를 도구가 구분해 주지 않는다. 재발행 전에 시간을 두고 `list` 를 다시 부르거나
 브라우저로 URL 을 직접 열어 확인한다. 원본이 살아 있으면 `url` 로 갱신해야 링크가 유지된다.
+
+## 계정이 바뀌면 링크가 죽는다 (2026-09-24)
+
+ⅩⅬⅦ Bounty 의 원래 아티팩트(`RTyVQAkWUQRAKvbgDEkjkU`)는 **다른 계정 소유라 열람도 재게시도 안 됐다.**
+읽기 시도에 `artifact not found` 가 오고 안내가 「초대된 계정으로 로그인했는지 확인하라」를 붙였다 —
+**삭제가 아니라 소유 계정 문제다.** 같은 URL 을 살리려면 그 계정으로 돌아가야 하고,
+돌아갈 수 없으면 **새로 게시하고 이 원장과 카드의 링크를 함께 고친다.** ⅩⅬⅦ 은 후자로 처리했다.
 
 ## 재발행이 정말 필요할 때
 

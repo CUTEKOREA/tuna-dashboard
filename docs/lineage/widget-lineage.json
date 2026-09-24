@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 280,
+  "files": 281,
   "widgets": 114,
-  "dataFiles": 283,
+  "dataFiles": 287,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -628,6 +628,7 @@
     "lib/data/company-nirsa.ts",
     "lib/data/company-nissui.ts",
     "lib/data/company-princes.ts",
+    "lib/data/company-rd.ts",
     "lib/data/company-report-figures.ts",
     "lib/data/company-report-tables.ts",
     "lib/data/company-sajo.ts",
@@ -788,6 +789,10 @@
     "public/data/companies/princes_prose_v1.json",
     "public/data/companies/princes_tables_v1.json",
     "public/data/companies/princes_v1.json",
+    "public/data/companies/rd_figures_v1.json",
+    "public/data/companies/rd_prose_v1.json",
+    "public/data/companies/rd_tables_v1.json",
+    "public/data/companies/rd_v1.json",
     "public/data/companies/sajo_figures_v1.json",
     "public/data/companies/sajo_prose_v1.json",
     "public/data/companies/sajo_tables_v1.json",
@@ -1856,6 +1861,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/princes_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/rd_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/rd_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/rd_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/rd_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/sajo_figures_v1.json": [
