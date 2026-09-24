@@ -7,6 +7,15 @@
 > - `npm run verify` 통과: Vitest **194 files / 1,652** · ESLint 0 errors(경고 30건, main 과 동일) · bundle 33.
 > - 상태: 브랜치 `data/cosmo-week38`. **프로덕션 미배포**.
 
+> ✅ **2026-09-23 23:10 KST — `/unloading` SEIN GALAXY 방콕 9/23 하역 반영** [CC]:
+> - 원자료: K GROUP Report No.5 JPG `34920499…8fb3` · 결과 XLS `551f934a…2bc2`(시트 `09-23`) · 현황 XLSX `8e4bcd18…079c`. 사용자가 준 Downloads 경로의 XLS 는 이미 Drive 로 옮겨져 있었다 — **파일이 없으면 Drive 하역 업무 폴더를 먼저 본다**.
+> - 9/23(수) 08:00~15:20 **286.440 MT**, 화주 2곳이 하루에 붙었다: UC #2-B MOAKONA 192.800(08:00~15:20) · CMC #3-C MOAMARI 93.640(08:40~11:50, 리퍼 트럭 7대). 20 trucks. 어종 YF 73.40 · SJ 213.04.
+> - 누계 **1,174.130** · 잔량 **671.870**(진행률 63.6%). 원선별 누계 MOAKONA 528.30 · MOAMARI 645.83. 어종 누계 SJ 851.46 · YF 322.67 로 `unloading_species` 실적도 갱신했다.
+> - 계획 290 대비 **-3.560 MT**. 사용자 전달 메시지는 「UN/H2B1 200 + CMC/H4C1 90」이었는데 **실제 작업 어창은 #4-C 가 아니라 #3-C** 였다(합계는 같다). 12:00~13:00 강우, UC #2-B 10:50~11:20 차량 대기.
+> - **9/24 계획이 원자료에 없다** — `planned_mt` 를 null 로 두어 문안이 「약 ###톤」으로 나온다.
+> - 일평균 221.9 → **234.8 MT/일**(보고 5회). 남은 671.87 MT 는 이 속도면 약 2.9일이다.
+> - 테스트: 9/23 블록 신설 + 누계·원선별·간트·어종 단정 갱신. `npm run verify` 통과: Vitest **194 files / 1,652** · ESLint 0 errors · bundle 33. 로컬 1440·390px overflow 0, error 0.
+> - 상태: 브랜치 `data/unloading-sein-galaxy-0923`. **프로덕션 미배포**.
 > 📰 **2026-09-24 07:26 KST — `/market` 2026-09-23 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
 > - PR [#1215](https://github.com/CUTEKOREA/tuna-dashboard/pull/1215) squash 병합. main commit `45830cb3` (브랜치 커밋 `dd81521f`, `briefing/2026-09-23`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+69/−55). 기준일 `2026-09-23`, 기사 **6건**.
 > - 게이트: 감사 AUDIT_PASS(윤문본 재감사 PASS, 채택) · 07:20 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · 변경분 존재.
