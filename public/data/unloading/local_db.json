@@ -3069,6 +3069,74 @@
    "source_workbook_sha256": "dda7f41af11795c5af1a836183d78580bdee6a8fb4cbb9149c133b1b12a3a139",
    "status_workbook_sha256": "d8c92c4f07d9ffea5f8c32ba6dc4e75f3130e6a172b2f121df7c5d146763b57e",
    "created_at": "2026-09-22T21:00:00+09:00"
+  },
+  {
+   "id": "sein-galaxy-bangkok-2026-09-9-23",
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "report_year": 2026,
+   "report_date": "9/23",
+   "work_time": "08:00 ~ 15:20",
+   "target_holds": "MOAKONA(#2-B:192.800), MOAMARI(#3-C:93.640)",
+   "consignee": "UC · CMC",
+   "allocations": [
+    {
+     "consignee": "UC",
+     "amount": 192.8,
+     "loads": [
+      {
+       "source_vessel": "MOAKONA",
+       "hatch": "#2-B",
+       "amount": 192.8
+      }
+     ]
+    },
+    {
+     "consignee": "CMC",
+     "amount": 93.64,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#3-C",
+       "amount": 93.64
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "MOAKONA",
+     "hatch": "#2-B",
+     "temperatures_c": [
+      -20.0,
+      -21.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -20.0,
+      -21.0
+     ]
+    }
+   ],
+   "daily_amount": 286.44,
+   "cumulative_amount": 1174.13,
+   "species_amounts": {
+    "SJ": 213.04,
+    "YF": 73.4
+   },
+   "remaining_amount": 671.87,
+   "next_day": {
+    "kind": "work",
+    "date": "9/24",
+    "planned_mt": null
+   },
+   "quality_notes": "MOAKONA(#2-B) 08:00~15:20 - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. MOAMARI(#3-C) 08:40~11:50 - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 원문 온도 표기는 ‘-20,-21’(단위: ℃)입니다. TOTAL 20 TRUCKS(CMC #3-C 는 리퍼 트럭 7대). 12:00~13:00 강우, UC #2-B 10:50~11:20 차량 대기. 계획 290 MT 대비 -3.560 MT(사용자 전달 메시지 UN/H2B1 200 + CMC/H4C1 90 과 합계가 같고, 실제 작업 어창은 #3-C 였습니다). 하역 누계 1,174.130 MT·잔량 671.870 MT(진행률 63.6%). 원문 표의 HATCH.1 잔량은 +16.180 MT 로 적재 초과(green) 표기입니다. 9/24 계획은 원자료에 없습니다.",
+   "source_sha256": "3492049955f132c8450d079e6a89e976bb7cb997704039d5e9ebb37e1c978fb3",
+   "source_workbook_sha256": "551f934a306d5301aa13ef5344a5abcf22d87158e8dfbfdbe4b48eab96dd2bc2",
+   "status_workbook_sha256": "8e4bcd189067f67278dbd30280796fb898e87026f3afd0cd8a40b6c8deb1079c",
+   "created_at": "2026-09-23T23:00:00+09:00"
   }
  ],
  "unloading_species": [
@@ -3236,16 +3304,16 @@
    "species_id": "SJ",
    "species_name": "가다랑어",
    "reported_amount": 1306,
-   "actual_amount": 638.42,
-   "updated_at": "2026-09-22T21:00:00+09:00"
+   "actual_amount": 851.46,
+   "updated_at": "2026-09-23T23:00:00+09:00"
   },
   {
    "vessel_id": "sein-galaxy-bangkok-2026-09",
    "species_id": "YF",
    "species_name": "황다랑어",
    "reported_amount": 508,
-   "actual_amount": 249.27,
-   "updated_at": "2026-09-22T21:00:00+09:00"
+   "actual_amount": 322.67,
+   "updated_at": "2026-09-23T23:00:00+09:00"
   },
   {
    "vessel_id": "sein-galaxy-bangkok-2026-09",
@@ -3253,7 +3321,7 @@
    "species_name": "눈다랑어",
    "reported_amount": 32,
    "actual_amount": 0,
-   "updated_at": "2026-09-22T21:00:00+09:00"
+   "updated_at": "2026-09-23T23:00:00+09:00"
   }
  ]
 }
