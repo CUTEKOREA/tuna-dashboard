@@ -3,7 +3,7 @@
   "entry": "app/page.tsx",
   "files": 285,
   "widgets": 114,
-  "dataFiles": 303,
+  "dataFiles": 304,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -142,6 +142,7 @@
     "data/reefer_week35.json",
     "data/reefer_week36.json",
     "data/reefer_week37.json",
+    "data/reefer_week38.json",
     "public/data/bangkok_weekly_kpi.json",
     "public/data/bangkok_weekly_payload.json"
    ]
@@ -229,7 +230,7 @@
     "lib/data/reefer-weekly.ts"
    ],
    "dataFiles": [
-    "data/reefer_week37.json"
+    "data/reefer_week38.json"
    ]
   },
   "components/SafeResponsiveContainer.tsx": {
@@ -1372,6 +1373,9 @@
    "components/LogisticsDashboard.tsx"
   ],
   "data/reefer_week37.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week38.json": [
    "components/LogisticsDashboard.tsx",
    "components/ReeferMovement.tsx"
   ],

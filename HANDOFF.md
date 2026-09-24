@@ -1,3 +1,11 @@
+> ✅ **2026-09-24 11:40 KST — `/logistics` TTA 운반선 38주차 반영** [CC]:
+> - 원자료: `Reefer ship movement for week 38th.xlsx` SHA-256 `238f2881…4d34`. `scripts/sync_reefer_weekly.py` 로 `data/reefer_week38.json` 생성(5척, 합계 **18,359 MT**, 기간 2026-09-18~09-24).
+> - 37주차 7척 → 38주차 **5척**. SEIN VENUS·ZHONG YU MARINE·SEIN QUEEN 이 하역을 마치고 빠졌고 **RYOMA(9/22 접안, 3,290 MT)** 가 붙었다. SEIN GALAXY 1,846 MT 는 그대로 남아 있다(`/unloading` 항차와 같은 배).
+> - **RYOMA 는 TTA 표 3,290 MT, 방콕 주간보고 입항표 3,490 MT 로 200 MT 다르다** — TTA 표는 자기가 추적하는 하역처만 담는다. 맞추지 않고 둘 다 기록했다.
+> - 월별 반입: 2026-09 가 19,564 → **22,854 MT**(5 → 6척). 방콕 출장보고의 스페인 선사 추산 「20,000 미만」을 처음으로 넘었다 — 추산을 맞추지 않고 나란히 싣는 규칙대로 테스트도 «추산 초과»로 뒤집었다.
+> - 주차 테스트는 파일명을 `reefer-week38-data.test.ts` 로 옮겨 최신 주차 하나만 유지한다(37주차 JSON 은 이력 비교용으로 계속 import).
+> - `npm run verify` 통과: Vitest **195 files / 1,658** · ESLint 0 errors · bundle 33. 로컬 1440·390px: 38주차·18,359 표시, overflow 0, error 0.
+> - 상태: 브랜치 `data/reefer-week38`. **프로덕션 미배포**.
 > 🚀 **2026-09-24 11:00 KST — #1224 모션 선별 적용 배포** [CC]:
 > - 병합(squash): #1224 `5632329c`. Production `tuna-dashboard-abprij5pz` READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
 > - 라이브 실측(`/fleet`, 새 탭): 정지 패널 opacity 1 · `animationName: motionEnter` · duration 0.2s, 탭 클릭 110ms 뒤 opacity 0.92, 정착 후 1. 보호 상세 경고 없음, 패널 본문 3,095자 정상.
