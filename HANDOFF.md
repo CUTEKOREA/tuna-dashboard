@@ -1,3 +1,7 @@
+> 🚀 **2026-09-23 14:10 KST — #1209·#1211 프로덕션 배포 + 시크릿 교체** [CC]:
+> - 순차 병합(squash): #1209 `087467ca`(선단 9/23) → #1211 `4bcba1aa`(GMTS 36주차). **#1210 은 base 브랜치(`data/fleet-260923`)가 병합·삭제되며 자동으로 닫혔다** — 스택 PR 은 아래 PR 이 먼저 병합되면 위 PR 이 닫히므로, 같은 브랜치로 main 기준 PR 을 다시 열어야 한다.
+> - Production `tuna-dashboard-61oboktps` READY → `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `afeeae64…` → **`7b067ac0…`** 로 교체·재배포(`tuna-dashboard-5g25434vt`, 3분). alias `https://leedonggun.co.kr`, 배포 로그 error 0.
+> - 라이브 실측(새 탭): `/fleet` 「2026-09-23 보고 · 2026-09-22 조업 기준」 · 히어로 510 / 7,988 / 89,688.8 / 7,399.3 · 「전체 보고 162건」·「연승 구역 미기재 23건」 · **보호 패널 경고 없음**. `/gmts` 2026.09.23 · 하역 중 0척 · 입항 예정 6척 · 36건 · $2,025 / $2,140 · overflow 0 · 「미확정 MT」 잔존 0.
 > 🚀 **2026-09-24 10:20 KST — #1223 9/24 계획 배포** [CC]:
 > - 병합(squash): #1223 `8473605c`. Production `tuna-dashboard-loaillape` READY, alias `https://leedonggun.co.kr`.
 > - 라이브 확인은 화면 텍스트가 아니라 **API 로 했다** — 명일 계획은 항차 상세 패널 안이라 본문 스캔에 안 잡힌다. `/api/unloading-db` 에서 `"date":"9/24" … "plannedMt":"290"` 확인. 누계 1,174.13 · 잔량 671.87 은 화면에서 확인.
