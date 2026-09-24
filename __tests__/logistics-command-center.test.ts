@@ -36,7 +36,7 @@ describe('logistics decision workspace', () => {
     expect(markup).toContain('운영 확인 관제판');
     expect(markup).toContain('SPA 창고 포화');
     expect(markup).toContain('9월 반입 누계 정정 반영');
-    expect(markup).toContain('9월 누계 7척 · 26,486MT · 월별 합계 일치');
+    expect(markup).toContain('9월 누계 7척 · 26,286MT · 월별 합계 일치');
     expect(markup).toContain('송클라 저가동');
     // 원문 잔량 불일치는 덮지 않고 관제판에 남긴다
     expect(markup).toContain('고반려 잔량 불일치');
@@ -65,7 +65,7 @@ describe('logistics decision workspace', () => {
     // 운반선 표는 트레이더 단위 - 원문 입항표와 같은 모양이어야 척수 칸이 뜻을 갖는다
     expect(carrierMarkup).toContain('SEIN QUEEN (2,902 MT)');
     expect(carrierMarkup).toContain('ZHONG YU MARINE (5,025 MT)');
-    expect(carrierMarkup).toContain('26,486 MT');
+    expect(carrierMarkup).toContain('26,286 MT');
     expect(carrierMarkup).toContain('하역 중인 배는 5척');
     expect(carrierMarkup).not.toContain('2026-08-05');
   });

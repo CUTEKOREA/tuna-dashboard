@@ -28,18 +28,18 @@ describe('2026-09-23 Bangkok Office weekly logistics report', () => {
       FCF: 14539,
       ITOCHU: 0,
       'TRI MARINE': 0,
-      direct: 11947,
+      direct: 11747,
       Maldives: 0,
-      total: 26486,
+      total: 26286,
     });
-    expect(monthlyTotal).toBe(359984);
-    expect(traderTotal).toBe(359984);
+    expect(monthlyTotal).toBe(359784);
+    expect(traderTotal).toBe(359784);
 
     // 트레이더별 세로합도 원문 합계행과 같아야 한다
     const fcf = sum(logisticsWeeklyReport.traderReceipts.monthly, (month) => month.FCF);
     const direct = sum(logisticsWeeklyReport.traderReceipts.monthly, (month) => month.direct);
     expect(fcf).toBe(147141);
-    expect(direct).toBe(119649);
+    expect(direct).toBe(119449);
   });
 
   it('캐너리 생산·재고 합계가 원문 SUM 행과 맞는다', () => {
@@ -58,9 +58,9 @@ describe('2026-09-23 Bangkok Office weekly logistics report', () => {
     const { vessels, currentTotal, monthToDate, unloadingNow } = logisticsWeeklyReport.unloading;
 
     expect(vessels).toHaveLength(7);
-    expect(sum(vessels, (vessel) => vessel.amount)).toBe(26486);
-    expect(currentTotal).toEqual({ vessels: 7, amount: 26486 });
-    expect(monthToDate).toEqual({ vessels: 7, amount: 26486 });
+    expect(sum(vessels, (vessel) => vessel.amount)).toBe(26286);
+    expect(currentTotal).toEqual({ vessels: 7, amount: 26286 });
+    expect(monthToDate).toEqual({ vessels: 7, amount: 26286 });
     // 원문에서 빠져 있던 두 척 - 지우면 9월 누계가 다시 어긋난다
     expect(vessels.map((vessel) => vessel.name)).toContain('SEIN QUEEN');
     expect(vessels.map((vessel) => vessel.name)).toContain('ZHONG YU MARINE');
@@ -68,7 +68,7 @@ describe('2026-09-23 Bangkok Office weekly logistics report', () => {
     const fcf = vessels.filter((vessel) => vessel.trader === 'FCF');
     expect(fcf).toHaveLength(4);
     expect(sum(fcf, (vessel) => vessel.amount)).toBe(14539);
-    expect(sum(vessels.filter((vessel) => vessel.trader === 'DIRECT'), (vessel) => vessel.amount)).toBe(11947);
+    expect(sum(vessels.filter((vessel) => vessel.trader === 'DIRECT'), (vessel) => vessel.amount)).toBe(11747);
     // 하역 중 척수는 누계 척수와 다른 값이다
     expect(unloadingNow).toEqual({ port: '방콕', vessels: 5 });
   });

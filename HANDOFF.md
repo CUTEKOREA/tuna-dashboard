@@ -1,3 +1,9 @@
+> ✅ **2026-09-24 12:10 KST — RYOMA 3,490 → 3,290 MT 정정(문서·엑셀·두 화면)** [CC]:
+> - 사용자 확인: **TTA 운반선 주간동향의 3,290 MT 가 맞다**. 9/23 방콕 주간보고 입항표의 3,490 MT 가 200 MT 과다였다 — 어제 「둘 다 기록」으로 남겨 둔 차이의 답이다.
+> - 고친 곳 4군데: ① 주간보고 docx(입항표 RYOMA·합계 26,486 → **26,286**, SEP 직거래 11,947 → **11,747**, 2026 합계행 직거래 119,649 → **119,449**·총계 359,984 → **359,784**, 요약문 누계) ② 마스터 `데이터 정리.xlsx` F76(9월 직거래) ③ `/logistics` 계약(월별·트레이더·운반선·누계 + `source.corrections` 에 경위) ④ `/bangkok-office` 종합분석 payload — HTML 을 백업본으로 되돌린 뒤 week-spec 을 고쳐 다시 append 했다(주차 293 유지, 2026 누계 **359,784**).
+> - **정정 절차 메모**: 종합분석 HTML 은 append 전용이라 수정이 안 된다. `…backup_20260923.html` 로 복원 → spec 수정 → `append_bangkok_week.py` 재실행 → `sync_bangkok_report.sh` 가 안전한 경로다.
+> - 테스트 4종 갱신(logistics-weekly-data · logistics-command-center · embedded-operation-pages · v2-components-render 경유). `npm run verify` 통과: Vitest **195 files / 1,658** · ESLint 0 errors · bundle 33.
+> - 상태: 브랜치 `fix/ryoma-3290`. **프로덕션 미배포**.
 > ✅ **2026-09-24 23:10 KST — `/unloading` SEIN GALAXY 방콕 9/24 하역 반영** [CC]:
 > - 원자료: K GROUP Report No.6 JPG `f650fe8b…` · 결과 XLS `d36a1f59…`(시트 `09-24`) · 현황 XLSX `5a2c68a0…`. 파일은 Downloads 가 아니라 Drive 하역 업무 폴더에 있었다(어제와 같은 경로).
 > - 9/24(목) 08:00~16:00 **276.690 MT**: UC #2-B 94.590(08:10~12:00) · #2-C 88.400(12:20~16:00) = 182.990, CMC #3-C 93.700(08:00~10:50, 리퍼 7대). 20 trucks, UC 차량 대기 10:10~11:20·13:20~14:00.
