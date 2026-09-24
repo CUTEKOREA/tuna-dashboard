@@ -11,16 +11,16 @@
  */
 export const cosmoWeeklyReport = {
   source: {
-    file: '2026.9.16_COSMO 주간보고 (37주차).docx',
-    sha256: 'f9d19fdb62ac2eaeb3fb81f23101b7f63a29619c73dcafc33f4e03ee53239878',
-    period: '2026-09-07~2026-09-13',
+    file: '2026.9.23_COSMO 주간보고 (38주차).docx',
+    sha256: '595f26550aa70f355c6afb040598ff88c5fa63b3241d2c91e803aaae78a60d98',
+    period: '2026-09-14~2026-09-20',
   },
   market: {
-    productionSecuredThrough: '2026년 12월 둘째 주 생산분',
-    summary: '바이어들이 물량 확보를 타진하고 있으나 어가 상승이 이어지며 구매 부담이 커져 협상이 지연되고 있습니다.',
+    productionSecuredThrough: '2026년 생산분',
+    summary: '바이어들이 현 제품 가격에 부담을 느껴 소량 구매가 이어지고 있습니다. 독일 REWE·EDEKA 입찰 참여를 검토 중이며 예상 물량은 약 700 FCL, 전량 MSC 제품입니다.',
     rawFishPressure:
-      '베트남 업체들이 2027년 1월 1일부터 적용되는 면세 쿼터를 선제적으로 활용해 타 지역 대비 케이스당 $10 이상 낮은 가격으로 오퍼하고 있습니다. '
-      + '현 원가 수준에서는 현실적으로 맞서기 어렵다는 것이 이번 주 보고의 판단입니다.',
+      '에콰도르의 높은 어가와 가다랑어 원료 부족으로 선적 지연이 발생하고 있습니다. '
+      + '2027년 선적분은 현재 오퍼 중이라는 것이 이번 주 보고의 상태입니다.',
   },
   litigation: {
     case: '아프리카 스타',
@@ -28,7 +28,7 @@ export const cosmoWeeklyReport = {
     status: '재심리 재판 진행 중',
   },
   operations: {
-    qualityFocus: '대만 SK은행 인터넷뱅킹 보안카드가 만료돼 가나 송금이 일시 지연됐고, 갱신 절차를 진행 중입니다.',
+    qualityFocus: '9/21 가나 공휴일로 주 4일만 생산했습니다.',
     /** 그 주에 심사가 없으면 null. 지난 심사를 이번 주 일처럼 내보내지 않는다. */
     audit: null as null | { name: string; start: string; end: string; result?: string },
     /** 그 주에 하역이 없으면 null. */
@@ -41,12 +41,12 @@ export const cosmoWeeklyReport = {
     },
     /** 심사·하역이 없는 주에 브리핑 카드를 채우는 그 주의 물류 현황. */
     logistics: {
-      headline: '가나 송금 일시 지연',
-      detail: '대만 SK은행 인터넷뱅킹 보안카드 만료 · 갱신 절차 진행 중, 완료 즉시 송금 재개 예정 · 37주차 공장 출고 19컨 · CY 선적대기 74컨',
+      headline: '가나 공휴일로 주 4일 생산',
+      detail: '9/21 가나 공휴일 · 38주차 공장 출고 19컨 · CY 선적대기 66컨(전주 74컨) · 원어구매 비중 PANOFI 99.8%',
     },
   },
   nextActions: [
-    '2025 사업연도 법인 원천세 GRA 세무조사 레터 수령 (실제 조사는 10월부터)',
-    '대만 SK은행 보안카드 갱신 완료 후 가나 송금 재개',
+    '3분기 결산을 위한 재고 조사 실시',
+    '독일 REWE·EDEKA 입찰 참여 검토 (약 700 FCL, 전량 MSC)',
   ],
 } as const;
