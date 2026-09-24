@@ -12,6 +12,7 @@
 | 파일 | SHA-256 |
 | --- | --- |
 | `sb.svg` | `13a37abe4d7f8fba3e44f3717da19d4d21bf78701a59f8570004b7492c9be955` |
+| `fj.svg` | `e56beb72207ff4f729ad3c48cbaa667b029a40b8a4ee93fdeced94080ba6972a` |
 | `gb.svg` | `910e4fa63fb7a23d30d59dee2feb08da51a405eb06b38a7e12d18d9b504d13b5` |
 | `sc.svg` | `3ddf34d076f859e888061197415baba9f386be68a74de2cea553ee41e0442875` |
 | `id.svg` | `83bd1b9215c403d205eb3548fc8498e3175e56c81494ebe5b2eab442291a7420` |
