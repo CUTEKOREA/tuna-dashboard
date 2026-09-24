@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 282,
+  "files": 285,
   "widgets": 114,
-  "dataFiles": 292,
+  "dataFiles": 304,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -628,6 +628,8 @@
     "lib/data/company-nauterra.ts",
     "lib/data/company-nirsa.ts",
     "lib/data/company-nissui.ts",
+    "lib/data/company-pafco.ts",
+    "lib/data/company-pinsa.ts",
     "lib/data/company-princes.ts",
     "lib/data/company-rd.ts",
     "lib/data/company-report-figures.ts",
@@ -638,6 +640,7 @@
     "lib/data/company-sca.ts",
     "lib/data/company-seavalue.ts",
     "lib/data/company-soltuna.ts",
+    "lib/data/company-sstc.ts",
     "lib/data/company-starkist.ts",
     "lib/data/company-tecopesca.ts",
     "lib/data/company-thaiunion-skus.ts",
@@ -787,6 +790,14 @@
     "public/data/companies/nissui_prose_v1.json",
     "public/data/companies/nissui_tables_v1.json",
     "public/data/companies/nissui_v1.json",
+    "public/data/companies/pafco_figures_v1.json",
+    "public/data/companies/pafco_prose_v1.json",
+    "public/data/companies/pafco_tables_v1.json",
+    "public/data/companies/pafco_v1.json",
+    "public/data/companies/pinsa_figures_v1.json",
+    "public/data/companies/pinsa_prose_v1.json",
+    "public/data/companies/pinsa_tables_v1.json",
+    "public/data/companies/pinsa_v1.json",
     "public/data/companies/princes_figures_v1.json",
     "public/data/companies/princes_prose_v1.json",
     "public/data/companies/princes_tables_v1.json",
@@ -819,6 +830,10 @@
     "public/data/companies/soltuna_prose_v1.json",
     "public/data/companies/soltuna_tables_v1.json",
     "public/data/companies/soltuna_v1.json",
+    "public/data/companies/sstc_figures_v1.json",
+    "public/data/companies/sstc_prose_v1.json",
+    "public/data/companies/sstc_tables_v1.json",
+    "public/data/companies/sstc_v1.json",
     "public/data/companies/starkist_figures_v1.json",
     "public/data/companies/starkist_prose_v1.json",
     "public/data/companies/starkist_tables_v1.json",
@@ -1860,6 +1875,30 @@
   "public/data/companies/nissui_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/pafco_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pafco_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pafco_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pafco_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/princes_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -1954,6 +1993,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/soltuna_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/starkist_figures_v1.json": [

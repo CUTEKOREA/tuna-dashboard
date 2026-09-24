@@ -350,6 +350,18 @@ import {
   equity as stEquity, handles as stHandles, europe as stEurope, plant as stPlant,
 } from '@/lib/data/company-soltuna';
 import {
+  pafcoMeta, pafcoSourceNotes,
+  ownership as pfOwnership, plant as pfPlant, markets as pfMarkets,
+} from '@/lib/data/company-pafco';
+import {
+  pinsaMeta, pinsaSourceNotes,
+  fleet as psFleet, shelf as psShelf, trade as psTrade,
+} from '@/lib/data/company-pinsa';
+import {
+  sstcMeta, sstcSourceNotes,
+  corp as ssCorp, plant as ssPlant, europe as ssEurope,
+} from '@/lib/data/company-sstc';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -2636,6 +2648,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   코트디부아르: { flagSrc: '/flags/ci.svg', backInk: '#f4f5f0' },
   모리셔스: { flagSrc: '/flags/mu.svg', backInk: '#f4f5f0' },
   솔로몬제도: { flagSrc: '/flags/sb.svg', backInk: '#f4f5f0' },
+  피지: { flagSrc: '/flags/fj.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -4694,6 +4707,259 @@ const SOLTUNA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SS_ACCENT = '#35607a';
+
+/** 법인·세금·공장·유럽. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const SS_C = ssCorp();
+const SS_P = ssPlant();
+const SS_E = ssEurope();
+
+const ssNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const SSTC_SPEC: CommoditySpec = {
+  key: 'company-anatomy-sstc',
+  title: '기업 해부: South Seas Tuna',
+  subtitle:
+    `파푸아뉴기니 이스트세픽주 웨와크 부두의 로인·어분 공장 South Seas Tuna Corporation(회사등기 ${SS_C.등록번호} · ${SS_C.설립} TARE NO. 2 LIMITED 로 설립 · 유럽연합 승인 ${SS_C.EU승인}). ${SS_C.협정} 국가·이스트세픽주정부와 프로젝트 협정을 맺고 ${SS_C.가동}년에 가동했다. ` +
+    '두 판결이 다툼 없는 배경사실로 적은 2004~2015년의 구조는 대만 FCF 가 바다에서 산 참치를 이 회사가 가공비를 받고 로인으로 만든 것이다. ' +
+    `세무당국은 이전가격과 GST 미부과를 들어 GST K${ssNum(SS_C.GST총액 / 1_000_000, 1)}백만을 경정했고(본세 K${ssNum(SS_C.GST본세 / 1_000_000, 1)}백만), 이의 절차는 2023년 판결로 다시 열렸다.`,
+  accent: SS_ACCENT,
+  primaryKpi: {
+    label: 'WCPFC 등록부에서 이 회사가 용선자로 오른 선망선 — 2025년과 2026년',
+    value: SS_P.용선2026,
+    decimals: 0,
+    unit: `(척 · 2025년 ${SS_P.용선2025}척 → 2026년 ${SS_P.용선2026}척(조회일까지 통지 기준). 현행 9척은 대만 기국 707 계열이고, 2025년 이 회사가 용선하던 필리핀 선박은 2026년 용선자가 라에의 Majestic 으로 바뀌었다. **용선자 등재는 PNG 선단 조업 자격이지 임대 계약 증거가 아니다** — 용선료·어획물 소유는 무료 자료에 없다. 국가는 국내 가공 1톤당 US$${SS_P.리베이트} 리베이트를 준다(2018 도입, 2025 현행)`,
+    accent: SS_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: 'GST 경정 가운데 본세 — 2004~2014 (대법원 SC2418 배경사실)',
+      value: SS_C.GST본세 / 1_000_000,
+      decimals: 1,
+      unit: `(백만 PGK · 총액 K${ssNum(SS_C.GST총액, 2)} 가운데 이자 K${ssNum(SS_C.GST이자, 2)}. 2019 SC1761 은 경정 절차만 판단했고 세액의 옳고 그름은 판단하지 않았다. 2021 N9290 은 절차 기각, 2022 계좌 압류 K${ssNum(SS_C.압류)} 는 2023 SC2418 에서 항소 인용, 2023 N10596 은 이의 판단 명령 — 결론은 아직 공개되지 않았다)`,
+    },
+    {
+      label: '웨와크 공장 능력 — 출처별 (t/일, 원어 투입)',
+      value: SS_P.능력NFA,
+      decimals: 0,
+      unit: `(NFA 2014 표·회사 1단계 ${SS_P.능력NFA} · 유럽의회 2012(회사 대표 전화)·회사 기반 정격 ${SS_P.능력EP} · 회사 대표 2018 처리 ${SS_P.처리2018}(2교대). **분모가 둘이라 가동률은 계산하지 않는다.** 공정에 물이 하루 약 ${ssNum(SS_P.물)} L 들고, 2023년 1분기에는 물·전기 부족으로 주 2~3일만 돌았다)`,
+    },
+    {
+      label: '2025년 EU 가 들인 파푸아뉴기니산 로인 가운데 스페인 몫 (Comext, 나라 단위)',
+      value: SS_E.스페인,
+      decimals: 1,
+      unit: `(% · EU27 의 PNG산 참치 조제품 ${ssNum(SS_E.t2025, 1)} t(2025) 가운데 로인 ${ssNum(SS_E.로인비중, 1)} %. 2021 ${ssNum(SS_E.t2021, 1)} t 가 최고. 파푸아뉴기니 EU 승인 가공장은 여섯 곳이라 이 회사 몫은 모른다. 미국의 PNG산 참치 조제품 수입은 2015~2025 0 이다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '용역',
+      title: '원어는 FCF 것이었고 이 회사는 가공비를 받았다',
+      body: '국가법원 N9290(2021)은 다툼 없는 배경사실로 이렇게 적는다 — 「at the material time」 FCF 가 바다에서 참치를 사서 공장에 대고, 회사는 산업 공식(회수율·어분 부산물)으로 정한 가공비를 받고 인력·부자재·에너지를 댔으며, FCF 가 가공된 로인 대부분을 수출용으로 가져갔다. 국내 판매분에는 GST 가 매겨졌다. 공장이 세관 통제 구역이라는 것은 회사 주장이고 과세 분쟁의 쟁점이다. 2016년 이후 구조는 공개 문서에 없다',
+    },
+    {
+      eyebrow: '세금',
+      title: 'K64,5백만 경정의 절반 넘게가 이자였다',
+      body: '세무당국 입장문(2015-08-07)은 이전가격과 FCF 용역에 대한 GST 미부과를 들었다. 경정은 2016-06-27. 대법원 SC1761(2019)은 전표 입력이 경정인지만 판단했고, 회사가 「for years」 당국의 권유를 믿고 처리해 왔다고 적었다. 회사 변호인은 경정액 때문에 회사가 「will go under」라고 했다',
+    },
+    {
+      eyebrow: '원어',
+      title: '용선 선망선 18척에서 9척으로',
+      body: '2016 PNG 기국 9척 → 2021 1척 → 2025 18척(전체 27척) → 2026 9척. 필리핀 선박의 용선자가 2026년 Majestic 으로 바뀐 이유를 적은 원문은 없다. 선박과 가공사의 짝은 VDS 3자 협정(2025-01 전면 시행)이 정하고, 정부 보고서는 이를 「mandatory catch offloading」이라 부른다',
+    },
+    {
+      eyebrow: 'FCF',
+      title: '대만 가오슝의 FCF, PNG 투자 소식은 라에·마당에서',
+      body: '豐群水產(統編 82007494)의 PNG 투자지주 인증 90973 은 2026-01-11 취소됐다(연차보고 미제출). 2025~2026 FCF 계열 PNG 소식은 Nambawan K80백만 냉동창고(라에, 2026-03 착공)·Majestic 재가동 주주·RD 재편 지원이다. 2024~2026 이 회사 명의 투자 보도는 없다',
+    },
+    {
+      eyebrow: '사람',
+      title: '2024-09-30 약 2.000명이 작업을 거부했다',
+      body: `최저임금 K3,50 이 생활비에 못 미친다며 시급 K5 이상을 요구했다(보도, 회사 논평 없음). 법정 최저임금은 2026-01-01 K${ssNum(SS_P.최저임금, 2)} 로 올랐다. 이 회사가 K5 를 주는지, 면제를 받았는지는 공개되지 않았다`,
+    },
+  ],
+  briefing: proseBriefing('sstc'),
+  narratives: inlineReport('sstc', proseStages('sstc')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: sstcSourceNotes,
+  sourceMeta: [
+    `${sstcMeta.회사} · ${sstcMeta.국가} · ${sstcMeta.업종}`,
+    `출처 ${sstcMeta.출처}`,
+    `조사 ${sstcMeta.조사일}`,
+  ].join(' · '),
+};
+
+const PS_ACCENT = '#8a3b12';
+
+/** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const PS_F = psFleet();
+const PS_S = psShelf();
+const PS_T = psTrade();
+
+const psNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const PINSA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-pinsa',
+  title: '기업 해부: Grupo Pinsa',
+  subtitle:
+    `멕시코 시날로아주 마사틀란 Av. Puerto de Mazatlán 406 번지의 참치·정어리 그룹. 캔 공장 Pescados Industrializados, 판매 Pinsa Comercial, 선단 Pesca Azteca 가 한 번지에 등록돼 있고 상표 DOLORES(${PS_S.상표})는 같은 주소의 Productos Dolores 가 쥔다. ` +
+    `선망 ${PS_F.척수}척이 멕시코 기국 활성 선망 운반능력의 ${psNum(PS_F.몫, 1)} % 를 차지하고 돌고래 무리에 그물을 친다. MSC 어업 인증은 ${PS_F.MSC철회} 에 철회됐고 ${PS_F.MSC개선} 부터는 인증이 아닌 개선 프로그램이다. ` +
+    `소비자청 PROFECO 의 2024-02 평균가에서 참치만 든 기본 캔은 100 g 당 MXN ${PS_S.기본캔} 안팎으로 경쟁사와 같은 값이고, 이 그룹의 대두 혼합 캔 El Dorado 는 MXN ${PS_S.대두캔} 로 그보다 싸다.`,
+  accent: PS_ACCENT,
+  primaryKpi: {
+    label: '멕시코 기국 활성 선망 운반능력 가운데 Pinsa 계열 23척의 몫 (IATTC 선박 등록부, 2026-09-24)',
+    value: PS_F.몫,
+    decimals: 1,
+    unit: `(% · ${psNum(PS_F.운반능력)} t ÷ ${psNum(PS_F.멕시코합계)} t. Pesca Azteca 22척 + 같은 주소의 Mazpesca 1척. 동태평양 활성 선망 전체로는 ${psNum(PS_F.동태평양몫, 1)} % 다. 23척 명단은 ${PS_F.편입} Azteca 7(전 뉴질랜드 기국 중고선) 편입부터다. 미국 돌고래 안전 라벨 분쟁(WTO DS381)은 ${PS_F.DS381} 멕시코 패소로 끝났고, NOAA 는 ${PS_F.NOAA} 멕시코 선망 황다랑어 캔의 허위 「dolphin safe」 표시를 적발했다 — **공급자는 공개되지 않아 이 그룹 제품으로 읽지 않는다**)`,
+    accent: PS_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '소비자청 PROFECO 100 g 당 평균가 — 참치만 든 기본 캔 (2024-02-06~21, 네 도시권)',
+      value: PS_S.기본캔,
+      decimals: 0,
+      unit: `(MXN · Dolores 295 g·Mazatún 130 g·Herdez 130 g·Tuny Jumbo 295 g 이 모두 ${PS_S.기본캔}. 이 그룹의 El Dorado 30 % 대두 캔은 ${PS_S.대두캔} 로 그보다 싸고(같은 값대에 다른 자체상표 캔도 있다), 올리브유 칸은 Dolores Premium 78 g ${PS_S.DoloresPremium}·Tuny Gourmet ${PS_S.TunyGourmet}. **「매대 세 층을 한 그룹이 쥔다」는 한 소매점 하루 할인가에서만 성립했다.** 점유율 숫자는 회사 인용과 매체를 거친 것뿐이다)`,
+    },
+    {
+      label: '멕시코 캔참치(HS 160414) 수출 가운데 미국 몫 — 2025 (UN Comtrade, 나라 단위)',
+      value: PS_T.미국몫,
+      decimals: 1,
+      unit: `(% · US$ ${psNum(PS_T.수출USD)} / ${psNum(PS_T.수출t, 1)} t. USMCA 원산 캔은 미국 무관세지만 ${PS_T.MMPA} 부터 COA 서류 대상이고, 멕시코 소형 부어류 선망 정어리류는 미국 수입이 금지됐다. EU 의 멕시코산 캔 수입은 2023~2025 사실상 0 이고 냉동 황다랑어 ${psNum(PS_T.EU냉동황다랑어t)} t·냉동 필레 ${psNum(PS_T.EU필레t)} t(2025)가 주로 스페인으로 간다. EU–멕시코 잠정무역협정은 ${PS_T.서명} 서명·${PS_T.이사회} EU 이사회 승인, 멕시코 상원 비준 대기)`,
+    },
+    {
+      label: 'Grupo Pinsa 그룹 매출 — FY2025 (Expansión 500, 매체)',
+      value: PS_T.매출,
+      decimals: 0,
+      unit: `(백만 MXN · 그룹 전체, 캔참치 매출이 아니다. 직원 ${psNum(PS_T.직원)}명. 공공 조달 집계(QuiénEsQuién.wiki, 매체)로는 Pinsa Comercial 이 2005~2022년 ${psNum(PS_T.조달건)}건 MXN ${psNum(PS_T.조달액, 2)} 의 정부 계약을 땄다 — 주 발주처 Diconsa, 품목 캔참치·정어리. 호텔 단지 투자는 소유 법인이 공개되지 않았다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '선단',
+      title: '멕시코 선망 운반능력의 51,7 % 가 한 그룹 배다',
+      body: `IATTC 활성 선망 등록부에서 Pesca Azteca 명의 22척과 같은 주소의 Mazpesca 명의 1척, 합계 운반능력 ${psNum(PS_F.운반능력)} t 이다. 멕시코 기국 활성 선망 53척 ${psNum(PS_F.멕시코합계)} t 가 분모다. 법인 단위 2위는 MT Pesca Industrial(7척, 5.697 t)이고, 같은 주소 규칙으로 묶으면 Maratún+Martuna 6척 6.784 t 가 된다. 건조연도 중앙값은 1983년이다. 회사 보고서는 2025년 「118,791 TONELADAS CAPTURADAS DE AAA」를 적는다(자칭)`,
+    },
+    {
+      eyebrow: '돌고래',
+      title: '돌고래 무리에 그물을 치는 선단, MSC 는 철회됐다',
+      body: `회사는 후진 조작으로 돌고래를 풀어 준다고 설명한다. MSC 평가 단위는 「Dolphin-Associated」이고, 2024년 동태평양 황다랑어의 69 % 가 돌고래 조업 어획이다(AIDCP). 2017년 PAST 어업 인증 → ${PS_F.MSC철회} 철회 → ${PS_F.MSC개선} 개선 프로그램(「products cannot display the MSC ecolabel」, 본평가 목표 ${PS_F.MSC목표}). 회사 사이트는 조회일에도 MSC 인증을 게시한다 — 자칭이 등록부와 어긋난다`,
+    },
+    {
+      eyebrow: '매대',
+      title: '기본 캔은 같은 값, 대두 캔은 그보다 싸다',
+      body: `PROFECO 2024-02 평균가 100 g 당: 기본 캔 MXN ${PS_S.기본캔}(네 브랜드 같음) · El Dorado 대두 ${PS_S.대두캔} · Dolores Premium 올리브유 ${PS_S.DoloresPremium} · Tuny Gourmet ${PS_S.TunyGourmet}. 같은 시험에서 Mazatún 한 제품은 라벨 그림(솔리드)이 내용물(플레이크)과 달라 소비자정보 부적합, El Dorado 「30% de soya」 캔은 실측 대두 11~23 % 였다. Chedraui 2026-09-24 하루 가격은 보조 자료다`,
+    },
+    {
+      eyebrow: '문',
+      title: '캔은 미국으로, 유럽으로는 냉동 참치',
+      body: `멕시코 캔참치 수출의 ${psNum(PS_T.미국몫, 1)} % 가 미국행(2025). EU 의 멕시코산 1604 는 2023~2025 사실상 0 이고, 냉동 황다랑어(030342)는 2023년 한 해 비었다가 2024-01 재개됐다. EU–멕시코 협정 문안은 캔 7년차·로인 5년차 무관세(2025 「Without Prejudice」 문안 기준)이고, 스페인 업계가 반발한다. 모두 나라 단위다`,
+    },
+    {
+      eyebrow: '상표',
+      title: 'DOLORES 는 본사 주소의 다른 법인이 쥔다',
+      body: `IMPI 등록 ${PS_S.상표}(출원 1979-11-08)의 권리자는 ${PS_S.상표권자}, 주소는 그룹 본사 406번지다. 2021-02-15 Pescados Industrializados, 2022-05-18 Pinsa Comercial 에 사용권이 등재됐다. 멕시코 29류 DOLORES 167건에 파푸아뉴기니 RD 그룹 권리자는 없다 — 같은 이름 다른 권리자다. 1991년 국영에서 브랜드를 샀다는 이야기는 보도다`,
+    },
+  ],
+  briefing: proseBriefing('pinsa'),
+  narratives: inlineReport('pinsa', proseStages('pinsa')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: pinsaSourceNotes,
+  sourceMeta: [
+    `${pinsaMeta.회사} · ${pinsaMeta.국가} · ${pinsaMeta.업종}`,
+    `출처 ${pinsaMeta.출처}`,
+    `조사 ${pinsaMeta.조사일}`,
+  ].join(' · '),
+};
+
+const PF_ACCENT = '#2b5d7c';
+
+/** 소유·능력·시장. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const PF_O = pfOwnership();
+const PF_P = pfPlant();
+const PF_M = pfMarkets();
+
+/** 화면은 ko-KR 자릿수를 쓴다. 발행본의 유럽식 소수 쉼표는 여기서 점 소수로 옮긴다. */
+const pfNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const PAFCO_SPEC: CommoditySpec = {
+  key: 'company-anatomy-pafco',
+  title: '기업 해부: PAFCO',
+  subtitle:
+    `피지 오발라우섬 레부카의 Pacific Fishing Company Pte Limited(유럽연합 승인 ${PF_O.승인번호}). ${PF_O.설립}년 2월 등기, 1976년 캐너리 가동, ${PF_O.인수}년 정부가 C. Itoh 에게서 지분을 거의 전부 사들였고 지금 정부 지분은 ${pfNum(PF_O.정부_pct, 1)} %다. ` +
+    `1998년부터 로인 가공을 맡긴 Bumble Bee 는 ${PF_O.가공종료} 첫 주에 레부카 가공을 끝냈다 — 2017년 계약의 문서상 만료(${PF_O.계약만료})보다 열다섯 달 이르다. 2026-07-01 레부카 타운홀에서 PAFCO 총괄관리자는 스페인 대형 참치 수출업체와 새 계약을 맺었다고 밝혔고 회사 이름은 대지 않았다. ` +
+    `정부는 ${PF_O.탕감결정} 내각 결정으로 정부 채무를 지웠고, 2026년 4월 정부 보증 잔액은 FJD ${pfNum(PF_O.보증_Apr26, 1)}백만으로 아홉 달 전(${pfNum(PF_O.보증_Jul25, 1)})의 일곱 배가 됐다.`,
+  accent: PF_ACCENT,
+  primaryKpi: {
+    label: '피지산 참치 조제품(HS 160414)의 2025년 kg당 가격 — 피지가 신고한 대미 수출가 (UN Comtrade, 나라 단위)',
+    value: PF_M.FJ신고2025_USDkg,
+    decimals: 2,
+    unit: `(US$ · 같은 해 미국이 신고한 피지산 수입가는 kg당 ${pfNum(PF_M.US2025_USDkg, 2)} 이다. 무게는 비슷하고 값은 약 여섯 분의 일이다 — **원어를 고객이 소유하고 공장은 가공비를 받는 위탁가공이면 나오는 모양**이다. 무역통계는 나라까지만 가르므로 이 값을 PAFCO 한 회사의 출하가로 읽지 않는다. 미국의 피지산 수입은 2020년 ${pfNum(PF_M.US2020_t, 0)} t 에서 2025년 ${pfNum(PF_M.US2025_t, 0)} t 으로 ${pfNum(Math.abs(PF_M.US_대2020_pct), 2)} % 줄었다)`,
+    accent: PF_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: 'PAFCO 의 정부 지분 — 2026-27 예산보충서',
+      value: PF_O.정부_pct,
+      decimals: 1,
+      unit: `(% · 민간 ${pfNum(PF_O.민간_pct, 1)} %. 문서에 따라 98·99,58·100 으로도 적힌다. 2025-2029 국가개발계획은 이 지분의 일부를 iTaukei 투자자와 자원 소유자에게 파는 전략과 지표(0 → 10 → 15 %)를 적었고, 공기업장관의 70:30 구상은 민간 30 % 를 「일시」 보유로 설명했다 — 실행 결정 문서는 없다)`,
+    },
+    {
+      label: '정부 보증 잔액 — 2026년 4월 (예산보충서 2026-27)',
+      value: PF_O.보증_Apr26,
+      decimals: 1,
+      unit: `(FJD 백만 · 2025-07 ${pfNum(PF_O.보증_Jul25, 1)} 에서 아홉 달 만에 일곱 배. 정부 정기대출 FJD ${pfNum(PF_O.대출_Jul23 * 1_000_000)} 은 ${PF_O.탕감결정} 내각이 출자전환 대상 공기업의 정부 채무 탕감을 승인한 그달 결산에서 빠졌다. 재무부는 탕감이 두 회사를 「중기에 재무적으로 존속 가능한 상태로 되돌리지 못한다」고 적었다. 2019년 말 Bumble Bee 무이자 대출 잔액 FJD ${pfNum(PF_O.BB대출_2019)} 은 가공비로 갚는 조건이었다)`,
+    },
+    {
+      label: '2019년 원어 처리량 — 연차보고서',
+      value: PF_P.처리량[4],
+      decimals: 0,
+      unit: `(t · 회사가 말한 손익분기 ${pfNum(PF_P.손익분기[0])}~${pfNum(PF_P.손익분기[1])} t, 2015~2018 년은 ${pfNum(PF_P.처리량[0])}~${pfNum(PF_P.처리량[2])} t. 세후 손익은 2017 흑자 → 2018·2019 적자(2018 은 옛 냉동창고 처분손실) → 2020 세후 흑자(영업손실) → 2021 영업이익 FJD ${pfNum(PF_P.영업이익2021)}·세후 ${pfNum(PF_P.세후[4])}. 공개 감사 재무는 2021 년까지다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '계약',
+      title: '로인 상대는 2026년 7월 첫 주에 떠났다',
+      body: `1998년부터 Bumble Bee 가 로인용 알바코어를 사서 대고 PAFCO 는 가공비를 받았다(2017-10 계약 당시 USD ${PF_O.가공비_2017}/MT, 물량 ${pfNum(PF_O.계약물량)} t). 2026-05-27 로마이비티 지방회의에서 6월 종료 소문이 나왔고 총리는 파푸아뉴기니·일본과 지원을 논의했다고 말했다. 2026-07-01 밤 레부카 타운홀에서 PAFCO 총괄관리자는 「This is the last week of processing」이라며 스페인 대형 참치 수출업체와 새 계약을 맺었다고 밝혔다. 회사 이름·조건·수령지는 세 기사 어디에도 없다. 법적 형식(해지·합의 종료)도 문서가 없어 「가공이 끝났다」까지만 적는다`,
+    },
+    {
+      eyebrow: '순서',
+      title: '레부카가 먼저 끝났고 캘리포니아의 통지가 뒤따랐다',
+      body: `2018년 위원회 보고서는 로인이 Bumble Bee 의 Santa Fe Springs 공장으로 간다고 적었다. 그 공장에는 ${PF_M.WARN통지} 에 영구 감원 ${PF_M.WARN인원}명 통지(발효 ${PF_M.WARN발효})가 나왔다 — 레부카 가공 종료 한 달여 뒤다. LA Times 는 2027-03 말 폐쇄를 전망했고(지역지 인용), 회사 대변인은 사유를 「reducing the number of processing points in the value stream」이라고 했다. **WARN 원장이 말하는 것은 영구 감원 ${PF_M.WARN인원}명이다** — 「닫혔다」로 읽지 않는다`,
+    },
+    {
+      eyebrow: '문',
+      title: '원산지 특례는 2025-07-31 부터, 새 상대는 스페인',
+      body: `2008년 규정 439/2008 은 임시 명부에서 피지를 뺐고 2011년 결정 2011/131/EU 가 정규 명부에 올렸다. 2017-12-07 부처 회신이 이미 「submitted a formal notification」이라 적었지만 고시는 ${PF_M.고시}(${PF_M.고시일})가 처음이고 ${PF_M.적용일} 부터 적용됐다. 그 뒤 유럽연합 통계에 잡힌 피지산 참치 조제품은 2026-06 스페인 ${pfNum(PF_M.EU202606_t, 1)} t 이다. 한 달 뒤 PAFCO 가 스페인 업체와의 계약을 발표했지만 **무역통계는 나라까지만 가르고 피지의 EU 승인 가공장은 넷이다** — 그 물량을 PAFCO 나 새 상대에 배정하지 않는다. 1980년대에는 영국의 John West·Sainsbury 가 PAFCO 제품을 샀다`,
+    },
+    {
+      eyebrow: '공장',
+      title: '약 4에이커 임차지에 선 캐너리, 섬 발전량의 80~90 %',
+      body: `담보 주석은 부지를 원주민·국유 임차지 약 4에이커(매립지·방파제 포함)로 적는다. 2019년 말 유형자산 순장부가는 FJD 35.960.486 이고 2018년 완공한 4.000 t 냉동창고(16,4백만 = 정부 9 + Bumble Bee 6 + 1,4)가 가장 큰 투자다. 설계능력 ${pfNum(PF_P.설계[0])}~${pfNum(PF_P.설계[1])} t 에 위원회가 적은 로인 능력 이용률은 2012~2017 년 63~72 % 다. 섬 발전량에서 공장 몫은 2018 청문 약 80 %, 2026 CEO 발언 약 90 % — 둘 다 발전량 기준이다. 2026-06 에는 20년 무투자 태양광 전력구매계약 MoU(1단계 부하 18~20 %)를 맺었다`,
+    },
+    {
+      eyebrow: '사람',
+      title: '935명에서 400명 넘게로',
+      body: `2016년 ${pfNum(PF_P.인원2016)}명, 2019년 ${pfNum(PF_P.인원2019)}명(연차보고서). 2025-07 원어 부족으로 수백 명이 집에서 대기했고 CEO 는 원인에 「reduced demand from the US-based customers affected by recent tariff policies」를 들었다. 2026-07-01 총괄관리자는 「more than 400」을 고용한다며 해고 소문을 부인했다. 여성 비중은 청문·문서마다 약 ${PF_P.여성_pct[0]} %·${PF_P.여성_pct[1]} %·62 % 로 적힌다`,
+    },
+  ],
+  briefing: proseBriefing('pafco'),
+  narratives: inlineReport('pafco', proseStages('pafco')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: pafcoSourceNotes,
+  sourceMeta: [
+    `${pafcoMeta.회사} · ${pafcoMeta.국가} · ${pafcoMeta.업종}`,
+    `출처 ${pafcoMeta.출처}`,
+    `조사 ${pafcoMeta.조사일}`,
+  ].join(' · '),
+};
+
 const RD_ACCENT = '#2f6b4f';
 
 /** 두 문·마당 공장·법원·약속·매대. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -5588,6 +5854,45 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '竿釣·전기·사람', value: `국가 竿釣 어획 ${stNum(ST_P.竿釣[1])} t(2022) → ${ST_P.竿釣[3]}(2024) · 2025년 면허 ${ST_P.竿釣_면허_2025}장 · 인증기관이 전한 이유는 운영상의 결정이고 인증 범위는 살려 뒀다 · 공장 자가발전 ${stNum(ST_P.자가발전_MW, 1)} MW 옆에 Solomon Power 계통(고객 ${ST_P.계통_고객}호)이 따로 있다 · 1991년 가장 큰 직군은 Pole and Line Fleet ${ST_P.인원_竿釣}명(총원 ${stNum(ST_P.인원_총원)})` },
     ],
   },
+  {
+    key: 'pafco',
+    numeral: 'Ⅼ',
+    name: 'PAFCO',
+    country: `피지 · 오발라우섬 레부카 Beach Street(유럽연합 승인 ${PF_O.승인번호})`,
+    tagline: '국가의 공장, 계약의 로인 — 정부가 99,6 %를 쥔 캐너리에서 로인 상대가 2026년 7월에 떠났다.',
+    ...FLAG.피지,
+    stats: [
+      { label: '소유와 돈', value: `정부 ${pfNum(PF_O.정부_pct, 1)} %(${PF_O.인수}년 C. Itoh 에게서 인수) · ${PF_O.탕감결정} 내각 채무 탕감(정부 정기대출 FJD ${pfNum(PF_O.대출_Jul23 * 1_000_000)} 이 그달 결산에서 빠짐) · 정부 보증 ${pfNum(PF_O.보증_Jul25, 1)} → ${pfNum(PF_O.보증_Apr26, 1)}백만(2025-07 → 2026-04) · 공개 감사 재무는 2021 년까지(세후 FJD ${pfNum(PF_P.세후[4])})` },
+      { label: '로인과 순서', value: `1998년부터 Bumble Bee 로인 가공 → ${PF_O.가공종료} 첫 주 종료(문서상 만료 ${PF_O.계약만료}) · 새 상대는 스페인 대형 참치 수출업체(이름 미공개) · Santa Fe Springs 영구 감원 ${PF_M.WARN인원}명 통지 ${PF_M.WARN통지} · 피지 신고 대미 수출가 kg당 US$ ${pfNum(PF_M.FJ신고2025_USDkg, 2)} 대 미국 신고 수입가 ${pfNum(PF_M.US2025_USDkg, 2)}(2025)` },
+      { label: '문과 공장', value: `EU 원산지 특례 ${PF_M.적용일} 적용 · 그 뒤 EU 수입은 2026-06 스페인 ${pfNum(PF_M.EU202606_t, 1)} t(나라 단위, 귀속 금지) · 2019 처리량 ${pfNum(PF_P.처리량[4])} t(손익분기 ${pfNum(PF_P.손익분기[0])}~${pfNum(PF_P.손익분기[1])}) · 인원 ${pfNum(PF_P.인원2019)}(2019) → 400명 넘음(2026-07)` },
+    ],
+  },
+  {
+    key: 'pinsa',
+    numeral: 'ⅬⅠ',
+    name: 'Grupo Pinsa',
+    country: `멕시코 · 시날로아주 마사틀란 Av. Puerto de Mazatlán 406(유럽연합 승인 가공장 ${PS_S.가공장}곳)`,
+    tagline: '선단의 절반, 매대의 양끝 — 멕시코 선망 운반능력 51,7 % 를 쥔 그룹이 기본 캔과 그보다 싼 대두 캔을 함께 판다.',
+    ...FLAG.멕시코,
+    stats: [
+      { label: '선단과 인증', value: `선망 ${PS_F.척수}척 · 운반능력 ${psNum(PS_F.운반능력)} t = 멕시코 기국 활성 선망의 ${psNum(PS_F.몫, 1)} %(IATTC) · 돌고래 연관 조업 · MSC ${PS_F.MSC철회} 철회 → ${PS_F.MSC개선} 개선 프로그램(인증 아님) · DS381 ${PS_F.DS381} 멕시코 패소` },
+      { label: '매대와 상표', value: `PROFECO 100 g 당 기본 캔 MXN ${PS_S.기본캔}(경쟁사와 같음) · El Dorado 대두 ${PS_S.대두캔} · 올리브유 Dolores Premium 78 g ${PS_S.DoloresPremium} < Tuny Gourmet ${PS_S.TunyGourmet} · DOLORES ${PS_S.상표} 권리자 Productos Dolores(본사 주소)` },
+      { label: '문과 돈', value: `멕시코 캔 수출 ${psNum(PS_T.미국몫, 1)} % 미국(2025) · EU 캔 수입 사실상 0, 냉동 황다랑어 ${psNum(PS_T.EU냉동황다랑어t)} t · EU–멕시코 iTA 이사회 승인 ${PS_T.이사회} · 그룹 매출 ${psNum(PS_T.매출)} 백만 MXN(매체) · 정부 조달 ${psNum(PS_T.조달건)}건(2005~2022)` },
+    ],
+  },
+  {
+    key: 'sstc',
+    numeral: 'ⅬⅡ',
+    name: 'South Seas Tuna',
+    country: `파푸아뉴기니 · 이스트세픽주 웨와크 1 Wharf Road(유럽연합 승인 ${SS_C.EU승인})`,
+    tagline: '남의 생선, 부두의 공장 — FCF 가 대는 참치를 가공비를 받고 로인으로 만든 웨와크 공장.',
+    ...FLAG.파푸아뉴기니,
+    stats: [
+      { label: '등기와 세금', value: `회사등기 ${SS_C.등록번호}(${SS_C.설립}, 구 TARE NO. 2) · 인증 ${SS_C.인증} 다수주주 대만 · GST 경정 K${ssNum(SS_C.GST총액 / 1_000_000, 1)}백만(본세 K${ssNum(SS_C.GST본세 / 1_000_000, 1)}백만) · 판결 넷, 이의 절차 재개(미결)` },
+      { label: '공장과 원어', value: `능력 ${SS_P.능력NFA} 또는 ${SS_P.능력EP} t/일(출처별) · 2018 처리 ${SS_P.처리2018} · 물 ${ssNum(SS_P.물)} L/일 · 용선 선망 ${SS_P.용선2025} → ${SS_P.용선2026}척(2025 → 2026) · 국가 리베이트 US$${SS_P.리베이트}/t` },
+      { label: '유럽과 사람', value: `EU 의 PNG산 로인 스페인 ${ssNum(SS_E.스페인, 1)} %(2025, 나라 단위) · 미국 수입 2015~2025 0 · ${SS_P.시위} 약 ${ssNum(SS_P.시위인원)}명 작업 거부 · 최저임금 2026 K${ssNum(SS_P.최저임금, 2)}` },
+    ],
+  },
 
 
 ];
@@ -5661,6 +5966,9 @@ export default function CompanyAnatomyDashboard({
     bounty: BOUNTY_SPEC,
     rd: RD_SPEC,
     soltuna: SOLTUNA_SPEC,
+    pafco: PAFCO_SPEC,
+    pinsa: PINSA_SPEC,
+    sstc: SSTC_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
