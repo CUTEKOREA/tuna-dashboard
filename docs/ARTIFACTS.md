@@ -52,6 +52,7 @@
 | ⅩⅬⅥ | CAPSEN (세네갈 다카르 몰 10 부두 · 동원산업 49,00 % · 연결 근거는 계열 유일 「실질지배력보유」 · 49 %는 세네갈 해사법 제91조가 정한 천장 · 세네갈 국적 선망 7척 중 4척) | `capsen` | https://claude.ai/code/artifact/d31b875f-9467-4d43-b9c6-ebf144b2f558 |
 | ⅩⅬⅦ | Bounty Seafood (파푸아뉴기니 라에 말라항 Portion 679 · 동원산업 100,00 % · 2012년 로인 공장 계획이 서지 않았다 · 대여금 40만 1.232 달러가 14년째 회수 0 · 가공장 명부 넷에 이름 없음) | `bounty` | https://claude.ai/artifact/CLfMxp7N6hbMTFieFMJbxH |
 | ⅩⅬⅧ | RD Corporation (파푸아뉴기니 마당 R.D. Tuna Canners 1-22587 + 필리핀 탐블러 PHIL. BEST CANNING CORP. · 두 공장 다 유럽 무관세인데 원산지 규칙이 다르다 · 마당 2차 공장은 열세 해째 말) | `rd` | https://claude.ai/artifact/5reFe6aDRVx4oAzJNQWa45 |
+| ⅩⅬⅨ | SolTuna (솔로몬제도 노로 1 Tuna Drive · 유럽연합 승인 가공장 SI-02-01-001 · 회사등기 1000021 + 선단 NFD 20111635 · 유럽행은 조리 로인 100,00 % · 국가 48,999995 %는 공장에만) | `soltuna` | https://claude.ai/artifact/8oMvkVtWW7EzUGQ2y76rVU |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 

@@ -46,6 +46,7 @@ import kingfisherRaw from '@/public/data/companies/kingfisher_figures_v1.json';
 import capsenRaw from '@/public/data/companies/capsen_figures_v1.json';
 import bountyRaw from '@/public/data/companies/bounty_figures_v1.json';
 import rdRaw from '@/public/data/companies/rd_figures_v1.json';
+import soltunaRaw from '@/public/data/companies/soltuna_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -130,6 +131,7 @@ const INTAKES: Record<string, Intake> = {
   capsen: capsenRaw as unknown as Intake,
   bounty: bountyRaw as unknown as Intake,
   rd: rdRaw as unknown as Intake,
+  soltuna: soltunaRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);
