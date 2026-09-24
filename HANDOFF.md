@@ -2,6 +2,46 @@
 > - 순차 병합(squash): #1209 `087467ca`(선단 9/23) → #1211 `4bcba1aa`(GMTS 36주차). **#1210 은 base 브랜치(`data/fleet-260923`)가 병합·삭제되며 자동으로 닫혔다** — 스택 PR 은 아래 PR 이 먼저 병합되면 위 PR 이 닫히므로, 같은 브랜치로 main 기준 PR 을 다시 열어야 한다.
 > - Production `tuna-dashboard-61oboktps` READY → `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `afeeae64…` → **`7b067ac0…`** 로 교체·재배포(`tuna-dashboard-5g25434vt`, 3분). alias `https://leedonggun.co.kr`, 배포 로그 error 0.
 > - 라이브 실측(새 탭): `/fleet` 「2026-09-23 보고 · 2026-09-22 조업 기준」 · 히어로 510 / 7,988 / 89,688.8 / 7,399.3 · 「전체 보고 162건」·「연승 구역 미기재 23건」 · **보호 패널 경고 없음**. `/gmts` 2026.09.23 · 하역 중 0척 · 입항 예정 6척 · 36건 · $2,025 / $2,140 · overflow 0 · 「미확정 MT」 잔존 0.
+> 🚀 **2026-09-24 10:20 KST — #1223 9/24 계획 배포** [CC]:
+> - 병합(squash): #1223 `8473605c`. Production `tuna-dashboard-loaillape` READY, alias `https://leedonggun.co.kr`.
+> - 라이브 확인은 화면 텍스트가 아니라 **API 로 했다** — 명일 계획은 항차 상세 패널 안이라 본문 스캔에 안 잡힌다. `/api/unloading-db` 에서 `"date":"9/24" … "plannedMt":"290"` 확인. 누계 1,174.13 · 잔량 671.87 은 화면에서 확인.
+
+> 🚀 **2026-09-24 09:50 KST — #1213·#1221 프로덕션 배포** [CC]:
+> - 순차 병합(squash): #1213 `81cac029`(SEIN GALAXY 9/23 하역) → #1221 `a25e6fd9`(COSMO 38주차). 둘 다 대기 중 main 이 움직여(#1216·#1219·#1220) HANDOFF 충돌이 한 번씩 났고 양쪽 블록을 남겨 풀었다.
+> - Production `tuna-dashboard-2ytti318x` READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
+> - 라이브 실측(새 탭): `/unloading` 누계 **1,174.13** · 잔량 **671.87** · 9/23 행 · 일평균 **234.8**. `/cosmo` **38주차** · 수주잔고 **319 FCL** · 「가나 공휴일」·「재고 조사」 브리핑 · overflow 0. 지난주 문장(「가나 송금 일시 지연」·「37주차 업무 브리핑」) 잔존 0.
+> - 이번 배포에도 `FLEET_DAILY_DETAIL_JSON` 변경 없음 — 시크릿 교체 불필요.
+> ✅ **2026-09-24 10:00 KST — `/unloading` SEIN GALAXY 9/24 계획 반영** [CC]:
+> - 사용자 전달: 「24/SEP/2026(THU) (W.41) SEIN GALAXY, -UN/H2B1+2C1(MOAKONA) 200 MT 08:00, -CMC/H4C1(MOAMARI) 90 MT 08:00(SONGKHLA)」 = **290 MT**.
+> - 9/23 행의 `next_day.planned_mt` 를 null → **290** 으로 채웠다(문안의 「약 ###톤」이 「약 290톤」으로 바뀐다). 비고에 어창까지 적었다.
+> - 9/23 실적도 계획 290 대비 -3.560 이었고 그때는 CMC 어창이 #4-C 계획 대비 실제 #3-C 였다 — 9/24 도 같은 차이가 날 수 있어 결과보고로 확인한다.
+> - `npm run verify` 통과: Vitest **194 files / 1,653** · ESLint 0 errors · bundle 33.
+> - 상태: 브랜치 `data/unloading-0924-plan`. **프로덕션 미배포**.
+
+> ✅ **2026-09-24 09:30 KST — `/cosmo` 38주차 주간보고 반영** [CC]:
+> - 원자료: `COSMO 주간보고 (38주차)-첨부파일.xlsx` SHA-256 `344c0e10…` · `2026.9.23_COSMO 주간보고 (38주차).docx` `595f2655…60d98`. `scripts/sync_cosmo_weekly.py` 로 원장 재동기화 → 주차 37 → **38**(1~38주 결번 없음), 인용 150 → 156, 검산 335건.
+> - 38주차 수치: 수주잔고 329 → **319 FCL**($22,552,700 → $22,049,492), 신규수주 7 FCL·$579,699, 주간매출 **$2,092,161**(전주 $853,443)·누계 $47,986,373, CBU 원어 515.264 MT·수율 38.77%, 재고 **$17,464,292**(docx 「1,746만불」), 현금 **$10,166,113**.
+> - **38주차 검산 9건 전부 통과** — 37주차에 남았던 「재고 이월」 잔차 $136,131.74(공관 CATERING·ENDS RETAIL 두 행)가 원문에서 정리됐다.
+> - Word 계약(`lib/data/cosmo-weekly-report.ts`)은 최신 주차 하나만 싣는 구조다. 38주차로 교체: 생산분 확보 「2026년까지」, 바이어 소량 구매 지속, 독일 REWE·EDEKA 입찰 검토(약 700 FCL 전량 MSC), 에콰도르 고어가·가다랑어 부족으로 선적 지연, 9/21 가나 공휴일로 주 4일 생산, 출고 19컨·CY 대기 66컨(전주 74컨), 원어구매 PANOFI 99.8%. 차주 계획은 3분기 결산 재고 조사.
+> - 38주차 원장이 들어오며 PANOFI 9/20 메일이 처음으로 원장 주차와 짝이 맞았다 — 일평균 103.1 MT, 재고 차이 -99.2 MT(메일 기준일과 원장 말일이 달라 남는 값이다).
+> - `npm run verify` 통과: Vitest **194 files / 1,652** · ESLint 0 errors(경고 30건, main 과 동일) · bundle 33.
+> - 상태: 브랜치 `data/cosmo-week38`. **프로덕션 미배포**.
+
+> ✅ **2026-09-23 23:10 KST — `/unloading` SEIN GALAXY 방콕 9/23 하역 반영** [CC]:
+> - 원자료: K GROUP Report No.5 JPG `34920499…8fb3` · 결과 XLS `551f934a…2bc2`(시트 `09-23`) · 현황 XLSX `8e4bcd18…079c`. 사용자가 준 Downloads 경로의 XLS 는 이미 Drive 로 옮겨져 있었다 — **파일이 없으면 Drive 하역 업무 폴더를 먼저 본다**.
+> - 9/23(수) 08:00~15:20 **286.440 MT**, 화주 2곳이 하루에 붙었다: UC #2-B MOAKONA 192.800(08:00~15:20) · CMC #3-C MOAMARI 93.640(08:40~11:50, 리퍼 트럭 7대). 20 trucks. 어종 YF 73.40 · SJ 213.04.
+> - 누계 **1,174.130** · 잔량 **671.870**(진행률 63.6%). 원선별 누계 MOAKONA 528.30 · MOAMARI 645.83. 어종 누계 SJ 851.46 · YF 322.67 로 `unloading_species` 실적도 갱신했다.
+> - 계획 290 대비 **-3.560 MT**. 사용자 전달 메시지는 「UN/H2B1 200 + CMC/H4C1 90」이었는데 **실제 작업 어창은 #4-C 가 아니라 #3-C** 였다(합계는 같다). 12:00~13:00 강우, UC #2-B 10:50~11:20 차량 대기.
+> - **9/24 계획이 원자료에 없다** — `planned_mt` 를 null 로 두어 문안이 「약 ###톤」으로 나온다.
+> - 일평균 221.9 → **234.8 MT/일**(보고 5회). 남은 671.87 MT 는 이 속도면 약 2.9일이다.
+> - 테스트: 9/23 블록 신설 + 누계·원선별·간트·어종 단정 갱신. `npm run verify` 통과: Vitest **194 files / 1,652** · ESLint 0 errors · bundle 33. 로컬 1440·390px overflow 0, error 0.
+> - 상태: 브랜치 `data/unloading-sein-galaxy-0923`. **프로덕션 미배포**.
+> 📰 **2026-09-24 07:26 KST — `/market` 2026-09-23 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1215](https://github.com/CUTEKOREA/tuna-dashboard/pull/1215) squash 병합. main commit `45830cb3` (브랜치 커밋 `dd81521f`, `briefing/2026-09-23`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+69/−55). 기준일 `2026-09-23`, 기사 **6건**.
+> - 게이트: 감사 AUDIT_PASS(윤문본 재감사 PASS, 채택) · 07:20 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · 변경분 존재.
+> - pre-push 빌드: 1회차 실패(`Fix the build error` — 코드 변경 없음, 원인 미확인), 재시도에서 75초 통과. 재발하면 원인 조사가 필요하다.
+> - Vercel `pending` 22:22:49Z → `success`(07:25 KST). 라이브 1·2회차는 옛 값 `2026.09.22 · 6건`, 배포 완료 뒤 「기준일 2026.09.23 · 기사 6건 · 파이프라인 동기」 확인(Aside 로그인 세션). 새 기사(태국·EU 통조림 참치 합의, Captain Fresh)가 보이고 9.22 리드 「동원, StarKist 채무보증 연장」은 사라졌다.
+> - 워크트리: PR MERGED + JSON 이 origin/main 과 같은 것을 확인하고 `sync/2026-09-23`(origin/main)로 옮겼다. 이 기록 PR 병합 뒤 `sync/2026-09-23b` 로 옮겨 clean 으로 남긴다.
 
 > ✅ **2026-09-23 13:40 KST — `/gmts` 36주차(9/23) 반영** [CC]:
 > - 원자료: `GMTS Weekly Report 20260923.pdf` SHA-256 `38f95b7f…9588`(476,197 B, 1쪽). `scripts/build_gmts_dashboard.py` 재빌드 → 보고 35 → **36건**, 쪽수 43 → 44, coverageEnd 2026-09-23.

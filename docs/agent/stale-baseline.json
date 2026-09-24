@@ -1,0 +1,18 @@
+{
+  "updatedAt": "2026-09-23",
+  "stale": 130,
+  "unknown": 58,
+  "note": "이 수치보다 늘면 check:stale-widgets 가 실패한다. 줄었으면 이 파일을 갱신해 잠가라.",
+  "worstFiles": {
+    "components/WhelkDashboard.tsx": 14,
+    "components/market-understanding/TunaIndustryDashboard.tsx": 11,
+    "components/market-understanding/TunaAnatomyDashboard.tsx": 7,
+    "components/KimAgriDataWidgets.tsx": 4,
+    "components/market-understanding/OctopusIndustryDashboard.tsx": 4,
+    "components/market-understanding/SquidIndustryDashboard.tsx": 4,
+    "components/TunaKfasResearch.tsx": 3,
+    "components/market-understanding/PollockIndustryDashboard.tsx": 3,
+    "components/BeefEmpiricalInsights.tsx": 2,
+    "components/KimDashboard.tsx": 2
+  }
+}
