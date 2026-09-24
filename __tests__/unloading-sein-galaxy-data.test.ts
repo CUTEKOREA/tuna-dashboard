@@ -180,8 +180,10 @@ describe('SEIN GALAXY 방콕 항차', () => {
     expect(day.speciesAmounts).toEqual({ SJ: 213.04, YF: 73.4 });
     expect(day.remainingAmount).toBeCloseTo(671.87, 6);
     expect(day.remainingAmount + day.cumAmount).toBeCloseTo(vessel.reportedTotal, 6);
-    // 9/24 계획은 원자료에 없다 - 톤수를 지어내지 않고 비워 둔다
-    expect(day.nextDay).toEqual({ kind: 'work', date: '9/24', reason: null, resumeDate: null, plannedMt: null });
+    // 9/24 계획은 원자료에 없어 사용자가 따로 전달했다: UN 200 + CMC 90 = 290 MT
+    expect(day.nextDay).toEqual({ kind: 'work', date: '9/24', reason: null, resumeDate: null, plannedMt: '290' });
+    expect(day.quality).toContain('UN/H2B1+2C1(MOAKONA) 200 MT 08:00');
+    expect(day.quality).toContain('CMC/H4C1(MOAMARI) 90 MT 08:00(송클라)');
     expect(day.quality).toContain('TOTAL 20 TRUCKS');
     expect(day.quality).toContain('12:00~13:00 강우');
     // 사용자 전달 계획은 어창이 #4-C 였는데 실제 작업은 #3-C 였다 - 합계만 같다
