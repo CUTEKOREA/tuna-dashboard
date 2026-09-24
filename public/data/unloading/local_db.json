@@ -3137,6 +3137,87 @@
    "source_workbook_sha256": "551f934a306d5301aa13ef5344a5abcf22d87158e8dfbfdbe4b48eab96dd2bc2",
    "status_workbook_sha256": "8e4bcd189067f67278dbd30280796fb898e87026f3afd0cd8a40b6c8deb1079c",
    "created_at": "2026-09-23T23:00:00+09:00"
+  },
+  {
+   "id": "sein-galaxy-bangkok-2026-09-9-24",
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "report_year": 2026,
+   "report_date": "9/24",
+   "work_time": "08:00 ~ 16:00",
+   "target_holds": "MOAKONA(#2-B:94.590,#2-C:88.400), MOAMARI(#3-C:93.700)",
+   "consignee": "UC · CMC",
+   "allocations": [
+    {
+     "consignee": "UC",
+     "amount": 182.99,
+     "loads": [
+      {
+       "source_vessel": "MOAKONA",
+       "hatch": "#2-B",
+       "amount": 94.59
+      },
+      {
+       "source_vessel": "MOAKONA",
+       "hatch": "#2-C",
+       "amount": 88.4
+      }
+     ]
+    },
+    {
+     "consignee": "CMC",
+     "amount": 93.7,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#3-C",
+       "amount": 93.7
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "MOAKONA",
+     "hatch": "#2-B",
+     "temperatures_c": [
+      -21.0,
+      -22.0
+     ]
+    },
+    {
+     "source_vessel": "MOAKONA",
+     "hatch": "#2-C",
+     "temperatures_c": [
+      -21.0,
+      -22.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -17.0,
+      -18.0
+     ]
+    }
+   ],
+   "daily_amount": 276.69,
+   "cumulative_amount": 1450.82,
+   "species_amounts": {
+    "SJ": 194.59,
+    "YF": 82.1
+   },
+   "remaining_amount": 395.18,
+   "next_day": {
+    "kind": "work",
+    "date": "9/25",
+    "planned_mt": null
+   },
+   "quality_notes": "MOAKONA(#2-B) 08:10~12:00 - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. MOAKONA(#2-C) 12:20~16:00 - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. MOAMARI(#3-C) 08:00~10:50 - 어창 개방 측정온도는 -17.0℃ ~ -18.0℃ 로 전일(-20~-21)보다 3도 높습니다. 원문 온도 표기는 ‘-21,-22’·‘-17,-18’(단위: ℃)입니다. TOTAL 20 TRUCKS(CMC #3-C 는 리퍼 트럭 7대). UC #2-B·#2-C 차량 대기 10:10~11:20, 13:20~14:00. 계획 290 MT 대비 -13.310 MT. 전일과 마찬가지로 CMC 계획 어창은 #4-C 였으나 실제 작업은 #3-C 였습니다. 하역 누계 1,450.820 MT·잔량 395.180 MT(진행률 78.6%). 원문 표의 HATCH.1 잔량은 +16.180 MT 로 적재 초과(green) 표기입니다. 9/25 계획은 원자료에 없습니다.",
+   "source_sha256": "f650fe8b66f90c40d678e990f917d3975696b2ae9b4cc413e9dd4c2077b80ba0",
+   "source_workbook_sha256": "d36a1f59601d7e4491e081e06fb85f1def2845ed25c34ceac06bc5dd6814c32e",
+   "status_workbook_sha256": "5a2c68a088dea2572a150d457af3d9b188873a593d730b55a3fa5f1ea2b6d1d1",
+   "created_at": "2026-09-24T23:00:00+09:00"
   }
  ],
  "unloading_species": [
@@ -3304,16 +3385,16 @@
    "species_id": "SJ",
    "species_name": "가다랑어",
    "reported_amount": 1306,
-   "actual_amount": 851.46,
-   "updated_at": "2026-09-23T23:00:00+09:00"
+   "actual_amount": 1046.05,
+   "updated_at": "2026-09-24T23:00:00+09:00"
   },
   {
    "vessel_id": "sein-galaxy-bangkok-2026-09",
    "species_id": "YF",
    "species_name": "황다랑어",
    "reported_amount": 508,
-   "actual_amount": 322.67,
-   "updated_at": "2026-09-23T23:00:00+09:00"
+   "actual_amount": 404.77,
+   "updated_at": "2026-09-24T23:00:00+09:00"
   },
   {
    "vessel_id": "sein-galaxy-bangkok-2026-09",
@@ -3321,7 +3402,7 @@
    "species_name": "눈다랑어",
    "reported_amount": 32,
    "actual_amount": 0,
-   "updated_at": "2026-09-23T23:00:00+09:00"
+   "updated_at": "2026-09-24T23:00:00+09:00"
   }
  ]
 }
