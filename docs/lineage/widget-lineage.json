@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 284,
+  "files": 285,
   "widgets": 114,
-  "dataFiles": 300,
+  "dataFiles": 304,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -640,6 +640,7 @@
     "lib/data/company-sca.ts",
     "lib/data/company-seavalue.ts",
     "lib/data/company-soltuna.ts",
+    "lib/data/company-sstc.ts",
     "lib/data/company-starkist.ts",
     "lib/data/company-tecopesca.ts",
     "lib/data/company-thaiunion-skus.ts",
@@ -829,6 +830,10 @@
     "public/data/companies/soltuna_prose_v1.json",
     "public/data/companies/soltuna_tables_v1.json",
     "public/data/companies/soltuna_v1.json",
+    "public/data/companies/sstc_figures_v1.json",
+    "public/data/companies/sstc_prose_v1.json",
+    "public/data/companies/sstc_tables_v1.json",
+    "public/data/companies/sstc_v1.json",
     "public/data/companies/starkist_figures_v1.json",
     "public/data/companies/starkist_prose_v1.json",
     "public/data/companies/starkist_tables_v1.json",
@@ -1988,6 +1993,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/soltuna_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/starkist_figures_v1.json": [

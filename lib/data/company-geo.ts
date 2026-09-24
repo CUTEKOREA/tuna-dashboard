@@ -251,6 +251,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅠ · 발행본 §02 의 등록부 공통 주소 「Av. Puerto de Mazatlán 406, Col. Parque Industrial Alfredo V. Bonfil」(IMPI 상표권자·IATTC 선박 소유자·TRACES 가공장 PIN8211234X6) · 좌표는 INEGI DENUE 05_2026 의 Pescados Industrializados 사업체 좌표(23,21807, −106,39267)',
     note: '선망 23척 = 멕시코 기국 활성 선망 운반능력의 51,7 %(IATTC) · 유럽연합 승인 가공장 5곳(마사틀란 4·과이마스 1) · MSC 어업 인증 2023-03-08 철회 → 2026-05-20 개선 프로그램 · PROFECO 100 g 당 기본 캔 MXN 14(경쟁사와 같음), 대두 캔 El Dorado MXN 9 · 멕시코 캔 수출의 99,9 % 미국(나라 단위)',
     },
+  // ── ⅬⅡ South Seas Tuna — 웨와크 부두 ─────
+  { company: 'sstc', numeral: 'ⅬⅡ', kind: 'hq', label: 'South Seas Tuna — 웨와크 1 Wharf Road', country: '파푸아뉴기니',
+    lat: -3.5530, lng: 143.6330,
+    basis: 'ⅬⅡ · 발행본 §01 의 유럽연합 명부 주소 「1 Wharf Road, PO BOX 543」 Wewak(09EPR019) · 필지 Section 36, Lot 37 · 등기 사무소는 포트모르즈비지만 지구본은 공장 자리를 잡는다 · **좌표는 웨와크 부두 근사값**',
+    note: '2004~2015 FCF 가 해상에서 산 참치를 가공비를 받고 로인으로 만들었다(판결 배경사실) · GST 경정 K64,5백만(본세 K24,6백만) 소송 미결 · 용선 선망 2025 18척 → 2026 9척 · 능력 100 또는 200 t/일(출처별) · 파푸아뉴기니 EU 승인 가공장 여섯 곳 중 웨와크의 유일한 곳',
+    },
 ];
 
 /**

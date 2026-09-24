@@ -49,6 +49,7 @@ import rdRaw from '@/public/data/companies/rd_prose_v1.json';
 import soltunaRaw from '@/public/data/companies/soltuna_prose_v1.json';
 import pafcoRaw from '@/public/data/companies/pafco_prose_v1.json';
 import pinsaRaw from '@/public/data/companies/pinsa_prose_v1.json';
+import sstcRaw from '@/public/data/companies/sstc_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -139,6 +140,7 @@ const INTAKES: Record<string, Intake> = {
   soltuna: soltunaRaw as unknown as Intake,
   pafco: pafcoRaw as unknown as Intake,
   pinsa: pinsaRaw as unknown as Intake,
+  sstc: sstcRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

@@ -358,6 +358,10 @@ import {
   fleet as psFleet, shelf as psShelf, trade as psTrade,
 } from '@/lib/data/company-pinsa';
 import {
+  sstcMeta, sstcSourceNotes,
+  corp as ssCorp, plant as ssPlant, europe as ssEurope,
+} from '@/lib/data/company-sstc';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -4703,6 +4707,90 @@ const SOLTUNA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SS_ACCENT = '#35607a';
+
+/** 법인·세금·공장·유럽. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const SS_C = ssCorp();
+const SS_P = ssPlant();
+const SS_E = ssEurope();
+
+const ssNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const SSTC_SPEC: CommoditySpec = {
+  key: 'company-anatomy-sstc',
+  title: '기업 해부: South Seas Tuna',
+  subtitle:
+    `파푸아뉴기니 이스트세픽주 웨와크 부두의 로인·어분 공장 South Seas Tuna Corporation(회사등기 ${SS_C.등록번호} · ${SS_C.설립} TARE NO. 2 LIMITED 로 설립 · 유럽연합 승인 ${SS_C.EU승인}). ${SS_C.협정} 국가·이스트세픽주정부와 프로젝트 협정을 맺고 ${SS_C.가동}년에 가동했다. ` +
+    '두 판결이 다툼 없는 배경사실로 적은 2004~2015년의 구조는 대만 FCF 가 바다에서 산 참치를 이 회사가 가공비를 받고 로인으로 만든 것이다. ' +
+    `세무당국은 이전가격과 GST 미부과를 들어 GST K${ssNum(SS_C.GST총액 / 1_000_000, 1)}백만을 경정했고(본세 K${ssNum(SS_C.GST본세 / 1_000_000, 1)}백만), 이의 절차는 2023년 판결로 다시 열렸다.`,
+  accent: SS_ACCENT,
+  primaryKpi: {
+    label: 'WCPFC 등록부에서 이 회사가 용선자로 오른 선망선 — 2025년과 2026년',
+    value: SS_P.용선2026,
+    decimals: 0,
+    unit: `(척 · 2025년 ${SS_P.용선2025}척 → 2026년 ${SS_P.용선2026}척(조회일까지 통지 기준). 현행 9척은 대만 기국 707 계열이고, 2025년 이 회사가 용선하던 필리핀 선박은 2026년 용선자가 라에의 Majestic 으로 바뀌었다. **용선자 등재는 PNG 선단 조업 자격이지 임대 계약 증거가 아니다** — 용선료·어획물 소유는 무료 자료에 없다. 국가는 국내 가공 1톤당 US$${SS_P.리베이트} 리베이트를 준다(2018 도입, 2025 현행)`,
+    accent: SS_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: 'GST 경정 가운데 본세 — 2004~2014 (대법원 SC2418 배경사실)',
+      value: SS_C.GST본세 / 1_000_000,
+      decimals: 1,
+      unit: `(백만 PGK · 총액 K${ssNum(SS_C.GST총액, 2)} 가운데 이자 K${ssNum(SS_C.GST이자, 2)}. 2019 SC1761 은 경정 절차만 판단했고 세액의 옳고 그름은 판단하지 않았다. 2021 N9290 은 절차 기각, 2022 계좌 압류 K${ssNum(SS_C.압류)} 는 2023 SC2418 에서 항소 인용, 2023 N10596 은 이의 판단 명령 — 결론은 아직 공개되지 않았다)`,
+    },
+    {
+      label: '웨와크 공장 능력 — 출처별 (t/일, 원어 투입)',
+      value: SS_P.능력NFA,
+      decimals: 0,
+      unit: `(NFA 2014 표·회사 1단계 ${SS_P.능력NFA} · 유럽의회 2012(회사 대표 전화)·회사 기반 정격 ${SS_P.능력EP} · 회사 대표 2018 처리 ${SS_P.처리2018}(2교대). **분모가 둘이라 가동률은 계산하지 않는다.** 공정에 물이 하루 약 ${ssNum(SS_P.물)} L 들고, 2023년 1분기에는 물·전기 부족으로 주 2~3일만 돌았다)`,
+    },
+    {
+      label: '2025년 EU 가 들인 파푸아뉴기니산 로인 가운데 스페인 몫 (Comext, 나라 단위)',
+      value: SS_E.스페인,
+      decimals: 1,
+      unit: `(% · EU27 의 PNG산 참치 조제품 ${ssNum(SS_E.t2025, 1)} t(2025) 가운데 로인 ${ssNum(SS_E.로인비중, 1)} %. 2021 ${ssNum(SS_E.t2021, 1)} t 가 최고. 파푸아뉴기니 EU 승인 가공장은 여섯 곳이라 이 회사 몫은 모른다. 미국의 PNG산 참치 조제품 수입은 2015~2025 0 이다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '용역',
+      title: '원어는 FCF 것이었고 이 회사는 가공비를 받았다',
+      body: '국가법원 N9290(2021)은 다툼 없는 배경사실로 이렇게 적는다 — 「at the material time」 FCF 가 바다에서 참치를 사서 공장에 대고, 회사는 산업 공식(회수율·어분 부산물)으로 정한 가공비를 받고 인력·부자재·에너지를 댔으며, FCF 가 가공된 로인 대부분을 수출용으로 가져갔다. 국내 판매분에는 GST 가 매겨졌다. 공장이 세관 통제 구역이라는 것은 회사 주장이고 과세 분쟁의 쟁점이다. 2016년 이후 구조는 공개 문서에 없다',
+    },
+    {
+      eyebrow: '세금',
+      title: 'K64,5백만 경정의 절반 넘게가 이자였다',
+      body: '세무당국 입장문(2015-08-07)은 이전가격과 FCF 용역에 대한 GST 미부과를 들었다. 경정은 2016-06-27. 대법원 SC1761(2019)은 전표 입력이 경정인지만 판단했고, 회사가 「for years」 당국의 권유를 믿고 처리해 왔다고 적었다. 회사 변호인은 경정액 때문에 회사가 「will go under」라고 했다',
+    },
+    {
+      eyebrow: '원어',
+      title: '용선 선망선 18척에서 9척으로',
+      body: '2016 PNG 기국 9척 → 2021 1척 → 2025 18척(전체 27척) → 2026 9척. 필리핀 선박의 용선자가 2026년 Majestic 으로 바뀐 이유를 적은 원문은 없다. 선박과 가공사의 짝은 VDS 3자 협정(2025-01 전면 시행)이 정하고, 정부 보고서는 이를 「mandatory catch offloading」이라 부른다',
+    },
+    {
+      eyebrow: 'FCF',
+      title: '대만 가오슝의 FCF, PNG 투자 소식은 라에·마당에서',
+      body: '豐群水產(統編 82007494)의 PNG 투자지주 인증 90973 은 2026-01-11 취소됐다(연차보고 미제출). 2025~2026 FCF 계열 PNG 소식은 Nambawan K80백만 냉동창고(라에, 2026-03 착공)·Majestic 재가동 주주·RD 재편 지원이다. 2024~2026 이 회사 명의 투자 보도는 없다',
+    },
+    {
+      eyebrow: '사람',
+      title: '2024-09-30 약 2.000명이 작업을 거부했다',
+      body: `최저임금 K3,50 이 생활비에 못 미친다며 시급 K5 이상을 요구했다(보도, 회사 논평 없음). 법정 최저임금은 2026-01-01 K${ssNum(SS_P.최저임금, 2)} 로 올랐다. 이 회사가 K5 를 주는지, 면제를 받았는지는 공개되지 않았다`,
+    },
+  ],
+  briefing: proseBriefing('sstc'),
+  narratives: inlineReport('sstc', proseStages('sstc')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: sstcSourceNotes,
+  sourceMeta: [
+    `${sstcMeta.회사} · ${sstcMeta.국가} · ${sstcMeta.업종}`,
+    `출처 ${sstcMeta.출처}`,
+    `조사 ${sstcMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -5792,6 +5880,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '문과 돈', value: `멕시코 캔 수출 ${psNum(PS_T.미국몫, 1)} % 미국(2025) · EU 캔 수입 사실상 0, 냉동 황다랑어 ${psNum(PS_T.EU냉동황다랑어t)} t · EU–멕시코 iTA 이사회 승인 ${PS_T.이사회} · 그룹 매출 ${psNum(PS_T.매출)} 백만 MXN(매체) · 정부 조달 ${psNum(PS_T.조달건)}건(2005~2022)` },
     ],
   },
+  {
+    key: 'sstc',
+    numeral: 'ⅬⅡ',
+    name: 'South Seas Tuna',
+    country: `파푸아뉴기니 · 이스트세픽주 웨와크 1 Wharf Road(유럽연합 승인 ${SS_C.EU승인})`,
+    tagline: '남의 생선, 부두의 공장 — FCF 가 대는 참치를 가공비를 받고 로인으로 만든 웨와크 공장.',
+    ...FLAG.파푸아뉴기니,
+    stats: [
+      { label: '등기와 세금', value: `회사등기 ${SS_C.등록번호}(${SS_C.설립}, 구 TARE NO. 2) · 인증 ${SS_C.인증} 다수주주 대만 · GST 경정 K${ssNum(SS_C.GST총액 / 1_000_000, 1)}백만(본세 K${ssNum(SS_C.GST본세 / 1_000_000, 1)}백만) · 판결 넷, 이의 절차 재개(미결)` },
+      { label: '공장과 원어', value: `능력 ${SS_P.능력NFA} 또는 ${SS_P.능력EP} t/일(출처별) · 2018 처리 ${SS_P.처리2018} · 물 ${ssNum(SS_P.물)} L/일 · 용선 선망 ${SS_P.용선2025} → ${SS_P.용선2026}척(2025 → 2026) · 국가 리베이트 US$${SS_P.리베이트}/t` },
+      { label: '유럽과 사람', value: `EU 의 PNG산 로인 스페인 ${ssNum(SS_E.스페인, 1)} %(2025, 나라 단위) · 미국 수입 2015~2025 0 · ${SS_P.시위} 약 ${ssNum(SS_P.시위인원)}명 작업 거부 · 최저임금 2026 K${ssNum(SS_P.최저임금, 2)}` },
+    ],
+  },
 
 
 ];
@@ -5867,6 +5968,7 @@ export default function CompanyAnatomyDashboard({
     soltuna: SOLTUNA_SPEC,
     pafco: PAFCO_SPEC,
     pinsa: PINSA_SPEC,
+    sstc: SSTC_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
