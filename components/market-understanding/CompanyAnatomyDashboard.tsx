@@ -346,6 +346,10 @@ import {
   promises as rdPromises, shelf as rdShelf,
 } from '@/lib/data/company-rd';
 import {
+  soltunaMeta, soltunaSourceNotes,
+  equity as stEquity, handles as stHandles, europe as stEurope, plant as stPlant,
+} from '@/lib/data/company-soltuna';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -2631,6 +2635,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   포르투갈: { flagSrc: '/flags/pt.svg', backInk: '#1b2733' },
   코트디부아르: { flagSrc: '/flags/ci.svg', backInk: '#f4f5f0' },
   모리셔스: { flagSrc: '/flags/mu.svg', backInk: '#f4f5f0' },
+  솔로몬제도: { flagSrc: '/flags/sb.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -4592,6 +4597,103 @@ const cpPct = (v: number, d = 2) => v.toFixed(d);
  *  원문 자릿수는 같은 문장에 천 원 단위로 그대로 남긴다. */
 const cpEok = (천원: number) => Math.round(천원 / 100_000);
 
+const ST_ACCENT = '#1f5a6b';
+
+/** 지분·손잡이·유럽·공장. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const ST_Q = stEquity();
+const ST_H = stHandles();
+const ST_E = stEurope();
+const ST_P = stPlant();
+
+/** 화면은 ko-KR 자릿수를 쓴다. 발행본의 유럽식 소수 쉼표는 여기서 점 소수로 옮긴다. */
+const stNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const SOLTUNA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-soltuna',
+  title: '기업 해부: SolTuna',
+  subtitle:
+    `솔로몬제도에서 유럽연합이 수산물 가공공장으로 승인한 시설은 노로의 이 공장 한 곳이다(${ST_E.승인번호}). 가공 법인 SolTuna Limited(회사등기 ${ST_Q.법인번호} · ${ST_Q.설립일} 설립)와 선단 법인 National Fisheries Developments(${ST_Q.NFD_법인번호} · ${ST_Q.NFD_설립일} 설립)가 같은 Tri Marine 그룹에 속한다. ` +
+    '유럽연합이 2021~2025년에 이 나라에서 들여온 참치 조제품은 해마다 조리 로인이었고 캔은 역내와 태평양 매대로 간다. ' +
+    `국가·공공 주주 셋이 공장 지분 ${stNum(ST_Q.국가공공_pct, 6)} %를 가졌지만 연금은 제 몫을 비지배 투자로 적고, 배를 가진 NFD 에는 한 주도 없다. 국가가 쥔 것은 공캔·뚜껑을 무세로 들이는 면제 명령의 갱신권이다. ` +
+    '1973년 竿釣로 시작한 이 사업은 2024년에 竿釣를 멈췄고, 인증기관은 고객이 인증 대상 선박을 쓰지 않기로 한 이유를 운영상의 결정으로 전했다.',
+  accent: ST_ACCENT,
+  primaryKpi: {
+    label: '유럽연합이 들여온 솔로몬제도산 참치 조제품(HS 1604.14) 가운데 조리 로인 세목의 몫 — 2021~2025년 해마다 (유럽연합 통계청 Comext CN8)',
+    value: ST_E.로인비중_pct,
+    decimals: 2,
+    unit: `(% · 로인 세 세목 1604 14 26·36·46 을 더하면 여섯 자리 총계와 무게·금액이 오차 없이 맞는다. 캔·소매 여섯 세목과 Bonito 는 다섯 해 동안 0이고, 로인이 아닌 물량이 마지막으로 있던 해는 ${ST_E.비로인_마지막해}년이다. 물량은 ${stNum(ST_E.t2021, 1)} t(2021)에서 ${stNum(ST_E.t2024, 1)} t(2024, 최고)로 올랐다가 2025년 ${stNum(ST_E.t2025, 1)} t 으로 꺾였고 단가는 kg당 €${stNum(ST_E.EURkg2025, 2)} 다. 받은 나라는 이탈리아와 스페인이다 — 2024년 EU 로인 안에서 ${stNum(ST_E.이탈리아_pct, 2)} 대 ${stNum(ST_E.스페인_pct, 2)} 이고, 두 나라 밖 물량은 5년 통산 ${stNum(ST_E.두나라밖_pct, 2)} %로 2022년 한 해의 프랑스·라트비아 두 건이다. **무역통계는 나라까지만 가르므로 「모회사 공장으로 간다」로 읽지 않는다**)`,
+    accent: ST_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '공장 SolTuna 의 국가·공공 지분 — SINPF + ICSI + 서부주 (회사등기 2026-09-24)',
+      value: ST_Q.국가공공_pct,
+      decimals: 6,
+      unit: `(% · 선단 법인 NFD 는 ${ST_Q.NFD_국가공공_pct} %다. Tri-Marine International 이 ${stNum(ST_Q.TMI_pct, 4)} %를 갖고 국가 몫은 SINPF ${stNum(ST_Q.SINPF_pct, 4)} · ICSI ${stNum(ST_Q.ICSI_pct, 4)} · 서부주 ${stNum(ST_Q.서부주_pct, 4)} 이다. 발행주식 ${stNum(ST_Q.발행주식)} 는 100 으로 나누어떨어지지 않아 정확한 51 : 49 가 애초에 불가능하다. 연금은 제 몫을 「Other equity investments」로 적고 재무제표는 일상 운영을 Tri Marine 이 맡는다고 쓴다 — **등기와 재무제표에 국가의 경영 지배를 보여 주는 표지가 없다**(정관은 판독되지 않았다). 신주는 공장만 ${ST_Q.신주발행}번 냈고 NFD 는 ${ST_Q.NFD_신주발행}번이다. 이사회도 갈린다: SolTuna 는 ${ST_Q.이사}명 중 ${ST_Q.이사_솔로몬}명이 솔로몬 국적이고 NFD 는 ${ST_Q.NFD_이사}명 중 ${ST_Q.NFD_이사_솔로몬}명이다)`,
+    },
+    {
+      label: '국가가 쥔 손잡이 — SolTuna 의 공캔·뚜껑·포장재 면제 두 건의 포기 세액 (관보 LN 590·591)',
+      value: ST_H.합,
+      decimals: 0,
+      unit: `(SBD · 물품세 ${stNum(ST_H.LN590)} + 관세 ${stNum(ST_H.LN591)}. 두 명령 다 2025-08-01 에 서명돼 **${ST_H.기간}** 동안 유효하고, 공캔·뚜껑·라벨·포장재·실험 자재가 열거돼 있다. 둘 다 **양도할 수 없고 분기마다 보고해야 하며 어기면 무효**다(관보 719~720쪽). NFD 도 선박 한 척에 SBD ${stNum(ST_H.LN411, 2)} 를 면제받았다(LN 411). **특별대우로 읽지 않는다** — 관보 한 호(2025-02-14)에만 100 % 면제가 ${ST_H.같은관보}건이다. 캔참치 가격통제도 이 회사를 겨냥하지 않는다: 1987년부터 ${ST_H.가격통제_품목수}개 생필품 가운데 ${ST_H.가격통제_순번}번이고 통제구역 ${ST_H.가격통제_구역수}곳에 **노로가 없다.** 같은 지면의 다음 공고(LN 592, 다이빙 장비 물품세 면제)도 양도금지·분기보고·무효 규정을 둔다 — SolTuna 에만 붙은 조건이 아니다. **반복도 관보에 없다**: 2025-01 ~ 2026-07-08 관보의 물품세·관세 면제 공고 ${stNum(ST_H.관보공고_하한)}여 건에서 SolTuna 명의는 이 ${ST_H.SolTuna공고}건뿐이다. 만료 뒤 새 명령도 아직 게재되지 않았지만, 그 기간에 실린 면제는 2025-12-12 서명분이 마지막이라 갱신 여부는 아직 판정할 수 없다)`,
+    },
+    {
+      label: '국가 竿釣 어획 — 2022년과 2024년 (정부가 WCPFC 에 낸 연례보고서, 2026-07-07)',
+      value: ST_P.竿釣[1],
+      decimals: 0,
+      unit: `(t → **0 t** · 2021 ${stNum(ST_P.竿釣[0])} · 2022 ${stNum(ST_P.竿釣[1])} · 2023 ${stNum(ST_P.竿釣[2])} · 2024 ${ST_P.竿釣[3]} · 2025 ${ST_P.竿釣[4]}. 2025년에는 국내수역 竿釣 면허가 ${ST_P.竿釣_면허_2025}장이다. ${ST_P.竿釣_시작}년에 竿釣로 시작한 사업이다. 인증기관이 피어리뷰 응답 열에 적은 이유는 「operational decisions (e.g. targeting other species, fishing outside the UoA, or due to economic reasons)」이고 「they want the option to use the certificate if conditions change」다 — **자원 상태는 그 예에 없고, 인증 범위는 살려 뒀다.** 1991년 노조 판정문에서 가장 큰 직군이 Pole and Line Fleet ${ST_P.인원_竿釣}명(총원 ${stNum(ST_P.인원_총원)}, 캐너리 ${ST_P.인원_캐너리})이었다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '하나',
+      title: '승인 가공공장은 한 곳이고, 유럽행 조제품은 로인이다',
+      body: `유럽연합 제3국 승인 명부에서 솔로몬제도의 현행 수산물 항목은 ${ST_E.명부건수}건이고, 가공공장(PP) 승인은 노로 1 Tuna Drive 한 주소(${ST_E.승인번호})에만 붙어 있다. IFC 는 2013년 사업 공시에서 이 회사를 「sole tuna loining and canning processor」로 적었다. 유럽으로 가는 것은 캔이 아니다 — 2021~2025년 이 나라에서 들어간 참치 조제품은 해마다 조리 로인이었다. 원료 쪽 진술도 있다: 2014-12-12 채택된 유럽연합 옐로카드 결정(2014/C 447/09)의 전문 (27)·(28)은 **한 참치 가공공장 운영자**의 말을 싣는다 — 유럽행 조리 로인·플레이크에는 솔로몬 국기 선망선 어획만 쓰고, 나머지 원료는 연승선에서 받아 주로 미국·역내 시장으로 보낸다는 진술이다. 결정의 대상은 회사가 아니라 나라였고 레드카드로 가지 않았다(2017-02-24 종료, 2017/C 60/05)`,
+    },
+    {
+      eyebrow: '지분',
+      title: '국가는 공장에만 들어가 있다',
+      body: `SolTuna 의 주주는 넷이다 — Tri-Marine International ${stNum(ST_Q.TMI_pct, 4)} %, 국가연금(SINPF) ${stNum(ST_Q.SINPF_pct, 4)} %, 국영투자공사(ICSI) ${stNum(ST_Q.ICSI_pct, 4)} %, 서부주 집행부 ${stNum(ST_Q.서부주_pct, 4)} %. 선단 법인 NFD 의 주주 칸은 Tri Marine International 한 줄이다. 두 회사의 현 등기본점은 호니아라의 같은 건물 같은 층이고 대리인만 다르다. **돈이 들어간 쪽이 갈린다** — 2011년 이후 SolTuna 에는 신주발행 신고(Form 8)가 ${ST_Q.신주발행}건 쌓였고 NFD 에는 없다. 마지막 증자(2024-10-29 신고, 42,000,000주)는 기존 지분율을 재현하지 않고 **약정 51 : 49 로 정액 배분**했다 — Tri Marine 몫 21,420,000주가 증자분의 정확히 51 %다. 명의 이전은 Bolton 인수(2019-07-03)보다 앞선다: NFD 는 2017-01-01, SolTuna 는 2017-12-19 에 네비스의 TOOH 에서 싱가포르의 TMI 로 옮겨졌다`,
+    },
+    {
+      eyebrow: '부두',
+      title: '인증 물량은 부두에서 주인이 바뀐다',
+      body: `MSC 재심사 보고서는 「When catch is unloaded in Noro, ownership changes and catch becomes property of Tri Marine International as a trading agent. It is then sold to SolTuna」라고 적는다 — 노로에 양륙하는 순간 싱가포르의 Tri Marine International 이 거래대리인으로 소유권을 받고 그 뒤 공장에 판다. **그 칸이 묻는 것은 인증 어업(「from the certified fishery」)의 어획물**이다. 현지 면허 외국기 연승선의 알바코어에 같은 순서가 적용됐는지는 문서에 없다. 이름과 명의도 갈린다: 「Kitano」는 소유 회사가 아니라 1992년 일본 무상원조(Noro Infrastructure Development Project Phase 2)의 시공사 이름이다. 2013년 고등법원([2013] SBHC 158)이 다룬 냉장창고는 SIPA 가 정부를 대리해 관리하는 국가 자산이고 SolTuna 는 2011-02-24 계약으로 월 SBD 25,000 에 빌렸다 — 법원은 서부주로의 무상 이전을 취소하면서 SolTuna 의 점유 권리(overriding interest)를 인정했다. 유럽연합 명부의 Kitano Cold Store 는 별도 승인번호(SI-02-01-004-NFKCS1)이고 SolTuna 의 번호에는 가공공장 활동만 붙는다. 명부는 그 건물을 판결의 필지와 지번으로 잇지 않는다`,
+    },
+    {
+      eyebrow: '전기',
+      title: '한 마을에 계통이 두 개다',
+      body: `공장은 디젤 자가발전(${ST_P.자가발전_구성} = ${stNum(ST_P.자가발전_MW, 1)} MW, IFC ESRS 2013)으로 돌고, 노로에는 Solomon Power 의 공공 계통이 따로 있어 2025-12 에 고객 ${ST_P.계통_고객}호에 전기를 댄다. 그 계통은 아시아개발은행 차관(Loan 0803-SOL)으로 1986~1989년에 ${stNum(ST_P.ADB_MW, 1)} MW 발전소와 배전망이 선 것이고 지금은 문다와 지중 케이블로 이어진다. 둘 사이의 거래는 끊겼다 — 2014년 전력청이 SolTuna 에서 산 예비전력이 0.05 GWh 였고 이듬해 보고서는 「there was no energy bought from Soltuna PPA during the year」라고 적는다. 규모 차이가 크다: 2013년 지방 발전 거점 여덟 곳의 설치용량을 모두 합쳐 ${ST_P.지방거점_MW} MW 였고 공장 자가발전 한 곳이 그 ${ST_P.자가발전_몫_pct} %였다. **Bolton 지속가능보고서의 「in the absence of a local grid infrastructure」는 마을 전체에 적용하면 맞지 않는다.** 노로는 Solomon Power 의 solar hybrid 명단 12곳에 없고, Bolton 은 노로에 신규 발전동과 냉동창고를 지어 2026년 말 준공할 예정이다`,
+    },
+    {
+      eyebrow: '배',
+      title: '배를 가진 회사가 스물네 해 먼저 섰다',
+      body: `NFD 는 ${ST_Q.NFD_설립일}, 공장 법인 SolTuna 는 ${ST_Q.설립일} 에 섰다. NFD 선망은 WCPFC 등록부의 NFD 명의 6척에, 등록부에 없는 SOLOMON DIAMOND(IMO 1027524 · 2024-05-25 진수)를 Bolton 의 「NFD FLEET」 표가 더해 ${ST_Q.NFD_자사선망}척이다. 솔로몬 국기 선망에는 주인이 하나 더 있다 — Southern Seas Logistics 가 자사선 ${ST_Q.SSL_자사선망}척에 **중국 국기 용선 ${ST_Q.SSL_용선선망}척**을 쓴다. 7 대 7 은 척수가 같을 뿐 소유 구조는 다르다. NFD 는 따로 대만 국기 연승선 ${ST_Q.NFD_용선연승}척을 용선한다. NFD 가 잃은 선망 두 척(SOLOMON TOPAZ · SAPPHIRE)은 2020-05 베네수엘라로 팔려 이름이 바뀌었고 폐선된 배가 아니다. 竿釣는 멈췄지만 채낚기 인증 범위(MSC-F-30002)는 Certified 로 남아 있다`,
+    },
+    {
+      eyebrow: '공장',
+      title: '150 t/일은 2019년까지의 목표였고, 수단은 교대였다',
+      body: `2013년 IFC 공시의 하루 가공능력은 ${ST_P.능력_2013}톤이고 ${ST_P.능력_목표}톤은 ${ST_P.능력_목표연도}년까지의 목표다. 증산 수단으로 기록된 것은 설비가 아니라 교대다 — 수산부 관리계획 초안(DRAFT V6)은 「a second shift has been established at the SolTuna Processing Plant – employing more than 500 new staff – to process albacore tuna」라고 적는다. 150톤 도달을 입증하는 1차 자료는 없다. IFC 대출(최대 US$10 M)의 공개 용처에도 가공 라인이 없다 — ESRS 는 선착장·디젤 저장·폐수처리장·사택을, 사업 브리프는 디젤 저장 대신 냉동창고를 적는다. 폐수처리장은 2007년 쓰나미로 부서졌고 2013-04 공시 때도 가동 중인 것이 없었다. 두 번째 공장(Bina Harbour)은 토지 확보와 개념설계까지 기록됐고 운영사와 건설 자금은 정해지지 않았다`,
+    },
+    {
+      eyebrow: '사람',
+      title: '1991년에는 배에 탄 사람이 공장 사람보다 많았다',
+      body: `1991년 노조 판정문([1991] SBTDP 2)은 총원 ${stNum(ST_P.인원_총원)}명을 아홉 직군으로 나눠 적는다. 가장 큰 직군이 Pole and Line Fleet ${ST_P.인원_竿釣}명이고 캐너리는 ${ST_P.인원_캐너리}명이며, 선단과 운반선에 적힌 사람을 합치면 ${ST_P.인원_선단운반선}명이다. 파업은 ${ST_P.파업}번 기록돼 있다: 1984-09-26(식량 대체수당 폐지), 1985-11-29(툴라기 기지, 선원 해고 뒤), 1990-05-11(최저임금 요구). 1990년 파업에 회사가 노조를 상대로 낸 손해배상 청구 SBD 913,617.78 은 전부 기각됐다([1991] SBHC 55). 1991년 회사는 노조 인정을 철회했다 — 조합원이 자격자 1,514명 중 706명으로 인정 협정의 50 % 문턱에 못 미쳤다. 지금 인원은 SolTuna 와 NFD 를 함께 센 국가 단위 값(2024-12-31 2,208명 → 2025-12-31 1,895명)이라 1991년 총원과 같은 경계가 아니다`,
+    },
+  ],
+  briefing: proseBriefing('soltuna'),
+  narratives: inlineReport('soltuna', proseStages('soltuna')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: soltunaSourceNotes,
+  sourceMeta: [
+    `${soltunaMeta.회사} · ${soltunaMeta.국가} · ${soltunaMeta.업종}`,
+    `출처 ${soltunaMeta.출처}`,
+    `조사 ${soltunaMeta.조사일}`,
+  ].join(' · '),
+};
+
 const RD_ACCENT = '#2f6b4f';
 
 /** 두 문·마당 공장·법원·약속·매대. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -5473,6 +5575,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '법원과 약속', value: `소송 ${RD_C.갈래수} 갈래(건설계약 1998·관습지 2000·고용 2010·제조물 2008) · 제조물은 ${RD_C.일심일} 하루에 ${RD_C.일심건수}건 1심 패소 → ${RD_C.파기1건일}·${RD_C.파기5건일} 에 대법원이 전부 파기(이유는 1심의 이유 기재 흠이고 이물 유무는 판단 안 함, 배상액 미산정) · 고용 사건은 회사 패소 · 마당 2차 공장은 열세 해째 말이다: 같은 번지에 ${RD_P.등기일} 등록된 Niugini Tuna(${RD_P.법인번호})가 연차보고 ${RD_P.제출건수}건으로 ${RD_P.말소일} 말소(대만 파트너는 ${RD_P.대만파트너_보고년}년 연속 제출) · 지금 합작법인은 등기 ${RD_P.합작법인등기}건이고 예산 배정액도 없으며 계획 능력이 ${RD_P.능력_2025} → ${RD_P.능력_2026} t/일로 내려갔다` },
     ],
   },
+  {
+    key: 'soltuna',
+    numeral: 'ⅩⅬⅨ',
+    name: 'SolTuna',
+    country: `솔로몬제도 · 서부주 노로 1 Tuna Drive(가공장 ${ST_E.승인번호}) + 선단 법인 NFD`,
+    tagline: '한 나라에 공장 하나 — 유럽으로 가는 것은 캔이 아니라 조리 로인이다.',
+    ...FLAG.솔로몬제도,
+    stats: [
+      { label: '유럽', value: `승인 가공공장은 이 나라에 한 곳(${ST_E.승인번호}) · 2021~2025년 EU 가 들여온 솔로몬제도산 참치 조제품은 해마다 조리 로인 ${stNum(ST_E.로인비중_pct, 2)} %(Comext CN8 · 캔·소매 여섯 세목과 Bonito 0) · 받은 나라는 이탈리아·스페인(2024년 EU 로인 안에서 ${stNum(ST_E.이탈리아_pct, 2)} 대 ${stNum(ST_E.스페인_pct, 2)} · 두 나라 밖은 5년 통산 ${stNum(ST_E.두나라밖_pct, 2)} %) · ${stNum(ST_E.t2024, 1)} t(2024 최고) → ${stNum(ST_E.t2025, 1)} t(2025), kg당 €${stNum(ST_E.EURkg2025, 2)} · 캔은 역내·태평양 매대로 간다` },
+      { label: '국가와 공장', value: `국가·공공 세 곳이 공장 지분 ${stNum(ST_Q.국가공공_pct, 6)} %(SINPF ${stNum(ST_Q.SINPF_pct, 4)} · ICSI ${stNum(ST_Q.ICSI_pct, 4)} · 서부주 ${stNum(ST_Q.서부주_pct, 4)}) · 선단 법인 NFD 에는 ${ST_Q.NFD_국가공공_pct} % · 신주는 공장만 ${ST_Q.신주발행}번 · 연금은 제 몫을 「Other equity investments」로 적고 운영은 Tri Marine 이 한다 · 국가가 쥔 것은 공캔·뚜껑 면제 명령의 갱신권(LN 590·591 합 SBD ${stNum(ST_H.합)}, 2026-01-30 만료) · 캔참치 가격통제는 1987년부터 ${ST_H.가격통제_품목수}개 생필품 중 ${ST_H.가격통제_순번}번이고 통제구역 ${ST_H.가격통제_구역수}곳에 노로가 없다` },
+      { label: '竿釣·전기·사람', value: `국가 竿釣 어획 ${stNum(ST_P.竿釣[1])} t(2022) → ${ST_P.竿釣[3]}(2024) · 2025년 면허 ${ST_P.竿釣_면허_2025}장 · 인증기관이 전한 이유는 운영상의 결정이고 인증 범위는 살려 뒀다 · 공장 자가발전 ${stNum(ST_P.자가발전_MW, 1)} MW 옆에 Solomon Power 계통(고객 ${ST_P.계통_고객}호)이 따로 있다 · 1991년 가장 큰 직군은 Pole and Line Fleet ${ST_P.인원_竿釣}명(총원 ${stNum(ST_P.인원_총원)})` },
+    ],
+  },
 
 
 ];
@@ -5545,6 +5660,7 @@ export default function CompanyAnatomyDashboard({
     capsen: CAPSEN_SPEC,
     bounty: BOUNTY_SPEC,
     rd: RD_SPEC,
+    soltuna: SOLTUNA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
