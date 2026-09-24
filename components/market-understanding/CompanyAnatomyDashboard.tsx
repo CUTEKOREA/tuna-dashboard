@@ -350,6 +350,10 @@ import {
   equity as stEquity, handles as stHandles, europe as stEurope, plant as stPlant,
 } from '@/lib/data/company-soltuna';
 import {
+  pafcoMeta, pafcoSourceNotes,
+  ownership as pfOwnership, plant as pfPlant, markets as pfMarkets,
+} from '@/lib/data/company-pafco';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -2636,6 +2640,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   코트디부아르: { flagSrc: '/flags/ci.svg', backInk: '#f4f5f0' },
   모리셔스: { flagSrc: '/flags/mu.svg', backInk: '#f4f5f0' },
   솔로몬제도: { flagSrc: '/flags/sb.svg', backInk: '#f4f5f0' },
+  피지: { flagSrc: '/flags/fj.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -4694,6 +4699,91 @@ const SOLTUNA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const PF_ACCENT = '#2b5d7c';
+
+/** 소유·능력·시장. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const PF_O = pfOwnership();
+const PF_P = pfPlant();
+const PF_M = pfMarkets();
+
+/** 화면은 ko-KR 자릿수를 쓴다. 발행본의 유럽식 소수 쉼표는 여기서 점 소수로 옮긴다. */
+const pfNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const PAFCO_SPEC: CommoditySpec = {
+  key: 'company-anatomy-pafco',
+  title: '기업 해부: PAFCO',
+  subtitle:
+    `피지 오발라우섬 레부카의 Pacific Fishing Company Pte Limited(유럽연합 승인 ${PF_O.승인번호}). ${PF_O.설립}년 2월 등기, 1976년 캐너리 가동, ${PF_O.인수}년 정부가 C. Itoh 에게서 지분을 거의 전부 사들였고 지금 정부 지분은 ${pfNum(PF_O.정부_pct, 1)} %다. ` +
+    `1998년부터 로인 가공을 맡긴 Bumble Bee 는 ${PF_O.가공종료} 첫 주에 레부카 가공을 끝냈다 — 2017년 계약의 문서상 만료(${PF_O.계약만료})보다 열다섯 달 이르다. 2026-07-01 레부카 타운홀에서 PAFCO 총괄관리자는 스페인 대형 참치 수출업체와 새 계약을 맺었다고 밝혔고 회사 이름은 대지 않았다. ` +
+    `정부는 ${PF_O.탕감결정} 내각 결정으로 정부 채무를 지웠고, 2026년 4월 정부 보증 잔액은 FJD ${pfNum(PF_O.보증_Apr26, 1)}백만으로 아홉 달 전(${pfNum(PF_O.보증_Jul25, 1)})의 일곱 배가 됐다.`,
+  accent: PF_ACCENT,
+  primaryKpi: {
+    label: '피지산 참치 조제품(HS 160414)의 2025년 kg당 가격 — 피지가 신고한 대미 수출가 (UN Comtrade, 나라 단위)',
+    value: PF_M.FJ신고2025_USDkg,
+    decimals: 2,
+    unit: `(US$ · 같은 해 미국이 신고한 피지산 수입가는 kg당 ${pfNum(PF_M.US2025_USDkg, 2)} 이다. 무게는 비슷하고 값은 약 여섯 분의 일이다 — **원어를 고객이 소유하고 공장은 가공비를 받는 위탁가공이면 나오는 모양**이다. 무역통계는 나라까지만 가르므로 이 값을 PAFCO 한 회사의 출하가로 읽지 않는다. 미국의 피지산 수입은 2020년 ${pfNum(PF_M.US2020_t, 0)} t 에서 2025년 ${pfNum(PF_M.US2025_t, 0)} t 으로 ${pfNum(Math.abs(PF_M.US_대2020_pct), 2)} % 줄었다)`,
+    accent: PF_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: 'PAFCO 의 정부 지분 — 2026-27 예산보충서',
+      value: PF_O.정부_pct,
+      decimals: 1,
+      unit: `(% · 민간 ${pfNum(PF_O.민간_pct, 1)} %. 문서에 따라 98·99,58·100 으로도 적힌다. 2025-2029 국가개발계획은 이 지분의 일부를 iTaukei 투자자와 자원 소유자에게 파는 전략과 지표(0 → 10 → 15 %)를 적었고, 공기업장관의 70:30 구상은 민간 30 % 를 「일시」 보유로 설명했다 — 실행 결정 문서는 없다)`,
+    },
+    {
+      label: '정부 보증 잔액 — 2026년 4월 (예산보충서 2026-27)',
+      value: PF_O.보증_Apr26,
+      decimals: 1,
+      unit: `(FJD 백만 · 2025-07 ${pfNum(PF_O.보증_Jul25, 1)} 에서 아홉 달 만에 일곱 배. 정부 정기대출 FJD ${pfNum(PF_O.대출_Jul23 * 1_000_000)} 은 ${PF_O.탕감결정} 내각이 출자전환 대상 공기업의 정부 채무 탕감을 승인한 그달 결산에서 빠졌다. 재무부는 탕감이 두 회사를 「중기에 재무적으로 존속 가능한 상태로 되돌리지 못한다」고 적었다. 2019년 말 Bumble Bee 무이자 대출 잔액 FJD ${pfNum(PF_O.BB대출_2019)} 은 가공비로 갚는 조건이었다)`,
+    },
+    {
+      label: '2019년 원어 처리량 — 연차보고서',
+      value: PF_P.처리량[4],
+      decimals: 0,
+      unit: `(t · 회사가 말한 손익분기 ${pfNum(PF_P.손익분기[0])}~${pfNum(PF_P.손익분기[1])} t, 2015~2018 년은 ${pfNum(PF_P.처리량[0])}~${pfNum(PF_P.처리량[2])} t. 세후 손익은 2017 흑자 → 2018·2019 적자(2018 은 옛 냉동창고 처분손실) → 2020 세후 흑자(영업손실) → 2021 영업이익 FJD ${pfNum(PF_P.영업이익2021)}·세후 ${pfNum(PF_P.세후[4])}. 공개 감사 재무는 2021 년까지다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '계약',
+      title: '로인 상대는 2026년 7월 첫 주에 떠났다',
+      body: `1998년부터 Bumble Bee 가 로인용 알바코어를 사서 대고 PAFCO 는 가공비를 받았다(2017-10 계약 당시 USD ${PF_O.가공비_2017}/MT, 물량 ${pfNum(PF_O.계약물량)} t). 2026-05-27 로마이비티 지방회의에서 6월 종료 소문이 나왔고 총리는 파푸아뉴기니·일본과 지원을 논의했다고 말했다. 2026-07-01 밤 레부카 타운홀에서 PAFCO 총괄관리자는 「This is the last week of processing」이라며 스페인 대형 참치 수출업체와 새 계약을 맺었다고 밝혔다. 회사 이름·조건·수령지는 세 기사 어디에도 없다. 법적 형식(해지·합의 종료)도 문서가 없어 「가공이 끝났다」까지만 적는다`,
+    },
+    {
+      eyebrow: '순서',
+      title: '레부카가 먼저 끝났고 캘리포니아의 통지가 뒤따랐다',
+      body: `2018년 위원회 보고서는 로인이 Bumble Bee 의 Santa Fe Springs 공장으로 간다고 적었다. 그 공장에는 ${PF_M.WARN통지} 에 영구 감원 ${PF_M.WARN인원}명 통지(발효 ${PF_M.WARN발효})가 나왔다 — 레부카 가공 종료 한 달여 뒤다. LA Times 는 2027-03 말 폐쇄를 전망했고(지역지 인용), 회사 대변인은 사유를 「reducing the number of processing points in the value stream」이라고 했다. **WARN 원장이 말하는 것은 영구 감원 ${PF_M.WARN인원}명이다** — 「닫혔다」로 읽지 않는다`,
+    },
+    {
+      eyebrow: '문',
+      title: '원산지 특례는 2025-07-31 부터, 새 상대는 스페인',
+      body: `2008년 규정 439/2008 은 임시 명부에서 피지를 뺐고 2011년 결정 2011/131/EU 가 정규 명부에 올렸다. 2017-12-07 부처 회신이 이미 「submitted a formal notification」이라 적었지만 고시는 ${PF_M.고시}(${PF_M.고시일})가 처음이고 ${PF_M.적용일} 부터 적용됐다. 그 뒤 유럽연합 통계에 잡힌 피지산 참치 조제품은 2026-06 스페인 ${pfNum(PF_M.EU202606_t, 1)} t 이다. 한 달 뒤 PAFCO 가 스페인 업체와의 계약을 발표했지만 **무역통계는 나라까지만 가르고 피지의 EU 승인 가공장은 넷이다** — 그 물량을 PAFCO 나 새 상대에 배정하지 않는다. 1980년대에는 영국의 John West·Sainsbury 가 PAFCO 제품을 샀다`,
+    },
+    {
+      eyebrow: '공장',
+      title: '약 4에이커 임차지에 선 캐너리, 섬 발전량의 80~90 %',
+      body: `담보 주석은 부지를 원주민·국유 임차지 약 4에이커(매립지·방파제 포함)로 적는다. 2019년 말 유형자산 순장부가는 FJD 35.960.486 이고 2018년 완공한 4.000 t 냉동창고(16,4백만 = 정부 9 + Bumble Bee 6 + 1,4)가 가장 큰 투자다. 설계능력 ${pfNum(PF_P.설계[0])}~${pfNum(PF_P.설계[1])} t 에 위원회가 적은 로인 능력 이용률은 2012~2017 년 63~72 % 다. 섬 발전량에서 공장 몫은 2018 청문 약 80 %, 2026 CEO 발언 약 90 % — 둘 다 발전량 기준이다. 2026-06 에는 20년 무투자 태양광 전력구매계약 MoU(1단계 부하 18~20 %)를 맺었다`,
+    },
+    {
+      eyebrow: '사람',
+      title: '935명에서 400명 넘게로',
+      body: `2016년 ${pfNum(PF_P.인원2016)}명, 2019년 ${pfNum(PF_P.인원2019)}명(연차보고서). 2025-07 원어 부족으로 수백 명이 집에서 대기했고 CEO 는 원인에 「reduced demand from the US-based customers affected by recent tariff policies」를 들었다. 2026-07-01 총괄관리자는 「more than 400」을 고용한다며 해고 소문을 부인했다. 여성 비중은 청문·문서마다 약 ${PF_P.여성_pct[0]} %·${PF_P.여성_pct[1]} %·62 % 로 적힌다`,
+    },
+  ],
+  briefing: proseBriefing('pafco'),
+  narratives: inlineReport('pafco', proseStages('pafco')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: pafcoSourceNotes,
+  sourceMeta: [
+    `${pafcoMeta.회사} · ${pafcoMeta.국가} · ${pafcoMeta.업종}`,
+    `출처 ${pafcoMeta.출처}`,
+    `조사 ${pafcoMeta.조사일}`,
+  ].join(' · '),
+};
+
 const RD_ACCENT = '#2f6b4f';
 
 /** 두 문·마당 공장·법원·약속·매대. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -5588,6 +5678,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '竿釣·전기·사람', value: `국가 竿釣 어획 ${stNum(ST_P.竿釣[1])} t(2022) → ${ST_P.竿釣[3]}(2024) · 2025년 면허 ${ST_P.竿釣_면허_2025}장 · 인증기관이 전한 이유는 운영상의 결정이고 인증 범위는 살려 뒀다 · 공장 자가발전 ${stNum(ST_P.자가발전_MW, 1)} MW 옆에 Solomon Power 계통(고객 ${ST_P.계통_고객}호)이 따로 있다 · 1991년 가장 큰 직군은 Pole and Line Fleet ${ST_P.인원_竿釣}명(총원 ${stNum(ST_P.인원_총원)})` },
     ],
   },
+  {
+    key: 'pafco',
+    numeral: 'Ⅼ',
+    name: 'PAFCO',
+    country: `피지 · 오발라우섬 레부카 Beach Street(유럽연합 승인 ${PF_O.승인번호})`,
+    tagline: '국가의 공장, 계약의 로인 — 정부가 99,6 %를 쥔 캐너리에서 로인 상대가 2026년 7월에 떠났다.',
+    ...FLAG.피지,
+    stats: [
+      { label: '소유와 돈', value: `정부 ${pfNum(PF_O.정부_pct, 1)} %(${PF_O.인수}년 C. Itoh 에게서 인수) · ${PF_O.탕감결정} 내각 채무 탕감(정부 정기대출 FJD ${pfNum(PF_O.대출_Jul23 * 1_000_000)} 이 그달 결산에서 빠짐) · 정부 보증 ${pfNum(PF_O.보증_Jul25, 1)} → ${pfNum(PF_O.보증_Apr26, 1)}백만(2025-07 → 2026-04) · 공개 감사 재무는 2021 년까지(세후 FJD ${pfNum(PF_P.세후[4])})` },
+      { label: '로인과 순서', value: `1998년부터 Bumble Bee 로인 가공 → ${PF_O.가공종료} 첫 주 종료(문서상 만료 ${PF_O.계약만료}) · 새 상대는 스페인 대형 참치 수출업체(이름 미공개) · Santa Fe Springs 영구 감원 ${PF_M.WARN인원}명 통지 ${PF_M.WARN통지} · 피지 신고 대미 수출가 kg당 US$ ${pfNum(PF_M.FJ신고2025_USDkg, 2)} 대 미국 신고 수입가 ${pfNum(PF_M.US2025_USDkg, 2)}(2025)` },
+      { label: '문과 공장', value: `EU 원산지 특례 ${PF_M.적용일} 적용 · 그 뒤 EU 수입은 2026-06 스페인 ${pfNum(PF_M.EU202606_t, 1)} t(나라 단위, 귀속 금지) · 2019 처리량 ${pfNum(PF_P.처리량[4])} t(손익분기 ${pfNum(PF_P.손익분기[0])}~${pfNum(PF_P.손익분기[1])}) · 인원 ${pfNum(PF_P.인원2019)}(2019) → 400명 넘음(2026-07)` },
+    ],
+  },
 
 
 ];
@@ -5661,6 +5764,7 @@ export default function CompanyAnatomyDashboard({
     bounty: BOUNTY_SPEC,
     rd: RD_SPEC,
     soltuna: SOLTUNA_SPEC,
+    pafco: PAFCO_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
