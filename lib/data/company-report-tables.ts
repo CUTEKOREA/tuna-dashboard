@@ -48,6 +48,7 @@ import bountyRaw from '@/public/data/companies/bounty_tables_v1.json';
 import rdRaw from '@/public/data/companies/rd_tables_v1.json';
 import soltunaRaw from '@/public/data/companies/soltuna_tables_v1.json';
 import pafcoRaw from '@/public/data/companies/pafco_tables_v1.json';
+import pinsaRaw from '@/public/data/companies/pinsa_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -138,6 +139,7 @@ const INTAKES: Record<string, Intake> = {
   rd: rdRaw as unknown as Intake,
   soltuna: soltunaRaw as unknown as Intake,
   pafco: pafcoRaw as unknown as Intake,
+  pinsa: pinsaRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

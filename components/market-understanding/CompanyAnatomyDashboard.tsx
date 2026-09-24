@@ -354,6 +354,10 @@ import {
   ownership as pfOwnership, plant as pfPlant, markets as pfMarkets,
 } from '@/lib/data/company-pafco';
 import {
+  pinsaMeta, pinsaSourceNotes,
+  fleet as psFleet, shelf as psShelf, trade as psTrade,
+} from '@/lib/data/company-pinsa';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -4699,6 +4703,90 @@ const SOLTUNA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const PS_ACCENT = '#8a3b12';
+
+/** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const PS_F = psFleet();
+const PS_S = psShelf();
+const PS_T = psTrade();
+
+const psNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const PINSA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-pinsa',
+  title: '기업 해부: Grupo Pinsa',
+  subtitle:
+    `멕시코 시날로아주 마사틀란 Av. Puerto de Mazatlán 406 번지의 참치·정어리 그룹. 캔 공장 Pescados Industrializados, 판매 Pinsa Comercial, 선단 Pesca Azteca 가 한 번지에 등록돼 있고 상표 DOLORES(${PS_S.상표})는 같은 주소의 Productos Dolores 가 쥔다. ` +
+    `선망 ${PS_F.척수}척이 멕시코 기국 활성 선망 운반능력의 ${psNum(PS_F.몫, 1)} % 를 차지하고 돌고래 무리에 그물을 친다. MSC 어업 인증은 ${PS_F.MSC철회} 에 철회됐고 ${PS_F.MSC개선} 부터는 인증이 아닌 개선 프로그램이다. ` +
+    `소비자청 PROFECO 의 2024-02 평균가에서 참치만 든 기본 캔은 100 g 당 MXN ${PS_S.기본캔} 안팎으로 경쟁사와 같은 값이고, 이 그룹의 대두 혼합 캔 El Dorado 는 MXN ${PS_S.대두캔} 로 그보다 싸다.`,
+  accent: PS_ACCENT,
+  primaryKpi: {
+    label: '멕시코 기국 활성 선망 운반능력 가운데 Pinsa 계열 23척의 몫 (IATTC 선박 등록부, 2026-09-24)',
+    value: PS_F.몫,
+    decimals: 1,
+    unit: `(% · ${psNum(PS_F.운반능력)} t ÷ ${psNum(PS_F.멕시코합계)} t. Pesca Azteca 22척 + 같은 주소의 Mazpesca 1척. 동태평양 활성 선망 전체로는 ${psNum(PS_F.동태평양몫, 1)} % 다. 23척 명단은 ${PS_F.편입} Azteca 7(전 뉴질랜드 기국 중고선) 편입부터다. 미국 돌고래 안전 라벨 분쟁(WTO DS381)은 ${PS_F.DS381} 멕시코 패소로 끝났고, NOAA 는 ${PS_F.NOAA} 멕시코 선망 황다랑어 캔의 허위 「dolphin safe」 표시를 적발했다 — **공급자는 공개되지 않아 이 그룹 제품으로 읽지 않는다**)`,
+    accent: PS_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '소비자청 PROFECO 100 g 당 평균가 — 참치만 든 기본 캔 (2024-02-06~21, 네 도시권)',
+      value: PS_S.기본캔,
+      decimals: 0,
+      unit: `(MXN · Dolores 295 g·Mazatún 130 g·Herdez 130 g·Tuny Jumbo 295 g 이 모두 ${PS_S.기본캔}. 이 그룹의 El Dorado 30 % 대두 캔은 ${PS_S.대두캔} 로 그보다 싸고(같은 값대에 다른 자체상표 캔도 있다), 올리브유 칸은 Dolores Premium 78 g ${PS_S.DoloresPremium}·Tuny Gourmet ${PS_S.TunyGourmet}. **「매대 세 층을 한 그룹이 쥔다」는 한 소매점 하루 할인가에서만 성립했다.** 점유율 숫자는 회사 인용과 매체를 거친 것뿐이다)`,
+    },
+    {
+      label: '멕시코 캔참치(HS 160414) 수출 가운데 미국 몫 — 2025 (UN Comtrade, 나라 단위)',
+      value: PS_T.미국몫,
+      decimals: 1,
+      unit: `(% · US$ ${psNum(PS_T.수출USD)} / ${psNum(PS_T.수출t, 1)} t. USMCA 원산 캔은 미국 무관세지만 ${PS_T.MMPA} 부터 COA 서류 대상이고, 멕시코 소형 부어류 선망 정어리류는 미국 수입이 금지됐다. EU 의 멕시코산 캔 수입은 2023~2025 사실상 0 이고 냉동 황다랑어 ${psNum(PS_T.EU냉동황다랑어t)} t·냉동 필레 ${psNum(PS_T.EU필레t)} t(2025)가 주로 스페인으로 간다. EU–멕시코 잠정무역협정은 ${PS_T.서명} 서명·${PS_T.이사회} EU 이사회 승인, 멕시코 상원 비준 대기)`,
+    },
+    {
+      label: 'Grupo Pinsa 그룹 매출 — FY2025 (Expansión 500, 매체)',
+      value: PS_T.매출,
+      decimals: 0,
+      unit: `(백만 MXN · 그룹 전체, 캔참치 매출이 아니다. 직원 ${psNum(PS_T.직원)}명. 공공 조달 집계(QuiénEsQuién.wiki, 매체)로는 Pinsa Comercial 이 2005~2022년 ${psNum(PS_T.조달건)}건 MXN ${psNum(PS_T.조달액, 2)} 의 정부 계약을 땄다 — 주 발주처 Diconsa, 품목 캔참치·정어리. 호텔 단지 투자는 소유 법인이 공개되지 않았다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '선단',
+      title: '멕시코 선망 운반능력의 51,7 % 가 한 그룹 배다',
+      body: `IATTC 활성 선망 등록부에서 Pesca Azteca 명의 22척과 같은 주소의 Mazpesca 명의 1척, 합계 운반능력 ${psNum(PS_F.운반능력)} t 이다. 멕시코 기국 활성 선망 53척 ${psNum(PS_F.멕시코합계)} t 가 분모다. 법인 단위 2위는 MT Pesca Industrial(7척, 5.697 t)이고, 같은 주소 규칙으로 묶으면 Maratún+Martuna 6척 6.784 t 가 된다. 건조연도 중앙값은 1983년이다. 회사 보고서는 2025년 「118,791 TONELADAS CAPTURADAS DE AAA」를 적는다(자칭)`,
+    },
+    {
+      eyebrow: '돌고래',
+      title: '돌고래 무리에 그물을 치는 선단, MSC 는 철회됐다',
+      body: `회사는 후진 조작으로 돌고래를 풀어 준다고 설명한다. MSC 평가 단위는 「Dolphin-Associated」이고, 2024년 동태평양 황다랑어의 69 % 가 돌고래 조업 어획이다(AIDCP). 2017년 PAST 어업 인증 → ${PS_F.MSC철회} 철회 → ${PS_F.MSC개선} 개선 프로그램(「products cannot display the MSC ecolabel」, 본평가 목표 ${PS_F.MSC목표}). 회사 사이트는 조회일에도 MSC 인증을 게시한다 — 자칭이 등록부와 어긋난다`,
+    },
+    {
+      eyebrow: '매대',
+      title: '기본 캔은 같은 값, 대두 캔은 그보다 싸다',
+      body: `PROFECO 2024-02 평균가 100 g 당: 기본 캔 MXN ${PS_S.기본캔}(네 브랜드 같음) · El Dorado 대두 ${PS_S.대두캔} · Dolores Premium 올리브유 ${PS_S.DoloresPremium} · Tuny Gourmet ${PS_S.TunyGourmet}. 같은 시험에서 Mazatún 한 제품은 라벨 그림(솔리드)이 내용물(플레이크)과 달라 소비자정보 부적합, El Dorado 「30% de soya」 캔은 실측 대두 11~23 % 였다. Chedraui 2026-09-24 하루 가격은 보조 자료다`,
+    },
+    {
+      eyebrow: '문',
+      title: '캔은 미국으로, 유럽으로는 냉동 참치',
+      body: `멕시코 캔참치 수출의 ${psNum(PS_T.미국몫, 1)} % 가 미국행(2025). EU 의 멕시코산 1604 는 2023~2025 사실상 0 이고, 냉동 황다랑어(030342)는 2023년 한 해 비었다가 2024-01 재개됐다. EU–멕시코 협정 문안은 캔 7년차·로인 5년차 무관세(2025 「Without Prejudice」 문안 기준)이고, 스페인 업계가 반발한다. 모두 나라 단위다`,
+    },
+    {
+      eyebrow: '상표',
+      title: 'DOLORES 는 본사 주소의 다른 법인이 쥔다',
+      body: `IMPI 등록 ${PS_S.상표}(출원 1979-11-08)의 권리자는 ${PS_S.상표권자}, 주소는 그룹 본사 406번지다. 2021-02-15 Pescados Industrializados, 2022-05-18 Pinsa Comercial 에 사용권이 등재됐다. 멕시코 29류 DOLORES 167건에 파푸아뉴기니 RD 그룹 권리자는 없다 — 같은 이름 다른 권리자다. 1991년 국영에서 브랜드를 샀다는 이야기는 보도다`,
+    },
+  ],
+  briefing: proseBriefing('pinsa'),
+  narratives: inlineReport('pinsa', proseStages('pinsa')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: pinsaSourceNotes,
+  sourceMeta: [
+    `${pinsaMeta.회사} · ${pinsaMeta.국가} · ${pinsaMeta.업종}`,
+    `출처 ${pinsaMeta.출처}`,
+    `조사 ${pinsaMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PF_ACCENT = '#2b5d7c';
 
 /** 소유·능력·시장. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -5691,6 +5779,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '문과 공장', value: `EU 원산지 특례 ${PF_M.적용일} 적용 · 그 뒤 EU 수입은 2026-06 스페인 ${pfNum(PF_M.EU202606_t, 1)} t(나라 단위, 귀속 금지) · 2019 처리량 ${pfNum(PF_P.처리량[4])} t(손익분기 ${pfNum(PF_P.손익분기[0])}~${pfNum(PF_P.손익분기[1])}) · 인원 ${pfNum(PF_P.인원2019)}(2019) → 400명 넘음(2026-07)` },
     ],
   },
+  {
+    key: 'pinsa',
+    numeral: 'ⅬⅠ',
+    name: 'Grupo Pinsa',
+    country: `멕시코 · 시날로아주 마사틀란 Av. Puerto de Mazatlán 406(유럽연합 승인 가공장 ${PS_S.가공장}곳)`,
+    tagline: '선단의 절반, 매대의 양끝 — 멕시코 선망 운반능력 51,7 % 를 쥔 그룹이 기본 캔과 그보다 싼 대두 캔을 함께 판다.',
+    ...FLAG.멕시코,
+    stats: [
+      { label: '선단과 인증', value: `선망 ${PS_F.척수}척 · 운반능력 ${psNum(PS_F.운반능력)} t = 멕시코 기국 활성 선망의 ${psNum(PS_F.몫, 1)} %(IATTC) · 돌고래 연관 조업 · MSC ${PS_F.MSC철회} 철회 → ${PS_F.MSC개선} 개선 프로그램(인증 아님) · DS381 ${PS_F.DS381} 멕시코 패소` },
+      { label: '매대와 상표', value: `PROFECO 100 g 당 기본 캔 MXN ${PS_S.기본캔}(경쟁사와 같음) · El Dorado 대두 ${PS_S.대두캔} · 올리브유 Dolores Premium 78 g ${PS_S.DoloresPremium} < Tuny Gourmet ${PS_S.TunyGourmet} · DOLORES ${PS_S.상표} 권리자 Productos Dolores(본사 주소)` },
+      { label: '문과 돈', value: `멕시코 캔 수출 ${psNum(PS_T.미국몫, 1)} % 미국(2025) · EU 캔 수입 사실상 0, 냉동 황다랑어 ${psNum(PS_T.EU냉동황다랑어t)} t · EU–멕시코 iTA 이사회 승인 ${PS_T.이사회} · 그룹 매출 ${psNum(PS_T.매출)} 백만 MXN(매체) · 정부 조달 ${psNum(PS_T.조달건)}건(2005~2022)` },
+    ],
+  },
 
 
 ];
@@ -5765,6 +5866,7 @@ export default function CompanyAnatomyDashboard({
     rd: RD_SPEC,
     soltuna: SOLTUNA_SPEC,
     pafco: PAFCO_SPEC,
+    pinsa: PINSA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

@@ -245,6 +245,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'Ⅼ · 발행본 §01 의 유럽연합 명부 공장 주소 「Levuka, Beach Street」(유럽연합 제3국 승인시설 목록, 승인번호 FJEU07 · 등재명 PAFCO Pte Limited) · **좌표는 오발라우섬 레부카 시가의 근사값이고 약 4에이커 임차 부지의 경계가 아니다**',
     note: '정부 지분 99,6 %(2026-27 예산보충서) · 1998년부터 Bumble Bee 가 원어를 사서 대던 로인 가공이 **2026-07 첫 주에 끝났다**(2026-07-01 타운홀 총괄관리자 발언, 문서상 만료 2027-10) — 새 상대는 스페인 대형 참치 수출업체이고 이름은 공개되지 않았다 · 유럽연합 원산지 특례는 2025-07-31 부터 적용 · 피지가 신고한 대미 수출가는 kg당 US$ 0,94, 미국이 신고한 수입가는 5,26(2025, 나라 단위) · 2024-07-15 내각 채무 탕감 뒤 2026-04 정부 보증 잔액 FJD 4,2백만 · 섬 발전량의 약 80~90 %를 공장이 쓴다(2018 청문·2026 CEO)',
     },
+  // ── ⅬⅠ Grupo Pinsa — 마사틀란 Bonfil 산업단지 406번지 ─────
+  { company: 'pinsa', numeral: 'ⅬⅠ', kind: 'hq', label: 'Grupo Pinsa — 마사틀란 Av. Puerto de Mazatlán 406', country: '멕시코',
+    lat: 23.2181, lng: -106.3927,
+    basis: 'ⅬⅠ · 발행본 §02 의 등록부 공통 주소 「Av. Puerto de Mazatlán 406, Col. Parque Industrial Alfredo V. Bonfil」(IMPI 상표권자·IATTC 선박 소유자·TRACES 가공장 PIN8211234X6) · 좌표는 INEGI DENUE 05_2026 의 Pescados Industrializados 사업체 좌표(23,21807, −106,39267)',
+    note: '선망 23척 = 멕시코 기국 활성 선망 운반능력의 51,7 %(IATTC) · 유럽연합 승인 가공장 5곳(마사틀란 4·과이마스 1) · MSC 어업 인증 2023-03-08 철회 → 2026-05-20 개선 프로그램 · PROFECO 100 g 당 기본 캔 MXN 14(경쟁사와 같음), 대두 캔 El Dorado MXN 9 · 멕시코 캔 수출의 99,9 % 미국(나라 단위)',
+    },
 ];
 
 /**

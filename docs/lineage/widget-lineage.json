@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 283,
+  "files": 284,
   "widgets": 114,
-  "dataFiles": 296,
+  "dataFiles": 300,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -629,6 +629,7 @@
     "lib/data/company-nirsa.ts",
     "lib/data/company-nissui.ts",
     "lib/data/company-pafco.ts",
+    "lib/data/company-pinsa.ts",
     "lib/data/company-princes.ts",
     "lib/data/company-rd.ts",
     "lib/data/company-report-figures.ts",
@@ -792,6 +793,10 @@
     "public/data/companies/pafco_prose_v1.json",
     "public/data/companies/pafco_tables_v1.json",
     "public/data/companies/pafco_v1.json",
+    "public/data/companies/pinsa_figures_v1.json",
+    "public/data/companies/pinsa_prose_v1.json",
+    "public/data/companies/pinsa_tables_v1.json",
+    "public/data/companies/pinsa_v1.json",
     "public/data/companies/princes_figures_v1.json",
     "public/data/companies/princes_prose_v1.json",
     "public/data/companies/princes_tables_v1.json",
@@ -1875,6 +1880,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/pafco_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/princes_figures_v1.json": [
