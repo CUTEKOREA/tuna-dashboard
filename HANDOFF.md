@@ -1,3 +1,9 @@
+> 📰 **2026-09-25 03:12 KST — `/market` 2026-09-24 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1241](https://github.com/CUTEKOREA/tuna-dashboard/pull/1241) squash 병합. main commit `1302b90f` (브랜치 커밋 `1e4d9703`, `briefing/2026-09-24`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+56/−75). 기준일 `2026-09-24`, 기사 **5건**.
+> - 게이트: 감사 AUDIT_PASS(윤문본 재감사 PASS, 채택) · 03:05 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · 변경분 존재.
+> - Vercel `pending` → `success`(18:10:33Z). 라이브 1·2회차는 옛 값 `2026.09.23 · 6건`, 배포 완료 뒤 「기준일 2026.09.24 · 기사 5건 · 파이프라인 동기」 확인(Aside 로그인 세션). 리드 「가봉, EU와 참치 어업협정 협상 재개」, 둘째 「EU 원어(WR) 원료의 유럽 유입 둔화」가 보인다.
+> - 워크트리: PR MERGED + JSON 이 origin/main 과 같은 것을 확인하고 `sync/2026-09-24`(origin/main)로 옮겼다. 이 기록 PR 병합 뒤 `sync/2026-09-24b` 로 옮겨 clean 으로 남긴다.
+
 > ✅ **2026-09-24 12:10 KST — RYOMA 3,490 → 3,290 MT 정정(문서·엑셀·두 화면)** [CC]:
 > - 사용자 확인: **TTA 운반선 주간동향의 3,290 MT 가 맞다**. 9/23 방콕 주간보고 입항표의 3,490 MT 가 200 MT 과다였다 — 어제 「둘 다 기록」으로 남겨 둔 차이의 답이다.
 > - 고친 곳 4군데: ① 주간보고 docx(입항표 RYOMA·합계 26,486 → **26,286**, SEP 직거래 11,947 → **11,747**, 2026 합계행 직거래 119,649 → **119,449**·총계 359,984 → **359,784**, 요약문 누계) ② 마스터 `데이터 정리.xlsx` F76(9월 직거래) ③ `/logistics` 계약(월별·트레이더·운반선·누계 + `source.corrections` 에 경위) ④ `/bangkok-office` 종합분석 payload — HTML 을 백업본으로 되돌린 뒤 week-spec 을 고쳐 다시 append 했다(주차 293 유지, 2026 누계 **359,784**).
