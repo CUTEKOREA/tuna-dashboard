@@ -12,6 +12,7 @@ import week34 from '../../data/reefer_week34.json';
 import week35 from '../../data/reefer_week35.json';
 import week36 from '../../data/reefer_week36.json';
 import week37 from '../../data/reefer_week37.json';
+import week38 from '../../data/reefer_week38.json';
 
 /**
  * TTA 운반선 주간동향을 월별 방콕 반입량으로 접는다.
@@ -39,6 +40,7 @@ const WEEKLY: ReadonlyArray<{ week: number; rows: ReeferRow[] }> = [
   { week: 35, rows: week35 as unknown as ReeferRow[] },
   { week: 36, rows: week36 as unknown as ReeferRow[] },
   { week: 37, rows: week37 as unknown as ReeferRow[] },
+  { week: 38, rows: week38 as unknown as ReeferRow[] },
 ];
 
 export interface ReeferMonthlyIntake {
