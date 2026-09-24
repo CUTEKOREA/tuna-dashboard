@@ -212,7 +212,9 @@ describe('SEIN GALAXY 방콕 항차', () => {
     expect(day.quality).toContain('-17.0℃ ~ -18.0℃');
     expect(day.quality).toContain('전일(-20~-21)보다 3도 높습니다');
     expect(day.quality).toContain('계획 290 MT 대비 -13.310 MT');
-    expect(day.nextDay).toEqual({ kind: 'work', date: '9/25', reason: null, resumeDate: null, plannedMt: null });
+    // 9/25 계획은 원자료에 없어 사용자가 따로 전달했다: UN 120 + CMC 80 = 200 MT
+    expect(day.nextDay).toEqual({ kind: 'work', date: '9/25', reason: null, resumeDate: null, plannedMt: '200' });
+    expect(day.quality).toContain('UN/H2C1(MOAKONA) 120 MT 08:00');
   });
 
   it('항차 개요는 선적기록을 하역 보고로 세지 않는다', async () => {
