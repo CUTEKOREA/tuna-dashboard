@@ -1,0 +1,50 @@
+{
+ "_meta": {
+  "회사": "Grupo Pinsa — 멕시코 시날로아주 마사틀란 Av. Puerto de Mazatlán 406 의 참치·정어리 그룹. 캔 공장 Pescados Industrializados, 판매 Pinsa Comercial, 상표 보유 Productos Dolores, 선단 Pesca Azteca(+Mazpesca), 냉동 PINSA Congelados, 어분 Maz Industrial, 과이마스 정어리 Sardinas de Sonora",
+  "국가": "멕시코",
+  "업종": "참치·정어리 통조림(Dolores·Mazatún·El Dorado·Portola)과 냉동 참치, 선망 선단 23척. 생산의 95~96 % 를 국내에서 판다는 회사 설명",
+  "종목": "비상장 가족 그룹. 매출 20.641 mdp·직원 7.853명(Expansión 500 FY2025, 매체). 지분·등기 임원은 공개 무료 자료로 확인되지 않는다",
+  "출처": "멕시코 특허청 IMPI 상표 등록부·공문 · IATTC 선박 등록부·어획 통계 · AIDCP 보고서 · MSC 어업 등록부 · 유럽연합 제3국 승인시설 목록(TRACES NT) · INEGI DENUE · PROFECO 품질시험·평균가 · COFECE 결정문 · UN Comtrade · Eurostat Comext · USITC HTS·NOAA(MMPA·돌고래 안전 적발) · EU–멕시코 협정 문안·이사회 문서 · WTO DS381 · Chedraui 가격 페이지 · 회사 지속가능성 보고서·사이트 · Forbes México·Expansión·El Economista·Noroeste·El Sol de Mazatlán · Atuna",
+  "조사일": "2026-09-24"
+ },
+ "card": {
+  "numeral": "ⅬⅠ",
+  "tagline": "선단의 절반, 매대의 양끝 — 멕시코 선망 운반능력 51,7 % 를 쥔 그룹이 기본 캔과 그보다 싼 대두 캔을 함께 판다"
+ },
+ "stats": {
+  "본사주소": "Av. Puerto de Mazatlán 406, Mazatlán",
+  "선망_척": 23,
+  "운반능력_t": 25783,
+  "멕시코_운반능력_t": 49839,
+  "운반능력_몫_pct": 51.7,
+  "동태평양_몫_pct": 10.7,
+  "Azteca7_편입": "2023-10-11",
+  "EU승인가공장": 5,
+  "상표_DOLORES": "240574",
+  "상표권자": "PRODUCTOS DOLORES, S.A. DE C.V.",
+  "MSC_철회": "2023-03-08",
+  "MSC_개선프로그램": "2026-05-20",
+  "MSC_본평가목표": "2030-02-28",
+  "DS381_채택": "2019-01-11",
+  "NOAA_적발일": "2026-03-25",
+  "NOAA_벌금_USD": 222902,
+  "PROFECO_ElDorado_100g": 9,
+  "PROFECO_기본캔_100g": 14,
+  "PROFECO_DoloresPremium_100g": 27,
+  "PROFECO_TunyGourmet_100g": 31,
+  "MX_160414_수출_2025_USD": 69005821,
+  "MX_160414_수출_2025_t": 13958.5,
+  "미국몫_2025_pct": 99.9,
+  "EU_030342_2025_t": 9448,
+  "EU_030487_2025_t": 2685,
+  "iTA_서명": "2026-05-22",
+  "iTA_유럽의회": "2026-07-08",
+  "iTA_이사회": "2026-07-14",
+  "매출_FY2025_mdp": 20641,
+  "직원_FY2025": 7853,
+  "조달_PinsaComercial_건": 4294,
+  "조달_PinsaComercial_MXN": 1546280014.86,
+  "MMPA_COA_시행": "2026-01-01"
+ },
+ "sourcenotes": []
+}
