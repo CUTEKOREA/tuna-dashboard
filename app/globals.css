@@ -1045,6 +1045,47 @@ img, video, canvas, svg {
 }
 
 /* ==========================================================
+ * MOTION — 「값이 바뀌었다」를 알리는 데만 쓴다
+ *
+ * 전면 도입은 하지 않는다. 이 화면은 C레벨이 숫자를 읽는 곳이고,
+ * 모션이 판독을 방해하면 바로 손해다(2026-09-22: 히어로 카운트업 중간값을
+ * 라이브 회귀로 오인). 그래서 두 곳만 움직인다 —
+ *   1) 탭 패널: 내용이 통째로 바뀌는데 지금은 뚝 끊긴다
+ *   2) 보호 상세: 조회 → 표시/거부 전환이 팝업처럼 튄다
+ *
+ * 정지 상태(at rest)는 항상 보이는 값이다 - opacity:0 으로 «대기»시키지 않는다.
+ * 애니메이션은 시작값만 흐리고 끝나면 제 값이다. 스크린샷·PDF·정적 렌더는
+ * 애니메이션 없이 최종 상태를 받는다.
+ * reduced-motion 은 아래 전역 가드가 0.01ms 로 눌러 끈다.
+ * ========================================================== */
+:root {
+  --motion-fast: 140ms;
+  --motion-base: 200ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes motionEnter {
+  from {
+    opacity: 0.001;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 탭 전환 - 보이는 패널만, 한 번만 */
+[role='tabpanel']:not([hidden]) {
+  animation: motionEnter var(--motion-base) var(--motion-ease);
+}
+
+/* 상태가 바뀌어 새로 그려지는 블록 (보호 상세 게이트 등) */
+[data-motion='reveal'] {
+  animation: motionEnter var(--motion-fast) var(--motion-ease);
+}
+
+/* ==========================================================
  * REDUCED MOTION — disable all transitions/animations
  * (covers crisis-pulse, button-pulse, card lifts, hovers)
  * ========================================================== */

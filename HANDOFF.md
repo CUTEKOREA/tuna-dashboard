@@ -1,3 +1,12 @@
+> ✅ **2026-09-24 10:50 KST — 모션 선별 적용 (탭 전환·상태 전이만)** [CC]:
+> - 전면 도입은 하지 않았다. 이 화면은 숫자를 읽는 곳이고 모션이 판독을 방해하면 손해다 — 9/22 에 히어로 카운트업 중간값(362)을 라이브 회귀로 오인한 일이 근거다.
+> - 움직이는 곳 **2군데**: ① `[role='tabpanel']:not([hidden])` 200ms 페이드+4px 상승(탭 18개 패널 전부, 보이는 패널만) ② `[data-motion='reveal']` 140ms — `/fleet` 보호 상세가 조회 → 표시/거부로 바뀔 때.
+> - 새 라이브러리 없음(framer-motion 은 PillTabs 가 이미 쓴다). CSS 토큰 `--motion-fast/base/ease` 만 추가. bundle 예산 33 라우트 통과.
+> - **정지 상태를 `opacity: 0` 으로 대기시키지 않는다** — 시작값이 0.001 이고 끝값이 1 이라 애니메이션이 안 돌아도 값이 보인다. 스크린샷·PDF·정적 렌더가 빈 화면이 되는 사고를 막는다. `__tests__/motion-policy.test.ts` 4건이 이 규칙을 강제한다.
+> - 안 한 것: 히어로 카운트업(이미 `data-kpi-value` 병기라 유지), Recharts 첫 진입 애니메이션(`isAnimationActive` 가 79파일 410곳 — L-07 일괄 스크립트 대상이라 별건), 스크롤 리빌·앰비언트(첫 프레임이 비어 금지).
+> - 실측(로컬 프로덕션, 1440px): 탭 클릭 120ms 뒤 opacity 0.92~0.94, 정착 후 1. overflow 0, page error 0. `npm run verify` 통과: Vitest **195 files / 1,657**.
+> - 상태: 브랜치 `feat/motion-selective`. **프로덕션 미배포**.
+
 > 🚀 **2026-09-23 14:10 KST — #1209·#1211 프로덕션 배포 + 시크릿 교체** [CC]:
 > - 순차 병합(squash): #1209 `087467ca`(선단 9/23) → #1211 `4bcba1aa`(GMTS 36주차). **#1210 은 base 브랜치(`data/fleet-260923`)가 병합·삭제되며 자동으로 닫혔다** — 스택 PR 은 아래 PR 이 먼저 병합되면 위 PR 이 닫히므로, 같은 브랜치로 main 기준 PR 을 다시 열어야 한다.
 > - Production `tuna-dashboard-61oboktps` READY → `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `afeeae64…` → **`7b067ac0…`** 로 교체·재배포(`tuna-dashboard-5g25434vt`, 3분). alias `https://leedonggun.co.kr`, 배포 로그 error 0.

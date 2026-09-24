@@ -64,13 +64,13 @@ function accessAction(code: FleetDailyDetailErrorCode) {
 
 function VesselDetailBoundary({ state, onRetry }: { state: FleetDailyDetailState; onRetry: () => void }) {
   if (state.status === 'ready') {
-    return <><FleetRealMap detail={state.detail} /><FleetRosterGrid detail={state.detail} /></>;
+    return <div data-motion="reveal"><FleetRealMap detail={state.detail} /><FleetRosterGrid detail={state.detail} /></div>;
   }
 
   const action = state.status === 'loading' ? null : accessAction(state.code);
 
   return (
-    <section className={s.protectedDetailGate} aria-live="polite">
+    <section className={s.protectedDetailGate} data-motion="reveal" aria-live="polite">
       <LockKeyhole size={24} aria-hidden="true" />
       <div><strong>선박 상세 보호</strong><p>{fleetDetailGateMessage(state)}</p></div>
       {action ? <a href={action.href}>{action.label}</a> : null}
