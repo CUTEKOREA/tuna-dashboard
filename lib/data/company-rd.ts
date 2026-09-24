@@ -72,6 +72,11 @@ import raw from '@/public/data/companies/rd_v1.json';
  * 41. **유럽의회 연구 쪽 번호는 `인쇄 = PDF − 4`** 로 적는다. 텍스트 추출본의 분할 인덱스는 「인쇄 + 2」라
  *     섞으면 6쪽이 앞당겨진다 — 이 조사에서 실제로 난 사고다.
  * 42. **개인 실명은 공직자·등기 임원만.** 판결 사건명이 개인 실명이라 **사건번호로만** 적는다.
+ * 43. **「피지는 이 예외를 한 번도 쓰지 못했다」 금지** — 2012년 연구 시점의 서술이다. 피지는 **2025-04-08 에
+ *     통보**했고 2025-07-30 관보에 고시됐다(C/2025/4197). 그리고 연구가 적는 **직접 원인은 미통보**이고 위생검역
+ *     미비는 그 설명이다(인쇄 17쪽 「has not benefited from global sourcing, as it has not notified the European
+ *     Commission. This is explained by the Fiji tuna industry not complying with ... SPS」). 「2025년에야」처럼
+ *     첫 통보로 단정하지도 않는다 — 그 사이 통보가 없었다는 문서는 없다. (2026-09-24 정정, ⅩⅬⅨ 에서 발견)
  */
 
 const data = raw as unknown as {
