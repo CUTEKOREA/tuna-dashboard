@@ -50,6 +50,7 @@ import soltunaRaw from '@/public/data/companies/soltuna_tables_v1.json';
 import pafcoRaw from '@/public/data/companies/pafco_tables_v1.json';
 import pinsaRaw from '@/public/data/companies/pinsa_tables_v1.json';
 import sstcRaw from '@/public/data/companies/sstc_tables_v1.json';
+import grupomarRaw from '@/public/data/companies/grupomar_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -142,6 +143,7 @@ const INTAKES: Record<string, Intake> = {
   pafco: pafcoRaw as unknown as Intake,
   pinsa: pinsaRaw as unknown as Intake,
   sstc: sstcRaw as unknown as Intake,
+  grupomar: grupomarRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

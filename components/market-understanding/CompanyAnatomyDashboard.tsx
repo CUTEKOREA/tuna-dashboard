@@ -362,6 +362,10 @@ import {
   corp as ssCorp, plant as ssPlant, europe as ssEurope,
 } from '@/lib/data/company-sstc';
 import {
+  grupomarMeta, grupomarSourceNotes,
+  fleet as gmFleet, procurement as gmProc, record as gmRec,
+} from '@/lib/data/company-grupomar';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -4791,6 +4795,90 @@ const SSTC_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const GM_ACCENT = '#7a4a1c';
+
+/** 단지·선단·조달·기록. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const GM_F = gmFleet();
+const GM_P = gmProc();
+const GM_R = gmRec();
+
+const gmNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const GRUPOMAR_SPEC: CommoditySpec = {
+  key: 'company-anatomy-grupomar',
+  title: '기업 해부: Grupomar',
+  subtitle:
+    `멕시코 콜리마주 만사니요 Fondeport 산업단지 ${GM_F.주소.split(',')[0]} 의 참치 그룹. 캔 Tuny·Ancla 를 만드는 유럽연합 승인 가공장 Marindustrias(RFC ${GM_F.RFC}), 냉동창고 Marfrigo, 선망선을 가진 Maratún·Martuna 가 같은 번지를 주소로 쓰고, 상표 TUNY(${GM_F.상표})는 Prestadores de Servicios de Colima 가 쥔다. ` +
+    `선망 ${GM_F.척수}척이 멕시코 기국 활성 선망 운반능력의 ${gmNum(GM_F.몫, 1)} % 다. 회사는 2013~2014년 신조 세 척을 어획 능력 확대로, 2023년 배를 화재를 입은 배의 대체선으로 설명했고, 2019년 명부 기준 ${GM_F.척수2023}척이던 선단은 지금 ${GM_F.척수}척이다. ` +
+    `국영 농촌상점 Diconsa 는 이 회사의 Tuny 제조 법인과 Pinsa 의 판매 법인 양쪽과 수의계약을 맺었고, 해마다 계약액이 앞서는 쪽이 바뀌었다.`,
+  accent: GM_ACCENT,
+  primaryKpi: {
+    label: '멕시코 기국 활성 선망 운반능력 가운데 Maratún·Martuna 6척의 몫 (IATTC 선박 등록부, 2026-09-24)',
+    value: GM_F.몫,
+    decimals: 1,
+    unit: `(% · ${gmNum(GM_F.운반능력)} t ÷ ${gmNum(GM_F.분모)} t. 두 법인 합산으로 Pinsa 계열 다음 2위, 법인 단위로는 Maratún 3위. 평균 선령 ${gmNum(GM_F.선령, 1)}년(멕시코 53척 ${gmNum(GM_F.멕시코선령, 1)}년). 2023년 배 María de Jesús 는 동태평양 활성 선망 ${GM_F.동태평양}척 가운데 가장 늦게 지어졌다. **회사 X(2026-08-15)는 「más del 65% tiene menos de 10 años」라 적지만 IATTC 건조연도로 10년 미만은 6척 중 1척이다.** 지주 Grupo Maritimo Industrial 의 지분은 상업 DB(EMIS) 기재뿐이다)`,
+    accent: GM_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: 'Diconsa 공공계약 원수치 1999~2022 — Tuny 제조 법인 Marindustrias (QuiénEsQuién.wiki 집계)',
+      value: GM_P.마린,
+      decimals: 1,
+      unit: `(백만 MXN · 두 원천 중복 포함 ${gmNum(GM_P.행수)}행, 모두 수의계약. 같은 집계의 Pinsa Comercial 은 ${gmNum(GM_P.핀사, 1)} — 합계가 거의 같다. 앞서는 쪽은 2014~2016 Pinsa, 2017~2022 Marindustrias, 2023~2025 다시 Pinsa(CompraNet: 2025 부분 연도 Marindustrias MXN ${gmNum(GM_P.마린2025, 2)} 대 Pinsa Comercial ${gmNum(GM_P.핀사2025, 2)}). 조문은 LAASSP 제41조 XII호 재판매용 구매 예외. 계약액은 매출이 아니다)`,
+    },
+    {
+      label: 'PROFECO 2024 시험 — Tuny Premium 물 캔 140 g 의 고형량 실측 (표기 100 g)',
+      value: GM_R.하한,
+      decimals: 1,
+      unit: `(g · 실측 ${gmNum(GM_R.하한, 1)}~${gmNum(GM_R.상한, 1)} g, 「조각」 비율 34,6~37,2 %(기준 30 %)로 NO CUMPLE·NO ES VERAZ. Tuny 9개 제품 가운데 도장 2개, 2024년 시험 대두 0 % — 2019년 시험에서는 Tuny Light 1~4 %. Ancla 는 앞면에 대두 단백 20 % 를 적고 단백질 8~9 % 로 요약표 최저. 2026-09 라벨은 여전히 「MASA DRENADA 100 g」)`,
+    },
+    {
+      label: '2019 부두 화재 배상 청구 용역 — 연방 항만공사 ASIPONA Manzanillo (CompraNet, 2023)',
+      value: GM_R.배상청구,
+      decimals: 0,
+      unit: `(MXN · 2019-10-01 Fondeport 어항 부두에서 불탄 Maratún 소유 María Verónica 건. 청구 상대로 Marfrigo·Maratún·Marindustrias 와 보험사 Grupo Nacional Provincial 을 적었다. 소송 제기·결과는 공개 문서에 없다. 그룹 매출은 약 ${gmNum(GM_P.매출)} 백만 MXN(Expansión 500 FY2025, 매체))`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '단지',
+      title: '한 단지, 나뉜 이름',
+      body: `유럽연합 승인 가공장·냉동창고·선박 다섯 척의 등록 주소와 캔 라벨의 제조자 주소가 모두 ${GM_F.주소} 다. 상표는 Prestadores de Servicios de Colima, 승인·라벨은 Marindustrias, 통계청 사업체 명부의 251명 이상 통조림 사업장은 Suarcrem Holding, 선박은 Maratún·Martuna 이름이다. 지주 Grupo Maritimo Industrial S.A. de C.V.(1982-08-25 설립)은 상업 DB 와 선하증권에 나온다`,
+    },
+    {
+      eyebrow: '선단',
+      title: '가장 새 배를 들이고도 선단은 한 척 줄었다',
+      body: `Armón 조선소가 지은 Gijón(2013)·Oaxaca·Manzanillo(2014)·María de Jesús(2023). 회사는 2015년 세 척을 「expanding its tuna capture capacity」로 적었고, 회장은 2023-02 새 배가 해상 화재를 입은 배를 대신한다고, 2023-07 María Delia 를 팔기로 했다고 말했다. María Delia 는 2023-12-21 Triton 으로 이름을 바꿔 다른 선주 명의가 됐다. 2019년 명부 기준 ${GM_F.척수2023}척 → 지금 ${GM_F.척수}척. María de Jesús 투자액은 25백만·30백만 달러 두 값이 함께 나온다`,
+    },
+    {
+      eyebrow: '인증',
+      title: 'MSC 는 철회, FIP 는 따로',
+      body: `PAST 어업 인증 ${GM_F.MSC철회} 철회 → ${GM_F.MSC개선} 개선 프로그램(인증 아님). 회사는 2026-03 FisheryProgress 에 게시된 Comprehensive FIP 참여를 알렸다(매체 보도) — 두 FIP 유형 가운데 요건이 무거운 쪽이지 진척 등급이 아니다. 사이트 인증 목록엔 MSC·Dolphin Safe 가 없지만 Ancla 캔 라벨에는 돌고래 SAFE 표지가 있다`,
+    },
+    {
+      eyebrow: '매대',
+      title: 'Tuny 와 Ancla, 대두 단백이 가르는 두 층',
+      body: `Chedraui 2026-09-24 판매가로 Tuny 물 130 g MXN 157,69/kg · Ancla 물 120 g 87,50/kg(자체상표 92,23 보다 낮다). 맨 위 칸 Tuny Gourmet Ventresca 120 g(625,00/kg)의 상자에는 「PRODUCTO IMPORTADO」가 찍혀 있다. 모든 캔 라벨의 제조자는 Marindustrias 다`,
+    },
+    {
+      eyebrow: '사람',
+      title: '이익배분 작업중단과 사고',
+      body: `2025-05-24 이익배분(PTU)을 두고 작업이 멈췄고 05-26 오후 재개, 05-27 합의 보도(추가 혜택 비공개). 2023-04-01 공장 집단 중독으로 생산구역이 봉인됐다가 04-20 해제됐다 — 원인물질은 확정 보도가 없다. 2025-12-26 용역 통근버스 사고로 직원 9명이 다쳤다. 미국 TUNY 문자 상표는 2020년 취소됐고 번호가 다른 도형 상표가 ${GM_R.USPTO} 등록됐다`,
+    },
+  ],
+  briefing: proseBriefing('grupomar'),
+  narratives: inlineReport('grupomar', proseStages('grupomar')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: grupomarSourceNotes,
+  sourceMeta: [
+    `${grupomarMeta.회사} · ${grupomarMeta.국가} · ${grupomarMeta.업종}`,
+    `출처 ${grupomarMeta.출처}`,
+    `조사 ${grupomarMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -5893,6 +5981,20 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '유럽과 사람', value: `EU 의 PNG산 로인 스페인 ${ssNum(SS_E.스페인, 1)} %(2025, 나라 단위) · 미국 수입 2015~2025 0 · ${SS_P.시위} 약 ${ssNum(SS_P.시위인원)}명 작업 거부 · 최저임금 2026 K${ssNum(SS_P.최저임금, 2)}` },
     ],
   },
+  {
+    key: 'grupomar',
+    numeral: 'ⅬⅢ',
+    name: 'Grupomar',
+    country: `멕시코 · 콜리마주 만사니요 Fondeport 산업단지(유럽연합 승인 가공장 1곳·냉동창고 1곳)`,
+    tagline: '한 단지의 사슬, 나뉜 이름 — 만사니요 한 단지에 캔 공장·냉동창고와 선단 법인의 주소가 모였고, 가장 새 배를 들이고도 선단은 한 척 줄었다.',
+    ...FLAG.멕시코,
+    stats: [
+      { label: '단지와 선단', value: `선망 ${GM_F.척수}척 · 운반능력 ${gmNum(GM_F.운반능력)} t = 멕시코 기국 활성 선망의 ${gmNum(GM_F.몫, 1)} %(IATTC) · 평균 선령 ${gmNum(GM_F.선령, 1)}년 · 신조 ${GM_F.신조}척(2013~2023) · 2019년 ${GM_F.척수2023}척 → 지금 ${GM_F.척수}척 · MSC ${GM_F.MSC철회} 철회 → ${GM_F.MSC개선} 개선 프로그램` },
+      { label: '상표와 매대', value: `TUNY ${GM_F.상표} 권리자 Prestadores de Servicios de Colima · 라벨 제조자 Marindustrias(RFC ${GM_F.RFC}) · PROFECO 2024 Tuny Premium 물 고형량 ${gmNum(GM_R.하한, 1)}~${gmNum(GM_R.상한, 1)} g(표기 ${GM_R.표기} g) · Ancla 대두 단백 20 % 표기` },
+      { label: '국가와 기록', value: `Diconsa 조달 원수치 ${gmNum(GM_P.마린, 1)} 대 Pinsa Comercial ${gmNum(GM_P.핀사, 1)} 백만 MXN(1999~2022, 모두 수의계약) · 2023~2025 Pinsa 가 앞섬 · 2019 부두 화재 배상 청구 용역 MXN ${gmNum(GM_R.배상청구)}(항만공사)` },
+    ],
+  },
+
 
 
 ];
@@ -5969,6 +6071,7 @@ export default function CompanyAnatomyDashboard({
     pafco: PAFCO_SPEC,
     pinsa: PINSA_SPEC,
     sstc: SSTC_SPEC,
+    grupomar: GRUPOMAR_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

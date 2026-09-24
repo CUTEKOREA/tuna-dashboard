@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 285,
+  "files": 286,
   "widgets": 114,
-  "dataFiles": 304,
+  "dataFiles": 308,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -614,6 +614,7 @@
     "lib/data/company-galapesca.ts",
     "lib/data/company-garavilla.ts",
     "lib/data/company-ghana.ts",
+    "lib/data/company-grupomar.ts",
     "lib/data/company-hagoromo.ts",
     "lib/data/company-herdez.ts",
     "lib/data/company-iot.ts",
@@ -734,6 +735,10 @@
     "public/data/companies/ghana_prose_v1.json",
     "public/data/companies/ghana_tables_v1.json",
     "public/data/companies/ghana_v1.json",
+    "public/data/companies/grupomar_figures_v1.json",
+    "public/data/companies/grupomar_prose_v1.json",
+    "public/data/companies/grupomar_tables_v1.json",
+    "public/data/companies/grupomar_v1.json",
     "public/data/companies/hagoromo_figures_v1.json",
     "public/data/companies/hagoromo_prose_v1.json",
     "public/data/companies/hagoromo_tables_v1.json",
@@ -1705,6 +1710,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/ghana_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/hagoromo_figures_v1.json": [

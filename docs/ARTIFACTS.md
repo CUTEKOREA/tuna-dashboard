@@ -56,6 +56,7 @@
 | Ⅼ | PAFCO (피지 오발라우섬 레부카 Beach Street · 유럽연합 승인 FJEU07 · 정부 지분 99,6 % · 1998년부터 Bumble Bee 로인 가공 → 2026-07 첫 주 종료, 새 상대는 이름 없는 스페인 수출업체 · 피지 신고 대미 수출가 kg당 US$ 0,94 대 미국 신고 5,26) | `pafco` | https://claude.ai/artifact/XpUYYmzKp4PuJTXrABizCi |
 | ⅬⅠ | Grupo Pinsa (멕시코 마사틀란 Av. Puerto de Mazatlán 406 · 선망 23척 = 멕시코 기국 활성 선망 운반능력 51,7 % · DOLORES 상표권자 Productos Dolores · PROFECO 100 g 당 기본 캔 MXN 14 대 El Dorado 대두 9 · MSC 2023-03-08 철회 · 캔 수출 99,9 % 미국) | `pinsa` | https://claude.ai/artifact/571s3YxH3uMiGJ8qK2x2EL |
 | ⅬⅡ | South Seas Tuna (파푸아뉴기니 웨와크 1 Wharf Road · 회사등기 1-31938(구 TARE NO. 2) · 유럽연합 승인 09EPR019 · 2004~2015 FCF 원어 위탁가공(판결 배경사실) · GST 경정 K64,5백만(본세 K24,6백만) 미결 · 용선 선망 2025 18척 → 2026 9척) | `sstc` | https://claude.ai/artifact/6zMighNkYxRY4Uwv3c6YYv |
+| ⅬⅢ | Grupomar (멕시코 콜리마주 만사니요 Fondeport Calle Don Antonio Suárez Gutiérrez No. 5 · EU 승인 가공장 Marindustrias MAR 9308174 P1 · 선망 6척(Maratún 4·Martuna 2) = 멕시코 기국 활성 선망 운반능력 13,6 % · 2019년 7척 → 2026년 6척 · TUNY 439123 권리자 Prestadores de Servicios de Colima · Diconsa 계약 원수치 1.539,5 대 Pinsa Comercial 1.546,3 백만 MXN) | `grupomar` | https://claude.ai/artifact/B4gntXwkpoJ6MWEPBJjdJM |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 

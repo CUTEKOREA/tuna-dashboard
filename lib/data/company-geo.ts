@@ -257,6 +257,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅡ · 발행본 §01 의 유럽연합 명부 주소 「1 Wharf Road, PO BOX 543」 Wewak(09EPR019) · 필지 Section 36, Lot 37 · 등기 사무소는 포트모르즈비지만 지구본은 공장 자리를 잡는다 · **좌표는 웨와크 부두 근사값**',
     note: '2004~2015 FCF 가 해상에서 산 참치를 가공비를 받고 로인으로 만들었다(판결 배경사실) · GST 경정 K64,5백만(본세 K24,6백만) 소송 미결 · 용선 선망 2025 18척 → 2026 9척 · 능력 100 또는 200 t/일(출처별) · 파푸아뉴기니 EU 승인 가공장 여섯 곳 중 웨와크의 유일한 곳',
     },
+  // ── ⅬⅢ Grupomar — 만사니요 Fondeport ─────
+  { company: 'grupomar', numeral: 'ⅬⅢ', kind: 'hq', label: 'Grupomar — 만사니요 Fondeport 5번지', country: '멕시코',
+    lat: 19.0810, lng: -104.2908,
+    basis: 'ⅬⅢ · 발행본 §01·§02 의 등록부 공통 주소 「Calle Don Antonio Suárez Gutiérrez No. 5, Parque Industrial Fondeport, C.P. 28219」(IATTC 선박 소유자·TRACES 가공장 MAR 9308174 P1·라벨 제조자) · 좌표는 INEGI DENUE 의 통조림 사업장(Suarcrem Holding) 좌표(19,08098, −104,29079)',
+    note: '선망 6척(Maratún 4·Martuna 2) = 멕시코 기국 활성 선망 운반능력의 13,6 %(IATTC) · 2019년 명부 7척 → 지금 6척(2023년 배는 동태평양 활성 선망 279척 중 가장 늦게 건조) · MSC 어업 인증 2023-03-08 철회 → 2026-05-20 개선 프로그램 · Diconsa 조달 원수치 1.539,5 대 Pinsa Comercial 1.546,3 백만 MXN(1999~2022, 모두 수의계약)',
+    },
 ];
 
 /**
