@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 288,
+  "files": 290,
   "widgets": 114,
-  "dataFiles": 316,
+  "dataFiles": 324,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -631,6 +631,7 @@
     "lib/data/company-nissui.ts",
     "lib/data/company-pafco.ts",
     "lib/data/company-pinsa.ts",
+    "lib/data/company-ppf.ts",
     "lib/data/company-princes.ts",
     "lib/data/company-procesa.ts",
     "lib/data/company-rd.ts",
@@ -640,6 +641,7 @@
     "lib/data/company-sajoseafood.ts",
     "lib/data/company-salica.ts",
     "lib/data/company-sca.ts",
+    "lib/data/company-seatech.ts",
     "lib/data/company-seavalue.ts",
     "lib/data/company-soltuna.ts",
     "lib/data/company-sstc.ts",
@@ -805,6 +807,10 @@
     "public/data/companies/pinsa_prose_v1.json",
     "public/data/companies/pinsa_tables_v1.json",
     "public/data/companies/pinsa_v1.json",
+    "public/data/companies/ppf_figures_v1.json",
+    "public/data/companies/ppf_prose_v1.json",
+    "public/data/companies/ppf_tables_v1.json",
+    "public/data/companies/ppf_v1.json",
     "public/data/companies/princes_figures_v1.json",
     "public/data/companies/princes_prose_v1.json",
     "public/data/companies/princes_tables_v1.json",
@@ -833,6 +839,10 @@
     "public/data/companies/sca_prose_v1.json",
     "public/data/companies/sca_tables_v1.json",
     "public/data/companies/sca_v1.json",
+    "public/data/companies/seatech_figures_v1.json",
+    "public/data/companies/seatech_prose_v1.json",
+    "public/data/companies/seatech_tables_v1.json",
+    "public/data/companies/seatech_v1.json",
     "public/data/companies/seavalue_figures_v1.json",
     "public/data/companies/seavalue_prose_v1.json",
     "public/data/companies/seavalue_tables_v1.json",
@@ -1926,6 +1936,18 @@
   "public/data/companies/pinsa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/ppf_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ppf_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ppf_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ppf_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/princes_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -2008,6 +2030,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/sca_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/seavalue_figures_v1.json": [
