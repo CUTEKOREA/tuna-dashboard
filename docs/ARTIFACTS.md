@@ -57,6 +57,8 @@
 | ⅬⅠ | Grupo Pinsa (멕시코 마사틀란 Av. Puerto de Mazatlán 406 · 선망 23척 = 멕시코 기국 활성 선망 운반능력 51,7 % · DOLORES 상표권자 Productos Dolores · PROFECO 100 g 당 기본 캔 MXN 14 대 El Dorado 대두 9 · MSC 2023-03-08 철회 · 캔 수출 99,9 % 미국) | `pinsa` | https://claude.ai/artifact/571s3YxH3uMiGJ8qK2x2EL |
 | ⅬⅡ | South Seas Tuna (파푸아뉴기니 웨와크 1 Wharf Road · 회사등기 1-31938(구 TARE NO. 2) · 유럽연합 승인 09EPR019 · 2004~2015 FCF 원어 위탁가공(판결 배경사실) · GST 경정 K64,5백만(본세 K24,6백만) 미결 · 용선 선망 2025 18척 → 2026 9척) | `sstc` | https://claude.ai/artifact/6zMighNkYxRY4Uwv3c6YYv |
 | ⅬⅢ | Grupomar (멕시코 콜리마주 만사니요 Fondeport Calle Don Antonio Suárez Gutiérrez No. 5 · EU 승인 가공장 Marindustrias MAR 9308174 P1 · 선망 6척(Maratún 4·Martuna 2) = 멕시코 기국 활성 선망 운반능력 13,6 % · 2019년 7척 → 2026년 6척 · TUNY 439123 권리자 Prestadores de Servicios de Colima · Diconsa 계약 원수치 1.539,5 대 Pinsa Comercial 1.546,3 백만 MXN) | `grupomar` | https://claude.ai/artifact/B4gntXwkpoJ6MWEPBJjdJM |
+| ⅬⅣ | Procesa (멕시코 치아파스주 타파출라 Puerto Chiapas · EU 승인 가공장 PEA0303203V5 · 선망 4척(Pesca Chiapas 2·Hersea 2) 평균 선령 50,5년 = 4척 이상 소유 그룹 최고 · 상표 Nair·Marina Azul 질권 CAMIF II(2017)·Rabobank NY(2022) · 2026-06-19 보전처분 예비 기재 17건 · 같은 항구 Bumble Bee Mexico FDA 2023-10-12, 계약 형태 비공개) | `procesa` | https://claude.ai/artifact/V4a838e6MiBXCKGPQfDHci |
+| ⅬⅤ | Tropical Canning (태국 송클라주 핫야이 퉁야이 · SET 상장 DBD 0107537000076 · 최대주주 명의 24,585 % = 2021-12-18 사망한 전 의장, 부자 명의 합 38,201 % · 의장 겸직 세 매출처 TCC·Safcol Australia·TC Boy가 2025 매출의 46,2 % · Safcol AU 상대 매출 120,1 → 554,1 백만 THB · 1H2026 펫푸드 50,6 % > 참치 41,6 %) | `tropical` | https://claude.ai/artifact/DU4VV4KQDduaWYBZvLZTFn |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 

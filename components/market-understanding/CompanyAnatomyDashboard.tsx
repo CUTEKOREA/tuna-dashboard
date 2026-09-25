@@ -366,6 +366,14 @@ import {
   fleet as gmFleet, procurement as gmProc, record as gmRec,
 } from '@/lib/data/company-grupomar';
 import {
+  procesaMeta, procesaSourceNotes,
+  fleet as pcFleet, marks as pcMarks, market as pcMarket,
+} from '@/lib/data/company-procesa';
+import {
+  tropicalMeta, tropicalSourceNotes,
+  control as tcControl, sales as tcSales, exposure as tcExposure,
+} from '@/lib/data/company-tropical';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -4879,6 +4887,174 @@ const GRUPOMAR_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const PC_ACCENT = '#1f5c4a';
+
+/** 상표·선단·Bumble Bee·조달. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const PC_F = pcFleet();
+const PC_M = pcMarks();
+const PC_K = pcMarket();
+
+const pcNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const PROCESA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-procesa',
+  title: '기업 해부: Procesa',
+  subtitle:
+    `멕시코 치아파스주 타파출라 Puerto Chiapas 에서 캔·파우치 참치 Nair·Marina Azul 을 만드는 Procesamiento Especializado de Alimentos, S.A.P.I. de C.V.(유럽연합 승인 ${PC_F.EU}). 2020년 Herdez 가 판 치아파스 참치 사업의 자산을 샀다고 회사가 밝히고, 등록부가 적는 것은 Nair 상표 이전이다. ` +
+    `상표에는 메자닌 펀드(2017 계약)와 Rabobank 뉴욕 지점(2022)의 질권이 기재됐고, ${PC_M.보전일} 할리스코주 법원의 보전처분(Exp. ${PC_M.사건})이 Procesa 명의 상표 ${PC_M.보전}건에 예비 기재됐다. ` +
+    `같은 항구의 Bumble Bee Mexico 는 ${PC_K.FDA} 부터 FDA 기록에 오른 별도 법인이고, 두 회사의 계약 형태는 공개되지 않았다.`,
+  accent: PC_ACCENT,
+  primaryKpi: {
+    label: '법원 보전처분이 예비 기재된 Procesa 명의 상표 수 (멕시코 특허청 IMPI, 2026-06-19)',
+    value: PC_M.보전,
+    decimals: 0,
+    unit: `(건 · Jalostotitlán 1심 법원 Exp. ${PC_M.사건}, 신청인 Diken International S. de R.L.(IMPI 원부 주소 코아우일라). Nair 계열 14 · Marina Azul 2 · Mar Azul 1. 소멸한 Marina Azul 862797(${PC_M.소멸} 만료)·907205 와 2012년 거절 출원에는 기재하지 않았다. ${PC_M.양도신청} 채권양도 인정 신청은 ${PC_M.보정} 보정 요구 뒤 결과가 공개되지 않았다. 청구 원인·대출 금액은 공개 문서에 없다)`,
+    accent: PC_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '선망 4척 평균 선령 — Pesca Chiapas 2 + Hersea 2 (IATTC 건조연도, 2026 기준 계산)',
+      value: PC_F.선령,
+      decimals: 1,
+      unit: `(년 · 네 척 이상 가진 멕시코 소유 그룹 가운데 가장 높다. 1~2척 선주 중에는 더 늙은 곳이 있다. 멕시코 활성 선망 53척 평균 ${pcNum(PC_F.멕시코선령, 1)}년. 운반능력 ${pcNum(PC_F.운반능력)} t = 멕시코 기국 활성 선망의 ${pcNum(PC_F.몫, 1)} %. Hersea 명의 Arkos I Chiapas 는 ${PC_F.침몰} 불타 가라앉았다)`,
+    },
+    {
+      label: 'Diconsa 수의계약 원수치 2009~2019 (QuiénEsQuién.wiki 집계, 두 명의 합)',
+      value: PC_K.조달,
+      decimals: 1,
+      unit: `(백만 MXN · 중복 포함, 중복 제거 추정 약 ${pcNum(PC_K.조달중복제거, 1)}. 2012년 정점, 마지막 기록 ${PC_K.조달마지막}년. 2020~2022년은 CompraNet 원본과 대조되지 않았고 2023~2025년 CompraNet 에는 Procesa 명의 계약이 없다. 계약액은 매출이 아니다)`,
+    },
+    {
+      label: 'Bumble Bee Mexico 공장 고용 — 2026년 7월 시장 게시·지방지 보도',
+      value: PC_K.BB고용,
+      decimals: 0,
+      unit: `(명 · 주정부 발표(${PC_K.가동식} 가동식)의 3.000명은 「generará」 전망이다. Bumble Bee Mexico 는 ${PC_K.FDA} FDA 수입경보에 Puerto Madero 주소로 오른 별도 법인. 지역지가 전한 시장 발언에 Procesa 공장이 나오고 항만공사는 Procesa 가 미국 회사들과 위탁가공으로 협력한다고 적었지만, 계약 형태는 공개되지 않았다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '상표',
+      title: '질권이 걸린 두 상표',
+      body: `2017-12-28 메자닌 펀드 CAMIF II 의 무점유 질권(2019 기재), 2022-05 Rabobank 뉴욕 지점의 1순위 질권, 2022-09 변경·증액 약정. 질권이 처음 잡힌 MARINA AZUL 862797 은 ${PC_M.소멸} 에 갱신 없이 소멸했고, 회사는 같은 이름을 다시 출원해 ${PC_M.새등록} 2992959 를 받았다(질권 기재 없음, 보전처분 기재는 있음)`,
+    },
+    {
+      eyebrow: 'Herdez',
+      title: '배·공장·상표를 판 매각, 등록부가 적는 매수자는 상표 하나',
+      body: `Herdez 2020-07-29 공시는 배·치아파스 공장·Nair 상표 매각을 알렸지만 매수인과 대금을 적지 않았다. Nair 이전은 IMPI 2022-08-10 등록. 옛 Herdez 공장 용량 ${pcNum(PC_K.KUO용량)} t 에 가동률 ${PC_K.KUO가동률} % 를 곱한 약 12.454 t 는 환산값이지 실생산량이 아니다`,
+    },
+    {
+      eyebrow: '선단',
+      title: '네 척 이상 가진 그룹 가운데 가장 늙은 배',
+      body: `Victoria·Conquista(1973)·Nair(1974)·Jaguar(1982). 회사는 「5척」을 적지만 IATTC 활성은 4척이다. MSC 어업 인증은 ${PC_F.MSC철회} 철회, ${PC_F.MSC개선} 개선 프로그램 — 회사 누리집은 여전히 MSC 인증을 적는다`,
+    },
+    {
+      eyebrow: '매대',
+      title: 'Nair 25 % 대두 캔과 Marina Azul 파우치',
+      body: `Chedraui 2026-09-25 판매가로 Nair 25 % 대두 물 120 g MXN ${pcNum(PC_K.Nair_kg, 2)}/kg, Marina Azul 파우치 올리브유 74 g ${pcNum(PC_K.파우치올리브_kg, 2)}/kg. PROFECO 2024 시험에서 Nair 무대두 플레이크는 전 항목 적합, Marina Azul 은 다섯 제품 가운데 넷이 부적합이나 표시 불일치 판정`,
+    },
+    {
+      eyebrow: '사람',
+      title: '통근버스 사고와 가라앉은 배',
+      body: `2026-07-27 직원 통근버스(외주 운송사) 사고로 8명이 다치고 노동자 1명이 몇 시간 뒤 숨졌다(주 검찰 수사, 매체). 2025-02-21 Hersea 명의 Arkos I Chiapas 가 화재로 침몰해 승선원이 구조됐다. 노동 분쟁·파업 보도는 없다`,
+    },
+  ],
+  briefing: proseBriefing('procesa'),
+  narratives: inlineReport('procesa', proseStages('procesa')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: procesaSourceNotes,
+  sourceMeta: [
+    `${procesaMeta.회사} · ${procesaMeta.국가} · ${procesaMeta.업종}`,
+    `출처 ${procesaMeta.출처}`,
+    `조사 ${procesaMeta.조사일}`,
+  ].join(' · '),
+};
+
+const TC_ACCENT = '#0f5f7a';
+
+/** 지배·특수관계·호주·관세. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const TC_C = tcControl();
+const TC_S = tcSales();
+const TC_E = tcExposure();
+
+const tcNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const TROPICAL_SPEC: CommoditySpec = {
+  key: 'company-anatomy-tropical',
+  title: '기업 해부: Tropical Canning',
+  subtitle:
+    `태국 송클라주 핫야이 퉁야이의 본 캔공장에서 캔·파우치 참치와 펫푸드를 만드는 SET 상장사 Tropical Canning (Thailand) PCL(DBD ${TC_C.DBD}). 대부분 고객 상표로 만든다. ` +
+    `최대주주 명의 ${tcNum(TC_C.최대주주, 3)} % 는 ${TC_C.사망일} 사망한 전 의장의 이름으로 남아 있고, 그 아들인 현 의장은 말레이시아 TCC·호주 Safcol Australia·TC Boy Marketing 등 여섯 회사의 의장을 겸한다. ` +
+    `그 세 매출처가 2025년 연결 매출의 ${tcNum(TC_C.세매출처, 1)} % 를 사 갔다.`,
+  accent: TC_ACCENT,
+  primaryKpi: {
+    label: '2025 연결 매출 가운데 TC 의장이 의장을 겸하는 세 매출처(TCC·Safcol Australia·TC Boy Marketing)의 몫 (56-1 특수관계 거래표, 계산)',
+    value: TC_C.세매출처,
+    decimals: 1,
+    unit: `(% · 특수관계자 전체 ${tcNum(TC_C.특수관계, 1)} %. TCC 는 최대 고객 금액과 같은 매출처(${tcNum(TC_C.TCC, 2)} 백만 THB, 별도재무제표 대조)이면서 해외 마케팅 대리인이고 원료 공급자다. 감사 주석은 관계를 「공동 주주」·「공동 최종 주주」로 적는다. Safcol Australia 는 TC 자회사가 아니다)`,
+    accent: TC_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '사망한 전 의장 명의 + 현 의장 지분 (56-1 주주명부 2026-03-11, 계산)',
+      value: TC_C.부자합,
+      decimals: 3,
+      unit: `(% · 전 의장 ${tcNum(TC_C.최대주주, 3)} % 는 ${TC_C.사망일} 사망 뒤에도 2026-05-08 명부까지 이름이 남았다(2021 56-1 이 부자 관계를 적고, 2022~2025 56-1 혈연 칸은 「없음」). 56-1 이 지배권 집단으로 적는 현 의장·대표 합은 ${tcNum(TC_C.지배권, 3)} % — 구성원이 다른 두 합계다. 상속 뒤 의결권 행사자는 공시에 없다)`,
+    },
+    {
+      label: 'Safcol Australia 상대 매출 2025 (56-1 특수관계 거래표)',
+      value: TC_S.Safcol2025,
+      decimals: 1,
+      unit: `(백만 THB · 2024년 ${tcNum(TC_S.Safcol2024, 1)} 에서 ${tcNum(TC_S.배수, 1)}배. 2026년 상반기 호주 매출은 전체의 ${tcNum(TC_S.호주1H, 1)} %(전년 동기 ${tcNum(TC_S.호주1H전년, 1)} %, 고객 소재지 기준). 회사는 2025 56-1·MD&A·2026 주총 의사록에 그 까닭을 적지 않았다)`,
+    },
+    {
+      label: '미국 Section 301 관세 — 태국산 캔참치·펫푸드 (USTR, 발효 2026-07-24)',
+      value: TC_E.S301,
+      decimals: 1,
+      unit: `(% · 1604·2309 예외 없음. 공동 주주 계열이 있는 말레이시아·인도네시아는 10 %. 2026년 상반기 미주 매출 ${tcNum(TC_E.미주, 1)} % 는 발효 전 수치이고 원인 공시는 없다. 발효 뒤 첫 2Q2026 MD&A 에도 관세 문장이 없다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '지분',
+      title: '한 이름의 지분',
+      body: `2021 56-1 은 전 의장이 ${TC_C.사망일} 사망했고 현 의장이 그 아들이라고 적는다. 명의는 2026-05-08 명부까지 그대로이고 상속에 따른 지분 보고(SEC 246-2)는 2019-01-23 이후 없다. 대표 지분은 2024-06-17 100만 주씩 네 건 이전됐다(받은 사람 미공시)`,
+    },
+    {
+      eyebrow: '거래처',
+      title: '한 의장의 거래처',
+      body: `현 의장은 TCC·Safcol Australia·TC Boy Marketing·Safcol Chile·Tropical Canning Corporation Sdn. Bhd.·Elowfar 의 의장이다(56-1 부록 2). TCC 는 1979년부터 해외 마케팅 대리인이고 2025-07 제품 매매·마케팅 계약을 3년 새로 맺었다`,
+    },
+    {
+      eyebrow: '제품',
+      title: '펫푸드가 다시 참치를 넘었다',
+      body: `2026년 상반기 펫푸드 ${tcNum(TC_S.펫푸드1H, 1)} % · 사람용 참치 ${tcNum(TC_S.참치1H, 1)} %. 2022년 연간에 이어 두 번째. 펫푸드군에는 참치 원료 제품이 들어 있다. 태국 매대 TCB 참치 185 g 대두유는 THB ${tcNum(TC_S.TCB_kg, 2)}/kg(Lotus's 자체상표와 같은 값)`,
+    },
+    {
+      eyebrow: '공장',
+      title: '명판 약 64.000 t, 기간·중량 기준은 공시에 없다',
+      body: `명판 약 ${tcNum(TC_E.명판)} t · 생산 ${tcNum(TC_E.생산)} t(2024·2025 같은 숫자, 천 톤 반올림으로도 설명된다) · 인력 ${tcNum(TC_E.인력)}명. 공업부 명부에 3종 공장 다섯 건(퉁야이·남녹 두 곳). 인증 명의는 둘 — 돌고래 안전 TCC, ISSF 준수보고서·MSC TC`,
+    },
+    {
+      eyebrow: '돈',
+      title: '상반기에 불어난 재고와 차입',
+      body: `2026-06-30 재고가 반년 사이 ${tcNum(TC_E.재고증가, 1)} 백만 THB 늘었고 은행 차입(리스 제외)은 ${tcNum(TC_E.차입2025, 1)} → ${tcNum(TC_E.차입2606, 1)} 백만 THB. 회사는 원료 구매 증가를 까닭으로 적었다. 2025 매출 ${tcNum(TC_S.매출, 1)} · 매출총이익률 ${tcNum(TC_S.GPM, 2)} % · 순이익 ${tcNum(TC_S.순이익, 1)} 백만 THB`,
+    },
+  ],
+  briefing: proseBriefing('tropical'),
+  narratives: inlineReport('tropical', proseStages('tropical')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: tropicalSourceNotes,
+  sourceMeta: [
+    `${tropicalMeta.회사} · ${tropicalMeta.국가} · ${tropicalMeta.업종}`,
+    `출처 ${tropicalMeta.출처}`,
+    `조사 ${tropicalMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -5994,6 +6170,32 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '국가와 기록', value: `Diconsa 조달 원수치 ${gmNum(GM_P.마린, 1)} 대 Pinsa Comercial ${gmNum(GM_P.핀사, 1)} 백만 MXN(1999~2022, 모두 수의계약) · 2023~2025 Pinsa 가 앞섬 · 2019 부두 화재 배상 청구 용역 MXN ${gmNum(GM_R.배상청구)}(항만공사)` },
     ],
   },
+  {
+    key: 'procesa',
+    numeral: 'ⅬⅣ',
+    name: 'Procesa',
+    country: `멕시코 · 치아파스주 타파출라 Puerto Chiapas(유럽연합 승인 가공장 ${PC_F.EU})`,
+    tagline: '질권이 걸린 상표, 늙은 선단, 같은 항구의 Bumble Bee — Herdez 의 치아파스 참치 자산을 샀다고 밝힌 캔 회사, 그 상표에 질권과 보전처분이 겹쳐 있다.',
+    ...FLAG.멕시코,
+    stats: [
+      { label: '상표와 법원', value: `보전처분 예비 기재 상표 ${PC_M.보전}건(${PC_M.보전일}, Exp. ${PC_M.사건}) · 질권 CAMIF II(2017)·Rabobank NY(2022) · 채권양도 인정 신청 ${PC_M.양도신청} → 보정 요구, 결과 미상 · MARINA AZUL 862797 ${PC_M.소멸} 소멸` },
+      { label: '선단과 인증', value: `선망 ${PC_F.척수}척 ${pcNum(PC_F.운반능력)} t = 멕시코 기국 활성 선망의 ${pcNum(PC_F.몫, 1)} %(IATTC) · 평균 선령 ${pcNum(PC_F.선령, 1)}년(4척 이상 그룹 최고) · Arkos I Chiapas ${PC_F.침몰} 침몰 · MSC ${PC_F.MSC철회} 철회` },
+      { label: 'Bumble Bee 와 조달', value: `Bumble Bee Mexico FDA ${PC_K.FDA} · 가동식 ${PC_K.가동식} · 고용 ${pcNum(PC_K.BB고용)}명(2026-07 보도) · 계약 형태 비공개 · Diconsa 원수치 ${pcNum(PC_K.조달, 1)} 백만 MXN(2009~2019)` },
+    ],
+  },
+  {
+    key: 'tropical',
+    numeral: 'ⅬⅤ',
+    name: 'Tropical Canning',
+    country: `태국 · 송클라주 핫야이 퉁야이(SET 상장, DBD ${TC_C.DBD})`,
+    tagline: '한 이름의 지분, 한 의장의 거래처 — 핫야이의 상장 캔공장은 매출의 절반 가까이를 의장이 겸직하는 회사들에 판다. 최대주주 명의 24,585 %는 2021년에 사망한 전 의장의 이름으로 남아 있다.',
+    ...FLAG.태국,
+    stats: [
+      { label: '지분과 지배', value: `전 의장 명의 ${tcNum(TC_C.최대주주, 3)} %(${TC_C.사망일} 사망) · 부자 명의 합 ${tcNum(TC_C.부자합, 3)} % · 지배권 집단(공시) ${tcNum(TC_C.지배권, 3)} % · 의장 겸직 세 매출처 몫 ${tcNum(TC_C.세매출처, 1)} %(2025)` },
+      { label: '호주와 제품', value: `Safcol Australia 상대 매출 ${tcNum(TC_S.Safcol2024, 1)} → ${tcNum(TC_S.Safcol2025, 1)} 백만 THB(${tcNum(TC_S.배수, 1)}배) · 1H2026 호주 ${tcNum(TC_S.호주1H, 1)} % · 펫푸드 ${tcNum(TC_S.펫푸드1H, 1)} % > 참치 ${tcNum(TC_S.참치1H, 1)} %` },
+      { label: '관세와 돈', value: `Section 301 ${tcNum(TC_E.S301, 1)} %(${TC_E.발효}~, 말레이·인니 10 %) · 1H 미주 ${tcNum(TC_E.미주, 1)} %(발효 전) · 재고 +${tcNum(TC_E.재고증가, 1)} · 은행 차입 ${tcNum(TC_E.차입2025, 1)} → ${tcNum(TC_E.차입2606, 1)} 백만 THB` },
+    ],
+  },
 
 
 
@@ -6072,6 +6274,8 @@ export default function CompanyAnatomyDashboard({
     pinsa: PINSA_SPEC,
     sstc: SSTC_SPEC,
     grupomar: GRUPOMAR_SPEC,
+    procesa: PROCESA_SPEC,
+    tropical: TROPICAL_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
