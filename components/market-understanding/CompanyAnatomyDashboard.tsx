@@ -5227,7 +5227,7 @@ const PANPAC_SPEC: CommoditySpec = {
     {
       eyebrow: '전략',
       title: '돈은 신조선으로, 공장 계획은 한 문장',
-      body: `上海开创 2026년 계획은 공장 법인이 원가를 낮추고 판로를 넓혀 「提升持续盈利能力」 하겠다는 한 문장이다. 같은 반기 그룹 연결 휴업 손실이 늘었다. 공장을 언제 다시 돌릴지는 어느 공시에도 날짜가 없다. MIMRA 부국장은 2026-04-16 EU 감사가 끝났고 공식 회신을 기다린다고 말했다`,
+      body: `上海开创 2026년 계획은 공장 법인이 원가를 낮추고 판로를 넓혀 「提升持续盈利能力」 하겠다는 한 문장이다. 같은 반기 그룹 연결 휴업 손실이 늘었다. 공장을 언제 다시 돌릴지는 어느 공시에도 날짜가 없다. DG SANTE 는 2026-05-28 마셜 원격 감사 최종보고서(CT-2025-0278)를 게시했고, EU 수출 원료는 동결선에서만 오며 마셜의 뭍 가공장 두 곳은 지금 EU 명부 신청 대상이 아니라고 적었다(가공장 이름은 없다). 2026-06-02 부터 선단 법인 6척은 키리바시 Kiribati Fish Limited 이름으로 용선 통보돼 있다`,
     },
   ],
   briefing: proseBriefing('ppf'),
@@ -5294,7 +5294,7 @@ const INEPACA_SPEC: CommoditySpec = {
     {
       eyebrow: '주주',
       title: '주주의 주주',
-      body: `INEPACA 대주주 Estrella Blanca 가 2016년분 서식에 신고한 주주는 「ANDEAN TRADING INTERNACIONAL」이다. 콜롬비아 VAN CAMP'S 29류 권리자와 1987년 COPRALESA 설립 주주로 적힌 이름은 「ANDEAN TRADING INTERNATIONAL INC.」로 표기가 다르다. 셋이 한 법인인지, 지분율이 얼마인지는 어느 서류에도 없다`,
+      body: `INEPACA 대주주 Estrella Blanca 가 2016년분 서식에 신고한 주주는 「ANDEAN TRADING INTERNACIONAL」이다. 콜롬비아 VAN CAMP'S 29류 권리자와 1987년 COPRALESA 설립 주주로 적힌 이름은 「ANDEAN TRADING INTERNATIONAL INC.」로 표기가 다르다. 셋이 한 법인인지는 어느 서류에도 없다. Estrella Blanca 서식은 지분율을 적지 않고, 1987년 공고의 출자액으로는 COPRALESA 자본금의 49 %가 나온다(계산)`,
     },
     {
       eyebrow: '원료',

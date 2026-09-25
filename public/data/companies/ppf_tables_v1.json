@@ -1075,6 +1075,12 @@
      "B"
     ],
     [
+     "2026-05-28",
+     "DG SANTE 최종보고서 CT-2025-0278 게시(최종본 2026-05-18). 명부 후보는 동결선 2척, 뭍 가공장 두 곳은 「currently not intended to be EU-listed」, 권고 다섯 건",
+     "DG SANTE 감사보고서",
+     "A"
+    ],
+    [
      "2026-07-01",
      "MIMRA 국장 「they gave us five items to respond to」(답할 항목 다섯 개를 받았다)",
      "Marianas Business Journal 보도 인용",
@@ -1093,7 +1099,7 @@
      "A"
     ],
     [
-     "A=EU 법령·명부·통계, FAO 문서, MIMRA 정부 보고서. B=매체. 부속서 Ⅸ는 2026-09-03 통합본, TRACES NT 명부는 2026-09-25 기준이다. MBJ 행은 기사 전문이 아닌 보도 인용 구절에 기댄다. Eurostat에서 0304는 2025-05 키프로스 1건(030489, 참치가 아닌 냉동 필레, 19,2 t)뿐이다.",
+     "A=EU 법령·명부·통계·DG SANTE 감사보고서, FAO 문서, MIMRA 정부 보고서. RNZ가 적은 「2주」 평가 기간을 DG SANTE 보고서는 2025-12-03~10으로 적는다. B=매체. 부속서 Ⅸ는 2026-09-03 통합본, TRACES NT 명부는 2026-09-25 기준이다. MBJ 행은 기사 전문이 아닌 보도 인용 구절에 기댄다. Eurostat에서 0304는 2025-05 키프로스 1건(030489, 참치가 아닌 냉동 필레, 19,2 t)뿐이다.",
      "",
      "",
      ""
@@ -1101,7 +1107,7 @@
    ],
    "sid": "s12",
    "section": "12 / EUEU는 마셜을 수산물 반입 허용국 목록에 올리지 않았다",
-   "ord": 1282,
+   "ord": 1305,
    "caption": "마셜의 EU 수출 자격 경과 (EU 문서·FAO·MIMRA·매체)",
    "note": "2026년 기사 세 건이 차례로 이어진다. 3월 RNZ 기사에서 MIMRA 국장은 EU 보고서가 아직 오지 않았다고 말했다. 기사는 원격 평가를 인증으로 가는 첫 단계로 소개하고 「It will also lead to in-country inspections by EU authorities at a later date」라고 덧붙인다.",
    "stage": "c06"
@@ -1456,8 +1462,8 @@
    ],
    "rows": [
     [
-     "2026-07 이후 날짜 없음",
-     "EU 감사 결과 회신. 2026-04-16 MIMRA 부국장 「We now await an official reply」(MIJ), 2026-07-01 MIMRA 국장 「they gave us five items to respond to」(Marianas Business Journal 보도 인용). 다섯 항목의 목록과 현지 실사 날짜는 공개되지 않는다"
+     "날짜 없음",
+     "EU 부속서 Ⅸ 등재 결정. DG SANTE 최종보고서 CT-2025-0278이 2026-05-28 게시됐고(권고 다섯 건), 관할청 조치 계획은 2026-05-04 제출됐다. 현지 실사 날짜는 공개된 문서에 없다"
     ],
     [
      "2026-12-31",
@@ -1482,7 +1488,7 @@
    ],
    "sid": "s15",
    "section": "15 / 전략돈은 신조선으로 갔고, 공장 계획은 비용 절감과 판로 확대라는 한 문장이다",
-   "ord": 5903,
+   "ord": 5998,
    "caption": "공장과 선단에 걸린 일정 (EU·WCPFC·MSC·上海开创 연보)",
    "note": "다섯 줄 가운데 공장의 재가동을 정한 날짜는 없다. 반기보가 금액을 적은 휴업이 언제 끝나는지도 공시되지 않는다.",
    "stage": "c08"
@@ -1536,9 +1542,9 @@
      "NOAA SIMP · FDA 시설등록(FEI)"
     ],
     [
-     "EU 원격 평가 결과",
-     "DG SANTE가 마셜 보고서를 게시하지 않았고, 공개 감사계획 7건(2024~2027)에도 마셜이 없다",
-     "DG SANTE audit reports(국가 MH) · MIMRA 연차보고 · TRACES NT MH/FFP 명부"
+     "EU 부속서 Ⅸ 등재 시점과 뭍 가공장의 EU 신청 계획",
+     "DG SANTE 최종보고서(2026-05-28 게시)는 명부 후보를 동결선 2척으로, 뭍 가공장 두 곳을 「currently not intended to be EU-listed」로 적고 이름은 적지 않는다. 등재 결정은 관보에 없다",
+     "EU 관보(규정 (EU) 2021/405 부속서 Ⅸ 개정) · TRACES NT MH/FFP 명부 · MIMRA 연차보고 · 관할청 조치 계획(보고서 부속서)"
     ],
     [
      "두 법인 사이 원어 거래 값",
@@ -1546,14 +1552,14 @@
      "上海开创 2026 연보의 매출채권·원어 이전 주석 · 上证e互动 질의"
     ],
     [
-     "출처: 上海开创(600097) 연보·반기보·공시(A), 마셜 정부(MIMRA) WCPFC 국가보고서(A), FSM Arrangement 협정문(A), UN Comtrade 미국 신고(A), DG SANTE 공개 감사계획(A), TRACES NT(A), MSC 공급자 명부(A). 기준일 2026-09-25. 「청구 경로」는 공개 게시물이 아니라 해당 기관에 요청해야 나오는 기록이다.",
+     "출처: 上海开创(600097) 연보·반기보·공시(A), 마셜 정부(MIMRA) WCPFC 국가보고서(A), FSM Arrangement 협정문(A), UN Comtrade 미국 신고(A), DG SANTE 공개 감사계획과 CT-2025-0278 최종보고서(A), WCPFC 용선 통보 명부(A), TRACES NT(A), MSC 공급자 명부(A). 기준일 2026-09-25. 「청구 경로」는 공개 게시물이 아니라 해당 기관에 요청해야 나오는 기록이다.",
      "",
      ""
     ]
    ],
    "sid": "s16",
    "section": "16 / 남은 물음공시는 휴업 손실의 금액을 적고, 공장이 왜 멈췄는지는 적지 않는다",
-   "ord": 1139,
+   "ord": 1142,
    "caption": "공장 법인에 남은 물음 (上海开创 공시·마셜 정부 보고서·협정문·무역통계)",
    "note": "공장과 입어 사이에는 협정문과 공시가 메우지 않는 빈칸이 있다. FSM Arrangement는 국내 선단 자격을 점수로 매기고, 배 한 척이 최소 25점을 얻어야 한다. 점수표의 한 칸이 「either of the level of government revenue … or the level of on-shore investment」, 곧 정부 수입과 육상 투자 가운데 하나를 고르는 항목이다.",
    "stage": "c08"
@@ -1587,9 +1593,9 @@
      "휴업 사유·인원, 원어 이전가, 정부 협정 조건"
     ],
     [
-     "DG SANTE audit reports(국가 MH) · TRACES NT MH/FFP 명부",
-     "게시 때 · DG SANTE 감사보고서 검색(국가 MH) · TRACES NT 공개 명부",
-     "EU 원격 평가 결과, 승인 시설 등재"
+     "EU 관보(부속서 Ⅸ 개정) · TRACES NT MH/FFP 명부",
+     "게시 때 · EUR-Lex 규정 (EU) 2021/405 통합본 · TRACES NT 공개 명부",
+     "마셜 부속서 등재, 동결선 2척의 승인 시설 등재"
     ],
     [
      "RMI Land Registration Authority 등기",
@@ -1624,7 +1630,7 @@
    ],
    "sid": "s16",
    "section": "16 / 남은 물음공시는 휴업 손실의 금액을 적고, 공장이 왜 멈췄는지는 적지 않는다",
-   "ord": 6358,
+   "ord": 6638,
    "caption": "다음에 볼 문서 (나오는 때와 얻는 길)",
    "note": "선단 6척의 WCPFC 허가는 2026-12-31에 끝난다. 공장이 가공을 멈춘 채 다음 해 허가가 나온다면, 그 자격이 점수표의 어느 칸으로 채워졌는지가 물음으로 남는다.",
    "stage": "c08"
