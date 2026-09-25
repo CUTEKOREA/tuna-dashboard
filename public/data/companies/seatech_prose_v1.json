@@ -1,0 +1,1318 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-seatech-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_prose.py",
+  "설명": "조사보고서 서술을 원문에서 그대로 읽는다. 손으로 옮기지 않는다."
+ },
+ "sections": [
+  {
+   "sid": "s1",
+   "numeral": "01",
+   "label": "개관",
+   "subtitle": "Van Camp's를 만드는 카르타헤나 공장은 영국령 버진아일랜드 회사의 지점이고, IATTC 선박 등록부의 소유자 칸에는 그 이름이 없다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "SEATECH INTERNATIONAL INC.는 영국령 버진아일랜드(BVI)에 본사를 둔 회사의 콜롬비아 지점이다. 카르타헤나 Mamonal km 8의 공장 한 곳에서 Van Camp's 상표 캔참치와 거기에 쓰는 공캔, 냉동 로인, 어분을 만든다. 카르타헤나 상공회의소 등록일은 1989-07-31이고, 회사는 가공을 1991년에 시작했다고 밝힌다.",
+     "ord": 125
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아 회사감독청(Supersociedades)은 이 회사를 「02. SUCURSAL EXTRANJERA」, 곧 외국회사 지점으로 분류하고 본사 소재국을 영국령 버진아일랜드로 적는다. 본사 주소는 원문 철자 그대로 「Edificio Citco, Cayo wickcamn caja postal 1662」다. 콜롬비아 등록부에 올라 있는 것은 지점의 장부이고, 지분은 본사 차원에 있다. 콜롬비아 공개 등록부에 주주도 이사회도 나오지 않는 까닭이다. 지점은 해마다 내는 재무제표 표지에 자회사·관계사·공동기업 투자가 없다고 적는다(「false」, 2016~2025년).",
+     "ord": 346
+    },
+    {
+     "kind": "para",
+     "text": "EU TRACES의 콜롬비아 수출 승인 목록은 시설과 선박을 합쳐 30곳을 싣는다. 그 가운데 Seatech 이름이 붙은 것은 「0023-92 | Seatech International Inc. | Mamonal Km 8 | Cartagena | PP」 한 줄로, 이 공장이다. 회사 누리집은 캔참치 말고도 3피스·2피스 공캔을 스스로 만들고 냉동 로인과 냉동 통참치를 판다고 소개한다(C). 카르타헤나 환경청(EPA Cartagena)이 2026-03-19에 낸 행정행위는 사무동·창고·하역장과 함께 어분 공장을 현장 관찰 구역으로 적었다(A). 라인 수와 생산 능력은 공개되지 않는다.",
+     "ord": 3078
+    },
+    {
+     "kind": "para",
+     "text": "캔 라벨은 제조자를 「Fabricado por: Seatech International Inc, km.8 Mamonal, Cartagena - Colombia」로, 유통자를 Colombina로 적는다(C). Colombina는 2025년 정기공시에서 자신을 40년 넘은 Van Camp's 독점 유통업자로 소개한다(A). 상표는 두 회사 어느 쪽 명의도 아니다. 콜롬비아 산업통상감독청(SIC) 등록 데이터에서 VAN CAMP'S 29류 표장의 권리자는 파나마 법인 ANDEAN TRADING INTERNATIONAL INC.이고, Seatech·Colombina·INEPACA 명의 표장은 없다(A). 식품의약품감시청(INVIMA) 위생등록부에는 Seatech이 만드는 제품 말고도 에콰도르 INEPACA가 만들고 Seatech이 수입자로 오른 등록이 넷 있다. 참치 lomos 캔 두 건과 생선 캔 두 건이고, 토마토소스 생선 캔 라벨에는 「Industria Ecuatoriana」가 찍혀 있다. 미국에서 같은 이름으로 팔리는 캔은 Tri-Union Seafoods 제품이다.",
+     "ord": 3418
+    },
+    {
+     "kind": "para",
+     "text": "배는 공장과 모양이 다르다. IATTC 지역선박등록부의 소유자 칸에는 Seatech 이름이 없다(A). 운항자 칸은 대부분 비어 있고, 콜롬비아 국내 선박·어선 등록부(DIMAR·AUNAP)의 현재 명의는 공개 문서에 나오지 않는다. IATTC에 오른 콜롬비아 기국의 활성 선망선 13척 가운데 12척은 카르타헤나의 두 사무실 주소에 등록된 12개 법인이 한 척씩 갖는다(A). 이 12척의 운반능력 합은 콜롬비아 활성 선망 운반능력의 91,3 %다(계산). 남은 한 척 Doña Raquel은 IATTC에 두 주소가 아닌 다른 주소의 파나마 법인 명의로 올라 있다(A). Seatech 장부의 선박은 2025년 말 3,7억 COP로, 유형자산 1.443,7억 COP의 0,26 %다(A).",
+     "ord": 3977
+    },
+    {
+     "kind": "para",
+     "text": "같은 EU 수출 승인 목록에는 이 배들이 동결선으로 올라 있다. 두 주소의 12척에서 El Dorado가 빠지고 Doña Raquel이 들어간 12척이다. 카르타헤나의 운반선 ORION S도 함께 올라 있다. 목록은 두 주소 묶음에 걸친 8척에 연락 주소 하나를 적는다(A). 회사는 옛 누리집에서 12척을 자기 「proveedor de flota」(선단 공급자)의 배로 소개했다(C). IEc가 Pew 발주로 낸 2023년 보고서는 업계 관계자 말을 빌려 콜롬비아 기국 선망선 10척을 Seatech 한 회사가 지배하고 명의만 여러 파나마 회사에 흩어져 있다고 적었다(B).",
+     "ord": 4386
+    },
+    {
+     "kind": "para",
+     "text": "옛 명의 기록은 문서마다 다르다. IATTC 등록부에서 Bocagrande 사무실 주소에 묶인 여섯 척은 마지막 갱신일이 2017-09-28이고, 그 기록에 지금의 소유 법인이 올라 있다(A). NGO 선박 데이터베이스 TMT는 그 여섯 척 가운데 Marta Lucia R가 2017-04-26부터 2018-01-06까지 Seatech International Inc 명의였다가 Clingham Incorporated로 넘어갔다고 적는다(B). La Liga는 2020년에 국가어선등록부(RNBP) 화면을 들어 13척이 2020-01-10까지 Tuna Atlantic 명의였다고 적었는데(B), Tuna Atlantic Ltda의 상업등록은 2017-06-23에 말소됐다(A). El Espectador는 AUNAP 기록을 근거로 Enterprise가 2018년 Seatech 명의였다가 외국 법인으로 옮겨졌다고 보도했다(B). 회사가 Supersociedades에 낸 정관 목적에서는 2023 회계연도 제출분부터 참치 어획(「Pesca de Atun…」)이 빠지고 가공·포장·판매만 남았다(A).",
+     "ord": 4719
+    },
+    {
+     "kind": "para",
+     "text": "숫자로 보면 콜롬비아 수산가공업에서 가장 큰 회사다. Supersociedades 1만 대 기업 자료에서 이 업종 1위를 2021년부터 해마다 지켰다. 2025년에는 매출이 줄고 영업이익이 적자로 돌아섰다. 재무상태표에는 차입금 행이 없고, 매입채무 및 기타채무(「Cuentas por pagar comerciales y otras cuentas por pagar corrientes」) 한 줄이 부채의 97,5 %다. 그 상대가 원료 공급자인지 본점인지는 공개되지 않는다.",
+     "ord": 5288
+    },
+    {
+     "kind": "para",
+     "text": "EU 통계의 콜롬비아산 캔참치 수입도 크다. 2025년 EU27이 들인 물량의 85,5 %가 이탈리아 몫이었다. 이 값은 나라 단위라 Seatech 한 회사의 수출량과 같지 않다. 바랑키야의 Gralco도 이 품목을 이탈리아 소매 시장에 보낸다(B).",
+     "ord": 5570
+    },
+    {
+     "kind": "para",
+     "text": "등록부가 보여 주는 것은 공장의 승인번호와 배·상표의 명의다. 두 주소의 12개 선박 법인이나 상표권자 Andean Trading과 BVI 회사의 지점 사이에 지분이나 용선·실시 계약이 있는지는 어느 공개 등록부에도 나오지 않는다.",
+     "ord": 5727
+    },
+    {
+     "kind": "para",
+     "text": "회사 누리집의 옛 선단 페이지는 제목과 메뉴 이름이 「Nuestra FLOTA」(우리 선단)였다. 2018년·2024년 웹 보관본에 남은 본문(C): 「Nuestro proveedor de flota contempla 12 embarcaciones atuneras, con una capacidad aproximada de 1000 TM cada una, que nos garantizan el abastecimiento de nuestras necesidades durante todo el año」. 우리 선단 공급자는 척당 약 1.000 TM의 참치 어선 12척을 두고, 그 배들이 한 해 내내 필요한 원료를 대 준다는 뜻이다. 지금 누리집에는 선단 메뉴가 주석으로 가려져 있고 그 페이지도 없다.",
+     "ord": 6006
+    },
+    {
+     "kind": "para",
+     "text": "El Espectador는 노동부가 선박 3척을 봉인하기 3주 전인 2025-09-17 기사에서 회사 입장을 「La empresa ha dicho en múltiples ocasiones」, 곧 회사가 여러 차례 해 온 말이라며 이렇게 옮겼다(C): 「no tiene ninguna relación con la fuerza laboral que pesca el atún ni con los barcos pesqueros, que están registrados a nombre de armadores internacionales」. 참치를 잡는 인력과도, 국제 선주 명의로 등록된 어선과도 관계가 없다는 뜻이다.",
+     "ord": 6411
+    },
+    {
+     "kind": "para",
+     "text": "옛 페이지는 배를 「proveedor」(공급자)의 것으로, 회사 입장은 「armadores internacionales」(국제 선주)의 것으로 적는다. 어느 쪽도 배를 회사 것이라 하지 않았고, 이 점은 IATTC 등록부의 소유자 칸과 맞는다. 갈리는 곳은 거리다. 옛 페이지는 제목에 「Nuestra」(우리)를 달고 그 공급자 앞에도 「Nuestro」를 붙였다. 회사 입장은 관계가 없다고 한다. 봉인을 발표한 노동부 장관은 그 배들을 「al servicio de」 Seatech, 곧 Seatech에 봉사하는 배라고 불렀다(B).",
+     "ord": 6765
+    }
+   ],
+   "stage": "c01"
+  },
+  {
+   "sid": "s2",
+   "numeral": "02",
+   "label": "법인",
+   "subtitle": "본사는 영국령 버진아일랜드에 있고, 콜롬비아 등기는 두 건이며 설립일은 서류마다 다르다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "카르타헤나 「MAMONAL KM 8」에 주소를 둔 Seatech International은 영국령 버진아일랜드(BVI) 회사의 콜롬비아 지점이다. 회사감독청(Supersociedades) 제출서 표지는 법인 유형을 「02. SUCURSAL EXTRANJERA」(외국회사 지점)로 적는다. 본사 소재국 칸에는 2017~2025년 제출분 내내 「863 - VIRGENES - ISLAS (BRITANICAS)」가 찍혀 있다.",
+     "ord": 96
+    },
+    {
+     "kind": "para",
+     "text": "정식 상호는 끝의 「.-」까지 붙은 「SEATECH INTERNATIONAL INC.-」이고, 납세번호(NIT)는 800072556-3이다. 업종 코드는 수산물 가공을 뜻하는 CIIU C1012다. 표지가 적는 본사 주소는 「Edificio Citco, Cayo wickcamn caja postal 1662」이며, 「wickcamn」은 표지에 찍힌 철자 그대로다. 2016년 제출분 하나만 본사 소재국을 「628 - REINO UNIDO」(영국)로 적었고, 이듬해 제출분부터 BVI로 바뀌었다.",
+     "ord": 355
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아 쪽 서류는 두 등록부에 나뉘어 있다. 카르타헤나 상공회의소 등록(RUES)에는 같은 지점의 등록이 두 건 올라 있다. 등록일도 같고 상태도 둘 다 유효(ACTIVA)다. 갈리는 것은 존속기한이다. 한 건은 기한이 2039년, 다른 한 건은 9999-12-31로 적혀 있고, 등기 법정대표는 뒤의 등록에 있다. 등록이 왜 둘인지는 공개 데이터에 나오지 않는다. Supersociedades 표지는 여기에 설립일과 존속기한을 한 벌 더 얹는데, 그 값이 상공회의소 쪽과 맞지 않는다.",
+     "ord": 643
+    },
+    {
+     "kind": "para",
+     "text": "위 표의 날짜 가운데 두 등록부가 함께 확인해 주는 것은 1989년이라는 해다. 상공회의소 등록일은 1989-07-31이고, Supersociedades 표지의 설립일 칸은 같은 해 4월 안에서 날짜가 바뀌었다. 매체는 그 폭을 더 넓힌다. KienyKe는 1988년을 쓰고, Blu Radio는 「llegó al país en 1991」(1991년에 이 나라에 들어왔다)이라고 썼다(B).",
+     "ord": 2774
+    },
+    {
+     "kind": "para",
+     "text": "1991년은 회사가 스스로 밝힌 가공 개시 연도다(C). Blu Radio는 그해 Seatech이 콜롬비아 회사 Atunera del Caribe를 인수하며 들어왔다고 보도했다(B). 그 이름으로 시작하는 법인은 RUES 공개 데이터에 한 건도 없다. 공개 데이터가 옛 종이 등록까지 담는지는 알 수 없어서, 인수 이야기는 보도로만 남는다.",
+     "ord": 3003
+    },
+    {
+     "kind": "para",
+     "text": "본사의 주주와 실소유자는 어느 공개 문서에도 나오지 않는다. BVI 회사 등기는 유료 열람이어서 본사의 설립번호조차 공개된 곳이 없고, ICIJ Offshore Leaks 데이터베이스에도 이 회사 이름은 없다. 지점이라 콜롬비아에는 공개 등기 이사회도 없다. 매체는 등기 법정대표를 에콰도르와 연결된 인물로 보도하지만(B), 지분을 보여 주는 등록 기록은 없다.",
+     "ord": 3204
+    },
+    {
+     "kind": "para",
+     "text": "보도가 등록 문서로 뒷받침하는 것은 본사 소재지까지다. El Tiempo는 2024-01-04 카르타헤나 상공회의소 문서를 인용해 본사를 「edificio Citco, en Road Town Tortola」(토르톨라섬 로드타운의 Citco 빌딩)로 적었다(B).",
+     "ord": 3417
+    },
+    {
+     "kind": "para",
+     "text": "Supersociedades 표지로 보면 Seatech 지점은 자회사·관계사·공동기업에 투자하지 않는다. 표지의 「subsidiarias, asociadas y/o negocios conjuntos? => false」(자회사·관계사·공동기업 투자 여부에 「아니오」라는 뜻)는 2016~2025년 제출분에서 해마다 같다. 대신 등록부에는 Seatech과 사람이나 감사인을 나눠 쓰는 콜롬비아 법인이 셋 있고, 매체가 계열로 묶은 법인이 하나 더 있다.",
+     "ord": 3574
+    },
+    {
+     "kind": "para",
+     "text": "세 법인이 Seatech과 겹치는 자리는 사람과 감사인이다. 옛 Comextun Ltda의 법정대표는 Seatech 등기 법정대표와 같은 사람이고(A), Comextun과 Tuna Atlantic은 청산인도 한 사람이다. Pescatún de Colombia와 Tuna Atlantic은 등기 목적이 배를 다루는 일이고, 외부감사인도 Seatech과 같은 Anaya y Anaya다. 세 법인은 2017~2020년에 말소되거나 청산 절차로 넘어갔다. 이들과 Seatech 사이의 지분이나 계약은 공개 등록부에 나오지 않는다.",
+     "ord": 5094
+    },
+    {
+     "kind": "para",
+     "text": "Atunamar Ltda는 사정이 다르다. 탐사 매체 La Liga Contra el Silencio는 2020년 기사에서 이 회사를 Seatech 계열로 묶었다(B). 그러나 RUES에 오른 Atunamar의 법정대표는 Seatech과 다른 사람이다(A). NGO TMT의 선박 DB는 선박 Marta Lucia R의 운항자를 2019-11-11부터 Atunamar Ltda로 적는다(B). 공개 문서로 말할 수 있는 것은 Atunamar가 한 선박의 운항자로 적힌 회사라는 데까지다.",
+     "ord": 5398
+    },
+    {
+     "kind": "para",
+     "text": "이름이 닮은 법인도 있다. 바랑키야에 2007년 등록된 ATUNES DE COLOMBIA S.A.S.는 헌법재판소 판결 T-526/99가 1998년 노동자들의 계약 상대로 적은 「Atunes de Colombia S.A.」와 별개 법인이다.",
+     "ord": 5681
+    },
+    {
+     "kind": "para",
+     "text": "Seatech은 자유무역지대 입주 회사로도 표시된다. 카르타헤나 산업 자유무역지대를 운영하는 Zofranca는 누리집 「Usuarios Industriales」(산업 사용자) 첫 칸에 Seatech 로고를 올리고 seatechint.com으로 연결해 두었다(B, 운영사의 제3자 표시). 상업 선적 DB와 INVIMA 시설 주소에도 「ZONA FRANCA」가 붙는다(B). 입주 사용자 자격을 준 결의나 자격부여서 원문은 공개되지 않았다.",
+     "ord": 5826
+    },
+    {
+     "kind": "para",
+     "text": "Supersociedades 표지의 정관 목적 칸은 2022-12-31 결산분(2023-01-300442 접수)까지 「Pesca de Atun…」(참치 어획)으로 시작했다. 2023-12-31 결산분(2024-01-374627 접수)부터는 어획이 빠지고 「PREPARACION INDUSTRIAL Y EMPAQUE … CONGELADO O ENLATADO」(산업적 조리와 포장, 냉동 또는 통조림)만 남았다(A). 카르타헤나 환경청(EPA Cartagena)이 2026-03-19 낸 Auto EPA-AUTO-000607-2026은 회사 목적을 여전히 「El objeto social principalmente es la pesca, procesamiento, enlatado…」(주된 목적은 어획·가공·통조림)로 적는다. 이 문장은 환경청이 적은 사업 설명이고, 등기 정관의 문구는 아니다.",
+     "ord": 6181
+    }
+   ],
+   "stage": "c01"
+  },
+  {
+   "sid": "s3",
+   "numeral": "03",
+   "label": "선단",
+   "subtitle": "IATTC 등록부의 소유자 칸에는 Seatech이 없고, 두 주소의 배 11척과 Doña Raquel이 EU 수출 승인 동결선 목록에 올라 있다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "IATTC 지역선박등록부의 소유자 칸에서 Havenwood는 Amanda S 1척의 소유자로 나오지만, Seatech 이름으로 오른 배는 없다(A). 콜롬비아 기국 활성 선망 13척 가운데 12척은 카르타헤나의 사무실 주소 두 곳을 나눠 쓰는 열두 법인이 한 척씩 갖는다(A).",
+     "ord": 128
+    },
+    {
+     "kind": "para",
+     "text": "닮은 이름으로 오른 배는 따로 있다. 소유자 칸에 Inepaca가 든 배는 에콰도르 기국 3척(Lucy·MonteCristi·Tarqui)이고, Pescatun이 든 배는 니카라과의 Pescatun I·Sea Tuna I와 파나마의 Tunapesca, 3척이다(A). 뒤의 3척 소유자는 Pescatun 2 Panama S.A.·Pescatun 3 Panama S.A.·Pescatún Panamá S.A.이다. 이들이 카르타헤나의 Pescatún de Colombia와 같은 법인이라는 문서는 없다. 콜롬비아 기국 배 가운데 이 이름들로 등록된 배는 없다(A). IATTC 등록부의 운항자 칸은 대부분 비어 있고, 콜롬비아 국내 선박·어선 등록부(DIMAR·AUNAP)의 현재 명의는 공개 문서에 나오지 않는다.",
+     "ord": 307
+    },
+    {
+     "kind": "para",
+     "text": "한 주소(A군)는 Bocagrande의 「Edificio Torre Empresarial Protección」 사무실이고, 다른 주소(B군)는 Manga의 「Edificio Twin Bay」 1508호다. 군마다 법인 여섯이 배 여섯을 나눠 갖고, 두 척 이상을 가진 법인은 없다. 등록부에 오른 콜롬비아 기국 선망은 14척이고, 그중 Patricia Lynn은 2024-12-22 침몰해 비활성으로 남았다.",
+     "ord": 717
+    },
+    {
+     "kind": "para",
+     "text": "13번째 활성선 Doña Raquel(구 Cape May, 1982년 건조)은 2024-11 미국에서 콜롬비아로 기국을 옮겼다. 소유자는 파나마의 Tropical Seas Navigation S.A.이고, IATTC 등록 주소가 두 군과 다르다(A). El Tiempo는 2025-12-11 이 배를 「buque de Seatech」(Seatech의 배)라고 보도했다(B). 같은 달 노동부 공식 계정은 이 배의 작업을 봉인하고 Dimar에 출항 저지를 요청했다고 게시했다(정부 게시, 처분서 원문은 공개되지 않았다).",
+     "ord": 956
+    },
+    {
+     "kind": "para",
+     "text": "두 군은 콜롬비아 기국에 들어온 길이 다르다. A군 가운데 네 척은 2004-12-17 같은 날 볼리비아에서 콜롬비아로 기국 변경이 신고됐다. B군 여섯 척은 1993~94년 바누아투에서 옮겨 왔고, 등록 상세는 2021-10-15 하루에 함께 갱신됐다. 열두 척의 평균 선령은 2026년 기준 41,7년이다.",
+     "ord": 3029
+    },
+    {
+     "kind": "para",
+     "text": "두 주소의 배는 콜롬비아 기국 활성 선망 운반능력의 91,3 %를 차지한다. 동태평양 전체 활성 선망에 견주면 4,7 %다.",
+     "ord": 4015
+    },
+    {
+     "kind": "para",
+     "text": "Atuna는 2026-05-05 기사에서 「13 purse seiners … total fish hold volume of 14,590 M/T」라고 적었다. 이 값은 IATTC 어창 용적의 합과 같으니 단위는 톤이 아니라 m³다. 같은 13척의 운반능력은 12.485 t이다.",
+     "ord": 4107
+    },
+    {
+     "kind": "para",
+     "text": "EU 쪽 목록은 이 배들을 다르게 묶는다. EU TRACES의 콜롬비아 수출 승인 목록 30곳 가운데 13곳이 이 배들과 운반선 1척이다(A). IATTC 12척 가운데 El Dorado를 뺀 11척과 Doña Raquel이 동결선(ZV) 12척으로 올라 있고, 카르타헤나의 운반선(RV) ORION S가 한 곳을 더 차지한다. EU 수출 승인 선박 목록은 IATTC의 두 묶음에 걸친 8척에 「Barrio Manga, avenida 3a. No.28-02」라는 한 연락 주소를 적는다(A). 2025-10 노동부가 봉인한 3척도 모두 이 8척에 든다.",
+     "ord": 9773
+    },
+    {
+     "kind": "para",
+     "text": "A군 María Isabel C.와 Doña Raquel 2척의 연락 주소는 「Martínez Martelo Transversal 34 No. 19-85C」다. 이 주소는 청산 중인 선박임대 법인 Tuna Atlantic이 Supersociedades에 낸 본점 주소 「BRR Martinez Martelo Tv 34 19-85」(2015~2017년 제출)와 번지까지 같고, 끝의 「C」만 다르다(A끼리 대조). Dominador I·Enterprise·ORION S의 주소 칸에는 「.」만 적혀 있다. 이 목록에서 Seatech 명의는 Mamonal Km 8 가공공장(0023-92) 한 곳이다(A). 카르타헤나 환경청 문서에는 2026-02-25 「BP ORION」을 출항시키려고 Sandra C를 옮겼다는 회사 진술이 있다. 이름은 ORION S와 맞지만 IMO 번호가 없어 같은 배라는 근거는 없다.",
+     "ord": 10093
+    },
+    {
+     "kind": "para",
+     "text": "장부 쪽도 같다. Seatech이 Supersociedades에 낸 2025-12-31 유형자산 명세(A)에서 선박 항목은 3,7억 COP로, 유형자산 1.443,7억 COP의 0,26 %다. 장부 기준으로 선단은 Seatech의 자산에 들어 있지 않다.",
+     "ord": 12220
+    },
+    {
+     "kind": "para",
+     "text": "옛 명의 기록은 문서마다 다르고, 한 줄의 연대기로 이어지지 않는다. IATTC 등록부에서 A군 여섯 척의 마지막 갱신일은 모두 2017-09-28이고, 그 기록에 이미 지금의 명의 법인이 소유자로 올라 있다(A). 선박 이력을 모은 NGO 데이터베이스와 한 매체는 그 뒤의 다른 명의를 적는다(B).",
+     "ord": 12379
+    },
+    {
+     "kind": "para",
+     "text": "같은 TMT DB에 따르면 Marta Lucia R은 Tuna Atlantic Ltda가 소유·운항하던 시절에 IATTC IUU 목록(2005-12-26~2012)과 ICCAT IUU 목록(2011-08-30~2013-08-04)에 올랐다(B). 이 DB가 적은 Seatech 명의 구간보다 앞선 때다.",
+     "ord": 13761
+    },
+    {
+     "kind": "para",
+     "text": "TMT DB는 이 배의 운항자를 2019-11-11부터 Atunamar Ltda로 적는다(B). La Liga Contra el Silencio는 2020년 Atunamar를 계열로 적었으나(B), 상공회의소 등록상 Atunamar의 대표는 Seatech의 대표와 다르다(A). 문서가 이 회사에 붙인 이름은 운항자까지다.",
+     "ord": 13941
+    },
+    {
+     "kind": "para",
+     "text": "La Liga 2020은 명의 법인 가운데 일곱 곳을 파나마에 세운 역외 법인으로 적었고, 그중 여섯 곳이 2026년 IATTC 등록부에서 A군 여섯 척의 소유자로 그대로 나온다(B 보도와 A 등록부의 대조). 같은 기사는 Marta Lucía R을 두고 「fue propiedad de la compañía Seatech」(Seatech 소유였다)라고 적었다(B).",
+     "ord": 14132
+    },
+    {
+     "kind": "para",
+     "text": "의회 문서와 다른 기록도 두 주소의 배를 Seatech 곁에 둔다. 하원 제2위원회 제안 12호(2025-09-10)는 Havenwood·Malavari·Evansville·Inversiones Holcateca·Lannister를 파나마에 있는 외국 선주로 들어 정부에 물었다(A). 정부 답변은 공개본이 없다. 2020-09-13자 어선 편람은 Amanda S·American Eagle·Cabo de Hornos·El Dorado·Grenadier 옆에 Seatech의 NIT 800072556-3을 적었지만 그 칸이 무엇인지 밝히지 않는다(B).",
+     "ord": 14348
+    },
+    {
+     "kind": "para",
+     "text": "El Espectador는 2024-10-30 INEPACA가 에콰도르 사회보장청(IESS)에 낸 답변을 인용했다(B). 청구 선원들은 Pescatún·Seatech 소속이었고, 두 회사가 El Dominador·Cabo de Hornos·American Eagle·El Rey·Sandra·Grenadier·Sea Gem·Enterprise의 소유자라는 취지다. INEPACA는 자신과는 「nunca se configuró u originó la relación laboral」, 곧 근로관계가 생긴 적이 없다고 답했다. 같은 신문은 선원 1명의 사망을 두고 파나마 해사법원에 Maria Isabel C를 상대로 한 대물(in rem) 청구가 들어갔다고 보도했다(B).",
+     "ord": 14668
+    },
+    {
+     "kind": "para",
+     "text": "회사의 말은 반대 방향을 가리킨다. El Espectador 2025-09-17은 「La empresa ha dicho en múltiples ocasiones que no tiene ninguna relación con la fuerza laboral que pesca el atún ni con los barcos pesqueros, que están registrados a nombre de armadores internacionales」라고 적었다(C, 매체 전언). 회사가 참치를 잡는 인력과도, 국제 선주 명의로 등록된 어선과도 관계가 없다고 여러 차례 말해 왔다는 뜻이다. 노동부의 봉인은 그 3주 뒤였다.",
+     "ord": 15054
+    },
+    {
+     "kind": "para",
+     "text": "① 회사의 옛 누리집(2018·2024 웹 아카이브 보관본)은 제목과 메뉴 이름이 「Nuestra FLOTA」(우리 선단)인 페이지에 「Nuestro proveedor de flota contempla 12 embarcaciones atuneras, con una capacidad aproximada de 1000 TM cada una, que nos garantizan el abastecimiento…」라고 적었다(C). 우리 선단 공급자가 척당 약 1.000 t급 참치선 12척을 두고 원료를 보장해 준다는 뜻이다(C). 지금 누리집 메뉴에서는 선단 항목이 빠졌다(C).",
+     "ord": 15506
+    },
+    {
+     "kind": "para",
+     "text": "② IEc가 Pew 발주로 낸 2023년 보고서는 각주 133에 업계 인사의 말로 「10 Colombian flagged tuna purse seine vessels are controlled by a single company, Seatech, although registered under multiple Panamanian companies」라고 적었다(B). 파나마 여러 법인 명의로 등록된 콜롬비아 기국 선망 10척을 한 회사가 지배한다는 말이다(B).",
+     "ord": 15841
+    },
+    {
+     "kind": "para",
+     "text": "③ La Liga 2020은 「Seatech es la empresa que opera la flota atunera de bandera colombiana」, 곧 콜롬비아 기국 참치 선단을 운항하는 회사가 Seatech이라고 적었다(B).",
+     "ord": 16111
+    },
+    {
+     "kind": "para",
+     "text": "④ 노동부 장관이 2025-10-10 봉인한 세 척은 B군의 Sandra C와 A군의 Amanda S·Nazca로, 두 주소군에 걸친다(A 등록부 대조). 매체는 노동부의 표현을 옮겨 이 배들을 Seatech을 위해 일하는(「al servicio de」) 선박으로 보도했다(B).",
+     "ord": 16257
+    },
+    {
+     "kind": "para",
+     "text": "⑤ El Espectador 2025-09-17은 AUNAP 기록을 들어 Enterprise가 2018년 Seatech 명의였다가 외국 법인으로 넘어갔다고 적었다(B).",
+     "ord": 16425
+    },
+    {
+     "kind": "para",
+     "text": "이 배들이 지금 어디에 어획물을 내리는지는 공개 문서에 나오지 않는다. La Liga 2020은 AUNAP 청장의 확인을 인용해 선단이 에콰도르 만타에 양륙하고 운반선 1척으로 카르타헤나까지 옮긴다고 적었다(B). IEc 2023은 「sell directly to Ecuadorian processors and/or transship their catch to Colombia via Ecuadorian ports」라고 적었다(B). 열두 법인과 Seatech 사이의 지분이나 용선 계약은 어느 공개 등록부에도 올라 있지 않다.",
+     "ord": 16539
+    }
+   ],
+   "stage": "c02"
+  },
+  {
+   "sid": "s4",
+   "numeral": "04",
+   "label": "사람들",
+   "subtitle": "회사는 봉인 전부터 배와 선원이 자기와 관계없다고 해 왔고, 노동부는 배 세 척을 봉인했다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "2025-10-10 콜롬비아 노동부 장관이 선망선 Sandra C·Amanda S·Nazca 세 척에 10일 봉인을 붙였다. 노동부는 60명 넘는 인원 가운데 근로계약과 사회보장을 갖춘 사람이 없었다고 발표했다(B, El Universal·Portafolio). 회사는 봉인 전부터 여러 차례 배와도, 배에서 참치를 잡는 사람들과도 관계가 없다고 말해 왔다(C, 매체 전언, El Espectador 2025-09-17).",
+     "ord": 99
+    },
+    {
+     "kind": "para",
+     "text": "두 쪽은 낱말 하나에서 갈린다. 봉인을 발표한 노동부 장관은 세 척을 Seatech 「al servicio de」 하는 배, 곧 Seatech을 위해 일하는 배라고 불렀다(B, El Universal). 배의 주인이 아니라 배가 누구의 일을 하느냐를 가리키는 말이다. 회사 쪽 말은 봉인 3주 전 El Espectador(2025-09-17)가 「La empresa ha dicho en múltiples ocasiones」, 곧 회사가 여러 차례 해 온 말이라며 이렇게 옮겼다. 「no tiene ninguna relación con la fuerza laboral que pesca el atún ni con los barcos pesqueros, que están registrados a nombre de armadores internacionales」. 참치를 잡는 인력과도, 국제 선주 이름으로 등록된 어선과도 관계가 없다는 뜻이다(C, 매체 전언). 회사 성명 원문은 공개되지 않았고, Colombia en Cifras가 2025-10 봉인 기사에서 같은 말을 다시 전했다.",
+     "ord": 359
+    },
+    {
+     "kind": "para",
+     "text": "회사 말의 뒷부분은 IATTC 등록부의 소유자 칸과 맞는다. IATTC 등록부에서 Sandra C의 소유자는 카르타헤나 Manga 지구 Twin Bay 건물에 주소를 둔 Palmira다. Amanda S와 Nazca의 소유자는 Bocagrande의 Torre Empresarial Protección 건물에 주소를 둔 Havenwood와 Namawak이다. 두 건물에는 각각 여섯 법인이 주소를 두고, 법인마다 선망선 한 척을 갖는다(A). 소유자명 「Seatech」으로 찾으면 나오는 배가 없다(A).",
+     "ord": 922
+    },
+    {
+     "kind": "para",
+     "text": "노동부가 문제 삼은 것은 선원의 계약과 사회보장이다. 기업·인권 자료센터 BHRRC의 요약(2025-10-15, B)은 급여를 준 곳을 인력공급업체 Logimar로 적었다. Sandra C 승선원의 국적은 에콰도르·멕시코·포르투갈 세 나라였고, 에콰도르 사람이 가장 많았다.",
+     "ord": 1214
+    },
+    {
+     "kind": "para",
+     "text": "에콰도르 쪽 문서는 배의 주인을 다르게 적었다. INEPACA는 에콰도르 사회보장청(IESS)에 낸 답변에서 청구 선원들이 Pescatún de Colombia와 Seatech 소속이었고 자기와는 근로관계가 없었다고 적었다(B, El Espectador 2024-10-30). 같은 답변은 El Dominador·Sandra 등 여러 배의 소유자도 그 두 회사로 적었다. 선원의 소속으로 적힌 Pescatún de Colombia는 선박 매매를 목적으로 1993년 설립돼 2020-01-21 말소된 법인이다(A).",
+     "ord": 1378
+    },
+    {
+     "kind": "para",
+     "text": "2024-12에는 에콰도르인 전 선원 196명이 사회보장 인정을 요구하며 소송을 냈다는 보도가 나왔다(B, El Espectador). 법원 이름과 사건번호, 결과는 공개되지 않았다.",
+     "ord": 1676
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아에서 회사는 배가 국제 선주의 것이라 했고, 에콰도르에서 INEPACA는 배가 Pescatún과 Seatech의 것이라 했다. IATTC 등록부의 소유자 칸에는 Seatech 이름이 없다. 옛 명의 기록은 문서마다 다르다. TMT 선박 DB는 Marta Lucia R가 2017-04-26부터 2018-01-06까지 Seatech International Inc 명의였다고 적는다(B). IATTC 등록부는 같은 배가 2017-09-28 마지막 갱신 때 이미 지금 명의를 가진 법인 Clingham 소유였다고 적는다(A). El Espectador(2025-09-17, B)는 전날 부두에서 불이 난 선망선 Enterprise가 AUNAP 기록상 2018년 Seatech 명의였다가 외국 법인으로 넘어갔다고 보도했다.",
+     "ord": 1789
+    },
+    {
+     "kind": "para",
+     "text": "공장 노동자의 기록에도 다른 법인이 끼어든다. 1998년에는 관계 법인과 맺은 새 근로계약이, 2015년에는 청소 도급사가 그 자리에 있었다. 기록은 1998년 헌법재판소 사건에서 2026년 환경청 문서까지 이어진다. 판결과 정부 게시, 매체 보도, 노조 주장이 섞여 있어 줄마다 등급이 다르다.",
+     "ord": 2205
+    },
+    {
+     "kind": "para",
+     "text": "1999-07-23 T-526/99에서 회사가 노조 창립 조합원 일부에게 탈퇴를 압박했다고 판단한 곳은 2심인 카르타헤나 고등법원이다. 판결문은 2심 판단을 「ha venido presionando a algunas de las personas fundadoras del sindicato … para que renunciaran a él」라고 옮겼다. 노조를 만든 사람 몇에게 탈퇴하라고 압박해 왔다는 뜻이다. 2심은 1심의 압박 중지 명령을 유지하고, 1심이 함께 내린 관계사 계약 무효·복직 명령은 취소했다. 헌법재판소는 이 판결을 확정했다(CONFIRMAR, A).",
+     "ord": 4960
+    },
+    {
+     "kind": "para",
+     "text": "같은 판결에는 반대쪽 사실도 적혀 있다. 27명이 노조를 만들었다는 것은 청구인의 주장이고, 노동부 볼리바르 지청은 창립 의사록의 서명이 모자란다며 노조 등록을 거부했다. 탈퇴한 6명은 1998-10 조정조서에 자발적으로 퇴사했다고 적었다(A).",
+     "ord": 5291
+    },
+    {
+     "kind": "para",
+     "text": "1998-08-25 노동자들은 Pescatún de Colombia S.A.·Atunes de Colombia S.A.와 새 계약을 맺었다. 1심이 서증으로 본 문서 가운데 「PESCATUN DE COLOMBIA S.A. autoriza a SEATCH INTERNATIONAL INC. para que cancele la nómina …」가 있다. Pescatún이 급여 지급을 Seatech에 맡긴다는 내용이다. 두 회사가 급여를 함께 처리했다는 데까지가 판결에 있고, 지분 관계는 어느 공개 문서에도 나오지 않는다. 노동부는 세 회사(Seatech·Atunes de Colombia·Pescatún)의 기업 단일성(unidad de empresa) 심사도, 그 신청도 없다고 법원에 회신했다(A). 판결 속 Atunes de Colombia S.A.는 2007년 바랑키야에 등록된 ATUNES DE COLOMBIA S.A.S.와 다른 법인이다.",
+     "ord": 5439
+    },
+    {
+     "kind": "para",
+     "text": "2015-10-30부터 11-03까지 공장을 점거한 사람들은 청소 도급사 Atiempo Servicios S.A.S.가 고용한 노동자였다. Seatech은 이 사건에서 그들과 고용 관계가 없다고 답변했다. 헌법재판소는 2018-02-27 T-071/18에서 청구를 부적법(improcedente)으로 보았고, Seatech의 책임은 판단하지 않았다(A).",
+     "ord": 5925
+    },
+    {
+     "kind": "para",
+     "text": "노조 쪽 글은 같은 구조를 겨냥한다. 2011년 노조 위원장은 공장 인력 대부분이 회사와 직접 정규 계약을 맺지 않았다고 주장했다. 2016년 노조 SINALTRAINAL 성명은 환자 해고 허가 신청과 직업병, 초과근로, 불법 파견 제재를 주장했다. 둘 다 1차 원문이 공개되지 않은 노조 주장이다(C′).",
+     "ord": 6134
+    },
+    {
+     "kind": "para",
+     "text": "2023-12 노동부가 공개한 제재 절차 8건 가운데 5건은 도급사 A Tiempo 몫이다(B, Portafolio 2023-12-28). 금액 합계는 진행 중인 절차를 더한 값이고, 확정된 부과액이 아니다. 회사는 「rechaza tajantemente las afirmaciones sin fundamento」, 근거 없는 주장을 단호히 거부한다는 성명으로 답했다(C). 같은 성명에서 회사는 「sus 1.800 colaboradores」를 내세웠고, 2026년 환경청 문서에는 회사가 밝힌 인원이 「2000 empleados」로 적혀 있다(C). 공식 인원 통계는 공개되지 않는다.",
+     "ord": 6316
+    },
+    {
+     "kind": "para",
+     "text": "노조는 하나가 아니다. 2026-01-16 El Universal 칼럼은 이 공장에 노조 32개와 노총 3곳이 있다고 적었다(B).",
+     "ord": 6655
+    },
+    {
+     "kind": "para",
+     "text": "2025-10-11 노동부 장관은 X에 내무부 인신매매 담당 부서가 2025-07부터 「investiga el caso #Seatech por presunta trata de personas con fines de trabajo」라고 올렸다. 노동 목적 인신매매 혐의로 Seatech 사건을 조사한다는 뜻이다. 조사 착수를 알린 게시이고, 2026-09-25까지 결과나 기소는 공개되지 않았다.",
+     "ord": 6739
+    },
+    {
+     "kind": "para",
+     "text": "2025-12-10~11에는 Doña Raquel이 멈췄다. IATTC 콜롬비아 기국 활성 선망선 가운데 두 건물 주소 밖에 있는 배로, 2024-11 미국에서 콜롬비아 기국으로 옮겨 왔고 소유자는 파나마의 Tropical Seas Navigation S.A.다(A). 노동부 공식 계정은 「Se impusieron sellos para paralizar actividades del Buque Doña Raquel … fue trasladado a la Dimar para impedir su zarpe」라고 적었다(A-). 작업을 멈추는 봉인을 붙였고, 출항을 막도록 사건을 해양청(Dimar)에 넘겼다는 뜻이다. El Tiempo(2025-12-11, B)는 이 배를 「buque de Seatech」라 불렀다. 같은 기사는 배가 Seatech 시설 안에 있었고 서류 없는 불꽃류가 나왔으며 노동부가 제재 절차를 개시했다고 보도했다. El Colombiano는 2025-12 점검에서 창고의 폭발물과 작업장 고온, 산업안전 위반을 적었다(B).",
+     "ord": 6970
+    },
+    {
+     "kind": "para",
+     "text": "Sandra C는 이듬해 2월 환경청 문서에 다시 나온다. 2026-02-25 Mamonal 부두 구역에서 냉매 암모니아가 샜고, 카르타헤나 환경청(EPA Cartagena)은 2026-03-19 Auto에서 이 누출이 법정 기한 안에 공식 경로로 보고되지 않았다고 적었다(A). 같은 문서에 실린 회사 산업안전 책임자의 진술로는, 오후 1시 20분쯤 BP ORION을 내보내려고 BP SANDRA C를 옮기다 침전물이 밸브를 막았다. 그는 그 배를 「sellada por parte del ministerio desde hace 4 meses」, 곧 부처(ministerio)가 넉 달째 봉인해 둔 배라고 불렀고, 어창에는 냉동 생선이 들어 있었다(C, EPA 기록). 노동부가 2025-10에 발표한 봉인 기간은 10일이었다. 봉인을 늘리거나 새로 붙인 처분서는 공개되지 않았고, 노동부 장관이 2026-02-26 지시한 감독(B, Caracol)의 결과도 나오지 않았다.",
+     "ord": 7512
+    },
+    {
+     "kind": "para",
+     "text": "배에서 일한 선원을 누가 고용했느냐를 두고 노동부 발표와 회사 성명, INEPACA 답변서가 저마다 다르게 답했다. 그 물음을 가른 판결이나 처분서는 2026-09-25까지 공개되지 않았다.",
+     "ord": 8013
+    }
+   ],
+   "stage": "c02"
+  },
+  {
+   "sid": "s5",
+   "numeral": "05",
+   "label": "공장",
+   "subtitle": "Mamonal 공장에는 천연가스 보일러 세 기와 레토르트 배기구 열 개, 하루 21 t짜리 어분 공장이 있다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "EU TRACES의 콜롬비아 수산물(FFP) 승인 시설 목록 30곳 가운데 Seatech 이름이 붙은 줄은 「0023-92 | Seatech International Inc. | Mamonal Km 8 | Cartagena | PP」 하나다(A, 목록 갱신 2020-02-07). 콜롬비아 안의 Seatech 시설은 카르타헤나 Mamonal 도로 8 km 지점에 있는 이 가공시설(PP) 한 곳이다. 같은 목록에 바랑키야의 Gralco가 0012-00으로 올라 있고, Atunec은 30곳에 없다(A).",
+     "ord": 108
+    },
+    {
+     "kind": "para",
+     "text": "주소에는 자유무역지대가 붙는다. INVIMA 시설란과 상업 선적 DB의 수하인 주소에 「ZONA FRANCA」가 따라오고, 카르타헤나 산업 자유무역지대 운영사 Zofranca는 누리집 산업사용자 칸 맨 앞에 Seatech 로고를 걸어 두었다(B). 입주 자격을 준 사용자운영자의 자격부여서(calificación) 원문은 공개되지 않았다.",
+     "ord": 413
+    },
+    {
+     "kind": "para",
+     "text": "설비를 가장 자세히 적은 공개 문서는 카르타헤나 환경청(EPA Cartagena)의 Auto EPA-AUTO-000607-2026(2026-03-19)이다(A). 2026-02-25 암모니아 누출 신고를 받고 2026-03-03 공장을 찾은 기록으로, 사무동·어분 공장·야적장·창고·하역장을 관찰 구역으로 적었다. 보일러 용량과 배출 측정값, 레토르트 배기구 수, 어분 공장 능력이 이 문서에서 나온다. 직원 수처럼 회사가 방문 때 밝힌 말도 같은 문서에 실려 있다.",
+     "ord": 613
+    },
+    {
+     "kind": "para",
+     "text": "회사 연혁의 「un área superior a los 18.000 metros cuadrados」는 가공 건물을 세운 면적이다(C). 공장이 앉은 땅의 넓이는 연혁에도 다른 공개 문서에도 없다. 장부에는 토지 388,3억 COP가 올라 있으나, 그 땅이 공장 부지인지는 명세에 나오지 않는다(A). 연혁은 초대형 선망선이 댈 수 있게 산호암을 준설하고 부두를 지었다고 적었고, 옛 누리집의 선단 페이지는 그 부두에서 네 척을 한꺼번에 하역할 수 있다고 적었다(C). 재무제표에는 재평가잉여금 280,4억 COP가 있다(A). 유형자산 명세는 토지와 건물을 재평가로, 기계를 원가로 잰다고 적었다(A).",
+     "ord": 3918
+    },
+    {
+     "kind": "para",
+     "text": "캔 라인이 몇 개이고 분당 몇 캔을 만드는지는 어느 공개 문서에도 없다. 누리집이 밝히는 것은 제품 범위다. 캔참치와 냉동 로인(프리쿡·생 블록·스테이크), 냉동 통참치를 만들고, 빈 캔도 3피스 여섯 규격과 2피스 두 규격으로 직접 찍는다고 적었다(C).",
+     "ord": 4266
+    },
+    {
+     "kind": "para",
+     "text": "처리 물량은 업계단체 Analdex가 2026-04-24 낸 글에 한 번 나온다. 「volúmenes cercanos a las 45.000 toneladas anuales」, 곧 한 해 4만 5천 t 안팎이라는 문장이다(C). 회사 자료를 옮겨 적은 글로 보인다. 그 숫자가 원어 기준인지 제품 기준인지, 능력인지 실적인지는 글에 적혀 있지 않다.",
+     "ord": 4420
+    },
+    {
+     "kind": "para",
+     "text": "EPA 문서가 능력을 숫자로 적은 설비는 어분 공장이다. 원문 「capacidad de producción de 21ton/día de harina y aprox 480ton/mes de harina y 2ton/día de aceite」는 어분을 하루 21 t, 한 달 약 480 t 만들고 어유를 하루 2 t 뽑는다는 뜻이다(A 문서·C 내용). 건조기는 네 기(70 psi·140 °C)이고, 어분 공장에만 고정 배출원이 일곱 곳 있다. 참치 캔을 하루에 얼마나 만드는지는 같은 문서에 없다.",
+     "ord": 4626
+    },
+    {
+     "kind": "para",
+     "text": "증기는 천연가스 보일러 세 기가 댄다. 2023-01-17 측정에서 세 기의 NOx 배출은 기준 350 mg/m³를 크게 밑돌았다(A). 레토르트는 밀봉한 캔을 고압 증기로 살균하는 솥이다. EPA는 보일러 포화증기를 쓰는 레토르트 배기구를 열 개 셌다. EPA가 센 것은 배기구다. 레토르트가 몇 대인지, 캔 라인과 어떻게 이어지는지는 문서에 없다. 같은 목록에 발전기 배기 두 개와 라벨 인쇄 작업장 굴뚝 네 개가 있다.",
+     "ord": 4915
+    },
+    {
+     "kind": "para",
+     "text": "폐수는 공장 안 폐수처리장(PTAR)을 거친다. EPA 문서는 방류 허가로 CARDIQUE 결의 0667/2023을, 환경관리계획으로 CARDIQUE 결의 0160/2001을 인용했다(A). 서류가 늦은 기록도 같은 문서에 있다. 2024년분 RUA 등록은 마감을 넘겨 2025-03-17에 이뤄졌고, PCB 인벤토리 등록(2023-03-07)도 보고가 늦었다고 EPA는 적었다.",
+     "ord": 5163
+    },
+    {
+     "kind": "para",
+     "text": "직원 수는 문서마다 다르다. Supersociedades 공개 데이터셋과 제출서 표지에는 인원 칸이 없다(A). EPA 문서의 「2000 empleados」는 회사가 방문 때 밝힌 값이고, 회사는 2023-12 성명에서 「sus 1.800 colaboradores」라고 적었다(C).",
+     "ord": 5386
+    },
+    {
+     "kind": "para",
+     "text": "설비에 들어간 돈은 유형자산으로만 드러난다. 유형자산은 2023년 1.166,6억 COP에서 2025년 1.443,7억 COP로 늘었고, 2025년 말 총자산의 24,7 %다(A, 비율은 계산). 2024년 한 해 취득액은 219,0억 COP였다(A). 2025년 말 명세에서 가장 큰 계정은 기계 703,3억 COP이고, 선박은 3,7억 COP로 유형자산의 0,26 %다(A). 장부 기준으로는 선단이 이 회사 자산에 들어 있지 않다. 2024년 제출본은 계정 구분이 달라 해마다 견줄 수 없다. 2018년 이후 매체와 업계단체 글에 증설이나 새 공장, 인수 소식은 나오지 않고, 경영진이 이름을 걸고 투자를 밝힌 발언도 없다. 늘어난 돈이 캔 라인으로 갔는지 어분 공장이나 부두로 갔는지는 공개된 어느 숫자로도 가릴 수 없다.",
+     "ord": 5555
+    },
+    {
+     "kind": "para",
+     "text": "EPA 문서의 확인 문장은 「se constató la ocurrencia de una contingencia asociada a la liberación de amoníaco en el área portuaria, la cual, si bien fue controlada de manera inmediata según lo manifestado por la empresa, no fue reportada a través de los canales oficiales dentro del término legal」이다. 항만 구역에서 암모니아가 새는 사고가 있었고, 회사 말로는 곧바로 통제됐지만 법정 기한 안에 공식 경로로 보고되지 않았다는 뜻이다(A). 회사 산업안전 책임자가 밝힌 경위는 이렇다. 오후 1시 20분쯤 BP ORION을 내보내려고 BP SANDRA C를 옮기다가 침전물이 밸브를 막아 냉매 암모니아가 샜다. EU 수출 승인 선박 목록에 카르타헤나의 운반선 ORION S가 있어 이름은 맞지만, IMO 번호가 없어 같은 배인지는 목록으로 가릴 수 없다(A). 회사는 BP SANDRA C를 「sellada por parte del ministerio desde hace 4 meses」, 곧 부처(ministerio)가 넉 달째 봉인해 둔 배라고 설명했다(C, EPA 기록). 노동부가 2025-10-10 이 배를 봉인한 지 넉 달쯤 뒤다.",
+     "ord": 6079
+    },
+    {
+     "kind": "para",
+     "text": "처분은 시정과 자료 제출 요구다. 과징금은 매기지 않았고, 따르지 않으면 제재 절차를 열겠다고 경고했다. 불복 절차가 없는 중간 처분이다(A). EPA는 같은 문서에 다른 지적도 적었다. 어분 공정의 가스·악취를 처리할 후연소실이 없어 결의 909/2008 제36~38조를 지키지 않았다. 폐수처리장에는 격납 설비가 없고 세척수가 섞여 든다. 주방 사이펀 물은 우수로를 거쳐 만(灣)으로 곧장 흘러 나간다. 나무 한 그루는 허가 없이 베였다. 어분 원료(scrap)를 밖에 두어 썩히며 악취를 낸 일은 2025년 점검 때도 지적됐다(A). 노동부 장관도 2026-02-26 같은 누출 신고로 감독에 들어갔다고 Caracol이 전했으나, 결과는 공개되지 않았다(B).",
+     "ord": 6794
+    }
+   ],
+   "stage": "c03"
+  },
+  {
+   "sid": "s6",
+   "numeral": "06",
+   "label": "원료",
+   "subtitle": "원어는 콜롬비아 배가 잡아 에콰도르 항구를 거친다는 보도가 있고, 콜롬비아의 냉동 참치 수입은 두 해 사이 1,65배가 됐다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Seatech의 공장은 카리브해 쪽 카르타헤나 Mamonal km 8에 있다. 원어를 댄다고 보도된 콜롬비아 기국 선망선은 동태평양에서 조업한다(B). 두 바다 사이에서 고기가 어느 항구를 거치는지 적은 문서는 2020년 보도와 2023년 교역 보고서 두 건이다. 둘 다 에콰도르 항구를 가리킨다.",
+     "ord": 117
+    },
+    {
+     "kind": "para",
+     "text": "2020년 탐사보도 매체 La Liga Contra el Silencio는 익명을 요청한 소식통의 말을 빌려 「Una es de bandera colombiana (la flota de Seatech) y desembarca en Manta, Ecuador. De allí se envía luego el cargamento a su planta en Cartagena en un solo barco」라고 적었다(B). 콜롬비아 기국 선단이 에콰도르 만타에 어획물을 부리고, 거기서 운반선 한 척에 실어 카르타헤나 공장으로 보낸다는 뜻이다. 기사는 당시 콜롬비아 수산당국 AUNAP의 청장도 이 경로를 확인했다고 덧붙였다. 청장의 확인은 기사가 전한 말이다.",
+     "ord": 307
+    },
+    {
+     "kind": "para",
+     "text": "IEc(Industrial Economics)가 Pew의 발주를 받아 낸 2023년 보고서는 각주 133에 업계인의 전언을 옮겼다. 「10 Colombian flagged tuna purse seine vessels are controlled by a single company, Seatech, although registered under multiple Panamanian companies」, 곧 콜롬비아 기국 선망선 10척을 Seatech 한 회사가 지배하고 등록은 여러 파나마 회사 명의로 돼 있다는 말이다(B). 같은 각주는 이 배들이 「sell directly to Ecuadorian processors and/or transship their catch to Colombia via Ecuadorian ports」라고 이어 간다. 에콰도르 가공업체에 바로 팔거나, 에콰도르 항구에서 옮겨 실어 콜롬비아로 보낸다는 뜻이다(B).",
+     "ord": 686
+    },
+    {
+     "kind": "para",
+     "text": "두 문서가 그린 길은 절반만 겹친다. 에콰도르 항구를 거쳐 콜롬비아로 가는 길은 양쪽에 나온다. 에콰도르 가공업체에 바로 파는 길은 IEc에만 있고, 그 고기는 카르타헤나 공장에 닿지 않는다. 척수도 다르다. IEc는 10척이라 적었고, IATTC 등록부에서 두 주소의 12개 법인이 한 척씩 갖는 배는 12척이다(A).",
+     "ord": 1169
+    },
+    {
+     "kind": "para",
+     "text": "회사 쪽 문서는 다른 장면을 적는다. 2018년과 2024년 웹 아카이브에 남은 누리집의 옛 「Nuestra FLOTA」(우리 선단) 페이지는 공장에 붙은 약 120 m 부두에서 배 네 척을 한꺼번에 부릴 수 있고 냉동창고가 약 6.500 TM이라고 적었다(C). 같은 페이지의 「Nuestro proveedor de flota contempla 12 embarcaciones atuneras, con una capacidad aproximada de 1000 TM cada una, que nos garantizan el abastecimiento」는 회사의 선단 공급자가 척당 약 1.000 TM짜리 참치선 12척을 두고, 그 배들이 원료 공급을 보장해 준다는 말이다(C). 지금 누리집에서는 그 페이지가 내려갔다.",
+     "ord": 1359
+    },
+    {
+     "kind": "para",
+     "text": "배가 공장 쪽 항만에 있었다는 기록도 있다. El Tiempo는 2025-12-11 Seatech 시설 안에 있던 Doña Raquel호의 출항이 멈추고 제재 절차가 열렸다고 보도했다(B). Doña Raquel은 두 주소와 다른 파나마 법인 명의의 13번째 활성선이다(A). 노동부가 2025-10-10 발표한 Sandra C 등 3척의 봉인 기간은 10일이었다(B). 카르타헤나 환경청(EPA Cartagena)의 2026-03-19 결정문에는 2026-02-25 사고 때 회사 산업안전 책임자의 진술이 실렸다. 다른 배를 내보내려고 「sellada por parte del ministerio desde hace 4 meses」, 곧 부처(ministerio) 봉인으로 넉 달째 묶인 BP SANDRA C를 옮기다가 냉매 암모니아가 샜고, 그 배의 어창에는 냉동 생선이 들어 있었다는 내용이다(A 문서, 회사 진술). Sandra C는 두 주소 12척 가운데 한 척이다. 두 기록은 배가 그 자리에 있었다는 데서 그치고, 거기서 어획물을 부렸는지는 적지 않는다.",
+     "ord": 1772
+    },
+    {
+     "kind": "para",
+     "text": "지금의 하역지는 문서마다 다르다. 2020년 보도는 만타 하역과 운반선을, 2023년 보고서는 에콰도르 가공업체 판매와 에콰도르 항구 환적을, 회사의 옛 누리집은 공장 부두의 하역 능력을 적는다. 최근 하역을 배와 항구 단위로 적은 기록은 공개되지 않는다.",
+     "ord": 2324
+    },
+    {
+     "kind": "para",
+     "text": "물량은 나라 단위 통계 두 가지로 잡힌다. IATTC는 기국·어구별 어획을 추정하고, UN Comtrade는 콜롬비아가 신고한 냉동 통참치(HS 0303.41~49) 수입을 싣는다. 두 주소의 12척이 콜롬비아 활성 선망 운반능력의 91,3 %를 차지하지만(계산), IATTC 추정은 배나 회사 단위로 나오지 않는다. 2024년 콜롬비아 기국 선망 어획은 동태평양 선망 어획의 4,36 %였다(계산).",
+     "ord": 2478
+    },
+    {
+     "kind": "para",
+     "text": "두 칸은 세는 방식이 다르다. 어획은 배의 기국으로 세고, 수입은 국경을 넘은 화물로 센다. 콜롬비아 기국 선망선이 잡아 에콰도르 항구를 거쳐 들어온 고기가 수입 칸에 잡히는지는 세관 통계만으로 가를 수 없다. 2024년 기국 어획은 가다랑어가 대부분이었다.",
+     "ord": 3437
+    },
+    {
+     "kind": "para",
+     "text": "수입은 2023년 11.192 t에서 2025년 18.519 t가 됐다. 두 해 연속 늘었고, 뒤 해의 증가 폭이 더 컸다. 2025년 냉동 가다랑어 수입에서는 세 상대국이 앞선다.",
+     "ord": 3592
+    },
+    {
+     "kind": "para",
+     "text": "원료가 어디서 왔는지는 EU 관세와 이어진다. EU·콜롬비아 협정 부속서 II는 제16류 제품에 「all the materials of Chapter 3 used are wholly obtained」, 곧 쓰인 제3류 재료가 완전생산품이기를 요구한다(A). 바다에서 잡은 고기가 완전생산품이 되려면 그 배의 기국·등록이 EU나 서명 안데스국이어야 한다. 배를 가진 법인도 본점과 주된 영업소를 EU나 서명 안데스국에 두고 지분 50 % 이상 조건을 채워야 한다(A). 이 소유 조건은 파나마 등과 누적할 수 있다(선언 각주 1, A). 통관 통계의 상대국 칸은 그 조건을 따질 배를 적지 않는다.",
+     "ord": 4181
+    },
+    {
+     "kind": "para",
+     "text": "만타에는 에콰도르 기국 선망선도 있다. IATTC 등록부는 Lucy·MonteCristi·Tarqui 세 척의 소유자를 만타의 INEPACA로 적는다. 운반능력은 셋을 합쳐 989 t다(A, 계산). 법인도 기국도 달라서 이 세 척은 두 주소 12척의 운반능력 11.396 t에 들어가지 않는다. INVIMA 등록부가 INEPACA와 Seatech을 함께 적는 자리는 INEPACA가 만들고 Seatech이 수입자로 올라 있는 캔 네 건이다(A). 그중 두 건은 참치 로모스로, 물 담금은 2025-08-15에 갱신됐고 기름 담금은 2025-07-17에 새로 등록됐다(A). 등록부가 두 회사를 잇는 물건은 원어가 아니라 완제품 캔이다.",
+     "ord": 4531
+    },
+    {
+     "kind": "para",
+     "text": "원료 달력에는 금어기가 있다. Atuna는 2026년 동태평양 선망 1차 금어기를 2026-08-06부터 10-08까지 64일로 적었고, 예전에는 72일이었다고 전했다(B). 콜롬비아 기국 선망선이 어느 금어기에 쉬는지, 쉬는 동안 카르타헤나의 라인을 어떤 원료가 채우는지는 공개되지 않는다.",
+     "ord": 4898
+    }
+   ],
+   "stage": "c03"
+  },
+  {
+   "sid": "s7",
+   "numeral": "07",
+   "label": "제품",
+   "subtitle": "캔 라벨은 Seatech을 제조자로, Colombina를 유통자로 적고, 생선 캔 하나는 에콰도르 제품이다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "콜롬비아 식품의약품감시청(INVIMA) 위생등록부(2026-09-16 갱신)에서 등록 보유자(titular)가 Seatech International Inc.인 유효(Vigente) 번호는 17건이다. 17건의 등록 방식은 「FABRICAR Y VENDER」로, 보유자가 직접 만들어 판다는 뜻이다. 16건이 캔·조리 참치이고, 나머지 1건은 냉동 생 로인(RSA-0016967-2021, 만료 2026-12-30)이다.",
+     "ord": 107
+    },
+    {
+     "kind": "para",
+     "text": "소매점에 올라온 Van Camp's 참치 라벨 10종은 같은 두 줄을 싣는다. 「Fabricado por: Seatech International Inc, km.8 Mamonal, Cartagena - Colombia」는 카르타헤나 Mamonal km 8의 Seatech이 만들었다는 말이고, 「Distribuido por: Distribuidora Colombina Ltda y/o Colombina S.A. … Cali」는 칼리의 Colombina가 유통한다는 뜻이다. 라벨은 회사가 스스로 적은 표시(C)다. 등록부의 제조자(FABRICANTE) 칸에도 같은 이름이 올라 있다(A).",
+     "ord": 366
+    },
+    {
+     "kind": "para",
+     "text": "올리브유 lomos 캔 같은 라벨의 뒷면에는 AIDCP-APICD 「Dolphin Safe」 도안과 Kosher 표시, 「Hecho por Manos Colombianas」(콜롬비아 사람의 손으로 만들었다는 뜻)가 함께 찍혀 있다. 회사 누리집은 Van Camp's 전 품목에 ICONTEC 품질마크를 붙인다고 표시한다(C). Dolphin Safe 표시를 운영하는 또 다른 기관 EII의 명부(2026-09-24판, A)에서 콜롬비아 업체는 가공업체 Gralco 한 곳이고, Seatech·Van Camp 이름은 없다.",
+     "ord": 706
+    },
+    {
+     "kind": "para",
+     "text": "유통자 쪽 공시도 같은 역할을 적는다. Colombina는 2025 정기보고(A)에서 자신을 「Colombina es el distribuidor exclusivo en Colombia de la marca Van Camp's desde hace más de 40 años」라고 소개한다. 40년 넘게 콜롬비아에서 Van Camp's를 독점 유통해 왔다는 뜻이다. Colombina는 이 사업을 대표 취급(Representados) 사업군에 넣는다. 직접 만들지 않고 제3자에게서 사서 파는 품목을 묶는 구분이다. 그 보고서에는 Seatech 이름이 나오지 않는다.",
+     "ord": 1008
+    },
+    {
+     "kind": "para",
+     "text": "160 g 캔 라벨의 무게 표기는 「PESO NETO:160g PESO DRENADO:104g PORCIONES:2」다. 순중량 160 g 가운데 담금액을 뺀 고형량이 104 g으로 65 %(계산)이다. 두 번 먹을 양으로 적혀 있다. 소매점 온라인 목록도 물·해바라기유·올리브유 담금 160 g 캔의 고형량을 104 g으로 적는다(B). 원재료 칸에서 생선을 가리키는 말은 「ATÚN」(참치) 하나다. 가다랑어인지 황다랑어인지 라벨은 밝히지 않는다.",
+     "ord": 873149
+    },
+    {
+     "kind": "para",
+     "text": "라벨의 「Desde 1949」(1949년부터)는 브랜드가 스스로 내건 연도다(C). 등록부에서 Seatech 명의로 가장 오래된 번호는 1991-05-31에 발급된 RSIAR05M00491이다(A). 회사가 밝힌 카르타헤나 가공 개시 연도도 1991년이고(C), 카르타헤나 상공회의소 등록은 1989년이다(A). 상공회의소 서류와 위생등록부가 가리키는 시작은 1989~1991년이다.",
+     "ord": 873418
+    },
+    {
+     "kind": "para",
+     "text": "소매 라벨에 찍힌 위생등록 번호 가운데 6건은 등록부의 Seatech 유효 번호와 같다. 등록부에는 방향이 반대인 유효 번호 4건도 있다. 에콰도르 만타의 INEPACA가 보유하고 제조하는 번호로, Seatech은 수입자(IMPORTADOR) 칸에 올라 있다. 다른 회사가 보유한 번호에 Seatech이 제조자로 붙은 유효 등록은 없다. 나머지 Seatech 유효 번호가 어느 상품에 쓰이는지는 소매 라벨로 이어지지 않는다. 냉동 생 로인 번호 하나는 회사 누리집이 제품으로 내건 냉동 로인(프리쿡·생 블록·스테이크)과 같은 갈래다(C).",
+     "ord": 873643
+    },
+    {
+     "kind": "para",
+     "text": "레몬즙을 넣은 3×80 g 묶음에서는 등록부와 매대가 어긋난다. 라벨 번호 RSA-001303-2016은 등록부에 「Vencido」(만료)로 올라 있고, 만료일은 2026-03-17로 적혀 있다. 이 묶음의 라벨도 제조자를 Seatech, 유통자를 Colombina로 적는다. 그런데 같은 묶음이 세 소매점의 온라인 매장에 판매 상품으로 올라 있다(B). 등록부가 만료로 적은 번호를 단 캔이 팔리고 있는 셈이다. 회사가 갱신을 신청했는지, 등록부 데이터가 늦게 반영됐는지는 어느 공개 문서에도 없다.",
+     "ord": 876231
+    },
+    {
+     "kind": "para",
+     "text": "생선 통조림은 다른 길로 매대에 온다. 토마토소스 생선 170 g 캔의 뒷면에는 「Importado y Distribuido por Distribuidora Colombina…」(Colombina가 수입해 유통한다는 뜻)와 「Industria Ecuatoriana」(에콰도르 제품이라는 뜻)가 적혀 있다. 등록부에서 이 캔의 번호 RSA-001579-2016은 titular가 INEPACA이고, IMPORTADOR 칸에 Seatech이 올라 있다. 콜롬비아 Van Camp's 가운데 이 생선 캔은 에콰도르에서 만들어 들여온 제품이다.",
+     "ord": 876522
+    },
+    {
+     "kind": "para",
+     "text": "수입자 이름은 두 문서에서 갈린다. 등록부는 번호마다 보유자·제조자·수입자를 따로 적는데, 이 생선 캔의 수입자 칸은 Seatech이다. 라벨은 Colombina를 수입자로 둔다. 세관에 수입을 신고하는 회사가 어느 쪽인지는 공개 문서에 나오지 않는다.",
+     "ord": 876833
+    },
+    {
+     "kind": "para",
+     "text": "INEPACA는 에콰도르 법인이고, 등록부에서도 Seatech과 다른 보유자로 올라 있다. Van Camp's라는 한 이름 아래 카르타헤나 Mamonal에서 만든 참치 캔과 만타의 INEPACA가 만든 생선 캔이 같은 유통사 Colombina를 거쳐 팔린다. INEPACA 제조 번호 넷 가운데 둘은 생선이 아니라 참치 lomos(물·기름)다. 기름 담금 RSA-0037219-2025는 2025-07-17에 새로 났고, 물 담금 RSA-000656-2016은 2025-08-15에 갱신됐다. 에콰도르에서 만든 참치 캔을 Seatech이 들여와 팔 수 있는 등록이 살아 있다. 소매점에 게시된 Van Camp's 참치 캔 라벨 10종은 모두 제조자를 Seatech으로 적는다. 이 두 번호가 매대의 어느 캔에 붙어 있는지는 공개된 라벨과 등록부만으로는 이어지지 않는다.",
+     "ord": 876985
+    }
+   ],
+   "stage": "c04"
+  },
+  {
+   "sid": "s8",
+   "numeral": "08",
+   "label": "가격",
+   "subtitle": "2026-09-25 Carulla 표시가로 고형량 kg당 값을 견주면 Van Camp's 물 담금은 할인 중인 자체상표 TAEQ의 1,67배다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "2026-09-25 Carulla 온라인 매장에서 Van Camp's 물 담금 160 g 캔의 표시가는 8.500 COP다. 캔에 든 고형량 104 g으로 나누면 고형량 기준 81.731 COP/kg이다(계산). 같은 목록에서 가장 싼 물 담금은 소매점 자체상표 TAEQ다. 고형량 110,5 g에 할인가 5.400 COP(정가는 가격표에 따로 적혀 있다)로, 고형량 기준 48.869 COP/kg이다. TAEQ의 kg당 값은 Van Camp's의 0,60배다. 두 캔은 담금액이 같고 브랜드와 고형량이 다르다.",
+     "ord": 127
+    },
+    {
+     "kind": "para",
+     "text": "캔 무게를 그대로 견주면 순서가 틀어진다. Van Camp's 라벨은 무게를 「PESO NETO:160g PESO DRENADO:104g PORCIONES:2」로 적는다. 순중량은 160 g이고, 물이나 기름을 따라 내고 남는 고형량(peso drenado)은 104 g이다. 고형량 비율은 65 %다(계산). 경쟁 캔은 고형량이 제각각이다. TAEQ는 110,5 g, La Soberana는 91 g이다. 표시가 한 줄만으로는 같은 양의 참치 값을 견줄 수 없다.",
+     "ord": 437
+    },
+    {
+     "kind": "para",
+     "text": "원재료 칸에는 「ATÚN」 한 단어만 있다. 가다랑어인지 황다랑어인지 라벨은 적지 않는다. kg당 값의 차이를 어종 차이로 풀 근거가 라벨에는 없다. 견줄 수 있는 것은 담금액·브랜드·매장이다.",
+     "ord": 714
+    },
+    {
+     "kind": "para",
+     "text": "Van Camp's 캔 셋은 고형량이 104 g으로 같고 담금액만 다르다. 값은 물에서 해바라기유, 올리브유로 갈수록 오른다. 해바라기유 캔은 Carulla 목록의 기름 담금 열 개 브랜드 가운데 고형량 기준 kg당 값이 가장 높다. 물 캔은 물 담금 열 개 브랜드 가운데 세 번째로 높다.",
+     "ord": 833
+    },
+    {
+     "kind": "para",
+     "text": "La Soberana 물 캔은 표시가 7.900 COP로 Van Camp's 물 캔보다 싸다. 그런데 고형량이 91 g이라 kg당으로 바꾸면 Van Camp's 위로 올라간다. 표시가 순서와 고형량 기준 kg당 값 순서가 어긋나는 자리다.",
+     "ord": 2326
+    },
+    {
+     "kind": "para",
+     "text": "할인은 순서를 흔든다. Zenú 물 캔은 할인가 6.760 COP 옆에 정가 8.450 COP를 단다. 어느 값으로 보아도 고형량이 같은 Van Camp's 물 캔보다 낮다.",
+     "ord": 6595
+    },
+    {
+     "kind": "para",
+     "text": "Van Camp's와 TAEQ 사이의 배수도 할인과 무관하지 않다. 이 배수는 그날 두 캔에 표시된 판매가끼리 나눈 값이다. 정가를 함께 단 할인가는 Isabel과 Zenú만이 아니었다. TAEQ와 Bary도 그날 할인가였다. TAEQ의 정가로 나누면 배수는 1,67배보다 작아진다.",
+     "ord": 6703
+    },
+    {
+     "kind": "para",
+     "text": "Carulla 목록에서 Isabel 물 캔은 할인가 8.180 COP와 정가 9.370 COP를 함께 단다. 고형량이 104 g으로 같은 Van Camp's 물 캔의 8.500 COP는 그 사이에 있다. 할인가로 보면 Isabel이 Van Camp's보다 싸다. 정가로 보면 Isabel의 고형량 기준 kg당 값은 90.096 COP/kg으로 Van Camp's의 81.731 COP/kg보다 높다. 가격표 한 줄에 비교 기준이 둘이다. 두 값은 하루치 온라인 표시가다.",
+     "ord": 6978
+    },
+    {
+     "kind": "para",
+     "text": "Isabel 캔은 라벨상 에콰도르에서 만든다. 콜롬비아 판매분 라벨은 제조자를 「CONSERVAS ISABEL ECUATORIANA S.A. … Manta」로, 수입자를 Colomboespañola로 적는다. Van Camp's 참치 캔 라벨은 제조자를 카르타헤나 Mamonal의 Seatech International로 적는다. 같은 매대에서 만타 캔과 카르타헤나 캔이 같은 고형량을 두고 값을 겨룬다.",
+     "ord": 7261
+    },
+    {
+     "kind": "para",
+     "text": "다만 Van Camp's라는 이름이 공장을 정하지는 않는다. 같은 브랜드의 생선 토마토소스 캔은 라벨에 「Industria Ecuatoriana」를 적는 에콰도르 수입품이다. INVIMA 등록부에는 에콰도르 INEPACA가 만들고 Seatech이 수입자로 적힌 참치 lomos 등록도 두 건(물 담금·기름 담금) 유효 상태로 올라 있다. 매대의 캔 한 개가 어느 공장에서 왔는지는 캔에 찍힌 등록번호가 가른다.",
+     "ord": 7498
+    },
+    {
+     "kind": "para",
+     "text": "같은 캔이라도 값은 매장마다 다르다. 같은 날 Olímpica·Jumbo·Carulla 세 소매점의 온라인 목록에 오른 Van Camp's 160 g 단품 두 가지는 담금액에 따라 매장 순서가 달랐다.",
+     "ord": 7738
+    },
+    {
+     "kind": "para",
+     "text": "기름 캔은 Carulla가 가장 비싸고 Olímpica가 가장 싸다. 물 캔은 거꾸로 Olímpica가 가장 비싸고 Carulla가 가장 싸다. 고형량 기준 kg당 사다리는 Carulla 한 곳의 목록으로 계산한 것이어서, 매장을 바꾸면 Van Camp's 쪽 값이 움직인다. 값은 하루 한 점이고 시계열이 없다.",
+     "ord": 8429
+    },
+    {
+     "kind": "para",
+     "text": "매대에 없는 이름도 있다. 같은 날 Olímpica·Jumbo·Carulla·Éxito 네 소매점의 온라인 참치 검색 결과에 Calvo 캔은 한 건도 나오지 않는다. 이날 Van Camp's와 값을 겨룬 캔은 Isabel·Zenú·Bary·Don Sancho·La Soberana 같은 브랜드와 소매점 자체상표였다.",
+     "ord": 8615
+    },
+    {
+     "kind": "para",
+     "text": "매대 값은 공장 값이 아니다. Van Camp's 참치 캔 라벨은 Seatech을 제조자로, Distribuidora Colombina를 유통자로 적는다. 표시가는 유통과 소매를 거친 뒤의 소비자 값이다. 카르타헤나 공장이 캔 한 개를 넘기며 받는 값은 공개된 문서에 나오지 않는다.",
+     "ord": 398899
+    }
+   ],
+   "stage": "c04"
+  },
+  {
+   "sid": "s9",
+   "numeral": "09",
+   "label": "브랜드",
+   "subtitle": "Van Camp's 콜롬비아 상표는 파나마 법인이 갖고, Seatech은 만들고, Colombina는 판다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "소매점에 게시된 Van Camp's 참치캔 라벨 10종은 Seatech을 제조자로, Colombina를 유통자로 적는다. 캔 라벨은 제조자를 「Fabricado por: Seatech International Inc, km.8 Mamonal, Cartagena - Colombia」로, 유통자를 「Distribuido por: Distribuidora Colombina Ltda y/o Colombina S.A.」로 적는다(C). INVIMA 위생등록부에서도 유효 등록 17건의 보유자는 Seatech이고, 등록 방식은 제조·판매(「FABRICAR Y VENDER」)다(A).",
+     "ord": 108
+    },
+    {
+     "kind": "para",
+     "text": "누가 만들고 누가 파는지는 라벨과 등록부가 같은 답을 낸다. 상표가 누구 것인지는 또 다른 등록부가 답한다. 콜롬비아에서 상표 등록을 맡는 산업통상감독청(SIC)의 자료는 EUIPO TMview가 옮겨 싣는다. 여기서 VAN CAMP로 검색되는 표장 76건 가운데 72건의 권리자가 파나마 법인 ANDEAN TRADING INTERNATIONAL INC.다(A). Seatech·Colombina·INEPACA 명의의 표장은 이 등록부에 없다. Andean Trading과 Seatech·INEPACA 사이의 지분이나 계약은 등록부에 나오지 않는다. La Liga Contra el Silencio 2020은 Andean Trading을 선박 명의 파나마 법인들과 같은 파나마 법률사무소가 세운 역외 법인 가운데 하나로 들었다. 기사는 이들 역외 법인의 이사진이 선박 명의 법인들과 겹치고, 거기에 Seatech 법정대표와 INEPACA 총지배인도 나온다고 적었다(B). Andean Trading의 이사가 누구인지, 누가 지분을 가졌는지는 기사도 적지 않는다.",
+     "ord": 454
+    },
+    {
+     "kind": "para",
+     "text": "최근 기록도 이 회사 명의다. Andean Trading은 2025-10-03 하루에 29류 표장 12건을 출원했고, 그 가운데 11건이 2026-06~08에 등록돼 2036년에 만료된다. 2024년에 출원한 「VAN CAMP'S PURO ATÚN Desde 1.949」는 등록 788659(2025-09-22~2035-09-22)가 됐고, 「VAN CAMP´S Premium Pescado en Conserva en Salsa de Tomate」는 2026-08-20에 등록 821652가 됐다(A).",
+     "ord": 1003
+    },
+    {
+     "kind": "para",
+     "text": "Colombina는 증권 발행사로서 2026-04-15에 게시한 2025 정기보고에 「Colombina es el distribuidor exclusivo en Colombia de la marca Van Camp's desde hace más de 40 años」라고 적었다. 40년 넘게 콜롬비아에서 Van Camp's를 독점 유통해 왔다는 말이다. 이 문장은 라이선스·계약·상표 의존 위험을 다루는 항목에 들어 있다. 같은 문단은 「Colombina no depende de licencias o contratos u otras variables propiedad de terceros」, 곧 제3자 소유의 라이선스나 계약에 기대지 않는다는 문장으로 이어진다. 정기보고는 Van Camp's 사업을 대표 취급(productos representados) 구분에 넣는다. 제3자에게서 사서 파는 품목을 묶는 구분이다. 상표권자와 공급자의 이름은 적지 않고, Seatech이라는 이름도 정기보고에 나오지 않는다(A).",
+     "ord": 1295
+    },
+    {
+     "kind": "para",
+     "text": "2012년 기사의 「franquiciaria」는 남의 상표를 받아 쓰는 가맹 사업자라는 말이고, 2023년 기사의 「propiedad」는 소유라는 말이다. 같은 회사를 두고 두 표현이 함께 맞기는 어렵다. 등록부에 비추면 「propiedad」는 맞지 않는다. 권리자는 파나마 법인이고 Seatech 명의 표장은 없다. 「franquiciaria」가 뜻하는 사용 허락이 있는지는 등록부가 실시권자 이름을 적지 않아 가릴 수 없다. Colombina 쪽의 독점 유통과 판매 대리권은 서로 부딪히지 않는다. 다만 둘 다 권리가 누구에게 있는지는 말하지 않는다.",
+     "ord": 3360
+    },
+    {
+     "kind": "para",
+     "text": "시점도 걸린다. Colombina의 말대로라면 독점 유통은 Seatech이 카르타헤나 상공회의소에 등록한 1989년보다 먼저 시작됐다. 등록부의 1960년 표장 46328은 권리자를 RALSTON PURINA COMPANY로 표시하고, 1989-12-18과 1990-05-06의 이전 기록, 2000-02-07의 실시권 기록을 달고 있다. 양수인과 실시권자의 이름은 적혀 있지 않다(A). 옛 기본 표장들은 TMview 안에서도 만료일 기재가 어긋난다. 지금 효력이 있는지는 SIC 원부로만 가릴 수 있다. 캔 뚜껑의 「Desde 1949」는 브랜드가 스스로 내건 연도이고(C), 2024년 출원 표장의 이름에도 같은 연도가 들어 있다. 1990년의 이전 뒤 누가 그 표장을 가졌는지, 그 사이 콜롬비아의 Van Camp's를 누가 만들었는지는 어느 공개 문서도 적지 않는다.",
+     "ord": 3681
+    },
+    {
+     "kind": "para",
+     "text": "정기보고는 Van Camp's 사업의 2025 순매출을 3.201,22억 COP로 적는다(A). 이 사업이 속한 대표 취급 사업군 전체는 4.670,78억 COP로 전년보다 10 % 늘었다. 두 금액은 유통업자 Colombina의 판매액이다. 공장이 넘기는 값과는 가격 층위가 다르다. 에콰도르 INEPACA가 만들어 들여온 캔도 같은 이름으로 그 안에 들어간다.",
+     "ord": 4126
+    },
+    {
+     "kind": "para",
+     "text": "점유율을 적은 문서는 셋인데, 잰 시장과 단위가 서로 다르다. Portafolio는 2011년 기사에서 「La marca Van Camp's posee cerca del 43 por ciento del mercado colombiano de atún enlatado seguida por Alamar, con 15 por ciento」라고 적었다. 2010년 콜롬비아 캔참치 시장을 브랜드별로 나눈 값이지만, 금액인지 물량인지, 누가 쟀는지는 기사에 없다.",
+     "ord": 4346
+    },
+    {
+     "kind": "para",
+     "text": "43 %는 Van Camp's라는 브랜드 전체에 붙은 값이다. Seatech 공장 한 곳의 몫이 아니다. 같은 이름 아래에는 카르타헤나 공장의 캔과, 에콰도르 만타의 INEPACA가 만들어 Seatech이 수입자로 등록된 캔이 함께 있다(INVIMA A, 라벨 C). 2010년 값에 수입분이 얼마나 들었는지는 기사에 나오지 않는다.",
+     "ord": 5581
+    },
+    {
+     "kind": "para",
+     "text": "Colombina의 28 %는 생선 통조림 시장을 Nielsen이 금액으로 잰 값이다. 무엇으로 쟀는지 밝히지 않은 2010년 캔참치 값과는 모집단이 달라, 두 숫자를 한 줄의 추이로 이어 붙일 수 없다. Alamar의 15 %와 19 %도 같은 사정이다.",
+     "ord": 5784
+    },
+    {
+     "kind": "para",
+     "text": "상업 선적 데이터베이스(B)에는 캔이 공장을 떠나는 두 갈래가 보인다. 미국행 기록은 송하인 Seatech, 수하인 CORDIALSA USA INC, 도착항 Port Everglades, 품명 「CARTONS WITH CANNED TUNA」를 2025-11-30과 2026-02-22 선적에 적는다. 콜롬비아 국내 기록은 수하인을 Distribuidora Colombina로 적고, 주소 「MAMONAL KM 8 ZONA FRANCA」와 품목 표기 「CODIGO SEATECH」를 붙인다.",
+     "ord": 5956
+    },
+    {
+     "kind": "para",
+     "text": "국내 기록은 자유무역지대 안 공장에서 국내로 통관돼 유통업자에게 넘어가는 흐름과 방향이 맞는다. 콜롬비아 무역통계가 상대국을 「Free Zones」로 적은 캔참치 수입도 같은 방향이다. 다만 이것은 상업 DB가 보여 주는 정황이다. 이 흐름은 통관 신고 원문으로 확인된 사실이 아니다.",
+     "ord": 6240
+    },
+    {
+     "kind": "para",
+     "text": "2025-02-07 미국에서 나온 Van Camp's 리콜의 주체는 Tri-Union Seafoods다(A). 미국에서 Van Camp's 이름을 쓰는 회사가 이 회사다. 콜롬비아 Van Camp's를 만드는 Seatech과 파는 Colombina는 이 리콜에 나오지 않는다.",
+     "ord": 6546
+    },
+    {
+     "kind": "para",
+     "text": "2025-04-27 코카인 약 2,9 t이 압수된 선망선 MonteCristi(IATTC #4000)는 IATTC 등록부상 INEPACA 명의의 에콰도르 기국 선박이다(A). 압수는 매체 Vorágine가 전했고(B), 2026-09 Noticias Uno는 이 배를 「Barco de Van Camps」라고 불렀다(B). INEPACA는 Seatech이 수입자로 등록된 생선 캔 두 품목과 참치 로모스 두 품목의 제조사다(INVIMA, A). Seatech 쪽 소식통은 「Seatech no tiene ninguna relación con el tema」, 곧 이 일과 아무 관계가 없다고 했다(C). 배의 등록 명의는 INEPACA이고 기국은 에콰도르다. 이 배는 Seatech의 자산이 아니다.",
+     "ord": 6712
+    }
+   ],
+   "stage": "c05"
+  },
+  {
+   "sid": "s10",
+   "numeral": "10",
+   "label": "재무",
+   "subtitle": "매출은 2024년 6.470억 COP에서 2025년 5.734억 COP로 줄었고, 영업이익은 적자로 돌았다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Seatech International이 콜롬비아 회사감독청(Supersociedades)에 낸 2025년 매출은 5.734,2억 COP로, 한 해 전보다 11,4 % 줄었다(계산). 영업이익은 적자가 됐다. 순이익은 흑자로 남았지만 그 흑자의 대부분은 세금 항목에서 나왔다.",
+     "ord": 107
+    },
+    {
+     "kind": "para",
+     "text": "제출 주체는 영국령 버진아일랜드에 본사를 둔 외국회사 지점(「SUCURSAL EXTRANJERA」)이다. 손익은 지점이 해마다 내는 국제회계기준(NIIF) 개별재무제표에 실리고, 매출은 손익계산서의 「Ingresos de actividades ordinarias」 줄이다. 회사는 2016~2025년 제출분마다 자회사·관계사·공동기업 투자가 없다고 적었다. 묶어서 볼 다른 법인이 없으니 콜롬비아 지점의 손익은 이 재무제표 한 벌에 담긴다. 외부감사인은 Anaya y Anaya이고, 2024·2025년 감사의견은 적정이다. 원문 단위는 천 COP이며 아래 금액은 억 COP로 바꾼 값이다.",
+     "ord": 291
+    },
+    {
+     "kind": "para",
+     "text": "2018~2020년 매출은 4.052,6억 COP에서 4.532,6억 COP로 해마다 조금씩 늘었다. 2021년에 전년보다 약간 줄었다가 2022년에 한 단계 올라섰다. 2021~2025년 가운데 영업이익과 순이익이 가장 컸던 해는 2022년이다.",
+     "ord": 1447
+    },
+    {
+     "kind": "para",
+     "text": "2023·2024년에는 매출이 더 늘었지만 영업이익은 2022년 수준으로 돌아가지 않았다. 2024년에는 영업이익 261,5억 COP가 순이익 단계에서 11,7억 COP로 줄었다. 두 단계 사이에 놓인 금융수익·금융비용과 법인세가 그해 영업이익의 대부분을 덜어 냈다.",
+     "ord": 1596
+    },
+    {
+     "kind": "para",
+     "text": "영업이익과 순이익이 크게 갈라진 해는 2024년만이 아니다. 2021년에는 영업이익이 흑자였는데 순이익은 손실이었고, 2025년에는 거꾸로 영업손실 뒤에 순이익이 남았다. 영업 밖의 줄이 해마다 순이익을 영업이익과 다른 자리로 옮겼고, 2021·2025년에는 부호까지 바꿨다.",
+     "ord": 1756
+    },
+    {
+     "kind": "para",
+     "text": "2025년 영업이익이 적자로 내려간 데는 두 줄이 컸다. 매출총이익이 한 해 사이 117,4억 COP 줄었고, 매출원가·판매비·관리비와 따로 잡히는 「Otros gastos」(기타비용)가 237,6억 COP 늘었다. 같은 해 기타수익도 122,6억 COP 늘었지만 기타비용이 불어난 폭을 다 메우지는 못했다. 판매·물류비와 관리비도 조금씩 늘었다.",
+     "ord": 6176
+    },
+    {
+     "kind": "para",
+     "text": "기타비용에 무엇이 들었는지는 공개된 서식에 없다. Supersociedades 정보시스템(SIIS)은 재무제표 주석 일부를 정형 서식으로 받는데, 기타비용 분석 서식은 2024·2025년 두 해 모두 제출되지 않았다. 콜롬비아 정부 공개데이터 포털의 재무제표 데이터셋은 줄마다 금액 한 칸만 싣는다. 그 금액만으로는 312,8억 COP가 한 해에 그칠 비용인지, 다음 해에도 이어질 비용인지 알 수 없다. 누구에게 치른 비용인지도 나오지 않는다. 매출이 한 해 사이 줄어든 까닭을 회사가 경영진 이름으로 설명한 발언도 공개된 것이 없다.",
+     "ord": 7435
+    },
+    {
+     "kind": "para",
+     "text": "영업손실은 금융 항목을 거치며 세전 단계에서 흑자가 됐다. 금융수익이 금융비용보다 19,3억 COP 많아 세전이익이 3,2억 COP로 남았다. 손익계산서의 세금 줄 「Ingreso (gasto) por impuestos」는 비용을 양수로 적는데, 2025년 값이 −22,2억 COP다. 세금이 이익에서 빠지지 않고 더해져 순이익을 3,2억에서 25,4억 COP로 올렸다. 환급인지 이연법인세의 변동인지, 항목의 성격은 데이터셋에 적혀 있지 않다.",
+     "ord": 7746
+    },
+    {
+     "kind": "para",
+     "text": "Supersociedades는 해마다 1만 대 기업 목록을 낸다. 목록의 금액은 영업수익, 곧 매출에 기타수익을 더한 값이고 반올림돼 있다. 같은 금액으로 적힌 회사가 여럿이라 Seatech의 전국 순위는 한 자리가 아니라 구간으로 나온다. 2024·2025년 순위는 목록 금액을 크기순으로 세어 얻은 값이다(계산).",
+     "ord": 8006
+    },
+    {
+     "kind": "para",
+     "text": "기사에 실린 순위는 Supersociedades 순위를 옮긴 것이고, 2024·2025년 값은 목록 금액을 세어 얻은 구간이다. 두 줄을 같은 방식으로 냈다는 근거가 없으니 2019년부터 한 줄로 이어 순위 변화를 읽기는 어렵다. 목록 계산값끼리 보면 전국 순위는 한 해 사이 400위대 초반에서 400위대 후반으로 내려갔다.",
+     "ord": 9008
+    },
+    {
+     "kind": "para",
+     "text": "볼리바르주 안에서는 2024년 15위, 2025년 18위였다(같은 방식의 계산). 업종 순위는 흔들리지 않았다. 목록에서 CIIU 1012(수산물 가공·저장)로 분류된 회사 가운데 Seatech은 2021~2025년 해마다 1위다. 전국 순위가 뒤로 밀린 2025년에도 수산가공 업종의 맨 앞자리는 그대로였다.",
+     "ord": 9201
+    },
+    {
+     "kind": "para",
+     "text": "카르타헤나 일간지 El Universal이 적은 2019년 금액은 「INGRESOS OPER.: $448 MIL MILLONES」, 곧 영업수익 4.480억 COP다. 회사가 제출한 그해 매출 4.308,5억 COP보다 크다. 기사 금액이 매출 칸보다 큰 방향은 영업수익에 기타수익을 넣는 목록 방식과 맞는다.",
+     "ord": 9385
+    },
+    {
+     "kind": "para",
+     "text": "매출을 적은 보도 가운데 하나는 제출된 재무제표와 크게 어긋난다. Blu Radio는 2022년 매출을 「cerca a los 100 mil millones」, 곧 1.000억 COP 안팎이라고 전했다(B). 같은 해 회사가 Supersociedades에 낸 매출은 6.104,7억 COP다. 방송이 전한 금액은 오보다.",
+     "ord": 9569
+    }
+   ],
+   "stage": "c05"
+  },
+  {
+   "sid": "s11",
+   "numeral": "11",
+   "label": "부채",
+   "subtitle": "차입금 행은 없고, 부채의 97,5 %가 매입채무 및 기타채무 한 줄이다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Seatech International의 2025-12-31 재무상태표에는 차입금 행이 없다. 부채의 97,5 %가 매입채무 및 기타채무 한 줄이다. 자산 쪽에서 가장 큰 칸은 아직 받지 못한 매출채권이고, 그 잔액이 그해 매출의 48,2 %에 이른다.",
+     "ord": 88
+    },
+    {
+     "kind": "para",
+     "text": "숫자는 외국회사 지점(「SUCURSAL EXTRANJERA」)으로 등록된 이 회사가 회사감독청(Supersociedades)에 낸 NIIF 개별재무제표 본표에서 나온다(A). 회사는 해마다 자회사·관계사·공동기업 투자가 없다고 적었다. 다른 법인의 장부가 연결돼 들어올 자리는 없다. 다만 외국회사 지점이라 본점과 주고받은 계정이 기타채무에 섞였을 수 있다. 이를 가르는 내용은 본표와 정형 주석에 나오지 않는다.",
+     "ord": 265
+    },
+    {
+     "kind": "para",
+     "text": "2025년 말 자산은 5.834,8억 COP다. 매출채권·재고·유형자산 세 칸이 그 대부분을 차지하고, 현금은 46,0억 COP에 그친다. 부채와 자본을 더한 값은 자산과 같다.",
+     "ord": 507
+    },
+    {
+     "kind": "para",
+     "text": "부채는 네 줄로 끝난다. 유동부채는 매입채무 및 기타채무, 종업원급여 충당, 당기법인세 세 줄이고, 비유동부채는 이연법인세 한 줄이다. 은행 대출이나 사채를 담는 차입금 행은 2025년 재무상태표에 아예 없다. 한 해 전에도 기타 금융부채는 0,03억 COP였다. 매입채무 및 기타채무 한 줄이 부채의 97,5 %를 차지한다. 그 상대가 원료 공급자인지 본점인지는 본표와 정형 주석에 나오지 않는다.",
+     "ord": 2326
+    },
+    {
+     "kind": "para",
+     "text": "차입금 행이 없는데도 손익계산서에는 금융비용이 크게 잡혀 있다. 2025년 금융비용은 490,9억 COP로 매출의 8,6 %(계산)이고, 금융수익은 510,2억 COP다. 2024년에도 금융비용 473,3억 COP와 금융수익 291,5억 COP가 잡혔다. 이 비용이 무엇에서 나왔는지는 본표와 정형 주석에 나오지 않는다.",
+     "ord": 2566
+    },
+    {
+     "kind": "para",
+     "text": "매입채무 및 기타채무 줄의 원문 이름은 「Cuentas por pagar comerciales y otras cuentas por pagar corrientes」다. 물건값으로 줄 상거래 채무와 그 밖의 미지급금을 한 줄에 묶은 항목이라는 뜻이다. 회사감독청 SIIS에 제출된 정형 주석은 이 줄을 국내 채무, 만기가 오지 않은 채무로만 분류하고 둘을 가르지 않는다. 그래서 부채의 97,5 % 안에는 상거래 대금 말고 다른 미지급금도 들어 있을 수 있다.",
+     "ord": 2762
+    },
+    {
+     "kind": "para",
+     "text": "외상은 받을 쪽과 줄 쪽이 모두 크다. 연말의 매출채권과 매입채무 및 기타채무가 둘 다 수천억 COP 단위인데, 손에 쥔 현금은 46,0억 COP다. 줄 돈이 받을 돈보다 크고, 그 차이를 메울 은행 차입은 장부에 없다. 매출채권에 재고를 더하면 그제야 줄 돈을 넘는다.",
+     "ord": 4869
+    },
+    {
+     "kind": "para",
+     "text": "매출채권이 매출의 48,2 %라는 값은 연말 잔액 하나를 한 해 매출과 견준 것이다. 연중에 돈을 받는 데 얼마나 걸렸는지를 곧바로 알려 주지는 않는다. 그래도 한 해 동안 판 금액의 절반 가까이가 해를 넘길 때 아직 돈으로 들어오지 않았다는 점은 장부에 그대로 찍혀 있다. 정형 주석은 2025년 말 잔액을 국내 채권, 연체 없음으로 분류한다. 한 해 전 잔액은 3.716,3억 COP였다.",
+     "ord": 5031
+    },
+    {
+     "kind": "para",
+     "text": "2025년은 매출이 한 해 전보다 11,4 % 줄고 영업손익이 적자로 돌아선 해다. 외상의 크기가 그 흐름과 어떻게 맞물렸는지는 거래 상대를 알아야 풀린다.",
+     "ord": 5267
+    },
+    {
+     "kind": "para",
+     "text": "받을 돈과 줄 돈의 상대가 누구인지는 본표도 정형 주석도 말하지 않는다. 특수관계자 거래와 채권·채무의 상대는 서술형 주석에 들어간다. 이 주석은 정형 데이터로는 제출되지 않고 제출건에 딸린 PDF로만 올라 있다. 이름이 오를 만한 곳은 다른 문서에 나온다. 국내에서 팔리는 Van Camp's 캔의 라벨은 유통자를 Colombina로 적는다(C). Colombina는 2025년 정기공시에서 자신을 40년 넘게 콜롬비아에서 Van Camp's를 독점 유통해 온 회사로 적었다(A). 그러나 그 정기공시에는 Seatech 이름이 나오지 않고, Seatech의 본표에도 Colombina 이름은 없다.",
+     "ord": 5371
+    },
+    {
+     "kind": "para",
+     "text": "줄 돈 쪽도 사정이 같다. INVIMA 등록부에는 에콰도르 INEPACA가 제조자이고 Seatech이 수입자로 올라 있는 유효 등록이 네 건 있다(A). IATTC 등록부의 소유자 칸에는 카르타헤나 두 주소의 12개 법인이 콜롬비아 기국 선망선을 한 척씩 가진 것으로 올라 있다(A). 회사가 옛 누리집에서 원료를 대 준다고 소개한 \"선단 공급자\"도 있다(C). 이들 가운데 누구에게 얼마가 걸려 있는지, 특수관계자나 본점 몫이 섞였는지는 공개된 숫자로 가를 수 없다. 이 외상이 INEPACA나 선박 법인 쪽 채무라고 볼 근거는 본표 어디에도 없다.",
+     "ord": 5717
+    },
+    {
+     "kind": "para",
+     "text": "자본 2.272,9억 COP 가운데 납입자본은 0,19억 COP다. 자본은 거의 전부 납입자본 밖의 항목에 잡혀 있다. 지점의 본사인 영국령 버진아일랜드 법인의 주주와 실소유자는 공개 원천에 나오지 않는다.",
+     "ord": 6036
+    },
+    {
+     "kind": "para",
+     "text": "설비 쪽은 현금흐름표가 숫자 하나를 더 보탠다. 2024년 현금흐름표의 유형자산 취득(「Compras de propiedades, planta y equipo」)은 219,0억 COP다. 그 돈이 토지·건물·기계·선박 가운데 어디에 들어갔는지는 현금흐름표가 적지 않는다. 2025년 말 유형자산 장부가는 1.443,7억 COP로 총자산의 4분의 1쯤이다. 정형 주석 명세에서 선박은 그 가운데 3,7억 COP다.",
+     "ord": 6162
+    },
+    {
+     "kind": "para",
+     "text": "같은 해 현금흐름표의 활동별 합계 세 칸은 한 숫자로 채워져 있다.",
+     "ord": 6403
+    },
+    {
+     "kind": "para",
+     "text": "원문 천 COP로 영업활동 +911.583, 투자활동 −911.583, 재무활동 −911.583이다. 세 활동의 순현금흐름이 부호만 다른 한 숫자로 적혀 있다.",
+     "ord": 6551
+    },
+    {
+     "kind": "para",
+     "text": "투자 칸 안에서는 유형자산 취득 −219,0억 COP를 기타 유입 +209,8억 COP가 거의 다 상쇄하고, 남은 순액은 −9,1억 COP다. 억 단위로 반올림한 두 값을 빼면 끝자리가 하나 어긋난다. 세 칸을 더한 −9,1억 COP는 그해 현금 증감과 맞으므로 제출된 표의 덧셈은 성립한다. 같은 숫자가 세 번 나온 까닭과 기타 유입이 무엇인지는 본표에 적혀 있지 않다.",
+     "ord": 6652
+    }
+   ],
+   "stage": "c06"
+  },
+  {
+   "sid": "s12",
+   "numeral": "12",
+   "label": "무역",
+   "subtitle": "이탈리아가 적은 콜롬비아산 캔참치는 콜롬비아가 적은 대이탈리아 수출의 2,4~14,1배이고, 2024년이 가장 크다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "2024년 이탈리아는 콜롬비아에서 캔참치(HS 1604.14) 9.422,7 t를 들였다고 신고했다. 같은 해 콜롬비아가 스스로 신고한 대이탈리아 수출은 667 t로, 이탈리아 신고의 1/14,1이다(계산). 2019~2025년 해마다 나눠 보면 이탈리아 신고는 콜롬비아 신고의 2,4~14,1배이고, 2024년이 가장 크다(계산). 두 값 모두 한 흐름을 양쪽 세관이 따로 센 나라 단위 통계다. 어느 쪽도 Seatech 한 회사의 물량이 아니다.",
+     "ord": 112
+    },
+    {
+     "kind": "para",
+     "text": "수입국이 신고한 값으로 보면 콜롬비아산 캔참치는 EU로, EU 안에서도 이탈리아로 모인다. EU27의 콜롬비아산 1604.14 수입에서 이탈리아가 차지한 몫은 2024년 75,1 %, 2025년 85,5 %다(계산). 나라 단위 값이라 EU 승인 번호 0012-00의 Gralco가 보낸 캔도 여기에 들어 있다. 미국 인구조사국(Census)이 원산지 콜롬비아로 잡은 일반수입은 EU보다 훨씬 작다. 그래도 EU 수입이 줄어든 2025년에 미국 수입은 늘었다.",
+     "ord": 399
+    },
+    {
+     "kind": "para",
+     "text": "이탈리아로 가는 물량의 절반 넘게는 기름에 담근 가다랑어다. 2025년 이탈리아분 가운데 63 %인 4.839,6 t가 CN 16041421(가다랑어, 식물성 기름 담금)로 신고됐다.",
+     "ord": 1534
+    },
+    {
+     "kind": "para",
+     "text": "업계지 Atuna는 2026-07-13 기사에서 이탈리아의 2026년 1분기 수입을 다루며 콜롬비아 캔 공장 두 곳을 이름으로 들었다. 「Colombian canners Gralco, part of the Trimarine Group, and Seatech International managed to keep their shipments to the Italian market more or less stable at a price reduction of 19 percent at a competitive level of EUR 4,817 per ton」(B). Trimarine 그룹의 Gralco와 Seatech International이 값을 「19 %」 내린 톤당 4.817 € 수준에서 이탈리아행 선적을 거의 그대로 지켰다는 서술이다. Eurostat로 되짚어 보면 단가는 들어맞지만 하락률은 어긋난다.",
+     "ord": 1659
+    },
+    {
+     "kind": "para",
+     "text": "Atuna가 적은 단가는 맞고, 하락률은 무역통계로 −8,9 %다.",
+     "ord": 2967
+    },
+    {
+     "kind": "para",
+     "text": "같은 기사는 두 회사의 판로도 가른다. 「Gralco ships mostly canned tuna to the Italian retail market, as SeaTech has a stronger position in the foodservice market」. Gralco는 이탈리아 소매 시장에 주로 캔을 내고, Seatech은 외식·급식(foodservice) 시장에서 더 강하다는 서술이다(B). 무역통계는 품목 코드로 나뉘어 있어 소매용과 업소용을 구별하지 못한다. 이 구분은 기사 한 줄에 기댄다. 같은 업계지는 2026-05-05 기사에서 「The Colombian canners mainly produce for the domestic market」, 곧 콜롬비아 캔 제조사들이 주로 국내 시장용으로 만든다고 적었다(B).",
+     "ord": 3021
+    },
+    {
+     "kind": "para",
+     "text": "수출국 쪽 기록에서는 크기가 사뭇 다르다. 콜롬비아가 UN Comtrade에 스스로 신고한 1604.14 수출은 2019~2025년 한 해 1.956~4.931 t다. 가장 많은 해의 값도 2024·2025년 이탈리아 한 나라가 신고한 수입에 못 미친다.",
+     "ord": 3445
+    },
+    {
+     "kind": "para",
+     "text": "격차를 풀 단서는 콜롬비아의 수입 통계에 있다. 콜롬비아가 신고한 1604.14 수입의 상대국 칸에 「Free Zones」(코드 838)가 나오고, 그 물량은 2024년 10.852 t, 2025년 11.548 t다. 이름대로라면 나라 안 자유무역지대에서 관세영역으로 들어온 물량이다. 그렇다면 자유무역지대 안 공장이 해외로 낸 물량은 콜롬비아 수출 통계에 잡히지 않고, 국내로 낸 물량만 「Free Zones」발 수입으로 잡힐 수 있다. 이 해석은 아직 가설이고, 스페인행에는 맞지 않는다. 2024년 스페인이 신고한 콜롬비아산 수입은 1.523,3 t, 콜롬비아가 신고한 대스페인 수출은 1.424,1 t다. 1,07배로 두 신고가 거의 같다(계산).",
+     "ord": 8347
+    },
+    {
+     "kind": "para",
+     "text": "Seatech과 자유무역지대를 잇는 기록은 상업 문서 쪽에 있다. 자유무역지대 운영사 Zofranca의 누리집은 Seatech을 산업사용자로 올려 두었고, INVIMA 시설 주소에도 「ZONA FRANCA」가 붙는다(B). 상업 선적 DB에는 주소 「MAMONAL KM 8 ZONA FRANCA」, 품목 HS 1604142000 「CODIGO SEATECH」가 적힌 국내 수하 기록이 있다. 수하인은 Distribuidora Colombina다(B). 자유무역지대에서 국내 통관으로 넘어가는 흐름의 정황이며, 방향은 Comtrade의 「Free Zones」 수입과 같다. 사용자 자격을 준 사용자운영자의 자격부여서(calificación) 원문은 공개된 것이 없으니 두 기록을 합쳐도 가설 등급에 머문다.",
+     "ord": 8748
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아 통계의 흠은 상대국 코드에도 있다. 2025년 콜롬비아의 1604.14 수입에는 「Other Asia, nes」(달리 분류되지 않은 기타 아시아)에서 25.670 t(107,65 백만 US$)가 들어온 것으로 잡혔다. 같은 해 에콰도르가 신고한 대콜롬비아 1604.14 수출은 26.308 t(108,2 백만 US$)다. 물량과 금액이 맞아떨어지므로 이 「Other Asia, nes」는 에콰도르를 잘못 적은 상대국 코드다. 이 한 줄만 해도 2025년 콜롬비아가 신고한 수출의 몇 배다. 자국 통계만 보면 콜롬비아는 캔참치를 내보내는 양보다 들이는 양이 훨씬 많다. 상대국 통계가 그리는 수출국의 모습과는 어긋난다.",
+     "ord": 9153
+    },
+    {
+     "kind": "para",
+     "text": "미국행은 작지만 늘고 있다. Census가 원산지 콜롬비아로 잡은 2026년 1~7월 일반수입은 일곱 달 만에 2025년 한 해 물량을 넘었다. 상업 선적 DB에는 Seatech이 송하인, CORDIALSA USA INC가 수하인인 미국행 선적이 2025-11-30과 2026-02-22에 올라 있다(B). 도착항은 Port Everglades, 품목란은 「CARTONS WITH CANNED TUNA」(캔참치를 담은 상자)다. Census 물량 가운데 얼마가 Seatech 몫인지는 선적 두 건으로 가를 수 없다. 늘어난 미국 수입을 어느 공장이 채웠는지는 공개된 통계가 답하지 않는다.",
+     "ord": 9526
+    }
+   ],
+   "stage": "c06"
+  },
+  {
+   "sid": "s13",
+   "numeral": "13",
+   "label": "원산지",
+   "subtitle": "EU 무관세는 캔 원료를 잡은 배의 기국과 소유로 갈리고, 협정은 파나마 소유를 합산할 각주를 두었다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "EU가 콜롬비아 원산 상품에 쓰는 양허표에서 캔참치 세번 1604 14 11·16·18의 기본세율은 24 %이고 양허 구분은 category 0이다. 협정문은 이 구분의 원산 상품이 「shall be free of any customs duty on the date this Agreement enters into force」, 곧 발효일부터 관세를 물지 않는다고 적는다. EU·콜롬비아·페루 무역협정은 2013-08-01 콜롬비아에 적용됐다(EC IP/13/749). 그날부터 콜롬비아산 캔참치의 무관세는 원산지 조건을 채웠느냐에 달렸다.",
+     "ord": 105
+    },
+    {
+     "kind": "para",
+     "text": "미국도 콜롬비아산에 특혜 세율을 둔다. USITC HTS는 1604.14 전 세목의 특혜란에 CO(미·콜롬비아 무역증진협정)를 Free로 적는다. 일반세율은 세목마다 다르다.",
+     "ord": 437
+    },
+    {
+     "kind": "para",
+     "text": "원산지 조건은 협정 부속서 II가 정한다. 제16류 품목별 규정은 제조 조건을 「in which all the materials of Chapter 3 used are wholly obtained」로 적는다. 캔에 쓴 제3류 재료, 곧 생선이 빠짐없이 완전생산품이어야 한다. 바다에서 잡은 생선은 협정이 「their vessels」라 부르는 배가 잡아야 완전생산품이 된다. 부속서 II 제5조에 붙은 EU 선언은 그 배의 조건을 등록, 기국, 소유 셋으로 적는다.",
+     "ord": 1331
+    },
+    {
+     "kind": "para",
+     "text": "조건에 대 볼 배는 등록부에 있다. IATTC 등록부의 콜롬비아 기국 활성 선망선 13척 가운데 12척은 카르타헤나의 두 주소에 적힌 12개 법인이 한 척씩 갖는다(A). 소유자명에 Seatech은 없다(A). 회사는 옛 누리집의 「Nuestra FLOTA」(우리 선단) 페이지에서 참치선 12척을 자기 \"선단 공급자\"의 배로 소개했다(C). IEc 2023은 업계인의 말을 빌려 콜롬비아 기국 선망선 10척이 여러 파나마 회사 명의로 등록돼 있다고 적었다(B).",
+     "ord": 1601
+    },
+    {
+     "kind": "para",
+     "text": "기국과 등록은 등록부 기록과 맞춰 볼 수 있다. 갈리는 자리는 소유다. EU 선언은 당사국 국민이 절반 이상 가진 배, 또는 당사국에 본점과 주된 영업소를 두고 당사국 국민·공공기관이 절반 이상 가진 법인의 배만 「their vessels」로 친다. 파나마는 이 협정의 당사국이 아니다. 에콰도르는 2016-11-11 가입의정서에 서명해 2017-01-01부터 이 협정을 적용받는다(SICE, A). 에콰도르 소유라면 각주 없이도 소유 조건에 들 수 있다.",
+     "ord": 3746
+    },
+    {
+     "kind": "para",
+     "text": "회사는 노동부 봉인 전부터 여러 차례, 참치를 잡는 인력과도 어선과도 관계가 없으며 어선은 「armadores internacionales」(국제 선주) 명의로 등록돼 있다고 말해 왔다(C, El Espectador 2025-09-17 전언). 그 선주가 어느 나라 법인인지는 밝히지 않았다.",
+     "ord": 4012
+    },
+    {
+     "kind": "para",
+     "text": "각주 1은 이 어선 조건을 채울 때 파나마·베네수엘라 등과 원산지를 누적할 수 있게 했다. 파나마 설립이 문서로 확인되는 6곳의 배라면 그 어획의 원산지 자격이 이 각주에 걸린다. 나머지 6곳의 설립지와 12곳의 주주는 공개 등록부에 나오지 않는다. 그래서 어느 배가 본 조건으로 자격을 얻고 어느 배가 각주에 기대는지는 문서로 가를 수 없다.",
+     "ord": 4186
+    },
+    {
+     "kind": "para",
+     "text": "제품 조건은 배 한 척이 아니라 캔에 든 생선 전체를 본다. 두 주소의 배가 잡은 고기가 가는 길도 한 갈래가 아니다. IEc 2023은 이 배들이 「sell directly to Ecuadorian processors and/or transship their catch to Colombia via Ecuadorian ports」, 곧 에콰도르 가공업체에 바로 팔거나 에콰도르 항구를 거쳐 콜롬비아로 옮겨 싣는다고 적었다(B). 콜롬비아는 밖에서 냉동 통참치도 들인다. 2025년 수입은 18.519 t였고, 가다랑어 상대국은 세네갈·키리바시·미국령 사모아 순이었다(Comtrade, 나라 단위). 이 통계는 어느 공장이 그 원어를 썼는지, 잡은 배가 누구 소유였는지를 적지 않는다.",
+     "ord": 4389
+    },
+    {
+     "kind": "para",
+     "text": "남는 물음은 12척이 잡은 생선이 어느 캔에 들어갔고, 그 캔의 원산지 증명에 어떤 누적이 적혔느냐다.",
+     "ord": 4783
+    },
+    {
+     "kind": "para",
+     "text": "각주 1의 누적은 배의 등록·기국·소유 조건을 채울 때 쓰는 장치다. 부속서 II 제3조 제3항은 재료 누적을 정한다. 파나마 등에서 원산지를 얻은 재료가 서명 안데스국에서 가공되거나 그곳 제품에 들어가면 서명 안데스국 원산 재료로 본다. 이 재료 누적에는 나라 사이 행정협력 절차가 조건으로 붙는다.",
+     "ord": 4933
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아 관세당국은 WCO 상설기술위원회의 누적 연구 초안(2024-02)에 실린 답변에 이렇게 적었다. 「la mise en œuvre d'accords de coopération administrative」, 곧 행정협력 약정들의 시행 덕분에 민간이 참치 조업에서 제3국 누적을 써 콜롬비아에서 가공한 「thon en conserve」를 EU로 수출하게 됐다. 답변에 실린 참치 사례는 에콰도르·파나마·과테말라 영해에서 잡힌 냉동 통참치를 재료로 누적한 경우다. 콜롬비아에서 「thon émietté précuit, congelé」, 곧 익혀 부순 냉동 참치로 만들어 스페인으로 수출했고, EUR.1에 세 나라 누적이 적혔다. 이것은 재료 누적이다. 파나마 법인 명의의 콜롬비아 기국 어선이 각주 1로 소유 조건을 채우는지는 이 답변에 없다. 사례에 회사 이름은 없고, 그 누적을 어느 회사가 썼는지 적은 문서도 없다.",
+     "ord": 5113
+    }
+   ],
+   "stage": "c07"
+  },
+  {
+   "sid": "s14",
+   "numeral": "14",
+   "label": "경쟁",
+   "subtitle": "수산가공 1위 Seatech 다음가는 참치 가공사 Gralco는 세 해 연속 적자이고, Atunec은 사실상 멈췄다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Supersociedades가 해마다 내는 1만 대 기업 목록에서 수산물 가공(CIIU 1012) 업종 1위는 2021년부터 2025년까지 매번 Seatech이었다(A). 같은 재무 데이터셋에는 카리브 연안의 참치 가공사가 둘 더 있다. 바랑키야의 Gralco는 2023~2025년 세 해 내리 순손실을 냈고, 바랑키야 자유무역지대의 Atunec은 매출이 거의 남지 않았다.",
+     "ord": 112
+    },
+    {
+     "kind": "para",
+     "text": "1위 자리의 Seatech도 2025년은 나빴다. 매출이 전년보다 11,4 % 줄었고 영업 단계에서 손실이 났다. 세전이익은 3,2억 COP였고, 세금 항목이 순이익을 25,4억 COP로 올렸다(A).",
+     "ord": 345
+    },
+    {
+     "kind": "para",
+     "text": "Gralco의 정식 상호는 GRUPO ALIMENTARIO DEL ATLANTICO S.A.(NIT 802011109)이고, 본거지는 바랑키야, 외부감사는 KPMG다. 매출 규모로는 세 회사 가운데 Seatech 다음이다. 2023년부터 2025년까지 해마다 순손실이 났고, 자본은 2021년 463억 COP에서 2025년 203억 COP로 줄어 절반이 채 남지 않았다(A).",
+     "ord": 474
+    },
+    {
+     "kind": "para",
+     "text": "EU로 수산물을 보낼 수 있는 콜롬비아 시설은 EU TRACES 목록에 공개된다. 목록의 30곳 가운데 Seatech과 Gralco는 가공공장(PP)으로 올라 있고, Atunec은 없다(A). 국내 판매에 필요한 INVIMA 위생등록에서도 세 회사가 갈린다. Seatech은 「FABRICAR Y VENDER」(제조·판매) 유효 등록 17건을 갖고, 가장 오래된 등록은 1991-05-31자다. Gralco는 2025년에 새 자사 제조 등록을 받았다. Atunec의 등록 9건은 2025-06-01 마지막 한 건까지 만료됐다. 매대에서 Van Camp's와 맞서는 Isabel은 콜롬비아 공장의 제품이 아니다. 콜롬비아 판매분 라벨은 제조자를 에콰도르 만타의 CONSERVAS ISABEL ECUATORIANA S.A.로, 수입자를 Colomboespañola로 적는다(C).",
+     "ord": 695
+    },
+    {
+     "kind": "para",
+     "text": "업계지는 아직 Atunec을 큰 공장으로 적는다. Atuna는 2026-05-05 콜롬비아 참치산업을 다룬 기사에서 「The major tuna processing plants are located on the Atlantic coast in Cartagena (Seatech and Atunec) and in Barranquilla (Gralco of Tri Marine Group)」라고 썼다(B). 대서양 연안의 큰 가공공장으로 카르타헤나에 Seatech과 Atunec이, 바랑키야에 Tri Marine 그룹의 Gralco가 있다는 뜻이다.",
+     "ord": 2713
+    },
+    {
+     "kind": "para",
+     "text": "Seatech 쪽은 등록부와 맞는다. Atunec 쪽은 틀렸다. Supersociedades 제출서류는 2016년분부터 2025년분까지 해마다 Atunec의 주소를 「CRA 5 No. 1A-94 MZ 13 ZONA FRANCA」, 곧 바랑키야 자유무역지대로 적는다(A). 카르타헤나에 큰 참치 공장 두 곳이 나란히 있다는 문장은 주소부터 어긋나고, 매출로 보아도 Atunec은 큰 공장 축에 들지 않는다.",
+     "ord": 3029
+    },
+    {
+     "kind": "para",
+     "text": "Atunec의 정식 상호는 ATUNES Y ENLATADOS DEL CARIBE S.A.S(NIT 800223739)다. 매출은 2019년 215,2억 COP에서 2021년 0,02억 COP로 떨어졌고, 2025년에도 같은 수준이다(A).",
+     "ord": 3266
+    },
+    {
+     "kind": "para",
+     "text": "그사이의 사정은 현지 매체 Halcones y Palomas가 전했다(B). 기사에 따르면 Atunec은 2021년 8월 333,0억 COP 규모의 채무 지급을 멈췄다. 2023-02-23에는 Supersociedades에서 「audiencia de confirmación de un acuerdo con los acreedores」, 곧 채권자와 맺은 재건 합의를 인가하는 심리가 열렸다. 합의가 정한 상환 기간은 10,5년이다.",
+     "ord": 3410
+    },
+    {
+     "kind": "para",
+     "text": "법인이 없어진 것은 아니다. Atunec은 2025년분까지 Supersociedades에 재무제표를 냈고, 재건 합의의 상환 기간 안에 있다. 끊긴 것은 가공 매출과 INVIMA 등록이다.",
+     "ord": 3662
+    },
+    {
+     "kind": "para",
+     "text": "남은 두 회사는 파는 곳이 다르다. Atuna는 2026-07-13 이탈리아의 1분기 수입을 다룬 기사에서 「Gralco ships mostly canned tuna to the Italian retail market, as SeaTech has a stronger position in the foodservice market」라고 적었다(B). Gralco는 캔참치를 주로 이탈리아 소매 시장에 보내고, Seatech은 외식 시장에서 더 강하다는 말이다. 이탈리아는 2025년 EU27이 콜롬비아에서 들인 캔·조제 참치(1604.14)의 85,5 %를 받은 나라다(Eurostat, 나라 단위, 계산). 그 물량을 두 회사로 나눈 공개 자료는 없다.",
+     "ord": 3778
+    },
+    {
+     "kind": "para",
+     "text": "미국 쪽 규제 기록에서는 차이가 드러나지 않는다. 콜롬비아 업체가 오른 FDA 현행 수입경보 24건의 본문에 Seatech·Van Camp·Gralco·Atunec 이름은 없다(A).",
+     "ord": 4160
+    },
+    {
+     "kind": "para",
+     "text": "갈리는 곳은 돌고래 보호 명부다. Earth Island Institute(EII)의 Dolphin Safe 명부 2026-09-24판에 오른 콜롬비아 업체는 Gralco 한 곳이고, 분류는 가공업체(Processor)다(A). Seatech과 Van Camp 이름은 명부에 없다. 다른 명의로 올랐을 가능성은 명부만으로 가려지지 않는다. Van Camp's 올리브유 캔 뒷면에는 AIDCP-APICD Dolphin Safe 표시가 인쇄돼 있다(C). 국제돌고래보존계획협정(AIDCP) 체제의 표시로, EII 명부와는 다른 제도다.",
+     "ord": 4273
+    },
+    {
+     "kind": "para",
+     "text": "MSC 공급망(CoC) 인증 목록도 같은 쪽으로 갈린다. 콜롬비아 인증 11건 가운데 참치 가공사는 Gralco S.A. 하나다(A). 증서 MSC-C-58401은 2020-10-19에 처음 발급됐다. 지금 증서는 2027-01-15에 만료되며, 가다랑어·황다랑어·눈다랑어·날개다랑어를 다룬다. Seatech 이름은 목록에 없다.",
+     "ord": 4581
+    },
+    {
+     "kind": "para",
+     "text": "국내 매대의 경쟁은 콜롬비아 공장끼리만 벌어지지 않는다. Industrial Economics, Inc.(IEc)가 Pew 발주로 2023년에 낸 보고서는 Datamyne 적하 자료로 2019년 에콰도르산 캔을 들인 콜롬비아 수입사를 물량 순서로 적었다(B). 맨 앞은 Lidl과 Koba이고, Isabel을 들이는 Colomboespañola도 명단에 있다. Seatech 이름은 없다.",
+     "ord": 4776
+    },
+    {
+     "kind": "para",
+     "text": "명단에 이름이 없다고 Seatech이 에콰도르산 캔과 떨어져 있는 것은 아니다. INVIMA에는 에콰도르 만타의 INEPACA가 제조하고 Seatech이 수입자(IMPORTADOR)로 오른 유효 등록이 4건 있다(A). 물·기름 담금 로인 두 건과 생선 캔 두 건이다. 등록은 수입할 자격을 보여 줄 뿐 물량은 담지 않아서 2019년 적하 명단과 맞대어 볼 수 없다.",
+     "ord": 5649
+    },
+    {
+     "kind": "para",
+     "text": "Gralco의 세 해 적자가 이탈리아 소매 판로와 어떻게 얽히는지는 드러나지 않는다. 두 회사의 수출 물량과 단가를 회사별로 적은 공개 문서가 없다.",
+     "ord": 5865
+    }
+   ],
+   "stage": "c07"
+  },
+  {
+   "sid": "s15",
+   "numeral": "15",
+   "label": "전략",
+   "subtitle": "회사는 전략을 말하지 않고, 장부에서 큰 자리는 설비와 매출채권, 매입채무 및 기타채무다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "콜롬비아 업계지와 지역 일간지, 뉴스 색인에 오른 기사 가운데 Seatech 경영진이 이름을 걸고 사업 방향을 밝힌 인터뷰나 발언은 한 건도 없다. 회사가 밖으로 낸 말은 성명과 무응답, 이름을 밝히지 않은 소식통의 한마디다. 방향은 말보다 등기 서류와 재무제표에 먼저 드러난다.",
+     "ord": 97
+    },
+    {
+     "kind": "para",
+     "text": "공개된 성명과 입장은 단속 보도에 맞춘 대응이었다. 2023-12 노동부 조사가 보도되자 회사는 「rechaza tajantemente las afirmaciones sin fundamento」, 곧 근거 없는 주장을 단호히 거부한다고 밝혔다. 같은 달 성명은 「sus 1.800 colaboradores」, 1.800명의 직원을 앞세웠다(C). 2024-01 El Tiempo의 문의에는 「por ahora no habrá nuevos pronunciamientos」, 당분간 추가 입장은 없다고 답했다.",
+     "ord": 277
+    },
+    {
+     "kind": "para",
+     "text": "그 뒤로는 침묵이 이어졌다. 보호구역 안 조업 정황을 다룬 2024-03 Mongabay 기사는 회사에서 「no obtuvimos respuesta alguna」, 아무 답도 받지 못했다고 적었다. 에콰도르인 전 선원들의 사회보장 소송을 다룬 2024-12 El Espectador 기사에는 「Seatech, consultada por este diario, ha decidido guardar silencio」가 붙었다. 신문의 문의에 회사가 침묵하기로 했다는 뜻이다(B).",
+     "ord": 571
+    },
+    {
+     "kind": "para",
+     "text": "배와 선원에 관한 회사 입장은 봉인 전부터 같았다. 참치를 잡는 인력과도 어선과도 관계가 없고, 배는 「armadores internacionales」(국제 선주) 명의라는 말을 여러 차례 해 왔다(C, El Espectador 2025-09-17 전언). 3주 뒤인 2025-10 선박 3척 봉인을 발표한 노동부 장관은 그 배들을 Seatech에 봉사하는(「al servicio de」) 배라 불렀다(B).",
+     "ord": 848
+    },
+    {
+     "kind": "para",
+     "text": "익명 소식통의 말은 에콰도르 쪽 사건에서 나왔다. INEPACA 명의 에콰도르 선망선 MonteCristi에서 2025-04-27 코카인이 압수됐다는 보도(B)에 Seatech 고위 소식통은 「Seatech no tiene ninguna relación con el tema」, 이 일과 관계가 없다고 했다. MonteCristi는 IATTC 등록부상 INEPACA 명의 에콰도르 기국 선박이다(A).",
+     "ord": 1087
+    },
+    {
+     "kind": "para",
+     "text": "돈의 자리는 문서가 적는다. 정관 목적에서 참치 어획이 빠졌다. 설비 장부가는 두 해 사이 커졌고, 부채는 거의 매입채무 및 기타채무 한 줄이다. 같은 기간 투자·증설·신공장·인수를 다룬 보도는 없다.",
+     "ord": 1322
+    },
+    {
+     "kind": "para",
+     "text": "정관은 2023 회계연도 제출분에서 바뀌었다. 2022-12-31 결산분까지 있던 「Pesca de Atun」(참치 어획)이 빠지고 「PREPARACION INDUSTRIAL Y EMPAQUE … CONGELADO O ENLATADO」, 곧 냉동·캔 제품의 가공과 포장만 남았다(A). 카르타헤나 환경청의 2026-03-19 결정문은 회사 목적을 「El objeto social principalmente es la pesca, procesamiento, enlatado」로 적었다. 이 문장은 환경청이 쓴 설명이지 등기 정관이 아니다.",
+     "ord": 3551
+    },
+    {
+     "kind": "para",
+     "text": "배와의 거리도 등록부에서 같은 쪽을 가리킨다. IATTC 등록부의 소유자 칸에는 Seatech 이름이 없고, 두 주소의 12개 법인이 한 척씩 갖는다(A). 회사 누리집 2018·2024년 판은 「Nuestra FLOTA」(우리 선단)라는 제목의 페이지에서 이 배들을 자사 「proveedor de flota」(선단 공급자)의 배로 소개했다(C). 옛 명의 기록은 문서마다 다르다. NGO 선박 DB는 Marta Lucia R가 2017-04-26부터 2018-01-06까지 Seatech 명의였다고 적고(B), El Espectador는 AUNAP 기록상 Enterprise가 2018년 Seatech 명의였다고 적는다(B). IATTC 등록부에서는 Marta Lucia R를 포함한 한 주소군 6척이 2017-09-28에 마지막으로 갱신됐고, 그때 이미 지금의 명의였다(A).",
+     "ord": 3862
+    },
+    {
+     "kind": "para",
+     "text": "상표도 회사 이름 바깥에 적혀 있다. 콜롬비아 Van Camp's의 29류 표장 12건이 2025-10-03 하루에 출원됐고, 출원인은 파나마 법인 ANDEAN TRADING INTERNATIONAL INC.다(A). 콜롬비아 상표 데이터에 Seatech·INEPACA 명의 표장은 0건이고, Andean Trading과 두 회사의 관계는 등록부에 나오지 않는다. 2020년 한 탐사보도는 Andean Trading이 선박 명의 법인들과 같은 파나마 법률사무소에서 세워졌다고 적었다(B).",
+     "ord": 4309
+    },
+    {
+     "kind": "para",
+     "text": "설비 쪽 숫자는 커졌지만, 늘어난 몫이 새 설비인지 재평가인지는 가를 수 없다. 2025년 말 유형자산은 총자산의 24,7 %이고, 자본에는 재평가잉여금 280,4억 COP가 있다. 2025년 명세는 토지·건물을 재평가 금액으로, 기계를 원가로 적는다(A). 2024년 제출본은 항목 구분이 달라 두 해를 항목별로 견줄 수 없다. 명세의 선박은 3,7억 COP로 유형자산의 0,26 %다. 장부 기준으로 선단은 이 지점의 자산에 없다.",
+     "ord": 4593
+    },
+    {
+     "kind": "para",
+     "text": "2024년 현금흐름표는 유형자산 취득에 219,0억 COP를 적었다. 같은 투자 칸의 「기타 유입」 209,8억이 이를 상쇄했고, 영업·투자·재무 세 활동의 현금흐름은 같은 절댓값으로 제출됐다(A).",
+     "ord": 4859
+    },
+    {
+     "kind": "para",
+     "text": "외상은 받을 쪽도 줄 쪽도 크다. 2025년 말 매출채권은 매출의 48,2 %에 이르고, 부채의 97,5 %가 매입채무 및 기타채무(「Cuentas por pagar comerciales y otras cuentas por pagar corrientes」) 한 줄이다. 정형 주석은 매출채권을 국내·미연체로, 매입채무를 국내·미도래로 분류한다(A). 재무상태표에는 차입금이나 기타 금융부채 행이 없다. 그런데도 2025년 금융비용은 490,9억 COP로 매출의 8,6 %다. 그 원천은 공개되지 않는다.",
+     "ord": 4981
+    },
+    {
+     "kind": "para",
+     "text": "2025년 영업손익은 −16,1억 COP로 돌아섰다. 매출총이익이 117,4억 COP 줄었고, 기타비용(Otros gastos)은 같은 해 늘어난 기타수익보다 더 크게 늘었다(A). 세전이익은 3,2억 COP(2024년 79,7억)였고, 세금 항목이 순이익을 3,2억에서 25,4억 COP로 올렸다.",
+     "ord": 5291
+    },
+    {
+     "kind": "para",
+     "text": "경쟁사와 견주면 방향이 갈린다. Atuna는 2026-07-13 기사에서 「Gralco ships mostly canned tuna to the Italian retail market, as SeaTech has a stronger position in the foodservice market」라고 적었다. Gralco는 캔을 주로 이탈리아 소매 시장에 보내고, Seatech은 외식 시장에서 더 강하다는 뜻이다(B). 같은 매체가 인용한 이탈리아 수입 단가는 나라 평균이라 두 회사의 몫을 가르지 못한다.",
+     "ord": 5469
+    },
+    {
+     "kind": "para",
+     "text": "Atuna 2026-05-05 기사는 「The major tuna processing plants are located on the Atlantic coast in Cartagena (Seatech and Atunec)」라고 적었다. Atunec의 등록 주소는 바랑키야 자유무역지대이고, 매출은 2021년부터 0,02억 COP 수준에 머문다(A). 세 회사 가운데 EU TRACES 콜롬비아 목록에 시설 번호가 있는 곳은 Seatech과 Gralco다.",
+     "ord": 7154
+    },
+    {
+     "kind": "para",
+     "text": "회사 밖에서는 날짜가 붙은 요구와 발언이 쌓였다. 지역 일간지 지면은 생산 정상화를 두 차례 촉구했다. 환경청은 시정을 요구했고, 수산 당국 수장은 태평양 연안 투자를 말했다. 환경청 결정문에는 누출 경위와 인원에 관한 회사 진술도 실렸다.",
+     "ord": 7418
+    },
+    {
+     "kind": "para",
+     "text": "AUNAP 청장의 발언은 태평양 연안의 가공공장과 도로를 가리켰다. Seatech 공장은 카리브해 쪽 카르타헤나 Mamonal에 있다. FiTI는 아직 약속국 단계라 선박·어획 정보를 담은 국가 보고서가 나오지 않았다.",
+     "ord": 9364
+    },
+    {
+     "kind": "para",
+     "text": "기타비용 312,8억 COP를 항목별로 나누는 분석 서식은 2024·2025년 어느 해에도 제출되지 않았다(A). 매입채무 및 기타채무 3.471,6억 COP의 상대가 원료 공급자인지 본점인지도 공개되지 않는다. 외국회사 지점은 본점 계정을 이 줄에 섞어 적을 수 있다.",
+     "ord": 9497
+    }
+   ],
+   "stage": "c08"
+  },
+  {
+   "sid": "s16",
+   "numeral": "16",
+   "label": "남은 물음",
+   "subtitle": "등록부는 배의 이름을 적고, 배와 공장을 잇는 계약은 어느 공개 문서에도 없다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "IATTC 등록부에 오른 콜롬비아 기국 활성 선망선 13척 가운데 12척은 카르타헤나 두 사무실 주소의 12개 법인이 한 척씩 갖는다(A). 등록부 소유자 칸에 Seatech 이름은 없다. 그 배들과 Mamonal km 8 공장 사이의 용선·공급 계약은 어느 공개 문서에도 나오지 않는다. 공개 문서가 답하지 않는 물음은 이것까지 아홉 가지다.",
+     "ord": 94
+    },
+    {
+     "kind": "para",
+     "text": "배와 회사를 잇는 문장은 회사 자칭과 매체·NGO 문서에 있다. 회사 누리집의 옛 「Nuestra FLOTA」(우리 선단) 페이지는 참치선 12척을 「proveedor de flota」(선단 공급자)의 배로 적었다(C). 2025-10 노동부가 봉인한 세 척(Sandra C·Amanda S·Nazca)은 두 주소에 걸쳐 있고, 노동부와 매체는 이 배들을 Seatech을 위해 일하는(「al servicio de」) 선박이라 불렀다(B).",
+     "ord": 310
+    },
+    {
+     "kind": "para",
+     "text": "옛 명의 기록은 IATTC 등록부(A)와 NGO 선박 DB·AUNAP 기록을 인용한 보도(B)가 서로 다르다. 뒤의 둘은 한때 Seatech 명의였던 구간을 적는다. 13번째 활성선 Doña Raquel은 두 주소 밖에 주소를 둔 파나마 법인 Tropical Seas Navigation S.A. 명의다(A).",
+     "ord": 566
+    },
+    {
+     "kind": "para",
+     "text": "환경청 문서에도 배가 나온다. 카르타헤나 환경청 Auto EPA-AUTO-000607-2026(2026-03-19)에 적힌 회사 진술은 BP ORION을 내보내려고 부처(ministerio)가 넉 달째 봉인해 둔(「sellada por parte del ministerio desde hace 4 meses」) BP SANDRA C를 옮기다 부두 구역에서 냉매 암모니아가 샜다고 설명한다(A 문서, 진술 내용은 C). 그 배가 어떤 계약으로 그 부두에 있었는지는 환경청 문서에도 없다.",
+     "ord": 750
+    },
+    {
+     "kind": "para",
+     "text": "돈의 흐름은 합계와 정형 주석까지만 공개돼 있다. 2025년 말 부채의 97,5 %(계산)가 매입채무 및 기타채무 한 줄이고, 재무상태표에는 차입금 행이 없다(A). SIIS 정형 주석은 그 매입채무가 전액 국내·미도래라고 적는다(A). 상대가 원료 공급자인지 본점인지, 특수관계자가 섞여 있는지는 공개되지 않는다. 차입금 행이 없는데 2025년 금융비용은 490,9억 COP, 매출의 8,6 %(계산)이고 그 원천도 공개되지 않는다(A).",
+     "ord": 1032
+    },
+    {
+     "kind": "para",
+     "text": "유형자산 명세는 정형 주석에 올라 있고, 1.443,7억 COP 가운데 선박은 3,7억 COP(0,26 %)다(A). 2025년 영업손실을 만든 기타비용 312,8억 COP는 사정이 다르다. 기타비용 분석 서식(801800b)은 2024·2025 제출분에 없다(A). 내역은 서술형 주석에 있다. 그 PDF는 Supersociedades 문서 서버에 2025 결산 제출건(접수 2026-01-301853)의 부속 문서로 올라 있다.",
+     "ord": 1301
+    },
+    {
+     "kind": "para",
+     "text": "공식 인원도 주석이 적을 항목이다. 지금 나온 값은 회사 성명의 1.800명(2023)과 회사가 환경청에 밝힌 「2000 empleados」다(C).",
+     "ord": 1559
+    },
+    {
+     "kind": "para",
+     "text": "본사 쪽은 더 멀다. Supersociedades 2017~2025 제출분 표지는 본사 소재국을 영국령 버진아일랜드(「863 - VIRGENES - ISLAS (BRITANICAS)」)로, 주소를 「Edificio Citco, Cayo wickcamn caja postal 1662」로 적는다(A). 설립번호와 주주, 실소유자는 콜롬비아 등록부에도 ICIJ Offshore Leaks에도 나오지 않는다.",
+     "ord": 1653
+    },
+    {
+     "kind": "para",
+     "text": "Van Camp's 콜롬비아 상표의 권리자는 등록부에 나온다. EUIPO TMview에 실린 SIC 데이터는 29류 VAN CAMP'S 표장의 권리자를 파나마 법인 Andean Trading International Inc.로 적는다(A). 2025-10-03 하루에 29류 12건이 출원됐고, 그중 11건이 2026-06~08 등록됐다. Seatech·Colombina·INEPACA 명의 표장은 없다(A). Andean Trading과 Seatech·INEPACA의 관계는 등록부에 나오지 않고, 2020년 탐사보도(B)가 같은 파나마 법률사무소와 겹치는 이사진을 적었을 뿐이다. 2011~2024년 매체 넷은 Seatech을 제조자, 가맹사(「franquiciaria de la marca」), 권리자로, Colombina를 독점 유통업자나 상업 대표로 제각각 적었다(B). Colombina 2025 정기보고는 자신을 40년 넘은 독점 유통업자로 소개하고 Van Camp's 사업의 2025 순매출을 3.201,22억 COP로 밝힌다(A). 같은 보고서에는 「Colombina no depende de licencias o contratos u otras variables propiedad de terceros」라는 문장도 있다. 제3자가 가진 라이선스나 계약에 기대지 않는다는 뜻이다. 1960년 표장 46328에는 이전(1989-12-18·1990-05-06)과 실시권(2000-02-07) 기록이 있지만 양수인과 실시권자 이름은 없다(A). 권리자 다음 물음은 누가 어떤 실시권으로 그 이름을 캔에 찍느냐다.",
+     "ord": 1889
+    },
+    {
+     "kind": "para",
+     "text": "공장 문서는 설비를 적고 캔 라인의 능력은 적지 않는다. 같은 환경청 문서는 천연가스 보일러 3기, 레토르트 배기구 10개, 하루 21 t 생산능력의 어분 공장을 기록했다(A 문서, 일부는 회사 진술). 업계단체 Analdex의 2026-04-24 글은 「volúmenes cercanos a las 45.000 toneladas anuales」라고 썼다. 연 4만 5천 t 안팎이라는 말인데, 원어인지 제품인지, 능력인지 실적인지 기준이 없다(C). 환경청 문서가 근거로 든 CARDIQUE 결의 두 건, 폐수 방류 허가 0667/2023과 환경관리계획 0160/2001은 번호만 인용돼 있다.",
+     "ord": 2696
+    },
+    {
+     "kind": "para",
+     "text": "자유무역지대 입주도 제3자의 표시로 드러난다. 운영사 Zofranca 누리집의 산업사용자 목록 첫 칸이 Seatech이고, 상업 선적 DB와 INVIMA 시설 주소에 「ZONA FRANCA」가 붙는다(B). 산업사용자 자격은 사용자운영자가 내주는 자격부여서(calificación)로 생긴다(B). 그 문서는 공개되지 않았다.",
+     "ord": 3052
+    },
+    {
+     "kind": "para",
+     "text": "국가 조치는 발표와 절차 개시에서 멈춰 있다. 노동부 장관은 2025-10-10 선박 세 척을 10일간 봉인했다(B). 2025-12에는 노동부 공식 계정이 Doña Raquel호 작업 봉인과 출항 저지를 위한 Dimar 이관을 게시했다(정부 게시). 장관은 2025-10-11 내무부가 2025-07부터 노동 목적 인신매매 혐의로 사건을 조사한다고 적었다. 조사 착수 발표이고, 결과나 기소는 2026-09-25까지 공개되지 않았다.",
+     "ord": 3245
+    },
+    {
+     "kind": "para",
+     "text": "앞선 절차도 같다. 2023-12 보도된 제재 절차 8건(Seatech 3건·도급사 A Tiempo 5건, 합계 COP 35억 초과)은 확정 처분이 아니다(B). 2026-02-26 노동부 장관이 착수한 암모니아 누출 감독의 결과도 공개되지 않았다(B). 처분 문서 원문이 공개된 것은 환경청의 중간 처분이다. 환경청은 누출이 법정 기한 안에 공식 경로로 신고되지 않았다고 적고 시정과 자료 제출을 요구했고 과징금은 매기지 않았다(A).",
+     "ord": 3499
+    },
+    {
+     "kind": "para",
+     "text": "원산지 쪽 물음은 제도와 사용자를 가른다. 협정은 두 장치를 둔다. 어선 소유 조건의 누적(EU 선언 각주 1)과 재료 누적(부속서 II 제3조)이다(A). 부속서 II는 제16류에 쓰인 제3류 재료가 완전생산품이기를 요구하고, 제3조 제3항은 파나마 등에서 온 재료를 서명 안데스국 원산 재료로 본다(A). 콜롬비아 관세당국은 WCO 상설기술위원회 문서에 실린 답변에서 행정협력 약정(「accords de coopération administrative」) 덕분에 민간이 참치 조업에서 제3국 누적을 써 캔참치를 EU로 수출하게 됐다고 적었다(A-). 같은 답변의 참치 사례는 에콰도르·파나마·과테말라 영해에서 잡은 냉동 통참치를 재료로 누적해 만든 냉동 프리쿡 부순 참치(「thon émietté précuit, congelé」)의 스페인 수출이다. 회사 이름은 없다. Seatech이 그 누적을 썼다는 문서도 없다.",
+     "ord": 3754
+    },
+    {
+     "kind": "para",
+     "text": "El Universal 사설(2026-01-21)은 「para que a la mayor brevedad posible se normalice la producción en la empresa」라고 썼다. 회사의 생산을 되도록 빨리 정상으로 되돌리라는 요구다. 생산이 얼마나 흔들렸고 매출에 어떻게 반영됐는지는 공개된 숫자가 없다. 2026 회계연도 결산 제출건이 그 숫자를 처음 적는다.",
+     "ord": 7388
+    }
+   ],
+   "stage": "c08"
+  }
+ ]
+}

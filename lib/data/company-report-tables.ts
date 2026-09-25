@@ -53,6 +53,8 @@ import sstcRaw from '@/public/data/companies/sstc_tables_v1.json';
 import grupomarRaw from '@/public/data/companies/grupomar_tables_v1.json';
 import procesaRaw from '@/public/data/companies/procesa_tables_v1.json';
 import tropicalRaw from '@/public/data/companies/tropical_tables_v1.json';
+import seatechRaw from '@/public/data/companies/seatech_tables_v1.json';
+import ppfRaw from '@/public/data/companies/ppf_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -148,6 +150,8 @@ const INTAKES: Record<string, Intake> = {
   grupomar: grupomarRaw as unknown as Intake,
   procesa: procesaRaw as unknown as Intake,
   tropical: tropicalRaw as unknown as Intake,
+  seatech: seatechRaw as unknown as Intake,
+  ppf: ppfRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

@@ -275,6 +275,18 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅤ · 발행본 §02·§07 의 본점=공장 주소 「1/1 Moo 2, Kanjanavanich Rd., Thung Yai, Hat Yai, Songkhla 90110」 · 공업부 DIW 3종 공장 등록 5건(퉁야이·남녹) · **좌표는 핫야이 퉁야이 근사값**',
     note: '전 의장 명의 24,585 %(2021-12-18 사망) · 의장 겸직 세 매출처(TCC·Safcol Australia·TC Boy)가 2025 매출의 46,2 % · Safcol Australia 상대 매출 120,1 → 554,1 백만 THB · 1H2026 펫푸드 50,6 % > 참치 41,6 % · 미국 Section 301 12,5 %(2026-07-24~)',
     },
+  // ── ⅬⅥ Seatech International — 카르타헤나 Mamonal ─────
+  { company: 'seatech', numeral: 'ⅬⅥ', kind: 'hq', label: 'Seatech International — 카르타헤나 Mamonal km 8', country: '콜롬비아',
+    lat: 10.3400, lng: -75.5000,
+    basis: 'ⅬⅥ · 발행본 §01·§02 의 두 주소 — EU TRACES 승인 가공장 「0023-92 | Seatech International Inc. | Mamonal Km 8 | Cartagena | PP」와 회사감독청 제출 주소 「MAMONAL KM 8」 · 본사는 영국령 버진아일랜드(지점 등기) · **좌표는 카르타헤나 Mamonal km 8 근사값**',
+    note: 'IATTC 소유자 칸에 Seatech 없음 · 콜롬비아 기국 활성 선망 13척 중 12척 = 두 주소의 열두 법인 명의 한 척씩(운반능력 91,3 %) · 장부 선박 = 유형자산의 0,26 % · Van Camp\'s 29류 권리자 파나마 법인 Andean Trading International · 부채의 97,5 % = 매입채무 및 기타채무 한 줄',
+    },
+  // ── ⅬⅦ Pan Pacific Foods — 마주로 Delap ─────
+  { company: 'ppf', numeral: 'ⅬⅦ', kind: 'hq', label: 'Pan Pacific Foods — 마주로 Delap 로인 공장', country: '마셜제도',
+    lat: 7.1000, lng: 171.3700,
+    basis: 'ⅬⅦ · 발행본 §02 의 MSC 공급자 명부 주소 「1289 Oceanside, Delap Village, Majuro 96960」(공장 법인, MSC-C-53419)과 WCPFC 등록부의 선단 법인 주소 「P.O. Box 1289 Delap Majuro」 · 공장 건물은 마셜 임차지 위(임차 기한 2036-09) · **좌표는 마주로 Delap 근사값**',
+    note: '가공 실적 0 t(2021~2025, 마셜 정부 WCPFC 보고) · 2025 순이익 공장 법인 1,13 대 선단 법인 5.381,94만 위안 · 그룹 연결 휴업 손실 1H2026 651,52만 위안 · 미국 신고 마셜산 조제 참치 2016~2025 신고 없음(2011 정점 1.567,6 t) · EU 반입 허용국 목록에 마셜 없음',
+    },
 ];
 
 /**
