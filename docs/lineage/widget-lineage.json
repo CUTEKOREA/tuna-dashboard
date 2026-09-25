@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 285,
+  "files": 290,
   "widgets": 114,
-  "dataFiles": 304,
+  "dataFiles": 324,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -614,6 +614,7 @@
     "lib/data/company-galapesca.ts",
     "lib/data/company-garavilla.ts",
     "lib/data/company-ghana.ts",
+    "lib/data/company-grupomar.ts",
     "lib/data/company-hagoromo.ts",
     "lib/data/company-herdez.ts",
     "lib/data/company-iot.ts",
@@ -630,7 +631,9 @@
     "lib/data/company-nissui.ts",
     "lib/data/company-pafco.ts",
     "lib/data/company-pinsa.ts",
+    "lib/data/company-ppf.ts",
     "lib/data/company-princes.ts",
+    "lib/data/company-procesa.ts",
     "lib/data/company-rd.ts",
     "lib/data/company-report-figures.ts",
     "lib/data/company-report-tables.ts",
@@ -638,6 +641,7 @@
     "lib/data/company-sajoseafood.ts",
     "lib/data/company-salica.ts",
     "lib/data/company-sca.ts",
+    "lib/data/company-seatech.ts",
     "lib/data/company-seavalue.ts",
     "lib/data/company-soltuna.ts",
     "lib/data/company-sstc.ts",
@@ -647,6 +651,7 @@
     "lib/data/company-thaiunion.ts",
     "lib/data/company-tog.ts",
     "lib/data/company-trimarine.ts",
+    "lib/data/company-tropical.ts",
     "lib/data/company-umios.ts"
    ],
    "dataFiles": [
@@ -734,6 +739,10 @@
     "public/data/companies/ghana_prose_v1.json",
     "public/data/companies/ghana_tables_v1.json",
     "public/data/companies/ghana_v1.json",
+    "public/data/companies/grupomar_figures_v1.json",
+    "public/data/companies/grupomar_prose_v1.json",
+    "public/data/companies/grupomar_tables_v1.json",
+    "public/data/companies/grupomar_v1.json",
     "public/data/companies/hagoromo_figures_v1.json",
     "public/data/companies/hagoromo_prose_v1.json",
     "public/data/companies/hagoromo_tables_v1.json",
@@ -798,10 +807,18 @@
     "public/data/companies/pinsa_prose_v1.json",
     "public/data/companies/pinsa_tables_v1.json",
     "public/data/companies/pinsa_v1.json",
+    "public/data/companies/ppf_figures_v1.json",
+    "public/data/companies/ppf_prose_v1.json",
+    "public/data/companies/ppf_tables_v1.json",
+    "public/data/companies/ppf_v1.json",
     "public/data/companies/princes_figures_v1.json",
     "public/data/companies/princes_prose_v1.json",
     "public/data/companies/princes_tables_v1.json",
     "public/data/companies/princes_v1.json",
+    "public/data/companies/procesa_figures_v1.json",
+    "public/data/companies/procesa_prose_v1.json",
+    "public/data/companies/procesa_tables_v1.json",
+    "public/data/companies/procesa_v1.json",
     "public/data/companies/rd_figures_v1.json",
     "public/data/companies/rd_prose_v1.json",
     "public/data/companies/rd_tables_v1.json",
@@ -822,6 +839,10 @@
     "public/data/companies/sca_prose_v1.json",
     "public/data/companies/sca_tables_v1.json",
     "public/data/companies/sca_v1.json",
+    "public/data/companies/seatech_figures_v1.json",
+    "public/data/companies/seatech_prose_v1.json",
+    "public/data/companies/seatech_tables_v1.json",
+    "public/data/companies/seatech_v1.json",
     "public/data/companies/seavalue_figures_v1.json",
     "public/data/companies/seavalue_prose_v1.json",
     "public/data/companies/seavalue_tables_v1.json",
@@ -855,6 +876,10 @@
     "public/data/companies/trimarine_prose_v1.json",
     "public/data/companies/trimarine_tables_v1.json",
     "public/data/companies/trimarine_v1.json",
+    "public/data/companies/tropical_figures_v1.json",
+    "public/data/companies/tropical_prose_v1.json",
+    "public/data/companies/tropical_tables_v1.json",
+    "public/data/companies/tropical_v1.json",
     "public/data/companies/umios_figures_v1.json",
     "public/data/companies/umios_prose_v1.json",
     "public/data/companies/umios_tables_v1.json",
@@ -1707,6 +1732,18 @@
   "public/data/companies/ghana_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/grupomar_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/hagoromo_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -1899,6 +1936,18 @@
   "public/data/companies/pinsa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/ppf_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ppf_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ppf_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ppf_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/princes_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -1909,6 +1958,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/princes_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/procesa_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/procesa_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/procesa_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/procesa_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/rd_figures_v1.json": [
@@ -1969,6 +2030,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/sca_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/seavalue_figures_v1.json": [
@@ -2069,6 +2142,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/trimarine_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tropical_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tropical_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tropical_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tropical_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/umios_figures_v1.json": [

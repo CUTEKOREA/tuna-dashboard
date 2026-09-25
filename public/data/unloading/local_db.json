@@ -3218,6 +3218,74 @@
    "source_workbook_sha256": "d36a1f59601d7e4491e081e06fb85f1def2845ed25c34ceac06bc5dd6814c32e",
    "status_workbook_sha256": "5a2c68a088dea2572a150d457af3d9b188873a593d730b55a3fa5f1ea2b6d1d1",
    "created_at": "2026-09-24T23:00:00+09:00"
+  },
+  {
+   "id": "sein-galaxy-bangkok-2026-09-9-25",
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "report_year": 2026,
+   "report_date": "9/25",
+   "work_time": "11:10 ~ 14:30",
+   "target_holds": "MOAKONA(#2-C:116.710), MOAMARI(#3-C:78.810)",
+   "consignee": "UC · CMC",
+   "allocations": [
+    {
+     "consignee": "UC",
+     "amount": 116.71,
+     "loads": [
+      {
+       "source_vessel": "MOAKONA",
+       "hatch": "#2-C",
+       "amount": 116.71
+      }
+     ]
+    },
+    {
+     "consignee": "CMC",
+     "amount": 78.81,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#3-C",
+       "amount": 78.81
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "MOAKONA",
+     "hatch": "#2-C",
+     "temperatures_c": [
+      -17.0,
+      -18.0
+     ]
+    },
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -19.0,
+      -20.0
+     ]
+    }
+   ],
+   "daily_amount": 195.52,
+   "cumulative_amount": 1646.34,
+   "species_amounts": {
+    "SJ": 135.22,
+    "YF": 60.3
+   },
+   "remaining_amount": 199.66,
+   "next_day": {
+    "kind": "work",
+    "date": "9/26",
+    "planned_mt": 130
+   },
+   "quality_notes": "MOAKONA(#2-C) 11:20~14:30 - 어창 개방 측정온도는 -17.0℃ ~ -18.0℃ 입니다. MOAMARI(#3-C) 11:10~13:30 - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. 원문 온도 표기는 ‘-17,-18’·‘-19,-20’(단위: ℃)입니다. TOTAL 14 TRUCKS(CMC #3-C 는 리퍼 트럭 6대). 08:00~11:10 강우로 작업이 세 시간 늦게 시작돼 하역 시간이 3시간 20분에 그쳤습니다. 어창 온도는 전일 MOAKONA -21~-22 · MOAMARI -17~-18 에서 각각 -17~-18 · -19~-20 으로 뒤바뀌었습니다. 계획 200 MT 대비 -4.480 MT. CMC 계획 어창은 사흘 연속 #4-C 였으나 실제는 #3-C 였습니다. 하역 누계 1,646.340 MT·잔량 199.660 MT(진행률 89.2%). 원문 표의 HATCH.1 잔량은 +16.180 MT 로 적재 초과(green) 표기입니다. 9/26 UN/H2C1(MOAKONA) 130 MT 08:00, 트럭 9대 예정입니다.",
+   "source_sha256": "6b900519861f95eb3a6e548d24a62e9527ab4bb537924b797bb7a5b99cc48704",
+   "source_workbook_sha256": "abb8073b3be454e46ae5b47a16f953c59621784ef6723e86b1b8e64b11ccee54",
+   "status_workbook_sha256": "940f84a75367c9f3e8ee65856ee3a7a49ca296ee295946eb2635a03e56c96ff8",
+   "created_at": "2026-09-25T22:00:00+09:00"
   }
  ],
  "unloading_species": [
@@ -3385,16 +3453,16 @@
    "species_id": "SJ",
    "species_name": "가다랑어",
    "reported_amount": 1306,
-   "actual_amount": 1046.05,
-   "updated_at": "2026-09-24T23:00:00+09:00"
+   "actual_amount": 1181.27,
+   "updated_at": "2026-09-25T22:00:00+09:00"
   },
   {
    "vessel_id": "sein-galaxy-bangkok-2026-09",
    "species_id": "YF",
    "species_name": "황다랑어",
    "reported_amount": 508,
-   "actual_amount": 404.77,
-   "updated_at": "2026-09-24T23:00:00+09:00"
+   "actual_amount": 465.07,
+   "updated_at": "2026-09-25T22:00:00+09:00"
   },
   {
    "vessel_id": "sein-galaxy-bangkok-2026-09",
@@ -3402,7 +3470,7 @@
    "species_name": "눈다랑어",
    "reported_amount": 32,
    "actual_amount": 0,
-   "updated_at": "2026-09-24T23:00:00+09:00"
+   "updated_at": "2026-09-25T22:00:00+09:00"
   }
  ]
 }

@@ -362,6 +362,26 @@ import {
   corp as ssCorp, plant as ssPlant, europe as ssEurope,
 } from '@/lib/data/company-sstc';
 import {
+  grupomarMeta, grupomarSourceNotes,
+  fleet as gmFleet, procurement as gmProc, record as gmRec,
+} from '@/lib/data/company-grupomar';
+import {
+  procesaMeta, procesaSourceNotes,
+  fleet as pcFleet, marks as pcMarks, market as pcMarket,
+} from '@/lib/data/company-procesa';
+import {
+  tropicalMeta, tropicalSourceNotes,
+  control as tcControl, sales as tcSales, exposure as tcExposure,
+} from '@/lib/data/company-tropical';
+import {
+  seatechMeta, seatechSourceNotes,
+  fleet as seFleet, books as seBooks, brand as seBrand,
+} from '@/lib/data/company-seatech';
+import {
+  ppfMeta, ppfSourceNotes,
+  plant as ppPlant, money as ppMoney, market as ppMarket,
+} from '@/lib/data/company-ppf';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -2649,6 +2669,8 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   모리셔스: { flagSrc: '/flags/mu.svg', backInk: '#f4f5f0' },
   솔로몬제도: { flagSrc: '/flags/sb.svg', backInk: '#f4f5f0' },
   피지: { flagSrc: '/flags/fj.svg', backInk: '#f4f5f0' },
+  콜롬비아: { flagSrc: '/flags/co.svg', backInk: '#1b2733' },
+  마셜제도: { flagSrc: '/flags/mh.svg', backInk: '#f4f5f0' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -4791,6 +4813,426 @@ const SSTC_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const GM_ACCENT = '#7a4a1c';
+
+/** 단지·선단·조달·기록. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const GM_F = gmFleet();
+const GM_P = gmProc();
+const GM_R = gmRec();
+
+const gmNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const GRUPOMAR_SPEC: CommoditySpec = {
+  key: 'company-anatomy-grupomar',
+  title: '기업 해부: Grupomar',
+  subtitle:
+    `멕시코 콜리마주 만사니요 Fondeport 산업단지 ${GM_F.주소.split(',')[0]} 의 참치 그룹. 캔 Tuny·Ancla 를 만드는 유럽연합 승인 가공장 Marindustrias(RFC ${GM_F.RFC}), 냉동창고 Marfrigo, 선망선을 가진 Maratún·Martuna 가 같은 번지를 주소로 쓰고, 상표 TUNY(${GM_F.상표})는 Prestadores de Servicios de Colima 가 쥔다. ` +
+    `선망 ${GM_F.척수}척이 멕시코 기국 활성 선망 운반능력의 ${gmNum(GM_F.몫, 1)} % 다. 회사는 2013~2014년 신조 세 척을 어획 능력 확대로, 2023년 배를 화재를 입은 배의 대체선으로 설명했고, 2019년 명부 기준 ${GM_F.척수2023}척이던 선단은 지금 ${GM_F.척수}척이다. ` +
+    `국영 농촌상점 Diconsa 는 이 회사의 Tuny 제조 법인과 Pinsa 의 판매 법인 양쪽과 수의계약을 맺었고, 해마다 계약액이 앞서는 쪽이 바뀌었다.`,
+  accent: GM_ACCENT,
+  primaryKpi: {
+    label: '멕시코 기국 활성 선망 운반능력 가운데 Maratún·Martuna 6척의 몫 (IATTC 선박 등록부, 2026-09-24)',
+    value: GM_F.몫,
+    decimals: 1,
+    unit: `(% · ${gmNum(GM_F.운반능력)} t ÷ ${gmNum(GM_F.분모)} t. 두 법인 합산으로 Pinsa 계열 다음 2위, 법인 단위로는 Maratún 3위. 평균 선령 ${gmNum(GM_F.선령, 1)}년(멕시코 53척 ${gmNum(GM_F.멕시코선령, 1)}년). 2023년 배 María de Jesús 는 동태평양 활성 선망 ${GM_F.동태평양}척 가운데 가장 늦게 지어졌다. **회사 X(2026-08-15)는 「más del 65% tiene menos de 10 años」라 적지만 IATTC 건조연도로 10년 미만은 6척 중 1척이다.** 지주 Grupo Maritimo Industrial 의 지분은 상업 DB(EMIS) 기재뿐이다)`,
+    accent: GM_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: 'Diconsa 공공계약 원수치 1999~2022 — Tuny 제조 법인 Marindustrias (QuiénEsQuién.wiki 집계)',
+      value: GM_P.마린,
+      decimals: 1,
+      unit: `(백만 MXN · 두 원천 중복 포함 ${gmNum(GM_P.행수)}행, 모두 수의계약. 같은 집계의 Pinsa Comercial 은 ${gmNum(GM_P.핀사, 1)} — 합계가 거의 같다. 앞서는 쪽은 2014~2016 Pinsa, 2017~2022 Marindustrias, 2023~2025 다시 Pinsa(CompraNet: 2025 부분 연도 Marindustrias MXN ${gmNum(GM_P.마린2025, 2)} 대 Pinsa Comercial ${gmNum(GM_P.핀사2025, 2)}). 조문은 LAASSP 제41조 XII호 재판매용 구매 예외. 계약액은 매출이 아니다)`,
+    },
+    {
+      label: 'PROFECO 2024 시험 — Tuny Premium 물 캔 140 g 의 고형량 실측 (표기 100 g)',
+      value: GM_R.하한,
+      decimals: 1,
+      unit: `(g · 실측 ${gmNum(GM_R.하한, 1)}~${gmNum(GM_R.상한, 1)} g, 「조각」 비율 34,6~37,2 %(기준 30 %)로 NO CUMPLE·NO ES VERAZ. Tuny 9개 제품 가운데 도장 2개, 2024년 시험 대두 0 % — 2019년 시험에서는 Tuny Light 1~4 %. Ancla 는 앞면에 대두 단백 20 % 를 적고 단백질 8~9 % 로 요약표 최저. 2026-09 라벨은 여전히 「MASA DRENADA 100 g」)`,
+    },
+    {
+      label: '2019 부두 화재 배상 청구 용역 — 연방 항만공사 ASIPONA Manzanillo (CompraNet, 2023)',
+      value: GM_R.배상청구,
+      decimals: 0,
+      unit: `(MXN · 2019-10-01 Fondeport 어항 부두에서 불탄 Maratún 소유 María Verónica 건. 청구 상대로 Marfrigo·Maratún·Marindustrias 와 보험사 Grupo Nacional Provincial 을 적었다. 소송 제기·결과는 공개 문서에 없다. 그룹 매출은 약 ${gmNum(GM_P.매출)} 백만 MXN(Expansión 500 FY2025, 매체))`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '단지',
+      title: '한 단지, 나뉜 이름',
+      body: `유럽연합 승인 가공장·냉동창고·선박 다섯 척의 등록 주소와 캔 라벨의 제조자 주소가 모두 ${GM_F.주소} 다. 상표는 Prestadores de Servicios de Colima, 승인·라벨은 Marindustrias, 통계청 사업체 명부의 251명 이상 통조림 사업장은 Suarcrem Holding, 선박은 Maratún·Martuna 이름이다. 지주 Grupo Maritimo Industrial S.A. de C.V.(1982-08-25 설립)은 상업 DB 와 선하증권에 나온다`,
+    },
+    {
+      eyebrow: '선단',
+      title: '가장 새 배를 들이고도 선단은 한 척 줄었다',
+      body: `Armón 조선소가 지은 Gijón(2013)·Oaxaca·Manzanillo(2014)·María de Jesús(2023). 회사는 2015년 세 척을 「expanding its tuna capture capacity」로 적었고, 회장은 2023-02 새 배가 해상 화재를 입은 배를 대신한다고, 2023-07 María Delia 를 팔기로 했다고 말했다. María Delia 는 2023-12-21 Triton 으로 이름을 바꿔 다른 선주 명의가 됐다. 2019년 명부 기준 ${GM_F.척수2023}척 → 지금 ${GM_F.척수}척. María de Jesús 투자액은 25백만·30백만 달러 두 값이 함께 나온다`,
+    },
+    {
+      eyebrow: '인증',
+      title: 'MSC 는 철회, FIP 는 따로',
+      body: `PAST 어업 인증 ${GM_F.MSC철회} 철회 → ${GM_F.MSC개선} 개선 프로그램(인증 아님). 회사는 2026-03 FisheryProgress 에 게시된 Comprehensive FIP 참여를 알렸다(매체 보도) — 두 FIP 유형 가운데 요건이 무거운 쪽이지 진척 등급이 아니다. 사이트 인증 목록엔 MSC·Dolphin Safe 가 없지만 Ancla 캔 라벨에는 돌고래 SAFE 표지가 있다`,
+    },
+    {
+      eyebrow: '매대',
+      title: 'Tuny 와 Ancla, 대두 단백이 가르는 두 층',
+      body: `Chedraui 2026-09-24 판매가로 Tuny 물 130 g MXN 157,69/kg · Ancla 물 120 g 87,50/kg(자체상표 92,23 보다 낮다). 맨 위 칸 Tuny Gourmet Ventresca 120 g(625,00/kg)의 상자에는 「PRODUCTO IMPORTADO」가 찍혀 있다. 모든 캔 라벨의 제조자는 Marindustrias 다`,
+    },
+    {
+      eyebrow: '사람',
+      title: '이익배분 작업중단과 사고',
+      body: `2025-05-24 이익배분(PTU)을 두고 작업이 멈췄고 05-26 오후 재개, 05-27 합의 보도(추가 혜택 비공개). 2023-04-01 공장 집단 중독으로 생산구역이 봉인됐다가 04-20 해제됐다 — 원인물질은 확정 보도가 없다. 2025-12-26 용역 통근버스 사고로 직원 9명이 다쳤다. 미국 TUNY 문자 상표는 2020년 취소됐고 번호가 다른 도형 상표가 ${GM_R.USPTO} 등록됐다`,
+    },
+  ],
+  briefing: proseBriefing('grupomar'),
+  narratives: inlineReport('grupomar', proseStages('grupomar')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: grupomarSourceNotes,
+  sourceMeta: [
+    `${grupomarMeta.회사} · ${grupomarMeta.국가} · ${grupomarMeta.업종}`,
+    `출처 ${grupomarMeta.출처}`,
+    `조사 ${grupomarMeta.조사일}`,
+  ].join(' · '),
+};
+
+const PC_ACCENT = '#1f5c4a';
+
+/** 상표·선단·Bumble Bee·조달. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const PC_F = pcFleet();
+const PC_M = pcMarks();
+const PC_K = pcMarket();
+
+const pcNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const PROCESA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-procesa',
+  title: '기업 해부: Procesa',
+  subtitle:
+    `멕시코 치아파스주 타파출라 Puerto Chiapas 에서 캔·파우치 참치 Nair·Marina Azul 을 만드는 Procesamiento Especializado de Alimentos, S.A.P.I. de C.V.(유럽연합 승인 ${PC_F.EU}). 2020년 Herdez 가 판 치아파스 참치 사업의 자산을 샀다고 회사가 밝히고, 등록부가 적는 것은 Nair 상표 이전이다. ` +
+    `상표에는 메자닌 펀드(2017 계약)와 Rabobank 뉴욕 지점(2022)의 질권이 기재됐고, ${PC_M.보전일} 할리스코주 법원의 보전처분(Exp. ${PC_M.사건})이 Procesa 명의 상표 ${PC_M.보전}건에 예비 기재됐다. ` +
+    `같은 항구의 Bumble Bee Mexico 는 ${PC_K.FDA} 부터 FDA 기록에 오른 별도 법인이고, 두 회사의 계약 형태는 공개되지 않았다.`,
+  accent: PC_ACCENT,
+  primaryKpi: {
+    label: '법원 보전처분이 예비 기재된 Procesa 명의 상표 수 (멕시코 특허청 IMPI, 2026-06-19)',
+    value: PC_M.보전,
+    decimals: 0,
+    unit: `(건 · Jalostotitlán 1심 법원 Exp. ${PC_M.사건}, 신청인 Diken International S. de R.L.(IMPI 원부 주소 코아우일라). Nair 계열 14 · Marina Azul 2 · Mar Azul 1. 소멸한 Marina Azul 862797(${PC_M.소멸} 만료)·907205 와 2012년 거절 출원에는 기재하지 않았다. ${PC_M.양도신청} 채권양도 인정 신청은 ${PC_M.보정} 보정 요구 뒤 결과가 공개되지 않았다. 청구 원인·대출 금액은 공개 문서에 없다)`,
+    accent: PC_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '선망 4척 평균 선령 — Pesca Chiapas 2 + Hersea 2 (IATTC 건조연도, 2026 기준 계산)',
+      value: PC_F.선령,
+      decimals: 1,
+      unit: `(년 · 네 척 이상 가진 멕시코 소유 그룹 가운데 가장 높다. 1~2척 선주 중에는 더 늙은 곳이 있다. 멕시코 활성 선망 53척 평균 ${pcNum(PC_F.멕시코선령, 1)}년. 운반능력 ${pcNum(PC_F.운반능력)} t = 멕시코 기국 활성 선망의 ${pcNum(PC_F.몫, 1)} %. Hersea 명의 Arkos I Chiapas 는 ${PC_F.침몰} 불타 가라앉았다)`,
+    },
+    {
+      label: 'Diconsa 수의계약 원수치 2009~2019 (QuiénEsQuién.wiki 집계, 두 명의 합)',
+      value: PC_K.조달,
+      decimals: 1,
+      unit: `(백만 MXN · 중복 포함, 중복 제거 추정 약 ${pcNum(PC_K.조달중복제거, 1)}. 2012년 정점, 마지막 기록 ${PC_K.조달마지막}년. 2020~2022년은 CompraNet 원본과 대조되지 않았고 2023~2025년 CompraNet 에는 Procesa 명의 계약이 없다. 계약액은 매출이 아니다)`,
+    },
+    {
+      label: 'Bumble Bee Mexico 공장 고용 — 2026년 7월 시장 게시·지방지 보도',
+      value: PC_K.BB고용,
+      decimals: 0,
+      unit: `(명 · 주정부 발표(${PC_K.가동식} 가동식)의 3.000명은 「generará」 전망이다. Bumble Bee Mexico 는 ${PC_K.FDA} FDA 수입경보에 Puerto Madero 주소로 오른 별도 법인. 지역지가 전한 시장 발언에 Procesa 공장이 나오고 항만공사는 Procesa 가 미국 회사들과 위탁가공으로 협력한다고 적었지만, 계약 형태는 공개되지 않았다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '상표',
+      title: '질권이 걸린 두 상표',
+      body: `2017-12-28 메자닌 펀드 CAMIF II 의 무점유 질권(2019 기재), 2022-05 Rabobank 뉴욕 지점의 1순위 질권, 2022-09 변경·증액 약정. 질권이 처음 잡힌 MARINA AZUL 862797 은 ${PC_M.소멸} 에 갱신 없이 소멸했고, 회사는 같은 이름을 다시 출원해 ${PC_M.새등록} 2992959 를 받았다(질권 기재 없음, 보전처분 기재는 있음)`,
+    },
+    {
+      eyebrow: 'Herdez',
+      title: '배·공장·상표를 판 매각, 등록부가 적는 매수자는 상표 하나',
+      body: `Herdez 2020-07-29 공시는 배·치아파스 공장·Nair 상표 매각을 알렸지만 매수인과 대금을 적지 않았다. Nair 이전은 IMPI 2022-08-10 등록. 옛 Herdez 공장 용량 ${pcNum(PC_K.KUO용량)} t 에 가동률 ${PC_K.KUO가동률} % 를 곱한 약 12.454 t 는 환산값이지 실생산량이 아니다`,
+    },
+    {
+      eyebrow: '선단',
+      title: '네 척 이상 가진 그룹 가운데 가장 늙은 배',
+      body: `Victoria·Conquista(1973)·Nair(1974)·Jaguar(1982). 회사는 「5척」을 적지만 IATTC 활성은 4척이다. MSC 어업 인증은 ${PC_F.MSC철회} 철회, ${PC_F.MSC개선} 개선 프로그램 — 회사 누리집은 여전히 MSC 인증을 적는다`,
+    },
+    {
+      eyebrow: '매대',
+      title: 'Nair 25 % 대두 캔과 Marina Azul 파우치',
+      body: `Chedraui 2026-09-25 판매가로 Nair 25 % 대두 물 120 g MXN ${pcNum(PC_K.Nair_kg, 2)}/kg, Marina Azul 파우치 올리브유 74 g ${pcNum(PC_K.파우치올리브_kg, 2)}/kg. PROFECO 2024 시험에서 Nair 무대두 플레이크는 전 항목 적합, Marina Azul 은 다섯 제품 가운데 넷이 부적합이나 표시 불일치 판정`,
+    },
+    {
+      eyebrow: '사람',
+      title: '통근버스 사고와 가라앉은 배',
+      body: `2026-07-27 직원 통근버스(외주 운송사) 사고로 8명이 다치고 노동자 1명이 몇 시간 뒤 숨졌다(주 검찰 수사, 매체). 2025-02-21 Hersea 명의 Arkos I Chiapas 가 화재로 침몰해 승선원이 구조됐다. 노동 분쟁·파업 보도는 없다`,
+    },
+  ],
+  briefing: proseBriefing('procesa'),
+  narratives: inlineReport('procesa', proseStages('procesa')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: procesaSourceNotes,
+  sourceMeta: [
+    `${procesaMeta.회사} · ${procesaMeta.국가} · ${procesaMeta.업종}`,
+    `출처 ${procesaMeta.출처}`,
+    `조사 ${procesaMeta.조사일}`,
+  ].join(' · '),
+};
+
+const TC_ACCENT = '#0f5f7a';
+
+/** 지배·특수관계·호주·관세. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const TC_C = tcControl();
+const TC_S = tcSales();
+const TC_E = tcExposure();
+
+const tcNum = (v: number, d = 0) => v.toLocaleString('ko-KR', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+const TROPICAL_SPEC: CommoditySpec = {
+  key: 'company-anatomy-tropical',
+  title: '기업 해부: Tropical Canning',
+  subtitle:
+    `태국 송클라주 핫야이 퉁야이의 본 캔공장에서 캔·파우치 참치와 펫푸드를 만드는 SET 상장사 Tropical Canning (Thailand) PCL(DBD ${TC_C.DBD}). 대부분 고객 상표로 만든다. ` +
+    `최대주주 명의 ${tcNum(TC_C.최대주주, 3)} % 는 ${TC_C.사망일} 사망한 전 의장의 이름으로 남아 있고, 그 아들인 현 의장은 말레이시아 TCC·호주 Safcol Australia·TC Boy Marketing 등 여섯 회사의 의장을 겸한다. ` +
+    `그 세 매출처가 2025년 연결 매출의 ${tcNum(TC_C.세매출처, 1)} % 를 사 갔다.`,
+  accent: TC_ACCENT,
+  primaryKpi: {
+    label: '2025 연결 매출 가운데 TC 의장이 의장을 겸하는 세 매출처(TCC·Safcol Australia·TC Boy Marketing)의 몫 (56-1 특수관계 거래표, 계산)',
+    value: TC_C.세매출처,
+    decimals: 1,
+    unit: `(% · 특수관계자 전체 ${tcNum(TC_C.특수관계, 1)} %. TCC 는 최대 고객 금액과 같은 매출처(${tcNum(TC_C.TCC, 2)} 백만 THB, 별도재무제표 대조)이면서 해외 마케팅 대리인이고 원료 공급자다. 감사 주석은 관계를 「공동 주주」·「공동 최종 주주」로 적는다. Safcol Australia 는 TC 자회사가 아니다)`,
+    accent: TC_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '사망한 전 의장 명의 + 현 의장 지분 (56-1 주주명부 2026-03-11, 계산)',
+      value: TC_C.부자합,
+      decimals: 3,
+      unit: `(% · 전 의장 ${tcNum(TC_C.최대주주, 3)} % 는 ${TC_C.사망일} 사망 뒤에도 2026-05-08 명부까지 이름이 남았다(2021 56-1 이 부자 관계를 적고, 2022~2025 56-1 혈연 칸은 「없음」). 56-1 이 지배권 집단으로 적는 현 의장·대표 합은 ${tcNum(TC_C.지배권, 3)} % — 구성원이 다른 두 합계다. 상속 뒤 의결권 행사자는 공시에 없다)`,
+    },
+    {
+      label: 'Safcol Australia 상대 매출 2025 (56-1 특수관계 거래표)',
+      value: TC_S.Safcol2025,
+      decimals: 1,
+      unit: `(백만 THB · 2024년 ${tcNum(TC_S.Safcol2024, 1)} 에서 ${tcNum(TC_S.배수, 1)}배. 2026년 상반기 호주 매출은 전체의 ${tcNum(TC_S.호주1H, 1)} %(전년 동기 ${tcNum(TC_S.호주1H전년, 1)} %, 고객 소재지 기준). 회사는 2025 56-1·MD&A·2026 주총 의사록에 그 까닭을 적지 않았다)`,
+    },
+    {
+      label: '미국 Section 301 관세 — 태국산 캔참치·펫푸드 (USTR, 발효 2026-07-24)',
+      value: TC_E.S301,
+      decimals: 1,
+      unit: `(% · 1604·2309 예외 없음. 공동 주주 계열이 있는 말레이시아·인도네시아는 10 %. 2026년 상반기 미주 매출 ${tcNum(TC_E.미주, 1)} % 는 발효 전 수치이고 원인 공시는 없다. 발효 뒤 첫 2Q2026 MD&A 에도 관세 문장이 없다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '지분',
+      title: '한 이름의 지분',
+      body: `2021 56-1 은 전 의장이 ${TC_C.사망일} 사망했고 현 의장이 그 아들이라고 적는다. 명의는 2026-05-08 명부까지 그대로이고 상속에 따른 지분 보고(SEC 246-2)는 2019-01-23 이후 없다. 대표 지분은 2024-06-17 100만 주씩 네 건 이전됐다(받은 사람 미공시)`,
+    },
+    {
+      eyebrow: '거래처',
+      title: '한 의장의 거래처',
+      body: `현 의장은 TCC·Safcol Australia·TC Boy Marketing·Safcol Chile·Tropical Canning Corporation Sdn. Bhd.·Elowfar 의 의장이다(56-1 부록 2). TCC 는 1979년부터 해외 마케팅 대리인이고 2025-07 제품 매매·마케팅 계약을 3년 새로 맺었다`,
+    },
+    {
+      eyebrow: '제품',
+      title: '펫푸드가 다시 참치를 넘었다',
+      body: `2026년 상반기 펫푸드 ${tcNum(TC_S.펫푸드1H, 1)} % · 사람용 참치 ${tcNum(TC_S.참치1H, 1)} %. 2022년 연간에 이어 두 번째. 펫푸드군에는 참치 원료 제품이 들어 있다. 태국 매대 TCB 참치 185 g 대두유는 THB ${tcNum(TC_S.TCB_kg, 2)}/kg(Lotus's 자체상표와 같은 값)`,
+    },
+    {
+      eyebrow: '공장',
+      title: '명판 약 64.000 t, 기간·중량 기준은 공시에 없다',
+      body: `명판 약 ${tcNum(TC_E.명판)} t · 생산 ${tcNum(TC_E.생산)} t(2024·2025 같은 숫자, 천 톤 반올림으로도 설명된다) · 인력 ${tcNum(TC_E.인력)}명. 공업부 명부에 3종 공장 다섯 건(퉁야이·남녹 두 곳). 인증 명의는 둘 — 돌고래 안전 TCC, ISSF 준수보고서·MSC TC`,
+    },
+    {
+      eyebrow: '돈',
+      title: '상반기에 불어난 재고와 차입',
+      body: `2026-06-30 재고가 반년 사이 ${tcNum(TC_E.재고증가, 1)} 백만 THB 늘었고 은행 차입(리스 제외)은 ${tcNum(TC_E.차입2025, 1)} → ${tcNum(TC_E.차입2606, 1)} 백만 THB. 회사는 원료 구매 증가를 까닭으로 적었다. 2025 매출 ${tcNum(TC_S.매출, 1)} · 매출총이익률 ${tcNum(TC_S.GPM, 2)} % · 순이익 ${tcNum(TC_S.순이익, 1)} 백만 THB`,
+    },
+  ],
+  briefing: proseBriefing('tropical'),
+  narratives: inlineReport('tropical', proseStages('tropical')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: tropicalSourceNotes,
+  sourceMeta: [
+    `${tropicalMeta.회사} · ${tropicalMeta.국가} · ${tropicalMeta.업종}`,
+    `출처 ${tropicalMeta.출처}`,
+    `조사 ${tropicalMeta.조사일}`,
+  ].join(' · '),
+};
+
+/** 발행본의 유럽식 표기(천 단위 점·소수 쉼표·음수 U+2212)를 카드 문구에서 그대로 쓴다. */
+const euNum = (v: number, d = 0) =>
+  `${v < 0 ? '−' : ''}${Math.abs(v).toLocaleString('de-DE', { minimumFractionDigits: d, maximumFractionDigits: d })}`;
+
+const SE_ACCENT = '#2b4a7a';
+
+/** 선단·장부·상표. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const SE_F = seFleet();
+const SE_B = seBooks();
+const SE_R = seBrand();
+
+const SEATECH_SPEC: CommoditySpec = {
+  key: 'company-anatomy-seatech',
+  title: '기업 해부: Seatech International',
+  subtitle:
+    `콜롬비아 카르타헤나 Mamonal km 8 에서 캔참치 Van Camp's 콜롬비아판을 만드는 Seatech International Inc.(EU 승인 ${SE_F.EU})는 콜롬비아 회사감독청에 「02. SUCURSAL EXTRANJERA」(외국회사 지점)로 제출하고 본사 소재국을 영국령 버진아일랜드로 적는다. ` +
+    `전미열대참치위원회 선박 등록부의 소유자 칸에는 Seatech 이 없고, 콜롬비아 기국 활성 선망 ${SE_F.활성}척 가운데 ${SE_F.두주소}척이 카르타헤나의 두 주소를 쓰는 열두 법인 명의로 한 척씩 올라 있다. ` +
+    `콜롬비아 Van Camp's 29류 상표의 권리자는 파나마 법인 Andean Trading International 이고, 2025년 말 부채의 ${euNum(SE_B.매입채무몫, 1)} % 는 매입채무 및 기타채무 한 줄이다.`,
+  accent: SE_ACCENT,
+  primaryKpi: {
+    label: '콜롬비아 기국 활성 선망 운반능력 가운데 두 주소 열두 법인 명의 12척의 몫 (IATTC 선박 등록부, 계산)',
+    value: SE_F.몫,
+    decimals: 1,
+    unit: `(% · ${SE_F.활성}척 ${euNum(SE_F.운반능력)} t 가운데 ${euNum(SE_F.두주소운반)} t. 등록 소유자에 Seatech 은 없다. 동태평양 활성 선망의 ${euNum(SE_F.동태평양, 1)} %, 평균 선령 ${euNum(SE_F.선령, 1)}년. 남은 한 척 Doña Raquel 은 다른 주소의 파나마 법인 명의다. 회사는 옛 누리집 「Nuestra FLOTA」(우리 선단) 페이지에서 그 배들을 「proveedor de flota」(선단 공급자)의 배라 불렀다)`,
+    accent: SE_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '2025년 말 유형자산 가운데 선박 (회사감독청 제출 유형자산 명세, 계산)',
+      value: SE_F.선박몫,
+      decimals: 2,
+      unit: `(% · 유형자산 ${euNum(SE_F.유형자산, 1)}억 COP 가운데 선박 ${euNum(SE_F.선박, 1)}억. 기계 703,3억·토지 388,3억·건물 269,2억. 회사가 낸 정관 목적에서는 2023 회계연도 제출분부터 참치 어획이 빠졌다)`,
+    },
+    {
+      label: '2025년 말 부채 가운데 매입채무 및 기타채무 (회사감독청 재무상태표, 계산)',
+      value: SE_B.매입채무몫,
+      decimals: 1,
+      unit: `(% · 부채 ${euNum(SE_B.부채, 1)}억 COP 가운데 ${euNum(SE_B.매입채무, 1)}억. 차입금 행은 없고 같은 해 금융비용은 ${euNum(SE_B.금융비용, 1)}억 COP(매출의 ${euNum(SE_B.금융비용매출, 1)} %), 금융수익은 ${euNum(SE_B.금융수익, 1)}억 COP다. 그 상대가 원료 공급자인지 본점인지는 공개되지 않는다)`,
+    },
+    {
+      label: 'VAN CAMP 로 검색되는 콜롬비아 표장 가운데 파나마 법인 Andean Trading International 명의 (SIC 데이터, EUIPO TMview)',
+      value: SE_R.Andean,
+      decimals: 0,
+      unit: `(건 · ${SE_R.표장}건 가운데. Seatech·Colombina·INEPACA 명의 표장은 없다. ${SE_R.출원일} 하루에 29류 ${SE_R.출원}건을 출원했다. Colombina 는 자신을 40년 넘은 독점 유통업자로 적을 뿐 상표의 주인을 적지 않는다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '선단',
+      title: '이름 없는 선단',
+      body: `IATTC 등록부의 소유자 칸에는 Seatech 이름이 없다. Bocagrande 사무실(A군)과 Manga 의 Edificio Twin Bay(B군) 두 주소에서 법인 여섯씩이 배 여섯을 나눠 갖는다. EU 수출 승인 목록은 El Dorado 를 뺀 11척과 Doña Raquel 을 동결선으로 싣고 ${SE_F.한주소}척에 연락 주소 하나를 적는다. 옛 명의 기록은 문서마다 다르다`,
+    },
+    {
+      eyebrow: '사람들',
+      title: '봉인 전부터 관계없다고 해 온 회사',
+      body: `El Espectador 2025-09-17 기사는 회사가 참치를 잡는 인력과도, 국제 선주 명의로 등록된 어선과도 관계가 없다고 여러 차례 말해 왔다고 옮겼다. 노동부는 ${SE_F.봉인일} Sandra C·Amanda S·Nazca 세 척을 봉인했고, 장관은 그 배들을 Seatech 에 봉사하는(「al servicio de」) 배라 불렀다`,
+    },
+    {
+      eyebrow: '공장',
+      title: 'Mamonal 공장의 보일러 세 기와 어분 공장',
+      body: `카르타헤나 환경청 행정행위(2026-03-19): 천연가스 보일러 세 기, 레토르트 배기구 열 개, 하루 ${SE_R.어분} t짜리 어분 공장. 2026-02-25 암모니아 누출이 법정 기한 안에 보고되지 않았다고 적었고 과징금은 매기지 않았다. 인력 ${euNum(SE_R.인력)}명은 회사가 환경청에 밝힌 값`,
+    },
+    {
+      eyebrow: '매대',
+      title: `Van Camp's 물 담금은 할인 중인 TAEQ 의 ${euNum(SE_R.배수, 2)}배`,
+      body: `Carulla 2026-09-25 표시가, 고형량 기준 Van Camp's 물 담금 ${euNum(SE_R.VC_kg)} · 자체상표 TAEQ ${euNum(SE_R.TAEQ_kg)} COP/kg. 라벨은 Seatech 을 제조자로, Colombina 를 유통자로 적는다. 토마토소스 생선 캔 라벨에는 「Industria Ecuatoriana」가 찍혀 있다(INEPACA 제조·Seatech 수입 등록)`,
+    },
+    {
+      eyebrow: '무역',
+      title: `이탈리아가 적은 수입은 콜롬비아가 적은 수출의 ${euNum(SE_R.거울최소, 1)}~${euNum(SE_R.거울최대, 1)}배`,
+      body: `2019~2025년 HS 1604.14, 2024년이 가장 크다. 2025년 EU27 이 들인 콜롬비아산 캔참치 물량의 ${euNum(SE_R.이탈리아, 1)} % 가 이탈리아 몫이다(나라 단위 — Seatech 한 회사의 수출량이 아니다). EU 무관세는 ${SE_R.EU}부터 원산지 조건에 달렸고, 협정은 파나마 소유를 합산할 각주를 두었다. 그 누적을 어느 회사가 썼는지 적은 문서는 없다`,
+    },
+  ],
+  briefing: proseBriefing('seatech'),
+  narratives: inlineReport('seatech', proseStages('seatech')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: seatechSourceNotes,
+  sourceMeta: [
+    `${seatechMeta.회사} · ${seatechMeta.국가} · ${seatechMeta.업종}`,
+    `출처 ${seatechMeta.출처}`,
+    `조사 ${seatechMeta.조사일}`,
+  ].join(' · '),
+};
+
+const PP_ACCENT = '#5a3f7a';
+
+/** 공장·두 법인의 돈·판로. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const PP_P = ppPlant();
+const PP_M = ppMoney();
+const PP_K = ppMarket();
+
+const PANPAC_SPEC: CommoditySpec = {
+  key: 'company-anatomy-ppf',
+  title: '기업 해부: Pan Pacific Foods',
+  subtitle:
+    `마셜제도 마주로 Delap 의 임차지에 선 로인 공장 Pan Pacific Foods (RMI) Inc.(泛太食品)는 중국 上海开创国际海洋资源의 100 % 손자회사다. 선망 ${PP_P.척수}척은 이름이 한 단어 다른 자매 법인 Pan Pacific Fishing (RMI) Inc.(泛太渔业)의 배다. ` +
+    `2009년 연보는 로인 적자를 허가 점수를 확보할 최저선(「捕捞许可证分数的最低限度」)에 묶으려고 연중 정상 생산을 하지 않았다고 적었다. 마셜 정부 보고서는 ${PP_P.시작}년부터 ${PP_P.끝}년까지 다섯 해 연속 이 공장의 가공 실적을 0으로 적는다. ` +
+    `2025년 순이익은 공장 법인 ${euNum(PP_M.공장순이익, 2)}만 위안, 선단 법인 ${euNum(PP_M.선단순이익, 2)}만 위안이다.`,
+  accent: PP_ACCENT,
+  primaryKpi: {
+    label: '2021~2025년 공장의 가공 실적 (마셜 정부 WCPFC 국가보고서)',
+    value: PP_P.가공,
+    decimals: 0,
+    unit: `(t · 2025년 공장 운영은 냉동 보관과 컨테이너 적입에 그쳤고(「limited to cold storage and containerization of fish」), 개보수 탓도 있어 가공한 생선이 없었다. 2021~2024년 사유는 코로나19와 인력 부족. 2019년 로인은 회사가 정부에 신고한 ${euNum(PP_P.신고)} t, FAO 면담에서 말한 값은 약 ${euNum(PP_P.면담)} t(${euNum(PP_P.배수, 1)}배). 2024년 통어 컨테이너 수출 ${euNum(PP_P.적입)} t 은 마셜 국내 업체 가운데 가장 많았다)`,
+    accent: PP_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '2025년 선단 법인 Pan Pacific Fishing 순이익 (上海开创 2025 연보)',
+      value: PP_M.선단순이익,
+      decimals: 2,
+      unit: `(만 위안 · 같은 해 공장 법인은 매출 ${euNum(PP_M.공장매출, 2)}만 위안에 순이익 ${euNum(PP_M.공장순이익, 2)}만 위안, 순자산 ${euNum(PP_M.순자산, 2)}만 위안(2011년부터 음수). 지분 투자액 기준으로는 공장 법인 ${euNum(PP_M.공장실투자, 2)} 대 선단 법인 ${euNum(PP_M.선단실투자, 2)}만 위안. 선단 법인은 스스로 출자해 지은 US$ ${euNum(PP_M.신조)}만짜리 JUNMETO 로 폐선 LOJET 를 대신했다)`,
+    },
+    {
+      label: '2026년 상반기 그룹 연결 휴업 손실(停工损失) (上海开创 반기보, 연결 관리비)',
+      value: PP_M.휴업1H,
+      decimals: 2,
+      unit: `(만 위안 · 2025년 한 해 그룹 연결 금액 ${euNum(PP_M.휴업2025, 2)}만 위안의 ${euNum(PP_M.휴업배수, 2)}배(계산). 반기보는 증가의 주된 이유로 손자회사 공장 법인을 든다. 휴업의 사유·기간·인원은 공시되지 않는다. 같은 반기 上海开创 지배주주 귀속 순이익은 ${euNum(PP_M.귀속1H, 2)}만 위안)`,
+    },
+    {
+      label: '미국이 신고한 마셜산 조제 참치(HS 160414) 2011년 정점 (UN Comtrade)',
+      value: PP_K.미국정점,
+      decimals: 1,
+      unit: `(t · 2008년 ${euNum(PP_K.미국2008, 1)} t 에서 올라 2015년 ${euNum(PP_K.미국2015, 1)} t 을 끝으로 2016~2025년 10년 동안 신고가 없다. 회사가 정부에 신고한 미국행 로인은 2016년 ${PP_K.미국행로인} t 이 마지막이다. 냉동 자숙 로인이 드는 HTS 1604.14.40 의 최혜국 세율은 kg당 ${euNum(PP_K.MFN, 1)}센트. 유럽연합은 마셜을 수산물 반입 허용국 목록에 올리지 않았다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '허가',
+      title: '허가 점수의 공장',
+      body: `2008-12-10 상장사 공시는 이 공장으로 开创远洋이 선망선 4~6척분의 허가 몫을 얻으리라 예상했다(「预计可获得4-6条金枪鱼围网船的船只许可额度」). 2011 연보는 공장 법인이 계속 운영된 덕에 선망 선단이 조업 허가 4장을 확보했다고 적었다. FSMA 는 최소 ${PP_K.FSMA}점을 요구하는 자격 점수표에서 육상 투자를 정부 수입과 택일하는 한 칸으로 둔다. 이 회사가 받은 점수는 공개되지 않는다`,
+    },
+    {
+      eyebrow: '이름',
+      title: '이름이 한 단어 다른 두 법인',
+      body: `LOMETO·LOMALO·JABBUK·UNAAK·LAJABWIL·JUNMETO 의 등록 소유자는 선단 법인 Pan Pacific Fishing 이다. 마셜 정부 국가보고서는 공장 회사가 이 배들을 「operates」한다고 쓰고 현지 신문도 두 이름을 섞는다. MSC CoC 증서 ${PP_P.MSC} 는 공장 법인 명의(${PP_P.MSC발급} 발급, ${PP_P.MSC만료} 만료)이고 선단 법인은 CoC 명단에 없다`,
+    },
+    {
+      eyebrow: '공장',
+      title: 'Delap 임차지의 로인 공장',
+      body: `FAO 가 옮겨 적은 회사 설명: 로인 능력 하루 약 ${PP_P.능력하한}~${PP_P.능력상한} t, 네 라인 가운데 세 라인·1교대, 냉동창고 ${euNum(PP_P.냉동창고)} t. 마셜 임차지 위 건물의 임차 기한은 ${PP_P.임차} 말(어느 손자회사 건물인지 연보에 없다), 연결 장부가 2025년 말 ${euNum(PP_P.장부가, 2)}만 위안. 이 공장의 캔 라인은 어느 문서에도 나오지 않는다`,
+    },
+    {
+      eyebrow: '판로',
+      title: '미국으로 가던 로인',
+      body: `회사가 정부에 신고한 수출표에서 로인은 2013년 587 t 가운데 548 t, 2014년 466 t 전량이 미국으로 갔다. 2019년 로인의 행선지는 태국과 피지였다. 상대국이 신고한 마셜산 냉동 어류(HS 0303)는 2025년 태국이 78,6 % 를 받았다 — 마셜 기국 배 전체의 흐름이라 두 법인 각자의 몫은 갈리지 않는다`,
+    },
+    {
+      eyebrow: '전략',
+      title: '돈은 신조선으로, 공장 계획은 한 문장',
+      body: `上海开创 2026년 계획은 공장 법인이 원가를 낮추고 판로를 넓혀 「提升持续盈利能力」 하겠다는 한 문장이다. 같은 반기 그룹 연결 휴업 손실이 늘었다. 공장을 언제 다시 돌릴지는 어느 공시에도 날짜가 없다. MIMRA 부국장은 2026-04-16 EU 감사가 끝났고 공식 회신을 기다린다고 말했다`,
+    },
+  ],
+  briefing: proseBriefing('ppf'),
+  narratives: inlineReport('ppf', proseStages('ppf')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: ppfSourceNotes,
+  sourceMeta: [
+    `${ppfMeta.회사} · ${ppfMeta.국가} · ${ppfMeta.업종}`,
+    `출처 ${ppfMeta.출처}`,
+    `조사 ${ppfMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -5893,6 +6335,72 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '유럽과 사람', value: `EU 의 PNG산 로인 스페인 ${ssNum(SS_E.스페인, 1)} %(2025, 나라 단위) · 미국 수입 2015~2025 0 · ${SS_P.시위} 약 ${ssNum(SS_P.시위인원)}명 작업 거부 · 최저임금 2026 K${ssNum(SS_P.최저임금, 2)}` },
     ],
   },
+  {
+    key: 'grupomar',
+    numeral: 'ⅬⅢ',
+    name: 'Grupomar',
+    country: `멕시코 · 콜리마주 만사니요 Fondeport 산업단지(유럽연합 승인 가공장 1곳·냉동창고 1곳)`,
+    tagline: '한 단지의 사슬, 나뉜 이름 — 만사니요 한 단지에 캔 공장·냉동창고와 선단 법인의 주소가 모였고, 가장 새 배를 들이고도 선단은 한 척 줄었다.',
+    ...FLAG.멕시코,
+    stats: [
+      { label: '단지와 선단', value: `선망 ${GM_F.척수}척 · 운반능력 ${gmNum(GM_F.운반능력)} t = 멕시코 기국 활성 선망의 ${gmNum(GM_F.몫, 1)} %(IATTC) · 평균 선령 ${gmNum(GM_F.선령, 1)}년 · 신조 ${GM_F.신조}척(2013~2023) · 2019년 ${GM_F.척수2023}척 → 지금 ${GM_F.척수}척 · MSC ${GM_F.MSC철회} 철회 → ${GM_F.MSC개선} 개선 프로그램` },
+      { label: '상표와 매대', value: `TUNY ${GM_F.상표} 권리자 Prestadores de Servicios de Colima · 라벨 제조자 Marindustrias(RFC ${GM_F.RFC}) · PROFECO 2024 Tuny Premium 물 고형량 ${gmNum(GM_R.하한, 1)}~${gmNum(GM_R.상한, 1)} g(표기 ${GM_R.표기} g) · Ancla 대두 단백 20 % 표기` },
+      { label: '국가와 기록', value: `Diconsa 조달 원수치 ${gmNum(GM_P.마린, 1)} 대 Pinsa Comercial ${gmNum(GM_P.핀사, 1)} 백만 MXN(1999~2022, 모두 수의계약) · 2023~2025 Pinsa 가 앞섬 · 2019 부두 화재 배상 청구 용역 MXN ${gmNum(GM_R.배상청구)}(항만공사)` },
+    ],
+  },
+  {
+    key: 'procesa',
+    numeral: 'ⅬⅣ',
+    name: 'Procesa',
+    country: `멕시코 · 치아파스주 타파출라 Puerto Chiapas(유럽연합 승인 가공장 ${PC_F.EU})`,
+    tagline: '질권이 걸린 상표, 늙은 선단, 같은 항구의 Bumble Bee — Herdez 의 치아파스 참치 자산을 샀다고 밝힌 캔 회사, 그 상표에 질권과 보전처분이 겹쳐 있다.',
+    ...FLAG.멕시코,
+    stats: [
+      { label: '상표와 법원', value: `보전처분 예비 기재 상표 ${PC_M.보전}건(${PC_M.보전일}, Exp. ${PC_M.사건}) · 질권 CAMIF II(2017)·Rabobank NY(2022) · 채권양도 인정 신청 ${PC_M.양도신청} → 보정 요구, 결과 미상 · MARINA AZUL 862797 ${PC_M.소멸} 소멸` },
+      { label: '선단과 인증', value: `선망 ${PC_F.척수}척 ${pcNum(PC_F.운반능력)} t = 멕시코 기국 활성 선망의 ${pcNum(PC_F.몫, 1)} %(IATTC) · 평균 선령 ${pcNum(PC_F.선령, 1)}년(4척 이상 그룹 최고) · Arkos I Chiapas ${PC_F.침몰} 침몰 · MSC ${PC_F.MSC철회} 철회` },
+      { label: 'Bumble Bee 와 조달', value: `Bumble Bee Mexico FDA ${PC_K.FDA} · 가동식 ${PC_K.가동식} · 고용 ${pcNum(PC_K.BB고용)}명(2026-07 보도) · 계약 형태 비공개 · Diconsa 원수치 ${pcNum(PC_K.조달, 1)} 백만 MXN(2009~2019)` },
+    ],
+  },
+  {
+    key: 'tropical',
+    numeral: 'ⅬⅤ',
+    name: 'Tropical Canning',
+    country: `태국 · 송클라주 핫야이 퉁야이(SET 상장, DBD ${TC_C.DBD})`,
+    tagline: '한 이름의 지분, 한 의장의 거래처 — 핫야이의 상장 캔공장은 매출의 절반 가까이를 의장이 겸직하는 회사들에 판다. 최대주주 명의 24,585 %는 2021년에 사망한 전 의장의 이름으로 남아 있다.',
+    ...FLAG.태국,
+    stats: [
+      { label: '지분과 지배', value: `전 의장 명의 ${tcNum(TC_C.최대주주, 3)} %(${TC_C.사망일} 사망) · 부자 명의 합 ${tcNum(TC_C.부자합, 3)} % · 지배권 집단(공시) ${tcNum(TC_C.지배권, 3)} % · 의장 겸직 세 매출처 몫 ${tcNum(TC_C.세매출처, 1)} %(2025)` },
+      { label: '호주와 제품', value: `Safcol Australia 상대 매출 ${tcNum(TC_S.Safcol2024, 1)} → ${tcNum(TC_S.Safcol2025, 1)} 백만 THB(${tcNum(TC_S.배수, 1)}배) · 1H2026 호주 ${tcNum(TC_S.호주1H, 1)} % · 펫푸드 ${tcNum(TC_S.펫푸드1H, 1)} % > 참치 ${tcNum(TC_S.참치1H, 1)} %` },
+      { label: '관세와 돈', value: `Section 301 ${tcNum(TC_E.S301, 1)} %(${TC_E.발효}~, 말레이·인니 10 %) · 1H 미주 ${tcNum(TC_E.미주, 1)} %(발효 전) · 재고 +${tcNum(TC_E.재고증가, 1)} · 은행 차입 ${tcNum(TC_E.차입2025, 1)} → ${tcNum(TC_E.차입2606, 1)} 백만 THB` },
+    ],
+  },
+  {
+    key: 'seatech',
+    numeral: 'ⅬⅥ',
+    name: 'Seatech International',
+    country: `콜롬비아 · 볼리바르주 카르타헤나 Mamonal km 8(EU 승인 가공장 ${SE_F.EU})`,
+    tagline: "이름 없는 선단, 한 줄짜리 부채 — Van Camp's를 만드는 카르타헤나 공장은 영국령 버진아일랜드 회사의 지점이다. 배는 두 주소의 열두 법인 이름으로, 상표는 파나마 법인 이름으로 올라 있다.",
+    ...FLAG.콜롬비아,
+    stats: [
+      { label: '선단과 명의', value: `IATTC 소유자 칸에 Seatech 없음 · 콜롬비아 기국 활성 선망 ${SE_F.활성}척 중 ${SE_F.두주소}척 = 두 주소의 열두 법인 명의 한 척씩, 운반능력의 ${euNum(SE_F.몫, 1)} % · 장부 선박 ${euNum(SE_F.선박, 1)}억 COP = 유형자산의 ${euNum(SE_F.선박몫, 2)} % · ${SE_F.봉인일} 노동부 봉인 ${SE_F.봉인}척` },
+      { label: '상표와 유통', value: `Van Camp's 29류 권리자 파나마 법인 Andean Trading International(VAN CAMP 표장 ${SE_R.표장}건 중 ${SE_R.Andean}건) · 제조 Seatech(INVIMA 유효 ${SE_R.제조}건) · 유통 Colombina(Van Camp's 2025 순매출 ${euNum(SE_R.Colombina, 2)}억 COP) · INEPACA 제조·Seatech 수입 ${SE_R.수입}건` },
+      { label: '장부와 무역', value: `2025 매출 ${euNum(SE_B.매출2025, 1)}억 COP(${euNum(SE_B.증감, 1)} %) · 영업손익 ${euNum(SE_B.영업손익, 1)}억 · 부채의 ${euNum(SE_B.매입채무몫, 1)} % = 매입채무 및 기타채무 한 줄, 차입금 행 없음 · 금융비용 ${euNum(SE_B.금융비용, 1)}억 · 이탈리아 신고/콜롬비아 신고 ${euNum(SE_R.거울최소, 1)}~${euNum(SE_R.거울최대, 1)}배` },
+    ],
+  },
+  {
+    key: 'ppf',
+    numeral: 'ⅬⅦ',
+    name: 'Pan Pacific Foods',
+    country: `마셜제도 · 마주로 Delap 임차지(上海开创 100 % 손자회사)`,
+    tagline: '허가 점수의 공장, 버는 쪽은 선단 — 마주로의 로인 공장은 다섯 해째 로인을 만들지 않았고, 돈은 이름이 한 단어 다른 선단 회사가 번다.',
+    ...FLAG.마셜제도,
+    stats: [
+      { label: '허가 점수', value: `2008 공시 「预计可获得4-6条金枪鱼围网船的船只许可额度」 · 2009 연보 — 로인 적자를 허가 점수를 확보할 최저선에 묶으려 연중 정상 생산을 하지 않았다 · FSMA ${PP_K.FSMA}점 점수표에서 육상 투자는 정부 수입과 택일하는 한 칸` },
+      { label: '두 법인의 돈', value: `2025 순이익 공장 법인 ${euNum(PP_M.공장순이익, 2)} 대 선단 법인 ${euNum(PP_M.선단순이익, 2)}만 위안 · 공장 법인 순자산 ${euNum(PP_M.순자산, 2)}만 · 선단 법인 자기 출자 JUNMETO US$ ${euNum(PP_M.신조)}만(LOJET 대체) · 그룹 연결 휴업 손실 1H2026 ${euNum(PP_M.휴업1H, 2)}만 위안` },
+      { label: '가공과 판로', value: `가공 실적 ${PP_P.가공} t(${PP_P.시작}~${PP_P.끝}, 마셜 정부 보고) · 2019 로인 ${PP_P.신고} t(회사 신고) 대 약 ${euNum(PP_P.면담)} t(FAO 면담) · 미국 신고 마셜산 조제 참치 2011 ${euNum(PP_K.미국정점, 1)} t → 2015 ${euNum(PP_K.미국2015, 1)} t, 2016~2025 신고 없음 · EU 반입 허용국 목록에 마셜 없음` },
+    ],
+  },
+
 
 
 ];
@@ -5969,6 +6477,11 @@ export default function CompanyAnatomyDashboard({
     pafco: PAFCO_SPEC,
     pinsa: PINSA_SPEC,
     sstc: SSTC_SPEC,
+    grupomar: GRUPOMAR_SPEC,
+    procesa: PROCESA_SPEC,
+    tropical: TROPICAL_SPEC,
+    seatech: SEATECH_SPEC,
+    ppf: PANPAC_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

@@ -257,6 +257,36 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅡ · 발행본 §01 의 유럽연합 명부 주소 「1 Wharf Road, PO BOX 543」 Wewak(09EPR019) · 필지 Section 36, Lot 37 · 등기 사무소는 포트모르즈비지만 지구본은 공장 자리를 잡는다 · **좌표는 웨와크 부두 근사값**',
     note: '2004~2015 FCF 가 해상에서 산 참치를 가공비를 받고 로인으로 만들었다(판결 배경사실) · GST 경정 K64,5백만(본세 K24,6백만) 소송 미결 · 용선 선망 2025 18척 → 2026 9척 · 능력 100 또는 200 t/일(출처별) · 파푸아뉴기니 EU 승인 가공장 여섯 곳 중 웨와크의 유일한 곳',
     },
+  // ── ⅬⅢ Grupomar — 만사니요 Fondeport ─────
+  { company: 'grupomar', numeral: 'ⅬⅢ', kind: 'hq', label: 'Grupomar — 만사니요 Fondeport 5번지', country: '멕시코',
+    lat: 19.0810, lng: -104.2908,
+    basis: 'ⅬⅢ · 발행본 §01·§02 의 등록부 공통 주소 「Calle Don Antonio Suárez Gutiérrez No. 5, Parque Industrial Fondeport, C.P. 28219」(IATTC 선박 소유자·TRACES 가공장 MAR 9308174 P1·라벨 제조자) · 좌표는 INEGI DENUE 의 통조림 사업장(Suarcrem Holding) 좌표(19,08098, −104,29079)',
+    note: '선망 6척(Maratún 4·Martuna 2) = 멕시코 기국 활성 선망 운반능력의 13,6 %(IATTC) · 2019년 명부 7척 → 지금 6척(2023년 배는 동태평양 활성 선망 279척 중 가장 늦게 건조) · MSC 어업 인증 2023-03-08 철회 → 2026-05-20 개선 프로그램 · Diconsa 조달 원수치 1.539,5 대 Pinsa Comercial 1.546,3 백만 MXN(1999~2022, 모두 수의계약)',
+    },
+  // ── ⅬⅣ Procesa — Puerto Chiapas ─────
+  { company: 'procesa', numeral: 'ⅬⅣ', kind: 'hq', label: 'Procesa — 타파출라 Puerto Chiapas', country: '멕시코',
+    lat: 14.7065, lng: -92.3959,
+    basis: 'ⅬⅣ · 발행본 §02 의 두 주소 — 유럽연합 승인 공장 「Calle Marina Azul, No.1, Colonia Puerto Chiapas, Tapachula, C.P. 30830」(PEA0303203V5)과 INEGI DENUE 의 251명 이상 사업장 「Av. Central Sur s/n, Francisco I. Madero」 · 좌표는 DENUE 사업장 좌표(14,70648, −92,39592)',
+    note: '보전처분 예비 기재 상표 17건(IMPI 2026-06-19, Exp. 175/2026) · 질권 CAMIF II(2017)·Rabobank NY(2022) · 선망 4척 평균 선령 50,5년(4척 이상 소유 그룹 최고) · 같은 항구의 Bumble Bee Mexico(FDA 2023-10-12 등재, 계약 형태 비공개)',
+    },
+  // ── ⅬⅤ Tropical Canning — 핫야이 ─────
+  { company: 'tropical', numeral: 'ⅬⅤ', kind: 'hq', label: 'Tropical Canning — 핫야이 퉁야이 본 캔공장', country: '태국',
+    lat: 7.0000, lng: 100.4600,
+    basis: 'ⅬⅤ · 발행본 §02·§07 의 본점=공장 주소 「1/1 Moo 2, Kanjanavanich Rd., Thung Yai, Hat Yai, Songkhla 90110」 · 공업부 DIW 3종 공장 등록 5건(퉁야이·남녹) · **좌표는 핫야이 퉁야이 근사값**',
+    note: '전 의장 명의 24,585 %(2021-12-18 사망) · 의장 겸직 세 매출처(TCC·Safcol Australia·TC Boy)가 2025 매출의 46,2 % · Safcol Australia 상대 매출 120,1 → 554,1 백만 THB · 1H2026 펫푸드 50,6 % > 참치 41,6 % · 미국 Section 301 12,5 %(2026-07-24~)',
+    },
+  // ── ⅬⅥ Seatech International — 카르타헤나 Mamonal ─────
+  { company: 'seatech', numeral: 'ⅬⅥ', kind: 'hq', label: 'Seatech International — 카르타헤나 Mamonal km 8', country: '콜롬비아',
+    lat: 10.3400, lng: -75.5000,
+    basis: 'ⅬⅥ · 발행본 §01·§02 의 두 주소 — EU TRACES 승인 가공장 「0023-92 | Seatech International Inc. | Mamonal Km 8 | Cartagena | PP」와 회사감독청 제출 주소 「MAMONAL KM 8」 · 본사는 영국령 버진아일랜드(지점 등기) · **좌표는 카르타헤나 Mamonal km 8 근사값**',
+    note: 'IATTC 소유자 칸에 Seatech 없음 · 콜롬비아 기국 활성 선망 13척 중 12척 = 두 주소의 열두 법인 명의 한 척씩(운반능력 91,3 %) · 장부 선박 = 유형자산의 0,26 % · Van Camp\'s 29류 권리자 파나마 법인 Andean Trading International · 부채의 97,5 % = 매입채무 및 기타채무 한 줄',
+    },
+  // ── ⅬⅦ Pan Pacific Foods — 마주로 Delap ─────
+  { company: 'ppf', numeral: 'ⅬⅦ', kind: 'hq', label: 'Pan Pacific Foods — 마주로 Delap 로인 공장', country: '마셜제도',
+    lat: 7.1000, lng: 171.3700,
+    basis: 'ⅬⅦ · 발행본 §02 의 MSC 공급자 명부 주소 「1289 Oceanside, Delap Village, Majuro 96960」(공장 법인, MSC-C-53419)과 WCPFC 등록부의 선단 법인 주소 「P.O. Box 1289 Delap Majuro」 · 공장 건물은 마셜 임차지 위(임차 기한 2036-09) · **좌표는 마주로 Delap 근사값**',
+    note: '가공 실적 0 t(2021~2025, 마셜 정부 WCPFC 보고) · 2025 순이익 공장 법인 1,13 대 선단 법인 5.381,94만 위안 · 그룹 연결 휴업 손실 1H2026 651,52만 위안 · 미국 신고 마셜산 조제 참치 2016~2025 신고 없음(2011 정점 1.567,6 t) · EU 반입 허용국 목록에 마셜 없음',
+    },
 ];
 
 /**
