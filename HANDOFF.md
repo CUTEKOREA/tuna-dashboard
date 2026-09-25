@@ -1,3 +1,8 @@
+> 🚀 **2026-09-25 22:25 KST — #1250 9/25 하역 배포** [CC]:
+> - 병합(squash): #1250 `560375aa` → 배포 기록 #1240 `97126e8a`. Production `tuna-dashboard-or77kuhnj` READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
+> - 라이브 실측(새 탭): `/unloading` 누계 **1,646.34** · 잔량 **199.66** · 일평균 **235.2** · 9/25 행 표시, overflow 0. 9/26 계획은 API 로 확인(`"date":"9/26" … "plannedMt":"130"`) — 명일 계획은 항차 상세 패널 안이라 본문 스캔에 안 잡힌다.
+> - 잔량 199.66 MT — 9/26 계획 130 MT 를 소화하면 69.66 MT 가 남아 **9/27 에 항차가 끝난다**. 종료되면 최종 하역보고 메일(본부 1통 + 원선 MOAKONA·MOAMARI 2통)이 필요하다.
+
 > 🚀 **2026-09-24 21:35 KST — #1235·#1232 프로덕션 배포** [CC]:
 > - 순차 병합(squash): #1235 `1fd37f37`(9/24 하역 실적 + 9/25 계획 200 MT) → #1232 `d1e9bd8e`(RYOMA 3,490 → 3,290 정정). #1232 는 HANDOFF 충돌을 풀고 영향 테스트 2종을 다시 돌린 뒤 병합했다.
 > - Production `tuna-dashboard-gh887d9zg` READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
