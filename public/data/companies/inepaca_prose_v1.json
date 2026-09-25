@@ -1,0 +1,1083 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-inepaca-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_prose.py",
+  "설명": "조사보고서 서술을 원문에서 그대로 읽는다. 손으로 옮기지 않는다."
+ },
+ "sections": [
+  {
+   "sid": "s1",
+   "numeral": "01",
+   "label": "개관",
+   "subtitle": "만타의 Van Camp's 공장은 콜롬비아의 같은 상표 공장과 임원·이사를 공유하고, 두 회사는 같은 그룹이 아니라고 공시한다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Industria Ecuatoriana Productora de Alimentos C.A.(INEPACA)는 에콰도르 만타에서 Van Camp's 상표로 참치 캔과 정어리류 캔을 만드는 회사다. 1949년 만타 상업등기부에 올랐고, 가공장은 만타 해안도로(Malecón)의 본점 한 곳이다. 파나마 증권감독원(SMV)은 2020-12-28 결의 SMV-563-20으로 이 회사 보통주 1.000주의 2차 시장 거래를 등록했다. 그때부터 INEPACA는 파나마 증권시장의 발행인이다.",
+     "ord": 118
+    },
+    {
+     "kind": "para",
+     "text": "1949년은 법인의 해다. 설립 공정증서는 1949-02-18 키토의 제1공증인 앞에서 작성됐고, 만타 상업등기와 세무 영업개시는 1949-04-25 같은 날이다(A). INEPACA와 Van Camp's를 한 문서에 적은 등록부 기록 가운데 가장 이른 것은 1989-12-29 콜롬비아 식품의약품감시청(INVIMA)의 참치 제품 등록이다(A). 회사는 2020년 투자설명서에서 Van Camp's를 「una marca que tiene más de 70 años de presencia en Ecuador」, 곧 에콰도르에 70년 넘게 있어 온 상표라고 소개하고, 2025년 연차 공시에서는 「más de 75 años」라고 적는다(C). 콜롬비아 상표 등록부에는 Andean Trading International Inc.가 2024년에 출원해 등록한 표장 「VAN CAMP'S PURO ATÚN Desde 1.949」(등록 788659)가 있다(A). 브랜드를 1949년에 대는 등록부 기록은 이렇게 있지만, 1949년부터 이 공장이 Van Camp's를 만들었다고 적은 공개 문서는 없다.",
+     "ord": 411
+    },
+    {
+     "kind": "para",
+     "text": "주주는 한 곳이다. 2023년 말까지는 파나마 법인 Estrella Blanca de Panamá S.A.와 키토의 COPRALESA S.A. 두 곳이었다. 2024년 연차 공시는 「En el año 2024 la composición accionaria de INEPACA se modificó」라고 적고, 보통주 100 %가 Estrella Blanca 소유라고 밝힌다(A). COPRALESA의 몫이 어디로 갔는지는 공시에 없다.",
+     "ord": 979
+    },
+    {
+     "kind": "para",
+     "text": "Estrella Blanca의 주주를 적은 문서는 드물다. 에콰도르 회사감독청(Supercias)에 들어간 2016년분 외국 주주 서식(2017-01-23 발급)은 Estrella Blanca의 신고 주주로 「ANDEAN TRADING INTERNACIONAL」 한 곳을 적고, 지분율 칸은 비워 둔다(A). 콜롬비아에서 VAN CAMP'S 상표를 가진 법인은 「ANDEAN TRADING INTERNATIONAL INC.」이고, 1987년 COPRALESA 설립 공고의 주주 명단에도 같은 철자의 법인이 있다(A). 서식과 뒤의 두 문서는 표기가 다르다. 둘이 같은 법인인지 파나마 등기번호로 맞춘 문서는 없고, 그 위의 개인 소유자는 어느 등기에도 나오지 않는다.",
+     "ord": 1239
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아 카르타헤나에서 Van Camp's 참치를 만드는 Seatech International Inc.도 파나마 SMV에 등록된 발행인이다(결의 SMV-414-24). 영국령 버진아일랜드 법인이고 카르타헤나에 지점을 둔다(A). 두 회사 사이의 지분 관계는 어느 등기에도 없다. 겹치는 것은 사람과 문장이다.",
+     "ord": 3866
+    },
+    {
+     "kind": "para",
+     "text": "INEPACA 투자설명서가 적은 이사 가운데 2명은 seatechint.com 메일 주소를 쓴다(A 공시). 1명의 약력에는 「vinculado a la empresa Seatech International desde 1997 … fábrica de envases」라는 말이 있고, 업무 주소는 카르타헤나 Mamonal km 8이다. 다른 1명은 Ralston Purina에서 일한 약력을 달았다(C). 2021~2025년 INEPACA 연차 공시의 발행인 연락 담당도 Seatech 쪽 이사다. 상표를 설명하는 문장도 같다. 두 회사는 Van Camp's를 「licencia de uso no remunerada」, 곧 무상 사용권으로 쓴다고 적고, 사용권을 준 쪽의 이름은 어느 쪽 공시에도 없다.",
+     "ord": 4050
+    },
+    {
+     "kind": "para",
+     "text": "Seatech International Inc.가 파나마 증권시장에 낸 2025년 연차 공시(IN-A)의 문장은 「Seatech International Inc., e Industria Ecuatoriana Productora De Alimentos (INEPACA), son compañías que comparten ejecutivos y directores. Sin embargo, no son parte del mismo grupo económico」다. 두 회사가 임원과 이사를 함께 두지만 같은 경제 그룹에 속하지는 않는다는 뜻이다. 공시는 등록 문서(A)이고, 문장의 내용은 회사가 스스로 한 말(C)이다.",
+     "ord": 4583
+    },
+    {
+     "kind": "para",
+     "text": "INEPACA 쪽 문장도 방향이 같다. 2020년 투자설명서는 회사가 「no forma parte de un grupo y que no tiene subsidiarias」, 곧 그룹에 속하지 않고 거느린 회사도 없다고 적는다(C). 같은 설명서는 2019년과 2020년에 「vínculo」(연관)가 있는 회사와 거래하지 않았다고 적지만, 무엇을 「vínculo」로 보는지는 정의하지 않는다.",
+     "ord": 4941
+    },
+    {
+     "kind": "para",
+     "text": "제 배는 IATTC 등록부에 INEPACA 소유로 오른 선망 3척(Lucy·MonteCristi·Tarqui)이고, 1973~1977년에 지었다(A). 회사는 2025년 연차 공시에 매일 가공하는 참치가 「sus tres (3) embarcaciones pesqueras propias」, 곧 제 배 세 척의 어획과 남에게서 산 원료에서 온다고 적는다(C). 두 쪽의 톤수나 비중을 적은 공개 문서는 없다.",
+     "ord": 5179
+    },
+    {
+     "kind": "para",
+     "text": "2016~2019년 감사보고서에는 다른 배들이 나온다. 원료 공급자의 배에 댄 정비비가 선급금으로 잡혔고, 주석은 이 돈이 「se devengan con la entrega de la pesca」, 곧 어획을 넘겨받으면서 정산된다고 적는다(A). 2016년 명세의 14척 가운데 12척은 카르타헤나의 두 주소를 나눠 쓰는 열두 법인이 한 척씩 가진 콜롬비아 기국 선망과 이름이 같다. 2020년부터 같은 계정에는 배 이름 명세가 없다(A).",
+     "ord": 5417
+    },
+    {
+     "kind": "para",
+     "text": "돈의 모양은 단순하다. 2016년부터 2025년까지 감사 재무제표에 금융기관 차입이 없고, 부채의 절반 넘게를 퇴직연금 충당금이 차지한다(2019~2025년 57,2~72,1 %). 2015~2025년 총영업수익은 54,96M~70,70M USD 사이를 오갔다(A). 2025년 연차 공시는 설비를 유지하는 데 쓴 돈 말고는 설비투자가 없었다고 적는다(C).",
+     "ord": 5674
+    },
+    {
+     "kind": "para",
+     "text": "회사 명의로 등록된 배 한 척은 두 해 연달아 마약 사건에 이름이 올랐다. IATTC 등록부에서 소유자가 INEPACA인 MonteCristi(IMO 7415462)는 2025년 4월 말(해군 게시 2025-04-27, 검찰 발표문 「lunes 28 de abril」) 에콰도르 해군에 붙잡혔다. 검찰 발표문(407-DC-2025)은 코카인 2,91 t을 적었다(A). 발표문이 기소했다고 적은 사람은 22명이고, 선주 이름은 없다. 검찰 누리집에 이 사건의 판결 보도자료는 없다.",
+     "ord": 5891
+    },
+    {
+     "kind": "para",
+     "text": "미 남부사령부는 2026-09-07 동태평양에서 마약 운송을 돕던 「floating refueling station」(해상 급유선)을 「interdicted」(저지)했다고 게시했다(A). 게시에는 배 이름·등록번호·기국·인원이 없다. 매체는 그 배가 격침됐다고 보도했고, 가족과 매체가 그 배를 MonteCristi로 특정했다(B). 산크리스토발 심리 뒤 선원들은 풀려났고, 사건은 사전수사 단계로 남았다(B). IATTC 등록부에는 2026-09-25에도 MonteCristi가 「Active」로 올라 있다(A).",
+     "ord": 6171
+    },
+    {
+     "kind": "para",
+     "text": "파나마 증권 공시에는 두 사건이 나오지 않는다. 압수 뒤에 낸 2025년 연차 공시는 「No hay eventos relevantes」(중요 사건 없음)라고 적었고, 제 배 세 척과 선원 64명도 그대로 실었다. 2026-09-07 뒤로는 2026-09-25 현재 새 공시가 없다. 두 사건 모두 회사 누리집과 파나마 증권 공시에 회사 명의 성명이 없고, 그런 성명을 옮긴 보도도 없다. 2025년 탐사매체 Vorágine의 질의에 회사는 답하지 않았고, 2026년 Atuna는 선주 쪽 소식통의 반발을 전했다(B).",
+     "ord": 6470
+    },
+    {
+     "kind": "para",
+     "text": "같은 공시 체계 안에는 서로 다른 두 문장이 있다. SMV는 2024-04-10 결의 SMV-132-24로 분기 보고를 늦게 낸 INEPACA에 과태료 B/.3.400을 물렸다(A). 그 뒤에 낸 2024년과 2025년 연차 공시는 「El Emisor no ha sufrido sanciones administrativas」, 곧 행정 제재를 받은 적이 없다고 적는다(C).",
+     "ord": 6770
+    }
+   ],
+   "stage": "c01"
+  },
+  {
+   "sid": "s2",
+   "numeral": "02",
+   "label": "법인과 주주",
+   "subtitle": "INEPACA의 주식 1.000주는 2024년부터 파나마 법인 한 곳이 모두 갖는다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "INEPACA는 에콰도르 회사감독청(Supercias)에 서류번호(expediente) 636으로 등록된 주식회사다. 정식 상호는 Industria Ecuatoriana Productora de Alimentos C.A.이고, 국세청(SRI) 납세번호(RUC)는 1390005713001, 납세자 등급은 「ESPECIAL」(특별 납세자)이다. SRI에 올린 주업종은 「CONSERVACION Y ENVASADO DE PRODUCTOS DE PESCADO」, 곧 수산물의 저장 가공과 포장이고, 본점은 만타 해안도로 Malecón s/n에 있다(A).",
+     "ord": 98
+    },
+    {
+     "kind": "para",
+     "text": "회사는 1949-02-18 키토 제1공증인 앞에서 작성한 공정증서로 세워졌고, 1949-04-25 만타 상업등기소에 등기됐다. SRI가 적은 영업 개시일도 같은 날이다. 지금의 정관은 1982년 공정증서에 담겨 있다(A).",
+     "ord": 429
+    },
+    {
+     "kind": "para",
+     "text": "주주는 오랫동안 둘이었다. 2019년 말 Supercias 주주명부와 감사보고서 주석은 파나마의 Estrella Blanca de Panamá S.A.(Supercias 외국법인 코드 SE-Q-00000249)와 키토의 COPRALESA S.A.를 주주로 적는다. 자본금 약 2.636만 달러는 1.000주로 나뉘고, 두 회사의 몫은 99,9 % 대 0,1 %다(A). 2020년 파나마 증권감독원(SMV)에 낸 투자설명서도 같은 비율을 적었다. 2000년 주주명부에서는 COPRALESA가 48,8 %를 가졌다. 2008-04-07에는 COPRALESA가 Estrella Blanca에 511주를 넘겼다는 신고가 들어갔고, 그해 말 명부에서 COPRALESA 몫은 1.000주 가운데 1주였다(A). 이 둘을 더하면 넘기기 직전 COPRALESA는 512주, 곧 51,2 %를 가졌던 셈이고(계산), 2000년의 48,8 %와 맞지 않는다. 그 사이 지분이 어떻게 바뀌었는지 적은 서류는 Supercias 공개 서류에 없다. 2019년 말 COPRALESA에는 0,1 %가 남아 있었다.",
+     "ord": 564
+    },
+    {
+     "kind": "para",
+     "text": "2024년 연차보고서는 「En el año 2024 la composición accionaria de INEPACA se modificó」, 곧 그해 주주 구성이 바뀌었다고 적고, 보통주 100 %가 Estrella Blanca 소유라고 밝힌다. 2025년 연차보고서의 주주 표도 같다. 그 보고서의 서술 문단은 2025년에 구성이 바뀌었다고 적지만, 전년 문장과 연도만 다르고 주주 표에는 변화가 없다. COPRALESA가 갖던 0,1 %가 누구에게 갔는지, 양도인지 소각인지는 공시에 나오지 않는다.",
+     "ord": 2740
+    },
+    {
+     "kind": "para",
+     "text": "COPRALESA의 정식 이름은 Compañía Productora de Alimentos Ecuatorianos COPRALESA S.A.다. Supercias 서류번호 45715, RUC 1790780295001이고, 1987-02-04 키토에서 세워졌다(A). 1987년 설립 공고에 실린 목적은 부동산 매매·임대와 다른 회사 지분 보유, 그리고 「compraventa y distribución de maquinarias, equipos y bienes industriales, comerciales, agrícolas y alimenticios」, 곧 기계·장비와 공업·상업·농업·식품 물품의 매매·유통이다(A). 감독청 순위표에 오른 2022~2024년 매출은 한 해 0~2.000 USD, 직원은 2~6명이다(A). 이 매출과 인원으로 보아 생선을 가공하는 회사는 아니다.",
+     "ord": 3045
+    },
+    {
+     "kind": "para",
+     "text": "대주주 Estrella Blanca de Panamá S.A.는 1959-03-18 파나마 공공등기소에 상업 법인으로 등기됐다. INEPACA가 Supercias에 낸 2009년 파나마 등기 증명은 이 회사를 「VIGENTE」(존속 중)로 적는다. 2017-01-23 발급된 Supercias 외국 회사 서식(2016년분)은 「COTIZA EN BOLSA: NO」, 곧 증권거래소에 상장되지 않은 회사로 적는다(A). 두 회사 사이의 돈거래는 감사보고서에 한 줄 남아 있다. 2015년 말 Estrella Blanca 앞으로 잡힌 미수금 306.991,58 USD는 2018년 배당과 상계됐다(A).",
+     "ord": 3495
+    },
+    {
+     "kind": "para",
+     "text": "INEPACA 쪽은 파나마 증권시장의 등록 발행인이다. 파나마 증권감독원 결의 SMV-563-20(2020-12-28)은 INEPACA 보통주 1.000주를 2차 시장 거래용으로 등록했다(A). 등록 대상은 이미 발행된 보통주이고 채권이나 어음은 들어 있지 않다. 같은 절차에서 낸 투자설명서는 「INEPACA no ha realizado emisiones anteriormente en ninguna jurisdicción」, 곧 어느 나라에서도 증권을 발행한 적이 없다고 적는다. 같은 설명서는 회사가 「no forma parte de un grupo y que no tiene subsidiarias」, 곧 어느 그룹에도 속하지 않고 자회사도 없다고 스스로 밝힌다(A 공시, 내용은 회사 진술). 그 뒤 INEPACA는 분기·연차 보고서를 파나마에 내고 있고, SMV의 반복 발행인(emisor registrado recurrente) 명부 2026-03-31 판에 93번으로 올라 있다(A). 2024년부터는 이 1.000주를 주주 한 곳이 갖는다.",
+     "ord": 3841
+    },
+    {
+     "kind": "para",
+     "text": "주주의 국적은 세율에도 나타난다. 2019년 감사보고서 주석은 INEPACA의 법인세율을 28 %로 적고, 그 이유로 「el principal accionista … residente en Panamá, país que es considerado como paraíso fiscal」을 든다(A). 최대주주가 조세피난처로 간주되는 파나마에 거주하는 법인이라는 말이다. 2019년 이 문장이 가리킨 최대주주가 2024년부터는 주주 명부의 한 줄 전체다.",
+     "ord": 4387
+    },
+    {
+     "kind": "para",
+     "text": "그 파나마 법인 위의 주주는 에콰도르 서류에서도 끊겨 있다. 2019-12-27 INEPACA는 Supercias에 대주주 Estrella Blanca를 「sociedad remisa」로 신고했다(A). 외국 법인 주주가 내야 할 서류를 내지 않았다는 신고다. Estrella Blanca의 주주를 적은 Supercias 서식은 2016년분이 마지막이고, 그 서식에는 지분율 칸이 없다. Estrella Blanca 위에 누가 있고 그 주주가 몇 %를 갖는지는 공개된 에콰도르 서류에 나오지 않는다.",
+     "ord": 4656
+    }
+   ],
+   "stage": "c01"
+  },
+  {
+   "sid": "s3",
+   "numeral": "03",
+   "label": "주주의 주주",
+   "subtitle": "파나마 대주주가 신고한 주주의 이름은 콜롬비아 상표권자의 이름과 표기가 두 군데 다르다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "INEPACA의 대주주 Estrella Blanca de Panamá S.A.가 에콰도르 회사감독청(Supercias)에 낸 외국 법인 서식은 자기 주주를 「ANDEAN TRADING INTERNACIONAL」 한 곳으로 적는다(A). 서식은 2016년분이고 2017-01-23에 발급됐다. 주주 칸에는 이름과 나라(파나마)가 있을 뿐 지분율 칸은 없다.",
+     "ord": 100
+    },
+    {
+     "kind": "para",
+     "text": "Estrella Blanca는 1959-03-18 파나마에 등기된 법인이고, 같은 서식에서 증권시장 상장 여부를 「COTIZA EN BOLSA: NO」로 적었다. 서식이 나올 무렵 이 법인은 INEPACA 주식의 99,9 %를 가졌고, 2024년부터는 100 %를 갖는다(A). 서식이 적은 이름은 INEPACA 대주주의 주주, 곧 한 칸 위의 주주다. 서식의 주주 항목 「DATOS DE LOS SOCIOS O ACCIONISTAS/MIEMBROS DE LA COMPAÑÍA EXTRANJERA」(외국 회사의 사원·주주 정보)에는 이 한 줄만 있다. INEPACA가 파나마 증권시장에 낸 공시는 「El 100% de las Acciones Comunes del Emisor son de propiedad de Estrella Blanca de Panamá, S.A.」라고 적어 주주를 Estrella Blanca까지만 부른다(A).",
+     "ord": 322
+    },
+    {
+     "kind": "para",
+     "text": "비슷한 이름이 에콰도르와 콜롬비아의 공문서 세 곳에 나온다. Estrella Blanca의 외국 법인 서식, INEPACA의 옛 소수 주주 COPRALESA S.A.의 1987년 설립 공고, 콜롬비아 VAN CAMP'S 상표 원부다. 세 문서는 모두 등록부 등급이지만 적힌 철자가 같지 않다.",
+     "ord": 811
+    },
+    {
+     "kind": "para",
+     "text": "첫째와 셋째는 표기가 다르다. 서식은 스페인어 「INTERNACIONAL」로 쓰고 회사 형태를 뜻하는 「INC.」를 붙이지 않았다. 상표 원부는 영어 「INTERNATIONAL」에 「INC.」를 붙인다. 둘째와 셋째는 철자까지 같다.",
+     "ord": 2119
+    },
+    {
+     "kind": "para",
+     "text": "1987년 공고는 이 법인을 두 번 부른다. 주주 명단(「NOMINA DE ACCIONISTAS」)은 「El número de accionistas es CINCO」, 곧 주주가 다섯이라고 적고, 그 가운데 하나로 「ANDEAN TRADING INTERNATIONAL INC.」를 올린다. 법인이 직접 설립 주주로 들어갔다는 뜻이다. 발기인 가운데 콜롬비아 국적 1명은 자기 이름으로 참여하면서 「mandatario de la compañía de nacionalidad panameña ANDEAN TRADING INTERNATIONAL INC.」, 곧 이 파나마 회사의 수임인 자격을 함께 가졌다(A). COPRALESA는 뒤에 INEPACA 주주가 되었고, 2008년부터 2023년 말까지 0,1 %를 가졌다.",
+     "ord": 2260
+    },
+    {
+     "kind": "para",
+     "text": "두 표기가 같은 법인인지는 서류로 가려지지 않는다. 파나마 법인을 하나로 특정하는 값은 파나마 공공등기소(Registro Público)의 등기번호인데, 세 문서 가운데 어느 것도 이 번호로 두 표기를 이어 주지 않는다. 상업 디렉터리에 뜨는 설립일과 등록번호는 등기소가 발급한 증명이 아니어서 이 물음에 답하지 못한다.",
+     "ord": 2677
+    },
+    {
+     "kind": "para",
+     "text": "주소도 증거가 되지 못한다. 외국 법인 서식에서 Estrella Blanca와 Andean Trading은 파나마시의 같은 사무실 주소를 쓴다. Estrella Blanca의 이사회 의사록은 이 주소를 등기대리인(agente residente)인 파나마 법률사무소의 사무실로 적는다. 두 법인이 같은 법률사무소를 주소지로 올렸다는 사실은 지분이나 지배 관계를 말해 주지 않는다.",
+     "ord": 2867
+    },
+    {
+     "kind": "para",
+     "text": "서식의 시점도 걸린다. 공개된 외국 법인 서식은 2016년분이 마지막이다. INEPACA는 2019-12-27 Estrella Blanca를 「sociedad remisa」, 곧 외국 주주 서류를 내지 않은 회사로 신고했고(A), 그 신고 묶음에 든 것도 같은 2016년분 서식 사본이다. 그 뒤의 갱신본은 공개 서류에 없다. Estrella Blanca가 2024년에 INEPACA 지분을 100 %로 늘린 뒤에도 주주가 같은지는 어느 서류도 적지 않는다.",
+     "ord": 3089
+    },
+    {
+     "kind": "para",
+     "text": "이름이 걸리는 까닭은 상표다. INEPACA는 투자설명서에 「INEPACA tiene una licencia de uso no remunerada de la marca Van Camp's para sus atunes y sardinas enlatadas」라고 적었다. 참치와 정어리류 캔에 Van Camp's 상표를 대가 없이 쓸 사용권이 있다는 뜻인데, 사용권을 준 쪽의 이름은 없다(A 공시, 내용 C). 콜롬비아에서 그 상표의 권리자로 등록된 이름과 철자가 같은 법인이 INEPACA 옛 소수 주주의 설립 주주였고, 표기가 다른 이름이 대주주의 주주로 신고돼 있다. TMview에 에콰도르 자료가 없어, 에콰도르에서 VAN CAMP'S 표장을 가진 쪽은 같은 원부로는 가려지지 않는다.",
+     "ord": 3362
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아 상표 원부에는 Andean Trading과 Seatech·INEPACA 사이의 지분이나 계약이 나오지 않는다. 에콰도르 회사감독청 서류에는 이 이름이 두 자리에 있다. INEPACA 대주주 Estrella Blanca의 신고 주주 자리에는 스페인어 표기 「ANDEAN TRADING INTERNACIONAL」이, 1987년 COPRALESA 설립 주주 자리에는 「ANDEAN TRADING INTERNATIONAL INC.」가 적혀 있다. 지분율과 두 표기의 동일 법인 여부는 어느 서류에도 없다.",
+     "ord": 3890
+    },
+    {
+     "kind": "para",
+     "text": "Andean Trading 자신의 주주와 수익적 소유자는 공개 서류에 나오지 않는다. 대주주 쪽 사슬은 INEPACA에서 Estrella Blanca를 거쳐 스페인어 표기의 Andean Trading까지 서류로 올라가고, 거기서 멈춘다. 두 표기를 한 법인으로 묶어 줄 파나마 등기번호도 아직 어느 공개 문서에도 없다.",
+     "ord": 4193
+    }
+   ],
+   "stage": "c02"
+  },
+  {
+   "sid": "s4",
+   "numeral": "04",
+   "label": "두 발행인",
+   "subtitle": "INEPACA와 Seatech는 파나마 증권시장에 따로 올라 있고, 같은 사람들이 두 회사 공시에 이름을 올린다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "파나마 증권감독원(SMV)은 2020-12-28 결의 SMV-563-20으로 INEPACA 보통주 1.000주를 2차 시장 거래 종목으로 등록했다(A). 채권이 아니라 주식이다. 설명서는 「INEPACA no ha realizado emisiones anteriormente en ninguna jurisdicción」, 곧 어느 나라에서도 증권을 낸 적이 없다고 적었다. 카르타헤나에 지점을 둔 영국령 버진아일랜드 법인 Seatech International Inc.도 결의 SMV-414-24로 같은 시장에 보통주를 올린 발행인이다(A, Latinex 티커 SEAT).",
+     "ord": 113
+    },
+    {
+     "kind": "para",
+     "text": "두 회사의 관계를 한 문장으로 적은 쪽은 Seatech이다. Seatech의 2025년 연차보고(IN-A)는 「Seatech International Inc., e Industria Ecuatoriana Productora De Alimentos (INEPACA), son compañías que comparten ejecutivos y directores. Sin embargo, no son parte del mismo grupo económico」라고 적는다. 두 회사는 임원과 이사를 함께 두지만 같은 경제 그룹은 아니라는 뜻이다. 공시는 등록 문서(A)이지만, 관계를 설명한 내용은 회사 진술(C)이다. 두 회사 사이의 지분을 적은 등기는 없다.",
+     "ord": 457
+    },
+    {
+     "kind": "para",
+     "text": "두 공시를 항목별로 나란히 놓으면 겹치는 칸과 갈리는 칸이 드러난다. Van Camp's를 쓰는 근거는 두 회사가 같은 말로 적는다. 「licencia de uso no remunerada」, 돈을 내지 않는 사용권이다. 사용권을 준 쪽의 이름은 어느 공시에도 없다. 원료와 캔은 다르게 적는다. INEPACA는 제 배 세 척의 어획에 제3자에게서 산 원료를 더한다고 하고, Seatech은 「afiliada」(제휴) 선단이 원료 전부를 대고 캔과 뚜껑은 공장 안에서 만든다고 한다.",
+     "ord": 835
+    },
+    {
+     "kind": "para",
+     "text": "사람 사이의 연결은 INEPACA 공시에도 나온다. 2020년 투자설명서가 소개한 이사 가운데 둘이 seatechint.com 도메인 메일을 쓴다(A 공시). 한 사람의 약력은 「vinculado a la empresa Seatech International desde 1997」, 곧 1997년부터 Seatech International에 몸담았다고 적고, 맡은 사업으로 「fábrica de envases」(제관 공장)를 든다. 업무 주소는 카르타헤나 Mamonal km 8, Seatech 가공공장이 있는 곳이다. 다른 한 사람의 약력은 Ralston Purina의 브라질·콜롬비아·에콰도르 사업장에서 일했다고 적는다(C).",
+     "ord": 3195
+    },
+    {
+     "kind": "para",
+     "text": "Seatech의 2025년 연차보고는 이사회를 이사 두 명으로 적는데, 두 사람이 곧 INEPACA 설명서의 그 두 이사다. Seatech 공시는 Ralston 약력 이사의 업무 주소를 만타 Malecón, 곧 INEPACA 본점으로 적는다. INEPACA가 2021~2025년에 낸 연차보고 다섯 해치 표지에서 발행인 연락 담당(「persona de contacto del Emisor」)은 Seatech 쪽 이사다.",
+     "ord": 3558
+    },
+    {
+     "kind": "para",
+     "text": "같은 두 이름은 INEPACA 대주주의 서류에도 나온다. 파나마 공증 사본으로 회사감독청에 제출된 Estrella Blanca de Panamá의 2009-10-20 이사회 의사록은 이사 세 명을 적는다. 그 가운데 둘이 이 두 이사와 이름이 같다(A 문서끼리 이름 대조). 두 이름이 대주주, INEPACA, Seatech 세 곳의 이사회에 모두 오른다. 이름이 같다는 사실까지가 문서가 말하는 범위이고, 지분은 어느 서류에도 적혀 있지 않다.",
+     "ord": 3803
+    },
+    {
+     "kind": "para",
+     "text": "같은 설명서는 발행인을 두고 두 가지를 선언한다. 하나는 「no forma parte de un grupo y que no tiene subsidiarias」, 곧 어떤 그룹에도 속하지 않고 자회사도 없다는 문장이다. 다른 하나는 「Durante el 2019, y en lo corrido del 2020, el Emisor no realizo negocios o negociaciones con sociedades o empresas que tengan algún vínculo con el Emisor」다. 2019년과 2020년 들어 그때까지 발행인과 연관(vínculo)이 있는 회사와는 거래하지 않았다는 뜻이다. 설명서는 vínculo가 무엇인지 정의하지 않는다. 이 낱말은 같은 문서가 Seatech 쪽 이사를 소개하며 쓴 「vinculado」와 말뿌리가 같다.",
+     "ord": 4063
+    },
+    {
+     "kind": "para",
+     "text": "같은 2019년 장부에는 Seatech 이름이 나온다. INEPACA 2019년 감사보고서의 외화유출세(ISD) 명세에 Seatech 송장 22줄이 있고, 그중 15줄이 「ENVASES」(용기) 항목이다(A). 「IMPORT.ENVASES HOJALATA PART.ARANCEL.73102990」처럼 양철 용기 수입을 적은 줄이다. 22줄의 세액을 더하면 338.247,22 USD이고, 세율 5 %로 되돌리면 송금액은 약 676만 USD가 된다(계산·추정, 지급 시점 기준).",
+     "ord": 4507
+    },
+    {
+     "kind": "para",
+     "text": "이 줄들은 Seatech이 발행한 송장으로 들여온 캔 등의 대금이다. 그 캔을 Seatech이 직접 만들었다는 대목은 Seatech의 진술(C)이다. 그해 INEPACA의 캔 원가 11.846.199 USD에는 국내 공급자 Fadesa도 들어 있다. 공급자 이름 없이 「NACIONALIZACION DE ENVASES」로 적힌 2줄은 22줄에 들지 않는다.",
+     "ord": 4791
+    },
+    {
+     "kind": "para",
+     "text": "2021~2025년 감사보고서의 특수관계 주석은 해마다 주주·특수관계 회사와 거래가 없었다고 적는다(A). 2023~2025년 판의 문구는 「no mantuvo transacciones con accionistas y compañías relacionadas」이고, 2021·2022년 판은 주주 자리에 「socios」를 쓴다. 이 기간 감사보고서에는 ISD 거래처 명세가 실려 있지 않다. 연차보고의 선언도 「Durante el 2021, 2022, 2023, 2024 y en lo corrido del 2025, el Emisor no realizó negocios … con sociedades … que tengan algún vínculo」로 이어진다.",
+     "ord": 5001
+    },
+    {
+     "kind": "para",
+     "text": "Seatech 2025년 연차보고의 「V. PARTES RELACIONADAS, VÍNCULOS Y AFILIACIONES」 절은 먼저 「Durante el 2022, 2023, 2024 y 2025 el Emisor no realizo negocios o negociaciones con sociedades o empresas que tengan algún vínculo con el Emisor」라고 적는다. 증권 등록 업무를 맡은 사람들이 특수관계인이 아니라는 문단 하나를 사이에 두고, 바로 다음 문단에 INEPACA와 「comparten ejecutivos y directores」라는 문장이 온다. vínculo가 있는 회사와 거래하지 않았다는 선언과 임원·이사를 공유한다는 진술이 한 절 안에 함께 있다. 이 선언은 INEPACA 설명서의 2019~2020년 선언과 문장 틀이 같다. Seatech 공시도 스스로를 「no forma parte de un grupo」로 적는다. 어느 쪽 공시도 vínculo를 정의하지 않는다.",
+     "ord": 5504
+    },
+    {
+     "kind": "para",
+     "text": "등록부에도 연결이 보인다. 콜롬비아 INVIMA는 INEPACA가 만든 캔 네 건의 수입자로 Seatech·Colombina S.A.·Distribuidora Colombina 세 곳을 적는다(A). INEPACA 감사보고서의 특수관계 주석이 말하는 「compañías relacionadas」에 Seatech이 드는지는 공시에 나오지 않는다.",
+     "ord": 6049
+    }
+   ],
+   "stage": "c02"
+  },
+  {
+   "sid": "s5",
+   "numeral": "05",
+   "label": "브랜드는 누구의 것인가",
+   "subtitle": "Van Camp's 권리자는 콜롬비아와 미국에서 서로 다르게 적히고, 에콰도르 권리자는 TMview로 가려지지 않으며, INEPACA는 사용권만 적는다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "INEPACA는 2020년 파나마 증권감독원(SMV)에 낸 투자설명서의 특허·라이선스 항목에 「INEPACA tiene una licencia de uso no remunerada de la marca Van Camp's para sus atunes y sardinas enlatadas」라고 적었다. 참치 캔과 정어리류 캔에 Van Camp's 상표를 대가 없이 쓰는 사용권이 있다는 뜻이다(A 공시, 내용 C). 사용권을 준 쪽의 이름은 설명서에 없다.",
+     "ord": 142
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아에서 같은 상표로 참치 캔을 만드는 Seatech International도 파나마 공시에 같은 「licencia de uso no remunerada」를 적었고, 거기에도 준 쪽의 이름은 없다(A 공시, 내용 C). 두 발행인이 한 상표를 무상으로 쓰는데, 어느 쪽도 권리자를 밝히지 않는다.",
+     "ord": 421
+    },
+    {
+     "kind": "para",
+     "text": "권리자의 이름은 나라별 상표 등록부와 법원 기록에서 나온다. 콜롬비아 등록부는 파나마 법인을 적고, 미국에서는 연방 법원이 Tri-Union Seafoods를 등록 상표의 권리자로 적는다. INEPACA가 캔을 만들어 파는 에콰도르는 EUIPO TMview에 그 나라 자료가 없어, 콜롬비아와 같은 원부로는 권리자가 가려지지 않는다. 콜롬비아 등록부에 Seatech·Colombina·INEPACA 명의로 오른 VAN CAMP'S 표장은 없다(A).",
+     "ord": 600
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아 권리자와 닮은 이름은 INEPACA의 지분 서류에도 나온다. 에콰도르 회사감독청(Supercias) 서류에는 INEPACA 대주주 Estrella Blanca de Panamá의 신고 주주로 「ANDEAN TRADING INTERNACIONAL」(스페인어 표기)이 적혀 있다(A, 2016년분 외국주주 서식). 상표 원부의 「ANDEAN TRADING INTERNATIONAL INC.」와는 표기가 다르다. 2023년 말까지 INEPACA 주주였던 키토의 COPRALESA의 1987년 설립 공고에는 주주 다섯 가운데 하나로 상표 원부와 철자까지 같은 「ANDEAN TRADING INTERNATIONAL INC.」가 올라 있다(A).",
+     "ord": 2003
+    },
+    {
+     "kind": "para",
+     "text": "서식에는 지분율 칸이 없고, 세 자리의 이름이 한 법인인지는 파나마 등기번호로 대조되지 않는다. 2024년부터 INEPACA 주식 100 %를 가진 법인은 Estrella Blanca다. 상표권자와 닮은 이름은 주주의 주주 자리에 있는 셈이다. 사용권을 준 쪽이 Andean Trading이라는 이름의 법인인지는 어느 공시도 적지 않는다.",
+     "ord": 2374
+    },
+    {
+     "kind": "para",
+     "text": "미국의 기록은 법원 의견문이다. 뉴저지 연방지법은 2021년 결석판결에서, 라벨에 INEPACA 제조로 적힌 에콰도르산 Van Camp's 참치를 수입·유통한 뉴저지 회사 2곳이 Tri-Union의 미국 상표를 침해했다고 보고, 회사당 25.000 USD의 법정손해배상과 영구금지명령을 내렸다(A). 의견문이 옮긴 소장 주장에 따르면 그 참치는 「manufactured in Ecuador by Inepaca Industria」, 곧 에콰도르의 INEPACA가 만든 것이고 영양성분표가 스페인어로 돼 있었다. 사실관계는 원고 소장을 그대로 받아들인 것이고, INEPACA는 당사자가 아니었다.",
+     "ord": 2580
+    },
+    {
+     "kind": "para",
+     "text": "법인 등기는 1949년이지만, INEPACA와 Van Camp's를 함께 적은 가장 이른 등록 기록은 콜롬비아 식품의약품감시청(INVIMA)의 위생등록이다. 1989-12-29에 발급된 RSIA05M24289 「TROCITOS DE ATUN VAN CAMP`S」(참치 조각)로, 등록 명의는 INEPACA, 수입자는 Atunes de Colombia S.A.였다(A). 콜롬비아 1960년 표장에 첫 이전 기록이 붙은 것과 같은 달이다. 이전을 받은 쪽 이름이 기록에 없어서, 두 기록이 한 거래에서 나왔는지는 문서로 가려지지 않는다.",
+     "ord": 2922
+    },
+    {
+     "kind": "para",
+     "text": "회사가 내세우는 햇수는 이보다 길다. 2020년 투자설명서는 Van Camp's를 「una marca que tiene más de 70 años de presencia en Ecuador」, 곧 에콰도르에서 70년 넘게 자리를 지켜 온 상표라고 소개한다(C). 파나마 공시는 대리점 유통 전략을 설명하는 문단 끝에 「penetración del atún Van Camp's en Ecuador es del 80%」라고 적는다(C). 무엇을 분모로 잰 80 %인지는 나오지 않는다.",
+     "ord": 3232
+    },
+    {
+     "kind": "para",
+     "text": "1988년의 매각은 미국 사업의 일이다. Atuna는 2026-06-01 기사에 「PT Mantrust acquired the US tuna brand Chicken of the Sea International, then known as Van Camp Seafood, from Ralston Purina」라고 적었다(B). PT Mantrust가 Ralston Purina에게서 산 것은 당시 Van Camp Seafood라 불린 미국 참치 브랜드 사업이었다는 말이다. 콜롬비아 매체에는 그해 매각을 INEPACA와 엮은 서술이 있지만 등기 인용이 없다.",
+     "ord": 3518
+    },
+    {
+     "kind": "para",
+     "text": "Ralston Purina 시절 INEPACA의 지위는 공개된 판결에 나오지 않는다. 959 F.2d 1149(1st Cir. 1992)는 원고가 1984년 「a fish processing plant in Manta」, 곧 만타의 한 수산 가공공장에서 일했다고만 적고 INEPACA라는 이름은 쓰지 않는다(A). 그 1심인 772 F.Supp. 46(D.P.R. 1991)에도 이 이름은 없다. 회사 쪽 문서에서는 INEPACA 이사 한 명의 약력에 Ralston Purina의 브라질·콜롬비아·에콰도르 근무가 적혀 있다(C).",
+     "ord": 3840
+    },
+    {
+     "kind": "para",
+     "text": "캔 라벨이 적는 것은 만든 곳이다. 에콰도르에서 팔리는 Van Camp's 참치 캔은 「PRODUCIDO POR: INEPACA」로 제조자를 밝히고 에콰도르 표준 「NORMA INEN 184」를 단다(C). 콜롬비아에서 팔리는 토마토소스 생선 캔은 「FABRICADO POR: INEPACA」 뒤에 에콰도르 BPM 코드, 콜롬비아 수입·유통자 Distribuidora Colombina·Colombina S.A., INVIMA 위생등록 RSA-001579-2016을 한 라벨에 적는다(C). 원재료 칸의 생선은 정어리류 「PESCADO OPISTHONEMA SP」다. 두 캔의 바코드 앞자리는 GS1 에콰도르 접두 786이 아니고, 그 번호를 받은 법인은 라벨에 나오지 않는다.",
+     "ord": 4147
+    },
+    {
+     "kind": "para",
+     "text": "위생등록의 명의도 한 회사로 모이지 않는다. INVIMA에 오른 INEPACA 제조 캔의 유효 등록 4건은 수입자로 Seatech·Colombina S.A.·Distribuidora Colombina 셋을 적는다(A). 2015년부터 2025년 만료까지 이어진 참치 토마토소스 등록 RSiA04I67715는 명의자가 Seatech이고 제조자가 INEPACA였다(A).",
+     "ord": 104296
+    },
+    {
+     "kind": "para",
+     "text": "에콰도르 위생당국 ARCSA는 2018년 공지에서, 자국에서 팔리는 Van Camp's 참치는 INEPACA가 만들며 INEPACA는 「no exporta ni importa conservas de atún desde o hacia Colombia」, 곧 콜롬비아와 참치 캔을 사고팔지 않는다고 적었다(A). 수은 기준을 넘은 로트는 「elaborados por el establecimiento SEATECH de Colombia」로 따로 적었다. 공지는 2018년 시점의 문장이다. INVIMA의 INEPACA 참치 등록은 2025년에 한 건이 갱신되고 한 건이 새로 났다(A).",
+     "ord": 104512
+    },
+    {
+     "kind": "para",
+     "text": "에콰도르 누리집 vancamps.com.ec는 INEPACA가 운영한다(C). 지금 판은 수출을 말하지 않는다. 2019년 웹 아카이브에 남은 판에는 콜롬비아 가정에서 쌓은 전통을 앞세운 해명문이 「Exportamos a los mercados más exigentes」라는 문장과 함께 실려 있었다. 한 도메인에 두 나라의 Van Camp's가 함께 올랐던 셈이다. 에콰도르 지식재산청(SENADI) 원부가 권리자로 어떤 이름을 적는지는 남은 물음이다.",
+     "ord": 104849
+    }
+   ],
+   "stage": "c03"
+  },
+  {
+   "sid": "s6",
+   "numeral": "06",
+   "label": "제 배 세 척",
+   "subtitle": "INEPACA 이름으로 등록된 선망선은 1970년대에 지은 세 척이고, 에콰도르 선망 운반능력의 1,30 %다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "IATTC 지역선박등록부에서 소유자 칸에 INEPACA가 든 배는 에콰도르 기국 선망선 Lucy·MonteCristi·Tarqui 세 척이다(A). 세 척의 운반능력을 합치면 989 t이고, 에콰도르 기국 활성 선망 108척이 가진 75.922 t의 1,30 %다(계산). 등록 소유자 61곳을 운반능력 순으로 세우면 INEPACA는 22위다(계산).",
+     "ord": 120
+    },
+    {
+     "kind": "para",
+     "text": "척수로는 108척 가운데 3척이다. 운반능력 몫이 척수 몫보다 작으니, 세 척은 에콰도르 선망 평균보다 작은 배들이다. 배도 늙었다. Lucy와 Tarqui는 1973년, MonteCristi는 1977년에 지었다. 세 척의 평균 선령은 51,7년으로, 에콰도르 활성 선망 평균 45,8년보다 높다(계산).",
+     "ord": 346
+    },
+    {
+     "kind": "para",
+     "text": "회사 장부와 세무 등록도 같은 세 척을 적는다. 2019년 감사보고서 주석 1은 세 배를 등록번호와 함께 자기 배로 싣고, 선주 등록(matrícula de armador)은 세 배 모두 20100150 한 번호로 적는다(A). 국세청(SRI)의 납세자 등록(RUC)에는 사업장 다섯 곳이 올라 있다. 001은 만타 본점과 가공장, 005는 Los Esteros 창고이고, 002~004가 이 세 배다(A).",
+     "ord": 528
+    },
+    {
+     "kind": "para",
+     "text": "번호가 어긋나는 배는 MonteCristi 하나다. 감사보고서는 이 배를 「Montecristi」로 표기하고 1977년 12월 건조와 등록번호 P-00-00556을 적는다(A). IATTC 등록부의 번호는 P-04-01118이다(A). Lucy와 Tarqui는 두 원천의 번호가 같다. 같은 등록부에는 2023-09-04 선명 표기가 「Monte Cristi」에서 「MonteCristi」로 바뀌었다는 통보 기록이 남아 있다(A). 번호가 언제, 왜 바뀌었는지 적은 공개 문서는 없다.",
+     "ord": 1674
+    },
+    {
+     "kind": "para",
+     "text": "장부에서 배가 차지하는 몫은 작다. 2019년 말 선박 계정의 순액은 1.425.459 USD였고, 유형자산 순액은 13.445.881 USD였다(A). 같은 날 토지 순액은 7.885.165 USD였다(A).",
+     "ord": 1956
+    },
+    {
+     "kind": "para",
+     "text": "원료를 설명하는 회사 문장은 다섯 해 동안 거의 그대로다. 2020년 파나마 투자설명서는 참치 원료를 「capturas de sus propios barcos, más compras de materia prima a terceros」라고 적었다(C). 자기 배의 어획에 제3자에게서 사는 원료를 더한다는 말이다. 정어리류는 같은 설명서에서 「recurre a terceros」, 곧 제3자에게 기댄다고 적었다(C). 세 척이 대는 것은 참치 쪽이다. 2025년 연차 공시(IN-A)는 「El atún procesado diariamente por INEPACA proviene de las capturas de sus tres (3) embarcaciones pesqueras propias y de materia prima comprada a terceros」라고 쓴다(C). INEPACA가 날마다 가공하는 참치가 자기 어선 세 척의 어획과 제3자에게 산 원료에서 온다는 뜻이다. 두 몫의 비중은 두 문서 어디에도 없다. 제3자 쪽 배의 이름은 감사보고서에 나온다. 2016년 감사보고서는 자기 배 세 척과 따로, 원료 공급자의 배 14척 앞으로 나간 정비비 선급금 명세를 싣는다(A).",
+     "ord": 2084
+    },
+    {
+     "kind": "para",
+     "text": "배에 딸린 사람 수는 줄었다. 2020년 투자설명서는 직원 1.027명 가운데 선단 인원을 119명으로 적었다(A 공시·C 내용). 2024년과 2025년 연차 공시는 세 배에서 일하는 인원을 64명으로 적는다(C). 2025년 전체 인원은 913명이다(C).",
+     "ord": 2705
+    },
+    {
+     "kind": "para",
+     "text": "세 척 가운데 MonteCristi는 2025년 코카인 압수와 2026년 격침 보도에 이름이 오른 배다.",
+     "ord": 2861
+    },
+    {
+     "kind": "para",
+     "text": "손익계산서에서 배는 「Operación Buques」(선박영업) 한 줄로 잡힌다. 투자설명서에서 이 줄은 2018년 3,23M 달러에서 2019년 2,14M 달러로 줄었다. 2020년부터는 연차 공시의 감사 재무제표가 해마다 이 줄을 싣는다.",
+     "ord": 2930
+    },
+    {
+     "kind": "para",
+     "text": "이 줄은 해마다 크게 오르내린다. 2023년에 0,13M 달러까지 내려갔다가 2024년 3,69M 달러로 올랐고, 2025년에는 1,75M 달러로 2024년의 절반이 안 됐다. 여덟 해 가운데 가장 낮은 해는 2023년이다. 금액 옆에 세 척이 그해 잡은 톤수를 함께 적은 공시는 없다.",
+     "ord": 3915
+    }
+   ],
+   "stage": "c03"
+  },
+  {
+   "sid": "s7",
+   "numeral": "07",
+   "label": "남의 배와 수입 원어",
+   "subtitle": "2016~2019년 감사보고서는 원료 공급자의 배에 준 정비비를 2016년 14척, 2019년 10척 몫으로 적었고, 그 계정 잔액은 2021년부터 2019년의 1할 남짓이다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "INEPACA의 2016년 감사보고서에는 「contratos de asociación para la utilización de otros buques, denominados Dominador I y El Dorado, los cuales prestan servicios de pesca a INEPACA」라는 문장이 있다. Dominador I와 El Dorado라는 다른 배를 쓰는 제휴 계약을 맺었고, 두 배가 INEPACA에 어로 용역을 제공한다는 뜻이다. 같은 감사보고서들은 원료 공급자의 배에 정비비를 먼저 내준 돈을 따로 적는다. 주석은 그 돈이 「se devengan con la entrega de la pesca」, 곧 고기를 넘겨받을 때 정산된다고 설명한다.",
+     "ord": 154
+    },
+    {
+     "kind": "para",
+     "text": "감사보고서는 이 배들의 주인을 적지 않는다. 명세의 설명은 「buques pesqueros de los proveedores de materia prima」, 원료 공급자의 어선이라는 말뿐이다. 2016년 명세에 오른 배는 14척이다. 그 가운데 12척(Amanda·American Eagle·Cabo de Hornos·Dominador·Dorado·El Rey·Enterprise·Grenadier·Ma. Isabel·Marta Lucia·Nazca·Sandra C.)은 콜롬비아 편(ⅬⅥ)에서 본 카르타헤나 두 주소의 12개 법인이 한 척씩 가진 콜롬비아 기국 선망선 12척과 이름이 같다. 나머지 두 척은 ORION과 Sea Gem이다. ORION은 콜롬비아 편에 나온 ORION S·BP ORION과 이름이 같다. 감사보고서에는 IMO 번호가 없어서 같은 배인지는 서류로 가려지지 않는다.",
+     "ord": 556
+    },
+    {
+     "kind": "para",
+     "text": "계정 이름은 해마다 달랐다. 2016년 표는 이 돈을 「Cuentas por cobrar misceláneos」(기타 미수금)에, 2019년 표는 「Anticipo proveedores」(공급자 선급금)에 넣었다. 2016년 표에는 「SEATECH. VARIOS」라는 줄도 있고, 그 줄의 2015년 말 잔액은 55.149,42달러였다.",
+     "ord": 1012
+    },
+    {
+     "kind": "para",
+     "text": "2019년 명세의 배는 10척으로 줄었다. 콜롬비아 편과 이름이 같은 배는 8척이고, Amanda·El Dorado·Enterprise·Nazca가 빠졌다. 그 8척의 잔액을 더하면 4.508.804,23달러다. 10척의 2019년 말 잔액은 2018년 말과 같았다. 고기를 넘겨받으면 정산된다는 돈이 한 해 동안 한 번도 상계되지 않은 채 남았다.",
+     "ord": 1211
+    },
+    {
+     "kind": "para",
+     "text": "2020년부터 감사 주석은 배 이름을 적지 않는다. 계정 이름도, 원료 공급자의 어선 정비비를 먼저 내주고 고기를 넘겨받을 때 정산한다는 설명 문구도 2025년까지 그대로다. 잔액만 줄어 2021년부터 2025년까지는 2019년 계정 총계의 1할 남짓에 머물렀다. 명세가 없으니 이 돈이 어느 배에 묶여 있는지, 공급자의 배가 바뀌었는지는 공개 문서로 알 수 없다.",
+     "ord": 3008
+    },
+    {
+     "kind": "para",
+     "text": "수입 원어는 2019년 감사보고서의 외화유출세(ISD) 명세에 나온다. 줄마다 거래처와 품목이 짧게 적혀 있다. OTISA 이름이 붙은 줄 가운데 적어도 세 줄은 배 이름을 달고 있다. 「OTISA PGO FACTURA 036 PESCADO DOMINADOR」는 OTISA 송장 036번의 생선 대금에 Dominador라는 이름을 붙였고, 「OTISA B/P NOMINADOR FACT.003-2019」와 「OTISA B/P EL DORADO FACT.004-2019」는 어선(B/P) Nominador와 El Dorado의 이름으로 끊긴 OTISA 송장이다. 「PESCADO DORADO」라고 적힌 생선 대금 줄도 하나 더 있다. 2016년 제휴 계약에 적힌 두 배의 이름이 2019년에는 OTISA 송장에 나오는 셈이다. El Dorado는 같은 해 선급금 명세에서는 빠져 있었다.",
+     "ord": 7344
+    },
+    {
+     "kind": "para",
+     "text": "OTISA의 줄이 원어만 적은 것은 아니다. 부품 줄이 섞여 있고, 원어를 판 외국 거래처도 OTISA 하나가 아니다.",
+     "ord": 7794
+    },
+    {
+     "kind": "para",
+     "text": "OTISA는 INEPACA가 갚을 돈이 가장 많은 외국 거래처이기도 하다. 2019년 말 해외 채권자 표에서 Otisa Inc.의 잔액은 3.156.454,69달러로 해외 채권자 합계의 95,0 %였다(계산). Otisa Inc.가 어디에 설립됐고 누가 주주인지는 공개 문서에 없다.",
+     "ord": 8716
+    },
+    {
+     "kind": "para",
+     "text": "무역 데이터 업체의 선하증권 기록(B)에는 2022년 8월 OTISA가 화주, INEPACA가 수하인으로 적힌 화물이 한 건 있다. 출발지 칸은 「AGUAS INTERNACIONALES」, 곧 공해이고 선명은 MARIA ISABEL C다. 선급금 명세의 「Ma. Isabel」과 이름이 같은 배다. 이 화물이 몇 톤이었는지, INEPACA 원료에서 얼마를 차지했는지는 공개 원천에 없다.",
+     "ord": 8891
+    },
+    {
+     "kind": "para",
+     "text": "회사가 콜롬비아에서 생선을 들여왔다고 직접 적은 문장은 2008년과 2011년 영업보고서에 있다. 2008년 보고서는 「Al igual que años anteriores se importó pescado de Colombia para satisfacer el total de nuestras necesidades」라고 적었다(C). 예년처럼 필요량을 다 채우려고 콜롬비아에서 생선을 들여왔다는 말이다. 2011년 보고서에도 같은 구절이 있다. 2008년 보고서는 그 바로 앞 문장에서 참치 어획이 전년보다 9,59 % 늘었다고 적었다. 제 배의 어획이 늘어난 해에도 콜롬비아 생선이 들어왔다.",
+     "ord": 9118
+    },
+    {
+     "kind": "para",
+     "text": "지금 회사가 적는 원료 문장은 짧다. 2025년 파나마 연차보고(IN-A)는 「El atún procesado diariamente … proviene de las capturas de sus tres (3) embarcaciones pesqueras propias y de materia prima comprada a terceros」라고 적었다(C). 매일 가공하는 참치가 제 배 세 척의 어획과 제3자에게서 산 원료에서 나온다는 뜻이다. 제 배와 선급금을 받은 공급자의 배, OTISA·TRIMARINE 같은 수입처가 각각 몇 톤을 댔는지는 어느 공개 문서에도 없다.",
+     "ord": 9467
+    },
+    {
+     "kind": "para",
+     "text": "El Espectador는 2024-10-30 기사에서 선원들이 에콰도르 사회보장청(IESS)에 INEPACA를 상대로 낸 청구와 회사의 답변을 전했다(B). 기사가 옮긴 답변(C)은 청구인들이 Pescatún de Colombia와 Seatech International(기사 원문 「Seatech Internacional」)의 노동자였고, 콜롬비아 기국 El Dominador·Cabo de Hornos·American Eagle·El Rey·Sandra·Grenadier·Sea Gem·Enterprise의 소유자도 그 두 회사라고 적었다. 회사와 청구인 사이에는 「nunca se configuró u originó la relación laboral」, 곧 고용관계가 한 번도 성립한 적이 없다는 주장이다.",
+     "ord": 9893
+    },
+    {
+     "kind": "para",
+     "text": "이 소유자 이름은 회사가 청구에 맞서 내놓은 주장이고, 등록부가 적는 명의자와는 층위가 다르다. 콜롬비아 편에서 본 12척은 등록부에서 카르타헤나 두 주소의 12개 법인 명의였다. 답변 속 Sea Gem은 그 12척에 없는 이름이다.",
+     "ord": 10305
+    }
+   ],
+   "stage": "c04"
+  },
+  {
+   "sid": "s8",
+   "numeral": "08",
+   "label": "MonteCristi, 2025",
+   "subtitle": "2025년 4월 에콰도르 해군이 붙잡은 참치선 MonteCristi에서 검찰은 코카인 2,91 t을 적었고, 22명을 기소했다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "2025년 4월 말 에콰도르 해군이 갈라파고스 산크리스토발섬 앞바다에서 참치 선망선 MonteCristi를 붙잡았다. 에콰도르 검찰청은 배에서 나온 코카인을 2,91 t으로 적고, 배에 있던 22명을 기소했다(A). 전미열대참치위원회(IATTC) 선박 등록부에서 이 배(#4000)의 등록 소유자는 INEPACA다(A).",
+     "ord": 139
+    },
+    {
+     "kind": "para",
+     "text": "사건을 적은 문서는 발표 주체마다 날짜와 거리가 조금씩 다르다. 해군은 X 게시물에서 배 이름과 약 71포대를 적었지만 무게와 선주는 적지 않았다. 이튿날 해군 누리집 글도 정확한 무게는 조사를 이어 가며 가린다고 했다(B+). 국방부도 전체 무게는 항구에서 검사한 뒤 확정한다고 했다(B, 매체가 옮긴 게시물). 무게는 검찰 보도자료에야 나온다. 선주 이름은 해군과 검찰 어느 쪽 발표에도 없다. 콜롬비아 탐사보도 매체 Vorágine가 에콰도르 산업어선 등록부를 근거로 INEPACA를 소유자로 적었다(B).",
+     "ord": 348
+    },
+    {
+     "kind": "para",
+     "text": "두 공식 발표는 날짜와 거리가 맞지 않는다. 해군은 2025-04-27 게시물에서 배가 산크리스토발섬 북동쪽 약 174해리에 있었다고 적었다. 검찰 보도자료는 「lunes 28 de abril, a 157 millas」라고 적는다. 4월 28일 월요일, 157해리 떨어진 곳이라는 말이다. 해군 게시물은 검찰이 적은 날보다 하루 먼저 올라왔다. EFE 통신은 사람들이 붙잡힌 날을 4월 26일 토요일로 전했다(B). 세 날짜 가운데 어느 날이 검문한 날인지 가려 주는 공개 문서는 없다. 장소는 두 발표 모두 산크리스토발섬을 기준으로 잡았고, 현지 매체 Primicias는 갈라파고스 배타적경제수역 안에서 검문했다고 전했다(B).",
+     "ord": 2192
+    },
+    {
+     "kind": "para",
+     "text": "검찰 보도자료가 기소했다고 적은 사람은 22명이다. 붙잡힌 사람들은 산크리스토발섬으로 옮겨졌고, 그곳 법원에서 현행범 적격 심리가 열렸다. 적용 조항은 에콰도르 통합형법전(COIP) 제220조 1항 d호로, 대량 규모 거래에 붙는 항목이다. 법정형은 22~26년이다. 당직 판사가 검찰 청구대로 전원에게 예비구금을 명했다(A). 보도자료는 코카인은 배의 어창에서, 출항 명단에 없던 멕시코 국적자는 보급품 창고에서 나왔다고 적는다. 배 이름은 적었지만 선주 이름은 없다. INEPACA라는 이름은 발표문 어디에도 나오지 않는다.",
+     "ord": 2555
+    },
+    {
+     "kind": "para",
+     "text": "배와 회사를 잇는 문서는 둘이다. IATTC 선박 등록부는 #4000 MonteCristi의 등록 소유자를 INEPACA로 적는다(A). 1977년에 지은 선망선이고, 회사 명의 배 세 척 가운데 운반능력이 가장 크다(A). Vorágine는 「El Registro de Embarcaciones Pesqueras Industriales de Ecuador arroja que el atunero le pertenece a … Inepaca」라고 썼다(B). 에콰도르 산업어선 등록부를 보면 이 참치선이 INEPACA 것으로 나온다는 뜻이다. 기사는 에콰도르에서 그 이름으로 등록된 참치선이 이 배뿐이라고 덧붙였다. 국제 등록부와 매체가 전한 국내 등록부가 같은 회사를 가리킨다.",
+     "ord": 2861
+    },
+    {
+     "kind": "para",
+     "text": "재판이 어떻게 끝났는지는 공개된 발표에 없다. 에콰도르 검찰청 누리집에는 이 사건의 판결 보도자료가 올라 있지 않다. 같은 누리집에 갈라파고스의 다른 코카인 사건 판결 보도자료는 올라 있다. 2026년 9월 산크리스토발 법원이 선원들을 풀어 준 결정(B)은 이듬해 격침 사건의 선원에 관한 것이고, 이 기소와는 다른 절차다. 그때 에콰도르 해군이 넘겨받은 MonteCristi 선원도 22명이어서(B), 인원만으로는 두 사건이 갈리지 않는다.",
+     "ord": 3252
+    },
+    {
+     "kind": "para",
+     "text": "회사 쪽 말은 기록에 없다. Vorágine는 2025-05-28 INEPACA 임원 2명과 회사 공식 메일로 질문을 보냈고, 기사가 나간 2025-06-01까지 답을 받지 못했다고 적었다(B). 회사 누리집과 파나마 증권 공시에도 INEPACA 명의의 성명은 없다. 압수 뒤에 낸 2025년 파나마 연차보고(IN-A)에도 이 사건은 나오지 않는다.",
+     "ord": 3510
+    },
+    {
+     "kind": "para",
+     "text": "압수 뒤 배와 22명의 사건이 어떻게 처리됐는지는 공개 문서에 없다. 이듬해 9월 7일 미 남부사령부는 동태평양에서 마약 해상 운송을 돕는 급유 거점을 저지했다고 발표했지만 배 이름은 밝히지 않았다(A). 가족과 매체는 그 배를 MonteCristi로 특정했다(B).",
+     "ord": 3716
+    }
+   ],
+   "stage": "c04"
+  },
+  {
+   "sid": "s9",
+   "numeral": "09",
+   "label": "MonteCristi, 2026",
+   "subtitle": "미 남부사령부는 2026년 9월 7일 동태평양에서 저지했다고 발표한 배의 이름을 밝히지 않았고, 가족과 매체는 그 배를 MonteCristi로 지목했다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "미 남부사령부(SOUTHCOM)는 2026-09-07 21:50 UTC에 X 계정에 발표를 올렸다. 글은 휘하 부대가 「interdicted a floating refueling station supporting illicit at-sea drug trafficking operations in the Eastern Pacific」, 곧 동태평양에서 해상 마약 운반을 돕는 떠 있는 급유 거점을 차단했다고 적었다(A). 이 게시에는 배 이름도 등록번호도 기국도 없고, 승선 인원과 좌표도 없다.",
+     "ord": 147
+    },
+    {
+     "kind": "para",
+     "text": "발표문 뒷부분은 정보당국이 이 배와 Los Choneros 조직의 연루를 확인했다고 이어진다. 이 대목과 선원을 내리게 한 뒤 배를 가라앉혔다는 대목은 매체가 옮겨 실은 문장으로 전해진다(B). 배가 가라앉았다는 점에서는 매체와 가족의 말이 같다.",
+     "ord": 447
+    },
+    {
+     "kind": "para",
+     "text": "배에 이름을 붙인 것은 에콰도르 매체와 가족이다. Primicias는 같은 날 격침된 배를 「Montecristi」로 적었고, 2026-08-16 만타에서 출항한 배라고 보도했다(B). 만타 매체 El Diario는 가족들이 그 배를 「Montecristi 1」이라 부른다고 전하면서도 「no se puede establecer oficialmente que el barco hundido sea el Montecristi 1」라고 썼다. 가라앉은 배가 가족이 말한 그 배라고 공식적으로 못 박을 수는 없다는 뜻이다. 업계지 Atuna는 「according to IATTC records」, 곧 IATTC 기록을 근거로 이 배를 INEPACA의 선망선과 이었다(B). IATTC 등록부의 MonteCristi(#4000, IMO 7415462)는 INEPACA 명의의 에콰도르 배다(A). 등록부의 선명은 2023-09-04에 「Monte Cristi」에서 「MonteCristi」로 바뀌었다. 가족이 부른 「Montecristi 1」은 등록 선명이 아니라 호칭이다.",
+     "ord": 596
+    },
+    {
+     "kind": "para",
+     "text": "출항부터 선원 석방까지 나온 말은 일곱 갈래다. 미국 정부 문서는 그 가운데 하나다. 나머지는 매체가 직접 쓰거나 에콰도르 해군·법원·선주 쪽의 말을 옮긴 것이다.",
+     "ord": 1148
+    },
+    {
+     "kind": "para",
+     "text": "승선 인원은 두 값이 맞선다. 가족과 Primicias는 23명이라고 했다(B). Europa Press가 전한 에콰도르 해군 발표는 인수한 28명 가운데 22명이 Montecristi 선원이라고 적는다(B). 두 값은 출처가 다르고 서로 맞춰져 있지 않다. 법원 보도의 28명은 두 배를 합친 수로, Montecristi 22명과 Don Rufo 6명이다.",
+     "ord": 3370
+    },
+    {
+     "kind": "para",
+     "text": "파괴일도 두 벌이다. 남부사령부 발표와 Primicias는 2026-09-07, EFE 기사는 2026-09-10을 적는다. 미국 정부가 발표한 날은 앞의 것이다.",
+     "ord": 3581
+    },
+    {
+     "kind": "para",
+     "text": "선원 절차는 2026-09-10 갈라파고스 산크리스토발 심리로 넘어갔다. 이튿날 Expreso는 판사가 28명을 바로 풀어 주었다고 보도했다(B). AHORA(2026-09-17)가 Primicias를 인용해 옮긴 판사의 판단은 「no existían elementos suficientes para iniciar una instrucción fiscal」, 곧 정식 수사(instrucción fiscal)를 열 근거가 충분하지 않다는 것이다(B). 그렇다고 사건이 닫힌 것은 아니다. 절차는 사전수사 단계에 그대로 남아 있다. 결정문은 보도로만 전해진다. 2025년 4월 압수 때는 검찰 발표문이 같은 배에 있던 22명을 기소하고 예비구금했다고 적었다. 이번에는 공소 제기 없이 석방됐다.",
+     "ord": 3683
+    },
+    {
+     "kind": "para",
+     "text": "IATTC 등록부는 2026-09-25에도 MonteCristi를 「Active」로 둔다(A). 이 배 항목의 최종 갱신일은 2025-01-10이고, 비활성 선박이나 침몰 선박 목록에는 올라 있지 않다. 등록부가 침몰을 반영하기까지 시간이 걸린 선례가 있다. Patricia Lynn은 침몰 뒤 233일, Arkos I Chiapas는 94일이 지나서 비활성 목록에 올랐다(계산). 「Active」 표시만으로는 배가 떠 있는지 가라앉았는지 가릴 수 없다.",
+     "ord": 4081
+    },
+    {
+     "kind": "para",
+     "text": "2026-09-25 현재 회사 누리집과 파나마 증권 공시에는 INEPACA 명의의 성명이 없고, Atuna를 비롯한 매체 보도에도 회사 성명은 실리지 않았다. 2026년에 나온 반응은 Atuna가 선주 쪽 소식통에게서 들었다는 한 문장, 「no justification for this illegal action」이다(B). 회사 이름을 걸고 나온 말은 아니다.",
+     "ord": 4346
+    },
+    {
+     "kind": "para",
+     "text": "INEPACA는 파나마 증권시장에 보통주 1.000주를 올린 발행인이다(A). 파나마 증권거래소 Latinex에 올라 있는 마지막 공시는 2026-09-01에 낸 2026년 상반기 보고서로, 격침 전에 나온 문서다. 그 뒤 새 공시는 없다. 가라앉은 배를 IATTC #4000과 등록번호로 이어 줄 문서가 있다면 에콰도르 해군의 인수 발표 원문이나 산크리스토발 법원의 결정문일 것이다. 둘 다 지금은 매체의 인용으로만 전해진다.",
+     "ord": 4559
+    },
+    {
+     "kind": "para",
+     "text": "Latinex에 올라 있는 INEPACA 공시 29건 가운데 중요사실 공시는 2024년 공시 지연 사유서 1건이다(A). 그 지연을 두고 파나마 증권감독원(SMV)은 2024-04-10 과태료 B/.3.400을 물렸다. 2025년 4월 압수 뒤의 2025년 연차보고(IN-A)는 「No hay eventos relevantes」, 곧 사업에 중요한 사건이 없었다고 적었다. 같은 보고서는 「sus tres (3) embarcaciones pesqueras propias」, 자기 어선 세 척과 선단 인원 64명도 그대로 적었다. 29건 어디에도 압수·구금·마약·침몰을 가리키는 낱말은 없다. 2026년 격침 뒤의 공시는 2026-09-25 현재 없다.",
+     "ord": 4918
+    }
+   ],
+   "stage": "c05"
+  },
+  {
+   "sid": "s10",
+   "numeral": "10",
+   "label": "공장과 사람",
+   "subtitle": "만타 공장은 하루 참치 80 t 능력을 적고, 회사감독청 순위표의 인원은 2014년 1.527명에서 2024년 889명이 됐다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "INEPACA가 세무 등록(RUC)에 올린 사업장은 다섯 곳이다. 001번은 만타 Malecón s/n의 본점 겸 가공장, 002~004번은 선망선 세 척, 005번은 Los Esteros의 창고다(A). 캔을 만드는 곳은 001번 하나이고, RUC는 이 사업장의 개시일을 만타 상업등기일과 같은 1949-04-25로 적는다(A). 감사보고서 주석 1은 「mantiene una planta industrial en la ciudad de Manta, Parroquia Tarqui, en la que se procesa enlatados de atún y sardina de la marca denominada VanCamps」라고 쓴다. 만타 Tarqui 교구에 공장 하나를 두고 VanCamps 상표의 참치 캔과 정어리류 캔을 만든다는 말이다(A 문서, 내용 C).",
+     "ord": 122
+    },
+    {
+     "kind": "para",
+     "text": "공장이 얼마나 처리하는지는 회사가 적은 능력으로만 알려진다. 파나마 증권감독원(SMV)에 낸 2020년 투자설명서는 「Su capacidad de producción diaria es de 80 toneladas de atún y de 25 toneladas de sardina」라고 적었다. 하루에 참치 80 t, 정어리류 25 t을 생산할 수 있다는 뜻이다(A 공시, 내용 C). 실제로 얼마를 만들었는지는 공개 문서에 절대량이 없고, 영업보고서가 전년 대비 증감률만 적는다. 가동률에 가까운 구절은 2008년 영업보고서의 「35.71% de la capacidad disponible」, 곧 가용 능력의 35,71 %라는 한 줄이다. 이 구절은 정어리류 조달을 다룬 문단 끝에 붙어 있어, 공장 전체의 값인지 정어리류 라인의 값인지 문장만으로는 가려지지 않는다(C).",
+     "ord": 577
+    },
+    {
+     "kind": "para",
+     "text": "환경부 기록에는 정어리류 설비가 먼저 나온다. 2019-12 공문은 정어리류 캔 설비 2건을 청정생산 설비로 보고 가속상각을 허용했고, 2020-01-09에는 INEPACA에 「Punto Verde」 인증을 줬다(A). 부처 발표가 옮긴 네 가지 개선율에는 기준 연도와 분모가 없다. 약품·소금·전력을 얼마나 쓰는지는 공개되지 않고, 공장의 환경허가 번호도 공개 문서에 없다.",
+     "ord": 3220
+    },
+    {
+     "kind": "para",
+     "text": "인증은 문서마다 이름이 다르다. 정부 쪽 기록은 ARCSA 2018 공지가 적은 HACCP와 BPM 번호다(A). 회사는 ISO를 두 가지로 적는다. 파나마 증권 공시의 사업 서술에는 「ISO 9001-14001-45001」이, 감사보고서 주석에는 「ISO 9001:2000」이 들어 있다(C). 뒤의 것은 폐기된 판이다. 인증서 번호와 유효기간은 공개 문서에 없다.",
+     "ord": 3441
+    },
+    {
+     "kind": "para",
+     "text": "국제 명부 쪽에서는 이름이 빠진다. EU가 수입을 허용하는 에콰도르 수산물 시설 명부(TRACES) 283곳에 INEPACA는 없다. 같은 명부에 만타의 Seafman과 Conservas Isabel, Jaramijó의 Tecopesca·Marbelize·Asiservy, Montecristi·만타의 Eurofish가 승인번호를 달고 올라 있다(A). MSC 가공·유통 인증 명부에도 INEPACA 이름은 없고, 만타의 Conservas Isabel과 Seafman은 있다(A). 돌고래 보호 표시를 관리하는 EII의 에콰도르 명단과 ISSF 참여사 명단에도 INEPACA는 나오지 않는다(B).",
+     "ord": 3657
+    },
+    {
+     "kind": "para",
+     "text": "일하는 사람 수를 적은 원천은 셋이다. 회사감독청 순위표는 2014년 1.527명을 적는데, 순위표에서 가장 큰 값이다(A). 감사보고서 주석은 2018년 말 1.100명, 2019년 말 1.050명을 적는다(A). 2020년 투자설명서는 1.027명을 공장·선단·관리로 나눴다(A 공시·C 내용). 파나마 증권 공시의 연차보고(IN-A)는 같은 세 갈래로 2024년과 2025년 인원을 적는다(C).",
+     "ord": 4002
+    },
+    {
+     "kind": "para",
+     "text": "선단 인원은 2020년 119명에서 2024년 64명으로 줄었고, 2025년에도 64명이다. 2025년 4월 말 MonteCristi에서 코카인이 압수된 뒤에 낸 IN-A 2025도 「sus tres (3) embarcaciones pesqueras propias」, 곧 제 배 세 척과 선원 64명을 그대로 적는다(C). 2025년에 늘어난 인원은 공장 쪽이다.",
+     "ord": 5092
+    },
+    {
+     "kind": "para",
+     "text": "2014년 1.527명과 2025년 913명은 원천이 다르다. 앞의 것은 순위표 값이고 뒤의 것은 회사 공시 값이다. 같은 순위표 안에서만 보면 2014년 1.527명이 2024년 889명이 됐다(A).",
+     "ord": 5306
+    },
+    {
+     "kind": "para",
+     "text": "노동 소송 건수도 회사 공시에 해마다 나온다. 2020년 투자설명서는 46건을 적고 재무에 유의미한 영향이 없다고 했다(C). 연차보고의 건수는 2021년 65건, 2022년 69건에서 2023년 47건, 2024년 50건, 2025년 37건으로 내려왔다(C).",
+     "ord": 5430
+    },
+    {
+     "kind": "para",
+     "text": "단체협약에 적힌 인원은 협약이 바뀔 때마다 줄었다. 2018년 제26차 협약은 384명, 2020-08-26의 제27차 협약(2년)은 319명, 2024-04-08에 서명한 제28차 협약은 264명이다(감사 주석·파나마 공시). 같은 기간 회사 인원은 2018년 말 1.100명에서 2025년 913명이 됐다.",
+     "ord": 5587
+    },
+    {
+     "kind": "para",
+     "text": "유형자산에서 가장 큰 항목은 토지다. 토지는 재평가 모형으로 적는데, 그 값은 시장 거래가가 아니라 만타 시 지적평가에 맞춘 것이다. 토지 장부가는 2025년 말에도 7.885.165,37 USD로 2019년과 같다(A). 2019년 건물 계정 1.079.696 USD에는 공장 말고 사택과 체육시설도 들어 있다(A). 유형자산 순액은 2019년 말 13.445.881 USD에서 2025년 말 15.410.181,51 USD가 됐고, 그 안에서 토지의 몫은 58,6 %에서 51,2 %로 내려왔다(A, 계산). 설비투자에 관해서는 IN-A 2025가 「El Emisor no ha incurrido en gastos de capital durante el 2025 salvo aquellos destinados a mantener …」라고 적었다. 2025년에는 설비 유지에 든 것 말고는 자본적 지출이 없었다는 말이다(C). 2018~2026년 매체 보도에도 투자·증설·인수 기사는 나오지 않는다(B).",
+     "ord": 5771
+    },
+    {
+     "kind": "para",
+     "text": "공장 면적과 라인 수, 하루 80 t 능력 가운데 실제로 채우는 몫은 공개 문서에 나오지 않는다.",
+     "ord": 6301
+    }
+   ],
+   "stage": "c05"
+  },
+  {
+   "sid": "s11",
+   "numeral": "11",
+   "label": "제품과 값",
+   "subtitle": "에콰도르 매대의 Van Camp's는 Real보다 싸고 자체상표보다 1,64배 비싸며, 정어리류 캔의 고기는 Opisthonema다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "2026-09-25 에콰도르 소매점 Tía의 온라인 매장에서 Van Camp's 해바라기유 참치 184 g 캔의 표시가는 1,59 USD다. 순중량으로 나누면 kg당 8,64 USD다(계산). 같은 매대의 Real 180 g보다 싸고, 자체상표 Aliada en tu Ahorro보다 비싸다.",
+     "ord": 124
+    },
+    {
+     "kind": "para",
+     "text": "INEPACA가 에콰도르에 내놓는 Van Camp's는 크게 나눠 참치 캔과 정어리류 캔 두 갈래다. 참치 캔 라벨은 「PRODUCIDO POR: INEPACA …」로 제조자를 밝히고, 에콰도르 규격 「NORMA INEN 184」와 원재료 「ATUN, ACEITE DE GIRASOL, AGUA Y SAL」을 적는다(C). 참치, 해바라기유, 물, 소금이라는 뜻이다. 어종 이름은 없다.",
+     "ord": 311
+    },
+    {
+     "kind": "para",
+     "text": "정어리류 캔은 규격이 NORMA INEN 185이고, 원재료 칸이 「PESCADO TIPO SARDINA OPISTHONEMA」로 시작한다(C). 에콰도르 라벨은 두 갈래 모두 「CODIGO BPM No. 0004-BPM-AN-0215」를 단다. 에콰도르 위생규제청(ARCSA)이 2018년 점검 공지에 적은 INEPACA의 BPM(우수제조기준) 번호와 같은 번호다(A).",
+     "ord": 538
+    },
+    {
+     "kind": "para",
+     "text": "Tía는 이날 Van Camp's 캔에 「Precio Especial」(특가) 표시를 달았고, 특가 전 정가는 가격표에 나오지 않는다. 아래 값은 하루치 온라인 표시가 한 점이다.",
+     "ord": 757
+    },
+    {
+     "kind": "para",
+     "text": "해바라기유 단품 캔 여덟 줄을 순중량 kg당 값으로 줄 세우면 맨 위가 Real 180 g, 맨 아래가 Aliada en tu Ahorro다(계산). Van Camp's 두 캔은 위에서 셋째와 넷째 칸에 선다.",
+     "ord": 2016
+    },
+    {
+     "kind": "para",
+     "text": "Van Camp's 184 g의 kg당 8,64 USD는 Real 180 g(10,28 USD)의 0,84배이고, Aliada en tu Ahorro(5,28 USD)의 1,64배다. 같은 상표의 142 g 캔은 kg당 8,38 USD로 184 g보다 조금 낮다.",
+     "ord": 2144
+    },
+    {
+     "kind": "para",
+     "text": "Van Camp's 위에는 Real과 Yeli(9,94 USD)가 있고, 아래에는 Isabel·Ta'riko·Van Ecuador가 있다. Van Ecuador는 이름 앞머리가 Van Camp's와 같은 다른 상표다. 누가 만드는지는 매대 정보에 나오지 않는다.",
+     "ord": 6091
+    },
+    {
+     "kind": "para",
+     "text": "올리브유 캔에서도 Van Camp's는 Real 아래에 선다. 소매점 Coral의 6×80 g 묶음은 kg당 Van Camp's 12,56 USD, Real 14,02 USD다(계산).",
+     "ord": 6248
+    },
+    {
+     "kind": "para",
+     "text": "에콰도르 값의 분모는 캔 겉면의 순중량이다. 기름이나 물을 따라 내고 남는 고형량은 경쟁 캔의 표기가 매장 목록에 없어 한 줄로 맞출 수 없다. 콜롬비아 매대의 Van Camp's 값(ⅬⅥ)은 고형량으로 나눈 값이라 두 나라의 배율은 분모가 다른 숫자다.",
+     "ord": 6362
+    },
+    {
+     "kind": "para",
+     "text": "매대 값의 순서와 회사가 적은 판매 순위는 서로 다른 문서에서 나온다. 회사는 파나마 증권시장에 낸 투자설명서에 에콰도르 캔 참치 시장의 30 %, 정어리류 캔 시장의 18 %를 차지한다고 적었다(C). 같은 문서에 「Después de la marca Real, Van Camp's es la segunda marca de atún más vendida」라는 문장도 있다. Real 다음으로 많이 팔리는 참치 상표가 Van Camp's라는 말이다. 누가 어떤 기준으로 잰 점유율인지는 문서에 없다.",
+     "ord": 537607
+    },
+    {
+     "kind": "para",
+     "text": "2025년 파나마 연차공시(IN-A)는 다른 잣대를 든다. 「penetración del atún Van Camp's en Ecuador es del 80%」, 에콰도르에서 Van Camp's 참치의 침투율이 80 %라는 문장이다(C). 이 값도 측정자를 밝히지 않는다.",
+     "ord": 537909
+    },
+    {
+     "kind": "para",
+     "text": "어종은 회사의 말과 라벨이 다르다. Van Camp's 에콰도르 누리집은 「100% elaborados con la especie atún yelowfin」라고 적는다(C, 2022-09-19 수정 페이지). 제품을 황다랑어 100 %로 만든다는 뜻이다. 캔 라벨의 원재료 칸에는 「ATUN」 한 단어가 있을 뿐이다. 황다랑어인지 가다랑어인지 라벨은 말하지 않는다.",
+     "ord": 538077
+    },
+    {
+     "kind": "para",
+     "text": "에콰도르 내수용 정어리류 캔의 원재료 칸 「PESCADO TIPO SARDINA OPISTHONEMA」는 정어리 형(型) 생선 Opisthonema라는 뜻이다(C). 콜롬비아로 가는 Premium 토마토소스 225 g 캔은 원재료를 「PESCADO OPISTHONEMA SP」로 적고, 같은 라벨에 「FABRICADO POR: INEPACA」와 콜롬비아 위생등록 「REG.SAN. INVIMA RSA-001579-2016」을 함께 단다(C). Opisthonema는 실꼬리청어 무리의 속(屬)이고, 진정어리 Sardinops와는 속이 다른 물고기다.",
+     "ord": 538407
+    },
+    {
+     "kind": "para",
+     "text": "회사 문서는 이 캔을 「sardina」로 부른다. 투자설명서는 에콰도르 시장을 「atún y sardina enlatada」로 겨냥한다고 적고, 콜롬비아를 두고는 「ha conquistado el mercado de la sardina en Colombia」, 곧 콜롬비아 정어리 시장을 차지했다고 적는다(C). 그 캔의 라벨이 적는 고기는 Opisthonema다.",
+     "ord": 538726
+    },
+    {
+     "kind": "para",
+     "text": "Tía 매대에는 Van Camp's 해바라기유 캔을 여섯 개, 여덟 개씩 묶은 상품도 같은 특가 표시를 달고 오른다. 여덟 캔 묶음은 포장 띠에 특가 문구를 아예 인쇄해 두었다. 특가가 붙지 않은 날 Van Camp's가 매대 사다리의 어느 칸에 서는지는 공개된 가격표로 알 수 없다.",
+     "ord": 538950
+    }
+   ],
+   "stage": "c06"
+  },
+  {
+   "sid": "s12",
+   "numeral": "12",
+   "label": "판로",
+   "subtitle": "INEPACA의 매출은 대부분 에콰도르 내수이고, 줄어든 쪽도 내수다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "INEPACA의 2019년 감사보고서 매출 주석을 보면 할인 전 매출의 82,1 %가 에콰도르 안에서 판 참치였다(A, 계산). 같은 해 해외로 나간 참치는 635.210 USD어치였다. 수출의 대부분은 정어리류였다.",
+     "ord": 86
+    },
+    {
+     "kind": "para",
+     "text": "회사가 파나마 증권감독원(SMV)에 낸 투자설명서도 판로를 같은 순서로 적는다. 「El Emisor está enfocado en atender con atún y sardina enlatada el mercado ecuatoriano, y el mercado colombiano, con la exportación de sardina」라는 문장이다(C). 에콰도르 시장에는 참치와 정어리류 캔을 대고, 콜롬비아 시장에는 정어리류를 수출한다는 말이다. 참치 수출은 「ventas spot」, 곧 그때그때의 현물 거래로 적었다(C). 같은 설명서는 콜롬비아가 정어리류 캔을 가공하지 않는다는 점을 들어 INEPACA가 「ha conquistado el mercado de la sardina en Colombia, también bajo la marca Van Camp's」라고 썼다. Van Camp's 이름으로 콜롬비아 정어리류 시장을 차지했다는 뜻이다(C). 이 문장에는 점유율도 톤수도 붙어 있지 않다.",
+     "ord": 237
+    },
+    {
+     "kind": "para",
+     "text": "2018년부터 여덟 해를 이어 보면 두 줄이 다르게 움직인다. 수출은 2019년 한 해에 58,6 % 줄었고(계산), 그 뒤로는 2019년 값 아래로 내려간 해가 없다. 내수는 2020년이 여덟 해 가운데 가장 컸고 2025년이 가장 작았다. 2018년과 견주면 수출도 줄었지만, 그 감소는 2019년 한 해에 몰려 있다.",
+     "ord": 1695
+    },
+    {
+     "kind": "para",
+     "text": "총영업수익은 2025년 55,34M 달러로 여덟 해 가운데 가장 작다. 줄어든 몫은 내수에서 나왔다. 선박영업 줄은 2023년에 0,13M 달러까지 내려간 적이 있을 만큼 해마다 폭이 크다.",
+     "ord": 8641
+    },
+    {
+     "kind": "para",
+     "text": "회사가 스스로 내세우는 판로도 국내다. INEPACA가 운영하는 vancamps.com.ec의 현재 판은 수출을 언급하지 않고, 2025-06~2026-07 경품 행사도 에콰도르 지방 도시에서만 열었다(C).",
+     "ord": 8758
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아 판로는 위생등록부에 드러난다. 콜롬비아 식품의약품감시청(INVIMA) 위생등록부에서 INEPACA를 제조사로 적은 유효 등록은 4건이다(A). 물에 담근 참치 로모스(lomos, 살코기 토막. RSA-000656-2016, 2025-08-15 갱신), 기름에 담근 참치 로모스(RSA-0037219-2025, 2025-07-17 신규), 해바라기유 생선 통조림(RSA-001578-2016), 토마토소스 생선 통조림(RSA-001579-2016)이다. 네 건 모두 등록 방식이 수입·판매(「IMPORTAR Y VENDER」)이고, 수입자 칸에는 영국령 버진아일랜드 회사로 카르타헤나에 지점을 둔 Seatech International과 콜롬비아의 Colombina S.A.·Distribuidora Colombina 세 법인이 함께 올라 있다. 기름 로모스는 앞 등록이 2025-05-19에 끝난 뒤 새 번호가 나오기까지 59일이 비었다(계산).",
+     "ord": 8885
+    },
+    {
+     "kind": "para",
+     "text": "이 등록부에서 INEPACA가 제조사로 나오는 가장 오래된 기록은 1989-12-29에 나온 RSIA05M24289 「TROCITOS DE ATUN VAN CAMP`S」다(A). 1999-12-29까지 유효했고, 수입자는 Atunes de Colombia S.A.였다. 명의가 다른 참치 등록도 있었다. RSiA04I67715(참치 토마토소스)는 등록 명의가 Seatech, 제조사가 INEPACA였고 2015년부터 2025년 만료 때까지 유효했다(A).",
+     "ord": 9374
+    },
+    {
+     "kind": "para",
+     "text": "토마토소스 생선 캔의 라벨은 등록번호와 유통 경로를 한 면에 적는다. Van Camp's Premium 225 g 캔은 「FABRICADO POR: INEPACA … COLOMBIA: IMPORTADO Y DISTRIBUIDO POR DISTRIBUIDORA COLOMBINA LTDA, Y/O COLOMBINA S.A. … REG.SAN. INVIMA RSA-001579-2016」라고 적고, 원재료 표기는 「PESCADO OPISTHONEMA SP」다(C). INEPACA가 만들고 Colombina가 들여와 파는 정어리류(Opisthonema) 캔이다. 돈의 흐름도 같은 쪽을 가리킨다. 2019년 말 INEPACA의 해외 거래처 채권 가운데 79,6 %가 Distribuidora Colombina 한 곳의 몫이었다(2.134.846,60 USD, A, 계산).",
+     "ord": 9639
+    },
+    {
+     "kind": "para",
+     "text": "에콰도르 정부 문서에는 2018년에 쓴 다른 문장이 있다. 에콰도르 위생규제청(ARCSA)은 2018년 공지에서 에콰도르에서 팔리는 Van Camp's 참치를 INEPACA가 만든다고 적었다. 이어 INEPACA가 「no exporta ni importa conservas de atún desde o hacia Colombia」, 곧 콜롬비아와 참치 캔을 수출입하지 않는다고 적었다(A). 같은 공지는 수은 기준을 넘은 로트를 「elaborados por el establecimiento SEATECH de Colombia」, 곧 콜롬비아 SEATECH 시설이 만든 것으로 갈랐다. 2018년의 이 문장이 있고, 2015~2025년 유효했던 Seatech 명의 참치 등록이 있고, 2025년에 갱신되거나 새로 나온 참치 로모스 등록이 있다. 등록은 판매 허가일 뿐 선적 기록이 아니다. 어느 해에 INEPACA의 참치 캔이 실제로 콜롬비아에 들어갔는지는 이 가운데 어느 기록에도 나오지 않는다.",
+     "ord": 10086
+    },
+    {
+     "kind": "para",
+     "text": "유럽 쪽 문서에는 INEPACA가 없다. EU TRACES의 에콰도르 수산물 승인 명부 283곳에 이 회사 공장은 올라 있지 않다(A).",
+     "ord": 10599
+    },
+    {
+     "kind": "para",
+     "text": "미국 쪽 기록은 2021년 뉴저지 연방지법의 결석판결 하나다. INEPACA 제조 라벨이 붙은 에콰도르산 Van Camp's 참치를 들여온 뉴저지 유통사 2곳이 Tri-Union Seafoods의 미국 상표를 침해했다고 본 판결이다. INEPACA는 당사자가 아니었다(A).",
+     "ord": 10686
+    },
+    {
+     "kind": "para",
+     "text": "나라 단위 무역통계는 이 회사 판로의 크기를 알려 주지 않는다. UN Comtrade에서 에콰도르의 정어리류 캔(HS 1604.13) 수출은 2025년 22.164 t이었다. 가장 많이 받은 나라는 멕시코였고, 콜롬비아행은 11,3 %였다(A). 거꾸로 콜롬비아가 들여온 1604.13 가운데 에콰도르산은 2024년 78,9 %였다(A). 두 값에는 에콰도르 캔 공장 여러 곳의 물량이 함께 들어 있다. 그 가운데 INEPACA가 콜롬비아로 보낸 정어리류가 몇 톤인지 적은 문서는 없다.",
+     "ord": 10850
+    }
+   ],
+   "stage": "c06"
+  },
+  {
+   "sid": "s13",
+   "numeral": "13",
+   "label": "돈",
+   "subtitle": "INEPACA는 은행 빚이 없고, 부채의 절반 넘게(57~72 %)는 퇴직연금이며, 2018~2020년 세 해의 배당 합계는 같은 기간 이익 합계보다 컸다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "INEPACA의 장부에는 은행에서 빌린 돈이 없다. 감사보고서는 「La compañía no mantiene pasivos con instituciones financieras」라고 적는다. 회사가 금융기관에 진 부채가 없다는 뜻이다. 부채에서 가장 큰 몫은 직원에게 줄 퇴직연금이다.",
+     "ord": 139
+    },
+    {
+     "kind": "para",
+     "text": "이 문장은 2016·2017·2019년 감사보고서에 되풀이된다(A). 회사감독청 순위표의 「deuda_total」 칸은 2018~2024년 해마다 0이다. 2020~2025년 감사 재무제표가 실린 파나마 증권 연차보고(IN-A)에서도 장기부채 줄은 「Deuda a Largo Plazo -」로 비어 있다(A). 2016년부터 2025년까지 금융기관 차입이 장부에 오른 해가 없다.",
+     "ord": 322
+    },
+    {
+     "kind": "para",
+     "text": "파나마 연차보고의 요약표에는 「Deuda Total」이라는 줄이 따로 있고 값도 찍혀 있다. 그 값은 거래처와 세금 미지급금을 더한 것이다. 이름과 달리 은행 빚이 아니다.",
+     "ord": 545
+    },
+    {
+     "kind": "para",
+     "text": "부채의 절반 넘는 몫은 「jubilación patronal」, 곧 회사가 오래 일한 직원에게 직접 주는 퇴직연금의 충당금이다. 2019년 말 이 충당금은 부채의 59,0 %였다(계산). 2020~2025년 비중은 57,2 %와 72,1 % 사이를 오갔고, 2025년 말에는 60,2 %였다. 부채 총액은 2025년 말 8,06M 달러로 2019년 말의 절반에 못 미친다. 총액은 줄었어도 퇴직연금이 절반 넘는 몫을 차지하는 모양은 그대로다.",
+     "ord": 652
+    },
+    {
+     "kind": "para",
+     "text": "2025년 말 자산에서 현금은 4,05M 달러이고 재고는 그 몇 배다. 현금은 2018년 말 14,14M 달러의 3분의 1에도 못 미친다. 자산의 대부분은 자본이 받치고, 그 자본은 2019년 말보다 크다.",
+     "ord": 2051
+    },
+    {
+     "kind": "para",
+     "text": "2015~2025년 손익은 한 구간에 머물렀다. 총영업수익은 2017년 54,96M 달러와 2020년 70,70M 달러 사이를 오갔고, 2025년 55,34M 달러는 그 가운데 2017년 다음으로 낮다. 순이익은 2016·2017년 두 해 적자 뒤 2018년부터 흑자다. 2018년 5,29M 달러가 열한 해 가운데 가장 크다.",
+     "ord": 2177
+    },
+    {
+     "kind": "para",
+     "text": "배당은 한 해 한 번 나간다. 파나마 연차보고는 그 시기를 「usualmente durante la primera mitad del año」, 곧 대개 상반기라고 적는다. 그래서 한 해의 배당은 그해 이익과도, 직전 해 이익과도 견줄 수 있다.",
+     "ord": 11060
+    },
+    {
+     "kind": "para",
+     "text": "2019년 배당은 두 잣대 모두에서 이익보다 크다. 그해 순이익의 1,44배이고, 직전 해 순이익의 1,30배다(둘 다 계산). 같은 해 현금은 2018년 말 14,14M 달러에서 2019년 말 7,05M 달러로 줄었다. 2018년 배당은 2016·2017년 두 해 적자 뒤에 나왔다. 2015년 말 대주주 Estrella Blanca에게서 받을 돈으로 잡혀 있던 306.991,58 USD는 이 2018년 배당과 상계됐다(A).",
+     "ord": 11207
+    },
+    {
+     "kind": "para",
+     "text": "세 해를 묶으면 배당이 이익을 넘는다. 2018~2020년 배당 합 15,54M 달러가 같은 기간 순이익 합 14,95M 달러보다 크다(계산). 2020년 배당 3,67M 달러는 그해 순이익 4,90M 달러보다 작았다. 2021년 순이익은 1,67M 달러로 내려갔고, 2021·2022년에는 배당이 없었다. 2023년에 다시 나온 배당은 2025년까지 전년 순이익의 3~6할에 머문다. 위쪽 끝이 2023년(배당 2,00M 달러, 전년 순이익 3,20M 달러)이다.",
+     "ord": 11458
+    },
+    {
+     "kind": "para",
+     "text": "배당은 거의 다 파나마로 간다. 주주는 2023년 말까지 파나마 법인 Estrella Blanca de Panamá S.A.(99,9 %)와 에콰도르 법인 COPRALESA(0,1 %) 둘이었고, 2024년 중 Estrella Blanca 한 곳(100 %)으로 바뀌었다. 2019년 감사보고서는 법인세율을 28 %로 적고, 그 까닭을 「el principal accionista … residente en Panamá, país que es considerado como paraíso fiscal」라고 밝혔다. 최대 주주가 조세피난처로 여겨지는 파나마에 거주하는 법인이기 때문이라는 뜻이다(A).",
+     "ord": 11729
+    },
+    {
+     "kind": "para",
+     "text": "매출이라는 말이 가리키는 값은 문서마다 다르다. El Diario는 2025-05-22 INEPACA의 「61,88 millones de dólares en ingresos」를 보도했다(B). 2024년 총영업수익 61.105.267 USD에 기타수익 775.044 USD를 더한 값이다(계산). 회사감독청 순위표의 매출 칸도 감사보고서의 총영업수익과 정의가 달라 값이 어긋난다.",
+     "ord": 12099
+    },
+    {
+     "kind": "para",
+     "text": "2025년 순이익은 한 보고서 안에 두 값으로 나온다. 파나마 연차보고 2025의 서술 문단은 「utilidad neta de $4,171,548.46」라고 적는다. 이 숫자는 2024년 순이익 4,17M 달러와 같다. 같은 보고서의 재무제표 표와 감사 주석은 2025년 순이익을 2,06M 달러로 적는다.",
+     "ord": 12322
+    },
+    {
+     "kind": "para",
+     "text": "2026년 상반기 분기보고(IN-T)는 미감사 매출 28,62M 달러와 순이익 1,77M 달러를 적었다. 이 분기보고는 미 남부사령부 발표(2026-09-07)보다 앞선 2026-09-01에 공시됐다. 그 뒤 INEPACA의 파나마 공시는 2026-09-25 현재 없다.",
+     "ord": 12504
+    }
+   ],
+   "stage": "c07"
+  },
+  {
+   "sid": "s14",
+   "numeral": "14",
+   "label": "기록",
+   "subtitle": "위생·환경·증권 당국과 미국 법원의 공개 기록에서 INEPACA가 받은 제재는 파나마 증권 감독기관의 과태료 한 건이고, 회사는 그 뒤에도 제재가 없다고 적었다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "파나마 증권감독원(SMV)은 2024-04-10 결의 SMV-132-24로 INEPACA에 과태료 B/.3.400(발보아)을 매겼다(A). 2023-12-31로 끝난 분기의 갱신보고를 19영업일, F3·F4 서식을 15영업일 늦게 냈다는 것이 사유다. 에콰도르 위생규제청(ARCSA)·환경부·SMV의 공개 문서와 미국 법원 기록, 회사의 증권 공시 범위(2026-09-25 기준)에서 INEPACA 이름으로 나온 행정 제재는 이 결의 한 건이다.",
+     "ord": 137
+    },
+    {
+     "kind": "para",
+     "text": "과태료는 파나마 증권시장에서 진 공시 의무에서 나왔다. INEPACA는 2020-12-28 결의 SMV-563-20으로 보통주 1.000주를 2차 시장 거래용으로 등록했고, 그 뒤 해마다 연차보고(IN-A)를, 분기마다 갱신보고(IN-T)를 낸다(A). 결의가 나오기 전인 2024-03-27, 회사 변호인 명의의 지연 사유서가 파나마 거래소에 들어갔다. 사유는 「por motivos de cumplimiento con la normativa interna ecuatoriana」, 곧 에콰도르 국내 규정을 지키느라 늦었다는 한 줄이다(A).",
+     "ord": 410
+    },
+    {
+     "kind": "para",
+     "text": "INEPACA가 파나마 거래소(Latinex)에 올린 공시 29건 가운데 중요사실 공시는 이 사유서 하나다. 회사 명의 선망선 MonteCristi에서 2025년 4월 말 코카인이 압수된 뒤에도 중요사실 공시는 나오지 않았고, 2025년분 연차보고는 「No hay eventos relevantes」(중요한 사건 없음)라고 적었다(C).",
+     "ord": 725
+    },
+    {
+     "kind": "para",
+     "text": "과태료 말고도 INEPACA 이름이 나오는 정부·법원 기록은 여럿이다. 그 가운데 INEPACA에 벌을 매긴 문서는 SMV 결의 하나다. ARCSA 공지는 콜롬비아산 로트의 수은 경보를 다루며 INEPACA 제품과 선을 그었다. 환경부는 인증을 줬고, 미국 법원은 INEPACA를 당사자로 부르지 않았다.",
+     "ord": 924
+    },
+    {
+     "kind": "para",
+     "text": "ARCSA 공지는 두 나라의 Van Camp's를 규제기관이 직접 가른 문서다. 수은 기준을 넘은 로트는 콜롬비아 공장 제품이었고, 에콰도르 시장의 같은 이름 제품은 INEPACA가 만든다고 적었다(A). 같은 공지에 실린 HACCP·BPM 번호는 정부 문서가 INEPACA의 식품안전 인증을 적은 기록이다. 회사 라벨에도 같은 BPM 번호가 「CODIGO BPM No. 0004-BPM-AN-0215」로 찍혀 있다(C). 두 인증이 지금도 유효한지는 공개 문서에 없다.",
+     "ord": 3251
+    },
+    {
+     "kind": "para",
+     "text": "「no exporta ni importa」 문장은 2018년 것이다. 콜롬비아 식품의약품감시청(INVIMA)에는 INEPACA가 만든 참치 로모스를 수입·판매하는 등록이 있고, 2025년에 한 건은 갱신됐고 한 건은 새로 나왔다(A). 등록은 판매 허가이고 선적 기록은 아니다. 두 문서는 시점이 다르다.",
+     "ord": 3525
+    },
+    {
+     "kind": "para",
+     "text": "미국 판결은 뉴저지 수입·유통사 2곳을 피고로 한 결석판결이라, 사실관계는 원고 소장을 그대로 받아들인 것이다. INEPACA는 당사자가 아니었다.",
+     "ord": 3706
+    },
+    {
+     "kind": "para",
+     "text": "환경부가 남긴 기록은 인증이다. 2020-01-09 청정생산 공정을 들어 INEPACA에 「Punto Verde」 인증을 줬다(A). 발표에 실린 폐수 약품 −4,02 %, 전력 −13,65 % 같은 절감률에는 기준연도와 분모가 없다.",
+     "ord": 3799
+    },
+    {
+     "kind": "para",
+     "text": "회사가 스스로 적은 기록은 증권 공시의 소송 항목에 있다. 2020-12 투자설명서는 에콰도르 법원의 노동 소송 46건을 적고 재무에 끼칠 영향이 크지 않다고 했다(C). 같은 항목은 국세청(SRI)이 2019-09부터 2016 사업연도 법인세를 경정하는 절차를 열자고 요구한다는 문장을 싣는다. 경정 결과와 금액은 설명서에 없다. 항목의 마지막 문장은 「El Emisor no ha sufrido sanciones administrativas por parte de la Superintendencia de Sociedades o por alguna entidad que lo regule」다. 발행인이 어느 감독기관에게서도 행정 제재를 받은 적이 없다는 말이다(C).",
+     "ord": 3953
+    },
+    {
+     "kind": "para",
+     "text": "연차보고의 같은 항목은 해마다 노동 소송 건수를 새로 적는다. 2022년분 69건이 가장 많고, 2025년분은 37건이다(C). 사건별 당사자와 청구 내용은 공시에 없다.",
+     "ord": 4339
+    },
+    {
+     "kind": "para",
+     "text": "노동 쪽에는 매체가 전한 청구가 하나 더 있다. 콜롬비아 일간지 El Espectador는 2024-10-30 전직 선원들이 INEPACA를 상대로 에콰도르 사회보장청(IESS)에 청구를 냈다고 보도했다(B). 기사가 옮긴 INEPACA 답변서는 청구인들이 Pescatún de Colombia S.A.와 Seatech 소속이었고, 두 회사가 El Dominador·Cabo de Hornos 등 콜롬비아 기국 선박 8척의 소유자라고 적었다. 그러니 「nunca se configuró u originó la relación laboral」, 곧 INEPACA와 고용관계가 생긴 적이 없다는 주장이다(C). 기사는 IESS 청구가 뜻을 이루지 못했다고 전한다. IESS 결정문은 공개되지 않았고, 기관이 회사 주장을 받아들였는지도 기사에 없다.",
+     "ord": 4445
+    },
+    {
+     "kind": "para",
+     "text": "INEPACA 이름은 수출 승인과 민간 인증 명부에도, 미국의 수입 제한 목록에도 없다. EU의 수산물 시설 승인 명부, MSC 인증 명부, 미국 FDA 수입경보, EII·ISSF의 업계·NGO 명단 다섯 곳이 그렇다. 같은 명부에 에콰도르의 다른 캔공장들은 올라 있다.",
+     "ord": 4872
+    },
+    {
+     "kind": "para",
+     "text": "TRACES 명부에 없다는 것은 INEPACA 공장이 지금 EU로 수산물을 직접 보낼 승인을 명부상 갖고 있지 않다는 뜻이다. EU·에콰도르 협정은 2017-01-01부터 잠정 적용됐다(A). 그 뒤 INEPACA가 명부에 올랐던 적이 있는지는 현행 명부로 알 수 없다.",
+     "ord": 6208
+    },
+    {
+     "kind": "para",
+     "text": "2024-04-10 SMV 결의 SMV-132-24는 INEPACA에 과태료 B/.3.400을 매겼다(A).",
+     "ord": 6470
+    },
+    {
+     "kind": "para",
+     "text": "2024년분 연차보고(IN-A)의 소송 항목은 노동 소송 50건을 적고, 바로 다음 문장으로 「El Emisor no ha sufrido sanciones administrativas por parte de la Superintendencia de Sociedades o por alguna entidad que lo regule.」를 싣는다(C). 2025년분 연차보고는 노동 소송을 37건으로 바꾸고 같은 문장을 싣는다(C).",
+     "ord": 6542
+    },
+    {
+     "kind": "para",
+     "text": "두 연차보고 어디에도 SMV 과태료를 적은 줄은 없다. 문장에 든 「Superintendencia de Sociedades」는 콜롬비아 회사감독 기관의 이름이다. INEPACA를 등기한 곳은 에콰도르 회사감독청(Supercias)이고, 과태료를 매긴 곳은 파나마 SMV다.",
+     "ord": 6794
+    }
+   ],
+   "stage": "c07"
+  },
+  {
+   "sid": "s15",
+   "numeral": "15",
+   "label": "전략",
+   "subtitle": "회사는 브랜드의 역사를 말하고, 돈은 배당과 유지보수로 가며, 만타 일대 경쟁 캔 공장 여섯 곳의 매출은 INEPACA의 1,8~4,2배다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "INEPACA는 파나마 증권 공시에서 브랜드의 나이를 앞세운다. 공시는 Van Camp's를 「una marca que tiene más de 70 años de presencia en Ecuador」, 곧 에콰도르에 자리 잡은 지 70년이 넘은 상표로 소개한다(C). 같은 회사의 2025년 연차보고(IN-A)는 그해 설비투자를 두고 「El Emisor no ha incurrido en gastos de capital durante el 2025 salvo aquellos destinados a mantener …」라고 적었다. 설비를 유지하는 데 든 돈 말고는 자본적 지출이 없었다는 말이다(C).",
+     "ord": 125
+    },
+    {
+     "kind": "para",
+     "text": "브랜드의 나이 말고도 공시는 두 가지를 더 내세운다. Van Camp's가 에콰도르에서 Real 다음으로 많이 팔리는 참치 브랜드라는 것과 INEPACA가 콜롬비아 정어리류 시장을 「ha conquistado」, 곧 차지했다는 것이다(C). 세 말 모두 측정자나 등록 근거를 달지 않았다. 장부에서는 배당이 2018~2025년 가운데 2021·2022년을 빼고 해마다 나갔다(A). 2018년 뒤로 INEPACA의 투자·증설·인수·차입을 다룬 보도는 없고, 같은 기간 다른 에콰도르 식품사 La Holandesa·La Universal의 인수는 기사로 나왔다(B).",
+     "ord": 487
+    },
+    {
+     "kind": "para",
+     "text": "만타 일대의 다른 캔 공장과 견주면 INEPACA는 작다. 에콰도르 회사감독청 순위표에서 INEPACA의 2024년 매출은 58,19M 달러로 전국 376위, 인원은 889명이다(A). 만타·Jaramijó·Montecristi에 승인 시설을 둔 여섯 회사는 모두 매출이 더 크고, 순위표 값으로 INEPACA의 1,81배(Asiservy)에서 4,22배(Tecopesca)까지다(계산). 업종 코드 C1020.02 안에서는 매출이 있는 21곳 가운데 4위이고, 1~3위는 Conservas Isabel·Seafman·Asiservy다(계산). Tecopesca·Eurofish·Marbelize는 코드가 달라 이 순위에 들지 않는다.",
+     "ord": 2110
+    },
+    {
+     "kind": "para",
+     "text": "격차는 수출 시장의 문턱에서 더 벌어진다. EU로 가는 수산물은 TRACES 명부에 오른 시설에서 나와야 하는데, 에콰도르 명부 283곳에는 여섯 경쟁사가 승인번호로 올라 있고 INEPACA는 없다(A). MSC 가공·유통(CoC) 인증도 Conservas Isabel·Seafman·Eurofish에는 번호가 있고 INEPACA에는 없다(A). EU·에콰도르 협정은 2017-01-01부터 잠정 적용됐고, EU27은 2025년 에콰도르산 1604.14를 201.559 t 들여왔다(나라 단위, A).",
+     "ord": 6991
+    },
+    {
+     "kind": "para",
+     "text": "다음에 나올 기록은 낼 쪽이 정해져 있다. INEPACA는 파나마 증권시장에 낼 2026년분 연차보고(IN-A)에 「No hay eventos relevantes」와 「sus tres (3) embarcaciones pesqueras propias」를 그대로 둘지 정한다. IATTC는 MonteCristi(#4000)를 「Active」로 둘지 비활성 목록으로 옮길지, 에콰도르 검찰은 2026년 산크리스토발 심리 뒤 사전수사로 남은 사건을 정식 수사(「instrucción fiscal」)로 넘길지를 정한다(B). 콜롬비아 INVIMA에서는 2025년에 갱신되거나 새로 난 참치 로모스 등록 두 건이 INEPACA가 만든 캔을 콜롬비아에서 파는 근거로 남아 있다(A).",
+     "ord": 7288
+    }
+   ],
+   "stage": "c08"
+  },
+  {
+   "sid": "s16",
+   "numeral": "16",
+   "label": "남은 물음",
+   "subtitle": "공개 문서는 주주의 이름을 적고, 그 주주의 주인과 원어의 톤수는 적지 않는다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "INEPACA의 주주는 공개 문서에 이름으로 나온다. 2023년 말까지는 파나마 법인 Estrella Blanca de Panamá S.A.와 키토의 COPRALESA S.A.가 99,9 % 대 0,1 %로 나눠 가졌고, 2024년 중 Estrella Blanca 한 곳이 100 %가 됐다(A). 그 위 한 층도 이름까지는 나온다. 그 이름 뒤에 누가 있는지는 어느 등록부에도 적혀 있지 않다.",
+     "ord": 94
+    },
+    {
+     "kind": "para",
+     "text": "Estrella Blanca가 에콰도르 회사감독청(Supercias)에 낸 외국주주 서식은 신고 주주를 「ANDEAN TRADING INTERNACIONAL」(ASE-P-0000187, 파나마) 한 곳으로 적는다. 지분율 칸은 없다. 서식은 2016년분이고 2017-01-23에 발급됐다. 2019-12-27 INEPACA는 Estrella Blanca를 외국 주주 서류를 내지 않은 「sociedad remisa」로 신고했다. 그 뒤에 나온 갱신본은 공개 서류에 없다(A).",
+     "ord": 357
+    },
+    {
+     "kind": "para",
+     "text": "비슷한 표기는 두 곳에 더 있다. 1987년 COPRALESA 설립 공고는 주주 다섯 가운데 하나로 법인 「ANDEAN TRADING INTERNATIONAL INC.」를 적는다. 콜롬비아 VAN CAMP'S 29류 상표의 권리자도 철자까지 같은 「ANDEAN TRADING INTERNATIONAL INC.」다(A). 회사감독청 서식의 표기는 INTERNACIONAL이고 INC.가 붙지 않아 뒤의 두 표기와 다르다. 세 곳 가운데 어느 서류도 파나마 등기번호를 적지 않으니 셋이 한 법인인지는 서류만으로 가려지지 않는다.",
+     "ord": 634
+    },
+    {
+     "kind": "para",
+     "text": "콜롬비아 매체 La Liga Contra el Silencio(2020)와 Blu Radio(2023)는 INEPACA의 총지배인을 COPRALESA를 거친 소유자로 적었다(B). 2019년 감사보고서의 자본금 표에서 COPRALESA 몫은 26.363 USD, 전체의 0,1 %다(A). 그 0,1 %도 2024년에 사라졌다. 파나마 공시 IN-A 2024는 「En el año 2024 la composición accionaria de INEPACA se modificó」, 곧 그해 주식 구성이 바뀌었다고 적고, 결과로는 Estrella Blanca 100 %만 싣는다. 누가 어느 날 얼마에 넘겼는지는 없다.",
+     "ord": 938
+    },
+    {
+     "kind": "para",
+     "text": "원료 쪽 공개 문서는 톤이 아니라 돈을 적는다. 2016~2019년 감사보고서는 원료 공급자의 배에 준 정비비 선급금을 배 이름별로 적었다. 2020년부터 같은 계정 「Anticipo proveedores」는 같은 주석 문구를 단 채 1.596.830 USD, 이듬해 641.215 USD로 줄었고, 배 이름 명세는 빠졌다(A). IN-A 2025는 매일 가공하는 참치가 「sus tres (3) embarcaciones pesqueras propias」, 곧 제 배 세 척의 어획과 제3자에게서 산 원료에서 온다고 적는다(C). 두 원천의 비중과 톤수는 어느 공시에도 없다.",
+     "ord": 1312
+    },
+    {
+     "kind": "para",
+     "text": "회사 이름으로 등록된 선망선 MonteCristi(IATTC #4000)의 두 사건도 공식 기록이 중간에서 멈춘다. 2025년 4월 말 압수 뒤 검찰 보도자료 407-DC-2025가 기소했다고 적은 것은 22명이고, 선주 이름은 없다(A). 판결을 알린 검찰 보도자료는 나오지 않았다. 매체는 그 배가 2026-08-16 만타에서 다시 나갔다고 전한다(B).",
+     "ord": 1645
+    },
+    {
+     "kind": "para",
+     "text": "2026-09-07 미 남부사령부는 동태평양에서 마약 운반을 돕던 해상 급유선을 막았다고 발표했다. 발표문은 배 이름·등록번호·기국·인원을 적지 않았고, 위치는 「Eastern Pacific」(동태평양)까지만 적었다(A). 그 배를 MonteCristi로 특정한 쪽은 가족과 매체다(B). 선원 석방도 매체 보도로만 전해진다. IATTC 등록부에서 MonteCristi는 2026-09-25에도 「Active」다(A).",
+     "ord": 1856
+    },
+    {
+     "kind": "para",
+     "text": "2026-09-25 현재 회사 누리집과 파나마 증권 공시, 매체 보도 어디에도 두 사건에 관한 INEPACA 명의 성명은 없다. 마지막 파나마 공시는 2026-09-01의 IN-T 2분기분이다.",
+     "ord": 2101
+    },
+    {
+     "kind": "para",
+     "text": "브랜드와 공장도 같은 모양이다. INEPACA는 투자설명서에 Van Camp's를 「licencia de uso no remunerada」, 곧 무상 사용권으로 쓴다고 적었고, Seatech International의 IN-A 2025도 같은 말을 쓴다. 두 문서 모두 사용권을 준 쪽의 이름을 적지 않는다. 캔 바코드의 접두 0722008은 에콰도르 GS1 접두 786이 아니고, 그 번호를 받은 법인은 라벨에 나오지 않는다. 공장은 일 능력과 토지 장부가가 공시에 있지만 부지 면적·라인 수·환경허가 번호는 어느 공개 문서도 적지 않는다.",
+     "ord": 2220
+    },
+    {
+     "kind": "para",
+     "text": "열두 물음 가운데 원료에 걸린 셋은 한 이름에서 만난다. 2016년 감사보고서의 선급금 명세 14척 가운데 12척은 ⅬⅥ의 카르타헤나 두 주소 12개 법인의 배와 이름이 같다. 2019년 ISD 명세의 OTISA 행은 그중 두 배의 이름, Dominador와 El Dorado를 적는다. 2020년부터 배 이름이 빠진 선급금과 톤수 없는 원어의 출처를 잇는 첫 물음은 OTISA Inc.가 어디에 세운 누구의 회사인가다.",
+     "ord": 6862
+    }
+   ],
+   "stage": "c08"
+  }
+ ]
+}

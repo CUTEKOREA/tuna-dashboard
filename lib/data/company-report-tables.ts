@@ -55,6 +55,8 @@ import procesaRaw from '@/public/data/companies/procesa_tables_v1.json';
 import tropicalRaw from '@/public/data/companies/tropical_tables_v1.json';
 import seatechRaw from '@/public/data/companies/seatech_tables_v1.json';
 import ppfRaw from '@/public/data/companies/ppf_tables_v1.json';
+import inepacaRaw from '@/public/data/companies/inepaca_tables_v1.json';
+import kflRaw from '@/public/data/companies/kfl_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -152,6 +154,8 @@ const INTAKES: Record<string, Intake> = {
   tropical: tropicalRaw as unknown as Intake,
   seatech: seatechRaw as unknown as Intake,
   ppf: ppfRaw as unknown as Intake,
+  inepaca: inepacaRaw as unknown as Intake,
+  kfl: kflRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 290,
+  "files": 292,
   "widgets": 114,
-  "dataFiles": 324,
+  "dataFiles": 332,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -617,11 +617,13 @@
     "lib/data/company-grupomar.ts",
     "lib/data/company-hagoromo.ts",
     "lib/data/company-herdez.ts",
+    "lib/data/company-inepaca.ts",
     "lib/data/company-iot.ts",
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
     "lib/data/company-jealsa.ts",
     "lib/data/company-kaichuang.ts",
+    "lib/data/company-kfl.ts",
     "lib/data/company-kingfisher.ts",
     "lib/data/company-kyokuyo.ts",
     "lib/data/company-majestic.ts",
@@ -751,6 +753,10 @@
     "public/data/companies/herdez_prose_v1.json",
     "public/data/companies/herdez_tables_v1.json",
     "public/data/companies/herdez_v1.json",
+    "public/data/companies/inepaca_figures_v1.json",
+    "public/data/companies/inepaca_prose_v1.json",
+    "public/data/companies/inepaca_tables_v1.json",
+    "public/data/companies/inepaca_v1.json",
     "public/data/companies/iot_figures_v1.json",
     "public/data/companies/iot_prose_v1.json",
     "public/data/companies/iot_tables_v1.json",
@@ -771,6 +777,10 @@
     "public/data/companies/kaichuang_prose_v1.json",
     "public/data/companies/kaichuang_tables_v1.json",
     "public/data/companies/kaichuang_v1.json",
+    "public/data/companies/kfl_figures_v1.json",
+    "public/data/companies/kfl_prose_v1.json",
+    "public/data/companies/kfl_tables_v1.json",
+    "public/data/companies/kfl_v1.json",
     "public/data/companies/kingfisher_figures_v1.json",
     "public/data/companies/kingfisher_prose_v1.json",
     "public/data/companies/kingfisher_tables_v1.json",
@@ -1768,6 +1778,18 @@
   "public/data/companies/herdez_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/inepaca_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/inepaca_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/inepaca_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/inepaca_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/iot_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -1826,6 +1848,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/kaichuang_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kfl_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kfl_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kfl_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kfl_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/kingfisher_figures_v1.json": [

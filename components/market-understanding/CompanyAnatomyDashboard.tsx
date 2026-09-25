@@ -382,6 +382,14 @@ import {
   plant as ppPlant, money as ppMoney, market as ppMarket,
 } from '@/lib/data/company-ppf';
 import {
+  inepacaMeta, inepacaSourceNotes,
+  fleet as ipFleet, money as ipMoney, shelf as ipShelf,
+} from '@/lib/data/company-inepaca';
+import {
+  kflMeta, kflSourceNotes,
+  charter as kfCharter, money as kfMoney, plant as kfPlant,
+} from '@/lib/data/company-kfl';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -2671,6 +2679,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   피지: { flagSrc: '/flags/fj.svg', backInk: '#f4f5f0' },
   콜롬비아: { flagSrc: '/flags/co.svg', backInk: '#1b2733' },
   마셜제도: { flagSrc: '/flags/mh.svg', backInk: '#f4f5f0' },
+  키리바시: { flagSrc: '/flags/ki.svg', backInk: '#1b2733' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -5233,6 +5242,170 @@ const PANPAC_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const IP_ACCENT = '#7a4a1f';
+
+/** 배·돈·매대. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const IP_F = ipFleet();
+const IP_M = ipMoney();
+const IP_S = ipShelf();
+
+const INEPACA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-inepaca',
+  title: '기업 해부: INEPACA',
+  subtitle:
+    `에콰도르 만타의 Industria Ecuatoriana Productora de Alimentos C.A.(INEPACA)는 1949년에 등기된 캔 공장이고, 에콰도르에서 Van Camp's 참치·정어리류 캔을 만든다. 콜롬비아에서 같은 상표를 만드는 Seatech International 과 함께 파나마 증권시장에 주식을 올린 발행인이다. ` +
+    `Seatech 는 2025 연차보고에 두 회사가 「comparten ejecutivos y directores」라고 적고 같은 경제 그룹은 아니라고 덧붙였다. 두 회사 모두 Van Camp's 를 무상 사용권으로 쓰고, 사용권을 준 쪽 이름은 적지 않는다. ` +
+    `주주는 ${IP_M.변경}년부터 파나마 법인 Estrella Blanca 한 곳(${IP_M.주주} %)이다.`,
+  accent: IP_ACCENT,
+  primaryKpi: {
+    label: 'INEPACA 선망 3척의 에콰도르 선망 운반능력 몫 (IATTC 등록부, 계산)',
+    value: IP_F.몫,
+    decimals: 2,
+    unit: `(% · Lucy·MonteCristi·Tarqui 운반능력 ${euNum(IP_F.운반)} t, 에콰도르 활성 선망 ${IP_F.나라}척 가운데. 평균 선령 ${euNum(IP_F.선령, 1)}년. 2016년 감사보고서 선급금 명세의 원료 공급자 배 ${IP_F.명세}척 가운데 ${IP_F.일치}척이 콜롬비아 편(ⅬⅥ)의 카르타헤나 두 주소 12척과 이름이 같다. 그 선급금은 2016년 ${euNum(IP_F.선급2016, 2)}M 달러에서 2021년 ${euNum(IP_F.선급2021, 2)}M 달러로 줄었다)`,
+    accent: IP_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '2025년 부채 가운데 퇴직연금 충당금 (파나마 연차보고 IN-A 감사 재무제표)',
+      value: IP_M.퇴직연금,
+      decimals: 1,
+      unit: `(% · 2016~2025년 감사보고서마다 금융기관 차입 없음. 2025년 총영업수익 ${euNum(IP_M.매출2025, 2)}M·순이익 ${euNum(IP_M.순이익2025, 2)}M 달러. 2019년 배당 ${euNum(IP_M.배당2019, 2)}M 달러는 그해 순이익의 ${euNum(IP_M.배당그해, 2)}배, 직전 해의 ${euNum(IP_M.배당전년, 2)}배(계산). 내수 매출은 2020년 ${euNum(IP_M.내수2020, 2)}M 에서 2025년 ${euNum(IP_M.내수2025, 2)}M 달러로 줄었다)`,
+    },
+    {
+      label: '2025년 4월 MonteCristi 에서 압수된 코카인 (에콰도르 검찰 보도자료 407-DC-2025)',
+      value: IP_F.코카인,
+      decimals: 2,
+      unit: `(t · 검찰 발표문이 기소했다고 적은 사람은 ${IP_F.기소}명이고 그 가운데 1명은 출항 명단에 없던 멕시코 국적자다. 발표문에 선주 이름은 없다. 2026-09-07 미 남부사령부는 동태평양에서 저지한 배의 이름을 밝히지 않았고, 가족과 매체가 그 배를 MonteCristi 로 지목했다. 회사 명의 성명과 파나마 증권 중요사실 공시는 두 사건 모두 없다)`,
+    },
+    {
+      label: '에콰도르 매대 Van Camp\'s 해바라기유 184 g 순중량 kg당 값 (Tía 온라인, 2026-09-25, 계산)',
+      value: IP_S.VC,
+      decimals: 2,
+      unit: `(USD/kg · Real ${euNum(IP_S.Real, 2)}, 자체상표 ${euNum(IP_S.PB, 2)} USD/kg. Van Camp's 는 Real 의 0,84배, 자체상표의 1,64배. 정어리류 캔의 고기는 Opisthonema. 콜롬비아 INVIMA 에 INEPACA 제조 유효 등록 ${IP_S.INVIMA}건, 수입자는 Seatech·Colombina·Distribuidora Colombina)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '이사',
+      title: '임원과 이사를 공유하는 두 발행인',
+      body: `Seatech International(영국령 버진아일랜드 회사, 카르타헤나 지점)은 파나마 SMV-414-24 발행인이고 INEPACA 는 SMV-563-20 발행인이다. 2020년 INEPACA 설명서의 이사 가운데 둘이 seatechint.com 메일을 쓰고, 같은 두 이름이 Seatech 2025 연차보고의 이사, 2009년 Estrella Blanca 이사회 의사록에 적혀 있다(이름 대조). 두 회사 공시는 연관 회사와 거래하지 않았다고 적는다`,
+    },
+    {
+      eyebrow: '주주',
+      title: '주주의 주주',
+      body: `INEPACA 대주주 Estrella Blanca 가 2016년분 서식에 신고한 주주는 「ANDEAN TRADING INTERNACIONAL」이다. 콜롬비아 VAN CAMP'S 29류 권리자와 1987년 COPRALESA 설립 주주로 적힌 이름은 「ANDEAN TRADING INTERNATIONAL INC.」로 표기가 다르다. 셋이 한 법인인지, 지분율이 얼마인지는 어느 서류에도 없다`,
+    },
+    {
+      eyebrow: '원료',
+      title: '제 배 세 척과 원료 공급자의 배',
+      body: `IATTC 등록 선망 3척은 1970년대 건조, 운반능력 ${euNum(IP_F.운반)} t. 2016~2019년 감사보고서는 원료 공급자 배의 정비비를 선급금으로 적고(2019년 한 해 잔액 변동 없음), 외화유출세 명세에는 OTISA·Tri Marine 에서 들인 냉동 통참치가 있다. 원어 톤수와 비중은 공개 문서에 없다`,
+    },
+    {
+      eyebrow: '판로',
+      title: '안에서 파는 캔',
+      body: `2019년 할인 전 매출의 82,1 % 가 에콰도르 내수 참치(계산). 수출은 2019년 ${euNum(IP_M.수출2019, 2)}M 에서 2025년 ${euNum(IP_M.수출2025, 2)}M 달러로 돌아왔고, 줄어든 쪽은 내수다. EU TRACES·MSC 명부에 INEPACA 는 없다. 미국 뉴저지 연방지법 2021년 결석판결은 INEPACA 제조 라벨의 캔을 들여온 뉴저지 유통사 2곳이 Tri-Union 상표를 침해했다고 봤다(INEPACA 는 당사자 아님)`,
+    },
+    {
+      eyebrow: '전략',
+      title: '말은 브랜드의 역사, 돈은 배당과 유지보수',
+      body: `회사는 「más de 70 años」·점유율 30 %·「penetración … 80%」를 적는다(측정자 없음). 2025년 설비투자는 유지보수뿐이라고 적었다. 파나마 SMV 는 2024-04-10 공시 지연에 과태료 B/.${euNum(IP_M.과태료)}를 물렸고, 회사는 그 뒤 두 해 연차보고에서도 행정 제재를 받은 적 없다고 적었다`,
+    },
+  ],
+  briefing: proseBriefing('inepaca'),
+  narratives: inlineReport('inepaca', proseStages('inepaca')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: inepacaSourceNotes,
+  sourceMeta: [
+    `${inepacaMeta.회사} · ${inepacaMeta.국가} · ${inepacaMeta.업종}`,
+    `출처 ${inepacaMeta.출처}`,
+    `조사 ${inepacaMeta.조사일}`,
+  ].join(' · '),
+};
+
+const KF_ACCENT = '#1f5a6e';
+
+/** 용선·돈·공장. 발행본의 확정 수치 정본에서만 값을 가져온다. */
+const KF_C = kfCharter();
+const KF_M = kfMoney();
+const KF_P = kfPlant();
+
+const KFL_SPEC: CommoditySpec = {
+  key: 'company-anatomy-kfl',
+  title: '기업 해부: Kiribati Fish Limited',
+  subtitle:
+    `키리바시 타라와 Betio 부두의 Kiribati Fish Limited(KFL)는 키리바시 정부와 피지·중국 측이 2010년에 세운 합작사이고, 키리바시에서 EU 승인을 받은 유일한 가공장(KIR-KFL-EU-01)을 갖고 있다. 공장은 2013년 하루 약 ${KF_P.능력} t 능력으로 주 1회 가동한다고 적혔고, 만드는 것은 신선·로인·필레이며 캔은 없다. ` +
+    `WCPFC 용선 명부에는 2015년 9월부터 이 회사 이름으로 ${KF_C.누적}척이 통보됐고, 2026년에만 ${KF_C.척수}척(선망 ${KF_C.선망}·연승 ${KF_C.연승})이다. ` +
+    `2026년 6월 말 上海开创(600097) 연결 선급금 가운데 가장 큰 상대는 KFL(${euNum(KF_M.선급금, 2)}만 위안, ${euNum(KF_M.비중, 2)} %)이었고, 공시는 그 명목을 적지 않았다.`,
+  accent: KF_ACCENT,
+  primaryKpi: {
+    label: '2026년 WCPFC 용선 명부에서 용선자가 KFL 인 배 (통보 기간 기준)',
+    value: KF_C.척수,
+    decimals: 0,
+    unit: `(척 · 선망 ${KF_C.선망}·연승 ${KF_C.연승}. 등록 소유자는 开创远洋 ${KF_C.소유4} · 上海远洋 5(JIN HUI 18·58 은 开创远洋이 임차) · 泛太渔业 ${KF_C.泛太}(ⅬⅦ, 2026-06-02부터) · 广州远洋 9 · 广东广远 7 · 中水 5. 2015년 9월 첫 통보 뒤 누적 ${KF_C.누적}척. KFL 명의로 등록된 배는 연승 ${KF_C.명의배}척. 2026년 용선 주최국은 키리바시가 가장 많다(${KF_C.주최}척: KBPL ${KF_C.KBPL}·KFL ${KF_C.척수}·KIFL ${KF_C.KIFL}, 계산))`,
+    accent: KF_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '2026-06-30 上海开创(600097) 연결 선급금 가운데 KFL 몫 (반기보고서)',
+      value: KF_M.비중,
+      decimals: 2,
+      unit: `(% · ${euNum(KF_M.선급금, 2)}만 위안, 1위. 공시는 명목을 적지 않는다. 2025-12-31 1위는 中国远洋渔业协会(${euNum(KF_M.협회, 2)}만 위안)였고, 회사는 그해 선급금 증가를 「2026年度入渔费支付同比增加」로 설명했다(선급금 전체). 지배주주 上海远洋 소유 金汇18·58 을 开创远洋이 2026년 임차했다(${euNum(KF_M.金汇18, 2)}만·${euNum(KF_M.金汇58)}만 위안))`,
+    },
+    {
+      label: 'KFL 인원, 정부 보고서가 적은 최근 연도 (키리바시 WCPFC 국가보고서, 회사 제공 기록)',
+      value: KF_P.인원,
+      decimals: 0,
+      unit: `(명 · 2018년 ${KF_P.인원2018}명, 2023년 ${KF_P.인원2023}명. 2019년 타당성 보고서(STDF)는 KFL 공장·냉동창고가 나라의 유일한 양륙 지점이고 월 약 ${euNum(KF_P.양륙)} t 이 내린다고 적었다 — KFL 가공량이 아니다. 양륙·수출 자료는 「kept by KFL」)`,
+    },
+    {
+      label: 'EU 가 신고한 키리바시산 냉동 참치 필레(CN 030487) 수입, 2024년 (Eurostat Comext)',
+      value: KF_P.EU필레,
+      decimals: 1,
+      unit: `(t · 다른 해는 20 t 이하. 냉동 원어(0303)는 따로 잡혀 2024년 ${euNum(KF_P.EU원어, 1)} t(대부분 스페인행 가다랑어) — KFL 가공품으로 귀속하지 않는다. 일본 신고 키리바시산 필레 2025년 ${euNum(KF_P.일본필레, 1)} t(나라 단위). MSC CoC ${KF_P.MSC} 만료 ${KF_P.MSC만료}. EU 등재 요청일 ${KF_P.EU요청})`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '이름',
+      title: '공장보다 큰 이름',
+      body: `2026년 용선 통보 ${KF_C.척수}척의 주인은 여섯 회사다. 上海开创 계열이 운항하는 선망 12척(开创远洋 소유 ${KF_C.소유4} + 지배주주에게서 임차 ${KF_C.임차2} + 泛太渔业 ${KF_C.泛太})이 2026-06-02부터 모두 KFL 이름 아래 있다(계산). 연도별 척수는 통보 기간 기준 상한값이고, 정부 보고서 척수보다 크다`,
+    },
+    {
+      eyebrow: '제도',
+      title: '용선이 받는 것',
+      body: `키리바시는 2017년 외국 연승을 닫으면서 「KFL chartered vessels were exempted … to supply the processing plant」로 KFL 용선선만 남겼다. 국내선·용선선에는 국내조업수역 출입·집어장치 면제를 준다. CMM 2024-03 ¶7 은 용선 어획을 용선국 몫으로 보고·계산하되, CMM 2025-02 ¶8 은 권리·배분과 무관하다고 적고, 사무국 문서 TCC22-2026-03 은 공해 선망 용선 어획을 기국 몫으로 적는다`,
+    },
+    {
+      eyebrow: '공장',
+      title: '작은 가공장',
+      body: `KIR-KFL-EU-01 은 키리바시 EU 명부의 유일한 가공장(등재 요청 ${KF_P.EU요청})이다. 2013년 하루 약 ${KF_P.능력} t·주 1회 가동, 그 뒤 능력 수치는 공개되지 않는다. 투자액은 800만·1.100만·1.000만 달러 넘음·2.000만~3.000만 달러로 문서마다 다르다. MSC CoC ${KF_P.MSC}(2017-03-15 최초)`,
+    },
+    {
+      eyebrow: '지분',
+      title: '열 벌의 지분',
+      body: `정부 몫은 World Bank 문서 두 벌에서 20 % 와 40 % 로 갈리고, 중국 측 동업자는 上海远洋渔业(商务部 2025·MFOR)·Zhejiang Ocean Family(정부 WCPFC 보고 2020~2026)·上海开创远洋(수산부 2026-09-18 보도의 「their shareholder」)로 문서마다 다르다. 上海开创의 2026-06-30 연결 재무상태표에 지분투자 계정은 비어 있다`,
+    },
+    {
+      eyebrow: '전략',
+      title: '말은 로인과 수출, 돈이 보이는 곳은 용선과 선급금',
+      body: `회사는 1.000만 달러 넘는 투자·SQF·BRC·EU·미국 MSC 로인을 말했고(2016), 2019년에는 공장 두 곳 추가 계획이 적혔다. 2026 정부 보고서는 확장이 수출을 늘릴 것으로 전망한다. KFL 재무제표는 정부 예산서·결산서·상장사 공시에 없다. 36척의 용선 기간은 2026-12-31 에 끝나고, MSC 증서는 ${KF_P.MSC만료} 에 만료된다`,
+    },
+  ],
+  briefing: proseBriefing('kfl'),
+  narratives: inlineReport('kfl', proseStages('kfl')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: kflSourceNotes,
+  sourceMeta: [
+    `${kflMeta.회사} · ${kflMeta.국가} · ${kflMeta.업종}`,
+    `출처 ${kflMeta.출처}`,
+    `조사 ${kflMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -6400,6 +6573,32 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '가공과 판로', value: `가공 실적 ${PP_P.가공} t(${PP_P.시작}~${PP_P.끝}, 마셜 정부 보고) · 2019 로인 ${PP_P.신고} t(회사 신고) 대 약 ${euNum(PP_P.면담)} t(FAO 면담) · 미국 신고 마셜산 조제 참치 2011 ${euNum(PP_K.미국정점, 1)} t → 2015 ${euNum(PP_K.미국2015, 1)} t, 2016~2025 신고 없음 · EU 반입 허용국 목록에 마셜 없음` },
     ],
   },
+  {
+    key: 'inepaca',
+    numeral: 'ⅬⅧ',
+    name: 'INEPACA',
+    country: `에콰도르 · 만타 Malecón(파나마 SMV 등록 발행인)`,
+    tagline: "이사는 같고, 그룹은 아니다 — 만타의 Van Camp's 공장은 콜롬비아의 같은 상표 공장과 임원·이사를 공유하고, 두 회사는 같은 그룹이 아니라고 공시한다.",
+    ...FLAG.에콰도르,
+    stats: [
+      { label: '이사와 주주', value: `Seatech 2025 연차보고 「comparten ejecutivos y directores」 · 같은 경제 그룹 아님 · 주주 Estrella Blanca de Panamá ${IP_M.주주} %(${IP_M.변경}~) · 그 신고 주주 「ANDEAN TRADING INTERNACIONAL」 = 콜롬비아 VAN CAMP'S 권리자와 표기만 다름 · Van Camp's 무상 사용권` },
+      { label: '배와 원료', value: `선망 ${IP_F.척수}척 운반능력 ${euNum(IP_F.운반)} t = 에콰도르 선망의 ${euNum(IP_F.몫, 2)} %, 평균 선령 ${euNum(IP_F.선령, 1)}년 · 2016 명세 원료 공급자 배 ${IP_F.명세}척 중 ${IP_F.일치}척이 ⅬⅥ 두 주소 12척과 같은 이름 · MonteCristi 2025 코카인 ${euNum(IP_F.코카인, 2)} t(검찰), 2026-09-07 저지 선박으로 매체 지목` },
+      { label: '돈과 판로', value: `2025 총영업수익 ${euNum(IP_M.매출2025, 2)}M·순이익 ${euNum(IP_M.순이익2025, 2)}M 달러 · 은행 차입 없음 · 퇴직연금 = 부채의 ${euNum(IP_M.퇴직연금, 1)} % · 내수 ${euNum(IP_M.내수2020, 2)}M → ${euNum(IP_M.내수2025, 2)}M(2020→2025) · EU TRACES·MSC 없음 · 파나마 SMV 과태료 B/.${euNum(IP_M.과태료)}(2024)` },
+    ],
+  },
+  {
+    key: 'kfl',
+    numeral: 'ⅬⅨ',
+    name: 'Kiribati Fish Limited',
+    country: `키리바시 · 타라와 Betio Wharf(EU 승인 가공장 KIR-KFL-EU-01)`,
+    tagline: '공장보다 큰 이름 — 타라와의 가공장 하나에 2026년 외국 배 서른여섯 척의 용선 통보가 걸려 있다.',
+    ...FLAG.키리바시,
+    stats: [
+      { label: '용선', value: `2026 WCPFC 용선 명부의 KFL 이름 ${KF_C.척수}척(선망 ${KF_C.선망}·연승 ${KF_C.연승}), 2015-09 첫 통보 뒤 ${KF_C.누적}척 · 上海开创 계열 선망 12척(소유 ${KF_C.소유4} + 임차 ${KF_C.임차2} + 泛太渔业 ${KF_C.泛太}) · 2017 연승 폐쇄에서 KFL 용선만 면제 · KFL 명의 배는 연승 ${KF_C.명의배}척` },
+      { label: '돈', value: `上海开创 연결 선급금 1위 ${euNum(KF_M.선급금, 2)}만 위안(${euNum(KF_M.비중, 2)} %, 2026-06-30, 명목 없음) · KFL 재무제표는 정부 예산서·결산서·상장사 공시에 없다 · 지분은 문서마다 열 가지(정부 20 % 대 40 %)` },
+      { label: '공장과 판로', value: `EU 명부 유일 가공장 · 2013년 하루 약 ${KF_P.능력} t·주 1회 · 신선·로인·필레, 캔 없음 · EU 필레 2024년 ${euNum(KF_P.EU필레, 1)} t, 다른 해 20 t 이하 · MSC CoC ${KF_P.MSC}(${KF_P.MSC만료} 만료) · 인원 ${KF_P.인원}명(최근 연도)` },
+    ],
+  },
 
 
 
@@ -6482,6 +6681,8 @@ export default function CompanyAnatomyDashboard({
     tropical: TROPICAL_SPEC,
     seatech: SEATECH_SPEC,
     ppf: PANPAC_SPEC,
+    inepaca: INEPACA_SPEC,
+    kfl: KFL_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
