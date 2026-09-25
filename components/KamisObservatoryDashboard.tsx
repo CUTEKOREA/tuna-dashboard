@@ -2,7 +2,7 @@
 
 import React from 'react';
 import HeroZone from './v2/HeroZone';
-import { EmbeddedDashboardFrame } from './EmbeddedDashboardFrame';
+import { EmbeddedDashboardFrame } from './EmbeddedFrame';
 import styles from './EmbeddedDashboardFrame.module.css';
 
 // Static snapshot built in ~/my-project/kamis_ladder (build_v3.py → banana_v3.html). Not live data.
