@@ -57,6 +57,7 @@ import seatechRaw from '@/public/data/companies/seatech_tables_v1.json';
 import ppfRaw from '@/public/data/companies/ppf_tables_v1.json';
 import inepacaRaw from '@/public/data/companies/inepaca_tables_v1.json';
 import kflRaw from '@/public/data/companies/kfl_tables_v1.json';
+import sapmerRaw from '@/public/data/companies/sapmer_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -156,6 +157,7 @@ const INTAKES: Record<string, Intake> = {
   ppf: ppfRaw as unknown as Intake,
   inepaca: inepacaRaw as unknown as Intake,
   kfl: kflRaw as unknown as Intake,
+  sapmer: sapmerRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

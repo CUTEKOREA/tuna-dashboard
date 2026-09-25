@@ -299,6 +299,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅨ · 발행본 §08 의 EU TRACES 가공장 「KIR-KFL-EU-01 | Kiribati Fish Limited | Betio Wharf, Tarawa | PP」 · **좌표는 타라와 Betio 근사값**',
     note: '2026 WCPFC 용선 명부의 KFL 이름 36척(선망 12·연승 24) · 上海开创 계열 선망 12척 전부 · 上海开创 연결 선급금 1위 2.725,35만 위안(2026-06-30, 명목 없음) · 2013년 하루 약 15 t·주 1회 · EU 필레 수입 2024년 211,9 t, 다른 해 20 t 이하 · 캔 없음',
     },
+  // ── ⅬⅩ SAPMER SA — 레위니옹 르포르 ─────
+  { company: 'sapmer', numeral: 'ⅬⅩ', kind: 'hq', label: 'SAPMER SA — 르포르 Darse de Pêche 본사·냉동창고', country: '프랑스',
+    lat: -20.9373, lng: 55.2919,
+    basis: 'ⅬⅩ · 발행본 §01·§09 의 본점 「Darse de Pêche – Magasin 10, Port Ouest, 97420 Le Port」(RCS 350 434 494) · **좌표는 레위니옹 르포르 Port Ouest 근사값**',
+    note: 'Euronext Growth ALMER · 지배 블록 63,49 % · 선망 최대 9척 → 0척(2026-09-09 CFTO) · SPV 명의 4척도 2019년부터 상장사 장부 · 2025 참치 EBITDA 마진 2 % · 이빨고기 4척 몫 −24,0 %(TAC −13,7 %)',
+    },
 ];
 
 /**
