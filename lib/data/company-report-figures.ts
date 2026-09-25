@@ -51,6 +51,8 @@ import pafcoRaw from '@/public/data/companies/pafco_figures_v1.json';
 import pinsaRaw from '@/public/data/companies/pinsa_figures_v1.json';
 import sstcRaw from '@/public/data/companies/sstc_figures_v1.json';
 import grupomarRaw from '@/public/data/companies/grupomar_figures_v1.json';
+import procesaRaw from '@/public/data/companies/procesa_figures_v1.json';
+import tropicalRaw from '@/public/data/companies/tropical_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -140,6 +142,8 @@ const INTAKES: Record<string, Intake> = {
   pinsa: pinsaRaw as unknown as Intake,
   sstc: sstcRaw as unknown as Intake,
   grupomar: grupomarRaw as unknown as Intake,
+  procesa: procesaRaw as unknown as Intake,
+  tropical: tropicalRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);

@@ -263,6 +263,18 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅢ · 발행본 §01·§02 의 등록부 공통 주소 「Calle Don Antonio Suárez Gutiérrez No. 5, Parque Industrial Fondeport, C.P. 28219」(IATTC 선박 소유자·TRACES 가공장 MAR 9308174 P1·라벨 제조자) · 좌표는 INEGI DENUE 의 통조림 사업장(Suarcrem Holding) 좌표(19,08098, −104,29079)',
     note: '선망 6척(Maratún 4·Martuna 2) = 멕시코 기국 활성 선망 운반능력의 13,6 %(IATTC) · 2019년 명부 7척 → 지금 6척(2023년 배는 동태평양 활성 선망 279척 중 가장 늦게 건조) · MSC 어업 인증 2023-03-08 철회 → 2026-05-20 개선 프로그램 · Diconsa 조달 원수치 1.539,5 대 Pinsa Comercial 1.546,3 백만 MXN(1999~2022, 모두 수의계약)',
     },
+  // ── ⅬⅣ Procesa — Puerto Chiapas ─────
+  { company: 'procesa', numeral: 'ⅬⅣ', kind: 'hq', label: 'Procesa — 타파출라 Puerto Chiapas', country: '멕시코',
+    lat: 14.7065, lng: -92.3959,
+    basis: 'ⅬⅣ · 발행본 §02 의 두 주소 — 유럽연합 승인 공장 「Calle Marina Azul, No.1, Colonia Puerto Chiapas, Tapachula, C.P. 30830」(PEA0303203V5)과 INEGI DENUE 의 251명 이상 사업장 「Av. Central Sur s/n, Francisco I. Madero」 · 좌표는 DENUE 사업장 좌표(14,70648, −92,39592)',
+    note: '보전처분 예비 기재 상표 17건(IMPI 2026-06-19, Exp. 175/2026) · 질권 CAMIF II(2017)·Rabobank NY(2022) · 선망 4척 평균 선령 50,5년(4척 이상 소유 그룹 최고) · 같은 항구의 Bumble Bee Mexico(FDA 2023-10-12 등재, 계약 형태 비공개)',
+    },
+  // ── ⅬⅤ Tropical Canning — 핫야이 ─────
+  { company: 'tropical', numeral: 'ⅬⅤ', kind: 'hq', label: 'Tropical Canning — 핫야이 퉁야이 본 캔공장', country: '태국',
+    lat: 7.0000, lng: 100.4600,
+    basis: 'ⅬⅤ · 발행본 §02·§07 의 본점=공장 주소 「1/1 Moo 2, Kanjanavanich Rd., Thung Yai, Hat Yai, Songkhla 90110」 · 공업부 DIW 3종 공장 등록 5건(퉁야이·남녹) · **좌표는 핫야이 퉁야이 근사값**',
+    note: '전 의장 명의 24,585 %(2021-12-18 사망) · 의장 겸직 세 매출처(TCC·Safcol Australia·TC Boy)가 2025 매출의 46,2 % · Safcol Australia 상대 매출 120,1 → 554,1 백만 THB · 1H2026 펫푸드 50,6 % > 참치 41,6 % · 미국 Section 301 12,5 %(2026-07-24~)',
+    },
 ];
 
 /**
