@@ -9,7 +9,7 @@
 
 <!-- BEGIN GENERATED — scripts/feature_map.mjs. 손으로 고치지 마라 -->
 
-_생성: `node scripts/feature_map.mjs --write` · 메뉴 23개 · 정적 라우트 11개 · API 158개_
+_생성: `node scripts/feature_map.mjs --write` · 메뉴 24개 · 정적 라우트 11개 · API 158개_
 
 ## 화면 — 어떻게 도달하나
 
@@ -43,6 +43,7 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 23개 · 정적 라우
 | `/tunafarm-industry` | 참치 양식 | 시장 이해 | 로그인 |
 | `/tuna-anatomy` | 참치 해부 | 시장 이해 | 로그인 |
 | `/company-anatomy` | 기업 해부 | 전략 | 로그인 |
+| `/kamis` | KAMIS 가격 사다리 | 전략 | 로그인 |
 | `/pork` | 돼지고기 | 축산 | 로그인 · 숨김 |
 | `/cross-intelligence` | 통합 인텔리전스 | 전략 | 로그인 |
 | `/purse-seiner-db` | 선단 DB | 전략 | 로그인 |

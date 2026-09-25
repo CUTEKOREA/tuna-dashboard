@@ -77,7 +77,7 @@ interface EmbeddedDashboardFrameProps {
   externalLinkLabel: string;
 }
 
-function EmbeddedDashboardFrame({
+export function EmbeddedDashboardFrame({
   src,
   title,
   loadingLabel,

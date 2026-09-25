@@ -756,7 +756,7 @@ describe('dashboard registry', () => {
       ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts'],
       ['tuna-industry', 'squid-industry', 'mackerel-industry', 'whelk-industry', 'shrimp-industry', 'pollock-industry', 'octopus-industry', 'tunafarm-industry', 'tuna-anatomy'],
       // 2026-08-17 사용자 요청: 선단 DB 노출. cross-intelligence 는 종전대로 팔레트 전용
-      ['purse-seiner-db', 'company-anatomy'],
+      ['purse-seiner-db', 'company-anatomy', 'kamis'],
     ]);
 
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
@@ -796,6 +796,7 @@ describe('dashboard registry', () => {
       'tunafarm-industry',
       'tuna-anatomy',
       'company-anatomy',
+      'kamis',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(
       new Set(VALID_MENUS),
