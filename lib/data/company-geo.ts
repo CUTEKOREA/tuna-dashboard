@@ -287,6 +287,18 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅦ · 발행본 §02 의 MSC 공급자 명부 주소 「1289 Oceanside, Delap Village, Majuro 96960」(공장 법인, MSC-C-53419)과 WCPFC 등록부의 선단 법인 주소 「P.O. Box 1289 Delap Majuro」 · 공장 건물은 마셜 임차지 위(임차 기한 2036-09) · **좌표는 마주로 Delap 근사값**',
     note: '가공 실적 0 t(2021~2025, 마셜 정부 WCPFC 보고) · 2025 순이익 공장 법인 1,13 대 선단 법인 5.381,94만 위안 · 그룹 연결 휴업 손실 1H2026 651,52만 위안 · 미국 신고 마셜산 조제 참치 2016~2025 신고 없음(2011 정점 1.567,6 t) · EU 반입 허용국 목록에 마셜 없음',
     },
+  // ── ⅬⅧ INEPACA — 만타 Malecón ─────
+  { company: 'inepaca', numeral: 'ⅬⅧ', kind: 'hq', label: 'INEPACA — 만타 Malecón 캔 공장', country: '에콰도르',
+    lat: -0.9500, lng: -80.7200,
+    basis: 'ⅬⅧ · 발행본 §02·§10 의 RUC 1390005713001 본점·가공장 「Malecón s/n, diagonal al terminal terrestre」(만타 Parroquia Tarqui, 1949-04-25) · **좌표는 만타 Malecón 근사값**',
+    note: '파나마 SMV-563-20 발행인 · 주주 Estrella Blanca de Panamá 100 %(2024~) · Seatech 2025 연차보고 「comparten ejecutivos y directores」, 같은 경제 그룹 아님 · 선망 3척 = 에콰도르 선망 운반능력의 1,30 % · MonteCristi 2025 코카인 2,91 t(검찰), 2026-09-07 저지 선박으로 매체 지목 · 퇴직연금 = 부채의 60,2 %(2025)',
+    },
+  // ── ⅬⅨ Kiribati Fish Limited — 타라와 Betio ─────
+  { company: 'kfl', numeral: 'ⅬⅨ', kind: 'hq', label: 'Kiribati Fish Limited — 타라와 Betio Wharf 가공장', country: '키리바시',
+    lat: 1.3560, lng: 172.9290,
+    basis: 'ⅬⅨ · 발행본 §08 의 EU TRACES 가공장 「KIR-KFL-EU-01 | Kiribati Fish Limited | Betio Wharf, Tarawa | PP」 · **좌표는 타라와 Betio 근사값**',
+    note: '2026 WCPFC 용선 명부의 KFL 이름 36척(선망 12·연승 24) · 上海开创 계열 선망 12척 전부 · 上海开创 연결 선급금 1위 2.725,35만 위안(2026-06-30, 명목 없음) · 2013년 하루 약 15 t·주 1회 · EU 필레 수입 2024년 211,9 t, 다른 해 20 t 이하 · 캔 없음',
+    },
 ];
 
 /**

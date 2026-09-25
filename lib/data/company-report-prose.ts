@@ -55,6 +55,8 @@ import procesaRaw from '@/public/data/companies/procesa_prose_v1.json';
 import tropicalRaw from '@/public/data/companies/tropical_prose_v1.json';
 import seatechRaw from '@/public/data/companies/seatech_prose_v1.json';
 import ppfRaw from '@/public/data/companies/ppf_prose_v1.json';
+import inepacaRaw from '@/public/data/companies/inepaca_prose_v1.json';
+import kflRaw from '@/public/data/companies/kfl_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -151,6 +153,8 @@ const INTAKES: Record<string, Intake> = {
   tropical: tropicalRaw as unknown as Intake,
   seatech: seatechRaw as unknown as Intake,
   ppf: ppfRaw as unknown as Intake,
+  inepaca: inepacaRaw as unknown as Intake,
+  kfl: kflRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

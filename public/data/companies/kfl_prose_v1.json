@@ -1,0 +1,1053 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-kfl-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_prose.py",
+  "설명": "조사보고서 서술을 원문에서 그대로 읽는다. 손으로 옮기지 않는다."
+ },
+ "sections": [
+  {
+   "sid": "s1",
+   "numeral": "01",
+   "label": "개관",
+   "subtitle": "타라와의 가공장 하나에 2026년 외국 배 서른여섯 척의 용선 통보가 걸려 있다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Kiribati Fish Limited(KFL)는 키리바시 타라와의 Betio Wharf에 공장을 둔 수산물 가공 합작사다. 회사는 2010년에 세워졌고 공장은 2012년 하반기에 돌기 시작했다. EU TRACES 명부에 키리바시 가공장으로 올라 있는 곳은 KIR-KFL-EU-01, 곧 KFL 공장 한 곳이다. 키리바시에서 EU 승인을 받은 유일한 가공장이다.",
+     "ord": 92
+    },
+    {
+     "kind": "para",
+     "text": "공장은 신선 참치와 로인·필레를 만든다. 키리바시 정부가 중서부태평양수산위원회 과학위원회에 낸 2026년 국가보고서(SC22)는 「KFL is the only fishing company in Kiribati with a processing facility」라고 적고, 내린 고기를 로인과 필레로 가공해 수출한다고 썼다. 같은 보고서에는 「Since Kiribati has no canning factory, purse seine catch is usually transshipped overseas」라는 문장도 있다. 나라에 캔 공장이 없어서 선망 어획은 보통 해외로 환적된다는 뜻이다. 공장 규모를 적은 마지막 수치는 2013년 것이다. 2014년에 나온 연구보고서는 하루 약 15 t 능력에 주 1회 가동이라고 적었고, 그 뒤 능력이나 가동률을 적은 공개 문서는 없다.",
+     "ord": 318
+    },
+    {
+     "kind": "para",
+     "text": "회사의 윤곽을 등록부와 정부 보고서, 상장사 공시에서 한 줄씩 뽑으면 다음과 같다.",
+     "ord": 768
+    },
+    {
+     "kind": "para",
+     "text": "공장보다 큰 것은 회사 이름이다. 중서부태평양수산위원회의 용선 통보 명부에서 용선자(Charterer)가 「Kiribati Fish Limited」인 통보는 2015-09-29 첫 통보 뒤 93척에 이른다. 2026년에 통보된 용선 기간이 걸친 배는 36척이고, 선망 12척과 연승 24척이다. 2026-09-25 현재 36척이 통보 기간 안에 있고 해지된 행은 없다. KFL 자기 명의로 등록된 배는 연승 BLUE FORTUNE 31·32 두 척뿐이다.",
+     "ord": 2884
+    },
+    {
+     "kind": "para",
+     "text": "키리바시는 2026년 이 위원회 용선 통보의 최대 주최국이다. 키리바시 이름으로 통보된 2026년 용선 129척(계산) 가운데 KFL 몫은 36척으로, Kiribati Blue Pacific(KBPL)의 65척 다음이다.",
+     "ord": 3149
+    },
+    {
+     "kind": "para",
+     "text": "36척의 등록 소유자는 중국과 마셜제도의 법인 여섯 곳이다. 상장사 上海开创国际海洋资源股份有限公司(上海开创, 600097)의 전액출자 자회사 上海开创远洋渔业有限公司(开创远洋), 그 상장사의 지배주주 上海远洋渔业有限公司(上海远洋), 마셜 기국 선망선을 가진 손회사 泛太渔业(Pan Pacific Fishing (RMI) Inc., ⅬⅦ), 中水集团远洋(CNFC, ⅩⅩⅩ), 广州远洋(GUANGZHOU PELAGIC FISHERY), 广东广远(Guangdong Guangyuan Fishery Group)이다. KFL은 이 배들의 주인으로 명부에 오르지 않았다. 올라 있는 칸은 용선자 칸이다.",
+     "ord": 3283
+    },
+    {
+     "kind": "para",
+     "text": "600097 계열이 운항하는 선망선 12척은 2026-06-02부터 모두 KFL 이름으로 통보돼 있다(계산). 开创远洋이 가진 배 4척, 开创远洋이 지배주주 上海远洋에게서 빌린 JIN HUI 18·58 두 척, 泛太渔业의 마셜 기국 선망선 6척이다. JIN HUI 계열은 2016년부터 해마다 KFL 이름으로 올라 있었다. 泛太渔业의 배는 2026-06-02 마셜 정부의 통보로 들어왔다.",
+     "ord": 3624
+    },
+    {
+     "kind": "para",
+     "text": "위원회의 용선 통보 제도(CMM 2024-03, 2025-02-01 발효)는 ¶1에서 용선국 국내 선단의 일부로 조업하는 배(「as an integral part of the domestic fleet of that chartering Member」)를 적용 대상으로 정한다. ¶7은 「Unless specifically provided in other CMMs」라는 단서를 달고 용선 통보된 배의 어획과 조업 노력을 용선국에 돌린다. 현행 열대 참치 CMM 2025-02 ¶8은 눈다랑어 연승 한도와 선단 능력 계산에서 용선 어획을 용선국에 돌리면서, 권리와 배분을 정하는 귀속에는 영향을 주지 않는다고 적었다. 36척의 어획은 보고와 이 두 계산에서 키리바시 몫으로 잡힌다. 다만 선망 12척이 공해에서 잡은 어획과 조업은 위원회 사무국 문서(TCC22-2026-03)에 따르면 그 배의 기국 몫이다.",
+     "ord": 3852
+    },
+    {
+     "kind": "para",
+     "text": "이 배들이 KFL 공장에 무엇을 얼마나 내리는지는 숫자로 나와 있지 않다. 2026년 정부 보고서는 한 대목에서 외국 어선 일부가 어획 일부를 KFL에 내리도록 「encouraged」된다고 쓰고, 다른 대목에서는 정부가 허가선에 고가 참치 일부를 KFL에 내리도록 「required」했다고 쓴다. 권장과 의무가 한 보고서 안에서 갈린다. 양륙량이 빠진 이유는 한 문장으로 적혀 있다. 「All landing and export data are kept by KFL」, 곧 양륙과 수출 자료는 KFL이 갖고 있다.",
+     "ord": 4313
+    },
+    {
+     "kind": "para",
+     "text": "돈의 흔적은 중국 상장사 공시에 있다. 上海开创의 2026 반기보고서 선급금 상위 다섯 곳 표에서 2026-06-30 기준 1위는 Kiribati Fish Limited다. 금액은 2.725,35만 위안으로 선급금 기말 잔액의 43,49 %다. 공시는 이 선급금의 명목을 적지 않았다.",
+     "ord": 4610
+    },
+    {
+     "kind": "para",
+     "text": "2025-12-31 같은 표의 1위는 中国远洋渔业协会(2.831,91만 위안, 45,76 %)였고, KFL은 다섯 곳 안에 없었다. 2025 연보는 그해 선급금 증가 사유를 「主要系2026年度入渔费支付同比增加」라고 적었다. 2026년도 입어료 지급이 한 해 전보다 늘었다는 뜻이고, 선급금 전체의 증감을 설명한 문장이다.",
+     "ord": 4786
+    },
+    {
+     "kind": "para",
+     "text": "KFL 자신의 재무제표는 정부 예산서·결산서와 상장사 공시에 없다. 키리바시 2026 경상예산서의 공기업 재무표는 정부 100 % 공기업만 싣고, KBPL이나 Kiritimati Island Fish Limited(KIFL) 같은 합작사는 한 곳도 싣지 않는다. 上海开创의 2026-06-30 연결 재무상태표에서는 장기지분투자(长期股权投资)와 기타 지분상품 투자 계정이 비어 있다. 상장사 연결범위에 KFL 지분은 공시돼 있지 않고, 지배주주 上海远洋 단위의 보유 여부는 이 공시로 가를 수 없다.",
+     "ord": 4982
+    },
+    {
+     "kind": "para",
+     "text": "누가 몇 %를 가졌는지는 공개 원천마다 다르다. 세계은행 문서 두 건부터 갈린다. 2019-12-11 사업정보문서는 「The Government has a 20% share in KFL」, 2020-02-20 사업평가문서는 「The Government has a 40percent share in KFL」이라고 적었다. 키리바시 정부 국가보고서는 SC16부터 합작 상대로 Golden Ocean(피지)과 Zhejiang Ocean Family(浙江大洋世家, ZOF)를 들고 지분율은 적지 않는다. 키리바시에는 누구나 법인 등기를 볼 수 있는 조회 창구가 없어, 등기상 주주가 누구인지는 문서로 드러나지 않는다.",
+     "ord": 5277
+    },
+    {
+     "kind": "para",
+     "text": "2017년 원양어업국 연승선에 연승 어장을 닫을 때 키리바시 정부는 공장에 원료를 대라는 이유로 KFL 용선선을 조치에서 뺐다. 2025년 국가보고서(SC21)가 적은 내용이다. 용선선은 양자협정 허가선에 닫힌 국내조업수역에 들어가고 집어장치 규제도 면제받는다. 그 대우를 돈으로 따진 값은 정부 보고서에 없다.",
+     "ord": 5726
+    }
+   ],
+   "stage": "c01"
+  },
+  {
+   "sid": "s2",
+   "numeral": "02",
+   "label": "법인과 이름",
+   "subtitle": "KFL은 수산부 공기업·합작사 메뉴에 다른 여섯 회사와 함께 걸려 있고, 그 주소는 다른 합작사의 명부 행에도 적혀 있다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Kiribati Fish Limited(KFL)는 타라와 Betio Wharf에 가공장을 둔 합작사다. 키리바시 정부가 WCPFC에 낸 국가보고서는 이 회사를 정부와 외국 동업자가 함께 세운 회사로 적는다. 수산해양자원부(MFOR) 누리집은 KFL을 다른 공기업·합작사 여섯 곳과 한 메뉴에 걸어 두었다. KFL의 주소는 다른 합작사 KTFL의 EU 명부 행과 KBPL의 WCPFC 용선 통보에 나온다.",
+     "ord": 119
+    },
+    {
+     "kind": "para",
+     "text": "설립 연도는 문서마다 다르다. 정부 보고서 SC16~SC22판은 「established in 2010」이라고 적고, 회사 소개문은 설립일을 2010-12-10로 적는다. 그보다 앞선 SC11~SC13판은 「In the year 2012 … establishes」라고 썼다. 통상부(MCIC)의 『Trade Policy Framework 2017-2027』은 「establishment of … KFL in 2014」라고 적어 다른 원천과 어긋난다. 공장 가동 시점은 2012년 9월, 12월, 연말로 세 벌이고, 셋 다 2012년 하반기에 든다. 설립은 2010년, 가동은 2012년이다.",
+     "ord": 368
+    },
+    {
+     "kind": "para",
+     "text": "회사 이름도 한 벌이 아니다. MFOR 보도 한 건(node/89)은 「Kiribati Fisheries Limited」라고 적었다. 중국 商务部 『对外投资合作国别指南 基里巴斯(2025)』는 「基里巴斯渔业有限公司」, 곧 키리바시 어업 유한회사라고 부른다.",
+     "ord": 708
+    },
+    {
+     "kind": "para",
+     "text": "중국 측 동업자의 이름은 더 흔들린다. MFOR의 KFL 쪽은 「Shanghai Deep Sea Fishery」를, 2026-09-18 MFOR 보도는 「Shanghai Kaichuang Deep Sea Fisheries Ltd」를 적었다. WCPFC 선박 등록부(RFV)에서 앞의 영문 이름은 上海远洋渔业有限公司(上海远洋), 뒤의 이름은 上海开创远洋渔业有限公司(开创远洋)의 것이다. 上海远洋은 상장사 上海开创国际海洋资源股份有限公司(上海开创, 600097)의 지배주주이고, 开创远洋은 上海开创의 전액출자 자회사다. 둘은 다른 법인이다. 商务部 지침은 2010년 합작 당사자로 「中国上海远洋渔业有限公司」를 든다.",
+     "ord": 861
+    },
+    {
+     "kind": "para",
+     "text": "정부 보고서가 적는 중국 측 동업자는 또 다른 회사다. SC16(2020-08)부터 SC22까지 일곱 판은 KFL을 「joint venture between the Government of Kiribati, Golden Ocean (Fiji), and Zhejiang Ocean Family (China)」로 적는다. SC15(2019)는 「co-owned by the Government」까지만 썼다. 그런데 浙江大洋世家(ZOF)의 상장 신청 서류 가운데 財通證券 보증서(2023-03-03)는 해외 자회사 다섯 곳을 들면서 키리바시 법인으로 「圣诞岛渔业」(크리스마스섬 어업)과 「金枪鱼捕捞」(참치 어획) 둘만 적는다. 앞의 것이 KIFL, 뒤의 것이 KTFL이고, KFL은 목록에 없다. ZOF의 선망선 XIN SHI JI 111·112는 2016~2018년 KFL 이름으로 용선 통보됐다가 2019-01-01부터 KIFL 이름으로 통보됐다.",
+     "ord": 1213
+    },
+    {
+     "kind": "para",
+     "text": "MFOR 누리집의 「SOEs/JVs」 메뉴에는 일곱 회사가 걸려 있다. Atinimarawa Company Ltd(TACL), Central Pacific Producers Ltd(CPPL), KFL, Kiritimati Island Fish Limited(KIFL), Kiribati Blue Pacific Limited(KBPL), Kiribati Seafood Company Limited(KSCL), Kiribati Tuna Fish Limited다. 공기업과 합작사를 한 메뉴에 묶었다. TACL 쪽은 스스로를 「a state-owned enterprise」라고 소개하고, KFL 쪽은 「joint venture」라고만 적는다. CPPL은 정부 예산서의 공기업 재무표(2026 경상예산서 부속서 8)에 실리는 정부 100 % 공기업이다. 이 둘을 빼면 다섯 곳이 남는데, 메뉴는 이들을 합작사로 따로 구분하지 않는다. KSCL은 메뉴에 이름만 있다. 「Kiribati Tuna Fish Limited」의 MFOR 쪽은 내용이 비어 있다. IMF 『Selected Issues』(CR26)는 같은 이름의 회사를 「49 percent owned by the Government of Kiribati」라고 적고, 이 회사가 2019년 선망선 건조 자금을 빌린 것으로 전해진다고 쓴다(A). 이름, 2019년, 선망 건조가 EU·WCPFC 명부의 Kiribati Tuna Fishing Company Limited(KTFL)와 맞물린다. 두 이름이 같은 회사라고 적은 문서는 없다.",
+     "ord": 1697
+    },
+    {
+     "kind": "para",
+     "text": "「Central Pacific Fishing Company(CPFC)」라는 이름은 정부 보고서·예산서·선박 등록부에 나오지 않는다. 키리바시 국영 수산사는 CPPL이다. 新民晚报(2019-10-01)는 2010년 합작계약의 당사자를 CPPL(「中太捕捞」, 중태평양 어획), Golden Ocean(피지), 上海远洋 셋으로 적었다(B). KFL과 CPPL 사이의 지분 관계는 공개 문서에 없다.",
+     "ord": 4000
+    },
+    {
+     "kind": "para",
+     "text": "KFL의 주소는 다른 합작사의 EU 명부 행에 나온다. EU TRACES NT의 키리바시 수산 명부에 오른 것은 가공장 1곳과 동결선 15척이다. 동결선 가운데 KFL 명의는 없고, KTFL 명의가 KIBENA 1·2·3·6·7 다섯 척이다. 그 가운데 KIBENA 1과 KIBENA 2의 연락 주소가 「C/o KFL Betio, Wharf」와 「C/0 KFL Betio Wharf」다. 「C/o」는 우편물을 대신 받아 줄 곳을 적는 표기로, 두 척 앞으로 오는 서류를 KFL이 받는다는 뜻이다. 나머지 KIBENA 세 척의 주소는 Betio Wharf뿐이다. AidData·Atlantic Council(B)은 KTFL을 ZOF가 51 %를 가진 회사로 적는다.",
+     "ord": 4230
+    },
+    {
+     "kind": "para",
+     "text": "같은 모양은 용선 통보 명부에도 있다. KBPL이 용선자인 행 가운데 8행이 용선자 주소를 「KFL, Betio」나 「Kiribati Fish Limited, Betio」로 적었다. 2024년 FENG HUI 7·8 두 척이 그런 예다. 용선자 칸의 이름은 Kiribati Blue Pacific Company Limited이고 주소만 KFL이다. 두 척은 KFL 이름의 통보 321행·93척에 들지 않는다. 겹치는 것은 주소 한 줄이다. 두 명부는 KTFL·KBPL이 KFL과 지분이나 운영으로 이어진다고 적지 않는다.",
+     "ord": 4618
+    },
+    {
+     "kind": "para",
+     "text": "부처는 KFL과 KIFL을 한 쌍으로 부른다. MFOR은 2026-09-15 보도에서 「The Ministry acknowledges its joint-venture companies, KFL and KIFL」이라고 적었고, 2026-09-18 밀크피시 치어 방류의 공동 주체로 KIFL·ZOF·KFL·开创远洋을 함께 들었다. 두 회사가 서로 지분으로 이어지는지는 부처 문서에 없다.",
+     "ord": 4920
+    },
+    {
+     "kind": "para",
+     "text": "MFOR의 KIFL 쪽 본문은 「The Kiritimati Fish Limited (KIFL) was formed in 2010」으로 시작한다. 이어 정부 40 %, Golden Ocean 40 %, 「Shanghai Deep Sea Fishing of China (20%)」의 지분을 적고, 「in 2012 KIFL completed construction of a USD 8 million+ fish processing plant that employs hundreds of people in Kiribati's capital island of Tarawa」라고 쓴다. KFL 회사 소개문은 같은 설립 연도, 같은 40·40·20 지분, 같은 2012년 US$800만 이상 가공장을 KFL의 것으로 적는다. 바뀐 것은 회사 이름이고, 그 이름에서도 「Island」가 빠졌다.",
+     "ord": 5235
+    },
+    {
+     "kind": "para",
+     "text": "등록부의 KIFL은 이 소개문과 다른 회사다. ZOF 상장 서류는 KIFL을 ZOF 자회사로 적고, TRACES에 KIFL 명의로 오른 것은 동결선 TEMANIM 01·02 두 척이다. 정부 보고서 SC22는 「KFL is the only fishing company in Kiribati with a processing facility」라고 적는다. 같은 부처 누리집 안에서 두 합작사의 소개가 섞였다.",
+     "ord": 5694
+    }
+   ],
+   "stage": "c01"
+  },
+  {
+   "sid": "s3",
+   "numeral": "03",
+   "label": "열 벌의 지분",
+   "subtitle": "정부 몫은 20 %로도 40 %로도 적히고, 중국 측 동업자는 문서마다 다른 회사다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "KFL이 키리바시 정부와 외국 회사의 합작사라는 데까지는 공개 문서가 같은 말을 한다. 누가 몇 %를 가졌는지부터 문서가 갈린다. 세계은행은 같은 사업의 문서 두 건에서 정부 몫을 20 %와 40 %로 달리 적었다. 중국 측 동업자는 上海远洋渔业有限公司(上海远洋), 「Shanghai Fisheries」, 浙江大洋世家(ZOF), 上海开创远洋渔业有限公司(开创远洋)로 문서마다 바뀐다.",
+     "ord": 111
+    },
+    {
+     "kind": "para",
+     "text": "키리바시 상공부(MCIC)에는 무료 법인등기 조회 창구가 없고, 등기 주주명부는 공개되지 않는다. 지분이나 합작 당사자를 적은 공개 문서 가운데 열 건을 날짜순으로 모았다. 다섯 건은 비율을 숫자로 적었고, 다섯 건은 당사자 이름만 든다. 열 건 가운데 숫자가 있는 문서는 2014년 회사 누리집부터 2020-02-20 세계은행 문서까지이고, 그 뒤의 다섯 건에는 비율이 없다. 수산부 누리집의 KIFL 쪽에도 40·40·20이 있지만, 그 쪽은 이 비율을 KIFL의 지분으로 적는다. 숫자가 있는 다섯 건 가운데 넷이 정부 몫을 40 %로, 하나가 20 %로 적었다. 40 % 옆에 붙은 외국 측 이름과 몫은 문서마다 다르다.",
+     "ord": 360
+    },
+    {
+     "kind": "para",
+     "text": "20 %와 40 %는 한 기관 안에서 갈린다. 세계은행의 태평양 도서 지역 해양경관 프로그램(PROP) 키리바시 사업에서 사업정보문서(PID, 2020-01-23 갱신본)는 「The Government has a 20% share in KFL」이라고 적었다. 사업평가문서(PAD, 2020-02-20)는 「The Government has a 40percent share in KFL」이라고 적었다. 두 문장은 정부 몫만 적고 나머지 주주는 들지 않는다.",
+     "ord": 3235
+    },
+    {
+     "kind": "para",
+     "text": "중국 측 이름 가운데 가장 오래 이어지는 것은 上海远洋이다. 新民晚报(2019-10-01)는 2010년 상하이에서 「基里巴斯中太捕捞公司、金洋渔业（斐济）有限公司和上海远洋渔业有限公司三方」이 합자협의서에 서명했다고 적었다. 키리바시 국영 CPPL, 피지의 Golden Ocean, 上海远洋 세 회사가 서명 당사자라는 기사다. 중국 상무부의 2025년판 국별지침은 같은 세 당사자를 들면서 키리바시 쪽을 국영사가 아니라 「基里巴斯政府」(키리바시 정부)로 적었고, 비율은 적지 않았다. 수산부 누리집 공기업·합작사 쪽의 「Shanghai Deep Sea Fishery」도 上海远洋의 영문 이름이다.",
+     "ord": 3512
+    },
+    {
+     "kind": "para",
+     "text": "上海远洋은 상장사 上海开创国际海洋资源股份有限公司(上海开创, 600097)의 지배주주다. 600097의 2025 연보 용어 풀이(释义)는 「上海远洋、控股股东 指 上海远洋渔业有限公司」라고 적는다. 「上海远洋」과 「지배주주」가 둘 다 上海远洋渔业有限公司를 가리킨다는 뜻이다.",
+     "ord": 3852
+    },
+    {
+     "kind": "para",
+     "text": "2017년의 두 글은 중국 측 몫을 60 %로 적었다. Islands Business는 KFL을 「controlled by Shanghai Fisheries General Corporation (Group)」이라고 소개하고, Golden Ocean도 같은 중국 회사 소유라서 「the Chinese firm controls 60 pc of Kiribati Fish」라고 계산했다. 정부 40 %를 뺀 나머지가 중국 측이라는 셈법이다. PNA 기관지는 Golden Ocean을 아예 빼고 60 %를 「Shanghai Fisheries Group」 몫으로 적었다. 두 글의 60 %는 서로 다른 길로 나온 값이다.",
+     "ord": 4013
+    },
+    {
+     "kind": "para",
+     "text": "키리바시 정부가 중서부태평양수산위원회 과학위원회에 내는 국가보고서는 2020-08(SC16)부터 2026-07(SC22)까지 일곱 판 내리 중국 측 동업자를 ZOF로 적는다. ZOF 쪽 증권 서류에는 KFL이 없다. 大洋世家가 상하이거래소 상장을 신청하며 낸 財通證券 발행보증서(2023-03-03)는 해외 자회사를 5곳으로 적었다. 그 가운데 키리바시 법인은 「圣诞岛渔业（基里巴斯）及金枪鱼捕捞（基里巴斯）」 둘, 곧 Kiritimati Island Fish Limited(KIFL)와 Kiribati Tuna Fishing Company(KTFL)다. 자회사 목록은 지배하는 회사만 싣기 때문에 ZOF가 KFL의 소수 지분을 가졌는지는 이 보증서로 가려지지 않는다.",
+     "ord": 4389
+    },
+    {
+     "kind": "para",
+     "text": "배의 기록도 ZOF와 KFL을 떼어 놓는다. 위원회 용선 명부에서 ZOF 소유 선망선 XIN SHI JI 111·112는 2016~2018년 KFL 이름으로 용선 통보됐고, 2019-01-01부터는 용선자가 KIFL로 바뀌었다. 2026년 KFL 이름으로 통보된 36척의 소유자 여섯 곳에도 ZOF는 없고, 上海远洋과 开创远洋은 둘 다 들어 있다. 그런데 Atuna(2025-03-07)는 ZOF의 신조 선망선 기사에서 KFL을 정부 보고서와 같은 세 이름의 합작사로 소개했다.",
+     "ord": 4772
+    },
+    {
+     "kind": "para",
+     "text": "열 건 가운데 여섯 건에 이름이 나오는 Golden Ocean은 자기 몫을 더 크게 적는다. Golden Ocean 누리집은 「Golden Ocean Fish Limited assuming a major shareholder role」, 「The operational reins of KFL are expertly managed by Golden Ocean Fish Limited」라고 쓴다. 대주주 역할을 맡았고 KFL의 경영을 Golden Ocean이 쥐고 있다는 회사 자칭이다. 위원회 선박 등록부(RFV)와 FFA 명부에는 Golden Ocean 명의 배가 없다.",
+     "ord": 5050
+    },
+    {
+     "kind": "para",
+     "text": "가장 최근 문서는 수산부의 2026-09-18 보도다. 밀크피시 치어 방류를 알린 보도문은 협력 주체를 「Kiritimati Island Fish Limited (KIFL), Zheijang Ocean Family Co., Ltd, Kiribati Fish Limited (KFL), and their shareholder, Shanghai Kaichuang Deep Sea Fisheries Ltd」로 적었다. 「their」가 앞의 회사 가운데 어디까지를 받는지는 문장만으로는 가려지지 않는다. 다만 开创远洋을 KFL의 주주로 부르는 독법은 남는다. 같은 보도의 다른 문장은 「its joint-venture partners」로 KIFL·KFL·开创远洋 셋을 든다.",
+     "ord": 5380
+    },
+    {
+     "kind": "para",
+     "text": "开创远洋은 上海开创의 전액출자 자회사다. 같은 부처 누리집이 든 「Shanghai Deep Sea Fishery」, 곧 600097의 지배주주 上海远洋과는 다른 법인이다. 한 부처가 누리집에서는 600097의 지배주주를, 보도문에서는 600097의 자회사를 KFL의 동업자로 적었다.",
+     "ord": 5764
+    },
+    {
+     "kind": "para",
+     "text": "开创远洋은 上海开创(600097)의 연결 자회사다. 연결 자회사가 가진 지분 투자는 모회사 연결 재무상태표에 잡힌다. 600097의 2026-06-30 연결 재무상태표에서 长期股权投资(장기지분투자), 其他权益工具投资(기타 지분상품 투자), 其他非流动金融资产(기타 비유동 금융자산) 세 칸은 비어 있다. 2025 연보의 长期股权投资 칸은 「不适用」, 곧 해당 없음이다. 같은 연보가 든 특수관계자 12곳에도 KFL은 없다. 보도문의 「their shareholder」와 상장사 공시가 맞지 않는다.",
+     "ord": 6049
+    },
+    {
+     "kind": "para",
+     "text": "이 공시가 닿는 범위는 上海开创의 연결범위까지다. 2010년 합자협의서의 서명 당사자로 적힌 지배주주 上海远洋이 지금 KFL 지분을 갖고 있는지는 600097 공시로 가릴 수 없다.",
+     "ord": 6338
+    }
+   ],
+   "stage": "c02"
+  },
+  {
+   "sid": "s4",
+   "numeral": "04",
+   "label": "제 배 두 척",
+   "subtitle": "등록부에서 KFL 이름으로 된 배는 연승선 두 척이다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "WCPFC 선박 등록부(RFV)와 FFA 선박 명부가 Kiribati Fish Limited(KFL)를 등록 소유자로 적은 배는 연승선 BLUE FORTUNE 31과 BLUE FORTUNE 32다. 두 척은 제원이 같다. 키리바시 기국이고 2011년에 지었으며 총톤수 264 GRT, 전장 39,6 m다. WCPFC 허가 기간은 2025-11-18부터 2026-12-31까지이고, FFA 명부의 위치추적(VMS) 상태는 ACTIVE다.",
+     "ord": 82
+    },
+    {
+     "kind": "para",
+     "text": "EU TRACES의 키리바시 수산 명부에는 KFL 명의 배가 없다. 명부 16행 가운데 가공장은 Betio Wharf의 KFL 공장 한 곳이고, 나머지 15행은 동결선(ZV)이다. 15척의 등록 소유 법인은 다섯 곳이고 KFL은 그 안에 없다. KFL 이름이 명부에 다시 나오는 자리는 KIBENA 1·2의 연락 주소 「C/o KFL」이다. 두 척의 소유자는 Kiribati Tuna Fishing Company(KTFL)다.",
+     "ord": 361
+    },
+    {
+     "kind": "para",
+     "text": "KFL 이름이 붙은 배는 대부분 용선 통보 명부에 있다. 이 명부에서 KFL은 배를 빌린 용선자로 적힌다. 2015-09-29 첫 통보 뒤 KFL 이름으로 통보된 배는 93척이고, 2026년에는 36척이다. 2026년 36척의 소유자 칸에는 上海开创远洋渔业(开创远洋)·上海远洋渔业(上海远洋)·泛太渔业·广州远洋·广东广远·中水集团远洋(CNFC)이 적혀 있다. 중국과 마셜의 법인 여섯 곳이다. 배를 두고 KFL을 부르는 말은 문서마다 다르다. 한 회사 이름에 소유자, 용선자, 연락 주소, 운항자가 번갈아 붙는다.",
+     "ord": 1589
+    },
+    {
+     "kind": "para",
+     "text": "숫자 3은 두 문서에 나온다. STDF 타당성 보고서(STDF/PPG/657, 2019-03, 컨설턴트 작성)는 키리바시의 양륙 지점을 KFL 공장과 냉동창고 한 곳으로 적은 뒤 어선을 「about twenty fishing vessels (3 vessels for KFL)」라고 썼다. 스무 척쯤 되는 어선 가운데 세 척이 KFL 쪽이라는 말이다. EU 집행위원회 DG SANTE의 원격평가 보고서(2023-7853)는 키리바시 관할당국의 답변을 옮겨 「3 primary production fishing vessels supply EU-eligible fishery products, and these supply the land-based establishment」라고 적었다. EU로 보낼 수 있는 수산물을 잡는 1차 생산 어선 세 척이 육상 시설에 원료를 댄다는 뜻이다.",
+     "ord": 3773
+    },
+    {
+     "kind": "para",
+     "text": "두 문서 모두 세 척의 이름을 적지 않는다. 숫자 3의 구성은 공개 문서에 없다. 지금 KFL 명의로 등록된 배는 두 척이고, 두 척의 현행 WCPFC 허가는 두 문서보다 늦은 2025-11-18에 시작한다.",
+     "ord": 4220
+    },
+    {
+     "kind": "para",
+     "text": "2019년에는 숫자 3이 하나 더 생겼다. 정부는 그해 소형 연승선 세 척을 샀다. KFL을 거쳐 수출 시장에 닿으려는 사업이었고 운항은 국영 Central Pacific Producers Ltd(CPPL)이 맡았다. 2026년 정부 국가보고서(SC22)는 이 배들이 「no longer operational following a shift in government priorities」라고 적었다. 정부 우선순위가 바뀌어 더는 운항하지 않는다는 뜻이다. 매입가는 공개되지 않는다. STDF와 DG SANTE가 적은 세 척이 이 배들인지는 어느 문서도 밝히지 않는다.",
+     "ord": 4347
+    },
+    {
+     "kind": "para",
+     "text": "정부 보고서가 배의 주인을 KFL로 적은 해도 있다. 2019년 국가보고서(SC15)는 2017년에 연승 어장을 닫았다는 문장 바로 다음에 조업이 허용된 연승선을 「owned by the Kiribati Fish Limited company」라고 썼다. 같은 보고서는 몇 줄 아래에서 2018년 국적 선단을 적으며 「9 chartered longlines; (7 Chinese flag and 2 Fiji flag) by KFL」이라고 썼다. KFL이 빌린 연승선 아홉 척이며, 중국 기국 일곱 척과 피지 기국 두 척이다. 원료를 설명하는 대목도 「chartered longliners target yellowfin tuna – the raw material required by the KFL」이다.",
+     "ord": 4675
+    },
+    {
+     "kind": "para",
+     "text": "등록부의 기록은 용선 쪽과 맞는다. 용선 통보 명부에서 KFL은 용선자 칸에 있고, 2015년부터 KFL 이름으로 통보된 배의 기국은 중국·마셜·피지다. 뒤에 나온 국가보고서도 같은 폐쇄를 다르게 적는다. 2025년 SC21은 2017년 연승 어장 폐쇄를 설명하면서 「KFL chartered vessels were exempted from this arrangement to continue fish for this fishery to supply the processing plant」라고 썼다. 폐쇄에서 빠진 배를 KFL이 용선한 배로 부르고, 빠진 이유를 공장에 원료를 대는 일에서 찾은 문장이다.",
+     "ord": 5078
+    },
+    {
+     "kind": "para",
+     "text": "KFL 명의 두 척과 용선 배가 공장에 내리는 양은 정부 보고서에 수치로 나오지 않는다.",
+     "ord": 103433
+    }
+   ],
+   "stage": "c02"
+  },
+  {
+   "sid": "s5",
+   "numeral": "05",
+   "label": "이름 아래 서른여섯 척",
+   "subtitle": "2026년 WCPFC 용선 명부에서 KFL 이름으로 통보된 배는 서른여섯 척이고, 주인은 여섯 회사다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "WCPFC 용선 통보 명부에서 Kiribati Fish Limited(KFL)를 용선자(Charterer)로 적은 배는 2015년 9월 첫 통보 뒤 93척이다. 첫 통보는 2015-09-29 기국 통보로, SUI YUAN YU 22·23 두 척의 용선 기간을 2010-10-01부터로 거슬러 적었다. 2026년에 용선 기간이 걸린 배는 36척(선망 12·연승 24)이다. 36척 모두 기간이 2026-12-31에 함께 끝나고 해지된 행은 없다.",
+     "ord": 114
+    },
+    {
+     "kind": "para",
+     "text": "소급된 시작일 2010-10-01은 회사 누리집이 밝힌 설립일 「founded on December 10, 2010」보다도 앞선다. 기간은 2010년에 걸려 있어도 명부에 KFL 이름이 처음 나오는 때는 2015년 9월이다. 93척은 그때부터 2026-09-25까지 통보된 배를 센 값이다.",
+     "ord": 386
+    },
+    {
+     "kind": "para",
+     "text": "명부에서 KFL의 자리는 소유자 칸이 아니라 용선자 칸이다. 등록부에 KFL이 소유자로 오른 배는 연승선 BLUE FORTUNE 31·32 두 척이다. 용선 통보 제도를 정한 CMM 2024-03은 ¶1에서 용선된 배를 「as an integral part of the domestic fleet of that chartering Member」, 곧 용선국 국내 선단의 일부로 다룬다. 용선국은 키리바시이고, 명부는 KFL을 키리바시 안에서 배를 빌린 회사로 적는다. 2026년 키리바시가 주최국(Host CCM)인 용선은 129척(계산)이다. 용선자별로는 KFL 36척이 Kiribati Blue Pacific(KBPL) 65척 다음이다.",
+     "ord": 559
+    },
+    {
+     "kind": "para",
+     "text": "용선자 칸과 주소 칸은 따로 적힌다. 2024년 FENG HUI 7·8 두 척은 주소가 「Kiribati Fish Limited, Betio」이지만 용선자는 KBPL이다. 93척은 용선자가 KFL인 통보만 센 값이어서 이 두 척은 들지 않는다.",
+     "ord": 928
+    },
+    {
+     "kind": "para",
+     "text": "2026년 36척의 등록 소유자는 여섯 회사로, 중국 법인 다섯 곳과 마셜 법인 한 곳이다. 배가 가장 많은 곳은 연승선 아홉 척의 广州远洋이다. 선망 12척은 상장사 上海开创国际海洋资源股份有限公司(上海开创, 600097)와 이어진 세 법인의 배이고, 연승 24척은 네 법인의 배다.",
+     "ord": 1075
+    },
+    {
+     "kind": "para",
+     "text": "세 법인은 한 줄로 이어진다. 开创远洋은 上海开创의 전액출자 자회사이고, 上海远洋은 上海开创의 지배주주, 泛太渔业은 손회사다. JIN HUI 18·58의 등록 소유자는 上海远洋이다. 600097 2026 반기보의 「关联租赁」(관계사 임차) 표는 开创远洋이 이 두 배를 지배주주에게서 2026-01-01~12-31 빌려 쓴다고 적는다.",
+     "ord": 3463
+    },
+    {
+     "kind": "para",
+     "text": "泛太渔业 여섯 척의 선박 상세에는 「Host CCM: Kiribati From 02-Jun-2026 To 31-Dec-2026 Notified By Republic of Marshall Islands」라고 적혀 있다. 2026-06-02부터 연말까지 주최국은 키리바시이고, 통보는 마셜이 했다는 뜻이다. ⅬⅦ의 마셜 기국 선망 여섯 척과 같은 배다. 그날부터 600097 계열이 운항하는 선망 12척(开创远洋 소유 4, 지배주주에게서 임차 2, 泛太渔业 6)이 모두 KFL 이름으로 통보돼 있다(계산).",
+     "ord": 3660
+    },
+    {
+     "kind": "para",
+     "text": "해마다 KFL 이름에 오른 배가 몇 척인지는 명부의 기간 칸으로 센다. 명부 척수는 통보된 용선 기간이 그 해에 걸린 배의 수다. 한 번의 통보가 여러 해를 소급해 적은 행이 있고, 같은 배에 끝나는 날이 다른 행이 겹쳐 남은 경우도 있다. 첫 통보가 2015년 9월에 나왔으니 2015년 20척의 대부분은 2016년 이후의 통보가 기간을 거슬러 적은 배다. 통보는 조업 기록도 아니다. 그래서 이 계열은 실제로 조업한 배의 수가 아니라 상한값이다. 2026년은 행 36개가 배 36척과 하나씩 맞는다.",
+     "ord": 7428
+    },
+    {
+     "kind": "para",
+     "text": "정부 보고서와 견줄 수 있는 해는 2017·2018년이고, 두 해 모두 명부 쪽이 크다. 키리바시 정부가 WCPFC 과학위원회에 낸 국가보고서 SC14는 2017년을 「KFL currently operates 16 foreign flag vessels; 10 of which are longlines and 6 purse seiners」라고 적었다. 외국 기국 배 16척 가운데 연승이 10척, 선망이 6척이라는 문장이다. 같은 보고서의 다른 대목은 「The charter vessels comprise of 6 longlines … and 10 purse seine vessels all flag under China」로 선망과 연승의 수를 뒤바꿨다. 보고서는 「operates」라고 썼지만, 명부에서 KFL이 오른 칸은 용선자 칸이다.",
+     "ord": 8928
+    },
+    {
+     "kind": "para",
+     "text": "SC15는 2018년을 「10 chartered purse seiners by KFL」, 「9 chartered longlines; (7 Chinese flag and 2 Fiji flag) by KFL」로 적었다. 선망과 연승을 더하면 19척이다.",
+     "ord": 9352
+    },
+    {
+     "kind": "para",
+     "text": "93척을 기국으로 나누면 중국 83척, 마셜 6척, 피지 4척이다.",
+     "ord": 9502
+    },
+    {
+     "kind": "para",
+     "text": "명부가 적는 것은 배와 기간, 통보한 기국이다. 서른여섯 척이 타라와 공장에 얼마를 내리는지는 명부에 없고, 정부 보고서도 그 양을 「All landing and export data are kept by KFL」이라는 문장으로 대신한다.",
+     "ord": 9550
+    }
+   ],
+   "stage": "c03"
+  },
+  {
+   "sid": "s6",
+   "numeral": "06",
+   "label": "누구의 배인가",
+   "subtitle": "상하이의 한 그룹이 운항하는 선망 열두 척이 2026년 6월부터 모두 KFL 이름 아래 있다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "2026년 WCPFC 용선 명부에서 KFL 이름으로 통보된 선망선 열두 척은 상하이의 한 상장사 그룹이 운항하는 배다. 上海开创国际海洋资源股份有限公司(上海开创, 600097)의 전액출자 자회사 上海开创远洋渔业(开创远洋)이 소유한 네 척, 开创远洋이 지배주주 上海远洋渔业(上海远洋)에게서 빌린 JIN HUI 18·58 두 척, 손회사 泛太渔业(Pan Pacific Fishing (RMI) Inc., ⅬⅦ)의 마셜 기국 여섯 척이다(계산). 泛太渔业의 여섯 척이 2026-06-02 용선 기간에 들어가면서 열두 척이 한 용선자 이름 아래 모였다.",
+     "ord": 104
+    },
+    {
+     "kind": "para",
+     "text": "上海开创의 2025 연보는 참치 선망 선단을 11척으로 적었다. 여기에 泛太渔业의 JUNMETO를 더하면 12척(계산)이다. 2026 반기보는 선망 척수를 적지 않아서 그룹이 운항하는 선망이 이 열두 척에 그치는지 공시로는 가를 수 없다.",
+     "ord": 432
+    },
+    {
+     "kind": "para",
+     "text": "JIN HUI 18·58은 세 법인의 문서에 서로 다른 자격으로 나온다. WCPFC 선박 상세에 오른 등록 소유자는 上海远洋이다. 上海开创 2025 연보의 용어 풀이(释义)는 이 회사를 「上海远洋、控股股东 指 上海远洋渔业有限公司」로 적는다. 上海远洋이 곧 지배주주라는 뜻이다. 2026 반기보의 관계사 임차(关联租赁) 표에서 上海远洋은 두 배를 开创远洋에 빌려준다. 기간은 2026-01-01~12-31, 금액은 金汇18이 837,53만 위안, 金汇58이 719만 위안이다. 관계 칸에는 「控股股东」이 적혀 있다. 2024·2025 연보에도 같은 두 배의 「续租」, 곧 임차를 이어 간다는 문장이 있다. 용선 명부의 용선자 칸에 적힌 이름은 KFL이다.",
+     "ord": 576
+    },
+    {
+     "kind": "para",
+     "text": "JIN HUI 계열이 KFL 이름에 오른 것은 2026년이 처음이 아니다. 용선 명부에서 JIN HUI 계열은 2016년부터 2026년까지 해마다 KFL 이름으로 통보됐고 한 해에 4~6척이었다. 2026년 JIN HUI 8·9·18·68의 기국 통보일은 2026-06-18로 같다.",
+     "ord": 2139
+    },
+    {
+     "kind": "para",
+     "text": "지배주주 上海远洋은 연승선도 이 이름 아래 두었다. HUYU 927·928·929는 2015년부터 KFL 이름으로 통보됐다. 2020·2021년 두 해만 명부에 KFL 행이 없다. 2026년 36척 가운데 上海远洋 명의는 연승 셋과 선망 둘을 더한 다섯 척이다.",
+     "ord": 2308
+    },
+    {
+     "kind": "para",
+     "text": "泛太渔业은 마셜제도의 참치 공장 법인 Pan Pacific Foods(PPF, ⅬⅦ)와 같은 그룹에 속한 선단 법인이다. 이 법인이 등록 소유자인 마셜 기국 선망 여섯 척 전부가 2026년 KFL 이름 아래 있다. 선박 상세는 이 배들의 용선을 「Host CCM: Kiribati From 02-Jun-2026 To 31-Dec-2026 Notified By Republic of Marshall Islands」로 적는다. 2026-06-02부터 2026-12-31까지 용선 주최국은 키리바시이고 통보는 기국 마셜이 했다는 뜻이다. 마셜 기국 배가 마셜이 아닌 키리바시를 주최국으로 한 용선에 들어갔다.",
+     "ord": 2465
+    },
+    {
+     "kind": "para",
+     "text": "2026년 36척(선망 12·연승 24)의 등록 소유자는 여섯 회사다. 선망 열두 척은 上海开创 계열의 세 법인 몫이다. 연승 24척은 GUANGZHOU PELAGIC FISHERY(广州远洋) 9척, Guangdong Guangyuan Fishery Group(广东广远) 7척, CNFC OVERSEAS FISHERIES(中水集团远洋, ⅩⅩⅩ) 5척, 上海远洋 3척이다.",
+     "ord": 2813
+    },
+    {
+     "kind": "para",
+     "text": "연승 쪽 소유자 가운데 中水는 제 공시에 키리바시 사업을 적는다. 中水의 2026 반기보는 2026-04-07~19에 「公司斐济、基里巴斯远洋渔业项目现场」에서 선원 교육을 했다고 썼다. 회사의 피지·키리바시 원양어업 프로젝트 현장이라는 말이다. 같은 해 ZHONGSHUI 연승 5척이 KFL 이름으로 통보됐고 기국 통보일은 2026-08-24다. 반기보의 「基里巴斯远洋渔业项目」이 이 다섯 척을 가리키는지는 공시에 적혀 있지 않다.",
+     "ord": 3031
+    },
+    {
+     "kind": "para",
+     "text": "上海开创도 사업 보고에 키리바시를 적는다. 2026 반기보는 선망 선단의 어획이 줄어든 원인으로 「拉尼娜转厄尔尼诺的不利渔场环境及基里巴斯部分水域关闭的影响」을 들었다. 라니냐에서 엘니뇨로 넘어가는 불리한 어장 환경과 키리바시 일부 수역 폐쇄의 영향이라는 뜻이다. 어느 수역이 언제부터 닫혔는지는 공시에 없다.",
+     "ord": 3282
+    },
+    {
+     "kind": "para",
+     "text": "2024 연보에는 「继续推进基里巴斯凤凰岛金枪鱼围网资源探捕项目」이라는 문장이 있다. 키리바시 피닉스 제도(凤凰岛)의 참치 선망 자원 탐사 조업 사업을 계속 추진한다는 뜻이다. 이 문장은 2024 연보의 2025년 경영계획 절에 있다. 2024년에 한 일을 보고한 문장이 아니다. 두 문장은 해도 절도 다르다. 둘을 한 사건으로 묶은 공시 문장은 없다.",
+     "ord": 3463
+    },
+    {
+     "kind": "para",
+     "text": "KFL 이름에서 다른 용선자 이름으로 옮겨 간 배도 있다. 浙江大洋世家(ZOF)의 선망 XIN SHI JI 111·112는 2016~2018년 KFL 이름으로 통보됐고 2019-01-01부터는 용선자가 Kiritimati Island Fish Limited(KIFL)다. 키리바시 정부의 WCPFC 국가보고서가 KFL을 정부·Golden Ocean(피지)·「Zhejiang Ocean Family」의 합작사로 적기 시작한 것은 SC16(2020-08)부터다. 그때 ZOF의 두 척은 이미 KIFL 용선이었다. 2026년 36척의 소유자 여섯 곳에 ZOF는 없다.",
+     "ord": 3669
+    },
+    {
+     "kind": "para",
+     "text": "주최국 단위로 보면 키리바시가 2026년 WCPFC 용선의 최대 주최국이다. 그해 키리바시를 주최국으로 용선 기간이 걸린 배는 129척(계산)이다. 용선자별로는 Kiribati Blue Pacific(KBPL)이 65척이고 KFL 36척, KIFL 26척, Kirikore 2척이 뒤를 잇는다. 다른 주최국은 파푸아뉴기니 53척, 마셜제도 42척, 솔로몬제도 38척, 미크로네시아연방 25척이다(계산).",
+     "ord": 3994
+    },
+    {
+     "kind": "para",
+     "text": "上海开创의 2026 반기보는 손회사인 마셜제도 참치 공장 법인 PPF(ⅬⅦ)의 휴업(停工) 손실을 적었다. 같은 해 2026-06-02부터 선단 법인 泛太渔业의 선망 여섯 척이 KFL 이름으로 용선 통보됐다. 공장 법인과 선단 법인은 이름이 비슷한 다른 법인이다.",
+     "ord": 8503
+    },
+    {
+     "kind": "para",
+     "text": "두 일은 같은 해에 일어났다. 공장의 휴업 손실과 선단의 키리바시 용선을 원인과 결과로 묶은 문장은 上海开创 공시에 없다.",
+     "ord": 8662
+    }
+   ],
+   "stage": "c03"
+  },
+  {
+   "sid": "s7",
+   "numeral": "07",
+   "label": "용선이 받는 것",
+   "subtitle": "키리바시는 2017년 외국 연승을 닫으면서 KFL 용선선만 남겼고, 용선선에는 국내 조업수역을 열어 준다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "키리바시 정부가 WCPFC 과학위원회에 낸 2025년 국가보고서(SC21)는 원양 어업국 연승선에 자국 연승 어장을 닫은 해를 2017년으로 적는다. 같은 문단에 「KFL chartered vessels were exempted from this arrangement to continue fish for this fishery to supply the processing plant」라는 문장이 이어진다. KFL 용선선은 공장에 원료를 대라는 이유로 폐쇄에서 빠져 이 어장에서 계속 조업했다는 뜻이다.",
+     "ord": 112
+    },
+    {
+     "kind": "para",
+     "text": "용선선이 받는 것은 폐쇄 면제 하나가 아니다. 같은 보고서는 입어 협정과 어구별 허가 조건이 외국선과 국내선에 똑같이 걸린다고 적은 뒤, 국내선과 용선선에는 예외 약정이 있다고 덧붙였다. 양자 협정으로 허가받은 배에는 닫혀 있는 국내조업수역(DFZ)에 들어갈 수 있고, 집어장치(FAD) 면제와 「other concessions」도 받는다. SC22(2026-07) 5.2절도 같은 취지를 적었다. 이 약정의 주어는 KFL이 아니라 국내선과 용선선이다. 2026년 키리바시가 주최국으로 받은 용선 129척(계산) 가운데 KFL 이름으로 통보된 배는 36척이고, 가장 많은 배를 올린 용선자는 Kiribati Blue Pacific(KBPL)이다.",
+     "ord": 417
+    },
+    {
+     "kind": "para",
+     "text": "용선 연승은 그 뒤에도 늘었다. SC22는 키리바시 연승 척수가 늘어난 이유를 「charter longline operations under joint venture companies particularly KFL and KIFL」로 설명했다. 합작사, 그 가운데서도 KFL과 Kiritimati Island Fish Limited(KIFL) 이름으로 용선한 연승선이 늘었다는 말이다. 2026년 KFL 이름의 36척 가운데 연승은 24척이다.",
+     "ord": 789
+    },
+    {
+     "kind": "para",
+     "text": "허가 값에 관한 문장은 IMF 문서에 있다. IMF 2026 Article IV(2026-05-14)는 「longline licenses sold at affordable prices to local JVs」라고 적었다. 연승 허가를 현지 합작사에 부담 없는 값으로 팔았다는 뜻이다. 이 문장에 KFL 이름은 없고 금액도 없다. 용선선이 조업일이나 허가에 얼마를 내는지, 양자 협정선과 얼마나 차이가 나는지는 공개되지 않는다.",
+     "ord": 1048
+    },
+    {
+     "kind": "para",
+     "text": "용선선의 자리는 세 갈래 문서가 정한다. 키리바시 정부 보고서는 국내 허가 조건과 양륙을, WCPFC 보존관리조치(CMM)는 어획을 어느 회원의 몫으로 세는지를, IMF는 허가 값을 적었다.",
+     "ord": 1297
+    },
+    {
+     "kind": "para",
+     "text": "CMM 2024-03 ¶7에 따르면 KFL 이름으로 통보된 36척의 어획과 조업은 키리바시 몫으로 계산된다. 조항은 「Unless specifically provided in other CMMs」로 시작한다. 현행 열대 참치 조치 CMM 2025-02 ¶8은 용선 어획을 용선국에 돌리는 계산을 눈다랑어 연승 한도와 선단 능력 두 곳으로 한정했다. 이 귀속이 권리와 배분을 정하는 귀속에 영향을 주지 않는다고도 적었다. ¶7은 어획을 어느 회원의 장부에 올리는지를 정한 규칙이다. 배가 KFL 공장에 무엇을 얼마나 내리는지는 이 조항에 없다.",
+     "ord": 3862
+    },
+    {
+     "kind": "para",
+     "text": "양륙을 다룬 문장은 같은 보고서 안에서도 두 가지다. SC22 7절은 「some foreign fishing vessels are encouraged to land part of their catch to KFL」, 곧 일부 외국 어선에 KFL 양륙을 권한다고 썼다. 10.4절은 「the Government required licensed vessels to land a portion of high-value tuna to Kiribati Fish Limited (KFL)」, 곧 정부가 허가선에 고가 참치 일부를 KFL에 내리게 했다고 썼다. 권장과 의무가 한 문서에 함께 있다. 2017년을 다룬 정부 보고서(SC14)에도 「requirement to offload a certain portion of Yellowfin catch to KFL」이라는 문장이 있다.",
+     "ord": 4176
+    },
+    {
+     "kind": "para",
+     "text": "무엇을 내리는지는 정부 보고서가 해마다 조금씩 적었다. SC13은 「Government chartered vessels … unload their catches to KFL」이라고 썼다. SC14는 공장에 들어오는 생선을 「fresh (usually from longlines) and frozen from purse seiners」로 나눴다. 신선어는 주로 연승선에서, 냉동어는 선망선에서 온다는 것이다. SC15는 「chartered longliners target yellowfin tuna – the raw material required by the KFL」라고 적었다. 용선 연승선이 노리는 황다랑어가 KFL에 필요한 원료라는 설명이다.",
+     "ord": 4619
+    },
+    {
+     "kind": "para",
+     "text": "선망 쪽은 사정이 다르다. SC22 10.4절은 「Since Kiribati has no canning factory, purse seine catch is usually transshipped overseas」라고 적었다. 캔 공장이 없어서 선망 어획은 보통 해외로 환적된다. KFL에 내린 생선은 로인과 필레로 가공된다.",
+     "ord": 4992
+    },
+    {
+     "kind": "para",
+     "text": "양은 어느 해 정부 보고서에도 없다. SC22 10.4절의 마지막 문장은 「All landing and export data are kept by KFL」, 곧 양륙과 수출 자료를 KFL이 가지고 있다는 것이다. 양륙 물량을 적은 공개 문서로는 STDF 타당성 보고서(STDF/PPG/657, 2019-03, 컨설턴트 작성) 28쪽의 한 문장이 있다. 원문은 「Kiribati operations entail one landing point, the Kiribati Fish Limited (KFL) plant and cold store, and about twenty fishing vessels (3 vessels for KFL). The total volume of catch landed amounts to about 1,000 tons/ month」다. 키리바시의 양륙 지점은 KFL 공장과 냉동창고 한 곳이고, 스무 척 남짓한 배가 그곳에 달마다 약 1.000 t을 내린다는 뜻이다. 그 수치는 양륙 지점 한 곳을 지나는 물량이다. KFL이 가공한 양을 적은 문장은 아니다.",
+     "ord": 5184
+    },
+    {
+     "kind": "para",
+     "text": "나라 단위 어획도 KFL 몫을 가려 주지 않는다. SC22 표에서 2025년 키리바시 연승 어획은 23.027,7 t, 선망 어획은 235.288,4 t이다. 연승은 원문이 배들을 「flagged under Kiribati and foreign flag」로 적어 외국 기국 용선이 들어 있다. 선망 수치를 설명하는 원문의 주어는 「Kiribati's flag purse seine vessels」다. 외국 기국으로 KFL 이름에 오른 용선 선망선이 이 값에 들어갔는지는 적혀 있지 않다. 두 값은 키리바시 선단의 합계다.",
+     "ord": 5752
+    },
+    {
+     "kind": "para",
+     "text": "위원회 사무국 문서 TCC22-2026-03(2026-08-14)은 CMM 2024-03 ¶7과 CMM 2025-02 ¶8을 함께 놓고, 공해에서 잡은 용선 선망선의 어획과 조업은 그 배의 기국 몫이라고 적었다. 사무국은 ¶8의 적용 범위를 근거로 들었다. 2026-06-02부터 KFL 이름으로 통보된 泛太渔业 선망 6척은 마셜 기국이다.",
+     "ord": 6158
+    },
+    {
+     "kind": "para",
+     "text": "용선 통보가 키리바시 장부에 올리는 것은 보고와 두 가지 한도 계산의 어획이다. ¶8의 「without prejudice」 문구는 그 귀속과 권리·배분을 정하는 귀속을 갈라 놓았다. 「용선 = 키리바시 권리」라는 등식은 두 조치의 문언에서 나오지 않는다.",
+     "ord": 6360
+    }
+   ],
+   "stage": "c04"
+  },
+  {
+   "sid": "s8",
+   "numeral": "08",
+   "label": "공장",
+   "subtitle": "Betio 부두의 공장은 2013년 하루 15 t 능력에 주 1회 돌았고, 그 뒤 능력 수치는 공개되지 않았다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "KFL의 공장은 남타라와 Betio 부두(Betio Wharf)에 있고 2012년 하반기에 가동했다. EU TRACES NT의 키리바시 수산 명부 16행 가운데 가공장(PP)은 「KIR-KFL-EU-01 Kiribati Fish Limited, Betio Wharf, Tarawa」 한 줄이고, 나머지 15행은 동결선이다. 관할당국인 수산부 KSVA의 승인 목록은 이 공장을 EU External Listing 「KFL Processing Plant」로, 딸린 시설을 EU Internal Listing 「KFL Chiller / Old & New Jetty」로 나눠 올려 두었다.",
+     "ord": 109
+    },
+    {
+     "kind": "para",
+     "text": "가동 날짜는 문서마다 조금씩 다르다. 키리바시 정부가 생물다양성협약(CBD)에 낸 2014년 국가보고서와 중국 외교부 국가개황은 2012년 9월을, 新民晚报(2019)는 2012-12-08을, IMF(2013)는 「end-2012」를 적었다. 법인 설립은 그보다 이른 2010년이다.",
+     "ord": 462
+    },
+    {
+     "kind": "para",
+     "text": "공장 처리 능력을 적은 수치는 2013년 무렵의 것 하나다. 2014년 학술 보고서(ANCORS·WorldFish)는 면담에서 들은 말을 빌려 이 공장이 하루 약 15 t을 처리할 수 있고 일주일에 한 번꼴로 돌아간다고 적었다. SPC 소식지(Fish News)의 문장도 결이 같다. 「processing potential is 15 tonnes a day, but it currently exports less than 5」, 하루 15 t을 가공할 수 있지만 지금 수출하는 양은 5 t에 못 미친다는 것이다. 두 서술은 매체·연구 쪽 자료(B)다. 2014년 뒤로 능력이나 가동률을 수치로 적은 공개 문서는 없다.",
+     "ord": 631
+    },
+    {
+     "kind": "para",
+     "text": "공장 설비에 관한 사실은 정부 보고서, EU 명부, 인증 기관, 학술 논문에 흩어져 있다. 부지 면적과 토지 소유, 장부가는 어느 공개 문서에도 나오지 않는다.",
+     "ord": 987
+    },
+    {
+     "kind": "para",
+     "text": "공장에 들어간 돈은 문서마다 다르게 적혀 있다. 정부 문서 두 곳은 같은 금액을 적었고, 재무부 값에는 통화가 붙어 있지 않다. 회사 쪽 발언과 매체 추정은 그보다 크다.",
+     "ord": 3295
+    },
+    {
+     "kind": "para",
+     "text": "가장 이른 A등급 값 US$800만은 2012년 가동 무렵의 투자를 가리킨다. 그 뒤 공장 설비에 돈을 더 넣었다는 공시는 없다.",
+     "ord": 4113
+    },
+    {
+     "kind": "para",
+     "text": "공장의 전기와 물을 적은 문서는 2021년 MDPI 학술지 논문 한 편이다. 논문은 200 kW급 디젤발전기 2대와 하루 50 t짜리 역삼투 담수화 설비 2대가 돌아간다고 썼다. 폐수를 어떻게 처리하는지, 어떤 허가를 받았는지는 공개 문서에 없다.",
+     "ord": 4196
+    },
+    {
+     "kind": "para",
+     "text": "품질 검사에 드는 돈은 두 문서가 다른 통화로 적었다. 세계은행 환경·사회관리체계(ESMF, 2020)는 「firms, like KFL, currently spend upwards of USD 130,000 annually on overseas testing」이라고 썼다. KFL 같은 회사가 해외 검사에 해마다 13만 달러 넘게 쓴다는 말이다. 한 해 앞서 나온 STDF 타당성 보고서(STDF/PPG/657, 2019-03, 컨설턴트 작성)는 검사 비용을 「AUD 150,000 /year」로 적었다. 한쪽은 미국 달러, 다른 쪽은 호주 달러다. 두 값을 하나로 맞춘 문서는 없다. 같은 STDF 보고서에는 「Only the KFL plant holds a food safety management system (FSMS) certification」이라는 문장도 있다. 식품안전경영시스템(FSMS) 인증을 가진 곳은 KFL 공장뿐이라는 뜻이다.",
+     "ord": 4345
+    },
+    {
+     "kind": "para",
+     "text": "인증은 2017년에 몰려 있다. MSC 가공 인증이 그해 3월에 처음 나왔고, EU 가공장 등재 요청일은 7월이다.",
+     "ord": 4830
+    },
+    {
+     "kind": "para",
+     "text": "STDF 보고서에는 확장 계획도 나온다. KFL이 「plan opening two additional factories, one in Tarawa and one on Christmas Island」, 곧 타라와와 크리스마스섬(Kiritimati)에 공장을 하나씩 더 열 계획이라는 것이다. 일곱 해 뒤 키리바시 정부가 중서부태평양수산위원회 과학위원회(SC22, 2026-07)에 낸 국가보고서는 「KFL is the only fishing company in Kiribati with a processing facility」라고 적었다. 키리바시에서 가공시설을 가진 수산 회사는 여전히 KFL 하나다. EU 명부에 오른 가공장도 Betio 한 곳이다.",
+     "ord": 177354
+    },
+    {
+     "kind": "para",
+     "text": "같은 국가보고서에는 2018년판(SC14)부터 해마다 거의 같은 말로 실려 온 전망 문장이 있다. KFL의 조업과 지원 시설이 넓어지면 앞으로 수출량이 늘 것이라는 내용이다. 무엇을 얼마나 넓히는지는 적혀 있지 않다.",
+     "ord": 177729
+    }
+   ],
+   "stage": "c04"
+  },
+  {
+   "sid": "s9",
+   "numeral": "09",
+   "label": "사람",
+   "subtitle": "직원은 262명에서 150명으로 줄었다가 258명이 됐고, 정부와 IMF가 같은 계열을 다르게 요약한다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "키리바시 정부가 중서부태평양수산위원회의 과학위원회에 해마다 내는 국가보고서는 KFL의 직원 수를 싣는다. 숫자를 낸 곳은 회사다. 2025년판(SC21)은 이 계열을 「Historical employment record obtained from KFL」, 곧 KFL에서 받은 고용 기록이라고 적었고, 회사가 공장에서 현지인을 고용해 왔다는 대목(「employment of locals in the plant」) 바로 뒤에 실었다. 2013년 50명이던 직원은 2018년 262명까지 늘었고, 2023년 150명으로 줄었다가 2026년판(SC22)이 말하는 「the most recent year」에 258명이 됐다.",
+     "ord": 105
+    },
+    {
+     "kind": "para",
+     "text": "판마다 숫자가 조금씩 다르다. 2013년 값은 2020년판(SC16)부터 2024년판(SC20)까지 다섯 판에서 55명이었고, SC21·SC22에서 50명으로 바뀌었다. 2023년 값은 SC20이 154명, SC21·SC22가 150명이다. 2019년 251명은 SC16 본문에 있다. SC18부터는 본문이 2018년에서 2020년으로 건너뛰어 2019년을 적지 않는다. SC22 본문은 2014~2017년 값을 적지 않고 도표 막대로만 보여 준다. 258명이 몇 년 값인지도 본문에 없다. 도표 범위가 2013~2025년이어서 마지막 막대가 2025년 자리에 놓여 있을 뿐이다.",
+     "ord": 473
+    },
+    {
+     "kind": "para",
+     "text": "한 학술 보고서는 계열의 첫해에 공장이 하루 약 15 t 능력으로 주 1회 돌았다고 적었다(KFL 측 인사의 말을 인용한 값). 같은 보고서는 그 무렵 교대 인력을 약 100명으로 적었고(B), 정부 보고서의 2013년 값은 50명(판본에 따라 55명)이다.",
+     "ord": 5902
+    },
+    {
+     "kind": "para",
+     "text": "IMF의 요약은 이 계열과 결이 다르다. IMF 2026년 제4조 협의 보고서(2026-05-14)는 각주에 「As of 2024, KFL employed about 200 workers, broadly stable since 2015」라고 썼다. 2024년 현재 KFL이 약 200명을 고용하고 있고, 인원이 2015년 이후 대체로 비슷했다는 문장이다. 각주 끝에는 키리바시가 중서부태평양수산위원회에 낸 2025년 국가보고서, 곧 SC21이 출처로 붙어 있다. 200명이라는 수만 보면 SC21이 적은 2024년 214명과 가깝다. 어긋나는 것은 「broadly stable」이라는 요약이다. IMF가 출처로 단 SC21 본문에는 2023년 150명이 함께 적혀 있다. 200명도 결국 회사가 정부에 준 기록에서 나온 값이어서 정부 보고서와 IMF 보고서는 서로 독립된 두 출처가 아니다.",
+     "ord": 6063
+    },
+    {
+     "kind": "para",
+     "text": "회사가 스스로 밝힌 숫자는 정부 계열의 어느 해 값보다 크다. Pacifical과 MOU를 맺은 2016-12-02 보도자료는 「KFL currently employs 300 people within its processing and fishing operations」라고 적었다(C). 가공과 조업을 합쳐 그만큼을 고용한다는 뜻이다. KFL 운영을 맡고 있다고 자칭하는 피지의 Golden Ocean Fish Limited는 누리집에 날짜 없이 「over 400 people」을 고용한다고 적었다. 육상과 조업 인력을 함께 센 수다. 정부 보고서는 이 계열을 공장의 현지인 고용을 설명하는 자리에 실었다. 세는 범위부터 다르게 적혀 있다.",
+     "ord": 6516
+    },
+    {
+     "kind": "para",
+     "text": "나라 단위 숫자도 있다. 태평양도서국포럼 수산기구(FFA)의 『Tuna Fishery Report Card 2025』는 키리바시의 참치 부문 2022~2024년 평균 고용을 1.243명으로 적는다. 키리바시 한 나라의 값이어서 KFL 직원 수로 옮길 수 없다. 같은 표는 고용을 육상 가공·취급 물량과 다른 칸에 두고, 육상 가공 물량이 없는 나라에도 고용을 수백 명으로 적는다. 공장 인력만 센 값도 아니다.",
+     "ord": 6885
+    },
+    {
+     "kind": "para",
+     "text": "임금의 바닥은 법이 정한다. 키리바시 고용·노사관계법(Employment and Industrial Relations Code 2015) 제5부(Part V)에 따르면 위원회(Board)가 최저임금을 장관에게 권고하고(s.50), 장관이 명령으로 최저임금률을 정한다(s.57). 그 명령을 따르지 않은 사람은 형사 책임을 진다(s.58(2)). 지금 적용되는 액수는 PacLII 법령 모음을 비롯한 공개 문서에 나오지 않는다. KFL 이름의 노동 분쟁이나 작업장 사고도 RNZ·Islands Business 보도와 PacLII 판례에 나오지 않는다.",
+     "ord": 7125
+    },
+    {
+     "kind": "para",
+     "text": "2023년에 직원이 150명으로 줄어든 까닭을 정부 보고서는 적지 않는다. 이듬해 214명, 최근 연도 258명으로 다시 늘어난 이유도 없다. 국가보고서는 대개 한 해 앞의 값을 싣는다. 2023년판(SC19)의 약 220명은 2022년 값이었고, 2025년판(SC21)의 214명은 2024년 값이었다. 그래도 258명이 2025년 값인지는 다음 국가보고서가 연도를 밝혀야 정해진다.",
+     "ord": 7443
+    }
+   ],
+   "stage": "c05"
+  },
+  {
+   "sid": "s10",
+   "numeral": "10",
+   "label": "제품과 값",
+   "subtitle": "KFL은 신선·로인·필레를 만들고, 값은 수입국이 신고한 단가로만 보인다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "키리바시 정부가 WCPFC 과학위원회에 낸 2026년 국가보고서(SC22)는 KFL을 「operates mainly in the longline fishery, producing fresh and loin products for overseas markets」라고 소개한다. 주로 연승 어업 쪽에서 일하며 해외 시장에 낼 신선품과 로인을 만든다는 뜻이다. 같은 보고서는 부두에 내린 생선이 「processed into loins and fillets」, 곧 로인과 필레로 가공돼 수출된다고 적었다. 캔은 없다.",
+     "ord": 91
+    },
+    {
+     "kind": "para",
+     "text": "IMF의 2013년 국가보고서는 공장이 2012년 말에 가동했다고 적으면서 KFL이 「processes sashimi for the Japanese and US markets」라고 썼다. 일본과 미국 시장에 낼 사시미용 참치를 가공한다는 말이다. 키리바시 정부(MCIC)의 『Trade Policy Framework 2017-2027』은 첫 수출을 2013년으로, 수출량을 월 약 80 t으로 적었다. 한 해로 치면 약 960 t(계산)이다. 같은 문서는 항공화물 능력이 수출을 늘리는 데 걸림돌이라고 적었다.",
+     "ord": 400
+    },
+    {
+     "kind": "para",
+     "text": "캔이 없다는 사실은 정부 문장과 무역통계가 함께 보여 준다. SC22는 「Since Kiribati has no canning factory, purse seine catch is usually transshipped overseas」라고 적었다. 키리바시에는 캔 공장이 없어 선망선이 잡은 참치는 대개 해외로 옮겨 실린다는 뜻이다. 상대국이 신고한 키리바시산 캔(1604)은 2024년 태국의 20 kg, 2025년 태국의 15 kg이다. 같은 통계에서 냉동 참치 필레(030487)는 해마다 나온다.",
+     "ord": 99521
+    },
+    {
+     "kind": "para",
+     "text": "업계지 Atuna는 2025-03-07 기사에서 浙江大洋世家(ZOF)를 두고 「The company owns a cannery」라고 쓰면서 그 캔 공장이 키리바시의 합작 사업에 속한다고 덧붙였다. 같은 기사는 KFL을 「Zhejiang Ocean Family, the Government of Kiribati, and Golden Ocean (Fiji)」의 합작사로 소개한다. ZOF, 키리바시 정부, 피지의 Golden Ocean이 함께 세운 회사라는 뜻이다. 기사의 캔 공장 서술은 정부 보고서의 「Kiribati has no canning factory」와 맞지 않고, 상대국 무역통계도 정부 문장과 맞는다.",
+     "ord": 99825
+    },
+    {
+     "kind": "para",
+     "text": "제품 목록은 문서마다 다르게 적힌다. 정부와 IMF는 가공 형태를, 회사 누리집은 어종을, 인증 명부는 인증 범위를 적었다. 2016년 말에는 MSC 인증 참치 브랜드 Pacifical과 맺은 양해각서 보도가 나왔다.",
+     "ord": 100179
+    },
+    {
+     "kind": "para",
+     "text": "양해각서 보도는 KFL이 2017년 1월부터 MSC 인증 황다랑어 로인과 스테이크를 공급한다고 전했다. MSC 명부에 KFL의 CoC가 처음 오른 날은 2017-03-15다. 공급 계획과 인증이 모두 같은 해 첫 석 달 안에 든다. 증서는 2025-09-14 다시 발급돼 2028-09-13까지 유효하다. Pacifical 공급이 지금도 이어지는지는 공개되지 않는다.",
+     "ord": 102048
+    },
+    {
+     "kind": "para",
+     "text": "2014년 누리집에 오른 품목 넷 가운데 둘은 참치가 아니다. 스내퍼 한 종과 황새치다. 2017년 누리집은 판매를 Golden Ocean Fish Ltd와 Fiji Seafood Marketing LLC가 맡는다고 적었다. Golden Ocean은 여러 공개 문서가 KFL의 합작 상대로 적는 피지 회사다. 판매 대행 서술은 회사 자칭이다.",
+     "ord": 102264
+    },
+    {
+     "kind": "para",
+     "text": "KFL이 이 제품을 얼마에 파는지는 공개되지 않는다. KFL의 재무제표는 정부 예산서·결산서·상장사 공시에 없다. 밖에서 보이는 값은 수입국이 세관에 신고한 금액을 순중량으로 나눈 단가뿐이다. 이 단가는 원산지가 키리바시인 물건 전체의 값이다. 키리바시에서 EU 승인을 받은 가공장이 KFL 한 곳이라는 사실만으로 키리바시산 필레를 KFL 물량으로 볼 수는 없다. 제3국을 거친 물량도 원산지 키리바시로 남을 수 있다.",
+     "ord": 102466
+    },
+    {
+     "kind": "para",
+     "text": "일본은 키리바시산 필레를 가장 많이 신고하는 나라다. 2025년 상대국이 신고한 키리바시산 030487 가운데 96,8 %가 일본 몫이었다. 그해 일본 물량은 2022년보다 많고 단가는 낮다. 030487 한 줄에는 황다랑어·눈다랑어·가다랑어 필레가 함께 묶여 있어서 단가가 내려간 까닭이 어종 구성인지 값인지는 이 통계로 가를 수 없다.",
+     "ord": 104441
+    },
+    {
+     "kind": "para",
+     "text": "미국 신고는 2019~2022년에 해마다 있었고 2024·2025년에는 없다. EU는 2024년에 211,9 t을 들였는데 이탈리아가 152,2 t, 프랑스가 59,7 t이다. 이듬해 EU 물량은 18,3 t으로 줄었다.",
+     "ord": 104647
+    },
+    {
+     "kind": "para",
+     "text": "같은 흐름을 두 나라가 따로 적은 해도 있다. 키리바시 자국 신고가 남은 2021년, 키리바시는 미국행 0304의 단가를 2,43 USD/kg으로 적었다. 미국은 같은 해 키리바시산 030487을 8,08 USD/kg으로 적었다. 미국 쪽 단가가 세 배를 넘는다. 일본행은 방향이 반대라서 일본이 신고한 물량이 키리바시 신고보다 크다.",
+     "ord": 104805
+    },
+    {
+     "kind": "para",
+     "text": "같은 해 키리바시에서 미국으로 간 참치 살을 두 나라 세관이 따로 적은 값이다. 키리바시 신고가 세 배 가까이 크다. 키리바시 쪽 값은 4단위 0304 합계이고 미국 쪽 값은 6단위 030487이라 품목의 폭도 다르다. 단가는 거꾸로 미국 신고가 높다.",
+     "ord": 105128
+    },
+    {
+     "kind": "para",
+     "text": "어느 쪽이 KFL의 출하에 가까운지는 공개 문서로 가를 수 없다. 정부 보고서는 양륙과 수출 기록을 두고 「All landing and export data are kept by KFL」이라고 적었다.",
+     "ord": 105281
+    }
+   ],
+   "stage": "c05"
+  },
+  {
+   "sid": "s11",
+   "numeral": "11",
+   "label": "행선지",
+   "subtitle": "키리바시산 냉동 통어는 태국으로, 필레는 일본으로 가고, 이 통계는 나라 단위다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "상대국이 신고한 키리바시산 냉동 통어(HS 0303) 수입은 2019년 73.402,8 t에서 2025년 47.918,9 t으로 34,7 % 줄었다(계산). 그 가운데 태국이 신고한 몫은 82,9 %에서 78,8 %로 내려갔지만 여전히 열에 여덟 가까이다. 태국 쪽에서 보면 키리바시산은 참치 3종(황다랑어·가다랑어·눈다랑어) 수입의 2024년 6,12 %, 2025년 5,50 %를 차지했다.",
+     "ord": 93
+    },
+    {
+     "kind": "para",
+     "text": "줄어드는 흐름은 2026년에도 이어졌다. Atuna(2026-05-04)는 1분기 태국행 물량을 두고 「Kiribati and Marshall Islands shipped 6,849 and 5,017 tons less, respectively, to their Thai customers」라고 썼다. 키리바시에서 6.849 t, 마셜제도에서 5.017 t이 덜 갔다는 뜻이다(B). 업계지가 기국 단위로 센 값이다.",
+     "ord": 379
+    },
+    {
+     "kind": "para",
+     "text": "통계의 「키리바시산」은 원산지다. 바다에서 잡은 생선의 원산지는 잡은 배의 기국을 따른다. 그래서 이 통어는 키리바시 기국 선망선의 어획을 담고, 합작사 소유 배라도 기국이 키리바시면 같은 줄에 들어간다. 베티오 공장을 거쳤는지는 통계에 나오지 않는다. 키리바시 정부가 WCPFC 과학위원회에 낸 국가보고서(SC22)는 「Since Kiribati has no canning factory, purse seine catch is usually transshipped overseas」라고 적는다. 캔 공장이 없어 선망 어획은 대개 해외로 환적된다는 문장이다. 같은 상대국 신고에서 캔·조제품(1604)은 태국의 2024년 20 kg, 2025년 15 kg이 고작이다.",
+     "ord": 634
+    },
+    {
+     "kind": "para",
+     "text": "통어를 사 가는 나라의 얼굴도 바뀌었다. 2024년부터 콜롬비아가 신고국으로 새로 나타났다. 콜롬비아가 신고한 키리바시산 통어는 2024년 8.513,0 t, 2025년 4.677,0 t이다.",
+     "ord": 1030
+    },
+    {
+     "kind": "para",
+     "text": "이 흐름을 상대국 신고로 되짚는 까닭은 키리바시 자국 신고가 띄엄띄엄해서다. 2017년부터 2025년까지 키리바시가 UN Comtrade에 스스로 낸 수출 신고는 2017·2018·2020·2021년 네 해에만 있다. 있는 해도 상대국 신고와 맞지 않는다. 2021년 미국행 필레(0304)를 키리바시는 317,0 t, 2,43 USD/kg으로 적었다. 미국은 같은 해 키리바시산 수입을 110,9 t, 8,08 USD/kg으로 적었다. 물량은 세 배 가깝게, 단가도 세 배 넘게 벌어진다.",
+     "ord": 1160
+    },
+    {
+     "kind": "para",
+     "text": "필레는 방향이 반대다. 상대국이 신고한 키리바시산 냉동 참치 필레(HS 030487)는 늘었고, 그 대부분을 일본이 신고했다. 같은 기간 통어는 3분의 1 넘게 줄었다.",
+     "ord": 1469
+    },
+    {
+     "kind": "para",
+     "text": "2025년 일본이 신고한 키리바시산 필레는 1.177,6 t, US$773,8만어치로 그해 전체의 96,8 %다. 단가는 6,57 USD/kg이다(계산). 일본 신고 물량은 2022년 811,7 t에서 2024년 494,5 t으로 줄었다가 이듬해 두 배 넘게 뛰었다. IMF는 2013년 KFL을 두고 「processes sashimi for the Japanese and US markets」라고 적었다. 일본과 미국 시장에 낼 횟감을 가공한다는 뜻이다.",
+     "ord": 2280
+    },
+    {
+     "kind": "para",
+     "text": "일본 신고 필레 가운데 KFL 공장을 거친 몫은 통계로 가를 수 없다. 키리바시 정부 보고서는 「KFL is the only fishing company in Kiribati with a processing facility」라고 적는다. 공장에 내린 생선은 「loins and fillets for export」, 곧 수출용 로인과 필레가 된다고도 쓴다. 두 문장을 합쳐도 원산지 키리바시 필레를 KFL 제품으로 셀 근거는 되지 않는다. 키리바시 기국선이 잡은 참치는 다른 나라에서 필레로 떠도 원산지가 키리바시로 남을 수 있다. EU 명부에 오른 키리바시 가공장이 KIR-KFL-EU-01 한 곳이라는 사실은 EU행 물량에 걸린 승인 조건이다. 일본·미국행 필레의 출처를 가르는 근거로는 닿지 않는다.",
+     "ord": 5260
+    },
+    {
+     "kind": "para",
+     "text": "관세는 원어와 필레 쪽에서 낮다. 키리바시는 1986년부터 최빈개도국(LDC)이어서 일본에서 LDC 세율인 무세를 받는다. 특혜를 받으려면 원산지 증명을 갖춰야 한다. 미국은 원어와 필레에 매기는 최혜국(MFN) 세율 자체가 무세다. 캔 참치에는 세부 품목에 따라 다른 미국 세율이 붙고, 키리바시가 수혜국 명단에 오른 미국 GSP는 효력이 갱신되지 않았다. 캔 수출이 없으니 이 세율이 닿는 물건도 없다. EU에서 키리바시는 EBA(Everything But Arms) 수혜국이다.",
+     "ord": 5664
+    },
+    {
+     "kind": "para",
+     "text": "미국 쪽 기록은 비어 간다. 미국이 신고한 키리바시산 필레는 2019~2022년 해마다 44,6~114,2 t, 단가 8,08~13,53 USD/kg이었다. 2024·2025년에는 행이 없다. 키리바시 정부 보고서가 KFL의 시장으로 드는 나라는 일본·미국·EU·뉴질랜드·호주·베트남·홍콩·필리핀이고, SC19부터 SC22까지 네 해 동안 같은 문장이다. 그 목록의 미국이 지금도 KFL의 판로인지는 미국 수입 통계와 맞춰지지 않는다.",
+     "ord": 6576
+    }
+   ],
+   "stage": "c06"
+  },
+  {
+   "sid": "s12",
+   "numeral": "12",
+   "label": "EU",
+   "subtitle": "EU는 2017년에 키리바시를 열었고, 필레 수입은 2024년 한 해를 빼면 해마다 20 t 이하다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "EU는 이행결정 (EU) 2017/1089(2017-06-16)로 키리바시를 수산물 반입 허용국 목록인 결정 2006/766 부속서 Ⅱ에 올렸다. 근거는 키리바시 관할당국이 낸 「written guarantees」, 곧 서면 보증이었다. 같은 결정은 조지아와 북마케도니아를 두고 「Union controls … have taken place」라며 EU 점검을 거쳤다고 적었지만, 키리바시 대목에는 그 문장이 없다. KFL 가공장(KIR-KFL-EU-01)이 옛 SANCO 명부에 오른 행의 「Date of request」는 한 달여 뒤인 2017-07-25다.",
+     "ord": 103
+    },
+    {
+     "kind": "para",
+     "text": "그 SANCO 명부는 2019-07-30에 공고된 목록 00019다. 지금 반입 조건을 정한 법령은 이행규정 (EU) 2021/405 부속서 Ⅸ이고, 키리바시 줄에는 「KI Kiribati Only wild catch」라고 적혀 있다. 바다에서 잡은 수산물만 들일 수 있고 양식산은 해당하지 않는다는 뜻이다.",
+     "ord": 440
+    },
+    {
+     "kind": "para",
+     "text": "EU TRACES NT의 키리바시 수산 명부는 16행이다. 가공장(PP)은 Betio Wharf, Tarawa의 KIR-KFL-EU-01 Kiribati Fish Limited 한 곳뿐이고, 나머지 15행은 동결선(ZV)이다. 동결선 가운데 KFL 명의 배는 없다. KIBENA 1·2 두 척의 연락 주소만 「C/o KFL」로 적혀 있다. KFL 행의 마지막 갱신일은 2019-12-05이고 유효기간 칸은 비어 있다. 관할당국 KSVA의 승인 목록에는 공장이 「KFL Processing Plant」라는 이름으로 EU External Listing에 있고, 「KFL Chiller / Old & New Jetty」는 EU Internal Listing에 올라 있다.",
+     "ord": 623
+    },
+    {
+     "kind": "para",
+     "text": "EU 통계로 보면 물량은 작다. Comext(EU27)에 원산지 키리바시로 잡힌 냉동 참치 필레(030487)는 2024년 211,9 t이 가장 크고, 다른 해는 20 t을 넘지 않았다. 통조림(1604)과 신선·냉장 어류(0302)는 0이다. 냉동 원어(0303)는 필레와 따로 집계된다. 원어가 들어온 해에는 그 물량이 필레보다 훨씬 컸다.",
+     "ord": 1010
+    },
+    {
+     "kind": "para",
+     "text": "2024년은 두 품목이 함께 커진 해다. 그해 원산지 키리바시 03류 수입은 1.557,0 t이었고, 그 가운데 1.345,0 t이 원어였다. 원어의 대부분은 스페인이 들인 가다랑어였다. 필레는 이탈리아와 프랑스가 나눠 들였고, 값은 kg당 9,76 €였다. 이듬해 필레는 18,3 t으로 돌아갔다.",
+     "ord": 2467
+    },
+    {
+     "kind": "para",
+     "text": "EU 식품안전총국(DG SANTE) 감사 DB에 오른 키리바시 건은 2005~2026년 사이 2023-7853 원격평가 하나다. 같은 기간 피지는 4건, 파푸아뉴기니는 3건이다. 평가는 2023-01~08에 원격으로 진행됐고, 보고서는 2023-09-28에 게시됐다. 결론 첫머리는 「sound legal framework, and robust competent authority structure」다. 법 체계가 제대로 서 있고 관할당국 조직도 튼튼하다는 평가다.",
+     "ord": 2669
+    },
+    {
+     "kind": "para",
+     "text": "같은 보고서는 결함도 적었다. 감사 빈도와 공식 시료가 모자랐다. 동결선 점검은 2020년과 2021년에 한 번도 없었고, 2022년에는 계획의 50 %만 이뤄졌다. 2020년 오염물질 시료는 계획만 있고 채취는 없었다. 권고는 세 건이다.",
+     "ord": 2940
+    },
+    {
+     "kind": "para",
+     "text": "평가 당시 EU 명부는 「1 processing establishments and 2 freezer vessels」, 곧 가공장 1곳과 동결선 2척이었다. 보고서는 「3 primary production fishing vessels … supply the land-based establishment」라고도 썼다. 어선 세 척이 육상 가공장에 원료를 댄다는 문장이다. 가공장은 지금도 1곳이고, 동결선은 TRACES NT 명부에서 15척으로 늘었다.",
+     "ord": 3091
+    },
+    {
+     "kind": "para",
+     "text": "EU로 간 물량을 두고는 보고서 안의 두 기록이 엇갈린다. 관할당국은 「no certificates … in the last three years」, 곧 최근 3년 동안 EU행 수산물 증명서를 내준 적이 없다고 답했다. 2020년 뒤로 EU행 증명서가 없다는 말이다. 그런데 같은 보고서의 EU 수입 표에는 2021년 18 t이 있고, Comext에는 2022년 5,5 t도 있다. 보고서는 이 어긋남의 까닭을 적지 않았다.",
+     "ord": 3353
+    },
+    {
+     "kind": "para",
+     "text": "EU 등재(2017)와 2018년 필레 수입은 IUU 옐로카드 기간 중의 일이다. EU 집행위원회는 2016-04-21 결정(CELEX 32016D0423(01))으로 키리바시에 옐로카드를 줬다. 사유는 수산물 추적 체계가 없고 항만 통제가 서류 확인에 머문다는 점이었다. 해제는 2020-12-04(IP/20/2289)다. 옐로카드는 나라 단위 조치였고, KFL이나 특정 배를 두고 내린 결정이 아니다.",
+     "ord": 3613
+    },
+    {
+     "kind": "para",
+     "text": "DG SANTE 보고서의 EU 수입 표는 2020년 키리바시산을 140 t으로 적고, TRACES 기록 3건의 송하국이 한국이라고 덧붙였다. Comext를 품목별로 나누면 그해 필레(030487)는 값이 없다. 140,3 t은 냉동 황다랑어 원어(030342)였고, 들여온 나라는 이탈리아, 금액은 €347.820이다. 가공품이 아니라 원어였고, 한국에서 부친 화물이었다.",
+     "ord": 3955
+    }
+   ],
+   "stage": "c06"
+  },
+  {
+   "sid": "s13",
+   "numeral": "13",
+   "label": "돈의 흔적",
+   "subtitle": "KFL의 재무제표는 정부 예산서·결산서와 상장사 공시에 없고, 돈은 상장사 선급금 표에서 한 줄로 보인다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "키리바시 재무부는 2026년 경상예산서 부속서 8에 공기업(SOE) 18곳의 2023년 재무표를 실었다. 정부가 100 % 가진 공기업만 올라 있고, KFL을 비롯한 합작사는 하나도 없다. KFL의 매출·이익·자산은 정부 예산서와 결산서에도, 중국 상장사 공시에도 나오지 않는다.",
+     "ord": 109
+    },
+    {
+     "kind": "para",
+     "text": "같은 표에서 수산부 소관 국영사 CPPL은 2023년 매출 AUD 7.630.876, 순이익 AUD 1.071.129로 한 줄을 차지한다. KIFL·KTFL·KBPL 같은 다른 합작사는 표 밖에 있다. 정부가 보증한 공기업 차입을 모은 부속서 9에도 KFL 이름은 없다.",
+     "ord": 295
+    },
+    {
+     "kind": "para",
+     "text": "빠진 까닭은 회사 한 곳의 사정보다 합작사라는 지위에서 온다. IMF는 2026년 제4조 협의 보고서(2026-05-14)에 「Lack of JV entities' reporting to the Tax Commission precludes estimation of JV-related tax expenditures」라고 적었다. 합작사가 세무위원회에 재무를 보고하지 않아 합작사에 딸린 조세지출을 추산할 수 없다는 말이다. 같은 보고서는 당국이 공기업 감시 부서의 범위를 합작사까지 넓히려 한다고 전했다.",
+     "ord": 457
+    },
+    {
+     "kind": "para",
+     "text": "IMF가 적은 합작사 혜택은 합작사 전체를 두고 한 서술이다. 보고서는 세수가 새는 곳으로 「10-year tax holidays, with exemptions for both VAT and corporate tax, non-transparent dividend arrangements between the JVs and the Kiribati Government, and preferential pricing of fishing licenses」를 들었다. 부가세와 법인세를 함께 면제하는 10년 면세, 정부와 맺은 불투명한 배당 약정, 싼값에 파는 조업 허가다. 이 가운데 어느 것이 KFL에 적용되는지는 보고서에 없다. 당국은 합작사 배당 약정을 분명히 할 필요가 있다고 인정했다.",
+     "ord": 750
+    },
+    {
+     "kind": "para",
+     "text": "재무제표가 없어도 KFL의 활동은 국민계정에 들어간다. IMF는 「The contribution of fisheries to GDP reflects only Kiribati Fish Limited and Central Pacific Producers Ltd」라고 썼다. 키리바시 GDP의 수산업 기여분에 잡히는 회사가 KFL과 CPPL 둘이라는 뜻이다. 합작사에 딸린 외국인 직접투자 약 AUD 1,6억은 GDP 통계에 잡히지 않는다. 이 값은 합작사 전체의 추정치이고 KFL 몫은 따로 없다.",
+     "ord": 1145
+    },
+    {
+     "kind": "para",
+     "text": "IMF가 적은 합작사 부채 US$6,7억은 KFL의 빚이 아니다. 2019년 이후 선망선 22척을 짓고 타라와의 호텔 한 곳을 고치는 데 든 돈이다.",
+     "ord": 1432
+    },
+    {
+     "kind": "para",
+     "text": "KFL 이름 옆에 가장 큰 금액이 붙은 공개 문서는 중국 상장사의 공시다. 상하이 증시의 上海开创(600097)이 낸 2026년 반기보고서는 선급금(预付款项) 주석에 기말 잔액이 큰 상대 다섯 곳을 적었다. 2026-06-30 기준 그 첫 줄이 Kiribati Fish Limited 27.253.540,68 위안, 곧 2.725,35만 위안이고, 연결 선급금 잔액 62.670.195,80 위안의 43,49 %다. 공시는 이 돈의 명목을 적지 않았다.",
+     "ord": 1526
+    },
+    {
+     "kind": "para",
+     "text": "반년 전 연보의 같은 표에서 첫 줄은 중국원양어업협회(中国远洋渔业协会)였다. 2025년 연보는 2025-12-31 협회 선급금을 2.831,91만 위안(45,76 %)으로 적었다. 그해 선급금 잔액이 32,80 % 늘어난 사유로는 「主要系2026年度入渔费支付同比增加」를 들었다. 주로 2026년도 입어료 지급이 전년보다 늘었기 때문이라는 문장으로, 선급금 잔액 전체의 증감을 설명한다. 2024년 연보도 선급금이 70,80 % 늘어난 사유를 「年度入渔费支付同比增加」로 적었다.",
+     "ord": 1796
+    },
+    {
+     "kind": "para",
+     "text": "2025-12-31 기준 다섯 상대에는 KFL이 없었다. 5위가 MARSHALLS ENERGY COMPANY 291,11만 위안이므로 그때 KFL 잔액은 그 이하였다. 반년 사이 KFL 선급금은 최소 2.434만 위안 늘었다(계산). 잔액 합계가 거의 그대로인 반기에 상대 한 곳의 잔액이 이만큼 커졌지만, 그 사이 무엇을 미리 치렀는지 설명하는 문장은 반기보고서에 없다.",
+     "ord": 2995
+    },
+    {
+     "kind": "para",
+     "text": "그 이전의 순위는 공시로 알 수 없다. 2023·2024 연보는 선급금 상위 상대의 이름을 가렸다.",
+     "ord": 6488
+    },
+    {
+     "kind": "para",
+     "text": "같은 반기보고서의 관계사 임차 표에는 上海开创의 자회사 开创远洋이 지배주주 上海远洋에게서 빌린 선망선 두 척이 있다. 金汇18은 837,53만 위안, 金汇58은 719만 위안이고, 기간은 2026-01-01~12-31이다. 두 척은 2026년 KFL 이름으로 용선 통보된 배에 들어 있다. 임차 상대는 지배주주이고 선급금 표의 상대는 KFL이다. 이 임차 금액과 KFL 선급금이 어떤 관계인지는 공시에 없다.",
+     "ord": 6554
+    },
+    {
+     "kind": "para",
+     "text": "키리바시 정부 결산서에도 KFL 이름이 붙은 돈이 있다. 개발기금 결산표는 자금원 코드 3103에 「Kiribati Fish Limited」라는 이름을 달았다. 이 코드의 2024년 수입은 AUD 24.982,03이고, 항목은 옵서버 지원을 뜻하는 「Support to Observers」다. 2025년 수입은 0이다. 2023년에는 「World tuna day」 행사에 AUD 3.091,01이 지출됐다. 회사 매출도 정부 보조금도 아닌 돈이고, 배당이나 출자로 적힌 줄은 이 코드 아래에 없다.",
+     "ord": 6793
+    },
+    {
+     "kind": "para",
+     "text": "이익을 말한 문서는 회사 쪽 발언 하나다. 신화망 상하이판(2023-11-09)은 상하이 수입박람회의 키리바시 수산물을 다룬 기사에서 KFL 이사(董事)의 말을 「过去10年间合资公司实现净利润近1600万美元」로 옮겼다. 지난 10년 동안 합작사가 거둔 순이익이 1.600만 달러 가까이 된다는 말이다(C). 감사받은 재무제표에서 나온 숫자가 아니다. 어느 해부터 센 값인지, 그 이익이 주주 사이에 어떻게 나뉘었는지는 기사에 없다.",
+     "ord": 7082
+    }
+   ],
+   "stage": "c07"
+  },
+  {
+   "sid": "s14",
+   "numeral": "14",
+   "label": "기록",
+   "subtitle": "KFL이 당사자인 판결은 PacLII 검색 범위에 나오지 않고, EU가 남긴 조치와 평가는 나라 단위다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "태평양 도서국 판례·법령 데이터베이스 PacLII의 판결문에는 KFL이 원고나 피고로 나오지 않는다. 「Kiribati Fish」라는 이름이 들어간 문서는 네 건이다.",
+     "ord": 105
+    },
+    {
+     "kind": "para",
+     "text": "EU 관보·집행위원회·DG SANTE 기록에 KFL 한 회사를 겨냥한 제재는 나오지 않는다. 기록에 남은 것은 키리바시라는 나라에 걸린 조치다. 첫째가 EU의 IUU(불법·비보고·비규제 어업) 예비 지정, 곧 옐로카드다. 2016-04-21 결정문은 키리바시가 「not having a traceability system for fishery products caught by vessels flying its flag」를 스스로 인정했다고 적었다. 자국 깃발을 단 배가 잡은 수산물을 추적할 체계가 없었다는 말이다. 항만 통제는 「merely on a series of documentary checks」, 서류 확인에 그친다고 봤다.",
+     "ord": 222
+    },
+    {
+     "kind": "para",
+     "text": "옐로카드는 경고이지 수입 금지가 아니다. 경고가 걸려 있던 2017-06-16에 EU는 키리바시를 수산물 수입 허용국 명단에 올렸다.",
+     "ord": 589
+    },
+    {
+     "kind": "para",
+     "text": "경고는 2020-12-04에 풀렸다. 집행위원회 보도자료(IP/20/2289)는 「after four and half years of close cooperation」, 네 해 반의 협력 끝에 해제한다고 밝혔다. 해제 이유로는 항만 통제를 강화하고 새 어획증명 체계를 들인 일을 꼽았다. 경고와 해제의 대상은 기국·항만국·연안국으로서의 키리바시였다.",
+     "ord": 674
+    },
+    {
+     "kind": "para",
+     "text": "DG SANTE의 2023-7853은 현지 방문 없이 원격으로 치른 평가였다. 대상은 키리바시 관할당국이었고, 보고서 본문은 가공장의 회사 이름을 적지 않는다.",
+     "ord": 2518
+    },
+    {
+     "kind": "para",
+     "text": "중국 쪽 기록은 대사의 말 한 마디다. 주중 키리바시 대사는 신화(2023-11-09) 기사에서 「今年9月，中国海关总署对KFL进行了线上视频评估，成果丰硕」라고 했다. 그해 9월 중국 해관총서가 KFL을 온라인 화상으로 평가했고 성과가 컸다는 뜻이다. 평가 대상은 나라가 아니라 회사였다. 그 뒤 KFL이 중국의 수입식품 해외생산기업으로 등록됐는지는 기사에 없다.",
+     "ord": 2618
+    },
+    {
+     "kind": "para",
+     "text": "회사 이름이 박힌 기록 가운데 가장 분명한 것은 MSC 가공·유통 인증(CoC)이다. 범위는 「Processing - Primary」, 어종은 날개다랑어·눈다랑어·가다랑어·황다랑어다. MSC 공급자 명부에서 국가가 키리바시인 인증업체는 KFL 한 곳이다. 콜롬비아는 11곳이다. CoC는 인증 수산물을 인증 상태 그대로 다룰 자격이어서, KFL이 다루는 물량 가운데 MSC 인증품이 얼마인지는 증서에 나오지 않는다.",
+     "ord": 2830
+    },
+    {
+     "kind": "para",
+     "text": "업계지 Atuna가 KFL을 다룬 기사로는 2012-10-18 현지 어민 교육 건과 2025-03-07 ZOF 신조 선망선 건이 있다. 2026년 2월 중순 이후 키리바시를 다룬 기사 25건은 어장 이동·엘니뇨·방콕 가다랑어 값 같은 나라 사정이고 KFL은 나오지 않는다.",
+     "ord": 3073
+    },
+    {
+     "kind": "para",
+     "text": "KFL의 이름이나 주소가 적힌 기록이 KFL의 것은 아닌 경우도 있다. EU 명부의 동결선 KIBENA 1·2는 Kiribati Tuna Fishing Company(KTFL) 배인데 연락 주소가 「C/o KFL」이다. 중서부태평양수산위원회 용선 명부에서 용선자가 Kiribati Blue Pacific(KBPL)인 8행도 주소를 「KFL, Betio」로 적는다. 수산부(MFOR) 누리집 보도 한 건(node/89)은 회사 이름을 「Kiribati Fisheries Limited」로 적었다. 주소와 이름이 겹칠 뿐, 이 기록들이 지분이나 운영의 겹침을 말하지는 않는다.",
+     "ord": 3236
+    }
+   ],
+   "stage": "c07"
+  },
+  {
+   "sid": "s15",
+   "numeral": "15",
+   "label": "전략",
+   "subtitle": "말은 로인과 수출이고, 돈이 보이는 곳은 용선 통보와 선급금이다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "KFL과 키리바시 정부가 내놓은 계획은 공장과 수출이다. 2016년 회사 전무는 타라와 공장에 1.000만 달러 넘게 투자했고 EU·미국 시장용 MSC 황다랑어 로인을 가공할 수 있다고 말했다(C). 2026년 정부 보고서는 KFL의 확장이 수출량을 늘릴 것으로 내다봤다. 공개 문서에서 금액과 척수가 새로 적히는 자리는 따로 있다. 2026년 KFL 이름으로 통보된 용선은 36척이고, 2026-06-30 上海开创(600097)의 선급금 잔액에서 가장 큰 상대는 KFL(2.725,35만 위안, 43,49 %)이었다.",
+     "ord": 83
+    },
+    {
+     "kind": "para",
+     "text": "회사가 남긴 말은 2016-12-02 Pacifical과의 제휴를 알린 보도자료에 모여 있다. 회사 전무는 「we have invested over 10 million US dollars in our state of art fish processing factory in Tarawa and it has been certified by SQF and BRC」라고 했다. 타라와의 최신식 가공공장에 1.000만 달러 넘게 들였고 SQF·BRC 인증을 받았다는 말이다. 같은 자리에서 그는 EU와 미국 수출용으로 MSC 인증 황다랑어 스테이크와 로인을 가공할 수 있다고 했다. SQF·BRC는 회사 쪽 말(C)이고, MSC 인증은 등록부에 있다. MSC CoC 증서 MSC-C-55809는 2017-03-15에 처음 나왔다.",
+     "ord": 403
+    },
+    {
+     "kind": "para",
+     "text": "계획은 2019년에 한 번 더 커졌다. 국제기구 STDF의 타당성 보고서(STDF/PPG/657, 2019-03, 컨설턴트 작성)는 KFL이 「plan opening two additional factories, one in Tarawa and one on Christmas Island」, 곧 타라와와 크리스마스섬(키리티마티)에 공장을 하나씩 더 열 계획이라고 적었다. 같은 보고서는 「KFL has plans to develop aquaculture for producing of milkfish for export to SE Asia countries」라며 동남아 수출용 밀크피시 양식 사업이 2018년 수산부에 제출됐다고 썼다. 2026년 정부 보고서가 적는 가공시설 보유 수산회사는 여전히 KFL 하나다.",
+     "ord": 817
+    },
+    {
+     "kind": "para",
+     "text": "정부의 말은 원료와 수출에 모인다. 키리바시 정부가 2026년 WCPFC 과학위원회에 낸 국가보고서(SC22)는 §7에서 일부 외국 어선이 어획 일부를 KFL에 내리도록 「encouraged」된다고 쓰고, §10.4에서는 정부가 허가 어선에 「a portion of high-value tuna」, 곧 고부가 참치 일부를 KFL에 내리도록 「required」했다고 쓴다. 권장과 의무가 한 보고서에서 갈린다. §8.1은 「The expansion of KFL operations and support facilities is expected to increase future export volumes」라고 전망하지만 어떤 확장이 언제인지는 적지 않았다.",
+     "ord": 1227
+    },
+    {
+     "kind": "para",
+     "text": "양륙량은 정부 보고서에 없다. 원문은 「All landing and export data are kept by KFL」이다. 물량을 적은 숫자로는 STDF 보고서의 「about 1,000 tons/ month」가 있다. KFL 공장·냉동창고라는 양륙 지점 한 곳에 약 20척(KFL 배 3척)이 내린 양이라 KFL 가공량과 다르다.",
+     "ord": 1604
+    },
+    {
+     "kind": "para",
+     "text": "돈 쪽에서 공장에 붙는 숫자는 가동 무렵에 멈춰 있다. 생물다양성협약(CBD) 국가보고서(2014)와 중국 외교부 국가개황은 공장 투자를 US$800만으로, 키리바시 재무부(MFED) 2015년 문서는 1.100만(통화 표기 없음)으로 적었다. 2012년 하반기 가동 뒤 새 설비투자를 알린 공시는 없고, 처리 능력도 2013년의 하루 약 15 t(B)이 마지막 숫자다. KFL의 재무제표는 정부 예산서·결산서·상장사 공시에 나오지 않는다. 예산서의 공기업 재무표는 정부 100 % 공기업만 싣고 다른 합작사도 빠져 있다. 재무가 보이지 않는 것은 합작사라는 지위 때문이다.",
+     "ord": 1800
+    },
+    {
+     "kind": "para",
+     "text": "수출 물량도 말과 거리가 있다. EU 통계(Comext)에 잡힌 키리바시산 냉동 참치 필레(030487)는 2018년 이후 해마다 0~212 t이고, 200 t을 넘긴 해는 2024년(211,9 t) 한 해다. 냉동 원어(0303)는 2024년에 1.345,0 t이 따로 들어갔다. 동결선이 실어 가거나 제3국을 거친 물량일 수 있어 KFL 몫이라는 근거가 없다. 일본이 신고한 2025년 키리바시산 필레는 1.177,6 t(US$773,8만)으로 상대국 신고 합계의 96,8 %다. 이것도 나라 단위 통계다.",
+     "ord": 2144
+    },
+    {
+     "kind": "para",
+     "text": "공장 계획과 나란히 놓이는 숫자는 2026년 KFL 이름의 용선 통보 36척이다. 정부가 KFL 용선선에 준 예외의 명분도 공장 원료였다. 上海开创의 2026년 반기보고서 관계사 임차 표에는 36척 가운데 두 척이 금액과 함께 나온다. 开创远洋은 지배주주 上海远洋에게서 선망선 金汇18을 837,53만 위안, 金汇58을 719만 위안에 2026-01-01~12-31 빌렸다. 두 배는 명부의 JIN HUI 18·58이고, 2026년 KFL 이름으로 통보돼 있다. 2024·2025년 연보도 이 임차를 이어 간다고(「续租」) 적었다. 임차 금액과 KFL 선급금의 관계는 공시에 없다.",
+     "ord": 2476
+    },
+    {
+     "kind": "para",
+     "text": "수산부(MFOR)의 2026-09-18 밀크피시 방류 보도는 말과 공시가 어긋나는 자리다. 보도는 함께 일하는 상대를 「Kiritimati Island Fish Limited (KIFL), Zheijang Ocean Family Co., Ltd, Kiribati Fish Limited (KFL), and their shareholder, Shanghai Kaichuang Deep Sea Fisheries Ltd」로 적었다. 「their」가 누구를 받는지는 문장만으로 갈리지 않지만, 읽기에 따라 开创远洋이 KFL의 주주가 된다. 2026-06-30 600097 연결 재무상태표의 장기지분투자(长期股权投资)·기타지분상품투자·기타비유동금융자산 계정은 비어 있다.",
+     "ord": 5257
+    },
+    {
+     "kind": "para",
+     "text": "그 보도가 다룬 사업도 공장이 아니다. 수산부는 보도 전날 타라와 석호에 치어 약 1만 마리를 풀었다고 적었다. 이 방류(Milkfish Ranching Programme)는 야생 자원 보충과 식량 안보를 위한 연례 사업이라고 설명했다. 2018년에 제출된 계획은 동남아 수출용 양식이었다. 두 사업의 관계는 STDF 보고서에도 수산부 보도에도 적혀 있지 않다.",
+     "ord": 5638
+    },
+    {
+     "kind": "para",
+     "text": "키리바시의 다른 용선자 곁에 두면 KFL의 자리가 보인다. 2026년 키리바시는 WCPFC 용선을 가장 많이 받은 주최국(Host CCM)이고, 그 배는 용선자 넷으로 나뉜다. Kiribati Blue Pacific(KBPL)이 가장 많고 KFL이 그다음이며 Kiritimati Island Fish Limited(KIFL)와 Kirikore가 뒤를 잇는다. 大洋世家(ZOF)의 키리바시 자회사는 KIFL과 Kiribati Tuna Fishing Company(KTFL) 둘이다(ZOF IPO 보증서, A). KTFL은 용선자 명단에 없고, 자기 이름의 동결선 다섯 척을 EU 명부에 올렸다.",
+     "ord": 5851
+    },
+    {
+     "kind": "para",
+     "text": "2019-09-27 재수교 뒤 중국 자금을 추적한 AidData·Atlantic Council(B)이 짚는 곳은 KTFL과 KIFL이다. KFL은 그보다 앞선 2010년 법인이다. 대통령은 2018-11-21 의회 답변에서 KFL 같은 합작사를 「a continuation of joint ventures made by the previous administration」, 곧 이전 정부가 맺은 합작의 연속이라고 했다.",
+     "ord": 6193
+    },
+    {
+     "kind": "para",
+     "text": "KFL 이름 아래 걸린 허가·용선·인증에는 끝나는 날이 적혀 있다. 2026년 통보된 36척 가운데 해지된 행은 없다. 용선 통보 제도인 CMM 2024-03(2025-02-01 발효)도 끝 조항(¶8)에 「This Measure shall expire on 28 February 2028 unless renewed by the Commission」, 곧 위원회가 갱신하지 않으면 효력을 잃는다고 적었다.",
+     "ord": 7900
+    },
+    {
+     "kind": "para",
+     "text": "2026-12-31 뒤에도 600097 계열 선망 12척이 KFL 이름으로 다시 통보될지가 남은 물음이다.",
+     "ord": 9361
+    }
+   ],
+   "stage": "c08"
+  },
+  {
+   "sid": "s16",
+   "numeral": "16",
+   "label": "남은 물음",
+   "subtitle": "공개 문서는 용선 척수와 선급금 금액을 적고, 누가 KFL을 얼마나 갖는지는 적지 않는다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "중서부태평양수산위원회의 용선 통보 명부는 2026년 KFL 이름으로 통보된 배 36척의 소유자와 용선 기간을 한 척씩 적는다. 上海开创의 2026 반기보고서는 KFL에 대한 선급금을 27.253.540,68위안까지 적는다. 두 문서 어디에도 KFL의 주주와 지분율, 매출과 이익은 없다.",
+     "ord": 100
+    },
+    {
+     "kind": "para",
+     "text": "빈칸이 생기는 자리는 네 갈래다. 먼저 등기다. 키리바시 상공·협동조합부(MCIC)에는 누구나 법인 등기를 볼 수 있는 조회 창구가 없다. 다음은 합작사라는 지위다. 정부 예산서의 공기업 재무표는 정부가 100 % 가진 공기업만 싣고, IMF는 합작사가 세무당국에 보고하지 않는다고 적었다. 셋째는 공시 방식이다. 上海开创은 금액과 비율, 합계가 크게 움직인 해의 증감 사유 한 문장까지만 적고, 선급금의 명목이나 닫힌 수역의 이름은 적지 않는다. 마지막은 회사가 쥔 자료다. 키리바시 정부 보고서는 양륙량 대신 「All landing and export data are kept by KFL」이라고 적었다. 양륙과 수출 자료는 KFL이 갖고 있다는 뜻이다.",
+     "ord": 284
+    },
+    {
+     "kind": "para",
+     "text": "빈칸 가운데 몇은 채워질 때가 정해져 있다. 상장사 연보와 정부 국가보고서는 해마다 나오고, 용선 통보와 허가, 인증에는 끝나는 날이 적혀 있다.",
+     "ord": 3823
+    },
+    {
+     "kind": "para",
+     "text": "용선 명부는 기국 통보가 들어오는 대로 2027년 KFL 이름의 배를 한 척씩 적는다. 그 이름을 누가 얼마만큼 갖는지는 MCIC 등기의 연차신고가 나와야 답할 수 있다.",
+     "ord": 4947
+    }
+   ],
+   "stage": "c08"
+  }
+ ]
+}
