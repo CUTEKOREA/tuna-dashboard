@@ -51,7 +51,7 @@
 | ⅩⅬⅤ | Kingfisher Holdings (태국 방콕 야나와 등기 · SEAPAC·KF Foods · 일본 Umios 의결권 50,70 % · 방푸 공장은 감사받은 생산범위 전체가 펫푸드) | `kingfisher` | https://claude.ai/code/artifact/983bb8fd-435e-4f8e-b682-93ce9b52c53c |
 | ⅩⅬⅥ | CAPSEN (세네갈 다카르 몰 10 부두 · 동원산업 49,00 % · 연결 근거는 계열 유일 「실질지배력보유」 · 49 %는 세네갈 해사법 제91조가 정한 천장 · 세네갈 국적 선망 7척 중 4척) | `capsen` | https://claude.ai/code/artifact/d31b875f-9467-4d43-b9c6-ebf144b2f558 |
 | ⅩⅬⅦ | Bounty Seafood (파푸아뉴기니 라에 말라항 Portion 679 · 동원산업 100,00 % · 2012년 로인 공장 계획이 서지 않았다 · 대여금 40만 1.232 달러가 14년째 회수 0 · 가공장 명부 넷에 이름 없음) | `bounty` | https://claude.ai/artifact/CLfMxp7N6hbMTFieFMJbxH |
-| ⅩⅬⅧ | RD Corporation (파푸아뉴기니 마당 R.D. Tuna Canners 1-22587 + 필리핀 탐블러 PHIL. BEST CANNING CORP. · 두 공장 다 유럽 무관세인데 원산지 규칙이 다르다 · 마당 2차 공장은 열세 해째 말) | `rd` | https://claude.ai/artifact/5reFe6aDRVx4oAzJNQWa45 |
+| ⅩⅬⅧ | RD Corporation (파푸아뉴기니 마당 R.D. Tuna Canners 1-22587 + 필리핀 탐블러 PHIL. BEST CANNING CORP. · 두 공장 다 유럽 무관세인데 원산지 규칙이 다르다 · 마당 2차 공장은 열세 해째 말) | `rd` | https://claude.ai/artifact/3UbaYL1bBCakGrxxR2xk2T |
 | ⅩⅬⅨ | SolTuna (솔로몬제도 노로 1 Tuna Drive · 유럽연합 승인 가공장 SI-02-01-001 · 회사등기 1000021 + 선단 NFD 20111635 · 유럽행은 조리 로인 100,00 % · 국가 48,999995 %는 공장에만) | `soltuna` | https://claude.ai/artifact/8oMvkVtWW7EzUGQ2y76rVU |
 | Ⅼ | PAFCO (피지 오발라우섬 레부카 Beach Street · 유럽연합 승인 FJEU07 · 정부 지분 99,6 % · 1998년부터 Bumble Bee 로인 가공 → 2026-07 첫 주 종료, 새 상대는 이름 없는 스페인 수출업체 · 피지 신고 대미 수출가 kg당 US$ 0,94 대 미국 신고 5,26) | `pafco` | https://claude.ai/artifact/XpUYYmzKp4PuJTXrABizCi |
 | ⅬⅠ | Grupo Pinsa (멕시코 마사틀란 Av. Puerto de Mazatlán 406 · 선망 23척 = 멕시코 기국 활성 선망 운반능력 51,7 % · DOLORES 상표권자 Productos Dolores · PROFECO 100 g 당 기본 캔 MXN 14 대 El Dorado 대두 9 · MSC 2023-03-08 철회 · 캔 수출 99,9 % 미국) | `pinsa` | https://claude.ai/artifact/571s3YxH3uMiGJ8qK2x2EL |
