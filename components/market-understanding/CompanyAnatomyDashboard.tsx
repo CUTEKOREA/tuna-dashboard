@@ -390,6 +390,10 @@ import {
   charter as kfCharter, money as kfMoney, plant as kfPlant,
 } from '@/lib/data/company-kfl';
 import {
+  sapmerMeta, sapmerSourceNotes,
+  fleet as saFleet, money as saMoney, legine as saLegine,
+} from '@/lib/data/company-sapmer';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -2680,6 +2684,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   콜롬비아: { flagSrc: '/flags/co.svg', backInk: '#1b2733' },
   마셜제도: { flagSrc: '/flags/mh.svg', backInk: '#f4f5f0' },
   키리바시: { flagSrc: '/flags/ki.svg', backInk: '#1b2733' },
+  프랑스: { flagSrc: '/flags/fr.svg', backInk: '#1b2a3f' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -5406,6 +5411,86 @@ const KFL_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SA_ACCENT = '#23507a';
+const SA_F = saFleet();
+const SA_M = saMoney();
+const SA_L = saLegine();
+
+const SAPMER_SPEC: CommoditySpec = {
+  key: 'company-anatomy-sapmer',
+  title: '기업 해부: SAPMER SA',
+  subtitle:
+    `레위니옹 르포르의 SAPMER SA는 남극해 이빨고기 연승선 네 척과 가재선 한 척을 가진 선주이고, 2009년부터 Euronext Growth(ALMER)에 상장돼 있다. 2006년 중고 선망선으로 인도양 참치에 들어갔고, −40 °C 신조 선망선은 2015년 아홉 척이 됐다. ` +
+    `그중 네 척은 가문 쪽 모리셔스 SPV 명의였지만 2019년부터 상장사 연결 장부에 사용권자산으로 있었다. 2021년부터 네 번에 걸쳐 선망선을 모두 넘겼고, 2026-09-09 마지막 세 척을 CFTO에 넘겨 선망선이 ${SA_F.현재}척이 됐다. ` +
+    `2025년 참치는 매출의 ${euNum(SA_M.참치비중, 1)} %를 냈지만 EBITDA 마진은 ${SA_M.마진} %였다.`,
+  accent: SA_ACCENT,
+  primaryKpi: {
+    label: '2026-09-09 CFTO 인도 뒤 Sapmer 선망선 (IOTC 허가선박 명부)',
+    value: SA_F.현재,
+    decimals: 0,
+    unit: `(척 · 최대 ${SA_F.최대}척(2015~2021), 거쳐 간 선체 ${SA_F.거친}척(2006~2009 중고 2척 포함). 신조 9척 중 상장사 명의 ${SA_F.상장사}척, 가문 쪽 SPV 명의 ${SA_F.SPV}척 — SPV 명의 배도 2019년 말 상장사 연결 장부에 사용권자산 ${euNum(SA_F.사용권자산, 1)} M€로 있었다. 매각 대가는 보도자료에 없고, 연차보고서 현금흐름에 ${euNum(SA_F.대가1, 1)} M€(2023 Manapany)·${euNum(SA_F.대가2, 1)} M€(2024 Belouve+보조선), SPV 쪽 연차에 US$ ${euNum(SA_F.대가SPV)}(2021)가 있다. 2026 CFTO 거래는 조건 비공개)`,
+    accent: SA_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '2025년 참치 선망의 EBITDA 마진 (연차재무보고서가 처음 참치를 떼어 낸 손익표)',
+      value: SA_M.마진,
+      decimals: 0,
+      unit: `(% · 참치 매출 ${euNum(SA_M.참치매출, 1)} M€ = 연결 매출 ${euNum(SA_M.매출, 1)} M€의 ${euNum(SA_M.참치비중, 1)} %. 그룹 EBITDA 안의 참치 몫은 ${euNum(SA_M.EBITDA몫, 1)} %. 선망 3척 손상 ${euNum(SA_M.참치손상, 1)} M€, 참치 세전 ${euNum(SA_M.참치세전, 1)} M€, 연결 순이익 ${euNum(SA_M.순이익, 1)} M€. 2020~2025 참치 관련 손상·처분손 약 ${SA_M.손상합} M€(±2))`,
+    },
+    {
+      label: '2025-26 TAAF 이빨고기 하위쿼터에서 Sapmer 연승선 4척의 몫 변화 (TAAF 결정문 합산)',
+      value: SA_L.쿼터변화,
+      decimals: 1,
+      unit: `(% · ${euNum(SA_L.쿼터24, 3)} → ${euNum(SA_L.쿼터25, 3)} t, TAC ${euNum(SA_L.TAC24)} → ${euNum(SA_L.TAC25)} t(${euNum(SA_L.TAC변화, 1)} %). 배분 기준(선령·무풀 등)이 같은 해 바뀌었고, 경쟁선 두 척은 늘었다. Sapmer가 낸 급속심리(${SA_L.가처분})는 ${SA_L.가처분일} 기각)`,
+    },
+    {
+      label: '지배 블록 (가문 지주회사 사슬, 2025-12-31)',
+      value: SA_M.지배,
+      decimals: 2,
+      unit: `(% · Cana Tera SCA → JS&Co → Sapmer Investissements. 2024-04 증자 1차분 ${euNum(SA_M.증자1, 2)} M€(그중 5,0 M€는 브리지론 전환), 2025-04 레위니옹 지역정부 ${euNum(SA_M.증자2, 1)} M€(${euNum(SA_M.지역정부, 2)} %). 2025년 말 순차입금 ${euNum(SA_M.순차입, 1)} M€)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '명의',
+      title: '명의와 장부가 갈린 선단',
+      body: `신조 선망 9척 중 4척(Belle Rive·Belle Isle·Morn Seselwa·Morne Blanc)은 지배주주 산하 모리셔스 IOST의 SPV 명의였다. 상장사는 2016-12 말부터 네 척을 나용선했고, 2019년 IFRS 16 적용부터 사용권자산으로 장부에 올렸다. SPV 채권 담보는 「A mortgage on 5 vessels of Sapmer Group」, 2023년 두 척 처분손 17,6 M€는 상장사 손익에 잡혔다`,
+    },
+    {
+      eyebrow: '매각',
+      title: '네 번의 매각',
+      body: `2021 세이셸기 2척(SPV 매도, Pevasa) · 2023-07 Manapany(4,9 M€) · 2023-11 모리셔스기 2척(SPV, 값 없음) · 2024-02-28 Belouve+보조선(8,4 M€) · 2026-09-09 FRANCHE TERRE·BERNICA·DOLOMIEU를 CFTO(P&P Thon 자회사)에, 조건 비공개. 모리셔스기 네 척은 지금 에콰도르기로 동태평양에 있다`,
+    },
+    {
+      eyebrow: '모리셔스',
+      title: '두 가지 설명',
+      body: `회사는 모리셔스 쿼터 −60 %와 규제를 든다. 모리셔스 어업부 장관은 국회에서 지배주주 모회사의 구제계획(2021-08-11) 뒤 월 단위 쿼터로 바꿨고 2023년 초 현지 공장 납품이 없었다고 말했다. 50 % 가공장 Mer des Mascareignes는 2024-05-07 채권자 주도 청산에 들어갔다`,
+    },
+    {
+      eyebrow: '이빨고기',
+      title: '남은 사업의 조건',
+      body: `TAAF TAC가 ${euNum(SA_L.TAC24)} → ${euNum(SA_L.TAC25)} t로 준 해에 Sapmer 4척의 몫은 ${euNum(SA_L.쿼터변화, 1)} % 줄었다(몫 ${euNum(SA_L.몫, 1)} %). 연승선 교체는 2024 증자의 명분이었지만 발주 공시는 없다. 2026-06-04 르포르 같은 주소에 SAS Armement Légine des Mers Australes가 세워졌다(용도 공시 없음)`,
+    },
+    {
+      eyebrow: '전략',
+      title: '말은 이빨고기 집중, 배는 팔렸다',
+      body: `2021 「rééquilibrage」 → 2023 「100% française」 → 2024 연승선 갱신 → 2026-09 「stratégie de focalisation」(이빨고기·닭새우). 같은 기간 선망은 9척에서 0척이 됐고 순차입금은 54,7 → ${euNum(SA_M.순차입, 1)} M€로 줄었다(그중 약 49 M€는 SPV 선박 반환으로 사라진 리스부채). MSC 가다랑어는 ${SA_L.MSC적격}부터 ${SA_L.MSC} 범위였고 2026-09-09 고객단에서 빠졌다`,
+    },
+  ],
+  briefing: proseBriefing('sapmer'),
+  narratives: inlineReport('sapmer', proseStages('sapmer')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: sapmerSourceNotes,
+  sourceMeta: [
+    `${sapmerMeta.회사} · ${sapmerMeta.국가} · ${sapmerMeta.업종}`,
+    `출처 ${sapmerMeta.출처}`,
+    `조사 ${sapmerMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -6599,6 +6684,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '공장과 판로', value: `EU 명부 유일 가공장 · 2013년 하루 약 ${KF_P.능력} t·주 1회 · 신선·로인·필레, 캔 없음 · EU 필레 2024년 ${euNum(KF_P.EU필레, 1)} t, 다른 해 20 t 이하 · MSC CoC ${KF_P.MSC}(${KF_P.MSC만료} 만료) · 인원 ${KF_P.인원}명(최근 연도)` },
     ],
   },
+  {
+    key: 'sapmer',
+    numeral: 'ⅬⅩ',
+    name: 'SAPMER SA',
+    country: `프랑스 · 레위니옹 르포르 Darse de Pêche(Euronext Growth ALMER)`,
+    tagline: '명의와 장부가 갈린 선단 — 르포르의 Sapmer는 2006년 인도양 선망에 들어갔고, 2026-09-09 마지막 세 척을 넘기며 나왔다.',
+    ...FLAG.프랑스,
+    stats: [
+      { label: '선단', value: `선망 최대 ${SA_F.최대}척 → ${SA_F.현재}척(2026-09-09 CFTO) · 신조 9척 중 SPV 명의 ${SA_F.SPV}척도 2019년부터 상장사 장부에 사용권자산 · 매각 대가 ${euNum(SA_F.대가1, 1)}·${euNum(SA_F.대가2, 1)} M€(연차보고서), US$ ${euNum(SA_F.대가SPV)}(SPV), CFTO 조건 비공개 · 모리셔스기 4척은 에콰도르기로` },
+      { label: '돈', value: `2025 매출 ${euNum(SA_M.매출, 1)} M€ · 참치 ${euNum(SA_M.참치비중, 1)} %·EBITDA 마진 ${SA_M.마진} % · 선망 손상 ${euNum(SA_M.참치손상, 1)} M€ · 순이익 ${euNum(SA_M.순이익, 1)} M€ · 2023 ${euNum(SA_M.손실2023, 1)} M€ · 지배 블록 ${euNum(SA_M.지배, 2)} %, 지역정부 ${euNum(SA_M.지역정부, 2)} %` },
+      { label: '이빨고기', value: `TAC ${euNum(SA_L.TAC24)} → ${euNum(SA_L.TAC25)} t(${euNum(SA_L.TAC변화, 1)} %) · Sapmer 4척 몫 ${euNum(SA_L.쿼터변화, 1)} % · 급속심리 기각(${SA_L.가처분일}) · 연승선 발주 공시 없음 · 한국 이빨고기 수입의 프랑스 몫 ${euNum(SA_L.한국몫, 1)} %(2025)` },
+    ],
+  },
 
 
 
@@ -6683,6 +6781,7 @@ export default function CompanyAnatomyDashboard({
     ppf: PANPAC_SPEC,
     inepaca: INEPACA_SPEC,
     kfl: KFL_SPEC,
+    sapmer: SAPMER_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

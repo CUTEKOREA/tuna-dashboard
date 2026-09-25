@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 292,
+  "files": 293,
   "widgets": 114,
-  "dataFiles": 332,
+  "dataFiles": 336,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -642,6 +642,7 @@
     "lib/data/company-sajo.ts",
     "lib/data/company-sajoseafood.ts",
     "lib/data/company-salica.ts",
+    "lib/data/company-sapmer.ts",
     "lib/data/company-sca.ts",
     "lib/data/company-seatech.ts",
     "lib/data/company-seavalue.ts",
@@ -845,6 +846,10 @@
     "public/data/companies/salica_prose_v1.json",
     "public/data/companies/salica_tables_v1.json",
     "public/data/companies/salica_v1.json",
+    "public/data/companies/sapmer_figures_v1.json",
+    "public/data/companies/sapmer_prose_v1.json",
+    "public/data/companies/sapmer_tables_v1.json",
+    "public/data/companies/sapmer_v1.json",
     "public/data/companies/sca_figures_v1.json",
     "public/data/companies/sca_prose_v1.json",
     "public/data/companies/sca_tables_v1.json",
@@ -2052,6 +2057,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/salica_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/sca_figures_v1.json": [

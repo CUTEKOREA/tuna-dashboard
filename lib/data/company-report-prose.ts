@@ -57,6 +57,7 @@ import seatechRaw from '@/public/data/companies/seatech_prose_v1.json';
 import ppfRaw from '@/public/data/companies/ppf_prose_v1.json';
 import inepacaRaw from '@/public/data/companies/inepaca_prose_v1.json';
 import kflRaw from '@/public/data/companies/kfl_prose_v1.json';
+import sapmerRaw from '@/public/data/companies/sapmer_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -155,6 +156,7 @@ const INTAKES: Record<string, Intake> = {
   ppf: ppfRaw as unknown as Intake,
   inepaca: inepacaRaw as unknown as Intake,
   kfl: kflRaw as unknown as Intake,
+  sapmer: sapmerRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

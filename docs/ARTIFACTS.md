@@ -63,6 +63,7 @@
 | ⅬⅦ | Pan Pacific Foods (마셜제도 마주로 Delap 임차지의 로인 공장 · 上海开创(600097) 100 % 손자회사, 선망 6척은 자매 법인 Pan Pacific Fishing · 2009 연보 — 로인 적자를 허가 점수를 확보할 최저선에 묶었다 · 가공 실적 0 t(2021~2025) · 2025 순이익 공장 법인 1,13 대 선단 법인 5.381,94만 위안 · 그룹 연결 휴업 손실 1H2026 651,52만 위안 · 미국 신고 마셜산 조제 참치 2008~2015, 2016~2025 신고 없음 · 현재 Claude 계정(2026-09-25 전환 후)에서 발행) | `ppf` | https://claude.ai/artifact/3Gqh6ngXsJchv9ffM3z2JZ |
 | ⅬⅧ | INEPACA (에콰도르 만타 Malecón · Van Camp's 캔 · 파나마 SMV-563-20 발행인 · 주주 Estrella Blanca de Panamá 100 %(2024~) · Seatech 2025 연차보고 「comparten ejecutivos y directores」, 같은 경제 그룹 아님 · 선망 3척 = 에콰도르 선망 운반능력 1,30 % · MonteCristi 2025 코카인 2,91 t, 2026-09-07 저지 선박 · 퇴직연금 = 부채의 60,2 % · 현재 Claude 계정에서 발행) | `inepaca` | https://claude.ai/artifact/3NcW1t9Q7zGkFVwfNVzZHt |
 | ⅬⅨ | Kiribati Fish Limited (키리바시 타라와 Betio · EU 승인 가공장 KIR-KFL-EU-01 · 2026 WCPFC 용선 명부의 KFL 이름 36척(선망 12·연승 24), 上海开创 계열 선망 12척 전부 · 上海开创 연결 선급금 1위 2.725,35만 위안(2026-06-30) · 2017 연승 폐쇄에서 KFL 용선만 면제 · 지분 문서마다 열 가지 · 현재 Claude 계정에서 발행) | `kfl` | https://claude.ai/artifact/2mBzqwH1ayLTnE3HJ2axc6 |
+| ⅬⅩ | SAPMER SA (프랑스 레위니옹 르포르 · Euronext Growth ALMER · 지배 블록 63,49 % · 인도양 선망 최대 9척 → 2026-09-09 CFTO 인도로 0척 · 신조 9척 중 SPV 명의 4척도 2019년부터 상장사 장부에 사용권자산 · 매각 대가 4,9·8,4 M€(연차보고서)·US$ 19.146.300(SPV), CFTO 조건 비공개 · 2025 참치 EBITDA 마진 2 % · 이빨고기 4척 몫 −24,0 %(TAC −13,7 %), 급속심리 기각 · 현재 Claude 계정에서 발행) | `sapmer` | https://claude.ai/artifact/3EcJYeiggRhBsxZnsxopov |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 
