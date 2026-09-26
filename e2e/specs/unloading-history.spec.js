@@ -302,7 +302,9 @@ async function runHappyPath(browser) {
     assert.match(body, /(Low|Medium|High)\s+\([^)]+\)/, '진행 중 항차가 있으면 체선 등급이 나와야 한다');
     assert.match(body, /허용\s+[\d.]+일/);
     assert.match(body, /사용\s+[\d.]+일/);
-    assert.match(body, /여유\s+-?[\d.]+일/);
+    /* 잔여가 음수면 화면 문구가 「여유」에서 「초과」로 바뀐다(UnloadingStatus 1115행).
+     * 2026-09-26 SEIN GALAXY 가 허용 8.4일 대비 사용 9일로 처음 초과로 넘어갔다. */
+    assert.match(body, /(여유|초과)\s+-?[\d.]+일/);
   }
 
   /* 기본 선택은 «하역중 → 하역대기 → 최신» 순서다(lib/unloading-operations resolveSelectedVesselId).
@@ -347,11 +349,13 @@ async function runHappyPath(browser) {
     assert.match(hikariDemurrageText, pattern);
   }
   const used = Number(hikariDemurrageText.match(/사용일수\s+([\d.]+)일/)?.[1]);
-  const spare = Number(hikariDemurrageText.match(/여유\s+(-?[\d.]+)일/)?.[1]);
+  /* 「초과 N일」은 잔여 -N 일이다 - 부호를 되살려 같은 산식으로 본다. */
+  const spareMatch = hikariDemurrageText.match(/(여유|초과)\s+(-?[\d.]+)일/);
+  const spare = spareMatch ? Number(spareMatch[2]) * (spareMatch[1] === '초과' ? -1 : 1) : NaN;
   assert.ok(Number.isFinite(used) && Number.isFinite(spare), '사용일수·여유를 읽지 못했습니다.');
   assert.ok(
     Math.abs(used + spare - 13.3) < 0.05,
-    `허용 13.3일 = 사용 ${used} + 여유 ${spare} 가 맞지 않는다`,
+    `허용 13.3일 = 사용 ${used} + 잔여 ${spare} 가 맞지 않는다`,
   );
 
   await page.waitForSelector('[data-testid="vessel-select-item-sein-venus"]');
