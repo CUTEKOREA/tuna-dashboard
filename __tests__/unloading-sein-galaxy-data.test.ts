@@ -255,8 +255,10 @@ describe('SEIN GALAXY 방콕 항차', () => {
     expect(day.quality).toContain('MOAKONA 하역 완료');
     expect(day.quality).toContain('+56.690 MT');
     expect(day.quality).toContain('계획 130 MT 대비 +54.690 MT');
-    // 남은 14.970 MT 는 MOAMARI 분이다 - 9/27 에 끝난다
-    expect(day.nextDay).toEqual({ kind: 'work', date: '9/27', reason: null, resumeDate: null, plannedMt: null });
+    /* 9/27 계획은 CMC #3-C MOAMARI 80 MT 인데 남은 물량은 14.970 MT 뿐이다.
+     * 계획값을 잔량에 맞추지 않는다 - 원문(계획)과 계열(잔량)은 서로 다른 출처다. */
+    expect(day.nextDay).toEqual({ kind: 'work', date: '9/27', reason: null, resumeDate: null, plannedMt: '80' });
+    expect(day.quality).toContain('65.030 MT 어긋납니다');
   });
 
   it('항차 개요는 선적기록을 하역 보고로 세지 않는다', async () => {
