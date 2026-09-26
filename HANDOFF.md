@@ -1,3 +1,8 @@
+> 🔧 **2026-09-26 22:40 KST — 묵은 기준일 기준선 130 → 132 갱신** [CC]:
+> - CI `check:stale-widgets` 가 **내 변경과 무관하게** 빨개졌다. `sashimi-strategy/SasEuProcessingHub.tsx`·`SasJpAquaculture.tsx` 의 `syncDate: '2025-03-26'` 두 건이 **오늘 날짜로 18개월을 넘겼다**(기준선은 9/23에 130 으로 잠갔다).
+> - 게이트는 날짜가 흐르면 저절로 깨진다 — 자료를 갱신하지 않는 한 아무 PR 이나 걸린다. 두 위젯은 사시미 전략 정적 자료라 지금 갱신할 원자료가 없어 `npm run stale-widgets:baseline` 으로 기준선만 132 로 올렸다.
+> - 다음에 같은 실패를 보면: 먼저 18개월 경계(오늘 −18개월) 전후 날짜를 grep 해 **무엇이 넘었는지 확인**하고, 갱신할 원자료가 있으면 기준선이 아니라 `syncDate` 를 고친다.
+
 > ✅ **2026-09-26 22:15 KST — `/unloading` SEIN GALAXY 방콕 9/26 하역 반영 (MOAKONA 마감)** [CC]:
 > - 원자료: K GROUP Report No.8 JPG `ce0950a5…` · **계근표(DAILY WEIGHTING REPORT) JPG `0252c3ed…`** · 결과 XLS `ab9f273d…`(시트 `09-26`) · 현황 XLSX `1ec0f660…`.
 > - 9/26(토) 08:20~16:20 **184.690 MT**, UC #2-C MOAKONA 단독. 12 trucks, 09:00~09:50 강우, 차량 대기 14:20~15:40. 어창 -18~-19℃(계근표 컨테이너 기록은 -19℃).
