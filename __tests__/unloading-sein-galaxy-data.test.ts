@@ -33,8 +33,8 @@ describe('SEIN GALAXY 방콕 항차', () => {
       // K GROUP 하역보고 «ARRIVED ON SEPTEMBER 17» - 체선 계산은 접안일부터 센다.
       arrivalDate: '2026-09-17',
     });
-    // 9/18 242.490 + … + 9/24 276.690 + 9/25 195.520
-    expect(vessel.actualTotal).toBeCloseTo(1_646.34, 6);
+    // 9/18 242.490 + … + 9/25 195.520 + 9/26 184.690
+    expect(vessel.actualTotal).toBeCloseTo(1_831.03, 6);
     expect(getVesselStatusKind(vessel.status)).toBe('progress');
   });
 
@@ -99,13 +99,13 @@ describe('SEIN GALAXY 방콕 항차', () => {
     expect(day.quality).toContain('TOTAL 22 TRUCKS');
     expect(day.quality).toContain('K GROUP BALANCE +16.180');
     expect(day.quality).toContain('9/21 UN/H4B1(MOAMARI) 150 MT 09:00');
-    // 원선별 합계가 최신 결과보고 XLS 누계와 맞는다 - 09-25 시트 MOAKONA 828.00 · MOAMARI 818.34
+    // 원선별 합계가 최신 결과보고 XLS 누계와 맞는다 - 09-26 시트 MOAKONA 1,012.69(완료) · MOAMARI 818.34
     const bySource = (name: string) => vessel.timeline
       .flatMap((entry: { allocations: { loads: { sourceVessel: string; amount: number }[] }[] }) => entry.allocations)
       .flatMap((allocation: { loads: { sourceVessel: string; amount: number }[] }) => allocation.loads)
       .filter((load: { sourceVessel: string }) => load.sourceVessel === name)
       .reduce((sum: number, load: { amount: number }) => sum + load.amount, 0);
-    expect(bySource('MOAKONA')).toBeCloseTo(828, 6);
+    expect(bySource('MOAKONA')).toBeCloseTo(1_012.69, 6);
     expect(bySource('MOAMARI')).toBeCloseTo(818.34, 6);
   });
 
@@ -237,6 +237,28 @@ describe('SEIN GALAXY 방콕 항차', () => {
     expect(day.nextDay).toEqual({ kind: 'work', date: '9/26', reason: null, resumeDate: null, plannedMt: '130' });
   });
 
+  it('9/26 하역(K GROUP Report No.8) - MOAKONA 가 B/L 보다 56.69 MT 넘게 마감됐다', async () => {
+    const vessel = await loadSeinGalaxy();
+    const [day] = vessel.timeline.filter((entry: { date: string }) => entry.date === '9/26');
+
+    expect(day).toMatchObject({ time: '08:20 ~ 16:20', dailyAmount: 184.69, consignee: 'UC' });
+    expect(day.cumAmount).toBeCloseTo(1_831.03, 6);
+    expect(day.allocations).toEqual([
+      { consignee: 'UC', amount: 184.69, loads: [{ sourceVessel: 'MOAKONA', hatch: '#2-C', amount: 184.69 }] },
+    ]);
+    // 결과보고 XLS 09-26 시트: YF 65.80 · SJ 118.89, MOAMARI 는 이날 작업이 없다
+    expect(day.speciesAmounts).toEqual({ SJ: 118.89, YF: 65.8 });
+    expect(day.remainingAmount).toBeCloseTo(14.97, 6);
+    expect(day.remainingAmount + day.cumAmount).toBeCloseTo(vessel.reportedTotal, 6);
+    /* MOAKONA 마감: 원선 누계 1,012.690 은 B/L 956 보다 56.690 많다(적재 초과).
+     * 계근표에도 «COMPLETED» 가 찍혔다 - 원문 수치를 맞추지 않고 그대로 싣는다. */
+    expect(day.quality).toContain('MOAKONA 하역 완료');
+    expect(day.quality).toContain('+56.690 MT');
+    expect(day.quality).toContain('계획 130 MT 대비 +54.690 MT');
+    // 남은 14.970 MT 는 MOAMARI 분이다 - 9/27 에 끝난다
+    expect(day.nextDay).toEqual({ kind: 'work', date: '9/27', reason: null, resumeDate: null, plannedMt: null });
+  });
+
   it('항차 개요는 선적기록을 하역 보고로 세지 않는다', async () => {
     const response = await GET();
     const { data } = await response.json();
@@ -246,9 +268,9 @@ describe('SEIN GALAXY 방콕 항차', () => {
     // 6/12~6/15 선적기록 2건을 세면 첫 하역일(9/18) 기준 보고 3회·일평균 80.8 로 실적이 1/3 로 준다.
     expect(markup).toContain('M/V SEIN GALAXY');
     // 9/20 일요일은 보고가 없다 - 휴무일 행을 만들지 않고 차트가 공백으로 처리한다
-    expect(stat('보고 횟수 \\(회\\)')).toBe('7');
-    // 1,646.34 / 7
-    expect(stat('일평균 \\(MT/일\\)')).toBe('235.2');
+    expect(stat('보고 횟수 \\(회\\)')).toBe('8');
+    // 1,831.03 / 8
+    expect(stat('일평균 \\(MT/일\\)')).toBe('228.9');
   });
 
   it('어종 보고량은 선적서류, 실적은 결과보고 XLS 를 따른다', async () => {
@@ -257,7 +279,7 @@ describe('SEIN GALAXY 방콕 항차', () => {
 
     // 보고량은 NOAA Form 370 초안 2부의 kg 표기를 톤으로 옮긴 값이다.
     // XLS 는 BE 를 SJ 에 합쳐(1,338 = 1,306 + 32) 실적도 SJ·YF 두 항목만 준다 - BE 실적은 0 으로 둔다.
-    expect(byId).toEqual({ SJ: [1_306, 1_181.27], YF: [508, 465.07], BE: [32, 0] });
+    expect(byId).toEqual({ SJ: [1_306, 1_300.16], YF: [508, 530.87], BE: [32, 0] });
     expect(vessel.species.reduce((sum: number, s: { reported: number }) => sum + s.reported, 0))
       .toBe(vessel.reportedTotal);
     expect(vessel.species.reduce((sum: number, s: { actual: number }) => sum + s.actual, 0))

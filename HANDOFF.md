@@ -1,3 +1,14 @@
+> ✅ **2026-09-26 22:15 KST — `/unloading` SEIN GALAXY 방콕 9/26 하역 반영 (MOAKONA 마감)** [CC]:
+> - 원자료: K GROUP Report No.8 JPG `ce0950a5…` · **계근표(DAILY WEIGHTING REPORT) JPG `0252c3ed…`** · 결과 XLS `ab9f273d…`(시트 `09-26`) · 현황 XLSX `1ec0f660…`.
+> - 9/26(토) 08:20~16:20 **184.690 MT**, UC #2-C MOAKONA 단독. 12 trucks, 09:00~09:50 강우, 차량 대기 14:20~15:40. 어창 -18~-19℃(계근표 컨테이너 기록은 -19℃).
+> - **MOAKONA 하역 완료** — 원선 누계 **1,012.690 MT** 로 B/L 956 MT 대비 **+56.690 MT**(적재 초과). 계근표에 «COMPLETED»·INV 1100016587·B/L 2600000922=782.000 MT 로 찍혔다. 원문 수치를 맞추지 않고 그대로 싣는다.
+> - 계획 130 MT 대비 **+54.690 MT** — 이번 항차에서 계획을 넘긴 유일한 날이다.
+> - 누계 **1,831.030** · 잔량 **14.970**(99.2%). 어종 누계 SJ 1,300.16 · YF 530.87. 일평균 235.2 → **228.9 MT/일**(보고 8회).
+> - 남은 14.970 MT 는 MOAMARI #3-C 분이다 — 9/27 에 항차가 끝난다. 종료 시 최종 하역보고 메일(본부 1통 + 원선 MOAKONA·MOAMARI 2통) 준비.
+> - 계근표 해시를 `weighing_report_sha256` 로 새로 남겼다(지금까지는 Report JPG·XLS·XLSX 세 개만 기록했다).
+> - `npm run verify` 통과: Vitest **196 files / 1,673** · ESLint 0 errors · bundle 33.
+> - 상태: 브랜치 `data/unloading-0926`. **프로덕션 미배포**.
+
 > 📰 **2026-09-26 09:22 KST — `/market` 2026-09-25 참치 데일리 브리핑 윤문본 라이브 배포** [CC/tuna-dashboard-publisher]:
 > - PR [#1258](https://github.com/CUTEKOREA/tuna-dashboard/pull/1258) squash 병합. main commit `623fed5e` (브랜치 커밋 `df09ff78`, `briefing/2026-09-25b`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+16/−16), 기사 본문 문장만 바뀜. 기준일 `2026-09-25`·기사 **6건**·제목·수치는 #1257(`ad24d816`)과 같다.
 > - 게이트: 09:01 윤문 채택본 재감사 AUDIT_PASS · 09:15 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · 변경분 존재. pre-push build 통과(35초).
