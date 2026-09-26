@@ -1,3 +1,9 @@
+> 📰 **2026-09-26 09:22 KST — `/market` 2026-09-25 참치 데일리 브리핑 윤문본 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1258](https://github.com/CUTEKOREA/tuna-dashboard/pull/1258) squash 병합. main commit `623fed5e` (브랜치 커밋 `df09ff78`, `briefing/2026-09-25b`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+16/−16), 기사 본문 문장만 바뀜. 기준일 `2026-09-25`·기사 **6건**·제목·수치는 #1257(`ad24d816`)과 같다.
+> - 게이트: 09:01 윤문 채택본 재감사 AUDIT_PASS · 09:15 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · 변경분 존재. pre-push build 통과(35초).
+> - Vercel `pending` → `success`(00:20:05Z). 헤더는 배포 전후 모두 「기준일 2026.09.25 · 기사 6건 · 파이프라인 동기」라 문장으로 판정했다. 09:19:52 는 옛 리드 「회의가 열리고 있으며, 전문가들이」, 09:21:52 에 새 리드 「회의가 열리는 가운데, 전문가들은」. 타이유니온 기사를 펼쳐 「‘비중축소’ 의견은」「8월에 2026년 상반기」 확인, 옛 「이는 이 참치 통조림」 잔존 0(Aside 로그인 세션).
+> - 워크트리: PR MERGED + JSON 이 origin/main 과 같은 것을 확인하고 `sync/2026-09-25b`(origin/main)로 옮겼다. 이 기록 PR 병합 뒤 `sync/2026-09-25c` 로 옮겨 clean 으로 남긴다. 원격 `briefing/2026-09-25b` 는 남아 있다(`--delete-branch` 미사용).
+
 > 🚀 **2026-09-24 21:35 KST — #1235·#1232 프로덕션 배포** [CC]:
 > - 순차 병합(squash): #1235 `1fd37f37`(9/24 하역 실적 + 9/25 계획 200 MT) → #1232 `d1e9bd8e`(RYOMA 3,490 → 3,290 정정). #1232 는 HANDOFF 충돌을 풀고 영향 테스트 2종을 다시 돌린 뒤 병합했다.
 > - Production `tuna-dashboard-gh887d9zg` READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
