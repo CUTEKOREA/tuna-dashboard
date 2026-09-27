@@ -129,16 +129,16 @@
    "name": "M/V SEIN GALAXY",
    "location": "방콕, 태국",
    "buyer": "FCF CO.,LTD",
-   "status": "하역중",
+   "status": "하역완료 (Completed)",
    "reported_total": 1846,
-   "date_range": "2026.09.18 ~ 진행중",
+   "date_range": "2026.09.18 ~ 2026.09.27",
    "mother_vessel": "MOAKONA 956 · MOAMARI 890 MT",
    "hold_species_breakdown_available": false,
    "unclassified_actual_amount": 0,
    "species_breakdown_as_of": "2026-09-22",
    "species_breakdown_note": "9/22 일일 결과보고 XLS에서 어종별 일일·누적 물량을 확인했고 일일하역량 현황 XLSX로 교차 확인했습니다. XLS의 SJ 보고량 1,338 MT는 선적서류의 가다랑어 1,306 MT와 눈다랑어 32 MT를 합친 기준이며, 실제 하역량은 SJ·YF 두 항목만 제공합니다. 원선별 어종 물량이 그날 작업한 어창들의 합계라 개별 어창별 어종 분해는 제공되지 않습니다.",
    "created_at": "2026-09-15T14:00:00+09:00",
-   "updated_at": "2026-09-22T21:00:00+09:00",
+   "updated_at": "2026-09-27T22:00:00+09:00",
    "arrival_date": "2026-09-17"
   }
  ],
@@ -3336,6 +3336,58 @@
    "status_workbook_sha256": "1ec0f660078b350659a191a796cf24555befe7dae2d0cc140fa615320110febf",
    "weighing_report_sha256": "0252c3edc7904e2f271d1c8dad901ae6949a0349de8c423e5bd6195dfac2cf49",
    "created_at": "2026-09-26T22:00:00+09:00"
+  },
+  {
+   "id": "sein-galaxy-bangkok-2026-09-9-27",
+   "vessel_id": "sein-galaxy-bangkok-2026-09",
+   "report_year": 2026,
+   "report_date": "9/27",
+   "work_time": "08:20 ~ 10:10",
+   "target_holds": "MOAMARI(#3-C:55.310)",
+   "consignee": "CMC",
+   "allocations": [
+    {
+     "consignee": "CMC",
+     "amount": 55.31,
+     "loads": [
+      {
+       "source_vessel": "MOAMARI",
+       "hatch": "#3-C",
+       "amount": 55.31
+      }
+     ]
+    }
+   ],
+   "observations": [
+    {
+     "source_vessel": "MOAMARI",
+     "hatch": "#3-C",
+     "temperatures_c": [
+      -16.0,
+      -17.0
+     ]
+    }
+   ],
+   "daily_amount": 55.31,
+   "cumulative_amount": 1886.34,
+   "species_amounts": {
+    "SJ": 51.61,
+    "YF": 3.7
+   },
+   "remaining_amount": -40.34,
+   "next_day": {
+    "kind": "no_work",
+    "date": "9/28",
+    "reason": "항차 종료",
+    "resume_date": null,
+    "planned_mt": null
+   },
+   "quality_notes": "MOAMARI(#3-C) 08:20~10:10 - 어창 개방 측정온도는 -16.0℃ ~ -17.0℃ 입니다. 원문 온도 표기는 ‘-16,-17’(단위: ℃)입니다. TOTAL 5 TRUCKS(전량 리퍼 트럭). K GROUP Report No.9 는 「(LAST)」 로 표기된 마지막 보고입니다 — MOAMARI #3-C 하역 완료로 항차가 끝났습니다. 원선 최종: MOAKONA 1,012.690 MT(B/L 956 대비 +56.690), MOAMARI 873.650 MT(B/L 890 대비 -16.350). 총 하역 1,886.340 MT 로 선적서류 1,846 MT 대비 +40.340 MT 초과 하역입니다(원문 BALANCE 녹색 표기). 9/27 계획은 CMC 80 MT 였고 실제 55.310 MT 로 -24.690 MT — 계획은 최초 보고분(예측)이라 실제 작업분과 늘 차이가 납니다. 어종 최종 누계: SJ 1,351.770(보고 1,338 대비 +13.770) · YF 534.570(보고 508 대비 +26.570).",
+   "source_sha256": "b94d9eb25c0aea389932f139f03bf496b45c7ca8659c32cbd77a8dc66a40b0fb",
+   "source_workbook_sha256": "d8571619730e04a54749580b4c74fff6bc2cb9c6f8ccf541c87d4f3c1f4b76f1",
+   "status_workbook_sha256": "72dcaa94ea0469ddd30e72302feece87d546a0e218adf1acb1278ed0c8170397",
+   "weighing_report_sha256": "5b0192d992adcb4f60d8da4c452740a2d1029dee3b701c7b3a5409bb55d51cdd",
+   "created_at": "2026-09-27T22:00:00+09:00"
   }
  ],
  "unloading_species": [
@@ -3503,16 +3555,16 @@
    "species_id": "SJ",
    "species_name": "가다랑어",
    "reported_amount": 1306,
-   "actual_amount": 1300.16,
-   "updated_at": "2026-09-26T22:00:00+09:00"
+   "actual_amount": 1351.77,
+   "updated_at": "2026-09-27T22:00:00+09:00"
   },
   {
    "vessel_id": "sein-galaxy-bangkok-2026-09",
    "species_id": "YF",
    "species_name": "황다랑어",
    "reported_amount": 508,
-   "actual_amount": 530.87,
-   "updated_at": "2026-09-26T22:00:00+09:00"
+   "actual_amount": 534.57,
+   "updated_at": "2026-09-27T22:00:00+09:00"
   },
   {
    "vessel_id": "sein-galaxy-bangkok-2026-09",
@@ -3520,7 +3572,7 @@
    "species_name": "눈다랑어",
    "reported_amount": 32,
    "actual_amount": 0,
-   "updated_at": "2026-09-26T22:00:00+09:00"
+   "updated_at": "2026-09-27T22:00:00+09:00"
   }
  ]
 }
