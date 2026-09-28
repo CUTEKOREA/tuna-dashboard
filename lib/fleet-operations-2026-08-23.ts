@@ -189,15 +189,15 @@ const monthlyRows = [
  * 직함·선박명으로 바꾸면 표가 성립하지 않는다. 다른 원자료의 인명은 그대로 직함·역할로만 옮긴다 —
  * PANOFI 주간동향 작성자, 코스모 차주 계획 출장자, 일일보고 비고가 그렇다. */
 const weeklyRanking = [
-  { rank: 1, captain: '김형주', vessel: 'N/SUN', catchMt: 260, dailyAverageMt: 37.14 },
-  { rank: 2, captain: '이평규', vessel: 'KONA', catchMt: 195, dailyAverageMt: 27.86 },
-  { rank: 3, captain: '김효원', vessel: 'S/SPR', catchMt: 155, dailyAverageMt: 22.14 },
-  { rank: 4, captain: '이진우', vessel: 'N/STAR', catchMt: 105, dailyAverageMt: 15 },
-  { rank: 5, captain: '공준식', vessel: 'S/EXP', catchMt: 70, dailyAverageMt: 10 },
-  { rank: 6, captain: '오복근', vessel: 'S/HAR', catchMt: 65, dailyAverageMt: 9.29 },
-  { rank: 7, captain: '김승현', vessel: 'S/PIO', catchMt: 35, dailyAverageMt: 5 },
-  { rank: 8, captain: '최용석', vessel: 'S/CHA', catchMt: 0, dailyAverageMt: 0 },
-  { rank: 9, captain: '강창훈', vessel: 'S/JUP', catchMt: 0, dailyAverageMt: 0 },
+  { rank: 1, captain: '오복근', vessel: 'S/HAR', catchMt: 510, dailyAverageMt: 72.86 },
+  { rank: 2, captain: '김형주', vessel: 'N/SUN', catchMt: 370, dailyAverageMt: 52.86 },
+  { rank: 3, captain: '강창훈', vessel: 'S/JUP', catchMt: 315, dailyAverageMt: 45 },
+  { rank: 4, captain: '김승현', vessel: 'S/PIO', catchMt: 238, dailyAverageMt: 34 },
+  { rank: 5, captain: '이평규', vessel: 'KONA', catchMt: 205, dailyAverageMt: 29.29 },
+  { rank: 6, captain: '최용석', vessel: 'S/CHA', catchMt: 200, dailyAverageMt: 28.57 },
+  { rank: 7, captain: '공준식', vessel: 'S/EXP', catchMt: 99, dailyAverageMt: 14.14 },
+  { rank: 8, captain: '이진우', vessel: 'N/STAR', catchMt: 65, dailyAverageMt: 9.29 },
+  { rank: 9, captain: '김효원', vessel: 'S/SPR', catchMt: 0, dailyAverageMt: 0 },
   { rank: 10, captain: '김정훈', vessel: 'MARI', catchMt: 0, dailyAverageMt: 0 },
 ] as const;
 
@@ -216,50 +216,57 @@ const jointWeekly = weeklyRanking
   .reduce((sum, vessel) => sum + vessel.catchMt, 0);
 
 export const purseSeineCatch = {
-  period: { from: '2026-08-31', to: '2026-09-06' },
-  source: '주간 실적 현황 (26.08.31~09.06) - 9월 첫째주',
+  period: { from: '2026-09-21', to: '2026-09-27' },
+  source: '주간 실적 현황 (26.09.21~09.27) - 9월 넷째주',
   // 합계는 원문 인쇄값이다. 월별 계열에서 파생하면 그 계열의 기준일(8월 넷째주)에 묶인다.
   summary: {
     nationalWeekly,
     jointWeekly,
     weeklyTotal: nationalWeekly + jointWeekly,
-    nationalMonthly: 315,
-    jointMonthly: 475,
-    monthlyTotal: 790,
-    nationalAnnual: 28_360,
-    jointAnnual: 20_671,
-    annualTotal: 49_031,
+    nationalMonthly: 3_096,
+    jointMonthly: 2_206,
+    monthlyTotal: 5_302,
+    nationalAnnual: 31_141,
+    jointAnnual: 22_402,
+    annualTotal: 53_543,
   },
-  /** 월별 계열만 아직 8월 넷째주 판이다 — 9월 첫째주 보고의 월별 그래프는
-   *  스택 막대 이미지뿐이라 합작선 9월치를 읽어낼 수 없었다. 읽은 값으로는
-   *  9월 소계가 국적 279 / 합작 0 이 되어 원문 인쇄값(315 / 475)과 맞지 않는다.
-   *  지어내지 않고 원본(xlsx 등)이 들어오면 갱신한다. */
+  /** 월별 계열은 아직 8월 넷째주 판이다(1~8월 8칸). 9월 넷째주 보고의 월별 그래프도
+   *  스택 막대 이미지뿐이라 월별 칸을 읽어낼 수 없다. 선박별 연간 라벨에서 1~8월 합을 빼
+   *  9월치를 파생하면 합이 5,397 이 나와 원문 인쇄값 5,302 와 95 MT 어긋난다 — 1~8월 칸도
+   *  같이 손질된 것으로 보인다. 지어내지 않고 원본(xlsx 등)이 들어오면 갱신한다.
+   *  요약(summary)의 월간·연간은 원문 인쇄값이라 화면 KPI 는 정확하다. */
   monthlySeriesAsOf: '2026-08-30',
   weeklyRanking,
   monthlyByVessel,
-  seasonAverageDailyMt: 18.9,
+  seasonAverageDailyMt: 19.1,
   seasonRanking: [
-    { captain: '공준식', vessel: 'S/EXP', boardingDate: '2026-06-14', seasonDays: 85, catchMt: 954, dailyCatchMt: 11.2, rank: 9, leaderDeltaMt: -15.77, averageDeltaMt: -7.7 },
-    { captain: '김승현', vessel: 'S/PIO', boardingDate: '2026-01-22', seasonDays: 228, catchMt: 4_275, dailyCatchMt: 18.8, rank: 3, leaderDeltaMt: -8.25, averageDeltaMt: -0.18 },
-    { captain: '최용석', vessel: 'S/CHA', boardingDate: '2026-01-04', seasonDays: 246, catchMt: 4_070, dailyCatchMt: 16.5, rank: 5, leaderDeltaMt: -10.46, averageDeltaMt: -2.39 },
-    { captain: '오복근', vessel: 'S/HAR', boardingDate: '2026-06-28', seasonDays: 71, catchMt: 830, dailyCatchMt: 11.7, rank: 8, leaderDeltaMt: -15.31, averageDeltaMt: -7.24 },
-    { captain: '강창훈', vessel: 'S/JUP', boardingDate: '2025-06-10', seasonDays: 454, catchMt: 7_410, dailyCatchMt: 16.3, rank: 6, leaderDeltaMt: -10.68, averageDeltaMt: -2.61 },
-    { captain: '김효원', vessel: 'S/SPR', boardingDate: '2025-09-27', seasonDays: 345, catchMt: 9_314, dailyCatchMt: 27, rank: 1, leaderDeltaMt: -0, averageDeltaMt: 8.07 },
-    { captain: '김정훈', vessel: 'MARI', boardingDate: '2025-04-17', seasonDays: 508, catchMt: 11_485, dailyCatchMt: 22.6, rank: 2, leaderDeltaMt: -4.39, averageDeltaMt: 3.68 },
-    { captain: '이평규', vessel: 'KONA', boardingDate: '2026-03-11', seasonDays: 180, catchMt: 3_229, dailyCatchMt: 17.9, rank: 4, leaderDeltaMt: -9.06, averageDeltaMt: -0.99 },
-    { captain: '김형주', vessel: 'N/SUN', boardingDate: '2025-10-20', seasonDays: 322, catchMt: 4_830, dailyCatchMt: 15, rank: 7, leaderDeltaMt: -12, averageDeltaMt: -3.93 },
-    { captain: '이진우', vessel: 'N/STAR', boardingDate: '2026-08-19', seasonDays: 19, catchMt: 145, dailyCatchMt: 7.6, rank: 10, leaderDeltaMt: -19.37, averageDeltaMt: -11.3 },
+    { captain: '공준식', vessel: 'S/EXP', boardingDate: '2026-06-14', seasonDays: 106, catchMt: 1_403, dailyCatchMt: 13.2, rank: 9, leaderDeltaMt: -12.96, averageDeltaMt: -5.9 },
+    { captain: '김승현', vessel: 'S/PIO', boardingDate: '2026-01-22', seasonDays: 249, catchMt: 4_665, dailyCatchMt: 18.7, rank: 5, leaderDeltaMt: -7.47, averageDeltaMt: -0.41 },
+    { captain: '최용석', vessel: 'S/CHA', boardingDate: '2026-01-04', seasonDays: 267, catchMt: 4_370, dailyCatchMt: 16.4, rank: 7, leaderDeltaMt: -9.83, averageDeltaMt: -2.77 },
+    { captain: '오복근', vessel: 'S/HAR', boardingDate: '2026-06-28', seasonDays: 92, catchMt: 1_740, dailyCatchMt: 18.9, rank: 4, leaderDeltaMt: -7.29, averageDeltaMt: -0.23 },
+    { captain: '강창훈', vessel: 'S/JUP', boardingDate: '2025-06-10', seasonDays: 475, catchMt: 7_865, dailyCatchMt: 16.6, rank: 6, leaderDeltaMt: -9.64, averageDeltaMt: -2.58 },
+    { captain: '김효원', vessel: 'S/SPR', boardingDate: '2025-09-27', seasonDays: 366, catchMt: 9_591, dailyCatchMt: 26.2, rank: 1, leaderDeltaMt: -0, averageDeltaMt: 7.06 },
+    { captain: '김정훈', vessel: 'MARI', boardingDate: '2025-04-17', seasonDays: 529, catchMt: 11_485, dailyCatchMt: 21.7, rank: 2, leaderDeltaMt: -4.49, averageDeltaMt: 2.57 },
+    { captain: '이평규', vessel: 'KONA', boardingDate: '2026-03-11', seasonDays: 201, catchMt: 4_240, dailyCatchMt: 21.1, rank: 3, leaderDeltaMt: -5.11, averageDeltaMt: 1.95 },
+    { captain: '김형주', vessel: 'N/SUN', boardingDate: '2025-10-20', seasonDays: 343, catchMt: 5_250, dailyCatchMt: 15.3, rank: 8, leaderDeltaMt: -10.89, averageDeltaMt: -3.83 },
+    { captain: '이진우', vessel: 'N/STAR', boardingDate: '2026-08-19', seasonDays: 40, catchMt: 445, dailyCatchMt: 11.1, rank: 10, leaderDeltaMt: -15.07, averageDeltaMt: -8.01 },
   ],
 };
 
-/** 주간은 8/31~9/6 이고 월간은 9월분이라, 둘의 차이가 8월 31일 하루치다.
- *  두 숫자가 나란히 놓이면 «왜 다르지» 가 먼저 나온다 - 그 답을 계약에 둔다. */
-export const monthBoundaryDay = {
-  date: '2026-08-31',
-  nationalMt: purseSeineCatch.summary.nationalWeekly - purseSeineCatch.summary.nationalMonthly,
-  jointMt: purseSeineCatch.summary.jointWeekly - purseSeineCatch.summary.jointMonthly,
-  totalMt: purseSeineCatch.summary.weeklyTotal - purseSeineCatch.summary.monthlyTotal,
-} as const;
+/** 주간 창이 월 경계를 걸칠 때만 「주간 대 월간」 차이를 하루치로 설명할 수 있다.
+ *  9월 첫째주(8/31~9/6)가 그랬다. 9월 넷째주(9/21~9/27)처럼 한 달 안에 들어오는 주는
+ *  월간이 그 주보다 훨씬 크고(2,002 대 5,302) 차이가 하루치가 아니다 — 그럴 땐 null 을
+ *  내서 화면이 그 문장을 아예 쓰지 않게 한다. */
+export const monthBoundaryDay = (() => {
+  const { from, to } = purseSeineCatch.period;
+  if (from.slice(0, 7) === to.slice(0, 7)) return null;
+  return {
+    date: from,
+    nationalMt: purseSeineCatch.summary.nationalWeekly - purseSeineCatch.summary.nationalMonthly,
+    jointMt: purseSeineCatch.summary.jointWeekly - purseSeineCatch.summary.jointMonthly,
+    totalMt: purseSeineCatch.summary.weeklyTotal - purseSeineCatch.summary.monthlyTotal,
+  };
+})();
 
 export const pacificDailyReport = {
   asOf: '2026-08-19',
