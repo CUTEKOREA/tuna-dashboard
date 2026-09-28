@@ -305,6 +305,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅩ · 발행본 §01·§09 의 본점 「Darse de Pêche – Magasin 10, Port Ouest, 97420 Le Port」(RCS 350 434 494) · **좌표는 레위니옹 르포르 Port Ouest 근사값**',
     note: 'Euronext Growth ALMER · 지배 블록 63,49 % · 선망 최대 9척 → 0척(2026-09-09 CFTO) · SPV 명의 4척도 2019년부터 상장사 장부 · 2025 참치 EBITDA 마진 2 % · 이빨고기 4척 몫 −24,0 %(TAC −13,7 %)',
     },
+  // ── ⅬⅩⅠ Pataya Food Industries — 방콕 본점 ─────
+  { company: 'pataya', numeral: 'ⅬⅩⅠ', kind: 'hq', label: 'Pataya Food Industries — 방콕 Supalai Grand Tower 본점', country: '태국',
+    lat: 13.6958, lng: 100.5389,
+    basis: 'ⅬⅩⅠ · 발행본 §01·§02 의 DBD 본점 「1011 Supalai Grand Tower 27층, Rama 3 Rd, Chong Nonsi, Yan Nawa, Bangkok」 · **좌표는 방콕 Rama 3 Rd 근사값** · 공장은 사뭇사콘 마하차이 90/6 Moo 7',
+    note: 'DBD 0105522010087 · 2026-09-01 등록자본 2억 8.000만 → 3억 7.383만 밧(증가분 = 증자 뒤 자본의 25,10 %) · 국적표 일본 1곳 12,50 % · 총수익 2016 6.044,5 → 2025 6.086,9 백만 밧 · 2022·2023 순손실 · RFMO 등록 선박 없음',
+    },
 ];
 
 /**

@@ -394,6 +394,10 @@ import {
   fleet as saFleet, money as saMoney, legine as saLegine,
 } from '@/lib/data/company-sapmer';
 import {
+  patayaMeta, patayaSourceNotes,
+  registry as ptRegistry, books as ptBooks, trade as ptTrade,
+} from '@/lib/data/company-pataya';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -5491,6 +5495,86 @@ const SAPMER_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const PT_ACCENT = '#2f5d50';
+const PT_R = ptRegistry();
+const PT_B = ptBooks();
+const PT_T = ptTrade();
+
+const PATAYA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-pataya',
+  title: '기업 해부: Pataya Food Industries',
+  subtitle:
+    `Pataya Food Industries(PFI)는 1979년 방콕에서 설립된 비공개 유한회사다. 사뭇사콘 마하차이의 한 단지에서 참치·고등어·연어 캔과 펫푸드를 만들고, 베트남 껀터에는 이름이 이어지는 공장 법인이 있다. ` +
+    `PFI 법인의 총수익은 2016년 ${euNum(PT_B.총수익16, 1)}, 2025년 ${euNum(PT_B.총수익25, 1)} 백만 밧으로 거의 같았고, 2022·2023년에는 순손실을 냈다. ` +
+    `2026-09-01 등록자본이 늘었는데 늘어난 몫이 증자 뒤 자본의 ${euNum(PT_R.증가몫, 2)} %이고, Umios는 09-14 Kingfisher Holdings와 함께 25,1 % 취득을 「결정」했다고 발표했다.`,
+  accent: PT_ACCENT,
+  primaryKpi: {
+    label: '2026-09-01 PFI 등록자본 증가분이 증자 뒤 자본에서 차지하는 몫 (DBD 자본 이력, 계산)',
+    value: PT_R.증가몫,
+    decimals: 2,
+    unit: `(% · ${euNum(PT_R.자본전)} → ${euNum(PT_R.자본후)} 밧. 2026-09-27 기준 국적표에 일본 국적 주주 1곳 ${euNum(PT_R.일본몫, 2)} %, 이사 ${PT_R.이사}명 중 일본식 이름 ${PT_R.일본식이사}명(1명은 Kingfisher Holdings 등기 이사와 같은 이름). Umios(Kingfisher 지분 ${euNum(PT_R.KF지분, 2)} %)는 09-14 「決定」만 발표했고 가격·실행일·배분은 공개되지 않았다. 새 주식을 누가 받았는지는 문서가 없다)`,
+    accent: PT_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: 'PFI 법인 총수익 연평균 증가율 2016→2025 (DBD·Creden, 계산)',
+      value: PT_B.CAGR,
+      decimals: 2,
+      unit: `(% · ${euNum(PT_B.총수익16, 1)} → ${euNum(PT_B.총수익25, 1)} 백만 밧, 정점 2022 ${euNum(PT_B.총수익22, 1)}. 순손실 2022 ${euNum(PT_B.손실22, 1)}·2023 ${euNum(PT_B.손실23, 1)}. 2025 순이익 ${euNum(PT_B.순이익25, 1)}이지만 본업 영업손익 ${euNum(PT_B.본업25, 1)}(계산). 연결·개별 구분 없음)`,
+    },
+    {
+      label: '미국 선하증권 요약에서 받는 쪽 1위 Bumble Bee의 해상 선적 건수 (ImportYeti, 태국·베트남 법인 섞임)',
+      value: PT_T.BB,
+      decimals: 0,
+      unit: `(건 · 누적 ${euNum(PT_T.선적)}건(2015-01~2026-09) 중. 건수는 DB마다 다르다. 2019 미국 거울 자료의 HS 1604.14는 ${euNum(PT_T.IEc)} t(IEc). 톤·금액 순위는 공개되지 않았다)`,
+    },
+    {
+      label: '2025년 참치 구매 가운데 MSC 인증 어업 몫 (회사 공개문, ISSF 집계와 일치)',
+      value: PT_T.MSC비중,
+      decimals: 1,
+      unit: `(% · 공급처 분류는 ISSF 참여사·Data Check사·선박 직구매 0 %, 「그 밖」 100 %. 네 RFMO 등록부에 PFI 계열 선박이 올라 있지 않다. MSC CoC ${PT_T.MSC}(${PT_T.MSC만료} 만료))`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '등기',
+      title: '발표보다 먼저 올라간 증자 등기',
+      body: `등록자본 증가 2026-09-01(A) → PFG 보도자료 09-10 「decided to invest」 → Umios 09-14 「資本業務提携することを決定」·「発行済株式の25.1%を取得」. Umios는 같은 해 PWI(51 %, 11.308 백만 엔)는 적시공시했지만 PFI 건은 기업 뉴스로만 냈다. 이유는 「アジアにおける加工食品等のポートフォリオ及び販売チャネル」`,
+    },
+    {
+      eyebrow: '장부',
+      title: '장부 10년과 경영진의 말',
+      body: `경영진은 그룹 매출 100억 밧을 2021·2023년에 목표로 말했고, 2022 그룹 매출 82억, 2025 「70억 밧 이상」이라고 밝혔다. PFI 법인 총수익은 10년 연평균 +${euNum(PT_B.CAGR, 2)} %다. 판매 법인 Nautilus Food (Thailand)의 총수익은 ${euNum(PT_B.NFT21, 1)} → ${euNum(PT_B.NFT25, 1)}, 순이익은 ${euNum(PT_B.NFT이익21, 1)} → ${euNum(PT_B.NFT이익25, 1)} 백만 밧`,
+    },
+    {
+      eyebrow: '참치',
+      title: '참치는 한 갈래',
+      body: `경영진이 밝힌 2022년 그룹 매출 구성은 참치 ${PT_T.참치} %·펫푸드 ${PT_T.펫} %·고등어 ${PT_T.고등어} %·연어 ${PT_T.연어} %. 태국 제조는 마하차이 90/6 한 단지(DIW 식품 가공 허가 1건, 신고 인원 ${euNum(PT_T.인원)}명), 베트남 껀터 공장은 게살·새우·소스 생선 통조림(EU DH 146·DL 1017)`,
+    },
+    {
+      eyebrow: '판로',
+      title: '북미의 받는 쪽과 태국의 안방',
+      body: `미국 선하증권 요약의 받는 쪽은 Bumble Bee·Atlantic Natural Foods(Loma Linda)·Ocean Brands·Clover Leaf·Grace·Mars Petcare. 태국 캔참치 소매시장에서 분모가 있는 점유율은 Sealect ${euNum(PT_T.Sealect, 1)} %(2023, Thai Union 연차보고서)뿐이고 Nautilus 수치는 회사 자칭이거나 분모가 없다. 태국 식약청 등록 ${PT_T.등록}건(참치 ${PT_T.등록참치}), Makro aro 등 자체상표도 만든다`,
+    },
+    {
+      eyebrow: '기록',
+      title: '인증·코로나·한국',
+      body: `ISSF 2025 경미 부적합은 공개문 게시 기한을 넘긴 조치 2.5 한 건. 2020-12-28 전수검사로 전 라인 중단, 2021-01-06 누계 감염 ${PT_T.코로나}명, 공장 안 600병상. 식약처 수입식품 조회에서 PFI 공장·브랜드 이름의 살아 있는 신고는 없고, 같은 조회에 태국산 참치 신고 ${PT_T.한국태국}건이 잡힌다`,
+    },
+  ],
+  briefing: proseBriefing('pataya'),
+  narratives: inlineReport('pataya', proseStages('pataya')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: patayaSourceNotes,
+  sourceMeta: [
+    `${patayaMeta.회사} · ${patayaMeta.국가} · ${patayaMeta.업종}`,
+    `출처 ${patayaMeta.출처}`,
+    `조사 ${patayaMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -6696,7 +6780,20 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '돈', value: `2025 매출 ${euNum(SA_M.매출, 1)} M€ · 참치 ${euNum(SA_M.참치비중, 1)} %·EBITDA 마진 ${SA_M.마진} % · 선망 손상 ${euNum(SA_M.참치손상, 1)} M€ · 순이익 ${euNum(SA_M.순이익, 1)} M€ · 2023 ${euNum(SA_M.손실2023, 1)} M€ · 지배 블록 ${euNum(SA_M.지배, 2)} %, 지역정부 ${euNum(SA_M.지역정부, 2)} %` },
       { label: '이빨고기', value: `TAC ${euNum(SA_L.TAC24)} → ${euNum(SA_L.TAC25)} t(${euNum(SA_L.TAC변화, 1)} %) · Sapmer 4척 몫 ${euNum(SA_L.쿼터변화, 1)} % · 급속심리 기각(${SA_L.가처분일}) · 연승선 발주 공시 없음 · 한국 이빨고기 수입의 프랑스 몫 ${euNum(SA_L.한국몫, 1)} %(2025)` },
     ],
+  },  {
+    key: 'pataya',
+    numeral: 'ⅬⅩⅠ',
+    name: 'Pataya Food Industries',
+    country: `태국 · 방콕 본점 · 사뭇사콘 마하차이 공장(비상장, DBD 0105522010087)`,
+    tagline: '발표보다 먼저 올라간 증자 등기 — 참치·고등어·펫푸드를 만드는 방콕의 비공개 유한회사에서 2026-09-01 등록자본이 늘었고, 13일 뒤 Umios가 25,1 % 취득 「결정」을 발표했다.',
+    ...FLAG.태국,
+    stats: [
+      { label: '등기', value: `등록자본 ${euNum(PT_R.자본전)} → ${euNum(PT_R.자본후)} 밧(2026-09-01, 증가분 = 증자 뒤 자본의 ${euNum(PT_R.증가몫, 2)} %) · 국적표 일본 1곳 ${euNum(PT_R.일본몫, 2)} % · 이사 ${PT_R.이사}명 중 일본식 이름 ${PT_R.일본식이사}명 · Umios 09-14 「決定」, 가격·실행일 비공개` },
+      { label: '장부', value: `PFI 총수익 ${euNum(PT_B.총수익16, 1)}(2016) → ${euNum(PT_B.총수익25, 1)}(2025) 백만 밧, 연평균 +${euNum(PT_B.CAGR, 2)} % · 순손실 2022 ${euNum(PT_B.손실22, 1)}·2023 ${euNum(PT_B.손실23, 1)} · 2025 본업 ${euNum(PT_B.본업25, 1)} · 판매 법인 NFT 총수익 ${euNum(PT_B.NFT21, 1)} → ${euNum(PT_B.NFT25, 1)}` },
+      { label: '조달과 판로', value: `RFMO 등록부 선박 없음 · MSC 인증 어업 ${euNum(PT_T.MSC비중, 1)} %(2025) · 미국 선하증권 ${euNum(PT_T.선적)}건 중 Bumble Bee ${PT_T.BB}건 · 경영진 말로 2022 그룹 매출의 참치 ${PT_T.참치} % · 식약처 조회 PFI·브랜드 신고 0건` },
+    ],
   },
+
 
 
 
@@ -6782,6 +6879,7 @@ export default function CompanyAnatomyDashboard({
     inepaca: INEPACA_SPEC,
     kfl: KFL_SPEC,
     sapmer: SAPMER_SPEC,
+    pataya: PATAYA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
