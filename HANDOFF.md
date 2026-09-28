@@ -6,6 +6,12 @@
 > - 월별 계열(1~8월 8칸)은 그대로 뒀다. 이번 판도 월별 그래프가 스택 이미지뿐이라 칸을 못 읽는다 — 선박별 연간 라벨에서 1~8월 합을 빼 9월을 파생하면 5,397 로 인쇄값 5,302 와 **95 MT 어긋난다**(1~8월 칸도 손질된 것으로 보인다). 지어내지 않고 `monthlySeriesAsOf: 2026-08-30` 를 유지한다. 화면 KPI 는 인쇄값(summary)을 쓰므로 정확하다.
 > - 테스트 2종 갱신·GREEN. `npm run verify` 통과: Vitest **196 files / 1,674** · ESLint 0 errors · fleet client leak 통과 · bundle 33. 로컬 실적 분석 탭: 2,002 / 5,302 / 53,543 · 「S/HAR(오복근) 510t」 · 월 경계 문장 교체 확인 · overflow 0.
 > - 상태: 브랜치 `data/fleet-week0927`. **프로덕션 미배포**.
+> 📰 **2026-09-29 00:25 KST — `/market` 2026-09-28 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1267](https://github.com/CUTEKOREA/tuna-dashboard/pull/1267) squash 병합. main commit `4b6b8aee` (브랜치 커밋 `17ee49f0`, `briefing/2026-09-28`, 원격 브랜치 삭제). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+74/−63). 기준일 `2026-09-25` → `2026-09-28`, 기사 **6건**.
+> - 게이트: `state/audit-2026-09-28.txt` AUDIT_PASS(윤문본은 재감사 AUDIT_FIX P1=1 로 기각, 원본 유지) · 00:17 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · 변경분 존재.
+> - Vercel `pending` → `success`(15:21:58Z). 라이브(Aside 로그인 세션): 「기준일 2026.09.28 · 기사 6건 · 파이프라인 동기」, 리드 「에콰도르산 황다랑어 원어(WR) EU 유입, 가격 압박」, 오늘의 수치 「3% 대형 선망선 어획능력」, 이하 EU-태국 협정·FAO RFMO·선망선 3%·MIFCO·만타 어민 6건 모두 확인.
+> - 같은 회차 인포그래픽(1차 검수에서 기사 불일치 3장 삭제, 재생성 4/6 — MIFCO·만타 다운로드 실패)·영상 대본 검증 FAIL 은 대시보드 배포와 별개로 남아 있다.
+> - 워크트리: PR MERGED + JSON 이 origin/main 과 같은 것을 확인하고 `sync/2026-09-28`(origin/main)로 옮겼다. 이 기록 PR 병합 뒤 `sync/2026-09-28b` 로 옮겨 clean 으로 남긴다.
 
 > ✅ **2026-09-28 10:30 KST — `/fleet` 260928 일일업무보고 반영** [CC]:
 > - 원자료: `해양수산본부 일일업무보고-260928 (월).docx` SHA-256 `94062db8…`(166,884 B, `unzip -t` 통과). **163건**, 최신 2026-09-28 보고(2026-09-27 조업).
