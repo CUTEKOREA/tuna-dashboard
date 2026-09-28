@@ -56,13 +56,13 @@ describe('FleetCommandCenter daily operations', () => {
   it('keeps the weekly performance and VDS contracts while withholding the latest roster', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('26.08.31~09.06');
-    expect(markup).toContain('data-kpi-value="885"');
-    expect(markup).toContain('data-kpi-value="790"');
-    expect(markup).toContain('data-kpi-value="49031"');
+    expect(markup).toContain('26.09.21~09.27');
+    expect(markup).toContain('data-kpi-value="2002"');
+    expect(markup).toContain('data-kpi-value="5302"');
+    expect(markup).toContain('data-kpi-value="53543"');
     // 문장은 계약에서 파생한다 - 차트만 갈리고 문장이 지난주에 남는 사고를 막는다
-    expect(markup).toContain('N/SUN(김형주) 260t');
-    expect(markup).toContain('주간 총 어획량은 885t(국적 325t, 합작 560t)');
+    expect(markup).toContain('S/HAR(오복근) 510t');
+    expect(markup).toContain('주간 총 어획량은 2,002t(국적 1,362t, 합작 640t)');
     expect(markup).not.toContain('645t');
     // 월별 카드 라벨은 계열에서 파생한다 - 계열이 한 달 늘어도 «8월»이 남지 않는다
     expect(markup).toContain('월별 계열은 2026-08-30 보고 기준');
@@ -112,11 +112,13 @@ describe('FleetCommandCenter daily operations', () => {
     expect(fleetDailyPublicReconciliation.carrierLoaded.matches).toBe(true);
   });
 
-  it('주간과 월간의 차이가 8월 31일 하루치로 설명된다', () => {
-    // 885 주간 옆에 790 월간이 놓이면 «왜 다르지» 가 먼저 나온다. 주간은 8/31 을
-    // 포함하고 월간은 9월분이라 차이가 그 하루치다 - 화면이 그걸 말해야 한다.
-    expect(monthBoundaryDay).toEqual({ date: '2026-08-31', nationalMt: 10, jointMt: 85, totalMt: 95 });
+  it('주간 창이 한 달 안에 들어오면 월 경계 설명을 쓰지 않는다', () => {
+    /* 9월 첫째주(8/31~9/6)는 주간이 월 경계를 걸쳐 차이를 하루치로 설명할 수 있었다.
+     * 9월 넷째주(9/21~9/27)는 한 달 안이라 월간(5,302)이 주간(2,002)보다 훨씬 크다 -
+     * 그 문장을 그대로 두면 「차이 -3,300t이 그 하루치」라는 거짓말이 된다. */
+    expect(monthBoundaryDay).toBeNull();
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
-    expect(markup).toContain('8/31을 포함하고 월간은 9월분이라, 차이 95t(국적 10t, 합작 85t)');
+    expect(markup).toContain('주간 창이 한 달 안에 들어와');
+    expect(markup).not.toContain('그 하루치입니다');
   });
 });
