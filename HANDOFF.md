@@ -6,6 +6,10 @@
 > - 날짜 고정 테스트 5종 갱신·GREEN(운반선 값까지). `npm run verify` 통과: Vitest **196 files / 1,674** · ESLint 0 errors · fleet client leak 통과(정적 138·보호 상세 27) · bundle 33. 로컬 히어로 610 / 10,912 / 92,612.8 / 7,670.3, 1440·390px overflow 0, 좌표 유출 0.
 > - **배포 시 주의**: `detailSha256` `7b067ac0…` → **`18f78e84…`**. 병합·READY 뒤 `swap_fleet_detail_secret.sh` 필요.
 > - 상태: 브랜치 `data/fleet-260928`. **프로덕션 미배포**.
+> 🚀 **2026-09-27 22:35 KST — #1262 SEIN GALAXY 항차 종료 배포** [CC]:
+> - 병합(squash): #1262 `f67777f8`. Production `tuna-dashboard-2992tgtkl` READY, alias `https://leedonggun.co.kr`. 배포 로그 error 0.
+> - 라이브 실측(새 탭): 2026 누적 **41,255 MT** · 완료 선박 **14척(방콕 13·젠산 1)** · 일평균 **209.6** · 상태 「하역완료」 · 체선 「해당 없음(진행 중 항차 없음)」 · overflow 0.
+> - **최종 하역보고 메일은 최종 사이징 보고서가 온 뒤에 쓴다**(2026-09-27 사용자 지시). 도착 전까지 본부·원선 메일을 만들지 않는다. HIKARI 1 건도 같은 이유로 대기 중인지 함께 확인할 것.
 
 > ✅ **2026-09-27 22:20 KST — `/unloading` SEIN GALAXY 방콕 항차 종료(9/27)** [CC]:
 > - 원자료: K GROUP **Report No.9 (LAST)** JPG `b94d9eb2…` · 계근표 `5b0192d9…` · 결과 XLS `d8571619…`(시트 `09-27`) · 현황 XLSX `72dcaa94…`.
