@@ -60,6 +60,8 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'tuna-anatomy', title: '참치 해부', section: 'understanding', accent: 'cyan', sidebar: { icon: 'Ship' } },
   // 품목이 아니라 회사를 해부한다. 경쟁·조달 판단에 쓰는 자료라 「전략 분석」에 둔다.
   { key: 'company-anatomy', title: '기업 해부', section: 'strategy', accent: 'amber', sidebar: { icon: 'Factory', suffix: 'Company' } },
+  // KAMIS 도·소매가에 관세청 수입 원가를 이어 붙인 품목별 가격 사다리(가치사슬 관측소). 정적 스냅샷을 iframe 으로 띄운다.
+  { key: 'kamis', title: 'KAMIS 가격 사다리', section: 'strategy', accent: 'emerald', sidebar: { icon: 'BarChart2', label: 'KAMIS' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'purse-seiner-db', title: '선단 DB', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Ship', suffix: 'FleetDb' } },
@@ -196,6 +198,7 @@ export const DASHBOARD_PANEL_ORDER = [
   'tunafarm-industry',
   'tuna-anatomy',
   'company-anatomy',
+  'kamis',
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
@@ -217,6 +220,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     // cross-intelligence 는 종전대로 명령 팔레트 전용이다.
     'purse-seiner-db',
     'company-anatomy',
+    'kamis',
   ],
   agriculture: [],
   livestock: ['pork'],

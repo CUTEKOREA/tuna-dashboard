@@ -58,6 +58,7 @@ const OctopusIndustryDashboard = dynamic(() => import('../components/market-unde
 const TunafarmIndustryDashboard = dynamic(() => import('../components/market-understanding/TunafarmIndustryDashboard'));
 const TunaAnatomyDashboard = dynamic(() => import('../components/market-understanding/TunaAnatomyDashboard'));
 const CompanyAnatomyDashboard = dynamic(() => import('../components/market-understanding/CompanyAnatomyDashboard'));
+const KamisObservatoryDashboard = dynamic(() => import('../components/KamisObservatoryDashboard'));
 
 const INSTITUTIONAL_MENU_KEYS = new Set<ActiveMenu>([
   'market',
@@ -286,6 +287,7 @@ export default function Home() {
     'tunafarm-industry': <TunafarmIndustryDashboard />,
     'tuna-anatomy': <TunaAnatomyDashboard />,
     'company-anatomy': <CompanyAnatomyDashboard />,
+    kamis: <KamisObservatoryDashboard />,
   };
   return (
     <div className={styles.appWrapper} data-v3={darkMode ? undefined : 'light'}>

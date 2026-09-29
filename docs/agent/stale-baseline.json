@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-23",
-  "stale": 130,
+  "updatedAt": "2026-09-26",
+  "stale": 132,
   "unknown": 58,
   "note": "이 수치보다 늘면 check:stale-widgets 가 실패한다. 줄었으면 이 파일을 갱신해 잠가라.",
   "worstFiles": {
