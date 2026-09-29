@@ -369,7 +369,7 @@ export default function Quality() {
                 <td><b>손익 {latestMonth.month}월 / 운영 {latest.week}주차</b><br />
                   <span style={{ color: 'var(--cosmo-muted)' }}>두 계층 사이 시차</span></td>
                 <td>경영요약 · 손익·원가</td>
-                <td>2026년 {latestMonth.month + 1}월 이후 월별 손익 입수 → <code>npm run data</code> 재실행만으로 반영</td>
+                <td>2026년 {latestMonth.month + 1}월 손익(Comparative PnL) 입수 → <code>scripts/sync_cosmo_monthly_pnl.py</code> 로 전월 YTD 대조 후 반영</td>
               </tr>
               <tr className="bad">
                 <td><b>판매 계획 부재</b><br />

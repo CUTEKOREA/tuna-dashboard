@@ -62,7 +62,14 @@ export type Month = {
   /** 부문별 영업손익 — 7월 보고서부터 공시 (이전 월은 null) */
   op_cannery?: number | null; op_fishmeal?: number | null; op_fbu?: number | null
   costLines: Record<string, number>
+  /** 원가 계정 전년 동기 누계 — 원문 「YTD <월> 2025 ACTUAL」 블록 */
+  costLinesPrevYtd?: Record<string, number>
+  /** 매출 세부 계정(Export·Local·Precooked Loin·Raw Fish…) 당해·전년 누계 */
+  revenueLinesYtd?: Record<string, number>; revenueLinesPrevYtd?: Record<string, number>
   fishPriceSJ?: number | null; fishPriceYF?: number | null; forex?: number | null
+  source?: string; sha256?: string
+  /** 인쇄 당월값이 YTD 차분과 어긋나 복원한 칸 — 키는 `행:계정:부문`, 값은 인쇄값 */
+  correction?: { method: string; printed: Record<string, number | null> }
 }
 export type Quote = {
   week: number; kind: string; customer: string; qty: string; expected: string

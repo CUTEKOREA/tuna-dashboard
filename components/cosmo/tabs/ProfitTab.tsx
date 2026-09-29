@@ -84,13 +84,30 @@ export default function Profit() {
   const sjPrev = sjRows.at(-2)
   const sjChange = div(n(sjLast?.fishPriceSJ) - n(sjFirst?.fishPriceSJ), n(sjFirst?.fishPriceSJ))
   const sjMoM = div(n(sjLast?.fishPriceSJ) - n(sjPrev?.fishPriceSJ), n(sjPrev?.fishPriceSJ))
+  const sjPeak = sjRows.reduce((a, b) => (n(b.fishPriceSJ) > n(a.fishPriceSJ) ? b : a), sjRows[0])
+  const sjFromPeak = div(n(sjLast?.fishPriceSJ) - n(sjPeak?.fishPriceSJ), n(sjPeak?.fishPriceSJ))
+  /* 정점 이후 관측 개월 — «첫 하락» 이 몇 달째 이어지는지 문장에 박지 않고 센다 */
+  const sjAfterPeak = sjRows.length - 1 - sjRows.indexOf(sjPeak)
+  const sjFlat = Math.abs(n(sjMoM)) < 0.005
 
   /* 전년 동기 매출 갭 — 월별 revenuePrev 합 대비 부족분 */
   const revPrevYtd = monthly.reduce((a, m) => a + n(m.revenuePrev), 0)
   const revGapYoY = revPrevYtd - n(M.revenueYtd)
+  /* 그중 사업 구조 축소분 — 전년엔 있고 올해 사라진 로인·원어 판매 (원문 매출 세부 계정 누계) */
+  const lineLost = (k: string) => n(M.revenueLinesPrevYtd?.[k]) - n(M.revenueLinesYtd?.[k])
+  const loinLost = lineLost('Precooked Loin Sales')
+  const rawFishLost = lineLost('Raw Fish Sales')
+  const structShare = div(loinLost + rawFishLost, revGapYoY)
 
-  /* 전기료 YTD — costLines 실측 합 */
+  /* 전기료 YTD — costLines 실측 합, 전년 동기는 원문 전년 YTD 블록 */
   const elecYtd = monthly.reduce((a, m) => a + n(m.costLines?.Electricity), 0)
+  const elecPrevYtd = M.costLinesPrevYtd?.Electricity ?? null
+  const elecYoY = elecPrevYtd ? elecYtd / elecPrevYtd - 1 : null
+  /* 인쇄 당월값을 YTD 차분으로 복원한 칸 (원문 셀 참조 오류) */
+  const fixed = Object.entries(M.correction?.printed ?? {})
+    .filter(([k]) => k.endsWith(':Total'))
+    .map(([k, v]) => ({ line: k.split(':')[1], printed: v }))
+  const cosFix = fixed.find((f) => f.line === 'Cost of Sales')
 
   /* 부문별 영업손익 — 공시가 시작된 월부터만 값이 있다 */
   const opSeg = monthlySeries.filter((m) => m.opCannery != null)
@@ -168,7 +185,7 @@ export default function Profit() {
                 {annualCompare.year}년은 순이익 {musd(annualCompare.priorNet)}로 <b>간신히 흑자</b>였는데,
                 그 얇은 마진이 올해 사라진 구조입니다.
                 매출 갭도 전부 시황 탓은 아닙니다 - 전년 동기 대비 부족분 {musd(revGapYoY)} 중
-                약 <b>25%</b>는 로인(Precooked Loin) 판매 소멸 $1.03M과 원어 판매 소멸 $0.36M,
+                약 <b>{pct(structShare, 0)}</b>는 로인(Precooked Loin) 판매 소멸 {musd(loinLost)}과 원어 판매 소멸 {musd(rawFishLost)},
                 즉 <b>사업 구조 축소분</b>입니다(로인 물량의 이치반 FBU 흡수 맥락).
                 <br />단순 연환산({annualCompare.months}개월 × {(12 / annualCompare.months).toFixed(1)})으로는
                 매출 {musd(annualCompare.revenueAnnualized)}({pct(annualCompare.revenueYoY, 1)}),
@@ -335,7 +352,7 @@ export default function Profit() {
         <Card
           title="원어가(Skipjack) vs 매출총이익률"
           sub="원어 매입단가(왼쪽 축 $/MT)와 매출총이익률(오른쪽 축 %). 축이 다르므로 방향만 본다. 단가 축은 변동 폭이 좁아 0 이 아니라 데이터 범위에서 시작한다."
-          note={<>Skipjack 단가는 {sjFirst?.label} {d0(n(sjFirst?.fishPriceSJ))}에서 {sjPrev?.label} {d0(n(sjPrev?.fishPriceSJ))}까지 줄곧 올랐다가, {sjLast?.label} <b>{d0(n(sjLast?.fishPriceSJ))}</b>로 <b>{pct(sjMoM, 1)}</b> 내렸습니다 - 1월 이후 <b>첫 하락 전환</b>입니다. 다만 관측 1개월이라 추세로 단정할 수 없고, 8월 원가 개선의 <b>선행 신호 후보</b>로만 둡니다. 같은 기간 매출총이익률은 {pct(sjFirst?.gpMargin, 2)} → <b>{pct(sjLast?.gpMargin, 2)}</b> - 누적 {pct(sjChange, 1)} 오른 단가를 판가가 따라잡지 못한 구조는 그대로입니다. 월 {sjRows.length}개 관측치라 상관계수를 말할 표본은 아니고, <b>방향</b>만 읽습니다.</>}
+          note={<>Skipjack 단가는 {sjFirst?.label} {d0(n(sjFirst?.fishPriceSJ))}에서 {sjPeak?.label} <b>{d0(n(sjPeak?.fishPriceSJ))}</b>까지 올랐고, {sjLast?.label}은 <b>{d0(n(sjLast?.fishPriceSJ))}</b>로 정점 대비 <b>{pct(sjFromPeak, 1)}</b>입니다{sjAfterPeak > 0 ? <> - 직전월({sjPrev?.label}) 대비 {pct(sjMoM, 1)}로 {sjFlat ? <b>보합</b> : n(sjMoM) < 0 ? '하락' : '반등'}이라, 정점 이후 {sjAfterPeak}개월째 {sjFlat ? '내려온 자리에 머물러 있습니다' : '움직이고 있습니다'}. 정점 이후 관측 {sjAfterPeak}개월이라 방향 전환으로 단정하지 않습니다</> : ' - 아직 정점을 지나지 않았습니다'}. 같은 기간 매출총이익률은 {pct(sjFirst?.gpMargin, 2)} → <b>{pct(sjLast?.gpMargin, 2)}</b> - 누적 {pct(sjChange, 1)} 오른 단가를 판가가 따라잡지 못한 구조는 그대로입니다. 월 {sjRows.length}개 관측치라 상관계수를 말할 표본은 아니고, <b>방향</b>만 읽습니다.</>}
         >
           <Legend items={[
             { name: '원어가 SJ ($/MT)', color: C.s1 },
@@ -376,7 +393,7 @@ export default function Profit() {
         <Card
           title={`${M.month}월 원가 계정 ${costRows.length}개`}
           sub="금액 내림차순. 구성비는 계정 합계 대비 비중."
-          note={<>계정 합계 <b>{musd(costTotal)}</b> vs 매출원가 {musd(M.cos)} - 차이 <b>{usd(n(M.cos) - costTotal)}</b>({pct(div(n(M.cos) - costTotal, n(M.cos)), 1)}). 계정은 발생 기준, 매출원가는 재고 변동을 반영해 서로 맞지 않습니다. 상위 {Math.min(TOP, costRows.length)}개 계정({costRows.slice(0, TOP).map(([k]) => k).join(', ')})이 합계의 <b>{pct(div(costRows.slice(0, TOP).reduce((a, [, v]) => a + n(v), 0), costTotal), 1)}</b>를 차지합니다. 에너지 쪽에선 전기료(Electricity)가 도드라집니다 - YTD <b>{musd(elecYtd)}</b>로 전년 동기 $0.73M 대비 <b>+43%</b>인데, 처리량이 줄어든 해에 늘었다는 것은 물량이 아니라 <b>단가가 오르고 있다는 신호</b>입니다.</>}
+          note={<>계정 합계 <b>{musd(costTotal)}</b> vs 매출원가 {musd(M.cos)} - 차이 <b>{usd(n(M.cos) - costTotal)}</b>({pct(div(n(M.cos) - costTotal, n(M.cos)), 1)}). 계정은 발생 기준, 매출원가는 재고 변동을 반영해 서로 맞지 않습니다. 상위 {Math.min(TOP, costRows.length)}개 계정({costRows.slice(0, TOP).map(([k]) => k).join(', ')})이 합계의 <b>{pct(div(costRows.slice(0, TOP).reduce((a, [, v]) => a + n(v), 0), costTotal), 1)}</b>를 차지합니다. 에너지 쪽에선 전기료(Electricity)가 도드라집니다 - YTD <b>{musd(elecYtd)}</b>로 전년 동기 {musd(elecPrevYtd)} 대비 <b>{elecYoY == null ? '-' : `${elecYoY >= 0 ? '+' : ''}${pct(elecYoY, 0)}`}</b>인데, 처리량이 줄어든 해에 늘었다는 것은 물량이 아니라 <b>단가가 오르고 있다는 신호</b>입니다.{cosFix && <> <b>{M.month}월 원문 당월 열은 원장 행 참조가 밀려</b> {fixed.filter((f) => f.line !== 'Cost of Sales' && f.line !== 'Gross Profit' && f.line !== 'Operating Profits' && f.line !== 'Net Income').map((f) => `${f.line} ${usd(f.printed)}(→${usd(M.costLines[f.line])})`).join(' · ')}로 찍혀 있었고 매출원가가 {usd(n(M.cos) - n(cosFix.printed))} 적게 잡혔습니다 - 원문 YTD 열(전월 YTD와의 차분)로 복원해 싣습니다.</>}</>}
         >
           <div className="tw" style={{ marginBottom: 0 }}>
             <table>
