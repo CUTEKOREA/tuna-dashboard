@@ -13,11 +13,11 @@ describe('FleetCommandCenter daily operations', () => {
   it('renders the latest daily report as the hero KPI source', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('2026-09-28 보고 · 2026-09-27 조업 기준');
+    expect(markup).toContain('2026-09-29 보고 · 2026-09-28 조업 기준');
     // 9월 첫 보고라 일간과 월간 누계가 같은 295 MT다.
-    expect(markup).toContain('data-kpi-value="610"');
-    expect(markup).toContain('data-kpi-value="92612.8"');
-    expect(markup).toContain('data-kpi-value="7670.3"');
+    expect(markup).toContain('data-kpi-value="385"');
+    expect(markup).toContain('data-kpi-value="92997.8"');
+    expect(markup).toContain('data-kpi-value="5824.3"');
   });
 
   it('renders public deltas and fail-closed quality coverage without private schedules', () => {
@@ -25,12 +25,12 @@ describe('FleetCommandCenter daily operations', () => {
 
     for (const value of [
       // 9/2 기준: 태평양 전일 대비 0(175→175), 대서양 +75, 합계 +75
-      '+100 (MT)', 'SYNCED',
-      '전체 보고 163건', '전기간 검산 652회', '완전 검산 652회', '미보고 포함 0회 / 0문서',
+      '-225 (MT)', 'SYNCED',
+      '전체 보고 164건', '전기간 검산 656회', '완전 검산 656회', '미보고 포함 0회 / 0문서',
       // 20/18 이었다가 14/12 로 줄었다 - 운반선 머리글의 0.03 반올림 잔차 6건이
       // 불일치로 잡히던 것을 인쇄 자릿수 허용 폭으로 걸러냈다 (2026-09-07)
       '부분합 차이 전체 14건 / 12문서', '확정 불일치 14건 / 12문서', '미보고 포함 차이 0건 / 0문서',
-      '중복 선박 행 4건', '좌표 형식 이슈 6건', '연승 구역 미기재 24건',
+      '중복 선박 행 4건', '좌표 형식 이슈 6건', '연승 구역 미기재 25건',
       '최신 상세 행 검산 일치',
     ]) {
       expect(markup).toContain(value);
