@@ -390,6 +390,14 @@ import {
   charter as kfCharter, money as kfMoney, plant as kfPlant,
 } from '@/lib/data/company-kfl';
 import {
+  sapmerMeta, sapmerSourceNotes,
+  fleet as saFleet, money as saMoney, legine as saLegine,
+} from '@/lib/data/company-sapmer';
+import {
+  patayaMeta, patayaSourceNotes,
+  registry as ptRegistry, books as ptBooks, trade as ptTrade,
+} from '@/lib/data/company-pataya';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -2680,6 +2688,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   콜롬비아: { flagSrc: '/flags/co.svg', backInk: '#1b2733' },
   마셜제도: { flagSrc: '/flags/mh.svg', backInk: '#f4f5f0' },
   키리바시: { flagSrc: '/flags/ki.svg', backInk: '#1b2733' },
+  프랑스: { flagSrc: '/flags/fr.svg', backInk: '#1b2a3f' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -5406,6 +5415,166 @@ const KFL_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SA_ACCENT = '#23507a';
+const SA_F = saFleet();
+const SA_M = saMoney();
+const SA_L = saLegine();
+
+const SAPMER_SPEC: CommoditySpec = {
+  key: 'company-anatomy-sapmer',
+  title: '기업 해부: SAPMER SA',
+  subtitle:
+    `레위니옹 르포르의 SAPMER SA는 남극해 이빨고기 연승선 네 척과 가재선 한 척을 가진 선주이고, 2009년부터 Euronext Growth(ALMER)에 상장돼 있다. 2006년 중고 선망선으로 인도양 참치에 들어갔고, −40 °C 신조 선망선은 2015년 아홉 척이 됐다. ` +
+    `그중 네 척은 가문 쪽 모리셔스 SPV 명의였지만 2019년부터 상장사 연결 장부에 사용권자산으로 있었다. 2021년부터 네 번에 걸쳐 선망선을 모두 넘겼고, 2026-09-09 마지막 세 척을 CFTO에 넘겨 선망선이 ${SA_F.현재}척이 됐다. ` +
+    `2025년 참치는 매출의 ${euNum(SA_M.참치비중, 1)} %를 냈지만 EBITDA 마진은 ${SA_M.마진} %였다.`,
+  accent: SA_ACCENT,
+  primaryKpi: {
+    label: '2026-09-09 CFTO 인도 뒤 Sapmer 선망선 (IOTC 허가선박 명부)',
+    value: SA_F.현재,
+    decimals: 0,
+    unit: `(척 · 최대 ${SA_F.최대}척(2015~2021), 거쳐 간 선체 ${SA_F.거친}척(2006~2009 중고 2척 포함). 신조 9척 중 상장사 명의 ${SA_F.상장사}척, 가문 쪽 SPV 명의 ${SA_F.SPV}척 — SPV 명의 배도 2019년 말 상장사 연결 장부에 사용권자산 ${euNum(SA_F.사용권자산, 1)} M€로 있었다. 매각 대가는 보도자료에 없고, 연차보고서 현금흐름에 ${euNum(SA_F.대가1, 1)} M€(2023 Manapany)·${euNum(SA_F.대가2, 1)} M€(2024 Belouve+보조선), SPV 쪽 연차에 US$ ${euNum(SA_F.대가SPV)}(2021)가 있다. 2026 CFTO 거래는 조건 비공개)`,
+    accent: SA_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '2025년 참치 선망의 EBITDA 마진 (연차재무보고서가 처음 참치를 떼어 낸 손익표)',
+      value: SA_M.마진,
+      decimals: 0,
+      unit: `(% · 참치 매출 ${euNum(SA_M.참치매출, 1)} M€ = 연결 매출 ${euNum(SA_M.매출, 1)} M€의 ${euNum(SA_M.참치비중, 1)} %. 그룹 EBITDA 안의 참치 몫은 ${euNum(SA_M.EBITDA몫, 1)} %. 선망 3척 손상 ${euNum(SA_M.참치손상, 1)} M€, 참치 세전 ${euNum(SA_M.참치세전, 1)} M€, 연결 순이익 ${euNum(SA_M.순이익, 1)} M€. 2020~2025 참치 관련 손상·처분손 약 ${SA_M.손상합} M€(±2))`,
+    },
+    {
+      label: '2025-26 TAAF 이빨고기 하위쿼터에서 Sapmer 연승선 4척의 몫 변화 (TAAF 결정문 합산)',
+      value: SA_L.쿼터변화,
+      decimals: 1,
+      unit: `(% · ${euNum(SA_L.쿼터24, 3)} → ${euNum(SA_L.쿼터25, 3)} t, TAC ${euNum(SA_L.TAC24)} → ${euNum(SA_L.TAC25)} t(${euNum(SA_L.TAC변화, 1)} %). 배분 기준(선령·무풀 등)이 같은 해 바뀌었고, 경쟁선 두 척은 늘었다. Sapmer가 낸 급속심리(${SA_L.가처분})는 ${SA_L.가처분일} 기각)`,
+    },
+    {
+      label: '지배 블록 (가문 지주회사 사슬, 2025-12-31)',
+      value: SA_M.지배,
+      decimals: 2,
+      unit: `(% · Cana Tera SCA → JS&Co → Sapmer Investissements. 2024-04 증자 1차분 ${euNum(SA_M.증자1, 2)} M€(그중 5,0 M€는 브리지론 전환), 2025-04 레위니옹 지역정부 ${euNum(SA_M.증자2, 1)} M€(${euNum(SA_M.지역정부, 2)} %). 2025년 말 순차입금 ${euNum(SA_M.순차입, 1)} M€)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '명의',
+      title: '명의와 장부가 갈린 선단',
+      body: `신조 선망 9척 중 4척(Belle Rive·Belle Isle·Morn Seselwa·Morne Blanc)은 지배주주 산하 모리셔스 IOST의 SPV 명의였다. 상장사는 2016-12 말부터 네 척을 나용선했고, 2019년 IFRS 16 적용부터 사용권자산으로 장부에 올렸다. SPV 채권 담보는 「A mortgage on 5 vessels of Sapmer Group」, 2023년 두 척 처분손 17,6 M€는 상장사 손익에 잡혔다`,
+    },
+    {
+      eyebrow: '매각',
+      title: '네 번의 매각',
+      body: `2021 세이셸기 2척(SPV 매도, Pevasa) · 2023-07 Manapany(4,9 M€) · 2023-11 모리셔스기 2척(SPV, 값 없음) · 2024-02-28 Belouve+보조선(8,4 M€) · 2026-09-09 FRANCHE TERRE·BERNICA·DOLOMIEU를 CFTO(P&P Thon 자회사)에, 조건 비공개. 모리셔스기 네 척은 지금 에콰도르기로 동태평양에 있다`,
+    },
+    {
+      eyebrow: '모리셔스',
+      title: '두 가지 설명',
+      body: `회사는 모리셔스 쿼터 −60 %와 규제를 든다. 모리셔스 어업부 장관은 국회에서 지배주주 모회사의 구제계획(2021-08-11) 뒤 월 단위 쿼터로 바꿨고 2023년 초 현지 공장 납품이 없었다고 말했다. 50 % 가공장 Mer des Mascareignes는 2024-05-07 채권자 주도 청산에 들어갔다`,
+    },
+    {
+      eyebrow: '이빨고기',
+      title: '남은 사업의 조건',
+      body: `TAAF TAC가 ${euNum(SA_L.TAC24)} → ${euNum(SA_L.TAC25)} t로 준 해에 Sapmer 4척의 몫은 ${euNum(SA_L.쿼터변화, 1)} % 줄었다(몫 ${euNum(SA_L.몫, 1)} %). 연승선 교체는 2024 증자의 명분이었지만 발주 공시는 없다. 2026-06-04 르포르 같은 주소에 SAS Armement Légine des Mers Australes가 세워졌다(용도 공시 없음)`,
+    },
+    {
+      eyebrow: '전략',
+      title: '말은 이빨고기 집중, 배는 팔렸다',
+      body: `2021 「rééquilibrage」 → 2023 「100% française」 → 2024 연승선 갱신 → 2026-09 「stratégie de focalisation」(이빨고기·닭새우). 같은 기간 선망은 9척에서 0척이 됐고 순차입금은 54,7 → ${euNum(SA_M.순차입, 1)} M€로 줄었다(그중 약 49 M€는 SPV 선박 반환으로 사라진 리스부채). MSC 가다랑어는 ${SA_L.MSC적격}부터 ${SA_L.MSC} 범위였고 2026-09-09 고객단에서 빠졌다`,
+    },
+  ],
+  briefing: proseBriefing('sapmer'),
+  narratives: inlineReport('sapmer', proseStages('sapmer')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: sapmerSourceNotes,
+  sourceMeta: [
+    `${sapmerMeta.회사} · ${sapmerMeta.국가} · ${sapmerMeta.업종}`,
+    `출처 ${sapmerMeta.출처}`,
+    `조사 ${sapmerMeta.조사일}`,
+  ].join(' · '),
+};
+
+const PT_ACCENT = '#2f5d50';
+const PT_R = ptRegistry();
+const PT_B = ptBooks();
+const PT_T = ptTrade();
+
+const PATAYA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-pataya',
+  title: '기업 해부: Pataya Food Industries',
+  subtitle:
+    `Pataya Food Industries(PFI)는 1979년 방콕에서 설립된 비공개 유한회사다. 사뭇사콘 마하차이의 한 단지에서 참치·고등어·연어 캔과 펫푸드를 만들고, 베트남 껀터에는 이름이 이어지는 공장 법인이 있다. ` +
+    `PFI 법인의 총수익은 2016년 ${euNum(PT_B.총수익16, 1)}, 2025년 ${euNum(PT_B.총수익25, 1)} 백만 밧으로 거의 같았고, 2022·2023년에는 순손실을 냈다. ` +
+    `2026-09-01 등록자본이 늘었는데 늘어난 몫이 증자 뒤 자본의 ${euNum(PT_R.증가몫, 2)} %이고, Umios는 09-14 Kingfisher Holdings와 함께 25,1 % 취득을 「결정」했다고 발표했다.`,
+  accent: PT_ACCENT,
+  primaryKpi: {
+    label: '2026-09-01 PFI 등록자본 증가분이 증자 뒤 자본에서 차지하는 몫 (DBD 자본 이력, 계산)',
+    value: PT_R.증가몫,
+    decimals: 2,
+    unit: `(% · ${euNum(PT_R.자본전)} → ${euNum(PT_R.자본후)} 밧. 2026-09-27 기준 국적표에 일본 국적 주주 1곳 ${euNum(PT_R.일본몫, 2)} %, 이사 ${PT_R.이사}명 중 일본식 이름 ${PT_R.일본식이사}명(1명은 Kingfisher Holdings 등기 이사와 같은 이름). Umios(Kingfisher 지분 ${euNum(PT_R.KF지분, 2)} %)는 09-14 「決定」만 발표했고 가격·실행일·배분은 공개되지 않았다. 새 주식을 누가 받았는지는 문서가 없다)`,
+    accent: PT_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: 'PFI 법인 총수익 연평균 증가율 2016→2025 (DBD·Creden, 계산)',
+      value: PT_B.CAGR,
+      decimals: 2,
+      unit: `(% · ${euNum(PT_B.총수익16, 1)} → ${euNum(PT_B.총수익25, 1)} 백만 밧, 정점 2022 ${euNum(PT_B.총수익22, 1)}. 순손실 2022 ${euNum(PT_B.손실22, 1)}·2023 ${euNum(PT_B.손실23, 1)}. 2025 순이익 ${euNum(PT_B.순이익25, 1)}이지만 본업 영업손익 ${euNum(PT_B.본업25, 1)}(계산). 연결·개별 구분 없음)`,
+    },
+    {
+      label: '미국 선하증권 요약에서 받는 쪽 1위 Bumble Bee의 해상 선적 건수 (ImportYeti, 태국·베트남 법인 섞임)',
+      value: PT_T.BB,
+      decimals: 0,
+      unit: `(건 · 누적 ${euNum(PT_T.선적)}건(2015-01~2026-09) 중. 건수는 DB마다 다르다. 2019 미국 거울 자료의 HS 1604.14는 ${euNum(PT_T.IEc)} t(IEc). 톤·금액 순위는 공개되지 않았다)`,
+    },
+    {
+      label: '2025년 참치 구매 가운데 MSC 인증 어업 몫 (회사 공개문, ISSF 집계와 일치)',
+      value: PT_T.MSC비중,
+      decimals: 1,
+      unit: `(% · 공급처 분류는 ISSF 참여사·Data Check사·선박 직구매 0 %, 「그 밖」 100 %. 네 RFMO 등록부에 PFI 계열 선박이 올라 있지 않다. MSC CoC ${PT_T.MSC}(${PT_T.MSC만료} 만료))`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '등기',
+      title: '발표보다 먼저 올라간 증자 등기',
+      body: `등록자본 증가 2026-09-01(A) → PFG 보도자료 09-10 「decided to invest」 → Umios 09-14 「資本業務提携することを決定」·「発行済株式の25.1%を取得」. Umios는 같은 해 PWI(51 %, 11.308 백만 엔)는 적시공시했지만 PFI 건은 기업 뉴스로만 냈다. 이유는 「アジアにおける加工食品等のポートフォリオ及び販売チャネル」`,
+    },
+    {
+      eyebrow: '장부',
+      title: '장부 10년과 경영진의 말',
+      body: `경영진은 그룹 매출 100억 밧을 2021·2023년에 목표로 말했고, 2022 그룹 매출 82억, 2025 「70억 밧 이상」이라고 밝혔다. PFI 법인 총수익은 10년 연평균 +${euNum(PT_B.CAGR, 2)} %다. 판매 법인 Nautilus Food (Thailand)의 총수익은 ${euNum(PT_B.NFT21, 1)} → ${euNum(PT_B.NFT25, 1)}, 순이익은 ${euNum(PT_B.NFT이익21, 1)} → ${euNum(PT_B.NFT이익25, 1)} 백만 밧`,
+    },
+    {
+      eyebrow: '참치',
+      title: '참치는 한 갈래',
+      body: `경영진이 밝힌 2022년 그룹 매출 구성은 참치 ${PT_T.참치} %·펫푸드 ${PT_T.펫} %·고등어 ${PT_T.고등어} %·연어 ${PT_T.연어} %. 태국 제조는 마하차이 90/6 한 단지(DIW 식품 가공 허가 1건, 신고 인원 ${euNum(PT_T.인원)}명), 베트남 껀터 공장은 게살·새우·소스 생선 통조림(EU DH 146·DL 1017)`,
+    },
+    {
+      eyebrow: '판로',
+      title: '북미의 받는 쪽과 태국의 안방',
+      body: `미국 선하증권 요약의 받는 쪽은 Bumble Bee·Atlantic Natural Foods(Loma Linda)·Ocean Brands·Clover Leaf·Grace·Mars Petcare. 태국 캔참치 소매시장에서 분모가 있는 점유율은 Sealect ${euNum(PT_T.Sealect, 1)} %(2023, Thai Union 연차보고서)뿐이고 Nautilus 수치는 회사 자칭이거나 분모가 없다. 태국 식약청 등록 ${PT_T.등록}건(참치 ${PT_T.등록참치}), Makro aro 등 자체상표도 만든다`,
+    },
+    {
+      eyebrow: '기록',
+      title: '인증·코로나·한국',
+      body: `ISSF 2025 경미 부적합은 공개문 게시 기한을 넘긴 조치 2.5 한 건. 2020-12-28 전수검사로 전 라인 중단, 2021-01-06 누계 감염 ${PT_T.코로나}명, 공장 안 600병상. 식약처 수입식품 조회에서 PFI 공장·브랜드 이름의 살아 있는 신고는 없고, 같은 조회에 태국산 참치 신고 ${PT_T.한국태국}건이 잡힌다`,
+    },
+  ],
+  briefing: proseBriefing('pataya'),
+  narratives: inlineReport('pataya', proseStages('pataya')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: patayaSourceNotes,
+  sourceMeta: [
+    `${patayaMeta.회사} · ${patayaMeta.국가} · ${patayaMeta.업종}`,
+    `출처 ${patayaMeta.출처}`,
+    `조사 ${patayaMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -6599,6 +6768,32 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '공장과 판로', value: `EU 명부 유일 가공장 · 2013년 하루 약 ${KF_P.능력} t·주 1회 · 신선·로인·필레, 캔 없음 · EU 필레 2024년 ${euNum(KF_P.EU필레, 1)} t, 다른 해 20 t 이하 · MSC CoC ${KF_P.MSC}(${KF_P.MSC만료} 만료) · 인원 ${KF_P.인원}명(최근 연도)` },
     ],
   },
+  {
+    key: 'sapmer',
+    numeral: 'ⅬⅩ',
+    name: 'SAPMER SA',
+    country: `프랑스 · 레위니옹 르포르 Darse de Pêche(Euronext Growth ALMER)`,
+    tagline: '명의와 장부가 갈린 선단 — 르포르의 Sapmer는 2006년 인도양 선망에 들어갔고, 2026-09-09 마지막 세 척을 넘기며 나왔다.',
+    ...FLAG.프랑스,
+    stats: [
+      { label: '선단', value: `선망 최대 ${SA_F.최대}척 → ${SA_F.현재}척(2026-09-09 CFTO) · 신조 9척 중 SPV 명의 ${SA_F.SPV}척도 2019년부터 상장사 장부에 사용권자산 · 매각 대가 ${euNum(SA_F.대가1, 1)}·${euNum(SA_F.대가2, 1)} M€(연차보고서), US$ ${euNum(SA_F.대가SPV)}(SPV), CFTO 조건 비공개 · 모리셔스기 4척은 에콰도르기로` },
+      { label: '돈', value: `2025 매출 ${euNum(SA_M.매출, 1)} M€ · 참치 ${euNum(SA_M.참치비중, 1)} %·EBITDA 마진 ${SA_M.마진} % · 선망 손상 ${euNum(SA_M.참치손상, 1)} M€ · 순이익 ${euNum(SA_M.순이익, 1)} M€ · 2023 ${euNum(SA_M.손실2023, 1)} M€ · 지배 블록 ${euNum(SA_M.지배, 2)} %, 지역정부 ${euNum(SA_M.지역정부, 2)} %` },
+      { label: '이빨고기', value: `TAC ${euNum(SA_L.TAC24)} → ${euNum(SA_L.TAC25)} t(${euNum(SA_L.TAC변화, 1)} %) · Sapmer 4척 몫 ${euNum(SA_L.쿼터변화, 1)} % · 급속심리 기각(${SA_L.가처분일}) · 연승선 발주 공시 없음 · 한국 이빨고기 수입의 프랑스 몫 ${euNum(SA_L.한국몫, 1)} %(2025)` },
+    ],
+  },  {
+    key: 'pataya',
+    numeral: 'ⅬⅩⅠ',
+    name: 'Pataya Food Industries',
+    country: `태국 · 방콕 본점 · 사뭇사콘 마하차이 공장(비상장, DBD 0105522010087)`,
+    tagline: '발표보다 먼저 올라간 증자 등기 — 참치·고등어·펫푸드를 만드는 방콕의 비공개 유한회사에서 2026-09-01 등록자본이 늘었고, 13일 뒤 Umios가 25,1 % 취득 「결정」을 발표했다.',
+    ...FLAG.태국,
+    stats: [
+      { label: '등기', value: `등록자본 ${euNum(PT_R.자본전)} → ${euNum(PT_R.자본후)} 밧(2026-09-01, 증가분 = 증자 뒤 자본의 ${euNum(PT_R.증가몫, 2)} %) · 국적표 일본 1곳 ${euNum(PT_R.일본몫, 2)} % · 이사 ${PT_R.이사}명 중 일본식 이름 ${PT_R.일본식이사}명 · Umios 09-14 「決定」, 가격·실행일 비공개` },
+      { label: '장부', value: `PFI 총수익 ${euNum(PT_B.총수익16, 1)}(2016) → ${euNum(PT_B.총수익25, 1)}(2025) 백만 밧, 연평균 +${euNum(PT_B.CAGR, 2)} % · 순손실 2022 ${euNum(PT_B.손실22, 1)}·2023 ${euNum(PT_B.손실23, 1)} · 2025 본업 ${euNum(PT_B.본업25, 1)} · 판매 법인 NFT 총수익 ${euNum(PT_B.NFT21, 1)} → ${euNum(PT_B.NFT25, 1)}` },
+      { label: '조달과 판로', value: `RFMO 등록부 선박 없음 · MSC 인증 어업 ${euNum(PT_T.MSC비중, 1)} %(2025) · 미국 선하증권 ${euNum(PT_T.선적)}건 중 Bumble Bee ${PT_T.BB}건 · 경영진 말로 2022 그룹 매출의 참치 ${PT_T.참치} % · 식약처 조회 PFI·브랜드 신고 0건` },
+    ],
+  },
+
 
 
 
@@ -6683,6 +6878,8 @@ export default function CompanyAnatomyDashboard({
     ppf: PANPAC_SPEC,
     inepaca: INEPACA_SPEC,
     kfl: KFL_SPEC,
+    sapmer: SAPMER_SPEC,
+    pataya: PATAYA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

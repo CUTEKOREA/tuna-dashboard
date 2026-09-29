@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 294,
+  "files": 296,
   "widgets": 116,
-  "dataFiles": 332,
+  "dataFiles": 340,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -640,6 +640,7 @@
     "lib/data/company-nirsa.ts",
     "lib/data/company-nissui.ts",
     "lib/data/company-pafco.ts",
+    "lib/data/company-pataya.ts",
     "lib/data/company-pinsa.ts",
     "lib/data/company-ppf.ts",
     "lib/data/company-princes.ts",
@@ -650,6 +651,7 @@
     "lib/data/company-sajo.ts",
     "lib/data/company-sajoseafood.ts",
     "lib/data/company-salica.ts",
+    "lib/data/company-sapmer.ts",
     "lib/data/company-sca.ts",
     "lib/data/company-seatech.ts",
     "lib/data/company-seavalue.ts",
@@ -821,6 +823,10 @@
     "public/data/companies/pafco_prose_v1.json",
     "public/data/companies/pafco_tables_v1.json",
     "public/data/companies/pafco_v1.json",
+    "public/data/companies/pataya_figures_v1.json",
+    "public/data/companies/pataya_prose_v1.json",
+    "public/data/companies/pataya_tables_v1.json",
+    "public/data/companies/pataya_v1.json",
     "public/data/companies/pinsa_figures_v1.json",
     "public/data/companies/pinsa_prose_v1.json",
     "public/data/companies/pinsa_tables_v1.json",
@@ -853,6 +859,10 @@
     "public/data/companies/salica_prose_v1.json",
     "public/data/companies/salica_tables_v1.json",
     "public/data/companies/salica_v1.json",
+    "public/data/companies/sapmer_figures_v1.json",
+    "public/data/companies/sapmer_prose_v1.json",
+    "public/data/companies/sapmer_tables_v1.json",
+    "public/data/companies/sapmer_v1.json",
     "public/data/companies/sca_figures_v1.json",
     "public/data/companies/sca_prose_v1.json",
     "public/data/companies/sca_tables_v1.json",
@@ -1966,6 +1976,18 @@
   "public/data/companies/pafco_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/pataya_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pataya_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pataya_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pataya_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/pinsa_figures_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
@@ -2060,6 +2082,18 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/salica_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/sca_figures_v1.json": [
