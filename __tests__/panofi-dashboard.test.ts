@@ -7,6 +7,7 @@ import { describe, expect, it } from 'vitest';
 import PanofiDashboard, { PANOFI_TABS } from '../components/panofi/PanofiDashboard';
 import { CashTab, PriceTab, ProfitTab as PanofiTabsProfit } from '../components/panofi/PanofiTabs';
 import {
+  bepChannelCross,
   actuals,
   receivableNow,
   bep,
@@ -307,10 +308,10 @@ describe('파노피 대시보드 렌더', () => {
   it('손익분기 어가와 가동 선단을 헤드라인에 노출한다', () => {
     expect(markup).toContain('원장 손익분기');
     expect(markup).toContain('가동 선망선');
-    expect(markup).toContain('2026년 1~7월');
+    expect(markup).toContain('2026년 1~8월');
     expect(markup).not.toContain('상반기 생산');
     expect(bep.priceUsdPerT).toBe(1473);
-    expect(ytd.ledgerBepUsdPerT).toBe(1558);
+    expect(ytd.ledgerBepUsdPerT).toBe(1445);
   });
 });
 
@@ -397,22 +398,39 @@ describe('추정실적 원장 (월별·척별)', () => {
     expect(total).toBeLessThan(101);
   });
 
-  it('월별 원장은 7개월치이고 누계 판매량과 맞는다', () => {
-    expect(monthlySeries).toHaveLength(7);
-    expect(ytd.months).toBe(7);
+  it('월별 원장은 8개월치이고 누계 판매량과 맞는다', () => {
+    expect(monthlySeries).toHaveLength(8);
+    expect(ytd.months).toBe(8);
     const sum = monthlySeries.reduce((s, m) => s + (Number(m.판매량) || 0), 0);
     expect(Math.abs(sum - (ytd.salesTRaw ?? 0))).toBeLessThan(1);
   });
 
-  it('1~7월 누계가 원장 인쇄 셀과 맞는다', () => {
-    expect(actuals.meta.sha256).toBe('d6838996b35b100ac9cf0ff18fad4ca3c139d32b1b907641be5045c33e399e2a');
-    expect(ytd.salesT).toBe(24286);
-    expect(ytd.productionT).toBe(29487);
-    expect(ytd.netKusd).toBe(-5619);
-    expect(ytd.operatingKusd).toBe(798);
-    expect(ytd.ledgerBepUsdPerT).toBe(1558);
-    expect(ytd.pretaxProfitNames).toEqual(expect.arrayContaining(['디스커버러', '퀸']));
-    expect(ytd.pretaxProfitNames).toHaveLength(2);
+  it('1~8월 누계가 원장 인쇄 셀과 맞는다', () => {
+    expect(actuals.meta.source).toBe('2. 추정실적 (2026년 8월).xlsx');
+    expect(actuals.meta.sha256).toBe('80cb210456ee637d756995322066e0a084f113947ff701b62afe2fd8f2b3d29b');
+    expect(ytd.salesT).toBe(35667);
+    expect(ytd.productionT).toBe(36879);
+    expect(ytd.netKusd).toBe(-2877);
+    expect(ytd.operatingKusd).toBe(4972);
+    expect(ytd.ledgerBepUsdPerT).toBe(1445);
+    expect(ytd.lastMonth?.month).toBe('8월');
+    expect(Math.round((ytd.lastMonth?.당기순이익 ?? 0) / 1000)).toBe(2742);
+    expect(ytd.pretaxProfitNames).toEqual(['디스커버러', '포러너', '퀸', '그레이스']);
+  });
+});
+
+describe('원장 손익분기 채널 (판마다 분기점이 바뀐다)', () => {
+  it('분기점을 넘은 주를 문장에 박지 않고 센다', () => {
+    // 7월판 BEP 1,558 에선 세 채널 모두 5/26 부터였다 - 8월판 1,445 에선 코스모가 3/10 부터다.
+    expect(bepChannelCross.bep).toBe(ytd.ledgerBepUsdPerT);
+    expect(bepChannelCross.rows.map((r) => [r.name, r.firstLabel])).toEqual([
+      ['코스모', '3/10'], ['SCODI', '3/24'], ['PFC', '5/26'],
+    ]);
+    const price = renderToStaticMarkup(React.createElement(PriceTab));
+    expect(price).not.toContain('최근에야 생겼다');
+    expect(price).toContain('코스모 26주(3/10부터)');
+    const profit = renderToStaticMarkup(React.createElement(PanofiTabsProfit));
+    expect(profit).toContain(`${ytd.months}개월을 연환산하지 않는다`);
   });
 });
 
