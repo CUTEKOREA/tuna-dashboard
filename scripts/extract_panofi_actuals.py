@@ -21,6 +21,7 @@ import os
 import re
 import sys
 import unicodedata
+from datetime import date
 from hashlib import sha256
 from pathlib import Path
 
@@ -282,7 +283,7 @@ def main() -> int:
             "source": nfc(src.name),
             "sha256": sha256(src.read_bytes()).hexdigest(),
             "basis": f"2026년 1~{month_n}월 누계 (판매기준·생산기준 병기)",
-            "syncDate": "2026-08-17",
+            "syncDate": os.environ.get("PANOFI_SYNC_DATE") or date.today().isoformat(),
             "caveat": "작성자 주석대로 사실상 연 결산이라 월별 원가 배분 변동성이 크다. "
                       "5월은 판매 342톤에 매출원가가 음수로 잡히는데 이월 정산의 결과지 "
                       "실제 마이너스 원가가 아니다. 월별은 참고로만 보고 판단은 누계로 한다. "

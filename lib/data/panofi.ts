@@ -446,6 +446,25 @@ export const ytd = (() => {
   };
 })();
 
+/**
+ * 채널별 어가가 원장 손익분기를 넘은 주. 분기점이 원장 판마다 바뀌므로(7월판 1,558 → 8월판 1,445)
+ * «언제부터 넘었나»는 문장에 박지 않고 여기서 센다.
+ */
+export const bepChannelCross = (() => {
+  const channels = [
+    ['코스모', '코스모'], ['PFC', 'PFC'], ['SCODI', 'SCODI'],
+    ['아비장로컬', '아비장 로컬'], ['테마로컬', '테마 로컬'],
+  ] as const;
+  const rows = channels
+    .map(([key, name]) => {
+      const above = priceSeries.filter((p) => typeof p[key] === 'number' && (p[key] as number) > ytd.ledgerBepUsdPerT);
+      return { name, weeksAbove: above.length, firstLabel: above[0]?.label ?? null, firstDate: above[0]?.date ?? null };
+    })
+    .filter((r) => r.weeksAbove > 0)
+    .sort((a, b) => String(a.firstDate).localeCompare(String(b.firstDate)));
+  return { bep: ytd.ledgerBepUsdPerT, weekCount: priceSeries.length, rows };
+})();
+
 /** 연도별 실적(백만불). 2026 은 원장 누계이며 축 라벨에 기간을 박는다. */
 export const annualSeries = [
   ...strategyAnnual.map((a) => ({
