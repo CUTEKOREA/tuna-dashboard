@@ -44,6 +44,7 @@ import {
   mirrorUnmatched,
   monthlyEstimates,
   monthlySeries,
+  bepChannelCross,
   pfc,
   priceSeries,
   priceWindow,
@@ -409,7 +410,7 @@ export function PriceTab() {
       <Grid>
         <Panel
           span={12} title={`채널별 어가 ${headline.weekCount}주`} unit="달러/톤"
-          note={`원장 ${ytd.label} 손익분기 ${usd(ytd.ledgerBepUsdPerT)}를 넘는 채널이 최근에야 생겼다. 전략보고 H1 분기점은 ${usd(bep.priceUsdPerT)}였다. 로컬 마켓은 즉시 현금이지만 분기점을 크게 밑돌아 저가 사이즈 소진용으로만 쓴다.`}
+          note={`원장 ${ytd.label} 손익분기 ${usd(ytd.ledgerBepUsdPerT)}를 넘은 주는 ${headline.weekCount}주 중 ${bepChannelCross.rows.map((r) => `${r.name} ${r.weeksAbove}주(${r.firstLabel}부터)`).join(' · ') || '없다'}. 전략보고 H1 분기점은 ${usd(bep.priceUsdPerT)}였다. 로컬 마켓은 즉시 현금이지만 분기점을 크게 밑돌아 저가 사이즈 소진용으로만 쓴다.`}
           src={SRC.weekly}
         >
           <Chart
@@ -612,7 +613,7 @@ export function ProfitTab() {
           · 영업이익 {kusd(Math.round((ytd.lastMonth.영업이익 ?? 0) / 1000))}
           · 당기순이익 {kusd(Math.round((ytd.lastMonth.당기순이익 ?? 0) / 1000))}.
           누계 생산 {num(ytd.productionT)}톤 vs 판매 {num(ytd.salesT)}톤, 기말재고 {num(ytd.inventoryT)}톤.
-          7개월을 연환산하지 않는다.
+          {ytd.months}개월을 연환산하지 않는다.
         </Callout>
       ) : null}
 
