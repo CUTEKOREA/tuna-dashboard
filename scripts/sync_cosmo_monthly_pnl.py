@@ -44,6 +44,11 @@ COST_LINES = [
     'Electricity', 'RFO', 'Diesel', 'Water', 'Consumables', 'Repair/Maintenance',
     'Depreciation',
 ]
+# 매출 세부 계정 — Fish Waste 는 원가 구간에도 같은 라벨이 있어 첫 등장(매출 구간)만 쓴다
+REVENUE_LINES = [
+    'Export Sales', 'Local Sales', 'Precooked Loin Sales', 'Pouch', 'Fish Oil', 'Fish Waste',
+    'Fish Heads', 'Raw Fish Sales', 'Sales Returns', 'Sales Allowances',
+]
 UNITS = ('Cannery', 'Fishmeal', 'CBU', 'FBU', 'Total')
 
 
@@ -112,7 +117,18 @@ def ytd_by_row(ws) -> dict[int, tuple[str, dict[str, float | None]]]:
             for r in range(hdr + 1, ws.max_row + 1)}
 
 
-def parse_sheet(ws, month: int, prev_ytd=None) -> dict:
+def prior_ytd_total_col(ws, hdr: int, year: int) -> int | None:
+    """머리행 위 「YTD <MONTH> <전년> ACTUAL」 블록의 Total 열. 위치가 판마다 29 → 28 로 움직여 텍스트로 찾는다."""
+    for c in range(2, ws.max_column + 1):
+        t = norm(ws.cell(hdr - 1, c).value).upper()
+        if t.startswith('YTD') and f'{year - 1}ACTUAL' in t:
+            for cc in range(c, c + 6):
+                if norm(ws.cell(hdr, cc).value) == 'Total':
+                    return cc
+    return None
+
+
+def parse_sheet(ws, month: int, prev_ytd=None, year: int = 2026) -> dict:
     hdr = header_row(ws)
     blocks = pnl_blocks(ws, hdr)
     if len(blocks) < 3 or 'Total' not in blocks[1]:
@@ -121,6 +137,10 @@ def parse_sheet(ws, month: int, prev_ytd=None) -> dict:
 
     rec: dict = {'month': month}
     lines: dict[str, float] = {}
+    lines_prev_ytd: dict[str, float] = {}
+    rev_ytd: dict[str, float] = {}
+    rev_prev_ytd: dict[str, float] = {}
+    prior_col = prior_ytd_total_col(ws, hdr, year)
     printed: dict[str, float | None] = {}
     for r in range(hdr + 1, ws.max_row + 1):
         label = label_at(ws, r)
@@ -150,11 +170,23 @@ def parse_sheet(ws, month: int, prev_ytd=None) -> dict:
             rec[key + 'Prev'] = rnd(get(prev, 'Total'))
             for u in ('Cannery', 'Fishmeal', 'CBU', 'FBU'):
                 rec[f'{key}_{u.lower()}'] = rnd(get(cur, u))
+        if label in REVENUE_LINES and label not in rev_ytd and 'revenue' in rec and 'cos' not in rec:
+            rev_ytd[label] = rnd(num(ws.cell(r, ytd['Total']).value) or 0)
+            if prior_col:
+                rev_prev_ytd[label] = rnd(num(ws.cell(r, prior_col).value) or 0)
         if label in COST_LINES and label not in lines:
             v = get(cur, 'Total')
             if v is not None:
                 lines[label] = rnd(v)
+            pv = num(ws.cell(r, prior_col).value) if prior_col else None
+            if pv is not None:
+                lines_prev_ytd[label] = rnd(pv)
     rec['costLines'] = lines
+    # 전년 동기 누계(원가 계정) — 「전기료 YTD 전년 대비」 같은 문장을 손으로 적지 않게 한다
+    rec['costLinesPrevYtd'] = lines_prev_ytd
+    # 매출 세부 계정 누계(당해·전년) — 「전년 대비 매출 갭 중 사업 축소분」을 손으로 적지 않게 한다
+    rec['revenueLinesYtd'] = rev_ytd
+    rec['revenueLinesPrevYtd'] = rev_prev_ytd
     if printed:
         rec['correction'] = {
             'method': '당월 = 이번 YTD − 전월 YTD (인쇄 당월값이 YTD 차분과 어긋난 칸만)',
@@ -199,7 +231,7 @@ def main() -> int:
         if title_month(pws) != (year, month - 1):
             raise ValueError(f'전월 시트가 {month - 1}월이 아닙니다: {title_month(pws)}')
         prev_ytd = ytd_by_row(pws)
-    rec = parse_sheet(ws, month, prev_ytd)
+    rec = parse_sheet(ws, month, prev_ytd, year)
     rec['source'] = unicodedata.normalize('NFC', args.workbook.name)
     rec['sha256'] = hashlib.sha256(args.workbook.read_bytes()).hexdigest()
 
