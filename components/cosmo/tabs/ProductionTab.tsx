@@ -54,6 +54,17 @@ export default function Production() {
   const actualDone = tp.revised.slice(0, tp.actualThrough).reduce((a, b) => a + b, 0)
   const ctnActualPlan = cn.cbuPlan.slice(0, cn.actualThrough).reduce((a, b) => a + b, 0)
   const ctnActualDone = cn.cbuOnBoard.slice(0, cn.actualThrough).reduce((a, b) => a + b, 0)
+  // 실적 구간의 일 처리량 vs 남은 변경계획 일 처리량 — «개정 계획이 회복을 전제하는가»를 문장에 박지 않고 센다
+  const actualDays = tp.days.slice(0, tp.actualThrough).reduce((a, b) => a + b, 0)
+  const actualDaily = actualDays ? actualDone / actualDays : 0
+  const restDaily = tp.dailyMt.slice(tp.actualThrough)
+  const restAbove = restDaily.filter((d) => d > actualDaily).length
+  // 컨테이너 연간은 행 합계 — 원문 합계 열이 8월 수정 전 값으로 남아 있다
+  const sumOf = (a: readonly number[]) => a.reduce((x, y) => x + y, 0)
+  const ctnAnnual = { cbuPlan: sumOf(cn.cbuPlan), cbuOnBoard: sumOf(cn.cbuOnBoard), fbu: sumOf(cn.fbu) }
+  const ctnPrintedStale = ctnAnnual.cbuOnBoard !== cn.printedAnnual.cbuOnBoard || ctnAnnual.fbu !== cn.printedAnnual.fbu
+  const ctnOverMonths = cn.cbuOnBoard.slice(0, cn.actualThrough)
+    .map((v, i) => ({ m: i + 1, over: v - cn.cbuPlan[i] })).filter((r) => r.over > 0)
   const cleanerDrop = qr.cleaners.rows[0].count - qr.cleaners.rows[2].count
   const cleaningClaims = qr.claims.filter((c) => c.defects.some((d) => d.includes('클리닝 부적합'))).length
   const freezerDays = qr.freezer.recovery.reduce((a, r) => a + (r.elapsedDays ?? 0), 0)
@@ -459,12 +470,13 @@ export default function Production() {
         <Card
           span={2} /* 카드 안 6열 표가 반폭이면 가로 스크롤이 생긴다 — 전체 폭 예외 */
           title="월별 원어 처리량 — 계획 vs 실적·변경"
-          sub={`${mr.docSource.file} 기준. 1~${tp.actualThrough}월은 실적, ${tp.actualThrough + 1}월 이후는 변경계획이다. 단위 MT.`}
+          sub={`${mr.source.file} 기준. 1~${tp.actualThrough}월은 실적, ${tp.actualThrough + 1}월 이후는 변경계획이다. 단위 MT.`}
           note={<>실적 구간 1~{tp.actualThrough}월만 보면 계획 {n0(actualPlan)} MT 대비 <b>{n0(actualDone)} MT</b>
             ({pct(actualDone / actualPlan - 1, 1)})입니다. 연간은 계획 {n0(tp.annual.planMt)} MT 를
             {' '}<b>{n0(tp.annual.revisedMt)} MT 로 하향</b>({n0(tp.annual.revisedMt - tp.annual.planMt)} MT) 개정했는데,
-            {tp.actualThrough + 1}월 이후 변경계획의 일 처리량이 {tp.dailyMt[tp.actualThrough]}~{Math.max(...tp.dailyMt.slice(tp.actualThrough))}톤으로
-            상반기 실적 일 처리량보다 높게 잡혀 있습니다 — <b>개정 계획 자체가 회복을 전제</b>합니다.
+            {' '}{tp.actualThrough + 1}월 이후 변경계획의 일 처리량은 {Math.min(...restDaily)}~{Math.max(...restDaily)}톤으로,
+            1~{tp.actualThrough}월 실적 일 처리량 {actualDaily.toFixed(0)}톤보다 높은 달이 {restDaily.length}개월 중 {restAbove}개월입니다
+            {restAbove > 0 ? <> — <b>개정 계획은 남은 기간의 회복을 일부 전제</b>합니다</> : ' — 개정 계획은 현재 속도 이하로 잡혀 있습니다'}.
             연간 일 처리량 {tp.annual.dailyMt}톤 × {tp.annual.days}일이 개정치의 근거입니다.</>}
         >
           <Legend items={[
@@ -514,11 +526,13 @@ export default function Production() {
           title="컨테이너 출고 — CBU 계획 대비 선적"
           sub={`CBU 는 계획 대비 On Board, FBU 는 계획 구분 없이 한 행이다. 단위 FCL.`}
           note={<>실적 구간 1~{cn.actualThrough}월 CBU 는 계획 {ctnActualPlan} FCL 대비 <b>{ctnActualDone} FCL</b>
-            ({pct(ctnActualDone / ctnActualPlan - 1, 1)})입니다. 연간으로는 {n0(cn.annual.cbuPlan)} → {n0(cn.annual.cbuOnBoard)} FCL 로
-            {' '}<b>{cn.annual.cbuGap} FCL</b> 부족합니다. 5월만 계획을 {cn.cbuOnBoard[4] - cn.cbuPlan[4]} FCL 넘겼는데,
-            같은 달 원어 처리량은 계획 대비 {n0(tp.revised[4] - tp.plan[4])} MT 부족했습니다 —
-            <b>출고는 생산이 아니라 재고와 선적 일정을 따릅니다</b>. 주간보고가 지적한 MSC 선박 출항 일정 변경도 같은 축의 변수입니다.
-            FBU 는 연간 {cn.annual.fbu} FCL 로 CBU 의 {(cn.annual.fbu / cn.annual.cbuOnBoard * 100).toFixed(0)}% 규모입니다.</>}
+            ({pct(ctnActualDone / ctnActualPlan - 1, 1)})입니다. 연간(실적+변경)으로는 {n0(ctnAnnual.cbuPlan)} → {n0(ctnAnnual.cbuOnBoard)} FCL 로
+            {' '}<b>{ctnAnnual.cbuOnBoard - ctnAnnual.cbuPlan} FCL</b> 부족합니다
+            {ctnPrintedStale && <>(원문 합계 열은 {n0(cn.printedAnnual.cbuOnBoard)} · {cn.printedAnnual.cbuGap} · FBU {cn.printedAnnual.fbu} 로 {cn.actualThrough}월 수정 전 값이 남아 있어 행 합계를 씁니다)</>}.
+            {ctnOverMonths.length ? `${ctnOverMonths.map((r) => `${r.m}월`).join('·')}에만` : '어느 달도'} 계획을 넘겼는데
+            {ctnOverMonths[0] && <>, {ctnOverMonths[0].m}월 원어 처리량은 계획 대비 {n0(tp.revised[ctnOverMonths[0].m - 1] - tp.plan[ctnOverMonths[0].m - 1])} MT 였습니다</>} —
+            <b>출고는 생산이 아니라 재고와 선적 일정을 따릅니다</b>. 월간보고: {cn.note}.
+            FBU 는 연간 {ctnAnnual.fbu} FCL 로 CBU 의 {(ctnAnnual.fbu / ctnAnnual.cbuOnBoard * 100).toFixed(0)}% 규모입니다.</>}
         >
           <Legend items={[
             { name: 'CBU 계획', color: C.s2, box: true },

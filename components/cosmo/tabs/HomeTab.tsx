@@ -11,12 +11,17 @@ import { cosmoWeeklyReport as wr } from '@/lib/data/cosmo-weekly-report'
 import { cosmoQualityReport as qr } from '@/lib/data/cosmo-quality-report'
 
 const f = (v: number) => v.toLocaleString('en-US')
+const sgn = (v: number) => (v > 0 ? '+' : '') + f(v)
 const m1 = (v: number) => (v / 1e6).toFixed(1) + 'M'
 const m2 = (v: number) => '$' + (v / 1e6).toFixed(2) + 'M'
 const mt = (v: number) => v.toLocaleString('en-US', { maximumFractionDigits: 0 }) + ' MT'
 
 export default function Home() {
   const cbu = latest.production?.CBU
+  // 월간 업무보고 — 마지막 실적월과 그 뒤 변경계획을 표에서 고른다(월을 문장에 박지 않는다)
+  const tp = mr.rawThroughput
+  const am = tp.actualThrough
+  const py = mr.productionYtd
   const gap = gapDecomposition(cbu)
   const lossMonths = monthlySeries.filter((m) => n(m.net) < 0).length
   const last = weeklySeries[weeklySeries.length - 1]
@@ -324,7 +329,7 @@ export default function Home() {
         </Card>
       </div>
 
-      <SecHead>7월 업무보고 (2026-08-25)</SecHead>
+      <SecHead>{mr.source.title.replace('COSMO ', '')} ({mr.source.reportDate})</SecHead>
       <div className="grid g2">
         <Card
           title="운전자본 스냅샷"
@@ -332,19 +337,19 @@ export default function Home() {
           note={<>매입채무 <b>{f(mr.liquidity.ap.end)}만불</b>이 매출채권 {f(mr.liquidity.ar.end)}만불의
             {' '}<b>{(mr.liquidity.ap.end / mr.liquidity.ar.end).toFixed(1)}배</b>입니다. 표 밖에 PANOFI 어대금 잔액
             {' '}<b>{f(mr.panofiPayable.usd10k)}만불</b>({mr.panofiPayable.asOf})이 따로 있어, 실제 지급 부담은 표보다 큽니다.
-            원어재고는 {mr.rawStock.asOf} 기준 <b>{f(mr.rawStock.sjMt + mr.rawStock.yfMt + mr.rawStock.mixMt)}톤</b>
-            (SJ {f(mr.rawStock.sjMt)}·YF {mr.rawStock.yfMt}·믹스 {mr.rawStock.mixMt}).</>}
+            원어재고는 {mr.rawStock.asOf} 기준 SJ <b>{f(mr.rawStock.sjMt)}톤</b>
+            {mr.rawStock.yfMt == null && mr.rawStock.mixMt == null ? '(YF·믹스는 원문 미기재)' : `(YF ${mr.rawStock.yfMt ?? '-'}·믹스 ${mr.rawStock.mixMt ?? '-'})`}입니다.</>}
         >
           <div className="tw">
             <table>
               <thead><tr><th>구분</th><th className="n">연초</th><th className="n">{mr.liquidity.asOf}</th><th className="n">증감</th></tr></thead>
               <tbody>
                 <tr><td>현금</td><td className="n">{f(mr.liquidity.cash.begin)}</td><td className="n">{f(mr.liquidity.cash.end)}</td>
-                  <td className="n">+{f(mr.liquidity.cash.end - mr.liquidity.cash.begin)}</td></tr>
+                  <td className="n">{sgn(mr.liquidity.cash.end - mr.liquidity.cash.begin)}</td></tr>
                 <tr><td>매출채권</td><td className="n">{f(mr.liquidity.ar.begin)}</td><td className="n">{f(mr.liquidity.ar.end)}</td>
-                  <td className="n">+{f(mr.liquidity.ar.end - mr.liquidity.ar.begin)}</td></tr>
+                  <td className="n">{sgn(mr.liquidity.ar.end - mr.liquidity.ar.begin)}</td></tr>
                 <tr className="warn"><td>매입채무</td><td className="n">{f(mr.liquidity.ap.begin)}</td><td className="n">{f(mr.liquidity.ap.end)}</td>
-                  <td className="n">+{f(mr.liquidity.ap.end - mr.liquidity.ap.begin)}</td></tr>
+                  <td className="n">{sgn(mr.liquidity.ap.end - mr.liquidity.ap.begin)}</td></tr>
                 <tr className="bad"><td>현금부족</td><td className="n">{f(mr.liquidity.shortfall.begin)}</td><td className="n">{f(mr.liquidity.shortfall.end)}</td>
                   <td className="n">{f(mr.liquidity.shortfall.end - mr.liquidity.shortfall.begin)}</td></tr>
                 <tr><td>재고자산 합계</td><td className="n">{f(mr.inventory.total.begin)}</td><td className="n">{f(mr.inventory.total.end)}</td>
@@ -357,23 +362,28 @@ export default function Home() {
         <Card
           title="생산계획 개정과 수주 단가"
           sub="월간 업무보고에만 있는 선행 정보 - 연간 계획 하향과 인상 수주."
-          note={<>수주는 어가 상승분을 반영해 <b>${mr.orderPrice.fromUsd.toFixed(1)} → ${mr.orderPrice.toUsd.toFixed(1)}</b>
-            ({mr.orderPrice.basis})로 인상된 단가로 진행 중이며, 물량보다 단가·수익성을 우선해 리테일 Tender 참여는
-            당분간 자제한다고 밝혔습니다. 기타 진행 사항: {mr.agenda.map((a, i) => <span key={i}>{i > 0 && ' · '}{a}</span>)}.</>}
+          note={<>{py.through}월 누적 가공 <b>{f(py.rawMt.y2026)}톤</b>(전년 {f(py.rawMt.y2025)}톤) · 일 {py.dailyMt.y2026}톤(전년 {py.dailyMt.y2025}톤) ·
+            수율 <b>{py.yieldPct.y2026.toFixed(2)}%</b>(전년 {py.yieldPct.y2025.toFixed(2)}%), 계획 대비 {f(py.vsPlan.rawMt)}톤입니다.
+            수주는 어가 {f(mr.orderPrice.fishPriceUsd)}불 수준을 반영해 <b>${mr.orderPrice.fromUsd.toFixed(1)} → ${mr.orderPrice.toUsd.toFixed(1)}</b>
+            ({mr.orderPrice.basis})로 인상해 진행 중이며, {mr.orderNotes.join(', ')}입니다.
+            유럽: {mr.market.join(' · ')}. 주요 업무: {mr.agenda.map((a, i) => <span key={i}>{i > 0 && ' · '}{a}</span>)}.</>}
         >
           <div className="tw">
             <table>
-              <thead><tr><th>구분</th><th className="n">계획</th><th className="n">변경</th><th className="n">차이</th></tr></thead>
+              <thead><tr><th>구분</th><th className="n">계획</th><th className="n">실적·변경</th><th className="n">차이</th></tr></thead>
               <tbody>
-                <tr><td>8월 원어 처리 (MT)</td><td className="n">{f(mr.productionPlan.augustPlanMt)}</td>
-                  <td className="n">{f(mr.productionPlan.augustRevisedMt)}</td>
-                  <td className="n">{f(mr.productionPlan.augustRevisedMt - mr.productionPlan.augustPlanMt)}</td></tr>
-                <tr className="warn"><td>연간 원어 처리 (MT)</td><td className="n">{f(mr.productionPlan.annualPlanMt)}</td>
-                  <td className="n">{f(mr.productionPlan.annualRevisedMt)}</td>
-                  <td className="n">{f(mr.productionPlan.annualRevisedMt - mr.productionPlan.annualPlanMt)}</td></tr>
-                <tr><td>9월 계획 (MT)</td><td className="n">-</td>
-                  <td className="n">{f(mr.productionPlan.september.totalMt)}</td>
-                  <td className="n">{mr.productionPlan.september.days}일 × {mr.productionPlan.september.dailyMt}톤</td></tr>
+                <tr><td>{am}월 원어 처리 실적 (MT)</td><td className="n">{f(tp.plan[am - 1])}</td>
+                  <td className="n">{f(tp.revised[am - 1])}</td>
+                  <td className="n">{f(tp.revised[am - 1] - tp.plan[am - 1])}</td></tr>
+                <tr className="warn"><td>연간 원어 처리 (MT)</td><td className="n">{f(tp.annual.planMt)}</td>
+                  <td className="n">{f(tp.annual.revisedMt)}</td>
+                  <td className="n">{f(tp.annual.revisedMt - tp.annual.planMt)}</td></tr>
+                <tr><td>{am + 1}월 변경계획 (MT)</td><td className="n">{f(tp.plan[am])}</td>
+                  <td className="n">{f(tp.revised[am])}</td>
+                  <td className="n">{tp.days[am]}일 × {tp.dailyMt[am]}톤</td></tr>
+                <tr><td>{mr.nextMonthPlan.month}월 계획 (MT)</td><td className="n">{f(tp.plan[mr.nextMonthPlan.month - 1])}</td>
+                  <td className="n">{f(mr.nextMonthPlan.totalMt)}</td>
+                  <td className="n">{mr.nextMonthPlan.days}일 × {mr.nextMonthPlan.dailyMt}톤</td></tr>
               </tbody>
             </table>
           </div>
@@ -389,7 +399,7 @@ export default function Home() {
           모두 같은 제품({qr.claims[0].product})에서 나왔습니다. 법인은 {qr.source.reportDate.replace(/-/g, '.')}자
           {' '}<b>품질개선 보고</b>로 입고보관부터 멸균까지 {qr.processStages.length}개 공정의 원인과
           실행계획 {qr.actions.length}건을 냈습니다. 클리닝은 <b>처리량과 정면으로 맞바꾸는 공정</b>이라
-          — 7월 평균 클리너가 전년 {mr.cleaners.y2025}명에서 <b>{mr.cleaners.y2026}명({mr.cleaners.delta}명)</b>으로 줄어든 상태입니다 —
+          — {mr.cleaners.basis} 클리너가 전년 {mr.cleaners.y2025}명에서 <b>{mr.cleaners.y2026}명({mr.cleaners.delta}명)</b>으로 줄어든 상태입니다 —
           품질 기준 강화는 그대로 처리량 계획에 부담으로 돌아옵니다(생산 보드).
         </Callout>
       </div>
