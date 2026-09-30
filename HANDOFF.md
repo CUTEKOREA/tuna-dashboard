@@ -7,6 +7,22 @@
 > - 회귀 테스트 RED 4건 확인 후 GREEN. `npm run verify`: ESLint 0 errors(warnings 30, 기존) · TypeScript · feature-map · stale-widgets · python sync 테스트 · Vitest 1,680/1,682 — 실패 2건(`fleet-daily-detail-loader`·`fleet-daily-source-contract`)은 gitignore 된 로컬 선단 원본이 `data/fleet-daily-260930` 브랜치 기준(165건)이고 이 브랜치 공개 집계가 main 기준(164건)이라 어긋난 로컬 전용 검사다(이번 변경과 무관, CI 에선 건너뜀). 이후 단계 API cache 158/158 · build 정적 118 · fleet client leak · bundle 33 · report-tables 통과.
 > - 브라우저(로컬 production, 1440·390): `/cosmo` 200, 경영요약 「39주차 업무 브리핑」·「3분기 결산 업무」·「주 5일 생산」, 데이터 품질 「39주차 30.23 MT」·「피쉬헤드」, 가로 overflow 0, console/page error 0, 지난주 문장 잔존 0.
 > - 상태: 브랜치 `data/cosmo-weekly-w39`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음). 미배포 브랜치 3개: `data/logistics-bkk-0930` · `data/fleet-daily-260930` · 이 브랜치 — 병합 시 HANDOFF 첫 항목 충돌을 순차로 푼다.
+> ✅ **2026-09-30 17:05 KST — `/fleet` 260930(수) 일일업무보고 반영** [CC]:
+> - 원자료: `해양수산본부 일일업무보고-260930 (수).docx` SHA-256 `628bb558ec7804f71ca8b4539d50eb9a192e184be948aacaca54de6fa33a65fa`(unzip OK). 165건.
+> - 머리글 연속성: 태평양 일 285 · 월 5,497 → 5,782 · 연 53,737.8 → 54,022.8(각 +285), 대서양 일 110 · 월 5,800 → 5,910 · 연 39,260 → 39,370(각 +110). 행 합계 = 머리글, 운반선 선적 5,824.3 · 잔여 8,436 변동 없음. 품질 카운트는 검산 656 → 660 만 늘었고 연승 미기재 25 그대로.
+> - Drive 원문 57/165건이 로컬에 내려받아져 있지 않아 전수 재파싱이 멈췄다 → `--latest-report` 증분으로 공개 집계·상세 DTO를 갱신했다(`detailSha256` f3110b14…, 상세 reportDate 9/30). 로컬 전용 private JSON 은 선다운로드 후 전수 재파싱 예정.
+> - MOAMARI 서술(`FLEET_IDLE_NOTES`)을 9/30 비고로 다시 계산: 도착 10/1 → **10/2**, 상가수리 후 10/10 출항(수리 기간 재기재 없음), 9/29~9/30 하루 **9.2노트**(약 220해리, 최고)·잔여 약 355해리, 항해 **32일**·평균 6.0노트, 예인료 약 **$131만**(18.2억원)·계약 초과 6~8일 $24.6만~32.8만. 일평균이 9/23 값(20.90 = 3,365 ÷ 161)에 남아 있어 **20.39**(÷165)로 고쳤고 조업손실은 **약 800~1,120 MT**(24~33%).
+> - 날짜 고정 테스트 RED(4파일 6건) → GREEN. `npm run verify` 통과: ESLint 0 errors(warnings 30) · Vitest **196 / 1,682** · API cache 158/158 · 정적 118 · fleet client leak 통과(정적 138 · 보호 상세 25) · bundle 33 · 세로합 0건. 로컬 production `/fleet` 1440·390px overflow 0·page error 0, 실적 분석 → 일간 추이에서 새 서술 확인·옛 문구 잔존 0. 보호 상세 API 는 로컬 e2e 경계 밖이라 503(정상).
+> - 배포 시: `detailSha256` 이 바뀌었으므로 **병합·Production READY 뒤** `bash scripts/swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 교체 → 재배포.
+> - 상태: 브랜치 `data/fleet-daily-260930` 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+> ✅ **2026-09-30 16:33 KST — 방콕 주간보고 9/30판(정정본) `/bangkok-office`·`/logistics` 반영** [CC]:
+> - 원자료: `20260930 Bangkok Office Weekly Report .docx`(정정본) SHA-256 `4c68e365c346e874acc60dbc63a8dbf416a976d44ee2c2bcc3f7126a6eeb30a7`. 원문(`194f4c18…`)은 같은 폴더 `…backup_before_fix.docx`.
+> - 원문이 9/23 **수정 전** 서식으로 작성돼 지난주 정정분이 되돌아가 있었다(2023 합계 627,248·선박 218, 2025 FCF 214,135 등, RYOMA 3,490, BAO LUCKY SKJ 누락, 7. Other). 이번 주 신규 오류도 있었다(캐너리 재고 SUM 방콕 86,600·송클라 5,100, 저장률 문장 44%·21% 지난주 값, SHIN FUJI 잔량). 사용자 지시로 1~10번을 문서에서 고친 뒤 반영했다. HIKARI 1 N/STAR YF 4.728(역산 4.278)은 원문 그대로다.
+> - `/bangkok-office`: `docs/bangkok_week_20260930.json` → `append_bangkok_week.py`(자가검증 7항목 일치) → `sync_bangkok_report.sh`. Drive 종합분석 HTML 은 `…backup_20260930.html` 로 백업. 주차 293 → **294**, 방콕 재고 **87,300MT**, 가공가능일수 **41일**, 9월 **8척 29,701MT**, 2026 누계 **363,199MT**, 어가 $2,300(변동 없어 계절 기준선 재생성 안 함). 고반려 5건·380.7MT(행별 첫 어종 규칙).
+> - `/logistics`: 계약을 9/30판으로 옮겼다. 원문 A 표가 이번 주부터 **하역 중 3척**만 적어(FONG KUO 818·CHERRY STAR·RYOMA 11,585MT, BANGKOK 3과 일치) `vessels`·`currentTotal` 과 월 누계(`monthToDate` 8척 29,701)를 나눠 든다. 「가장 큰 트레이더」 문장은 하역 표가 아니라 월별표 최신 행에서 고르도록 바꿨고, 관제판 정정 설명은 `unloading.correctionNote` 로 계약에 올렸다. 고반려 잔량 불일치는 SHIN FUJI 가 빠져 2건.
+> - 마스터 엑셀(`데이터 정리.xlsx`)에는 CHERRY STAR(ITOCHU 3,415MT)가 아직 없다(9월 26,286). 엑셀 갱신은 사용자 확인 대기.
+> - 테스트 RED → GREEN: `logistics-weekly-data`(재작성)·`logistics-command-center`·`bangkok-price-overview`·`embedded-operation-pages`·`v2-components-render`. `npm run verify` 통과: ESLint 0 errors(warnings 30) · Vitest **196 files / 1,682** · API cache 158/158 · 정적 118 · bundle 33 · 세로합 0건. 로컬 production(e2e 헤더) `/logistics`·`/bangkok-office` 1440·390px overflow 0·error 0, 옛 값(26,286·359,784·91,250) 잔존 0.
+> - 상태: 브랜치 `data/logistics-bkk-0930` 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
 
 > 🚀 **2026-09-30 12:30 KST — #1281 GMTS 9월 · #1282 파노피 월간 9월 · #1283 코스모 8월 업무보고 · #1284 파노피 주간 0929 배포** [CC]:
 > - 순차 병합(squash): #1281 `2e394814` → #1282 `7a2ae567` → #1283 `b4aa551a` → #1284 `f8663a38`(#1282~#1284 는 HANDOFF 충돌 해소 후 CI 재통과, #1284 는 `PanofiTabs.tsx`·테스트 자동 병합 후 파노피 테스트 65건 재확인). Production `dpl_HGzyrTPXbtgfHfBNjht7WPw8MXwb` READY, alias `https://leedonggun.co.kr`. 배포 후 error log 0건.

@@ -1,0 +1,238 @@
+{
+ "series": {
+  "date": "2026-09-30",
+  "y": 2026,
+  "m": 9,
+  "price": 2300.0,
+  "suspect": false,
+  "unload_v": 8.0,
+  "unload_mt": 29701.0,
+  "bkk_cur": 2150.0,
+  "bkk_max": 4140.0,
+  "bkk_util": 52.0,
+  "bkk_stock": 87300.0,
+  "bkk_days": 41.0,
+  "bkk_capa": 207500.0,
+  "skl_cur": 330.0,
+  "skl_util": 37.0,
+  "skl_stock": 5000.0,
+  "skl_days": 15.0,
+  "skl_capa": 27000.0,
+  "rej_cases": 5,
+  "rej_mt": 380.7,
+  "salt_cases": null,
+  "salt_usd": null
+ },
+ "panel": {
+  "THAI UNION": [
+   700,
+   54,
+   43000,
+   61
+  ],
+  "SEA VALUE": [
+   550,
+   55,
+   26000,
+   47
+  ],
+  "GOLDEN PRIZE": [
+   220,
+   63,
+   6000,
+   27
+  ],
+  "PATAYA FOOD": [
+   100,
+   40,
+   1300,
+   13
+  ],
+  "SPA": [
+   150,
+   75,
+   4000,
+   27
+  ],
+  "MMP": [
+   120,
+   60,
+   3800,
+   32
+  ],
+  "AAI": [
+   80,
+   44,
+   600,
+   8
+  ],
+  "DIAMOND": [
+   40,
+   40,
+   300,
+   8
+  ],
+  "R.MONKHON": [
+   30,
+   33,
+   200,
+   7
+  ],
+  "R.S CANNERY": [
+   40,
+   40,
+   500,
+   13
+  ],
+  "SK FOODS": [
+   60,
+   50,
+   700,
+   12
+  ],
+  "KINGFISHER": [
+   20,
+   10,
+   200,
+   10
+  ],
+  "GLOBAL FROZEN": [
+   40,
+   80,
+   700,
+   18
+  ],
+  "CMC": [
+   150,
+   50,
+   2200,
+   15
+  ],
+  "SCC": [
+   50,
+   20,
+   900,
+   18
+  ],
+  "SIAM": [
+   60,
+   30,
+   700,
+   12
+  ],
+  "TRP": [
+   70,
+   47,
+   1200,
+   17
+  ]
+ },
+ "trader_month": {
+  "key": "2026-09",
+  "FCF": 14539.0,
+  "ITOCHU": 3415.0,
+  "TRI MARINE": 0,
+  "DIRECT": 11747.0,
+  "MALDIVES": 0,
+  "ships": {
+   "FCF": 4.0,
+   "ITOCHU": 1.0,
+   "TRI MARINE": 0,
+   "DIRECT": 3.0,
+   "MALDIVES": 0
+  },
+  "total_reported": 29701.0,
+  "ships_reported": 8.0
+ },
+ "trader_year_reported": {
+  "total": 363199.0,
+  "FCF": 147141.0,
+  "ITOCHU": 40146.0,
+  "TRI MARINE": 56463.0,
+  "DIRECT": 119449.0,
+  "MALDIVES": 0
+ },
+ "header": {
+  "sub_end": "2026년 9월 30일",
+  "reports": 299,
+  "weeks": 294,
+  "latestPrice": "$2,300",
+  "stockMt": "87,300 MT",
+  "processDays": "41일",
+  "cumUnload": "363,199 MT"
+ },
+ "snapshot_meta": {
+  "BKK": {
+   "THAI UNION": {
+    "max": 1300,
+    "capa": 62000
+   },
+   "SEA VALUE": {
+    "max": 1000,
+    "capa": 55000
+   },
+   "GOLDEN PRIZE": {
+    "max": 350,
+    "capa": 25000
+   },
+   "PATAYA FOOD": {
+    "max": 250,
+    "capa": 15000
+   },
+   "SPA": {
+    "max": 200,
+    "capa": 4000
+   },
+   "MMP": {
+    "max": 200,
+    "capa": 5000
+   },
+   "KINGFISHER": {
+    "max": 200,
+    "capa": 15000
+   },
+   "AAI": {
+    "max": 180,
+    "capa": 7000
+   },
+   "SK FOODS": {
+    "max": 120,
+    "capa": 7000
+   },
+   "DIAMOND": {
+    "max": 100,
+    "capa": 1500
+   },
+   "R.S CANNERY": {
+    "max": 100,
+    "capa": 4000
+   },
+   "R.MONKHON": {
+    "max": 90,
+    "capa": 2000
+   },
+   "GLOBAL FROZEN": {
+    "max": 50,
+    "capa": 5000
+   }
+  },
+  "SKL": {
+   "CMC": {
+    "max": 300,
+    "capa": 10000
+   },
+   "SCC": {
+    "max": 250,
+    "capa": 7000
+   },
+   "SIAM": {
+    "max": 200,
+    "capa": 5000
+   },
+   "TRP": {
+    "max": 150,
+    "capa": 5000
+   }
+  }
+ }
+}
