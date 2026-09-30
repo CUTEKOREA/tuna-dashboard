@@ -238,6 +238,8 @@ def parse_own_vessels(text: str) -> tuple[list[dict], str]:
         if i < 0:
             continue
         line = head[i + len(name):].split("\n")[0].strip(" \t:")
+        # 어기교대 문장에 선장 실명이 온다(2026-09-29 «사재용 선장 → 박성호 선장»). 직함만 남긴다.
+        line = PERSON_TITLE.sub(r"\1", line)
         out.append({"vessel": name, "code": short, "status": line[:200] or None})
     if out:
         return out, "detailed"
@@ -293,6 +295,10 @@ def parse_senegal(text: str) -> list[dict]:
             "note": cells[-1] if len(cells) > 4 else None,
         })
     return rows
+
+
+# «한글 이름 2~4자 + 직함» — 저장소에는 직함만 둔다
+PERSON_TITLE = re.compile(r"[가-힣]{2,4}\s*(선장|기관장|항해사|법인장|지사장|부장|차장|과장|대리)")
 
 
 def author_title(raw: str) -> str | None:

@@ -477,9 +477,10 @@ export function PriceTab() {
                 ? ' 코스모를 처음으로 넘어섰다.'
                 : ' 움직였다.'}{' '}
               {temaGap.underNegotiation
-                ? `다만 코스모는 ${temaGap.cosmoMonth ?? '지난달'} 값을 그대로 둔 채 협의 중이라 두 채널의 격차는 아직 같은 기준으로 비교할 수 없다.`
-                : ''}{' '}
-              «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 코스모 9월 어가가 확정된 뒤 다시 잰다.
+                ? `다만 코스모는 ${temaGap.cosmoMonth ?? '지난달'} 값을 그대로 둔 채 협의 중이라 두 채널의 격차는 아직 같은 기준으로 비교할 수 없다. «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 코스모 ${temaGap.pfcMonth ?? '당월'} 어가가 확정된 뒤 다시 잰다.`
+                : temaGap.comparable
+                  ? `코스모도 ${temaGap.cosmoMonth} 어가를 ${usd(latest.prices.cosmoTema ?? 0)}로 확정해 격차는 ${usd(temaGap.usdPerT ?? 0)}(${(temaGap.usdPerT ?? 0) > 0 ? 'PFC 우위' : '코스모 우위'})다. «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 이 확정가로 다음 측정 창에서 다시 잰다.`
+                  : ''}
             </Callout>
           )}
         </Panel>
