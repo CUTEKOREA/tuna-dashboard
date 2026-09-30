@@ -608,6 +608,10 @@ export const liquidityBridge = (() => {
   if (!first || !last) return null;
   const d = (k: '현금' | '매출채권' | '매입채무' | '과부족') =>
     first[k] === null || last[k] === null ? null : Math.round(last[k]! - first[k]!);
+  // 직전 기준일 대비 — 연초 대비 방향과 최근 한 달 방향이 다를 수 있다(8/31: 연초 대비 악화, 한 달 개선).
+  const prev = rows[rows.length - 2] ?? null;
+  const step = (k: '현금' | '매출채권' | '매입채무' | '과부족') =>
+    !prev || prev[k] === null || last[k] === null ? null : Math.round(last[k]! - prev[k]!);
   return {
     from: first.asOf,
     to: last.asOf,
@@ -617,6 +621,8 @@ export const liquidityBridge = (() => {
     과부족: d('과부족'),
     startShortfall: first.과부족,
     endShortfall: last.과부족,
+    prevAsOf: prev?.asOf ?? null,
+    step: { 현금: step('현금'), 매출채권: step('매출채권'), 매입채무: step('매입채무'), 과부족: step('과부족') },
   };
 })();
 

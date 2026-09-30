@@ -72,23 +72,22 @@ describe('파노피 데이터 인테이크', () => {
 
   // 2026-08-26 추가: 8월 주간동향 0818·0825 반영. 최신행 고정 — main 미병합 배포가
   // 화면을 옛 값으로 되돌리는 회귀를 여기서 잡는다.
-  it('주간동향이 2026-09-22(39주차)까지 40주다', () => {
+  it('주간동향이 2026-09-29(40주차)까지 41주다', () => {
     // 최신행 고정 - main 미병합 배포가 화면을 옛 값으로 되돌리는 회귀를 여기서 잡는다.
-    expect(headline.weekCount).toBe(40);
-    expect(headline.rangeEnd).toBe('2026-09-22');
+    expect(headline.weekCount).toBe(41);
+    expect(headline.rangeEnd).toBe('2026-09-29');
     const last = weeks[weeks.length - 1];
-    expect(last.reportDate).toBe('2026-09-22');
-    // PFC가 9월 어가 $1,900으로 확정되며 $1,600에서 처음 코스모를 넘어섰다.
+    expect(last.reportDate).toBe('2026-09-29');
+    expect(last.sha256).toBe('9bbc8286dbedeb14c59688e2fc75261ba12d548678602f2f118f4b93d027b3f4');
+    // 코스모 9월 어가가 협의 끝에 $1,850 으로 확정됐다(8월 $1,700). PFC 는 $1,900 유지.
     expect(last.prices.pfcTema).toBe(1900);
-    expect(last.prices.cosmoTema).toBe(1700);
-    // SCODI 9월 어가가 $1,722 → $1,832 로 올랐다
+    expect(last.prices.cosmoTema).toBe(1850);
     expect(last.prices.scodiAbidjan).toBe(1832);
-    expect(last.fx.cediPerUsd).toBe(11.55);
-    expect(last.fx.cfaPerUsd).toBe(590);
+    expect(last.fx.cediPerUsd).toBe(11.66);
+    expect(last.fx.cfaPerUsd).toBe(585);
     expect(last.dailyProcessing.COSMO).toBe(100);
-    expect(last.receivables.totalUsd).toBe(5_283_884);
-    // 유가 4지점 - 9/22 판도 DAKAR 가 «$1,310KL» 로 슬래시 없이 찍혔다(추출기가 허용)
-    expect(last.fuel).toEqual({ abidjan: 1_241, tema: 1_656, dakar: 1_310, tanker: 1_579, single: null });
+    expect(last.receivables.totalUsd).toBe(5_329_046);
+    expect(last.fuel).toEqual({ abidjan: 1_218, tema: 1_687, dakar: 1_268, tanker: 1_543, single: null });
     /* 「대 양: 조류방향 불규칙」 — 방향어가 없는 주다. '조류'를 방향으로 읽던 추출기 버그의 가드. */
     expect(last.fishingGround.oceanCurrent).toBe('불규칙');
     expect(last.fishingGround.coastalCurrent).toBe('동류');
@@ -96,13 +95,16 @@ describe('파노피 데이터 인테이크', () => {
 
   it('테마 격차는 두 채널이 같은 월일 때만 계산한다', () => {
     /* 2026-09-08 원문: 「PFC - $1,900(9월), COSMO - $1,700(8월) ⇒ 9월어가 협의 중」.
-     * 그냥 빼면 «PFC가 $200 비싸다»가 되는데 코스모의 9월 값은 아직 없다.
-     * 37주 내내 두 채널은 같은 월이었고 9/8 에 처음 갈린 뒤 9/15 도 협의 중이다. */
+     * 그냥 빼면 «PFC가 $200 비싸다»가 되는데 코스모의 9월 값은 아직 없었다.
+     * 9/8·9/15·9/22 세 주 협의 중이었고 9/29 판에서 코스모 9월 $1,850 으로 맞춰졌다. */
     expect(latest.prices.pfcTemaMonth).toBe('9월');
-    expect(latest.prices.cosmoTemaMonth).toBe('8월');
-    expect(latest.prices.temaUnderNegotiation).toBe(true);
-    expect(temaGap.comparable).toBe(false);
-    expect(temaGap.usdPerT).toBeNull();
+    expect(latest.prices.cosmoTemaMonth).toBe('9월');
+    expect(latest.prices.temaUnderNegotiation).toBe(false);
+    expect(temaGap.comparable).toBe(true);
+    expect(temaGap.usdPerT).toBe(50);
+    const price = renderToStaticMarkup(React.createElement(PriceTab));
+    expect(price).toContain('코스모도 9월 어가를 $1,850로 확정해 격차는 $50(PFC 우위)다');
+    expect(price).not.toContain('코스모 9월 어가가 확정된 뒤 다시 잰다');
 
     // 월이 갈린 주만 비교 불가다 - 나머지는 전부 계산 가능해야 한다
     const split = weeks.filter((w) => {
@@ -118,12 +120,12 @@ describe('파노피 데이터 인테이크', () => {
     const last = weeks[weeks.length - 1];
     expect(receivableNow.asOf).toBe(last.reportDate);
     expect(receivableNow.currentKusd).toBe(Math.round(last.receivables.totalUsd! / 1000));
-    expect(receivableNow.currentKusd).toBe(5_284);
+    expect(receivableNow.currentKusd).toBe(5_329);
     expect(receivableNow.peakKusd).toBeGreaterThanOrEqual(receivableNow.currentKusd);
     expect(receivableNow.sincePeakKusd).toBe(receivableNow.currentKusd - receivableNow.peakKusd);
 
     const markup = renderToStaticMarkup(React.createElement(CashTab));
-    expect(markup).toContain('2026-09-22 주간동향');
+    expect(markup).toContain('2026-09-29 주간동향');
     expect(markup).not.toContain('정점 대비 -4,950천불');
   });
 
@@ -138,12 +140,13 @@ describe('파노피 데이터 인테이크', () => {
         expect(FLEETS.has(row.fleet)).toBe(true);
       }
     }
-    /* 배는 들고 난다 - EU 선단·운반선은 9/22 판에서 통째로 빠지고 5행만 남았다.
+    /* 배는 들고 난다 - EU 선단·운반선은 9/22 판에서 통째로 빠졌다가 9/29 판에 다시 왔다(8행).
      * 특정 선박을 못박는 대신 «소속이 붙은 채로 행이 남는지»를 본다. */
     const last = weeks[weeks.length - 1];
-    expect(last.senegalFleet).toHaveLength(5);
-    expect(last.senegalFleet.find((r) => r.vessel === 'WESTERN KIM')?.fleet).toBe('캅센');
-    expect(last.senegalFleet.find((r) => r.vessel === 'SEA FRONTIER')?.fleet).toBe('그랑블루');
+    expect(last.senegalFleet).toHaveLength(8);
+    expect(last.senegalFleet.find((r) => r.vessel === 'XIXILI')?.fleet).toBe('캅센');
+    expect(last.senegalFleet.find((r) => r.vessel === 'MONTEFRISA NUEVE')?.fleet).toBe('EU');
+    expect(last.senegalFleet.find((r) => r.vessel === 'ORANGE ICE')?.fleet).toBe('운반선');
     expect(last.senegalFleet.every((r) => r.fleet !== null)).toBe(true);
   });
 
@@ -152,12 +155,22 @@ describe('파노피 데이터 인테이크', () => {
      * 합계만 맞아서 화면에서는 안 보였다. */
     const last = weeks[weeks.length - 1];
     const byBuyer = Object.fromEntries(last.receivables.buyers.map((b) => [b.buyer, b]));
-    expect(byBuyer['ETS BADARA'].usd).toBe(2_424_613);
-    expect(byBuyer['SDMG'].usd).toBe(1_377_664);
-    expect(byBuyer['INTER OCEAN'].usd).toBe(1_481_606);
+    expect(byBuyer['ETS BADARA'].usd).toBe(2_445_336);
+    expect(byBuyer['SDMG'].usd).toBe(1_389_440);
+    expect(byBuyer['INTER OCEAN'].usd).toBe(1_494_270);
     // 바이어 합이 표 하단 합계와 맞는다
     const sum = last.receivables.buyers.reduce((acc, b) => acc + (b.cfa ?? 0), 0);
     expect(sum).toBe(last.receivables.totalCfa);
+  });
+
+  it('선박 상태 문장에 사람 이름이 남지 않는다 (2026-09-29 어기교대 문장)', () => {
+    for (const w of weeks) {
+      for (const v of w.ownVessels) {
+        expect(v.status ?? '', `${w.reportDate} ${v.vessel}`).not.toMatch(/[가-힣]{2,4}\s*(선장|기관장|항해사)/);
+      }
+    }
+    const grace = weeks[weeks.length - 1].ownVessels.find((v) => v.code === 'P/GRA');
+    expect(grace?.status).toContain('선장 → 선장 어기교대');
   });
 
   it('주간동향 작성자는 직함만 남긴다', () => {
@@ -428,7 +441,7 @@ describe('원장 손익분기 채널 (판마다 분기점이 바뀐다)', () => 
     ]);
     const price = renderToStaticMarkup(React.createElement(PriceTab));
     expect(price).not.toContain('최근에야 생겼다');
-    expect(price).toContain('코스모 26주(3/10부터)');
+    expect(price).toContain('코스모 27주(3/10부터)');
     const profit = renderToStaticMarkup(React.createElement(PanofiTabsProfit));
     expect(profit).toContain(`${ytd.months}개월을 연환산하지 않는다`);
   });
@@ -454,11 +467,25 @@ describe('자금유동성 (월간보고 pptx)', () => {
     expect(Math.abs(end!.과부족! / 10 - -2082)).toBeLessThanOrEqual(0.5);
   });
 
-  it('회수는 성공했는데 매입채무가 더 크게 늘어 과부족이 악화됐다', () => {
+  // 7/31 까지는 «회수했는데 악화»였다. 8/31 은 채권이 늘며 한 달 새 개선 — 방향이 바뀌므로 문장을 부호에서 만든다.
+  it('연초 대비와 직전 기준일 대비 방향을 따로 센다 (8/31: 연초 대비 악화, 한 달 개선)', () => {
     expect(liquidityBridge).not.toBeNull();
-    expect(liquidityBridge!.매출채권).toBeLessThan(0); // 채권 감소 = 회수
-    expect(liquidityBridge!.매입채무).toBeGreaterThan(0); // 채무 증가
-    expect(liquidityBridge!.과부족).toBeLessThan(0); // 그럼에도 과부족 악화
+    expect(liquidityBridge!.to).toBe('2026-08-31');
+    expect(liquidityBridge!.매출채권).toBe(7480);
+    expect(liquidityBridge!.매입채무).toBe(8753);
+    expect(liquidityBridge!.과부족).toBe(-1585);
+    expect(liquidityBridge!.prevAsOf).toBe('2026-07-31');
+    expect(liquidityBridge!.step).toEqual({ 현금: -34, 매출채권: 9468, 매입채무: -1571, 과부족: 11005 });
+    const html = renderToStaticMarkup(React.createElement(CashTab));
+    expect(html).not.toContain('회수했는데 왜 더 나빠졌나');
+    expect(html).not.toContain('매출채권을 줄이고 현금을 늘렸는데도');
+    expect(html).toContain('매출채권 +7,480(미회수 증가)');
+    expect(html).toContain('직전 2026-07-31 대비로는 +11,005천불 개선');
+    const overview = renderToStaticMarkup(React.createElement(PanofiDashboard));
+    expect(overview).toContain('그룹 합산 -3,000만불은 전략보고 6/30 기준');
+    expect(html).toContain('최신 9월 추정 누계는 -825천불로 전년 동기 2,903천불보다 3,728천불 낮다');
+    expect(html).toContain('3월분은 보고 공백');
+    expect(html).not.toContain('3·6월분은 원본이 없어');
   });
 
   it('보고 공백 월을 숨기지 않는다 - 6월 보고 입수 후 공백은 3월뿐', () => {
@@ -480,19 +507,22 @@ describe('자금유동성 (월간보고 pptx)', () => {
     expect(jul!.과부족).toBe(-20575);
   });
 
-  it('8월 추정손익이 최신 선행 수치다', () => {
+  it('9월 추정손익(1~9월 누계)이 최신 선행 수치다', () => {
     const last = liquidity.estimates[liquidity.estimates.length - 1];
-    expect(last.forMonth).toBe(8);
-    expect(last.revenue).toBe(52881);
-    expect(last.operating).toBe(5794);
-    expect(last.net).toBe(-2261);
+    expect(last.forMonth).toBe(9);
+    expect(last.revenue).toBe(62168);
+    expect(last.operating).toBe(8309);
+    expect(last.net).toBe(-825);
+    expect(last.netPrevYear).toBe(2903);
   });
 
-  it('자금 과부족 스탯이 최신 월간보고 실측(7/31)을 쓴다', () => {
+  it('자금 과부족 스탯이 최신 월간보고 실측(8/31)을 쓴다', () => {
     // 전략보고 6/30 고정값(-20,820)이 최신 실측을 가리면 신선도가 거짓이 된다.
+    const aug = liquidity.series.find((r) => r.asOf === '2026-08-31');
+    expect(aug).toMatchObject({ 현금: 6509, 매출채권: 33832, 매입채무: 49911, 과부족: -9570 });
     const html = renderToStaticMarkup(React.createElement(CashTab));
-    expect(html).toContain('20,575');
-    expect(html).toContain('2026-07-31');
+    expect(html).toContain('9,570');
+    expect(html).toContain('2026-08-31');
     expect(html).not.toContain('20,820');
   });
 
@@ -501,7 +531,7 @@ describe('자금유동성 (월간보고 pptx)', () => {
     const tabs = renderToStaticMarkup(React.createElement(CashTab));
     expect(tabs).not.toContain('pptx 5건');
     expect(tabs).toContain(`pptx ${liquidity.meta.sources.length}건`);
-    expect(liquidity.meta.sources.length).toBe(7);
+    expect(liquidity.meta.sources.length).toBe(8);
   });
 });
 
