@@ -36,11 +36,13 @@ describe('logistics decision workspace', () => {
     expect(markup).toContain('운영 확인 관제판');
     expect(markup).toContain('SPA 창고 포화');
     expect(markup).toContain('9월 반입 누계 정정 반영');
-    expect(markup).toContain('9월 누계 7척 · 26,286MT · 월별 합계 일치');
+    expect(markup).toContain('9월 누계 8척 · 29,701MT · 월별 합계 일치');
+    expect(markup).toContain('CHERRY STAR');
     expect(markup).toContain('송클라 저가동');
     // 원문 잔량 불일치는 덮지 않고 관제판에 남긴다
     expect(markup).toContain('고반려 잔량 불일치');
-    expect(markup).toContain('BAO LUCKY·SHIN FUJI·HIKARI 1');
+    // SHIN FUJI 는 9/30 정정본에서 잔량을 반입량−처리량으로 고쳐 빠진다
+    expect(markup).toContain('2건 · BAO LUCKY·HIKARI 1');
     expect(markup).toContain('확인 완료');
     expect(markup).not.toContain('TRI MARINE 누계 상충');
     // 화면 문장에 손으로 적은 보고일이 남으면 다음 주에 그대로 남는다
@@ -60,13 +62,15 @@ describe('logistics decision workspace', () => {
     expect(heroMarkup).toContain(`${reeferSource.week}주차 운반선 보고 기준`);
     expect(heroMarkup).toContain(`data-kpi-value="${reeferTotal}"`);
     expect(heroMarkup).toContain(`data-kpi-value="${reeferRows.length}"`);
-    expect(heroMarkup).toContain('9월 방콕 반입 7척');
+    expect(heroMarkup).toContain('9월 방콕 반입 8척');
     expect(heroMarkup).not.toContain('입항 상태 재확인');
     // 운반선 표는 트레이더 단위 - 원문 입항표와 같은 모양이어야 척수 칸이 뜻을 갖는다
-    expect(carrierMarkup).toContain('SEIN QUEEN (2,902 MT)');
-    expect(carrierMarkup).toContain('ZHONG YU MARINE (5,025 MT)');
-    expect(carrierMarkup).toContain('26,286 MT');
-    expect(carrierMarkup).toContain('하역 중인 배는 5척');
+    // 9/30 판 표는 하역 중인 3척만 적는다 - 월 누계는 각주가 따로 든다
+    expect(carrierMarkup).toContain('CHERRY STAR (3,415 MT)');
+    expect(carrierMarkup).toContain('RYOMA (3,290 MT)');
+    expect(carrierMarkup).toContain('11,585 MT');
+    expect(carrierMarkup).toContain('누계는 운반선 8척·29,701 MT');
+    expect(carrierMarkup).toContain('하역 중인 배는 3척');
     expect(carrierMarkup).not.toContain('2026-08-05');
   });
 

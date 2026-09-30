@@ -48,9 +48,9 @@ const decisions: DecisionItem[] = [
   },
   {
     priority: '확인 완료',
-    title: '9월 반입 누계 정정 반영',
+    title: `${reportMonth} 반입 누계 정정 반영`,
     evidence: `${reportMonth} 누계 ${logisticsWeeklyReport.unloading.monthToDate.vessels}척 · ${logisticsWeeklyReport.unloading.monthToDate.amount.toLocaleString()}MT · 월별 합계 일치`,
-    action: '원문 입항표에서 빠져 있던 SEIN QUEEN·ZHONG YU MARINE 을 되살려 월별표와 맞췄습니다.',
+    action: logisticsWeeklyReport.unloading.correctionNote,
     icon: Database,
   },
   {

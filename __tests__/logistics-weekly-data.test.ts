@@ -6,71 +6,64 @@ function sum<T>(items: readonly T[], select: (item: T) => number) {
   return items.reduce((total, item) => total + select(item), 0);
 }
 
-describe('2026-09-23 Bangkok Office weekly logistics report', () => {
+describe('2026-09-30 Bangkok Office weekly logistics report', () => {
   it('정정본 원문을 출처로 못박고 무엇을 고쳤는지 함께 들고 있다', () => {
     expect(logisticsWeeklyReport.source).toMatchObject({
-      file: '20260923 Bangkok Office Weekly Report.docx',
-      reportDate: '2026-09-23',
-      sha256: 'eab43fa3777620eaab20289138d83b3fc04cadcadbdd7e7fffa7279ea0ce8e43',
+      file: '20260930 Bangkok Office Weekly Report .docx',
+      reportDate: '2026-09-30',
+      sha256: '4c68e365c346e874acc60dbc63a8dbf416a976d44ee2c2bcc3f7126a6eeb30a7',
     });
-    // 원문을 고쳐서 반영했다 - 무엇을 고쳤는지 계약이 들고 있지 않으면 다음 주에 되돌아간다
+    // 이번 주 원문은 9/23 수정 전 서식으로 작성돼 지난주 정정분이 되돌아가 있었다
     expect(logisticsWeeklyReport.source.corrections).toHaveLength(4);
-    expect(logisticsWeeklyReport.source.corrections[1]).toContain('9월 행');
+    expect(logisticsWeeklyReport.source.corrections[0]).toContain('수정 전 서식');
+    expect(logisticsWeeklyReport.source.corrections[1]).toContain('RYOMA');
   });
 
   it('월별·트레이더 누계가 원문 합계행과 맞는다', () => {
     const monthlyTotal = sum(logisticsWeeklyReport.traderReceipts.monthly, (month) => month.total);
     const traderTotal = sum(logisticsWeeklyReport.traderReceipts.traders, (trader) => trader.total);
 
-    // 9월 행은 전주 값(3척 12,693 · 2척 8,457)으로 남아 있던 것을 정정한 값이다
+    // 9월: CHERRY STAR(ITOCHU 3,415)가 새로 들어오고 RYOMA 는 3,290MT 를 유지한다
     expect(logisticsWeeklyReport.traderReceipts.latestMonth).toEqual({
       month: '9월',
       FCF: 14539,
-      ITOCHU: 0,
+      ITOCHU: 3415,
       'TRI MARINE': 0,
       direct: 11747,
       Maldives: 0,
-      total: 26286,
+      total: 29701,
     });
-    expect(monthlyTotal).toBe(359784);
-    expect(traderTotal).toBe(359784);
+    expect(monthlyTotal).toBe(363199);
+    expect(traderTotal).toBe(363199);
 
-    // 트레이더별 세로합도 원문 합계행과 같아야 한다
-    const fcf = sum(logisticsWeeklyReport.traderReceipts.monthly, (month) => month.FCF);
+    const itochu = sum(logisticsWeeklyReport.traderReceipts.monthly, (month) => month.ITOCHU);
     const direct = sum(logisticsWeeklyReport.traderReceipts.monthly, (month) => month.direct);
-    expect(fcf).toBe(147141);
+    expect(itochu).toBe(40146);
     expect(direct).toBe(119449);
   });
 
   it('캐너리 생산·재고 합계가 원문 SUM 행과 맞는다', () => {
     const { bangkok, songkhla } = logisticsWeeklyReport.canneries;
-    expect(sum(bangkok, (cannery) => cannery.currentProduction)).toBe(2170);
-    expect(sum(bangkok, (cannery) => cannery.currentStock)).toBe(91250);
+    expect(sum(bangkok, (cannery) => cannery.currentProduction)).toBe(2150);
+    // 원문 SUM 86,600 은 행 합계와 700 어긋나 정정본에서 87,300 으로 고쳤다
+    expect(sum(bangkok, (cannery) => cannery.currentStock)).toBe(87300);
     expect(sum(songkhla, (cannery) => cannery.currentProduction)).toBe(330);
-    expect(sum(songkhla, (cannery) => cannery.currentStock)).toBe(5600);
+    expect(sum(songkhla, (cannery) => cannery.currentStock)).toBe(5000);
 
-    // SPA 는 재고가 보관능력과 같다 - 만재를 평균에 묻지 않는다
     const spa = bangkok.find((cannery) => cannery.name === 'SPA')!;
     expect(spa.currentStock).toBe(spa.storageCapacity);
   });
 
-  it('9월 반입 운반선 7척이 합계와 맞는다', () => {
+  it('하역 중 운반선 표와 9월 누계를 따로 든다', () => {
     const { vessels, currentTotal, monthToDate, unloadingNow } = logisticsWeeklyReport.unloading;
 
-    expect(vessels).toHaveLength(7);
-    expect(sum(vessels, (vessel) => vessel.amount)).toBe(26286);
-    expect(currentTotal).toEqual({ vessels: 7, amount: 26286 });
-    expect(monthToDate).toEqual({ vessels: 7, amount: 26286 });
-    // 원문에서 빠져 있던 두 척 - 지우면 9월 누계가 다시 어긋난다
-    expect(vessels.map((vessel) => vessel.name)).toContain('SEIN QUEEN');
-    expect(vessels.map((vessel) => vessel.name)).toContain('ZHONG YU MARINE');
-
-    const fcf = vessels.filter((vessel) => vessel.trader === 'FCF');
-    expect(fcf).toHaveLength(4);
-    expect(sum(fcf, (vessel) => vessel.amount)).toBe(14539);
-    expect(sum(vessels.filter((vessel) => vessel.trader === 'DIRECT'), (vessel) => vessel.amount)).toBe(11747);
-    // 하역 중 척수는 누계 척수와 다른 값이다
-    expect(unloadingNow).toEqual({ port: '방콕', vessels: 5 });
+    expect(vessels.map((vessel) => vessel.name)).toEqual(['FONG KUO 818', 'CHERRY STAR', 'RYOMA']);
+    expect(sum(vessels, (vessel) => vessel.amount)).toBe(11585);
+    expect(currentTotal).toEqual({ vessels: 3, amount: 11585 });
+    // 누계는 월별표 9월 행과 같아야 한다
+    expect(monthToDate).toEqual({ vessels: 8, amount: logisticsWeeklyReport.traderReceipts.latestMonth.total });
+    expect(unloadingNow).toEqual({ port: '방콕', vessels: 3 });
+    expect(vessels.find((vessel) => vessel.name === 'RYOMA')?.amount).toBe(3290);
   });
 
   it('고반려는 원문 인쇄값을 남기고 잔량 차이를 덮지 않는다', () => {
@@ -78,17 +71,14 @@ describe('2026-09-23 Bangkok Office weekly logistics report', () => {
     expect(rows).toHaveLength(5);
     expect(logisticsWeeklyReport.market).toMatchObject({
       rawMaterialPriceUsdPerMt: 2300,
-      reportDate: '2026-09-23',
+      reportDate: '2026-09-30',
     });
 
     const gap = (row: (typeof rows)[number]) =>
       Number((row.quantityMt - sum(row.items, (item) => item.mt) - row.balanceMt).toFixed(3));
 
-    // 2행은 맞고 3행은 어긋난다 - 계산으로 덮으면 원문 대조가 불가능해진다
-    expect(gap(rows[1])).toBe(0);
-    expect(gap(rows[3])).toBe(0);
-    expect(gap(rows[0])).toBe(-76.182);
-    expect(gap(rows[2])).toBe(1.031);
-    expect(gap(rows[4])).toBe(-0.45);
+    // SHIN FUJI 는 정정본에서 84.511MT 로 고쳐 맞고, 두 행은 원문 그대로 어긋난다
+    expect(rows.map(gap)).toEqual([-76.182, 0, 0, 0, -0.45]);
+    expect(rows[3].items.map((item) => item.species)).toEqual(['SKJ', 'YF']);
   });
 });
