@@ -29,6 +29,10 @@
    {
     "file": "PANOFI 월간보고 (8월).pptx",
     "sha256": "9fd79e4261356895"
+   },
+   {
+    "file": "PANOFI 월간보고 (9월).pptx",
+    "sha256": "71267739d17c8681"
    }
   ],
   "missingMonths": [
@@ -114,6 +118,13 @@
    "매출채권": 24364.0,
    "매입채무": 51482.0,
    "과부족": -20575.0
+  },
+  {
+   "asOf": "2026-08-31",
+   "현금": 6509.0,
+   "매출채권": 33832.0,
+   "매입채무": 49911.0,
+   "과부족": -9570.0
   }
  ],
  "estimates": [
@@ -200,6 +211,18 @@
    "operating": 5794.0,
    "netPrevYear": 531.0,
    "net": -2261.0
+  },
+  {
+   "forYear": 2026,
+   "forMonth": 9,
+   "revenuePrevYear": 65510.0,
+   "revenue": 62168.0,
+   "grossProfitPrevYear": 15962.0,
+   "grossProfit": 10168.0,
+   "operatingPrevYear": 13995.0,
+   "operating": 8309.0,
+   "netPrevYear": 2903.0,
+   "net": -825.0
   }
  ]
 }

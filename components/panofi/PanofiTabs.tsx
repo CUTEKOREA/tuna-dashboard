@@ -131,7 +131,7 @@ export function HomeTab() {
         <Stat k={`${ytd.label} 판매`} v={num(ytd.salesT)} unit="톤" d={`실현 어가 ${usd(ytd.priceUsdPerT)}/톤`} tone="down" />
         <Stat k="원장 손익분기" v={usd(ytd.ledgerBepUsdPerT)} unit="/톤" d={`실현 대비 ${usd(ytd.priceUsdPerT - ytd.ledgerBepUsdPerT)} · 전략보고 H1 ${usd(ytd.strategyBepUsdPerT)}`} tone="down" />
         <Stat k={`${ytd.label} 순손익`} v={kusd(ytd.netKusd)} tone="down" d="원장 Ⅶ행 · 이자·법인세 추징" />
-        <Stat k="자금 과부족" v={kusd(liquidityBridge?.endShortfall ?? receivables.cashShortfallKusd)} tone="down" d={`${liquidityBridge?.to ?? ''} 실측 · 코스모 합산 시 그룹 -3,000만불`} />
+        <Stat k="자금 과부족" v={kusd(liquidityBridge?.endShortfall ?? receivables.cashShortfallKusd)} tone="down" d={`${liquidityBridge?.to ?? ''} 실측 · 그룹 합산 -3,000만불은 전략보고 6/30 기준`} />
       </Stats>
 
       <Sec>연도별 실적</Sec>
@@ -713,6 +713,34 @@ export function ProfitTab() {
 
 /* ------------------------------------------------------------- 자금·미수금 */
 
+/** 과부족 증감 서술 — 방향이 달마다 바뀌므로(7/31 «회수했는데 악화» → 8/31 «채권이 늘며 개선») 부호에서 만든다. */
+function liquidityNote(b: NonNullable<typeof liquidityBridge>): string {
+  const sign = (v: number | null) => (v === null ? '-' : `${v > 0 ? '+' : ''}${num(v)}`);
+  const ar = b.매출채권 ?? 0;
+  const ap = b.매입채무 ?? 0;
+  const ytd = `${b.from} → ${b.to} 과부족 ${sign(b.과부족)}천불: 현금 ${sign(b.현금)}, 매출채권 ${sign(b.매출채권)}(${ar <= 0 ? '회수' : '미회수 증가'}), 매입채무 ${sign(b.매입채무)}(${ap > 0 ? '외상 증가' : '상환'}).`;
+  const driver = ap > 0 && ap >= Math.abs(ar)
+    ? ' 연초 대비로는 매입채무가 가장 크게 움직여 과부족을 벌렸다.'
+    : ar > 0 ? ' 연초 대비로는 매출채권 증가가 과부족을 덮고 있다 - 현금이 아니라 받을 돈이다.' : '';
+  const st = b.step;
+  const month = b.prevAsOf && st.과부족 !== null
+    ? ` 직전 ${b.prevAsOf} 대비로는 ${sign(st.과부족)}천불${(st.과부족 ?? 0) > 0 ? ' 개선' : ' 악화'}이며 매출채권 ${sign(st.매출채권)} · 매입채무 ${sign(st.매입채무)} · 현금 ${sign(st.현금)}이다.${(st.매출채권 ?? 0) > 0 && (st.과부족 ?? 0) > 0 ? ' 개선분은 대부분 아직 회수되지 않은 채권이라 회수 전까지 현금 여력은 그대로다.' : ''}`
+    : '';
+  return `${ytd}${driver}${month} 미수금 회수만으로는 뒤집히지 않으며 매입채무 만기 재조정과 관계사 결제 캘린더가 함께 가야 한다.`;
+}
+
+/** 추정손익 서술 — 빠진 달과 최신 격차를 계열에서 센다(«3·6월 공백» 고정 문장이 6월분 입수 뒤에도 남았다). */
+function estimateNote(): string {
+  const have = new Set(liquidity.estimates.map((e) => e.forMonth));
+  const last = liquidity.estimates[liquidity.estimates.length - 1];
+  const gaps = Array.from({ length: last ? last.forMonth : 0 }, (_, i) => i + 1).filter((m) => !have.has(m));
+  const gap = last && last.net !== null && last.netPrevYear !== null ? last.net - last.netPrevYear : null;
+  const head = `월간보고의 «당월(추정)» 표는 1월부터의 누계 순손익이다(${gaps.length ? `${gaps.join('·')}월분은 보고 공백` : '공백 없음'}).`;
+  return last && gap !== null
+    ? `${head} 최신 ${last.forMonth}월 추정 누계는 ${kusd(last.net ?? 0)}로 전년 동기 ${kusd(last.netPrevYear ?? 0)}보다 ${kusd(Math.abs(gap))} ${gap < 0 ? '낮다' : '높다'}.`
+    : head;
+}
+
 export function CashTab() {
   return (
     <>
@@ -732,8 +760,8 @@ export function CashTab() {
         {liquidityBridge && (
           <>
             <Stat k="현금 증감" v={kusd(liquidityBridge.현금 ?? 0)} tone={(liquidityBridge.현금 ?? 0) >= 0 ? 'up' : 'down'} d="2025-12-31 대비" />
-            <Stat k="매출채권 증감" v={kusd(liquidityBridge.매출채권 ?? 0)} tone="up" d="줄면 회수 성공" />
-            <Stat k="매입채무 증감" v={kusd(liquidityBridge.매입채무 ?? 0)} tone="down" d="늘면 외상 증가" />
+            <Stat k="매출채권 증감" v={kusd(liquidityBridge.매출채권 ?? 0)} tone={(liquidityBridge.매출채권 ?? 0) <= 0 ? 'up' : 'down'} d="줄면 회수 성공" />
+            <Stat k="매입채무 증감" v={kusd(liquidityBridge.매입채무 ?? 0)} tone={(liquidityBridge.매입채무 ?? 0) > 0 ? 'down' : 'up'} d="늘면 외상 증가" />
           </>
         )}
       </Stats>
@@ -795,16 +823,16 @@ export function CashTab() {
         </Panel>
 
         <Panel
-          span={6} title="회수했는데 왜 더 나빠졌나"
-          note="매출채권을 줄이고 현금을 늘렸는데도 과부족이 벌어진 이유는 매입채무다. 회수한 자금이 유류·수리·이자로 나가고 외상이 그보다 크게 쌓였다. 미수금 회수만으로는 뒤집히지 않으며 매입채무 만기 재조정과 관계사 결제 캘린더가 함께 가야 한다."
+          span={6} title="과부족은 무엇이 움직였나"
+          note={liquidityBridge ? liquidityNote(liquidityBridge) : liquidity.meta.caveat}
           src={SRC.board}
         >
           {liquidityBridge && (
             <Table head={['항목', '증감 (천 달러)']}>
               <tr><td>현금</td><td className={(liquidityBridge.현금 ?? 0) >= 0 ? 'up' : 'down'}>{num(liquidityBridge.현금)}</td></tr>
-              <tr><td>매출채권</td><td className="up">{num(liquidityBridge.매출채권)}</td></tr>
-              <tr><td>매입채무</td><td className="down">{num(liquidityBridge.매입채무)}</td></tr>
-              <tr className="sum"><td>과부족</td><td className="down">{num(liquidityBridge.과부족)}</td></tr>
+              <tr><td>매출채권</td><td className={(liquidityBridge.매출채권 ?? 0) <= 0 ? 'up' : 'down'}>{num(liquidityBridge.매출채권)}</td></tr>
+              <tr><td>매입채무</td><td className={(liquidityBridge.매입채무 ?? 0) > 0 ? 'down' : 'up'}>{num(liquidityBridge.매입채무)}</td></tr>
+              <tr className="sum"><td>과부족</td><td className={(liquidityBridge.과부족 ?? 0) >= 0 ? 'up' : 'down'}>{num(liquidityBridge.과부족)}</td></tr>
             </Table>
           )}
         </Panel>
@@ -842,17 +870,17 @@ export function CashTab() {
 
         <Panel
           span={6} title="익월 추정손익" unit="천 달러"
-          note="월간보고 3·6월분은 원본이 없어 빠져 있다. 4월 이후 전년 대비 낙폭이 커지는 흐름이 그대로 보인다."
+          note={estimateNote()}
           src={SRC.board}
         >
           <Chart data={monthlyEstimates} x="label" height={210}
             series={[
-              S('전년실적', '전년 동월 실적', C.s4, { type: 'bar' }),
+              S('전년실적', '전년 동기 실적', C.s4, { type: 'bar' }),
               S('당년추정', '당년 추정', C.s1, { type: 'bar' }),
             ]}
             zeroLine yFmt={kusd} />
           <Legend items={[
-            { name: '전년 동월 실적', color: C.s4, box: true },
+            { name: '전년 동기 실적', color: C.s4, box: true },
             { name: '당년 추정', color: C.s1, box: true },
           ]} />
         </Panel>
