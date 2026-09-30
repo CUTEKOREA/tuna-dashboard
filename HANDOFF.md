@@ -1,3 +1,12 @@
+> ✅ **2026-09-30 16:33 KST — 방콕 주간보고 9/30판(정정본) `/bangkok-office`·`/logistics` 반영** [CC]:
+> - 원자료: `20260930 Bangkok Office Weekly Report .docx`(정정본) SHA-256 `4c68e365c346e874acc60dbc63a8dbf416a976d44ee2c2bcc3f7126a6eeb30a7`. 원문(`194f4c18…`)은 같은 폴더 `…backup_before_fix.docx`.
+> - 원문이 9/23 **수정 전** 서식으로 작성돼 지난주 정정분이 되돌아가 있었다(2023 합계 627,248·선박 218, 2025 FCF 214,135 등, RYOMA 3,490, BAO LUCKY SKJ 누락, 7. Other). 이번 주 신규 오류도 있었다(캐너리 재고 SUM 방콕 86,600·송클라 5,100, 저장률 문장 44%·21% 지난주 값, SHIN FUJI 잔량). 사용자 지시로 1~10번을 문서에서 고친 뒤 반영했다. HIKARI 1 N/STAR YF 4.728(역산 4.278)은 원문 그대로다.
+> - `/bangkok-office`: `docs/bangkok_week_20260930.json` → `append_bangkok_week.py`(자가검증 7항목 일치) → `sync_bangkok_report.sh`. Drive 종합분석 HTML 은 `…backup_20260930.html` 로 백업. 주차 293 → **294**, 방콕 재고 **87,300MT**, 가공가능일수 **41일**, 9월 **8척 29,701MT**, 2026 누계 **363,199MT**, 어가 $2,300(변동 없어 계절 기준선 재생성 안 함). 고반려 5건·380.7MT(행별 첫 어종 규칙).
+> - `/logistics`: 계약을 9/30판으로 옮겼다. 원문 A 표가 이번 주부터 **하역 중 3척**만 적어(FONG KUO 818·CHERRY STAR·RYOMA 11,585MT, BANGKOK 3과 일치) `vessels`·`currentTotal` 과 월 누계(`monthToDate` 8척 29,701)를 나눠 든다. 「가장 큰 트레이더」 문장은 하역 표가 아니라 월별표 최신 행에서 고르도록 바꿨고, 관제판 정정 설명은 `unloading.correctionNote` 로 계약에 올렸다. 고반려 잔량 불일치는 SHIN FUJI 가 빠져 2건.
+> - 마스터 엑셀(`데이터 정리.xlsx`)에는 CHERRY STAR(ITOCHU 3,415MT)가 아직 없다(9월 26,286). 엑셀 갱신은 사용자 확인 대기.
+> - 테스트 RED → GREEN: `logistics-weekly-data`(재작성)·`logistics-command-center`·`bangkok-price-overview`·`embedded-operation-pages`·`v2-components-render`. `npm run verify` 통과: ESLint 0 errors(warnings 30) · Vitest **196 files / 1,682** · API cache 158/158 · 정적 118 · bundle 33 · 세로합 0건. 로컬 production(e2e 헤더) `/logistics`·`/bangkok-office` 1440·390px overflow 0·error 0, 옛 값(26,286·359,784·91,250) 잔존 0.
+> - 상태: 브랜치 `data/logistics-bkk-0930` 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-09-30 12:30 KST — #1281 GMTS 9월 · #1282 파노피 월간 9월 · #1283 코스모 8월 업무보고 · #1284 파노피 주간 0929 배포** [CC]:
 > - 순차 병합(squash): #1281 `2e394814` → #1282 `7a2ae567` → #1283 `b4aa551a` → #1284 `f8663a38`(#1282~#1284 는 HANDOFF 충돌 해소 후 CI 재통과, #1284 는 `PanofiTabs.tsx`·테스트 자동 병합 후 파노피 테스트 65건 재확인). Production `dpl_HGzyrTPXbtgfHfBNjht7WPw8MXwb` READY, alias `https://leedonggun.co.kr`. 배포 후 error log 0건.
 > - 라이브 실측(새 탭·캐시 우회): `/gmts` 월간 「2026년 1~8월 손익」·「8월말 채권/채무」·「(9월 3주) 어가 $2,025」. `/panofi` 자금 「−9,570천불」·「과부족은 무엇이 움직였나」·「최신 9월 추정 누계는」, 어가 「41주」·「$1,850」·「격차는 $50(PFC 우위)」. `/cosmo` 경영요약 「8월 업무보고 (2026-09-29)」·「2,454」·「51.5」, 생산 「889 FCL」·「Gate-in」·「5월에만」. 옛 문구(「회수했는데 왜 더 나빠졌나」·「확정된 뒤 다시 잰다」·「7월 업무보고」·「Tender」·「MSC 선박」)와 선장 실명 잔존 0. overflow 0.

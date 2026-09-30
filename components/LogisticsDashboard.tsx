@@ -97,12 +97,10 @@ const reeferRows = reeferWeeklyReport.rows;
 const weeklyReportDate = logisticsWeeklyReport.source.reportDate;
 const weeklyReportMonth = `${Number(weeklyReportDate.slice(5, 7))}월`;
 const carrierUnloading = logisticsWeeklyReport.unloading;
-const carrierTopTrader = ['FCF', 'DIRECT']
-  .map((trader) => ({
-    trader: trader === 'FCF' ? 'FCF' : '직거래',
-    mt: carrierUnloading.vessels.filter((vessel) => vessel.trader === trader)
-      .reduce((total, vessel) => total + vessel.amount, 0),
-  }))
+/* 월 누계 문장이므로 월별표 최신 행에서 고른다 - 하역 중 표(vessels)는 주마다 범위가 바뀐다 */
+const latestReceipts = logisticsWeeklyReport.traderReceipts.latestMonth;
+const carrierTopTrader = logisticsWeeklyReport.traderReceipts.traders
+  .map((trader) => ({ trader: trader.label, mt: latestReceipts[trader.key] }))
   .sort((left, right) => right.mt - left.mt)[0];
 const carrierSituation = `${weeklyReportMonth} 방콕 반입은 운반선 ${carrierUnloading.monthToDate.vessels}척·${carrierUnloading.monthToDate.amount.toLocaleString()}MT이며, ${carrierTopTrader.trader}가 ${carrierTopTrader.mt.toLocaleString()}MT로 가장 큽니다. 보고 시점에 ${carrierUnloading.unloadingNow.port}에서 하역 중인 배는 ${carrierUnloading.unloadingNow.vessels}척입니다.`;
 const carrierAction = '원문 입항표에서 하역이 끝난 배가 빠져 월 누계와 어긋난 전례가 있으므로, 다음 주 보고는 척수·물량을 월별표와 대조한 뒤 반영합니다.';
