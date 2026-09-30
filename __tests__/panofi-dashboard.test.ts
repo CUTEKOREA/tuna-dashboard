@@ -467,11 +467,25 @@ describe('자금유동성 (월간보고 pptx)', () => {
     expect(Math.abs(end!.과부족! / 10 - -2082)).toBeLessThanOrEqual(0.5);
   });
 
-  it('회수는 성공했는데 매입채무가 더 크게 늘어 과부족이 악화됐다', () => {
+  // 7/31 까지는 «회수했는데 악화»였다. 8/31 은 채권이 늘며 한 달 새 개선 — 방향이 바뀌므로 문장을 부호에서 만든다.
+  it('연초 대비와 직전 기준일 대비 방향을 따로 센다 (8/31: 연초 대비 악화, 한 달 개선)', () => {
     expect(liquidityBridge).not.toBeNull();
-    expect(liquidityBridge!.매출채권).toBeLessThan(0); // 채권 감소 = 회수
-    expect(liquidityBridge!.매입채무).toBeGreaterThan(0); // 채무 증가
-    expect(liquidityBridge!.과부족).toBeLessThan(0); // 그럼에도 과부족 악화
+    expect(liquidityBridge!.to).toBe('2026-08-31');
+    expect(liquidityBridge!.매출채권).toBe(7480);
+    expect(liquidityBridge!.매입채무).toBe(8753);
+    expect(liquidityBridge!.과부족).toBe(-1585);
+    expect(liquidityBridge!.prevAsOf).toBe('2026-07-31');
+    expect(liquidityBridge!.step).toEqual({ 현금: -34, 매출채권: 9468, 매입채무: -1571, 과부족: 11005 });
+    const html = renderToStaticMarkup(React.createElement(CashTab));
+    expect(html).not.toContain('회수했는데 왜 더 나빠졌나');
+    expect(html).not.toContain('매출채권을 줄이고 현금을 늘렸는데도');
+    expect(html).toContain('매출채권 +7,480(미회수 증가)');
+    expect(html).toContain('직전 2026-07-31 대비로는 +11,005천불 개선');
+    const overview = renderToStaticMarkup(React.createElement(PanofiDashboard));
+    expect(overview).toContain('그룹 합산 -3,000만불은 전략보고 6/30 기준');
+    expect(html).toContain('최신 9월 추정 누계는 -825천불로 전년 동기 2,903천불보다 3,728천불 낮다');
+    expect(html).toContain('3월분은 보고 공백');
+    expect(html).not.toContain('3·6월분은 원본이 없어');
   });
 
   it('보고 공백 월을 숨기지 않는다 - 6월 보고 입수 후 공백은 3월뿐', () => {
@@ -493,19 +507,22 @@ describe('자금유동성 (월간보고 pptx)', () => {
     expect(jul!.과부족).toBe(-20575);
   });
 
-  it('8월 추정손익이 최신 선행 수치다', () => {
+  it('9월 추정손익(1~9월 누계)이 최신 선행 수치다', () => {
     const last = liquidity.estimates[liquidity.estimates.length - 1];
-    expect(last.forMonth).toBe(8);
-    expect(last.revenue).toBe(52881);
-    expect(last.operating).toBe(5794);
-    expect(last.net).toBe(-2261);
+    expect(last.forMonth).toBe(9);
+    expect(last.revenue).toBe(62168);
+    expect(last.operating).toBe(8309);
+    expect(last.net).toBe(-825);
+    expect(last.netPrevYear).toBe(2903);
   });
 
-  it('자금 과부족 스탯이 최신 월간보고 실측(7/31)을 쓴다', () => {
+  it('자금 과부족 스탯이 최신 월간보고 실측(8/31)을 쓴다', () => {
     // 전략보고 6/30 고정값(-20,820)이 최신 실측을 가리면 신선도가 거짓이 된다.
+    const aug = liquidity.series.find((r) => r.asOf === '2026-08-31');
+    expect(aug).toMatchObject({ 현금: 6509, 매출채권: 33832, 매입채무: 49911, 과부족: -9570 });
     const html = renderToStaticMarkup(React.createElement(CashTab));
-    expect(html).toContain('20,575');
-    expect(html).toContain('2026-07-31');
+    expect(html).toContain('9,570');
+    expect(html).toContain('2026-08-31');
     expect(html).not.toContain('20,820');
   });
 
@@ -514,7 +531,7 @@ describe('자금유동성 (월간보고 pptx)', () => {
     const tabs = renderToStaticMarkup(React.createElement(CashTab));
     expect(tabs).not.toContain('pptx 5건');
     expect(tabs).toContain(`pptx ${liquidity.meta.sources.length}건`);
-    expect(liquidity.meta.sources.length).toBe(7);
+    expect(liquidity.meta.sources.length).toBe(8);
   });
 });
 
