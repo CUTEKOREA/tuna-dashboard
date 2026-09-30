@@ -87,11 +87,13 @@ describe('코스모 원장 대 PANOFI 메일', () => {
     expect(cosmoMailRows.map((r) => r.inflowResidualT)).toEqual([null, 260.66, null, null]);
   });
 
-  it('원어 입고·구매 물량 검산은 36주차에서만 깨진다', () => {
+  it('원어 입고·구매 물량 검산은 36·39주차에서만 깨진다', () => {
     const inflow = checks.filter((c) => c.name === '원어 입고·구매 물량');
     expect(inflow).toHaveLength(meta.weekCount);
     expect(inflow.filter((c) => !c.ok)).toEqual([
       { week: 36, name: '원어 입고·구매 물량', residual: 260.66, ok: false, note: '재고 PS 원어 입고−구매 (MT)' },
+      // 39주차: 구매 시트는 구매 0인데 재고현황 YF/BE 입고 30.225 MT
+      { week: 39, name: '원어 입고·구매 물량', residual: 30.23, ok: false, note: '재고 PS 원어 입고−구매 (MT)' },
     ]);
     expect(meta.checkCount).toBe(checks.length);
     expect(meta.checkFailCount).toBe(checks.filter((c) => !c.ok).length);
@@ -103,7 +105,9 @@ describe('코스모 원장 대 PANOFI 메일', () => {
     expect(markup).toContain('36주차는 원장 재고현황 SJ 입고가 구매 시트보다 260.66톤 많게 적혀');
     expect(markup).toContain('260.66 MT');
     // 생산 브릿지의 «반올림 수준» 문장에 물량 검산 260.66 이 섞이지 않는다
-    expect(markup).toContain('원어 입고·구매 대조는 <b>36주차 260.66 MT</b> 어긋납니다');
+    expect(markup).toContain('원어 입고·구매 대조는 <b>36주차 260.66 MT, 39주차 30.23 MT</b> 어긋납니다');
+    // 데이터 이슈 표가 「36주차만」이라고 남으면 39주차 불일치와 모순된다
+    expect(markup).not.toContain('36주차만 260.66 MT');
     expect(markup).not.toMatch(/260\.66 MT[^<]*<\/b>로 반올림 수준/);
     // 생산일수 브릿지 잔차는 일 단위다 - «4.00 MT» 로 찍히던 표기 오류
     expect(markup).toContain('13주차 CBU 생산일수 누적 브릿지 4.00일');

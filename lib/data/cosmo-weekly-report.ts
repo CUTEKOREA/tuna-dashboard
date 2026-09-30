@@ -11,16 +11,16 @@
  */
 export const cosmoWeeklyReport = {
   source: {
-    file: '2026.9.23_COSMO 주간보고 (38주차).docx',
-    sha256: '595f26550aa70f355c6afb040598ff88c5fa63b3241d2c91e803aaae78a60d98',
-    period: '2026-09-14~2026-09-20',
+    file: '2026.9.30_COSMO 주간보고 (39주차).docx',
+    sha256: '02a02d6d0758661de3a4e7e6d044f042048a126cd76292c90bd90bdf149126bc',
+    period: '2026-09-21~2026-09-27',
   },
   market: {
     productionSecuredThrough: '2026년 생산분',
-    summary: '바이어들이 현 제품 가격에 부담을 느껴 소량 구매가 이어지고 있습니다. 독일 REWE·EDEKA 입찰 참여를 검토 중이며 예상 물량은 약 700 FCL, 전량 MSC 제품입니다.',
+    summary: '연말까지 생산 물량을 모두 확보해 신규 오퍼는 당분간 자제하고, 10월 중순부터 2027년 선적 물량 오퍼를 재개할 예정입니다. 독일 REWE 입찰 오퍼를 준비 중이며 에콰도르 오퍼 수준을 확인한 뒤 비슷한 가격대로 제출할 계획입니다.',
     rawFishPressure:
-      '에콰도르의 높은 어가와 가다랑어 원료 부족으로 선적 지연이 발생하고 있습니다. '
-      + '2027년 선적분은 현재 오퍼 중이라는 것이 이번 주 보고의 상태입니다.',
+      '이번 주 보고에는 원어 어가·수급 서술이 없습니다. '
+      + '원어구매 비중은 PANOFI 99.8%입니다.',
   },
   litigation: {
     case: '아프리카 스타',
@@ -28,7 +28,7 @@ export const cosmoWeeklyReport = {
     status: '재심리 재판 진행 중',
   },
   operations: {
-    qualityFocus: '9/21 가나 공휴일로 주 4일만 생산했습니다.',
+    qualityFocus: '3분기 결산 업무를 진행했습니다.',
     /** 그 주에 심사가 없으면 null. 지난 심사를 이번 주 일처럼 내보내지 않는다. */
     audit: null as null | { name: string; start: string; end: string; result?: string },
     /** 그 주에 하역이 없으면 null. */
@@ -41,12 +41,13 @@ export const cosmoWeeklyReport = {
     },
     /** 심사·하역이 없는 주에 브리핑 카드를 채우는 그 주의 물류 현황. */
     logistics: {
-      headline: '가나 공휴일로 주 4일 생산',
-      detail: '9/21 가나 공휴일 · 38주차 공장 출고 19컨 · CY 선적대기 66컨(전주 74컨) · 원어구매 비중 PANOFI 99.8%',
+      headline: '3분기 결산 업무',
+      // 출고 19컨·CY 66컨은 38주차 보고와 같은 숫자다 - 원문 그대로 싣고 같다는 사실을 밝힌다
+      detail: '39주차 공장 출고 19컨 · CY 선적대기 66컨(38주차 보고와 같은 숫자) · 원어구매 비중 PANOFI 99.8%',
     },
   },
   nextActions: [
-    '3분기 결산을 위한 재고 조사 실시',
-    '독일 REWE·EDEKA 입찰 참여 검토 (약 700 FCL, 전량 MSC)',
+    '주 5일 생산',
+    '10월 중순부터 2027년 선적 물량 오퍼 재개',
   ],
 } as const;
