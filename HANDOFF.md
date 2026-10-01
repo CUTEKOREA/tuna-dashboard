@@ -1,3 +1,15 @@
+> 📰 **2026-10-01 10:52 KST — `/market` 2026-09-30 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1297](https://github.com/CUTEKOREA/tuna-dashboard/pull/1297) squash 병합. main commit `64accd56`(브랜치 커밋 `728c9e7f`, `briefing/2026-09-30`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+56/−81). 기준일 `2026-09-29` → `2026-09-30`, 기사 **5건**.
+> - 게이트 3종 모두 통과: `state/audit-2026-09-30.txt` AUDIT_PASS(제목·P2 수정 후 재감사도 AUDIT_PASS) · 윤문 `ADOPTED PASS blocks=39 changed=29 rate=5.0%` · 변경분 존재. 배포 전 `daily-briefing.test.ts` 4/4.
+> - **반영 판정은 커밋 메시지가 아니라 내용 해시로 했다.** 워크트리·`origin/main` 양쪽 `public/data/tuna_daily_briefing.json` SHA-256 = `83c94b26a0fafd52b9f09eae37e1fbeb9984a6d91159009e271fc0dd891d7eb7` 일치, `git diff origin/main` 비었음.
+> - `gh pr merge --delete-branch` 는 `'main' is already used by worktree at .../tuna-dashboard-mackerel-fix` 로 끝났으나 이는 **로컬 정리 실패일 뿐 원격 병합은 완료**다(`gh pr view 1297 --json state` = `MERGED`). 알려진 실패 ⓑ.
+> - Vercel production `dpl_24eCtP3swg1t2b295exg29b6oaPa`(10:48:42 생성) Building → **Ready 10:51:41**. 그 전 10:47·10:50 두 번의 라이브 확인은 아직 09.29 였다 — 빌드 전파 지연이지 회귀가 아니다.
+> - 라이브(Aside 로그인 세션, 10:52): 「**기준일 2026.09.30 · 기사 5건 · 파이프라인 동기**」, 리드 「Cepesca, 연료비 86% 급증에 연료 지원 충분하지 않다고 밝혀」, 이하 채낚기선 가나·ISSF Aneka Tuna Indonesia·MIFCO CEO·전자모니터링 5건 확인.
+> - **「오늘의 수치」 칸이 다시 찼다.** `86%` / 라벨 「Cepesca, 연료비」 1행 렌더(27.2px·weight 900·visible·195×31px). 9/28·9/29 가 비었던 원인은 위젯 고장이 아니라 **다이제스트 제목에 `NUMBER_TOKEN_PATTERN`(`lib/data/daily-briefing.ts:175`)이 잡을 수치 토큰이 하나도 없었던 것** — 이번 5건 중 수치가 든 제목은 1행뿐이라 limit 3 중 1행만 찬다. 고칠 것 없음.
+> - **`curl` 로는 확인 불가.** 페이지뿐 아니라 `public/` 정적 JSON(`/data/tuna_daily_briefing.json`)도 로그인 게이트에 걸려 `http=307 size=15` 를 돌려준다. 확인은 Aside 로그인 세션으로만 된다.
+> - Aside 스크린샷(`page.screenshot({clip})`·`locator.screenshot()`)이 clip 과 무관하게 좌상단 SILLA 로고만 캡처했다. 육안 확인은 `innerText` + `getBoundingClientRect`/`getComputedStyle` 로 대신했다.
+> - 워크트리: PR MERGED + JSON 내용 해시 일치를 확인하고 `sync/2026-09-30`(origin/main)로 옮겨 clean. 이 기록 PR 병합 뒤 다시 origin/main 으로 옮겨 다음 회차 `prepare_dashboard` 가 막히지 않게 한다. `git reset --hard`·`git branch -D` 는 쓰지 않았다(전역 `ask`).
+
 > 📰 **2026-10-01 10:30 KST — `/market` 2026-09-29 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
 > - PR [#1295](https://github.com/CUTEKOREA/tuna-dashboard/pull/1295) squash 병합. main commit `de89e6a7` (브랜치 커밋 `54f77b15`, `briefing/2026-09-29`, 원격 브랜치 삭제). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+75/−74). 기준일 `2026-09-28` → `2026-09-29`, 기사 **6건**.
 > - 게이트: `state/audit-2026-09-29.txt` AUDIT_PASS(09:43 1차 회차는 AUDIT_FIX P1=1 kawakawa 국명 — 이후 「점다랑어」로 고쳐 통과, 윤문본 재감사 AUDIT_PASS) · 10:20 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · pre-push build 통과 · 변경분 존재.
