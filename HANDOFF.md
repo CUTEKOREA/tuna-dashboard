@@ -1,3 +1,9 @@
+> 🚀 **2026-10-01 16:55 KST — #1299 선단 261001 · #1300 TTA 운반선 39주차 배포** [CC]:
+> - 순차 병합(squash): #1299 `2495b740` → #1300 `473ff860`(HANDOFF 충돌은 main 병합 커밋으로 해소). ⚠ #1300 은 CI(lint typecheck test build)가 **실패한 상태에서 병합됐다** — 병합 명령을 CI 판정 확인 없이 이어 붙인 메인의 실수다. 실패 원인은 CI 빌드의 `next/font/google` 조회 일시 오류(Turbopack import map)였고, 같은 실행을 다시 돌려 통과를 확인했다. 앞으로 병합 전 `gh pr checks --watch` 의 종료 코드로 판정한다.
+> - Production `dpl_1Lrj1gXwXDGjPP6jCUH5dQZRWMM5` READY, alias `https://leedonggun.co.kr`. 이어 `swap_fleet_detail_secret.sh --check` 일치(`f92cf647…`) 후 `FLEET_DAILY_DETAIL_JSON` 교체·재배포 `dpl_GgPbei1E3oZmqUtjJ18Z4oZ4uanb`(3분) READY.
+> - 라이브 실측(Aside, 로그인 세션·캐시 우회): `/fleet` 「2026-10-01 보고 · 2026-09-30 조업 기준」, 히어로 775 / 12,467 / 94,167.8 / 5,824.3, 「전체 보고 166건」, **보호 패널 경고 없음**, 실적 분석 → 일간 추이 MOAMARI 「4.7노트」·「790~1,110」. `/logistics` 「39주차」·CHERRY STAR·6,705·월별 26,269, 38주차 수치 잔존 0. page error 0.
+> - 배포 후 production error log(20분) 0건.
+
 > ✅ **2026-10-01 16:10 KST — `/logistics` TTA 운반선 주간동향 39주차 반영** [CC]:
 > - 원자료: `Reefer ship movement for week 39th.xlsx` SHA-256 `33952c4f9401b12b566772fbe3721cd3f6bc0b4db794075221a3323a8f03ee3d`(unzip OK, 시트 `sheet 1`, AJ2=39, A1 25/09/26 - 01/10/26). `sync_reefer_weekly.py` → `data/reefer_week39.json`(git add -f).
 > - 2척 6,705 MT: RYOMA 22.09.26 3,290(38주차에서 이어짐) · CHERRY STAR 28.09.26 3,415(CMC 500·GPZ 373·ISA 430·SPA 1,000·TUM 530·UC 582, 부두 33). 원문 TOTAL 열(AI)과 행 합산 2척 모두 일치. 38주차에서 SEITA MARU·FONG KUO 818·819·SEIN GALAXY 4척이 빠졌다. 송클라 구간은 비어 있다. 방콕 주간보고 9/30 정정본의 RYOMA 3,290·CHERRY STAR(ITOCHU) 3,415와 같다.
