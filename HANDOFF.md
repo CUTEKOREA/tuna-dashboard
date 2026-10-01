@@ -1,3 +1,9 @@
+> 📰 **2026-10-01 10:30 KST — `/market` 2026-09-29 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1295](https://github.com/CUTEKOREA/tuna-dashboard/pull/1295) squash 병합. main commit `de89e6a7` (브랜치 커밋 `54f77b15`, `briefing/2026-09-29`, 원격 브랜치 삭제). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+75/−74). 기준일 `2026-09-28` → `2026-09-29`, 기사 **6건**.
+> - 게이트: `state/audit-2026-09-29.txt` AUDIT_PASS(09:43 1차 회차는 AUDIT_FIX P1=1 kawakawa 국명 — 이후 「점다랑어」로 고쳐 통과, 윤문본 재감사 AUDIT_PASS) · 10:20 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · pre-push build 통과 · 변경분 존재.
+> - Vercel `pending` → `success`(01:26:01Z). 라이브(Aside 로그인 세션, 10:27): 「기준일 2026.09.29 · 기사 6건 · 파이프라인 동기」, 리드 「소말리아 그레이트 훨 약화, 참치 선단 어장 잃는다」, 이하 중국 EU 황다랑어·Marfrío·Europêche·SIAL 파리 2026·SEAFDEC 6건 확인. SEAFDEC 펼침 본문에 「점다랑어(kawakawa)」, 「줄삼치」 0, 옛 리드(에콰도르 WR) 잔존 0. 「오늘의 수치」 칸은 비어 있음(09-28 JSON 도 키가 `date·digest·articles` 로 같아 이번 변경과 무관).
+> - 워크트리: PR MERGED + JSON 이 origin/main 과 같은 것을 확인하고 `sync/2026-09-29`(origin/main)로 옮겼다. 이 기록 PR 병합 뒤 `sync/2026-09-29b` 로 옮겨 clean 으로 남긴다. 2026-09-30 회차 `prepare_dashboard` 는 10:08 에 dirty 로 중단됐으니 재실행이 필요하다.
+
 > 🚀 **2026-10-01 09:05 KST — #1288 방콕 주간 0930 정정본 · #1289 선단 260930 · #1290 코스모 39주차 배포** [CC]:
 > - 순차 병합(squash): #1288 `7ccb3112` → #1289 `7f866dbd` → #1290 `ca4b3306`. #1289·#1290 은 HANDOFF 첫 항목 충돌을 **main 병합 커밋**으로 풀었다(force push 회피) — 각 CI(lint typecheck test build) 재통과.
 > - Production `dpl_9zRDdyC59mSMdYAGJfft9GjYzXLS` READY, alias `https://leedonggun.co.kr`. 이어 `swap_fleet_detail_secret.sh` 로 `FLEET_DAILY_DETAIL_JSON` 을 `f3110b14…` 로 교체(`--check` 일치 확인 후)·재배포 `dpl_EoaMq9FdBQYbNAXjS2Gc6D8ToUyV`(3분) READY.
