@@ -1,3 +1,10 @@
+> 📰 **2026-10-02 06:10 KST — `/market` 2026-10-01 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1302](https://github.com/CUTEKOREA/tuna-dashboard/pull/1302) squash 병합. main commit `20baad6f`(브랜치 커밋 `c10ebf72`, `briefing/2026-10-01`, 원격 브랜치 삭제). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+64/−56). 기준일 `2026-09-30` → `2026-10-01`, 기사 **5건**.
+> - 게이트: `state/audit-2026-10-01.txt` AUDIT_PASS(윤문본은 재감사 AUDIT_FIX P1=1 이라 기각, 원본 유지) · 06:04 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · pre-push build 통과 · 변경분 존재.
+> - Vercel 커밋 상태 `success`(06:09:50 KST). 06:07·06:09 두 번의 라이브 확인은 아직 09.30 — 빌드 전파 지연. 06:10 라이브(Aside 로그인 세션): 「**기준일 2026.10.01 · 기사 5건 · 파이프라인 동기**」, 리드 「마약 밀매업자들, 참치 부이로 코카인 운반」, 이하 EU 원어 가다랑어 수요·EU-태국 FTA·2026년 9월 세계 주요 동향·디지털 이력추적 5건 확인.
+> - 「오늘의 수치」 칸은 비어 있다. 다이제스트 제목 5건에 `NUMBER_TOKEN_PATTERN`(`lib/data/daily-briefing.ts:175`)이 잡을 토큰이 없어서다(「2026년 9월」은 날짜라 안 잡힘). fail-closed 설계대로이며 고칠 것 없음.
+> - 워크트리: PR MERGED + `git diff origin/main -- public/data/tuna_daily_briefing.json` 빈 것을 확인하고 `sync/2026-10-01`(origin/main)로 옮겼다. 이 기록 PR 병합 뒤 다시 origin/main 으로 옮겨 clean 으로 남긴다.
+
 > 🚀 **2026-10-01 16:55 KST — #1299 선단 261001 · #1300 TTA 운반선 39주차 배포** [CC]:
 > - 순차 병합(squash): #1299 `2495b740` → #1300 `473ff860`(HANDOFF 충돌은 main 병합 커밋으로 해소). ⚠ #1300 은 CI(lint typecheck test build)가 **실패한 상태에서 병합됐다** — 병합 명령을 CI 판정 확인 없이 이어 붙인 메인의 실수다. 실패 원인은 CI 빌드의 `next/font/google` 조회 일시 오류(Turbopack import map)였고, 같은 실행을 다시 돌려 통과를 확인했다. 앞으로 병합 전 `gh pr checks --watch` 의 종료 코드로 판정한다.
 > - Production `dpl_1Lrj1gXwXDGjPP6jCUH5dQZRWMM5` READY, alias `https://leedonggun.co.kr`. 이어 `swap_fleet_detail_secret.sh --check` 일치(`f92cf647…`) 후 `FLEET_DAILY_DETAIL_JSON` 교체·재배포 `dpl_GgPbei1E3oZmqUtjJ18Z4oZ4uanb`(3분) READY.
