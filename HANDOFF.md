@@ -5,6 +5,14 @@
 > - 테스트: `reefer-week38-data` → `reefer-week39-data`(RED 4건 확인 후 GREEN), `reefer-monthly-intake` 갱신. `npm run verify`: ESLint 0 errors(warnings 30) · Vitest 1,681/1,682 — 실패 1건 `fleet-daily-detail-loader` 는 gitignore 된 로컬 선단 상세가 `data/fleet-daily-261001` 브랜치 기준(10/1)이라 main 기준 공개 집계와 어긋난 로컬 전용 검사(이번 변경과 무관, CI 건너뜀). 이후 API cache 158/158 · build 정적 118 · fleet client leak · bundle 33 · report-tables 통과.
 > - 브라우저(로컬 production, 1440·390, 오늘의 운영·반입·가격·선박·보고자료 탭): 「39주차」·CHERRY STAR·6,705·26,269, 항로 마커 2개, 38주차 수치 잔존 0, overflow 0, error 0.
 > - 상태: 브랜치 `data/reefer-week39`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음). 미배포 브랜치: `data/fleet-daily-261001` · 이 브랜치.
+> ✅ **2026-10-01 15:20 KST — `/fleet` 261001(목) 일일업무보고 반영** [CC]:
+> - 원자료: `해양수산본부 일일업무보고-261001 (목).docx` SHA-256 `a65a5257b582e8da9f72d9239a43d1fd6a21c79db5fb2bf2e03ed8c0aef4c9a6`(unzip OK). `--latest-report` 증분 → 166건, 9/30 조업 기준.
+> - 머리글 연속성: 태평양 5,782 + 590 = 6,372 · 연간 54,022.8 + 590 = 54,612.8, 대서양 5,910 + 185 = 6,095 · 39,370 + 185 = 39,555. 운반선 5,824.3 / 8,436 (전일과 같음). 전일 대비 +305 / +75 / 합 +380. 검산 660 → 664(이상 신규 0), `detailSha256` `f92cf647…`.
+> - MOAMARI: 10/1 보고도 10/2 입항·상가수리 후 10/10 출항 유지. 9/30→10/1 위치 차로 하루 약 114해리·4.7노트(전날 9.2노트), 젠산까지 약 240해리 — 이 속도면 10/3 도착이라 보고 일정보다 하루 늦다는 계산을 서술에 넣었다. 조업손실 166보고일/258달력일·일평균 20.27 → 약 790~1,110 MT(23~33%). 좌표는 공개 서술에서 뺐다(보호 경계 테스트가 잡음).
+> - 로컬 전용 전체 원본(`fleet-daily-private.json`)은 165건 그대로다 — 재부팅 뒤 Drive 원본 다수가 온라인 전용으로 돌아가 전수 재파싱이 4분 제한에서 멈췄다(사전 내려받기도 10분 제한 초과). 공개 집계·상세(`artifacts/fleet-daily-detail.json`)는 증분으로 정상 갱신됐고 전수 재파싱 결과와 같아야 한다. `fleet-daily-source-contract` 로컬 검사는 165 그대로 둔다.
+> - 날짜 고정 테스트 6건 RED → GREEN. `npm run verify` 통과: ESLint 0 errors(warnings 30) · Vitest 1,682/1,682 · API cache 158/158 · build 정적 118 · fleet client leak(정적 138·보호 상세 25) · bundle 33.
+> - 브라우저(로컬 production, 1440·390): 「2026-10-01 보고 · 2026-09-30 조업 기준」, KPI 775 / 12,467 / 94,167.8 / 5,824.3, 「전체 보고 166건」, MOAMARI 「4.7노트」·「790~1,110」, 옛 문장 0, overflow 0, error 0.
+> - 상태: 브랜치 `data/fleet-daily-261001`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음). 배포하면 `detailSha256` 이 바뀌었으니 Production READY 뒤 `swap_fleet_detail_secret.sh` 필요.
 
 > 📰 **2026-10-01 10:52 KST — `/market` 2026-09-30 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
 > - PR [#1297](https://github.com/CUTEKOREA/tuna-dashboard/pull/1297) squash 병합. main commit `64accd56`(브랜치 커밋 `728c9e7f`, `briefing/2026-09-30`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+56/−81). 기준일 `2026-09-29` → `2026-09-30`, 기사 **5건**.
