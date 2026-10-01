@@ -1,3 +1,11 @@
+> ✅ **2026-10-01 16:10 KST — `/logistics` TTA 운반선 주간동향 39주차 반영** [CC]:
+> - 원자료: `Reefer ship movement for week 39th.xlsx` SHA-256 `33952c4f9401b12b566772fbe3721cd3f6bc0b4db794075221a3323a8f03ee3d`(unzip OK, 시트 `sheet 1`, AJ2=39, A1 25/09/26 - 01/10/26). `sync_reefer_weekly.py` → `data/reefer_week39.json`(git add -f).
+> - 2척 6,705 MT: RYOMA 22.09.26 3,290(38주차에서 이어짐) · CHERRY STAR 28.09.26 3,415(CMC 500·GPZ 373·ISA 430·SPA 1,000·TUM 530·UC 582, 부두 33). 원문 TOTAL 열(AI)과 행 합산 2척 모두 일치. 38주차에서 SEITA MARU·FONG KUO 818·819·SEIN GALAXY 4척이 빠졌다. 송클라 구간은 비어 있다. 방콕 주간보고 9/30 정정본의 RYOMA 3,290·CHERRY STAR(ITOCHU) 3,415와 같다.
+> - 월별 반입 집계에 39주차를 더해 9월 22,854 → 26,269 MT · 6 → 7척(보유 주차 19·22·24·26·27·29~39, 하한). `reefer-weekly.ts` import·source 메타 갱신, `widget_lineage.py` 재생성(데이터 파일 341개).
+> - 테스트: `reefer-week38-data` → `reefer-week39-data`(RED 4건 확인 후 GREEN), `reefer-monthly-intake` 갱신. `npm run verify`: ESLint 0 errors(warnings 30) · Vitest 1,681/1,682 — 실패 1건 `fleet-daily-detail-loader` 는 gitignore 된 로컬 선단 상세가 `data/fleet-daily-261001` 브랜치 기준(10/1)이라 main 기준 공개 집계와 어긋난 로컬 전용 검사(이번 변경과 무관, CI 건너뜀). 이후 API cache 158/158 · build 정적 118 · fleet client leak · bundle 33 · report-tables 통과.
+> - 브라우저(로컬 production, 1440·390, 오늘의 운영·반입·가격·선박·보고자료 탭): 「39주차」·CHERRY STAR·6,705·26,269, 항로 마커 2개, 38주차 수치 잔존 0, overflow 0, error 0.
+> - 상태: 브랜치 `data/reefer-week39`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음). 미배포 브랜치: `data/fleet-daily-261001` · 이 브랜치.
+
 > 📰 **2026-10-01 10:52 KST — `/market` 2026-09-30 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
 > - PR [#1297](https://github.com/CUTEKOREA/tuna-dashboard/pull/1297) squash 병합. main commit `64accd56`(브랜치 커밋 `728c9e7f`, `briefing/2026-09-30`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+56/−81). 기준일 `2026-09-29` → `2026-09-30`, 기사 **5건**.
 > - 게이트 3종 모두 통과: `state/audit-2026-09-30.txt` AUDIT_PASS(제목·P2 수정 후 재감사도 AUDIT_PASS) · 윤문 `ADOPTED PASS blocks=39 changed=29 rate=5.0%` · 변경분 존재. 배포 전 `daily-briefing.test.ts` 4/4.

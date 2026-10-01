@@ -1,0 +1,32 @@
+[
+  {
+    "carrier": "RYOMA",
+    "date": "22.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "ISA": "930",
+      "TUG": "212",
+      "TUM": "1,278",
+      "UC": "870",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "CHERRY STAR",
+    "date": "28.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "CMC": "500",
+      "GPZ": "373",
+      "ISA": "430",
+      "SPA": "1,000",
+      "TUM": "530",
+      "UC": "582",
+      "OTHER": "33"
+    }
+  }
+]

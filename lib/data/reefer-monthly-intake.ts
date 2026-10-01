@@ -13,6 +13,7 @@ import week35 from '../../data/reefer_week35.json';
 import week36 from '../../data/reefer_week36.json';
 import week37 from '../../data/reefer_week37.json';
 import week38 from '../../data/reefer_week38.json';
+import week39 from '../../data/reefer_week39.json';
 
 /**
  * TTA 운반선 주간동향을 월별 방콕 반입량으로 접는다.
@@ -20,7 +21,7 @@ import week38 from '../../data/reefer_week38.json';
  * 주간표는 그 주에 «보고된» 선박을 싣기 때문에 같은 배가 여러 주차에 반복해서 나온다.
  * 선박명+일자로 한 번만 세고, 배분처가 아닌 OTHER·SHIP 열은 빼서 캔 공장 반입만 더한다.
  *
- * **보유 주차가 연속이 아니다.** 19·22·24·26·27·29~37 주차만 갖고 있어 월 합계는
+ * **보유 주차가 연속이 아니다.** 19·22·24·26·27·29~39 주차만 갖고 있어 월 합계는
  * 실제 반입의 하한이다 - 화면이 그 사실을 같이 말하도록 `weeksHeld` 를 내보낸다.
  */
 type ReeferRow = { carrier: string; date: string; deliveries: Record<string, string | undefined> };
@@ -41,6 +42,7 @@ const WEEKLY: ReadonlyArray<{ week: number; rows: ReeferRow[] }> = [
   { week: 36, rows: week36 as unknown as ReeferRow[] },
   { week: 37, rows: week37 as unknown as ReeferRow[] },
   { week: 38, rows: week38 as unknown as ReeferRow[] },
+  { week: 39, rows: week39 as unknown as ReeferRow[] },
 ];
 
 export interface ReeferMonthlyIntake {

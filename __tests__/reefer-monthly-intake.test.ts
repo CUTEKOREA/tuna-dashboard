@@ -16,8 +16,8 @@ describe('운반선 주간표 → 월별 방콕 반입량', () => {
      * 아래 값은 보유 주차(19·22·24·26·27·29~37)에서 나온 하한이다. */
     expect(byMonth['2026-07'].mt).toBeCloseTo(20_434, 0);
     expect(byMonth['2026-08'].mt).toBeCloseTo(24_696, 0);
-    expect(byMonth['2026-09'].mt).toBeCloseTo(22_854, 0);
-    expect(byMonth['2026-09'].vessels).toBe(6);
+    expect(byMonth['2026-09'].mt).toBeCloseTo(26_269, 0);
+    expect(byMonth['2026-09'].vessels).toBe(7);
     // 5~6월은 주차를 더 갖고 있어 두 배 이상이다 - 감소 방향이 자료 밖 사정이 아니라는 근거
     expect(byMonth['2026-05'].mt).toBeGreaterThan(50_000);
     expect(byMonth['2026-06'].mt).toBeGreaterThan(50_000);
@@ -29,7 +29,7 @@ describe('운반선 주간표 → 월별 방콕 반입량', () => {
   });
 
   it('보유 주차가 띄엄띄엄이라는 사실을 계약이 들고 있다', () => {
-    expect(reeferMonthlyIntake.weeksHeld).toEqual([19, 22, 24, 26, 27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]);
+    expect(reeferMonthlyIntake.weeksHeld).toEqual([19, 22, 24, 26, 27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]);
     expect(recentReeferMonths(3).map((row) => row.month)).toEqual(['2026-07', '2026-08', '2026-09']);
   });
 
@@ -50,7 +50,7 @@ describe('운반선 주간표 → 월별 방콕 반입량', () => {
     // 대시보드 본체는 첫 렌더가 로딩 스켈레톤이라 카드 본문을 직접 그린다
     const markup = renderToStaticMarkup(React.createElement(ReeferMonthlyIntakeChart));
 
-    expect(markup).toContain('22,854');
+    expect(markup).toContain('26,269');
     expect(markup).toContain('보유 주차');
     expect(markup).toContain('스페인 선사 자체 추산');
     // 추산은 우리 값과 나란히 보인다 - 9월은 «미만» 이라는 단서까지
