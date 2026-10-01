@@ -10,6 +10,7 @@ import {
   competitors, benchYear, partialYear, priceBasis, shareBasis, ledgerMonths, periodLabelKo, tradeMeta, exportChecks, exportCheckFail, ANNUALIZE, sillaShare,
   exportYoY, exportSources,
 } from '@/lib/data/cosmo-market'
+import { cosmoSalesReport as SR, ordersVsLedger } from '@/lib/data/cosmo-sales-report'
 
 const m1 = (v: number) => (v / 1e6).toFixed(1) + 'M'
 const m2 = (v: number) => '$' + (v / 1e6).toFixed(2) + 'M'
@@ -34,6 +35,9 @@ export default function Market() {
   const gapRows = pricePosition.map((p) => ({ label: p.market, gap: p.vsMarket }))
   const trendRows = ghanaTrend
   const trendMarkets = ghanaShare.slice(0, 4).map((g) => g.market)
+  const cmp = ordersVsLedger()
+  const ordersYtd = { fcl: SR.ordersYtd.reduce((t, m) => t + m.fcl, 0), usd: SR.ordersYtd.reduce((t, m) => t + m.usd, 0) }
+  const ledgerFcl = cmp.reduce((t, c) => t + c.ledgerFcl, 0)
 
   return (
     <>
@@ -235,6 +239,126 @@ export default function Market() {
               </tbody>
             </table>
           </div>
+        </Card>
+      </div>
+
+      <SecHead id="sec-sales-report">3분기 영업보고 ({SR.source.reportDate.slice(5).replace('-', '/')} · {SR.source.period})</SecHead>
+      <div className="grid g2">
+        <Card
+          title="4분기 수주 계획"
+          sub={`FCL · USD · 영업보고 ${SR.source.reportDate}. 원문 병합 셀은 같은 값으로 펼쳤다.`}
+          note={<>4분기 계획은 <b>{SR.q4Plan.total.fclTotal} FCL · {m2(SR.q4Plan.total.usdTotal)}</b>입니다. 1~9월 누적 수주는
+            {' '}{num(ordersYtd.fcl, 1)} FCL · {m2(ordersYtd.usd)}였습니다. 같은 보고는 생산량 감소로 좋은 단가의 추가 물량
+            수주(60+ 컨테이너)가 불발됐다고 적었습니다 - 계획 물량은 처리량이 받쳐 줄 때만 실적이 됩니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead>
+                <tr><th>품목</th>{SR.q4Plan.months.map((m) => <th key={m} className="n">{m}</th>)}<th className="n">합계 (FCL)</th><th className="n">금액</th><th className="n">$천/FCL</th></tr>
+              </thead>
+              <tbody>
+                {SR.q4Plan.rows.map((row) => (
+                  <tr key={row.type}>
+                    <td>{row.type}</td>
+                    {row.fcl.map((v, i) => <td key={i} className="n">{num(v, 0)}</td>)}
+                    <td className="n">{num(row.fclTotal, 0)}</td>
+                    <td className="n">{m2(row.usdTotal)}</td>
+                    <td className="n">{(row.usdPerFcl / 1000).toFixed(1)}</td>
+                  </tr>
+                ))}
+                <tr>
+                  <td><b>합계</b></td>
+                  {SR.q4Plan.total.fcl.map((v, i) => <td key={i} className="n"><b>{num(v, 0)}</b></td>)}
+                  <td className="n"><b>{num(SR.q4Plan.total.fclTotal, 0)}</b></td>
+                  <td className="n"><b>{m2(SR.q4Plan.total.usdTotal)}</b></td>
+                  <td className="n">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="월별 수주 - 영업보고 대 주간 원장"
+          sub="FCL. 영업보고는 수주 월, 주간 원장은 주차 말일이 속한 달로 묶는다."
+          note={<>1~9월 합계는 영업보고 <b>{num(ordersYtd.fcl, 1)} FCL</b>, 주간 원장 {num(ledgerFcl, 1)} FCL로
+            {' '}{num(ledgerFcl - ordersYtd.fcl, 1)} FCL 차이입니다. 월 경계를 걸친 주의 수주가 다음 달로 넘어간 몫이며,
+            9월은 두 자료가 같습니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>월</th><th className="n">영업보고</th><th className="n">주간 원장</th><th className="n">차이</th></tr></thead>
+              <tbody>
+                {cmp.map((c) => (
+                  <tr key={c.month}>
+                    <td>{c.month}월</td>
+                    <td className="n">{num(c.reportFcl, 1)}</td>
+                    <td className="n">{num(c.ledgerFcl, 1)}</td>
+                    <td className="n">{num(c.ledgerFcl - c.reportFcl, 1)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="주요 바이어 3곳"
+          sub="9월까지 수주 FCL과 영업보고의 상황 기재. 바이어 측 담당자는 직함으로만 적었다."
+          span={2}
+        >
+          <div className="grid g3">
+            {SR.buyers.map((b) => (
+              <div key={b.name}>
+                <Kpi k={`${b.name} · ${b.country}`} v={num(b.ordersFcl, 1)} unit=" FCL" d="9월까지 수주" />
+                <ul style={{ margin: '6px 0 0', paddingLeft: '1.1em', fontSize: 13, lineHeight: 1.55 }}>
+                  {b.notes.map((t) => <li key={t}>{t}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card
+          title="시장 오퍼가"
+          sub="영업보고 「현재 시장 내 오퍼가」 표 그대로. 경쟁 캐너리 오퍼이지 코스모 계약가가 아니다."
+          note={<>필리핀 1,705g 캔은 7월 ${SR.marketOffers[0].prices[0].toFixed(2)}에서 9월
+            {' '}${SR.marketOffers[0].prices[2].toFixed(2)}로 석 달 사이 {p1(SR.marketOffers[0].prices[2] / SR.marketOffers[0].prices[0] - 1)} 올랐습니다.
+            보고는 유럽 판매가가 지난 10년 중 최고 수준이라고 적었습니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>규격</th><th>출처</th>{SR.offerMonths.map((m) => <th key={m} className="n">{m}</th>)}</tr></thead>
+              <tbody>
+                {SR.marketOffers.map((o) => (
+                  <tr key={o.spec}>
+                    <td>{o.spec} <span style={{ color: 'var(--cosmo-muted)' }}>({o.unit})</span></td>
+                    <td>{o.source}</td>
+                    {o.prices.map((v, i) => <td key={i} className="n">${v.toFixed(2)}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <ul style={{ margin: '10px 0 0', paddingLeft: '1.1em', fontSize: 13, lineHeight: 1.55 }}>
+            {SR.market.map((t) => <li key={t}>{t}</li>)}
+          </ul>
+        </Card>
+
+        <Card
+          title="애로사항 · 4분기 영업 계획"
+          sub={`영업보고 「애로사항 및 본사 지원」·「신규 영업 계획」과 송부 메일(${SR.source.reportDate}).`}
+        >
+          <Callout kind="warn" label="애로사항">
+            <ul style={{ margin: 0, paddingLeft: '1.1em' }}>{SR.issues.map((t) => <li key={t}>{t}</li>)}</ul>
+          </Callout>
+          <ul style={{ margin: '10px 0 0', paddingLeft: '1.1em', fontSize: 13, lineHeight: 1.55 }}>
+            {SR.newPlans.map((t) => <li key={t}>{t}</li>)}
+            {SR.trips.map((t) => <li key={t.when}>{t.when} {t.what}</li>)}
+          </ul>
+          <ul style={{ margin: '10px 0 0', paddingLeft: '1.1em', fontSize: 13, lineHeight: 1.55, color: 'var(--cosmo-ink-2)' }}>
+            {SR.mail.map((t) => <li key={t}>{t}</li>)}
+          </ul>
         </Card>
       </div>
 
