@@ -140,7 +140,7 @@ export function HomeTab() {
           span={6}
           title="매출과 손익"
           unit={`백만 달러 · 2026년은 1~${ytd.months}월 누계`}
-          note={`2025년은 영업이익 1,291만불로 기록 해였으나 금융비용 -676만불과 법인세로 순이익이 0 부근이었다. ${ytd.label} 영업이익은 ${kusd(ytd.operatingKusd)}로 흑자이나 이자 ${kusd(ytd.financeKusd)}와 법인세 ${kusd(ytd.taxKusd)}가 순손익을 ${kusd(ytd.netKusd)}로 밀어냈다. 전략보고가 적은 상반기 순손익 ${kusd(h1.netKusd)}은 추징을 합친 H1 빈티지라 원장 Ⅶ행과 섞지 않는다. 회계 확정 결산(세디 장부의 달러 환산 - 이 차트의 전략보고 축과 다른 세 번째 축)은 2025 순이익을 +2,298만불로 집계하나 이는 세디 절상 환산이익이 만든 값이며 외환 제외 실질은 -249만불이다.`}
+          note={`2025년은 영업이익 1,291만불을 냈지만 금융비용 676만불과 법인세를 빼고 나니 순이익이 0 근처였다. ${ytd.label}도 영업이익은 ${man(Math.round(ytd.operatingKusd / 10))} 흑자지만, 이자 ${man(Math.round(Math.abs(ytd.financeKusd) / 10))}과 법인세 ${man(Math.round(Math.abs(ytd.taxKusd) / 10))}을 빼면 순손익은 ${man(Math.round(Math.abs(ytd.netKusd) / 10))} ${ytd.netKusd < 0 ? '적자' : '흑자'}다. 전략보고의 상반기 순손익 ${man(Math.round(h1.netKusd / 10))}은 세금 추징분까지 합친 값이라 이 원장 순이익과 직접 비교하지 않는다. 회계팀 확정 결산(세디 장부를 달러로 환산한 값)은 2025년 순이익을 +2,298만불로 잡지만, 이는 세디 강세로 생긴 환산이익 때문이고 환율 효과를 빼면 249만불 적자다.`}
           src={`${SRC.strategy} · 2025 확정치 참조는 ${SRC.fs}`}
         >
           <Chart
