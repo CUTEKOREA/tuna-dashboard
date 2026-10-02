@@ -14,7 +14,7 @@ export function PageHead({ title, lead, meta }: { title: string; lead: string; m
 }
 
 export function Card({ title, sub, note, children, span }: {
-  title?: string; sub?: string; note?: ReactNode; children: ReactNode; span?: number
+  title?: string; sub?: ReactNode; note?: ReactNode; children: ReactNode; span?: number
 }) {
   return (
     <section className="card" style={span ? { gridColumn: `span ${span}` } : undefined}>

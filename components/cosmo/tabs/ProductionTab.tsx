@@ -3,7 +3,7 @@ import { C } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import {
-  weeks, weeklySeries, annual, latest, meta, yoy,
+  weeks, weeklySeries, annual, latest, meta, yoy, q3_2026,
   gapDecomposition, gapValuation, musd, num, pct, n,
 } from '@/lib/data/cosmo'
 import { cosmoMonthlyReport as mr } from '@/lib/data/cosmo-monthly-report'
@@ -143,16 +143,17 @@ export default function Production() {
 
   /* 동일 주차 구간(1~현재주) 대조 — 계절성 통제 */
   const yrRows = [
-    { k: '수율', sub: '원어량 가중', a: pct(yoy.yield2025, 2), b: pct(yoy.yield2026, 2),
+    { k: '수율', sub: '원어량 가중', a: pct(yoy.yield2025, 2), b: pct(yoy.yield2026, 2), q: pct(q3_2026.yield, 2),
       d: pp(yoy.yieldDelta), neg: yoy.yieldDelta < 0 },
-    { k: '일 처리량', sub: 'Σ원어 ÷ Σ생산일', a: dly(yoy.daily2025), b: dly(yoy.daily2026),
+    { k: '일 처리량', sub: 'Σ원어 ÷ Σ생산일', a: dly(yoy.daily2025), b: dly(yoy.daily2026), q: dly(q3_2026.daily),
       d: (yoy.dailyDelta >= 0 ? '+' : '') + yoy.dailyDelta.toFixed(1), neg: yoy.dailyDelta < 0 },
-    { k: '원어처리량', sub: '구간 합계', a: mt(yoy.rawMt2025), b: mt(yoy.rawMt2026),
+    { k: '원어처리량', sub: '구간 합계', a: mt(yoy.rawMt2025), b: mt(yoy.rawMt2026), q: mt(q3_2026.rawMt),
       d: (yoy.rawMtDelta >= 0 ? '+' : '') + num(yoy.rawMtDelta, 0) + ' MT', neg: yoy.rawMtDelta < 0 },
-    { k: '생산일수', sub: '구간 합계', a: day(yoy.days2025), b: day(yoy.days2026),
+    { k: '생산일수', sub: '구간 합계', a: day(yoy.days2025), b: day(yoy.days2026), q: day(q3_2026.days),
       d: (yoy.days2026 - yoy.days2025 >= 0 ? '+' : '') + (yoy.days2026 - yoy.days2025).toFixed(1) + '일',
       neg: yoy.days2026 < yoy.days2025 },
     { k: '누적 판매액', sub: `${yoy.upTo}주차 시점`, a: musd(yoy.salesCum2025), b: musd(yoy.salesCum2026),
+      q: q3_2026.salesUsd != null ? `${musd(q3_2026.salesUsd)} (분기)` : '-',
       d: yoy.salesYoY != null ? pct(yoy.salesYoY, 1) : '-', neg: (yoy.salesYoY ?? 0) < 0 },
   ]
 
@@ -678,7 +679,8 @@ export default function Production() {
       <div className="grid g2">
         <Card
           title="같은 공장, 낮아진 처리 성능"
-          sub={`2025년 ${yoy.weeks2025Count}주 전체가 확보돼 **같은 주차 구간(1~${yoy.upTo}주)**으로 비교한다. 계절성이 통제된 비교다.`}
+          sub={<>2025년 {yoy.weeks2025Count}주 전체가 확보돼 <b>같은 주차 구간(1~{yoy.upTo}주)</b>으로 비교한다. 계절성이 통제된 비교다.
+            3분기 열은 주차 말일 기준 {q3_2026.firstWeek}~{q3_2026.lastWeek}주({q3_2026.from}~{q3_2026.to})이며 전년대비는 1~{yoy.upTo}주 구간끼리다.</>}
           span={2}
           note={<>같은 1~{yoy.upTo}주 구간에서 <b>일처리량 {dly(yoy.daily2025)} → {dly(yoy.daily2026)},
             {' '}{yoy.dailyDelta.toFixed(1)} MT/일</b>, 수율 {pp(yoy.yieldDelta)}, 원어처리량
@@ -691,6 +693,9 @@ export default function Production() {
               {' '}{annual.filter((a) => n(a.daily) < n(cbu?.cumDaily)).length}개년보다 높고
               {' '}{annual.filter((a) => n(a.daily) >= n(cbu?.cumDaily)).map((a) => a.year).join('·')}년에는 미달입니다
               (장기 추이 보드).</>}
+            {' '}3분기({q3_2026.firstWeek}~{q3_2026.lastWeek}주)만 보면 일처리량 <b>{dly(q3_2026.daily)}</b>·수율 {pct(q3_2026.yield, 2)}로
+            {' '}1~{latest.week}주 평균({dly(yoy.daily2026)}·{pct(yoy.yield2026, 2)})보다 일처리량 {(q3_2026.daily - yoy.daily2026 >= 0 ? '+' : '') + (q3_2026.daily - yoy.daily2026).toFixed(1)} MT/일,
+            {' '}수율 {pp(q3_2026.yield - yoy.yield2026)}이고, 분기 판매액은 {musd(q3_2026.salesUsd)}입니다.
             {' '}2025년 결측은 {yoy.missing2025.map((w) => `W${w}`).join('·') || '없음'}이며 집계에서 제외했습니다.</>}
         >
           <div className="tw">
@@ -700,7 +705,8 @@ export default function Production() {
                   <th>기준</th>
                   <th className="n">2025 (1~{yoy.upTo}주)</th>
                   <th className="n">2026 (1~{latest.week}주)</th>
-                  <th className="n">차이</th>
+                  <th className="n">2026 3분기 ({q3_2026.firstWeek}~{q3_2026.lastWeek}주)</th>
+                  <th className="n">전년대비</th>
                 </tr>
               </thead>
               <tbody>
@@ -709,6 +715,7 @@ export default function Production() {
                     <td>{r.k} <span className="tag">{r.sub}</span></td>
                     <td className="n">{r.a}</td>
                     <td className="n">{r.b}</td>
+                    <td className="n">{r.q}</td>
                     <td className={`n ${r.neg ? 'down' : 'up'}`}>{r.d}</td>
                   </tr>
                 ))}
@@ -716,6 +723,7 @@ export default function Production() {
                   <td>집계에 쓴 가동주 <span className="tag">0일 주 제외</span></td>
                   <td className="n">{yoy.sampleWeeks2025}주 / {day(yoy.days2025)}</td>
                   <td className="n">{yoy.sampleWeeks2026}주 / {day(yoy.days2026)}</td>
+                  <td className="n">{q3_2026.count}주 / {day(q3_2026.days)}</td>
                   <td className="n">-</td>
                 </tr>
               </tbody>
