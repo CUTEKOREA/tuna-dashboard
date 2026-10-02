@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+
+import { AtlanticVesselTable } from './AtlanticVesselTable';
 import Chart, { Legend, type Serie } from '../cosmo/Chart';
 import { Callout } from '../cosmo/Ui';
 import { Grid, Panel, Sec, Signal, Signals, Stat, Stats, Table } from './PanofiUi';
@@ -201,8 +203,9 @@ export function FleetTab() {
         <Stat k="연간 누계" v={atlanticNow.annualMt.toLocaleString()} unit="톤" d="2026년 어획" />
       </Stats>
       <p className="pf-src" style={{ margin: '0 0 14px' }}>
-        {SRC.fleetDaily} - 선박별 위치·적재량은 <Link href="/fleet">/fleet</Link> (로그인)
+        {SRC.fleetDaily} - 선박 위치는 <Link href="/fleet">/fleet</Link> (로그인)
       </p>
+      <AtlanticVesselTable />
 
       <Sec>척당 경제학</Sec>
       <Grid>
