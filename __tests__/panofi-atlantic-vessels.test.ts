@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
+import { maskCrewNames } from '../components/panofi/AtlanticVesselTable';
 import { FleetTab } from '../components/panofi/PanofiTabs';
 import { fleetDailyPublicLatest, fleetDailyPublicSeries } from '../lib/data/fleet-daily-public';
 
@@ -24,5 +25,11 @@ describe('파노피 선단·조업 - 대서양 선박별 표', () => {
     const src = readFileSync('components/panofi/AtlanticVesselTable.tsx', 'utf8');
     expect(src).not.toMatch(/\.position\b/);
     expect(markup).not.toMatch(/\d+°/);
+  });
+
+  it('비고의 교대 인원 이름은 가린다 (실명은 /fleet 선장 실적표에만)', () => {
+    expect(maskCrewNames('하역 후 어기교대(홍길동 → 김철수) 후 10/2 08:00 출항 예정'))
+      .toBe('하역 후 어기교대(○○○ → ○○○) 후 10/2 08:00 출항 예정');
+    expect(maskCrewNames('9/29 10:00 TEMA 입항, 하역 후 10/2 출항 예정')).toBe('9/29 10:00 TEMA 입항, 하역 후 10/2 출항 예정');
   });
 });
