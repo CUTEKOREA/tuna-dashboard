@@ -1,3 +1,12 @@
+> ✅ **2026-10-02 11:20 KST — `/fleet` 해양수산본부 일일업무보고 261002(금) 반영 — MOAMARI 젠산 입항 확정** [CC]:
+> - 원자료: `해양수산본부 일일업무보고-261002 (금).docx` SHA-256 `2524ddec35c242d4d2a9854bb65fb4baccd78ea76074c657b4a40b800b80b5d8`, unzip OK. 보고일 10/2, 조업 기준 10/1.
+> - `sync_fleet_daily_reports.py --latest-report` 증분: 보고 167건, 10월 첫 보고라 월간이 리셋됐다. 연간 연속성 — 태평양 54,612.8 + 635 = 55,247.8, 대서양 39,555 + 220 = 39,775. 운반선 5,824.3 / 8,436. 검산 664 → 668, 새 실패 없음. `detailSha256` 이 바뀌었다(`95ca17fc…`) → **배포 시 `swap_fleet_detail_secret.sh` 필요**.
+> - MOAMARI(`lib/fleet-idle-vessels.ts`): 원문 「10/2 08:30 입항 완료, 상가수리 후 10/10 출항 예정」. 항해 32일 확정(8/31 출발), 계약 24~26일보다 6~8일 초과. 예인료 일 $41,000 × 32일 ≈ $131만은 정산 전 계산값으로 표기. 어제 «4.7노트면 10/3 도착» 계산은 틀렸다 — 남은 약 240해리를 하루에 끌어 보고 일정대로 닿았고, 서술에 그대로 적었다. 조업손실 790~1,110 MT(167보고일/259달력일, 일평균 20.15). 좌표 없음.
+> - 날짜 고정 테스트 4종 갱신(command-center · security-boundary · fleet-daily · idle-vessels). `npm run verify` 통과: ESLint 0 errors(warnings 30) · Vitest 1,689/1,689 · API cache 158/158 · build 정적 118 · fleet client leak 138/24 · bundle 33.
+> - 브라우저(로컬 production, 1440·390): 히어로 「2026-10-02 보고 · 2026-10-01 조업 기준」, KPI 855 / 855 / 95,022.8 / 5,824.3, 「전체 보고 167건」, MOAMARI 「10/2 08:30 젠산 입항 완료」·「예인 결과 (확정)」, 옛 문구 잔존 0, overflow 0, error 0.
+> - 로컬 비공개 원천(private JSON)은 여전히 165건(재부팅 후 Drive 온라인 전용 파일 전수 재파싱이 멈춤 — 증분은 정상).
+> - 상태: 브랜치 `data/fleet-daily-261002`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-02 10:45 KST — #1304 코스모 3분기 영업보고 배포** [CC]:
 > - 첫 CI 는 `check:stale-widgets` 에서 실패해 **병합하지 않았다** — 10/2 에 `components/sashimi-strategy/SasEuCatchGate.tsx` 의 syncDate `2025-04` 가 달력상 18개월을 넘어 18개월 초과가 132 → 133 이 됐다(이번 변경과 무관, 시간 경과). 위젯 기준일은 EU CATCH·카딩 1차 출처 조사 시점이라 날짜만 올리면 신선도 배지가 거짓이 된다 → 기준선을 133 으로 올리고 사유를 커밋에 적었다(`92c40d1f`). **SasEuCatchGate 출처 재검증·기준일 갱신은 다음 작업.**
 > - CI 통과 확인 후 squash 병합 `d00ef2c6`. Production `dpl_DegZFS3qZ8mp3EMD2SUjdXDu92gG` READY, alias `https://leedonggun.co.kr`. 선단 상세 데이터는 바뀌지 않아 시크릿 교체 없음.
