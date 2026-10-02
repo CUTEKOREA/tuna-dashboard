@@ -5,6 +5,21 @@
 > - 테스트 `cosmo-production-q3.test.ts` 3건(RED → GREEN). `npm run verify` 통과(월별 무역통계 작업과 같은 트리에서): Vitest 1,699/1,699 · build 정적 118. 브라우저(로컬 production 1440·390): 열·수치 표시, `**` 잔존 0, overflow 0, error 0.
 > - 상태: 브랜치 `feat/cosmo-production-q3`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
 
+> ✅ **2026-10-02 11:35 KST — `/cosmo` 시장·바이어 가나發 참치캔 수입 월별 추이 + 최신 달 완결성 검사(점유율 창 1~7월 → 1~6월)** [CC]:
+> - 요청: HS 160414 1~7월 분석을 월별로 세분화. `sync_trade_stats.py` 가 창 행과 함께 보고국 × 달 행(`monthly`, 9개국 × 7개월 = 63행)을 같은 끝 달까지 받도록 고쳤다(따로 갱신하면 낡은 월별 행이 창 판정을 지배한다 - Codex 지적 반영). 9개국 모두 달 합 = 1~7월 창 합(원통화·kg) 정확히 일치. USD 월값은 그 달 ECB 평균 환율.
+> - ⚠ 발견: **7월 EU 첫 발행분은 미완결**이다. 공급국 수 1~6월 중앙값 → 7월: 독일 28→10, 네덜란드 40→14, 벨기에 18→8, 덴마크 15→5, 슬로베니아 11→1, 이탈리아 28→16. 영국(HMRC)은 22→25 로 정상. 분모가 비어 가나 몫이 부풀었다 - 오늘 아침 #1307 로 배포한 1~7월 창의 네덜란드 +0.97%p 는 1~6월로 보면 +0.39%p, 독일 −0.49%p 는 −1.11%p 다.
+> - 계약 `lib/data/cosmo-market.ts`: `provisionalCells`(공급국 수 < 이전 달 중앙값 × `THIN_RATIO` 0.6, 경험칙) · `lastCompleteMonth`(행 누락 보고국도 미완결) · `completeWindows` 가 잠정 달로 끝나는 창을 뺀다 → `partialYear`·`shareBasis`·경쟁 공급국이 1~6월로 돌아갔다. 단가 비교(1~5월)·COSMO 대 가나 약 76% 는 그대로. 다음 수집 때 7월이 완결되면 자동으로 넘어간다.
+> - 화면: 「월별로 본 가나 자리」 섹션 - 가나發 수입 월별(누적 막대 + 가나 비중 선, 완결 달만) · 가나 점유율 월별(상위 4개 시장, 잠정 칸은 선을 끊음) · 시장별 월간 가나 점유 표(순위/공급국 수, 7월 「잠정」). 8개 시장 합계 가나 비중 1월 1.83% → 6월 2.69%(최고 4월 2.95%). 영국 1월 15.4%(2위) → 7월 6.7%(5위, 완결).
+> - 검증: Codex 독립 리뷰(반증 지시) P0 0 · P1 2 · P2 1 전부 반영. 테스트 `cosmo-market-monthly`(RED → GREEN) + `cosmo-market-partial-year` 1~6월로 갱신·완결성 검사 추가. `npm run verify` 통과: ESLint 0 errors(warnings 30) · Vitest 1,699/1,699 · API cache 158/158 · build 정적 118 · fleet client leak · bundle 33. 브라우저(로컬 production 1440·390): 막대 30·선 4, overflow 0, error 0.
+> - 상태: 브랜치 `data/cosmo-trade-monthly`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 🚀 **2026-10-02 10:50 KST — #1307 코스모 무역통계 1~7월 · #1308 선단 261002 배포** [CC]:
+> - 순차 병합(squash), 각 PR 은 `gh pr checks --watch` 종료 코드 0 확인 후 병합: #1307 `a701ec4a` → #1308 `49a28681`(HANDOFF 충돌은 main 병합 커밋으로 해소, CI 재통과 후 병합).
+> - Production `dpl_76vGZL7qNygyMn6mkoLUiGfGSsJR` READY. 이어 `swap_fleet_detail_secret.sh --check` 일치(`95ca17fc…`) 후 `FLEET_DAILY_DETAIL_JSON` 교체·재배포 `dpl_9FoGHyYbyhEBDpQTnoqE4YiYqM2o` READY, alias `https://leedonggun.co.kr`.
+> - 라이브 실측(Aside, 로그인 세션·캐시 우회): `/fleet` 「2026-10-02 보고 · 2026-10-01 조업 기준」, KPI 855 / 95,022.8 / 5,824.3, 「전체 보고 167건」, **보호 패널 경고 없음**, 실적 분석 → 일간 추이 MOAMARI 「10/2 08:30 젠산 입항 완료」·「예인 결과 (확정)」. `/cosmo` 시장·바이어 「2026년 1~7월」·「약 76%」, 146% 잔존 0.
+> - 이 세션의 HANDOFF 시각 네 건(08:32·09:13·10:03·10:24)이 실제보다 늦게 적혀 있어 커밋 시각으로 바로잡았다.
+> - 배포 후 production error log(20분) 0건.
+
 > ✅ **2026-10-02 10:24 KST — `/fleet` 해양수산본부 일일업무보고 261002(금) 반영 — MOAMARI 젠산 입항 확정** [CC]:
 > - 원자료: `해양수산본부 일일업무보고-261002 (금).docx` SHA-256 `2524ddec35c242d4d2a9854bb65fb4baccd78ea76074c657b4a40b800b80b5d8`, unzip OK. 보고일 10/2, 조업 기준 10/1.
 > - `sync_fleet_daily_reports.py --latest-report` 증분: 보고 167건, 10월 첫 보고라 월간이 리셋됐다. 연간 연속성 — 태평양 54,612.8 + 635 = 55,247.8, 대서양 39,555 + 220 = 39,775. 운반선 5,824.3 / 8,436. 검산 664 → 668, 새 실패 없음. `detailSha256` 이 바뀌었다(`95ca17fc…`) → **배포 시 `swap_fleet_detail_secret.sh` 필요**.
