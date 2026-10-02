@@ -49,21 +49,27 @@ describe('fleet idle vessel detection', () => {
     // 2026-09-02: 계약(항해 24~26일·일 $41,000)과 현재 속도 30일을 분리해 적는다
     const labels = FLEET_IDLE_NOTES.MOAMARI.lines.map((line) => line.label);
     expect(labels).toContain('예인 계약');
-    expect(labels).toContain('예인 진행 (예상)');
-    expect(labels).toContain('예인료 (계약 확정 / 총액 예상)');
+    // 2026-10-02: 10/2 08:30 젠산 입항 완료 - 진행 «예상»이 결과 «확정»으로, 총액은 정산 전 계산값으로 바뀌었다
+    expect(labels).toContain('예인 결과 (확정)');
+    expect(labels).toContain('예인료 (계약 확정 / 총액 계산값)');
+    expect(labels).not.toContain('예인 진행 (예상)');
     const contract = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label === '예인 계약')!;
     expect(contract.text).toContain('24~26일');
     expect(contract.text).toContain('$41,000');
     const fee = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label.startsWith('예인료'))!;
-    expect(fee.text).toContain('10/2 도착 기준 32일');
+    expect(fee.text).toContain('항해 32일도 확정');
+    expect(fee.text).toContain('정산서는 아직 없다');
     expect(fee.text).toContain('$24.6만~32.8만');
     // 좌표는 보호 경로 전용이다 - 공개 카드 문장에 들어가면 안 된다
     for (const line of FLEET_IDLE_NOTES.MOAMARI.lines) expect(line.text).not.toMatch(/[NS]\d{4}\s*[EW]\d{5}/);
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('계약 항해 24~26일');
-    // 확정과 예상을 섞지 않는다 — 도착일·총액은 예상치로만 적는다
+    // 확정과 예상을 섞지 않는다 — 10/2 입항부터 도착일·항해일수는 확정, 총액은 정산 전 계산값, 복귀·조업손실은 예상
+    expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('10/2 08:30 젠산 입항 완료');
+    expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('정산 전 계산값');
     expect(FLEET_IDLE_NOTES.MOAMARI.headline).toContain('예상');
     const split = FLEET_IDLE_NOTES.MOAMARI.lines.find((line) => line.label === '확정 / 예상 구분')!;
-    expect(split.text).toContain('전부 예상치');
+    expect(split.text).toContain('10/2 08:30 젠산 입항(항해 32일)');
+    expect(split.text).toContain('예상치 또는 미확인');
     expect(FLEET_IDLE_NOTES.MOAMARI.lines.every((line) => line.text.length > 0)).toBe(true);
   });
 
