@@ -56,7 +56,7 @@ describe('PANOFI 대서양 주말 메일', () => {
   it('/panofi 어가·선단 탭에 메일 값을 렌더한다', () => {
     const price = renderToStaticMarkup(React.createElement(PriceTab));
     expect(price).toContain('주말 메일 4건 - 주간동향에 없는 값');
-    expect(price).toContain('스카사 어가가 $1,800에서 $1,950로 올라');
+    expect(price).toContain('스카사 어가가 $1,800에서 $1,950으로 올라');
     expect(price).toContain('9/1 주간동향 코스모 80톤 대 9/6 메일 90톤');
     expect(price).toContain('9/15 주간동향 코스모 95톤 대 9/20 메일 100톤');
     /* 9/15 주간동향이 80 → 95 로 움직이면서 「주간동향은 같은 값을 이어 적는다」는 더 이상 사실이 아니다.
