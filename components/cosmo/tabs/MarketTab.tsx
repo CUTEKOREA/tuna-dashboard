@@ -448,9 +448,10 @@ export default function Market() {
             + (shareBasis.period ? ` ${benchYear}년 연간과 나란히 놓았습니다 - 점유율은 기간 길이와 무관합니다.` : '')}
           note={<>가나는 {aggregateShare.markets}개 시장 수입 {musd(aggregateShare.marketUsd)} 중
             <b> {musd(aggregateShare.ghanaUsd)}({pct(aggregateShare.ghanaInMarket, 2)})</b>를 공급합니다.
-            COSMO 연환산 실적({musd(aggregateShare.cosmoAnnualUsd)})을 대면 <b>가나 물량의 약
-            {' '}{pct(aggregateShare.cosmoInGhana, 0)}</b>가 COSMO 몫입니다 -
-            가나에는 다른 참치캔 공장도 있으므로 이 비율이 곧 우리 위상입니다.</>}
+            같은 기간({priceBasis.period ? periodLabelKo(priceBasis.period) : `${benchYear}년`})으로 맞추면 COSMO 원장 실적
+            {' '}{musd(aggregateShare.cosmoLedgerUsd)}는 가나發 수입 {musd(aggregateShare.ghanaLedgerWindowUsd)}의
+            <b> 약 {pct(aggregateShare.cosmoInGhana, 0)}</b>입니다 - 가나에는 다른 참치캔 공장도 있으므로 이 비율이 곧 우리 위상입니다.
+            원장은 선적 기준, 수입통계는 통관 기준이라 한두 달 시차가 섞입니다.</>}
         >
           <div className="tw">
             <table>
@@ -508,7 +509,7 @@ export default function Market() {
             title={`${c.market} - 공급국 Top${c.topN}`}
             sub={`${c.year}년 ${c.periodLabel} HS 160414 수입. 시장 평균 ${c.marketUsdKg ? kg2(c.marketUsdKg) : '-'}`
               + (c.priorYear ? ` · ${c.priorYear}년 연간 ${c.priorMarketUsdKg ? kg2(c.priorMarketUsdKg) : '-'}` : '')
-              + '. 금액은 반기 대 연간이라 비교가 성립하지 않아 뺐습니다 - 점유·순위·단가로 봅니다.'}
+              + '. 금액은 부분 연도 대 연간이라 비교가 성립하지 않아 뺐습니다 - 점유·순위·단가로 봅니다.'}
             note={(() => {
               const gh = c.rows.find((r) => r.isGhana)
               const cheap = c.rows.filter((r) => r.usdPerKg != null && gh?.usdPerKg != null && r.usdPerKg < gh.usdPerKg)
@@ -523,7 +524,7 @@ export default function Market() {
                       순위는 {c.ghanaRankDelta == null ? '비교 불가'
                         : c.ghanaRankDelta === 0 ? <b>그대로</b>
                         : <b>{c.ghanaRankDelta > 0 ? `${c.ghanaRankDelta}계단 상승` : `${-c.ghanaRankDelta}계단 하락`}</b>}입니다
-                      (금액은 반기 대 연간이라 대지 않습니다).</>
+                      (금액은 부분 연도 대 연간이라 대지 않습니다).</>
                   )}
                   {c.ghanaOutsideTop && <> Top{c.topN} 밖이라 표 맨 아래에 따로 붙였습니다.</>}
                   {cheap.length > 0
