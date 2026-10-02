@@ -206,7 +206,7 @@ export const repricingUpside = (() => {
 /* --------------------------------------------------------------- 점유율 */
 
 /** 가나 전체가 각 시장에서 차지하는 비중. 무역통계 내부에서 나온 값이라 신뢰도가 높다. */
-/** 점유율은 기간 길이와 무관하게 비교되므로 가장 최근 구간(반기)을 쓴다. */
+/** 점유율은 기간 길이와 무관하게 비교되므로 가장 최근 부분 연도 구간을 쓴다. */
 export const shareBasis = partialYear ?? { year: benchYear, period: null as string | null }
 
 export const ghanaShare = byMarket
@@ -239,20 +239,32 @@ export const ghanaShare = byMarket
  *  합계 수준에서만 의미가 있다. */
 export const aggregateShare = (() => {
   const covered = ghanaShare.map((g) => g.market)
-  const cosmo = byMarket.filter((m) => covered.includes(m.key)).reduce((a, m) => a + m.amountUsd, 0) * ANNUALIZE
+  const cosmoLedger = byMarket.filter((m) => covered.includes(m.key)).reduce((a, m) => a + m.amountUsd, 0)
+  const cosmo = cosmoLedger * ANNUALIZE
   const ghana = ghanaShare.reduce((a, g) => a + g.ghanaValueUsd, 0)
   const market = ghanaShare.reduce((a, g) => a + g.marketValueUsd, 0)
+  // COSMO 대 가나 비교는 «같은 달 수»로만 한다 — 원장 창(priceBasis, 원장과 같은 달 수)의 가나發 수입과 원장 실적.
+  // 2026-10-02 까지는 연환산 COSMO(×12/5)를 부분 연도 가나 금액(연환산 안 함)에 나눠 146% 같은 불가능한 몫이 나왔다.
+  const ghanaLedgerWindow = covered.reduce((a, mk) => {
+    const g = ghanaOf(MARKET_COUNTRY[mk], priceBasis.year, priceBasis.period)
+    return a + (g?.valueUsd ?? 0)
+  }, 0)
+  const marketLedgerWindow = covered.reduce((a, mk) => {
+    const i = impOf(MARKET_COUNTRY[mk], priceBasis.year, priceBasis.period)
+    return a + (i?.valueUsd ?? 0)
+  }, 0)
   return {
     markets: covered.length,
     cosmoAnnualUsd: cosmo, ghanaUsd: ghana, marketUsd: market,
-    cosmoInGhana: ghana ? cosmo / ghana : null,
-    cosmoInMarket: market ? cosmo / market : null,
+    cosmoLedgerUsd: cosmoLedger, ghanaLedgerWindowUsd: ghanaLedgerWindow,
+    cosmoInGhana: ghanaLedgerWindow ? cosmoLedger / ghanaLedgerWindow : null,
+    cosmoInMarket: marketLedgerWindow ? cosmoLedger / marketLedgerWindow : null,
     ghanaInMarket: market ? ghana / market : null,
   }
 })()
 
 /** 가나 점유율 추이 — 연도별에 최신 부분 구간을 한 점 덧붙인다.
- *  점유율은 기간 길이에 좌우되지 않으므로 연간 옆에 반기를 놓아도 축이 어긋나지 않는다.
+ *  점유율은 기간 길이에 좌우되지 않으므로 연간 옆에 부분 연도를 놓아도 축이 어긋나지 않는다.
  *  다만 성격이 다른 점이라 `partial` 로 표시해 화면이 구분해 그리게 한다. */
 export const ghanaTrend = (() => {
   const years = [...new Set(suppliers.filter((s) => s.hs === HS_CAN && /ghana/i.test(s.partner)).map((s) => s.year))]
@@ -284,7 +296,7 @@ type SupplierRow = {
   share: number | null; usdPerKg: number | null; isGhana: boolean; rank: number
 }
 
-/** 한 시장·한 기간의 공급국 순위표. 기간이 연간이든 반기든 계산은 같다. */
+/** 한 시장·한 기간의 공급국 순위표. 기간이 연간이든 부분 연도든 계산은 같다. */
 function rankSuppliers(country: string, year: number | null, period: string | null) {
   const imp = impOf(country, year, period)
   const all: SupplierRow[] = suppliers
@@ -321,7 +333,7 @@ export const competitors = (() => {
         ...r,
         priorShare: was?.share ?? null,
         priorRank: was?.rank ?? null,
-        // 점유율은 기간 길이와 무관하게 비교된다. 금액은 반기 대 연간이라 비교하지 않는다.
+        // 점유율은 기간 길이와 무관하게 비교된다. 금액은 부분 연도 대 연간이라 비교하지 않는다.
         shareDelta: was?.share != null && r.share != null ? r.share - was.share : null,
         rankDelta: was ? was.rank - r.rank : null,
       }

@@ -1,3 +1,12 @@
+> ✅ **2026-10-02 12:10 KST — `/cosmo` 시장 보드 무역통계 1~6월 → 1~7월 갱신, COSMO 대 가나 비율 기준 정정** [CC]:
+> - `sync_trade_stats.py --probe`: Eurostat COMEXT·HMRC OTS 모두 **2026-07** 까지 발행(8월은 10월 중순 예상). `--year 2026 --through 2026-07 --also-through 2026-05` 로 재수집(2026-10-02, HS 160414·030487, EU 8개국 + 영국, ECB 창별 환율). 2026 창은 1~5월(원장 맞춤 단가 비교)·1~7월(점유율)로 바뀌었다. 1~5월 창도 Eurostat 소급 개정으로 독일·네덜란드·아일랜드·벨기에가 0.1~1.0% 움직였다.
+> - 수출 원장(1~5월, `06_FINANCIAL PERFORMANCE - 06 JUNE 2026.xlsx` Export Sales)은 더 새 판이 없다 — 7·8월 손익 xlsx 는 `Comparative PnL` 한 장뿐이고 받은편지함 첨부에도 없다. 원장 갱신은 다음 FINANCIAL PERFORMANCE 수령 뒤.
+> - 1~7월 가나 점유(금액): 영국 9.20%(1~6월 9.74%, 2025 12.21% — 7월 한 달 약 6.7%), 독일 3.16%(2.80), 이탈리아 1.45%(1.46), 네덜란드 1.89%(1.31), 아일랜드 5.65%(4.90), 벨기에 1.48%, 덴마크 1.16%, 스페인 0.11%. 8개 시장 가나發 $54.18M / $2,130.92M = 2.54%(1~6월 2.46%).
+> - **정정**: 「COSMO 연환산 실적을 대면 가나 물량의 약 146%가 COSMO 몫」은 연환산 COSMO(×12/5)를 부분 연도 가나 금액에 나눈 기준 혼용이었다(100% 초과 불가). 같은 달 수(원장 창 1~5월)로 맞춰 COSMO $26.82M 대 가나發 $35.11M = **약 76%** 로 고치고, 선적 대 통관 시차를 명시했다. 테스트가 같은 창·100% 미만을 고정한다. 화면의 「반기 대 연간」 표기는 「부분 연도 대 연간」으로.
+> - 테스트: `cosmo-market-partial-year` 를 1~7월로 갱신(RED 4건 → GREEN) + 비율 기준 테스트 1건. `npm run verify` 통과: ESLint 0 errors(warnings 30) · Vitest 1,690/1,690 · API cache 158/158 · build 정적 118 · fleet client leak · bundle 33.
+> - 브라우저(로컬 production, 1440·390): 「2026년 1~7월」·9.20%·12.21%·$54.18M·76%, 옛 1~6월·146% 잔존 0(남은 「1~6월」은 REWE 입찰 선적 2027년 1~6월), overflow 0, error 0.
+> - 상태: 브랜치 `data/cosmo-trade-stats-0702`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-02 10:45 KST — #1304 코스모 3분기 영업보고 배포** [CC]:
 > - 첫 CI 는 `check:stale-widgets` 에서 실패해 **병합하지 않았다** — 10/2 에 `components/sashimi-strategy/SasEuCatchGate.tsx` 의 syncDate `2025-04` 가 달력상 18개월을 넘어 18개월 초과가 132 → 133 이 됐다(이번 변경과 무관, 시간 경과). 위젯 기준일은 EU CATCH·카딩 1차 출처 조사 시점이라 날짜만 올리면 신선도 배지가 거짓이 된다 → 기준선을 133 으로 올리고 사유를 커밋에 적었다(`92c40d1f`). **SasEuCatchGate 출처 재검증·기준일 갱신은 다음 작업.**
 > - CI 통과 확인 후 squash 병합 `d00ef2c6`. Production `dpl_DegZFS3qZ8mp3EMD2SUjdXDu92gG` READY, alias `https://leedonggun.co.kr`. 선단 상세 데이터는 바뀌지 않아 시크릿 교체 없음.
