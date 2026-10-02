@@ -472,6 +472,22 @@ export const yoy = (() => {
   }
 })()
 
+/** 2026년 3분기(7~9월). 주차는 말일이 속한 달로 묶는다 - 영업보고 월별 수주 대조(ordersVsLedger)와 같은 기준.
+ *  27주차(6/29~7/5)가 3분기 첫 주이고, 9/28~9/30 은 40주차 보고에 들어간다. */
+export const q3_2026 = (() => {
+  const inQ = weeks.filter((w) => [7, 8, 9].includes(Number(String(w.periodEnd ?? '').split('/')[0])))
+  const first = inQ[0]
+  const last = inQ[inQ.length - 1]
+  const before = first ? weeks.filter((w) => w.week < first.week).pop() : undefined
+  return {
+    firstWeek: first?.week ?? null, lastWeek: last?.week ?? null,
+    from: first?.periodStart ?? null, to: last?.periodEnd ?? null,
+    ...cbuAggregate(inQ),
+    /** 분기 판매액 = 마지막 주 누적 − 분기 직전 주 누적 */
+    salesUsd: last?.salesCumUsd != null && before?.salesCumUsd != null ? last.salesCumUsd - before.salesCumUsd : null,
+  }
+})()
+
 /* --------------------------------------------------------- 자재 소진 */
 
 /** 공관·ENDS·주입액의 잔여 주수 = 잔량 ÷ 최근 4주 평균 출고.
