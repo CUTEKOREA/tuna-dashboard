@@ -8,6 +8,8 @@
 
   python3 scripts/sync_trade_stats.py --year 2026 --through 2026-06
   python3 scripts/sync_trade_stats.py --probe          # 각 출처의 최신 발행월만 보고
+
+창 행과 함께 HS 160414 의 보고국 × 달 행(monthly)도 같은 끝 달까지 다시 받는다.
 """
 
 from __future__ import annotations
@@ -304,6 +306,55 @@ def collect_hmrc(hs: str, months: list[str]) -> dict[str, dict[str, float]]:
     return dict(totals)
 
 
+def monthly_rows(hs: str, months: list[str]) -> list[dict[str, Any]]:
+    """보고국 × 달마다 시장 총수입과 가나發 수입을 따로 남긴다 — 창 합계로는 월별 추이가 안 보인다.
+    환율은 그 달의 ECB 평균을 쓴다. 점유율은 같은 통화끼리 나누므로 환율과 무관하다."""
+    fx: dict[str, tuple[float, float]] = {}
+    for month in months:
+        eur_usd = ecb_average("D.USD.EUR.SP00.A", [month])
+        fx[month] = (eur_usd, eur_usd / ecb_average("D.GBP.EUR.SP00.A", [month]))
+
+    per_month: dict[tuple[str, str], dict[str, dict[str, float]]] = {}
+    for iso, name in EU_REPORTERS.items():
+        for month in months:
+            cells = eurostat_month(hs, iso, month)
+            per_month[(name, month)] = {
+                str(c.get("_label", p)): {"native": c.get("eur", 0.0), "kg": c.get("q100kg", 0.0) * 100}
+                for p, c in cells.items()
+            }
+        print(f"  Eurostat {name}: {len(months)}개월", file=sys.stderr)
+    names = hmrc_countries()
+    for month in months:
+        per_month[("United Kingdom", month)] = {}
+    for row in hmrc_rows(hs, months):
+        month = f"{int(row['MonthId']) // 100}-{int(row['MonthId']) % 100:02d}"
+        partner = names.get(int(row["CountryId"]), f"CountryId {row['CountryId']}")
+        cell = per_month[("United Kingdom", month)].setdefault(partner, {"native": 0.0, "kg": 0.0})
+        cell["native"] += float(row.get("Value") or 0.0)
+        cell["kg"] += float(row.get("NetMass") or 0.0)
+    print(f"  HMRC United Kingdom: {len(months)}개월", file=sys.stderr)
+
+    out: list[dict[str, Any]] = []
+    for (country, month), partners in per_month.items():
+        positive = sorted(((p, c) for p, c in partners.items() if c["native"] > 0), key=lambda kv: -kv[1]["native"])
+        if not positive:
+            continue
+        uk = country == "United Kingdom"
+        rate = fx[month][1] if uk else fx[month][0]
+        native = sum(c["native"] for _, c in positive)
+        kg = sum(c["kg"] for c in partners.values())  # 창 합계와 같게 - 금액 0·물량만 있는 파트너도 물량엔 넣는다
+        rank, gh = next(((i + 1, c) for i, (p, c) in enumerate(positive) if re.search("ghana", p, re.I)),
+                        (None, {"native": 0.0, "kg": 0.0}))
+        out.append({
+            "country": country, "hs": hs, "month": month,
+            "valueNative": round(native, 2), "nativeCcy": "GBP" if uk else "EUR", "fxToUsd": rate,
+            "valueUsd": round(native * rate, 2), "qtyKg": round(kg, 2),
+            "ghanaValueNative": round(gh["native"], 2), "ghanaValueUsd": round(gh["native"] * rate, 2),
+            "ghanaQtyKg": round(gh["kg"], 2), "ghanaRank": rank, "suppliers": len(positive),
+        })
+    return out
+
+
 def build_rows(
     hs: str, year: int, months: list[str], eur_usd: float, gbp_usd: float,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -445,7 +496,12 @@ def main() -> int:
         f"interpolation: missing items are absent, not filled."
     )
 
-    payload = {"meta": meta, "imports": imports, "suppliers": suppliers}
+    # 월별 행은 창과 같은 끝 달로 매번 다시 받는다 - 따로 갱신하면 낡은 월별 행이 새 창의 완결성 판정을 지배한다.
+    print(f"월별 {months[0]}..{months[-1]}", file=sys.stderr)
+    monthly = [r for r in existing.get("monthly", []) if not r["month"].startswith(f"{args.year}-")]
+    monthly += monthly_rows("160414", months)
+    meta["coverage"][f"{args.year}Monthly"] = period_label
+    payload = {**existing, "meta": meta, "imports": imports, "suppliers": suppliers, "monthly": monthly}
     args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(json.dumps({
         "output": str(args.output), "period": period_label,

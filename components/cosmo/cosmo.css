@@ -156,6 +156,9 @@
 .cosmo-root tr.us .rank { color: var(--cosmo-accent); font-weight: 700; }
 /* 공급국명이 여러 줄로 접히면 표가 세로로 늘어져 비교가 어렵다 */
 .cosmo-root td.nowrap { white-space: nowrap; }
+/* 월별 표 — 점유 아래 작은 글씨로 그 달 가나 순위 */
+.cosmo-root td .rk { display: block; font-size: 10px; color: var(--cosmo-muted); }
+.cosmo-root td.prov { color: var(--cosmo-muted); font-style: italic; }
 .cosmo-root .tag { font: 700 9px var(--cosmo-mono); padding: 1px 6px; border-radius: 4px; background: var(--cosmo-surface-2); color: var(--cosmo-ink-2); }
 
 /* ---------- chart ---------- */

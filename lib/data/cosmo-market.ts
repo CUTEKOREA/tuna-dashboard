@@ -59,6 +59,14 @@ const priorRaw = ex.prior as unknown as {
 
 const imports = (ts.imports ?? []) as unknown as Imp[]
 const suppliers = (ts.suppliers ?? []) as unknown as Sup[]
+/** 부분 연도 창을 달로 쪼갠 행 (HS 160414, 보고국 × 달). `sync_trade_stats.py --monthly` 가 만든다. */
+type Mon = {
+  country: string; hs: string; month: string
+  valueNative: number; nativeCcy: string; fxToUsd: number; valueUsd: number; qtyKg: number
+  ghanaValueNative: number; ghanaValueUsd: number; ghanaQtyKg: number
+  ghanaRank: number | null; suppliers: number
+}
+const monthly = ((ts as { monthly?: unknown[] }).monthly ?? []) as Mon[]
 export const tradeMeta = {
   ...(ts.meta as {
     collected: string; hs: string[]; note: string
@@ -66,7 +74,7 @@ export const tradeMeta = {
   }),
   coverage: ((ts.meta as { coverage?: Record<string, string | string[]> }).coverage ?? {}),
   /** 회귀 테스트가 원본 행을 직접 검산할 수 있도록 열어 둔다 (화면에서는 쓰지 않는다) */
-  raw: { imports, suppliers },
+  raw: { imports, suppliers, monthly },
 }
 
 /* 원장의 시장명(한글) ↔ 무역통계의 국가명(영문) */
@@ -77,6 +85,44 @@ const MARKET_COUNTRY: Record<string, string> = {
   슬로베니아: 'Slovenia', 크로아티아: 'Croatia', 포르투갈: 'Portugal',
 }
 const HS_CAN = '160414'
+
+/** 최신 달의 첫 발행분은 신고가 다 모이기 전에 나온다. 2026-10-02 에 받은 7월 EU 값은 공급국 수가
+ *  독일 28 → 10, 네덜란드 40 → 14, 슬로베니아 11 → 1 로 줄었고 영국(HMRC)만 22 → 25 로 그대로였다.
+ *  그런 달을 창에 넣으면 분모가 비어 가나 몫이 부풀어 보인다 - 그 달은 «잠정»으로 표시하고 창 끝에서 뺀다.
+ *  ponytail: 공급국 수가 그 나라 이전 달 중앙값의 60% 미만이면 잠정 — 경험칙이다. 발행처의 개정 플래그를 받게 되면 그걸로 바꾼다. */
+export const THIN_RATIO = 0.6
+const median = (xs: number[]) => {
+  const v = [...xs].sort((a, b) => a - b)
+  const m = Math.floor(v.length / 2)
+  return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2
+}
+export const provisionalCells = (() => {
+  const byCountry = new Map<string, Mon[]>()
+  for (const r of monthly.filter((x) => x.hs === HS_CAN)) byCountry.set(r.country, [...(byCountry.get(r.country) ?? []), r])
+  const out = new Set<string>()
+  for (const [country, rows] of byCountry) {
+    const sorted = [...rows].sort((a, b) => a.month.localeCompare(b.month))
+    sorted.forEach((r, i) => {
+      const prior = sorted.slice(0, i).map((x) => x.suppliers)
+      if (prior.length >= 3 && r.suppliers < median(prior) * THIN_RATIO) out.add(`${country}|${r.month}`)
+    })
+  }
+  return out
+})()
+/** 모든 보고국이 완결된 마지막 달. 월별 행이 없으면 null(검사 생략). */
+export const lastCompleteMonth: string | null = (() => {
+  const rows = monthly.filter((x) => x.hs === HS_CAN)
+  const months = [...new Set(rows.map((r) => r.month))].sort()
+  const reporters = new Set(rows.map((r) => r.country))
+  let last: string | null = null
+  for (const m of months) {
+    // 행이 아예 없는 보고국도 미완결이다 - 수집은 값이 없는 달을 건너뛴다
+    const seen = new Set(rows.filter((r) => r.month === m).map((r) => r.country))
+    if (seen.size < reporters.size || [...provisionalCells].some((k) => k.endsWith(`|${m}`))) break
+    last = m
+  }
+  return last
+})()
 
 /** 무역통계에 연도가 여러 개다. 전체가 있는 가장 최근 연도를 기준으로 쓴다
  *  (부분 연도는 `period` 가 붙어 있어 연간 비교의 분모로 못 쓴다). */
@@ -99,6 +145,8 @@ function completeWindows(year: number): string[] {
   }
   return [...byPeriod.entries()]
     .filter(([, seen]) => seen.size === countries.size)
+    // 잠정 달로 끝나는 창은 쓰지 않는다 - 월별 행이 그 해를 덮을 때만 검사한다
+    .filter(([period]) => !lastCompleteMonth || !lastCompleteMonth.startsWith(`${year}-`) || period.slice(-7) <= lastCompleteMonth)
     .map(([period]) => period)
     .sort()
 }
@@ -287,6 +335,36 @@ export const ghanaTrend = (() => {
       `${partialYear.year} ${periodLabelKo(partialYear.period)}`, true))
   }
   return rows
+})()
+
+/** 가나發 점유를 달로 쪼갠다 — 창 합계 하나로는 «언제» 움직였는지가 안 보인다.
+ *  점유는 같은 통화끼리 나눠 환율과 무관하다. 금액(USD)은 그 달 ECB 평균 환율로 바꿨다.
+ *  ⚠️ 통관 기준 월값은 운반선 도착 시점에 따라 출렁인다 - 한 달의 급등락은 선적 한두 건일 수 있다. */
+export const ghanaMonthly = (() => {
+  const months = [...new Set(monthly.filter((r) => r.hs === HS_CAN).map((r) => r.month))].sort()
+  const rows = ghanaShare.map((g) => ({
+    market: g.market,
+    months: months.map((month) => {
+      const r = monthly.find((x) => x.hs === HS_CAN && x.country === g.country && x.month === month)
+      return r ? {
+        month, marketValueUsd: r.valueUsd, ghanaValueUsd: r.ghanaValueUsd,
+        shareValue: r.valueNative ? r.ghanaValueNative / r.valueNative : 0,
+        shareQty: r.qtyKg ? r.ghanaQtyKg / r.qtyKg : null,
+        ghanaUsdKg: r.ghanaQtyKg ? r.ghanaValueUsd / r.ghanaQtyKg : null,
+        ghanaRank: r.ghanaRank, suppliers: r.suppliers,
+        provisional: provisionalCells.has(`${g.country}|${month}`),
+      } : null
+    }),
+  }))
+  const total = months.map((month, i) => {
+    const ghana = rows.reduce((a, r) => a + (r.months[i]?.ghanaValueUsd ?? 0), 0)
+    const market = rows.reduce((a, r) => a + (r.months[i]?.marketValueUsd ?? 0), 0)
+    return { month, label: `${Number(month.slice(5))}월`, ghanaValueUsd: ghana, marketValueUsd: market,
+      shareValue: market ? ghana / market : null,
+      complete: lastCompleteMonth != null && month <= lastCompleteMonth,
+      provisionalMarkets: rows.filter((r) => r.months[i]?.provisional).map((r) => r.market) }
+  })
+  return { months, rows, total }
 })()
 
 /** 경쟁 공급국 — 같은 시장에 누가 얼마나 들어오나.
