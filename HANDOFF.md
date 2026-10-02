@@ -1,3 +1,10 @@
+> 🚀 **2026-10-02 10:50 KST — #1307 코스모 무역통계 1~7월 · #1308 선단 261002 배포** [CC]:
+> - 순차 병합(squash), 각 PR 은 `gh pr checks --watch` 종료 코드 0 확인 후 병합: #1307 `a701ec4a` → #1308 `49a28681`(HANDOFF 충돌은 main 병합 커밋으로 해소, CI 재통과 후 병합).
+> - Production `dpl_76vGZL7qNygyMn6mkoLUiGfGSsJR` READY. 이어 `swap_fleet_detail_secret.sh --check` 일치(`95ca17fc…`) 후 `FLEET_DAILY_DETAIL_JSON` 교체·재배포 `dpl_9FoGHyYbyhEBDpQTnoqE4YiYqM2o` READY, alias `https://leedonggun.co.kr`.
+> - 라이브 실측(Aside, 로그인 세션·캐시 우회): `/fleet` 「2026-10-02 보고 · 2026-10-01 조업 기준」, KPI 855 / 95,022.8 / 5,824.3, 「전체 보고 167건」, **보호 패널 경고 없음**, 실적 분석 → 일간 추이 MOAMARI 「10/2 08:30 젠산 입항 완료」·「예인 결과 (확정)」. `/cosmo` 시장·바이어 「2026년 1~7월」·「약 76%」, 146% 잔존 0.
+> - 이 세션의 HANDOFF 시각 네 건(08:32·09:13·10:03·10:24)이 실제보다 늦게 적혀 있어 커밋 시각으로 바로잡았다.
+> - 배포 후 production error log(20분) 0건.
+
 > ✅ **2026-10-02 10:24 KST — `/fleet` 해양수산본부 일일업무보고 261002(금) 반영 — MOAMARI 젠산 입항 확정** [CC]:
 > - 원자료: `해양수산본부 일일업무보고-261002 (금).docx` SHA-256 `2524ddec35c242d4d2a9854bb65fb4baccd78ea76074c657b4a40b800b80b5d8`, unzip OK. 보고일 10/2, 조업 기준 10/1.
 > - `sync_fleet_daily_reports.py --latest-report` 증분: 보고 167건, 10월 첫 보고라 월간이 리셋됐다. 연간 연속성 — 태평양 54,612.8 + 635 = 55,247.8, 대서양 39,555 + 220 = 39,775. 운반선 5,824.3 / 8,436. 검산 664 → 668, 새 실패 없음. `detailSha256` 이 바뀌었다(`95ca17fc…`) → **배포 시 `swap_fleet_detail_secret.sh` 필요**.
