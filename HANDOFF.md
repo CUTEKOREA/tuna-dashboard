@@ -1,3 +1,12 @@
+> ✅ **2026-10-02 10:10 KST — `/cosmo` 3분기 영업보고(9/30) 반영 — 시장·바이어 탭 신규 섹션** [CC]:
+> - 원자료: `2026.09.30_분기별 보고 (9월).docx`(Drive `12. COSMO/cosmo 주간보고/COSMO 월간보고/`) SHA-256 `e9628150d02a8d1f59750f0c8b35d90fccb07f173ed09398ad39e53c9232f005`, 51,393 B, unzip OK(내장 이미지 1개는 로고) + 송부 메일 본문(사용자 붙여넣기).
+> - 새 계약 `lib/data/cosmo-sales-report.ts`: EU 시장 서술 6줄, 시장 오퍼가(필리핀 1,705g 캔 $46→$49→$51/카톤 · 에콰도르 1kg 파우치 $4.95→$5.20→$5.35), 주요 바이어 3곳(Otto Franck 176 · Kingfisher 117.5 · Gloe 44 FCL, 9월까지), 4분기 수주 계획 310 FCL · $26,415,470(병합 셀 펼침, 행·열 합·FCL당 금액 인쇄값과 일치), 1~9월 누적 수주 743.5 FCL · $53,629,897(1~6월 474.5 = 2분기 보고와 같음), 신규 계획·출장·애로사항, 메일 요지 5줄. 작성자·바이어 측 담당자 이름은 직함·역할로만(테스트가 막음).
+> - 대조: 영업보고 월별 수주 대 주간 원장 신규수주(주차 말일의 달) — 1~9월 743.5 대 749.5 FCL(차 6.0, 월 경계 주차 몫), 9월은 35 FCL 로 같다. `ordersVsLedger()` 로 화면에 나란히.
+> - 화면: 시장·바이어 탭 「바이어」 뒤에 「3분기 영업보고」 섹션(4분기 수주 계획 · 월별 수주 대조 · 주요 바이어 3곳 · 시장 오퍼가 · 애로사항·계획). 제품 규격·고형량 미달 표기는 한글로.
+> - 테스트 `cosmo-sales-report.test.ts` 7건(계약 모듈 없음으로 RED → GREEN). `npm run verify` 통과: ESLint 0 errors(warnings 30) · Vitest 1,689/1,689 · API cache 158/158 · build 정적 118 · fleet client leak · bundle 33.
+> - 브라우저(로컬 production, 1440·390): 섹션 수치 전부 표시, 영문 규격 잔존 0, overflow 0, error 0.
+> - 상태: 브랜치 `data/cosmo-q3-sales-report`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 📰 **2026-10-02 06:10 KST — `/market` 2026-10-01 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
 > - PR [#1302](https://github.com/CUTEKOREA/tuna-dashboard/pull/1302) squash 병합. main commit `20baad6f`(브랜치 커밋 `c10ebf72`, `briefing/2026-10-01`, 원격 브랜치 삭제). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+64/−56). 기준일 `2026-09-30` → `2026-10-01`, 기사 **5건**.
 > - 게이트: `state/audit-2026-10-01.txt` AUDIT_PASS(윤문본은 재감사 AUDIT_FIX P1=1 이라 기각, 원본 유지) · 06:04 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · pre-push build 통과 · 변경분 존재.

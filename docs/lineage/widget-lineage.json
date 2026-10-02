@@ -1,7 +1,7 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 296,
+  "files": 297,
   "widgets": 116,
   "dataFiles": 341,
   "generator": "scripts/widget_lineage.py"
@@ -488,6 +488,7 @@
   "components/cosmo/tabs/MarketTab.tsx": {
    "dataModules": [
     "lib/data/cosmo-market.ts",
+    "lib/data/cosmo-sales-report.ts",
     "lib/data/cosmo.ts"
    ],
    "dataFiles": [
