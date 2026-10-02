@@ -14,6 +14,12 @@ const FLEET_LABEL: Record<string, string> = {
 };
 const RECENT = 7;
 
+/** 비고의 교대 인원 이름을 가린다 - 실명은 /fleet 선장 실적표에만 둔다. 예: 「어기교대(홍길동 → 김철수)」 → 「어기교대(○○○ → ○○○)」 */
+export function maskCrewNames(note: string): string {
+  return note.replace(/(교대\s*\()([^)]*)(\))/g, (_, open: string, inner: string, close: string) =>
+    open + inner.replace(/[가-힣]{2,4}/g, '○○○') + close);
+}
+
 /**
  * 대서양 선망 7척의 선박별 현황.
  * 어획 계열·적재 증가일은 공개 집계에서, 적재량·어창·비고는 /fleet 와 같은 보호 경로에서 받는다.
@@ -47,7 +53,7 @@ export function AtlanticVesselTable() {
   const rows = Object.entries(atlantic.vessels).map(([key, values]) => {
     const recent = values.slice(-RECENT);
     const d = detail.find((v) => v.name === key);
-    const note = d?.note && d.note.trim() !== '-' ? d.note : null;
+    const note = d?.note && d.note.trim() !== '-' ? maskCrewNames(d.note) : null;
     return {
       key, label: FLEET_LABEL[key] ?? key,
       today: values[values.length - 1],
