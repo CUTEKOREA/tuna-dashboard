@@ -103,7 +103,7 @@ describe('파노피 데이터 인테이크', () => {
     expect(temaGap.comparable).toBe(true);
     expect(temaGap.usdPerT).toBe(50);
     const price = renderToStaticMarkup(React.createElement(PriceTab));
-    expect(price).toContain('코스모도 9월 어가를 $1,850로 확정해 격차는 $50(PFC 우위)다');
+    expect(price).toContain('코스모도 9월 어가를 $1,850으로 확정해 격차는 $50(PFC 우위)다');
     expect(price).not.toContain('코스모 9월 어가가 확정된 뒤 다시 잰다');
 
     // 월이 갈린 주만 비교 불가다 - 나머지는 전부 계산 가능해야 한다
@@ -480,7 +480,7 @@ describe('자금유동성 (월간보고 pptx)', () => {
     expect(html).not.toContain('회수했는데 왜 더 나빠졌나');
     expect(html).not.toContain('매출채권을 줄이고 현금을 늘렸는데도');
     expect(html).toContain('매출채권 +7,480(미회수 증가)');
-    expect(html).toContain('직전 2026-07-31 대비로는 +11,005천불 개선');
+    expect(html).toContain('직전 2026-07-31 대비로는 11,005천불 개선');
     const overview = renderToStaticMarkup(React.createElement(PanofiDashboard));
     expect(overview).toContain('그룹 합산 -3,000만불은 전략보고 6/30 기준');
     expect(html).toContain('최신 9월 추정 누계는 -825천불로 전년 동기 2,903천불보다 3,728천불 낮다');
@@ -627,7 +627,7 @@ describe('PFC 판정의 무게', () => {
   });
 
   it('판정 조정 이력을 지우지 않는다', () => {
-    expect(pfc.measured.verdictNote).toContain('두 번');
+    expect(pfc.measured.verdictNote).toContain('두 차례');
   });
 });
 

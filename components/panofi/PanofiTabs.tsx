@@ -80,6 +80,10 @@ const usd = (v: number) => `$${v.toLocaleString('en-US')}`;
 const kusd = (v: number) => `${Math.round(v).toLocaleString('en-US')}천불`;
 const musd = (v: number) => `${v.toLocaleString('en-US')}백만불`;
 const man = (v: number) => `${v.toLocaleString('en-US')}만불`;
+/** 숫자 뒤 조사 - 한국어로 읽은 끝소리로 고른다(1,850 «천팔백오십» → 으로, 1,445 «…오» → 로). */
+const lastDigit = (n: number) => Math.abs(Math.round(n)) % 10;
+const ro = (n: number) => ([0, 3, 6].includes(lastDigit(n)) ? '으로' : '로');
+const ieot = (n: number) => ([0, 1, 3, 6, 7, 8].includes(lastDigit(n)) ? '이었다' : '였다');
 const ton = (v: number) => `${v.toLocaleString('en-US')}톤`;
 const pct = (v: number) => `${v}%`;
 const num = (v: number | null | undefined) =>
@@ -116,10 +120,10 @@ const SRC = {
     .map((s) => s.file.match(/\((\d+월)\)/)?.[1])
     .filter(Boolean)
     .join('·')})`,
-  fleetDaily: `「해양수산본부 일일 업무보고」 ${atlanticNow.reportDate} 보고 · /fleet 대서양 선망 공개 집계 항등 인용`,
+  fleetDaily: `「해양수산본부 일일 업무보고」 ${atlanticNow.reportDate} 보고 · 선단 운영 화면 대서양 선망 공개 집계와 같은 값`,
   comtrade: 'UN Comtrade public preview · 가나(reporter 288) 보고 기준',
   nlm: 'NotebookLM 「가나 중심 서아프리카 참치 비즈니스 분석」(소스 82건, 등급 B)',
-  grok: 'Grok 1차출처 대조 (등급 B~부분확인)',
+  grok: '외부 조사 1차출처 대조 (등급 B~부분확인)',
 };
 
 /* ------------------------------------------------------------------ 개관 */
@@ -131,8 +135,8 @@ export function HomeTab() {
         <Stat k="가동 선망선" v={String(fleetTotals.activeCount)} unit="척" d={`총 ${num(fleetTotals.totalGt)} G/T`} />
         <Stat k={`${ytd.label} 생산`} v={num(ytd.productionT)} unit="톤" d={`전년동기 ${ytd.productionYoyPct}%`} tone="down" />
         <Stat k={`${ytd.label} 판매`} v={num(ytd.salesT)} unit="톤" d={`실현 어가 ${usd(ytd.priceUsdPerT)}/톤`} tone="down" />
-        <Stat k="원장 손익분기" v={usd(ytd.ledgerBepUsdPerT)} unit="/톤" d={`실현 대비 ${usd(ytd.priceUsdPerT - ytd.ledgerBepUsdPerT)} · 전략보고 H1 ${usd(ytd.strategyBepUsdPerT)}`} tone="down" />
-        <Stat k={`${ytd.label} 순손익`} v={kusd(ytd.netKusd)} tone="down" d="원장 Ⅶ행 · 이자·법인세 추징" />
+        <Stat k="원장 손익분기" v={usd(ytd.ledgerBepUsdPerT)} unit="/톤" d={`실현 어가보다 $${Math.abs(ytd.ledgerBepUsdPerT - ytd.priceUsdPerT).toLocaleString('en-US')} ${ytd.ledgerBepUsdPerT >= ytd.priceUsdPerT ? '높음' : '낮음'} · 전략보고 상반기 ${usd(ytd.strategyBepUsdPerT)}`} tone="down" />
+        <Stat k={`${ytd.label} 순손익`} v={kusd(ytd.netKusd)} tone="down" d="사내 원장 기준 · 이자·법인세 추징 반영" />
         <Stat k="자금 과부족" v={kusd(liquidityBridge?.endShortfall ?? receivables.cashShortfallKusd)} tone="down" d={`${liquidityBridge?.to ?? ''} 실측 · 그룹 합산 -3,000만불은 전략보고 6/30 기준`} />
       </Stats>
 
@@ -142,7 +146,7 @@ export function HomeTab() {
           span={6}
           title="매출과 손익"
           unit={`백만 달러 · 2026년은 1~${ytd.months}월 누계`}
-          note={`2025년은 영업이익 1,291만불을 냈지만 금융비용 676만불과 법인세를 빼고 나니 순이익이 0 근처였다. ${ytd.label}도 영업이익은 ${man(Math.round(ytd.operatingKusd / 10))} 흑자지만, 이자 ${man(Math.round(Math.abs(ytd.financeKusd) / 10))}과 법인세 ${man(Math.round(Math.abs(ytd.taxKusd) / 10))}을 빼면 순손익은 ${man(Math.round(Math.abs(ytd.netKusd) / 10))} ${ytd.netKusd < 0 ? '적자' : '흑자'}다. 전략보고의 상반기 순손익 ${man(Math.round(h1.netKusd / 10))}은 세금 추징분까지 합친 값이라 이 원장 순이익과 직접 비교하지 않는다. 회계팀 확정 결산(세디 장부를 달러로 환산한 값)은 2025년 순이익을 +2,298만불로 잡지만, 이는 세디 강세로 생긴 환산이익 때문이고 환율 효과를 빼면 249만불 적자다.`}
+          note={`2025년은 영업이익 1,291만불을 냈지만 금융비용 676만불과 법인세를 빼고 나니 순이익이 0 근처였다. ${ytd.label}도 영업이익은 ${man(Math.round(ytd.operatingKusd / 10))} 흑자지만, 이자 ${man(Math.round(Math.abs(ytd.financeKusd) / 10))}과 법인세 ${man(Math.round(Math.abs(ytd.taxKusd) / 10))}을 빼면 순손익은 ${man(Math.round(Math.abs(ytd.netKusd) / 10))} ${ytd.netKusd < 0 ? '적자' : '흑자'}다. 전략보고의 상반기 순손익 ${man(Math.round(h1.netKusd / 10))}은 세금 추징분까지 합친 값이라 이 원장 순손익과 직접 비교하지 않는다. 회계팀 확정 결산(세디 장부를 달러로 환산한 값)은 2025년 순이익을 +2,298만불로 잡지만, 이는 세디 강세로 생긴 환산이익 때문이고 환율 효과를 빼면 249만불 적자다.`}
           src={`${SRC.strategy} · 2025 확정치 참조는 ${SRC.fs}`}
         >
           <Chart
@@ -186,6 +190,19 @@ export function HomeTab() {
   );
 }
 
+/** 주간동향 추출 필드 → 화면 이름. 키는 추출 스크립트가 정한다. */
+const COVERAGE_LABEL: Record<string, string> = {
+  'prices.cosmoTema': '코스모 어가 (테마)',
+  'prices.scodiAbidjan': 'SCODI 어가 (아비장)',
+  'fx.cediPerUsd': '세디/달러 환율',
+  'dailyProcessing.COSMO': '코스모 일 가공량',
+  'receivables.totalUsd': '아비장 미수금 합계',
+  'fuel(형식 온전)': '유가 (양식 온전)',
+  'fleetStatus(관측됨)': '선단 동향 (기재됨)',
+  'senegalFleet': '세네갈 선단 입출항',
+  'fishingGround.coastalMax': '연안 수온 상단값',
+};
+
 /* ------------------------------------------------------------- 선단·조업 */
 
 export function FleetTab() {
@@ -213,7 +230,7 @@ export function FleetTab() {
           span={6}
           title="직접마진 - 공통비 배부 전"
           unit="백만 달러"
-          note={`7척 합계 ${fleetTotals.totalMarginMusd}백만불로 공통비 ${fleetTotals.sharedCostMusd}만불을 덮지 못한다. 척당 문제가 아니라 선단 전체의 물량 문제다.`}
+          note={`상반기 7척 직접마진 합계 ${man(Math.round(fleetTotals.totalMarginMusd * 100))}로 같은 기간 공통비 ${fleetTotals.sharedCostMusd}만불을 덮지 못한다(전략보고 기준 - 아래 1~8월 원장의 배부 후 세전이익과 기간·기준이 다르다). 척당 문제가 아니라 선단 전체의 물량 문제다.`}
           src={`${SRC.strategy} §5-1`}
         >
           <Chart
@@ -228,7 +245,7 @@ export function FleetTab() {
           span={6}
           title="세전이익 - 공통비 배부 후"
           unit="천 달러"
-          note={`배부 전후로 순위가 뒤집히는 배가 있다. 어느 배를 줄일지 판단할 때는 반드시 배부 후를 본다. ${ytd.label} 세전 흑자는 ${ytd.pretaxProfitNames.join('·') || '없다'}.`}
+          note={`배부 전후로 순위가 뒤집히는 배가 있다. 어느 배를 줄일지 판단할 때는 반드시 배부 후를 본다. ${ytd.pretaxProfitNames.length ? `${ytd.label} 세전 흑자를 낸 배는 ${ytd.pretaxProfitNames.join('·')} ${ytd.pretaxProfitNames.length}척이다.` : `${ytd.label} 세전 흑자를 낸 배는 없다.`}`}
           src={`${SRC.ledger} 실적(생산) 시트`}
         >
           <Chart
@@ -242,8 +259,8 @@ export function FleetTab() {
         <Panel
           span={12}
           title="순위 역전"
-          unit="직접마진 순위 대비 완전손익 순위"
-          note={`개별 총톤수는 회사 공개자료(sla.co.kr)와 ICCAT 등록부가 일치하는 값이며 7척 합 ${num(fleetTotals.totalGt)} G/T 다. ${ytd.label} 생산은 원장 실적(생산) 시트 기준으로 누계 ${orNA(actuals.byVessel.totals.생산량MT, (n) => num(Math.round(n)))}톤과 맞는다 - 어종·사이즈 배분 합계 ${num(actuals.meta.catchMixTotalMT)}톤과는 ${num(ytd.catchMixGapT)}톤 벌어져 억지로 맞추지 않았다. 주간동향 원문에는 자사선 조업량이 없어(입출항·상태만 기재) 척별 생산은 원장에서만 온다.`}
+          unit="직접마진 순위 대비 배부 후 세전이익 순위"
+          note={`개별 총톤수는 회사 공개자료(sla.co.kr)와 ICCAT 등록부가 일치하는 값이며 7척 합 ${num(fleetTotals.totalGt)} G/T 다. ${ytd.label} 생산은 원장 실적(생산) 시트 기준으로 누계 ${orNA(actuals.byVessel.totals.생산량MT, (n) => num(Math.round(n)))}톤과 맞는다 - 어종·사이즈 배분 합계 ${num(actuals.meta.catchMixTotalMT)}톤과는 ${num(ytd.catchMixGapT)}톤 차이가 나며 원본 그대로 두었다. 주간동향 원문에는 자사선 조업량이 없어(입출항·상태만 기재) 척별 생산은 원장에서만 온다.`}
           src={`${SRC.strategy} §5-1 + ${SRC.ledger} + 선박 등록 제원(sla.co.kr·ICCAT)`}
         >
           <Table head={['선박', '총톤수 (G/T)', `${ytd.label} 생산 (톤)`, '직접마진 순위', '완전손익 순위', '변동', '세전이익 (달러)']}>
@@ -277,7 +294,7 @@ export function FleetTab() {
           span={6}
           title="어종별 생산"
           unit="톤"
-          note={`가다랑어가 ${catchBySpecies[0]?.비중}%로 주력이며 통조림 원료로 나간다. 어종·사이즈 원장 합계 ${num(actuals.meta.catchMixTotalMT)}톤은 총 생산 ${num(ytd.productionT)}톤과 ${num(ytd.catchMixGapT)}톤 차이가 난다 - 잡어·미배분으로 보이며 원본 차이라 맞추지 않았다.`}
+          note={`가다랑어가 ${catchBySpecies[0]?.비중}%로 주력이며 통조림 원료로 나간다. 어종·사이즈 원장 합계 ${num(actuals.meta.catchMixTotalMT)}톤은 총 생산 ${num(ytd.productionT)}톤과 ${num(ytd.catchMixGapT)}톤 차이가 난다(잡어·미배분으로 추정, 원본 그대로).`}
           src={`${SRC.ledger} 매출단가 시트`}
         >
           <Chart
@@ -406,14 +423,14 @@ export function PriceTab() {
           d={temaGap.comparable
             ? `측정 ${priceWindow.weekCount}주 평균 ${usd(m.gapVsCosmoUsdPerT.mean)}`
             : `PFC ${temaGap.pfcMonth ?? '미상'} · 코스모 ${temaGap.cosmoMonth ?? '미상'} 기준`} />
-        <Stat k="원장 손익분기" v={usd(ytd.ledgerBepUsdPerT)} unit="/톤" d={`전략보고 H1 ${usd(bep.priceUsdPerT)}`} />
+        <Stat k="원장 손익분기" v={usd(ytd.ledgerBepUsdPerT)} unit="/톤" d={`전략보고 상반기 ${usd(bep.priceUsdPerT)}`} />
       </Stats>
 
       <Sec>채널별 어가</Sec>
       <Grid>
         <Panel
           span={12} title={`채널별 어가 ${headline.weekCount}주`} unit="달러/톤"
-          note={`원장 ${ytd.label} 손익분기 ${usd(ytd.ledgerBepUsdPerT)}를 넘은 주는 ${headline.weekCount}주 중 ${bepChannelCross.rows.map((r) => `${r.name} ${r.weeksAbove}주(${r.firstLabel}부터)`).join(' · ') || '없다'}. 전략보고 H1 분기점은 ${usd(bep.priceUsdPerT)}였다. 로컬 마켓은 즉시 현금이지만 분기점을 크게 밑돌아 저가 사이즈 소진용으로만 쓴다.`}
+          note={`원장 ${ytd.label} 손익분기 ${usd(ytd.ledgerBepUsdPerT)}를 넘은 주는 ${headline.weekCount}주 중 ${bepChannelCross.rows.map((r) => `${r.name} ${r.weeksAbove}주(${r.firstLabel}부터)`).join(' · ') || '없다'}. 전략보고 상반기 손익분기는 ${usd(bep.priceUsdPerT)}${ieot(bep.priceUsdPerT)}. 로컬 마켓은 즉시 현금이지만 분기점을 크게 밑돌아 저가 사이즈 소진용으로만 쓴다.`}
           src={SRC.weekly}
         >
           <Chart
@@ -451,17 +468,17 @@ export function PriceTab() {
               S('PFC', 'PFC', PANOFI_ID.pfc, { type: 'line' }),
               S('코스모', '코스모', PANOFI_ID.cosmo, { type: 'line' }),
               S('SCODI', 'SCODI', PANOFI_ID.scodi, { type: 'line' }),
-              S('SCASA', 'SCASA', PANOFI_ID.scasa, { type: 'line' }),
+              S('SCASA', '스카사', PANOFI_ID.scasa, { type: 'line' }),
             ]}
             yFmt={ton}
           />
           <Legend items={[
             { name: 'PFC', color: PANOFI_ID.pfc }, { name: '코스모', color: PANOFI_ID.cosmo },
-            { name: 'SCODI', color: PANOFI_ID.scodi }, { name: 'SCASA', color: PANOFI_ID.scasa },
+            { name: 'SCODI', color: PANOFI_ID.scodi }, { name: '스카사', color: PANOFI_ID.scasa },
           ]} />
           <Callout kind="warn" label="판정">{m.verdict}</Callout>
           <Callout kind="info" label="근거">
-            {m.volumeTest.finding} {m.volumeTest.decisiveCase} 이탈이 불가능한 이유는 대안 채널의 흡수 상한이다 -
+            {m.volumeTest.finding} {m.volumeTest.decisiveCase} 이탈이 불가능한 이유는 대안 채널의 흡수 상한이다.
             SCODI는 {m.absorptionLimits.SCODI}, 코스모는 {m.absorptionLimits.코스모}, 로컬은 {m.absorptionLimits.로컬마켓}.
           </Callout>
           {/* 근거 바로 아래에 둔다. 교란을 각주로 밀면 판정만 읽고 넘어간다. */}
@@ -482,7 +499,7 @@ export function PriceTab() {
               {temaGap.underNegotiation
                 ? `다만 코스모는 ${temaGap.cosmoMonth ?? '지난달'} 값을 그대로 둔 채 협의 중이라 두 채널의 격차는 아직 같은 기준으로 비교할 수 없다. «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 코스모 ${temaGap.pfcMonth ?? '당월'} 어가가 확정된 뒤 다시 잰다.`
                 : temaGap.comparable
-                  ? `코스모도 ${temaGap.cosmoMonth} 어가를 ${usd(latest.prices.cosmoTema ?? 0)}로 확정해 격차는 ${usd(temaGap.usdPerT ?? 0)}(${(temaGap.usdPerT ?? 0) > 0 ? 'PFC 우위' : '코스모 우위'})다. «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 이 확정가로 다음 측정 창에서 다시 잰다.`
+                  ? `코스모도 ${temaGap.cosmoMonth} 어가를 ${usd(latest.prices.cosmoTema ?? 0)}${ro(latest.prices.cosmoTema ?? 0)} 확정해 격차는 ${usd(temaGap.usdPerT ?? 0)}(${(temaGap.usdPerT ?? 0) > 0 ? 'PFC 우위' : '코스모 우위'})다. «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 이 확정가로 다음 측정 창에서 다시 잰다.`
                   : ''}
             </Callout>
           )}
@@ -521,18 +538,18 @@ export function PriceTab() {
       <Sec>주말 대서양 메일</Sec>
       <Grid>
         <Panel
-          span={12} title={`주말 메일 ${atlanticMails.length}건 - 주간동향에 없는 값`} unit="어가·운임 달러/톤 · MGO 달러/KL · 물량 톤"
+          span={12} title={`주말 메일 ${atlanticMails.length}건 - 주간동향에 없는 값`} unit="어가·운임 달러/톤 · 선박용 경유(MGO) 달러/KL · 물량 톤"
           note={(() => {
             const first = atlanticMails[0];
             const last = latestAtlanticMail;
             const sales = last.grandBleuSales.map((g) => g.priceUsd);
             const scasaMove = last.scasa.priceUsd !== first.scasa.priceUsd
-              ? `스카사 어가가 ${usd(first.scasa.priceUsd)}에서 ${usd(last.scasa.priceUsd)}로 올라 코스모(${usd(last.cosmo.priceUsd)}, ${last.cosmo.priceMonth})보다 ${usd(last.scasa.priceUsd - last.cosmo.priceUsd)} 높다.`
-              : `스카사 어가는 ${usd(last.scasa.priceUsd)}로 그대로다.`;
+              ? `스카사 어가가 ${usd(first.scasa.priceUsd)}에서 ${usd(last.scasa.priceUsd)}${ro(last.scasa.priceUsd)} 올라 코스모(${usd(last.cosmo.priceUsd)}, ${last.cosmo.priceMonth})보다 ${usd(last.scasa.priceUsd - last.cosmo.priceUsd)} 높다.`
+              : `스카사 어가는 ${usd(last.scasa.priceUsd)}${ro(last.scasa.priceUsd)} 그대로다.`;
             const salesLine = sales.length
-              ? ` 그랑블루는 ${usd(Math.min(...sales))}~${usd(Math.max(...sales))}에 팔았고${last.freightUsdPerT != null ? ` 운임이 ${usd(last.freightUsdPerT)}` : ''}라, 코스모 어가와의 차이가 운임을 빼고도 남는지가 판매처 협의의 기준이 된다.`
+              ? ` 그랑블루는 ${usd(Math.min(...sales))}~${usd(Math.max(...sales))}에 팔았다${last.freightUsdPerT != null ? `(운임 ${usd(last.freightUsdPerT)})` : ''}. 코스모 어가와의 차이가 운임을 빼고도 남는지가 판매처 협의의 기준이 된다.`
               : '';
-            return `${scasaMove}${salesLine} MGO 는 메일마다 직전 주간동향 값을 그대로 옮긴다.`;
+            return `${scasaMove}${salesLine} 경유(MGO) 가격은 메일마다 직전 주간동향 값을 그대로 옮긴다.`;
           })()}
           src={ATLANTIC_MAIL_SOURCE}
         >
@@ -574,7 +591,7 @@ export function PriceTab() {
               ))}
             </tr>
             <tr>
-              <td>MGO 테마 · 양상 · 아비장</td>
+              <td>경유(MGO) 테마 · 해상 급유 · 아비장</td>
               {atlanticMails.map((m) => (
                 <td key={m.date}>{[m.mgo.tema, m.mgo.tanker, m.mgo.abidjan].map((v) => orNA(v, usd)).join(' · ')}</td>
               ))}
@@ -588,7 +605,7 @@ export function PriceTab() {
               && new Set(mailProcessingVsWeekly.map((r) => r.cosmoMail)).size > 1
               ? ' 주간동향은 같은 값을 이어 적고 메일만 움직인다.'
               : ''}{' '}
-            코스모 주간보고 원장과의 대조는 /cosmo 데이터 품질 탭에 있다.
+            코스모 주간보고 원장과의 대조는 코스모 화면의 데이터 품질 탭에 있다.
             {mailProcessingVsWeekly.filter((r) => r.pfcMailNote).map((r) =>
               ` ${r.weeklyLabel} 주간동향은 PFC 일 ${orNA(r.pfcWeekly, ton)}인데 ${r.mailLabel} 메일은 「${r.pfcMailNote}」이다.`,
             ).join('')}
@@ -608,7 +625,7 @@ export function ProfitTab() {
         <Stat k="매출액" v={kusd(ytd.revenueKusd)} d={`전년동기 ${ytd.revenueYoyPct}%`} tone="down" />
         <Stat k="매출총이익" v={kusd(ytd.grossProfitKusd)} d={`전년동기 ${ytd.grossProfitYoyPct}%`} tone="down" />
         <Stat k="영업이익" v={kusd(ytd.operatingKusd)} tone={ytd.operatingKusd >= 0 ? 'up' : 'down'} />
-        <Stat k="당기순이익" v={kusd(ytd.netKusd)} tone="down" d="원장 Ⅶ행" />
+        <Stat k="당기순이익" v={kusd(ytd.netKusd)} tone="down" d="사내 원장 기준" />
         <Stat k="원가율" v={pct(ytd.costRatioPct ?? 0)} tone="down" d={`전년동기 ${pct(ytd.costRatioPrevPct ?? 0)}`} />
       </Stats>
       {ytd.lastMonth ? (
@@ -616,7 +633,7 @@ export function ProfitTab() {
           판매 {num(Math.round(ytd.lastMonth.수량MT ?? 0))}톤 · 단가 {usd(Math.round(ytd.lastMonth.평균단가 ?? 0))}
           · 영업이익 {kusd(Math.round((ytd.lastMonth.영업이익 ?? 0) / 1000))}
           · 당기순이익 {kusd(Math.round((ytd.lastMonth.당기순이익 ?? 0) / 1000))}.
-          누계 생산 {num(ytd.productionT)}톤 vs 판매 {num(ytd.salesT)}톤, 기말재고 {num(ytd.inventoryT)}톤.
+          누계 생산 {num(ytd.productionT)}톤, 판매 {num(ytd.salesT)}톤, 기말재고 {num(ytd.inventoryT)}톤.
           {ytd.months}개월을 연환산하지 않는다.
         </Callout>
       ) : null}
@@ -626,8 +643,8 @@ export function ProfitTab() {
         <Panel
           span={12}
           title="2025 확정 결산 - 회계팀 재무제표"
-          unit="백만 달러 · 세디 장부의 달러 환산 축"
-          note={`매출 ${man(fs2025.breakdown.revenue)}은 원장 8,376만불(판매기준)·전략보고 8,400만불과 축이 다르다 - 회계 결산은 세디 장부를 달러로 환산한 세 번째 축이라 억지로 맞추지 않았다. 영업이익 ${man(fs2025.breakdown.op)}(+7.2%)는 전략보고 축의 기록 경신과 방향이 같지만(회계 축 시계열은 2개년뿐) 이자 ${man(fs2025.breakdown.interest)}이 여전히 잠식하고, 기타 대손상각 ${man(fs2025.breakdown.badDebt)}이 새로 얹혔다.`}
+          unit="백만 달러 · 세디 장부를 달러로 환산한 값"
+          note={`매출 ${man(fs2025.breakdown.revenue)}은 원장 8,376만불(판매기준)·전략보고 8,400만불과 기준이 다르다. 회계 결산은 세디 장부를 달러로 환산한 값이라 다른 두 수치와 맞추지 않았다. 영업이익 ${man(fs2025.breakdown.op)}(+7.2%)은 전략보고 기준의 기록 경신과 방향이 같지만(회계 기준 시계열은 2개년뿐) 이자 ${man(Math.abs(fs2025.breakdown.interest))}이 여전히 이익을 잠식하고, 기타 대손상각 ${man(fs2025.breakdown.badDebt)}이 새로 얹혔다.`}
           src={SRC.fs}
         >
           <Table head={['구분', '2024', '2025', '전년비']}>
@@ -646,7 +663,7 @@ export function ProfitTab() {
             급감했고, 환산이익만 +{man(fs2025.breakdown.fxTranslationGain)}이다. 외환을 제외한 실질은
             {' '}{man(fs2025.breakdown.netExFx)}로 전년 +{man(fs2025.breakdown.netExFxPrev)}에서 적자 전환이며,
             유형자산처분이익까지 빼면 {man(fs2025.breakdown.netExFxExDisposal)}, 척당
-            {' '}{kusd(fs2025.breakdown.perVesselKusd)}(전년 +{kusd(fs2025.breakdown.perVesselPrevKusd)})이다.
+            {' '}{man(fs2025.breakdown.perVesselKusd / 10)}(전년 +{man(fs2025.breakdown.perVesselPrevKusd / 10)})이다.
             이 분해는 추정이 아니라 회계팀 시트 자체 각주다.
           </Callout>
         </Panel>
@@ -728,7 +745,7 @@ function liquidityNote(b: NonNullable<typeof liquidityBridge>): string {
     : ar > 0 ? ' 연초 대비로는 매출채권 증가가 과부족을 덮고 있다 - 현금이 아니라 받을 돈이다.' : '';
   const st = b.step;
   const month = b.prevAsOf && st.과부족 !== null
-    ? ` 직전 ${b.prevAsOf} 대비로는 ${sign(st.과부족)}천불${(st.과부족 ?? 0) > 0 ? ' 개선' : ' 악화'}이며 매출채권 ${sign(st.매출채권)} · 매입채무 ${sign(st.매입채무)} · 현금 ${sign(st.현금)}이다.${(st.매출채권 ?? 0) > 0 && (st.과부족 ?? 0) > 0 ? ' 개선분은 대부분 아직 회수되지 않은 채권이라 회수 전까지 현금 여력은 그대로다.' : ''}`
+    ? ` 직전 ${b.prevAsOf} 대비로는 ${Math.abs(st.과부족 ?? 0).toLocaleString('en-US')}천불${(st.과부족 ?? 0) > 0 ? ' 개선' : ' 악화'}이며 매출채권 ${sign(st.매출채권)} · 매입채무 ${sign(st.매입채무)} · 현금 ${sign(st.현금)}이다.${(st.매출채권 ?? 0) > 0 && (st.과부족 ?? 0) > 0 ? ' 개선분은 대부분 아직 회수되지 않은 채권이라 회수 전까지 현금 여력은 그대로다.' : ''}`
     : '';
   return `${ytd}${driver}${month} 미수금 회수만으로는 뒤집히지 않으며 매입채무 만기 재조정과 관계사 결제 캘린더가 함께 가야 한다.`;
 }
@@ -776,7 +793,7 @@ export function CashTab() {
           span={12}
           title="재무상태표 (2025-12-31)"
           unit="백만 달러 · 회계팀 확정 결산"
-          note="부채 111.2백만불이 자산 73.5백만불을 넘는 완전자본잠식 -37.7백만불이다. 전년 -46.5백만불에서 8.7백만불 개선됐지만 이는 사실상 세디 절상 환산이익의 성격이라 체질 개선이 아니다. 순이익 +23.0백만불인데 개선이 8.7백만불에 그친 것은 기초 음(-)자본을 낮아진 기말환율로 재환산한 -18.9백만불이 상쇄했기 때문이다(배당·오류 아님). 부채 쪽은 장기외화미지급금이 41.4백만불에서 17.7백만불로 급감하고 미지급금 29.2백만불이 새로 계상됐다 - 상환인지 유동 재분류인지 원본에 설명이 없어 «구성 변화»로만 적는다. 단기차입금은 여전히 41.8백만불 남아 있다."
+          note="부채 111.2백만불이 자산 73.5백만불을 넘어 자본총계 -37.7백만불의 완전자본잠식이다. 전년 -46.5백만불에서 8.7백만불 개선됐지만 이는 사실상 세디 절상 환산이익의 성격이라 체질 개선이 아니다. 순이익 +23.0백만불인데 개선이 8.7백만불에 그친 것은 기초 음(-)자본을 낮아진 기말환율로 재환산한 -18.9백만불이 상쇄했기 때문이다(배당·오류 아님). 부채 쪽은 장기외화미지급금이 41.4백만불에서 17.7백만불로 급감하고 미지급금 29.2백만불이 새로 계상됐다 - 상환인지 유동 재분류인지 원본에 설명이 없어 «구성 변화»로만 적는다. 단기차입금은 여전히 41.8백만불 남아 있다."
           src={`${SRC.fs} · 세디 환율 실측은 ${SRC.weekly}`}
         >
           <Table head={['항목', '2024', '2025']}>
@@ -846,7 +863,7 @@ export function CashTab() {
       <Grid>
         <Panel
           span={6} title="아비장 미수금" unit="천 달러"
-          note={`정점 ${kusd(receivableNow.peakKusd)}에서 ${receivableNow.recoveryPeriod} 사이 ${kusd(receivables.abidjanKusd)}까지 줄였다가, ${receivableNow.asOf ?? '최근'} 주간동향에서 ${kusd(receivableNow.currentKusd)}으로 다시 늘었다.`}
+          note={`정점 ${kusd(receivableNow.peakKusd)}에서 ${receivableNow.recoveryPeriod} 사이 ${kusd(receivables.abidjanKusd)}까지 줄였다가, ${receivableNow.asOf ?? '최근'} 주간동향에서 ${kusd(receivableNow.currentKusd)}로 다시 늘었다.`}
           src={SRC.weekly}
         >
           <Chart data={receivableSeries} x="label" height={210} xInterval={4}
@@ -907,6 +924,10 @@ export function CashTab() {
 /* ------------------------------------------------------------- 하반기 전략 */
 
 export function StrategyTab() {
+  const row = (metric: string) => scenarios.rows.find((r) => r.metric === metric)!;
+  const h2Sales = row('판매량(톤)');
+  const h2Net = row('H2 순이익');
+  const h2Annual = row('2026 연간 순이익');
   return (
     <>
       <Sec>하반기 시나리오</Sec>
@@ -928,9 +949,11 @@ export function StrategyTab() {
             ))}
           </Table>
           <Callout kind="info" label="읽는 법">
-            기준 실행 시 하반기 +301만불로 연간 -398만불을 방어한다. 2025년 하반기 어획의 71%면 충분한 목표다.
-            상향이면 연간 손익분기 부근까지 회복하고, 하방이어도 하반기 자체는 균형이다 -
-            연간 성적은 원장 ${ytd.label} 순손익 ${kusd(ytd.netKusd)}로 깔렸다. 전략보고가 적은 상반기 -699만불은 추징 합산 H1 빈티지다.
+            기준안이면 하반기 순이익 +{man(Math.round(h2Net.base / 10))}로 연간 순손실을 {man(Math.round(h2Annual.base / 10))}에서 멈춘다.
+            기준안 판매 {num(h2Sales.base)}톤은 2025년 하반기 판매 {num(h2Sales.actual2025H2)}톤의
+            {' '}{Math.round((h2Sales.base / h2Sales.actual2025H2!) * 100)}%라 무리한 목표가 아니다.
+            상향이면 연간 손익분기 부근까지 회복하고, 하방이어도 하반기 자체는 균형이다.
+            연간 성적의 바닥은 사내 원장 기준 {ytd.label} 순손익 {kusd(ytd.netKusd)}이다. 전략보고의 상반기 순손익 -699만불은 세금 추징분까지 합친 값이다.
           </Callout>
         </Panel>
       </Grid>
@@ -961,7 +984,7 @@ export function IndustryTab() {
         <Stat k="연간 통조림 생산" v={num(industry.annualCannedOutputT)} unit="톤" d={`${industry.annualCannedOutputBasisYear} 기준`} />
         <Stat k="설비 가동률" v={`${industry.utilizationPct[0]}~${industry.utilizationPct[1]}%`} d="원료 계절 편차" />
         <Stat k="통조림 수출액" v={(industry.exports.cannedTunaUsd2025 / 1e6).toFixed(1)} unit="백만불" tone="up" d={`2025년 · 전년비 +${industry.exports.cannedTunaYoyPct}% · ${num(industry.exports.cannedTunaT2025)}톤`} />
-        <Stat k="유럽연합 비중" v={pct(industry.exports.euSharePct)} d="외부 조사 · 영국이 단일 최대" />
+        <Stat k="유럽(EU·영국) 비중" v={pct(industry.exports.euSharePct)} d="외부 조사 · 영국이 단일 최대" />
       </Stats>
 
       <Sec>밸류 사다리와 가공</Sec>
@@ -984,7 +1007,7 @@ export function IndustryTab() {
                 <td style={{ textAlign: 'left' }}>{c.owner}</td>
                 <td>{c.founded ?? '자료 없음'}</td>
                 <td style={{ textAlign: 'left' }}>
-                  {c.capacityTPerDay ? `일 ${c.capacityTPerDay}톤 (실가동 ${c.operatingTPerDay}톤)` : (c.capacity ?? '자료 없음')}
+                  {c.capacityTPerDay ? `일 ${c.capacityTPerDay}톤 (실가동 ${c.operatingTPerDay}톤${'operatingNote' in c && c.operatingNote ? ` · ${c.operatingNote}` : ''})` : (c.capacity ?? '자료 없음')}
                 </td>
                 <td>{c.employees ?? '자료 없음'}</td>
                 <td style={{ textAlign: 'left' }}>{c.products}</td>
@@ -1005,7 +1028,7 @@ export function IndustryTab() {
             series={[S('금액', '수출액', C.rank, { type: 'bar' })]} yFmt={musd} />
         </Panel>
         <Panel
-          span={6} title="Comtrade 실측 vs 외부 조사" unit="백만 달러 · 2025년 통조림 수출"
+          span={6} title="Comtrade 실측 대비 외부 조사" unit="백만 달러 · 2025년 통조림 수출"
           note={industry.exports.monthlyCompleteness}
           src={`${industry.exports.basis} · 월별 12개월 대조 2026-08-15`}
         >
@@ -1138,7 +1161,14 @@ export function TradeTab() {
 
         <Panel
           span={6} title="어종별 수출" unit={`백만 달러 · ${tradeYear}년 원어 기준`}
-          note="필레와 통조림은 어종이 합쳐져 보고되므로 제외했다. 금액은 황다랑어가 앞서지만 물량은 가다랑어가 통조림 원료로 더 많이 나간다."
+          note={(() => {
+            const byValue = [...exportBySpecies].sort((a, b) => b.valueUsd - a.valueUsd)[0];
+            const byQty = [...exportBySpecies].sort((a, b) => (b.물량 ?? 0) - (a.물량 ?? 0))[0];
+            const lead = byValue && byQty && byValue.label === byQty.label
+              ? `금액·물량 모두 ${byValue.label}가 앞선다(${exportBySpecies.map((r) => `${r.label} ${num(r.물량)}톤`).join(' · ')}).`
+              : `금액은 ${byValue?.label}, 물량은 ${byQty?.label}가 앞선다.`;
+            return `필레와 통조림은 어종이 합쳐져 보고되므로 제외했다. ${lead}`;
+          })()}
           src={SRC.comtrade}
         >
           <Chart data={exportBySpecies} x="label" height={210}
@@ -1192,7 +1222,7 @@ export function TradeTab() {
           )}
           {mirrorUnmatched.length > 0 && (
             <Callout kind="warn" label="받은 쪽 기록이 없는 건">
-              {mirrorUnmatched.map((u) => `${u.partner} 세번 ${u.hs} ${u.가나수출}백만 달러`).join(' · ')} -
+              {mirrorUnmatched.map((u) => `${u.partner} 세번 ${u.hs} ${u.가나수출 >= 1 ? `${u.가나수출}백만 달러` : '1백만 달러 미만'}`).join(' · ')} -
               가나는 수출했다고 보고하지만 상대국의 대응 수입 보고가 없다. 두 나라 모두 유엔 콤트레이드 보고가
               늦거나 빠지는 경우가 있어 미보고로 단정하지 않는다.
             </Callout>
@@ -1225,13 +1255,13 @@ export function QualityTab() {
       <Grid>
         <Panel
           span={6} title="주간동향 필드별 확보율"
-          note="추출 스크립트가 실행마다 결측률을 보고한다. 포맷이 바뀐 주차를 조용히 넘기지 않기 위한 자기점검이다."
-          src={`${SRC.weekly} · scripts/extract_panofi.py`}
+          note="자료를 불러올 때마다 항목별 확보율을 점검해, 양식이 바뀐 주차를 놓치지 않는다."
+          src={SRC.weekly}
         >
-          <Table head={['필드', '확보 주차', '비율']}>
+          <Table head={['항목', '확보 주차', '비율']}>
             {Object.entries(dataQuality.coverage).map(([k, v]) => (
               <tr key={k}>
-                <td>{k}</td>
+                <td>{COVERAGE_LABEL[k] ?? k}</td>
                 <td>{v} / {dataQuality.weekCount}</td>
                 <td>{Math.round((v / dataQuality.weekCount) * 100)}%</td>
               </tr>
@@ -1250,7 +1280,7 @@ export function QualityTab() {
           </div>
           <div className="pf-note" style={{ marginBottom: 8 }}>
             <b>기준 차이</b> - 전략보고의 2025년 66,674톤은 생산기준, 원장 연도별 표의 64,689톤은 판매기준이다.
-            충돌이 아니라 축이 다르다.
+            충돌이 아니라 기준이 다르다.
           </div>
           <div className="pf-note" style={{ marginBottom: 8 }}>
             <b>매입채무 불일치</b> - {liquidity.meta.knownDiscrepancy}
@@ -1262,7 +1292,7 @@ export function QualityTab() {
 
         <Panel
           span={6} title="외부 조사에서 채우지 못한 칸"
-          note="비어 있는 칸을 추정으로 메우지 않았다. 이 중 「가격 선도자냐」는 주간동향 실측으로 직접 답했다."
+          note="비어 있는 칸을 추정으로 메우지 않았다. 이 중 「가격 선도자냐」는 주간동향 실측으로 답의 범위를 좁혔다(«수요독점과 일치하는 패턴»까지)."
           src={SRC.nlm}
         >
           <ul className="pf-note" style={{ margin: 0, paddingLeft: 16 }}>
