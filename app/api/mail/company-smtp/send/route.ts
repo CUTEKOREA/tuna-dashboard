@@ -7,6 +7,7 @@ import {
 import { parseCompanySmtpMessage, sendCompanySmtpMessage } from '@/lib/mail/company-smtp';
 import { readLimitedRequestText, RequestBodyTooLargeError } from '@/lib/mail/request-body';
 import { authorizeMailRequest } from '@/lib/mail/request-auth';
+import { canSendCompanySmtp } from '@/lib/mail/company-smtp-access';
 import { getCompanySmtpConfig, getMailPublicBaseUrl } from '@/lib/mail/server-env';
 import { createMailServiceClient } from '@/lib/mail/server-supabase';
 
@@ -20,6 +21,7 @@ const REQUEST_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9
 export async function POST(request: Request) {
   const access = await authorizeMailRequest(true);
   if (!access.ok) return mailError(access.status, access.code);
+  if (!canSendCompanySmtp(access.email)) return mailError(403, 'admin_required');
 
   try {
     if (!hasTrustedMailOrigin(request, getMailPublicBaseUrl())) return mailError(403, 'invalid_origin');

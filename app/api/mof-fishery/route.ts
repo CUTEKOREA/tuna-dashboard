@@ -178,7 +178,7 @@ type Result =
   | { ok: false; title: string; error: string; source: string };
 
 async function fetchEndpoint(key: string, opts: Record<string, string>): Promise<Result> {
-  const endpoint = ENDPOINTS[key];
+  const endpoint = Object.hasOwn(ENDPOINTS, key) ? ENDPOINTS[key] : undefined;
   if (!endpoint) return { ok: false, title: key, error: `모르는 데이터셋: ${key}`, source: 'ROUTE' };
 
   // 기준일을 안 받았고 되짚기가 열려 있으면, 데이터가 나올 때까지 한 달씩 물러난다.
@@ -268,8 +268,19 @@ async function fetchFreightMatrix(opts: Record<string, string>) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json().catch(() => ({}));
-    const { endpoint, endpoints, ...opts } = body ?? {};
+    const body = await request.json().catch(() => null);
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return NextResponse.json({ ok: false, error: 'JSON 객체가 필요합니다.' }, { status: 400 });
+    }
+    const { endpoint, endpoints, ...opts } = body;
+    const keys = Object.keys(ENDPOINTS);
+    if ((endpoint !== undefined && (typeof endpoint !== 'string'
+      || (endpoint !== 'shipping_cost_all' && !Object.hasOwn(ENDPOINTS, endpoint))))
+      || (endpoints !== undefined && (!Array.isArray(endpoints)
+        || endpoints.length > keys.length
+        || endpoints.some((key: unknown) => typeof key !== 'string' || !Object.hasOwn(ENDPOINTS, key))))) {
+      return NextResponse.json({ ok: false, error: '데이터셋은 유효한 이름으로 최대 4개까지 지정할 수 있습니다.' }, { status: 400 });
+    }
 
     if (endpoint === 'shipping_cost_all') {
       return NextResponse.json(await fetchFreightMatrix(opts));
@@ -278,7 +289,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(await fetchEndpoint(endpoint, opts));
     }
 
-    const wanted: string[] = Array.isArray(endpoints) && endpoints.length ? endpoints : Object.keys(ENDPOINTS);
+    const wanted: string[] = endpoints?.length ? [...new Set<string>(endpoints)] : keys;
     const results = await Promise.all(wanted.map((k) => fetchEndpoint(k, opts)));
     return NextResponse.json(Object.fromEntries(wanted.map((k, i) => [k, results[i]])));
   } catch (error: any) {
