@@ -9,7 +9,7 @@
 
 <!-- BEGIN GENERATED — scripts/feature_map.mjs. 손으로 고치지 마라 -->
 
-_생성: `node scripts/feature_map.mjs --write` · 메뉴 24개 · 정적 라우트 11개 · API 158개_
+_생성: `node scripts/feature_map.mjs --write` · 메뉴 24개 · 정적 라우트 11개 · API 160개_
 
 ## 화면 — 어떻게 도달하나
 
@@ -61,7 +61,7 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 24개 · 정적 라우
 
 ## API
 
-158개.
+160개.
 
 <details><summary>전체 목록</summary>
 
@@ -107,6 +107,7 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 24개 · 정적 라우
 - `/api/compliance`
 - `/api/comtrade`
 - `/api/consignment`
+- `/api/cron/security-alerts`
 - `/api/cron/weekly-briefing`
 - `/api/cross-commodity-intelligence`
 - `/api/dart-insight`
@@ -217,6 +218,7 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 24개 · 정적 라우
 - `/api/us-census`
 - `/api/us-ita`
 - `/api/used-car`
+- `/api/webhooks/security`
 - `/api/webhooks/unloading`
 - `/api/whelk/dart`
 - `/api/whelk/kcs`

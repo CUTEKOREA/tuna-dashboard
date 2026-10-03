@@ -47,6 +47,8 @@ const PUBLIC_AUTH_PATHS = new Set([
 ]);
 
 const PUBLIC_SERVICE_PATHS = new Set([
+  '/api/webhooks/security',
+  '/api/cron/security-alerts',
   '/api/webhooks/unloading',
   // 주간 브리핑 cron — 라우트 내부에서 CRON_SECRET(Bearer, 32자+ timingSafeEqual) 자체 검증
   '/api/cron/weekly-briefing',
