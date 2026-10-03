@@ -1,5 +1,5 @@
 import { createServerClient } from '@supabase/ssr';
-import { NextResponse, type NextRequest } from 'next/server';
+import { NextResponse, type NextFetchEvent, type NextRequest } from 'next/server';
 import { getSupabaseAuthConfig } from '@/lib/mail/server-env';
 import {
   dashboardOwnerEmailConfig,
@@ -11,6 +11,7 @@ import {
 import { isLocalDashboardE2ERequest } from './local-e2e-access';
 import { renderDashboardLogin } from './login-response';
 import { getDashboardPublicOrigin } from './server-config';
+import { queueSecurityObservation } from '@/lib/security/events';
 
 const PRIVATE_HEADERS = {
   'Cache-Control': 'private, no-store, max-age=0',
@@ -63,7 +64,7 @@ function pageDenied(
   return privateResponse(NextResponse.redirect(loginUrl));
 }
 
-export async function updateDashboardOwnerSession(request: NextRequest): Promise<NextResponse> {
+export async function updateDashboardOwnerSession(request: NextRequest, event?: NextFetchEvent): Promise<NextResponse> {
   if (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/mail/login') {
     try {
       const publicOrigin = getDashboardPublicOrigin();
@@ -126,6 +127,7 @@ export async function updateDashboardOwnerSession(request: NextRequest): Promise
     access = { ok: false, status: 503, code: 'configuration_required' };
   }
 
+  queueSecurityObservation(request, access, event);
   if (!access.ok) {
     return request.nextUrl.pathname.startsWith('/api/')
       ? apiDenied(access)

@@ -1,3 +1,10 @@
+> **2026-10-03 — 보안 알림·WAF 적용 진행** [Codex]:
+> - 사용자 명시 요청에 따라 별도 worktree/브랜치에서 구현. 기존 Google 인증은 유지하고 proxy의 waitUntil로 정제된 신호만 집계. 익명 API 거부 전체 30/10분, 인증된 민감 GET 계정별 300/10분; 5분 cron, 전체 시간당 1통.
+> - DB service-role 전용 집계·큐·replay RPC 및 독립 retention RPC 적용. 29→30/299→300 임계값, RLS/GRANT, replay, 상태 전이 rollback검증 통과. 병렬 100+100 집계=200, 동시 claim=1+0 확인 후 해당 합성 데이터만 정리.
+> - 독립 검토에서 발견한 claim/suppression 동시성 및 발송 설정 장애 시 retention 누락 보완. raw IP·email·query·토큰·원문 저장 없음. 전용 projectIds-bound Vercel firewall.attack 웹훅과 Production env 설정 완료(값은 Git에 없음).
+> - WAF 4개는 현재 production 로그 모드(version1); preview 차단 검증 후 운영 deny/429 전환 예정. 전체 verify 통과(1,770 tests, 기존 fixture 2 skip), 본문 수신 timeout 회귀를 추가해 관련 검증 진행.
+> - 다음: 최종 코드/CI, preview WAF 검증, main 배포, 운영 인증/화면/로그 및 실제 경보 수신 확인. 전체 대시보드 MFA 변경은 범위 밖.
+
 > **2026-10-03 17:47 KST — 대시보드 보안 경계 5건 로컬 수정** [Codex]:
 > - 완료된 것: 회사 SMTP 전송·상태는 Google 인증 및 기존 MFA에 더해 `DASHBOARD_OWNER_EMAIL`만 허용. 추가 열람자의 개인 Gmail과 `CRON_SECRET` 예약 브리핑 경로는 유지.
 > - Atuna `date`는 단일 실제 달력 날짜, 지정 디렉터리 및 존재 목록을 검사. MOF POST는 최대 4개 유효 데이터셋을 검증한 뒤 중복 제거; WITS는 최대 10개 4자리 연도, 중복 제거, 30초 외부 조회 예산과 클라이언트 취소를 적용.
