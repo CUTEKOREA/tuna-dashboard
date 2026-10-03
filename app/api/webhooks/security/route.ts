@@ -5,7 +5,7 @@ import { createSecurityClient } from '@/lib/security/events';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
-export const maxDuration = 10;
+export const maxDuration = 20;
 const headers = { 'Cache-Control': 'private, no-store, max-age=0' };
 const MAX_BODY_BYTES = 64_000;
 
