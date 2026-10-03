@@ -17,6 +17,8 @@ export const dynamic = 'force-dynamic';
 // --- WITS API Configuration ---
 const WITS_BASE = 'https://wits.worldbank.org/API/V1/SDMX/V21/datasource';
 const WITS_TIMEOUT = 12000; // 12s timeout
+const WITS_QUERY_TIMEOUT = 30_000;
+const WITS_MAX_YEARS = 10;
 
 // --- Country ISO3 Code Map (WITS uses ISO3 numeric) ---
 const COUNTRY_ISO3: Record<string, string> = {
@@ -76,21 +78,22 @@ async function fetchWITS(
   year: string,
   partner: string,
   product: string,
-  indicator: string
+  indicator: string,
+  querySignal: AbortSignal,
 ): Promise<any | null> {
   // WITS URL structure:
   // /datasource/{ds}/reporter/{iso3}/year/{yr}/partner/{iso3}/product/{hs6}/indicator/{ind}
   const url = `${WITS_BASE}/${datasource}/reporter/${reporter}/year/${year}/partner/${partner}/product/${product}/indicator/${indicator}`;
 
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), WITS_TIMEOUT);
+  if (querySignal.aborted) return null;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), WITS_TIMEOUT);
 
+  try {
     const resp = await fetch(url, {
       headers: { 'Accept': 'application/xml' },
-      signal: controller.signal,
+      signal: AbortSignal.any([querySignal, controller.signal]),
     });
-    clearTimeout(timeoutId);
 
     if (!resp.ok) {
       console.warn(`[WITS] ${resp.status} for ${url}`);
@@ -132,12 +135,15 @@ async function fetchWITS(
       return null;
     }
   } catch (e: any) {
+    if (querySignal.aborted) return null;
     if (e.name === 'AbortError') {
       console.warn(`[WITS] Timeout for ${datasource}/${reporter}/${product}`);
     } else {
       console.warn(`[WITS] Fetch error: ${e.message}`);
     }
     return null;
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 
@@ -222,7 +228,7 @@ const TRADE_VOLUME_FALLBACK: Record<string, { year: string; importValueUSD: numb
 };
 
 // --- Main Pipeline: Orchestrate WITS calls with fallback ---
-async function getWITSData(hsCode: string, reporterISO3: string, years: string[]) {
+async function getWITSData(hsCode: string, reporterISO3: string, years: string[], querySignal: AbortSignal) {
   const results: {
     tariff: any;
     tradeFlow: any[];
@@ -243,7 +249,8 @@ async function getWITSData(hsCode: string, reporterISO3: string, years: string[]
     latestYear,
     '000', // World
     hsCode,
-    INDICATORS.AHS_WEIGHTED_AVG
+    INDICATORS.AHS_WEIGHTED_AVG,
+    querySignal,
   );
 
   if (tariffResult && Array.isArray(tariffResult) && tariffResult.length > 0) {
@@ -257,13 +264,16 @@ async function getWITSData(hsCode: string, reporterISO3: string, years: string[]
 
   // 2) Attempt WITS Live API — Trade flow data
   for (const year of years) {
+    // 전체 시간 예산이 끝나면 추가 조회 없이 기존 대체 데이터로 진행한다.
+    if (querySignal.aborted) break;
     const importVal = await fetchWITS(
       DATASOURCES.TRADE,
       reporterISO3,
       year,
       'ALL',
       hsCode,
-      INDICATORS.IMPORT_VALUE
+      INDICATORS.IMPORT_VALUE,
+      querySignal,
     );
 
     if (importVal && Array.isArray(importVal) && importVal.length > 0) {
@@ -343,11 +353,20 @@ export async function GET() {
 
 // --- POST: Main data query ---
 export async function POST(req: Request) {
+  const queryController = new AbortController();
+  const cancelQuery = () => queryController.abort();
+  req.signal.addEventListener('abort', cancelQuery, { once: true });
+  if (req.signal.aborted) cancelQuery();
+  const queryTimeout = setTimeout(cancelQuery, WITS_QUERY_TIMEOUT);
   try {
-    const body = await req.json();
+    queryController.signal.throwIfAborted();
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return NextResponse.json({ error: 'JSON 객체가 필요합니다.' }, { status: 400 });
+    }
     const { commodity, reporter, years: reqYears } = body;
 
-    if (!commodity) {
+    if (typeof commodity !== 'string' || !commodity || (reporter !== undefined && typeof reporter !== 'string')) {
       return NextResponse.json(
         { error: 'commodity is required (품목명 or HS6 code)' },
         { status: 400 }
@@ -359,7 +378,7 @@ export async function POST(req: Request) {
     let commodityName: string;
     let commodityDesc: string;
 
-    const hsMatch = WITS_COMMODITY_HS_MAP[commodity];
+    const hsMatch = Object.hasOwn(WITS_COMMODITY_HS_MAP, commodity) ? WITS_COMMODITY_HS_MAP[commodity] : undefined;
     if (hsMatch) {
       hsCode = hsMatch.hs6;
       commodityName = commodity;
@@ -384,14 +403,22 @@ export async function POST(req: Request) {
     }
 
     // Resolve reporter country
-    const reporterISO3 = COUNTRY_ISO3[reporter || '한국'] || COUNTRY_ISO3['한국'];
+    const reporterISO3 = Object.hasOwn(COUNTRY_ISO3, reporter || '한국') ? COUNTRY_ISO3[reporter || '한국'] : COUNTRY_ISO3['한국'];
     const reporterName = reporter || '한국';
 
     // Resolve years
-    const years = reqYears || ['2020', '2021', '2022', '2023', '2024'];
+    if (reqYears !== undefined && (!Array.isArray(reqYears)
+      || reqYears.length === 0 || reqYears.length > WITS_MAX_YEARS
+      || reqYears.some((year: unknown) => typeof year !== 'string' || year.length !== 4 || !/^\d{4}$/.test(year)))) {
+      return NextResponse.json({ error: '연도는 네 자리 문자열로 1~10개 지정해야 합니다.' }, { status: 400 });
+    }
+    const years = reqYears === undefined
+      ? ['2020', '2021', '2022', '2023', '2024']
+      : [...new Set<string>(reqYears)];
 
     // Execute WITS pipeline
-    const witsData = await getWITSData(hsCode, reporterISO3, years);
+    const witsData = await getWITSData(hsCode, reporterISO3, years, queryController.signal);
+    req.signal.throwIfAborted();
 
     // Calculate derived metrics
     let unitPrice: { year: string; pricePerKg: number }[] = [];
@@ -426,10 +453,19 @@ export async function POST(req: Request) {
       allTariffs: TARIFF_FALLBACK[hsCode] || {},
     });
   } catch (error: any) {
+    if (queryController.signal.aborted) {
+      return NextResponse.json(
+        { error: req.signal.aborted ? '조회가 취소되었습니다.' : '조회 제한 시간을 초과했습니다.' },
+        { status: req.signal.aborted ? 408 : 504 },
+      );
+    }
     console.error('[WITS API] Error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error', message: error.message },
       { status: 500 }
     );
+  } finally {
+    clearTimeout(queryTimeout);
+    req.signal.removeEventListener('abort', cancelQuery);
   }
 }

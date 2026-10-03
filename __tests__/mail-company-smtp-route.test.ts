@@ -1,4 +1,6 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+vi.mock('server-only', () => ({}));
 
 const mocks = vi.hoisted(() => ({
   reserve: vi.fn(),
@@ -10,6 +12,7 @@ vi.mock('@/lib/mail/request-auth', () => ({
   authorizeMailRequest: vi.fn(async () => ({
     ok: true as const,
     userId: '11111111-2222-4333-8444-555555555555',
+    email: 'owner@example.com',
     aal: 'aal2',
   })),
 }));
@@ -52,10 +55,13 @@ function request() {
 
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.stubEnv('DASHBOARD_OWNER_EMAIL', 'owner@example.com');
   mocks.reserve.mockResolvedValue({ decision: 'reserved' });
   mocks.record.mockResolvedValue(undefined);
   mocks.send.mockResolvedValue(undefined);
 });
+
+afterEach(() => vi.unstubAllEnvs());
 
 describe('회사 SMTP 발송 route 실행', () => {
   it('예약 후 한 번 발송하고 sent를 기록한다', async () => {

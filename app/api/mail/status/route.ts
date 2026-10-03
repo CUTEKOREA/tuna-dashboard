@@ -3,6 +3,7 @@ import { mailError, mailJson } from '@/lib/mail/http';
 import { createMailServiceClient } from '@/lib/mail/server-supabase';
 import { getCompanySmtpConfig } from '@/lib/mail/server-env';
 import { getMailConnectionSummary } from '@/lib/mail/token-store';
+import { canSendCompanySmtp } from '@/lib/mail/company-smtp-access';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -24,7 +25,7 @@ export async function GET() {
       ? await getMailConnectionSummary(createMailServiceClient(), access.userId, 'gmail')
       : null;
     let companySmtp: { from: string } | null = null;
-    if (access.aal === 'aal2') {
+    if (access.aal === 'aal2' && canSendCompanySmtp(access.email)) {
       try {
         const config = getCompanySmtpConfig();
         companySmtp = { from: config.from };
