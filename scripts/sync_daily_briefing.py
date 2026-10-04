@@ -94,6 +94,26 @@ def has_styles(block: HtmlBlock, *declarations: str) -> bool:
     return all(declaration in style for declaration in declarations)
 
 
+
+WIDGET_SOURCE = Path(__file__).resolve().parent.parent / "lib" / "data" / "daily-briefing.ts"
+
+
+def widget_number_token_pattern() -> "re.Pattern[str]":
+    """「오늘의 수치」 위젯이 쓰는 수치 토큰 정규식을 TS 정본에서 읽어 온다.
+
+    복사해 두면 갈라진다 — 배포 게이트가 위젯과 다른 기준으로 통과를 내주면
+    화면은 비는데 파이프라인은 OK 를 찍는다. 정본은 daily-briefing.ts 하나다.
+    """
+    src = WIDGET_SOURCE.read_text(encoding="utf-8")
+    m = re.search(r"const NUMBER_TOKEN_PATTERN\s*=\s*/(.+?)/;", src, re.S)
+    if not m:
+        raise BriefingSyncError(
+            f"NUMBER_TOKEN_PATTERN 을 {WIDGET_SOURCE} 에서 찾지 못했습니다 — "
+            "위젯 정규식이 옮겨졌는지 확인하십시오."
+        )
+    # JS 와 Python 에서 뜻이 같은 문법만 쓰고 있다(lookbehind·named group 없음).
+    return re.compile(m.group(1))
+
 def is_digest_title(block: HtmlBlock) -> bool:
     return block.tag == "td" and has_styles(
         block,
@@ -223,10 +243,15 @@ def parse_briefing_html(source: Path) -> dict[str, Any]:
         for paragraph in article["paragraphs"]
         for sentence in re.split(r"(?<=[.!?])\s+", paragraph)
     )
-    numeric_digest = [d for d in digest if re.search(r"\d", d["title"])]
+    # 「숫자가 하나라도 있으면 통과」로는 게이트가 거짓말을 한다. 위젯은 단위가 붙은 토큰만
+    # 뽑으므로 「SIAL 파리 2026」 같은 연도로 계약은 열리고 「오늘의 수치」는 빈 채 나간다
+    # (9/28·9/29 실측). 그래서 위젯이 실제로 쓰는 정규식을 TS 에서 그대로 읽어 같은 기준으로 센다.
+    token_pattern = widget_number_token_pattern()
+    numeric_digest = [d for d in digest if token_pattern.search(d["title"])]
     if len(digest) < 2 or not numeric_digest:
         raise BriefingSyncError(
-            "SIT 를 만들 수 없습니다 — 숫자가 포함된 다이제스트가 최소 1건, 전체 2건 이상 필요합니다."
+            "SIT 를 만들 수 없습니다 — 위젯이 뽑을 수 있는 수치 토큰(단위·통화 포함)이 든 "
+            "다이제스트가 최소 1건, 전체 2건 이상 필요합니다."
         )
 
     # 2026-08-17: 지침 문장 없음은 실패가 아니다. 그날 기사가 전부 관측·보고형일 수 있다
