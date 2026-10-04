@@ -1,3 +1,9 @@
+> 📰 **2026-10-05 06:59 KST — `/market` 2026-10-02 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
+> - PR [#1328](https://github.com/CUTEKOREA/tuna-dashboard/pull/1328) squash 병합. main commit `97e9c602`(브랜치 커밋 `217cc021`, `briefing/2026-10-02`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+59/−64). 기준일 `2026-10-01` → `2026-10-02`, 기사 **5건**.
+> - 게이트: `state/audit-2026-10-02.txt` AUDIT_PASS(윤문본 `ADOPTED PASS blocks=39 changed=11 rate=1.8%`, 재감사 AUDIT_PASS P0/P1 0) · 06:53 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · pre-push build 통과 · 변경분 존재.
+> - Vercel 커밋 상태 `success`(06:59:03 KST). 06:57 첫 확인은 아직 10.01(빌드 중). 06:59 라이브(Aside 로그인 세션): 「**기준일 2026.10.02 · 기사 5건 · 파이프라인 동기**」, 리드 「참치 선단 대상 EU 강제노동 정책, 실질적 변화 만들어야」, 이하 Century Pacific COO MENA·방콕 가다랑어 53%·EU 날개다랑어 수입 감소·캔참치 오젬픽 5건 확인. 「오늘의 수치」 `53%`(방콕 가다랑어 가격 올해).
+> - 워크트리: PR MERGED + `git diff origin/main -- public/data/tuna_daily_briefing.json` 빈 것을 확인하고 `sync/2026-10-02`(origin/main)로 옮겼다. 이 기록 PR 병합 뒤 다시 origin/main 으로 옮겨 clean 으로 남긴다.
+
 > **2026-10-03 — 운영 집계 저장 시간 여유 보완** [Codex]:
 > - PR #1323 배포 및 WAF version3 적용, 실제 시험메일 Gmail 수신은 성공. 최종 로그에서 /api/atuna-prices 응답200에 집계 실패2건을 확인. 기존 로그는 원인을 구분하지 않아 이 두건의 원인 확정은 불가.
 > - 3.5초 정상 RPC 응답이 기존2.5초제한에서 버려지는 회귀를재현. 보안DB호출제한8초·no-store 명시, 고정실패유형/경과시간만기록. POST RPC 재시도없어중복집계방지. webhook20초/cron90초로처리여유정합성보완; SMTP중단시기존unknown복구유지.
