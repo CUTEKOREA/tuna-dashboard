@@ -8,6 +8,7 @@ import {
 } from '@/lib/data/cosmo'
 import { cosmoMonthlyReport as mr } from '@/lib/data/cosmo-monthly-report'
 import { cosmoQualityReport as qr } from '@/lib/data/cosmo-quality-report'
+import { cosmoFbuReport as fb, fbuLedgerComparison } from '@/lib/data/cosmo-fbu-report'
 
 const mt = (v: number) => v.toLocaleString('en-US', { maximumFractionDigits: 0 }) + ' MT'
 const n0 = (v: number) => v.toLocaleString('en-US')
@@ -17,6 +18,7 @@ const day = (v: number) => v.toFixed(1) + '일'
 const pp = (v: number | null | undefined) => (v == null ? '-' : (v * 100).toFixed(2) + '%p')
 const usdFmt = (v: number | null | undefined) => (v == null ? '-' : '$' + num(v, 0))
 const musdFmt = (v: number) => '$' + (v / 1e6).toFixed(2) + 'M'
+const t2 = (v: number | null) => (v == null ? '미확정' : num(v, 2))
 
 /** 값 폭이 좁은 계열은 0 기준 축에서 한 선으로 뭉갠다 — 데이터 범위 ±pad 로 자른 축 */
 const tightDomain = (vals: (number | null | undefined)[], pad = 0.3): [number, number] => {
@@ -140,6 +142,8 @@ export default function Production() {
   const hasFbuPlan = cmpRows.some((r) => r.fp !== '-' || r.fg !== '-')
 
   const lastAnnual = annual[annual.length - 1]
+
+  const fbuCmp = fbuLedgerComparison()
 
   /* 동일 주차 구간(1~현재주) 대조 — 계절성 통제 */
   const yrRows = [
@@ -426,6 +430,80 @@ export default function Production() {
               </tbody>
             </table>
           </div>
+        </Card>
+      </div>
+
+      <SecHead id="fbu-monthly">FBU 월간 현황 ({fb.source.reportDate.slice(5, 7).replace(/^0/, '')}월 · 로인 가공)</SecHead>
+      <div className="grid g2">
+        <Card
+          title="재고와 원어 입고"
+          sub={`${fb.inventory.asOf} 기준 · MT · 현지용 부산물·미선별 원어 제외. 재고가치는 원어·로인만 인쇄됐다(벨리·EU-MEAT 는 부산물 정산).`}
+          note={<>로인 재고 <b>{num(fb.inventory.total.loin, 2)} MT</b>({usdFmt(fb.inventory.valueUsd.loin)})가 출고를 기다리고,
+            원어는 <b>{num(fb.inventory.total.raw, 1)} MT</b>만 남았다. 1~8월 하역 {num(fb.intake.janAug.unloadedMt, 1)} MT 중
+            {' '}{num(fb.intake.janAug.returnMt, 1)} MT({pct(fb.intake.janAug.returnMt / fb.intake.janAug.unloadedMt, 1)})가 반품으로 빠져
+            최종 입고는 {num(fb.intake.janAug.finalMt, 1)} MT, 매입비용 {usdFmt(fb.intake.janAug.costUsd)}다. {fb.intake.note}</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>어종</th><th className="n">원어</th><th className="n">로인</th><th className="n">벨리</th><th className="n">EU-MEAT</th></tr></thead>
+              <tbody>
+                {fb.inventory.rows.map((r) => (
+                  <tr key={r.species}><td>{r.species}</td><td className="n">{num(r.raw, 2)}</td><td className="n">{num(r.loin, 2)}</td><td className="n">{num(r.belly, 2)}</td><td className="n">{num(r.euMeat, 2)}</td></tr>
+                ))}
+                <tr><td><b>합계</b></td><td className="n"><b>{num(fb.inventory.total.raw, 2)}</b></td><td className="n"><b>{num(fb.inventory.total.loin, 2)}</b></td><td className="n"><b>{num(fb.inventory.total.belly, 2)}</b></td><td className="n"><b>{num(fb.inventory.total.euMeat, 2)}</b></td></tr>
+                <tr><td>재고가치</td><td className="n">{usdFmt(fb.inventory.valueUsd.raw)}</td><td className="n">{usdFmt(fb.inventory.valueUsd.loin)}</td><td className="n" colSpan={2}>부산물 정산</td></tr>
+              </tbody>
+            </table>
+            <table>
+              <thead><tr><th>원어 입고</th><th className="n">하역량</th><th className="n">반품</th><th className="n">최종 입고</th><th className="n">매입비용</th></tr></thead>
+              <tbody>
+                <tr><td>1~8월</td><td className="n">{t2(fb.intake.janAug.unloadedMt)}</td><td className="n">{t2(fb.intake.janAug.returnMt)}</td><td className="n">{t2(fb.intake.janAug.finalMt)}</td><td className="n">{usdFmt(fb.intake.janAug.costUsd)}</td></tr>
+                <tr><td>9월</td><td className="n">{t2(fb.intake.sep.unloadedMt)}</td><td className="n">{fb.intake.sep.returnMt == null ? '-' : t2(fb.intake.sep.returnMt)}</td><td className="n">{t2(fb.intake.sep.finalMt)}</td><td className="n">{fb.intake.sep.costUsd == null ? '미확정' : usdFmt(fb.intake.sep.costUsd)}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="가공과 수출"
+          sub={`9월 가공 ${fb.processing.sep.days}일 · 수출 송장 ${fb.exports.total.containers}건. 누계 원어는 재가공 물량을 포함한다(원문 각주).`}
+          note={<>9월 원어 {num(fb.processing.sep.rawMt, 1)} MT를 넣어 로인 {num(fb.processing.sep.loinMt, 1)} MT, 수율 <b>{fb.processing.sep.yieldPct.toFixed(2)}%</b>.
+            9월 수출은 <b>{fb.exports.total.containers} CONT · {num(fb.exports.total.mt, 1)} MT · {usdFmt(fb.exports.total.usd)}</b>,
+            누계 {fb.exports.ytd.containers} CONT · {num(fb.exports.ytd.mt, 1)} MT · {musdFmt(fb.exports.ytd.usd)}다.
+            {' '}주간 원장의 FBU 원어 누계({fbuCmp.ledgerEnd}까지)는 {num(fbuCmp.ledgerRawMt, 0)} MT·{fbuCmp.ledgerDays}일이고
+            월간보고(9/30까지, 재가공 포함)는 {num(fbuCmp.reportRawMt, 0)} MT·{fbuCmp.reportDays}일이라 {num(fbuCmp.gapMt, 0)} MT·{fbuCmp.gapDays}일 차이가 난다 - 기준 차이로 맞추지 않았다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>수출 오더</th><th>제품</th><th className="n">중량 (MT)</th><th>도착지</th><th className="n">송장 금액</th><th>판매처</th></tr></thead>
+              <tbody>
+                {fb.exports.rows.map((r) => (
+                  <tr key={r.order}><td>{r.order}</td><td>{r.product}</td><td className="n">{num(r.mt, 2)}</td><td>{r.dest}</td><td className="n">{usdFmt(r.usd)}</td><td>{r.buyer}</td></tr>
+                ))}
+                <tr><td colSpan={2}><b>9월 합계</b></td><td className="n"><b>{num(fb.exports.total.mt, 2)}</b></td><td>{fb.exports.total.containers} CONT</td><td className="n"><b>{usdFmt(fb.exports.total.usd)}</b></td><td /></tr>
+                <tr><td colSpan={2}>2026년 누계</td><td className="n">{num(fb.exports.ytd.mt, 2)}</td><td>{fb.exports.ytd.containers} CONT</td><td className="n">{usdFmt(fb.exports.ytd.usd)}</td><td /></tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card title="인원" sub={`총 ${fb.staff.total}명 (부서장 ${fb.staff.hod}명 포함)`}>
+          <div className="tw">
+            <table>
+              <thead><tr><th>부문</th><th className="n">인원</th><th>구성</th></tr></thead>
+              <tbody>
+                {fb.staff.groups.map((g) => (<tr key={g.name}><td>{g.name}</td><td className="n">{g.count}명</td><td>{g.detail}</td></tr>))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card title="현안" sub={`FBU 월간 현황 보고 ${fb.source.reportDate} · ${fb.source.author}`}>
+          {fb.issues.map((iss) => (
+            <Callout key={iss.title} kind="warn" label={iss.title}>
+              {iss.lines.join(' ')}
+            </Callout>
+          ))}
         </Card>
       </div>
 
