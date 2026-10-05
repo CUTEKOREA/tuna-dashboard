@@ -1,3 +1,12 @@
+> ✅ **2026-10-05 23:56 KST — 참치 데일리 브리핑 2026-10-05 `/market` 배포 (#1339)** [CC]:
+> - `public/data/tuna_daily_briefing.json` 단일 파일 (date=2026-10-05, 다이제스트 5건, 기사 5건). 다른 파일 섞임 없음.
+> - 게이트: `state/audit-2026-10-05.txt` = `AUDIT_PASS`(제목 수정 뒤 3차 재감사까지 통과), 윤문 `ADOPTED`(blocks=41 changed=9 rate=1.6%).
+> - PR #1339 squash 병합 `ccf15e54`(14:55:58Z). 직전 배포는 2026-10-02 `97e9c602`.
+> - 반영 판정은 커밋 메시지가 아니라 **내용 해시 대조**: 로컬 준비분과 `origin/main` 의 브리핑 JSON sha256 선두 16자리가 `418a11c822befcb4` 로 일치.
+> - 라이브 실측(Aside, 로그인 세션): `/market` ROW4 「오늘의 참치 뉴스」 — **기준일 2026.10.05 · 기사 5건 · 파이프라인 동기**. 10.02 → 10.05 전환 확인. Vercel 자동 배포는 이번엔 정상 발화(#1334 때와 달리 CLI 배포 불필요).
+> - **「오늘의 수치」 위젯 정상**: 다이제스트 2행 「Atunsa, 2025년 매출 13% 줄어든 Pevasa 인수 마무리」 에서 `13%` 추출, 라벨 「Atunsa, 2025년 매출」 로 화면에 렌더됨(육안 확인). 나머지 4개 다이제스트는 수치 토큰이 없어 건너뜀 — 위젯에 1건만 표시되는 것이 정상 동작(fail-closed).
+> - ⚠ **배포 중 워크트리 `~/silla-tuna-daily/dash` 가 사라졌다.** push 직후 `gh pr merge --squash --delete-branch` 가 로컬 정리 단계에서 `fatal: Unable to read current working directory` 로 실패했고, 디렉터리와 `my-project/tuna-dashboard` 의 워크트리 등록이 모두 없어진 상태다(원격 병합은 정상 완료). 브랜치 `briefing/2026-10-05`(커밋 `797f324e`)와 원격 ref 는 남아 있다. 이 세션이 지우지 않았다 — 동시 실행 세션의 정리로 추정. **다음 회차 `prepare_dashboard()` 가 워크트리 부재로 시작하지 못한다. 워크트리 재생성이 선행돼야 한다**(퍼블리셔는 워크트리 생성·삭제 권한이 없어 손대지 않았다).
+
 > 🚀 **2026-10-05 18:45 KST — #1334 코스모 FBU 9월 월간 현황 배포 (Vercel 자동 배포 미발화 → CLI 배포)** [CC]:
 > - #1334 CI 통과(종료 코드 0) 후 squash 병합 `f5a52ba7`(18:26).
 > - ⚠ 병합 커밋에 Vercel 상태·배포가 15분 넘게 생기지 않았다(직전 #1331 `8224d0cf` 까지는 정상 자동 배포). GitHub → Vercel 연동 신호가 오지 않은 것으로 판단하고, `f5a52ba7` 을 깨끗한 분리 워크트리로 체크아웃해 `vercel deploy --prod` 로 배포했다(추적 파일만, `.vercel/project.json` 복사). Production `dpl_6FC6d9N4ZT6wKT8SqBhmJcRHo2pS` READY, alias `https://leedonggun.co.kr`. 첫 CLI 실행이 같은 소스로 배포 하나(`tuna-dashboard-lvrfrckue`)를 더 만들었으나 alias 는 최신을 가리킨다.
