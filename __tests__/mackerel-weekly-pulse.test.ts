@@ -22,30 +22,33 @@ function narrativeText(): string {
 }
 
 describe('고등어 최신 주간 수급 신호', () => {
-  it('NSC 37주 누계 물량·단가와 전년 대비를 표시한다', () => {
+  it('NSC 39주 누계 물량·단가와 전년 대비를 표시한다', () => {
     const text = narrativeText();
 
-    expect(text).toContain('2026년 37주');
-    expect(text).toContain('48,051 톤');
-    expect(text).toContain('48.80 NOK/kg');
-    expect(text).toContain('103,036');
-    expect(text).toContain('32.57');
-    expect(text).toContain('10,160 톤 · 51.88 NOK/kg');
+    expect(text).toContain('2026년 39주');
+    expect(text).toContain('55,820 톤');
+    expect(text).toContain('49.27 NOK/kg');
+    expect(text).toContain('123,654');
+    expect(text).toContain('34.38');
+    expect(text).toContain('11,660 톤 · 52.01 NOK/kg');
     expect(text).not.toContain('한국은 표에 오르지 않는다');
     expect(text).not.toContain('2026년 36주(9월 9일 게시)');
+    expect(text).not.toContain('2026년 37주(9월 16일 게시)');
+    expect(text).not.toContain('48,051 톤');
     expect(text).not.toContain('32주 누계');
     expect(text).not.toContain('2026년 34주');
   });
 
-  it('KMI Vol.259 국내 도매·소매 가격과 미형성을 구분한다', () => {
+  it('KMI Vol.262 국내 도매·소매 가격과 미형성을 구분한다', () => {
     const text = narrativeText();
 
-    expect(text).toContain('KMI Vol.259');
-    expect(text).toContain('냉장 도매 5,579');
-    expect(text).toContain('냉동 도매 4,180');
-    expect(text).toContain('냉장 소매 12,069');
+    expect(text).toContain('KMI Vol.262');
+    expect(text).toContain('냉장 도매 5,513');
+    expect(text).toContain('냉동 도매 4,218');
+    expect(text).toContain('냉장 소매 12,186');
     expect(text).toContain('11,029');
-    expect(text).toContain('미형성');
+    expect(text).toContain('9월 2주부터 4주까지 다시 미형성');
+    expect(text).not.toContain('냉장 도매 5,579');
     expect(text).not.toContain('KMI Vol.257');
     expect(text).not.toContain('냉장 도매 6,172');
   });
@@ -56,11 +59,12 @@ describe('고등어 최신 주간 수급 신호', () => {
     );
     const notes = MACKEREL_SOURCE_NOTES.join('\n');
 
-    expect(html).toContain('노르웨이 37주 누계');
-    expect(html).toContain('48,051톤 · 48.80 NOK/kg');
-    expect(html).toContain('NSC 2026-W37');
+    expect(html).toContain('노르웨이 39주 누계');
+    expect(html).toContain('55,820톤 · 49.27 NOK/kg');
+    expect(html).toContain('NSC 2026-W39');
     expect(html).not.toContain('노르웨이 36주 누계');
-    expect(html).toContain('KMI Vol.259');
+    expect(html).not.toContain('노르웨이 37주 누계');
+    expect(html).toContain('KMI Vol.262');
     expect(html).not.toContain('노르웨이 34주 누계');
     expect(html).not.toContain('KMI Vol.257');
     expect(notes).toContain('600g 미만');
@@ -114,7 +118,7 @@ describe('고등어 적대 리뷰 지적 (2026-09-10)', () => {
     expect(text).toContain('생물학적 허용어획량 30.4만 톤');
     expect(text).toContain('신고 기준 9곳(실제 생산 7곳)');
     expect(text).toContain('추정 - 25,000-9,784');
-    expect(text).toContain('추정 - 4,856÷11,732');
+    expect(text).toContain('추정 - 4,058÷9,343');
     expect(text).toContain('해외 가공사·노르웨이 수출사 법인명은 공표 없음');
     expect(notes).not.toContain('「1~8월」');
     expect(notes).toContain('"1~7월(7개월 누계)"');
