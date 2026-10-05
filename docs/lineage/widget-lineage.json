@@ -1,7 +1,7 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 298,
+  "files": 299,
   "widgets": 117,
   "dataFiles": 341,
   "generator": "scripts/widget_lineage.py"
@@ -500,6 +500,7 @@
   },
   "components/cosmo/tabs/ProductionTab.tsx": {
    "dataModules": [
+    "lib/data/cosmo-fbu-report.ts",
     "lib/data/cosmo-monthly-report.ts",
     "lib/data/cosmo-quality-report.ts",
     "lib/data/cosmo.ts"
