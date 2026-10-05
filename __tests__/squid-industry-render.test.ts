@@ -157,9 +157,9 @@ describe('시장 이해 > 오징어 - 위젯 큐레이션', () => {
     const chile = sourcingStage?.facts.find(
       (fact) => fact.label === '칠레 대왕오징어 쿼터 소진율',
     );
-    expect(chile).toMatchObject({ value: '72.2255%', grade: 'A' });
-    expect(chile?.asOf).toContain('144,451.0765톤');
-    expect(chile?.asOf).toContain('55,548.9235톤');
+    expect(chile).toMatchObject({ value: '72.6734%', grade: 'A' });
+    expect(chile?.asOf).toContain('145,346.8248톤');
+    expect(chile?.asOf).toContain('54,653.1752톤');
 
     const currentText = JSON.stringify([valueStage, sourcingStage]);
     expect(currentText).not.toContain('4,926 원/마리');
