@@ -1,3 +1,12 @@
+> ✅ **2026-10-05 18:20 KST — `/cosmo` 생산 탭 FBU 9월 월간 현황 반영** [CC]:
+> - 원자료: `FBU - 월간 업무현황 (2026년 9월).pdf`(Drive `12. COSMO/cosmo 주간보고/COSMO 월간보고/`) SHA-256 `159c0d7ae71b8e1c22c1d0e4bbb55391be82af682a483d370b83a058220a3ca1`, 3쪽, 작성 2026-09-30.
+> - 새 계약 `lib/data/cosmo-fbu-report.ts`: 인원 120명(부문별), 9/30 재고(원어 58.76 · 로인 352.99 · 벨리 42.18 MT, 재고가치 원어 $103,124 · 로인 $1,856,336), 원어 입고(1~8월 하역 1,653.7 − 반품 267.7 = 1,386.0 MT, $2,724,453 · 9월 P/DIS 14.6 MT 하역 중 미확정), 9월 가공 17일 195.4 → 로인 84.5 MT 수율 43.23%(누계 140일 1,851.6 → 826.1, 재가공 포함), 9월 수출 4 CONT 94.75 MT $436,859(누계 36 CONT 847.1 MT $3.89M), 현안 3건(GG 원어 부족 → 10월 가공 중단 가능성 · SNB 9월 운영경비 $100k 미지급 통보, 확정 시 $44k 손실 · 가나 수출검사 강화로 프랑스행 지연, 10/5 재개).
+> - 원문 합계는 모두 행 합과 일치(테스트 고정). 「월평균 207톤」 = (누계 − 9월) ÷ 8 = 1~8월 평균임을 확인.
+> - 대조: 주간 원장 FBU 원어 누계 9/27 1,739 MT·133일 대 월간보고 9/30 1,852 MT·140일 — 차 112 MT·7일은 9/28~30 사흘로 설명되지 않아 「재가공 포함」 기준 차이로 화면에 병기, 맞추지 않음.
+> - 제외: 현안 1) EUCC 처리 문제는 보고서와 같은 선(법무·경영 사안)으로 싣지 않음 — 사용자 확인 대기. 작성자 실명은 직급으로.
+> - 테스트 `cosmo-fbu-report.test.ts` 5건(렌더 RED → GREEN). `npm run verify` 통과: ESLint 0 errors · Vitest 1,781/1,781 · API cache 160/160 · build 정적 118 · fleet client leak · bundle 33. 브라우저(로컬 production 1440·390) overflow 0 · error 0 · EUCC·영문 머리글 0.
+> - 상태: 브랜치 `data/cosmo-fbu-monthly-0905`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 📰 **2026-10-05 06:59 KST — `/market` 2026-10-02 참치 데일리 브리핑 라이브 배포** [CC/tuna-dashboard-publisher]:
 > - PR [#1328](https://github.com/CUTEKOREA/tuna-dashboard/pull/1328) squash 병합. main commit `97e9c602`(브랜치 커밋 `217cc021`, `briefing/2026-10-02`). 변경은 `public/data/tuna_daily_briefing.json` 한 파일(+59/−64). 기준일 `2026-10-01` → `2026-10-02`, 기사 **5건**.
 > - 게이트: `state/audit-2026-10-02.txt` AUDIT_PASS(윤문본 `ADOPTED PASS blocks=39 changed=11 rate=1.8%`, 재감사 AUDIT_PASS P0/P1 0) · 06:53 `prepare_dashboard` 동기화 + `daily-briefing.test.ts` 4/4 · pre-push build 통과 · 변경분 존재.
