@@ -1,3 +1,9 @@
+> 🚀 **2026-10-07 08:40 KST — #1357 2026-10-06 참치 데일리 브리핑 /market 배포** [CC]:
+> - 게이트: `state/audit-2026-10-06.txt` = AUDIT_PASS(윤문 채택·재감사 통과). 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(58+/60-), 날짜 2026-10-06 · 다이제스트 5 · 기사 5.
+> - squash 병합 `69e21bb7`(PR #1357). origin/main 대조는 커밋 메시지가 아니라 내용 해시로 — SHA-256 `ad6276e9…36827c` 로컬=origin/main 일치.
+> - 라이브 실측(Aside, 로그인 세션): `/market` 「기준일 2026.10.06 · 기사 5건 · 파이프라인 동기」, 리드 「은행 문제로 미국 캔참치 합의금 지급 지연」. 「오늘의 수치」 = **16% / 무역협상 속 태국의 EU 캔참치 수출 상반기** — 다이제스트 5행 승격분이 위젯까지 올라온 것을 확인.
+> - ⚠ `gh pr merge --delete-branch` 가 «To finish cleanup … `git worktree remove /Users/idong-geon/my-project/silla-tuna-daily/dash`» 를 안내한다. **따르지 마라** — 10/05 에 워크트리가 사라진 사고의 경로로 보인다. 원격 병합은 이미 끝나 있으니 로컬은 `git switch -c sync/<날짜> origin/main` 으로만 정리한다(이번엔 `sync/2026-10-06` 이 이미 있어 `sync/2026-10-06b`).
+
 > 🚀 **2026-10-07 07:58 KST — #1354 파노피 주간동향 20261006 배포** [CC]:
 > - CI 통과(종료 코드 0) 후 squash 병합 `8dd15d5f`. 자동 배포 Production `dpl_APswVaE6z6XxgJRrtToApsxeUKrK` READY, alias `https://leedonggun.co.kr`. 선단 데이터 변경 없음 → 시크릿 교체 없음.
 > - 라이브 실측(Aside): `/panofi` 「42주 (2025-12-23~2026-10-06)」, 「10월 어가는 두 채널 모두 협의 중」, 「650천불 줄었다(회수)」, 세네갈 표 「주간동향 10/6 · 톤」·ALBONIGA, 옛 «비교할 수 없다» 문장 0.
