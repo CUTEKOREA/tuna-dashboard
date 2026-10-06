@@ -12,38 +12,37 @@ import {
 
 describe('2026-09-13 fleet operations sources', () => {
   it('reconciles the national VDS report at vessel and area grain', () => {
-    expect(nationalVds.asOf).toBe('2026-09-27');
+    expect(nationalVds.asOf).toBe('2026-10-05');
     expect(nationalVds.vessels).toHaveLength(6);
     expect(nationalVds.areas).toHaveLength(8);
-    expect(nationalVds.totals).toEqual({ allocated: 1_457, consumed: 1_210.2, remaining: 246.8, weekly: 32.6 });
+    expect(nationalVds.totals).toEqual({ allocated: 1_479.5, consumed: 1_239.1, remaining: 240.4, weekly: 28.9 });
 
     const kiribati = nationalVds.areas.find((area) => area.area === '키리바시');
     // 인쇄 소계를 그대로 둔다. 배정 763.98 대 764 는 1/6 반올림이지만,
-    // 소진 754.9 대 755 는 반올림으로 생길 수 없는 0.10 차이다 — 소진일은 소수 1자리이고,
-    // 같은 행 잔여 9.1(=764−754.9)과 국적 총합계 1,137.8 이 모두 754.9 기준이다.
-    // 09-20·09-27 판도 키리바시 소계 소진을 755.00 으로 그대로 찍었다(행 합 754.9) - 세 주째 같은 어긋남이다.
-    expect(kiribati?.totals).toEqual({ allocated: 764, consumed: 755, remaining: 9.1, weekly: 0 });
+    // 소진 752.5 대 752.6 은 반올림으로 생길 수 없는 0.10 차이다 — 소진일은 소수 1자리다.
+    // 09-13 판부터 네 판째 같은 0.1 어긋남이 이어진다(10-05 판 행 합 752.5 · 인쇄 752.6).
+    expect(kiribati?.totals).toEqual({ allocated: 764, consumed: 752.6, remaining: 11.5, weekly: -2.4 });
     expect(kiribati?.rowSums.allocated).toBeCloseTo(763.98, 2);
-    expect(kiribati?.rowSums.consumed).toBeCloseTo(754.9, 2);
-    expect(kiribati!.totals.allocated - kiribati!.rowSums.consumed).toBeCloseTo(kiribati!.totals.remaining, 2);
-    // 국적 총합계 소진은 수역 소계가 아니라 선박 행을 더한 값과 맞는다
+    expect(kiribati?.rowSums.consumed).toBeCloseTo(752.5, 2);
+    // 국적 총합계 소진 1,239.1 은 수역 소계 합(1,239.2)이 아니라 선박 행을 더한 값과 맞는다
     const counted = nationalVds.areas.filter((area) => area.includedInGrandTotal);
-    expect(counted.reduce((sum, area) => sum + area.rowSums.consumed, 0)).toBeCloseTo(1_210.2, 2);
-    expect(kiribati?.rowSums.weekly).toBeCloseTo(0, 2);
+    expect(counted.reduce((sum, area) => sum + area.rowSums.consumed, 0)).toBeCloseTo(1_239.1, 2);
+    // 키리바시 주간 소모 음수 2칸(S/CHA -1.4 · S/HAR -1.0) - 지난 판 추정 소진의 되돌림
+    expect(kiribati?.rowSums.weekly).toBeCloseTo(-2.4, 2);
     expect(nationalVds.areas.find((area) => area.area === '동부 공해')?.includedInGrandTotal).toBe(false);
-    // 09-27 판: 솔로몬/S/EXP 가 -1.77 → -0.47 로 줄었지만 여전히 초과다. 초과 칸은 11칸 그대로
-    expect(nationalVds.areas.flatMap((item) => item.rows).filter((row) => row.remaining < 0)).toHaveLength(11);
+    // 10-05 판: 솔로몬 배정이 44 → 66.5일로 늘어 S/EXP(-0.47)는 초과가 풀렸고 S/HAR 는 -0.17 → -1.72 로 커졌다. 11칸 → 10칸
+    expect(nationalVds.areas.flatMap((item) => item.rows).filter((row) => row.remaining < 0)).toHaveLength(10);
   });
 
   it('keeps Kiribati VDS as a separate four-vessel population', () => {
-    expect(kiribatiVds.asOf).toBe('2026-09-27');
+    expect(kiribatiVds.asOf).toBe('2026-10-05');
     expect(kiribatiVds.vessels).toEqual(['MOAMARI', 'MOAKONA', 'NAOERO SUN', 'NAOERO STAR']);
-    expect(kiribatiVds.totals).toEqual({ allocated: 770, consumed: 607.5, remaining: 162.5, weekly: 16.6 });
+    expect(kiribatiVds.totals).toEqual({ allocated: 767.5, consumed: 607.8, remaining: 159.7, weekly: 9.3 });
     expect(kiribatiVds.areas.find((area) => area.area === '키리바시')?.totals).toEqual({
-      allocated: 411,
-      consumed: 408.3,
-      remaining: 2.6,
-      weekly: 9.2,
+      allocated: 431,
+      consumed: 406.5,
+      remaining: 24.5,
+      weekly: -1.9,
     });
     expect(kiribatiVds.areas.find((area) => area.area === '파푸아뉴기니 양자')?.totals).toEqual({
       allocated: 88,
