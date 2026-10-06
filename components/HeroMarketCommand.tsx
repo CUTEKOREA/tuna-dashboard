@@ -18,7 +18,7 @@ import {
   type AtunaHubDefinition,
   type AtunaPriceRow,
 } from '../lib/data/atuna-price-summary';
-import { skjPriceContext, skjPriceHighMark, skjPriceHighMarkLabel } from '../lib/data/skj-price-context';
+import { skjAtunaMonthContext, skjPriceHighMark, skjPriceHighMarkLabel } from '../lib/data/skj-price-context';
 import { colorForAtunaHub } from '@/lib/chart-palette';
 
 /* 증감 시맨틱 토큰 (globals.css SSOT) — 2026-08-17 주식 컨벤션 채택 */
@@ -173,7 +173,7 @@ export default function HeroMarketCommand({ rows, historyRows }: {
             가다랑어 방콕 {highMarkLabel}
           </div>
           <dl style={{ margin: '8px 0 0', display: 'grid', gap: 6 }}>
-            {skjPriceContext.premise.map((item) => (
+            {skjAtunaMonthContext.premise.map((item) => (
               <div key={item.label} style={{ display: 'flex', gap: 8, alignItems: 'baseline' }}>
                 <dt style={{ flex: '0 0 auto', fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', minWidth: 72 }}>{item.label}</dt>
                 <dd style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-main)', lineHeight: 1.5 }}>{item.detail}</dd>
@@ -181,10 +181,10 @@ export default function HeroMarketCommand({ rows, historyRows }: {
             ))}
           </dl>
           <p style={{ margin: '8px 0 0', fontSize: '0.7rem', color: 'var(--text-muted)' }}>
-            {skjPriceContext.supplyNotes.join(' ')}
+            {skjAtunaMonthContext.supplyNotes.map((n) => n.text).join(' ')}
           </p>
           <p style={{ margin: '6px 0 0', fontSize: '0.68rem', color: 'var(--text-muted)' }}>
-            출처: {skjPriceContext.source.map((s) => `${s.file.replace(/\.(docx|pdf)$/, '')} (${s.reportDate.replace(/-/g, '.')})`).join(' · ')} · 「몇 년 만」은 어튜나 계열에서 파생합니다.
+            출처: Atuna 기사 {skjAtunaMonthContext.sources.reduce((n, s) => n + s.titles.length, 0)}건 ({skjAtunaMonthContext.sources.map((s) => `${Number(s.date.slice(5, 7))}/${Number(s.date.slice(8, 10))}`).join('·')}) · 「몇 년 만」은 어튜나 계열에서 파생합니다.
           </p>
         </div>
       )}
