@@ -1,3 +1,8 @@
+> 🚀 **2026-10-06 13:00 KST — #1349 Atuna 방콕 10/2 $2,300 배포** [CC]:
+> - CI 통과(종료 코드 0) 후 squash 병합 `e7f1eaa5`. 자동 배포 Production `dpl_6j9Y67rTwmj6aekfxQ5F2nmc8ccs` READY, alias `https://leedonggun.co.kr`. 선단 데이터 변경 없음 → 시크릿 교체 없음.
+> - 라이브 실측(Aside): `/market` 「방콕 현물가 기준일 2026.10.02 · 직전 고시 대비 +4.5%」, 「가다랑어 방콕 $2,300 — 2017.10 이후 처음(9년 만)」, 상단 시세 띠 10.02 표시.
+> - 배포 후 production error log(15분) 0건.
+
 > ✅ **2026-10-06 12:46 KST — `/market` Atuna 어가 대조 · 가다랑어 방콕 10/2 $2,300 반영** [CC]:
 > - 원자료: 로그인된 Aside 세션으로 Atuna 가격 페이지 8종의 차트 CSV(`www.atuna.com/wp-content/uploads/*.csv`, 같은 도메인으로 받아야 CORS 통과)를 받아 대조. 본문 SHA-256 앞 8자리: skjbkk `b6e1b205`(9/20 `536233cc` → 변경) · skjmnt `4cf0d932` · skjabj `84c18313` · skjvig `e70fe650` · skjsey `51f8ec2d` · yfvig `cc457062` · yfabj `9d528086` · yfsey `5f586cd5` — **방콕 외 7종은 9/20 과 해시가 같아 변동 없음.**
 > - 방콕 2024~2026 행 전수 대조: 기존 값 불일치 0, 빠진 값 1건 **10/2 $2,300(+4.55%)** 추가.
