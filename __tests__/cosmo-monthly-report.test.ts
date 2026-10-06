@@ -131,3 +131,21 @@ describe('화면 노출', () => {
     expect(markup).toContain('5월에만 계획을 넘겼는데');
   });
 });
+
+describe('8월 업무보고 docx 판본 (2026-10-06 수령)', () => {
+  it('pptx 와 표 숫자가 같고, docx 에만 있는 클리너 채용·잔류를 담는다', () => {
+    expect(r.source.docx).toEqual({
+      file: 'COSMO 2026 08 업무보고.docx',
+      sha256: 'da4980278391fb1d2f6c9f880ed641ce74e877853dbc022e5dbd08aa82981cec',
+    });
+    expect(r.cleanerHiring).toEqual({ through: 8, hiredYtd: 1046, retained: 385 });
+    // 잔류율 약 37% - 열 명 뽑으면 넷이 안 남는다
+    expect(r.cleanerHiring.retained / r.cleanerHiring.hiredYtd).toBeCloseTo(0.368, 3);
+  });
+
+  it('경영요약이 채용·잔류를 보여 준다', () => {
+    const markup = renderToStaticMarkup(React.createElement(HomeTab));
+    expect(markup).toContain('1,046명');
+    expect(markup).toContain('385명');
+  });
+});
