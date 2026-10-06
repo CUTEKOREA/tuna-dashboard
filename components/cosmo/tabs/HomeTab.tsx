@@ -399,7 +399,8 @@ export default function Home() {
           모두 같은 제품({qr.claims[0].product})에서 나왔습니다. 법인은 {qr.source.reportDate.replace(/-/g, '.')}자
           {' '}<b>품질개선 보고</b>로 입고보관부터 멸균까지 {qr.processStages.length}개 공정의 원인과
           실행계획 {qr.actions.length}건을 냈습니다. 클리닝은 <b>처리량과 정면으로 맞바꾸는 공정</b>이라
-          — {mr.cleaners.basis} 클리너가 전년 {mr.cleaners.y2025}명에서 <b>{mr.cleaners.y2026}명({mr.cleaners.delta}명)</b>으로 줄어든 상태입니다 —
+          — {mr.cleaners.basis} 클리너가 전년 {mr.cleaners.y2025}명에서 <b>{mr.cleaners.y2026}명({mr.cleaners.delta}명)</b>으로 줄었고,
+          {' '}{mr.cleanerHiring.through}월까지 새로 뽑은 {mr.cleanerHiring.hiredYtd.toLocaleString('en-US')}명 중 <b>{mr.cleanerHiring.retained.toLocaleString('en-US')}명({Math.round((mr.cleanerHiring.retained / mr.cleanerHiring.hiredYtd) * 100)}%)</b>만 남았습니다 —
           품질 기준 강화는 그대로 처리량 계획에 부담으로 돌아옵니다(생산 보드).
         </Callout>
       </div>

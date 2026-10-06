@@ -6,6 +6,14 @@
 > - 테스트: `kiribati-vds-2026-09-27` → `kiribati-vds-2026-10-05`(재작성) · `fleet-operations-2026-08-23` VDS 2건 · `ffa-vrst` 3건 갱신. `npm run verify` 통과: Vitest 1,784/1,784 · build 정적 118 · fleet client leak · bundle 33. 브라우저(로컬 production 1440·390): /fleet VDS·입어료(국적선 1,479.5·1,239.1, 키리바시 선박 4척 767.5·607.8), 선단 DB FFA 탭 「(805척)」·지원선·일치 문구, overflow 0 · error 0 · 옛 값 0.
 > - 상태: 브랜치 `data/fleet-vds-vrst-1006`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음). 선단 상세 데이터는 바뀌지 않아 배포 시 시크릿 교체 불필요.
 
+> ✅ **2026-10-06 09:53 KST — `/cosmo` 8월 업무보고 docx 판본 대조·반영** [CC]:
+> - 원자료: `COSMO 2026 08 업무보고.docx` SHA-256 `da4980278391fb1d2f6c9f880ed641ce74e877853dbc022e5dbd08aa82981cec`, unzip OK. 기존 계약이 쓰던 `COSMO 월간보고 (9월).pptx`(제목 「COSMO 8월 업무보고」)와 같은 보고의 docx 판본이다(7월 docx 선례와 같은 처리).
+> - 표 2개(월별 원어 처리량·컨테이너 출고)는 `word/media/image1·2.png` 이미지로 들어 있어 꺼내 읽었다 — 계약 숫자와 **완전히 같다**. 원문 합계 열이 갱신되지 않은 것(On Board 934 · FBU 48 인쇄값 대 행 합 889 · 46)도 그대로다.
+> - docx 에만 있는 것: ① 「8월 누계 신규 클리너 1,046명 채용 → 385명 잔류」(잔류율 약 37%) → `cleanerHiring` 신설, 경영요약 품질 클레임 문장에 노출 ② 임금 협상 배경(세디 강세·회사 재정 고려, 클리너 확보에 유리) → 주요 업무 문구 보강 ③ 컨테이너 이월 「30 FCL 이상」으로 표현 정정. 유동성·재고자산·생산지표·PANOFI 어대금·원어재고는 docx 에 없어 pptx 값 유지.
+> - 작성 인명(SIAL 출장 과장)은 기존대로 직급으로만.
+> - 테스트 `cosmo-monthly-report.test.ts` +2건(RED → GREEN). `npm run verify` 통과: Vitest 1,783/1,783 · build 정적 118 · fleet client leak · bundle 33. 브라우저(로컬 production 1440·390) overflow 0 · error 0.
+> - 상태: 브랜치 `data/cosmo-monthly-08-docx`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-06 10:05 KST — `/tunafarm-industry` 「참치 양식」 L1285 기간 불일치 정정 배포 (#1341)** [CC]:
 > - 발견: 정본 숫자 차집합 검사(`~/.claude/harness/verify/verify_number_delta.py`) + Codex 표본 판정. 「관세청 중량 필레·어육 81.2% · 통마리 18.8%」는 **2025년 단년** 값인데 원장(2024-04-03~2026-09-11) 건수 91.1%·8.9% 와 기간 표시 없이 맞대 있었다. 「통마리가 건당 무거우니」는 두 자료로 입증할 수 없는 인과.
 > - 정정: `lib/data/tunafarm-tables.json` 교차검증 콜아웃 → 관세청 2024~2026 합 **83.4% · 16.6%**(근거표 Drive `11_분석·가공데이터/20261006-관세청_부위형태_중량비중.csv`), 기간·단위를 각각 밝히고 인과 삭제. `lib/tunafarm-industry-content.ts` 서술 → 원장 기간과 「관세청 2025년」을 명시, 인과 삭제(81.2% 는 2025년 값이라 유지).
