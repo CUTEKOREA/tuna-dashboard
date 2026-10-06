@@ -1323,6 +1323,7 @@
   },
   "components/panofi/PanofiTabs.tsx": {
    "dataModules": [
+    "lib/data/fleet-daily-public.ts",
     "lib/data/panofi-atlantic-mail.ts",
     "lib/data/panofi.ts"
    ],

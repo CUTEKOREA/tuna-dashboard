@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 import { AtlanticVesselTable } from './AtlanticVesselTable';
+import { fleetDailyDeltaLabel } from '@/lib/data/fleet-daily-public';
 import Chart, { Legend, type Serie } from '../cosmo/Chart';
 import { Callout } from '../cosmo/Ui';
 import { Grid, Panel, Sec, Signal, Signals, Stat, Stats, Table } from './PanofiUi';
@@ -214,7 +215,7 @@ export function FleetTab() {
         <Stat
           k="일간 어획" v={atlanticNow.dailyMt.toLocaleString()} unit="톤"
           tone={atlanticNow.dailyDeltaMt >= 0 ? 'up' : 'down'}
-          d={`전일 대비 ${deltaTone}${Math.abs(atlanticNow.dailyDeltaMt).toLocaleString()}톤 · ${atlanticNow.asOf} 기준`}
+          d={`${fleetDailyDeltaLabel} ${deltaTone}${Math.abs(atlanticNow.dailyDeltaMt).toLocaleString()}톤 · ${atlanticNow.asOf} 기준`}
         />
         <Stat k="월간 누계" v={atlanticNow.monthlyMt.toLocaleString()} unit="톤" d={`${Number(atlanticNow.asOf.slice(5, 7))}월 어획`} />
         <Stat k="연간 누계" v={atlanticNow.annualMt.toLocaleString()} unit="톤" d="2026년 어획" />
