@@ -1,8 +1,12 @@
-> ✅ **2026-10-06 KST — `/` 시장 이해 「참치 양식」 L1285 기간 불일치 정정** [CC]:
+> 🚀 **2026-10-06 10:05 KST — `/tunafarm-industry` 「참치 양식」 L1285 기간 불일치 정정 배포 (#1341)** [CC]:
 > - 발견: 정본 숫자 차집합 검사(`~/.claude/harness/verify/verify_number_delta.py`) + Codex 표본 판정. 「관세청 중량 필레·어육 81.2% · 통마리 18.8%」는 **2025년 단년** 값인데 원장(2024-04-03~2026-09-11) 건수 91.1%·8.9% 와 기간 표시 없이 맞대 있었다. 「통마리가 건당 무거우니」는 두 자료로 입증할 수 없는 인과.
 > - 정정: `lib/data/tunafarm-tables.json` 교차검증 콜아웃 → 관세청 2024~2026 합 **83.4% · 16.6%**(근거표 Drive `11_분석·가공데이터/20261006-관세청_부위형태_중량비중.csv`), 기간·단위를 각각 밝히고 인과 삭제. `lib/tunafarm-industry-content.ts` 서술 → 원장 기간과 「관세청 2025년」을 명시, 인과 삭제(81.2% 는 2025년 값이라 유지).
 > - 회귀 테스트: `__tests__/tunafarm-industry-render.test.ts` 「철회된 주장」 목록에 두 줄 + 정정 문장 존재 검사. 수정 전 데이터에서 3건 실패 → 수정 후 45/45. `npm run verify` rc=0(210 파일 · 1,782 통과 · 정적 118 · 번들 33 OK).
 > - 보고서 본체(Drive HTML·MD·PDF)도 같은 날 정정. 기록: `~/my-project/개발/_workspace/2026-10-06-보고서정정/README.md`.
+> - 배포: PR #1341 CI `lint typecheck test build` 통과(run 37396246785, 4m32s) → squash 병합 `6655988a`(00:57:03Z) → Vercel 자동 배포 발화, `dpl_CRk22NzSHH7PW9BAj6ctcsZTZnvE` Ready, `leedonggun.co.kr` 서빙 확인(`vercel inspect`).
+> - 라이브 실측(Aside, 로그인 세션, 데스크톱): 새 콜아웃 문장·원장 기간·「관세청 2025년 중량으로는 81.2%」 서술 표시, 「통마리 18.8%」 0건·「건당 무거우니」 0건, 가로 넘침 없음(1140 ≤ 1152). 390px 모바일 실측은 못 했다 — Aside 탭이 뷰포트 변경을 지원하지 않음. 문구만 바뀐 변경이라 레이아웃 영향은 없다고 보지만 미검증으로 남긴다.
+> - 배포 후 20분 프로덕션 로그: error 0 · 5xx 0(`vercel logs --level error` · `--status-code 5xx`).
+> - 작업은 `origin/main` 에서 판 분리 worktree(`~/my-project/_wt/tunafarm-l1285`)에서 했다. 자동 브리핑 worktree(`silla-tuna-daily/dash`, `sync/2026-10-06`)에 올라가 있던 같은 수정은 되돌려 브리핑 대시보드 준비가 dirty 로 멈추지 않게 했다.
 
 > ✅ **2026-10-05 23:56 KST — 참치 데일리 브리핑 2026-10-05 `/market` 배포 (#1339)** [CC]:
 > - `public/data/tuna_daily_briefing.json` 단일 파일 (date=2026-10-05, 다이제스트 5건, 기사 5건). 다른 파일 섞임 없음.
