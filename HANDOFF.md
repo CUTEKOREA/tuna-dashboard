@@ -1,3 +1,11 @@
+> ✅ **2026-10-06 12:46 KST — `/market` Atuna 어가 대조 · 가다랑어 방콕 10/2 $2,300 반영** [CC]:
+> - 원자료: 로그인된 Aside 세션으로 Atuna 가격 페이지 8종의 차트 CSV(`www.atuna.com/wp-content/uploads/*.csv`, 같은 도메인으로 받아야 CORS 통과)를 받아 대조. 본문 SHA-256 앞 8자리: skjbkk `b6e1b205`(9/20 `536233cc` → 변경) · skjmnt `4cf0d932` · skjabj `84c18313` · skjvig `e70fe650` · skjsey `51f8ec2d` · yfvig `cc457062` · yfabj `9d528086` · yfsey `5f586cd5` — **방콕 외 7종은 9/20 과 해시가 같아 변동 없음.**
+> - 방콕 2024~2026 행 전수 대조: 기존 값 불일치 0, 빠진 값 1건 **10/2 $2,300(+4.55%)** 추가.
+> - 화면은 계열 파생이라 자동 반영: 히어로 「방콕 현물가 기준일 2026.10.02 · 직전 고시 대비 +4.5%」, 헤드라인 「$2,300 — 2017.10 이후 처음(9년 만)」(직전 이상 고시 2017-10-11 $2,350). 라벨이 「9년 0개월 만」으로 나오던 것을 개월 0 이면 생략하도록 고쳤다.
+> - 참고: 방콕 맥락 블록의 「10월 $2,200 수용」은 9/16 출장보고의 전제 문장(출처 날짜 표기)이라 그대로 둔다 — 10/2 고시는 그보다 $100 높다.
+> - 테스트 `atuna-prices-data`·`market-price-context` 갱신. `npm run verify` 통과: Vitest 1,786/1,786 · build 정적 118 · bundle 33. 브라우저(로컬 production 1440·390) overflow 0 · error 0.
+> - 상태: 브랜치 `data/atuna-prices-1006`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-06 11:46 KST — #1343 코스모 8월 docx · #1344 VDS 10-05·FFA 9월 · #1346 선단 261006 배포** [CC]:
 > - 순차 병합(squash), 각 PR 은 `gh pr checks --watch` 종료 코드 0 확인 후 병합: #1343 `c3599ef9` → #1344 `209a9028` → #1346 `9161043c`(HANDOFF 충돌은 각각 main 병합 커밋으로 해소).
 > - 자동 배포 정상(이번엔 웹훅 발화): Production `dpl_2V2pjAzHTfHBAynmNvehFoMuNcSU` READY. 이어 `swap_fleet_detail_secret.sh --check` 일치(`42f1f01a…`) 후 `FLEET_DAILY_DETAIL_JSON` 교체·재배포 `dpl_ELFXyTJGtsNCB2NKcwn5j7ZNdcVo` READY, alias `https://leedonggun.co.kr`.

@@ -98,6 +98,7 @@ export function skjPriceHighMarkLabel(mark: SkjPriceHighMark | null): string | n
   if (mark.previous === null) return `$${mark.price.toLocaleString()} — 계열 사상 최고`;
   const years = Math.floor((mark.monthsSince ?? 0) / 12);
   const months = (mark.monthsSince ?? 0) % 12;
-  const gap = years > 0 ? `${years}년 ${months}개월` : `${months}개월`;
+  // «9년 0개월 만» 처럼 0개월을 붙이지 않는다
+  const gap = years > 0 ? (months > 0 ? `${years}년 ${months}개월` : `${years}년`) : `${months}개월`;
   return `$${mark.price.toLocaleString()} — ${mark.previous.date.slice(0, 7).replace('-', '.')} 이후 처음(${gap} 만)`;
 }
