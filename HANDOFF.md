@@ -1,3 +1,12 @@
+> ✅ **2026-10-06 13:53 KST — `/market` 상단 「가다랑어 방콕」 해설을 Atuna 최근 한 달 기사 기반으로 교체** [CC]:
+> - 요청: 출장보고(9/16)·위원회 자료(9/21) 기반이던 해설을 Atuna 최근 1달 기사로 다시 분석.
+> - 원자료: 데일리 브리핑이 받아 둔 Atuna 영문 원문 `~/silla-tuna-daily/sources/2026-09-07~10-05.txt` 21일치(기사 115건) → 가다랑어 가격·수급 관련 23건 선별 → 근거 기사 10건(8일치, 일자 파일 SHA-256 계약에 기록).
+> - 집필 Codex(읽기 전용, JSON) → 메인이 원문 대조로 수정: TTIA 발언 오역(«소비자가 인상 어렵다» → 원문 «높은 운영비가 소비자에게 닿지 않게 하는 것이 최우선»), 영문 단위(per ton·percent) 한글화, 관련 약한 엘살바도르 항목을 세이셸 CFR 비교·에콰도르 양륙 감소로 교체.
+> - 새 계약 `skjAtunaMonthContext`(`lib/data/skj-price-context.ts`): 4항목(가격 흐름 · 공급 부족 · 캐너리 대응 · 앞으로 볼 것) + 공급 메모 3건, 문장마다 근거 기사 날짜. 핵심: 9/9 $2,100 → 9/15 $2,200 → 10/2 $2,300, 연초 대비 53%, 역대 고점 $2,350 에 $50 · FAD 금어기 후에도 WCPO 어획 부진 + 9~11월 강한 엘니뇨 · 싱가포르 MGO $1,448(+14%/주) · JP모건 Thai Union 이익 전망 17~19% 하향 · 선주 호가 +$100~150 미체결 · 독자 설문 «고점 도달» 4%.
+> - 화면: `HeroMarketCommand` 해설·출처 줄(「Atuna 기사 10건 (9/9·…·10/2)」)을 새 계약으로. 방콕 사무소 탭은 출장보고 전제(`skjPriceContext`)를 그대로 쓴다.
+> - 테스트 `skj-atuna-month-context.test.ts` 5건(RED → GREEN) + `market-price-context` 상단 렌더 기대값 갱신. `npm run verify` 통과: Vitest 1,791/1,791 · build 정적 118 · bundle 33. 브라우저(로컬 production 1440·390) overflow 0 · error 0.
+> - 상태: 브랜치 `data/skj-context-atuna-1006`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-06 13:00 KST — #1349 Atuna 방콕 10/2 $2,300 배포** [CC]:
 > - CI 통과(종료 코드 0) 후 squash 병합 `e7f1eaa5`. 자동 배포 Production `dpl_6j9Y67rTwmj6aekfxQ5F2nmc8ccs` READY, alias `https://leedonggun.co.kr`. 선단 데이터 변경 없음 → 시크릿 교체 없음.
 > - 라이브 실측(Aside): `/market` 「방콕 현물가 기준일 2026.10.02 · 직전 고시 대비 +4.5%」, 「가다랑어 방콕 $2,300 — 2017.10 이후 처음(9년 만)」, 상단 시세 띠 10.02 표시.

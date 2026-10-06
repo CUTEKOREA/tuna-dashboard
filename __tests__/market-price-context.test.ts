@@ -60,10 +60,11 @@ describe('SKJ 방콕 어가 맥락', () => {
     const markup = renderToStaticMarkup(React.createElement(HeroMarketCommand, { rows }));
 
     expect(markup).toContain('2017.10 이후 처음');
-    expect(markup).toContain('엘니뇨 전제');
-    expect(markup).toContain('2027년 2월');
+    // 2026-10-06: 시장 동향 상단 해설은 Atuna 한 달 기사 기반으로 바뀌었다(출장보고 전제는 방콕 사무소 탭에 남는다)
+    expect(markup).toContain('공급 부족');
+    expect(markup).toContain('엘니뇨');
     // 출처를 밝히지 않으면 화면이 «누가 그렇게 보는지» 를 말하지 못한다
-    expect(markup).toContain('방콕 출장보고');
+    expect(markup).toContain('Atuna 기사');
   });
 
   it('차트용으로 자른 창이 아니라 전 계열에서 「몇 년 만」을 잰다', () => {
