@@ -65,28 +65,28 @@ describe('fleet daily public and private DTO boundary', () => {
     expect(fleetDailyPublic).toEqual({
       _meta: {
         schemaVersion: 1,
-        reportCount: 167,
+        reportCount: 168,
         firstReportDate: '2026-01-16',
-        latestReportDate: '2026-10-02',
-        latestAsOf: '2026-10-01',
+        latestReportDate: '2026-10-06',
+        latestAsOf: '2026-10-05',
         detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
         detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
       },
       latest: {
-        reportDate: '2026-10-02',
-        asOf: '2026-10-01',
-        pacific: { asOf: '2026-10-01', dailyMt: 635, monthlyMt: 635, annualMt: 55_247.8 },
-        atlantic: { asOf: '2026-10-01', dailyMt: 220, monthlyMt: 220, annualMt: 39_775 },
-        carrier: { loadedTotalMt: 5_824.3, expectedRemainingMt: 8_436 },
+        reportDate: '2026-10-06',
+        asOf: '2026-10-05',
+        pacific: { asOf: '2026-10-05', dailyMt: 100, monthlyMt: 1_455, annualMt: 56_067.8 },
+        atlantic: { asOf: '2026-10-05', dailyMt: 130, monthlyMt: 630, annualMt: 40_185 },
+        carrier: { loadedTotalMt: 10_204.3, expectedRemainingMt: 4_356 },
       },
-      deltas: { pacificDailyMt: 45, atlanticDailyMt: 35, totalDailyMt: 80 },
+      deltas: { pacificDailyMt: -535, atlanticDailyMt: -90, totalDailyMt: -625 },
       reconciliation: {
-        pacificDaily: { reportedMt: 635, rowsMt: 635, matches: true, missingCount: 0 },
-        atlanticDaily: { reportedMt: 220, rowsMt: 220, matches: true, missingCount: 0 },
+        pacificDaily: { reportedMt: 100, rowsMt: 100, matches: true, missingCount: 0 },
+        atlanticDaily: { reportedMt: 130, rowsMt: 130, matches: true, missingCount: 0 },
         // 9/21 보고는 HIKARI 1 컨테이너분(284.83)이 빠져 머리글·행 합이 모두 7,399.3 이다. 9/11 까지는
         // 머리글 소수 1자리로 0.03 반올림 잔차가 남았다 - 허용 폭 판정은 source-contract 테스트가 고정값으로 지킨다
-        carrierLoaded: { reportedMt: 5_824.3, rowsMt: 5_824.3, matches: true, missingCount: 0 },
-        carrierExpectedRemaining: { reportedMt: 8_436, rowsMt: 8_436, matches: true, missingCount: 0 },
+        carrierLoaded: { reportedMt: 10_204.3, rowsMt: 10_204.3, matches: true, missingCount: 0 },
+        carrierExpectedRemaining: { reportedMt: 4_356, rowsMt: 4_356, matches: true, missingCount: 0 },
         valid: true,
         unavailableCount: 0,
         issueCount: 0,
@@ -98,8 +98,8 @@ describe('fleet daily public and private DTO boundary', () => {
       },
       quality: {
         counts: {
-          reconciliationChecks: 668,
-          reconciliationCompleteChecks: 668,
+          reconciliationChecks: 672,
+          reconciliationCompleteChecks: 672,
           reconciliationUnavailableChecks: 0,
           reconciliationUnavailableDocuments: 0,
           reconciliationIssues: 14,

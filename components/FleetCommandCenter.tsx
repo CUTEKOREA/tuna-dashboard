@@ -6,6 +6,7 @@ import { AlertTriangle, LockKeyhole, RotateCcw, Ship } from 'lucide-react';
 import type { FleetDailyDetailErrorCode, FleetDailyDetailState } from '@/lib/contracts/fleet-daily-api';
 import { validateFleetDailyDetailResponse } from '@/lib/contracts/fleet-daily-api';
 import {
+  fleetDailyDeltaLabel,
   fleetDailyPublicDeltas,
   fleetDailyPublicLatest,
   fleetDailyPublicReconciliation,
@@ -51,10 +52,10 @@ const dailyHeroSecondaryKpis = [
 ];
 
 const decisions = [
-  { icon: Ship, level: '태평양', title: `일간 ${fleetDailyPublicLatest.pacific.dailyMt.toLocaleString()} (MT)`, detail: `전일 대비 ${formatFleetDailyDelta(fleetDailyPublicDeltas.pacificDailyMt)} (MT) · 월간 ${fleetDailyPublicLatest.pacific.monthlyMt.toLocaleString()} (MT)`, tone: 'primary' },
-  { icon: Ship, level: '대서양', title: `일간 ${fleetDailyPublicLatest.atlantic.dailyMt.toLocaleString()} (MT)`, detail: `전일 대비 ${formatFleetDailyDelta(fleetDailyPublicDeltas.atlanticDailyMt)} (MT) · 월간 ${fleetDailyPublicLatest.atlantic.monthlyMt.toLocaleString()} (MT)`, tone: 'primary' },
+  { icon: Ship, level: '태평양', title: `일간 ${fleetDailyPublicLatest.pacific.dailyMt.toLocaleString()} (MT)`, detail: `${fleetDailyDeltaLabel} ${formatFleetDailyDelta(fleetDailyPublicDeltas.pacificDailyMt)} (MT) · 월간 ${fleetDailyPublicLatest.pacific.monthlyMt.toLocaleString()} (MT)`, tone: 'primary' },
+  { icon: Ship, level: '대서양', title: `일간 ${fleetDailyPublicLatest.atlantic.dailyMt.toLocaleString()} (MT)`, detail: `${fleetDailyDeltaLabel} ${formatFleetDailyDelta(fleetDailyPublicDeltas.atlanticDailyMt)} (MT) · 월간 ${fleetDailyPublicLatest.atlantic.monthlyMt.toLocaleString()} (MT)`, tone: 'primary' },
   { icon: Ship, level: '운반선', title: `선적 ${formatOptionalMt(fleetDailyPublicLatest.carrier.loadedTotalMt)} (MT)`, detail: `예상잔량 ${formatOptionalMt(fleetDailyPublicLatest.carrier.expectedRemainingMt)} (MT)`, tone: 'primary' },
-  { icon: AlertTriangle, level: '검산', title: fleetDailyPublicReconciliation.valid ? '최신 상세 행 검산 일치' : fleetDailyPublicReconciliation.unavailableCount > 0 ? '미보고 포함 · 검산 불가' : '최신 상세 행 확인 필요', detail: `전일 합계 ${formatFleetDailyDelta(fleetDailyPublicDeltas.totalDailyMt)} (MT) · 이슈 ${fleetDailyPublicReconciliation.issueCount}건`, tone: fleetDailyPublicReconciliation.valid ? 'primary' : 'danger' },
+  { icon: AlertTriangle, level: '검산', title: fleetDailyPublicReconciliation.valid ? '최신 상세 행 검산 일치' : fleetDailyPublicReconciliation.unavailableCount > 0 ? '미보고 포함 · 검산 불가' : '최신 상세 행 확인 필요', detail: `${fleetDailyDeltaLabel} 합계 ${formatFleetDailyDelta(fleetDailyPublicDeltas.totalDailyMt)} (MT) · 이슈 ${fleetDailyPublicReconciliation.issueCount}건`, tone: fleetDailyPublicReconciliation.valid ? 'primary' : 'danger' },
 ] as const;
 
 function accessAction(code: FleetDailyDetailErrorCode) {
