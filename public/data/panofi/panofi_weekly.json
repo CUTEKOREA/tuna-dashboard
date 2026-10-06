@@ -1,19 +1,19 @@
 {
  "meta": {
   "generatedFrom": "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/신라그룹/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/PANOFI 주간동향",
-  "weekCount": 41,
+  "weekCount": 42,
   "rangeStart": "2025-12-23",
-  "rangeEnd": "2026-09-29",
+  "rangeEnd": "2026-10-06",
   "coverage": {
-   "prices.cosmoTema": 38,
-   "prices.scodiAbidjan": 41,
-   "fx.cediPerUsd": 41,
-   "dailyProcessing.COSMO": 40,
-   "receivables.totalUsd": 41,
-   "fuel(형식 온전)": 41,
-   "fleetStatus(관측됨)": 41,
-   "senegalFleet": 41,
-   "fishingGround.coastalMax": 41
+   "prices.cosmoTema": 39,
+   "prices.scodiAbidjan": 42,
+   "fx.cediPerUsd": 42,
+   "dailyProcessing.COSMO": 41,
+   "receivables.totalUsd": 42,
+   "fuel(형식 온전)": 42,
+   "fleetStatus(관측됨)": 42,
+   "senegalFleet": 42,
+   "fishingGround.coastalMax": 42
   },
   "vessels": {
    "P/QUEEN": "P/QUE",
@@ -5650,6 +5650,121 @@
     "tema": 1687.0,
     "dakar": 1268.0,
     "tanker": 1543.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-10-06",
+   "isoWeek": 41,
+   "source": "PANOFI 주간동향20261006.docx",
+   "sha256": "76a9807c5c05264ccd673b68403e0277ff9979d2e11c9af945e31e966b2440b4",
+   "author": "법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": "10/4 11:00 Abidjan 입항, 하역 중 (ETD : 10/8)"
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": "10/5 17:00 Abidjan 입항, 명일(10/7) 하역 예정 (ETD : 10/10)"
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.9,
+    "coastalMax": 26.8,
+    "oceanMin": 24.8,
+    "oceanMax": 26.0,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "불규칙"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": "8/22",
+     "depart": "미정",
+     "tons": null,
+     "note": "하역 완료, 임시국적 증서 갱신 차 체항 중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": "9/28",
+     "depart": "10/6",
+     "tons": 790.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "10/1",
+     "depart": "미정",
+     "tons": 450.0,
+     "note": "운반선 전재 후 외항 대기 중"
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "ORANGE ICE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": "조업선 물량 전재 대기 중"
+    }
+   ],
+   "prices": {
+    "pfcTema": 1900.0,
+    "pfcTemaMonth": "9월",
+    "cosmoTema": 1850.0,
+    "cosmoTemaMonth": "9월",
+    "temaUnderNegotiation": true,
+    "scodiAbidjan": 1800.0,
+    "scodiAbidjanMonth": "10월",
+    "marketTemaCedi": 14000.0,
+    "marketTemaUsd": 1189.0,
+    "marketAbidjanCfa": 760000.0,
+    "marketAbidjanUsd": 1299.0
+   },
+   "fx": {
+    "cediPerUsd": 11.77,
+    "cfaPerUsd": 585.0
+   },
+   "dailyProcessing": {
+    "COSMO": 100.0,
+    "PFC": 120.0,
+    "SCODI": 85.0,
+    "SCASA": 120.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 874147675.0,
+      "usd": 1494270.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": 1270521734.0,
+      "usd": 2171832.0
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": 592822280.0,
+      "usd": 1013371.0
+     }
+    ],
+    "totalCfa": 2737491689.0,
+    "totalUsd": 4679473.0
+   },
+   "fuel": {
+    "abidjan": 1325.0,
+    "tema": 1678.0,
+    "dakar": 1342.0,
+    "tanker": 1535.0,
     "single": null
    }
   }

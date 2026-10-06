@@ -85,6 +85,11 @@ const man = (v: number) => `${v.toLocaleString('en-US')}만불`;
 const lastDigit = (n: number) => Math.abs(Math.round(n)) % 10;
 const ro = (n: number) => ([0, 3, 6].includes(lastDigit(n)) ? '으로' : '로');
 const ieot = (n: number) => ([0, 1, 3, 6, 7, 8].includes(lastDigit(n)) ? '이었다' : '였다');
+/** «9월» → «10월». 월 표기가 없으면 «다음 달». */
+const nextMonthKo = (month: string | null | undefined) => {
+  const m = month ? Number(month.replace('월', '')) : NaN;
+  return Number.isFinite(m) ? `${(m % 12) + 1}월` : '다음 달';
+};
 const ton = (v: number) => `${v.toLocaleString('en-US')}톤`;
 const pct = (v: number) => `${v}%`;
 const num = (v: number | null | undefined) =>
@@ -373,13 +378,23 @@ export function FleetTab() {
           />
         </Panel>
 
+        {(() => {
+          /* 주말 메일과 주간동향 중 더 최신인 쪽을 쓴다 - 메일이 끊기면(9/20 이후) 표가 그 날짜에 멈췄다(10/6 발견). */
+          const weeklyNewer = latest.reportDate > latestAtlanticMail.date;
+          const calls = weeklyNewer
+            ? latest.senegalFleet.map((r) => ({ vessel: r.vessel, tons: r.tons, arrive: r.arrive ?? '-', depart: r.depart && r.depart !== '미정' ? r.depart : null, status: r.note ?? '-' }))
+            : latestAtlanticMail.senegalCalls;
+          return (
         <Panel
-          span={12} title="세네갈 선단 입출항" unit={`주말 메일 ${mailMonthDay(latestAtlanticMail.date)} · 톤`}
-          note="주간동향(화요일자) 사이에 오는 주말 메일이라 입출항이 며칠 더 최신이다. 톤수를 확인 중인 배는 비워 둔다."
-          src={ATLANTIC_MAIL_SOURCE}
+          span={12} title="세네갈 선단 입출항"
+          unit={weeklyNewer ? `주간동향 ${mailMonthDay(latest.reportDate)} · 톤` : `주말 메일 ${mailMonthDay(latestAtlanticMail.date)} · 톤`}
+          note={weeklyNewer
+            ? `주말 메일(최근 ${mailMonthDay(latestAtlanticMail.date)})보다 주간동향(${mailMonthDay(latest.reportDate)})이 최신이라 주간동향 표를 쓴다. 톤수가 없는 배는 「자료 없음」이다.`
+            : '주간동향(화요일자) 사이에 오는 주말 메일이라 입출항이 며칠 더 최신이다. 톤수를 확인 중인 배는 「자료 없음」이다.'}
+          src={weeklyNewer ? SRC.weekly : ATLANTIC_MAIL_SOURCE}
         >
           <Table head={['선박', '물량', '입항', '출항', '상태']}>
-            {latestAtlanticMail.senegalCalls.map((c) => (
+            {calls.map((c) => (
               <tr key={c.vessel}>
                 <td>{c.vessel}</td>
                 <td>{orNA(c.tons, num)}</td>
@@ -397,6 +412,8 @@ export function FleetTab() {
             </Callout>
           )}
         </Panel>
+          );
+        })()}
       </Grid>
     </>
   );
@@ -497,10 +514,12 @@ export function PriceTab() {
               {latest.prices.cosmoTema != null && latest.prices.pfcTema > latest.prices.cosmoTema
                 ? ' 코스모를 처음으로 넘어섰다.'
                 : ' 움직였다.'}{' '}
-              {temaGap.underNegotiation
-                ? `다만 코스모는 ${temaGap.cosmoMonth ?? '지난달'} 값을 그대로 둔 채 협의 중이라 두 채널의 격차는 아직 같은 기준으로 비교할 수 없다. «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 코스모 ${temaGap.pfcMonth ?? '당월'} 어가가 확정된 뒤 다시 잰다.`
-                : temaGap.comparable
-                  ? `코스모도 ${temaGap.cosmoMonth} 어가를 ${usd(latest.prices.cosmoTema ?? 0)}${ro(latest.prices.cosmoTema ?? 0)} 확정해 격차는 ${usd(temaGap.usdPerT ?? 0)}(${(temaGap.usdPerT ?? 0) > 0 ? 'PFC 우위' : '코스모 우위'})다. «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 이 확정가로 다음 측정 창에서 다시 잰다.`
+              {/* 같은 달 값이 둘 다 있으면 비교가 먼저다. «협의 중»은 그 다음 달 이야기일 수 있다
+                  (10/6 판: 「COSMO $1,850(9월), PFC $1,900(9월) → 10월 어가 협의 중」). */}
+              {temaGap.comparable
+                ? `코스모도 ${temaGap.cosmoMonth} 어가를 ${usd(latest.prices.cosmoTema ?? 0)}${ro(latest.prices.cosmoTema ?? 0)} 확정해 격차는 ${usd(temaGap.usdPerT ?? 0)}(${(temaGap.usdPerT ?? 0) > 0 ? 'PFC 우위' : '코스모 우위'})다.${temaGap.underNegotiation ? ` ${nextMonthKo(temaGap.cosmoMonth)} 어가는 두 채널 모두 협의 중이다.` : ''} «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 이 확정가로 다음 측정 창에서 다시 잰다.`
+                : temaGap.underNegotiation
+                  ? `다만 코스모는 ${temaGap.cosmoMonth ?? '지난달'} 값을 그대로 둔 채 협의 중이라 두 채널의 격차는 아직 같은 기준으로 비교할 수 없다. «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 코스모 ${temaGap.pfcMonth ?? '당월'} 어가가 확정된 뒤 다시 잰다.`
                   : ''}
             </Callout>
           )}
@@ -864,7 +883,7 @@ export function CashTab() {
       <Grid>
         <Panel
           span={6} title="아비장 미수금" unit="천 달러"
-          note={`정점 ${kusd(receivableNow.peakKusd)}에서 ${receivableNow.recoveryPeriod} 사이 ${kusd(receivables.abidjanKusd)}까지 줄였다가, ${receivableNow.asOf ?? '최근'} 주간동향에서 ${kusd(receivableNow.currentKusd)}로 다시 늘었다.`}
+          note={`정점 ${kusd(receivableNow.peakKusd)}에서 ${receivableNow.recoveryPeriod} 사이 ${kusd(receivables.abidjanKusd)}까지 줄였다가, ${receivableNow.asOf ?? '최근'} 주간동향에서 ${kusd(receivableNow.currentKusd)}로 다시 늘었다.${receivableNow.weekDeltaKusd != null && receivableNow.weekDeltaKusd !== 0 ? ` 직전 주(${receivableNow.prevAsOf}) 대비로는 ${kusd(Math.abs(receivableNow.weekDeltaKusd))} ${receivableNow.weekDeltaKusd < 0 ? '줄었다(회수)' : '늘었다'}.` : ''}`}
           src={SRC.weekly}
         >
           <Chart data={receivableSeries} x="label" height={210} xInterval={4}
