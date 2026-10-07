@@ -1,3 +1,11 @@
+> ✅ **2026-10-07 10:06 KST — `/fleet` 선박·수역 탭에 「입항 일정 · 선원 교대 · 수리 계획」 추가 (보호 경로)** [CC]:
+> - 원자료: 사용자 첨부 캡처 「선박 입항일정 및 선원 교대/선박 수리 계획」 SHA-256 `f8c68848…a70a50e`. 머리글 「2027. 10. 7. (화)」는 연도 오기로 보고 기준일 2026-10-07 로 둔다(원문 표기는 `printedDate` 에 보존). 10척 — 선적량·입항지·ETA/ETD·옵서버 교체·선원 교대·수리 계획. MARI(=MOAMARI) 젠산 10/2~10/11 도킹은 일일보고와 일치.
+> - ⚠ 저장소가 **공개**라 일정 값은 git 에 두지 않는다 — 선박 상세와 같은 구조: 원본 `artifacts/fleet-port-schedule.json`(gitignore 추가) → 프로덕션 env `FLEET_PORT_SCHEDULE_JSON` → `app/api/fleet/schedule`(authorizeFleetRequest, private no-store) → `components/FleetPortSchedule.tsx`(클라이언트 fetch). 정적 번들에 일정 문자열 0 확인.
+> - 실명 제외: 선원 교대는 **직책만**(예: 승선 2기사 / 하선 3기사), 국적 표기·이름은 버렸다. 계약(`lib/contracts/fleet-port-schedule.ts`)이 교대 항목을 한글 직책 정규식으로만 통과시켜 영문 이름이 섞이면 거부한다(테스트). 수리 계획의 사람 이름·직급도 「선박팀 부장」「협력사 기술자」로.
+> - 배포 절차: `bash scripts/set_fleet_port_schedule_secret.sh` 로 **병합 전** env 등록(검사 → 등록) → 병합 배포가 바로 읽는다. 일정만 바꿀 땐 `--redeploy`.
+> - 테스트 `fleet-schedule-route.test.ts` 7건(401/403 비로딩 · 200 · 503 · 실명 거부 · 표 렌더 · 로컬 원본 계약 통과). `npm run verify` 통과: Vitest 1,798/1,798 · API cache 161/161 · build 정적 118 · fleet client leak · bundle 33 · feature-map 갱신. 로컬은 인증 설정이 없어 보호 경로가 닫힌 상태(「불러오지 못했습니다」)로 렌더 — 라이브에서 표 확인 필요.
+> - 상태: 브랜치 `feat/fleet-port-schedule-1007`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-07 08:40 KST — #1357 2026-10-06 참치 데일리 브리핑 /market 배포** [CC]:
 > - 게이트: `state/audit-2026-10-06.txt` = AUDIT_PASS(윤문 채택·재감사 통과). 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(58+/60-), 날짜 2026-10-06 · 다이제스트 5 · 기사 5.
 > - squash 병합 `69e21bb7`(PR #1357). origin/main 대조는 커밋 메시지가 아니라 내용 해시로 — SHA-256 `ad6276e9…36827c` 로컬=origin/main 일치.

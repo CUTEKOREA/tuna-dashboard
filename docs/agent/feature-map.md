@@ -9,7 +9,7 @@
 
 <!-- BEGIN GENERATED — scripts/feature_map.mjs. 손으로 고치지 마라 -->
 
-_생성: `node scripts/feature_map.mjs --write` · 메뉴 24개 · 정적 라우트 11개 · API 160개_
+_생성: `node scripts/feature_map.mjs --write` · 메뉴 24개 · 정적 라우트 11개 · API 161개_
 
 ## 화면 — 어떻게 도달하나
 
@@ -61,7 +61,7 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 24개 · 정적 라우
 
 ## API
 
-160개.
+161개.
 
 <details><summary>전체 목록</summary>
 
@@ -117,6 +117,7 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 24개 · 정적 라우
 - `/api/fishery`
 - `/api/flatfish/kcs`
 - `/api/fleet/daily`
+- `/api/fleet/schedule`
 - `/api/galchi/comtrade`
 - `/api/galchi/hsping`
 - `/api/galchi/importyeti`
