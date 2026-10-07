@@ -52,7 +52,7 @@ export default function ValueChainMarginIndex() {
       </div>
       <p style={{ margin: '0 0 4px', fontSize: '12px', color: 'var(--text-muted)', opacity: 0.8, fontStyle: 'italic' }}>* {margin.analysis}</p>
       <p style={{ margin: 0, fontSize: '12px', color: 'var(--text-muted)', opacity: 0.8 }}>
-        전제 원어 원가 ${margin.rawCost.toLocaleString()}는 2026-05-20 시나리오값입니다. {logisticsWeeklyReport.market.reportDate} 주간보고 협의가는 ${reportPrice.toLocaleString()}로 ${(margin.rawCost - reportPrice).toLocaleString()} 낮습니다.
+        전제 원어 원가 ${margin.rawCost.toLocaleString()}는 2026-05-20 시나리오값입니다. {logisticsWeeklyReport.market.reportDate} 주간보고 협의가는 ${reportPrice.toLocaleString()}로 전제보다 ${Math.abs(reportPrice - margin.rawCost).toLocaleString()} {reportPrice >= margin.rawCost ? '높습니다' : '낮습니다'}.
       </p>
     </div>
   );

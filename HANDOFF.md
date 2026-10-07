@@ -1,3 +1,12 @@
+> ✅ **2026-10-07 10:46 KST — 방콕 주간보고 10/7판(정정본) `/bangkok-office`·`/logistics` 반영 + 마스터 엑셀 갱신** [CC]:
+> - 원자료: `20261007 Bangkok Office Weekly Report.docx`(정정본) SHA-256 `d83616a537eb08be465a6f0c762bfba205e85de2a57d9c3d086dafa325f319a2`. 원문(`12d11928…`)은 같은 폴더 `…backup_before_fix.docx`.
+> - 원문이 또 수정 전 서식 위에 작성돼 정정분이 되돌아가 있었다(2023 합계 627,248·218척 = 2022 소계, 2025 FCF 214,135 등, RYOMA 3,490, SHIN FUJI 83.480, 7. Other). 신규 오류: 방콕 캐너리 SUM(1,840·81,200 → 행 합 1,900·81,700, 가동률 46%·43일), SEA VALUE·GOLDEN PRIZE·R.S CANNERY 가동률/일수가 지난주 값, 본문 2,110 t/d·44% → 2,170·43%. 사용자 지시로 문서에서 고쳤고, RYOMA(TTA 39주차도 3,290)·SHIN FUJI 는 지난 결정대로 다시 맞췄다. 어가 $2,360 은 사용자 지시로 유지(어튜나 10/2 $2,300 과 다름).
+> - 마스터 `데이터 정리.xlsx`: 백업 `…backup_20261007.xlsx`. 차트 12개 보존 위해 시트 XML 셀만 수정(+`fullCalcOnLoad`). 원어 반입량 9월 ITOCHU 3,415·10월 FCF 4,840(9월 직거래 11,747 유지), 태국캐너리 9월 5주차(9/30)·10월 1주차(10/7) 생산·재고, 원어재고·생산량 스냅샷 17개 공장. 월 행 추가·차트 범위 이동은 기존 관행대로 월말에.
+> - `/bangkok-office`: `docs/bangkok_week_20261007.json` → `append_bangkok_week.py`(자가검증 7항목 일치) → `sync_bangkok_report.sh`. 종합분석 HTML 백업 `…backup_20261007.html`. 주차 294 → **295**, 재고 **81,700MT**·**43일**, 10월 **1척 4,840MT**, 2026 누계 **368,039MT**, 어가 **$2,360**. 고반려 4건·301.4MT(넷째 행은 「All rejection 1.99 by negotiation」만 있어 물량 0). 어가가 바뀌어 `forecast_skj_monthly.py` 로 계절 기준선 재생성: 10→1월 $2,360 → **$2,331**(밴드 1,841~2,923).
+> - `/logistics`: 계약을 10/7판으로. `latestMonth` 를 마지막 행에서 고르게, 고반려 `note` 필드 추가(어종 처리량 없는 행). 손으로 박힌 문장 3곳 파생화 — 관제판 「SPA 창고 포화」(이번 주 SPA 88%) → 점유율 최고 캐너리·비율, 원가 시나리오 「전제보다 $200 높습니다」·ValueChainMarginIndex 「−200 낮습니다」(부호 오류) → 차이·방향 계산.
+> - `npm run verify` 통과: ESLint 0 errors(warnings 30) · Vitest **211 files / 1,791** · API cache 160/160 · 정적 118 · fleet leak · bundle 33. 로컬 production `/bangkok-office`·`/logistics` 1440·390px 200·overflow 0·error 0, 옛 값(87,300·363,199·29,901·11,585·SPA 창고 포화·9→12월) 잔존 0. (다른 브랜치 빌드의 `.next/types` 잔재로 typecheck 가 한 번 깨져 캐시만 지웠다.)
+> - 상태: 브랜치 `data/bangkok-weekly-1007`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-07 08:40 KST — #1357 2026-10-06 참치 데일리 브리핑 /market 배포** [CC]:
 > - 게이트: `state/audit-2026-10-06.txt` = AUDIT_PASS(윤문 채택·재감사 통과). 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(58+/60-), 날짜 2026-10-06 · 다이제스트 5 · 기사 5.
 > - squash 병합 `69e21bb7`(PR #1357). origin/main 대조는 커밋 메시지가 아니라 내용 해시로 — SHA-256 `ad6276e9…36827c` 로컬=origin/main 일치.

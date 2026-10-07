@@ -9,13 +9,13 @@ describe('bangkok native dashboard', () => {
     const intake = await import('../lib/data/bangkok-weekly');
 
     expect(intake.bangkokWeeklyKpi).toEqual({
-      period: '2020.05~2026.09',
-      // 2026-09-30 주간보고(정정본) 반영 (매주 sync로 갱신되는 확정 KPI)
-      weeks: 294,
-      latestPrice: 2300,
-      stockMt: 87300,
-      processDays: 41,
-      cumUnloadMt: 363199,
+      period: '2020.05~2026.10',
+      // 2026-10-07 주간보고(정정본) 반영 (매주 sync로 갱신되는 확정 KPI)
+      weeks: 295,
+      latestPrice: 2360,
+      stockMt: 81700,
+      processDays: 43,
+      cumUnloadMt: 368039,
       highSaltUsd: 142000,
     });
 
@@ -144,7 +144,7 @@ describe('bangkok native dashboard', () => {
     expect(markup).toContain('방콕사무소');
     expect(markup).toContain('data-now="true"');
     // 주차 수는 매주 는다 - 값을 못박지 말고 계약에서 파생시킨다
-    expect(markup).toContain(`분석 기간 2020.05~2026.09 · 고유 ${intakeKpi.weeks}주`);
+    expect(markup).toContain(`분석 기간 2020.05~2026.10 · 고유 ${intakeKpi.weeks}주`);
     // 2026-09-02 사용자 지시: 하이솔트 확정액 타일은 히어로에서 뺀다 (KPI 계약의 highSaltUsd는 유지).
     expect(markup).not.toContain('하이솔트 확정액');
     // 2026-09-02: 개관 시세 차트가 어튜나·방콕사무소·싱가포르 MGO 3종(같은 $/t 축) + 재고·가동률 소패널로 확장
