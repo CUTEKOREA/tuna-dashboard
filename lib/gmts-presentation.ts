@@ -483,7 +483,7 @@ function buildInsights(
 
   return {
     port: {
-      situation: `${formatReportDate(latest.reportDate)} 보고에서 ${latest.port.completed.recordCount === 0 ? '하역 완료 선박은 없습니다' : `하역 완료 ${latest.port.completed.recordCount}척은 화물 ${formatMt(latestPort.completed.totalCargoMt)} 중 ${formatMt(latestPort.completed.totalDischargedMt)}를 양하했고 SHORT는 ${formatMt(latestPort.completed.totalShortMt)}입니다`}. 입항 예정 ${latest.port.incoming.recordCount}척의 표시 총화물은 ${formatMt(latestPort.incoming.totalCargoMt)}이지만, Gensan 명시 배정량은 ${formatMt(latestPort.incoming.gensanAllocationMt)}로 분리됩니다. ${activeStatement}${overDischargedStatement}`,
+      situation: `${formatReportDate(latest.reportDate)} 보고에서 ${latest.port.completed.recordCount === 0 ? '하역 완료 선박은 없습니다' : `하역 완료 ${latest.port.completed.recordCount}척은 화물 ${formatMt(latestPort.completed.totalCargoMt)} 중 ${formatMt(latestPort.completed.totalDischargedMt)}를 양하했고 SHORT는 ${formatMt(latestPort.completed.totalShortMt)}입니다`}. 입항 예정 ${latest.port.incoming.recordCount}척의 표시 총화물은 ${formatMt(latestPort.incoming.totalCargoMt)}${(() => { const unknown = latest.port.incoming.records.filter((record) => record.cargo === null).length; return latestPort.incoming.totalCargoMt !== null && unknown > 0 ? `(${unknown}척 화물 미확정 제외)` : ''; })()}이지만, Gensan 명시 배정량은 ${latestPort.incoming.gensanAllocationMt === null ? '미확정으로' : `${formatMt(latestPort.incoming.gensanAllocationMt)}로`} 분리됩니다. ${activeStatement}${overDischargedStatement}`,
       action: `${overdueSubject}의 실제 입항·접안 상태를 운영 기록으로 재확인하고, 표시 총화물을 Gensan 반입 예측치로 직접 사용하지 않습니다.`,
     },
     cannery: {
