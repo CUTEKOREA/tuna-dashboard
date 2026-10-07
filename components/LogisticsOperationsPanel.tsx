@@ -32,7 +32,10 @@ type DecisionItem = {
   icon: typeof AlertTriangle;
 };
 
-const spa = logisticsWeeklyReport.canneries.bangkok.find((cannery) => cannery.name === 'SPA')!;
+/* 창고 점유율이 가장 높은 방콕 캐너리 - 주마다 바뀌므로 이름·비율을 계약에서 고른다 */
+const fullest = [...logisticsWeeklyReport.canneries.bangkok]
+  .sort((a, b) => b.currentStock / b.storageCapacity - a.currentStock / a.storageCapacity)[0];
+const fullestRate = Math.round((fullest.currentStock / fullest.storageCapacity) * 100);
 const rejectionGaps = logisticsWeeklyReport.highRejections.filter((row) => {
   const processed = row.items.reduce((total, item) => total + item.mt, 0);
   return Math.abs(row.quantityMt - processed - row.balanceMt) > 0.001;
@@ -40,9 +43,9 @@ const rejectionGaps = logisticsWeeklyReport.highRejections.filter((row) => {
 
 const decisions: DecisionItem[] = [
   {
-    priority: '즉시 확인',
-    title: 'SPA 창고 포화',
-    evidence: `원어 ${spa.currentStock.toLocaleString()}/${spa.storageCapacity.toLocaleString()}MT · 점유율 100%`,
+    priority: fullestRate >= 95 ? '즉시 확인' : '금주 확인',
+    title: fullestRate >= 95 ? `${fullest.name} 창고 포화` : `${fullest.name} 창고 점유율 ${fullestRate}%`,
+    evidence: `원어 ${fullest.currentStock.toLocaleString()}/${fullest.storageCapacity.toLocaleString()}MT · 점유율 ${fullestRate}%`,
     action: '추가 반입 배정과 창고 회전 계획을 확인합니다.',
     icon: Factory,
   },

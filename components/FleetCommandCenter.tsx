@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { AlertTriangle, LockKeyhole, RotateCcw, Ship } from 'lucide-react';
+import FleetPortSchedule from '@/components/FleetPortSchedule';
 import type { FleetDailyDetailErrorCode, FleetDailyDetailState } from '@/lib/contracts/fleet-daily-api';
 import { validateFleetDailyDetailResponse } from '@/lib/contracts/fleet-daily-api';
 import {
@@ -146,7 +147,7 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
       <FleetHeroCommand />
       <PillTabs className={s.taskTabs} tabs={taskTabs.map((tab) => ({ key: tab.id, label: tab.label }))} activeKey={activeTab} onChange={(key) => setActiveTab(key as FleetTaskTab)} ariaLabel="선단 업무 보기" tabIdPrefix="fleet-tab" panelIdPrefix="fleet-panel" />
       <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}><FleetDailyOperations detailState={detailState} /></section>
-      <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}><VesselDetailBoundary state={detailState} onRetry={() => { setDetailState({ status: 'loading' }); setRetryCount((value) => value + 1); }} /></section>
+      <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}><VesselDetailBoundary state={detailState} onRetry={() => { setDetailState({ status: 'loading' }); setRetryCount((value) => value + 1); }} /><FleetPortSchedule /></section>
       <section id="fleet-panel-performance" role="tabpanel" aria-labelledby="fleet-tab-performance" className={s.tabPanel} hidden={activeTab !== 'performance'}><FleetHeroKPI mode="weekly" /><FleetChartSection /><FleetDetailPanel /></section>
       <section id="fleet-panel-access" role="tabpanel" aria-labelledby="fleet-tab-access" className={s.tabPanel} hidden={activeTab !== 'access'}><div className={s.accessAlert}><AlertTriangle size={18} aria-hidden="true" /><div><strong>국적선과 키리바시 선박을 분리 집계</strong><p>국적선 6척과 키리바시 선박 4척은 별도 모집단입니다. 음수 잔여는 원문을 그대로 표시했습니다.</p></div></div><VesselVdsStatus /><VdsStrategyMatrix /><PnaAccessFeeWidgets /></section>
     </div>
