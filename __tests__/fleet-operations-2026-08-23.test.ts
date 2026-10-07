@@ -58,28 +58,28 @@ describe('2026-09-13 fleet operations sources', () => {
     });
   });
 
-  it('preserves the September fourth-week catch hierarchy and monthly reconciliation', () => {
-    expect(purseSeineCatch.period).toEqual({ from: '2026-09-21', to: '2026-09-27' });
+  it('preserves the October first-week catch hierarchy and monthly reconciliation', () => {
+    expect(purseSeineCatch.period).toEqual({ from: '2026-09-28', to: '2026-10-04' });
     expect(purseSeineCatch.summary).toEqual({
-      nationalWeekly: 1_362,
-      jointWeekly: 640,
-      weeklyTotal: 2_002,
-      nationalMonthly: 3_096,
-      jointMonthly: 2_206,
-      monthlyTotal: 5_302,
-      nationalAnnual: 31_141,
-      jointAnnual: 22_402,
-      annualTotal: 53_543,
+      nationalWeekly: 1_550,
+      jointWeekly: 875,
+      weeklyTotal: 2_425,
+      nationalMonthly: 915,
+      jointMonthly: 440,
+      monthlyTotal: 1_355,
+      nationalAnnual: 32_691,
+      jointAnnual: 23_277,
+      annualTotal: 55_968,
     });
     expect(purseSeineCatch.weeklyRanking).toEqual([
-      { rank: 1, captain: '오복근', vessel: 'S/HAR', catchMt: 510, dailyAverageMt: 72.86 },
-      { rank: 2, captain: '김형주', vessel: 'N/SUN', catchMt: 370, dailyAverageMt: 52.86 },
-      { rank: 3, captain: '강창훈', vessel: 'S/JUP', catchMt: 315, dailyAverageMt: 45 },
-      { rank: 4, captain: '김승현', vessel: 'S/PIO', catchMt: 238, dailyAverageMt: 34 },
-      { rank: 5, captain: '이평규', vessel: 'KONA', catchMt: 205, dailyAverageMt: 29.29 },
-      { rank: 6, captain: '최용석', vessel: 'S/CHA', catchMt: 200, dailyAverageMt: 28.57 },
-      { rank: 7, captain: '공준식', vessel: 'S/EXP', catchMt: 99, dailyAverageMt: 14.14 },
-      { rank: 8, captain: '이진우', vessel: 'N/STAR', catchMt: 65, dailyAverageMt: 9.29 },
+      { rank: 1, captain: '김형주', vessel: 'N/SUN', catchMt: 640, dailyAverageMt: 91.43 },
+      { rank: 2, captain: '공준식', vessel: 'S/EXP', catchMt: 440, dailyAverageMt: 62.86 },
+      { rank: 3, captain: '김승현', vessel: 'S/PIO', catchMt: 440, dailyAverageMt: 62.86 },
+      { rank: 4, captain: '최용석', vessel: 'S/CHA', catchMt: 280, dailyAverageMt: 40 },
+      { rank: 5, captain: '강창훈', vessel: 'S/JUP', catchMt: 260, dailyAverageMt: 37.14 },
+      { rank: 6, captain: '이평규', vessel: 'KONA', catchMt: 180, dailyAverageMt: 25.71 },
+      { rank: 7, captain: '오복근', vessel: 'S/HAR', catchMt: 130, dailyAverageMt: 18.57 },
+      { rank: 8, captain: '이진우', vessel: 'N/STAR', catchMt: 55, dailyAverageMt: 7.86 },
       { rank: 9, captain: '김효원', vessel: 'S/SPR', catchMt: 0, dailyAverageMt: 0 },
       { rank: 10, captain: '김정훈', vessel: 'MARI', catchMt: 0, dailyAverageMt: 0 },
     ]);
@@ -87,27 +87,26 @@ describe('2026-09-13 fleet operations sources', () => {
     for (const row of purseSeineCatch.weeklyRanking) {
       expect(Math.abs(row.catchMt / 7 - row.dailyAverageMt)).toBeLessThan(0.02);
     }
-    expect(purseSeineCatch.weeklyRanking.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(2_002);
+    expect(purseSeineCatch.weeklyRanking.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(2_425);
     const nationalVessels = new Set(nationalVds.vessels);
-    expect(purseSeineCatch.weeklyRanking.filter((vessel) => nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(1_362);
-    expect(purseSeineCatch.weeklyRanking.filter((vessel) => !nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(640);
-    // 월별 계열은 아직 8월 넷째주 판이다. 9월 넷째주 보고의 월별 그래프도 스택 막대
-    // 이미지뿐이라 월별 칸을 못 읽는다 - 연간 라벨에서 1~8월 합을 빼 9월을 파생하면
-    // 5,397 이 나와 인쇄값 5,302 와 95 MT 어긋난다(1~8월 칸도 손질된 것으로 보인다).
-    // 그래서 summary 는 인쇄값을 쓰고, 계열이 어느 기준일인지 화면이 알 수 있게 따로 연다.
+    expect(purseSeineCatch.weeklyRanking.filter((vessel) => nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(1_550);
+    expect(purseSeineCatch.weeklyRanking.filter((vessel) => !nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(875);
+    // 월별 계열은 아직 8월 넷째주 판이다. 10월 첫째주 보고의 월별 그래프도 스택 막대 이미지뿐이라
+    // 월별 칸을 다 못 읽는다. 다만 선박별 연간 라벨 합은 인쇄 연간과 맞는다(국적 6척 32,691 · 합작 4척 23,277).
     expect(purseSeineCatch.monthlySeriesAsOf).toBe('2026-08-30');
     expect(purseSeineCatch.monthlyByVessel.every((v) => v.monthlyMt.length === 8)).toBe(true);
     expect(purseSeineCatch.monthlyByVessel.reduce((sum, vessel) => sum + vessel.totalMt, 0))
       .toBeLessThan(purseSeineCatch.summary.annualTotal);
-    expect(purseSeineCatch.seasonAverageDailyMt).toBe(19.1);
-    expect([...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank)[0]).toMatchObject({ captain: '김효원', vessel: 'S/SPR', dailyCatchMt: 26.2, rank: 1 });
+    expect(purseSeineCatch.seasonAverageDailyMt).toBe(19.5);
+    expect([...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank)[0]).toMatchObject({ captain: '김효원', vessel: 'S/SPR', dailyCatchMt: 25.7, rank: 1 });
     // 현어기 일어획량 = 어획량 ÷ 어기일수. 원문 반올림 폭 안에서만 허용한다
     for (const row of purseSeineCatch.seasonRanking) {
       expect(Math.abs(row.catchMt / row.seasonDays - row.dailyCatchMt)).toBeLessThan(0.06);
     }
-    expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'S/EXP')?.leaderDeltaMt).toBe(-12.96);
+    // 지난주(9/21~9/27) 누계 + 이번 주 어획 = 이번 주 누계, 어기일수는 모두 +7
+    expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'S/EXP')?.leaderDeltaMt).toBe(-9.4);
     expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'N/STAR')).toMatchObject({
-      captain: '이진우', boardingDate: '2026-08-19', seasonDays: 40, catchMt: 445, dailyCatchMt: 11.1, rank: 10,
+      captain: '이진우', boardingDate: '2026-08-19', seasonDays: 47, catchMt: 500, dailyCatchMt: 10.6, rank: 10,
     });
   });
 
