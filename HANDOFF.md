@@ -1,3 +1,9 @@
+> 🚀 **2026-10-07 17:07 KST — #1359 입항 일정표 · #1360 방콕 10/7 · #1362 선단 261007 · #1364 GMTS 9/30·10/7 배포** [CC]:
+> - 순서: `FLEET_PORT_SCHEDULE_JSON` 프로덕션 등록(병합 전, `set_fleet_port_schedule_secret.sh`) → #1359 `b5403e82` → #1360 `a97c656e` → #1362 `55fcce98` → GMTS 는 선단 브랜치 위에 쌓였던 커밋을 최신 main 에 cherry-pick 해 #1364 `a4fa3dd3`. 네 PR 모두 App Quality Gate 통과 후 squash.
+> - 마지막 병합 배포 READY 뒤 `swap_fleet_detail_secret.sh`(canonical `50b886c9…` 일치) → 재배포 `dpl_6kWhiXbEZqbt9jBCmYKiEciz7JJA` READY · leedonggun.co.kr 연결.
+> - 라이브 실측(Aside 로그인 세션·캐시 우회): `/fleet` 「2026-10-07 보고 · 2026-10-06 조업 기준」·「전일 대비」·보호 패널 경고 없음, 선박·수역 탭 「입항 일정 · 선원 교대 · 수리 계획」 10행(실명 없음). `/bangkok-office` 2,360·81,700·368,039·295주, `/logistics` 「10월 방콕 반입 1척」·2,360, `/gmts` 2026.10.07·$2,300·$2,400·38건.
+> - 배포 후 error log(30분): `/api/mgo` AuthRefreshDiscardedError 1건(기존 반복분, 이번 변경과 무관). 그 외 0.
+
 > ✅ **2026-10-07 15:50 KST — `/gmts` 주간보고 9/30·10/7 반영(37·38주차)** [CC]:
 > - 원자료: `GMTS Weekly Report 20260930.pdf` SHA-256 `2ca4b9f669a0148db5dedc810ddda4f9a25000fddefa0dc39107ca0fc575c559`(475,012 B, 1쪽, 사용자가 오늘 올림 — 그 전엔 주간 연속성 게이트가 빌드를 막았다), `…20261007.pdf` SHA-256 `576982fd6425066a2a76680a5ac1d7593e82b1ab5bfa3738b569e1be9684d4ff`(472,867 B, 1쪽). `build_gmts_dashboard.py` → 36 → **38건**, 46쪽, coverageEnd 2026-10-07.
 > - 10/7: 하역 중 **1척**(VOLTA VICTORY 9/30 입항·하역 시작, 총화물 1,253.728 · 양하 97.360 MT), 종료 0, 입항 예정 **3척**(WEBO 307 TBA·10/12, IZAR ARGIA 4,191.090·10/7, SHIN FUJI 2,252.708·10/6 AMEND). 어가 non-GSP **$2,300**·GSP **$2,400**(9/23 $2,025·$2,140). 캐너리 합계는 9/23 판과 숫자가 같다(895/1,095·17,550/40,600) — Celebes 122% 용량 초과 플래그가 두 판에 하나씩 늘어 품질 플래그 48 → 50.
