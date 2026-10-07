@@ -56,13 +56,13 @@ describe('FleetCommandCenter daily operations', () => {
   it('keeps the weekly performance and VDS contracts while withholding the latest roster', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('26.09.21~09.27');
-    expect(markup).toContain('data-kpi-value="2002"');
-    expect(markup).toContain('data-kpi-value="5302"');
-    expect(markup).toContain('data-kpi-value="53543"');
+    expect(markup).toContain('26.09.28~10.04');
+    expect(markup).toContain('data-kpi-value="2425"');
+    expect(markup).toContain('data-kpi-value="1355"');
+    expect(markup).toContain('data-kpi-value="55968"');
     // 문장은 계약에서 파생한다 - 차트만 갈리고 문장이 지난주에 남는 사고를 막는다
-    expect(markup).toContain('S/HAR(오복근) 510t');
-    expect(markup).toContain('주간 총 어획량은 2,002t(국적 1,362t, 합작 640t)');
+    expect(markup).toContain('N/SUN(김형주) 640t');
+    expect(markup).toContain('주간 총 어획량은 2,425t(국적 1,550t, 합작 875t)');
     expect(markup).not.toContain('645t');
     // 월별 카드 라벨은 계열에서 파생한다 - 계열이 한 달 늘어도 «8월»이 남지 않는다
     expect(markup).toContain('월별 계열은 2026-08-30 보고 기준');
@@ -112,13 +112,13 @@ describe('FleetCommandCenter daily operations', () => {
     expect(fleetDailyPublicReconciliation.carrierLoaded.matches).toBe(true);
   });
 
-  it('주간 창이 한 달 안에 들어오면 월 경계 설명을 쓰지 않는다', () => {
-    /* 9월 첫째주(8/31~9/6)는 주간이 월 경계를 걸쳐 차이를 하루치로 설명할 수 있었다.
-     * 9월 넷째주(9/21~9/27)는 한 달 안이라 월간(5,302)이 주간(2,002)보다 훨씬 크다 -
-     * 그 문장을 그대로 두면 「차이 -3,300t이 그 하루치」라는 거짓말이 된다. */
-    expect(monthBoundaryDay).toBeNull();
+  it('주간 창이 월을 걸치면 앞달에 든 날수와 월간의 달을 계산해 설명한다', () => {
+    /* 10월 첫째주(9/28~10/4): 월간 1,355 는 10/1~10/4 분이고, 주간과의 차이 1,070t 은 9/28~9/30 사흘치다.
+     * 「월간은 9월분 · 그 하루치」를 손으로 박아 두면 이 주에 거짓말이 된다. */
+    expect(monthBoundaryDay).toMatchObject({ date: '2026-09-28', endDate: '2026-09-30', days: 3, month: 10, totalMt: 1_070, nationalMt: 635, jointMt: 435 });
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
-    expect(markup).toContain('주간 창이 한 달 안에 들어와');
+    expect(markup).toContain('주간은 9/28~9/30을 포함하고 월간은 10월분이라, 차이 1,070t(국적 635t, 합작 435t)이 그 3일치입니다.');
+    expect(markup).not.toContain('월간은 9월분');
     expect(markup).not.toContain('그 하루치입니다');
   });
 });
