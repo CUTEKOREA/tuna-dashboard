@@ -494,6 +494,7 @@
 }
 
 :root[data-theme='light'] {
+  --toggle-on-ink: #1c6bb0; /* 다크 모드 토글 「켜짐」 — 밝은 바탕 #eef5fc 위 5.05:1 (app/page.tsx) */
   --bg-color: #F8F7F4;
   --panel-bg: #FFFFFF;
   --panel-border: rgba(0, 0, 0, 0.06);
