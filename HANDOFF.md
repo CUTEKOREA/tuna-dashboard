@@ -1,3 +1,11 @@
+> ✅ **2026-10-08 14:58 KST — `/fleet` 해양수산본부 일일업무보고 261008(목) 반영** [CC]:
+> - 원자료: `해양수산본부 일일업무보고-261008 (목).docx` SHA-256 `7686f906daa042e64ca0fa1452c9d9d0a8915cfd8173ca083ee4853f0b7d0297`(167,652 B, `unzip -t` 정상). 증분 동기화 170건.
+> - 머리글 연속성: 태평양 1,710 + 233 = **1,943**(연간 56,322.8 → **56,555.8**), 대서양 700 + 80 = **780**(40,255 → **40,335**). 운반선 적재 10,204.3 → **11,434.3**(+1,230)·잔여 4,406 → **3,176**(−1,230). 행 합 대조 전부 일치, 품질 카운트 변화 없음(검산 676 → 680회). 「전일 대비」 −12 MT.
+> - MOAMARI 비고는 10/7 과 같다(상가수리 10/4~10/10, 10/11 출항) — `asOf` 2026-10-08, 보고일 170 / 달력 265일, 일평균 19.79 MT, 조업손실 환산 42~55보고일(손실량 840~1,080 MT 그대로).
+> - 상세 DTO `detailSha256` `216ae7aa…`(compat `50b886c9…`) → 배포 시 `swap_fleet_detail_secret.sh` 필요(`--check` 일치).
+> - `npm run verify` 통과: Vitest 213 files / **1,812** · API cache 161/161 · 정적 118 · fleet leak · bundle 33. 로컬 production `/fleet` 1440·390px 200·overflow 0·error 0.
+> - 상태: 브랜치 `data/fleet-daily-261008`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-08 13:29 KST — #1376 2026-10-07 참치 데일리 브리핑 /market 배포** [CC/tuna-dashboard-publisher]:
 > - 게이트: `state/audit-2026-10-07.txt` = AUDIT_PASS(제목 수치 승격·입간판 정합 후 재감사 P0=0 P1=0), `state/humanize-2026-10-07.txt` = ADOPTED(blocks=45 changed=19 rate=0.5%). 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(71+/58-), 날짜 2026-10-07 · 다이제스트 6 · 기사 6.
 > - squash 병합 `fb02d58d`(PR #1376, 직전은 10/06 `69e21bb7`). origin/main 대조는 내용 해시로 — SHA-256 `df896a0a…f3f695` 로컬=origin/main 일치.

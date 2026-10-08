@@ -77,31 +77,31 @@ describe('fleet daily bounded intake', () => {
   it('exposes only the current public aggregate and quality counts', () => {
     expect(fleetDailyPublic._meta).toEqual({
       schemaVersion: 1,
-      reportCount: 169,
+      reportCount: 170,
       firstReportDate: '2026-01-16',
-      latestReportDate: '2026-10-07',
-      latestAsOf: '2026-10-06',
+      latestReportDate: '2026-10-08',
+      latestAsOf: '2026-10-07',
       detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
       detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
     });
     expect(fleetDailyPublicLatest.pacific).toMatchObject({
-      dailyMt: 255,
-      monthlyMt: 1_710,
-      annualMt: 56_322.8,
+      dailyMt: 233,
+      monthlyMt: 1_943,
+      annualMt: 56_555.8,
     });
     expect(fleetDailyPublicLatest.atlantic).toMatchObject({
-      dailyMt: 70,
-      monthlyMt: 700,
-      annualMt: 40_255,
+      dailyMt: 80,
+      monthlyMt: 780,
+      annualMt: 40_335,
     });
     expect(fleetDailyPublicLatest.carrier).toEqual({
       // 9/21: 부산 하역을 마친 HIKARI 1 PSS YF 컨테이너(284.83)가 표에서 빠졌다
-      loadedTotalMt: 10_204.3,
-      expectedRemainingMt: 4_406,
+      loadedTotalMt: 11_434.3,
+      expectedRemainingMt: 3_176,
     });
     expect(fleetDailyPublic.quality.counts).toMatchObject({
-      reconciliationChecks: 676,
-      reconciliationCompleteChecks: 676,
+      reconciliationChecks: 680,
+      reconciliationCompleteChecks: 680,
       reconciliationUnavailableChecks: 0,
       reconciliationUnavailableDocuments: 0,
       reconciliationIssues: 14,
@@ -122,9 +122,9 @@ describe('fleet daily bounded intake', () => {
 
   it('formats signed deltas and reported port names without changing source values', () => {
     expect(fleetDailyPublicDeltas).toEqual({
-      pacificDailyMt: 155,
-      atlanticDailyMt: -60,
-      totalDailyMt: 95,
+      pacificDailyMt: -22,
+      atlanticDailyMt: 10,
+      totalDailyMt: -12,
     });
     expect(formatFleetDailyDelta(20)).toBe('+20');
     expect(formatFleetDailyDelta(-20)).toBe('-20');
