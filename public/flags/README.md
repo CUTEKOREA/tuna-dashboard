@@ -1,0 +1,39 @@
+# 기업 해부 국기 이미지
+
+출처: [hampusborgos/country-flags](https://github.com/hampusborgos/country-flags).
+고정 커밋: `c09927e63705529bbf59ca6684cd9b23225dddad`. 수집일: 2026-09-06.
+
+원본 URL 형식: `https://raw.githubusercontent.com/hampusborgos/country-flags/c09927e63705529bbf59ca6684cd9b23225dddad/svg/<국가코드>.svg`.
+원본 SVG를 수정 없이 보관한다. 원본 저장소 README는 Wikimedia Commons를 출처로 밝히며 국기는 public domain이라고 명시한다.
+
+`CompanyGallery`는 원본 viewBox와 `object-fit: contain`으로 국기 전체를 표시한다.
+색상 필터·문양 위 텍스트·잘라내기·비율 변형을 적용하지 않는다. 실행 시 외부 CDN 요청은 없다.
+
+| 파일 | SHA-256 |
+| --- | --- |
+| `sb.svg` | `13a37abe4d7f8fba3e44f3717da19d4d21bf78701a59f8570004b7492c9be955` |
+| `fj.svg` | `e56beb72207ff4f729ad3c48cbaa667b029a40b8a4ee93fdeced94080ba6972a` |
+| `co.svg` | `6de08e626dc2dfe251b8e2a149b6c4dea90e283f9a08edc9509fc33a4347fc73` |
+| `mh.svg` | `12ca33cef77cc51ab300d9dcbf6dfea50a51834fde9733ee1111e22298f83836` |
+| `ki.svg` | `264b8dcc3bc462c0ba497e95f60238a61d4c81f0c87f7d1017c37849917b985d` |
+| `gb.svg` | `910e4fa63fb7a23d30d59dee2feb08da51a405eb06b38a7e12d18d9b504d13b5` |
+| `sc.svg` | `3ddf34d076f859e888061197415baba9f386be68a74de2cea553ee41e0442875` |
+| `id.svg` | `83bd1b9215c403d205eb3548fc8498e3175e56c81494ebe5b2eab442291a7420` |
+| `ec.svg` | `f6f0389ea432698999e82ad40917c06369c569d8abec100292d5c2142271fc53` |
+| `pg.svg` | `fc734101dfdac482e356a1824ec094f78790d4fa5cf923c2907a707a92e19dc4` |
+| `sn.svg` | `703cc723bb89d12763271eaf19d3b927d12ebded09ee9408bf4b5704ab946117` |
+| `gh.svg` | `a5bd06898354acf1bce84ba5ae602181520d07bcac8e0e107f1688af7f185ab5` |
+| `pt.svg` | `0cee5f059ba5f2c6fbdbfdd682d955f7695239a40fa9300ba99ccbe3f144565a` |
+| `ci.svg` | `d7f52c57bf9da6a6e63268a410bd597062374d1582280e37b4c46a4c523a3bfa` |
+| `mu.svg` | `90a665aec32d7890ce363fd4b833d921957329e44d14f0883b146b092b879b36` |
+| `es.svg` | `e6ce1922eba61c4ac26f70845b8c54ff8f29e33ef64aa35a150c719c07f76ef3` |
+| `th.svg` | `a8df94da01c0b439521a1615c413abd8adf7b6b666cb5571f6bf71d5dedcd6f9` |
+| `tw.svg` | `3756ee64b1a7902efe845ba2ded314f5e635bac2f67dfa650e03880bddd3cb18` |
+| `jp.svg` | `3ecfe5fb326152e5a1270206b34825cb6ecb71f02f5ffdbb0a905474a1c2ed0d` |
+| `it.svg` | `15777a0dc5a5dd8af5d75deacec27d2d6dab190aa7295d61db601a28a71b5c6f` |
+| `ph.svg` | `2c3e7818142561a4fd8a1e80fb2bf741aae9540b2c5494922ac838dcf90ef55b` |
+| `us.svg` | `6b234bd17b00d498ac8d1c645a00025817e624641289fe4faec164c52eb43f20` |
+| `kr.svg` | `cc39b7490a894db19113b999831ebf252e1043516c31b4af0fcf4d95e11b15cd` |
+| `mx.svg` | `0c57c70b48c496060fdf81230870a860011901720c0788f1e838b320c8f13f47` |
+| `cn.svg` | `6bc6696ff46f1a326f162c12d4064d679076b81b206afc5e8e64a1126032e33b` |
+| `fr.svg` | `7504bdf1bc9b381f89b44828e048e3d2aaa3c89e68aafbac13fe30998ad121f2` |

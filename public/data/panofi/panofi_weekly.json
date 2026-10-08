@@ -1,19 +1,19 @@
 {
  "meta": {
   "generatedFrom": "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/신라그룹/11_Panofi_Cosmo_GGL /11. PANOFI/Panofi/PANOFI 주간동향",
-  "weekCount": 36,
+  "weekCount": 42,
   "rangeStart": "2025-12-23",
-  "rangeEnd": "2026-08-25",
+  "rangeEnd": "2026-10-06",
   "coverage": {
-   "prices.cosmoTema": 33,
-   "prices.scodiAbidjan": 36,
-   "fx.cediPerUsd": 36,
-   "dailyProcessing.COSMO": 35,
-   "receivables.totalUsd": 36,
-   "fuel(형식 온전)": 36,
-   "fleetStatus(관측됨)": 36,
-   "senegalFleet": 36,
-   "fishingGround.coastalMax": 36
+   "prices.cosmoTema": 39,
+   "prices.scodiAbidjan": 42,
+   "fx.cediPerUsd": 42,
+   "dailyProcessing.COSMO": 41,
+   "receivables.totalUsd": 42,
+   "fuel(형식 온전)": 42,
+   "fleetStatus(관측됨)": 42,
+   "senegalFleet": 42,
+   "fishingGround.coastalMax": 42
   },
   "vessels": {
    "P/QUEEN": "P/QUE",
@@ -38,7 +38,7 @@
    "isoWeek": 52,
    "source": "PANOFI 주간동향20251223.docx",
    "sha256": "6516dc628f4aca180161a091a3fba6934fe1eff78b58c9accc23d06d1784142e",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -76,8 +76,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "12월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "12월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1413.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1094.0,
     "marketAbidjanCfa": 600000.0,
@@ -103,13 +107,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1611350475.0,
+      "usd": 2802349.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1488888369.0,
+      "usd": 2589371.0
      }
     ],
     "totalCfa": 4601980613.0,
@@ -128,7 +132,7 @@
    "isoWeek": 1,
    "source": "PANOFI 주간동향20251230.docx",
    "sha256": "9f411e4482a1f3ffaf8832371a210434d505063c7d37666475808c9f2fa0dad0",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -174,8 +178,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "12월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "12월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1411.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1173.0,
     "marketAbidjanCfa": 600000.0,
@@ -201,13 +209,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1343782075.0,
+      "usd": 2337012.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1314729369.0,
+      "usd": 2286486.0
      }
     ],
     "totalCfa": 4160253213.0,
@@ -226,7 +234,7 @@
    "isoWeek": 2,
    "source": "PANOFI 주간동향20260106.docx",
    "sha256": "fb497a312ff3ca4f142e73045ca71a25b7ce033fc384597145b3da0d9549eca6",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -304,8 +312,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "1월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "1월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1402.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1179.0,
     "marketAbidjanCfa": 600000.0,
@@ -331,13 +343,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1243782075.0,
+      "usd": 2182074.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1114729369.0,
+      "usd": 1955666.0
      }
     ],
     "totalCfa": 3860253213.0,
@@ -356,7 +368,7 @@
    "isoWeek": 3,
    "source": "PANOFI 주간동향20260113.docx",
    "sha256": "4c0f72c77e0ba21f4fa6b6592ccd06e1c8ddd08c77e18402da62480a03052dfc",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -446,8 +458,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "1월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "1월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1399.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1167.0,
     "marketAbidjanCfa": 600000.0,
@@ -473,13 +489,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1193782075.0,
+      "usd": 2076143.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1114729369.0,
+      "usd": 1938660.0
      }
     ],
     "totalCfa": 3810253213.0,
@@ -498,7 +514,7 @@
    "isoWeek": 4,
    "source": "PANOFI 주간동향20260120.docx",
    "sha256": "2fb8d81b3dc1717cbce8bf9dae1397e1c8d09d4fd52000ea2ead16696e744349",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -552,8 +568,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "1월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "1월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1407.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1153.0,
     "marketAbidjanCfa": 600000.0,
@@ -579,13 +599,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1143782075.0,
+      "usd": 1989186.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1064729369.0,
+      "usd": 1851703.0
      }
     ],
     "totalCfa": 3710253213.0,
@@ -604,7 +624,7 @@
    "isoWeek": 5,
    "source": "PANOFI 주간동향20260127.docx",
    "sha256": "00f87f3f2391c174e882b0e5c3459d807a99c5d3dccc0f9872d77d55eba67e85",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -650,8 +670,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "1월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "1월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1410.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1146.0,
     "marketAbidjanCfa": 600000.0,
@@ -677,13 +701,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1722606599.0,
+      "usd": 3022116.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1285241161.0,
+      "usd": 2254809.0
      }
     ],
     "totalCfa": 3961845035.0,
@@ -702,7 +726,7 @@
    "isoWeek": 6,
    "source": "PANOFI 주간동향20260203.docx",
    "sha256": "6408ab02d617305c6320cb8b8d6df6671ea5d978ff1eb5cab1fb1645cb202918",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -756,8 +780,12 @@
    ],
    "prices": {
     "pfcTema": 1380.0,
+    "pfcTemaMonth": "2월",
     "cosmoTema": 1380.0,
+    "cosmoTemaMonth": "2월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1415.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1140.0,
     "marketAbidjanCfa": 600000.0,
@@ -783,13 +811,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1722606599.0,
+      "usd": 3022116.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1285241161.0,
+      "usd": 2254809.0
      }
     ],
     "totalCfa": 3961845035.0,
@@ -808,7 +836,7 @@
    "isoWeek": 7,
    "source": "PANOFI 주간동향20260210.docx",
    "sha256": "fb1b1905f24d5d121416a9395456f5081644a230192288b0b20d5a012aaa1705",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -878,8 +906,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "2월",
     "cosmoTema": 1400.0,
+    "cosmoTemaMonth": "2월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1428.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1137.0,
     "marketAbidjanCfa": 600000.0,
@@ -905,13 +937,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1409949028.0,
+      "usd": 2486682.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1285241161.0,
+      "usd": 2266739.0
      }
     ],
     "totalCfa": 3649187464.0,
@@ -930,7 +962,7 @@
    "isoWeek": 8,
    "source": "PANOFI 주간동향20260217.docx",
    "sha256": "dbc75dabff32828386b433990679563f6f168ac70786033dc63c0458ec487f63",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1000,8 +1032,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "2월",
     "cosmoTema": 1400.0,
+    "cosmoTemaMonth": "2월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1420.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1137.0,
     "marketAbidjanCfa": 600000.0,
@@ -1027,13 +1063,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1409949028.0,
+      "usd": 2495485.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 1085241161.0,
+      "usd": 1920780.0
      }
     ],
     "totalCfa": 3449187464.0,
@@ -1052,7 +1088,7 @@
    "isoWeek": 9,
    "source": "PANOFI 주간동향20260224.docx",
    "sha256": "1feb7ab02081d89f0136295406785ba5d804d962171e65df58eaa5a3db16c082",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1122,8 +1158,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "2월",
     "cosmoTema": 1400.0,
+    "cosmoTemaMonth": "2월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1413.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1146.0,
     "marketAbidjanCfa": 600000.0,
@@ -1149,13 +1189,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1409949028.0,
+      "usd": 2495485.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 893990979.0,
+      "usd": 1582284.0
      }
     ],
     "totalCfa": 3257937282.0,
@@ -1174,7 +1214,7 @@
    "isoWeek": 10,
    "source": "PANOFI 주간동향20260303.docx",
    "sha256": "7d441434b511549fd2bd301c6b064f8064eb36990fa965034e41403a3d4dcd4a",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -1206,8 +1246,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "2월",
     "cosmoTema": 1400.0,
+    "cosmoTemaMonth": "2월",
+    "temaUnderNegotiation": true,
     "scodiAbidjan": 1388.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 12500.0,
     "marketTemaUsd": 1160.0,
     "marketAbidjanCfa": 600000.0,
@@ -1233,13 +1277,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 893990979.0,
+      "usd": 1568405.0
      }
     ],
     "totalCfa": 3068335388.0,
@@ -1258,7 +1302,7 @@
    "isoWeek": 11,
    "source": "PANOFI 주간동향20260310.docx",
    "sha256": "9250cf2af75b2d265af164572cbd4eb677ff82a9b8121026ce560a6918410297",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -1306,8 +1350,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1397.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1252.0,
     "marketAbidjanCfa": 600000.0,
@@ -1333,13 +1381,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 893990979.0,
+      "usd": 1568405.0
      }
     ],
     "totalCfa": 3068335388.0,
@@ -1358,7 +1406,7 @@
    "isoWeek": 12,
    "source": "PANOFI 주간동향20260317.docx",
    "sha256": "314303e4d7a93fc8f4f43854dee8ae4b6f88fd2d440e19fc69ad5d2570881dee",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1453,8 +1501,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1420.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1241.0,
     "marketAbidjanCfa": 600000.0,
@@ -1480,13 +1532,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 893990979.0,
+      "usd": 1568405.0
      }
     ],
     "totalCfa": 3068335388.0,
@@ -1505,7 +1557,7 @@
    "isoWeek": 13,
    "source": "PANOFI 주간동향20260324.docx",
    "sha256": "86681af09a5288798bc00f1534ddbc5bc6850a635a4f06631146726f4ef23771",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1605,8 +1657,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1477.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1234.0,
     "marketAbidjanCfa": 600000.0,
@@ -1632,13 +1688,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 693931067.0,
+      "usd": 1217422.0
      }
     ],
     "totalCfa": 2868275476.0,
@@ -1657,7 +1713,7 @@
    "isoWeek": 14,
    "source": "PANOFI 주간동향20260331.docx",
    "sha256": "239266eb0449dd6c92432cd560f586c5d1df46c25c122d0c1111887246dbbb79",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": true,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1739,7 +1795,7 @@
      "note": "메인토핑 윈치 고장으로 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "미정",
@@ -1747,7 +1803,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "미정",
@@ -1755,7 +1811,7 @@
      "note": "하역 및 정비 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "미정",
@@ -1765,8 +1821,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1477.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1228.0,
     "marketAbidjanCfa": 600000.0,
@@ -1792,13 +1852,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 693931067.0,
+      "usd": 1217422.0
      }
     ],
     "totalCfa": 2868275476.0,
@@ -1817,7 +1877,7 @@
    "isoWeek": 15,
    "source": "PANOFI 주간동향20260407.docx",
    "sha256": "9d50d8fe99fe2a6187fcda6f8cc68a8a33afc65f81df2b20710c3ff66f078394",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -1899,7 +1959,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "미정",
@@ -1907,7 +1967,7 @@
      "note": "체항 수리중, 강광진 선장 휴가"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "미정",
@@ -1915,7 +1975,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "미정",
@@ -1925,8 +1985,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1477.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1227.0,
     "marketAbidjanCfa": 600000.0,
@@ -1952,13 +2016,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1220347134.0,
+      "usd": 2140959.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 693931067.0,
+      "usd": 1217422.0
      }
     ],
     "totalCfa": 2868275476.0,
@@ -1977,7 +2041,7 @@
    "isoWeek": 16,
    "source": "PANOFI 주간동향20260414.docx",
    "sha256": "2207da556f9927c0f94ad4c7f5bf149f565629604ff24333a2c34874ac6ebc57",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -2075,7 +2139,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "미정",
@@ -2083,7 +2147,7 @@
      "note": "체항 수리중, 강광진 선장 휴가"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "미정",
@@ -2091,7 +2155,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "미정",
@@ -2099,7 +2163,7 @@
      "note": "체항 수리중, 현병갑 선장 휴가"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "4/12",
      "depart": "미정",
@@ -2109,8 +2173,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1477.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1223.0,
     "marketAbidjanCfa": 600000.0,
@@ -2136,13 +2204,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1165617134.0,
+      "usd": 2037792.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 449611729.0,
+      "usd": 786034.0
      }
     ],
     "totalCfa": 2569226138.0,
@@ -2161,7 +2229,7 @@
    "isoWeek": 17,
    "source": "PANOFI 주간동향20260421.docx",
    "sha256": "77b7a9449204adf879280a316a4b9c71117a06468fe48f0d92be695532f9b537",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -2259,7 +2327,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "미정",
@@ -2267,7 +2335,7 @@
      "note": "체항 수리중, 강광진 선장 휴가"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "미정",
@@ -2275,7 +2343,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "미정",
@@ -2283,7 +2351,7 @@
      "note": "체항 수리중, 현병갑 선장 휴가"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "4/12",
      "depart": "미정",
@@ -2293,8 +2361,12 @@
    ],
    "prices": {
     "pfcTema": 1400.0,
+    "pfcTemaMonth": "3월",
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1477.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1221.0,
     "marketAbidjanCfa": 600000.0,
@@ -2320,13 +2392,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1080617134.0,
+      "usd": 1895819.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 213061729.0,
+      "usd": 373792.0
      }
     ],
     "totalCfa": 2247676138.0,
@@ -2345,7 +2417,7 @@
    "isoWeek": 18,
    "source": "PANOFI 주간동향20260428.docx",
    "sha256": "5f5a15f1c739b4e8585841e9f26a5c07d4666f6007afa7a5823662bc937de76c",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -2443,7 +2515,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "4/29",
@@ -2451,7 +2523,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "4/29",
@@ -2459,7 +2531,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "4/29",
@@ -2467,7 +2539,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "4/12",
      "depart": "4/29",
@@ -2477,8 +2549,12 @@
    ],
    "prices": {
     "pfcTema": null,
+    "pfcTemaMonth": null,
     "cosmoTema": 1500.0,
+    "cosmoTemaMonth": "3월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1405.0,
+    "scodiAbidjanMonth": null,
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1215.0,
     "marketAbidjanCfa": 600000.0,
@@ -2504,13 +2580,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1080617134.0,
+      "usd": 1895819.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 213061729.0,
+      "usd": 373792.0
      }
     ],
     "totalCfa": 2247676138.0,
@@ -2529,7 +2605,7 @@
    "isoWeek": 19,
    "source": "PANOFI 주간동향20260505.docx",
    "sha256": "5ecab2d59b0c752a1b50f91cf2e295d4419033ada0f28cf7a8ba9e5a3eb31c24",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -2591,7 +2667,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "4/29",
@@ -2599,7 +2675,7 @@
      "note": "체항 수리중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "3/16",
      "depart": "4/29",
@@ -2607,7 +2683,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "3/25",
      "depart": "5/2",
@@ -2615,7 +2691,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "4/12",
      "depart": "4/30",
@@ -2623,7 +2699,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "EU 선단",
+     "fleet": "EU",
      "vessel": "PLAYA DE LAGA",
      "arrive": "5/3",
      "depart": "미정",
@@ -2631,7 +2707,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "EU 선단",
+     "fleet": "EU",
      "vessel": "MONTEFRISA NUEVE",
      "arrive": "5/3",
      "depart": "미정",
@@ -2641,8 +2717,12 @@
    ],
    "prices": {
     "pfcTema": null,
+    "pfcTemaMonth": null,
     "cosmoTema": null,
+    "cosmoTemaMonth": null,
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1405.0,
+    "scodiAbidjanMonth": "3월",
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1203.0,
     "marketAbidjanCfa": 600000.0,
@@ -2668,13 +2748,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 1080617134.0,
+      "usd": 1879334.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 204561729.0,
+      "usd": 355759.0
      }
     ],
     "totalCfa": 2239176138.0,
@@ -2693,7 +2773,7 @@
    "isoWeek": 20,
    "source": "PANOFI 주간동향20260512.docx",
    "sha256": "b4dcf532eb20f264ce6a5a2438490a41ad33d9ac2faa4431208f0935c44a3cf1",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -2731,7 +2811,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "3/15",
      "depart": "5/12",
@@ -2739,7 +2819,7 @@
      "note": "수리 후 출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "5/9",
      "depart": "미정",
@@ -2749,8 +2829,12 @@
    ],
    "prices": {
     "pfcTema": null,
+    "pfcTemaMonth": null,
     "cosmoTema": null,
+    "cosmoTemaMonth": null,
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1408.0,
+    "scodiAbidjanMonth": "3월",
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1194.0,
     "marketAbidjanCfa": 600000.0,
@@ -2776,13 +2860,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 891470634.0,
+      "usd": 1563983.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 16543521.0,
+      "usd": 29023.0
      }
     ],
     "totalCfa": 1828924388.0,
@@ -2801,7 +2885,7 @@
    "isoWeek": 21,
    "source": "PANOFI 주간동향20260519.docx",
    "sha256": "952b22a823f8c54858e335a1332b9e90d4329589eebf9803f1024a86d67c0968",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -2855,7 +2939,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "5/9",
      "depart": "5/16",
@@ -2863,7 +2947,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "5/13",
      "depart": "미정",
@@ -2871,18 +2955,30 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "5/18",
      "depart": "미정",
      "tons": 820.0,
      "note": "하역 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "5/17",
+     "depart": "미정",
+     "tons": 500.0,
+     "note": "하역 중"
     }
    ],
    "prices": {
     "pfcTema": null,
+    "pfcTemaMonth": null,
     "cosmoTema": null,
+    "cosmoTemaMonth": null,
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1393.0,
+    "scodiAbidjanMonth": "3월",
     "marketTemaCedi": 13500.0,
     "marketTemaUsd": 1179.0,
     "marketAbidjanCfa": 600000.0,
@@ -2908,13 +3004,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1545515.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27002.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -2933,7 +3029,7 @@
    "isoWeek": 22,
    "source": "PANOFI 주간동향20260526.docx",
    "sha256": "322cc09cf10a81c32a8b22905cf23f3de3477de79ab831931bea9a073ccb0f10",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -2979,18 +3075,30 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "5/26",
      "depart": "미정",
      "tons": 1200.0,
      "note": "하역 대기중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "5/17",
+     "depart": "5/21",
+     "tons": 500.0,
+     "note": "출항 완료"
     }
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "5월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "5월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1697.0,
+    "scodiAbidjanMonth": "5월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1290.0,
     "marketAbidjanCfa": 600000.0,
@@ -3016,13 +3124,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1559072.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27239.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -3041,7 +3149,7 @@
    "isoWeek": 23,
    "source": "PANOFI 주간동향20260602.docx",
    "sha256": "28f9c3e8e2e9a29c913d00fe10c2773cb1236d932b52588105b6ad80845ba28e",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3103,7 +3211,7 @@
      "note": "FAD 자재, 유류수급 후 출항"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "5/26",
      "depart": "미정",
@@ -3111,7 +3219,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "5/28",
      "depart": "미정",
@@ -3119,18 +3227,30 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "5/30",
      "depart": "미정",
      "tons": 910.0,
      "note": "하역 대기중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "EGALUZE",
+     "arrive": "5/28",
+     "depart": "미정",
+     "tons": null,
+     "note": "스페인 선원 사망으로 입항"
     }
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "6월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "6월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1699.0,
+    "scodiAbidjanMonth": "6월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1276.0,
     "marketAbidjanCfa": 600000.0,
@@ -3156,13 +3276,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1559072.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27239.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -3181,7 +3301,7 @@
    "isoWeek": 24,
    "source": "PANOFI 주간동향20260609.docx",
    "sha256": "0c32509b4d2a7996bc8b70355d71e218dcd58dbe5458fe67d95f3fa1c839f5a8",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3238,7 +3358,7 @@
      "note": "FAD 자재 선적중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "PONT SAINT LOUIS",
      "arrive": "5/26",
      "depart": "6/7",
@@ -3246,7 +3366,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA BREEZE",
      "arrive": "5/28",
      "depart": "미정",
@@ -3254,7 +3374,7 @@
      "note": "하역 종료, 출항 대기중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "5/30",
      "depart": "미정",
@@ -3262,7 +3382,7 @@
      "note": "하역 대기중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "6/2",
      "depart": "미정",
@@ -3270,7 +3390,15 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "EU",
+     "vessel": "EGALUZE",
+     "arrive": "5/28",
+     "depart": "미정",
+     "tons": null,
+     "note": "스페인 선원 사망으로 입항"
+    },
+    {
+     "fleet": "EU",
      "vessel": "ALBACORA QUINCE",
      "arrive": "6/4",
      "depart": "미정",
@@ -3280,8 +3408,12 @@
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "6월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "6월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1689.0,
+    "scodiAbidjanMonth": "6월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1266.0,
     "marketAbidjanCfa": 800000.0,
@@ -3307,13 +3439,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1559072.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27239.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -3332,7 +3464,7 @@
    "isoWeek": 25,
    "source": "PANOFI 주간동향20260616.docx",
    "sha256": "c9673e2d0bd0ef663f50bff3311b52e2b3ce494978d9292f1dc1b13dcf2f82af",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3384,7 +3516,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA DEFENDER",
      "arrive": "5/30",
      "depart": "6/13",
@@ -3392,7 +3524,7 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "그랑블루",
      "vessel": "SEA FRONTIER",
      "arrive": "6/2",
      "depart": "6/11",
@@ -3400,7 +3532,15 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "블루",
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "6/14",
+     "depart": "미정",
+     "tons": 450.0,
+     "note": "하역 중"
+    },
+    {
+     "fleet": "EU",
      "vessel": "ALBACORA QUINCE",
      "arrive": "6/4",
      "depart": "6/12",
@@ -3410,8 +3550,12 @@
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "6월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "6월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1692.0,
+    "scodiAbidjanMonth": "6월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1351.0,
     "marketAbidjanCfa": 800000.0,
@@ -3437,13 +3581,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1559072.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27239.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -3462,7 +3606,7 @@
    "isoWeek": 26,
    "source": "PANOFI 주간동향20260623.docx",
    "sha256": "dfccd6cd7d08d775fdc33c9283f017f8fc428544d88dabc250a3e6655b453b5c",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3504,12 +3648,24 @@
      "depart": "미정",
      "tons": 710.0,
      "note": "하역 대기 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "6/14",
+     "depart": "6/17",
+     "tons": 450.0,
+     "note": "출항"
     }
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "6월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "6월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1663.0,
+    "scodiAbidjanMonth": "6월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1339.0,
     "marketAbidjanCfa": 800000.0,
@@ -3535,13 +3691,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1559072.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 15526670.0,
+      "usd": 27239.0
      }
     ],
     "totalCfa": 1858195179.0,
@@ -3560,7 +3716,7 @@
    "isoWeek": 27,
    "source": "PANOFI 주간동향20260630.docx",
    "sha256": "08355bb37079bc36b94ce8bd6f59105ec88d96c06eb888a6bba3f0354d858362",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3594,12 +3750,24 @@
      "depart": "미정",
      "tons": 710.0,
      "note": "하역중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ZUBEROA",
+     "arrive": "6/27",
+     "depart": "미정",
+     "tons": 925.0,
+     "note": "하역중"
     }
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "6월",
     "cosmoTema": 1650.0,
+    "cosmoTemaMonth": "6월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1630.0,
+    "scodiAbidjanMonth": "6월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1324.0,
     "marketAbidjanCfa": 800000.0,
@@ -3625,13 +3793,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1519096.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 672670.0,
+      "usd": 11498.0
      }
     ],
     "totalCfa": 1848275179.0,
@@ -3650,7 +3818,7 @@
    "isoWeek": 28,
    "source": "PANOFI 주간동향20260707.docx",
    "sha256": "7a1b82c8fff94b536f59c359a707e0327875f396e59e8fb08cbf24df5f62a59a",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3746,12 +3914,24 @@
      "depart": "미정",
      "tons": 790.0,
      "note": "하역중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": "7/6",
+     "depart": "미정",
+     "tons": 1300.0,
+     "note": "선석 대기중"
     }
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "7월",
     "cosmoTema": 1620.0,
+    "cosmoTemaMonth": "7월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1633.0,
+    "scodiAbidjanMonth": "7월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1316.0,
     "marketAbidjanCfa": 800000.0,
@@ -3777,13 +3957,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 888671234.0,
+      "usd": 1506222.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11401.0
      }
     ],
     "totalCfa": 1848275179.0,
@@ -3802,7 +3982,7 @@
    "isoWeek": 29,
    "source": "PANOFI 주간동향20260714.docx",
    "sha256": "3dee16a78203b98ef525f5ea448e203cd1c2e9732838d7de277632c3004caed3",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -3883,7 +4063,15 @@
      "note": "하역중"
     },
     {
-     "fleet": "그랑블루",
+     "fleet": "EU",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": "7/6",
+     "depart": "미정",
+     "tons": 1300.0,
+     "note": "운반선 전재 중"
+    },
+    {
+     "fleet": "EU",
      "vessel": "ALBONIGA",
      "arrive": "7/7",
      "depart": "7/11",
@@ -3901,8 +4089,12 @@
    ],
    "prices": {
     "pfcTema": 1570.0,
+    "pfcTemaMonth": "7월",
     "cosmoTema": 1620.0,
+    "cosmoTemaMonth": "7월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1637.0,
+    "scodiAbidjanMonth": "7월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1305.0,
     "marketAbidjanCfa": 800000.0,
@@ -3928,13 +4120,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 870826234.0,
+      "usd": 1463573.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11305.0
      }
     ],
     "totalCfa": 1831550179.0,
@@ -3953,7 +4145,7 @@
    "isoWeek": 30,
    "source": "PANOFI 주간동향20260721.docx",
    "sha256": "34ddba1366b218c96f29564e3d4527c2558101a00e1b356ff295a8392146df28",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -4007,7 +4199,15 @@
      "note": "출항 완료"
     },
     {
-     "fleet": "그랑블루",
+     "fleet": "EU",
+     "vessel": "ALBACORA QUINCE",
+     "arrive": "7/6",
+     "depart": "7/17",
+     "tons": 1300.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "EU",
      "vessel": "ZUBEROA",
      "arrive": "7/13",
      "depart": "미정",
@@ -4015,7 +4215,7 @@
      "note": "운반선 전재중"
     },
     {
-     "fleet": "그랑블루",
+     "fleet": "EU",
      "vessel": "MONTERAIOLA",
      "arrive": "7/15",
      "depart": "미정",
@@ -4033,8 +4233,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "7월",
     "cosmoTema": 1620.0,
+    "cosmoTemaMonth": "7월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1637.0,
+    "scodiAbidjanMonth": "7월",
     "marketTemaCedi": 15000.0,
     "marketTemaUsd": 1297.0,
     "marketAbidjanCfa": 800000.0,
@@ -4060,13 +4264,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 870826234.0,
+      "usd": 1463573.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11305.0
      }
     ],
     "totalCfa": 1831550179.0,
@@ -4085,7 +4289,7 @@
    "isoWeek": 31,
    "source": "PANOFI 주간동향20260728.docx",
    "sha256": "6a8f5b05276901fc22149ac35aa9c2097fcbf214aaf78a10b193ede64042188f",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -4147,7 +4351,15 @@
      "note": "하역 중"
     },
     {
-     "fleet": "그랑블루",
+     "fleet": "EU",
+     "vessel": "MONTEFRISA NUEVE",
+     "arrive": "7/20",
+     "depart": "미정",
+     "tons": null,
+     "note": "운반선 전재중"
+    },
+    {
+     "fleet": "EU",
      "vessel": "ALABONIGA",
      "arrive": "7/24",
      "depart": "미정",
@@ -4165,8 +4377,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "7월",
     "cosmoTema": 1620.0,
+    "cosmoTemaMonth": "7월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1623.0,
+    "scodiAbidjanMonth": "7월",
     "marketTemaCedi": 14500.0,
     "marketTemaUsd": 1246.0,
     "marketAbidjanCfa": 800000.0,
@@ -4192,13 +4408,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 870826234.0,
+      "usd": 1451377.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11211.0
      }
     ],
     "totalCfa": 1831550179.0,
@@ -4217,7 +4433,7 @@
    "isoWeek": 32,
    "source": "PANOFI 주간동향20260804.docx",
    "sha256": "ec637cb6674994dd2811fb1748cbcd6e648af4fae734575e6c9b73b6cc207c23",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -4263,7 +4479,7 @@
      "note": "조업 중"
     },
     {
-     "fleet": "EU 선단",
+     "fleet": "EU",
      "vessel": "ZUBEROA",
      "arrive": "7/28",
      "depart": "미정",
@@ -4281,8 +4497,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "8월",
     "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1700.0,
+    "scodiAbidjanMonth": "8월",
     "marketTemaCedi": 14500.0,
     "marketTemaUsd": 1239.0,
     "marketAbidjanCfa": 800000.0,
@@ -4308,13 +4528,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 870826234.0,
+      "usd": 1451377.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11211.0
      }
     ],
     "totalCfa": 1831550179.0,
@@ -4333,7 +4553,7 @@
    "isoWeek": 33,
    "source": "PANOFI 주간동향20260811.docx",
    "sha256": "8346b0f4dd5a81e93136c599010a56d348f75c192e96151d2874c990564af42e",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -4403,7 +4623,7 @@
      "note": "하역 중"
     },
     {
-     "fleet": "EU 선단",
+     "fleet": "EU",
      "vessel": "ZUBEROA",
      "arrive": "7/28",
      "depart": "8/8",
@@ -4421,8 +4641,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "8월",
     "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1700.0,
+    "scodiAbidjanMonth": "8월",
     "marketTemaCedi": 14500.0,
     "marketTemaUsd": 1232.0,
     "marketAbidjanCfa": 800000.0,
@@ -4448,13 +4672,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 873766234.0,
+      "usd": 1456277.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11211.0
      }
     ],
     "totalCfa": 1834490179.0,
@@ -4473,7 +4697,7 @@
    "isoWeek": 34,
    "source": "PANOFI 주간동향20260818.docx",
    "sha256": "7f177a1ae541cc381fe8c328c622cf2fa1d1ad41c2d6c14486d239a643836d75",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "nominal",
    "ownVessels": [],
@@ -4511,7 +4735,7 @@
      "note": null
     },
     {
-     "fleet": "EU 선단",
+     "fleet": "EU",
      "vessel": "ALBONIGA",
      "arrive": "8/13",
      "depart": "미정",
@@ -4529,8 +4753,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "8월",
     "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1700.0,
+    "scodiAbidjanMonth": "8월",
     "marketTemaCedi": 14500.0,
     "marketTemaUsd": 1318.0,
     "marketAbidjanCfa": 800000.0,
@@ -4556,13 +4784,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 873766234.0,
+      "usd": 1456277.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11211.0
      }
     ],
     "totalCfa": 1834490179.0,
@@ -4581,7 +4809,7 @@
    "isoWeek": 35,
    "source": "PANOFI 주간동향20260825.docx",
    "sha256": "2d6f19d9997dd275d80a61b115fc16cabfdb0d9a238ec09c7c5edb7b3c0fb3c2",
-   "author": "김평회 법인장",
+   "author": "법인장",
    "statedYearMismatch": false,
    "fleetStatus": "detailed",
    "ownVessels": [
@@ -4648,8 +4876,12 @@
    ],
    "prices": {
     "pfcTema": 1600.0,
+    "pfcTemaMonth": "8월",
     "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": false,
     "scodiAbidjan": 1700.0,
+    "scodiAbidjanMonth": "8월",
     "marketTemaCedi": 14000.0,
     "marketTemaUsd": 1257.0,
     "marketAbidjanCfa": 800000.0,
@@ -4675,13 +4907,13 @@
      },
      {
       "buyer": "ETS BADARA",
-      "cfa": null,
-      "usd": null
+      "cfa": 873766234.0,
+      "usd": 1506494.0
      },
      {
       "buyer": "SDMG",
-      "cfa": null,
-      "usd": null
+      "cfa": 6726670.0,
+      "usd": 11598.0
      }
     ],
     "totalCfa": 1834490179.0,
@@ -4692,6 +4924,847 @@
     "tema": 1563.0,
     "dakar": 1121.0,
     "tanker": 1401.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-09-01",
+   "isoWeek": 36,
+   "source": "PANOFI 주간동향20260901.docx",
+   "sha256": "02c69fa4af978a1fc48490f01c793c6de7d1efca8d41658c4e6884768641b3e2",
+   "author": "법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": null
+    },
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.8,
+    "coastalMax": 26.9,
+    "oceanMin": 23.4,
+    "oceanMax": 24.8,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": "8/17",
+     "depart": "미정",
+     "tons": null,
+     "note": "상가수리 중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": "8/21",
+     "depart": "8/27",
+     "tons": 760.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": "8/22",
+     "depart": "미정",
+     "tons": 980.0,
+     "note": "하역 완료, 임시국적 증서 갱신 차 체항중"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEE BREEZE",
+     "arrive": "8/20",
+     "depart": "8/26",
+     "tons": 960.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": "8/25",
+     "depart": "8/29",
+     "tons": 920.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "EGALUZE",
+     "arrive": "8/31",
+     "depart": "미정",
+     "tons": 450.0,
+     "note": "운반선 BOYANG BERING 전재중"
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "BOYANG BERING",
+     "arrive": "8/31",
+     "depart": "미정",
+     "tons": null,
+     "note": "조업선 물량 전재 중"
+    }
+   ],
+   "prices": {
+    "pfcTema": 1600.0,
+    "pfcTemaMonth": "8월",
+    "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": true,
+    "scodiAbidjan": 1722.0,
+    "scodiAbidjanMonth": "9월",
+    "marketTemaCedi": 14000.0,
+    "marketTemaUsd": 1244.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1379.0
+   },
+   "fx": {
+    "cediPerUsd": 11.25,
+    "cfaPerUsd": 580.0
+   },
+   "dailyProcessing": {
+    "COSMO": 80.0,
+    "PFC": 90.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1644823.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": 873766234.0,
+      "usd": 1506494.0
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": 6726670.0,
+      "usd": 11598.0
+     }
+    ],
+    "totalCfa": 1834490179.0,
+    "totalUsd": 3162914.0
+   },
+   "fuel": {
+    "abidjan": 1302.0,
+    "tema": 1569.0,
+    "dakar": 1293.0,
+    "tanker": 1445.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-09-08",
+   "isoWeek": 37,
+   "source": "PANOFI 주간동향20260908.docx",
+   "sha256": "625fc4c7d32dc4701eb05060880a953cc21909f78717ff3cb0ce6f92b01dc947",
+   "author": "법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/QUEEN",
+     "code": "P/QUE",
+     "status": null
+    },
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": null
+    },
+    {
+     "vessel": "P/FORE",
+     "code": "P/FORE",
+     "status": null
+    },
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.2,
+    "coastalMax": 26.0,
+    "oceanMin": 23.2,
+    "oceanMax": 24.9,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": "8/17",
+     "depart": "미정",
+     "tons": null,
+     "note": "상가수리 중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": "8/22",
+     "depart": "미정",
+     "tons": 980.0,
+     "note": "하역 완료, 임시국적 증서 갱신 차 체항중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": "9/1",
+     "depart": "9/5",
+     "tons": 440.0,
+     "note": "어기교대 후 출항 완료"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": "9/1",
+     "depart": "9/6",
+     "tons": 715.0,
+     "note": "운반선 전재 후 출항 완료"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": "9/5",
+     "depart": "미정",
+     "tons": 900.0,
+     "note": "하역 중"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": "9/6",
+     "depart": "미정",
+     "tons": 1100.0,
+     "note": "하역 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "EGALUZE",
+     "arrive": "8/31",
+     "depart": "9/7",
+     "tons": 450.0,
+     "note": "운반선 전재 후 출항 완료"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "9/2",
+     "depart": "미정",
+     "tons": 450.0,
+     "note": "운반선 전재 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ZUBEROA",
+     "arrive": "9/5",
+     "depart": "미정",
+     "tons": null,
+     "note": "운반선 전재 중"
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "BOYANG BERING",
+     "arrive": "8/31",
+     "depart": "미정",
+     "tons": null,
+     "note": "조업선 물량 전재 중"
+    }
+   ],
+   "prices": {
+    "pfcTema": 1900.0,
+    "pfcTemaMonth": "9월",
+    "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": true,
+    "scodiAbidjan": 1722.0,
+    "scodiAbidjanMonth": "9월",
+    "marketTemaCedi": 14000.0,
+    "marketTemaUsd": 1229.0,
+    "marketAbidjanCfa": 800000.0,
+    "marketAbidjanUsd": 1367.0
+   },
+   "fx": {
+    "cediPerUsd": 11.39,
+    "cfaPerUsd": 585.0
+   },
+   "dailyProcessing": {
+    "COSMO": 80.0,
+    "PFC": 120.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 953997275.0,
+      "usd": 1630764.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": 873766234.0,
+      "usd": 1493617.0
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": 6726670.0,
+      "usd": 11498.0
+     }
+    ],
+    "totalCfa": 1834490179.0,
+    "totalUsd": 3135880.0
+   },
+   "fuel": {
+    "abidjan": 1232.0,
+    "tema": 1573.0,
+    "dakar": 1224.0,
+    "tanker": 1442.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-09-15",
+   "isoWeek": 38,
+   "source": "PANOFI 주간동향20260915.docx",
+   "sha256": "749c791e4016400b677a4e01f6cc87a36976a3efaac983ea36e3cf561ff800fc",
+   "author": "법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/MAS",
+     "code": "P/MAS",
+     "status": null
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.3,
+    "coastalMax": 27.2,
+    "oceanMin": 23.7,
+    "oceanMax": 25.2,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "서류"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": "8/17",
+     "depart": "미정",
+     "tons": null,
+     "note": "상가수리 중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": "8/22",
+     "depart": "미정",
+     "tons": 980.0,
+     "note": "하역 완료, 임시국적 증서 갱신 차 체항중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": "9/5",
+     "depart": "9/11",
+     "tons": 900.0,
+     "note": "하역 후, 출항 완료"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "PONT SAINT LOUIS",
+     "arrive": "9/6",
+     "depart": "9/10",
+     "tons": 1100.0,
+     "note": "하역 후, 출항 완료"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA DEFENDER",
+     "arrive": "9/10",
+     "depart": "미정",
+     "tons": 920.0,
+     "note": "운반선 전재 중"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA BREEZE",
+     "arrive": "9/12",
+     "depart": "미정",
+     "tons": 840.0,
+     "note": "운반선 전재 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "9/2",
+     "depart": "9/13",
+     "tons": 450.0,
+     "note": "운반선 전재 후, 출항 완료"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ZUBEROA",
+     "arrive": "9/5",
+     "depart": "9/9",
+     "tons": 560.0,
+     "note": "운반선 전재 후, 출항 완료"
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "BOYANG BERING",
+     "arrive": "8/31",
+     "depart": "미정",
+     "tons": null,
+     "note": "조업선 물량 전재 중"
+    }
+   ],
+   "prices": {
+    "pfcTema": 1900.0,
+    "pfcTemaMonth": "9월",
+    "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": true,
+    "scodiAbidjan": 1722.0,
+    "scodiAbidjanMonth": "9월",
+    "marketTemaCedi": 14000.0,
+    "marketTemaUsd": 1229.0,
+    "marketAbidjanCfa": 780000.0,
+    "marketAbidjanUsd": 1356.0
+   },
+   "fx": {
+    "cediPerUsd": 11.46,
+    "cfaPerUsd": 575.0
+   },
+   "dailyProcessing": {
+    "COSMO": 95.0,
+    "PFC": 120.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 874147675.0,
+      "usd": 1520257.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": 1480521734.0,
+      "usd": 2574820.0
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": 812822280.0,
+      "usd": 1413604.0
+     }
+    ],
+    "totalCfa": 3167491689.0,
+    "totalUsd": 5508681.0
+   },
+   "fuel": {
+    "abidjan": 1222.0,
+    "tema": 1586.0,
+    "dakar": 1324.0,
+    "tanker": 1619.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-09-22",
+   "isoWeek": 39,
+   "source": "PANOFI 주간동향20260922.docx",
+   "sha256": "9901e44c6dd1ee4b514e56730689d7cceb1f70bfeb59cef65b513425e4cfd3c8",
+   "author": "법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "nominal",
+   "ownVessels": [],
+   "fishingGround": {
+    "coastalMin": 25.2,
+    "coastalMax": 26.9,
+    "oceanMin": 24.0,
+    "oceanMax": 26.2,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "불규칙"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": "8/17",
+     "depart": "미정",
+     "tons": null,
+     "note": "상가수리 중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": "8/22",
+     "depart": "미정",
+     "tons": 980.0,
+     "note": "하역 완료, 임시국적 증서 갱신 차 체항중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": "9/17",
+     "depart": "미정",
+     "tons": 780.0,
+     "note": "하역 중"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA BREEZE",
+     "arrive": "9/12",
+     "depart": "9/16",
+     "tons": 840.0,
+     "note": "하역 및 운반선 전재 후 출항"
+    },
+    {
+     "fleet": "그랑블루",
+     "vessel": "SEA FRONTIER",
+     "arrive": "9/17",
+     "depart": "미정",
+     "tons": 840.0,
+     "note": "하역 중"
+    }
+   ],
+   "prices": {
+    "pfcTema": 1900.0,
+    "pfcTemaMonth": "9월",
+    "cosmoTema": 1700.0,
+    "cosmoTemaMonth": "8월",
+    "temaUnderNegotiation": true,
+    "scodiAbidjan": 1832.0,
+    "scodiAbidjanMonth": "9월",
+    "marketTemaCedi": 14000.0,
+    "marketTemaUsd": 1212.0,
+    "marketAbidjanCfa": 780000.0,
+    "marketAbidjanUsd": 1322.0
+   },
+   "fx": {
+    "cediPerUsd": 11.55,
+    "cfaPerUsd": 590.0
+   },
+   "dailyProcessing": {
+    "COSMO": 100.0,
+    "PFC": 120.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 874147675.0,
+      "usd": 1481606.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": 1430521734.0,
+      "usd": 2424613.0
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": 812822280.0,
+      "usd": 1377664.0
+     }
+    ],
+    "totalCfa": 3117491689.0,
+    "totalUsd": 5283884.0
+   },
+   "fuel": {
+    "abidjan": 1241.0,
+    "tema": 1656.0,
+    "dakar": 1310.0,
+    "tanker": 1579.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-09-29",
+   "isoWeek": 40,
+   "source": "PANOFI 주간동향20260929.docx",
+   "sha256": "9bbc8286dbedeb14c59688e2fc75261ba12d548678602f2f118f4b93d027b3f4",
+   "author": "법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/GRACE",
+     "code": "P/GRA",
+     "status": "9/28 07:00 TEMA 입항, 하역 중 (ETD : 10/1), 선장 → 선장 어기교대"
+    },
+    {
+     "vessel": "P/DIS",
+     "code": "P/DIS",
+     "status": "9/29 09:30 TEMA 입항, 하역 중 (ETD : 10/2)"
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 24.8,
+    "coastalMax": 26.9,
+    "oceanMin": 24.3,
+    "oceanMax": 26.1,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "불규칙"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "CAP ATLANTIQUE",
+     "arrive": "8/17",
+     "depart": "9/26",
+     "tons": null,
+     "note": "수리 후 출항 완료"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": "8/22",
+     "depart": "미정",
+     "tons": null,
+     "note": "하역 완료, 임시국적 증서 갱신 차 체항중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "GRANADA",
+     "arrive": "9/23",
+     "depart": "9/27",
+     "tons": 715.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "XIXILI",
+     "arrive": "9/28",
+     "depart": "미정",
+     "tons": 1040.0,
+     "note": "하역 중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "ORIENTAL KIM",
+     "arrive": "9/27",
+     "depart": "미정",
+     "tons": 940.0,
+     "note": "하역 중"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "MONTEFRISA NUEVE",
+     "arrive": "9/21",
+     "depart": "9/28",
+     "tons": 880.0,
+     "note": "운반선 전재 후 출항 완료"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "EGALUZE",
+     "arrive": "9/22",
+     "depart": "9/28",
+     "tons": 450.0,
+     "note": "운반선 전재 후 출항 완료"
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "ORANGE ICE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": "조업선 물량 전재 중"
+    }
+   ],
+   "prices": {
+    "pfcTema": 1900.0,
+    "pfcTemaMonth": "9월",
+    "cosmoTema": 1850.0,
+    "cosmoTemaMonth": "9월",
+    "temaUnderNegotiation": false,
+    "scodiAbidjan": 1832.0,
+    "scodiAbidjanMonth": "9월",
+    "marketTemaCedi": 14000.0,
+    "marketTemaUsd": 1200.0,
+    "marketAbidjanCfa": 780000.0,
+    "marketAbidjanUsd": 1333.0
+   },
+   "fx": {
+    "cediPerUsd": 11.66,
+    "cfaPerUsd": 585.0
+   },
+   "dailyProcessing": {
+    "COSMO": 100.0,
+    "PFC": 120.0,
+    "SCODI": 85.0,
+    "SCASA": 100.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 874147675.0,
+      "usd": 1494270.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": 1430521734.0,
+      "usd": 2445336.0
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": 812822280.0,
+      "usd": 1389440.0
+     }
+    ],
+    "totalCfa": 3117491689.0,
+    "totalUsd": 5329046.0
+   },
+   "fuel": {
+    "abidjan": 1218.0,
+    "tema": 1687.0,
+    "dakar": 1268.0,
+    "tanker": 1543.0,
+    "single": null
+   }
+  },
+  {
+   "reportDate": "2026-10-06",
+   "isoWeek": 41,
+   "source": "PANOFI 주간동향20261006.docx",
+   "sha256": "76a9807c5c05264ccd673b68403e0277ff9979d2e11c9af945e31e966b2440b4",
+   "author": "법인장",
+   "statedYearMismatch": false,
+   "fleetStatus": "detailed",
+   "ownVessels": [
+    {
+     "vessel": "P/PATH",
+     "code": "P/PATH",
+     "status": "10/4 11:00 Abidjan 입항, 하역 중 (ETD : 10/8)"
+    },
+    {
+     "vessel": "P/COMM",
+     "code": "P/COMM",
+     "status": "10/5 17:00 Abidjan 입항, 명일(10/7) 하역 예정 (ETD : 10/10)"
+    }
+   ],
+   "fishingGround": {
+    "coastalMin": 25.9,
+    "coastalMax": 26.8,
+    "oceanMin": 24.8,
+    "oceanMax": 26.0,
+    "coastalCurrent": "동류",
+    "oceanCurrent": "불규칙"
+   },
+   "senegalFleet": [
+    {
+     "fleet": "캅센",
+     "vessel": "COSMOS KIM",
+     "arrive": "8/22",
+     "depart": "미정",
+     "tons": null,
+     "note": "하역 완료, 임시국적 증서 갱신 차 체항 중"
+    },
+    {
+     "fleet": "캅센",
+     "vessel": "WESTERN KIM",
+     "arrive": "9/28",
+     "depart": "10/6",
+     "tons": 790.0,
+     "note": "출항 완료"
+    },
+    {
+     "fleet": "EU",
+     "vessel": "ALBONIGA",
+     "arrive": "10/1",
+     "depart": "미정",
+     "tons": 450.0,
+     "note": "운반선 전재 후 외항 대기 중"
+    },
+    {
+     "fleet": "운반선",
+     "vessel": "ORANGE ICE",
+     "arrive": null,
+     "depart": null,
+     "tons": null,
+     "note": "조업선 물량 전재 대기 중"
+    }
+   ],
+   "prices": {
+    "pfcTema": 1900.0,
+    "pfcTemaMonth": "9월",
+    "cosmoTema": 1850.0,
+    "cosmoTemaMonth": "9월",
+    "temaUnderNegotiation": true,
+    "scodiAbidjan": 1800.0,
+    "scodiAbidjanMonth": "10월",
+    "marketTemaCedi": 14000.0,
+    "marketTemaUsd": 1189.0,
+    "marketAbidjanCfa": 760000.0,
+    "marketAbidjanUsd": 1299.0
+   },
+   "fx": {
+    "cediPerUsd": 11.77,
+    "cfaPerUsd": 585.0
+   },
+   "dailyProcessing": {
+    "COSMO": 100.0,
+    "PFC": 120.0,
+    "SCODI": 85.0,
+    "SCASA": 120.0,
+    "AIRONE": 0.0
+   },
+   "receivables": {
+    "buyers": [
+     {
+      "buyer": "INTER OCEAN",
+      "cfa": 874147675.0,
+      "usd": 1494270.0
+     },
+     {
+      "buyer": "ETS BADARA",
+      "cfa": 1270521734.0,
+      "usd": 2171832.0
+     },
+     {
+      "buyer": "SDMG",
+      "cfa": 592822280.0,
+      "usd": 1013371.0
+     }
+    ],
+    "totalCfa": 2737491689.0,
+    "totalUsd": 4679473.0
+   },
+   "fuel": {
+    "abidjan": 1325.0,
+    "tema": 1678.0,
+    "dakar": 1342.0,
+    "tanker": 1535.0,
     "single": null
    }
   }

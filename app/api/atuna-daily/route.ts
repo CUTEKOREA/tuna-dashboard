@@ -23,17 +23,26 @@ export const dynamic = 'force-dynamic';
 
 const DATA_DIR = path.join(process.cwd(), 'data', 'atuna_daily');
 
+function isValidDate(date: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
+  const parsed = new Date(`${date}T00:00:00.000Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date;
+}
+
 function listAvailableDates(): string[] {
   if (!fs.existsSync(DATA_DIR)) return [];
   return fs.readdirSync(DATA_DIR)
     .filter(f => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
     .map(f => f.replace('.json', ''))
+    .filter(isValidDate)
     .sort()
     .reverse();
 }
 
 function readDate(date: string): any | null {
-  const file = path.join(DATA_DIR, `${date}.json`);
+  if (!isValidDate(date)) return null;
+  const file = path.resolve(DATA_DIR, `${date}.json`);
+  if (path.dirname(file) !== DATA_DIR) return null;
   if (!fs.existsSync(file)) return null;
   try {
     return JSON.parse(fs.readFileSync(file, 'utf-8'));
@@ -75,13 +84,16 @@ export async function GET(request: NextRequest) {
 
   const { searchParams } = new URL(request.url);
   const date = searchParams.get('date');
+  if (date !== null && (searchParams.getAll('date').length !== 1 || !isValidDate(date))) {
+    return NextResponse.json({ error: '유효한 날짜(YYYY-MM-DD)가 필요합니다.' }, { status: 400 });
+  }
   const daysParam = searchParams.get('days');
   const days = daysParam ? Math.max(1, Math.min(30, parseInt(daysParam, 10))) : 7;
 
   const available = listAvailableDates();
 
-  if (date) {
-    const data = readDate(date);
+  if (date !== null) {
+    const data = available.includes(date) ? readDate(date) : null;
     if (!data) {
       return NextResponse.json(
         { error: '해당 일자 데이터 없음', requested: date, available: available.slice(0, 10), ...l12(available) },

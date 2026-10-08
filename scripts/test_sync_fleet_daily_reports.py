@@ -260,6 +260,11 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             },
             "deltas": {"pacificDailyMt": 0, "atlanticDailyMt": 0, "totalDailyMt": 0},
             "reconciliation": {},
+            "dailySeries": {
+                "dates": ["2026-08-13", "2026-08-14"],
+                "pacific": {"totalMt": [80, 85], "vessels": {"S/EXP": [10, 15]}, "lastLoadIncreaseDates": {"S/EXP": "2026-08-14"}},
+                "atlantic": {"totalMt": [160, 170], "vessels": {"P/MAS": [None, 20]}, "lastLoadIncreaseDates": {"P/MAS": "2026-08-14"}},
+            },
             "quality": {
                 "counts": {
                     "reconciliationChecks": 8,
@@ -281,8 +286,14 @@ class FleetDailyReportSyncTest(unittest.TestCase):
         report = {
             "reportDate": "2026-08-15",
             "asOf": "2026-08-14",
-            "pacific": {"asOf": "2026-08-14", "dailyMt": 100, "monthlyMt": 200, "annualMt": 1100, "vessels": []},
-            "atlantic": {"asOf": "2026-08-14", "dailyMt": 160, "monthlyMt": 300, "annualMt": 2160, "vessels": []},
+            "pacific": {"asOf": "2026-08-14", "dailyMt": 100, "monthlyMt": 200, "annualMt": 1100, "vessels": [
+                # 보고일 어획은 없지만 선적량이 늘었다 - 보고 없는 날 잡은 것
+                {"name": "S/EXP", "catchMt": None, "loadedMt": 80},
+            ]},
+            "atlantic": {"asOf": "2026-08-14", "dailyMt": 160, "monthlyMt": 300, "annualMt": 2160, "vessels": [
+                # 전재로 선적량이 줄었다 - 증가가 아니다
+                {"name": "P/MAS", "catchMt": None, "loadedMt": None},
+            ]},
             "carrier": {
                 "loadedTotalMt": 700,
                 "loadedTotalMtRaw": "700",
@@ -306,7 +317,8 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             "longlineMissing": [],
         }
 
-        result = module.build_incremental_public_payload(previous_public, report, issues, "b" * 64)
+        previous_loaded = {"pacific": {"S/EXP": 50}, "atlantic": {"P/MAS": 300}}
+        result = module.build_incremental_public_payload(previous_public, report, issues, "b" * 64, previous_loaded)
 
         self.assertEqual(result["_meta"], {
             "schemaVersion": 1,
@@ -325,10 +337,12 @@ class FleetDailyReportSyncTest(unittest.TestCase):
         self.assertEqual(result["quality"]["counts"]["reconciliationChecks"], 12)
         self.assertEqual(result["quality"]["counts"]["reconciliationCompleteChecks"], 12)
         self.assertTrue(result["reconciliation"]["valid"])
+        self.assertEqual(result["dailySeries"]["pacific"]["lastLoadIncreaseDates"], {"S/EXP": "2026-08-15"})
+        self.assertEqual(result["dailySeries"]["atlantic"]["lastLoadIncreaseDates"], {"P/MAS": "2026-08-14"})
 
         stale = {**report, "reportDate": "2026-08-14"}
         with self.assertRaises(module.FleetDailySyncError):
-            module.build_incremental_public_payload(previous_public, stale, issues, "b" * 64)
+            module.build_incremental_public_payload(previous_public, stale, issues, "b" * 64, previous_loaded)
 
     def test_latest_report_cli_updates_public_and_detail_without_rebuilding_private_history(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -358,6 +372,12 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             detail_output = temporary / "fleet-daily-detail.json"
             private_output = temporary / "fleet-daily-private.json"
             public_output.write_text(json.dumps(previous_public, ensure_ascii=False), encoding="utf-8")
+            # 증분 동기화는 적재 증가를 직전 상세 DTO 의 선적량과 비교해 판정한다
+            detail_output.write_text(json.dumps({
+                "reportDate": previous_public["_meta"]["latestReportDate"],
+                "pacific": {"vessels": []},
+                "atlantic": {"vessels": []},
+            }), encoding="utf-8")
 
             result = subprocess.run(
                 [
@@ -404,6 +424,23 @@ class FleetDailyReportSyncTest(unittest.TestCase):
             )
             self.assertEqual(stale_result.returncode, 1)
             self.assertIn("기존 최신일", stale_result.stderr)
+
+    def test_daily_series_records_the_last_load_increase_including_unreported_days(self) -> None:
+        module = load_sync_module()
+        def report(day: str, loaded: float | None, catch: float | None = None) -> dict:
+            region = {"dailyMt": 0, "vessels": [{"name": "S/JUP", "catchMt": catch, "loadedMt": loaded}]}
+            return {"reportDate": day, "pacific": region, "atlantic": {"dailyMt": 0, "vessels": []}}
+        reports = [
+            report("2026-08-12", 65, catch=65),
+            report("2026-08-14", 65),
+            report("2026-08-18", 265),   # 주말 사이 어획 - 보고일 어획은 «-»
+            report("2026-08-19", None),  # 전재로 비었다
+            report("2026-08-20", None),
+        ]
+        series = module.build_daily_series(reports)
+        self.assertEqual(series["pacific"]["vessels"]["S/JUP"], [65, None, None, None, None])
+        self.assertEqual(series["pacific"]["lastLoadIncreaseDates"], {"S/JUP": "2026-08-18"})
+        self.assertEqual(series["atlantic"]["lastLoadIncreaseDates"], {})
 
     def test_reconciliation_check_ignores_sub_milliton_float_noise(self) -> None:
         module = load_sync_module()
@@ -589,3 +626,40 @@ class ParseAmountDashIsZero(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ReconciliationToleranceTest(unittest.TestCase):
+    """검산 허용 폭은 머리글이 인쇄된 자릿수에서 나온다."""
+
+    def setUp(self) -> None:
+        self.m = load_sync_module()
+
+    def test_tolerance_follows_printed_precision(self) -> None:
+        # 2026-09-07 에 운반선 6,854.1 vs 행합 6,854.13 하나로
+        # 「최신 상세 행 확인 필요」가 상시 점등돼 있었다
+        self.assertEqual(self.m.rounding_tolerance("6,854.1(616.1)톤"), 0.05)
+        self.assertEqual(self.m.tolerance_from_value(6854.1), 0.05)
+        # 정수로 찍힌 값은 넓히지 않는다 - 진짜 차이를 덮는다
+        self.assertEqual(self.m.rounding_tolerance("100"), self.m.MIN_TOLERANCE_MT)
+        self.assertEqual(self.m.rounding_tolerance(None), self.m.MIN_TOLERANCE_MT)
+        self.assertEqual(self.m.tolerance_from_value(100), self.m.MIN_TOLERANCE_MT)
+
+    def test_rounding_residue_is_not_a_mismatch(self) -> None:
+        rounded = self.m.reconciliation_check(
+            "2026-09-07", "carrier.loadedMt", 6854.1,
+            [284.83, 1846, 900, 0, 2868, 955.3], "6,854.1(616.1)톤")
+        self.assertEqual(rounded["status"], "completeMatch")
+
+    def test_real_difference_still_fails(self) -> None:
+        real = self.m.reconciliation_check(
+            "2026-02-20", "carrier.loadedMt", 5000.0, [4100.0], "5,000.0")
+        self.assertEqual(real["status"], "completeMismatch")
+
+    def test_reevaluation_matches_a_fresh_check(self) -> None:
+        """원문 없이 재평가한 결과가 원문에서 뽑은 결과와 같아야 한다."""
+        fresh = self.m.reconciliation_check(
+            "2026-09-07", "carrier.loadedMt", 6854.1,
+            [284.83, 1846, 900, 0, 2868, 955.3], "6,854.1(616.1)톤")
+        stored = {k: fresh[k] for k in
+                  ("reportDate", "field", "reportedMt", "knownRowsMt", "missingCount")}
+        self.assertEqual(self.m.reevaluate_check(stored, "6,854.1(616.1)톤"), fresh)

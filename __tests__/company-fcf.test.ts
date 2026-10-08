@@ -11,8 +11,6 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  FCF_BRIEFING,
-  FCF_NARRATIVES,
   FCF_SOURCE_NOTES,
 } from '@/lib/company-fcf-content';
 import {
@@ -27,6 +25,11 @@ import {
   sillaLatest,
   sillaPeak,
 } from '@/lib/data/company-fcf';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+
+// 서술은 조사보고서에서 그대로 읽어 온다. 손으로 쓴 상수는 더 없다.
+const FCF_NARRATIVES = proseStages('fcf');
+const FCF_BRIEFING = proseBriefing('fcf');
 
 describe('FCF 인테이크', () => {
   it('자사 어선은 0척이다 - 이 회사 성격의 출발점', () => {
@@ -79,14 +82,16 @@ describe('FCF 인테이크', () => {
     expect(fcfProfile.some(([, v]) => v.includes('발행정지'))).toBe(true);
   });
 
-  it('서술은 6단계이고 브리핑이 실재 단계를 가리킨다', () => {
-    expect(FCF_NARRATIVES).toHaveLength(6);
+  it('서술 단계가 비어 있지 않고 브리핑이 실재 단계를 가리킨다', () => {
+    // 단계 수를 리터럴로 적지 않는다. 절이 늘면 조용히 깨지는 대신 인테이크를 따라간다.
+    expect(FCF_NARRATIVES.length).toBeGreaterThanOrEqual(6);
     const keys = new Set(FCF_NARRATIVES.map((s) => s.key));
     for (const b of FCF_BRIEFING) expect(keys.has(b.stage)).toBe(true);
   });
 
-  it('한국 관점 단계가 마지막이다', () => {
-    const last = FCF_NARRATIVES[FCF_NARRATIVES.length - 1];
-    expect(last.title).toContain('한국');
+  it('한국 관점 단계가 본문 절 가운데 마지막이다', () => {
+    // 정정 이력 절은 본문 뒤에 붙는 부록이라 마지막 자리를 가져간다.
+    const body = FCF_NARRATIVES.filter((n) => !n.title.includes('정정 이력'));
+    expect(body[body.length - 1].title).toContain('한국');
   });
 });

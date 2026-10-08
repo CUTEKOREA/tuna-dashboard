@@ -1,0 +1,89 @@
+[
+  {
+    "carrier": "SEIN VENUS",
+    "date": "06.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "GB": "143",
+      "GPZ": "925",
+      "ISA": "760",
+      "MMP": "400",
+      "PTY": "100",
+      "TUM": "947",
+      "OTHER": "41/ASIMAR"
+    }
+  },
+  {
+    "carrier": "SEITA MARU",
+    "date": "29.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "AEC": "56",
+      "DIA": "494",
+      "MMP": "20",
+      "TUG": "25",
+      "TUM": "2,837",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "FONG KUO NO.818",
+    "date": "01.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "AEC": "630",
+      "CMC": "250",
+      "DIA": "200",
+      "ISA": "1,000",
+      "MMP": "222",
+      "PTY": "500",
+      "SK": "250",
+      "TUM": "314",
+      "UC": "1,514",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "ZHONG YU MARINE",
+    "date": "02.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "AEC": "228",
+      "CMC": "400",
+      "GB": "100",
+      "MMP": "574",
+      "PTY": "606",
+      "RMK": "287",
+      "RS": "869",
+      "SEAP": "300",
+      "TUM": "265",
+      "UC": "1,396",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "SEIN QUEEN",
+    "date": "04.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "CMC": "545",
+      "GB": "46",
+      "GPZ": "544",
+      "RMK": "250",
+      "SPA": "480",
+      "TUG": "145",
+      "TUM": "892",
+      "OTHER": "11B"
+    }
+  }
+]

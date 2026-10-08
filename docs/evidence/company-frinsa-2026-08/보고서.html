@@ -59,6 +59,8 @@ img{max-width:100%;height:auto;display:block}
 .cover-logo{width:clamp(7rem,14vw,10.5rem);filter:brightness(0) invert(1);opacity:.95}
 .cover-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
   color:rgba(237,241,242,.6);text-align:right;line-height:2}
+@media print{.cover .cover-top{flex-wrap:wrap}.cover .cover-mark{min-width:0}.cover .cover-tag{min-width:0;max-width:100%;white-space:normal;overflow-wrap:break-word;letter-spacing:.08em}}
+
 .cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0 2rem}
 .cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
   color:#C98A6E;margin-bottom:1.5rem}
@@ -112,8 +114,8 @@ h2{font-family:var(--sans);font-weight:600;font-size:1.7rem;letter-spacing:-.022
   letter-spacing:.1em;display:block;margin-bottom:.9rem}
 h3{font-family:var(--sans);font-weight:600;font-size:1.06rem;margin:2.6rem 0 .7rem}
 h4{font-family:var(--sans);font-weight:600;font-size:.92rem;margin:1.8rem 0 .5rem;color:var(--ink-2)}
-p{margin:0 0 1.1rem;max-width:44rem}
-.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:44rem}
+p{margin:0 0 1.1rem;max-width:none}
+.lead{font-size:1.1rem;line-height:1.7;color:var(--ink-2);max-width:none}
 strong{font-weight:600;color:var(--ink)}
 .es{font-style:italic}
 code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:.1em .3em;
@@ -154,22 +156,30 @@ th{background:var(--paper-2);text-align:left;font-weight:600;font-size:.71rem;le
   text-transform:uppercase;color:var(--ink-2);padding:.6rem .8rem;
   border-bottom:1px solid var(--rule-2);white-space:nowrap}
 td{padding:.55rem .8rem;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top}
+/* 브라우저 기본값은 한글을 글자 단위로 끊는다 — 좁은 칸에서 낱말이 갈라진다.
+   한국어 조판의 기본은 띄어쓰기에서만 끊는 것이다. */
+main th,main td{word-break:keep-all}
+
 tr:last-child td{border-bottom:none}
 td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* .num 은 숫자를 안 끊으려고 nowrap 이다. 그런데 같은 칸에 붙는 주석 줄까지
+   붙들려 표가 컨테이너를 밀어냈다 — 숫자와 칩은 그대로 두고 주석만 접는다. */
+td.num span:not(.chip):not(.basis){white-space:normal;word-break:keep-all}
+
 td b{color:var(--ink);font-weight:600}
 tr.hl td{background:var(--steel-soft)}
 tr.dim td{color:var(--ink-3)}
 
 /* ===== CALLOUT / QUOTE ===== */
 .call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;margin:0 0 1.6rem;
-  max-width:46rem}
+  max-width:none}
 .call.hot{border-left:3px solid var(--pimenton)}
 .call.warn{border-left:3px solid var(--warn);background:var(--warn-bg)}
 .call .ct{font-family:var(--sans);font-weight:600;font-size:.82rem;margin:0 0 .5rem;color:var(--ink)}
 .call p{margin:0 0 .6rem;font-size:.89rem;line-height:1.7}
 .call p:last-child{margin-bottom:0}
 blockquote{margin:0 0 1.2rem;padding:.85rem 1.1rem;background:var(--paper-2);
-  border-left:3px solid var(--steel);max-width:46rem;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
+  border-left:3px solid var(--steel);max-width:none;font-size:.9rem;line-height:1.65;color:var(--ink-2)}
 blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.69rem;color:var(--ink-3)}
 
 /* ===== MISC ===== */
@@ -192,10 +202,25 @@ blockquote .who{display:block;margin-top:.5rem;font-family:var(--mono);font-size
 .certrow img{height:3rem;width:auto;opacity:.9}
 footer{border-top:2px solid var(--ink);margin-top:1rem;padding:1.75rem 0 4rem;
   font-family:var(--sans);font-size:.79rem;color:var(--ink-3);line-height:1.7}
-footer p{max-width:52rem}
+footer p{max-width:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 .chip.c-est{background:transparent;color:var(--ink-3);box-shadow:inset 0 0 0 1px currentColor;opacity:.9}
+
+/* 차트 — 인라인 SVG. 색은 그림마다 style 로 실려 온다 */
+figure.chart{margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card);break-inside:avoid}
+figure.chart .fi{background:var(--paper-2);padding:1.05rem .8rem;display:block}
+figure.chart svg{width:100%;height:auto;display:block}
+figure.chart figcaption{display:block;margin:0;max-width:none;font-size:.78rem;line-height:1.62;color:var(--ink-2);padding:.62rem .85rem;border-top:1px solid var(--rule)}
+figure.chart figcaption b{color:var(--ink)}
+.rc-g{stroke:var(--rule);stroke-width:.6}
+.rc-a{stroke:var(--rule-2);stroke-width:.8}
+.rc-l{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.04em}
+.rc-v{fill:var(--ink);font-family:var(--mono);font-size:8.5px;font-weight:600}
+.rc-b{fill:var(--rc-b,#3a6ea5)}
+.rc-b.hot{fill:var(--rc-h,#b8860b)}
+.rc-b.mut{fill:var(--rule-2)}
+.rc-n{fill:var(--ink-2);font-family:var(--sans);font-size:8px}
 </style>
 
 <!-- ================= COVER ================= -->
@@ -213,7 +238,7 @@ footer p{max-width:52rem}
     </div>
 
     <div class="cover-mid">
-      <p class="cover-kick">스페인 수산통조림 1위 · 세계 7위 참치 구매사</p>
+      <p class="cover-kick">개별법인 업종 매출 1위 · 그룹으로는 갈리시아 2위</p>
       <h1><span class="scr">Frinsa</span> <b>해부</b></h1>
       <p class="cover-sub">유럽 대형 유통체인의 참치캔을 만드는 회사.
         정작 캔에는 그 이름이 없다. 브랜드·제품·유통경로로 본 "자체브랜드의 왕".</p>
@@ -250,14 +275,18 @@ footer p{max-width:52rem}
   <div class="nt">목차</div>
   <ol>
     <li><a href="#s1"><span class="n">01</span> 회사 개요</a></li>
-    <li><a href="#s2"><span class="n">02</span> 브랜드 체계</a></li>
-    <li><a href="#s3"><span class="n">03</span> 제품 카탈로그</a></li>
-    <li><a href="#s4"><span class="n">04</span> OEM · 자체브랜드</a></li>
-    <li><a href="#s5"><span class="n">05</span> 유통경로</a></li>
-    <li><a href="#s6"><span class="n">06</span> 생산과 조달</a></li>
-    <li><a href="#s7"><span class="n">07</span> 재무와 그룹</a></li>
-    <li><a href="#s8"><span class="n">08</span> 경쟁 구도</a></li>
-    <li><a href="#s9"><span class="n">09</span> 한국 관점</a></li>
+    <li><a href="#s0b"><span class="n">02</span> 연혁</a></li>
+    <li><a href="#s2"><span class="n">03</span> 브랜드 체계</a></li>
+    <li><a href="#s3"><span class="n">04</span> 제품 카탈로그</a></li>
+    <li><a href="#s4"><span class="n">05</span> OEM · 자체브랜드</a></li>
+    <li><a href="#s5"><span class="n">06</span> 유통경로</a></li>
+    <li><a href="#s6"><span class="n">07</span> 생산과 조달</a></li>
+    <li><a href="#s7"><span class="n">08</span> 재무와 그룹</a></li>
+    <li><a href="#s7b"><span class="n">09</span> 공적자금과 법원기록</a></li>
+    <li><a href="#s8"><span class="n">10</span> 경쟁 구도</a></li>
+    <li><a href="#s9"><span class="n">11</span> 한국 관점</a></li>
+    <li><a href="#s9b"><span class="n">12</span> 전략</a></li>
+    <li><a href="#scorr"><span class="n">13</span> 정정 이력</a></li>
   </ol>
 </nav>
 
@@ -282,7 +311,7 @@ footer p{max-width:52rem}
       <tr><td>설립</td><td><b>1961년 9월 27일</b>, Ribeira. 산업용 냉동창고로 출발</td></tr>
       <tr><td>CIF · 업종</td><td>A15010564 · CNAE 10.22 (수산통조림 제조), 스페인 업종 매출 1위</td></tr>
       <tr><td>본사·공장</td><td>Av. Ramiro Carregal Rey 29, Polígono Industrial de Xarás, 15969 Ribeira (A Coruña)</td></tr>
-      <tr><td>지배구조</td><td>가족 100%, 창업자 <b>Ramiro Carregal 64.10%</b> / 아들 <b>Jorge Carregal Varela 35.90%</b></td></tr>
+      <tr><td>지배구조</td><td>가족 100%. 창업자 <b>Ramiro Carregal 64.10%</b> / 아들 <b>Jorge Carregal Varela 35.90%</b> (이 배분이 명시된 <b>마지막 보도는 2021~2022년 계정</b> 기준이다. Expansión 2022-10-13은 Jorge를 Luangwa Valley 경유 <b>약 37%</b>로 적어 소수점이 어긋난다. <b>2024~2026년 등기에서 재확인된 바 없다.</b> 두 사람 가족 소유라는 점만 2025-07 보도로 재확인)</td></tr>
       <tr><td>경영 체제</td><td><b>이사회 없음.</b> 단독이사(administrador único) 1인 체제, 2017년 부자 승계</td></tr>
       <tr><td>그룹 인원</td><td>2024년 기말 <b>1,222명</b> · 평균 1,263명 (연결 기준)</td></tr>
       <tr><td>생산 거점</td><td>Ribeira(스페인) · Póvoa de Varzim(포르투갈, 지분 75%)</td></tr>
@@ -303,8 +332,49 @@ footer p{max-width:52rem}
 </section>
 
 <!-- ============ 02 ============ -->
+<section id="s0b">
+  <h2><span class="h2n">02 / 연혁</span>냉동창고에서 남의 이름을 만드는 공장으로</h2>
+
+  <p class="lead">이 회사의 원 상호는 <strong>Frigoríficos del Noroeste, S.A.</strong>이고
+    「FRINSA」는 그 상호의 약칭이다. 이름 자체가 냉동에서 왔고, 시작도 통조림 공장이 아니라
+    <strong>산업용 냉동창고</strong>였다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>시점</th><th>무엇이 일어났나</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>1961-09-27</td><td>Ribeira에 <b>Frigoríficos del Noroeste, S.A.</b> 설립. 창업자 인터뷰 기사는 창업 연도를 <b>1964년</b>으로 적는다 — 두 값을 등기 원문으로 좁히지 못했다</td></tr>
+      <tr class="hl"><td>2002 이전</td><td>상호가 <b>Frigoríficos del Noroeste, S.A.</b>였다. 지금의 이름은 그 뒤의 것이다</td></tr>
+      <tr><td>2015</td><td>참치 라인 셋을 <b>350만 유로</b>에 새로 놓았다. 같은 해 <span class="nb">08-18</span> 참치 구매본부 법인 설립</td></tr>
+      <tr><td>2016</td><td><b>Ribeira Proteína Natural</b> 출시 — 참치·연어·닭·칠면조 4종, 160 g, 물과 소금만</td></tr>
+      <tr class="hl"><td>2019</td><td>포르투갈 통조림사 <b>A Poveira 지분 50% 취득</b>. 통째 인수가 아니다</td></tr>
+      <tr class="hl"><td>2021-09-19</td><td>콜옵션 조기 행사로 <b>75%</b>가 됐다. 나머지 25%는 기존 파트너가 갖는다</td></tr>
+      <tr><td>2022</td><td>닭고기 통조림에 <b>1,000만 유로</b>로 진입</td></tr>
+      <tr><td>2022-11-21</td><td>100% 자회사 분할 의결. <span class="nb">2023-02-21</span> 영업개시</td></tr>
+      <tr><td>2023</td><td>La Góndola(<span class="nb">09-30</span>)와 Expoconser(<span class="nb">10-30</span>)를 흡수해 세 법인이 하나로 정리됐다. 같은 해 Frinsa USA 청산</td></tr>
+      <tr><td>2025-08</td><td>유럽 배송 물류센터와 부속 직판매장 폐쇄</td></tr>
+      <tr class="hl"><td>2026-02</td><td><b>SOLO</b> 출시 캠페인 집행 — 물과 소금만 넣는 계열</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">연도는 확보한 문서에 적힌 것이다. 1961과 1964처럼 자료가 갈리는 자리는
+    한쪽으로 좁히지 않고 둘을 함께 적었다. <span class="chip c-doc">원본</span><span class="chip c-src">매체</span></p>
+
+  <p>여기서 읽히는 것은 방향이 아니라 <b>순서</b>다. 냉동으로 시작해 원료를 다루는 경험을 먼저
+    쌓았고, 그 위에 유통사 주문을 받는 제조를 얹었다. 자기 이름을 단 소비자 브랜드는
+    가장 나중에 왔다 — Proteína Natural이 2016년, SOLO 캠페인이 2026년이다.</p>
+
+  <p>돈이 들어간 해도 표에 박혀 있다. 2015년에 참치 라인 셋을 <b>350만 유로</b>에 놓았고
+    같은 해 <span class="nb">2015-08-18</span>에 참치 구매본부 법인을 세웠다. 2019년에 포르투갈
+    A Poveira 지분 <b>50%</b>를 잡았다가 <span class="nb">2021-09-19</span> 콜옵션 조기 행사로
+    <b>75%</b>가 됐고, 2022년에는 닭고기 통조림에 <b>1,000만 유로</b>로 들어갔다. 반대로
+    <span class="nb">2025-08</span>에는 유럽 배송 물류센터와 부속 직판매장을 닫았다.</p>
+
+  <p>법인은 늘었다가 정리되기를 반복했다. 2022년에 자회사를 갈라 세웠고 2023년에는 세 법인을
+    하나로 합쳤으며 미국 법인은 청산했다. <b>브랜드는 늘리고 법인은 줄이는 방향</b>이 최근 네 해에
+    함께 나타난다.</p>
+</section>
+
 <section id="s2">
-  <h2><span class="h2n">02 / 브랜드 체계</span>여섯 갈래, 그리고 포르투갈의 아홉</h2>
+  <h2><span class="h2n">03 / 브랜드 체계</span>여섯 갈래, 그리고 포르투갈의 아홉</h2>
 
   <p class="lead">자사 브랜드는 누구에게 어느 나라에서 파는가로 갈린다. 가격대는 그다음이다.
     같은 공장에서 나온 참치가 브랜드를 바꿔 달고 스페인 마트, 독일 슈퍼, 영어권 수출 도매,
@@ -378,7 +448,7 @@ footer p{max-width:52rem}
   </div>
 
   <h3>포르투갈에서는 브랜드가 아홉 갈래다</h3>
-  <p>2019년 인수한 A Poveira는 그 자체가 <strong>브랜드 포트폴리오</strong>였다.
+  <p>2019년 거래는 <b>지분 50% 취득</b>이고 통째 인수가 아니다(Grande Consumo 2019-09-18, Expresso 2019-09-10). <b>2021-09-19 콜옵션 조기 행사로 75%</b>가 됐고 나머지 25%는 기존 파트너가 갖는다. 75%가 마지막 공개 지분이다. 또한 2026년 apoveira.pt에 올라 있는 것은 <b>Minerva·Poveira·Alva·La Góndola 넷</b>이고, Capitão Poveiro·Galeão·Ala-arriba가 현재 현역 SKU인지는 확인되지 않는다. 그 A Poveira는 그 자체가 <strong>브랜드 포트폴리오</strong>였다.
     핵심은 각 브랜드에 채널이 명시적으로 배정돼 있다는 점이다. 같은 정어리를 근대유통과 도매, 수출, 루소폰 시장에 각각 다른 이름으로 내보낸다.</p>
   <div class="tw"><table>
     <thead><tr><th>브랜드</th><th>포지션</th><th>배정된 채널 · 시장</th></tr></thead>
@@ -412,7 +482,7 @@ footer p{max-width:52rem}
 
 <!-- ============ 03 ============ -->
 <section id="s3">
-  <h2><span class="h2n">03 / 제품 카탈로그</span>실제로 무엇을 파는가</h2>
+  <h2><span class="h2n">04 / 제품 카탈로그</span>실제로 무엇을 파는가</h2>
 
   <p class="lead">한 공장에서 나온 참치가 <strong>킬로그램당 17 €에서 221 €까지</strong> 갈린다.
     브랜드가 바뀌고 부위가 바뀌고 채널이 바뀌면서 13배가 벌어진다.
@@ -427,7 +497,10 @@ footer p{max-width:52rem}
 
   <h3>같은 참치를 다섯 층으로 나눈 가격 사다리</h3>
   <p>부위와 어종, 브랜드와 용기가 층을 만든다. 어종보다 부위가 더 크게 값을 가른다. 같은 날개다랑어라도 몸살(29.75 €/kg)과 뱃살(99.58 €/kg)이 3.3배 차이다.</p>
-  <div class="tw"><table>
+  <figure class="chart"><div class="fi"><svg viewBox="0 0 620 176" role="img" aria-label="층별 €/kg — 220.83에서 17.56까지" style="--rc-b:#3E5C6B;--rc-h:#A8442A"><line class="rc-g" x1="197.1" y1="16" x2="197.1" y2="146"/><text class="rc-l" x="197.1" y="159" text-anchor="middle">20</text><line class="rc-g" x1="344.5" y1="16" x2="344.5" y2="146"/><text class="rc-l" x="344.5" y="159" text-anchor="middle">50</text><line class="rc-g" x1="456.0" y1="16" x2="456.0" y2="146"/><text class="rc-l" x="456.0" y="159" text-anchor="middle">100</text><line class="rc-g" x1="567.6" y1="16" x2="567.6" y2="146"/><text class="rc-l" x="567.6" y="159" text-anchor="middle">200</text><rect class="rc-b hot" x="150" y="23.0" width="433.5" height="12" rx="1"/><text class="rc-l" x="144" y="32.0" text-anchor="end">5 · 한정판 참다랑어 뱃살</text><text class="rc-v" x="588.5" y="32.0">220.83</text><rect class="rc-b" x="150" y="49.0" width="305.4" height="12" rx="1"/><text class="rc-l" x="144" y="58.0" text-anchor="end">4 · 백참치 뱃살</text><text class="rc-v" x="460.4" y="58.0">99.58</text><rect class="rc-b" x="150" y="75.0" width="111.0" height="12" rx="1"/><text class="rc-l" x="144" y="84.0" text-anchor="end">3 · 백참치 몸살</text><text class="rc-v" x="266.0" y="84.0">29.75</text><rect class="rc-b" x="150" y="101.0" width="56.8" height="12" rx="1"/><text class="rc-l" x="144" y="110.0" text-anchor="end">2 · 황다랑어 올리브유</text><text class="rc-v" x="211.8" y="110.0">21.25</text><rect class="rc-b" x="150" y="127.0" width="26.1" height="12" rx="1"/><text class="rc-l" x="144" y="136.0" text-anchor="end">1 · 대중 Ribeira 3×52 g</text><text class="rc-v" x="181.1" y="136.0">17.56</text><text class="rc-n" x="150" y="170">소비자가 환산 €/kg · 범위가 있는 층은 하한 · 가로축 로그 눈금</text></svg></div>
+  <figcaption>같은 회사가 <b>€17.56에서 €220.83까지</b> 판다 — <b>12.6배</b>다. 3·1층은 가격대가 범위여서 하한을 그렸다. 가로축이 로그 눈금인 이유가 여기 있다. 산술 눈금이면 아래 세 층이 한 줄로 뭉개진다.</figcaption></figure>
+  <div class="tw">
+    <table>
     <thead><tr><th>층</th><th>대표 제품</th><th>규격</th><th class="num">소비자가</th><th class="num">€/kg</th><th>채널</th></tr></thead>
     <tbody>
       <tr class="hl"><td><b>5 · 한정판</b></td><td>Ventresca de atún rojo en aceite de oliva<br><span style="font-size:.82em;color:var(--ink-3)">참다랑어 뱃살 · <i>Thunnus thynnus</i></span></td><td>120 g</td><td class="num"><b>26.50 €</b></td><td class="num"><b>220.83</b></td><td>자사몰</td></tr>
@@ -672,7 +745,7 @@ footer p{max-width:52rem}
 
 <!-- ============ 04 ============ -->
 <section id="s4">
-  <h2><span class="h2n">04 / OEM · 자체브랜드</span>매출의 중심축</h2>
+  <h2><span class="h2n">05 / OEM · 자체브랜드</span>매출의 중심축</h2>
 
   <p class="lead">회사는 자신을 <span class="es">"유럽 주요 유통체인 자체브랜드의 공급자"</span>로
     규정한다. 이 표현은 2019~2024년 비재무정보보고서 6개 연차 전부에 동일하게 등장한다.</p>
@@ -682,7 +755,7 @@ footer p{max-width:52rem}
     <tbody>
       <tr class="hl"><td><span class="chip c-tag">정량</span></td><td>2013년 시점 스페인 PB 수산통조림 시장 <b>금액 65% · 물량 72.7%</b> 점유 (Alimarket)</td></tr>
       <tr><td><span class="chip c-tag">거래처</span></td><td><b>El Corte Inglés · Carrefour · Alcampo · Lidl · DIA</b>, 2013년과 2021~22년 두 시점에서 동일 조합 확인</td></tr>
-      <tr><td><span class="chip c-tag">상세</span></td><td>Alcampo는 <b>Auchan 브랜드 참치캔 전 종류</b>를 이 회사가 생산</td></tr>
+      <tr><td><span class="chip c-tag">상세</span></td><td>Alcampo의 Auchan 브랜드 참치캔에 대해 <b>&ldquo;전 종류&rdquo;라 적은 것은 Merca2 2021-10-13 보도</b>이고 <b>이후 재확인되지 않았다</b>. 2020-09 Cinco Días는 Auchan 참치를 Frinsa가 만든다고만 적는다. 같은 2021년 기사가 다른 체인은 일부 SKU라고 단서를 단다. 현재 직접 증거가 있는 것은 El Corte Inglés 자체브랜드 캔의 &ldquo;Elaborado para El Corte Inglés por Frinsa del Noroeste, S.A.&rdquo; 표기다</td></tr>
       <tr><td><span class="chip c-tag">포르투갈</span></td><td>A Poveira 경유 <b>Jerónimo Martins</b>(Pingo Doce·Recheio) 및 Sonae 공급</td></tr>
       <tr><td><span class="chip c-tag">Mercadona</span></td><td>참치는 Conservas Escurís가 공급. <b>Frinsa는 2022년 닭고기 통조림으로 진입</b>(1,000만 € 투자), 다만 그 제품은 현재 Mercadona 온라인 카탈로그에서 확인되지 않는다</td></tr>
       <tr class="dim"><td><span class="chip c-nd">비공시</span></td><td><b>PL이 전사 매출의 몇 %인지는 공개하지 않는다.</b> 비재무정보보고서 296쪽 전체에 <code>MDD</code>·<code>marca blanca</code>·<code>marca de distribución</code> 표기가 없다</td></tr>
@@ -715,7 +788,7 @@ footer p{max-width:52rem}
 
 <!-- ============ 05 ============ -->
 <section id="s5">
-  <h2><span class="h2n">05 / 유통경로</span>매출의 6할이 이베리아 밖</h2>
+  <h2><span class="h2n">06 / 유통경로</span>매출의 6할이 이베리아 밖</h2>
 
   <div class="metrics">
     <div class="metric"><div class="lab">스페인+포르투갈</div><div class="val">314 M€</div><div class="note">2024 · 전년 321에서 감소</div></div>
@@ -781,7 +854,7 @@ footer p{max-width:52rem}
       <tr><td>2020-12</td><td><b>파리 Saint-Germain-en-Laye</b> 첫 해외 매장 (프랑스 판매법인 등록주소와 동일)</td></tr>
       <tr><td>2021-01</td><td>A Coruña 이전·재개장, 포르투갈 브랜드 Minerva·Góndola 취급 개시</td></tr>
       <tr><td>2023-08</td><td>미슐랭 셰프 <b>Pepe Solla</b> 협업, 산센쇼 팝업</td></tr>
-      <tr class="hl"><td><b>2026-06</b></td><td><b>8개월 만에 5곳 폐점 → 스페인·프랑스 합쳐 6곳으로 축소</b></td></tr>
+      <tr class="hl"><td><b>2026-06</b></td><td><b>&ldquo;8개월 만에 5곳 폐점 → 6곳&rdquo;은 <b>확인되지 않는다</b>. 이를 적은 기사도 회사 발표도 없다. 2026년 frinsa.es에 살아 있는 매장 페이지는 <b>마드리드 Goya·산티아고·알리칸테·무르시아·발렌시아·리베이라·라코루냐·파리 여덟 곳</b>이고, 산센쇼는 일시폐쇄/팝업으로 적힌다. 제3자 목록은 <b>비토리아를 영구폐쇄</b>로 적는다. 정점은 2022~23년 보도 기준 약 12곳이다. <b>절반 이하로 줄었다는 서술은 근거가 없다.</b></b></td></tr>
     </tbody>
   </table></div>
   <p>2026년에 직영 소매는 절반 이하로 줄이면서 신규 브랜드 SOLO는 Carrefour 독점 입점과
@@ -832,7 +905,7 @@ footer p{max-width:52rem}
 
 <!-- ============ 06 ============ -->
 <section id="s6">
-  <h2><span class="h2n">06 / 생산과 조달</span>선단 없이 세계 7위로 사들인다</h2>
+  <h2><span class="h2n">07 / 생산과 조달</span>선단 없이 세계 7위로 사들인다</h2>
 
   <div class="figrow" style="grid-template-columns:1.4fr 1fr">
     <figure>
@@ -1082,7 +1155,7 @@ footer p{max-width:52rem}
 
 <!-- ============ 07 ============ -->
 <section id="s7">
-  <h2><span class="h2n">07 / 재무와 그룹</span>매출 2위, 이익 1위</h2>
+  <h2><span class="h2n">08 / 재무와 그룹</span>매출 2위, 이익 1위</h2>
 
   <h3>그룹 연결</h3>
   <div class="tw"><table>
@@ -1146,7 +1219,7 @@ footer p{max-width:52rem}
   <p>2025년 연결 수치가 나온다면 경로는 정해져 있다. Economía Digital Galicia가 등기 연결계정을 읽어
     2023년분을 2024년 9월 1일, 2024년분을 2025년 7월 19일에 보도했다. 기탁 마감이 7월 말이므로
     다음 시점은 2026년 8~9월이다. 2026년 8월 21일 현재 해당 기사는 나오지 않았다.
-    경쟁 두 곳은 이미 2025년을 자체 발표로 냈다. Jealsa 825 M€(+5.6%), Nauterra 765 M€(+5.2%)다.</p>
+    경쟁 두 곳은 이미 2025년을 자체 발표로 냈다. Jealsa 825,7 M€(+5.7%), Nauterra 765 M€(+5.2%)다.</p>
 
 
 
@@ -1178,7 +1251,7 @@ footer p{max-width:52rem}
       통조림 호황기에 7.1% 역성장이 만들어진다. 두 값이 같은 자로 잰 것일 수는 없다.</p>
     <p>배수의 반올림만 흔들면 폭이 5 M€ 안에 들어온다. 그러나 그룹이 개별과 같은 속도로 컸다는 가정은 그 폭 밖에 있고,
       그룹 성장률을 6~16%로 두면 785~862 M€가 나온다. 실제 불확실성은 35 M€ 규모다.
-      그 구간은 Jealsa의 825 M€를 한복판에 두고 양쪽으로 걸친다.
+      그 구간은 Jealsa의 825,7 M€를 한복판에 두고 양쪽으로 걸친다.
       순위가 뒤집혔다는 서술은 어느 형태로도 성립하지 않는다. <span class="chip c-est">산출</span></p>
     <p>수익성으로 옮겨 가면 배수가 더 흔들린다. 개별 순이익에는 자회사 배당이 들어가고 연결에서는 그것이 전액 제거되므로
       매출에서 얻은 배수를 순이익이나 EBITDA에 그대로 대입할 수 없다.
@@ -1232,9 +1305,9 @@ footer p{max-width:52rem}
   <div class="tw"><table>
     <thead><tr><th>법인</th><th class="num">2019</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th></tr></thead>
     <tbody>
-      <tr class="hl"><td><b>Frinsa del Noroeste</b> (본체)</td><td class="num">36,721,616</td><td class="num">27,444,446</td><td class="num">39,293,809</td><td class="num"><i>España</i> <b>40,603,727</b></td></tr>
+      <tr class="hl"><td><b>Frinsa del Noroeste</b> (본체)</td><td class="num">36,721,616</td><td class="num">27,444,446</td><td class="num">39,293,809</td><td class="num"><b>40,603,727</b></td></tr>
       <tr class="hl"><td><b>Frinsa Singapore</b> (구매본부)</td><td class="num">2,474,320</td><td class="num">2,396,667</td><td class="num">2,953,280</td><td class="num"><b>5,012,317</b></td></tr>
-      <tr><td>A Poveira (포르투갈)</td><td class="num">(10,883)</td><td class="num">3,071,143</td><td class="num">3,050,780</td><td class="num"><i>Portugal</i> <b>5,774,755</b></td></tr>
+      <tr><td>A Poveira (포르투갈)</td><td class="num">(10,883)</td><td class="num">3,071,143</td><td class="num">3,050,780</td><td class="num"><b>5,774,755</b></td></tr>
       <tr><td>Frinsa Italia</td><td class="num">582,661</td><td class="num">1,677,040</td><td class="num">917,660</td><td class="num">1,668,674</td></tr>
       <tr><td>Frinsa UK</td><td class="num">37,565</td><td class="num">(601,387)</td><td class="num">65,057</td><td class="num">991,440</td></tr>
       <tr><td>Frinsa Deutschland</td><td class="num">941,622</td><td class="num">31,495</td><td class="num">1,428,711</td><td class="num">397,868</td></tr>
@@ -1244,6 +1317,12 @@ footer p{max-width:52rem}
       <tr class="hl"><td><b>합계</b></td><td class="num"><b>40,906,214</b></td><td class="num"><b>33,422,785</b></td><td class="num"><b>39,341,990</b></td><td class="num"><b>54,572,385</b></td></tr>
     </tbody>
   </table></div>
+  <p class="cap"><b>이 표의 「합계」는 원문 p47의 국가합계이고 위 행들의 단순합이 아니다.</b>
+    네 해 모두 세로합이 합계란과 어긋난다(2019년 40,863,260 대 40,906,214 · 2022년 33,279,208 대 33,422,785 ·
+    2023년 39,242,170 대 39,341,990 · 2024년 54,448,781 대 54,572,385). 표에 싣지 않은 법인이 있고
+    연결조정 여부도 확인되지 않는다 — <b>세로로 더한 값을 그룹 이익으로 쓰지 마라.</b>
+    <span class="chip c-doc">원본</span></p>
+
   <p><strong>이익의 거의 전부가 Ribeira 본체에서 나온다.</strong> 해외 판매법인은 개별로는
     100만 유로 안팎이다. 싱가포르 구매본부와 포르투갈 생산법인만 예외다.
     2023년 미국 법인 청산으로 <strong>743만 유로 손실</strong>을 냈는데, 그해 그룹 순이익의 4분의 1에 해당한다.</p>
@@ -1265,9 +1344,128 @@ footer p{max-width:52rem}
     Lago Paganini는 CNAE 1022로 Frinsa와 동일 업종이며 세전이익 규모는 연 수십만 유로대다.</p>
 </section>
 
+<section id="s7b">
+  <h2><span class="h2n">09 / 공적자금과 법원기록</span>재무제표는 유료인데 보조금은 무료로 열린다</h2>
+
+  <p class="lead">비상장사의 손익은 등기소 유료 열람 뒤에 있다. 그런데 <strong>공적 자금이 닿은 자리는 무료로 공개</strong>된다.
+    국가보조금 공표시스템에서 이 회사 납세번호로 조회하면 <strong>네 건 4,168,964.58 €</strong>가 나오고,
+    그중 <strong>314만 유로짜리 한 건</strong>은 갈리시아의 경쟁사가 같은 날 500만 유로를 받은 그 제도다.</p>
+
+  <div class="metrics">
+    <div class="metric hot"><div class="lab">확인된 보조금</div><div class="val">4,168,965 €</div><div class="note">4건 · 납세번호 조회</div></div>
+    <div class="metric"><div class="lab">최대 건</div><div class="val">3,147,802 €</div><div class="note">2025-09-05 · 수산가공 전환 지원</div></div>
+    <div class="metric"><div class="lab">판례 검색 결과</div><div class="val">116건</div><div class="note">자유문 「FRINSA」</div></div>
+    <div class="metric"><div class="lab">그중 노동사건</div><div class="val">39건</div><div class="note">행정 34 · 민사 29 · 형사 14</div></div>
+  </div>
+
+  <h3>보조금 네 건</h3>
+
+  <div class="tw"><table>
+    <thead><tr><th>교부일</th><th class="num">금액</th><th>제도</th><th>등록된 수급자명</th></tr></thead>
+    <tbody>
+      <tr><td>2022-01-01</td><td class="num">997,540.83 €</td><td>재생에너지·열병합·폐기물 발전사업자 특별보수(RECORE 2022)</td><td><b>FRIGORIFICOS DEL NOROESTE. S.A.</b></td></tr>
+      <tr><td>2023-12-31</td><td class="num">23,038.06 €</td><td>전문경유 환급 대상 운송기업 에너지가격 지원 — <b>조세혜택</b></td><td>FRINSA DEL NOROESTE SA</td></tr>
+      <tr><td>2024-02-26</td><td class="num">584.19 €</td><td>같은 제도 2024년분</td><td>FRINSA DEL NOROESTE SA</td></tr>
+      <tr class="hl"><td><b>2025-09-05</b></td><td class="num"><b>3,147,801.50 €</b></td><td><b>왕령 657/2024</b> 수산·양식 제품 가공 지원 — 복구·전환계획 전략프로젝트</td><td>FRINSA DEL NOROESTE, SA</td></tr>
+      <tr class="hl"><td><b>합계</b></td><td class="num"><b>4,168,964.58 €</b></td><td colspan="2">전부 <b>보조금·무상급부</b>이고 한 건만 조세혜택이다</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call hot">
+    <p class="ct">같은 날, 같은 제도로 경쟁사는 500만을 받았다</p>
+    <p>2025년 9월 5일 자 교부결의 하나로 이 회사가 <b>3,147,801.50 €</b>를 받았다.
+      같은 제도의 같은 날짜 교부결의에서 <b>Jealsa Foods가 5,000,000 €</b>를 받았다.
+      갈리시아 통조림 1·2위가 <b>같은 공고에서 나란히</b> 공적자금을 받은 것이다.
+      두 회사의 매출 격차를 생각하면 금액 차이는 크지 않다 —
+      이 제도의 상한이 수급자별로 걸려 있다는 뜻으로 읽히지만, 공고문의 상한 규정까지는 확인하지 않았다.</p>
+  </div>
+
+  <div class="call warn">
+    <p class="ct">옛 상호로 등록된 건이 섞여 있다</p>
+    <p>2022년 발전 보수 건의 수급자명은 <b>「FRIGORIFICOS DEL NOROESTE. S.A.」</b>다.
+      회사 이름으로 검색했다면 이 건은 안 나온다 — <b>납세번호로 묶었기 때문에</b> 같은 법인으로 잡혔다.
+      갈리시아 경쟁사 쪽은 더 심해서, 같은 납세번호 아래
+      <b>「JEALSA FOODS, S.A.U.」·「JEALSA FOOD SA」·「JEALSA RIANXEIRA, S.A.」</b> 세 표기가 함께 쓰인다.
+      보조금 DB는 상호를 정규화하지 않는다.</p>
+  </div>
+
+  <div class="tw"><table>
+    <thead><tr><th>대조군 (NIF 직접 조회)</th><th class="num">건수</th><th class="num">합계</th></tr></thead>
+    <tbody>
+      <tr><td>Jealsa Rianxeira (A15022221)</td><td class="num">7</td><td class="num">5,371,309.09 €</td></tr>
+      <tr class="hl"><td><b>Frinsa (A15010564)</b></td><td class="num"><b>4</b></td><td class="num"><b>4,168,964.58 €</b></td></tr>
+      <tr><td><b>Albacora, S.A. (A11902269)</b></td><td class="num"><b>40</b></td><td class="num"><b>874,213.44 €</b></td></tr>
+      <tr><td>Salica Alimentos Congelados (A15670748)</td><td class="num">3</td><td class="num">1,339,197.04 €</td></tr>
+      <tr><td>Salica Industria Alimentaria (A48434781)</td><td class="num">3</td><td class="num">84,309.56 €</td></tr>
+      <tr><td><b>Nauterra 그룹</b> (7개 법인 합)</td><td class="num">16</td><td class="num">819,140.62 €</td></tr>
+      <tr class="dim"><td>Bolton — Grupo Conservas Garavilla (B95617643) · Bolton Food (B36325108)</td><td class="num">0 · 0</td><td class="num">—</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call warn">
+    <p class="ct">이 표는 두 칸이 틀린 채로 발행됐다 — 번호로 묶으라고 말하는 절에서</p>
+    <p>발행본은 이 자리에 <b>「Nauterra (A15020498) 0건」</b>과 <b>「Albacora, S.A. (A48027751) 0건」</b>을
+      적었다. <b>두 번호 다 그 회사의 것이 아니다.</b> Nauterra의 법적고지는
+      «LUIS CALVO SANZ S.A., CIF: <b>A-15017205</b>»라 적고, Albacora의 실제 번호는 <b>A11902269</b>다.
+      바른 번호로 다시 조회하면 <b>819,140.62 €</b>와 <b>874,213.44 €</b>가 나온다.
+      두 개의 0이 <b>「경쟁사는 한 푼도 못 받았다」</b>로 읽히고 있었다.
+      <span class="chip c-doc">원본</span></p>
+    <p>A15020498은 빈 번호도 아니다. 스페인 CIF 체크섬을 통과하는 <b>실재 법인의 번호</b>이고,
+      상용DB 정면조회로는 <b>1994년에 해산한 무관한 회사</b>로 나온다. <b>체크섬이 맞는다고
+      그 회사의 번호인 것은 아니다</b> — 이 절이 「이름 말고 번호로 묶어라」라고 말하면서
+      정작 번호를 잘못 붙였다. <span class="chip c-est">상용DB</span></p>
+  </div>
+
+  <p style="font-size:.86rem;color:var(--ink-3)">여덟 칸이 걸리고 두 칸이 0이다. <b>이 조회는 실제로 스페인 통조림사를 찾아낸다.</b>
+    바로잡고 보면 그림이 반대다 — <b>갈리시아·바스크 통조림사는 거의 다 받는다.</b> 0으로 남은 것은
+    Bolton 계열 두 법인뿐이고, 그것도 <b>「이 시스템에 그 번호로 공표된 기록이 없다」</b>까지가 한계다.
+    <b>그 문장은 번호가 맞을 때만 성립한다</b> — 그래서 Bolton 쪽은 계열 두 법인을 함께 걸었다.
+    그리고 이 시스템은 스페인 국가·자치주 보조금만 싣는 곳이라 <b>해외 보조금은 잡히지 않는다</b> —
+    실제로 Albacora는 자사 비재무보고서에 2025년 연결 영업보조금을 별도로 적는다.
+    <span class="chip c-src">국가보조금 공표시스템 · 2026-09-06 재조회</span></p>
+
+  <p style="font-size:.86rem;color:var(--ink-3)">Nauterra 그룹 15건의 내역: 등기 모법인 Luis Calvo Sanz(A15017205) 2건 4,763.70 € ·
+    Calvo Distribución Alimentaria(B15812142) 1건 2,583.85 € ·
+    <b>선단 법인 Cantábrica de Túnidos(A11011772) 12건 811,793.07 €</b>.
+    <b>그룹 수령액의 99.1%가 배를 가진 법인 한 곳에 몰려 있다</b> — 공장을 돌리는 법인은 0건이다.
+    한 회사를 한 번호로만 조회하면 이 구조가 통째로 안 보인다.</p>
+
+  <h3>판례 116건이 걸린다</h3>
+
+  <p>사법기록 검색 시스템에서 자유문 「FRINSA」로 <b>116건</b>이 나온다.
+    관할별로 <b>사회부 39 · 행정 34 · 민사 29 · 형사 14</b>이고 합이 정확히 116이다.
+    정식 상호 「FRINSA DEL NOROESTE」로 좁히면 <b>90건</b>, 그중 사회부가 32건이다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>검색어</th><th class="num">전체</th><th class="num">사회부</th><th class="num">행정</th><th class="num">민사</th><th class="num">형사</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>FRINSA</b></td><td class="num"><b>116</b></td><td class="num">39</td><td class="num">34</td><td class="num">29</td><td class="num">14</td></tr>
+      <tr><td>FRINSA DEL NOROESTE</td><td class="num">90</td><td class="num">32</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr class="dim"><td>대조군 JEALSA</td><td class="num">127</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr class="dim"><td>대조군 ALBACORA</td><td class="num">83</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call">
+    <p class="ct">가장 많은 것은 다치고 그만두는 이야기다</p>
+    <p>최신 32건의 사건 요지를 읽으면 <b>영구장애 4 · 업무상 재해 4 · 해고 2</b>가 상위를 차지한다.
+      2026년에 선고된 갈리시아 고등법원 판결 다섯 건이 그 안에 있고,
+      가장 최근 것은 2026년 7월 9일 자 <b>영구장애</b> 사건이다.
+      스페인 협약 적용 인원이 <b>916명</b>이고 그 대부분이 리베이라 한 부지에 모여 있다는 사실과,
+      노동 사건이 관할별 최다라는 사실은 따로 읽히지 않는다.</p>
+  </div>
+
+  <p style="font-size:.86rem;color:var(--ink-3)"><b>이 숫자를 「이 회사가 당사자인 소송 116건」으로 읽으면 안 된다.</b>
+    자유문 검색은 판결문 어디엔가 그 낱말이 있으면 걸리므로, 형사 14건에는
+    가정폭력·사기처럼 회사와 무관해 보이는 사건이 섞여 있다 — 직원이나 지명이 언급된 경우로 보인다.
+    당사자 여부는 건별로 판결문을 열어야 갈리고, 판결문 원문은 자동 조회가 막혀 있다.
+    사유를 읽은 것은 <b>116건 중 32건</b>이다. <span class="chip c-nd">당사자 여부 건별 미확인</span></p>
+</section>
+
+
 <!-- ============ 08 ============ -->
 <section id="s8">
-  <h2><span class="h2n">08 / 경쟁 구도</span>1위는 세 가지 뜻이 있다</h2>
+  <h2><span class="h2n">10 / 경쟁 구도</span>1위는 세 가지 뜻이 있다</h2>
 
   <p>이 회사를 두고 "업종 1위"·"Jealsa가 1위"·"2020년 Calvo 추월"이 동시에 통용된다.
     재는 잣대가 다를 뿐이다.</p>
@@ -1339,7 +1537,7 @@ footer p{max-width:52rem}
 
 <!-- ============ 09 ============ -->
 <section id="s9">
-  <h2><span class="h2n">09 / 한국 관점</span>원료를 팔 상대다</h2>
+  <h2><span class="h2n">11 / 한국 관점</span>원료를 팔 상대다</h2>
 
   <p class="lead">Frinsa는 자체 선단이 없고 연 13만 톤 이상을 전량 외부에서 사들이는
     세계 7–8위 구매사다. 한국 원양업계에는 잠재 원료 고객이다.</p>
@@ -1428,6 +1626,100 @@ footer p{max-width:52rem}
   <p style="font-size:.86rem;color:var(--ink-3)">국가 총계라 Frinsa 브랜드 여부는 특정할 수 없고 5개월
     단기라 계절성 가능성도 있다. 그래도 스페인 캐너리가 한국 소매시장의 완제품 경쟁자로 부상할 신호로는
     볼 만하다. 한국 기업과 Frinsa의 직접 거래는 양국 어느 공시에도 기록이 없다.</p>
+</section>
+
+<section id="s9b">
+  <h2><span class="h2n">12 / 전략</span>브랜드는 회사가 발표하고, 그 브랜드가 번 돈은 회사가 발표하지 않는다</h2>
+
+  <p class="lead">이 회사의 발표는 대부분 <b>브랜드와 매장</b>에 관한 것이다. 그런데 되돌릴 수
+    없는 자국이 남은 자리는 <b>지분과 부지</b>다. 둘을 갈라 적으면, 무엇이 성과이고 무엇이 아직
+    활동인지가 갈린다.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th></th><th>누가 그렇게 말했나</th><th>돈이 실제로 간 자리</th></tr></thead>
+    <tbody>
+      <tr><td>소비자 브랜드</td><td><b>매체 보도</b> — 기능성 영양 계열 SOLO 출시 캠페인 <span class="nb">2026-02</span>. 회사 발표문 원본은 확보되지 않았다</td><td>SOLO는 새 브랜드가 아니라 <b>2016년 Ribeira Proteína Natural의 개명·흡수</b>다(2025-04 공식 개명, 전용 도메인 301 리다이렉트). 그 브랜드가 낸 매출·이익은 <b>공개되지 않았다</b></td></tr>
+      <tr class="hl"><td>생산 확장</td><td><b>회사 공식화</b> — Plisan 산업단지 입주</td><td><span class="nb">2022-04</span> 부지 매입·창고 신축에 <b>750만 €</b>(부지 263만 € 포함). 부지 <b>40,921.85㎡</b>, 1차 건물 <b>8,092㎡</b>(최대 20,250㎡ 확장 가능), 신규고용 25명. <b>저장능력은 미공개</b></td></tr>
+      <tr><td>해외 생산</td><td>—</td><td>포르투갈 통조림사 지분을 <b>50%에서 75%로</b> (<span class="nb">2021-09</span>)</td></tr>
+      <tr class="hl"><td>소매</td><td><b>회사 발표</b> — 2016년 이후 산티아고·A코루냐·파리로 매장을 넓혔다</td><td>2026년 자사 사이트에 살아 있는 매장 페이지는 <b>여덟 곳</b>. 「여덟 달 만에 다섯 곳을 닫았다」는 서술은 <b>확인되지 않는다</b></td></tr>
+      <tr><td>식물성 대체품</td><td>완두단백 계열 <b>Fiisk</b> 6종 출시(<span class="nb">2024-03</span>)</td><td><b>사실상 소멸.</b> 자사몰과 전용 도메인에서 모두 내려갔고 2024년 2건 뒤 언론 노출도 끊겼다 — <b>단종은 발표되지 않았다</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">가운데 칸에 발화자를 적었다. 발화자가 없는 줄은 회사가 말한 적이 없는 자리다.
+    <span class="chip c-doc">원본</span><span class="chip c-src">매체</span></p>
+
+  <p>넓힌 쪽과 접은 쪽이 같은 회사 안에 있다. 포르투갈 지분은 <b>절반에서 4분의 3으로</b>
+    올라갔고(2019년 50% 취득, 2021년 콜옵션 조기 행사 — 보도 시점 <span class="nb">2021-09-19</span>,
+    등기상 행사일은 확인되지 않는다) 완두단백 계열은 발표 없이 상점에서 내려갔다. 소매 매장이 줄었다는 서술이 돌지만
+    <b>그 감소를 뒷받침하는 기사도 회사 발표도 없다</b> — 확인되는 것은 지금 살아 있는 페이지가
+    여덟 곳이라는 사실까지다. <span class="chip c-nd">감소 폭 미확인</span></p>
+
+  <h3>같은 시장의 세 회사가 서로 다른 쪽으로 갔다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>회사</th><th>축을 어디에 뒀나</th><th>확인되는 자국</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>이 회사</td><td><b>판매 쪽</b> — 자기 브랜드와 자기 매장</td><td>소비자 브랜드 신설 · 매장 페이지 여덟 곳 · 포르투갈 지분 75%</td></tr>
+      <tr><td>Jealsa</td><td><b>사업 밖</b> — 이익을 다른 업종에서</td><td>발전 법인 9곳. 한 유통사 향 매출이 연결매출의 55%</td></tr>
+      <tr><td>Albacora</td><td><b>원료 쪽</b> — 잡는 것을 자기가</td><td>세 대양 선단 · 관세선 양쪽(스페인·에콰도르)에 가공공장</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">셋 다 스페인 통조림 회사인데 값을 만드는 자리가 서로 다르다.
+    Jealsa·Albacora 칸의 값은 이 시리즈의 해당 편에서 확인된 것이고 이 회사의 자료에서 나온 값이 아니다.
+    <span class="chip c-doc">원본</span></p>
+
+  <p>브랜드는 이름을 바꿔 이어지고 그 성과는 공개되지 않는다. SOLO는 2016년의
+    Proteína Natural을 흡수한 이름이고, 둘 다 <b>수산 회사가 수산이 아닌 원료로 캔을 채우는 방향</b>이다.
+    다만 <b>두 계열이 같은 라인·같은 공정을 쓰는지는 확인되지 않는다</b>. 회사는 브랜드와 캠페인을
+    공개하고 그 브랜드의 매출·이익은 공개하지 않으므로, 출시 활동을 성과로 옮겨 적으면 계획치를
+    실적치로 바꾸는 일이 된다.</p>
+
+  <h3>회사 달력에 이미 박혀 있는 두 날짜</h3>
+  <div class="tw"><table>
+    <thead><tr><th>언제</th><th>무엇이</th></tr></thead>
+    <tbody>
+      <tr><td><span class="nb">2027-02-21</span></td><td>BRC Food Safety 인증 만료(Issue 9 · 등급 B+). 유통사 자체브랜드 거래에서 통상 요구되는 인증이다</td></tr>
+      <tr><td><span class="nb">2027-10-07</span></td><td>또 다른 인증의 만료</td></tr>
+    </tbody>
+  </table></div>
+  <p>브랜드 계획은 회사가 미루거나 바꿀 수 있지만 이 두 줄은 그렇지 않다. 갱신 심사는 만료 전에
+    받아야 하고, 그 일정은 회사가 아니라 인증 제도가 정한다. <b>다만 인증이 끊길 때 어느 계약이
+    어떻게 되는지는 계약서가 공개되지 않아 확인되지 않는다</b> — 여기서 확정된 것은 날짜까지다.
+    위 표의 왼쪽 칸이 전부 회사의 말이라면, 이 표는 회사가 말하지 않아도 오는 것이다.</p>
+</section>
+
+<section id="scorr">
+  <h2><span class="h2n">13 / 정정 이력</span>2026-09-05 · 여덟 자리를 좁혔다 · 2026-09-06 네 자리 추가</h2>
+  <p class="lead">고친 자리를 남긴다. 가장 잦은 유형은 「숫자가 틀렸다」가 아니라
+    <strong>「범위·출처·단위를 넓게 적었다」</strong>이다. 아래는 고치기 전과 고친 뒤다.</p>
+  <h3>고치기 전과 고친 뒤</h3>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>고치기 전</th><th>고친 뒤</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>1</td><td>연 135,289 t 참치를 산다</td><td><b>2024년 한 해 SAP 표의 합산값</b>이다. 2019~2023은 약 6.8~10.6만 t. 포르투갈 항은 2024년판에서 문구가 <b>「atún y principales materias primas」</b>로 바뀌어 참치 단독이 아닐 수 있다</td><td>EINF 2024 원료표</td></tr>
+      <tr><td>2</td><td>「연 15만 t」</td><td>원출처는 회사 EINF 서문이고 <b>처리 18만 t / 청구 15만 t(총중량)</b>이다. 매체가 둘을 「15만 t 처리」로 뭉갰다</td><td>EINF 서문 2024</td></tr>
+      <tr class="hl"><td>3</td><td>A Poveira 인력 253 vs 480</td><td>253은 EINF 의 <b>포르투갈 국가 단위</b> 성별표(여190+남63)이고 480은 공장 자사 블로그다. <b>공장 단위 대 국가 단위</b>이지 자료 충돌이 아니다</td><td>EINF 2023 · apoveira.pt</td></tr>
+      <tr><td>4</td><td>연 10억 캔 vs 6억 캔</td><td><b>마케팅 대 공시가 아니라 허가 능력 대 공시 생산</b>이다. EINF 살균캔은 540M(FY2019–20) → 580M(FY2021) → 600M 초과(FY2024)</td><td>EINF 서문 · DOG 2024-01-31</td></tr>
+      <tr class="hl"><td>5</td><td>2026년 관세로 스페인 업계 2,000만 € 초과 부담</td><td><b>연도·범위가 틀렸다.</b> 2,000만 €는 <b>2025-01-13 ANFACO</b>가 <b>유럽 공장</b>에 대해 추정한 값이고, 2026-01-10 ANFACO 는 그 숫자를 다시 대지 않는다</td><td>anfaco.es 2025-01-13 · 2026-01-10</td></tr>
+      <tr><td>6</td><td>경쟁사는 500만을 받았다</td><td>Frinsa 도 <b>같은 공모에서 약 3.1~3.15 M€</b>를 받았다. 못 받은 것이 아니다. 결의일 2025-07-10, BDNS 교부일 2025-09-05로 <b>「같은 날」의 뜻도 갈린다</b></td><td>alimarket 2025-07-11 · BDNS</td></tr>
+      <tr class="hl"><td>7</td><td>법원기록은 다치고 그만두는 이야기가 다수</td><td><b>다수가 아니다.</b> 요지를 읽은 32건 중 영구장애 4·산재 4·해고 2로 <b>10/32</b>다. 자유문 검색 116건은 당사자가 아닌 언급을 포함한다</td><td>CENDOJ 재현 실패 · 원 집계</td></tr>
+      <tr><td>8</td><td>BDNS 대조군에서 Albacora 등은 0건</td><td><b>틀림.</b> NIF 로 조회하면 <b>Albacora 40건(약 87만 €)</b>, Salica Alimentos Congelados 3건(그중 PERTE <b>1,234,973.90 €</b>, Jealsa 500만 €와 같은 날)이 나온다. 상호명 조회가 막힐 뿐이다</td><td>BDNS API nifCif</td></tr>
+          <tr class="hl"><td><b>9</b></td><td>대조군 표: 「Nauterra (A15020498) 0건」</td><td><b>번호가 그 회사 것이 아니다.</b> 회사 법적고지가 «LUIS CALVO SANZ S.A., CIF: <b>A-15017205</b>»라 적는다. 바른 번호로는 등기 모법인 2건 4,763.70 € + 유통법인 1건 2,583.85 € + <b>선단 법인 Cantábrica de Túnidos(A11011772) 12건 811,793.07 €</b> = <b>그룹 819,140.62 €</b>. A15020498 은 체크섬은 통과하지만 <b>1994-04-27 해산한 무관 법인</b>의 번호다</td><td>nauterra.com 법적고지 · BDNS nifCif</td></tr>
+      <tr class="hl"><td><b>10</b></td><td>대조군 표: 「Albacora, S.A. (A48027751) 0건」</td><td><b>번호가 틀렸다.</b> 실제는 <b>A11902269</b> 이고 <b>40건 874,213.44 €</b> 다. 이 오류는 8번 행이 이미 지적했는데 <b>본문 표가 고쳐지지 않은 채 발행</b>됐다 — 정정 이력과 본문이 서로 다른 값을 말하고 있었다</td><td>BDNS nifCif · 8번 행</td></tr>
+      <tr><td><b>11</b></td><td>대조군 표의 결론 「셋이 걸리고 셋이 0」</td><td>바로잡으면 <b>여덟 칸이 걸리고 두 칸이 0</b> 이다. Salica 도 두 법인으로 갈린다 — Alimentos Congelados(A15670748) 3건 1,339,197.04 € · Industria Alimentaria(A48434781) 3건 84,309.56 €. <b>결론이 「경쟁사는 못 받는다」에서 「거의 다 받는다, Bolton 계열만 0」으로 바뀐다</b></td><td>BDNS 2026-09-06 재조회</td></tr>
+      <tr><td><b>12</b></td><td>정정 이력 절 번호 <b>09</b></td><td>경쟁 구도 절과 겹쳤다. 열한 번째 절이므로 <b>11</b> 이다</td><td>본문 절 순서</td></tr>
+</tbody>
+  </table></div>
+  <p>이 표의 대부분은 숫자를 잘못 옮긴 것이 아니라 <b>범위를 넓게 적은 것</b>이다. 회사 진술을
+    등록부 사실로, 경쟁사 신고서를 제3자 심사로, 특정 창(window)의 스냅샷을 전수로, 능력을 실적으로
+    올린 자리들이다. 그 넷이 이 검토에서 가장 자주 깨진 유형이다.
+    <span class="chip c-doc">원본</span></p>
+  <p>검증은 작성자와 분리해 돌렸다. 같은 사람이 다시 읽으면 자기가 넓게 적은 자리를 넓다고 보지 못한다.
+    깨지지 않은 항목은 여기 남기지 않았다 — 남긴 것은 <b>바뀐 것</b>뿐이다.
+    <span class="chip c-doc">원본</span></p>
+  <p>깨지지 않은 것도 있다. 반증에 걸리지 않은 항목은 그만큼 단단해졌다고 읽어도 된다 —
+    다만 「반증하지 못했다」와 「확인했다」는 다르고, 유료벽 뒤 원문이 남아 있는 칸은 여전히
+    <b>미확인</b>이다. 그 구분을 지우면 이 표의 의미가 사라진다.
+    <span class="chip c-nd">미공개</span></p>
 </section>
 
 </main>

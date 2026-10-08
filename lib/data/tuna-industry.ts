@@ -341,7 +341,7 @@ export function getTunaTradeData(): TunaTradeData {
   return tradeData;
 }
 
-/** 밸류체인 단계별 선별 위젯 전체 (사슬 7단계 + 횡단 3축). */
+/** 밸류체인 단계별 선별 위젯 전체 (사슬 7단계 + 횡단 11축). */
 export function getTunaIndustryStages(): IndustryStage[] {
   return widgetsData.stages;
 }
@@ -363,7 +363,7 @@ export function getChainStages(): IndustryStage[] {
     .sort((a, b) => a.order - b.order);
 }
 
-/** 횡단 3축만. */
+/** 횡단 11축만. */
 export function getCrossStages(): IndustryStage[] {
   return widgetsData.stages
     .filter((stage) => stage.axis === 'cross')

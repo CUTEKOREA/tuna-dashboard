@@ -74,6 +74,7 @@ import {
   StagePriceChart,
   SquidYearbookPriceChart,
   SquidMonthlyCatchChart,
+  PeruImportChart,
 } from './SquidCharts';
 import SquidWidgetView from './SquidWidgetView';
 import CommodityIndustryDashboard, {
@@ -84,8 +85,25 @@ import {
   TraderTable,
   CanneryCountryTable,
   BrandMarketTable,
+  PeruPlantTable,
 } from './CompanyResearchTables';
+import { peruImports, peruLedger, peruMeta, peruPlants } from '@/lib/data/squid-peru-supply';
+import {
+  AuctionPriceChart,
+  FreightTrendChart,
+  TradeBalanceChart,
+  auctionCaption,
+  freightCaption,
+  tradeCaption,
+} from './MofLiveCharts';
+import { auctionMeta, freightMeta, tradeMeta } from '@/lib/data/mof-live';
 import { getSquidCompanyResearch, getKofaSeries } from '@/lib/data/valuechain-companies';
+import {
+  getSquidTables,
+  getSquidTableStages,
+  type SquidReportTable,
+} from '@/lib/data/squid-industry-tables';
+import styles from './TunaIndustryDashboard.module.css';
 
 const CATCH = getSquidCatchData();
 const TRADE = getSquidTradeData();
@@ -136,12 +154,93 @@ const DW_SYNC = { status: 'SYNCED' as const, syncDate: `${DW_YEAR}년 확정 · 
 
 const FK_SYNC = { status: 'STATIC' as const, syncDate: `${falklandMeta.기간} 실적` };
 
+const PERU_SYNC = { status: 'STATIC' as const, syncDate: `${peruMeta.조회일} 조사` };
+
+const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026-09-01 발행본' };
+
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+function ReportTable({ table }: { table: SquidReportTable }) {
+  return (
+    <div className={styles.dataTableWrap}>
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 보고서 표를 단계별 슬롯으로. 차트·위젯 뒤에 붙는다. */
+function reportSlots(stage: string): ChartSlot[] {
+  return getSquidTables(stage).map((t, i) => ({
+    title: `보고서 표 ${i + 1} — ${t.title}`,
+    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
+    telemetry: REPORT_SYNC,
+    span: 'full' as const,
+    render: () => <ReportTable table={t} />,
+  }));
+}
+
 const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
+  // 아래 셋은 공공 API 스냅숏이다. 정적 집계가 아니라 스크립트가 받아 온 값이라 SYNCED 로 적는다.
+  s09: [
+    {
+      title: '국내 위판 일별 단가 (원/kg)',
+      caption: auctionCaption('오징어'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(auctionMeta.기간) },
+      render: () => <AuctionPriceChart keyword="오징어" />,
+      sourceLine: `출처: ${auctionMeta.출처} · 조회 ${auctionMeta.조회일} · scripts/sync_mof_auction.py`,
+    },
+  ],
+  s10: [
+    {
+      title: '항로별 해상 운송비용과 환율 (천원/2TEU · 원/달러)',
+      caption: freightCaption(),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(freightMeta.기간) },
+      render: () => <FreightTrendChart />,
+      sourceLine: `출처: ${freightMeta.출처} · 조회 ${freightMeta.조회일} · scripts/sync_landed_cost_trend.py`,
+    },
+    {
+      title: '페루산 오징어 수입 — 냉동 원물과 조제품 (톤·달러/kg)',
+      caption:
+        '파랑이 냉동 원물, 노랑이 조제품(자숙 포함)이다. 2024년에 절반 아래로 꺾였다가 2025년에 42,517톤으로 돌아왔고 kg당 단가는 5년 새 두 배가 됐다. 금액으로는 조제품이 해마다 55~65%다.',
+      telemetry: PERU_SYNC,
+      render: () => <PeruImportChart rows={peruImports} />,
+      sourceLine: `출처: 관세청 수출입무역통계 HSK 10자리 (조회 ${peruMeta.조회일}) · ${peruMeta.보고서}`,
+    },
+    {
+      title: '페루 제조소 — 한국행 수입신고가 많은 14곳',
+      caption:
+        `14곳이 신고 ${peruLedger.전체_신고건수.toLocaleString()}건 가운데 ${peruLedger.상위14사_신고건수.toLocaleString()}건이다. 등기상 한국계 경영 7곳이 ${peruLedger.한국계7사_신고건수.toLocaleString()}건이고, 사내 미팅으로 한국계임을 확인한 KSL 을 더하면 8곳 ${peruLedger.한국계_미팅포함8사_신고건수.toLocaleString()}건이다. 14곳 중 여덟 곳이 북부 파이타에 공장을 둔다. 건수는 수량이 아니다.`,
+      telemetry: PERU_SYNC,
+      span: 'full' as const,
+      render: () => <PeruPlantTable rows={peruPlants} total={peruLedger.전체_신고건수} />,
+      sourceLine: '출처: 식품의약품안전처 수입식품정보마루 수입신고 원장 · 페루 세무당국(SUNAT)·생산부 공장등록부·위생당국(SANIPES) 승인명부 · PROMPERÚ 2024 수출 순위',
+    },
+  ],
   s08: [
     {
       title: '선박별 누계 물량 (판)',
       caption:
-        '30척이 한 어기에 올린 물량이다. 진한 장미색이 선민수산·현원수산 소속이다. 1위 601다가호 51,074판과 최하위 실적선 사이가 두 배다.',
+        '30척이 한 어기에 올린 물량이다. 주황이 선민수산·현원수산 소속이다. 1위 601다가호 51,074판과 최하위 실적선 사이가 두 배다.',
       telemetry: FK_SYNC,
       span: 'full' as const,
       render: () => <FalklandVesselChart />,
@@ -150,7 +249,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '회사별 선단 규모와 물량',
       caption:
-        '막대가 물량, 선이 보유 척수다. 진한 장미색이 선민수산·현원수산이다. 현원수산은 0판이라 막대가 없어도 칩과 축에 남아 있다.',
+        '막대가 물량, 선이 보유 척수다. 주황이 선민수산·현원수산이다. 현원수산은 0판이라 막대가 없어도 칩과 축에 남아 있다.',
       telemetry: FK_SYNC,
       render: () => <FalklandCompanyChart />,
       sourceLine: `출처: ${falklandMeta.출처}`,
@@ -169,7 +268,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '어종별 어획량 구성 (톤)',
       caption:
-        '같은 갈래는 비슷한 색이다. 오징어는 보라·남색, 갑오징어는 장미, 두족류 미분류는 회색, 그 밖의 종은 호박이다. 이 셋을 더하지 않는다.',
+        '갈래마다 한 색이다. 오징어는 파랑, 갑오징어는 주황, 두족류 미분류는 회색, 그 밖의 종은 노랑이다. 이 셋을 더하지 않는다.',
       telemetry: CATCH_SYNC,
       render: () => <SpeciesMixChart data={CATCH} />,
     },
@@ -207,7 +306,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '원양 업종별 선박 수와 선령 (척)',
       caption:
-        '분홍이 선령 31년 이상이다. 한국 원양어선 198척 중 157척이 31년을 넘었고, 오징어채낚기는 20척 중 18척이다.',
+        '주황이 선령 31년 이상이다. 한국 원양어선 198척 중 157척이 31년을 넘었고, 오징어채낚기는 20척 중 18척이다.',
       telemetry: FLEET_SYNC,
       render: () => <DistantGearChart data={FLEET} />,
     },
@@ -221,13 +320,13 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '남태평양 공해 채낚기 선단 (척·톤)',
       caption:
-        '막대는 척수, 선은 척당 평균 톤수다. 페루 1,013척은 평균 25톤짜리 소형선이고 중국 609척은 평균 948톤이다 - 같은 「채낚기」라도 배가 40배 다르다. 장미색이 한국(30척·평균 917톤)이다. ⚠ 이 등록부는 소유사를 공개하지 않아 선사 단위로는 갈 수 없다.',
+        '막대는 척수, 선은 척당 평균 톤수다. 페루 1,013척은 평균 25톤짜리 소형선이고 중국 609척은 평균 948톤이다 - 같은 「채낚기」라도 배가 40배 다르다. 주황이 한국(30척·평균 917톤)이다. ⚠ 이 등록부는 소유사를 공개하지 않아 선사 단위로는 갈 수 없다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2026년 8월 등록부' },
       render: () => <OceanJiggerChart data={OCEAN_FLEET} />,
     },
     {
       title: '어획 상위 12개국 (톤)',
-      caption: '1위 중국은 자국 연안이 아니라 원양에서 대부분을 잡는다. 장미색이 한국이다.',
+      caption: '1위 중국은 자국 연안이 아니라 원양에서 대부분을 잡는다. 주황이 한국이다.',
       telemetry: CATCH_SYNC,
       render: () => <CountryRankChart data={CATCH} />,
       // 차트는 상위 12개국까지다. 15개 중 3개가 잘렸다는 사실은 그래프에 안 나온다.
@@ -243,7 +342,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '해역별 오징어류 생산량 (톤)',
       caption:
-        '분홍이 태평양 동남부 - SPRFMO 관할 수역이다. 해역이 계층이라 「대서양」 안에 「서남부」가 들어 있으므로 막대를 더하면 이중계상이 된다.',
+        '주황이 태평양 동남부 - SPRFMO 관할 수역이다. 해역이 계층이라 「대서양」 안에 「서남부」가 들어 있으므로 막대를 더하면 이중계상이 된다.',
       telemetry: DW_SYNC,
       render: () => <SquidAreaChart year={DW_YEAR} />,
       sourceLine: `출처: ${deepseaMeta.출처}`,
@@ -275,10 +374,16 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s06: [
     {
+      title: '오징어 월별 수출입과 무역수지 (백만 달러)',
+      caption: tradeCaption('오징어'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
+      render: () => <TradeBalanceChart keyword="오징어" />,
+      sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
+    },
+    {
       title: '한국 수입량과 수입단가 (톤·달러/톤)',
       caption: '막대는 수입량, 선은 톤당 단가다. 적게 사면서 비싸게 사는 흐름이 보인다.',
       telemetry: TRADE_SYNC,
-      span: 'full',
       render: () => <ImportTrendChart data={TRADE} />,
     },
     {
@@ -318,7 +423,6 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '세계는 1968년, 한국은 1996년이 정점이다. 두 선이 함께 내려앉는 동안 오징어 전체 어획량은 유지됐다.',
       telemetry: CATCH_SYNC,
-      span: 'full',
       render: () => <CollapseChart data={CATCH} />,
     },
     {
@@ -340,9 +444,8 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '오징어채낚기 선박별 선령 (년)',
       caption:
-        '분홍이 31년 이상이다. 20척 평균 선령 36.5년, 최고 51년이다. 2020년 건조 2척을 빼면 대부분 1970~80년대 배다.',
+        '주황이 31년 이상이다. 20척 평균 선령 36.5년, 최고 51년이다. 2020년 건조 2척을 빼면 대부분 1970~80년대 배다.',
       telemetry: FLEET_SYNC,
-      span: 'full',
       render: () => <VesselAgeChart data={FLEET} />,
     },
     {
@@ -369,7 +472,7 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '한국 어종별 어획량 (톤)',
       caption:
-        '보라는 살오징어다. 연근해 자원이 한국 오징어 어획에서 차지하는 몫이 이만큼으로 줄었다.',
+        '파랑이 살오징어다(나머지는 회색). 연근해 자원이 한국 오징어 어획에서 차지하는 몫이 이만큼으로 줄었다.',
       telemetry: CATCH_SYNC,
       render: () => <KoreaSpeciesChart data={CATCH} />,
     },
@@ -380,13 +483,18 @@ const SQUID_BASE_SLOTS: Record<string, ChartSlot[]> = {
 export const SQUID_CHART_SLOTS: Record<string, ChartSlot[]> = Object.fromEntries(
   // 단계 목록과 같은 정본을 쓴다. `ALL_STAGES`(위젯 JSON)로 돌면 위젯이 없는 단계의
   // 차트가 통째로 빠진다 — 08 선박별이 그렇게 조용히 비었다.
-  [...new Set([...Object.keys(SQUID_BASE_SLOTS), ...ALL_STAGES.map((s) => s.key)])].map((key) => [
-    key,
-    [...(SQUID_BASE_SLOTS[key] ?? []), ...widgetSlots(key)],
-  ]),
+  [
+    ...new Set([
+      ...Object.keys(SQUID_BASE_SLOTS),
+      ...ALL_STAGES.map((s) => s.key),
+      ...getSquidTableStages(),
+    ]),
+  ].map((key) => [key, [...(SQUID_BASE_SLOTS[key] ?? []), ...widgetSlots(key), ...reportSlots(key)]]),
 );
 
 const SPEC: CommoditySpec = {
+  // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
+  continuous: true,
   key: 'squid',
   title: '오징어',
   subtitle:
@@ -406,19 +514,24 @@ const SPEC: CommoditySpec = {
   stripItems: [
     {
       now: true,
-      eyebrow: '기준',
-      title: '세계 어획량',
-      body: `${CATCH.요약.세계어획량.toLocaleString('ko-KR')} (톤)`,
+      eyebrow: '소비자가',
+      title: '원양 냉동 중품',
+      body: '5,077원/마리 (9/8 확정)',
     },
     {
-      eyebrow: '살오징어',
-      title: '정점 대비',
-      body: `${FLYING_SQUID_VS_PEAK_PCT.toLocaleString('ko-KR', { maximumFractionDigits: 1 })} (%)`,
+      eyebrow: '서울 도매',
+      title: '연근해·원양 냉동',
+      body: '13,300 · 10,500원/kg (9/10)',
     },
     {
-      eyebrow: '한국',
-      title: '국내 어획량',
-      body: `${CATCH.요약.한국어획량.toLocaleString('ko-KR')} (톤)`,
+      eyebrow: '칠레 쿼터',
+      title: '소진율',
+      body: '69.6367% (9/1 기준)',
+    },
+    {
+      eyebrow: '페루',
+      title: '상업 조업',
+      body: '8/30 재개 · 한도 82,321톤',
     },
   ],
   // 오징어 브리핑은 원래 단계 귀속 없이 문장만 있었다. 공용 골격은 귀속이 있을 때만

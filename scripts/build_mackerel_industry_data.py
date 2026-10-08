@@ -32,8 +32,12 @@ BASE = Path(
     "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브"
     "/agri_data/01_수산물(Seafood)/mackerel"
 )
-FAO_KOREA = BASE / "6_고등어_플레이북/sales/kmong/data_pack/FAO_1995_2024_Korea_Scomber.csv"
-KCS_YTD = BASE / "6_고등어_플레이북/sales/kmong/data_pack/KCS_2026M01_M05_mackerel_exact_hsk.csv"
+# 2026-09-03 Drive 정리로 플레이북이 01_보고서/ 아래로 옮겨졌다(경로만 바뀌고 파일은 같다).
+FAO_KOREA = BASE / "01_보고서/6_고등어_플레이북/sales/kmong/data_pack/FAO_1995_2024_Korea_Scomber.csv"
+# 2026-09-10: 1~5월 data_pack 대신 2026-08-16 수집 nitemtrade 원본(HS4 조회 후 HSK 5코드 화이트리스트).
+# 파일명은 01_08 이지만 행은 2026.01~2026.07 일곱 달뿐이다(628행). 라벨은 「1~7월(7개월 누계)」.
+KCS_YTD = BASE / "00_고등어_관련자료/10_원본데이터셋/kcs/2026-08-16/KCS_2026_01_08_mackerel_nitemtrade.csv"
+KCS_SPAN = "2026년 1~7월(7개월 누계)"
 WIPAN = BASE / "00_고등어_관련자료/03_무역·가격/wipan/2026-08-16/MOF_busan_fishmarket_wipan.csv"
 
 OUT_PATH = Path(__file__).resolve().parent.parent / "public/data/mackerel_industry_v1.json"
@@ -105,14 +109,14 @@ def read_korea_catch() -> tuple[list[dict], list[dict], dict]:
 
     meta = {
         "기준연도": latest,
-        "출처": "FAO FishStat 2026.1.0 — 한국 Scomber 속 (1995~2024)",
+        "출처": "FAO FishStat 2026.1.0 - 한국 Scomber 속 (1995~2024)",
         "등급": "A",
         "합계": round(total),
         "원양비중": round(
             sum(v for k, v in area.items() if k != "북서태평양") / total * 100, 2
         ),
         "주의": (
-            "Scomber 속만 세었다. 「mackerel」 이름이 붙는다고 다 고등어가 아니다 — "
+            "Scomber 속만 세었다. 「mackerel」 이름이 붙는다고 다 고등어가 아니다 - "
             "전갱이·삼치·임연수어가 같은 영문명을 쓴다."
         ),
     }
@@ -217,7 +221,8 @@ def read_imports() -> tuple[list[dict], dict]:
     with open(KCS_YTD, encoding="utf-8-sig") as handle:
         for r in csv.DictReader(handle):
             name = (r.get("statCdCntnKor1") or "").strip()
-            if not name or name == "-":
+            # 총계 행(hsCd·국가 '-', year '총계')은 세지 않는다 — 월별 행을 더하면 같은 값이다.
+            if not name or name == "-" or (r.get("year") or "").strip() == "총계":
                 continue
             try:
                 usd = float(r.get("impDlr") or 0)
@@ -241,10 +246,11 @@ def read_imports() -> tuple[list[dict], dict]:
         for k, v in sorted(agg.items(), key=lambda kv: -kv[1]["금액"])
     ][:10]
     meta = {
-        "구간": "2026년 1~5월",
+        "구간": KCS_SPAN,
         "출처": "관세청 통관 (HSK 10자리 정확 일치)",
         "등급": "A",
         "합계": round(total / 1e6, 1),
+        "입력": "10_원본데이터셋/kcs/2026-08-16/KCS_2026_01_08_mackerel_nitemtrade.csv - 파일명은 01_08이나 행은 2026.01~07 뿐. 연환산하지 않는다.",
     }
     return rows, meta
 
@@ -257,7 +263,9 @@ def main() -> None:
     payload = {
         "_meta": {
             "생성일": "2026-08-17",
-            "주제": "고등어 — 크기 등급과 국산 대 수입",
+            "갱신일": "2026-09-10",
+            "갱신사유": "플레이북 입력 경로 이동(01_보고서/) 반영 · 통관을 1~5월 data_pack에서 2026-08-16 nitemtrade 1~7월로 교체",
+            "주제": "고등어 - 크기 등급과 국산 대 수입",
             "축": (
                 "어법은 축이 아니다. 총허용어획량 배분이 2011~2024년 내내 대형선망 "
                 "하나뿐이다. 크기 등급과 원산지가 이 품목을 가른다."

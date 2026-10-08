@@ -10,12 +10,14 @@
 import React from 'react';
 
 import { getPollockIndustryData } from '@/lib/data/commodity-industry';
+import { getPollockCompanyResearch } from '@/lib/data/pollock-company-research';
 import { POLLOCK_ACCENT } from '@/lib/pollock-chart-colors';
 import {
   POLLOCK_BRIEFING_POINTS,
   POLLOCK_NARRATIVES,
   POLLOCK_SOURCE_NOTES,
 } from '@/lib/pollock-industry-content';
+import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
@@ -28,6 +30,145 @@ import {
   PollockStockChart,
   PollockWorldChart,
 } from './CommodityCharts';
+import {
+  AuctionPriceChart,
+  TradeBalanceChart,
+  auctionCaption,
+  tradeCaption,
+} from './MofLiveCharts';
+import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
+import {
+  getPollockTables,
+  type PollockReportTable,
+} from '@/lib/data/pollock-industry-tables';
+
+const RESEARCH = getPollockCompanyResearch();
+
+function RosterTable({
+  caption,
+  rows,
+  sizeLabel,
+}: {
+  caption: string;
+  rows: Array<{ 회사: string; 위치: string; 규모: string; 내용: string; 성격: string; 출처: string }>;
+  sizeLabel: string;
+}) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>{caption}</caption>
+        <thead>
+          <tr>
+            <th>회사</th>
+            <th>위치</th>
+            <th>{sizeLabel}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.회사}>
+              <td>
+                {r.회사}
+                <span className={styles.factNote}>{r.내용}</span>
+              </td>
+              <td>{r.위치}</td>
+              <td>
+                {r.규모}
+                <span className={styles.factNote}>
+                  {r.성격} · {r.출처}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function ProcessorTable({
+  caption,
+  rows,
+}: {
+  caption: string;
+  rows: Array<{ 국가: string; 공장: string; 기업: string; 출처: string; 등급: string }>;
+}) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>{caption}</caption>
+        <thead>
+          <tr>
+            <th>국가</th>
+            <th>공장 (기준)</th>
+            <th>기업</th>
+            <th>등급</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.국가}>
+              <td>{r.국가}</td>
+              <td>
+                {r.공장}
+                <span className={styles.factNote}>{r.출처}</span>
+              </td>
+              <td>{r.기업}</td>
+              <td>{r.등급}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function BrandTable({
+  caption,
+  rows,
+}: {
+  caption: string;
+  rows: Array<{
+    시장: string;
+    브랜드: string;
+    소유: string;
+    실적: string;
+    점유율: string;
+    성격: string;
+  }>;
+}) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>{caption}</caption>
+        <thead>
+          <tr>
+            <th>시장</th>
+            <th>브랜드 (소유)</th>
+            <th>공표 실적</th>
+            <th>점유율 (성격)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={`${r.시장}-${r.브랜드}`}>
+              <td>{r.시장}</td>
+              <td>
+                {r.브랜드}
+                <span className={styles.factNote}>{r.소유}</span>
+              </td>
+              <td>{r.실적}</td>
+              <td>
+                {r.점유율}
+                <span className={styles.factNote}>{r.성격}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 const DATA = getPollockIndustryData();
 
@@ -36,11 +177,54 @@ const QUOTA_SYNC = { status: 'STATIC' as const, syncDate: '2026년 1월 제35차
 const IMPORT_SYNC = { status: 'STATIC' as const, syncDate: String(DATA.수입세번._meta.구간 ?? '통관 실적') };
 const MFDS_SYNC = { status: 'STATIC' as const, syncDate: `${DATA.가공품목._meta.기준연도}년분` };
 const STOCK_SYNC = { status: 'STATIC' as const, syncDate: String(DATA.재고._meta.구간 ?? '월보') };
+const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026-09-14 개정' };
+const MFDS_NAME_SYNC = { status: 'STATIC' as const, syncDate: '식약처 2025년 단년' };
 
 const latestImport = DATA.수입세번.rows.find((r) => r.연도 === 2025) ?? DATA.수입세번.rows[0];
 const russia = DATA.수입원산지.rows[0];
 const quota2026 = DATA.원양할당.rows.find((r) => r.연도 === 2026);
 const lastStock = DATA.재고.rows[DATA.재고.rows.length - 1];
+
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+function ReportTable({ table }: { table: PollockReportTable }) {
+  return (
+    <div className={styles.dataTableWrap}>
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 보고서 표를 단계별 슬롯으로. 손으로 만든 차트 뒤에 붙는다. */
+function reportSlots(stage: string): ChartSlot[] {
+  return getPollockTables(stage).map((t, i) => ({
+    title: `보고서 표 ${i + 1} — ${t.title}`,
+    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
+    telemetry: REPORT_SYNC,
+    span: 'full' as const,
+    render: () => <ReportTable table={t} />,
+  }));
+}
 
 export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -52,6 +236,7 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <PollockWorldChart data={DATA} />,
     },
+      ...reportSlots('s01'),
   ],
   s02: [
     {
@@ -59,24 +244,61 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '옅은 막대가 할당, 짙은 막대가 어획이다. 2022년을 빼면 붙어 있다. 2026년 막대는 1~6월 누계라 짧다. 선은 입어료다.',
       telemetry: QUOTA_SYNC,
-      span: 'full',
       render: () => <PollockQuotaChart data={DATA} />,
     },
+    {
+      title: '공급 기업 - 누가 잡고 누가 파는가',
+      caption: RESEARCH.공급.요지,
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="국적선·수입상·해외 매입처. 신고 건수는 물량이 아니다. 러시아 선사 법인명은 공표 없음이다."
+          rows={RESEARCH.공급.rows}
+          sizeLabel="규모 (성격)"
+        />
+      ),
+    },
+      ...reportSlots('s02'),
   ],
   s03: [
     {
+      title: '명태 월별 수출입과 무역수지 (백만 달러)',
+      caption: tradeCaption('명태'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
+      render: () => <TradeBalanceChart keyword="명태" />,
+      sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
+    },
+    {
       title: '전용 세번별 수입 물량 2023~2026 (톤)',
       caption:
-        '동태(장미)가 줄고 연육(호박)이 는다. 2026년은 1~7월 누계라 막대가 짧다.',
+        '동태(주황)가 줄고 연육(청록)이 는다. 2026년은 1~7월 누계라 막대가 짧다.',
       telemetry: IMPORT_SYNC,
       render: () => <PollockImportMixChart data={DATA} />,
     },
     {
       title: '수입 원산지 구성 2025 (%)',
-      caption: '장미색이 러시아다. 미국을 더하면 95.1%이고 나머지를 다 합쳐도 5%가 안 된다.',
+      caption: '주황이 러시아다. 미국을 더하면 95.1%이고 나머지를 다 합쳐도 5%가 안 된다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2025년 통관' },
       render: () => <PollockOriginChart data={DATA} />,
     },
+      ...reportSlots('s03'),
+  ],
+  s06: [
+    {
+      title: '수입 신고 명의 상위',
+      caption: RESEARCH.수입명의.요지,
+      telemetry: MFDS_NAME_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="식약처 수입식품정보마루 2025년 처리일자. 건수는 물량이 아니다. 3개년 비율을 내지 않는다."
+          rows={RESEARCH.수입명의.rows}
+          sizeLabel="신고 건 (성격)"
+        />
+      ),
+    },
+      ...reportSlots('s06'),
   ],
   s04: [
     {
@@ -84,9 +306,78 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       caption:
         '명란젓 2024년 막대가 튀는 것은 한 업체의 8,869톤 신고다. 연육 막대가 작은 것은 국내 생산이 아니라 수입이 공급의 97.4%라서다.',
       telemetry: MFDS_SYNC,
-      span: 'full',
       render: () => <PollockProcessingChart data={DATA} />,
     },
+    {
+      title: '국가별 가공 거점과 기업',
+      caption: RESEARCH.가공.요지,
+      telemetry: MFDS_SYNC,
+      span: 'full',
+      render: () => (
+        <ProcessorTable
+          caption="식품안전나라 I0300 사업장 단위와 해외 가공 줄. 등급 A는 기관, B는 집계·매체, C는 공시 사명 추정이다."
+          rows={RESEARCH.가공.rows}
+        />
+      ),
+    },
+      ...reportSlots('s04'),
+  ],
+  s07: [
+    {
+      title: '2025 가공 생산 상위',
+      caption: RESEARCH.국내가공상위.요지,
+      telemetry: MFDS_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="식품안전나라 생산실적 I0300 2025년분. 사업장 단위. 삼양씨푸드 2공장은 합산하지 않는다."
+          rows={RESEARCH.국내가공상위.rows}
+          sizeLabel="생산량 (성격)"
+        />
+      ),
+    },
+    {
+      title: '수입과 가공이 겹치는 42곳',
+      caption: RESEARCH.연결42.요지,
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="2025년 수입 신고 상호 × 가공 생산실적 상호. 경대물산·금호통상은 가공 0톤이다."
+          rows={RESEARCH.연결42.rows}
+          sizeLabel="건수·톤"
+        />
+      ),
+    },
+      ...reportSlots('s07'),
+  ],
+  s08: [
+    {
+      title: '상장사 여섯의 전사 매출',
+      caption: RESEARCH.상장사.요지,
+      telemetry: { status: 'STATIC' as const, syncDate: 'DART 2025년' },
+      span: 'full',
+      render: () => (
+        <RosterTable
+          caption="연결 우선, 한성기업·사조오양 별도. 명태 부문 분리 공시는 없다."
+          rows={RESEARCH.상장사.rows}
+          sizeLabel="매출·영업이익"
+        />
+      ),
+    },
+    {
+      title: '브랜드와 점유율 (성격 구분)',
+      caption: RESEARCH.브랜드.요지,
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <BrandTable
+          caption="점유율의 기관 공표가 없으면 공표 없음이다. 상장사 매출은 명태 매출이 아니다."
+          rows={RESEARCH.브랜드.rows}
+        />
+      ),
+    },
+      ...reportSlots('s08'),
   ],
   s05: [
     {
@@ -97,14 +388,17 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <PollockStockChart data={DATA} />,
     },
+      ...reportSlots('s05'),
   ],
 };
 
 const SPEC: CommoditySpec = {
+  // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
+  continuous: true,
   key: 'pollock',
   title: '명태',
   subtitle:
-    '명태 산업 해부 · 잡지 않고 먹는 생선 - 자원·원양 할당·수입 구성·가공·값과 재고 5단계와 그것을 관통하는 세 장부의 문제',
+    '명태 산업 해부 · 잡지 않고 먹는 생선 - 자원·원양·수입·명의·가공·명부·재무·값과 재고, 세 장부의 문제',
   accent: POLLOCK_ACCENT,
   primaryKpi: {
     label: '명태 전용 세번 수입액',
@@ -120,8 +414,9 @@ const SPEC: CommoditySpec = {
   ],
   stripItems: [
     { now: true, eyebrow: '기준', title: '2025 수입 물량', body: `${Number(latestImport?.합계물량 ?? 0).toLocaleString('ko-KR')} (톤)` },
-    { eyebrow: '원양', title: '북양트롤', body: `${DATA.원양할당._meta.북양트롤} 척` },
+    { eyebrow: '원양', title: '2026 한·러 할당', body: `${Number(quota2026?.할당 ?? 0).toLocaleString('ko-KR')} (톤)` },
     { eyebrow: '가공', title: '2025 생산', body: `${Number((DATA.가공품목._meta.합계 as Record<string, number>)['2025'] ?? 0).toLocaleString('ko-KR')} (톤)` },
+    { eyebrow: '자료', title: '관세청', body: 'API 2026-06까지 · 웹 통계 2026-07까지 · 2026-08분 이후 이 화면 미반영' },
   ],
   briefing: POLLOCK_BRIEFING_POINTS,
   narratives: POLLOCK_NARRATIVES,
@@ -133,7 +428,10 @@ const SPEC: CommoditySpec = {
     `통관 · ${DATA.수입세번._meta.출처} · ${DATA.수입세번._meta.구간}`,
     `가공 · ${DATA.가공품목._meta.출처}`,
     `재고 · ${DATA.재고._meta.출처}`,
-    `갱신 ${DATA._meta.생성일}`,
+    '명의·가공 명부 · 식약처 수입식품정보마루·생산실적 I0300 2025',
+    '재무 · DART 2025 사업보고서',
+    'GLOBEFISH Groundfish 2026-05호 (쿼터 범위는 연방관보와 별도)',
+    `갱신 ${DATA._meta.생성일} · 화면 2026-09-10`,
   ].join(' · '),
 };
 

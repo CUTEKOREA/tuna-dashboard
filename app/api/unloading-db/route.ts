@@ -78,6 +78,7 @@ export async function GET() {
         name: v.name,
         portCode: v.port_code || null,
         dateRange: v.date_range,
+        arrivalDate: v.arrival_date || null,
         location: v.location,
         buyer: v.buyer,
         motherVessel: v.mother_vessel || '-',
@@ -113,6 +114,7 @@ export async function GET() {
       if (mergedData[r.vessel_id]) {
         mergedData[r.vessel_id].timeline.push({
           date: r.report_date,
+          reportYear: r.report_year == null ? null : Number(r.report_year),
           time: r.work_time,
           targetHol: r.target_holds,
           consignee: r.consignee || null,

@@ -24,6 +24,7 @@ type Imp = {
 type Sup = {
   country: string; hs: string; year: number; partner: string
   valueUsd: number; qtyKg?: number; share?: number; source?: string; grade?: string
+  period?: string
 }
 
 export const exportMeta = ex.meta as {
@@ -56,9 +57,25 @@ const priorRaw = ex.prior as unknown as {
   byMarket: Grp[]; byBuyer: Grp[]; bySpecGroup: Grp[]
 }
 
-export const tradeMeta = ts.meta as { collected: string; hs: string[]; note: string }
 const imports = (ts.imports ?? []) as unknown as Imp[]
 const suppliers = (ts.suppliers ?? []) as unknown as Sup[]
+/** 부분 연도 창을 달로 쪼갠 행 (HS 160414, 보고국 × 달). `sync_trade_stats.py --monthly` 가 만든다. */
+type Mon = {
+  country: string; hs: string; month: string
+  valueNative: number; nativeCcy: string; fxToUsd: number; valueUsd: number; qtyKg: number
+  ghanaValueNative: number; ghanaValueUsd: number; ghanaQtyKg: number
+  ghanaRank: number | null; suppliers: number
+}
+const monthly = ((ts as { monthly?: unknown[] }).monthly ?? []) as Mon[]
+export const tradeMeta = {
+  ...(ts.meta as {
+    collected: string; hs: string[]; note: string
+    coverage?: Record<string, string | string[]>
+  }),
+  coverage: ((ts.meta as { coverage?: Record<string, string | string[]> }).coverage ?? {}),
+  /** 회귀 테스트가 원본 행을 직접 검산할 수 있도록 열어 둔다 (화면에서는 쓰지 않는다) */
+  raw: { imports, suppliers, monthly },
+}
 
 /* 원장의 시장명(한글) ↔ 무역통계의 국가명(영문) */
 const MARKET_COUNTRY: Record<string, string> = {
@@ -69,38 +86,147 @@ const MARKET_COUNTRY: Record<string, string> = {
 }
 const HS_CAN = '160414'
 
-/** 무역통계에 연도가 여러 개다. 전년 전체가 있는 가장 최근 연도를 기준으로 쓴다
- *  (2026 은 부분 데이터라 연간 비교의 분모로 못 쓴다). */
+/** 최신 달의 첫 발행분은 신고가 다 모이기 전에 나온다. 2026-10-02 에 받은 7월 EU 값은 공급국 수가
+ *  독일 28 → 10, 네덜란드 40 → 14, 슬로베니아 11 → 1 로 줄었고 영국(HMRC)만 22 → 25 로 그대로였다.
+ *  그런 달을 창에 넣으면 분모가 비어 가나 몫이 부풀어 보인다 - 그 달은 «잠정»으로 표시하고 창 끝에서 뺀다.
+ *  ponytail: 공급국 수가 그 나라 이전 달 중앙값의 60% 미만이면 잠정 — 경험칙이다. 발행처의 개정 플래그를 받게 되면 그걸로 바꾼다. */
+export const THIN_RATIO = 0.6
+const median = (xs: number[]) => {
+  const v = [...xs].sort((a, b) => a - b)
+  const m = Math.floor(v.length / 2)
+  return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2
+}
+export const provisionalCells = (() => {
+  const byCountry = new Map<string, Mon[]>()
+  for (const r of monthly.filter((x) => x.hs === HS_CAN)) byCountry.set(r.country, [...(byCountry.get(r.country) ?? []), r])
+  const out = new Set<string>()
+  for (const [country, rows] of byCountry) {
+    const sorted = [...rows].sort((a, b) => a.month.localeCompare(b.month))
+    sorted.forEach((r, i) => {
+      const prior = sorted.slice(0, i).map((x) => x.suppliers)
+      if (prior.length >= 3 && r.suppliers < median(prior) * THIN_RATIO) out.add(`${country}|${r.month}`)
+    })
+  }
+  return out
+})()
+/** 모든 보고국이 완결된 마지막 달. 월별 행이 없으면 null(검사 생략). */
+export const lastCompleteMonth: string | null = (() => {
+  const rows = monthly.filter((x) => x.hs === HS_CAN)
+  const months = [...new Set(rows.map((r) => r.month))].sort()
+  const reporters = new Set(rows.map((r) => r.country))
+  let last: string | null = null
+  for (const m of months) {
+    // 행이 아예 없는 보고국도 미완결이다 - 수집은 값이 없는 달을 건너뛴다
+    const seen = new Set(rows.filter((r) => r.month === m).map((r) => r.country))
+    if (seen.size < reporters.size || [...provisionalCells].some((k) => k.endsWith(`|${m}`))) break
+    last = m
+  }
+  return last
+})()
+
+/** 무역통계에 연도가 여러 개다. 전체가 있는 가장 최근 연도를 기준으로 쓴다
+ *  (부분 연도는 `period` 가 붙어 있어 연간 비교의 분모로 못 쓴다). */
 export const benchYear = (() => {
   const full = imports.filter((x) => x.hs === HS_CAN && !x.period)
   return full.length ? Math.max(...full.map((x) => x.year)) : null
 })()
 
-const impOf = (country: string, year: number | null) =>
-  imports.find((x) => x.hs === HS_CAN && x.country === country && x.year === year && !x.period)
-const ghanaOf = (country: string, year: number | null) =>
-  suppliers.find((x) => x.hs === HS_CAN && x.country === country && x.year === year && /ghana/i.test(x.partner))
+/** 창(window)이 여럿일 수 있다 — 원장과 맞춘 짧은 창, 발행 끝까지 간 긴 창.
+ *  의도된 복수 창과 «출처마다 기간이 어긋난 상태»는 다르다. 후자는 비교가 성립하지 않으므로
+ *  한 창 안에 모든 보고국이 같은 기간으로 들어와 있을 때만 그 창을 인정한다. */
+function completeWindows(year: number): string[] {
+  const rows = imports.filter((x) => x.hs === HS_CAN && x.year === year && x.period)
+  const countries = new Set(rows.map((x) => x.country))
+  const byPeriod = new Map<string, Set<string>>()
+  for (const row of rows) {
+    const set = byPeriod.get(row.period!) ?? new Set<string>()
+    set.add(row.country)
+    byPeriod.set(row.period!, set)
+  }
+  return [...byPeriod.entries()]
+    .filter(([, seen]) => seen.size === countries.size)
+    // 잠정 달로 끝나는 창은 쓰지 않는다 - 월별 행이 그 해를 덮을 때만 검사한다
+    .filter(([period]) => !lastCompleteMonth || !lastCompleteMonth.startsWith(`${year}-`) || period.slice(-7) <= lastCompleteMonth)
+    .map(([period]) => period)
+    .sort()
+}
 
-/** COSMO 실적은 1~5월분이다. 연간 수입액과 대려면 연환산해야 한다.
+/** 부분 연도 중 가장 최근 것. 창이 여럿이면 가장 긴 창을 쓴다. */
+export const partialYear = (() => {
+  const partial = imports.filter((x) => x.hs === HS_CAN && x.period)
+  if (!partial.length) return null
+  const year = Math.max(...partial.map((x) => x.year))
+  const windows = completeWindows(year)
+  return windows.length ? { year, period: windows[windows.length - 1] } : null
+})()
+
+/** 「2026-01..2026-06」을 「1~6월」로. 화면에는 한글 기간만 노출한다. */
+export function periodLabelKo(period: string): string {
+  const match = /^(\d{4})-(\d{2})\.\.(\d{4})-(\d{2})$/.exec(period)
+  if (!match) return period
+  const [, , from, , to] = match
+  return `${Number(from)}~${Number(to)}월`
+}
+
+const impOf = (country: string, year: number | null, period?: string | null) =>
+  imports.find((x) => x.hs === HS_CAN && x.country === country && x.year === year
+    && (period ? x.period === period : !x.period))
+const ghanaOf = (country: string, year: number | null, period?: string | null) =>
+  suppliers.find((x) => x.hs === HS_CAN && x.country === country && x.year === year
+    && (period ? x.period === period : !x.period) && /ghana/i.test(x.partner))
+
+/** COSMO 원장이 덮는 달 수. 파일명이 아니라 행에 실제로 찍힌 월에서 센다 —
+ *  원장이 한 달 늘어나면 환산 계수도 같이 움직여야 하기 때문이다. */
+export const ledgerMonths = (() => {
+  const NAMES = ['january','february','march','april','may','june',
+    'july','august','september','october','november','december']
+  const seen = new Set<number>()
+  for (const row of ex.rows as { month?: string | null }[]) {
+    const i = row.month ? NAMES.indexOf(row.month.trim().toLowerCase()) : -1
+    if (i >= 0) seen.add(i + 1)
+  }
+  return seen.size || 5
+})()
+
+/** COSMO 실적은 원장이 덮는 달까지다. 연간 수입액과 대려면 연환산해야 한다.
  *  ⚠️ 계절성을 보정하지 않은 단순 환산이라 참고치다. */
-export const ANNUALIZE = 12 / 5
+export const ANNUALIZE = 12 / ledgerMonths
+
+/** 원장과 같은 달 수를 덮는 시장 통계 구간. 없으면 null —
+ *  기간이 다른 것을 단가로 대면 그 차이가 곧 가짜 격차가 된다. */
+export const ledgerAlignedWindow = (() => {
+  const partial = imports.filter((x) => x.hs === HS_CAN && x.period)
+  if (!partial.length) return null
+  const year = Math.max(...partial.map((x) => x.year))
+  const periods = completeWindows(year)
+  const match = periods.find((p) => {
+    const m = /^(\d{4})-(\d{2})\.\.(\d{4})-(\d{2})$/.exec(p)
+    return m ? Number(m[4]) - Number(m[2]) + 1 === ledgerMonths : false
+  })
+  return match ? { year, period: match } : null
+})()
 
 /* ----------------------------------------------------- 단가 포지션 (핵심) */
 
 /** COSMO 실현 단가가 그 시장의 수입 평균 단가 대비 어디에 있는가.
  *  점유율이 "얼마나 파는가"라면 이건 "제값 받는가"에 답한다.
  *  물량 기준 $/kg 이라 통계의 NET MASS 와 축이 같다. */
+/** 단가 비교의 기준 구간 — 원장과 달 수가 같은 창이 있으면 그것을, 없으면 직전 연간을 쓴다. */
+export const priceBasis = ledgerAlignedWindow ?? { year: benchYear, period: null as string | null }
+
 export const pricePosition = byMarket
   .map((m) => {
     const c = MARKET_COUNTRY[m.key]
-    const imp = c ? impOf(c, benchYear) : undefined
-    const gh = c ? ghanaOf(c, benchYear) : undefined
+    const imp = c ? impOf(c, priceBasis.year, priceBasis.period) : undefined
+    const gh = c ? ghanaOf(c, priceBasis.year, priceBasis.period) : undefined
+    const priorImp = c && priceBasis.period ? impOf(c, benchYear, null) : undefined
     const ghUnit = gh?.qtyKg ? gh.valueUsd / gh.qtyKg : null
     if (!imp || m.usdPerKg == null) return null
     return {
       market: m.key,
       cosmoUsdKg: m.usdPerKg,
       marketUsdKg: imp.unitUsdKg,
+      priorMarketUsdKg: priorImp?.unitUsdKg ?? null,
       ghanaUsdKg: ghUnit,
       vsMarket: m.usdPerKg / imp.unitUsdKg - 1,
       vsGhana: ghUnit ? m.usdPerKg / ghUnit - 1 : null,
@@ -128,14 +254,22 @@ export const repricingUpside = (() => {
 /* --------------------------------------------------------------- 점유율 */
 
 /** 가나 전체가 각 시장에서 차지하는 비중. 무역통계 내부에서 나온 값이라 신뢰도가 높다. */
+/** 점유율은 기간 길이와 무관하게 비교되므로 가장 최근 부분 연도 구간을 쓴다. */
+export const shareBasis = partialYear ?? { year: benchYear, period: null as string | null }
+
 export const ghanaShare = byMarket
   .map((m) => {
     const c = MARKET_COUNTRY[m.key]
-    const imp = c ? impOf(c, benchYear) : undefined
-    const gh = c ? ghanaOf(c, benchYear) : undefined
+    const imp = c ? impOf(c, shareBasis.year, shareBasis.period) : undefined
+    const gh = c ? ghanaOf(c, shareBasis.year, shareBasis.period) : undefined
+    const priorImp = c && shareBasis.period ? impOf(c, benchYear, null) : undefined
+    const priorGh = c && shareBasis.period ? ghanaOf(c, benchYear, null) : undefined
     if (!imp || !gh) return null
+    const priorShareValue = priorImp && priorGh ? priorGh.valueUsd / priorImp.valueUsd : null
     return {
       market: m.key, country: c,
+      priorShareValue,
+      shareValueDelta: priorShareValue != null ? gh.valueUsd / imp.valueUsd - priorShareValue : null,
       marketValueUsd: imp.valueUsd, marketQtyKg: imp.qtyKg,
       ghanaValueUsd: gh.valueUsd, ghanaQtyKg: gh.qtyKg ?? null,
       shareValue: gh.valueUsd / imp.valueUsd,
@@ -153,64 +287,147 @@ export const ghanaShare = byMarket
  *  합계 수준에서만 의미가 있다. */
 export const aggregateShare = (() => {
   const covered = ghanaShare.map((g) => g.market)
-  const cosmo = byMarket.filter((m) => covered.includes(m.key)).reduce((a, m) => a + m.amountUsd, 0) * ANNUALIZE
+  const cosmoLedger = byMarket.filter((m) => covered.includes(m.key)).reduce((a, m) => a + m.amountUsd, 0)
+  const cosmo = cosmoLedger * ANNUALIZE
   const ghana = ghanaShare.reduce((a, g) => a + g.ghanaValueUsd, 0)
   const market = ghanaShare.reduce((a, g) => a + g.marketValueUsd, 0)
+  // COSMO 대 가나 비교는 «같은 달 수»로만 한다 — 원장 창(priceBasis, 원장과 같은 달 수)의 가나發 수입과 원장 실적.
+  // 2026-10-02 까지는 연환산 COSMO(×12/5)를 부분 연도 가나 금액(연환산 안 함)에 나눠 146% 같은 불가능한 몫이 나왔다.
+  const ghanaLedgerWindow = covered.reduce((a, mk) => {
+    const g = ghanaOf(MARKET_COUNTRY[mk], priceBasis.year, priceBasis.period)
+    return a + (g?.valueUsd ?? 0)
+  }, 0)
+  const marketLedgerWindow = covered.reduce((a, mk) => {
+    const i = impOf(MARKET_COUNTRY[mk], priceBasis.year, priceBasis.period)
+    return a + (i?.valueUsd ?? 0)
+  }, 0)
   return {
     markets: covered.length,
     cosmoAnnualUsd: cosmo, ghanaUsd: ghana, marketUsd: market,
-    cosmoInGhana: ghana ? cosmo / ghana : null,
-    cosmoInMarket: market ? cosmo / market : null,
+    cosmoLedgerUsd: cosmoLedger, ghanaLedgerWindowUsd: ghanaLedgerWindow,
+    cosmoInGhana: ghanaLedgerWindow ? cosmoLedger / ghanaLedgerWindow : null,
+    cosmoInMarket: marketLedgerWindow ? cosmoLedger / marketLedgerWindow : null,
     ghanaInMarket: market ? ghana / market : null,
   }
 })()
 
-/** 가나 점유율 추이 — 연도별. 우리 자리가 커지는지 줄어드는지. */
+/** 가나 점유율 추이 — 연도별에 최신 부분 구간을 한 점 덧붙인다.
+ *  점유율은 기간 길이에 좌우되지 않으므로 연간 옆에 부분 연도를 놓아도 축이 어긋나지 않는다.
+ *  다만 성격이 다른 점이라 `partial` 로 표시해 화면이 구분해 그리게 한다. */
 export const ghanaTrend = (() => {
   const years = [...new Set(suppliers.filter((s) => s.hs === HS_CAN && /ghana/i.test(s.partner)).map((s) => s.year))]
     .filter((y) => imports.some((i) => i.hs === HS_CAN && i.year === y && !i.period))
     .sort()
   const markets = ghanaShare.slice(0, 4).map((g) => g.market)
-  return years.map((y) => {
-    const row: Record<string, unknown> = { year: y, label: String(y) }
+  const point = (year: number | null, period: string | null, label: string, partial: boolean) => {
+    const row: Record<string, unknown> = { year, label, partial }
     markets.forEach((mk) => {
       const c = MARKET_COUNTRY[mk]
-      const imp = impOf(c, y)
-      const gh = ghanaOf(c, y)
+      const imp = impOf(c, year, period)
+      const gh = ghanaOf(c, year, period)
       row[mk] = imp && gh ? gh.valueUsd / imp.valueUsd : null
     })
     return row
+  }
+  const rows = years.map((y) => point(y, null, String(y), false))
+  if (partialYear) {
+    rows.push(point(partialYear.year, partialYear.period,
+      `${partialYear.year} ${periodLabelKo(partialYear.period)}`, true))
+  }
+  return rows
+})()
+
+/** 가나發 점유를 달로 쪼갠다 — 창 합계 하나로는 «언제» 움직였는지가 안 보인다.
+ *  점유는 같은 통화끼리 나눠 환율과 무관하다. 금액(USD)은 그 달 ECB 평균 환율로 바꿨다.
+ *  ⚠️ 통관 기준 월값은 운반선 도착 시점에 따라 출렁인다 - 한 달의 급등락은 선적 한두 건일 수 있다. */
+export const ghanaMonthly = (() => {
+  const months = [...new Set(monthly.filter((r) => r.hs === HS_CAN).map((r) => r.month))].sort()
+  const rows = ghanaShare.map((g) => ({
+    market: g.market,
+    months: months.map((month) => {
+      const r = monthly.find((x) => x.hs === HS_CAN && x.country === g.country && x.month === month)
+      return r ? {
+        month, marketValueUsd: r.valueUsd, ghanaValueUsd: r.ghanaValueUsd,
+        shareValue: r.valueNative ? r.ghanaValueNative / r.valueNative : 0,
+        shareQty: r.qtyKg ? r.ghanaQtyKg / r.qtyKg : null,
+        ghanaUsdKg: r.ghanaQtyKg ? r.ghanaValueUsd / r.ghanaQtyKg : null,
+        ghanaRank: r.ghanaRank, suppliers: r.suppliers,
+        provisional: provisionalCells.has(`${g.country}|${month}`),
+      } : null
+    }),
+  }))
+  const total = months.map((month, i) => {
+    const ghana = rows.reduce((a, r) => a + (r.months[i]?.ghanaValueUsd ?? 0), 0)
+    const market = rows.reduce((a, r) => a + (r.months[i]?.marketValueUsd ?? 0), 0)
+    return { month, label: `${Number(month.slice(5))}월`, ghanaValueUsd: ghana, marketValueUsd: market,
+      shareValue: market ? ghana / market : null,
+      complete: lastCompleteMonth != null && month <= lastCompleteMonth,
+      provisionalMarkets: rows.filter((r) => r.months[i]?.provisional).map((r) => r.market) }
   })
+  return { months, rows, total }
 })()
 
 /** 경쟁 공급국 — 같은 시장에 누가 얼마나 들어오나.
  *  업무보고의 "영국 무관세로 태국·인니 저가 공세"를 정량화한다. */
+type SupplierRow = {
+  partner: string; valueUsd: number; qtyKg: number | null
+  share: number | null; usdPerKg: number | null; isGhana: boolean; rank: number
+}
+
+/** 한 시장·한 기간의 공급국 순위표. 기간이 연간이든 부분 연도든 계산은 같다. */
+function rankSuppliers(country: string, year: number | null, period: string | null) {
+  const imp = impOf(country, year, period)
+  const all: SupplierRow[] = suppliers
+    .filter((s) => s.hs === HS_CAN && s.country === country && s.year === year
+      && (period ? s.period === period : !s.period))
+    .map((s) => ({
+      partner: s.partner,
+      valueUsd: s.valueUsd,
+      qtyKg: s.qtyKg ?? null,
+      share: imp ? s.valueUsd / imp.valueUsd : null,
+      usdPerKg: s.qtyKg ? s.valueUsd / s.qtyKg : null,
+      isGhana: /ghana/i.test(s.partner),
+    }))
+    .sort((a, b) => b.valueUsd - a.valueUsd)
+    .map((r, i) => ({ ...r, rank: i + 1 }))
+  return { imp, all }
+}
+
 export const competitors = (() => {
   const focus = ghanaShare.slice(0, 4).map((g) => ({ market: g.market, country: g.country }))
+  // 화면 기준은 가장 최근 구간이다 - 부분 연도가 두 출처를 같은 기간으로 덮으면 그쪽을 쓴다.
+  const head = partialYear ?? { year: benchYear, period: null as string | null }
   return focus.map(({ market, country }) => {
-    const imp = impOf(country, benchYear)
-    const all = suppliers
-      .filter((s) => s.hs === HS_CAN && s.country === country && s.year === benchYear)
-      .map((s) => ({
-        partner: s.partner,
-        valueUsd: s.valueUsd,
-        qtyKg: s.qtyKg ?? null,
-        share: imp ? s.valueUsd / imp.valueUsd : null,
-        usdPerKg: s.qtyKg ? s.valueUsd / s.qtyKg : null,
-        isGhana: /ghana/i.test(s.partner),
-      }))
-      .sort((a, b) => b.valueUsd - a.valueUsd)
-      .map((r, i) => ({ ...r, rank: i + 1 }))
+    const { imp, all } = rankSuppliers(country, head.year, head.period)
+    // 비교축: 부분 연도를 보고 있을 때만 직전 «연간»을 함께 얹는다.
+    const prior = head.period ? rankSuppliers(country, benchYear, null) : null
 
-    // 가나가 상위권 밖이면 우리 위치가 화면에서 아예 사라진다 — 순위를 달아 반드시 넣는다
     const TOP_N = 10
     const top = all.slice(0, TOP_N)
     const gh = all.find((r) => r.isGhana)
-    const rows = gh && !top.some((r) => r.isGhana) ? [...top, gh] : top
+    const rows = (gh && !top.some((r) => r.isGhana) ? [...top, gh] : top).map((r) => {
+      const was = prior?.all.find((p) => p.partner === r.partner) ?? null
+      return {
+        ...r,
+        priorShare: was?.share ?? null,
+        priorRank: was?.rank ?? null,
+        // 점유율은 기간 길이와 무관하게 비교된다. 금액은 부분 연도 대 연간이라 비교하지 않는다.
+        shareDelta: was?.share != null && r.share != null ? r.share - was.share : null,
+        rankDelta: was ? was.rank - r.rank : null,
+      }
+    })
+    const ghRow = rows.find((r) => r.isGhana) ?? null
     return {
       market, country, marketUsdKg: imp?.unitUsdKg ?? null, rows, topN: TOP_N,
       ghanaRank: gh?.rank ?? null, supplierCount: all.length,
       ghanaOutsideTop: !!gh && gh.rank > TOP_N,
+      year: head.year, period: head.period,
+      periodLabel: head.period ? periodLabelKo(head.period) : '연간',
+      priorYear: prior ? benchYear : null,
+      priorMarketUsdKg: prior?.imp?.unitUsdKg ?? null,
+      ghanaShareDelta: ghRow?.shareDelta ?? null,
+      ghanaRankDelta: ghRow?.rankDelta ?? null,
+      priorSupplierCount: prior?.all.length ?? null,
     }
   })
 })()

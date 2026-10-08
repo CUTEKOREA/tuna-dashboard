@@ -1,8 +1,18 @@
 name: Carrot Intelligence Hyper-Pipeline Sync
 
+# 2026-09-04: 매일 자정 스케줄을 껐다. 이 워크플로는 CI 에서 한 번도 성공한 적이 없다 —
+# 아래 두 경로가 모두 `/data/` 아래이고 그 디렉터리는 .gitignore:53 으로 무시되기 때문이다.
+#   · 실행: data/당근/carrot_real_data_collector.py  → 러너에 파일이 없어 exit 2
+#   · 커밋: data/당근/carrot_*.json                  → 스테이징할 것이 없어 무의미
+# 그 스크립트는 워크트리·다른 체크아웃·git 이력 어디에도 없다. 매일 실패 로그만 쌓고 있어
+# 스케줄을 끄고 수동 트리거만 남긴다.
+#
+# 다시 켜려면: ① 수집기를 scripts/sync_carrot_data.py 로 커밋하고
+#              ② 산출물을 public/data/agri/ 처럼 추적되는 경로로 옮긴 뒤
+#              ③ 아래 schedule 블록의 주석을 해제한다.
 on:
-  schedule:
-    - cron: '0 15 * * *' # 매일 자정 (KST 기준 00:00 = UTC 15:00)
+  # schedule:
+  #   - cron: '0 15 * * *' # 매일 자정 (KST 기준 00:00 = UTC 15:00)
   workflow_dispatch: # 수동 실행 트리거
 
 jobs:

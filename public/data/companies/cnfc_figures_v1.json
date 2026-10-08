@@ -1,0 +1,99 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-cnfc-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c02",
+   "sid": "s4",
+   "kind": "chart",
+   "ord": 1567,
+   "caption": "연결 순이익과 수익 관련 정부보조금(연보 其他收益 주석). 2025년에는 6월 24일 보조금 2억 6,865만 위안(수익 관련 2억 5,175만·자산 관련 1,690만)이 한꺼번에 들어왔다. 2026년 상반기 순이익 1억 4,204만 위안은 6월 29일 들어온 보조금 2억 5,742만 위안보다 작다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"순이익과 정부보조금\"><text x=\"48\" y=\"16\" font-size=\"12.5\" fill=\"#7a828b\">억 위안 · 순이익은 소수주주 몫 포함 · 보조금은 其他收益 중 与收益相关</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"225.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">-1</text><line x1=\"48\" y1=\"175.0\" x2=\"670\" y2=\"175.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"178.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">0</text><line x1=\"48\" y1=\"128.0\" x2=\"670\" y2=\"128.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"131.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">1</text><line x1=\"48\" y1=\"81.0\" x2=\"670\" y2=\"81.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"84.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">2</text><line x1=\"48\" y1=\"34.0\" x2=\"670\" y2=\"34.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"37.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">3</text><rect x=\"130.0\" y=\"169.8\" width=\"27.0\" height=\"5.2\" fill=\"#1B3B52\"/><text x=\"143.5\" y=\"165.8\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">0.11</text><rect x=\"160.0\" y=\"81.9\" width=\"27.0\" height=\"93.1\" fill=\"#B2503A\"/><text x=\"173.5\" y=\"77.9\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">1.98</text><text x=\"160.0\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2023</text><rect x=\"334.0\" y=\"175.0\" width=\"27.0\" height=\"40.4\" fill=\"#1B3B52\"/><text x=\"347.5\" y=\"226.4\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">-0.86</text><rect x=\"364.0\" y=\"57.5\" width=\"27.0\" height=\"117.5\" fill=\"#B2503A\"/><text x=\"377.5\" y=\"53.5\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">2.50</text><text x=\"364.0\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2024</text><rect x=\"538.0\" y=\"108.3\" width=\"27.0\" height=\"66.7\" fill=\"#1B3B52\"/><text x=\"551.5\" y=\"104.3\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#1B3B52\">1.42</text><rect x=\"568.0\" y=\"49.5\" width=\"27.0\" height=\"125.5\" fill=\"#B2503A\"/><text x=\"581.5\" y=\"45.5\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">2.67</text><text x=\"568.0\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2025</text><line x1=\"48\" y1=\"175.0\" x2=\"670\" y2=\"175.0\" stroke=\"#a9aeb5\"/><rect x=\"48\" y=\"256\" width=\"10\" height=\"10\" fill=\"#1B3B52\"/><text x=\"62\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">순이익(연결 합계)</text><rect x=\"178\" y=\"256\" width=\"10\" height=\"10\" fill=\"#B2503A\"/><text x=\"192\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">수익 관련 정부보조금</text></svg>"
+  },
+  {
+   "stage": "c03",
+   "sid": "s6",
+   "kind": "shot",
+   "ord": 666,
+   "caption": "2024년 연보 募集资金 표의 설명 칸. 가공센터 사용 가능 예정일을 2025년 6월 30일로 미룬 사유로 초저온 냉장고 공정, 기술 인력, 초저온 자재 공급을 든다.",
+   "alt": "2024년 연보의 가공센터 연기 사유 원문",
+   "src": "/data/companies/figures/cnfc/31cb48725bbe.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 328,
+   "caption": "「明珠金枪鱼肉松180克」 판매 페이지 사진. 병 라벨은 「鱼肉松」.",
+   "alt": "명주 어육송 병 두 개",
+   "src": "/data/companies/figures/cnfc/e6a71ee1b05f.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 43189,
+   "caption": "「明珠金枪鱼肉松可拌饭做饭团」. 참치는 제목에만 있다.",
+   "alt": "명주 어육송과 그릇에 담은 어육송",
+   "src": "/data/companies/figures/cnfc/565f3f058024.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 90904,
+   "caption": "「明珠鱼肉松罐装金枪」. 「罐装」은 용기 포장을 뜻한다.",
+   "alt": "뚜껑이 있는 명주 어육송 용기",
+   "src": "/data/companies/figures/cnfc/cb804d835e97.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 129314,
+   "caption": "「明珠鱼肉松瓶装」 투명 용기.",
+   "alt": "명주 어육송 투명 용기",
+   "src": "/data/companies/figures/cnfc/bb2c231569c1.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 168206,
+   "caption": "「明珠熟鱼片」. 명주 목록에 가장 많이 올라 있는 상품은 조미 생선포다.",
+   "alt": "명주 숙어편 봉지",
+   "src": "/data/companies/figures/cnfc/8b5f63f16980.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 225883,
+   "caption": "「明珠鱿鱼丝」 오징어채.",
+   "alt": "명주 오징어채 봉지",
+   "src": "/data/companies/figures/cnfc/05d5654998f7.jpg"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "chart",
+   "ord": 339,
+   "caption": "제품별 매출총이익률. 막대 위 숫자는 소수 첫째 자리로 반올림했다(2024년 오징어 −0.45%는 −0.5로 보인다). 원 자료는 아래 연보 표 사진과 앞의 참치 매출·원가 표다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"제품별 매출총이익률\"><text x=\"48\" y=\"16\" font-size=\"12.5\" fill=\"#7a828b\">제품별 매출총이익률(%, 연결, 연보 分产品 표)</text><line x1=\"48\" y1=\"222.0\" x2=\"670\" y2=\"222.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"225.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">-10</text><line x1=\"48\" y1=\"175.0\" x2=\"670\" y2=\"175.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"178.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">0</text><line x1=\"48\" y1=\"128.0\" x2=\"670\" y2=\"128.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"131.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">10</text><line x1=\"48\" y1=\"81.0\" x2=\"670\" y2=\"81.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"84.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">20</text><line x1=\"48\" y1=\"34.0\" x2=\"670\" y2=\"34.0\" stroke=\"#d5d7d2\" stroke-width=\"0.6\"/><text x=\"42\" y=\"37.5\" text-anchor=\"end\" font-size=\"9.5\" fill=\"#7a828b\">30</text><rect x=\"89.5\" y=\"175.0\" width=\"27.0\" height=\"37.0\" fill=\"#B2503A\"/><text x=\"103.0\" y=\"223.0\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">-7.9</text><rect x=\"119.5\" y=\"164.7\" width=\"27.0\" height=\"10.3\" fill=\"#6f8fa3\"/><text x=\"133.0\" y=\"160.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#6f8fa3\">2.2</text><rect x=\"149.5\" y=\"93.6\" width=\"27.0\" height=\"81.4\" fill=\"#b9c3c9\"/><text x=\"163.0\" y=\"89.6\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#b9c3c9\">17.3</text><text x=\"134.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2023</text><rect x=\"242.5\" y=\"161.7\" width=\"27.0\" height=\"13.3\" fill=\"#B2503A\"/><text x=\"256.0\" y=\"157.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">2.8</text><rect x=\"272.5\" y=\"175.0\" width=\"27.0\" height=\"2.1\" fill=\"#6f8fa3\"/><text x=\"286.0\" y=\"188.1\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#6f8fa3\">-0.5</text><rect x=\"302.5\" y=\"142.0\" width=\"27.0\" height=\"33.0\" fill=\"#b9c3c9\"/><text x=\"316.0\" y=\"138.0\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#b9c3c9\">7.0</text><text x=\"287.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2024</text><rect x=\"395.5\" y=\"175.0\" width=\"27.0\" height=\"32.7\" fill=\"#B2503A\"/><text x=\"409.0\" y=\"218.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">-7.0</text><rect x=\"425.5\" y=\"77.4\" width=\"27.0\" height=\"97.6\" fill=\"#6f8fa3\"/><text x=\"439.0\" y=\"73.4\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#6f8fa3\">20.8</text><rect x=\"455.5\" y=\"64.7\" width=\"27.0\" height=\"110.3\" fill=\"#b9c3c9\"/><text x=\"469.0\" y=\"60.7\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#b9c3c9\">23.5</text><text x=\"440.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2025</text><rect x=\"548.5\" y=\"175.0\" width=\"27.0\" height=\"19.6\" fill=\"#B2503A\"/><text x=\"562.0\" y=\"205.6\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#B2503A\">-4.2</text><rect x=\"578.5\" y=\"107.9\" width=\"27.0\" height=\"67.1\" fill=\"#6f8fa3\"/><text x=\"592.0\" y=\"103.9\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#6f8fa3\">14.3</text><rect x=\"608.5\" y=\"106.1\" width=\"27.0\" height=\"68.9\" fill=\"#b9c3c9\"/><text x=\"622.0\" y=\"102.1\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"700\" fill=\"#b9c3c9\">14.7</text><text x=\"593.5\" y=\"252\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#7a828b\">2026 상반기</text><line x1=\"48\" y1=\"175.0\" x2=\"670\" y2=\"175.0\" stroke=\"#a9aeb5\"/><rect x=\"48\" y=\"256\" width=\"10\" height=\"10\" fill=\"#B2503A\"/><text x=\"62\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">참치</text><rect x=\"90\" y=\"256\" width=\"10\" height=\"10\" fill=\"#6f8fa3\"/><text x=\"104\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">오징어</text><rect x=\"143\" y=\"256\" width=\"10\" height=\"10\" fill=\"#b9c3c9\"/><text x=\"157\" y=\"265\" font-size=\"10.5\" fill=\"#7a828b\">기타 어종</text></svg>"
+  },
+  {
+   "stage": "c05",
+   "sid": "s10",
+   "kind": "shot",
+   "ord": 4655,
+   "caption": "2025년 연보 12쪽의 제품별 표. 金枪鱼 줄의 매출총이익률은 −6.96%이고 맨 끝 칸 「毛利率比上年同期增减」은 9.54%다. 2024년 2.82%에서 계산하면 −9.78%p다. 다른 줄의 증감은 계산과 맞고 이 칸만 부호와 값이 다르다.",
+   "alt": "2025년 연보 제품별 매출·원가 표 원문",
+   "src": "/data/companies/figures/cnfc/b42f17c7c4f9.jpg"
+  }
+ ]
+}

@@ -139,7 +139,7 @@ export function LeadingTab() {
       <Sec>하역 계절성</Sec>
       <Grid>
         <Panel
-          span={12}
+          span={6}
           title={seasonView.title}
           unit={seasonView.unit}
           note={seasonView.note}

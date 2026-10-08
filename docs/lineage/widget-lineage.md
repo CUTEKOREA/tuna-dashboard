@@ -1,7 +1,7 @@
 # 위젯 리니지 — 데이터 파일별 영향 범위
 
 > `python3 scripts/widget_lineage.py`로 재생성. 손으로 고치지 말 것.
-> 진입점 app/page.tsx · closure 199파일 · 위젯 110개 · 데이터 파일 74개.
+> 진입점 app/page.tsx · closure 305파일 · 위젯 120개 · 데이터 파일 343개.
 > 데이터 파일 필드를 바꾸기 전에 여기서 영향 위젯을 확인한다 (파손 진단 1단계).
 
 ## data/beef_usda_widgets.json
@@ -30,17 +30,111 @@
 - components/PorkDashboard.tsx
 - components/PorkUsdaWidgets.tsx
 
+## data/reefer_week19.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week22.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week24.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week26.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week27.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week29.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week30.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week31.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week32.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week33.json
+- components/LogisticsDashboard.tsx
+
 ## data/reefer_week34.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week35.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week36.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week37.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week38.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week39.json
+- components/LogisticsDashboard.tsx
+
+## data/reefer_week40.json
 - components/LogisticsDashboard.tsx
 - components/ReeferMovement.tsx
 
+## data/vds_company_burn.json
+- components/FleetCommandCenter.tsx
+- components/VdsStrategyMatrix.tsx
+
 ## lib/data/generated/fleet-daily-public.json
+- components/FleetAnalysisPanels.tsx
+- components/FleetCharts.tsx
 - components/FleetCommandCenter.tsx
 - components/FleetDailyOperations.tsx
+- components/panofi/AtlanticVesselTable.tsx
 - components/panofi/PanofiDashboard.tsx
 - components/panofi/PanofiTabs.tsx
 
+## lib/data/mackerel-tables.json
+- components/market-understanding/MackerelIndustryDashboard.tsx
+
+## lib/data/octopus-tables.json
+- components/market-understanding/OctopusIndustryDashboard.tsx
+
+## lib/data/pollock-tables.json
+- components/market-understanding/PollockIndustryDashboard.tsx
+
+## lib/data/shrimp-tables.json
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+
+## lib/data/squid-tables.json
+- components/market-understanding/SquidIndustryDashboard.tsx
+
+## lib/data/tuna-tables.json
+- components/market-understanding/TunaIndustryDashboard.tsx
+
+## lib/data/tunafarm-tables.json
+- components/market-understanding/TunafarmIndustryDashboard.tsx
+
+## lib/data/unloading-fleet-insights.json
+- components/UnloadingFishingGroundsMap.tsx
+- components/UnloadingFleetInsights.tsx
+- components/UnloadingHistory.tsx
+- components/UnloadingHistoryBoundary.tsx
+- components/UnloadingStatus.tsx
+
+## lib/data/whelk-tables.json
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/bangkok/seasia_ledger.json
+- components/bangkok/BangkokDashboard.tsx
+- components/bangkok/tabs/ProcessorsTab.tsx
+
 ## public/data/bangkok/seasia_processors.json
+- components/bangkok/BangkokDashboard.tsx
+- components/bangkok/tabs/ProcessorsTab.tsx
+
+## public/data/bangkok/vn_surimi_suppliers.json
 - components/bangkok/BangkokDashboard.tsx
 - components/bangkok/tabs/ProcessorsTab.tsx
 
@@ -70,11 +164,59 @@
 - components/bangkok/tabs/QualityTab.tsx
 - components/bangkok/tabs/UnloadTab.tsx
 
+## public/data/companies/albacora_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/albacora_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
 ## public/data/companies/albacora_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/albacora_v1.json
 - components/market-understanding/AlbacoraCharts.tsx
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/alliance_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/alliance_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/alliance_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/alliance_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ati_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ati_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ati_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ati_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/azores_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/azores_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/azores_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/azores_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bolton_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bolton_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/bolton_tables_v1.json
@@ -83,10 +225,154 @@
 ## public/data/companies/bolton_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
+## public/data/companies/boltonfood_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/boltonfood_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/boltonfood_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/boltonfood_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bounty_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bounty_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bounty_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bounty_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bumblebee_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bumblebee_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bumblebee_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/bumblebee_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/capsen_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/capsen_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/capsen_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/capsen_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/centurypacific_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/centurypacific_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/centurypacific_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/centurypacific_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/cnfc_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/cnfc_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/cnfc_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/cnfc_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/cosi_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/cosi_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/cosi_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/cosi_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/dongwon_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/dongwon_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/dongwon_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/dongwon_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/dongwonfnb_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/dongwonfnb_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/dongwonfnb_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/dongwonfnb_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/eurofish_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/eurofish_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/eurofish_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/eurofish_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/fcf_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/fcf_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
 ## public/data/companies/fcf_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/fcf_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/frabelle_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/frabelle_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/frabelle_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/frabelle_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/frinsa_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/frinsa_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/frinsa_tables_v1.json
@@ -96,16 +382,466 @@
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 - components/market-understanding/FrinsaCharts.tsx
 
+## public/data/companies/galapesca_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/galapesca_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/galapesca_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/galapesca_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/garavilla_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/garavilla_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/garavilla_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/garavilla_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ghana_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ghana_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ghana_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ghana_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/grupomar_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/grupomar_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/grupomar_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/grupomar_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/hagoromo_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/hagoromo_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/hagoromo_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/hagoromo_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/herdez_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/herdez_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/herdez_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/herdez_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/inepaca_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/inepaca_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/inepaca_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/inepaca_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/iot_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/iot_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/iot_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/iot_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/itochu_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/itochu_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
 ## public/data/companies/itochu_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/itochu_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
+## public/data/companies/jais_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/jais_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
 ## public/data/companies/jais_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/jais_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/jealsa_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/jealsa_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/jealsa_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/jealsa_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kaichuang_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kaichuang_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kaichuang_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kaichuang_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kfl_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kfl_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kfl_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kfl_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kingfisher_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kingfisher_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kingfisher_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kingfisher_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kyokuyo_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kyokuyo_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kyokuyo_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/kyokuyo_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/majestic_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/majestic_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/majestic_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/majestic_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/mauritius_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/mauritius_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/mauritius_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/mauritius_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nauterra_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nauterra_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nauterra_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nauterra_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nirsa_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nirsa_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nirsa_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nirsa_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nissui_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nissui_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nissui_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/nissui_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pafco_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pafco_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pafco_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pafco_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pataya_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pataya_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pataya_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pataya_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pinsa_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pinsa_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pinsa_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/pinsa_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ppf_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ppf_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ppf_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/ppf_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/princes_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/princes_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/princes_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/princes_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/procesa_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/procesa_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/procesa_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/procesa_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/rd_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/rd_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/rd_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/rd_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sajo_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sajo_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sajo_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sajo_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sajoseafood_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sajoseafood_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sajoseafood_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sajoseafood_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/salica_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/salica_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/salica_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/salica_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sapmer_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sapmer_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sapmer_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sapmer_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sca_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sca_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sca_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sca_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/seatech_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/seatech_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/seatech_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/seatech_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/seavalue_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/seavalue_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/seavalue_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/seavalue_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/soltuna_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/soltuna_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/soltuna_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/soltuna_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sstc_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sstc_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sstc_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/sstc_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/starkist_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/starkist_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/starkist_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/starkist_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tecopesca_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tecopesca_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tecopesca_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tecopesca_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/thaiunion_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/thaiunion_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/thaiunion_skus_v1.json
@@ -117,6 +853,54 @@
 ## public/data/companies/thaiunion_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 - components/market-understanding/ThaiUnionCharts.tsx
+
+## public/data/companies/tog_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tog_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tog_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tog_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/trimarine_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/trimarine_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/trimarine_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/trimarine_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tropical_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tropical_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tropical_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/tropical_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/umios_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/umios_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/umios_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/umios_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/cosmo/cosmo_2026.json
 - components/cosmo/CosmoDashboard.tsx
@@ -202,6 +986,15 @@
 - components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
+## public/data/landed_cost_trend_v1.json
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/MofLiveCharts.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+- components/market-understanding/PollockIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
 ## public/data/mackerel_company_research_v1.json
 - components/market-understanding/CompanyResearchTables.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
@@ -226,6 +1019,41 @@
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/maru_registry_status_v1.json
+- components/market-understanding/CompanyResearchTables.tsx
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidCharts.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/mof_auction_daily_v1.json
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/MofLiveCharts.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+- components/market-understanding/PollockIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/mof_trade_monthly_v1.json
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/MofLiveCharts.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+- components/market-understanding/PollockIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/octopus_company_research_v1.json
+- components/market-understanding/OctopusCharts.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+
+## public/data/octopus_industry_v1.json
+- components/market-understanding/OctopusCharts.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
 
 ## public/data/panofi/ghana_tuna_mirror.json
 - components/panofi/PanofiDashboard.tsx
@@ -254,6 +1082,9 @@
 ## public/data/panofi/panofi_weekly.json
 - components/panofi/PanofiDashboard.tsx
 - components/panofi/PanofiTabs.tsx
+
+## public/data/pollock_company_research_v1.json
+- components/market-understanding/PollockIndustryDashboard.tsx
 
 ## public/data/pollock_industry_v1.json
 - components/market-understanding/CommodityCharts.tsx
@@ -296,6 +1127,14 @@
 - components/market-understanding/TunaAnatomyDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
+## public/data/singapore_mgo.json
+- components/bangkok/BangkokDashboard.tsx
+- components/bangkok/tabs/HomeTab.tsx
+
+## public/data/skj_seasonal_outlook.json
+- components/bangkok/BangkokDashboard.tsx
+- components/bangkok/tabs/HomeTab.tsx
+
 ## public/data/squid_company_research_v1.json
 - components/market-understanding/CompanyResearchTables.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
@@ -325,10 +1164,22 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SquidWidgetView.tsx
 
+## public/data/squid_peru_supply_v1.json
+- components/market-understanding/CompanyResearchTables.tsx
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidCharts.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
 ## public/data/squid_trade_v1.json
 - components/market-understanding/SquidCharts.tsx
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SquidWidgetView.tsx
+
+## public/data/tuna_anatomy_roster_v1.json
+- components/market-understanding/TunaAnatomyDashboard.tsx
 
 ## public/data/tuna_anatomy_v1.json
 - components/market-understanding/CommodityCharts.tsx
@@ -401,6 +1252,10 @@
 - components/market-understanding/TunaCatchCharts.tsx
 - components/market-understanding/TunaIndustryChart.tsx
 - components/market-understanding/TunaIndustryDashboard.tsx
+
+## public/data/tuna_weekly_briefing.json
+- components/MarketDashboard.tsx
+- components/NewsFrontPage.tsx
 
 ## public/data/whelk_company_research_v1.json
 - components/market-understanding/CompanyResearchTables.tsx

@@ -14,11 +14,14 @@
   --cosmo-accent-soft: #251A1D;
   --cosmo-data: #3BA9CB;
   --cosmo-data-soft: #12222A;
-  --cosmo-s1: #2199B7;
-  --cosmo-s2: #CA5765;
-  --cosmo-s3: #B6880F;
-  --cosmo-s4: #38996E;
-  --cosmo-s5: #8878C4;
+  /* 계열 5색 = lib/chart-palette.ts SERIES[0..4] 사본. CSS 는 TS 를 못 읽으니 값을 옮겨 적는다.
+     정본은 SERIES 이고 여기 값은 따라간다 — SERIES 를 고치면 이 다섯 줄과 가드 테스트도 같이 고친다.
+     코스모 표면 #151D23 에서 validate_palette.js 8칸 전부 통과(2026-09-12). */
+  --cosmo-s1: #3987e5;
+  --cosmo-s2: #d95926;
+  --cosmo-s3: #199e70;
+  --cosmo-s4: #c98500;
+  --cosmo-s5: #d55181;
   --cosmo-ok: #38996E;
   --cosmo-ok-soft: #14261F;
   --cosmo-warn: #B6880F;
@@ -91,9 +94,14 @@
 
 /* ---------- cards / grid ---------- */
 .cosmo-root .grid { display: grid; gap: 14px; }
-.cosmo-root .g2 { grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
+/* 차트 격자는 1행 2장이 기본이다(UI_RULES §4, 2026-09-11). auto-fit 이면 넓은 화면에서 3~4장으로 벌어졌다. */
+.cosmo-root .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .cosmo-root .g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .cosmo-root .g4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+/* 카드 안에 넓은 표가 들어가는 자리 — auto-fit 에 맡기면 4열까지 벌어져 표가 잘린다.
+   한 줄에 두 장으로 못 박고, 좁아지면 한 장으로 떨어뜨린다. */
+.cosmo-root .gpair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 900px) { .cosmo-root .gpair, .cosmo-root .g2 { grid-template-columns: minmax(0, 1fr); } }
 .cosmo-root .card {
   background: var(--dsc-surface); border: 1px solid var(--dsc-surface-border);
   border-radius: var(--dsc-card-radius); box-shadow: var(--cosmo-shadow); padding: 16px 18px; min-width: 0;
@@ -148,6 +156,9 @@
 .cosmo-root tr.us .rank { color: var(--cosmo-accent); font-weight: 700; }
 /* 공급국명이 여러 줄로 접히면 표가 세로로 늘어져 비교가 어렵다 */
 .cosmo-root td.nowrap { white-space: nowrap; }
+/* 월별 표 — 점유 아래 작은 글씨로 그 달 가나 순위 */
+.cosmo-root td .rk { display: block; font-size: 10px; color: var(--cosmo-muted); }
+.cosmo-root td.prov { color: var(--cosmo-muted); font-style: italic; }
 .cosmo-root .tag { font: 700 9px var(--cosmo-mono); padding: 1px 6px; border-radius: 4px; background: var(--cosmo-surface-2); color: var(--cosmo-ink-2); }
 
 /* ---------- chart ---------- */
@@ -160,9 +171,14 @@
 .cosmo-root .legend { display: flex; gap: 14px; flex-wrap: wrap; font: 600 11px var(--cosmo-mono); color: var(--cosmo-ink-2); margin-bottom: 8px; }
 .cosmo-root .legend i { display: inline-block; width: 11px; height: 3px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
 .cosmo-root .legend i.box { height: 10px; width: 10px; border-radius: 2px; }
+/* 차트 툴팁 — 2026-09-02 사용자 지시: 배경 불투명도 60%, 뒤에 불투명 배경을 깔지 않는다.
+ * blur 는 지원하는 브라우저에서만 걸린다(미지원이면 60% 반투명 그대로). */
 .cosmo-root .tip {
-  background: var(--cosmo-surface); border: 1px solid var(--cosmo-line); border-radius: 8px;
+  background: color-mix(in srgb, var(--cosmo-surface) 60%, transparent);
+  border: 1px solid var(--cosmo-line); border-radius: 8px;
   box-shadow: var(--cosmo-shadow); padding: 9px 11px; font-size: 12px; color: var(--cosmo-ink);
+  -webkit-backdrop-filter: blur(8px) saturate(1.1);
+  backdrop-filter: blur(8px) saturate(1.1);
 }
 .cosmo-root .tip .tk { font-weight: 700; display: block; margin-bottom: 4px; }
 .cosmo-root .tip .tr { display: flex; justify-content: space-between; gap: 16px; font-variant-numeric: tabular-nums; }
@@ -262,7 +278,8 @@
 
   .cosmo-root .g2,
   .cosmo-root .g3,
-  .cosmo-root .g4 {
+  .cosmo-root .g4,
+  .cosmo-root .gpair {
     grid-template-columns: minmax(0, 1fr);
   }
 }

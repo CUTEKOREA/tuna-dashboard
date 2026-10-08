@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { fleetDailyPublicLatest } from '@/lib/data/fleet-daily-public';
 import { join } from 'node:path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -179,6 +180,24 @@ describe('Deep Sea Command V2.5 - TelemetryBadge', () => {
     expect(syncedMarkup).toContain('data-telemetry-tone="neutral"');
     expect(staticMarkup).toContain('data-telemetry-tone="neutral"');
 
+    /* 오래된 자료와 «날짜가 아닌» 기준일은 중립에서 빠져나온다.
+       실측에서 581개 중 18개월 초과가 97~129개, 판독 불가가 58개였다. */
+    const staleMarkup = renderToStaticMarkup(
+      React.createElement(TelemetryBadge, { status: 'STATIC', syncDate: '2018-01-30' }),
+    );
+    expect(staleMarkup).toContain('data-telemetry-tone="stale"');
+    expect(staleMarkup).toMatch(/\d+년/);
+
+    const unknownMarkup = renderToStaticMarkup(
+      React.createElement(TelemetryBadge, {
+        status: 'STATIC', syncDate: '참고용 (Reference Only)',
+      }),
+    );
+    expect(unknownMarkup).toContain('data-telemetry-tone="unknown"');
+    expect(unknownMarkup).toContain('기준일 미상');
+    // 원문 문자열은 지우지 않는다 — 출처 표기가 그 안에 들어 있다
+    expect(unknownMarkup).toContain('참고용');
+
     // 2026-08-15: 색은 인라인이 아니라 CSS 모듈로 이동 (라이트 스코프 재정의 가능해야 함) —
     // 톤 계약은 data 속성으로, 중립=slate·경보색 금지 계약은 모듈 CSS 원문으로 검증한다.
     const badgeCss = readFileSync(
@@ -186,7 +205,16 @@ describe('Deep Sea Command V2.5 - TelemetryBadge', () => {
       'utf8',
     );
     expect(badgeCss).toContain('#94a3b8');
-    expect(badgeCss).not.toContain('#f59e0b');
+    /* 2026-09-15: 경보색 계약을 «금지»에서 «가둠»으로 바꿨다. 18개월 넘은 기준일에만
+       호박색을 준다(lib/sync-freshness.ts). 대신 그 색이 tone='stale' 규칙 밖으로
+       새면 549장이 전부 물드니, 선택자에 stale 이 없는 규칙에는 못 들어오게 막는다. */
+    const amberRules = badgeCss
+      .split('}')
+      .filter(block => block.includes('#f59e0b') || block.includes('#a65d00'));
+    expect(amberRules.length).toBeGreaterThan(0);
+    for (const rule of amberRules) {
+      expect(rule).toContain("tone='stale'");
+    }
     // 긴 기준 구간이 배지 밖으로 넘치지 않게 — nowrap 금지
     expect(badgeCss).toContain('inline-flex');
     expect(badgeCss).not.toMatch(/\.date\s*\{[^}]*white-space:\s*nowrap/);
@@ -242,7 +270,9 @@ describe('Deep Sea Command V2 - Fleet pilot', () => {
 
     expect(markup).toContain('선단 운영');
     expect(markup).toContain('일간 합계');
-    expect(markup).toContain('data-kpi-value="230"');
+    // 일간 합계는 매일 바뀐다 - 값을 못박지 말고 계약에서 파생시킨다
+    const dailyTotal = fleetDailyPublicLatest.pacific.dailyMt + fleetDailyPublicLatest.atlantic.dailyMt;
+    expect(markup).toContain(`data-kpi-value="${dailyTotal}"`);
     // 2026-08-15 사용자 지시: 선박 사진 배경 제거 — 라이트 히어로는 배경 없이
     expect(markup).not.toContain('/heroes/seiner.webp');
   });
@@ -308,7 +338,7 @@ describe('Deep Sea Command V2 - Phase 2 운영 페이지', () => {
     expect(markup).not.toContain('/heroes/carrier.webp');
   });
 
-  it('물류 히어로가 34주차 7척 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
+  it('물류 히어로가 최신 주차 항로 마커와 기존 하역 SIT·TAK를 렌더한다', async () => {
     const logisticsModule = await import('../components/LogisticsDashboard');
     const LogisticsHero = (logisticsModule as Record<string, unknown>).LogisticsHero;
 
@@ -322,13 +352,19 @@ describe('Deep Sea Command V2 - Phase 2 운영 페이지', () => {
     expect(markup).toContain('물류·가공');
     expect(markup).toContain('주간 하역 합계');
     expect(markup).toContain('(MT)');
-    expect(markup).toContain('34주차 운반선 보고 기준');
-    expect(markup).toContain('data-kpi-value="25214.952"');
-    expect(markup).toContain('data-kpi-value="7"');
-    expect(markup.match(/data-reefer-carrier-marker="true"/g)?.length).toBe(7);
-    expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(7);
+    // 주차·총량·척수는 매주 바뀐다 - 계약에서 파생시킨다
+    const { reeferWeeklyReport } = await import('../lib/data/reefer-weekly');
+    const reeferTotal = reeferWeeklyReport.rows.reduce((sum, row) => sum + Object.entries(row.deliveries)
+      .reduce((inner, [key, value]) => (key === 'OTHER' || key === 'SHIP' || value === ''
+        ? inner : inner + Number.parseFloat(value.replaceAll(',', ''))), 0), 0);
+    expect(markup).toContain(`${reeferWeeklyReport.source.week}주차 운반선 보고 기준`);
+    expect(markup).toContain(`data-kpi-value="${reeferTotal}"`);
+    expect(markup).toContain(`data-kpi-value="${reeferWeeklyReport.rows.length}"`);
+    // 항로 마커는 그 주 운반선 수만큼 — 척수가 바뀌면 같이 움직인다
+    expect(markup.match(/data-reefer-carrier-marker="true"/g)?.length).toBe(reeferWeeklyReport.rows.length);
+    expect(markup.match(/data-marker-tone="data"/g)?.length).toBe(reeferWeeklyReport.rows.length);
     expect(markup).not.toContain('#f59e0b');
-    expect(markup).toContain('입항 재확인 2척 후속 확인 완료');
+    expect(markup).toContain('10월 방콕 반입 1척');
     expect(markup).not.toContain('SEIN VENUS와 HENG HONG 9의 예정일이 도래했으므로 실제 입항·접안 여부를 확인합니다.');
   });
 

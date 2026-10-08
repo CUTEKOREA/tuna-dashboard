@@ -1,59 +1,58 @@
 /**
  * 오징어 차트 시리즈 색 — 화면이 여러 장이어도 같은 종은 같은 색.
  *
- * 갈래를 먼저 가른다.
- *   오징어     = 보라·남색 (페이지 액센트와 같은 집)
- *   갑오징어   = 장미색 (오징어와 합산하면 안 되는 것이 눈에 보이게)
- *   잔여       = 슬레이트 vs 호박 — 미분류와 「그 밖의 종」을 같은 회색으로 두지 않는다
- *
- * 갈래 안에서는 종마다 hex 를 고정한다. 막대·선이 인덱스로 돌면 아래 45년 차트와
- * 위 구성 차트가 다른 팔레트를 쓰게 된다.
+ * 색값은 lib/chart-palette 의 SERIES·CHART_ROLE(전 메뉴 공통, 2026-09-11)이다. 페이지 보라는 차트 밖 액센트로만 남는다.
+ * 갈래: 오징어 = 파랑, 갑오징어 = 주황(오징어와 합산하면 안 되는 것이 보이게), 두족류 미분류 = 회색, 그 밖의 종 = 노랑.
  */
+
+import { CHART_ROLE, SERIES, SERIES_OTHER } from '@/lib/chart-palette';
 
 /** 물량·세계 / 한국·단가·수출 / 가공 단계. 종이 아닌 역할용. */
 export const SQUID_ROLE = {
-  volume: '#6d28d9',
-  highlight: '#be185d',
-  processed: '#b45309',
+  volume: CHART_ROLE.volume,
+  highlight: CHART_ROLE.highlight,
+  processed: SERIES[3],
 } as const;
 
+// 선으로 함께 그리는 두 묶음 — 어종 시계열(갑오징어류·대왕·아르헨티나·오징어류 미분류)과
+// 주요 4종(살·아르헨티나·대왕·파타고니아) — 이 둘 다 validate_palette.js 인접 검사를 통과하는 배치(2026-09-11).
+// 시계열은 두족류 미분류(회색)가 가운데 끼므로 회색 옆 아르헨티나는 자홍을 피했다.
+// 선으로 따로 그리지 않는 종은 제 갈래 색을 쓴다.
 const SPECIES_COLOR: Record<string, string> = {
-  살오징어: '#6d28d9',
-  아르헨티나오징어: '#3730a3',
-  대왕오징어: '#a21caf',
-  북방대왕오징어: '#c026d3',
-  파타고니아오징어: '#5b21b6',
-  캘리포니아오징어: '#4f46e5',
-  유럽오징어류: '#4338ca',
-  유럽오징어: '#4338ca',
-  오징어속: '#4338ca',
-  짧은지느러미오징어: '#3730a3',
-  '오징어류 미분류': '#7c3aed',
-  빨강오징어: '#7e22ce',
-  갑오징어: '#9f1239',
-  '갑오징어류 미분류': '#be185d',
-  '두족류 미분류': '#64748b',
-  '그 밖의 종': '#b45309',
-  혼합: '#b45309',
+  살오징어: SQUID_ROLE.volume,
+  아르헨티나오징어: SERIES[5],
+  대왕오징어: SERIES[6],
+  파타고니아오징어: SERIES[2],
+  '오징어류 미분류': SERIES[4],
+  북방대왕오징어: SQUID_ROLE.volume,
+  캘리포니아오징어: SQUID_ROLE.volume,
+  유럽오징어류: SQUID_ROLE.volume,
+  유럽오징어: SQUID_ROLE.volume,
+  오징어속: SQUID_ROLE.volume,
+  짧은지느러미오징어: SQUID_ROLE.volume,
+  빨강오징어: SQUID_ROLE.volume,
+  갑오징어: SQUID_ROLE.highlight,
+  '갑오징어류 미분류': SQUID_ROLE.highlight,
+  '두족류 미분류': SERIES_OTHER,
+  '그 밖의 종': SQUID_ROLE.processed,
+  혼합: SQUID_ROLE.processed,
 };
 
 const BASKET_COLOR: Record<string, string> = {
   오징어: SQUID_ROLE.volume,
   갑오징어: SQUID_ROLE.highlight,
-  '두족류 미분류': '#64748b',
+  '두족류 미분류': SERIES_OTHER,
 };
 
-/** 이름이 사전에 없을 때. 분홍·하늘 순환을 쓰지 않고 같은 집에서 고른다. */
-const FALLBACK = [
-  SQUID_ROLE.volume,
-  SQUID_ROLE.highlight,
-  '#3730a3',
-  SQUID_ROLE.processed,
-  '#7c3aed',
-  '#5b21b6',
-  '#64748b',
-  '#9f1239',
-] as const;
+const FALLBACK = SERIES;
+
+/** 어종을 막대로 늘어놓는 차트는 종마다 색을 주지 않고 갈래(오징어·갑오징어·미분류·그 밖의 종) 색으로 칠한다 — 이름은 축 라벨이 말한다. */
+export function colorForSpeciesGroup(name: string): string {
+  if (name.startsWith('갑오징어')) return BASKET_COLOR.갑오징어;
+  if (name === '두족류 미분류') return BASKET_COLOR['두족류 미분류'];
+  if (name === '그 밖의 종' || name === '혼합') return SQUID_ROLE.processed;
+  return BASKET_COLOR.오징어;
+}
 
 export function colorForSpecies(name: string): string {
   return SPECIES_COLOR[name] ?? FALLBACK[0];

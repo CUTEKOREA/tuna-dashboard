@@ -7,31 +7,36 @@ import { describe, expect, it } from 'vitest';
 import PanofiDashboard, { PANOFI_TABS } from '../components/panofi/PanofiDashboard';
 import { CashTab, PriceTab, ProfitTab as PanofiTabsProfit } from '../components/panofi/PanofiTabs';
 import {
+  bepChannelCross,
+  actuals,
+  receivableNow,
   bep,
+  catchBySpecies,
   dataQuality,
   fleetMargins,
   fleetTotals,
   h1,
   headline,
   industry,
-  pfc,
-  priceSeries,
-  regionalLandingSeries,
-  weeks,
-  trade,
-  tradeYear,
-  tradeLadderGap,
-  actuals,
-  ytd,
-  vesselFullPnl,
-  marginRankShift,
-  catchBySpecies,
-  monthlySeries,
+  latest,
   liquidity,
   liquidityBridge,
+  marginRankShift,
   mirror,
   mirrorPairs,
   mirrorTopGap,
+  monthlySeries,
+  pfc,
+  priceSeries,
+  priceWindow,
+  regionalLandingSeries,
+  temaGap,
+  trade,
+  tradeLadderGap,
+  tradeYear,
+  vesselFullPnl,
+  weeks,
+  ytd,
 } from '../lib/data/panofi';
 import { DASHBOARD_MENU_CONFIGS, SIDEBAR_SECTIONS } from '../lib/dashboard-registry';
 
@@ -67,16 +72,119 @@ describe('파노피 데이터 인테이크', () => {
 
   // 2026-08-26 추가: 8월 주간동향 0818·0825 반영. 최신행 고정 — main 미병합 배포가
   // 화면을 옛 값으로 되돌리는 회귀를 여기서 잡는다.
-  it('주간동향이 2026-08-25(35주차)까지 36주다', () => {
-    // 8월 신규 2주(0818·0825) + NFD 파일명 탓에 빠져 있던 3주(0106·0127·0728) 복원.
-    expect(headline.weekCount).toBe(36);
-    expect(headline.rangeEnd).toBe('2026-08-25');
+  it('주간동향이 2026-10-06(41주차)까지 42주다', () => {
+    // 최신행 고정 - main 미병합 배포가 화면을 옛 값으로 되돌리는 회귀를 여기서 잡는다.
+    expect(headline.weekCount).toBe(42);
+    expect(headline.rangeEnd).toBe('2026-10-06');
     const last = weeks[weeks.length - 1];
-    expect(last.reportDate).toBe('2026-08-25');
-    expect(last.prices.pfcTema).toBe(1600);
-    expect(last.prices.cosmoTema).toBe(1700);
-    expect(last.fx.cediPerUsd).toBe(11.13);
-    expect(last.dailyProcessing.COSMO).toBe(80);
+    expect(last.reportDate).toBe('2026-10-06');
+    expect(last.sha256).toBe('76a9807c5c05264ccd673b68403e0277ff9979d2e11c9af945e31e966b2440b4');
+    // 9월 어가는 코스모 $1,850 · PFC $1,900 그대로, 「→ 10월 어가 협의 중」. SCODI 는 10월 $1,800.
+    expect(last.prices.pfcTema).toBe(1900);
+    expect(last.prices.cosmoTema).toBe(1850);
+    expect(last.prices.scodiAbidjan).toBe(1800);
+    expect(last.fx.cediPerUsd).toBe(11.77);
+    expect(last.fx.cfaPerUsd).toBe(585);
+    expect(last.dailyProcessing.COSMO).toBe(100);
+    expect(last.receivables.totalUsd).toBe(4_679_473);
+    expect(last.fuel).toEqual({ abidjan: 1_325, tema: 1_678, dakar: 1_342, tanker: 1_535, single: null });
+    /* 「대 양: 조류방향 불규칙」 — 방향어가 없는 주다. '조류'를 방향으로 읽던 추출기 버그의 가드. */
+    expect(last.fishingGround.oceanCurrent).toBe('불규칙');
+    expect(last.fishingGround.coastalCurrent).toBe('동류');
+  });
+
+  it('테마 격차는 두 채널이 같은 월일 때만 계산한다', () => {
+    /* 2026-09-08 원문: 「PFC - $1,900(9월), COSMO - $1,700(8월) ⇒ 9월어가 협의 중」.
+     * 그냥 빼면 «PFC가 $200 비싸다»가 되는데 코스모의 9월 값은 아직 없었다.
+     * 9/8·9/15·9/22 세 주 협의 중이었고 9/29 판에서 코스모 9월 $1,850 으로 맞춰졌다.
+     * 10/6 판은 「COSMO $1,850(9월), PFC $1,900(9월) → 10월 어가 협의 중」 - 같은 달이라 비교가 먼저고,
+     * «협의 중»은 다음 달 이야기다. 협의 플래그가 비교를 막으면 «아직 비교할 수 없다»는 틀린 문장이 나온다. */
+    expect(latest.prices.pfcTemaMonth).toBe('9월');
+    expect(latest.prices.cosmoTemaMonth).toBe('9월');
+    expect(latest.prices.temaUnderNegotiation).toBe(true);
+    expect(temaGap.comparable).toBe(true);
+    expect(temaGap.usdPerT).toBe(50);
+    const price = renderToStaticMarkup(React.createElement(PriceTab));
+    expect(price).toContain('코스모도 9월 어가를 $1,850으로 확정해 격차는 $50(PFC 우위)다. 10월 어가는 두 채널 모두 협의 중이다.');
+    expect(price).not.toContain('같은 기준으로 비교할 수 없다');
+
+    // 월이 갈린 주만 비교 불가다 - 나머지는 전부 계산 가능해야 한다
+    const split = weeks.filter((w) => {
+      const { pfcTemaMonth: a, cosmoTemaMonth: b } = w.prices;
+      return a != null && b != null && a !== b;
+    });
+    expect(split.map((w) => w.reportDate)).toEqual(['2026-09-08', '2026-09-15', '2026-09-22']);
+  });
+
+  it('아비장 미수금 카드는 전략보고 스냅샷이 아니라 최신 주간동향에서 나온다', () => {
+    /* 카드가 전략보고의 3,052천불(2026-07 기준)을 그대로 쓰는 동안 바로 아래 시계열은
+     * 주간동향을 따라 5,284천불(2026-09-22)을 찍고 있었다 — 같은 화면에서 어긋났다. */
+    const last = weeks[weeks.length - 1];
+    expect(receivableNow.asOf).toBe(last.reportDate);
+    expect(receivableNow.currentKusd).toBe(Math.round(last.receivables.totalUsd! / 1000));
+    expect(receivableNow.currentKusd).toBe(4_679);
+    expect(receivableNow.peakKusd).toBeGreaterThanOrEqual(receivableNow.currentKusd);
+    expect(receivableNow.sincePeakKusd).toBe(receivableNow.currentKusd - receivableNow.peakKusd);
+
+    const markup = renderToStaticMarkup(React.createElement(CashTab));
+    expect(markup).toContain('2026-10-06 주간동향');
+    // 10/6 판: ETS BADARA −273천불 · SDMG −376천불로 합계가 한 주 새 650천불 줄었다 - 문장이 «다시 늘었다»에서 멈추면 안 된다
+    expect(receivableNow.weekDeltaKusd).toBe(-650);
+    expect(markup).toContain('직전 주(2026-09-29) 대비로는 650천불 줄었다(회수)');
+    expect(markup).not.toContain('정점 대비 -4,950천불');
+  });
+
+  it('세네갈 선단 표기가 흔들려도 행이 사라지지 않는다', () => {
+    /* 선단 라벨은 주마다 «EU 선단»·«EU선단»·«EU» 로, 셀이 갈라지면 «그랑»/«블루» 로 온다.
+     * 모르는 표기는 라벨이 아니라 선박명 후보로 넘어가 행이 통째로 빠졌다 -
+     * 2026-09-09 에 12주에서 10행이 누락돼 있었고 10주는 소속이 «블루» 로 잘못 붙어 있었다. */
+    const FLEETS = new Set(['캅센', '그랑블루', 'EU', '운반선']);
+    for (const w of weeks) {
+      for (const row of w.senegalFleet) {
+        if (row.fleet === null) continue;
+        expect(FLEETS.has(row.fleet)).toBe(true);
+      }
+    }
+    /* 배는 들고 난다 - EU 선단·운반선은 9/22 판에서 통째로 빠졌다가 9/29 판에 다시 왔다(8행).
+     * 10/6 판은 4행(캅센 2 · EU 1 · 운반선 1). 특정 선박을 못박는 대신 «소속이 붙은 채로 행이 남는지»를 본다. */
+    const last = weeks[weeks.length - 1];
+    expect(last.senegalFleet).toHaveLength(4);
+    expect(last.senegalFleet.find((r) => r.vessel === 'WESTERN KIM')?.fleet).toBe('캅센');
+    expect(last.senegalFleet.find((r) => r.vessel === 'ALBONIGA')?.fleet).toBe('EU');
+    expect(last.senegalFleet.find((r) => r.vessel === 'ORANGE ICE')?.fleet).toBe('운반선');
+    expect(last.senegalFleet.every((r) => r.fleet !== null)).toBe(true);
+  });
+
+  it('미수금은 바이어 3곳이 모두 채워진다', () => {
+    /* 셀 경계를 접지 않아 ETS BADARA·SDMG 가 38주 내내 null 이었다 (2026-09-09 수정).
+     * 합계만 맞아서 화면에서는 안 보였다. */
+    const last = weeks[weeks.length - 1];
+    const byBuyer = Object.fromEntries(last.receivables.buyers.map((b) => [b.buyer, b]));
+    expect(byBuyer['ETS BADARA'].usd).toBe(2_171_832);
+    expect(byBuyer['SDMG'].usd).toBe(1_013_371);
+    expect(byBuyer['INTER OCEAN'].usd).toBe(1_494_270);
+    // 바이어 합이 표 하단 합계와 맞는다
+    const sum = last.receivables.buyers.reduce((acc, b) => acc + (b.cfa ?? 0), 0);
+    expect(sum).toBe(last.receivables.totalCfa);
+  });
+
+  it('선박 상태 문장에 사람 이름이 남지 않는다 (2026-09-29 어기교대 문장)', () => {
+    for (const w of weeks) {
+      for (const v of w.ownVessels) {
+        expect(v.status ?? '', `${w.reportDate} ${v.vessel}`).not.toMatch(/[가-힣]{2,4}\s*(선장|기관장|항해사)/);
+      }
+    }
+    const grace = weeks.find((w) => w.reportDate === '2026-09-29')!.ownVessels.find((v) => v.code === 'P/GRA');
+    expect(grace?.status).toContain('선장 → 선장 어기교대');
+  });
+
+  it('주간동향 작성자는 직함만 남긴다', () => {
+    // 원문 「작성자」 칸은 «이름 직함» 이다. 저장소에 사람 이름을 두지 않는다 (2026-09-14 정리).
+    for (const w of weeks) {
+      if (w.author == null) continue;
+      expect(w.author, w.reportDate).not.toMatch(/\s/);
+      expect(w.author, w.reportDate).toMatch(/(장|이사|과장|부장|차장|대리|매니저)$/);
+    }
   });
 
   it('주차가 보고일 오름차순으로 정렬돼 있다', () => {
@@ -99,18 +207,43 @@ describe('파노피 데이터 인테이크', () => {
 });
 
 describe('PFC 수요독점 판정', () => {
-  it('가격 변동 횟수가 주간동향 실측과 일치한다', () => {
-    const changes = (key: 'pfcTema') => {
+  it('가격 변동 횟수가 «측정 창» 안의 주간동향과 일치한다', () => {
+    /* priceChangeCount 는 전 주차가 아니라 프로필에 박힌 고정 창(2025-12-23~2026-08-11,
+     * 31주)의 실측이다. 전 계열로 세면 새 주가 들어올 때마다 어긋난다 -
+     * 2026-09-08 에 PFC 가 $1,600 → $1,900 으로 움직여 실제로 3 vs 4 로 깨졌다. */
+    const inWindow = weeks.filter((w) => w.reportDate <= priceWindow.end);
+    expect(priceWindow.end).toBe(pfc.measured.currentPrices.asOf);
+    expect(priceWindow.weekCount).toBe(inWindow.length);
+
+    const changes = (key: 'pfcTema' | 'cosmoTema' | 'scodiAbidjan') => {
       let count = 0;
       let prev: number | null = null;
-      for (const w of weeklyRaw.weeks) {
+      for (const w of inWindow) {
         const v = w.prices[key];
         if (v !== null && prev !== null && v !== prev) count += 1;
         if (v !== null) prev = v;
       }
       return count;
     };
-    expect(pfc.measured.priceChangeCount.PFC).toBe(changes('pfcTema'));
+    expect(priceWindow.changes.PFC).toBe(changes('pfcTema'));
+    expect(priceWindow.changes.코스모).toBe(changes('cosmoTema'));
+    expect(priceWindow.changes.SCODI).toBe(changes('scodiAbidjan'));
+
+    /* 손으로 적은 프로필 값은 복원 전(31주) 숫자다. PFC·코스모는 복원 3주가 값을
+     * 바꾸지 않아 그대로 맞지만 SCODI 는 23 → 26 으로 3회 어긋난다.
+     * 그래서 화면은 프로필이 아니라 위 파생 카운트를 쓴다. */
+    expect(priceWindow.weekCount).toBeGreaterThan(pfc.measured.priceChangeCount.weeks);
+    expect(priceWindow.changes.PFC).toBe(pfc.measured.priceChangeCount.PFC);
+    expect(priceWindow.changes.SCODI).not.toBe(pfc.measured.priceChangeCount.SCODI);
+
+    // 창 밖에서 PFC 가 다시 움직였다면 화면이 그 사실을 말해야 한다
+    const after = weeks.filter((w) => w.reportDate > priceWindow.end);
+    const moved = after.some((w) => w.prices.pfcTema !== null
+      && w.prices.pfcTema !== pfc.measured.currentPrices.PFC);
+    if (moved) {
+      const markup = renderToStaticMarkup(React.createElement(PriceTab));
+      expect(markup).toContain('측정 창 밖');
+    }
   });
 
   it('갭이 벌어진 구간의 PFC 물량이 좁은 구간보다 많다 - 수요독점 판별식', () => {
@@ -193,10 +326,10 @@ describe('파노피 대시보드 렌더', () => {
   it('손익분기 어가와 가동 선단을 헤드라인에 노출한다', () => {
     expect(markup).toContain('원장 손익분기');
     expect(markup).toContain('가동 선망선');
-    expect(markup).toContain('2026년 1~7월');
+    expect(markup).toContain('2026년 1~8월');
     expect(markup).not.toContain('상반기 생산');
     expect(bep.priceUsdPerT).toBe(1473);
-    expect(ytd.ledgerBepUsdPerT).toBe(1558);
+    expect(ytd.ledgerBepUsdPerT).toBe(1445);
   });
 });
 
@@ -283,22 +416,39 @@ describe('추정실적 원장 (월별·척별)', () => {
     expect(total).toBeLessThan(101);
   });
 
-  it('월별 원장은 7개월치이고 누계 판매량과 맞는다', () => {
-    expect(monthlySeries).toHaveLength(7);
-    expect(ytd.months).toBe(7);
+  it('월별 원장은 8개월치이고 누계 판매량과 맞는다', () => {
+    expect(monthlySeries).toHaveLength(8);
+    expect(ytd.months).toBe(8);
     const sum = monthlySeries.reduce((s, m) => s + (Number(m.판매량) || 0), 0);
     expect(Math.abs(sum - (ytd.salesTRaw ?? 0))).toBeLessThan(1);
   });
 
-  it('1~7월 누계가 원장 인쇄 셀과 맞는다', () => {
-    expect(actuals.meta.sha256).toBe('d6838996b35b100ac9cf0ff18fad4ca3c139d32b1b907641be5045c33e399e2a');
-    expect(ytd.salesT).toBe(24286);
-    expect(ytd.productionT).toBe(29487);
-    expect(ytd.netKusd).toBe(-5619);
-    expect(ytd.operatingKusd).toBe(798);
-    expect(ytd.ledgerBepUsdPerT).toBe(1558);
-    expect(ytd.pretaxProfitNames).toEqual(expect.arrayContaining(['디스커버러', '퀸']));
-    expect(ytd.pretaxProfitNames).toHaveLength(2);
+  it('1~8월 누계가 원장 인쇄 셀과 맞는다', () => {
+    expect(actuals.meta.source).toBe('2. 추정실적 (2026년 8월).xlsx');
+    expect(actuals.meta.sha256).toBe('80cb210456ee637d756995322066e0a084f113947ff701b62afe2fd8f2b3d29b');
+    expect(ytd.salesT).toBe(35667);
+    expect(ytd.productionT).toBe(36879);
+    expect(ytd.netKusd).toBe(-2877);
+    expect(ytd.operatingKusd).toBe(4972);
+    expect(ytd.ledgerBepUsdPerT).toBe(1445);
+    expect(ytd.lastMonth?.month).toBe('8월');
+    expect(Math.round((ytd.lastMonth?.당기순이익 ?? 0) / 1000)).toBe(2742);
+    expect(ytd.pretaxProfitNames).toEqual(['디스커버러', '포러너', '퀸', '그레이스']);
+  });
+});
+
+describe('원장 손익분기 채널 (판마다 분기점이 바뀐다)', () => {
+  it('분기점을 넘은 주를 문장에 박지 않고 센다', () => {
+    // 7월판 BEP 1,558 에선 세 채널 모두 5/26 부터였다 - 8월판 1,445 에선 코스모가 3/10 부터다.
+    expect(bepChannelCross.bep).toBe(ytd.ledgerBepUsdPerT);
+    expect(bepChannelCross.rows.map((r) => [r.name, r.firstLabel])).toEqual([
+      ['코스모', '3/10'], ['SCODI', '3/24'], ['PFC', '5/26'],
+    ]);
+    const price = renderToStaticMarkup(React.createElement(PriceTab));
+    expect(price).not.toContain('최근에야 생겼다');
+    expect(price).toContain('코스모 28주(3/10부터)');
+    const profit = renderToStaticMarkup(React.createElement(PanofiTabsProfit));
+    expect(profit).toContain(`${ytd.months}개월을 연환산하지 않는다`);
   });
 });
 
@@ -322,11 +472,25 @@ describe('자금유동성 (월간보고 pptx)', () => {
     expect(Math.abs(end!.과부족! / 10 - -2082)).toBeLessThanOrEqual(0.5);
   });
 
-  it('회수는 성공했는데 매입채무가 더 크게 늘어 과부족이 악화됐다', () => {
+  // 7/31 까지는 «회수했는데 악화»였다. 8/31 은 채권이 늘며 한 달 새 개선 — 방향이 바뀌므로 문장을 부호에서 만든다.
+  it('연초 대비와 직전 기준일 대비 방향을 따로 센다 (8/31: 연초 대비 악화, 한 달 개선)', () => {
     expect(liquidityBridge).not.toBeNull();
-    expect(liquidityBridge!.매출채권).toBeLessThan(0); // 채권 감소 = 회수
-    expect(liquidityBridge!.매입채무).toBeGreaterThan(0); // 채무 증가
-    expect(liquidityBridge!.과부족).toBeLessThan(0); // 그럼에도 과부족 악화
+    expect(liquidityBridge!.to).toBe('2026-08-31');
+    expect(liquidityBridge!.매출채권).toBe(7480);
+    expect(liquidityBridge!.매입채무).toBe(8753);
+    expect(liquidityBridge!.과부족).toBe(-1585);
+    expect(liquidityBridge!.prevAsOf).toBe('2026-07-31');
+    expect(liquidityBridge!.step).toEqual({ 현금: -34, 매출채권: 9468, 매입채무: -1571, 과부족: 11005 });
+    const html = renderToStaticMarkup(React.createElement(CashTab));
+    expect(html).not.toContain('회수했는데 왜 더 나빠졌나');
+    expect(html).not.toContain('매출채권을 줄이고 현금을 늘렸는데도');
+    expect(html).toContain('매출채권 +7,480(미회수 증가)');
+    expect(html).toContain('직전 2026-07-31 대비로는 11,005천불 개선');
+    const overview = renderToStaticMarkup(React.createElement(PanofiDashboard));
+    expect(overview).toContain('그룹 합산 -3,000만불은 전략보고 6/30 기준');
+    expect(html).toContain('최신 9월 추정 누계는 -825천불로 전년 동기 2,903천불보다 3,728천불 낮다');
+    expect(html).toContain('3월분은 보고 공백');
+    expect(html).not.toContain('3·6월분은 원본이 없어');
   });
 
   it('보고 공백 월을 숨기지 않는다 - 6월 보고 입수 후 공백은 3월뿐', () => {
@@ -348,19 +512,22 @@ describe('자금유동성 (월간보고 pptx)', () => {
     expect(jul!.과부족).toBe(-20575);
   });
 
-  it('8월 추정손익이 최신 선행 수치다', () => {
+  it('9월 추정손익(1~9월 누계)이 최신 선행 수치다', () => {
     const last = liquidity.estimates[liquidity.estimates.length - 1];
-    expect(last.forMonth).toBe(8);
-    expect(last.revenue).toBe(52881);
-    expect(last.operating).toBe(5794);
-    expect(last.net).toBe(-2261);
+    expect(last.forMonth).toBe(9);
+    expect(last.revenue).toBe(62168);
+    expect(last.operating).toBe(8309);
+    expect(last.net).toBe(-825);
+    expect(last.netPrevYear).toBe(2903);
   });
 
-  it('자금 과부족 스탯이 최신 월간보고 실측(7/31)을 쓴다', () => {
+  it('자금 과부족 스탯이 최신 월간보고 실측(8/31)을 쓴다', () => {
     // 전략보고 6/30 고정값(-20,820)이 최신 실측을 가리면 신선도가 거짓이 된다.
+    const aug = liquidity.series.find((r) => r.asOf === '2026-08-31');
+    expect(aug).toMatchObject({ 현금: 6509, 매출채권: 33832, 매입채무: 49911, 과부족: -9570 });
     const html = renderToStaticMarkup(React.createElement(CashTab));
-    expect(html).toContain('20,575');
-    expect(html).toContain('2026-07-31');
+    expect(html).toContain('9,570');
+    expect(html).toContain('2026-08-31');
     expect(html).not.toContain('20,820');
   });
 
@@ -369,7 +536,7 @@ describe('자금유동성 (월간보고 pptx)', () => {
     const tabs = renderToStaticMarkup(React.createElement(CashTab));
     expect(tabs).not.toContain('pptx 5건');
     expect(tabs).toContain(`pptx ${liquidity.meta.sources.length}건`);
-    expect(liquidity.meta.sources.length).toBe(7);
+    expect(liquidity.meta.sources.length).toBe(8);
   });
 });
 
@@ -465,7 +632,7 @@ describe('PFC 판정의 무게', () => {
   });
 
   it('판정 조정 이력을 지우지 않는다', () => {
-    expect(pfc.measured.verdictNote).toContain('두 번');
+    expect(pfc.measured.verdictNote).toContain('두 차례');
   });
 });
 

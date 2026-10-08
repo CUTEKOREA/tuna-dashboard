@@ -188,9 +188,11 @@ describe('시장 이해 3품목 - 차트 참조 무결성', () => {
       for (const slot of slots) {
         expect(slot.title).toMatch(/[가-힣]/);
         expect(slot.caption.length).toBeGreaterThan(10);
-        expect(['STATIC', 'SYNCED', 'LIVE']).toContain(slot.telemetry.status);
-        // 정적 산출물이므로 LIVE 를 달면 안 된다 (L-09)
-        expect(slot.telemetry.status).toBe('STATIC');
+        expect(['STATIC', 'SYNCED']).toContain(slot.telemetry.status);
+        // L-09: 실시간 fetch 분기가 없으면 LIVE 를 달지 않는다.
+        // STATIC 은 손으로 정리한 산출물, SYNCED 는 scripts/sync_*.py 가 공공 API 에서 받아 둔 스냅숏이다.
+        // 둘을 구분해야 「언제 받은 값인가」가 화면에 정직하게 남는다.
+        expect(slot.telemetry.status).not.toBe('LIVE');
         expect(slot.telemetry.syncDate).not.toBe('');
       }
     }

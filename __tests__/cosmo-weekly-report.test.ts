@@ -13,10 +13,10 @@ const raw = JSON.parse(readFileSync(
 )) as {
   meta: { weekCount: number; weekRange: number[]; quoteCount: number };
   weeks: Array<Record<string, unknown>>;
-  checks: Array<{ week: number; ok: boolean }>;
+  checks: Array<{ week: number; name: string; residual: number; ok: boolean }>;
 };
 
-describe('COSMO 2026년 34주차 데이터 계약', () => {
+describe('COSMO 2026년 39주차 데이터 계약', () => {
   it('주간 엑셀의 핵심 수치와 검산 결과를 보존한다', () => {
     const latest = raw.weeks.at(-1) as {
       week: number;
@@ -31,44 +31,98 @@ describe('COSMO 2026년 34주차 데이터 계약', () => {
       cash: { endUsd: number };
     };
 
-    expect(raw.meta).toMatchObject({ weekCount: 34, weekRange: [1, 34], quoteCount: 145 });
+    expect(raw.meta).toMatchObject({ weekCount: 40, weekRange: [1, 40], quoteCount: 168 });
     expect(latest).toMatchObject({
-      week: 34,
-      backlog_total_fcl: 356,
-      backlog_total_usd: 23_988_150,
-      new_orders_fcl: 26,
-      new_orders_usd: 2_022_949,
-      salesWeekUsd: 166_713.08,
-      salesCumUsd: 42_181_774.586,
+      week: 40,
+      backlog_total_fcl: 307,
+      backlog_total_usd: 21_313_260,
+      new_orders_fcl: 6,
+      new_orders_usd: 533_935,
     });
-    expect(latest.production.CBU.weekRawMt).toBeCloseTo(380.0661, 4);
-    expect(latest.production.CBU.weekYield).toBeCloseTo(0.3773908775, 8);
-    expect(latest.inventory.totalEndUsd).toBeCloseTo(19_031_927.5205, 4);
-    expect(latest.cash.endUsd).toBeCloseTo(3_162_345.7351, 4);
-    expect(raw.checks.filter((check) => check.week === 34)).toHaveLength(8);
-    expect(raw.checks.filter((check) => check.week === 34).every((check) => check.ok)).toBe(true);
+    // 부동소수 꼬리까지 못박으면 재동기화마다 깨진다 - 허용 오차로 본다
+    expect(latest.salesWeekUsd).toBeCloseTo(1_888_717.53, 2);
+    expect(latest.salesCumUsd).toBeCloseTo(52_570_841.786, 2);
+    expect(latest.production.CBU.weekRawMt).toBeCloseTo(466.59928, 4);
+    expect(latest.production.CBU.weekYield).toBeCloseTo(0.4010615704, 8);
+    expect(latest.inventory.totalEndUsd).toBeCloseTo(12_795_097.83, 1);   // docx 「1,279만불」
+    expect(latest.cash.endUsd).toBeCloseTo(6_770_629.45, 2);
+    // 2026-09-14: 「원어 입고·구매 물량」 검산 추가로 주차당 9건
+    expect(raw.checks.filter((check) => check.week === 40)).toHaveLength(9);
+
+    /* 40주차는 «재고 이월» 한 건이 원문 단계에서 어긋난다(-$701,138.36). 원어 YF/BE 한 행이다 -
+     * 수량은 171.439 MT 로 39주 잔량과 같은데 금액이 $1,013,157 → $312,019 로 내려갔다.
+     * 37주차에 YF/BE 수량이 675.011 → 205.563 MT 로 469 MT 줄었는데 금액 $1,056,019 는 그대로 넘어와
+     * 단가가 톤당 $5,137~9,394 로 부풀어 있었고, 40주 기초에서 톤당 약 $1,820 으로 금액이 정리됐다. 값은 고치지 않는다. */
+    expect(raw.checks.filter((c) => c.week === 40 && !c.ok).map((c) => [c.name, c.residual])).toEqual([['재고 이월', -701_138.36]]);
+    // 38주차는 9건 전부 통과했다 - 37주차의 이월 잔차가 원문에서 정리됐다
+    expect(raw.checks.filter((check) => check.week === 38).every((check) => check.ok)).toBe(true);
+
+    /* 39주차는 두 건이 원문 단계에서 어긋난다. 값은 고치지 않는다.
+     * ① 판매 피쉬헤드 행의 주간값(7.765 MT · $2,329.5)이 38주차와 같은데 누계(623.557 MT)는
+     *    움직이지 않았다 - 판매 누적 브릿지 잔차가 정확히 그 행 금액이다.
+     * ② 원어구매 시트는 이번 주 구매 0(누계도 전주 그대로)인데 재고현황 YF/BE 입고 30.225 MT가 적혔다. */
+    expect(raw.checks.filter((c) => c.week === 39 && !c.ok).map((c) => [c.name, c.residual])).toEqual([
+      ['판매 누적 브릿지', -2_329.5],
+      ['원어 입고·구매 물량', 30.23],
+    ]);
+
+    /* 36주차에 재고 항등식이 «처음» 깨졌다. 공관·ENDS·주입액 세 자재가 입고·출고 0 인데
+     * 잔액만 움직여 잔차 $31,063.75 가 남는다(1~35주는 전부 0.00). 원문 docx 도 그 두 칸이
+     * 비어 있어 전사 오류가 아니다 - 지우지 않고 데이터 품질 보드에 그대로 싣는다. */
+    const inv = raw.checks.find((c) => c.week === 36 && c.name === '재고 항등식')!;
+    expect(inv.ok).toBe(false);
+    expect(inv.residual).toBeCloseTo(31_063.75, 2);
+    expect(raw.checks.filter((c) => c.week <= 35 && c.name === '재고 항등식').every((c) => c.ok)).toBe(true);
+
+    /* 37주차는 그 36주차 표기의 뒷정리다. 공관 CATERING(+$140,340.59)·ENDS RETAIL(-$4,208.84)
+     * 두 행의 기초가 36주차 잔액과 달라 «재고 이월» 잔차 $136,131.74 가 남는다 - 두 행 차이의 합과 같다.
+     * 37주차 표는 두 행의 입고·출고를 채워 적었으므로 원문이 고쳐지는 중이라고 본다. */
+    const carry = raw.checks.find((c) => c.week === 37 && c.name === '재고 이월')!;
+    expect(carry.ok).toBe(false);
+    expect(carry.residual).toBeCloseTo(136_131.74, 2);
+    // 항등식 잔차 -0.14 는 주입액 EVOO 한 행의 반올림이다 - 0 으로 맞추지 않는다.
+    expect(raw.checks.find((c) => c.week === 37 && c.name === '재고 항등식')!.residual).toBeCloseTo(-0.14, 2);
   });
 });
 
-describe('COSMO 34주차 Word 업무보고 계약', () => {
+describe('COSMO 40주차 Word 업무보고 계약', () => {
   it('원본 출처와 고유 업무 내용을 보존한다', () => {
     expect(report.source).toEqual({
-      file: '2026.8.27_COSMO 주간보고 (34주차).docx',
-      sha256: '6a0d61f15f28732766e926d2e19e1469f314a8a98f71272fe2caece8b7f0a5eb',
-      period: '2026-08-17~2026-08-23',
+      file: '2026.10.07_COSMO 주간보고 (40주차).docx',
+      sha256: 'c63587a802ee7bcf193dbaf1081ff0484a8277aca94ad81dd7542d395865a497',
+      period: '2026-09-28~2026-10-04',
     });
     expect(report.litigation).toEqual({ case: '아프리카 스타', amountUsd: 540_000, status: '재심리 재판 진행 중' });
-    expect(report.operations.audit).toEqual({ name: '식품안전 불시 심사(BRC/IFS)', start: '2026-08-24', end: '2026-08-28' });
-    expect(report.operations.unloading).toEqual({ active: 'P/MAS', activeSince: '2026-08-23', next: 'P/DIS', nextDate: '2026-08-29' });
-    expect(report.nextActions).toContain('8월 결산 업무 진행');
+
+    /* 36~39주차에 이어 40주차에도 품질 심사·하역 보고가 없다. 지난주 값을 그대로 두면 화면이
+     * 지난주 사건을 «40주차 업무 브리핑» 으로 내보낸다 - 두 항목은 null 이고,
+     * 그 자리에 그 주가 실제 보고한 기타 현황·차주 계획이 들어간다. */
+    expect(report.operations.audit).toBeNull();
+    expect(report.operations.unloading).toBeNull();
+    expect(report.operations.logistics.headline).toBe('2025년 GRA 세무조사');
+    expect(report.market.productionSecuredThrough).toBe('2026년 생산분');
+    expect(report.nextActions[0]).toContain('파리 SIAL');
   });
 
-  it('경영요약에 34주차 업무 브리핑을 렌더한다', () => {
+  it('원문 인명을 저장소에 남기지 않는다', () => {
+    // 차주 계획의 출장자는 원문에 실명으로 적혀 있다 - 직급으로만 옮긴다.
+    const text = JSON.stringify(report);
+    expect(text).not.toMatch(/[가-힣]{2,3}\s*(과장|부장|차장|대리|사장|이사)/);
+  });
+
+  it('경영요약에 40주차 업무 브리핑을 렌더한다', () => {
     const markup = renderToStaticMarkup(React.createElement(HomeTab));
-    expect(markup).toContain('34주차 업무 브리핑');
+    expect(markup).toContain('40주차 업무 브리핑');
     expect(markup).toContain('아프리카 스타');
-    expect(markup).toContain('식품안전 불시 심사');
-    expect(markup).toContain('P/MAS');
-    expect(markup).toContain('P/DIS');
+    // 심사·하역이 없는 주라 그 자리에 이번 주 기타 현황·차주 계획이 온다
+    expect(markup).toContain('GRA 세무조사');
+    expect(markup).toContain('파리 SIAL');
+    expect(markup).toContain('2027년 1분기 물량 오퍼');
+    // 지난주 문장이 남으면 여기서 걸린다
+    expect(markup).not.toContain('주 5일 생산');
+    expect(markup).not.toContain('REWE');
+    expect(markup).not.toContain('출고 19컨');
+    expect(markup).not.toContain('식품안전 불시 심사');
+    expect(markup).not.toContain('null');
   });
 });

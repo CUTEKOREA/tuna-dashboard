@@ -49,10 +49,10 @@ describe('GMTS dashboard decision surface', () => {
     expect(html).toContain('공장·재고');
     expect(html).toContain('가격·반입');
     expect(html).toContain('데이터 품질');
-    expect(html).toContain('2026년 1~7월');
-    expect(html).toContain('63,736');
-    expect(html).toContain('$2,100');
-    expect(html).toContain('$2,150');
+    expect(html).toContain('2026년 1~9월');
+    expect(html).toContain('79,312');
+    expect(html).toContain('$2,300');
+    expect(html).toContain('$2,400');
     expect(html).toContain('원문 분모 미기재');
     expect(html).toContain('원문 단위 미기재');
     expect(html).not.toContain('$/MT');
@@ -158,16 +158,26 @@ describe('GMTS dashboard decision surface', () => {
     expect(html).not.toContain('role="img"');
     expect(html).not.toContain('<table');
     expect(html).not.toContain('data-widget-id=');
-    expect(html).not.toContain('2026년 1~7월');
+    expect(html).not.toContain('2026년 1~9월');
     expect(html).not.toContain('보고서 원문 아카이브');
   });
 
-  it('renders all 32 source reports and the revision and capacity warnings', () => {
+  it('lists the discharging vessel in the latest pipeline table', () => {
+    // 표 제목은 «최신 보고 선박별»인데 하역 중 레인이 빠져 있었다 (2026-09-16).
+    const html = renderDashboard('port');
+
+    expect(html).toContain('하역 중');
+    // 10/7 판은 VOLTA VICTORY 가 9/30 부터 하역 중이다
+    expect(html).toContain('VOLTA VICTORY');
+    expect(html).toContain('WEBO 307');
+  });
+
+  it('renders all 38 source reports and the revision and capacity warnings', () => {
     const html = renderDashboard('quality');
 
-    expect(html.match(/data-source-report=/g)).toHaveLength(32);
-    expect(html).toContain('32건');
-    expect(html).toContain('40쪽');
+    expect(html.match(/data-source-report=/g)).toHaveLength(38);
+    expect(html).toContain('38건');
+    expect(html).toContain('46쪽');
     expect(html).toContain('원문에서 확인되지 않은 값은 화면에서도 확정하지 않음');
     expect(html).toContain('6,220');
     expect(html).toContain('11,968');

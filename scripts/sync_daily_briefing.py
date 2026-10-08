@@ -10,7 +10,7 @@ import re
 import sys
 import tempfile
 from dataclasses import dataclass, field
-from datetime import date
+from datetime import date, timedelta
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, Sequence
@@ -93,6 +93,26 @@ def has_styles(block: HtmlBlock, *declarations: str) -> bool:
     style = normalize_style(block.style)
     return all(declaration in style for declaration in declarations)
 
+
+
+WIDGET_SOURCE = Path(__file__).resolve().parent.parent / "lib" / "data" / "daily-briefing.ts"
+
+
+def widget_number_token_pattern() -> "re.Pattern[str]":
+    """「오늘의 수치」 위젯이 쓰는 수치 토큰 정규식을 TS 정본에서 읽어 온다.
+
+    복사해 두면 갈라진다 — 배포 게이트가 위젯과 다른 기준으로 통과를 내주면
+    화면은 비는데 파이프라인은 OK 를 찍는다. 정본은 daily-briefing.ts 하나다.
+    """
+    src = WIDGET_SOURCE.read_text(encoding="utf-8")
+    m = re.search(r"const NUMBER_TOKEN_PATTERN\s*=\s*/(.+?)/;", src, re.S)
+    if not m:
+        raise BriefingSyncError(
+            f"NUMBER_TOKEN_PATTERN 을 {WIDGET_SOURCE} 에서 찾지 못했습니다 — "
+            "위젯 정규식이 옮겨졌는지 확인하십시오."
+        )
+    # JS 와 Python 에서 뜻이 같은 문법만 쓰고 있다(lookbehind·named group 없음).
+    return re.compile(m.group(1))
 
 def is_digest_title(block: HtmlBlock) -> bool:
     return block.tag == "td" and has_styles(
@@ -223,10 +243,15 @@ def parse_briefing_html(source: Path) -> dict[str, Any]:
         for paragraph in article["paragraphs"]
         for sentence in re.split(r"(?<=[.!?])\s+", paragraph)
     )
-    numeric_digest = [d for d in digest if re.search(r"\d", d["title"])]
+    # 「숫자가 하나라도 있으면 통과」로는 게이트가 거짓말을 한다. 위젯은 단위가 붙은 토큰만
+    # 뽑으므로 「SIAL 파리 2026」 같은 연도로 계약은 열리고 「오늘의 수치」는 빈 채 나간다
+    # (9/28·9/29 실측). 그래서 위젯이 실제로 쓰는 정규식을 TS 에서 그대로 읽어 같은 기준으로 센다.
+    token_pattern = widget_number_token_pattern()
+    numeric_digest = [d for d in digest if token_pattern.search(d["title"])]
     if len(digest) < 2 or not numeric_digest:
         raise BriefingSyncError(
-            "SIT 를 만들 수 없습니다 — 숫자가 포함된 다이제스트가 최소 1건, 전체 2건 이상 필요합니다."
+            "SIT 를 만들 수 없습니다 — 위젯이 뽑을 수 있는 수치 토큰(단위·통화 포함)이 든 "
+            "다이제스트가 최소 1건, 전체 2건 이상 필요합니다."
         )
 
     # 2026-08-17: 지침 문장 없음은 실패가 아니다. 그날 기사가 전부 관측·보고형일 수 있다
@@ -240,6 +265,62 @@ def parse_briefing_html(source: Path) -> dict[str, Any]:
         "digest": digest,
         "articles": articles,
     }
+
+
+def iso_week_monday_friday(briefing_date: str) -> tuple[str, str]:
+    parsed = date.fromisoformat(briefing_date)
+    monday = parsed - timedelta(days=parsed.weekday())
+    friday = monday + timedelta(days=4)
+    return monday.isoformat(), friday.isoformat()
+
+
+def should_include_in_weekly_file(briefing_date: str) -> bool:
+    return date.fromisoformat(briefing_date).weekday() < 5
+
+
+def load_weekly_briefing(path: Path) -> dict[str, Any]:
+    if not path.is_file():
+        return {"weekStart": "", "weekEnd": "", "days": []}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        raise BriefingSyncError(f"주간 브리핑 JSON을 읽지 못했습니다: {path}") from error
+    if not isinstance(payload, dict):
+        raise BriefingSyncError(f"주간 브리핑 JSON 루트가 객체가 아닙니다: {path}")
+    days = payload.get("days", [])
+    if not isinstance(days, list):
+        raise BriefingSyncError(f"주간 브리핑 days가 배열이 아닙니다: {path}")
+    return {
+        "weekStart": payload.get("weekStart", ""),
+        "weekEnd": payload.get("weekEnd", ""),
+        "days": days,
+    }
+
+
+def upsert_weekly_day(weekly: dict[str, Any], day_briefing: dict[str, Any]) -> dict[str, Any]:
+    briefing_date = day_briefing["date"]
+    if not should_include_in_weekly_file(briefing_date):
+        return weekly
+
+    week_start, week_end = iso_week_monday_friday(briefing_date)
+    if weekly.get("weekStart") != week_start:
+        weekly = {"weekStart": week_start, "weekEnd": week_end, "days": []}
+    else:
+        weekly = {
+            "weekStart": week_start,
+            "weekEnd": week_end,
+            "days": list(weekly.get("days", [])),
+        }
+
+    days: list[dict[str, Any]] = [
+        day for day in weekly["days"] if day.get("date") != briefing_date
+    ]
+    days.append(day_briefing)
+    days.sort(key=lambda day: day["date"])
+    weekly["days"] = days
+    weekly["weekStart"] = week_start
+    weekly["weekEnd"] = week_end
+    return weekly
 
 
 def write_json_atomically(output: Path, payload: dict[str, Any]) -> None:
@@ -285,7 +366,16 @@ def build_argument_parser() -> argparse.ArgumentParser:
         / "public/data/tuna_daily_briefing.json",
         help="출력 JSON 경로",
     )
+    parser.add_argument(
+        "--weekly-output",
+        type=Path,
+        help="주간 브리핑 JSON 경로 (기본값: 일간 출력과 같은 폴더)",
+    )
     return parser
+
+
+def weekly_output_path(args: argparse.Namespace) -> Path:
+    return args.weekly_output or args.output.with_name("tuna_weekly_briefing.json")
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -294,6 +384,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         source = args.input or discover_latest_briefing(args.source_dir)
         briefing = parse_briefing_html(source)
         write_json_atomically(args.output, briefing)
+        weekly_path = weekly_output_path(args)
+        weekly = load_weekly_briefing(weekly_path)
+        weekly = upsert_weekly_day(weekly, briefing)
+        if should_include_in_weekly_file(briefing["date"]):
+            write_json_atomically(weekly_path, weekly)
     except (BriefingSyncError, OSError) as error:
         print(f"브리핑 동기화 실패: {error}", file=sys.stderr)
         return 1

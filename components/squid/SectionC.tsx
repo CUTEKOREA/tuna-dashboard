@@ -29,6 +29,7 @@ import {
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import SquidSection from './SquidSection';
 import type { SquidSource, SquidV5, SquidWidget } from './types';
+import { COUNTRY_ID, SERIES, SERIES_OTHER } from '@/lib/chart-palette';
 
 const AXIS = '#64748b';
 const BODY = '#cbd5e1';
@@ -73,15 +74,18 @@ interface MonthlyRow {
 
 type Metric = 'import_usd' | 'import_kg';
 
-const COUNTRY_COLORS: Record<string, string> = {
-  중국: C_SQUID,
-  페루: C_INFO,
-  베트남: C_OK,
-  칠레: C_WARN,
-  에쿠아도르: C_BAD,
-  아르헨티나: '#ec4899',
-  기타: '#64748b',
-};
+// 국가 색은 공통 COUNTRY_ID — /ffa-report 의 미국 로인 스택과 같은 나라는 같은 색이다.
+// 예전엔 상태색(C_OK·C_WARN·C_BAD)을 범주로 돌려썼다. 초록=정상 같은 오독을 부른다.
+const COUNTRY_COLORS: Record<string, string> = COUNTRY_ID;
+
+/** 상위 국가는 데이터가 정한다 — COUNTRY_ID 에 없는 나라가 올라와도 한 차트 안에서 색이 겹치지 않게, 남은 SERIES 칸을 준다. */
+function countryColors(names: string[]): Record<string, string> {
+  const out: Record<string, string> = {};
+  const taken = new Set(names.map((n) => COUNTRY_COLORS[n]).filter(Boolean));
+  const spare = SERIES.filter((c) => !taken.has(c));
+  for (const n of names) out[n] = COUNTRY_COLORS[n] ?? spare.shift() ?? SERIES_OTHER;
+  return out;
+}
 
 const toggleBtnStyle = (active: boolean): React.CSSProperties => ({
   padding: '3px 10px',
@@ -97,7 +101,7 @@ const toggleBtnStyle = (active: boolean): React.CSSProperties => ({
 const ImportMonthlyChart: React.FC<{ data: MonthlyRow[] }> = ({ data }) => {
   const [metric, setMetric] = useState<Metric>('import_usd');
 
-  const { rows, series, first, last } = useMemo(() => {
+  const { rows, series, colors, first, last } = useMemo(() => {
     const months = Array.from(new Set(data.map((r) => r.month))).sort();
     const totals = new Map<string, number>();
     for (const r of data) totals.set(r.country, (totals.get(r.country) ?? 0) + r.import_usd);
@@ -117,9 +121,11 @@ const ImportMonthlyChart: React.FC<{ data: MonthlyRow[] }> = ({ data }) => {
       if (etc.length) row['기타'] = etc.reduce((s, r) => s + r[metric], 0);
       return row;
     });
+    const series = [...top6, '기타'];
     return {
       rows,
-      series: [...top6, '기타'],
+      series,
+      colors: countryColors(series),
       first: months[0] ?? '',
       last: months[months.length - 1] ?? '',
     };
@@ -185,7 +191,7 @@ const ImportMonthlyChart: React.FC<{ data: MonthlyRow[] }> = ({ data }) => {
           />
           <Legend wrapperStyle={{ fontSize: '0.66rem' }} iconSize={8} />
           {series.map((c) => (
-            <Bar key={c} dataKey={c} stackId="trade" fill={COUNTRY_COLORS[c] ?? C_INFO} />
+            <Bar key={c} dataKey={c} stackId="trade" fill={colors[c]} />
           ))}
         </BarChart>
       </SafeResponsiveContainer>
@@ -396,7 +402,7 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
             cursor={{ fill: 'rgba(var(--w-slate-400-rgb), 0.08)' }}
           />
           <Legend wrapperStyle={{ fontSize: '0.66rem' }} iconSize={8} />
-          <Bar yAxisId="share" dataKey="top1" name="상위 1개국 비중" fill={C_SQUID} barSize={38} radius={[4, 4, 0, 0]}>
+          <Bar yAxisId="share" dataKey="top1" name="상위 1개국 비중" fill={SERIES[0]} barSize={38} radius={[4, 4, 0, 0]}>
             <LabelList
               dataKey="top1"
               position="top"
@@ -405,7 +411,7 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
               fontSize={10}
             />
           </Bar>
-          <Bar yAxisId="share" dataKey="top3" name="상위 3개국 비중" fill={C_INFO} barSize={38} radius={[4, 4, 0, 0]}>
+          <Bar yAxisId="share" dataKey="top3" name="상위 3개국 비중" fill={SERIES[1]} barSize={38} radius={[4, 4, 0, 0]}>
             <LabelList
               dataKey="top3"
               position="top"
@@ -414,12 +420,12 @@ const ConcentrationChart: React.FC<{ data: ConcentrationData[] }> = ({ data }) =
               fontSize={10}
             />
           </Bar>
-          <Bar yAxisId="hhi" dataKey="hhi" name="시장집중도지수 (우측 축)" fill={C_WARN} barSize={38} radius={[4, 4, 0, 0]}>
+          <Bar yAxisId="hhi" dataKey="hhi" name="시장집중도지수 (우측 축)" fill={SERIES[2]} barSize={38} radius={[4, 4, 0, 0]}>
             <LabelList
               dataKey="hhi"
               position="top"
               formatter={(v: any) => fmtHhi(Number(v))}
-              fill={C_WARN}
+              fill={SERIES[2]}
               fontSize={10}
             />
           </Bar>

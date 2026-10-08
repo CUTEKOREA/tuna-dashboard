@@ -476,7 +476,7 @@ export function KoreaExportPriceChart({ data }: { data: TunaTradeData }) {
         <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />
         <Bar yAxisId="left" dataKey="세계평균" name="세계 평균 (달러/톤)" fill={TUNA_ROLE.muted} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
         <Bar yAxisId="left" dataKey="한국" name="한국 (달러/톤)" fill={TUNA_ROLE.highlight} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
-        <Line yAxisId="right" type="monotone" dataKey="격차율" name="세계 평균 대비 (%)" stroke={TUNA_ROLE.highlight} strokeWidth={2} isAnimationActive={animate} />
+        <Line yAxisId="right" type="monotone" dataKey="격차율" name="세계 평균 대비 (%)" stroke={TUNA_ROLE.processed} strokeWidth={2} isAnimationActive={animate} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );

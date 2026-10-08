@@ -1,9 +1,9 @@
 {
-  "period": "2020.05~2026.08",
-  "weeks": 289,
-  "latestPrice": 2030,
-  "stockMt": 104500,
-  "processDays": 49,
-  "cumUnloadMt": 333498,
+  "period": "2020.05~2026.10",
+  "weeks": 295,
+  "latestPrice": 2360,
+  "stockMt": 81700,
+  "processDays": 43,
+  "cumUnloadMt": 368039,
   "highSaltUsd": 142000
 }

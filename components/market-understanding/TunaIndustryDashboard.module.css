@@ -134,6 +134,19 @@
   --mu-hover: rgba(12, 74, 110, 0.08);
 }
 
+/* 2026-09-10 문어 신설 — 차트 역할색 OCTOPUS_ROLE.volume(#86198f)과 같은 계열 */
+.page[data-commodity='octopus'] {
+  --mu-accent: #86198f;
+  --mu-accent-deep: #701a75;
+  --mu-hover: rgba(134, 25, 143, 0.12);
+}
+
+:global([data-v3='light']) .page[data-commodity='octopus'] {
+  --mu-accent: #86198f;
+  --mu-accent-deep: #701a75;
+  --mu-hover: rgba(134, 25, 143, 0.08);
+}
+
 /* ─── 30초 브리핑 ─────────────────────────────────────────────── */
 
 .briefing {
@@ -369,6 +382,84 @@
    가로 스크롤을 만들면 컨테이너가 둘이 되어 드래그·휠이 어디로 갈지 예측되지 않는다. */
 .tabNav {
   padding-bottom: 0.25rem;
+}
+
+/* ─── 긴 연속 페이지 보조 UI (spec_longpage_ui) ────────────────────────
+   연속 모드에서만 쓰는 두 요소: 탭 바로 아래 진행 막대와 우하단 맨 위로 버튼.
+   색은 기존 --mu-* 변수만 쓴다. */
+
+/* 탭 바로 아래 얇은 진행 막대 (3px) + 텍스트 */
+.longpageProgress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: -0.5rem;
+  padding: 0 0.25rem;
+}
+
+.longpageProgressTrack {
+  flex: 1;
+  height: 3px;
+  background: var(--mu-line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.longpageProgressFill {
+  height: 100%;
+  background: var(--mu-accent);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.longpageProgressText {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--mu-ink-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* 우하단 맨 위로 버튼 — 첫 절 제목이 위로 지나간 뒤에만 보인다 */
+.backToTop {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--mu-line);
+  background: var(--mu-surface);
+  color: var(--mu-ink);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.18);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+
+.backToTop[data-visible='true'] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.backToTop:focus-visible {
+  outline: 2px solid var(--mu-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .longpageProgressFill,
+  .backToTop {
+    transition: none;
+  }
 }
 
 /* ─── 사슬 스테퍼 ─────────────────────────────────────────────── */
@@ -1434,4 +1525,85 @@
   line-height: 1.5;
   color: var(--mu-ink-faint, var(--mu-ink-soft));
   word-break: keep-all;
+}
+
+/* ── 보고서 그림 (팩샷·차트·문서 캡처) ─────────────────────────────
+   보고서에는 아홉 편 합쳐 59장이 있었는데 화면에는 한 장도 올라오지 않았다.
+   이미지는 public 아래 정적 파일이라 여기서는 배치만 맡는다. */
+.figGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.9rem;
+  margin: 0.2rem 0 0.4rem;
+}
+.figCard {
+  border: 1px solid var(--rule, #d8dade);
+  border-radius: 6px;
+  background: var(--card, #fff);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.figShot {
+  background: var(--paper-2, #f1f2ef);
+  padding: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8.5rem;
+}
+.figShot img {
+  max-height: 7.5rem;
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+.figCap {
+  padding: 0.55rem 0.7rem;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: var(--ink-2, #4a5560);
+  border-top: 1px solid var(--rule, #d8dade);
+}
+/* 차트는 폭을 다 쓴다. 격자에 넣으면 눈금이 뭉갠다. */
+.figChart {
+  border: 1px solid var(--rule, #d8dade);
+  border-radius: 6px;
+  background: var(--card, #fff);
+  margin: 0.2rem 0 0.6rem;
+  overflow: hidden;
+}
+.figChart > div {
+  padding: 1rem 0.9rem;
+}
+.figChart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* 문서 캡처는 읽혀야 하므로 크게 놓는다. */
+.figDoc img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* 차트 판. 보고서의 밝은 팔레트를 쓰므로 바탕을 고정한다 — 팩샷도 흰 배경이라 톤이 맞는다. */
+.figPlate {
+  background: #fff;
+  padding: 1rem 0.9rem;
+}
+
+/* ── 원문 순서 렌더 ──
+   보고서에서 표는 그 표를 설명하는 문단 바로 옆에 있다. 절 끝에 몰아 두면 둘이 멀어진다.
+   flow 는 서술과 표·그림을 원문 오프셋 순서로 섞어 낸다. */
+.flowHeading {
+  margin: 2.2rem 0 0.9rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--mu-ink);
+}
+
+.flowSlot {
+  margin: 1.4rem 0 1.8rem;
 }

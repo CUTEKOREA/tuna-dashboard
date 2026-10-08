@@ -1,0 +1,1098 @@
+{
+ "asOf": "2026-08-28",
+ "recentEvents": [
+  {
+   "date": "08/24",
+   "msg": "PNG 조업일수 전배 (20일)"
+  },
+  {
+   "date": "08/24",
+   "msg": "투발루 조업일수 전배 (20일)"
+  },
+  {
+   "date": "08/13",
+   "msg": "키리바시 조업일수 추가 구매 (80일)"
+  },
+  {
+   "date": "08/05",
+   "msg": "키리바시 조업일수 추가 구매 (140일)"
+  },
+  {
+   "date": "07/29",
+   "msg": "키리바시 조업일수 추가 구매 (20일)"
+  }
+ ],
+ "source": {
+  "file": "260828_수역별 회사별 조업일수 소진현황.xlsx",
+  "sha256": "9cb4d48d70b72e634db68f276a3d2cc632830055a5734ec7e2b1652ebf922b40",
+  "note": "미경실 조업일수 대장 - 수역 요약은 각 블록 최종 소진/잔여/소진률 행, Kiribati 는 집계 블록"
+ },
+ "years": {
+  "2023": {
+   "companies": [
+    "동원산업",
+    "사조산업",
+    "사조씨푸드",
+    "사조오양",
+    "신라교역",
+    "한성기업"
+   ],
+   "zones": {
+    "PNG": {
+     "companies": {
+      "동원산업": {
+       "available": 712.0,
+       "consumed": 704.21,
+       "remaining": 7.79,
+       "ratePct": 99
+      },
+      "사조산업": {
+       "available": 405.6,
+       "consumed": 449.91,
+       "remaining": -44.31,
+       "ratePct": 111
+      },
+      "사조씨푸드": {
+       "available": 87.7,
+       "consumed": 78.62,
+       "remaining": 9.08,
+       "ratePct": 90
+      },
+      "사조오양": {
+       "available": 87.7,
+       "consumed": 50.99,
+       "remaining": 36.71,
+       "ratePct": 58
+      },
+      "신라교역": {
+       "available": 364.0,
+       "consumed": 363.9,
+       "remaining": 0.1,
+       "ratePct": 100
+      },
+      "한성기업": {
+       "available": 0.0,
+       "consumed": null,
+       "remaining": 0.0,
+       "ratePct": null
+      }
+     },
+     "total": {
+      "available": 1657.0,
+      "consumed": 1647.63,
+      "remaining": 9.37,
+      "ratePct": 99
+     }
+    },
+    "Solomon": {
+     "companies": {
+      "동원산업": {
+       "available": 38.0,
+       "consumed": 28.91,
+       "remaining": 9.09,
+       "ratePct": 76
+      },
+      "사조산업": {
+       "available": 62.0,
+       "consumed": 69.41,
+       "remaining": -7.41,
+       "ratePct": 112
+      },
+      "사조씨푸드": {
+       "available": 17.0,
+       "consumed": 11.76,
+       "remaining": 5.24,
+       "ratePct": 69
+      },
+      "사조오양": {
+       "available": 17.0,
+       "consumed": 13.98,
+       "remaining": 3.02,
+       "ratePct": 82
+      },
+      "신라교역": {
+       "available": 75.0,
+       "consumed": 74.84,
+       "remaining": 0.16,
+       "ratePct": 100
+      },
+      "한성기업": {
+       "available": 0.0,
+       "consumed": 0.0,
+       "remaining": null,
+       "ratePct": null
+      }
+     },
+     "total": {
+      "available": 209.0,
+      "consumed": 198.9,
+      "remaining": 10.1,
+      "ratePct": 95
+     }
+    },
+    "Kiribati": {
+     "companies": {
+      "동원산업": {
+       "available": 1347.0,
+       "consumed": 1259.78,
+       "remaining": 87.22,
+       "ratePct": 94
+      },
+      "사조산업": {
+       "available": 578.1,
+       "consumed": 608.63,
+       "remaining": -30.53,
+       "ratePct": 105
+      },
+      "사조씨푸드": {
+       "available": 127.7,
+       "consumed": 100.16,
+       "remaining": 27.54,
+       "ratePct": 78
+      },
+      "사조오양": {
+       "available": 127.7,
+       "consumed": 129.45,
+       "remaining": -1.75,
+       "ratePct": 101
+      },
+      "신라교역": {
+       "available": 1056.5,
+       "consumed": 957.1,
+       "remaining": 99.4,
+       "ratePct": 91
+      }
+     },
+     "total": {
+      "available": 3237.0,
+      "consumed": 3055.12,
+      "remaining": 181.88,
+      "ratePct": 94
+     }
+    },
+    "Tuvalu": {
+     "companies": {
+      "동원산업": {
+       "available": 75.0,
+       "consumed": 72.96,
+       "remaining": 2.04,
+       "ratePct": 97
+      },
+      "사조산업": {
+       "available": -5.0,
+       "consumed": 43.82,
+       "remaining": -48.82,
+       "ratePct": -876
+      },
+      "사조씨푸드": {
+       "available": 29.0,
+       "consumed": 6.95,
+       "remaining": 22.05,
+       "ratePct": 24
+      },
+      "사조오양": {
+       "available": 29.0,
+       "consumed": 2.68,
+       "remaining": 26.32,
+       "ratePct": 9
+      },
+      "신라교역": {
+       "available": 33.0,
+       "consumed": 89.3,
+       "remaining": -56.3,
+       "ratePct": 271
+      },
+      "한성기업": {
+       "available": 0.0,
+       "consumed": 0.0,
+       "remaining": 0.0,
+       "ratePct": null
+      }
+     },
+     "total": {
+      "available": 161.0,
+      "consumed": 215.71,
+      "remaining": -54.71,
+      "ratePct": 134
+     }
+    },
+    "Nauru": {
+     "companies": {
+      "동원산업": {
+       "available": 58.0,
+       "consumed": 47.94,
+       "remaining": 10.06,
+       "ratePct": 83
+      },
+      "사조산업": {
+       "available": 30.0,
+       "consumed": 34.7,
+       "remaining": -4.7,
+       "ratePct": 116
+      },
+      "사조씨푸드": {
+       "available": 9.5,
+       "consumed": 6.47,
+       "remaining": 3.03,
+       "ratePct": 68
+      },
+      "사조오양": {
+       "available": 9.5,
+       "consumed": 11.13,
+       "remaining": -1.63,
+       "ratePct": 117
+      },
+      "신라교역": {
+       "available": 27.0,
+       "consumed": 25.66,
+       "remaining": 1.34,
+       "ratePct": 95
+      },
+      "한성기업": {
+       "available": 0.0,
+       "consumed": null,
+       "remaining": 0.0,
+       "ratePct": null
+      }
+     },
+     "total": {
+      "available": 134.0,
+      "consumed": 125.9,
+      "remaining": 8.1,
+      "ratePct": 94
+     }
+    },
+    "FSM": {
+     "companies": {
+      "동원산업": {
+       "available": 130.0,
+       "consumed": 124.72,
+       "remaining": 5.28,
+       "ratePct": 96
+      },
+      "사조산업": {
+       "available": 80.0,
+       "consumed": 95.51,
+       "remaining": -15.51,
+       "ratePct": 119
+      },
+      "사조씨푸드": {
+       "available": 21.0,
+       "consumed": 17.08,
+       "remaining": 3.92,
+       "ratePct": 81
+      },
+      "사조오양": {
+       "available": 21.0,
+       "consumed": 9.12,
+       "remaining": 11.88,
+       "ratePct": 43
+      },
+      "신라교역": {
+       "available": 65.0,
+       "consumed": 64.64,
+       "remaining": 0.36,
+       "ratePct": 99
+      },
+      "한성기업": {
+       "available": 0.0,
+       "consumed": 0.0,
+       "remaining": 0.0,
+       "ratePct": null
+      }
+     },
+     "total": {
+      "available": 317.0,
+      "consumed": 311.07,
+      "remaining": 5.93,
+      "ratePct": 98
+     }
+    }
+   }
+  },
+  "2024": {
+   "companies": [
+    "동원산업",
+    "사조산업",
+    "사조씨푸드",
+    "사조오양",
+    "신라교역",
+    "한성기업"
+   ],
+   "zones": {
+    "PNG": {
+     "companies": {
+      "동원산업": {
+       "available": 1244.83,
+       "consumed": 1244.56,
+       "remaining": 0.27,
+       "ratePct": 100
+      },
+      "사조산업": {
+       "available": 584.5,
+       "consumed": 557.74,
+       "remaining": 26.76,
+       "ratePct": 95
+      },
+      "사조씨푸드": {
+       "available": 110.0,
+       "consumed": 119.8,
+       "remaining": -9.8,
+       "ratePct": 109
+      },
+      "사조오양": {
+       "available": 130.0,
+       "consumed": 135.55,
+       "remaining": -5.55,
+       "ratePct": 104
+      },
+      "신라교역": {
+       "available": 831.07,
+       "consumed": 827.55,
+       "remaining": 3.52,
+       "ratePct": 100
+      },
+      "한성기업": {
+       "available": 0.0,
+       "consumed": null,
+       "remaining": 0.0,
+       "ratePct": null
+      }
+     },
+     "total": {
+      "available": 2900.4,
+      "consumed": 2885.2,
+      "remaining": 15.2,
+      "ratePct": 99
+     }
+    },
+    "Solomon": {
+     "companies": {
+      "동원산업": {
+       "available": 537.8,
+       "consumed": 534.63,
+       "remaining": 3.17,
+       "ratePct": 99
+      },
+      "사조산업": {
+       "available": 292.5,
+       "consumed": 258.04,
+       "remaining": 34.46,
+       "ratePct": 88
+      },
+      "사조씨푸드": {
+       "available": 35.0,
+       "consumed": 58.88,
+       "remaining": -23.88,
+       "ratePct": 168
+      },
+      "사조오양": {
+       "available": 35.0,
+       "consumed": 44.1,
+       "remaining": -9.1,
+       "ratePct": 126
+      },
+      "신라교역": {
+       "available": 292.0,
+       "consumed": 291.47,
+       "remaining": 0.53,
+       "ratePct": 100
+      },
+      "한성기업": {
+       "available": 0.0,
+       "consumed": 0.0,
+       "remaining": null,
+       "ratePct": null
+      }
+     },
+     "total": {
+      "available": 1192.3,
+      "consumed": 1187.12,
+      "remaining": 5.18,
+      "ratePct": 100
+     }
+    },
+    "Kiribati": {
+     "companies": {
+      "동원산업": {
+       "available": 218.0,
+       "consumed": 217.9,
+       "remaining": 0.1,
+       "ratePct": 100
+      },
+      "사조산업": {
+       "available": 218.0,
+       "consumed": 204.2,
+       "remaining": 13.8,
+       "ratePct": 94
+      },
+      "사조씨푸드": {
+       "available": 46.0,
+       "consumed": 50.3,
+       "remaining": -4.3,
+       "ratePct": 109
+      },
+      "사조오양": {
+       "available": 46.0,
+       "consumed": 55.6,
+       "remaining": -9.6,
+       "ratePct": 121
+      },
+      "신라교역": {
+       "available": 186.0,
+       "consumed": 185.6,
+       "remaining": 0.4,
+       "ratePct": 100
+      }
+     },
+     "total": {
+      "available": 714.0,
+      "consumed": 713.6,
+      "remaining": 0.4,
+      "ratePct": 100
+     }
+    },
+    "Tuvalu": {
+     "companies": {
+      "동원산업": {
+       "available": 180.0,
+       "consumed": 179.12,
+       "remaining": 0.88,
+       "ratePct": 100
+      },
+      "사조산업": {
+       "available": 127.0,
+       "consumed": 100.78,
+       "remaining": 26.22,
+       "ratePct": 79
+      },
+      "사조씨푸드": {
+       "available": 14.0,
+       "consumed": 34.44,
+       "remaining": -20.44,
+       "ratePct": 246
+      },
+      "사조오양": {
+       "available": 14.0,
+       "consumed": 17.79,
+       "remaining": -3.79,
+       "ratePct": 127
+      },
+      "신라교역": {
+       "available": 97.0,
+       "consumed": 96.28,
+       "remaining": 0.72,
+       "ratePct": 99
+      },
+      "한성기업": {
+       "available": 0.0,
+       "consumed": 0.0,
+       "remaining": 0.0,
+       "ratePct": null
+      }
+     },
+     "total": {
+      "available": 432.0,
+      "consumed": 428.41,
+      "remaining": 3.59,
+      "ratePct": 99
+     }
+    },
+    "Nauru": {
+     "companies": {
+      "동원산업": {
+       "available": 17.0,
+       "consumed": 16.72,
+       "remaining": 0.28,
+       "ratePct": 98
+      },
+      "사조산업": {
+       "available": 22.0,
+       "consumed": 34.29,
+       "remaining": -12.29,
+       "ratePct": 156
+      },
+      "사조씨푸드": {
+       "available": 9.0,
+       "consumed": 1.06,
+       "remaining": 7.94,
+       "ratePct": 12
+      },
+      "사조오양": {
+       "available": 9.0,
+       "consumed": 4.1,
+       "remaining": 4.9,
+       "ratePct": 46
+      },
+      "신라교역": {
+       "available": 11.0,
+       "consumed": 11.19,
+       "remaining": -0.19,
+       "ratePct": 102
+      },
+      "한성기업": {
+       "available": 0.0,
+       "consumed": 0.0,
+       "remaining": 0.0,
+       "ratePct": null
+      }
+     },
+     "total": {
+      "available": 68.0,
+      "consumed": 67.36,
+      "remaining": 0.64,
+      "ratePct": 99
+     }
+    },
+    "FSM": {
+     "companies": {
+      "동원산업": {
+       "available": 277.1,
+       "consumed": 277.01,
+       "remaining": 0.09,
+       "ratePct": 100
+      },
+      "사조산업": {
+       "available": 136.0,
+       "consumed": 145.85,
+       "remaining": -9.85,
+       "ratePct": 107
+      },
+      "사조씨푸드": {
+       "available": 21.0,
+       "consumed": 16.29,
+       "remaining": 4.71,
+       "ratePct": 78
+      },
+      "사조오양": {
+       "available": 21.0,
+       "consumed": 15.63,
+       "remaining": 5.37,
+       "ratePct": 74
+      },
+      "신라교역": {
+       "available": 155.3,
+       "consumed": 154.92,
+       "remaining": 0.38,
+       "ratePct": 100
+      },
+      "한성기업": {
+       "available": 0.0,
+       "consumed": 0.0,
+       "remaining": 0.0,
+       "ratePct": null
+      }
+     },
+     "total": {
+      "available": 610.4,
+      "consumed": 609.7,
+      "remaining": 0.7,
+      "ratePct": 100
+     }
+    }
+   }
+  },
+  "2025": {
+   "companies": [
+    "동원산업",
+    "사조산업",
+    "사조씨푸드",
+    "사조오양",
+    "신라교역"
+   ],
+   "zones": {
+    "PNG": {
+     "companies": {
+      "동원산업": {
+       "available": 1267.4,
+       "consumed": 1243.16,
+       "remaining": 24.24,
+       "ratePct": 98
+      },
+      "사조산업": {
+       "available": 632.8,
+       "consumed": 615.1,
+       "remaining": 17.7,
+       "ratePct": 97
+      },
+      "사조씨푸드": {
+       "available": 90.0,
+       "consumed": 78.33,
+       "remaining": 11.67,
+       "ratePct": 87
+      },
+      "사조오양": {
+       "available": 90.0,
+       "consumed": 88.56,
+       "remaining": 1.44,
+       "ratePct": 98
+      },
+      "신라교역": {
+       "available": 820.8,
+       "consumed": 814.31,
+       "remaining": 6.49,
+       "ratePct": 99
+      }
+     },
+     "total": {
+      "available": 2167.0,
+      "consumed": 2839.46,
+      "remaining": 61.54,
+      "ratePct": 131
+     }
+    },
+    "Solomon": {
+     "companies": {
+      "동원산업": {
+       "available": 442.0,
+       "consumed": 430.16,
+       "remaining": 11.84,
+       "ratePct": 97
+      },
+      "사조산업": {
+       "available": 211.5,
+       "consumed": 245.5,
+       "remaining": -34.0,
+       "ratePct": 116
+      },
+      "사조씨푸드": {
+       "available": 42.0,
+       "consumed": 54.34,
+       "remaining": -12.34,
+       "ratePct": 129
+      },
+      "사조오양": {
+       "available": 42.0,
+       "consumed": 45.55,
+       "remaining": -3.55,
+       "ratePct": 108
+      },
+      "신라교역": {
+       "available": 365.5,
+       "consumed": 372.89,
+       "remaining": -7.39,
+       "ratePct": 102
+      }
+     },
+     "total": {
+      "available": 1103.0,
+      "consumed": 1148.44,
+      "remaining": -45.44,
+      "ratePct": 104
+     }
+    },
+    "Kiribati": {
+     "companies": {
+      "동원산업": {
+       "available": 160.6,
+       "consumed": 130.32,
+       "remaining": 30.28,
+       "ratePct": 81
+      },
+      "사조산업": {
+       "available": 209.7,
+       "consumed": 173.65,
+       "remaining": 36.05,
+       "ratePct": 83
+      },
+      "사조씨푸드": {
+       "available": 42.0,
+       "consumed": 37.39,
+       "remaining": 4.61,
+       "ratePct": 89
+      },
+      "사조오양": {
+       "available": 42.0,
+       "consumed": 54.41,
+       "remaining": -12.41,
+       "ratePct": 130
+      },
+      "신라교역": {
+       "available": 281.7,
+       "consumed": 245.85,
+       "remaining": 35.85,
+       "ratePct": 87
+      }
+     },
+     "total": {
+      "available": 711.0,
+      "consumed": 641.62,
+      "remaining": 69.38,
+      "ratePct": 90
+     }
+    },
+    "Tuvalu": {
+     "companies": {
+      "동원산업": {
+       "available": 29.0,
+       "consumed": 28.69,
+       "remaining": 0.31,
+       "ratePct": 99
+      },
+      "사조산업": {
+       "available": 76.0,
+       "consumed": 57.6,
+       "remaining": 18.4,
+       "ratePct": 76
+      },
+      "사조씨푸드": {
+       "available": 21.0,
+       "consumed": 54.67,
+       "remaining": -33.67,
+       "ratePct": 260
+      },
+      "사조오양": {
+       "available": 21.0,
+       "consumed": 6.4,
+       "remaining": 14.6,
+       "ratePct": 30
+      },
+      "신라교역": {
+       "available": 123.81,
+       "consumed": 122.91,
+       "remaining": 0.9,
+       "ratePct": 99
+      }
+     },
+     "total": {
+      "available": 270.81,
+      "consumed": 270.27,
+      "remaining": 0.54,
+      "ratePct": 100
+     }
+    },
+    "Nauru": {
+     "companies": {
+      "동원산업": {
+       "available": 50.0,
+       "consumed": 50.0,
+       "remaining": 0.0,
+       "ratePct": 100
+      },
+      "사조산업": {
+       "available": 30.0,
+       "consumed": 34.65,
+       "remaining": -4.65,
+       "ratePct": 116
+      },
+      "사조씨푸드": {
+       "available": 5.0,
+       "consumed": 6.52,
+       "remaining": -1.52,
+       "ratePct": 130
+      },
+      "사조오양": {
+       "available": 16.0,
+       "consumed": 6.1,
+       "remaining": 9.9,
+       "ratePct": 38
+      },
+      "신라교역": {
+       "available": 61.03,
+       "consumed": 59.47,
+       "remaining": 1.56,
+       "ratePct": 97
+      }
+     },
+     "total": {
+      "available": 162.03,
+      "consumed": 156.74,
+      "remaining": 5.29,
+      "ratePct": 97
+     }
+    },
+    "FSM": {
+     "companies": {
+      "동원산업": {
+       "available": 143.0,
+       "consumed": 142.81,
+       "remaining": 0.19,
+       "ratePct": 100
+      },
+      "사조산업": {
+       "available": 119.9,
+       "consumed": 134.88,
+       "remaining": -14.98,
+       "ratePct": 112
+      },
+      "사조씨푸드": {
+       "available": 15.5,
+       "consumed": 10.92,
+       "remaining": 4.58,
+       "ratePct": 70
+      },
+      "사조오양": {
+       "available": 21.0,
+       "consumed": 10.58,
+       "remaining": 10.42,
+       "ratePct": 50
+      },
+      "신라교역": {
+       "available": 59.1,
+       "consumed": 59.03,
+       "remaining": 0.07,
+       "ratePct": 100
+      }
+     },
+     "total": {
+      "available": 403.0,
+      "consumed": 358.22,
+      "remaining": 44.78,
+      "ratePct": 89
+     }
+    }
+   }
+  },
+  "2026": {
+   "companies": [
+    "동원산업",
+    "사조산업",
+    "사조씨푸드",
+    "사조오양",
+    "신라교역"
+   ],
+   "zones": {
+    "PNG": {
+     "companies": {
+      "동원산업": {
+       "available": 402.0,
+       "consumed": 93.02,
+       "remaining": 308.98,
+       "ratePct": 23
+      },
+      "사조산업": {
+       "available": 272.0,
+       "consumed": 59.66,
+       "remaining": 212.34,
+       "ratePct": 22
+      },
+      "사조씨푸드": {
+       "available": 55.0,
+       "consumed": 20.94,
+       "remaining": 34.06,
+       "ratePct": 38
+      },
+      "사조오양": {
+       "available": 55.0,
+       "consumed": 7.05,
+       "remaining": 47.95,
+       "ratePct": 13
+      },
+      "신라교역": {
+       "available": 331.0,
+       "consumed": 19.52,
+       "remaining": 311.48,
+       "ratePct": 6
+      }
+     },
+     "total": {
+      "available": 1115.0,
+      "consumed": 200.19,
+      "remaining": 914.81,
+      "ratePct": 18
+     }
+    },
+    "Solomon": {
+     "companies": {
+      "동원산업": {
+       "available": 170.0,
+       "consumed": 160.3,
+       "remaining": 9.7,
+       "ratePct": 94
+      },
+      "사조산업": {
+       "available": 103.0,
+       "consumed": 64.98,
+       "remaining": 38.02,
+       "ratePct": 63
+      },
+      "사조씨푸드": {
+       "available": 21.0,
+       "consumed": 21.4,
+       "remaining": -0.4,
+       "ratePct": 102
+      },
+      "사조오양": {
+       "available": 26.1,
+       "consumed": 52.8,
+       "remaining": -26.7,
+       "ratePct": 202
+      },
+      "신라교역": {
+       "available": 44.0,
+       "consumed": 26.91,
+       "remaining": 17.09,
+       "ratePct": 61
+      }
+     },
+     "total": {
+      "available": 364.1,
+      "consumed": 326.39,
+      "remaining": 37.71,
+      "ratePct": 90
+     }
+    },
+    "Kiribati": {
+     "companies": {
+      "동원산업": {
+       "available": 942.0,
+       "consumed": 904.58,
+       "remaining": 37.42,
+       "ratePct": 96
+      },
+      "사조산업": {
+       "available": 424.0,
+       "consumed": 409.88,
+       "remaining": 14.12,
+       "ratePct": 97
+      },
+      "사조씨푸드": {
+       "available": 80.0,
+       "consumed": 84.49,
+       "remaining": -4.49,
+       "ratePct": 106
+      },
+      "사조오양": {
+       "available": 80.0,
+       "consumed": 80.54,
+       "remaining": -0.54,
+       "ratePct": 101
+      },
+      "신라교역": {
+       "available": 764.0,
+       "consumed": 748.25,
+       "remaining": 15.75,
+       "ratePct": 98
+      }
+     },
+     "total": {
+      "available": 2290.0,
+      "consumed": 2227.74,
+      "remaining": 62.26,
+      "ratePct": 97
+     }
+    },
+    "Tuvalu": {
+     "companies": {
+      "동원산업": {
+       "available": 166.0,
+       "consumed": 118.52,
+       "remaining": 47.48,
+       "ratePct": 71
+      },
+      "사조산업": {
+       "available": 105.0,
+       "consumed": 102.73,
+       "remaining": 2.27,
+       "ratePct": 98
+      },
+      "사조씨푸드": {
+       "available": 22.0,
+       "consumed": 15.35,
+       "remaining": 6.65,
+       "ratePct": 70
+      },
+      "사조오양": {
+       "available": 22.0,
+       "consumed": 15.25,
+       "remaining": 6.75,
+       "ratePct": 69
+      },
+      "신라교역": {
+       "available": 102.0,
+       "consumed": 100.22,
+       "remaining": 1.78,
+       "ratePct": 98
+      }
+     },
+     "total": {
+      "available": 417.0,
+      "consumed": 352.07,
+      "remaining": 64.93,
+      "ratePct": 84
+     }
+    },
+    "Nauru": {
+     "companies": {
+      "동원산업": {
+       "available": 218.0,
+       "consumed": 183.89,
+       "remaining": 34.11,
+       "ratePct": 84
+      },
+      "사조산업": {
+       "available": 88.0,
+       "consumed": 65.61,
+       "remaining": 22.39,
+       "ratePct": 75
+      },
+      "사조씨푸드": {
+       "available": 15.0,
+       "consumed": 15.32,
+       "remaining": -0.32,
+       "ratePct": 102
+      },
+      "사조오양": {
+       "available": 15.0,
+       "consumed": 16.72,
+       "remaining": -1.72,
+       "ratePct": 111
+      },
+      "신라교역": {
+       "available": 142.0,
+       "consumed": 124.1,
+       "remaining": 17.9,
+       "ratePct": 87
+      }
+     },
+     "total": {
+      "available": 478.0,
+      "consumed": 405.64,
+      "remaining": 72.36,
+      "ratePct": 85
+     }
+    },
+    "FSM": {
+     "companies": {
+      "동원산업": {
+       "available": 142.0,
+       "consumed": 130.12,
+       "remaining": 11.88,
+       "ratePct": 92
+      },
+      "사조산업": {
+       "available": 61.9,
+       "consumed": 39.49,
+       "remaining": 22.41,
+       "ratePct": 64
+      },
+      "사조씨푸드": {
+       "available": 12.0,
+       "consumed": 0.0,
+       "remaining": 12.0,
+       "ratePct": 0
+      },
+      "사조오양": {
+       "available": 12.0,
+       "consumed": 7.79,
+       "remaining": 4.21,
+       "ratePct": 65
+      },
+      "신라교역": {
+       "available": 49.0,
+       "consumed": 14.84,
+       "remaining": 34.16,
+       "ratePct": 30
+      }
+     },
+     "total": {
+      "available": 280.0,
+      "consumed": 192.24,
+      "remaining": 87.76,
+      "ratePct": 69
+     }
+    }
+   }
+  }
+ }
+}

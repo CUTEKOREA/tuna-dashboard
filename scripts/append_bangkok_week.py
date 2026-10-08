@@ -75,10 +75,12 @@ def calc_yearly_year(series: list[dict], tm: dict, year: int) -> dict:
         "bkk_days_avg": round(mean(days), 1),
         "unload_total": sum(m["total_calc"] for m in months.values()),
         "ships_total": sum(m["ships_calc"] for m in months.values()),
-        "rej_cases": sum(r["rej_cases"] for r in rows),
-        "rej_mt": round(sum(r["rej_mt"] for r in rows), 1),
-        "salt_cases": sum(r["salt_cases"] for r in rows),
-        "salt_usd": sum(r["salt_usd"] for r in rows),
+        # None 은 «그 주 보고서에 절이 없었다» 는 뜻이다(2026-09-16 High SALT 누락).
+        # 0 으로 바꾸면 «0건 보고» 가 되므로, 합산에서 빼고 보고된 주만 더한다.
+        "rej_cases": sum(r["rej_cases"] or 0 for r in rows),
+        "rej_mt": round(sum(r["rej_mt"] or 0 for r in rows), 1),
+        "salt_cases": sum(r["salt_cases"] or 0 for r in rows),
+        "salt_usd": sum(r["salt_usd"] or 0 for r in rows),
     }
 
 
@@ -292,9 +294,10 @@ def main() -> None:
     # claimsYear: 발표 합계·주차만 기계 증분 — unique(원장 xlsx dedup)는 원장 갱신 전까지 유지
     cy = d["claimsYear"][str(year)]
     cy["weeks"] += 1
-    cy["salt_published"] += week["salt_cases"]
-    cy["salt_usd_published"] += week["salt_usd"]
-    cy["rej_published"] += week["rej_cases"]
+    # 절이 없던 주(None)는 더하지 않는다 - 0 건 보고와 구분한다
+    cy["salt_published"] += week["salt_cases"] or 0
+    cy["salt_usd_published"] += week["salt_usd"] or 0
+    cy["rej_published"] += week["rej_cases"] or 0
     if week["salt_cases"]:
         cy["weeks_with_salt"] += 1
     if week["rej_cases"]:
@@ -308,6 +311,8 @@ def main() -> None:
         if where == f"{key} 물량":
             continue  # 이번 주 값으로 재판정 (아래에서 다시 추가)
         if where == f"{year}년 누계표 물량":
+            continue
+        if where.startswith(f"{year}년 누계표 ") and where.split("누계표 ", 1)[1] in TRADERS:
             continue
         new_mismatch.append(entry)
     tm_row = d["traderMonthly"][key]
@@ -324,6 +329,20 @@ def main() -> None:
             "reported": yr_reported, "diff": ta.get("total", 0) - yr_reported,
             "source_file": date,
         })
+    # 트레이더별 누계도 대조한다. 총계만 보면 한 트레이더 칸이 틀려도 다른 칸과
+    # 상쇄되어 지나간다 — 2026-09-02 보고의 TRI MARINE 45,463(실제 56,463)이 그랬다.
+    for trader in TRADERS:
+        if trader not in spec["trader_year_reported"]:
+            continue
+        reported = spec["trader_year_reported"][trader]
+        calc = ta.get(trader)
+        where = f"{year}년 누계표 {trader}"
+        new_mismatch = [e for e in new_mismatch if e["where"] != where]
+        if calc != reported:
+            new_mismatch.append({
+                "where": where, "calc": calc, "reported": reported,
+                "diff": (calc or 0) - reported, "source_file": date,
+            })
     d["mismatch"] = new_mismatch
 
     # meta

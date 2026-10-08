@@ -1,0 +1,108 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-bumblebee-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c04",
+   "sid": "s4",
+   "kind": "chart",
+   "ord": 235,
+   "caption": "총자산은 2018년 12월 31일 기준이고 채무 잔액은 2019년 11월 21일 신청일 기준이다. 기준일이 다르다. 같은 시점의 대차대조표가 아니다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 720 300\" width=\"100%\" role=\"img\" preserveAspectRatio=\"xMidYMid meet\" style=\"max-width:100%;height:auto;display:block\"><text x=\"150.0\" y=\"32.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.13em\">US$ 천 · Dkt. 17 ¶31 · Dkt. 12 ¶23</text><rect x=\"150\" y=\"52\" width=\"440\" height=\"26\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".35\"/><rect x=\"150\" y=\"52\" width=\"440.0\" height=\"26\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\"/><text x=\"600.0\" y=\"72.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">약 1,000,000</text><text x=\"140.0\" y=\"72.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">총자산 (2018-12-31)</text><rect x=\"150\" y=\"94\" width=\"440\" height=\"20\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".35\"/><rect x=\"150\" y=\"94\" width=\"285.7\" height=\"20\" rx=\"2\" fill=\"var(--atl,#1F3A54)\"/><text x=\"600.0\" y=\"108.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink,#14181D);font-variant-numeric:tabular-nums\">649,234</text><text x=\"140.0\" y=\"108.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10px;fill:var(--ink,#14181D);font-variant-numeric:tabular-nums\">선순위 텀론</text><rect x=\"150\" y=\"125\" width=\"440\" height=\"20\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".35\"/><rect x=\"150\" y=\"125\" width=\"84.7\" height=\"20\" rx=\"2\" fill=\"var(--atl,#1F3A54)\"/><text x=\"600.0\" y=\"139.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">192,420</text><text x=\"140.0\" y=\"139.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">ABL</text><rect x=\"150\" y=\"156\" width=\"440\" height=\"20\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".35\"/><rect x=\"150\" y=\"156\" width=\"33.9\" height=\"20\" rx=\"2\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"600.0\" y=\"170.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">77,000</text><text x=\"140.0\" y=\"170.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">일반 매입채무</text><rect x=\"150\" y=\"187\" width=\"440\" height=\"20\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".35\"/><rect x=\"150\" y=\"187\" width=\"22.4\" height=\"20\" rx=\"2\" fill=\"var(--ocre,#A8600F)\"/><text x=\"600.0\" y=\"201.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ocre,#A8600F);font-weight:600;font-variant-numeric:tabular-nums\">51,000</text><text x=\"140.0\" y=\"201.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10px;fill:var(--ocre,#A8600F);font-variant-numeric:tabular-nums\">└ 그중 FCF 앞</text><rect x=\"150\" y=\"218\" width=\"440\" height=\"20\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".35\"/><rect x=\"150\" y=\"218\" width=\"14.3\" height=\"20\" rx=\"2\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"600.0\" y=\"232.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">32,462</text><text x=\"140.0\" y=\"232.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">조기상환 프리미엄</text><line x1=\"150\" y1=\"253\" x2=\"590\" y2=\"253\" stroke=\"var(--rule-2,#BDC0BA)\" stroke-width=\".9\"/><text x=\"150.0\" y=\"268.0\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:7.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">0</text><text x=\"590.0\" y=\"268.0\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:7.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">1,000,000</text><text x=\"150.0\" y=\"287.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:9px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">총부채도 약 1,000,000. 순자산이 사실상 0 인 채로 들어갔다</text></svg>"
+  },
+  {
+   "stage": "c07",
+   "sid": "s7",
+   "kind": "chart",
+   "ord": 204,
+   "caption": "위는 매매계약 §3.2와 첫날 진술서 ¶66이 적는 구성, 아래는 매체가 적는 값이다. 점선 상자는 길이가 아니라 숫자로 읽어야 한다. 9억 2,800만은 9억 2,560만보다 0.26% 클 뿐이라 막대로는 구별되지 않는다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 720 254\" width=\"100%\" role=\"img\" preserveAspectRatio=\"xMidYMid meet\" style=\"max-width:100%;height:auto;display:block\"><text x=\"132.0\" y=\"34.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.14em\">US$ 천 · 총 925,600 = 100%</text><text x=\"120.0\" y=\"82.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">계약서 §3.2 · ¶66</text><rect x=\"132.0\" y=\"62\" width=\"167.6\" height=\"30\" rx=\"2\" fill=\"var(--ocre,#A8600F)\"/><text x=\"215.8\" y=\"81.0\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--card,#FCFCFA);font-weight:600;font-variant-numeric:tabular-nums\">275,000</text><rect x=\"299.6\" y=\"62\" width=\"386.1\" height=\"30\" rx=\"2\" fill=\"var(--atl,#1F3A54)\"/><text x=\"492.6\" y=\"81.0\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--card,#FCFCFA);font-weight:600;font-variant-numeric:tabular-nums\">633,600</text><rect x=\"685.6\" y=\"62\" width=\"10.4\" height=\"30\" rx=\"2\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"120.0\" y=\"160.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">매체가 적는 것</text><rect x=\"132.0\" y=\"140\" width=\"565.5\" height=\"30\" rx=\"2\" fill=\"none\" stroke=\"var(--ocre,#A8600F)\" stroke-width=\"1.3\" stroke-dasharray=\"5 3\"/><text x=\"414.7\" y=\"160.0\" text-anchor=\"middle\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:11px;fill:var(--ocre,#A8600F);font-weight:600;font-variant-numeric:tabular-nums\">「$928M · 전부 현금」  928,000</text><line x1=\"215.8\" y1=\"94\" x2=\"215.8\" y2=\"104\" stroke=\"var(--rule-2,#BDC0BA)\" stroke-width=\".8\"/><text x=\"215.8\" y=\"116.0\" text-anchor=\"middle\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:8.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">현금</text><text x=\"215.8\" y=\"129.0\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ocre,#A8600F);font-weight:600;font-variant-numeric:tabular-nums\">29.71%</text><line x1=\"492.6\" y1=\"94\" x2=\"492.6\" y2=\"104\" stroke=\"var(--rule-2,#BDC0BA)\" stroke-width=\".8\"/><text x=\"492.6\" y=\"116.0\" text-anchor=\"middle\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:8.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">롤오버 텀론: 현금 아님</text><text x=\"492.6\" y=\"129.0\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9.5px;fill:var(--ink-2,#424A53);font-weight:600;font-variant-numeric:tabular-nums\">68.45%</text><path d=\"M690.8,94 V186 H692\" fill=\"none\" stroke=\"var(--rule-2,#BDC0BA)\" stroke-width=\".8\" stroke-dasharray=\"2 2\"/><text x=\"692.0\" y=\"182.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:8.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">DOJ 벌금 인수: 현금 아님 · 17,000 · 1.84%</text><line x1=\"132\" y1=\"220\" x2=\"696\" y2=\"220\" stroke=\"var(--rule-2,#BDC0BA)\" stroke-width=\".9\"/><text x=\"132.0\" y=\"236.0\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:7.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">0</text><text x=\"696.0\" y=\"236.0\" text-anchor=\"middle\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:7.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">925,600</text></svg>"
+  },
+  {
+   "stage": "c13",
+   "sid": "s13",
+   "kind": "shot",
+   "ord": 199,
+   "caption": "Walmart 1P 상품 상세 이미지 여덟. 위 네 장이 알바코어(solid white)와 파우치, 아래 네 장이 라이트미트(chunk light)다. 같은 5 oz 캔인데 알바코어가 라이트미트의 1.91배다.",
+   "alt": "Bumble Bee Solid White 5 oz · $2.18",
+   "src": "/data/companies/figures/bumblebee/d4961fb925c6.jpg"
+  },
+  {
+   "stage": "c13",
+   "sid": "s13",
+   "kind": "shot",
+   "ord": 199,
+   "caption": "Walmart 1P 상품 상세 이미지 여덟. 위 네 장이 알바코어(solid white)와 파우치, 아래 네 장이 라이트미트(chunk light)다. 같은 5 oz 캔인데 알바코어가 라이트미트의 1.91배다.",
+   "alt": "StarKist Solid White 5 oz · $2.00",
+   "src": "/data/companies/figures/bumblebee/adbef38377a7.jpg"
+  },
+  {
+   "stage": "c13",
+   "sid": "s13",
+   "kind": "shot",
+   "ord": 199,
+   "caption": "Walmart 1P 상품 상세 이미지 여덟. 위 네 장이 알바코어(solid white)와 파우치, 아래 네 장이 라이트미트(chunk light)다. 같은 5 oz 캔인데 알바코어가 라이트미트의 1.91배다.",
+   "alt": "Great Value Solid White 5 oz · $2.08",
+   "src": "/data/companies/figures/bumblebee/03e40b6a598c.jpg"
+  },
+  {
+   "stage": "c13",
+   "sid": "s13",
+   "kind": "shot",
+   "ord": 199,
+   "caption": "Walmart 1P 상품 상세 이미지 여덟. 위 네 장이 알바코어(solid white)와 파우치, 아래 네 장이 라이트미트(chunk light)다. 같은 5 oz 캔인데 알바코어가 라이트미트의 1.91배다.",
+   "alt": "Bumble Bee 파우치 2.5 oz · $1.16",
+   "src": "/data/companies/figures/bumblebee/fd2b005ed3e9.jpg"
+  },
+  {
+   "stage": "c13",
+   "sid": "s13",
+   "kind": "shot",
+   "ord": 199,
+   "caption": "Walmart 1P 상품 상세 이미지 여덟. 위 네 장이 알바코어(solid white)와 파우치, 아래 네 장이 라이트미트(chunk light)다. 같은 5 oz 캔인데 알바코어가 라이트미트의 1.91배다.",
+   "alt": "Bumble Bee Chunk Light 5 oz · $1.14",
+   "src": "/data/companies/figures/bumblebee/01986cdd4dda.jpg"
+  },
+  {
+   "stage": "c13",
+   "sid": "s13",
+   "kind": "shot",
+   "ord": 199,
+   "caption": "Walmart 1P 상품 상세 이미지 여덟. 위 네 장이 알바코어(solid white)와 파우치, 아래 네 장이 라이트미트(chunk light)다. 같은 5 oz 캔인데 알바코어가 라이트미트의 1.91배다.",
+   "alt": "StarKist Chunk Light 5 oz · $1.14",
+   "src": "/data/companies/figures/bumblebee/06b5e09c5645.jpg"
+  },
+  {
+   "stage": "c13",
+   "sid": "s13",
+   "kind": "shot",
+   "ord": 199,
+   "caption": "Walmart 1P 상품 상세 이미지 여덟. 위 네 장이 알바코어(solid white)와 파우치, 아래 네 장이 라이트미트(chunk light)다. 같은 5 oz 캔인데 알바코어가 라이트미트의 1.91배다.",
+   "alt": "Chicken of the Sea Chunk Light 5 oz · $1.00",
+   "src": "/data/companies/figures/bumblebee/3b93461c0c11.jpg"
+  },
+  {
+   "stage": "c13",
+   "sid": "s13",
+   "kind": "shot",
+   "ord": 199,
+   "caption": "Walmart 1P 상품 상세 이미지 여덟. 위 네 장이 알바코어(solid white)와 파우치, 아래 네 장이 라이트미트(chunk light)다. 같은 5 oz 캔인데 알바코어가 라이트미트의 1.91배다.",
+   "alt": "Great Value Chunk Light 5 oz · $0.87",
+   "src": "/data/companies/figures/bumblebee/3738945ca230.jpg"
+  },
+  {
+   "stage": "c14",
+   "sid": "s14",
+   "kind": "chart",
+   "ord": 183,
+   "caption": "알바코어 셋과 라이트미트 넷. 구릿빛이 Bumble Bee다. 알바코어에서는 위, 라이트미트에서는 StarKist와 같은 자리에 있다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 720 296\" width=\"100%\" role=\"img\" preserveAspectRatio=\"xMidYMid meet\" style=\"max-width:100%;height:auto;display:block\"><text x=\"176.0\" y=\"24.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.13em\">Walmart 1P 단품 · 5 oz · US$/kg 순중량 · 2026-09-06</text><rect x=\"176\" y=\"46\" width=\"356\" height=\"17\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".45\"/><rect x=\"176\" y=\"46\" width=\"342.2\" height=\"17\" rx=\"2\" fill=\"var(--ocre,#A8600F)\"/><text x=\"166.0\" y=\"59.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink,#14181D);font-weight:600;font-variant-numeric:tabular-nums\">Bumble Bee</text><text x=\"166.0\" y=\"59.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\"></text><text x=\"542.0\" y=\"59.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--ink,#14181D);font-weight:600;font-variant-numeric:tabular-nums\">15.38</text><text x=\"712.0\" y=\"59.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">$2.18</text><rect x=\"176\" y=\"73\" width=\"356\" height=\"17\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".45\"/><rect x=\"176\" y=\"73\" width=\"326.4\" height=\"17\" rx=\"2\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"166.0\" y=\"86.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">Great Value (PB)</text><text x=\"166.0\" y=\"86.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\"></text><text x=\"542.0\" y=\"86.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">14.67</text><text x=\"712.0\" y=\"86.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">$2.08</text><rect x=\"176\" y=\"100\" width=\"356\" height=\"17\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".45\"/><rect x=\"176\" y=\"100\" width=\"313.9\" height=\"17\" rx=\"2\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"166.0\" y=\"113.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">StarKist</text><text x=\"166.0\" y=\"113.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\"></text><text x=\"542.0\" y=\"113.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">14.11</text><text x=\"712.0\" y=\"113.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">$2.00</text><line x1=\"26\" y1=\"136\" x2=\"652\" y2=\"136\" stroke=\"var(--rule,#D5D7D2)\" stroke-width=\".8\" stroke-dasharray=\"4 3\"/><rect x=\"176\" y=\"154\" width=\"356\" height=\"17\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".45\"/><rect x=\"176\" y=\"154\" width=\"178.9\" height=\"17\" rx=\"2\" fill=\"var(--ocre,#A8600F)\"/><text x=\"166.0\" y=\"167.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink,#14181D);font-weight:600;font-variant-numeric:tabular-nums\">Bumble Bee</text><text x=\"166.0\" y=\"167.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\"></text><text x=\"542.0\" y=\"167.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--ink,#14181D);font-weight:600;font-variant-numeric:tabular-nums\"> 8.04</text><text x=\"712.0\" y=\"167.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">$1.14</text><rect x=\"176\" y=\"181\" width=\"356\" height=\"17\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".45\"/><rect x=\"176\" y=\"181\" width=\"178.9\" height=\"17\" rx=\"2\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"166.0\" y=\"194.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">StarKist</text><text x=\"166.0\" y=\"194.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\"></text><text x=\"542.0\" y=\"194.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\"> 8.04</text><text x=\"712.0\" y=\"194.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">$1.14</text><rect x=\"176\" y=\"208\" width=\"356\" height=\"17\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".45\"/><rect x=\"176\" y=\"208\" width=\"156.9\" height=\"17\" rx=\"2\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"166.0\" y=\"221.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">Chicken of the Sea</text><text x=\"166.0\" y=\"221.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\"></text><text x=\"542.0\" y=\"221.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\"> 7.05</text><text x=\"712.0\" y=\"221.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">$1.00</text><rect x=\"176\" y=\"235\" width=\"356\" height=\"17\" rx=\"2\" fill=\"var(--atl-soft,#DCE5EE)\" opacity=\".45\"/><rect x=\"176\" y=\"235\" width=\"136.6\" height=\"17\" rx=\"2\" fill=\"var(--rule-2,#BDC0BA)\"/><text x=\"166.0\" y=\"248.0\" text-anchor=\"end\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:10.5px;fill:var(--ink-2,#424A53);font-variant-numeric:tabular-nums\">Great Value (PB)</text><text x=\"166.0\" y=\"248.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:8px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\"></text><text x=\"542.0\" y=\"248.0\" text-anchor=\"start\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:10.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\"> 6.14</text><text x=\"712.0\" y=\"248.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:9px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">$0.87</text><text x=\"4.0\" y=\"59.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:8.5px;fill:var(--ink-3,#6E767F);font-weight:600;font-variant-numeric:tabular-nums\">알바코어</text><text x=\"4.0\" y=\"167.0\" text-anchor=\"start\" style=\"font-family:var(--sans,'Noto Sans KR',system-ui,sans-serif);font-size:8.5px;fill:var(--ink-3,#6E767F);font-weight:600;font-variant-numeric:tabular-nums\">라이트미트</text><line x1=\"176\" y1=\"258\" x2=\"532\" y2=\"258\" stroke=\"var(--rule-2,#BDC0BA)\" stroke-width=\".9\"/><text x=\"532.0\" y=\"274.0\" text-anchor=\"end\" style=\"font-family:var(--mono,'IBM Plex Mono',ui-monospace,monospace);font-size:7.5px;fill:var(--ink-3,#6E767F);font-variant-numeric:tabular-nums\">고형량 아님: 순중량 기준</text></svg>"
+  }
+ ]
+}

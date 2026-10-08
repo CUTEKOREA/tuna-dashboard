@@ -26,7 +26,22 @@ const STAGE = SHRIMP_NARRATIVES.find((n) => n.key === 's05');
 describe('새우 05단계 - 아르헨티나', () => {
   it('단계가 04와 바스켓 사이에 놓인다', () => {
     const keys = SHRIMP_NARRATIVES.map((n) => n.key);
-    expect(keys).toEqual(['s01', 's02', 's03', 's04', 's05', 's06', 'x01']);
+    expect(keys).toEqual([
+      's01',
+      's02',
+      's03',
+      's04',
+      's05',
+      's06',
+      'x01',
+      's07',
+      's08',
+      's09',
+      's10',
+      's11',
+      's12',
+      's13',
+    ]);
   });
 
   it('브리핑에 이 단계 항목이 있다', () => {
@@ -64,12 +79,18 @@ describe('새우 05단계 - 아르헨티나', () => {
     expect(argentinaMeta.recordCaveat).toMatch(/물량이 아니라/);
   });
 
-  /** 베트남 0건은 「없다」가 아니라 「확인되지 않았다」이다. 둘을 섞으면 사실이 뒤집힌다. */
-  it('베트남은 0건이지만 부재가 아니라 미입증으로 표기된다', () => {
+  /**
+   * 베트남 0건은 2026-08 화면 조회 한 번의 값이다. 2026-09 조달조사가 식약처 원장 수출국 칸으로
+   * 다시 세자 아르헨티나 원산 가공은 인니 169 · 태국 148 · 중국 51 · 베트남 5건이었다.
+   * 차트 데이터(화면 조회)는 그대로 두되, 서술이 「베트남 미입증」에 머물지 않고 원장 값과
+   * 조회 방식 차이를 함께 적는지 지킨다. (2026-09-14 적대 검증 정정)
+   */
+  it('화면 조회의 베트남 0건을 원장 건수와 섞지 않고 함께 적는다', () => {
     const vn = argentinaRoutes.find((r) => r.국가 === '베트남');
     expect(vn?.건수).toBe(0);
-    expect(vn?.검증).toBe('미입증');
-    expect(STAGE?.paragraphs.join(' ')).toMatch(/입증되지 않았다는 뜻/);
+    const body = STAGE?.paragraphs.join(' ') ?? '';
+    expect(body).toMatch(/세 번째 경로는 베트남이 아니라 중국/);
+    expect(body).toMatch(/조회 방식이 달라/);
   });
 
   it('아르헨티나 몫이 보고서의 3.65%·5.74%와 맞는다', () => {
@@ -129,7 +150,8 @@ describe('새우 05단계 - 아르헨티나', () => {
   it('s05 슬롯이 사람이 읽을 수치를 실제로 그려낸다', () => {
     const slots = SHRIMP_CHART_SLOTS.s05;
     expect(slots).toBeTruthy();
-    expect(slots.length).toBe(4);
+    // 2026-09-13 해수부 무역수지 스냅숏 슬롯이 앞에 하나 붙어 5개다.
+    expect(slots.length).toBe(5);
 
     const html = slots
       .map((s) => renderToStaticMarkup(React.createElement(React.Fragment, null, s.render())))

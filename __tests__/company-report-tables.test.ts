@@ -15,23 +15,28 @@ import {
   tablesForStage,
 } from '@/lib/data/company-report-tables';
 
-const 회사 = ['frinsa', 'thaiunion', 'albacora', 'fcf', 'itochu', 'bolton', 'jais'];
+/** 개별 검사가 이름을 대는 자리에만 쓴다. **편 목록의 정본은 로더다** — 아래를 보라. */
+const 회사 = ['frinsa', 'thaiunion', 'albacora', 'fcf', 'itochu', 'bolton', 'jais', 'frabelle', 'jealsa'];
 
 describe('인테이크 구성', () => {
-  it('일곱 편이 전부 있다', () => {
-    expect(REPORT_TABLE_COMPANIES.sort()).toEqual([...회사].sort());
+  it('앞 편이 하나도 빠지지 않았다', () => {
+    // ⚠ 편 목록을 리터럴로 적지 마라. 여기에 아홉 편을 박아 뒀더니 Nauterra(Ⅹ)가
+    // 로더에서 통째로 빠졌는데도 초록으로 지나갔다. 하한과 포함관계만 본다.
+    // 디스크의 JSON 과 로더의 대조는 `company-report-intake-complete` 가 맡는다.
+    for (const c of 회사) expect(REPORT_TABLE_COMPANIES, c).toContain(c);
+    expect(REPORT_TABLE_COMPANIES.length).toBeGreaterThanOrEqual(회사.length);
   });
 
   it('빈 회사가 없다', () => {
-    for (const c of 회사) expect(reportTables(c).length, c).toBeGreaterThan(0);
+    for (const c of REPORT_TABLE_COMPANIES) expect(reportTables(c).length, c).toBeGreaterThan(0);
   });
 
-  it('표 120개·칸 2,200개를 밑돌지 않는다', () => {
-    // 커버리지가 조용히 줄어드는 것을 막는 하한선이다. 현재 표 120개 · 칸 2,226개.
+  it('표 180개·칸 3,500개를 밑돌지 않는다', () => {
+    // 커버리지가 조용히 줄어드는 것을 막는 하한선이다. 현재 아홉 편 합산 표 182개 · 칸 3,526개.
     const 표 = 회사.reduce((a, c) => a + reportTables(c).length, 0);
     const 칸 = 회사.reduce((a, c) => a + cellCount(c), 0);
-    expect(표).toBeGreaterThanOrEqual(120);
-    expect(칸).toBeGreaterThanOrEqual(2200);
+    expect(표).toBeGreaterThanOrEqual(180);
+    expect(칸).toBeGreaterThanOrEqual(3500);
   });
 });
 
@@ -69,7 +74,7 @@ describe('표가 표로 남아 있는가', () => {
 describe('단계 배치', () => {
   it.each(회사)('%s - 모든 표가 c0N 단계에 붙는다', (c) => {
     for (const t of reportTables(c)) {
-      expect(t.stage, `${t.sid} ${t.title}`).toMatch(/^c0[1-8]$/);
+      expect(t.stage, `${t.sid} ${t.title}`).toMatch(/^c(0[1-9]|1[0-9])$/);
     }
   });
 

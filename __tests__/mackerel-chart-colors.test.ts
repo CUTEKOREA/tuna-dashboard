@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-import { HUB_ID } from '../lib/chart-palette';
+import { CHART_ROLE, SERIES } from '../lib/chart-palette';
 import { MACKEREL_ACCENT, MACKEREL_ROLE } from '../lib/mackerel-chart-colors';
 
 const WHITE = '#ffffff';
@@ -22,14 +22,11 @@ function contrastRatio(foreground: string, background: string): number {
 }
 
 describe('고등어 차트 색', () => {
-  it('액센트가 물량색이고 오징어 보라·청록 잔여가 아니다', () => {
-    expect(MACKEREL_ACCENT).toBe(MACKEREL_ROLE.volume);
-    expect(MACKEREL_ROLE.volume).toBe('#0369a1');
-    expect(MACKEREL_ROLE.highlight).toBe('#be123c');
-    expect(MACKEREL_ROLE.second).toBe(HUB_ID.sey);
-    expect(MACKEREL_ROLE.volume).not.toBe('#7c3aed');
-    expect(MACKEREL_ROLE.volume).not.toBe('#0e7490');
-    expect(MACKEREL_ROLE.highlight).not.toBe('#e11d48');
+  it('데이터 색은 공통 역할이고 고등어 톤은 차트 밖 액센트로만 남는다', () => {
+    // 2026-09-11 팔레트 일원화 — 품목 시그니처는 룰북 D-04대로 히어로·섹션 머리에만 쓴다.
+    expect(MACKEREL_ROLE).toEqual(CHART_ROLE);
+    expect(MACKEREL_ACCENT).toBe('#0369a1');
+    expect(SERIES).not.toContain(MACKEREL_ACCENT);
   });
 
   it('물량·강조가 흰 지면에서 그래픽 대비 3:1을 넘는다', () => {

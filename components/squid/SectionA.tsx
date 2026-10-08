@@ -28,10 +28,11 @@ import SquidSection from './SquidSection';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import type { SquidSource, SquidV5, SquidWidget } from './types';
 import { koreanUiText, squidUnitLabel } from './localization';
+import { CHART_ROLE } from '@/lib/chart-palette';
+import { colorForSpecies } from '@/lib/squid-chart-colors';
 
 const AXIS = '#64748b';
 const BODY = '#cbd5e1';
-const SQUID = '#8b5cf6';
 
 const TOOLTIP_STYLE: React.CSSProperties = {
   background: '#0f172a',
@@ -182,7 +183,7 @@ const QuotaGauge: React.FC<{ data: Record<string, any> }> = ({ data }) => {
                 <XAxis type="number" tick={{ fill: AXIS, fontSize: 10 }} tickFormatter={fmtMan} axisLine={{ stroke: AXIS }} tickLine={false} />
                 <YAxis type="category" dataKey="name" width={96} tick={{ fill: BODY, fontSize: 10 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<SegTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
-                <Bar dataKey="capture" stackId="a" fill={SQUID} name="포획" />
+                <Bar dataKey="capture" stackId="a" fill={CHART_ROLE.volume} name="포획" />
                 <Bar dataKey="balance" stackId="a" fill="rgba(var(--w-slate-400-rgb), 0.18)" name="잔여" radius={[0, 3, 3, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
@@ -208,11 +209,12 @@ const QuotaGauge: React.FC<{ data: Record<string, any> }> = ({ data }) => {
 
 // ─── A_species_production_split ──────────────────────────────────────────────
 
+// 색은 lib/squid-chart-colors 가 정본 — /squid 도 다른 오징어 화면과 같은 종에 같은 색을 쓴다.
 const SPECIES_META: Record<string, { ko: string; color: string }> = {
-  'Todarodes pacificus': { ko: '살오징어', color: SQUID },
-  'Illex argentinus': { ko: '아르헨티나 일렉스', color: '#38bdf8' },
-  'Dosidicus gigas': { ko: '대왕오징어', color: '#f59e0b' },
-  'Doryteuthis gahi': { ko: '포클랜드 로리고', color: '#10b981' },
+  'Todarodes pacificus': { ko: '살오징어', color: colorForSpecies('살오징어') },
+  'Illex argentinus': { ko: '아르헨티나 일렉스', color: colorForSpecies('아르헨티나오징어') },
+  'Dosidicus gigas': { ko: '대왕오징어', color: colorForSpecies('대왕오징어') },
+  'Doryteuthis gahi': { ko: '포클랜드 로리고', color: colorForSpecies('파타고니아오징어') },
 };
 
 const ProdTooltip: React.FC<any> = ({ active, payload, label }) => {
@@ -320,7 +322,7 @@ const EffortLimitChart: React.FC<{ data: any[] }> = ({ data }) => {
           <XAxis dataKey="ko" tick={{ fill: BODY, fontSize: 11 }} axisLine={{ stroke: AXIS }} tickLine={false} />
           <YAxis tick={{ fill: AXIS, fontSize: 10 }} axisLine={false} tickLine={false} width={36} />
           <Tooltip content={<EffortTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
-          <Bar dataKey="vessel_limit" fill="var(--w-sky-400)" radius={[4, 4, 0, 0]} maxBarSize={56} name="척수 상한">
+          <Bar dataKey="vessel_limit" fill={CHART_ROLE.volume} radius={[4, 4, 0, 0]} maxBarSize={56} name="척수 상한">
             <LabelList dataKey="vessel_limit" position="top" style={{ fill: BODY, fontSize: 11, fontWeight: 700 }} formatter={(v: unknown) => `${v}척`} />
           </Bar>
         </BarChart>

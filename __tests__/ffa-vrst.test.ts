@@ -6,6 +6,8 @@
  *   ② 배 자신의 중앙값만 기준 삼으면 상시 절반 보고하는 배가 만점을 받는다
  *   ③ 어창 용량은 ㎥ 와 t 가 섞여 있어 합칠 수 없다
  */
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -39,17 +41,31 @@ describe('FFA 집계 정합', () => {
     expect(topFlags(8).at(-1)?.국기).toBe('그 외');
   });
 
-  it('14일 구간이다', () => {
+  it('9월 전월 30일 구간이다', () => {
+    // 2026-09-07 에 주간(8/1~14) 판에서 월간 판으로 바꿨고, 2026-10-06 에 9월 월간판(9/1~30)을 넣었다.
+    // 9월판은 시트 이름이 FFAVMS_VRST_Report → VMSReport 로 바뀌어 머리글로 시트를 찾는다.
     expect(ffaDays).toHaveLength(ffaSummary.일수);
-    expect(ffaDays[0]).toBe('2026-08-01');
-    expect(ffaDays.at(-1)).toBe('2026-08-14');
+    expect(ffaSummary.일수).toBe(30);
+    expect(ffaDays[0]).toBe('2026-09-01');
+    expect(ffaDays.at(-1)).toBe('2026-09-30');
+    expect(ffaSummary.총척수).toBe(805);
   });
 
-  it('원본 집계 시트의 불일치를 숨기지 않는다', () => {
-    // FFA 가 붙여 둔 집계표는 중국 행의 선종 열 합이 1척 모자란다.
-    // 원표를 썼다는 사실과 함께 화면에 남아야 한다.
-    expect(ffaMeta.주의).toMatch(/중국/);
+  it('기간 이후 등록분을 집계에서 빼고 그 사실을 남긴다', () => {
+    // 명부는 추출 시점 기준이라 월말 직후 등록분이 함께 실린다. 보고할 날이 없으므로
+    // 총척수에서 빼되, 몇 척을 왜 뺐는지 화면에서 확인할 수 있어야 한다.
+    const excluded = ffaMeta.기간후등록제외 as string[] | undefined;
+    expect(Array.isArray(excluded)).toBe(true);
+    expect(excluded!.length).toBeGreaterThan(0);
+    for (const item of excluded!) expect(item).toMatch(/\(2026-10-0\d\)$/);
+  });
+
+  it('원본 집계 시트와의 대조 결과를 숨기지 않는다', () => {
+    // FFA 가 붙여 둔 집계표는 판마다 선종 열 합이 실제 척수와 어긋나기도 한다(8월판 피지·미국).
+    // 9월판은 어긋남이 없다 - 그때도 «일치했다»는 사실과 원표를 썼다는 사실이 남아야 한다.
+    expect(ffaMeta.주의).toMatch(/선종 열 합|일치한다/);
     expect(ffaMeta.주의).toMatch(/원표/);
+    expect(ffaMeta.주의).not.toMatch(/— \./);
   });
 
   it('측정 경계를 명시한다 - 자격이지 조업 실적이 아니다', () => {
@@ -134,5 +150,14 @@ describe('한국 선단', () => {
     for (const h of t) expect(h.단위).toBe('t');
     // 단위 경고가 살아 있어야 한다.
     expect(ffaMeta.단위경고).toMatch(/더하거나|합치/);
+  });
+});
+
+describe('선단 DB 탭 라벨', () => {
+  it('척수를 데이터에서 뽑는다 - 하드코딩하면 원자료가 바뀔 때 라벨만 남는다', () => {
+    // 2026-09-07: 주간(820척) → 월간(811척) 전환에서 라벨 두 곳이 820 을 계속 말했다.
+    const src = readFileSync(join(process.cwd(), 'components/PurseSeinerDashboard.tsx'), 'utf8');
+    expect(src).toContain('ffaSummary.총척수');
+    expect(src).not.toMatch(/FFA 조업허가·위치보고 \(\d/);
   });
 });

@@ -5,6 +5,9 @@
  * 그 축약형으로 갈려 일곱 장이 전부 다른 그림이 됐다. 나라를 못 읽는다는 지적을
  * 받고 나라당 한 벌로 묶었다. 회사가 늘 때 그 규칙이 다시 깨지는 것을 여기서 잡는다.
  */
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 import { describe, expect, it } from 'vitest';
 
 import { COMPANY_CARDS } from '@/components/market-understanding/CompanyAnatomyDashboard';
@@ -12,28 +15,60 @@ import { countryOf } from '@/components/market-understanding/CompanyGallery';
 
 describe('기업 해부 카드 뒷면', () => {
   it('같은 나라 카드는 문양과 잉크가 같다', () => {
-    const byCountry = new Map<string, { flagCss: string; backInk: string }>();
+    const byCountry = new Map<string, { flagSrc: string; backInk: string }>();
     for (const c of COMPANY_CARDS) {
       const k = countryOf(c);
       const seen = byCountry.get(k);
       if (!seen) {
-        byCountry.set(k, { flagCss: c.flagCss, backInk: c.backInk });
+        byCountry.set(k, { flagSrc: c.flagSrc, backInk: c.backInk });
         continue;
       }
-      expect(c.flagCss, `${k} - ${c.name} 문양이 같은 나라 다른 카드와 다르다`).toBe(seen.flagCss);
+      expect(c.flagSrc, `${k} - ${c.name} 문양이 같은 나라 다른 카드와 다르다`).toBe(seen.flagSrc);
       expect(c.backInk, `${k} - ${c.name} 잉크가 같은 나라 다른 카드와 다르다`).toBe(seen.backInk);
     }
   });
 
   it('나라가 다르면 문양도 다르다', () => {
     const perCountry = new Map<string, string>();
-    for (const c of COMPANY_CARDS) perCountry.set(countryOf(c), c.flagCss);
+    for (const c of COMPANY_CARDS) perCountry.set(countryOf(c), c.flagSrc);
     const css = [...perCountry.values()];
     expect(new Set(css).size, '두 나라가 같은 문양을 쓰고 있다').toBe(css.length);
   });
 
-  it('일곱 장이 다섯 나라에 들어간다', () => {
-    expect(COMPANY_CARDS).toHaveLength(7);
-    expect(new Set(COMPANY_CARDS.map(countryOf)).size).toBe(5);
+  it('카드마다 나라가 읽히고 문양이 붙어 있다', () => {
+    // ⚠ 장수를 리터럴로 적지 마라. 9 로 박아 뒀더니 열 번째 편이 붙었을 때
+    // 「카드가 깨졌다」가 아니라 「테스트가 낡았다」로 빌드가 멈췄다.
+    // 세어야 할 것은 장수가 아니라 **한 장도 빠짐없이 나라와 문양을 갖는가**다.
+    expect(COMPANY_CARDS.length).toBeGreaterThanOrEqual(9);
+    for (const c of COMPANY_CARDS) {
+      expect(countryOf(c), `${c.name} 나라를 못 읽는다`).toBeTruthy();
+      expect(c.flagSrc, `${c.name} 문양이 없다`).toBeTruthy();
+      expect(c.backInk, `${c.name} 잉크가 없다`).toBeTruthy();
+    }
+    // 로마숫자는 수록순이라 중복되면 안 된다.
+    const numerals = COMPANY_CARDS.map((c) => c.numeral);
+    expect(new Set(numerals).size, `로마숫자 중복: ${numerals.join(' ')}`).toBe(numerals.length);
+    // 나라 수는 카드 수보다 적다 — 스페인처럼 여러 장인 나라가 있다.
+    expect(new Set(COMPANY_CARDS.map(countryOf)).size).toBeLessThan(COMPANY_CARDS.length);
+  });
+});
+
+describe('KPI 소수 자릿수', () => {
+  // % 를 단위로 쓰는 KPI 가 decimals 를 안 주면 HeroZone 기본값 0 이 걸려
+  // 29.94% 가 화면에 「30」으로 나간다. 발행본과 카드가 다른 숫자를 말하게 된다.
+  // 2026-09-06 라이브에서 동원 3.54 → 4, 사조 29.94 → 30 으로 나가 있었다.
+  it('% 단위 KPI 는 decimals 를 명시한다', () => {
+    const src = readFileSync(
+      resolve(__dirname, '../components/market-understanding/CompanyAnatomyDashboard.tsx'),
+      'utf8',
+    );
+    const offenders: string[] = [];
+    // [^{}] 는 이미 개행을 포함한다. 예전 (?:[^{}]|[\r\n])*? 는 같은 문자를 두 갈래로
+    // 매칭해 역추적이 폭발했다 — 114KB 파일에서 6.6초, CI 에서 15초 타임아웃(2026-09-10 #1000 부터
+    // main 연속 실패). 매칭 결과는 동일하고(35건) 시간은 0ms 다.
+    for (const m of src.matchAll(/\{[^{}]*?unit:\s*[`'"]\(%[^{}]*?\}/g)) {
+      if (!/decimals\s*:/.test(m[0])) offenders.push(m[0].replace(/\s+/g, ' ').slice(0, 90));
+    }
+    expect(offenders).toEqual([]);
   });
 });

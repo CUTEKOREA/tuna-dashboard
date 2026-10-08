@@ -1,52 +1,111 @@
 /** COSMO 월간 업무보고 — 주간보고·월별 손익에 없는 수치만 담는다.
  *  손익(YoY·누적)은 cosmo_2026.json monthly 가 정본이므로 여기 중복하지 않는다.
- *  금액 단위는 원문 표기 그대로 «만불»(USD 1만). */
+ *  금액 단위는 원문 표기 그대로 «만불»(USD 1만).
+ *
+ *  교차검증(2026-09-30): 원문 2쪽 「영업실적(8월 누적)」 매출 4,241 · 매출이익 107 · 영업 −44 · 순 −189 만불은
+ *  cosmo_2026.json 8월 YTD 와 만불 반올림으로 일치한다. 「8월 당기순이익 −32만불(CBU −28, FBU −4)」의 CBU −28 은
+ *  8월 Comparative PnL 의 인쇄 당월값(−$281,193)을 옮긴 것이고, 당월 열 행 참조 오류를 복원한 값(−$285,697)은 −29 다. */
 export const cosmoMonthlyReport = {
   source: {
-    file: 'COSMO 월간보고 (8월).pptx',
-    title: 'COSMO 7월 업무보고',
-    reportDate: '2026-08-25',
-    sha256: '107b9ccac5e2e554d7c741af3fe21fe8dbe7d665b7a28664e69a437b1097c78d',
+    file: 'COSMO 월간보고 (9월).pptx',
+    title: 'COSMO 8월 업무보고',
+    reportDate: '2026-09-29',
+    sha256: '2bdf4ba2f5a01a37810e62eedf09b6bb9cd63096e324fcb29e64856bb1c2a0eb',
+    /** 같은 8월 업무보고의 docx 판본(2026-10-06 수령). 두 표(월별 처리량·컨테이너 출고)는 이미지로 들어 있고
+     *  숫자가 pptx 3쪽과 완전히 같다. docx 에만 있는 것은 클리너 채용·잔류 수치와 임금 협상 배경 서술이다. */
+    docx: {
+      file: 'COSMO 2026 08 업무보고.docx',
+      sha256: 'da4980278391fb1d2f6c9f880ed641ce74e877853dbc022e5dbd08aa82981cec',
+    },
   },
 
-  /** 유동성 — begin=1.1, end=7.31. 연초 현금부족 −562 는 원문 인쇄값(행 계산은 −561, 원문 반올림). */
+  /** 유동성 — begin=1.1, end=8.31. 현금부족은 원문 인쇄값이며 행 계산과 1 어긋난다
+   *  (연초 −562 대 −561, 8/31 −1,346 대 −1,347 — 원문 반올림). */
   liquidity: {
-    asOf: '7/31',
-    cash: { begin: 337, end: 493 },
-    ar: { begin: 207, end: 883 },
-    ap: { begin: 1105, end: 1942 },
-    shortfall: { begin: -562, end: -566 },
+    asOf: '8/31',
+    cash: { begin: 337, end: 536 },
+    ar: { begin: 207, end: 571 },
+    ap: { begin: 1105, end: 2454 },
+    shortfall: { begin: -562, end: -1346 },
   },
 
-  /** 재고자산 — begin=1.1, end=7.31 */
+  /** 재고자산 — begin=1.1, end=8.31 */
   inventory: {
-    asOf: '7/31',
-    raw: { begin: 366, end: 130 },
-    product: { begin: 1189, end: 1283 },
-    materials: { begin: 416, end: 371 },
-    total: { begin: 1971, end: 1784 },
+    asOf: '8/31',
+    raw: { begin: 366, end: 680 },
+    product: { begin: 1189, end: 1369 },
+    materials: { begin: 416, end: 412 },
+    total: { begin: 1971, end: 2461 },
   },
 
-  /** 월별 생산계획 개정 — 8월부터는 실적이 아니라 «실적/변경» 행의 변경계획이다 */
-  productionPlan: {
-    augustPlanMt: 2730,
-    augustRevisedMt: 2310,
-    annualPlanMt: 29000,
-    annualRevisedMt: 26118,
-    september: { days: 21, dailyMt: 110, totalMt: 2310 },
+  /** 생산지표 (8월 누적) — 전년 동기와 나란히 인쇄된 것은 월간보고뿐이다 */
+  productionYtd: {
+    through: 8,
+    days: { y2025: 155, y2026: 149 },
+    rawMt: { y2025: 19994, y2026: 16092 },
+    dailyMt: { y2025: 129, y2026: 108 },
+    yieldPct: { y2025: 42.15, y2026: 41.32 },
+    /** 원문 각주 「계획대비: 생산일수 −4일, 처리량 3,428톤 감소」 */
+    vsPlan: { days: -4, rawMt: -3428 },
   },
 
-  /** 수주 단가 인상 — 어가 상승분 반영, 인상 단가로 수주 진행 중. 리테일 Tender 참여는 당분간 자제. */
-  orderPrice: { fromUsd: 46.0, toUsd: 49.5, basis: '$2kg 기준' },
+  /** 월별 원어 처리량 (MT). 실적/변경 행은 1~8월이 실적, 9월 이후는 변경계획이다.
+   *  원문 「차이」의 «-» 는 계획과 같다는 뜻(0)이라 여기서는 두 행의 차로 계산한다.
+   *  일 처리량은 원문 인쇄값(정수 반올림)이며 처리량÷일수와 1톤 안에서 맞는다. */
+  rawThroughput: {
+    actualThrough: 8,
+    plan: [2375, 2500, 2570, 1875, 1750, 2860, 2860, 2730, 2520, 2640, 2520, 1800],
+    revised: [1540, 2191, 2126, 2128, 1640, 2364, 2414, 1690, 2034, 2420, 2310, 1650],
+    days: [16.5, 20, 19, 18, 14, 21.5, 21, 19, 21, 22, 21, 15],
+    dailyMt: [93, 110, 112, 118, 117, 110, 115, 89, 97, 110, 110, 110],
+    annual: { planMt: 29000, revisedMt: 24507, days: 228, dailyMt: 107 },
+  },
 
-  panofiPayable: { asOf: '7/31', usd10k: 1864 },
+  /** pptx 5쪽 「참고) 10월 생산 계획」 — 3쪽 표의 10월 변경계획과 같다(22일 × 110톤 = 2,420). */
+  nextMonthPlan: { month: 10, days: 22, dailyMt: 110, totalMt: 2420 },
 
-  rawStock: { asOf: '8/21', sjMt: 3396, yfMt: 26, mixMt: 620 },
+  /** 컨테이너 출고 (FCL). CBU 는 계획 대비 On Board, FBU 는 계획 구분 없이 한 행이다.
+   *  ⚠ 원문 합계 열이 갱신되지 않았다 — 8월 On Board 가 95 → 50, FBU 가 5 → 3 으로 바뀌었는데
+   *  합계는 7월 업무보고의 934 · −102 · 48 그대로다. 행 합계(889 · −147 · 46)를 쓰고 인쇄값은 printedAnnual 로 남긴다. */
+  containers: {
+    actualThrough: 8,
+    cbuPlan: [85, 89, 92, 67, 62, 102, 102, 98, 90, 94, 90, 65],
+    cbuOnBoard: [63, 75, 63, 49, 106, 76, 93, 50, 88, 84, 80, 62],
+    fbu: [4, 2, 1, 6, 6, 8, 2, 3, 4, 3, 4, 3],
+    printedAnnual: { cbuPlan: 1036, cbuOnBoard: 934, cbuGap: -102, fbu: 48 },
+    /** 원문 3쪽 서술 */
+    note: '테마 항만 혼잡 심화로 선적 지연 — 30 FCL 이상이 Gate-in 에 실패해 다음 선박편으로 이월',
+  },
 
-  /** 9~10월 주요 업무 — 원문 요지 */
+  /** 클리너 인원 — 7월 업무보고(8월 pptx) 값. 상세는 품질개선 보고. */
+  cleaners: { basis: '7월 평균', y2025: 713, y2026: 603, delta: -110 },
+  /** 클리너 채용 — 8월 업무보고 docx 판본에만 있다: 「8월 누계 1,046명 신규 채용 → 385명 잔류」.
+   *  pptx 판본은 「신규 클리너 지속 채용 교육」 서술뿐이었다. */
+  cleanerHiring: { through: 8, hiredYtd: 1046, retained: 385 },
+
+  /** 수주 단가 인상 — 어가 1,900불 수준 반영. 7월 업무보고의 $46.0 → $49.5 에 이은 두 번째 인상. */
+  orderPrice: { fromUsd: 49.5, toUsd: 51.5, basis: '$2kg 기준', fishPriceUsd: 1900 },
+  orderNotes: [
+    '금년도 생산 물량은 전량 확보',
+    '10월 중순부터 2027년 1분기 물량 수주 개시 예정',
+  ],
+  /** 유럽 시장 동향 */
+  market: [
+    '대부분의 바이어가 현재 제품 가격 수준에 부담 — 소량 물량 위주 구매 지속',
+    '독일 LIDL 은 에콰도르 Nirsa 납품 지연에 대응해 Top-up 물량 구매 중',
+  ],
+
+  panofiPayable: { asOf: '8/31', usd10k: 2085 },
+
+  /** 원어재고 — 8월 업무보고는 SJ 만 적었다(YF·믹스 미기재 → null) */
+  rawStock: { asOf: '9/25', sjMt: 2466, yfMt: null, mixMt: null },
+
+  /** 10~11월 주요 업무 — 인명은 직급으로만 옮긴다 */
   agenda: [
-    'BRC/IFS Unannounced Audit 실시 예정 (8월 말~9월 초)',
-    '필리핀 직원 채용(8/10 업무 시작) - 9월부터 2nd Shift 가동',
-    '대만 SK은행 3년 약정 대출 갱신 완료 (기존 동일 조건)',
+    '과장급 SIAL 박람회 참석 예정 (10/12~22, 영국·프랑스)',
+    '2026년 임금 협상 완료 — 세디 강세와 회사 재정을 고려해 일률 인상 대신 직급별 차등 인상(HOD 5% · 매니저급 7% · Staff 10% · Cleaner 11% · Casual 18%), 클리너 확보에 유리한 쪽으로 합의',
+    'Catering 캔 색상 개선 위한 멸균 시간 재설정 테스트 — 10월 중 태국 컨설턴트 방문 예정',
+    '가나 프리존 코스모 연간 감사 진행 중',
+    '가나 GRA 2025 사업연도 법인 원천세 세무조사 10월 중 예정',
   ],
 } as const

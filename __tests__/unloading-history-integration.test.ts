@@ -39,7 +39,7 @@ describe('unloading history isolation', () => {
     expect(history.success).toBe(true);
     const currentIds = new Set(Object.keys(current.data));
     expect(history.voyages.some((voyage: { voyageId: string }) => currentIds.has(voyage.voyageId))).toBe(false);
-    expect(Object.keys(current.data)).toHaveLength(9);
+    expect(Object.keys(current.data)).toHaveLength(10);
   });
 
   it('lazy-loads history after analytics without changing its current data input', () => {

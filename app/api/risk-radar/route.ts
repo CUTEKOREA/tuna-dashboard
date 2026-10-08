@@ -10,36 +10,18 @@ export const dynamic = 'force-dynamic';
 // ============================================================================
 
 // --- MFDS: 수입식품 부적합 ---
-// ⚠️ 2026-07-06 실측: data.go.kr 1471000 FoodFlshdImprtRejectInfoService는 전 키·전 파라미터 조합에서
-// HTTP 500 (업스트림 사망), 식약처 포털 키(MFDS_API_KEY)는 "인증키 유효하지 않음".
-// count=0으로 위장하지 않고 available=false로 정직 표기 — 키 계통 재발급(B-4) 전까지 위젯은 '조회불가' 렌더.
-async function fetchMFDSRejections(itemName: string) {
-  const apiKey = process.env.MFDS_API_KEY;
-  if (!apiKey) return { count: null, items: [], source: 'API_KEY_MISSING', available: false };
-
-  try {
-    const encodedItem = encodeURIComponent(itemName);
-    const url = `https://apis.data.go.kr/1471000/FoodFlshdImprtRejectInfoService/getFoodFlshdImprtRejectInfoList?serviceKey=${apiKey}&prdlst_nm=${encodedItem}&numOfRows=20&type=json`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
-    if (!res.ok) return { count: null, items: [], source: 'MFDS_UNAVAILABLE(업스트림 500 - 키 재발급 필요)', available: false };
-
-    const data = await res.json();
-    const totalCount = data?.body?.totalCount || 0;
-    const items = data?.body?.items || [];
-
-    const parsed = (Array.isArray(items) ? items : [items]).map((i: any) => ({
-      date: i.DCSN_DT || i.dcsn_dt || 'N/A',
-      productName: i.PRDLST_NM || i.prdlst_nm || 'N/A',
-      manufacturer: i.MNFCTUR_NM || i.mnfctur_nm || 'N/A',
-      country: i.NXPR_NATN_NM || i.nxpr_natn_nm || 'N/A',
-      reason: i.DCSN_RSN || i.dcsn_rsn || 'N/A',
-      violation: i.VLTN_CN || i.vltn_cn || '',
-    }));
-
-    return { count: totalCount, items: parsed.slice(0, 10), source: 'MFDS_LIVE', available: true };
-  } catch {
-    return { count: null, items: [], source: 'MFDS_NETWORK_ERROR', available: false };
-  }
+// 2026-09-12 확인: 이 오픈API 는 존재하지 않는다. 공공데이터포털에서
+// `FoodFlshdImprtRejectInfoService` 검색 결과가 0건이고, 이름 변형 세 가지(무접미·02·03) 모두
+// 결과코드 12(해당 오픈API 서비스가 없거나 폐기됨)를 준다. 키 문제가 아니다.
+// 그래서 호출을 지웠다. 매 요청마다 8초 타임아웃을 물고 실패하던 자리다.
+// 대체 출처를 붙일 때 이 함수만 갈아 끼우면 된다.
+function fetchMFDSRejections(_itemName: string) {
+  return {
+    count: null,
+    items: [] as Array<Record<string, string>>,
+    source: 'MFDS_SERVICE_RETIRED(포털에 해당 오픈API 없음 — 2026-09-12 확인)',
+    available: false,
+  };
 }
 
 // --- KOTRA: 무역사기 사례 ---
@@ -108,13 +90,13 @@ async function checkOFACSanctions(country: string) {
 }
 
 // --- Gemini AI: 종합 리스크 분석 ---
-async function generateRiskAssessment(country: string, item: string, mfdsCount: number, fraudCount: number, isSanctioned: boolean) {
+async function generateRiskAssessment(country: string, item: string, mfdsCount: number | null, fraudCount: number, isSanctioned: boolean) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) return null;
 
   const prompt = `You are a trade compliance analyst. Based on these REAL data points:
 - Item: "${item}" imported from "${country}"
-- MFDS food safety violations: ${mfdsCount} cases found
+- MFDS food safety violations: ${mfdsCount === null ? 'unavailable (the source API no longer exists — do not treat this as zero)' : `${mfdsCount} cases found`}
 - KOTRA trade fraud cases in ${country}: ${fraudCount} cases found
 - OFAC sanctions status: ${isSanctioned ? 'SANCTIONED' : 'CLEAR'}
 
@@ -181,7 +163,7 @@ export async function POST(req: Request) {
           aiAssessment: aiAssessment ? 'Gemini AI' : 'UNAVAILABLE',
         },
         timestamp: new Date().toISOString(),
-        mockDataUsed: false,
+        mfdsAvailable: mfds.available,
       }
     });
   } catch (error: any) {

@@ -25,9 +25,20 @@ export interface FleetHoldUtilization {
   ratioPct: number;
   barPct: number;
   level: FleetHoldUtilizationLevel;
+  /** true = ㎥ 용량을 0.7 MT/㎥ 로 환산한 추정 적재율 */
+  estimated: boolean;
+  /** 계산에 쓴 MT 용량 (환산 시 환산값) */
+  capacityMtEquivalent: number;
 }
 
-/** 적재량과 어창 용량이 모두 MT일 때만 적재율을 만든다. ㎥는 임의 환산하지 않는다. */
+/**
+ * m³ 어창 용량의 MT 환산 계수 - 냉동 가다랑어 브라인 웰 업계 통용값.
+ * 2026-08-28 소유자 확정 (그전까지는 임의 환산 금지 정책으로 미산출 처리했음).
+ * 환산 계산 결과는 estimated=true 로 표기해 실측 MT 용량과 구분한다.
+ */
+export const HOLD_M3_TO_MT_FACTOR = 0.7;
+
+/** 적재율 계산. MT 는 실측, ㎥ 는 0.7 MT/㎥ 환산 추정(estimated) - 소유자 확정 계수. */
 export function resolveFleetHoldUtilization(
   loadedMt: number | null,
   capacity: FleetHoldCapacityValue | null | undefined,
@@ -37,20 +48,26 @@ export function resolveFleetHoldUtilization(
     || !Number.isFinite(loadedMt)
     || loadedMt < 0
     || !capacity
-    || capacity.unit !== 'MT'
     || !Number.isFinite(capacity.value)
     || capacity.value <= 0
   ) {
     return null;
   }
 
-  const rawPct = loadedMt / capacity.value * 100;
+  const capacityMt = capacity.unit === 'MT'
+    ? capacity.value
+    : capacity.value * HOLD_M3_TO_MT_FACTOR;
+  const estimated = capacity.unit !== 'MT';
+
+  const rawPct = loadedMt / capacityMt * 100;
   const roundedPct = Number(rawPct.toFixed(1));
   const ratioPct = rawPct < 90 && roundedPct >= 90 ? 89.9 : roundedPct;
   return {
     ratioPct,
     barPct: Math.min(rawPct, 100),
     level: rawPct >= 90 ? 'nearCapacity' : rawPct >= 75 ? 'high' : 'normal',
+    estimated,
+    capacityMtEquivalent: estimated ? Number(capacityMt.toFixed(1)) : capacityMt,
   };
 }
 

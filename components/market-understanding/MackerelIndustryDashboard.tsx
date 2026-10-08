@@ -13,6 +13,7 @@ import {
   CanneryCountryTable,
   BrandMarketTable,
 } from './CompanyResearchTables';
+import { getMackerelRoster } from '@/lib/data/mackerel-roster';
 import { getMackerelCompanyResearch } from '@/lib/data/valuechain-companies';
 
 import { getMackerelIndustryData } from '@/lib/data/commodity-industry';
@@ -35,6 +36,17 @@ import {
   MackerelSeriesUnitChart,
   MackerelSeriesWindowsChart,
 } from './CommodityCharts';
+import {
+  AuctionPriceChart,
+  TradeBalanceChart,
+  auctionCaption,
+  tradeCaption,
+} from './MofLiveCharts';
+import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
+import {
+  getMackerelTables,
+  type MackerelReportTable,
+} from '@/lib/data/mackerel-industry-tables';
 
 const DATA = getMackerelIndustryData();
 const CATCH_SYNC = {
@@ -50,9 +62,47 @@ const IMPORT_SYNC = {
   syncDate: String(DATA.수입원산지._meta.구간 ?? '통관 실적'),
 };
 
+const REPORT_SYNC = {
+  status: 'STATIC' as const,
+  syncDate: '보고서 2026-08-27 발행본',
+};
+
 const MACKEREL_RESEARCH = getMackerelCompanyResearch();
+const ROSTER = getMackerelRoster();
+
+function RosterTable({ block }: { block: (typeof ROSTER)['수입명의'] }) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <caption className={styles.factCaption}>{block.기준}</caption>
+        <thead>
+          <tr>
+            <th>법인명</th>
+            <th>핵심 값</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          {block.rows.map((r) => (
+            <tr key={`${r.구분}-${r.법인명}`}>
+              <td>
+                {r.법인명}
+                <span className={styles.factNote}>
+                  {r.성격} · {r.출처}
+                </span>
+              </td>
+              <td>{r.핵심값}</td>
+              <td>{r.비고 || '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 const SERIES_SYNC = { status: 'STATIC' as const, syncDate: '관세청 2026년 1~7월' };
+const ROSTER_SYNC = { status: 'STATIC' as const, syncDate: '2026-08-27 조회' };
 
 function SeriesRolesTable() {
   return (
@@ -85,8 +135,56 @@ function SeriesRolesTable() {
   );
 }
 
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+function ReportTable({ table }: { table: MackerelReportTable }) {
+  return (
+    <div className={styles.dataTableWrap}>
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 보고서 표를 단계별 슬롯으로. 손으로 만든 차트 뒤에 붙는다. */
+function reportSlots(stage: string): ChartSlot[] {
+  return getMackerelTables(stage).map((t, i) => ({
+    title: `보고서 표 ${i + 1} — ${t.title}`,
+    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
+    telemetry: REPORT_SYNC,
+    span: 'full' as const,
+    render: () => <ReportTable table={t} />,
+  }));
+}
+
 export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
+    {
+      title: '국내 위판 일별 단가 (원/kg)',
+      caption: auctionCaption('고등어'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(auctionMeta.기간) },
+      render: () => <AuctionPriceChart keyword="고등어" />,
+      sourceLine: `출처: ${auctionMeta.출처} · 조회 ${auctionMeta.조회일} · scripts/sync_mof_auction.py`,
+    },
     {
       title: '한국 고등어 어획량 30년 (톤)',
       caption:
@@ -95,6 +193,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <MackerelCatchChart data={DATA} />,
     },
+      ...reportSlots('s01'),
   ],
   s03: [
     {
@@ -118,6 +217,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: WIPAN_SYNC,
       render: () => <MackerelGradeChart data={DATA} />,
     },
+      ...reportSlots('s03'),
   ],
   s04: [
     {
@@ -130,11 +230,12 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '수입 원산지 구성 (%)',
       caption:
-        '장미색이 노르웨이다. 나머지를 다 합쳐도 노르웨이 하나에 못 미친다.',
+        '주황이 노르웨이다. 나머지를 다 합쳐도 노르웨이 하나에 못 미친다.',
       telemetry: IMPORT_SYNC,
       render: () => <MackerelOriginChart data={DATA} />,
       // 단가는 합계가 뜻이 없다. 물량만 더한다.
     },
+      ...reportSlots('s04'),
   ],
   s05: [
     {
@@ -148,7 +249,7 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '수입 창구 물량 (톤)',
       caption:
-        '남색이 030354 냉동, 호박색이 0304895000 필렛이다. 노르웨이만 강조한 이유는 두 창구가 같이 크기 때문이다. 아이슬란드 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 2026년 1~7월 제품중량이라 위 생산 통계·04단계 1~5월 표와 더할 수 없다.',
+        '파랑이 030354 냉동(강조한 노르웨이는 주황), 청록이 0304895000 필렛이다. 노르웨이만 강조한 이유는 두 창구가 같이 크기 때문이다. 아이슬란드 0은 어획이 없다는 뜻이 아니라 이 세번 추출에 이름이 없다는 뜻이다. 2026년 1~7월 제품중량이라 위 생산 통계·04단계 1~5월 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
       render: () => <MackerelSeriesWindowsChart />,
     },
@@ -159,6 +260,31 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SERIES_SYNC,
       render: () => <MackerelSeriesUnitChart />,
     },
+      ...reportSlots('s05'),
+  ],
+  s09: [
+    {
+      title: '고등어 월별 수출입과 무역수지 (백만 달러)',
+      caption: tradeCaption('고등어'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
+      render: () => <TradeBalanceChart keyword="고등어" />,
+      sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
+    },
+    {
+      title: '수입 명의 상위 20 (신고 레코드)',
+      caption: ROSTER.수입명의.기준,
+      telemetry: ROSTER_SYNC,
+      span: 'full',
+      render: () => <RosterTable block={ROSTER.수입명의} />,
+    },
+    {
+      title: '국내 가공 업소 상위 20 (2025년 생산량 kg)',
+      caption: ROSTER.국내가공.기준,
+      telemetry: ROSTER_SYNC,
+      span: 'full',
+      render: () => <RosterTable block={ROSTER.국내가공} />,
+    },
+      ...reportSlots('s09'),
   ],
   x01: [
     {
@@ -170,13 +296,27 @@ export const MACKEREL_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <MackerelCatchChart data={DATA} />,
     },
   ],
+  s02: [
+    ...reportSlots('s02'),
+  ],
+  s06: [
+    ...reportSlots('s06'),
+  ],
+  s07: [
+    ...reportSlots('s07'),
+  ],
+  s08: [
+    ...reportSlots('s08'),
+  ],
 };
 
 const SPEC: CommoditySpec = {
+  // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
+  continuous: true,
   key: 'mackerel',
   title: '고등어',
   subtitle:
-    '고등어 산업 해부 · 어법이 축이 아닌 품목 - 크기 등급·원산지·수입 창구 5단계와 그것을 관통하는 종의 문제',
+    '고등어 산업 해부 · 어법이 축이 아닌 품목 - 크기 등급·원산지·수입 창구와 제도·수출·유통·명부, 그것을 관통하는 종의 문제',
   accent: MACKEREL_ACCENT,
   primaryKpi: {
     label: '한국 고등어속 어획량',
@@ -198,7 +338,7 @@ const SPEC: CommoditySpec = {
       decimals: 2,
     },
     {
-      label: '노르웨이 수입 비중',
+      label: '노르웨이 수입 비중(2026년 1~7월 금액)',
       value: DATA.수입원산지.rows[0]?.비중 ?? 0,
       unit: '(%)',
       decimals: 2,
@@ -221,13 +361,13 @@ const SPEC: CommoditySpec = {
     },
     {
       eyebrow: '수입',
-      title: '노르웨이 비중',
+      title: '노르웨이 비중 · 1~7월 누계 금액',
       body: `${DATA.수입원산지.rows[0]?.비중 ?? 0} (%)`,
     },
     {
       eyebrow: '주간',
-      title: '노르웨이 34주 누계',
-      body: '41,108톤 · 48.35 NOK/kg',
+      title: '노르웨이 39주 누계',
+      body: '55,820톤 · 49.27 NOK/kg',
     },
   ],
   briefing: MACKEREL_BRIEFING_POINTS,
@@ -238,8 +378,8 @@ const SPEC: CommoditySpec = {
     `어획 집계 · ${DATA.한국어획._meta.출처}`,
     `위판 집계 · ${DATA.위판등급._meta.출처}`,
     `통관 집계 · ${DATA.수입원산지._meta.출처} · ${DATA.수입원산지._meta.구간}`,
-    '주간 수급 · NSC 2026-W34 · KMI Vol.257',
-    '갱신 2026-08-27',
+    '주간 수급 · NSC 2026-W39 · KMI Vol.262',
+    '갱신 2026-10-05',
   ].join(' · '),
 };
 

@@ -35,6 +35,7 @@ SEMANTIC_ANCHORS = {
 WEEK_RE = re.compile(r'\((\d+)주차\)')
 PERIOD_RE = re.compile(r'(\d{1,2}/\d{1,2})')
 ERROR_VALUES = {'#REF!', '#DIV/0!', '#VALUE!', '#N/A', '#NAME?', '#NUM!', '#NULL!'}
+DIVISION_RE = re.compile(r'^=\+?(?P<dividend>[A-Z]+\d+)/(?P<divisor>[A-Z]+\d+)$')
 
 
 def number(value: Any) -> float | None:
@@ -63,6 +64,7 @@ def rounded(value: float) -> float:
 class CosmoWorkbook:
     def __init__(self, path: Path) -> None:
         self.path = path
+        self.zero_division_cells: list[str] = []
         self.formulas = load_workbook(path, data_only=False, read_only=False)
         self.values = load_workbook(path, data_only=True, read_only=False)
         if self.formulas.sheetnames != EXPECTED_SHEETS:
@@ -71,14 +73,31 @@ class CosmoWorkbook:
             )
         self._assert_no_formula_errors()
 
+    def _divides_by_zero(self, sheet_title: str, coord: str) -> bool:
+        """«그 주 구매가 없어 단가가 0/0» 인 칸인지. 그 외 오류는 여전히 막는다."""
+        formula = self.formulas[sheet_title][coord].value
+        if not isinstance(formula, str):
+            return False
+        match = DIVISION_RE.match(formula.replace(' ', ''))
+        if not match:
+            return False
+        divisor = number(self.values[sheet_title][match.group('divisor')].value)
+        return divisor in (None, 0)
+
     def _assert_no_formula_errors(self) -> None:
         errors: list[str] = []
         for sheet in self.values.worksheets:
             for row in sheet.iter_rows():
                 for cell in row:
                     value = cell.value
-                    if cell.data_type == 'e' or (isinstance(value, str) and value in ERROR_VALUES):
-                        errors.append(f'{sheet.title}!{cell.coordinate}={value}')
+                    if cell.data_type != 'e' and not (isinstance(value, str) and value in ERROR_VALUES):
+                        continue
+                    # 37주차 원어구매현황!F15: FBU 파노피 주간 구매가 0 이라 =G15/E15 가 0/0 이다.
+                    # 원문이 값을 못 적은 게 아니라 나눌 것이 없는 것이므로 단가를 비워 두고 넘어간다.
+                    if value == '#DIV/0!' and self._divides_by_zero(sheet.title, cell.coordinate):
+                        self.zero_division_cells.append(f'{sheet.title}!{cell.coordinate}')
+                        continue
+                    errors.append(f'{sheet.title}!{cell.coordinate}={value}')
         if errors:
             raise ValueError('엑셀 수식 오류: ' + ', '.join(errors))
 
@@ -350,6 +369,27 @@ def parse_week(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     return week_data, quotes
 
 
+PS_RAW_ITEMS = ('SJ', 'YF/BE')
+
+
+def purchase_inflow_residual(week_data: dict[str, Any]) -> float:
+    """재고현황 선망(PS) 원어 입고 − 원어구매현황 PS 구매 물량 (MT).
+
+    1~35주차는 두 시트가 한 번도 어긋나지 않았다. 36주차에 재고현황 SJ 입고·출고
+    (742.21 / 458.156)가 35주차 값 그대로 남고 구매 시트만 481.554 로 갱신됐는데,
+    행 안에서는 기초+입고−출고=잔액이 맞아 재고 항등식이 이 복사를 잡지 못했다.
+    FBU 는 구매 외 입고가 섞여 원래 다르므로 대상에서 뺀다."""
+    bought = sum(
+        line['weekMt'] or 0 for line in week_data['purchase']['lines'] if line['unit'] == 'PS'
+    )
+    received = sum(
+        line['inQty'] or 0
+        for line in week_data['inventory']['lines']
+        if line['group'] == '원어' and line['item'] in PS_RAW_ITEMS
+    )
+    return rounded(received - bought)
+
+
 def make_checks(current: dict[str, Any], previous: dict[str, Any]) -> list[dict[str, Any]]:
     week = current['week']
     current_inventory = current['inventory']
@@ -383,6 +423,7 @@ def make_checks(current: dict[str, Any], previous: dict[str, Any]) -> list[dict[
         ('FBU 생산일수 누적 브릿지', rounded(
             current_fbu['cumDays'] - previous_fbu['cumDays'] - current_fbu['weekDays']
         ), '전주누계+금주−금주누계'),
+        ('원어 입고·구매 물량', purchase_inflow_residual(current), '재고 PS 원어 입고−구매 (MT)'),
         ('자금 항등식', rounded(
             current_cash['beginUsd'] + current_cash['inUsd']
             - current_cash['outUsd'] - current_cash['endUsd']

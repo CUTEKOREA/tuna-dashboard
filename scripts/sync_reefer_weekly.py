@@ -66,9 +66,11 @@ def parse_workbook(path: Path) -> tuple[int, str, str, list[dict[str, Any]], flo
 
     formulas = load_workbook(path, data_only=False, read_only=False)
     values = load_workbook(path, data_only=True, read_only=False)
-    expected_sheet = f'WEEK {week}'
-    if values.sheetnames != [expected_sheet]:
-        raise ValueError(f'예상 시트 {expected_sheet!r}와 다릅니다: {values.sheetnames!r}')
+    # 시트명은 표기 흔들림이 있다 — 35주차 원본은 'WEEK 35'가 아니라 'sheet 1'로 왔다.
+    # 주차·기간·배분 헤더는 아래에서 AJ2·A1·6행으로 따로 검증하므로, 여기서는 시트가 하나인지만 본다.
+    if len(values.sheetnames) != 1:
+        raise ValueError(f'시트가 하나가 아닙니다: {values.sheetnames!r}')
+    expected_sheet = values.sheetnames[0]
     source_sheet = formulas[expected_sheet]
     sheet = values[expected_sheet]
 

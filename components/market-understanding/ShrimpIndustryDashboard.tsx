@@ -44,6 +44,17 @@ import {
   ShrimpSpeciesChart,
   ShrimpTrendChart,
 } from './CommodityCharts';
+import {
+  AuctionPriceChart,
+  TradeBalanceChart,
+  auctionCaption,
+  tradeCaption,
+} from './MofLiveCharts';
+import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
+import {
+  getShrimpTables,
+  type ShrimpReportTable,
+} from '@/lib/data/shrimp-industry-tables';
 
 const DATA = getShrimpIndustryData();
 const SYNC = { status: 'STATIC' as const, syncDate: `${DATA.요약.기준연도}년 확정` };
@@ -105,6 +116,47 @@ function ArgentinaRouteTable() {
 }
 
 const SERIES_SYNC = { status: 'STATIC' as const, syncDate: '관세청 2026년 1~6월' };
+const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '2026-08-23 보고서 · 2026-09-10 갱신' };
+
+function ReportTable({
+  headers,
+  rows,
+  note,
+}: {
+  headers: string[];
+  rows: string[][];
+  note: string;
+}) {
+  return (
+    <div className={styles.factWrap}>
+      <table className={styles.factTable}>
+        <thead>
+          <tr>
+            {headers.map((h) => (
+              <th key={h}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={`${row[0]}-${i}`}>
+              {row.map((cell, j) =>
+                j === 0 ? (
+                  <th key={j} scope="row">
+                    {cell}
+                  </th>
+                ) : (
+                  <td key={j}>{cell}</td>
+                ),
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className={styles.factNote}>{note}</p>
+    </div>
+  );
+}
 
 /** 시리즈 6개국 역할. 차트 없이 표로 그린다 — 서버 렌더에서 수치가 그대로 나와야 한다. */
 function SeriesRolesTable() {
@@ -138,31 +190,74 @@ function SeriesRolesTable() {
   );
 }
 
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+function ExtractedReportTable({ table }: { table: ShrimpReportTable }) {
+  return (
+    <div className={styles.dataTableWrap}>
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 보고서 표를 단계별 슬롯으로. 손으로 만든 차트 뒤에 붙는다. */
+function reportSlots(stage: string): ChartSlot[] {
+  return getShrimpTables(stage).map((t, i) => ({
+    title: `보고서 표 ${i + 1} — ${t.title}`,
+    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
+    telemetry: REPORT_SYNC,
+    span: 'full' as const,
+    render: () => <ExtractedReportTable table={t} />,
+  }));
+}
+
 export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
     {
       title: '양식과 자연산 75년 (톤·%)',
       caption:
-        '호박색이 양식, 청록색이 자연산이다. 선은 양식 비중으로 2010년에 50%를 넘는다. 자연산 막대가 줄어든 것이 아니라 양식이 그 위에 쌓였다.',
+        '청록이 양식, 파랑이 자연산이다. 선은 양식 비중으로 2010년에 50%를 넘는다. 자연산 막대가 줄어든 것이 아니라 양식이 그 위에 쌓였다.',
       telemetry: SYNC,
-      span: 'full',
+      span: 'full', // 75년 추이 — 기존 전폭 예외(commodity-industry-render 테스트가 고정)
       render: () => <ShrimpTrendChart data={DATA} />,
     },
     {
       title: '생산 방식별 규모 (톤)',
       caption:
-        '「양식」 한 낱말을 갈랐다. 장미색이 담수 양식 - 강·논에서 기르는 민물새우다. 해산 새우 시장을 말할 때는 이 막대를 빼야 한다.',
+        '「양식」 한 낱말을 갈랐다. 주황이 담수 양식 - 강·논에서 기르는 민물새우다. 해산 새우 시장을 말할 때는 이 막대를 빼야 한다.',
       telemetry: SYNC,
       render: () => <ShrimpEnvChart data={DATA} />,
     },
+      ...reportSlots('s01'),
   ],
   s02: [
     {
       title: '종별 생산량 (톤)',
-      caption: '장미색이 흰다리새우다. 1위 하나가 나머지 여덟을 합친 것보다 크다.',
+      caption: '주황이 흰다리새우다. 1위 하나가 나머지 여덟을 합친 것보다 크다.',
       telemetry: SYNC,
       render: () => <ShrimpSpeciesChart data={DATA} />,
     },
+      ...reportSlots('s02'),
   ],
   s03: [
     {
@@ -187,14 +282,21 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <ShrimpCountryChart data={DATA} />,
       // 차트는 상위 12개국만 그린다. 몇 나라가 잘렸는지는 그래프만 봐서는 알 수 없다.
     },
+      ...reportSlots('s03'),
   ],
   s05: [
     {
+      title: '새우 월별 수출입과 무역수지 (백만 달러)',
+      caption: tradeCaption('새우'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
+      render: () => <TradeBalanceChart keyword="새우" />,
+      sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
+    },
+    {
       title: '한국 HS 030617 공급국 (톤·$/kg)',
       caption:
-        '막대가 수입량, 선이 평균 신고단가다. 장미색이 아르헨티나 - 물량은 6위인데 단가는 가장 높은 축이다. 통관 신고 기준이라 위 생산 통계와 더할 수 없다.',
+        '막대가 수입량, 선이 평균 신고단가다. 주황이 아르헨티나 - 물량은 6위인데 단가는 가장 높은 축이다. 통관 신고 기준이라 위 생산 통계와 더할 수 없다.',
       telemetry: { status: 'STATIC' as const, syncDate: '2026년 1~5월 관세청' },
-      span: 'full',
       render: () => <ShrimpArgentinaKoreaChart />,
     },
     {
@@ -219,6 +321,7 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <ArgentinaRouteTable />,
     },
+      ...reportSlots('s05'),
   ],
   s04: [
     {
@@ -231,10 +334,11 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '한국 종별 생산량 (톤)',
       caption:
-        '장미색이 젓새우다. 세계에서 2.69%뿐인 종이 한국에서는 절반이다 - 새우젓이라는 소비 형태가 통계에 그대로 찍혔다.',
+        '주황이 젓새우다. 세계에서 2.69%뿐인 종이 한국에서는 절반이다 - 새우젓이라는 소비 형태가 통계에 그대로 찍혔다.',
       telemetry: SYNC,
       render: () => <ShrimpKoreaChart data={DATA} />,
     },
+      ...reportSlots('s04'),
   ],
   s06: [
     {
@@ -248,9 +352,8 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '수입 창구 물량 (톤)',
       caption:
-        '막대 둘은 세번이 다르다 - 청록이 030617 원물, 호박색이 160521 조제품이다. 베트남만 강조한 이유는 두 창구가 비슷한 무게이기 때문이다. 2026년 1~6월 제품중량이라 위 생산 통계·05단계 1~5월 표와 더할 수 없다.',
+        '막대 둘은 세번이 다르다 - 파랑이 030617 원물(강조한 베트남은 주황), 청록이 160521 조제품이다. 베트남만 강조한 이유는 두 창구가 비슷한 무게이기 때문이다. 2026년 1~6월 제품중량이라 위 생산 통계·05단계 1~5월 표와 더할 수 없다.',
       telemetry: SERIES_SYNC,
-      span: 'full',
       render: () => <ShrimpSeriesWindowsChart />,
     },
     {
@@ -260,14 +363,212 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SERIES_SYNC,
       render: () => <ShrimpSeriesUnitChart />,
     },
+      ...reportSlots('s06'),
+  ],
+  s07: [
+    {
+      title: '조달선 상위 8국 (금액)',
+      caption:
+        '관세청 HSK 10자리 9세번, 2026년 1~5월 누계. 06단계 1~6월 6자리 창구와 달을 합치지 않는다.',
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <ReportTable
+          headers={['국가', '금액', '물량', '단가', '점유']}
+          rows={[
+            ['베트남', '1억 3,150만 달러', '16,597톤', '7.92달러/kg', '43.4%'],
+            ['중국', '7,180만 달러', '9,929톤', '7.23달러/kg', '23.7%'],
+            ['페루', '2,690만 달러', '3,609톤', '7.45달러/kg', '8.9%'],
+            ['태국', '2,350만 달러', '2,007톤', '11.69달러/kg', '7.8%'],
+            ['말레이시아', '1,360만 달러', '1,458톤', '9.34달러/kg', '4.5%'],
+            ['아르헨티나', '1,280만 달러', '1,018톤', '12.58달러/kg', '4.2%'],
+            ['인도', '1,040만 달러', '1,551톤', '6.72달러/kg', '3.4%'],
+            ['에콰도르', '390만 달러', '778톤', '5.07달러/kg', '1.3%'],
+          ]}
+          note="보고서 §04. 그 밖 19개국 851만 달러·1,417톤·6.01달러/kg·2.8%. 5개월 누계이며 연환산하지 않는다."
+        />
+      ),
+    },
+    {
+      title: '수입 명의 상위 10곳 (건수)',
+      caption: '식약처 공개포털 신고 건수다. 물량·금액이 아니다. 상위 10곳 합이 24.6%다.',
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <ReportTable
+          headers={['상호', '건수', '비중']}
+          rows={[
+            ['다이아몬드새우', '1,481건', '6.7%'],
+            ['지에스코퍼레이션', '535건', '2.4%'],
+            ['산호상사', '508건', '2.3%'],
+            ['해우씨푸드', '465건', '2.1%'],
+            ['아쿠아링크', '463건', '2.1%'],
+            ['지앤원인터네셔널', '430건', '1.9%'],
+            ['오션스글로벌부산', '408건', '1.8%'],
+            ['우원홀딩스', '401건', '1.8%'],
+            ['씨웰스', '388건', '1.7%'],
+            ['에이티오', '386건', '1.7%'],
+            ['그 밖 614곳', '16,711건', '75.4%'],
+          ]}
+          note="보고서 §06. 2023-09~2026-08-21, 22,176건·624곳."
+        />
+      ),
+    },
+      ...reportSlots('s07'),
+  ],
+  s08: [
+    {
+      title: '국내 위판 일별 단가 (원/kg)',
+      caption: auctionCaption('새우'),
+      telemetry: { status: 'SYNCED' as const, syncDate: String(auctionMeta.기간) },
+      render: () => <AuctionPriceChart keyword="새우" />,
+      sourceLine: `출처: ${auctionMeta.출처} · 조회 ${auctionMeta.조회일} · scripts/sync_mof_auction.py`,
+    },
+    {
+      title: '국내 생산과 위판',
+      caption: '통계청 생산(생물중량)과 수협 계통판매는 분모가 다르다. 비율 58.8%는 보고서 대조값이다.',
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <ReportTable
+          headers={['항목', '값', '기준']}
+          rows={[
+            ['국내 생산', '34,588톤', '2024 통계청'],
+            ['해면양식 (흰다리)', '7,839톤 (22.7%)', '2024'],
+            ['젓새우류', '17,176톤 (49.7%)', '2024'],
+            ['2025 생산', '33,640톤', '2025 통계청'],
+            ['계통판매', '19,775톤 · 5,961원/kg', '2025'],
+            ['위판 밖', '13,865톤', '2025 보고서 대조'],
+            ['겉보기 자급률', '24.8% (젓새우 제외 14.2%)', '2024'],
+          ]}
+          note="보고서 §05·§07. FAO 34,351톤·Comtrade 104,977톤과 축이 다르다."
+        />
+      ),
+    },
+      ...reportSlots('s08'),
+  ],
+  s09: [
+    {
+      title: '가공 생산량 상위 5곳',
+      caption: '식품안전나라 생산량 기준이다. 매출 순위가 아니다. 1위 몫 8.6%, 상위 10곳 31.3%.',
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <ReportTable
+          headers={['법인', '2023', '2024', '2025']}
+          rows={[
+            ['우일수산(주)', '1,241톤', '1,048톤', '1,685톤'],
+            ['(주)그린푸드', '1,120톤', '941톤', '773톤'],
+            ['유원식품(주)', '581톤', '541톤', '623톤'],
+            ['보령식품영어조합법인', '547톤', '478톤', '525톤'],
+            ['굴다리영어조합법인', '179톤', '208톤', '478톤'],
+          ]}
+          note="보고서 §10·부록 A-2. 원물 가공 추림 19,580톤·1,090곳(2025)."
+        />
+      ),
+    },
+      ...reportSlots('s09'),
+  ],
+  s10: [
+    {
+      title: '수입 상위 감사보고서 매출',
+      caption: '법인 전체 매출이다. 새우 매출이 아니다. 사업보고서 재무는 12곳 모두 자료 없음.',
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <ReportTable
+          headers={['법인', '2023', '2024', '2025', '영업이익률']}
+          rows={[
+            ['사세', '2,963억', '3,095억', '3,275억', '7.5%'],
+            ['다이아몬드새우', '1,195억', '1,472억', '1,898억', '2.5%'],
+            ['우일수산', '1,684억', '1,617억', '1,844억', '7.7%'],
+            ['아이씨인터네셔날', '707억', '866억', '1,070억', '4.4%'],
+            ['산호상사', '444억', '534억', '577억', '7.3%'],
+          ]}
+          note="보고서 §12. DART 감사보고서. 가공 명부에 있는 곳은 우일수산 1곳."
+        />
+      ),
+    },
+      ...reportSlots('s10'),
+  ],
+  s11: [
+    {
+      title: 'CIF에서 도매까지',
+      caption: '0306179091 5개월 가중단가와 KAMIS 도매는 시점이 다르다. 1.35배 안의 단계별 몫은 없다.',
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <ReportTable
+          headers={['단계', '값', '시점']}
+          rows={[
+            ['CIF 0306179091', '6.456달러/kg', '2026년 1~5월'],
+            ['CIF 원화 (1,385원)', '8,942원/kg', '동일'],
+            ['KAMIS 도매', '12,050원/kg', '2026-09-01 서울'],
+            ['KAMIS 소매', '5,479원/kg', '2026-09-01 평균 계열'],
+            ['새우젓 소매', '16,185원/kg', '2026-09-01 평균 계열'],
+            ['배수', '1.35배 (+34.8%)', 'CIF 누계 vs 도매'],
+          ]}
+          note="보고서 §13 + 9/1 스윕. 소매/도매 배수는 마진이 아니다."
+        />
+      ),
+    },
+      ...reportSlots('s11'),
+  ],
+  s12: [
+    {
+      title: '세번 상위 5행',
+      caption: '종 이름 세번은 흰다리 0306179091 하나(10.9%). 최대 칸은 기타 새우살이다.',
+      telemetry: REPORT_SYNC,
+      span: 'full',
+      render: () => (
+        <ReportTable
+          headers={['세번', '금액', '점유', '단가']}
+          rows={[
+            ['0306171090 냉동 기타', '1억 6,959만 달러', '56.0%', '8.19달러/kg'],
+            ['1605211000 빵가루·반죽', '4,168만 달러', '13.8%', '6.22달러/kg'],
+            ['1605219000 조제 기타', '3,399만 달러', '11.2%', '11.53달러/kg'],
+            ['0306179091 흰다리새우', '3,307만 달러', '10.9%', '6.46달러/kg'],
+            ['0306179099 냉동 기타', '1,951만 달러', '6.4%', '9.66달러/kg'],
+          ]}
+          note="보고서 §14. 2026년 1~5월. 명칭 일치 1건. 06단계 1~6월 표와 합치지 않는다."
+        />
+      ),
+    },
+      ...reportSlots('s12'),
+  ],
+  s13: [
+    {
+      title: '2026년 9월 조달 창',
+      caption: '아카이브 1차 출처를 우선한다. 거부·통보 건수는 분모가 없어 불합격률이 아니다.',
+      telemetry: { status: 'STATIC' as const, syncDate: '2026-09-10' },
+      span: 'full',
+      render: () => (
+        <ReportTable
+          headers={['신호', '값', '등급']}
+          rows={[
+            ['에콰도르 BCE 1~6월', 'USD 4,698.1M (+10.4%)', 'A'],
+            ['아르헨 양륙 1/1~9/8', '174,868.939 t', 'A'],
+            ['국가수역 최종 출항', '2026-09-09 23:59', 'B'],
+            ['FDA 16-35 개정', '09/04/2026 DWPE', 'A'],
+            ['대중국 공장', '8곳 복권 · 6곳 정지', 'B'],
+            ['인도 반덤핑 20차', '7.01 / 4.04 / 5.53%', 'B'],
+            ['베트남 새우 1~8월', 'USD 3.3 billion (+12.3%)', 'B'],
+          ]}
+          note="C절 아카이브 + 채택 Grok D-4·D-5·D-6·D-7(일정만)·D-8. D-1·D-2·D-3 미채택."
+        />
+      ),
+    },
+      ...reportSlots('s13'),
   ],
 };
 
 const SPEC: CommoditySpec = {
+  // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
+  continuous: true,
   key: 'shrimp',
   title: '새우',
   subtitle:
-    '새우 산업 해부 · 양식이 이긴 유일한 주요 수산 품목 - 역전·종·산지·한국·수입 창구와 바스켓의 문제',
+    '새우 산업 해부 · 양식이 이긴 유일한 주요 수산 품목 - 조달선·가공 명부·값 사슬·검역 창까지',
   accent: SHRIMP_ACCENT,
   primaryKpi: {
     label: '세계 새우 생산량',
@@ -283,19 +584,24 @@ const SPEC: CommoditySpec = {
   stripItems: [
     {
       now: true,
-      eyebrow: '기준',
-      title: '세계 생산량',
-      body: `${DATA.요약.세계생산.toLocaleString('ko-KR')} (톤)`,
+      eyebrow: '지금',
+      title: '국가수역 시즌 종료(B)',
+      body: '국가수역 최종 출항 2026-09-09 23:59 · 양륙 174,868.939 t (1/1~9/8)',
     },
     {
-      eyebrow: '역전',
-      title: '양식 비중',
-      body: `${DATA.요약.양식비중} (%)`,
+      eyebrow: '검역',
+      title: 'FDA 16-35',
+      body: '인도 생·자숙 새우 DWPE · 개정 2026-09-04',
     },
     {
-      eyebrow: '한국',
-      title: '양식 비중',
-      body: `${DATA.요약.한국양식비중 ?? 0} (%)`,
+      eyebrow: '수출',
+      title: '에콰도르 1~6월',
+      body: 'Camarón USD 4,698.1M (+10.4%)',
+    },
+    {
+      eyebrow: '도매',
+      title: 'KAMIS 흰다리',
+      body: '12,050원/kg (서울, 2026-09-01)',
     },
   ],
   briefing: SHRIMP_BRIEFING_POINTS,

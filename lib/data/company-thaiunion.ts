@@ -31,7 +31,8 @@ export type UsTariffRow = { 품목: string; 부담: string; 비고: string };
 export type ShareholderRow = { 순위: number; 주주: string; 지분: number };
 export type HistoryRow = { 연도: string; 사건: string };
 export type RegionRow = { 카테고리: string; 미국: number; 유럽: number; 아시아기타: number };
-export type BrandRow = { 브랜드: string; 국가: string; 인수: string; sku: number | null; 축: string };
+/** 인수 연도는 담지 않는다 — 보고서 03절 표가 정본이다(손으로 적었더니 정정을 못 따라왔다). */
+export type BrandRow = { 브랜드: string; 국가: string; sku: number | null; 축: string };
 export type JwLadderRow = { 층: string; 규격: string; 가격: number; perKg: number };
 export type RetailPriceRow = { 브랜드: string; 제품: string; 가격: string; 단가: string; 소매처: string };
 export type CapacityUtilRow = { 유형: string; 캐파: number; 가동률: number };

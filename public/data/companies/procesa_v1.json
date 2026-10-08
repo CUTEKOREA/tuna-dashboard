@@ -1,0 +1,44 @@
+{
+ "_meta": {
+  "회사": "Grupo Procesa — 멕시코 치아파스주 타파출라 Puerto Chiapas의 캔·파우치 참치 가공 법인 Procesamiento Especializado de Alimentos, S.A.P.I. de C.V.(EU 승인 PEA0303203V5), 선망선 소유 Pesca Chiapas·Hersea",
+  "국가": "멕시코",
+  "업종": "캔·파우치 참치(Nair·Marina Azul), 선망 선단 4척, 타사 브랜드 위탁생산 영업(회사 자칭)",
+  "종목": "비상장. 지주 「Grupo Procesa」의 등기·주주·등기 임원은 공개 문서에 없다",
+  "출처": "IATTC 선박 등록부 · EU TRACES NT · SENASICA 2019 명부 · IMPI MARCia·공문 · INEGI DENUE · PROFECO 품질시험 · CompraNet · QuiénEsQuién.wiki(PODER) · PROFEPA · FDA 수입경보 · 캘리포니아 WARN · ASIPONA Puerto Chiapas · 치아파스주 경제노동부 · Herdez·KUO 공시 · 회사 누리집·카탈로그·라벨 · ImportGenius·Panjiva · 멕시코 경제지·치아파스 현지 매체 · Atuna",
+  "조사일": "2026-09-25"
+ },
+ "card": {
+  "numeral": "ⅬⅣ",
+  "tagline": "질권이 걸린 상표, 늙은 선단, 같은 항구의 Bumble Bee — Herdez의 치아파스 참치 자산을 샀다고 밝힌 캔 회사, 그 상표에 질권과 보전처분이 겹쳐 있다"
+ },
+ "stats": {
+  "EU번호": "PEA0303203V5",
+  "척수": 4,
+  "운반능력_t": 3875,
+  "운반능력_몫_pct": 7.8,
+  "분모_t": 49839,
+  "평균선령": 50.5,
+  "멕시코평균선령": 38.4,
+  "보전처분_건수": 17,
+  "보전처분_기재일": "2026-06-19",
+  "사건번호": "175/2026",
+  "채권양도_신청일": "2026-03-27",
+  "보정요구일": "2026-05-13",
+  "MA862797_만료": "2024-10-29",
+  "MA2992959_등록": "2026-02-13",
+  "조달_원수치_mdp": 446.4,
+  "조달_중복제거_mdp": 350.7,
+  "조달_마지막": "2019",
+  "FDA_등재": "2023-10-12",
+  "가동식": "2025-11-21",
+  "BB_고용": 830,
+  "MSC철회": "2023-03-08",
+  "MSC개선": "2026-05-20",
+  "침몰일": "2025-02-21",
+  "Nair_kg": 99.17,
+  "MA_파우치올리브_kg": 317.57,
+  "KUO_용량_t": 22240,
+  "KUO_가동률_pct": 56
+ },
+ "sourcenotes": []
+}

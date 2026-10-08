@@ -15,6 +15,7 @@ import {
   SKJ_HUBS,
 } from '../lib/data/tuna-industry';
 import { ALL_NARRATIVES, CHAIN_NARRATIVES, CROSS_NARRATIVES } from '../lib/tuna-industry-content';
+import TunaAnatomyDashboard from '@/components/market-understanding/TunaAnatomyDashboard';
 
 describe('시장 이해 > 참치 - 데이터 인테이크', () => {
   it('FishStat 집계가 주요 상업어종 7종을 담고 합계가 어종 합과 맞는다', () => {
@@ -59,6 +60,7 @@ describe('시장 이해 > 참치 - 데이터 인테이크', () => {
   it('선별 위젯이 10개 단계로 나뉘고 전부 SYNCED 로 표기된다 (L-09)', () => {
     const stages = getTunaIndustryStages();
 
+    // 2026-09-10 역할 분리: 한국 산업 축 D~K 는 참치 해부로 옮겼다. 밸류체인 7단계 + 횡단 3축 = 10단계.
     expect(stages).toHaveLength(10);
     expect(getChainStages()).toHaveLength(7);
     expect(getCrossStages()).toHaveLength(3);
@@ -345,6 +347,37 @@ describe('시장 이해 > 참치 - 데이터 인테이크', () => {
         expect(fact.asOf.length).toBeGreaterThan(0);
         expect(['A', 'B', 'C']).toContain(fact.grade);
       }
+    }
+  });
+
+  it('한국 산업 축은 참치 해부가 맡고 이 페이지에는 없다 (2026-09-10 역할 분리)', () => {
+    // 참치 산업 D~K(x04~x11)는 참치 해부의 04·06~14절과 중복돼 오류를 두 번 고쳐야 했다.
+    // 수치 42개를 해부로 옮긴 뒤(Codex 검증 P0 0) 이 페이지에서 걷어냈다. 되살아나면 여기서 잡는다.
+    const markup = renderToStaticMarkup(React.createElement(TunaIndustryDashboard));
+    for (const title of [
+      '한국 원양 - 선망과 연승',
+      '환적과 판매처 - 배는 한국에 오지 않는다',
+      '캔 공장 - 밖과 안',
+      '재무 - 원양 선사와 캔 회사',
+      '명부 - 원양 선사·선단·해외 법인',
+    ]) {
+      expect(markup, `${title} 절이 남아 있다`).not.toContain(title);
+    }
+    expect(markup).toContain('참치 해부 페이지가 보고서 절 순서대로 다룬다');
+
+    // 옮긴 핵심 수치는 참치 해부에 있어야 한다.
+    const anatomy = renderToStaticMarkup(React.createElement(TunaAnatomyDashboard));
+    for (const value of ['211,513', '2,100', '118,014', '9,056', '캔·조제품 5,962', '금액 점유율 11.83%', '34,834,425']) {
+      expect(anatomy, `참치 해부에 ${value} 가 없다`).toContain(value);
+    }
+    // 2026-09-10 Codex 지적: 주어·단위·등식 오류가 어느 페이지에도 남으면 안 된다
+    for (const html of [markup, anatomy]) {
+      expect(html).not.toContain('보고서 이식 횡단축');
+      expect(html).not.toContain('횟감 공장의 절반');
+      expect(html).not.toContain('118,014톤으로 두 해째');
+      expect(html).not.toContain('Grok 인용');
+      expect(html).not.toContain('이 아카이브에 없다');
+      expect(html).not.toContain('2025-12 이후 월별 단일값 미공시');
     }
   });
 

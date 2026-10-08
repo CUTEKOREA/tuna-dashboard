@@ -245,7 +245,8 @@ def iter_reports(
     if not source_dir.is_dir():
         raise FleetDailySyncError(f"원문 폴더를 찾을 수 없습니다: {source_dir}")
     reports: list[tuple[str, Path]] = []
-    for candidate in source_dir.iterdir():
+    # 2026-08-31: 원문 폴더가 연도 하위 폴더로 재정리돼 재귀로 훑는다.
+    for candidate in sorted(source_dir.rglob("*")):
         entry = report_entry(candidate, required=False)
         if entry is not None:
             reports.append(entry)
@@ -456,22 +457,55 @@ def parse_longline(rows: list[list[str]]) -> list[dict[str, Any]]:
     return vessels
 
 
+MIN_TOLERANCE_MT = 0.001
+
+
+def tolerance_from_value(reported: float | int | None) -> float:
+    """raw 인쇄 문자열이 없을 때(이력 재평가) 숫자 자체의 소수 자릿수로 대신한다."""
+    if reported is None or isinstance(reported, int) or float(reported).is_integer():
+        return MIN_TOLERANCE_MT
+    decimals = len(repr(float(reported)).split(".")[1])
+    return max(0.5 * (10 ** -decimals), MIN_TOLERANCE_MT)
+
+
+def rounding_tolerance(reported_raw: str | None) -> float:
+    """머리글이 인쇄된 자릿수에서 나오는 반올림 폭.
+
+    보고서 머리글은 소수 1자리로 찍히는데(운반선 6,854.1) 상세 행은 2자리를 들고 있다
+    (합 6,854.13). 두 값의 0.03 차이는 불일치가 아니라 머리글의 반올림 잔차다.
+    허용 폭을 인쇄된 마지막 자리의 절반으로 잡으면, 실제 어긋남은 그대로 잡으면서
+    반올림만으로 빨간 경고가 뜨는 일이 없어진다. (2026-09-07: 이 0.03 하나로
+    「최신 상세 행 확인 필요」가 상시 점등돼 있었다.)"""
+    if not reported_raw:
+        return MIN_TOLERANCE_MT
+    match = re.match(r"^\(?[-+]?\d[\d,]*(?:\.(\d+))?", reported_raw.strip())
+    if not match:
+        return MIN_TOLERANCE_MT
+    decimals = len(match.group(1) or "")
+    # 정수로 찍힌 머리글은 상세 행도 정수라 잔차가 생길 수 없다 - 넓히면 진짜 차이를 덮는다
+    if decimals == 0:
+        return MIN_TOLERANCE_MT
+    return max(0.5 * (10 ** -decimals), MIN_TOLERANCE_MT)
+
+
 def reconciliation_check(
     report_date: str,
     field: str,
     reported: float | int | None,
     values: Iterable[float | int | None],
+    reported_raw: str | None = None,
 ) -> dict[str, Any]:
     row_values = list(values)
     known_rows_mt = display_number(float(sum(value for value in row_values if value is not None)))
     missing_count = sum(value is None for value in row_values)
+    tolerance = rounding_tolerance(reported_raw) if reported_raw else tolerance_from_value(reported)
     if reported is None:
         status = "reportedMissing"
     elif missing_count == 0:
-        status = "completeMatch" if abs(float(reported) - float(known_rows_mt)) < 0.001 else "completeMismatch"
-    elif float(known_rows_mt) - float(reported) >= 0.001:
+        status = "completeMatch" if abs(float(reported) - float(known_rows_mt)) <= tolerance else "completeMismatch"
+    elif float(known_rows_mt) - float(reported) > tolerance:
         status = "knownRowsExceedReported"
-    elif abs(float(reported) - float(known_rows_mt)) >= 0.001:
+    elif abs(float(reported) - float(known_rows_mt)) > tolerance:
         status = "incompletePartialDifference"
     else:
         status = "incompleteUnavailable"
@@ -481,6 +515,7 @@ def reconciliation_check(
         "reportedMt": reported,
         "knownRowsMt": known_rows_mt,
         "missingCount": missing_count,
+        "toleranceMt": tolerance,
         "status": status,
     }
 
@@ -515,13 +550,13 @@ def parse_report(report_date: str, path: Path) -> tuple[dict[str, Any], dict[str
     carrier, carrier_vessels = parse_carrier(tables["carrier"])
     longline_vessels = parse_longline(tables["longline"]) if "longline" in tables else []
     issues: dict[str, list[Any]] = {"reconciliationChecks": [], "duplicateVessel": [], "coordinate": [], "longlineMissing": []}
-    for field, reported, values in (
-        ("pacific.dailyMt", summaries["pacific"]["dailyMt"], (vessel["catchMt"] for vessel in pacific_vessels)),
-        ("atlantic.dailyMt", summaries["atlantic"]["dailyMt"], (vessel["catchMt"] for vessel in atlantic_vessels)),
-        ("carrier.loadedMt", carrier["loadedTotalMt"], (vessel["loadedMt"] for vessel in carrier_vessels)),
-        ("carrier.expectedRemainingMt", carrier["expectedRemainingMt"], (vessel["expectedRemainingMt"] for vessel in carrier_vessels)),
+    for field, reported, values, reported_raw in (
+        ("pacific.dailyMt", summaries["pacific"]["dailyMt"], (vessel["catchMt"] for vessel in pacific_vessels), None),
+        ("atlantic.dailyMt", summaries["atlantic"]["dailyMt"], (vessel["catchMt"] for vessel in atlantic_vessels), None),
+        ("carrier.loadedMt", carrier["loadedTotalMt"], (vessel["loadedMt"] for vessel in carrier_vessels), carrier.get("loadedTotalMtRaw")),
+        ("carrier.expectedRemainingMt", carrier["expectedRemainingMt"], (vessel["expectedRemainingMt"] for vessel in carrier_vessels), carrier.get("expectedRemainingMtRaw")),
     ):
-        issues["reconciliationChecks"].append(reconciliation_check(report_date, field, reported, values))
+        issues["reconciliationChecks"].append(reconciliation_check(report_date, field, reported, values, reported_raw))
     if any(count > 1 for count in Counter(vessel["name"] for vessel in pacific_vessels + atlantic_vessels).values()):
         issues["duplicateVessel"].append(report_date)
     if any(not validate_position(vessel["position"]) for vessel in pacific_vessels + atlantic_vessels if vessel["position"]):
@@ -550,6 +585,85 @@ def compact_summary(report: dict[str, Any]) -> dict[str, Any]:
         "atlantic": {key: report["atlantic"][key] for key in ("dailyMt", "monthlyMt", "annualMt")},
         "carrier": {key: report["carrier"][key] for key in ("loadedTotalMt", "loadedTotalMtRaw", "loadedTotalParentheticalMt", "expectedRemainingMt", "expectedRemainingMtRaw", "expectedRemainingParentheticalMt")},
     }
+
+
+def build_daily_series(reports: Sequence[dict[str, Any]]) -> dict[str, Any]:
+    """일간 어획 추이. 합계는 보고 헤더의 dailyMt, 선박별은 상세 행의 catchMt를 쓴다."""
+    def region(key: str) -> dict[str, Any]:
+        names: list[str] = []
+        for report in reports:
+            for vessel in report[key]["vessels"]:
+                if vessel["name"] not in names:
+                    names.append(vessel["name"])
+        vessels = {}
+        last_increase: dict[str, str | None] = {}
+        for name in names:
+            # ponytail: 보고 x 선박 완전탐색. 145 x 17이라 그대로 둔다.
+            rows = [
+                next((vessel for vessel in report[key]["vessels"] if vessel["name"] == name), None)
+                for report in reports
+            ]
+            vessels[name] = [row["catchMt"] if row else None for row in rows]
+            previous_loaded = 0.0
+            last_increase[name] = None
+            for report, row in zip(reports, rows):
+                if row is None:
+                    continue
+                loaded = row["loadedMt"] or 0
+                if load_increased(loaded, previous_loaded):
+                    last_increase[name] = report["reportDate"]
+                previous_loaded = loaded
+        return {
+            "totalMt": [report[key]["dailyMt"] for report in reports],
+            "vessels": vessels,
+            "lastLoadIncreaseDates": last_increase,
+        }
+
+    return {
+        "dates": [report["reportDate"] for report in reports],
+        "pacific": region("pacific"),
+        "atlantic": region("atlantic"),
+    }
+
+
+def load_increased(loaded: float | None, previous: float | None) -> bool:
+    """선적량이 직전 보고보다 늘었는가. «-»·빈칸은 0 톤이다.
+
+    보고가 없는 주말에 잡은 어획은 선박별 일간 어획에 안 잡히고 선적량 증가로만 드러난다
+    (S/JUP: 8/12 이후 보고일 어획 전부 «-», 선적량 65 → 365). 가동 중단 판정이 이걸 봐야 한다."""
+    return (loaded or 0) > (previous or 0) + MIN_TOLERANCE_MT
+
+
+def append_daily_series(
+    series: dict[str, Any],
+    report: dict[str, Any],
+    previous_loaded: dict[str, dict[str, float | None]],
+) -> dict[str, Any]:
+    """증분 동기화에서 하루치만 이어 붙인다. 신규 선박은 앞 구간을 None으로 채운다.
+
+    previous_loaded 는 직전 보고의 선박별 선적량(직전 상세 DTO)이다. 공개 집계에는 수량이 없다."""
+    length = len(series["dates"])
+    appended = {"dates": [*series["dates"], report["reportDate"]]}
+    for key in ("pacific", "atlantic"):
+        previous = series[key]
+        catches = {vessel["name"]: vessel["catchMt"] for vessel in report[key]["vessels"]}
+        vessels = {
+            name: [*values, catches.get(name)]
+            for name, values in previous["vessels"].items()
+        }
+        for name, value in catches.items():
+            if name not in vessels:
+                vessels[name] = [*([None] * length), value]
+        last_increase = {name: previous["lastLoadIncreaseDates"].get(name) for name in vessels}
+        for vessel in report[key]["vessels"]:
+            if load_increased(vessel["loadedMt"], previous_loaded.get(key, {}).get(vessel["name"])):
+                last_increase[vessel["name"]] = report["reportDate"]
+        appended[key] = {
+            "totalMt": [*previous["totalMt"], report[key]["dailyMt"]],
+            "vessels": vessels,
+            "lastLoadIncreaseDates": last_increase,
+        }
+    return appended
 
 
 def build_payload(
@@ -606,8 +720,48 @@ def build_payload(
         "latest": latest,
         "previous": compact_summary(previous),
         "daily": [compact_summary(report) for report in parsed],
+        "dailySeries": build_daily_series(parsed),
         "quality": quality,
     }
+
+
+def reevaluate_check(check: dict[str, Any], reported_raw: str | None = None) -> dict[str, Any]:
+    """저장된 검산 입력만으로 상태·허용폭을 다시 매긴다.
+
+    검산 규칙이 바뀌었는데 원문 DOCX가 손에 없을 때 쓴다. 입력(reportedMt·knownRowsMt·
+    missingCount)은 이미 결정적으로 뽑혀 있으므로 재파싱 없이 같은 결과가 나온다."""
+    reported = check["reportedMt"]
+    rows_mt = check["knownRowsMt"]
+    missing_count = check["missingCount"]
+    tolerance = rounding_tolerance(reported_raw) if reported_raw else tolerance_from_value(reported)
+    if reported is None:
+        status = "reportedMissing"
+    elif missing_count == 0:
+        status = "completeMatch" if abs(float(reported) - float(rows_mt)) <= tolerance else "completeMismatch"
+    elif float(rows_mt) - float(reported) > tolerance:
+        status = "knownRowsExceedReported"
+    elif abs(float(reported) - float(rows_mt)) > tolerance:
+        status = "incompletePartialDifference"
+    else:
+        status = "incompleteUnavailable"
+    return {**check, "toleranceMt": tolerance, "status": status}
+
+
+def recount_quality(quality: dict[str, Any]) -> None:
+    checks = quality["reconciliationChecks"]
+    issues = [c for c in checks if c["status"] in {"completeMismatch", "knownRowsExceedReported"}]
+    partial = [c for c in checks if c["status"] in {"completeMismatch", "knownRowsExceedReported", "incompletePartialDifference"}]
+    unavailable = [c for c in checks if c["status"] not in {"completeMatch", "completeMismatch"}]
+    quality["counts"].update({
+        "reconciliationChecks": len(checks),
+        "reconciliationCompleteChecks": len(checks) - len(unavailable),
+        "reconciliationUnavailableChecks": len(unavailable),
+        "reconciliationUnavailableDocuments": len({c["reportDate"] for c in unavailable}),
+        "reconciliationIssues": len(issues),
+        "reconciliationDocuments": len({c["reportDate"] for c in issues}),
+        "reconciliationPartialDifferences": len(partial),
+        "reconciliationPartialDifferenceDocuments": len({c["reportDate"] for c in partial}),
+    })
 
 
 def public_reconciliation_result(check: dict[str, Any]) -> dict[str, Any]:
@@ -618,7 +772,8 @@ def public_reconciliation_result(check: dict[str, Any]) -> dict[str, Any]:
         matches = None
     else:
         rows_mt = check["knownRowsMt"]
-        matches = abs(float(reported) - float(rows_mt)) < 0.001
+        # 검산 상태와 같은 허용 폭을 쓴다 - 여기만 0.001 로 두면 상태는 일치인데 배지는 빨갛다
+        matches = abs(float(reported) - float(rows_mt)) <= check.get("toleranceMt", MIN_TOLERANCE_MT)
     return {
         "reportedMt": reported,
         "rowsMt": rows_mt,
@@ -716,6 +871,7 @@ def build_public_payload(
             "totalDailyMt": display_number(float(pacific_delta + atlantic_delta)),
         },
         "reconciliation": reconciliation,
+        "dailySeries": payload["dailySeries"],
         "quality": {
             "counts": payload["quality"]["counts"],
             "incompletePartialDifferences": len(incomplete_checks),
@@ -729,6 +885,7 @@ def build_incremental_public_payload(
     report: dict[str, Any],
     issues: dict[str, list[Any]],
     detail_sha256: str,
+    previous_loaded: dict[str, dict[str, float | None]],
 ) -> dict[str, Any]:
     try:
         previous_meta = previous_public["_meta"]
@@ -765,7 +922,14 @@ def build_incremental_public_payload(
     counts["coordinateFormatIssues"] += len(issues["coordinate"])
     counts["longlineSectionMissing"] += len(issues["longlineMissing"])
 
+    try:
+        previous_series = previous_public["dailySeries"]
+        daily_series = append_daily_series(previous_series, report, previous_loaded)
+    except (KeyError, TypeError) as error:
+        raise FleetDailySyncError("기존 공개 집계 JSON에 일간 추이·적재 증가일이 없습니다") from error
+
     incremental_payload = {
+        "dailySeries": daily_series,
         "_meta": {
             "schemaVersion": 1,
             "reportCount": previous_meta["reportCount"] + 1,
@@ -896,6 +1060,11 @@ def argument_parser() -> argparse.ArgumentParser:
     parser.add_argument("--public-output", type=Path, help="커밋 가능한 공개 집계 JSON 경로")
     parser.add_argument("--detail-output", type=Path, help="서버 환경변수용 최신 상세 DTO 경로")
     parser.add_argument("--check", action="store_true", help="세 출력 JSON이 결정적 동기화 결과와 같은지 검사")
+    parser.add_argument(
+        "--rebuild-public",
+        action="store_true",
+        help="원문 DOCX 없이 로컬 파생 JSON만으로 공개 집계를 다시 만든다(검산 규칙이 바뀐 경우)",
+    )
     return parser
 
 
@@ -911,6 +1080,39 @@ def main(argv: Sequence[str] | None = None) -> int:
         output = args.output.resolve()
         public_output = args.public_output.resolve() if args.public_output else companion_output(output, "public")
         detail_output = args.detail_output.resolve() if args.detail_output else companion_output(output, "detail")
+        if args.rebuild_public:
+            if args.source_dir or args.additional_report or args.latest_report or args.check:
+                raise FleetDailySyncError("--rebuild-public는 다른 입력 옵션과 함께 쓸 수 없습니다")
+            payload = json.loads(output.read_text(encoding="utf-8"))
+            previous_public = json.loads(public_output.read_text(encoding="utf-8"))
+            # 최신 보고의 운반선 머리글만 인쇄 문자열이 남아 있다. 나머지는 값의 자릿수로 대신한다.
+            raw_by_field = {
+                "carrier.loadedMt": payload["latest"]["carrier"].get("loadedTotalMtRaw"),
+                "carrier.expectedRemainingMt": payload["latest"]["carrier"].get("expectedRemainingMtRaw"),
+            }
+            latest_date = payload["latest"]["reportDate"]
+            payload["quality"]["reconciliationChecks"] = [
+                reevaluate_check(
+                    check,
+                    raw_by_field.get(check["field"]) if check["reportDate"] == latest_date else None,
+                )
+                for check in payload["quality"]["reconciliationChecks"]
+            ]
+            recount_quality(payload["quality"])
+            meta = previous_public["_meta"]
+            public_payload = build_public_payload(
+                payload,
+                meta["detailSha256"],
+                meta.get("detailSha256Compat", []),
+            )
+            atomic_write(output, serialized(payload))
+            atomic_write(public_output, serialized(public_payload))
+            print(
+                f"공개 집계 재생성 완료: 확정 불일치 "
+                f"{payload['quality']['counts']['reconciliationIssues']}건 · "
+                f"최신 검산 {'일치' if public_payload['reconciliation']['valid'] else '확인 필요'}"
+            )
+            return 0
         if args.latest_report:
             if args.source_dir or args.additional_report or args.check:
                 raise FleetDailySyncError("--latest-report는 --source-dir, --additional-report, --check와 함께 쓸 수 없습니다")
@@ -919,12 +1121,22 @@ def main(argv: Sequence[str] | None = None) -> int:
                 raise FleetDailySyncError("최신 원문 DOCX를 읽을 수 없습니다")
             report, issues = parse_report(*entry)
             previous_public = json.loads(public_output.read_text(encoding="utf-8"))
+            if not detail_output.exists():
+                raise FleetDailySyncError(f"직전 상세 DTO가 없어 적재 증가를 판정할 수 없습니다: {detail_output}")
+            previous_detail = json.loads(detail_output.read_text(encoding="utf-8"))
+            if previous_detail.get("reportDate") != previous_public["_meta"]["latestReportDate"]:
+                raise FleetDailySyncError("직전 상세 DTO의 보고일이 공개 집계 최신일과 다릅니다")
+            previous_loaded = {
+                key: {vessel["name"]: vessel.get("loadedMt") for vessel in previous_detail[key]["vessels"]}
+                for key in ("pacific", "atlantic")
+            }
             detail_payload = build_detail_payload({"latest": report})
             public_payload = build_incremental_public_payload(
                 previous_public,
                 report,
                 issues,
                 canonical_sha256(detail_payload),
+                previous_loaded,
             )
             atomic_write(public_output, serialized(public_payload))
             atomic_write(detail_output, serialized(detail_payload))

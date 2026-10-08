@@ -3,72 +3,149 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import { cosmoMonthlyReport as r } from '../lib/data/cosmo-monthly-report';
+import { monthly } from '../lib/data/cosmo';
 import HomeTab from '../components/cosmo/tabs/HomeTab';
+import ProductionTab from '../components/cosmo/tabs/ProductionTab';
 
-/* 원자료: COSMO 월간보고 (8월).pptx — 「COSMO 7월 업무보고」 2026-08-25.
+/* 원자료: COSMO 월간보고 (9월).pptx — 「COSMO 8월 업무보고」 2026-09-29.
  * 아래 수치는 전부 pptx 원문 하드코딩이다. 계약이 원문에서 멀어지면 여기서 깨진다. */
+const sum = (a: readonly number[]) => a.reduce((x, y) => x + y, 0);
 
-describe('cosmo 7월 업무보고 데이터 계약', () => {
+describe('cosmo 8월 업무보고 데이터 계약', () => {
   it('출처 메타가 원본 파일을 가리킨다', () => {
-    expect(r.source.file).toBe('COSMO 월간보고 (8월).pptx');
-    expect(r.source.reportDate).toBe('2026-08-25');
+    expect(r.source.file).toBe('COSMO 월간보고 (9월).pptx');
+    expect(r.source.title).toBe('COSMO 8월 업무보고');
+    expect(r.source.reportDate).toBe('2026-09-29');
     expect(r.source.sha256).toBe(
-      '107b9ccac5e2e554d7c741af3fe21fe8dbe7d665b7a28664e69a437b1097c78d',
+      '2bdf4ba2f5a01a37810e62eedf09b6bb9cd63096e324fcb29e64856bb1c2a0eb',
     );
   });
 
-  it('유동성(1.1 → 7.31, 만불)이 원문과 일치한다', () => {
+  it('유동성(1.1 → 8.31, 만불)이 원문과 일치한다', () => {
     expect(r.liquidity).toEqual({
-      asOf: '7/31',
-      cash: { begin: 337, end: 493 },
-      ar: { begin: 207, end: 883 },
-      ap: { begin: 1105, end: 1942 },
-      shortfall: { begin: -562, end: -566 },
+      asOf: '8/31',
+      cash: { begin: 337, end: 536 },
+      ar: { begin: 207, end: 571 },
+      ap: { begin: 1105, end: 2454 },
+      shortfall: { begin: -562, end: -1346 },
     });
-    // 원문 인쇄값 검증: 현금 + 매출채권 − 매입채무 = 현금부족 (7/31 정확, 연초는 원문 반올림 −1)
-    expect(r.liquidity.cash.end + r.liquidity.ar.end - r.liquidity.ap.end)
-      .toBe(r.liquidity.shortfall.end);
+    // 현금부족은 인쇄값 — 행 계산과 연초·8/31 모두 1 어긋난다(원문 반올림)
+    const calc = r.liquidity.cash.end + r.liquidity.ar.end - r.liquidity.ap.end;
+    expect(calc).toBe(-1347);
+    expect(Math.abs(calc - r.liquidity.shortfall.end)).toBeLessThanOrEqual(1);
   });
 
-  it('재고자산(1.1 → 7.31, 만불)이 원문 합계와 맞아떨어진다', () => {
-    expect(r.inventory).toEqual({
-      asOf: '7/31',
-      raw: { begin: 366, end: 130 },
-      product: { begin: 1189, end: 1283 },
-      materials: { begin: 416, end: 371 },
-      total: { begin: 1971, end: 1784 },
-    });
-    expect(r.inventory.raw.end + r.inventory.product.end + r.inventory.materials.end)
-      .toBe(r.inventory.total.end);
-    expect(r.inventory.raw.begin + r.inventory.product.begin + r.inventory.materials.begin)
-      .toBe(r.inventory.total.begin);
+  it('재고자산(1.1 → 8.31, 만불)이 원문 합계와 맞아떨어진다', () => {
+    const i = r.inventory;
+    expect(i.raw.end + i.product.end + i.materials.end).toBe(i.total.end);
+    expect(i.raw.begin + i.product.begin + i.materials.begin).toBe(i.total.begin);
+    expect(i.total.end).toBe(2461);
   });
 
-  it('생산계획 변경이 원문과 일치한다 - 8월 2,730→2,310, 연간 29,000→26,118', () => {
-    expect(r.productionPlan.augustPlanMt).toBe(2730);
-    expect(r.productionPlan.augustRevisedMt).toBe(2310);
-    expect(r.productionPlan.annualPlanMt).toBe(29000);
-    expect(r.productionPlan.annualRevisedMt).toBe(26118);
-    expect(r.productionPlan.annualRevisedMt - r.productionPlan.annualPlanMt).toBe(-2882);
-    expect(r.productionPlan.september).toEqual({ days: 21, dailyMt: 110, totalMt: 2310 });
+  it('영업실적(8월 누적)이 월별 손익 정본과 만불 반올림으로 맞는다', () => {
+    const aug = monthly.find((m) => m.month === 8)!;
+    expect(Math.round(aug.revenueYtd! / 1e4)).toBe(4241);
+    expect(Math.round(aug.gpYtd! / 1e4)).toBe(107);
+    expect(Math.round(aug.opYtd! / 1e4)).toBe(-44);
+    expect(Math.round(aug.netYtd! / 1e4)).toBe(-189);
+    // 원문 «CBU −28만불» 은 인쇄 당월값 기준 — 복원값은 −29 다
+    expect(Math.round(aug.net_cbu! / 1e4)).toBe(-29);
+    expect(Math.round(aug.correction!.printed['100:Net Income:CBU']! / 1e4)).toBe(-28);
   });
 
-  it('수주 단가 인상·어대금·원어재고가 원문과 일치한다', () => {
-    expect(r.orderPrice).toEqual({ fromUsd: 46.0, toUsd: 49.5, basis: '$2kg 기준' });
-    expect(r.panofiPayable).toEqual({ asOf: '7/31', usd10k: 1864 });
-    expect(r.rawStock).toEqual({ asOf: '8/21', sjMt: 3396, yfMt: 26, mixMt: 620 });
-    expect(r.rawStock.sjMt + r.rawStock.yfMt + r.rawStock.mixMt).toBe(4042);
+  it('생산지표(8월 누적)가 월별 표와 맞는다', () => {
+    const t = r.rawThroughput;
+    const p = r.productionYtd;
+    expect(sum(t.days.slice(0, p.through))).toBe(p.days.y2026);
+    expect(Math.abs(sum(t.revised.slice(0, p.through)) - p.rawMt.y2026)).toBeLessThanOrEqual(1);
+    expect(Math.abs(sum(t.plan.slice(0, p.through)) - sum(t.revised.slice(0, p.through)) + p.vsPlan.rawMt))
+      .toBeLessThanOrEqual(1);
+  });
+
+  it('수주 단가·어대금·원어재고가 원문과 일치한다', () => {
+    expect(r.orderPrice).toEqual({ fromUsd: 49.5, toUsd: 51.5, basis: '$2kg 기준', fishPriceUsd: 1900 });
+    expect(r.panofiPayable).toEqual({ asOf: '8/31', usd10k: 2085 });
+    expect(r.rawStock).toEqual({ asOf: '9/25', sjMt: 2466, yfMt: null, mixMt: null });
+  });
+
+  it('인명이 계약에 들어가지 않는다', () => {
+    expect(JSON.stringify(r)).not.toMatch(/[가-힣]{2,3}\s?(과장|부장|차장|대리|법인장)/);
   });
 });
 
-describe('경영요약 화면 노출', () => {
-  it('7월 업무보고 카드가 핵심 수치와 함께 렌더된다', () => {
+describe('cosmo 8월 업무보고 월별 표', () => {
+  it('월별 원어 처리량 표가 12개월치이고 연간 합계와 맞아떨어진다', () => {
+    const t = r.rawThroughput;
+    for (const row of [t.plan, t.revised, t.days, t.dailyMt]) expect(row).toHaveLength(12);
+    expect(t.revised).toEqual([1540, 2191, 2126, 2128, 1640, 2364, 2414, 1690, 2034, 2420, 2310, 1650]);
+    expect(sum(t.plan)).toBe(t.annual.planMt);
+    expect(sum(t.revised)).toBe(t.annual.revisedMt);
+    expect(t.annual.revisedMt).toBe(24507);
+    expect(sum(t.days)).toBe(t.annual.days);
+    t.revised.forEach((mt, i) => {
+      expect(Math.abs(mt / t.days[i] - t.dailyMt[i])).toBeLessThan(1);
+    });
+    expect(Math.abs(t.annual.revisedMt / t.annual.days - t.annual.dailyMt)).toBeLessThan(1);
+    // 5쪽 「참고) 10월 생산 계획」은 3쪽 표의 10월과 같은 값이다
+    const nm = r.nextMonthPlan;
+    expect(nm.days * nm.dailyMt).toBe(nm.totalMt);
+    expect(t.revised[nm.month - 1]).toBe(nm.totalMt);
+    expect(t.days[nm.month - 1]).toBe(nm.days);
+  });
+
+  it('컨테이너 원문 합계 열은 8월 수정 전 값이 남아 있다 — 행 합계를 정본으로 쓴다', () => {
+    const c = r.containers;
+    for (const row of [c.cbuPlan, c.cbuOnBoard, c.fbu]) expect(row).toHaveLength(12);
+    expect(sum(c.cbuPlan)).toBe(c.printedAnnual.cbuPlan);
+    expect(sum(c.cbuOnBoard)).toBe(889);
+    expect(sum(c.fbu)).toBe(46);
+    expect(c.printedAnnual).toEqual({ cbuPlan: 1036, cbuOnBoard: 934, cbuGap: -102, fbu: 48 });
+    // 7월 업무보고 값(8월 On Board 95, FBU 5)을 넣으면 인쇄 합계와 맞는다 — 합계만 안 고친 것
+    expect(sum(c.cbuOnBoard) - c.cbuOnBoard[7] + 95).toBe(c.printedAnnual.cbuOnBoard);
+    expect(sum(c.fbu) - c.fbu[7] + 5).toBe(c.printedAnnual.fbu);
+  });
+});
+
+describe('화면 노출', () => {
+  it('경영요약 업무보고 카드가 8월 업무보고 수치로 렌더된다', () => {
     const markup = renderToStaticMarkup(React.createElement(HomeTab));
-    expect(markup).toContain('7월 업무보고');
-    expect(markup).toContain('1,942');   // 매입채무 7/31
-    expect(markup).toContain('2,310');   // 8월 변경계획 MT
-    expect(markup).toContain('26,118');  // 연간 변경계획 MT
-    expect(markup).toContain('49.5');    // 인상 단가
-    expect(markup).toContain('1,864');   // PANOFI 어대금
+    expect(markup).toContain('8월 업무보고 (2026-09-29)');
+    expect(markup).not.toContain('7월 업무보고 (2026-08-25)');
+    expect(markup).toContain('2,454');   // 매입채무 8/31
+    expect(markup).toContain('1,690');   // 8월 실적 MT
+    expect(markup).toContain('24,507');  // 연간 변경계획 MT
+    expect(markup).toContain('51.5');    // 인상 단가
+    expect(markup).toContain('2,085');   // PANOFI 어대금
+    expect(markup).toContain('YF·믹스는 원문 미기재');
+    expect(markup).not.toContain('Tender');
+    expect(markup).not.toContain('송인혁');
+    expect(markup).toContain('OTTO FRANCK');
+  });
+
+  it('생산 탭 서술이 표에서 나온다', () => {
+    const markup = renderToStaticMarkup(React.createElement(ProductionTab));
+    expect(markup).not.toContain('상반기 실적 일 처리량보다 높게');
+    expect(markup).not.toContain('MSC 선박');
+    expect(markup).toContain('889 FCL');
+    expect(markup).toContain('Gate-in');
+    expect(markup).toContain('5월에만 계획을 넘겼는데');
+  });
+});
+
+describe('8월 업무보고 docx 판본 (2026-10-06 수령)', () => {
+  it('pptx 와 표 숫자가 같고, docx 에만 있는 클리너 채용·잔류를 담는다', () => {
+    expect(r.source.docx).toEqual({
+      file: 'COSMO 2026 08 업무보고.docx',
+      sha256: 'da4980278391fb1d2f6c9f880ed641ce74e877853dbc022e5dbd08aa82981cec',
+    });
+    expect(r.cleanerHiring).toEqual({ through: 8, hiredYtd: 1046, retained: 385 });
+    // 잔류율 약 37% - 열 명 뽑으면 넷이 안 남는다
+    expect(r.cleanerHiring.retained / r.cleanerHiring.hiredYtd).toBeCloseTo(0.368, 3);
+  });
+
+  it('경영요약이 채용·잔류를 보여 준다', () => {
+    const markup = renderToStaticMarkup(React.createElement(HomeTab));
+    expect(markup).toContain('1,046명');
+    expect(markup).toContain('385명');
   });
 });

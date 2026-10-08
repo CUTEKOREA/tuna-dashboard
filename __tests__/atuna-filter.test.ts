@@ -62,6 +62,42 @@ describe('briefing impact extraction (V3 뉴스 A안)', () => {
     expect(numbers[1].value).toBe('20%');
   });
 
+  it('통화 금액은 억·만 단위까지 한 토큰으로 뽑는다 (2026-09-21 USD 2,500만 오표기 회귀)', () => {
+    const briefing = parseDailyBriefing({
+      date: '2026-09-21',
+      digest: [
+        { title: '제프 베이조스, 태평양 해양 보전에 USD 2,500만 추가 지원' },
+        { title: 'NewPrinces 상반기 매출 EUR 30억 3,000만 넘어, 이탈리아 참치 판매 확대' },
+        { title: '인도양 어획 소폭 개선, 가다랑어 톤당 FOB EUR 1,645(+2.8%)' },
+      ],
+      articles: [
+        { titleKo: 'ㄱ', paragraphs: ['이렇게 해야 한다.'] },
+        { titleKo: 'ㄴ', paragraphs: ['본문'] },
+        { titleKo: 'ㄷ', paragraphs: ['본문'] },
+      ],
+    });
+    const values = buildBriefingImpactNumbers(briefing).map((n) => n.value);
+    expect(values).toEqual(['USD 2,500만', 'EUR 30억 3,000만', 'EUR 1,645']);
+  });
+
+  it('M/T 물량이 뒤따르는 %보다 먼저 잡힌다 (2026-09-22 -13% 오선택 회귀)', () => {
+    const briefing = parseDailyBriefing({
+      date: '2026-09-22',
+      digest: [
+        { title: 'EU CATCH로 수입 지연, 스페인 자숙 로인 상반기 64,782 M/T(전년比 -13%)' },
+        { title: 'EU 캔너 수입 108,412 M/T로 9% 감소' },
+        { title: '숫자 없는 헤드라인' },
+      ],
+      articles: [
+        { titleKo: 'ㄱ', paragraphs: ['본문'] },
+        { titleKo: 'ㄴ', paragraphs: ['본문'] },
+        { titleKo: 'ㄷ', paragraphs: ['본문'] },
+      ],
+    });
+    const values = buildBriefingImpactNumbers(briefing).map((n) => n.value);
+    expect(values).toEqual(['64,782 M/T', '108,412 M/T']);
+  });
+
   it('실데이터에서 임팩트 넘버 라벨이 전부 비어 있지 않다', () => {
     for (const impact of buildBriefingImpactNumbers(dailyBriefing)) {
       expect(impact.label.length).toBeGreaterThanOrEqual(4);

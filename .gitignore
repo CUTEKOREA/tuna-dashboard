@@ -59,6 +59,7 @@ scratch/
 /lib/data/generated/fleet-daily-private.json
 /lib/data/generated/fleet-daily-latest.json
 /artifacts/fleet-daily-detail.json
+/artifacts/fleet-port-schedule.json
 /artifacts/dashboard-daily-operator/
 
 # scratch and deploy logs
@@ -114,3 +115,6 @@ pnpm-workspace.yaml
 seafresh-docs/
 .impeccable/*
 !.impeccable/config.json
+
+# 라이브 화면 증거 (scripts/verify_live.mjs)
+/artifacts/live-evidence/

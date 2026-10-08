@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-import { HUB_ID } from '../lib/chart-palette';
+import { CHART_ROLE, SERIES } from '../lib/chart-palette';
 import { SHRIMP_ACCENT, SHRIMP_ROLE } from '../lib/shrimp-chart-colors';
 
 const WHITE = '#ffffff';
@@ -22,16 +22,11 @@ function contrastRatio(foreground: string, background: string): number {
 }
 
 describe('새우 차트 색', () => {
-  it('액센트가 물량색이고 연두·밝은 틸 잔여가 아니다', () => {
-    expect(SHRIMP_ACCENT).toBe(SHRIMP_ROLE.volume);
-    expect(SHRIMP_ROLE.volume).toBe('#0f766e');
-    expect(SHRIMP_ROLE.highlight).toBe('#be123c');
-    expect(SHRIMP_ROLE.second).toBe(HUB_ID.sey);
-    expect(SHRIMP_ROLE.volume).not.toBe('#7c3aed');
-    expect(SHRIMP_ROLE.volume).not.toBe('#0369a1');
-    expect(SHRIMP_ROLE.volume).not.toBe('#92400e');
-    expect(SHRIMP_ROLE.highlight).not.toBe('#f43f5e');
-    expect(SHRIMP_ROLE.second).not.toBe('#34d399');
+  it('데이터 색은 공통 역할이고 새우 톤은 차트 밖 액센트로만 남는다', () => {
+    // 2026-09-11 팔레트 일원화 — 품목 시그니처는 룰북 D-04대로 히어로·섹션 머리에만 쓴다.
+    expect(SHRIMP_ROLE).toEqual(CHART_ROLE);
+    expect(SHRIMP_ACCENT).toBe('#0f766e');
+    expect(SERIES).not.toContain(SHRIMP_ACCENT);
   });
 
   it('물량·강조가 흰 지면에서 그래픽 대비 3:1을 넘는다', () => {

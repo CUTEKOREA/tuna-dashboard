@@ -6,16 +6,94 @@
  },
  "sections": {
   "s1": 3,
+  "s1b": 1,
   "s2": 2,
   "s3": 2,
-  "s4": 3,
+  "s4": 15,
   "s5": 5,
   "s6": 8,
+  "s6b": 2,
   "s7": 4,
   "s8": 8,
-  "s9": 7
+  "s9": 7,
+  "s9b": 1,
+  "scorr": 3
  },
  "tables": [
+  {
+   "title": "시점 · 무엇이 일어났나",
+   "head": [
+    "시점",
+    "무엇이 일어났나"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "1977",
+     "설립. 창업자는 Kraisorn Chansiri와 Cheng Niruttinanon"
+    ],
+    [
+     "1981",
+     "Songkhla Canning 설립 — 참치 통조림 회사로 출발한다"
+    ],
+    [
+     "1988",
+     "Thai Union Frozen Products 설립. 냉동 사업의 기반이 된다"
+    ],
+    [
+     "1989",
+     "Songkhla Canning이 펫푸드로 방향을 튼다"
+    ],
+    [
+     "1992",
+     "일본 상사와 식품사가 지분 투자. 고객이자 유통사였다"
+    ],
+    [
+     "1997",
+     "첫 해외 인수 — Tri-Union Seafoods(Chicken of the Sea)"
+    ],
+    [
+     "2006",
+     "Chicken of the Sea Frozen Foods 설립"
+    ],
+    [
+     "2008",
+     "베트남·인도 법인에 투자"
+    ],
+    [
+     "2010-10-29",
+     "MW Brands 인수 종결. 기업가치 €6억 8,000만이고 그 한 건에 네 브랜드가 들어 있었다"
+    ],
+    [
+     "2014-11",
+     "MerAlliance(프랑스 훈제연어)와 King Oscar(노르웨이 정어리) 인수 종결"
+    ],
+    [
+     "2016-02",
+     "Rügen Fisch 51%를 €4,220만에. 2021-05 나머지 49%를 사서 100%가 된다"
+    ],
+    [
+     "2015",
+     "사명을 지금의 Thai Union Group으로 바꾼다"
+    ],
+    [
+     "2021 → 2022",
+     "Songkhla Canning이 2021년 9월 i-Tail로 이름을 바꾸고, 2022년 SET에 별도 상장한다"
+    ],
+    [
+     "2023 Q4",
+     "일회성 비현금 손상 184억 밧을 4분기 장부에 인식한다. 철수 결정은 2024-01-16 이사회(제1/2024차)다 — 손상이 먼저 장부에 잡히고 결정이 이듬해에 났다"
+    ]
+   ],
+   "sid": "s1b",
+   "section": "02 / 연혁수출 공장이 브랜드를 사 모으는 회사가 되기까지",
+   "ord": 248,
+   "note": "연도는 회사 공시와 인수 종결 발표에 적힌 것이다.",
+   "stage": "c01"
+  },
   {
    "title": "카테고리 · 매출(억 밧) · 그룹 비중",
    "head": [
@@ -65,7 +143,7 @@
      "7.1%",
      "−9.5%",
      "25.4%",
-     "-"
+     "—"
     ],
     [
      "합계",
@@ -73,11 +151,12 @@
      "100%",
      "−4.1%",
      "18.9%",
-     "-"
+     "—"
     ]
    ],
    "sid": "s2",
-   "section": "02 / 사업 구조한 회사 안에 두 개의 사업 모델",
+   "section": "03 / 사업 구조한 회사 안에 두 개의 사업 모델",
+   "ord": 814,
    "note": "프린사와 정확히 반대인 지점",
    "stage": "c02"
   },
@@ -124,13 +203,122 @@
      "39.9%",
      "30.3%",
      "태국 11.9% · 신흥국 17.9%",
-     "-"
+     "—"
     ]
    ],
    "sid": "s2",
-   "section": "02 / 사업 구조한 회사 안에 두 개의 사업 모델",
+   "section": "03 / 사업 구조한 회사 안에 두 개의 사업 모델",
+   "ord": 86847,
    "note": "회사가 리스크 항목에서 \"미국이 매출의 38%\"라고 쓴 것과 MD&A의 \"미국·캐나다 39.9%\"는 기준이 다르다(미국 단독 vs 북미).",
    "stage": "c02"
+  },
+  {
+   "title": "인수로 만든 지도",
+   "head": [
+    "브랜드",
+    "본거지",
+    "인수",
+    "보유 법인",
+    "지분"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Chicken of the Sea",
+     "미국",
+     "1997",
+     "Tri-Union Seafoods, LLC",
+     "100%"
+    ],
+    [
+     "John West",
+     "영국·아일랜드·네덜란드",
+     "2010",
+     "John West Foods Ltd · John West Holland BV",
+     "100%"
+    ],
+    [
+     "Petit Navire",
+     "프랑스",
+     "2010",
+     "Etablissements Paul Paulet SAS",
+     "100%"
+    ],
+    [
+     "Parmentier",
+     "프랑스",
+     "2010",
+     "Etablissements Paul Paulet SAS",
+     "100%"
+    ],
+    [
+     "Mareblu",
+     "이탈리아",
+     "2010",
+     "Mareblu SRL",
+     "100%"
+    ],
+    [
+     "King Oscar",
+     "노르웨이",
+     "2014-11",
+     "King Oscar AS · King Oscar Inc.(미국)",
+     "100%"
+    ],
+    [
+     "Rügen Fisch",
+     "독일",
+     "2016·2021",
+     "Rügen Fisch AG",
+     "100%"
+    ],
+    [
+     "Hawesta",
+     "독일",
+     "2016·2021",
+     "Hawesta-Feinkost",
+     "100%"
+    ],
+    [
+     "Sealect",
+     "태국",
+     "자체 육성",
+     "Thai Union Group",
+     "—"
+    ],
+    [
+     "Chicken of the Sea Frozen Food",
+     "미국",
+     "2006 설립",
+     "Tri-Union Frozen Products",
+     "100%"
+    ],
+    [
+     "Thammachart Seafood · Qfresh",
+     "태국",
+     "—",
+     "Thammachart Seafood Retail",
+     "65%"
+    ],
+    [
+     "ThalaCol",
+     "—",
+     "2025 상용화",
+     "Thai Union Ingredients",
+     "100%"
+    ]
+   ],
+   "sid": "s3",
+   "section": "04 / 브랜드 포트폴리오아홉 개 브랜드, 하나의 소유주",
+   "ord": 2082,
+   "note": "2010년에 유럽 네 브랜드를 한 건으로 샀다",
+   "stage": "c03"
   },
   {
    "title": "브랜드가 없는 사업: PetCare",
@@ -172,7 +360,8 @@
     ]
    ],
    "sid": "s3",
-   "section": "03 / 브랜드 포트폴리오아홉 개 브랜드, 하나의 소유주",
+   "section": "04 / 브랜드 포트폴리오아홉 개 브랜드, 하나의 소유주",
+   "ord": 4960,
    "note": "네덜란드 Innovation Hub가 글로벌 상온 브랜드의 제품·포장 혁신을 전담한다. 회사는 \"핵심 참치 브랜드를 재포지셔닝해 마진을 확대하고 카테고리 리더십을 잡겠다\"고 적었다.",
    "stage": "c03"
   },
@@ -241,13 +430,14 @@
     ],
     [
      "Sealect (태국)",
-     "-",
+     "—",
      "공식 브랜드 공개자료",
      "참치 · 정어리·고등어 토마토소스 · Tuna Fitt 스테이크. 유통 26채널(7-Eleven·Lotus's·Big C·Makro·Lazada·Shopee·Grab…)"
     ]
    ],
    "sid": "s4",
-   "section": "04 / 제품 카탈로그나라마다 갈리는 라인업",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 280,
    "stage": "c04"
   },
   {
@@ -303,8 +493,4699 @@
     ]
    ],
    "sid": "s4",
-   "section": "04 / 제품 카탈로그나라마다 갈리는 라인업",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 446160,
    "note": "같은 참치를 형태만 바꿔 kg당 8.50 → 22.50파운드, 2.6배를 받는다. 프린사의 사다리가 '부위'(몸살에서 뱃살로)로 값을 갈랐다면, John West의 사다리는 형태와 편의로 가른다. 한쪽은 원물에, 한쪽은 가공에 값을 붙인다.",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "브랜드",
+    "국가",
+    "SKU",
+    "등급",
+    "자료"
+   ],
+   "num": [
+    false,
+    false,
+    true,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "John West",
+     "영국",
+     "87",
+     "A",
+     "공식 브랜드 카탈로그"
+    ],
+    [
+     "Chicken of the Sea",
+     "미국",
+     "68",
+     "A",
+     "공식 브랜드 카탈로그"
+    ],
+    [
+     "Petit Navire",
+     "프랑스",
+     "68",
+     "A",
+     "공식 제품 카탈로그"
+    ],
+    [
+     "Rügen Fisch",
+     "독일",
+     "31",
+     "A",
+     "공식 제품 카탈로그"
+    ],
+    [
+     "Hawesta",
+     "독일",
+     "31",
+     "A",
+     "공식 제품 카탈로그"
+    ],
+    [
+     "King Oscar",
+     "노르웨이",
+     "29",
+     "A",
+     "공식 제품 카탈로그(Shopify)"
+    ],
+    [
+     "Mareblu",
+     "이탈리아",
+     "85",
+     "B",
+     "Open Food Facts"
+    ],
+    [
+     "Parmentier",
+     "프랑스",
+     "54",
+     "B",
+     "Open Food Facts"
+    ],
+    [
+     "Sealect",
+     "태국",
+     "14",
+     "B",
+     "Open Food Facts"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 449757,
+   "note": "어종이 적힌 SKU 기준. 한 제품이 어종을 둘 달면 양쪽에 센다.",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "어종",
+    "SKU"
+   ],
+   "num": [
+    false,
+    true
+   ],
+   "rows": [
+    [
+     "참치",
+     "192"
+    ],
+    [
+     "정어리",
+     "80"
+    ],
+    [
+     "연어",
+     "45"
+    ],
+    [
+     "고등어",
+     "42"
+    ],
+    [
+     "청어",
+     "33"
+    ],
+    [
+     "게",
+     "12"
+    ],
+    [
+     "새우",
+     "10"
+    ],
+    [
+     "식물성 대체",
+     "5"
+    ],
+    [
+     "홍합",
+     "4"
+    ],
+    [
+     "훈제청어",
+     "3"
+    ],
+    [
+     "안초비",
+     "3"
+    ],
+    [
+     "조개",
+     "3"
+    ],
+    [
+     "굴",
+     "3"
+    ],
+    [
+     "스키퍼스",
+     "2"
+    ],
+    [
+     "실드",
+     "2"
+    ],
+    [
+     "대구",
+     "1"
+    ],
+    [
+     "스프래트",
+     "1"
+    ],
+    [
+     "황다랑어",
+     "1"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 450770,
+   "note": "어종이 적힌 SKU 기준. 한 제품이 어종을 둘 달면 양쪽에 센다.",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "제품명",
+    "어종",
+    "규격",
+    "인증"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Stir & Serve Tuna in Spicy Mexican Sauce",
+     "참치",
+     "300g",
+     "MSC"
+    ],
+    [
+     "Stir & Serve Tuna in Tomato & Basil Sauce",
+     "참치",
+     "300g",
+     "MSC"
+    ],
+    [
+     "Stir & Serve Tuna in Soy, Ginger & Honey Sauce",
+     "참치",
+     "300g",
+     "MSC"
+    ],
+    [
+     "Stir & Serve Tuna in Mild Curry Sauce",
+     "참치",
+     "300g",
+     "MSC"
+    ],
+    [
+     "Atlantic Salmon Fillet in Olive Oil",
+     "연어(핑크) · 연어",
+     "80 g",
+     "MSC"
+    ],
+    [
+     "Atlantic Salmon Fillet Mediterranean Style in Olive Oil",
+     "연어(핑크) · 연어",
+     "80 g",
+     "MSC"
+    ],
+    [
+     "Atlantic Salmon Fillet in Olive Oil with Zesty Lemon",
+     "연어(핑크) · 연어",
+     "80 g",
+     "MSC"
+    ],
+    [
+     "Natural Protein Tuna Bean Salad",
+     "참치",
+     "—",
+     "MSC"
+    ],
+    [
+     "Natural Protein Tuna Quinoa Salad",
+     "참치",
+     "87 g",
+     "MSC"
+    ],
+    [
+     "No Drain Fridge Pot Tuna Steak In Olive Oil",
+     "참치",
+     "3x110",
+     "MSC"
+    ],
+    [
+     "Tuna Chunks In Spring Water 4 Pack",
+     "참치",
+     "4x125",
+     "MSC"
+    ],
+    [
+     "Tuna Chunks In Sunflower Oil 4 Pack",
+     "참치",
+     "4x125",
+     "MSC"
+    ],
+    [
+     "Tuna Chunks In Brine 4 Pack",
+     "참치",
+     "4x125",
+     "MSC"
+    ],
+    [
+     "Tuna Chunks In Spring Water MSC",
+     "참치",
+     "82 g",
+     "MSC"
+    ],
+    [
+     "Tuna Chunks In Sunflower Oil MSC",
+     "참치",
+     "82 g",
+     "MSC"
+    ],
+    [
+     "Tuna Chunks In Brine MSC",
+     "참치",
+     "82 g",
+     "MSC"
+    ],
+    [
+     "No Drain Tuna Chunks In Spring Water MSC",
+     "참치",
+     "3x100",
+     "MSC"
+    ],
+    [
+     "No Drain Tuna Chunks In Sunflower Oil MSC",
+     "참치",
+     "3x100",
+     "MSC"
+    ],
+    [
+     "No Drain Tuna Chunks In Brine MSC",
+     "참치",
+     "3x100",
+     "MSC"
+    ],
+    [
+     "Lemon & Herb Salmon Pot",
+     "연어(핑크)",
+     "73 g",
+     "—"
+    ],
+    [
+     "Sweet Chilli Salmon Pot",
+     "연어(핑크)",
+     "73 g",
+     "—"
+    ],
+    [
+     "Salmon Pot in a Little Brine",
+     "연어(핑크)",
+     "73 g",
+     "—"
+    ],
+    [
+     "On The Go Harissa Spiced Super Tuna Salad",
+     "참치",
+     "87 g",
+     "—"
+    ],
+    [
+     "On the Go Mexican Light Tuna Bean Salad",
+     "참치",
+     "87 g",
+     "—"
+    ],
+    [
+     "On The Go Greek Light Tuna Pasta Salad",
+     "참치",
+     "87 g",
+     "—"
+    ],
+    [
+     "On The Go Moroccan Super Salmon Salad",
+     "연어(핑크)",
+     "87 g",
+     "—"
+    ],
+    [
+     "Tuna Chunks in Sunflower Oil",
+     "참치",
+     "3x80",
+     "—"
+    ],
+    [
+     "Tuna Chunks in Spring Water",
+     "참치",
+     "3x80",
+     "—"
+    ],
+    [
+     "Tuna Chunks in Brine",
+     "참치",
+     "3x80",
+     "—"
+    ],
+    [
+     "No Drain Tuna Steak With A Little Sunflower Oil",
+     "참치",
+     "3x60",
+     "MSC"
+    ],
+    [
+     "No Drain Tuna Steak With A Little Spring Water",
+     "참치",
+     "3x60",
+     "MSC"
+    ],
+    [
+     "No Drain Tuna Steak With A Little Brine",
+     "참치",
+     "3x60",
+     "MSC"
+    ],
+    [
+     "Wild Pacific Pink Salmon 213g",
+     "연어(핑크)",
+     "86 g",
+     "MSC"
+    ],
+    [
+     "Wild Pacific Red Salmon MSC 105g",
+     "연어(레드)",
+     "105g-msc",
+     "MSC"
+    ],
+    [
+     "Wild Pacific Red Salmon MSC 213g",
+     "연어(레드)",
+     "213g-msc",
+     "MSC"
+    ],
+    [
+     "Wild Pacific Pink Salmon MSC",
+     "연어(핑크)",
+     "213g-msc",
+     "MSC"
+    ],
+    [
+     "Wild Pacific Pink Salmon 105g",
+     "연어(핑크)",
+     "77 g",
+     "MSC"
+    ],
+    [
+     "Smoked Mussels In Sunflower Oil",
+     "홍합",
+     "74 g",
+     "—"
+    ],
+    [
+     "Skippers in Sunflower Oil",
+     "스키퍼스",
+     "78 g",
+     "—"
+    ],
+    [
+     "Skippers in Tomato Sauce",
+     "스키퍼스",
+     "78 g",
+     "—"
+    ],
+    [
+     "Skinless and Boneless Mackerel Fillets In Tomato Sauce",
+     "고등어",
+     "80 g",
+     "—"
+    ],
+    [
+     "Skinless and Boneless Mackerel Fillets In Sunflower Oil",
+     "고등어",
+     "80 g",
+     "—"
+    ],
+    [
+     "Skinless and Boneless Mackerel Fillets In Spicy Tomato & Chilli Sauce",
+     "고등어",
+     "80 g",
+     "—"
+    ],
+    [
+     "Skinless and Boneless Mackerel Fillets in Smokehouse BBQ Sauce",
+     "고등어",
+     "80 g",
+     "—"
+    ],
+    [
+     "Skinless and Boneless Mackerel Fillets In Olive Oil",
+     "고등어",
+     "80 g",
+     "—"
+    ],
+    [
+     "Skinless & Boneless Wild Pink Salmon MSC",
+     "연어(핑크)",
+     "3x80g-msc",
+     "MSC"
+    ],
+    [
+     "Skinless & Boneless Wild Pacific Red Salmon MSC",
+     "연어(레드)",
+     "170g-msc",
+     "MSC"
+    ],
+    [
+     "Skinless & Boneless Wild Pacific Red Salmon",
+     "연어(레드)",
+     "77 g",
+     "MSC"
+    ],
+    [
+     "Skinless & Boneless Wild Pacific Pink Salmon MSC",
+     "연어(핑크)",
+     "170g-msc",
+     "MSC"
+    ],
+    [
+     "Skinless & Boneless Wild Pacific Pink Salmon",
+     "연어(핑크)",
+     "77 g",
+     "MSC"
+    ],
+    [
+     "Sild in Tomato Sauce",
+     "실드",
+     "79 g",
+     "—"
+    ],
+    [
+     "Sild in Sunflower Oil",
+     "실드",
+     "79 g",
+     "—"
+    ],
+    [
+     "Sardines in Tomato Sauce",
+     "정어리",
+     "81 g",
+     "—"
+    ],
+    [
+     "Sardines in Sunflower Oil",
+     "정어리",
+     "81 g",
+     "—"
+    ],
+    [
+     "Sardines in Olive Oil",
+     "정어리",
+     "81 g",
+     "—"
+    ],
+    [
+     "Sardines in Brine",
+     "정어리",
+     "81 g",
+     "—"
+    ],
+    [
+     "Medium Red Salmon",
+     "연어(레드)",
+     "86 g",
+     "MSC"
+    ],
+    [
+     "Kippers in Sunflower Oil MSC",
+     "훈제청어",
+     "83 g",
+     "MSC"
+    ],
+    [
+     "Herring Fillets In Tomato Sauce MSC 145g",
+     "청어",
+     "83 g",
+     "MSC"
+    ],
+    [
+     "Boneless Sardines in Tomato Sauce",
+     "정어리",
+     "95g-boneless",
+     "—"
+    ],
+    [
+     "Boneless Sardines in Sunflower Oil",
+     "정어리",
+     "95g-boneless",
+     "—"
+    ],
+    [
+     "Boneless Sardines in Olive Oil",
+     "정어리",
+     "95g-boneless",
+     "—"
+    ],
+    [
+     "Anchovy Fillets in Oil 95g",
+     "안초비",
+     "75 g",
+     "—"
+    ],
+    [
+     "Anchovy Fillets in Oil 45g",
+     "안초비",
+     "71 g",
+     "—"
+    ],
+    [
+     "Jacket Toppers Lime and Cracked black pepper dressing",
+     "참치",
+     "74 g",
+     "—"
+    ],
+    [
+     "Jacket Toppers Oven Dried Tomato and Herb dressing",
+     "참치",
+     "74 g",
+     "—"
+    ],
+    [
+     "Cracker Toppers Tuna Sweet Chilli",
+     "참치",
+     "73 g",
+     "—"
+    ],
+    [
+     "Cracker Toppers Tuna Mexican",
+     "참치",
+     "73 g",
+     "—"
+    ],
+    [
+     "Cracker Toppers Tuna Mediterranean",
+     "참치",
+     "73 g",
+     "—"
+    ],
+    [
+     "Cracker Toppers Tuna Mayo Sweetcorn",
+     "참치",
+     "73 g",
+     "—"
+    ],
+    [
+     "Infusions Tuna Tangy Jalapeno",
+     "참치",
+     "73 g",
+     "—"
+    ],
+    [
+     "Infusions Tuna Lemon & Thyme",
+     "참치",
+     "73 g",
+     "—"
+    ],
+    [
+     "Infusions Tuna Chilli & Garlic",
+     "참치",
+     "73 g",
+     "—"
+    ],
+    [
+     "Infusions Tuna Sweet Chilli",
+     "참치",
+     "73 g",
+     "—"
+    ],
+    [
+     "Infusions Tuna Sundried Tomato",
+     "참치",
+     "73 g",
+     "—"
+    ],
+    [
+     "Infusions Tuna Basil",
+     "참치",
+     "73 g",
+     "—"
+    ],
+    [
+     "On The Go Mediterranean Light Tuna Pasta Salad",
+     "참치",
+     "87 g",
+     "—"
+    ],
+    [
+     "On The Go Italian Light Tuna Pasta Salad",
+     "참치",
+     "87 g",
+     "—"
+    ],
+    [
+     "On The Go French Light Tuna Pasta Salad",
+     "참치",
+     "87 g",
+     "—"
+    ],
+    [
+     "No Drain Fridge Pot Tuna Steak In Sunflower Oil",
+     "참치",
+     "3x110",
+     "MSC"
+    ],
+    [
+     "No Drain Fridge Pot Tuna Steak In Spring Water",
+     "참치",
+     "3x110",
+     "MSC"
+    ],
+    [
+     "No Drain Fridge Pot Tuna Steak In Brine",
+     "참치",
+     "3x110",
+     "MSC"
+    ],
+    [
+     "No Drain Fridge Pot Tuna Steak In Sunflower Oil",
+     "참치",
+     "79 g",
+     "MSC"
+    ],
+    [
+     "No Drain Fridge Pot Tuna Steak In Brine",
+     "참치",
+     "79 g",
+     "MSC"
+    ],
+    [
+     "On The Go Indian Super Tuna Salad",
+     "참치",
+     "87 g",
+     "—"
+    ],
+    [
+     "On The Go Honey & Ginger Super Tuna Salad Gluten Free",
+     "참치",
+     "87 g",
+     "—"
+    ],
+    [
+     "No Drain Fridge Pot Tuna Steak In Spring Water",
+     "참치",
+     "79 g",
+     "MSC"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 451900,
+   "note": "미국. 참치 22개에 게·연어·정어리가 붙는다. 출처: 공식 브랜드 카탈로그",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "제품명",
+    "어종",
+    "규격",
+    "인증"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Blue Swimming Crab - Backfin",
+     "게",
+     "16 oz can · 8 oz. cup",
+     "—"
+    ],
+    [
+     "Frank’s RedHot® Tuna Packet",
+     "참치",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "Ghost Pepper Tuna Packet",
+     "참치",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "Small Shrimp",
+     "새우",
+     "6.5 oz",
+     "—"
+    ],
+    [
+     "Blue Swimming Crab - Jumbo Blend",
+     "게",
+     "16 oz",
+     "—"
+    ],
+    [
+     "Responsibly Raised Shrimp, Uncooked, Medium 41-50",
+     "새우",
+     "12 oz",
+     "—"
+    ],
+    [
+     "OLD BAY® Seasoning Tuna Packet",
+     "참치",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "White Tuna Salad Kit",
+     "참치",
+     "4.1 oz",
+     "—"
+    ],
+    [
+     "Chili Lime Tuna Packet",
+     "참치",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "Responsibly Raised Shrimp, Cooked, Extra Large 26-30",
+     "새우",
+     "12 oz",
+     "—"
+    ],
+    [
+     "Blue Swimming Crab - Classic Crab Cake Blend",
+     "게",
+     "8 oz. cup",
+     "—"
+    ],
+    [
+     "Mackerel in Oil Packet",
+     "고등어",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "Responsibly Raised Shrimp, Uncooked, Extra Large 26-30",
+     "새우",
+     "12 oz. bag",
+     "—"
+    ],
+    [
+     "Solid White Pure Albacore Tuna, No Drain",
+     "참치",
+     "4 oz · 4 oz. - 4 pack",
+     "—"
+    ],
+    [
+     "Solid Yellowfin Pure Tuna, No Drain",
+     "참치",
+     "4 oz",
+     "—"
+    ],
+    [
+     "Smoked Baby Clams in Oil Packet",
+     "조개",
+     "3.53 oz",
+     "—"
+    ],
+    [
+     "Imitation Crabmeat in Brine Packet",
+     "게",
+     "3.53 oz",
+     "—"
+    ],
+    [
+     "Smoked Oysters in Oil Packet",
+     "굴",
+     "3.53 oz",
+     "—"
+    ],
+    [
+     "Sardines in Louisiana Hot Sauce Packet",
+     "정어리",
+     "3.53 oz. packet",
+     "—"
+    ],
+    [
+     "Everything Bagel Seasoning Salmon Packet",
+     "연어",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "Sweet & Spicy Tuna Packet",
+     "참치",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "Sardines in Oil with Natural Smoke Flavor Packet",
+     "정어리",
+     "3.53 oz",
+     "—"
+    ],
+    [
+     "Low Sodium Solid White Pure Albacore Tuna, No Drain",
+     "참치",
+     "4 oz",
+     "—"
+    ],
+    [
+     "Dill Tuna Salad Packet",
+     "참치",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "Responsibly Raised Shrimp, Uncooked, Jumbo 16-20",
+     "새우",
+     "12 oz",
+     "—"
+    ],
+    [
+     "Maple Smokehouse Salmon Packet",
+     "연어",
+     "3 oz. packet",
+     "—"
+    ],
+    [
+     "Chunk Yellowfin Tuna in Vegetable Oil",
+     "참치",
+     "5 oz",
+     "—"
+    ],
+    [
+     "Solid White Premium Tuna in Oil",
+     "참치",
+     "5 oz",
+     "—"
+    ],
+    [
+     "Low Sodium Solid White Premium Tuna in Water",
+     "참치",
+     "5 oz",
+     "—"
+    ],
+    [
+     "Pink Salmon Salad Kit",
+     "연어",
+     "4.1 oz",
+     "—"
+    ],
+    [
+     "Fancy Smoked Oysters in Oil",
+     "굴",
+     "3.75 oz",
+     "—"
+    ],
+    [
+     "Solid White Premium Tuna in Water",
+     "참치",
+     "5 oz · 5 oz. - 4 pack · 12 oz · 66.5 oz",
+     "—"
+    ],
+    [
+     "Low Sodium Pink Salmon Packet",
+     "연어",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "Blue Swimming Crab - Colossal",
+     "게",
+     "16 oz. can",
+     "—"
+    ],
+    [
+     "Lemon Garlic Tuna Packet",
+     "참치",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "Whole Baby Clams",
+     "조개",
+     "10 oz",
+     "—"
+    ],
+    [
+     "Whole Oysters",
+     "굴",
+     "8 oz",
+     "—"
+    ],
+    [
+     "Blue Swimming Crab - Super Lump",
+     "게",
+     "16 oz. can · 16 oz. cup",
+     "—"
+    ],
+    [
+     "Blue Swimming Crab - Lump",
+     "게",
+     "16 oz. can · 8 oz. cup · 16 oz. cup",
+     "—"
+    ],
+    [
+     "Blue Swimming Crab - Special",
+     "게",
+     "16 oz. can · 8 oz. cup · 16 oz. cup",
+     "—"
+    ],
+    [
+     "Lump Crabmeat",
+     "게",
+     "6 oz",
+     "—"
+    ],
+    [
+     "Blue Swimming Crab - Jumbo Lump",
+     "게",
+     "16 oz. can · 8 oz. cup",
+     "—"
+    ],
+    [
+     "Sardines in Water",
+     "정어리",
+     "3.75 oz",
+     "—"
+    ],
+    [
+     "Lightly Smoked Sardines in Oil",
+     "정어리",
+     "3.75 oz",
+     "—"
+    ],
+    [
+     "Sardines in Louisiana Hot Sauce",
+     "정어리",
+     "3.75 oz",
+     "—"
+    ],
+    [
+     "Blue Swimming Crab - Claw",
+     "게",
+     "16 oz. can · 8 oz. cup · 16 oz. cup",
+     "—"
+    ],
+    [
+     "Mediterranean Style Sardines",
+     "정어리",
+     "3.75 oz",
+     "—"
+    ],
+    [
+     "Sardines in Olive Oil",
+     "정어리",
+     "3.75 oz",
+     "—"
+    ],
+    [
+     "Sardines in Lemon Sauce",
+     "정어리",
+     "3.75 oz",
+     "—"
+    ],
+    [
+     "Sardines in Mustard Sauce",
+     "정어리",
+     "3.75 oz",
+     "—"
+    ],
+    [
+     "Chunk White Albacore Tuna in Water, Low Sodium",
+     "참치",
+     "5 oz",
+     "—"
+    ],
+    [
+     "Alaskan Pink Salmon",
+     "연어",
+     "5 oz. can · 5 oz. can - 4 pack · 5 oz. can - 4 pack (tall)",
+     "—"
+    ],
+    [
+     "Alaskan Pink Salmon, 25% Less Sodium",
+     "연어",
+     "5 oz",
+     "—"
+    ],
+    [
+     "Lemon Pepper Salmon Packet",
+     "연어",
+     "2.5 oz",
+     "—"
+    ],
+    [
+     "Pink Salmon Packet",
+     "연어",
+     "2.5 oz · 5 oz",
+     "—"
+    ],
+    [
+     "Alaskan Red Sockeye Salmon, Traditional Style",
+     "연어",
+     "14.75 oz",
+     "—"
+    ],
+    [
+     "White Crabmeat",
+     "게",
+     "6 oz",
+     "—"
+    ],
+    [
+     "Chunk Light Tuna in Water, 25% Less Sodium",
+     "참치",
+     "5 oz",
+     "—"
+    ],
+    [
+     "Alaskan Pink Salmon, Traditional Style",
+     "연어",
+     "14.75 oz",
+     "—"
+    ],
+    [
+     "Natural Wood Smoke Salmon Packet",
+     "연어",
+     "3 oz",
+     "—"
+    ],
+    [
+     "Albacore Tuna Packet",
+     "참치",
+     "2.5 oz · 5 oz",
+     "—"
+    ],
+    [
+     "Chunk Light Tuna in Water",
+     "참치",
+     "5 oz · 12 oz · 5 oz. - 4 pack · 5 oz. - 10 pack · 7 oz. - 12 pack",
+     "—"
+    ],
+    [
+     "Jack Mackerel in Brine",
+     "고등어",
+     "15 oz",
+     "—"
+    ],
+    [
+     "Light Tuna Packet",
+     "참치",
+     "2.5 oz · 5 oz",
+     "—"
+    ],
+    [
+     "Mackerel Fillet in Oil Packet",
+     "고등어",
+     "3.53 oz",
+     "—"
+    ],
+    [
+     "Premium Chopped Clams",
+     "조개",
+     "6.5 oz",
+     "—"
+    ],
+    [
+     "Chunk Light Tuna in Oil",
+     "참치",
+     "5 oz · 12 oz · 5 oz. - 4 pack",
+     "—"
+    ],
+    [
+     "Chunk White Albacore Tuna in Water",
+     "참치",
+     "5 oz · 5 oz. - 4 pack · 5 oz. - 4 pack (tall)",
+     "—"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 460137,
+   "note": "프랑스 1위. 참치 38개로 그룹에서 참치 비중이 가장 높다. 출처: 공식 제품 카탈로그",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "제품명",
+    "어종",
+    "규격",
+    "인증"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Cap Végétal - Salade d'émietté végétal, Boulgour, Pois chiches et Poivrons",
+     "식물성 대체",
+     "220g",
+     "—"
+    ],
+    [
+     "Cap Végétal - Salade d'émietté végétal, Lentilles, Maïs et Petits pois",
+     "식물성 대체",
+     "220g",
+     "—"
+    ],
+    [
+     "Emietté de Thon Le Mariné Ail",
+     "참치",
+     "110g",
+     "—"
+    ],
+    [
+     "Emietté de Thon Le Mariné Olives & Herbes de Provence",
+     "참치",
+     "110g",
+     "—"
+    ],
+    [
+     "Emietté de Thon Le Mariné Tomates Séchées",
+     "참치",
+     "110g",
+     "—"
+    ],
+    [
+     "Emietté de Thon Le Mariné Basilic",
+     "참치",
+     "110g / 180g",
+     "—"
+    ],
+    [
+     "Emietté de Thon Le Mariné Citron & Thym",
+     "참치",
+     "110g",
+     "—"
+    ],
+    [
+     "Emietté de Thon Le Mariné Piment d'Espelette",
+     "참치",
+     "110g",
+     "—"
+    ],
+    [
+     "ET HOP ! crevettes au naturel",
+     "새우",
+     "100g",
+     "ASC"
+    ],
+    [
+     "Emincés de Saumon Fumé façon Gravlax Pavot & Piment d'Espelette",
+     "연어",
+     "90 g",
+     "ASC"
+    ],
+    [
+     "Emincés de Saumon Fumé façon Gravlax Zestes de Citron & Aneth",
+     "연어",
+     "90 g",
+     "ASC"
+    ],
+    [
+     "Emietté de Thon Le Mariné Vinaigre Balsamique & Echalotes",
+     "참치",
+     "110g",
+     "—"
+    ],
+    [
+     "ET CROC ! crevettes sauce mayonnaise citron & poivre noir",
+     "새우",
+     "130g",
+     "ASC"
+    ],
+    [
+     "ET CROC ! crevettes sauce cocktail & pointe de piment",
+     "새우",
+     "130g",
+     "ASC"
+    ],
+    [
+     "ET HOP ! crevettes marinées ail & persil",
+     "새우",
+     "100g",
+     "ASC"
+    ],
+    [
+     "ET CROC ! crevettes sauce fromage frais ciboulette & échalote",
+     "새우",
+     "130g",
+     "ASC"
+    ],
+    [
+     "Et Hop ! - Effilochés de thon, sauce tomate & basilic",
+     "참치",
+     "200g",
+     "MSC"
+    ],
+    [
+     "Et Hop ! - Effilochés de thon, citron vert & basilic",
+     "참치",
+     "130g",
+     "MSC"
+    ],
+    [
+     "Et Hop ! - Effilochés de thon, filet d'huile d'olive",
+     "참치",
+     "130g",
+     "MSC"
+    ],
+    [
+     "Et Hop ! – Effilochés de thon, sauce arrabbiata",
+     "참치",
+     "200g",
+     "MSC"
+    ],
+    [
+     "Et Hop ! - Effilochés de thon, fines herbes",
+     "참치",
+     "130g",
+     "MSC"
+    ],
+    [
+     "Filets de Maquereaux blancs à la Sauce Catalane",
+     "고등어",
+     "169 g",
+     "—"
+    ],
+    [
+     "Filets de Maquereaux blancs au Vin Blanc, Citron et Romarin",
+     "고등어",
+     "175g",
+     "—"
+    ],
+    [
+     "Filets de Maquereaux blancs au Vin blanc & Aromates",
+     "고등어",
+     "175g / 235g",
+     "—"
+    ],
+    [
+     "Filets de Maquereaux blancs Moutarde à l'Ancienne",
+     "고등어",
+     "169g / 225g",
+     "—"
+    ],
+    [
+     "Filets de Maquereaux blancs à la Sauce Escabèche",
+     "고등어",
+     "169 g",
+     "—"
+    ],
+    [
+     "Miettes de Thon à la Sauce Tomate",
+     "참치",
+     "140g / 230g",
+     "—"
+    ],
+    [
+     "Filets de Maquereaux blancs à la Sauce Tomate",
+     "고등어",
+     "169 g",
+     "—"
+    ],
+    [
+     "Filets de Maquereaux à l'Huile d'Olive Vierge Extra",
+     "고등어",
+     "145g",
+     "—"
+    ],
+    [
+     "Filets de Maquereaux Nature",
+     "고등어",
+     "110g",
+     "—"
+    ],
+    [
+     "Miettes de Thon à l'Huile de Tournesol",
+     "참치",
+     "80g / 160g",
+     "—"
+    ],
+    [
+     "Miettes de Thon à l'Huile d'Olive Vierge Extra",
+     "참치",
+     "80g / 160g",
+     "MSC"
+    ],
+    [
+     "Rillettes de saumon",
+     "연어",
+     "125g",
+     "—"
+    ],
+    [
+     "Morceaux de Thon au Naturel Démarche Responsable",
+     "참치",
+     "160g / 160gx2 / 132g",
+     "MSC"
+    ],
+    [
+     "Miettes de Thon Tomates et Herbes de Provence",
+     "참치",
+     "3x80g / 160g / 250g",
+     "—"
+    ],
+    [
+     "Rillettes de thon",
+     "참치",
+     "125g / 220g",
+     "—"
+    ],
+    [
+     "Rillettes de thon aux olives vertes",
+     "참치",
+     "125g",
+     "—"
+    ],
+    [
+     "Rillettes de thon Citron Thym",
+     "참치",
+     "125 g",
+     "—"
+    ],
+    [
+     "Salade à la Catalane",
+     "—",
+     "220g",
+     "—"
+    ],
+    [
+     "Salade à la Mexicaine",
+     "—",
+     "220g",
+     "—"
+    ],
+    [
+     "Saumon Fumé de Norvège ASC",
+     "연어",
+     "65g / 120g / 150g / 160g / 180g",
+     "MSC · ASC"
+    ],
+    [
+     "Salade à la Piémontaise",
+     "—",
+     "220g",
+     "—"
+    ],
+    [
+     "Saumon fumé de Norvège ASC -25% de sel",
+     "연어",
+     "120g / 150g / 160g",
+     "MSC · ASC"
+    ],
+    [
+     "Saumon Fumé Bio",
+     "연어",
+     "60g / 120g",
+     "MSC · ASC · Bio/AB"
+    ],
+    [
+     "Saumon Fumé d'Ecosse",
+     "연어",
+     "65g / 120g / 150g / 160g / 180g",
+     "MSC"
+    ],
+    [
+     "Saumon fumé d'Islande ASC",
+     "연어",
+     "120g / 160g",
+     "MSC · ASC"
+    ],
+    [
+     "Saumon rouge du Pacifique fumé sauvage d'Alaska MSC",
+     "연어",
+     "120g",
+     "MSC · ASC"
+    ],
+    [
+     "Super Salade Basilic",
+     "—",
+     "220 g",
+     "MSC"
+    ],
+    [
+     "Super Salade à la Provençale",
+     "—",
+     "220 g",
+     "MSC"
+    ],
+    [
+     "Tartinades de Thon Duo de Poivrons et Tomates",
+     "참치",
+     "125g",
+     "—"
+    ],
+    [
+     "Tartinades de Thon Tomates Séchées et Thym",
+     "참치",
+     "125g",
+     "—"
+    ],
+    [
+     "Thon au Naturel Démarche Responsable",
+     "참치",
+     "2x80g / 132g / 2x132g / 160g / 2x160g / 190g / 2x190g / 265g / 400g",
+     "MSC"
+    ],
+    [
+     "Thon au Naturel MSC",
+     "참치",
+     "160g",
+     "MSC"
+    ],
+    [
+     "Thon Blanc au Naturel MSC",
+     "참치",
+     "160g / 2x80g",
+     "MSC"
+    ],
+    [
+     "Thon Blanc au Naturel",
+     "참치",
+     "132g / 190g",
+     "MSC"
+    ],
+    [
+     "Thon Blanc à l’Huile d’Olive Vierge Extra MSC",
+     "참치",
+     "160g",
+     "MSC"
+    ],
+    [
+     "Thon Entier au Naturel -25% de Sel Démarche Responsable",
+     "참치",
+     "160g",
+     "—"
+    ],
+    [
+     "Thon Entier au Naturel Déjà Égoutté",
+     "참치",
+     "120g",
+     "MSC"
+    ],
+    [
+     "Thon Entier Déjà Égoutté, filet d’huile d’olive",
+     "참치",
+     "120g",
+     "MSC"
+    ],
+    [
+     "Thon Entier Déjà Égoutté, filet d’huile d’olive x2",
+     "참치",
+     "21 g",
+     "MSC"
+    ],
+    [
+     "Thon Entier à l'Huile de Tournesol",
+     "참치",
+     "160g / 112g",
+     "—"
+    ],
+    [
+     "Thon Entier à l'Huile d'Olive Vierge Extra MSC",
+     "참치",
+     "160g",
+     "MSC"
+    ],
+    [
+     "Thon Entier à l'Huile d'Olive -25% de Sel",
+     "참치",
+     "160g",
+     "MSC"
+    ],
+    [
+     "Thon à la Sauce Catalane",
+     "참치",
+     "140g",
+     "—"
+    ],
+    [
+     "Thon à la Sauce Mayonnaise",
+     "참치",
+     "140g",
+     "—"
+    ],
+    [
+     "Thon Vapeur avec un Filet d'Huile d'Olive",
+     "참치",
+     "130g",
+     "—"
+    ],
+    [
+     "Truite fumée ASC",
+     "—",
+     "90g / 140g",
+     "MSC · ASC"
+    ],
+    [
+     "Thon Vapeur Nature",
+     "참치",
+     "130g",
+     "—"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 466507,
+   "note": "독일. 참치가 없고 청어·고등어다. 학명까지 표기한다. 출처: 공식 제품 카탈로그",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "제품명",
+    "어종",
+    "규격",
+    "인증"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Bratmakrelenfilets in würziger Marinade",
+     "고등어 (Scomber japonicus)",
+     "500g",
+     "Handverlesen · Frei von Farbstoffen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Bücklingfilets",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handverlesen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Bücklingsfilets mit Pusztasalat",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handverlesen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Bücklingsfilets in Pflanzenöl",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handverlesen"
+    ],
+    [
+     "Bratheringe in würziger Marinade",
+     "청어 (Clupea harengus)",
+     "500g",
+     "Handverlesen · Frei von Farbstoffen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Dorschleber",
+     "대구 (Gadus morhua)",
+     "120g",
+     "MSC-Zertifiziert · Glutenfrei · Frei von Geschmacksverstärkern · Lactosefrei"
+    ],
+    [
+     "Filetierte Bratheringe in würziger Marinade",
+     "청어 (Clupea harengus)",
+     "325g",
+     "Handverlesen · Frei von Farbstoffen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Heringsfilets Feinschmeckerplatte",
+     "청어",
+     "200g",
+     "Handgelegt · MSC-zertifiziert · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Fischerfrühstück",
+     "고등어 (Scomber japonicus)",
+     "200g",
+     "Handverlesen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Geräuchertes Heringsfilet",
+     "청어 (Clupea harengus)",
+     "100g",
+     "Handverlesen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Heringsfilets in Curry-Ananas-Creme",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handgelegt · MSC-Zertifiziert · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Heringsfilets in Dill-Kräuter-Creme",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handgelegt · Frei von Farbstoffen · Frei von Geschmacksverstärker · MSC-zertifiziert"
+    ],
+    [
+     "Heringsfilets in Paprika-Creme",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handgelegt · Frei von Farbstoffen · Frei von Geschmacksverstärker · MSC-zertifiziert"
+    ],
+    [
+     "Heringsfilets in scharfer Tomaten-Sauce",
+     "청어 (Clupea harengus)",
+     "10 g",
+     "Handverlesen · Frei von Farbstoffen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Heringsfilets in Tomaten-Curry-Creme",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handverlesen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Heringsfilets in Senf-Creme",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handverlesen · Frei von Farbstoffen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Heringsfilets in Tomaten-Creme",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handgelegt · MSC-Zertifiziert · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Makrelenfilets geräuchert in Pflanzenöl und eigenem Saft",
+     "고등어 (Scomber scombrus)",
+     "200g",
+     "Handverlesen"
+    ],
+    [
+     "Makrelenfilets in pikanter Tomatensauce",
+     "고등어 (Scomber scombrus)",
+     "125g",
+     "Handverlesen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Heringsfilets in Tomaten-Mozzarella-Creme",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handgelegt · MSC-zertifiziert · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Kieler Sprotten",
+     "스프래트 (Sprattus sprattus)",
+     "106g",
+     "Handverlesen"
+    ],
+    [
+     "Makrelenfilets in Tomaten-Creme",
+     "고등어 (Scomber japonicus)",
+     "200g",
+     "Handverlesen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Nostalgiedose Heringsfilets in Tomaten-Sauce",
+     "청어 (Clupea harengus)",
+     "13 g",
+     "Handverlesen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Pfeffer-Makrelenfilets",
+     "고등어 (Scomber japonicus)",
+     "200g",
+     "Handverlesen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Pfeffer-Bücklingsfilets",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Handverlesen · Frei von Geschmacksverstärker"
+    ],
+    [
+     "Piratenschmaus",
+     "고등어 (Scomber scombrus)",
+     "200g",
+     "Handverlesen"
+    ],
+    [
+     "Räuchersnack",
+     "청어 (Clupea harengus)",
+     "120g",
+     "Frei von Geschmacksverstärkern"
+    ],
+    [
+     "Scomber Mix Asia",
+     "고등어 (Scomber scombrus)",
+     "15 g",
+     "Frei von Geschmacksverstärker"
+    ],
+    [
+     "Scomber Mix BBQ",
+     "고등어 (Scomber japonicus)",
+     "120g",
+     "Frei von Geschmacksverstärker"
+    ],
+    [
+     "Scomber Mix Classic",
+     "고등어 (Scomber japonicus)",
+     "120g",
+     "Frei von Geschmacksverstärker"
+    ],
+    [
+     "Scomber Mix mediterraner Art",
+     "고등어 (Scomber japonicus)",
+     "120g",
+     "Frei von Geschmacksverstärker · Proteinquelle"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 473546,
+   "note": "독일에서 참치를 맡은 쪽. 12개가 참치다. 출처: 공식 제품 카탈로그",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "제품명",
+    "어종",
+    "규격",
+    "인증"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Bratheringsfilets in feingewürzte Marinade",
+     "청어",
+     "325g",
+     "Frei von Geschmacksverstärker · Handgelegt · Laktosefrei · MSC-Zertifiziert"
+    ],
+    [
+     "Bücklingsfilets",
+     "—",
+     "190g",
+     "Frei von Geschmacksverstärker · Handgelegt · Glutenfrei · MSC-zertifiziert · Laktosefrei"
+    ],
+    [
+     "Bratheringe in feinwürziger Marinade",
+     "청어",
+     "500g",
+     "Frei von Geschmacksverstärker · Handgelegt · Laktosefrei · MSC-Zertifiziert"
+    ],
+    [
+     "Heringsfilets in Tomaten-Creme - \"heimische Gartenkräuter\"",
+     "청어",
+     "200g",
+     "Frei von Geschmacksverstärker · MSC-Zertifiziert · Glutenfrei · Handgelegt"
+    ],
+    [
+     "Heringsfilets in Meerrettich-Creme",
+     "청어",
+     "200g",
+     "Frei von Geschmacksverstärker · MSC-Zertifiziert · Glutenfrei · Handgelegt"
+    ],
+    [
+     "Heringsfilets in China-Sauce",
+     "청어",
+     "200g",
+     "Frei von Geschmacksverstärker · MSC-Zertifiziert · Laktosefrei · Handgelegt · Glutenfrei"
+    ],
+    [
+     "Heringsfilets in Mexiko-Sauce",
+     "청어",
+     "200g",
+     "Frei von Geschmacksverstärker · MSC-Zertifiziert · Laktosefrei · Handgelegt · Glutenfrei"
+    ],
+    [
+     "Heringsfilets in Paprika-Creme",
+     "청어",
+     "200g",
+     "Laktosefrei · MSC-Zertifiziert · Glutenfrei · Handgelegt"
+    ],
+    [
+     "Heringsfilets in Tomaten-Creme",
+     "청어",
+     "200g",
+     "Laktosefrei · MSC-Zertifiziert · Glutenfrei · Handgelegt"
+    ],
+    [
+     "Heringsfilets Zwiebelsauce",
+     "청어",
+     "200g",
+     "Frei von Geschmacksverstärkern · und Süßstoffen · Laktosefrei · Glutenfrei · Frei von Palmöl · MSC-Zertifiziert"
+    ],
+    [
+     "Heringsfilets in Pfeffer-Creme",
+     "청어",
+     "200g",
+     "Frei von Geschmacksverstärker · MSC-Zertifiziert · Laktosefrei · Handgelegt · Glutenfrei"
+    ],
+    [
+     "Heringsfilets in Balkan-Sauce",
+     "청어 (Clupea harengus)",
+     "200g",
+     "Frei von Geschmacksverstärker · MSC-Zertifiziert · Laktosefrei · Handgelegt · Glutenfrei"
+    ],
+    [
+     "Geräucherte Makrelenfilets",
+     "고등어",
+     "190g",
+     "Frei von Geschmacksverstärker · Handgelegt · Laktosefrei · Glutenfrei"
+    ],
+    [
+     "Extra zarte Heringsfilets in Senf-Sauce",
+     "청어",
+     "200g",
+     "Frei von Geschmacksverstärker · MSC-Zertifiziert · Laktosefrei · Handgelegt · Glutenfrei"
+    ],
+    [
+     "Extra zarte Heringsfilets in Honig-Senf-Sauce",
+     "청어",
+     "190g",
+     "per Hand gelegt · Frei von Aromastoffen · MSC-Zertifiziert · Frei von Farbstoffen (lt. Gesetz) · Glutenfrei · Frei von Geschmacksverstärkern · Palmölfrei · Hawesta Logo · Links · Produkte"
+    ],
+    [
+     "Heringsfilets in Toskana-Sauce",
+     "청어",
+     "200g",
+     "Frei von Geschmacksverstärker · MSC-Zertifiziert · Laktosefrei · Handgelegt · Glutenfrei"
+    ],
+    [
+     "Thunfisch Bowl mit Cous Cous, Linsen und Harissa",
+     "참치",
+     "220g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · MSC-Zertifiziert · Frei von Palmöl · Dolphin Safe · Laktosefrei · Hawesta Logo · Links · Produkte"
+    ],
+    [
+     "Makrelenfilets in Tomaten-Sauce",
+     "고등어",
+     "200g",
+     "Frei von Geschmacksverstärker · Handgelegt · Laktosefrei · Glutenfrei"
+    ],
+    [
+     "Thun-no Salat Mexico",
+     "식물성 대체",
+     "160g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · Vegan zertifiziert · Frei von Palmöl · Protein- und Ballaststoffquelle · Laktosefrei · Nachhaltig produziert – Made in Germany/Sassnitz · Soja ohne Gentechnik · Nutri Score A · Hawesta Logo · Links · Produkte"
+    ],
+    [
+     "Thunfisch Bowl mit Pasta, Bohnen und Oliven",
+     "참치",
+     "220g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · MSC-Zertifiziert · Frei von Palmöl · Dolphin Safe · Laktosefrei · Hawesta Logo · Links · Produkte"
+    ],
+    [
+     "Thunfisch Chili",
+     "참치",
+     "110g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · MSC-Zertifiziert · Frei von Palmöl · Dolphin Safe · Laktosefrei · Hawesta Logo · Links · Produkte"
+    ],
+    [
+     "Thunfisch Basilikum",
+     "참치",
+     "110g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · MSC-Zertifiziert · frei von Palmöl · Dolphin Safe · Laktosefrei"
+    ],
+    [
+     "Thun-no Salat Milano",
+     "식물성 대체",
+     "160g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · Vegan zertifiziert · Frei von Palmöl · Protein- und Ballaststoffquelle · Laktosefrei · Nachhaltig produziert – Made in Germany/Sassnitz · Soja ohne Gentechnik · Nutri Score B · Hawesta Logo · Links · Produkte"
+    ],
+    [
+     "Thunfisch Filets in Aufguss",
+     "참치",
+     "160g",
+     "Dolphin Safe · Natürlich reich an Protein · Palmölfrei · Frei von Geschmacksverstärkern · Glutenfrei · MSC-Zertifiziert · Laktosefrei"
+    ],
+    [
+     "Thunfisch Salat Milano",
+     "참치",
+     "160g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · MSC-Zertifiziert · Frei von Palmöl · Dolphin Safe · Glutenfrei · Laktosefrei"
+    ],
+    [
+     "Thunfisch Filets in Olivenöl",
+     "참치",
+     "160g",
+     "Dolphin Safe · Frei von Aromastoffen · Palmölfrei · Frei von Farbstoffen · Glutenfrei · Frei von Geschmacksverstärkern · Laktosefrei · MSC-Zertifiziert"
+    ],
+    [
+     "Thunfisch Salat Asia",
+     "참치",
+     "160g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · MSC-Zertifiziert · Frei von Palmöl · Dolphin Safe · Laktosefrei"
+    ],
+    [
+     "Thunfisch Salat Couscous",
+     "참치",
+     "160g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · MSC-Zertifiziert · Laktosefrei · Dolphin Safe · Frei von Palmöl"
+    ],
+    [
+     "Thunfisch Filets in Sonnenblumenöl",
+     "참치",
+     "160g",
+     "Dolphin Safe · Frei von Aromastoffen · Palmölfrei · Frei von Farbstoffen · Glutenfrei · Frei von Geschmacksverstärkern · Laktosefrei · MSC-Zertifiziert"
+    ],
+    [
+     "Thunfischsalat \"India\"",
+     "참치",
+     "160g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · MSC-Zertifiziert · Laktosefrei · Dolphin Safe · Glutenfrei · Frei von Palmöl"
+    ],
+    [
+     "Thunfisch Salat Mexico",
+     "참치",
+     "160g",
+     "Frei von Geschmacksverstärkern und Süßstoffen · MSC-Zertifiziert · Frei von Palmöl · Dolphin Safe · Glutenfrei · Natürlich reich an Protein · Laktosefrei"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 478317,
+   "note": "노르웨이. 브리슬링 정어리가 중심이고 상품마다 GTIN 이 붙는다. 출처: 공식 제품 카탈로그(Shopify)",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "제품명",
+    "어종",
+    "규격",
+    "인증"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Yellowfin Tuna in EVOO",
+     "황다랑어",
+     "—",
+     "GTIN 00034800886243"
+    ],
+    [
+     "Kipper Snacks in EVOO",
+     "훈제청어",
+     "—",
+     "GTIN 10034800600525"
+    ],
+    [
+     "Mackerel in Sweet Thai Chili Sauce",
+     "고등어",
+     "—",
+     "GTIN 10034800600990"
+    ],
+    [
+     "Salmon in Olive Oil with Lemon",
+     "연어",
+     "—",
+     "GTIN 10034800600778"
+    ],
+    [
+     "Salmon, Mediterranean Style",
+     "연어",
+     "—",
+     "GTIN 10034800600761"
+    ],
+    [
+     "Salmon in Olive Oil",
+     "연어",
+     "—",
+     "GTIN 10034800600754"
+    ],
+    [
+     "Mackerel Variety 6-Pack",
+     "고등어",
+     "—",
+     "GTIN 10034800606916"
+    ],
+    [
+     "Sardines in EVOO with Lemon",
+     "정어리",
+     "—",
+     "GTIN 10034800006426"
+    ],
+    [
+     "Sardines in Water, Low Sodium",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Mackerel with Jalapeño Peppers",
+     "고등어",
+     "—",
+     "GTIN 10034800600983"
+    ],
+    [
+     "Mackerel in Olive Oil with Lemon",
+     "고등어",
+     "—",
+     "GTIN 10034800600976"
+    ],
+    [
+     "Anchovies in Olive Oil",
+     "안초비",
+     "—",
+     "GTIN 00034800600610"
+    ],
+    [
+     "Kipper Snacks in Water",
+     "훈제청어",
+     "—",
+     "GTIN 10034800600518"
+    ],
+    [
+     "Mackerel, Mediterranean Style",
+     "고등어",
+     "—",
+     "GTIN 10034800600969"
+    ],
+    [
+     "Mackerel in Olive Oil",
+     "고등어",
+     "—",
+     "GTIN 10034800600952"
+    ],
+    [
+     "Sardines, Spanish Style",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines in Olive Oil",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Tiny Tots Sardines in EVOO",
+     "정어리",
+     "—",
+     "GTIN 00034800601501"
+    ],
+    [
+     "Sardines in Water, Low Sodium",
+     "정어리",
+     "—",
+     "GTIN 00034800600429"
+    ],
+    [
+     "Sardines in Dijon Mustard",
+     "정어리",
+     "—",
+     "GTIN 00034800600306"
+    ],
+    [
+     "Sardines in Zesty Tomato Sauce",
+     "정어리",
+     "—",
+     "GTIN 00034800600344"
+    ],
+    [
+     "Sardines in EVOO with Spicy Cracked Pepper",
+     "정어리",
+     "—",
+     "GTIN 10034800006556"
+    ],
+    [
+     "Sardines in EVOO with Jalapeño Peppers",
+     "정어리",
+     "—",
+     "GTIN 10034800006563"
+    ],
+    [
+     "Sardines, Mediterranean Style",
+     "정어리",
+     "—",
+     "GTIN 10034800006419"
+    ],
+    [
+     "Sardines in EVOO, Cross-Pack",
+     "정어리",
+     "—",
+     "GTIN 00034800600047"
+    ],
+    [
+     "Sardines in EVOO",
+     "정어리",
+     "—",
+     "GTIN 00034800600023"
+    ],
+    [
+     "Mussels in EVOO",
+     "홍합",
+     "—",
+     "GTIN 0034800600658"
+    ],
+    [
+     "Mussels in EVOO with Lemon",
+     "홍합",
+     "—",
+     "GTIN 0034800600672"
+    ],
+    [
+     "Mussels in EVOO with Chili",
+     "홍합",
+     "—",
+     "GTIN 0034800600665"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 484737,
+   "note": "이탈리아. 전용 사이트가 403 이라 Open Food Facts 로 받았다. 출처: Open Food Facts",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "제품명",
+    "어종",
+    "규격",
+    "인증"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Tonno all'olio d'oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Filetti di tonno Vero Sapore in olio extravergine d'oliva",
+     "참치",
+     "180 g",
+     "—"
+    ],
+    [
+     "Tonno all'olio d'oliva",
+     "참치",
+     "4 x 60 g",
+     "—"
+    ],
+    [
+     "Vero Naturale",
+     "—",
+     "3*60",
+     "—"
+    ],
+    [
+     "Tonno all'olio d'oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Mareblu Tonno alla Messicana",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Filetti di tonno",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Filetti di sgombro al naturale",
+     "고등어",
+     "—",
+     "—"
+    ],
+    [
+     "Le specialità ortolana",
+     "—",
+     "220 g",
+     "—"
+    ],
+    [
+     "Filetti di sgombro",
+     "고등어",
+     "110g",
+     "—"
+    ],
+    [
+     "Filetti di sgombro all'olio di oliva",
+     "고등어",
+     "90g",
+     "—"
+    ],
+    [
+     "Tonno al naturale",
+     "참치",
+     "4 x 60g",
+     "—"
+    ],
+    [
+     "Le specialità con tonno al vapore",
+     "참치",
+     "220 g",
+     "—"
+    ],
+    [
+     "Filetti di tonno vero naturale",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Filetti di sgombro affumicati all'olio di oliva",
+     "고등어",
+     "—",
+     "—"
+    ],
+    [
+     "Mareblu active pro",
+     "—",
+     "220 g",
+     "—"
+    ],
+    [
+     "Tonno Leggero",
+     "참치",
+     "60g",
+     "—"
+    ],
+    [
+     "Le specialità con tonno al vapore messicana",
+     "참치",
+     "220 g",
+     "—"
+    ],
+    [
+     "Vero Sapore",
+     "—",
+     "3 x 60 g",
+     "—"
+    ],
+    [
+     "Tonno all'olio d'oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Filetti di sgombro piccanti con un filo d'olio d'oliva",
+     "고등어",
+     "110g",
+     "—"
+    ],
+    [
+     "Filetti di tonno leggeri",
+     "참치",
+     "180 g",
+     "—"
+    ],
+    [
+     "tonno",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Plant Power Insalata di proteine vegetali con lenticchie, mais e piselli",
+     "식물성 대체",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno al vapore olio oliva",
+     "참치",
+     "8x60g",
+     "—"
+    ],
+    [
+     "Tonno all'olio di oliva",
+     "참치",
+     "78 g",
+     "—"
+    ],
+    [
+     "Tranci di tonno vero sapore",
+     "참치",
+     "4 x 60 g",
+     "—"
+    ],
+    [
+     "Tonno all'olio d'oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno All'olio Di Oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Nutrimix",
+     "—",
+     "220 gr",
+     "—"
+    ],
+    [
+     "Tonno Mareblu Leggero",
+     "참치",
+     "3 x 60 g",
+     "—"
+    ],
+    [
+     "Tonno all’olio di oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno al Naturale",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Mareblu Tonno All'olio Di Oliva 3X80G",
+     "참치",
+     "3 x 80 g (3 x 52 g)",
+     "—"
+    ],
+    [
+     "Tonno all'Olio di Oliva",
+     "참치",
+     "52 g (80 g nominale)",
+     "—"
+    ],
+    [
+     "Mareblu Tuna Olive Oil X6 80G",
+     "참치",
+     "6 x 80 g",
+     "—"
+    ],
+    [
+     "Tonno all’olio d’oliva",
+     "참치",
+     "8 x 80 g",
+     "—"
+    ],
+    [
+     "Tonno al naturale",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno olio di oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno naturale",
+     "참치",
+     "3 lattine da 80 g",
+     "—"
+    ],
+    [
+     "Tonno al naturale",
+     "참치",
+     "80g",
+     "—"
+    ],
+    [
+     "Nutrimix - insalata con salmone",
+     "연어",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno all'Olio d'Oliva",
+     "참치",
+     "80g",
+     "—"
+    ],
+    [
+     "Tonno",
+     "참치",
+     "3x 60 g",
+     "—"
+    ],
+    [
+     "Mareblu al Vapore, tonno all'olio d'oliva",
+     "참치",
+     "6 x 120 g",
+     "—"
+    ],
+    [
+     "Sardine all’olio d’oliva",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno leggero",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno Mareblu",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Mareblu Insalata Messicana",
+     "—",
+     "220 g",
+     "—"
+    ],
+    [
+     "Thon à l'huile d'olive",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Thon",
+     "참치",
+     "325 g",
+     "—"
+    ],
+    [
+     "Tonno all’olio di oliva",
+     "참치",
+     "6 x 120 g",
+     "—"
+    ],
+    [
+     "Tonno",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Mareblu' Tonno O. oliva GR. 160X2",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Mareblu le classiche insalata di tonno e legumi",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno ExtraGusto in misto Olio",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Le classiche insalata di tonno e verdure",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno",
+     "참치",
+     "8 x 60 g",
+     "—"
+    ],
+    [
+     "Tonno Mareblu Olio D Oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Maquereau au thym et au citron",
+     "고등어",
+     "—",
+     "—"
+    ],
+    [
+     "LeDeli di sgombro",
+     "고등어",
+     "90 g",
+     "—"
+    ],
+    [
+     "Le deli di tonno",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "LeDeli di Salmone",
+     "연어",
+     "—",
+     "—"
+    ],
+    [
+     "Insalata con Salmone",
+     "연어",
+     "—",
+     "—"
+    ],
+    [
+     "Salade de thon aux legumes",
+     "참치",
+     "220 g",
+     "—"
+    ],
+    [
+     "Insalata con tonno",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Mareblu leggero",
+     "—",
+     "6 x 60 g",
+     "—"
+    ],
+    [
+     "Mareblu Leggero -60%gi grassi",
+     "—",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno all’olio di oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Trancetti di tonno in olio di oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Nutrimix",
+     "—",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno Mareblu",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno",
+     "참치",
+     "12 x 80 g",
+     "—"
+    ],
+    [
+     "Tonno all’olio d’oliva al vapore",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno in scatola",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Filetto di acciughe Vero Sapore",
+     "—",
+     "—",
+     "—"
+    ],
+    [
+     "Trancetti di tonno in olio di oliva",
+     "참치",
+     "1000 g",
+     "—"
+    ],
+    [
+     "Tonno con zenzero e curcuma",
+     "참치",
+     "2 x 120 g",
+     "—"
+    ],
+    [
+     "Filetti acciughe",
+     "—",
+     "90 g",
+     "—"
+    ],
+    [
+     "Tonno All'olio Di Oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tonno all'olio di oliva",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "(제품명 미기재 · 바코드 0034279871153)",
+     "—",
+     "60",
+     "—"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 487702,
+   "note": "Petit Navire 의 모태 공장. 정어리 전용 라인이다. 출처: Open Food Facts",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "제품명",
+    "어종",
+    "규격",
+    "인증"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Sardines à la tomate",
+     "정어리",
+     "135 g",
+     "—"
+    ],
+    [
+     "Sardines huile d olive vierge",
+     "정어리",
+     "135 g x 2 (95 g égoutté)",
+     "—"
+    ],
+    [
+     "Sardines huile d'olives et piment",
+     "정어리",
+     "135g",
+     "—"
+    ],
+    [
+     "Sardine huile tournesol et citron PARMENTIER, boîte 1/6",
+     "정어리",
+     "135g net 95g égoutté",
+     "—"
+    ],
+    [
+     "Sardines à l'huile d'olive et herbes de Provence",
+     "정어리",
+     "135 g",
+     "—"
+    ],
+    [
+     "(제품명 미기재 · 바코드 3019089042082)",
+     "—",
+     "135 g",
+     "—"
+    ],
+    [
+     "Sardine à l'huile d'olive vierge extra",
+     "정어리",
+     "3 x 55 g",
+     "—"
+    ],
+    [
+     "Sardines sans arêtes au naturel",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines sans arête",
+     "정어리",
+     "135g",
+     "—"
+    ],
+    [
+     "Sardines",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines sauce arrabiata",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines huile d'olive Parmentier",
+     "정어리",
+     "540 g (4 * 135 g e)",
+     "—"
+    ],
+    [
+     "Sardine huile d’olive",
+     "정어리",
+     "3*135g (95g égoutté)",
+     "—"
+    ],
+    [
+     "Sardines au naturel",
+     "정어리",
+     "135 g",
+     "—"
+    ],
+    [
+     "Sardines à l'huile d'olive vierge extra",
+     "정어리",
+     "135 g",
+     "—"
+    ],
+    [
+     "Sardines huile de tournesol et citron",
+     "정어리",
+     "3 x 135 g",
+     "—"
+    ],
+    [
+     "Sardines marinade citron & basilic",
+     "정어리",
+     "135 g",
+     "—"
+    ],
+    [
+     "Sardines Sélection (à l'Huile d'Olive)",
+     "정어리",
+     "135 g, 95g net",
+     "—"
+    ],
+    [
+     "Sardines au citron Parmentier",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines Sans Huile Grillées & Finement Salées",
+     "정어리",
+     "100 g",
+     "—"
+    ],
+    [
+     "Les petites sardines",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Les petited sardines",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines Huile d'olive et basilic",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines sans huile",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "les petites sardines",
+     "정어리",
+     "150g",
+     "—"
+    ],
+    [
+     "Sardines duo mer&terre",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardine duo mer & terre Chorizo",
+     "정어리",
+     "95",
+     "—"
+    ],
+    [
+     "Les Petites Sardines aux quatre poivres",
+     "정어리",
+     "150 g",
+     "—"
+    ],
+    [
+     "Sardines à la tomate",
+     "정어리",
+     "135 g",
+     "—"
+    ],
+    [
+     "Les Petites sardines aux deux olives",
+     "정어리",
+     "150 g / 110 g de poisson",
+     "—"
+    ],
+    [
+     "Sardines huile d.olive extra",
+     "정어리",
+     "95 g",
+     "—"
+    ],
+    [
+     "Les petites Sardines",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines Grillées aux Poivrons et Thym",
+     "정어리",
+     "120 g",
+     "—"
+    ],
+    [
+     "sardines huile d'olive vierge extra",
+     "정어리",
+     "1 paquet de 4 boites",
+     "—"
+    ],
+    [
+     "Sardines sans huile",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines à l'huile et au citron",
+     "정어리",
+     "95 g",
+     "—"
+    ],
+    [
+     "Sardines tomates à l'ail en confit",
+     "정어리",
+     "135 g",
+     "—"
+    ],
+    [
+     "Sardines grillées aux aubergines et tomates PARMENTIER, 120G",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "M&S Parmentuer potatoes",
+     "—",
+     "—",
+     "—"
+    ],
+    [
+     "Parmentier de poisson",
+     "—",
+     "—",
+     "—"
+    ],
+    [
+     "(제품명 미기재 · 바코드 01957464)",
+     "—",
+     "232g",
+     "—"
+    ],
+    [
+     "Sardines huile d’olive et herbes",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines de l'Atlantique Nord-Est pêchées par des bateaux français",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines with Chilli in Olive Oil",
+     "정어리",
+     "135g",
+     "—"
+    ],
+    [
+     "Sardines huile de tournesol",
+     "정어리",
+     "232g",
+     "—"
+    ],
+    [
+     "Parmentier - Sardines aux légumes provençaux en confit",
+     "정어리",
+     "135 g",
+     "—"
+    ],
+    [
+     "sardine Parmentier duo mer et terre jambon cru fumé Italien",
+     "정어리",
+     "135 g",
+     "—"
+    ],
+    [
+     "sardine sans huile",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines fraîcheur extra à l’huile d’olive",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines Huile d'olive extra vierge & Piment d'Espelette",
+     "정어리",
+     "135 g",
+     "—"
+    ],
+    [
+     "Sardines huile d’olive",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines à l'huile d'olive",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines à l'huile d'olive",
+     "정어리",
+     "—",
+     "—"
+    ],
+    [
+     "Sardines hyacinthe",
+     "정어리",
+     "135 grammes",
+     "—"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 494494,
+   "note": "태국 내수. 사이트가 구 사명에 멈춰 있어 같은 경로로 받았다. 출처: Open Food Facts",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "제품명",
+    "어종",
+    "규격",
+    "인증"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "ซีเล็คฟิตทูน่าสเต็กในน้ำแร่",
+     "참치",
+     "165 g",
+     "—"
+    ],
+    [
+     "Tuna steak in brine",
+     "참치",
+     "185 g, 140 g drained",
+     "—"
+    ],
+    [
+     "Snackit Tuna & Mayonnaise",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "นํ้ำพริกผัดทูน่า ซีเล็ค",
+     "참치",
+     "95 g",
+     "—"
+    ],
+    [
+     "Tuna Chili Paste",
+     "참치",
+     "85 g",
+     "—"
+    ],
+    [
+     "sealect",
+     "—",
+     "155 g",
+     "—"
+    ],
+    [
+     "Tuna Sandwich In Spring Water",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Nam Prik Tina",
+     "—",
+     "85 g",
+     "—"
+    ],
+    [
+     "Tuna Sandwich in brine",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Salmon Ahumado Sealect",
+     "연어",
+     "—",
+     "—"
+    ],
+    [
+     "Spicy Tuna Poke",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tuna In Japanese Soup",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Low Fat Tuna Mayonnaise & Sweetcorn",
+     "참치",
+     "—",
+     "—"
+    ],
+    [
+     "Tuna Steak In Spring Water Plus Collagen",
+     "참치",
+     "—",
+     "—"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 499540,
+   "note": "전부 소매처와 기준일이 붙어 있다. 영국은 Morrisons 만 서버사이드로 가격을 내보내 그쪽에서만 뚫렸다.",
+   "stage": "c04"
+  },
+  {
+   "title": "SKU 전수: 아홉 브랜드 467개",
+   "head": [
+    "브랜드",
+    "제품 · 규격",
+    "가격",
+    "소매처",
+    "국가",
+    "기준일"
+   ],
+   "num": [
+    false,
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "Rügen Fisch",
+     "Bratheringe in würziger Marinade · 500 g",
+     "2.22 EUR",
+     "Bayern",
+     "Deutschland",
+     "2026-04-01"
+    ],
+    [
+     "Rügen Fisch",
+     "Heringsfilet Tomate · 200g",
+     "1.39 EUR",
+     "Aldi",
+     "Deutschland",
+     "2024-06-04"
+    ],
+    [
+     "Petit Navire",
+     "Miettes de thon à l huile de tournesol · 104 g",
+     "2.06 EUR",
+     "Auchan",
+     "France",
+     "2026-08-18"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier à l'huile de tournesol · 160g",
+     "1.97 EUR",
+     "Auchan",
+     "France",
+     "2026-08-18"
+    ],
+    [
+     "Petit Navire",
+     "Rillettes de thon aux olives vertes · 125 g",
+     "2.01 EUR",
+     "Auchan",
+     "France",
+     "2026-08-18"
+    ],
+    [
+     "Petit Navire",
+     "Rillettes de saumon · 125 g",
+     "1.88 EUR",
+     "Auchan",
+     "France",
+     "2026-08-18"
+    ],
+    [
+     "Petit Navire",
+     "Tartinades de thon - Duo de poivrons & tomates · 125 g",
+     "2.89 EUR",
+     "Super U",
+     "France",
+     "2026-08-09"
+    ],
+    [
+     "Petit Navire",
+     "Saumon fumé d'Alaska Petit Navire · 120 g",
+     "8.36 EUR",
+     "E. Leclerc",
+     "France",
+     "2026-07-30"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier au naturel Albacore · 93 g",
+     "1.85 EUR",
+     "Carrefour Market",
+     "France",
+     "2026-06-29"
+    ],
+    [
+     "Petit Navire",
+     "Filet de maquereaux à la sauce tomate · —",
+     "1.89 EUR",
+     "Carrefour Market",
+     "France",
+     "2026-06-09"
+    ],
+    [
+     "Petit Navire",
+     "Filets de maquereaux nature · 176 g",
+     "2.65 EUR",
+     "Carrefour Market",
+     "France",
+     "2026-06-09"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier au naturel · 2 x 56g",
+     "2.67 EUR",
+     "Auchan",
+     "France",
+     "2026-05-09"
+    ],
+    [
+     "Petit Navire",
+     "Filets de maquereaux · 175 g",
+     "2.37 EUR",
+     "Auchan",
+     "France",
+     "2026-05-09"
+    ],
+    [
+     "Petit Navire",
+     "Thon mariné tomates séchées · 110 g",
+     "2.31 EUR",
+     "Auchan",
+     "France",
+     "2026-05-09"
+    ],
+    [
+     "Petit Navire",
+     "Émietté de thon LE MARINE piment d'espelette · 110g",
+     "2.34 EUR",
+     "Auchan",
+     "France",
+     "2026-05-09"
+    ],
+    [
+     "Petit Navire",
+     "Émietté de thon Le Mariné basilic · 110 g",
+     "2.29 EUR",
+     "Auchan",
+     "France",
+     "2026-05-04"
+    ],
+    [
+     "Petit Navire",
+     "Thon a la sauce mayonnaise · 140 g",
+     "1.85 EUR",
+     "Auchan",
+     "France",
+     "2026-05-04"
+    ],
+    [
+     "Petit Navire",
+     "Miettes de Thon à la Tomate · 80 g",
+     "3.33 EUR",
+     "Auchan",
+     "France",
+     "2026-05-04"
+    ],
+    [
+     "Petit Navire",
+     "· 6 tranches",
+     "6.16 EUR",
+     "Carrefour Villeurbanne",
+     "France",
+     "2026-04-25"
+    ],
+    [
+     "Petit Navire",
+     "Tartinades de thon duo de poivrons et tomates · 250 g (2 x 125 g)",
+     "4.11 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-04-11"
+    ],
+    [
+     "Petit Navire",
+     "Rillettes de thon aux olives vertes · 2 x 125 g",
+     "3.65 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-04-11"
+    ],
+    [
+     "Petit Navire",
+     "Rillettes de saumon · —",
+     "3.47 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-04-11"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier au Naturel Cuisson Vapeur (Lot de 2) · 140 g x 2",
+     "3.84 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-04-11"
+    ],
+    [
+     "Petit Navire",
+     "Tartinades de thon, tomates séchées et thym · 2 x 125 g",
+     "4.23 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-04-11"
+    ],
+    [
+     "Petit Navire",
+     "Thon miettes tomates séchées Petit Navire · —",
+     "3.84 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-04-11"
+    ],
+    [
+     "Petit Navire",
+     "Petit ecolier 120gx3 coeur lot · 6 x 20 g",
+     "4.83 EUR",
+     "Carrefour",
+     "France",
+     "2026-04-06"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier au nature · 140g",
+     "2.22 EUR",
+     "Intermarché Super Bresson",
+     "France",
+     "2026-04-02"
+    ],
+    [
+     "Petit Navire",
+     "Saumon fumé Écosse 6 tranches · —",
+     "9.29 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-27"
+    ],
+    [
+     "Petit Navire",
+     "Saumon fumé de Norvège · —",
+     "8.44 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-27"
+    ],
+    [
+     "Petit Navire",
+     "Émincés extra-fins de saumon fumé façon Gravlax · —",
+     "5.19 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-27"
+    ],
+    [
+     "Petit Navire",
+     "SAUMON ATL ELEVE EN NORVEGE FUME · 120",
+     "5.36 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-27"
+    ],
+    [
+     "Petit Navire",
+     "Saumon Atlantique Fumé · 120 g",
+     "7.22 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-27"
+    ],
+    [
+     "Petit Navire",
+     "SAUMON ATL ELEVE EN ECOSSE FUME · 120 g",
+     "6.59 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-27"
+    ],
+    [
+     "Petit Navire",
+     "Saumon fumé Ecosse · 65 g",
+     "3.92 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-27"
+    ],
+    [
+     "Petit Navire",
+     "Saumon de Norvège · 65 g",
+     "3.79 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-27"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier au naturel · 160 g",
+     "6.42 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-15"
+    ],
+    [
+     "Petit Navire",
+     "Miettes de Thon, Huile de Tournesol · —",
+     "6.06 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-14"
+    ],
+    [
+     "Petit Navire",
+     "Rillettes de thon · —",
+     "3.39 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-14"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier huile de tournesol · 160 g",
+     "5.76 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-14"
+    ],
+    [
+     "Petit Navire",
+     "Morceaux de Thon nature · 112 g",
+     "2.18 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-08"
+    ],
+    [
+     "Petit Navire",
+     "· —",
+     "5.05 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-03-05"
+    ],
+    [
+     "Petit Navire",
+     "Filets de maquereaux Huile d'Olive Vierge Extra · 145 g",
+     "2.45 EUR",
+     "E. Leclerc",
+     "France",
+     "2026-02-27"
+    ],
+    [
+     "Petit Navire",
+     "Thon mariné aux oignons roses · —",
+     "2.04 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Thon blanc au naturel Germon · 132 g (93 g)",
+     "2.17 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Morceaux de Thon au Naturel · 2 x 112 g",
+     "4.01 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier au naturel cuisson vapeur · 130 g",
+     "2.17 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Miettes de thon à l'huile d'olive vierge extra · 160 g (égoutté : 104 g)",
+     "2.7 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier au naturel · 2x132 g",
+     "3.24 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Filets de maquereaux vin blanc & aromates · 175 g e",
+     "2.3 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Thon blanc au naturel · 160 g",
+     "3.49 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Morceaux de thon · 93 g",
+     "1.86 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Emietté de Thon le mariné Citron & Thym · 110 g",
+     "2.29 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Thon blanc à l'huile d'olive vierge extra · 160g (104g égoutté)",
+     "3.67 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Filets de maquereau sauce escabèche · —",
+     "1.64 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Super Salade Boulgour, Tuna, Gentiles And Basil · —",
+     "2.8 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "thon entier au naturel · 400 gr",
+     "4.61 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Miettes de thon à la sauce tomate · —",
+     "1.97 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Le Thon blanc au naturel Petit Navire · 2x 80 g",
+     "3.85 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Le mariné vinaigre balsamique et échalotes · 110g",
+     "2.12 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier au naturel -25% de sel · 160 g",
+     "2.51 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "P'tits Filets de Maquereaux - Recette à la Méditerranéenne · 90g",
+     "1.88 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier · 2 x 80 g",
+     "3.62 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Miettes de thon · 80 g",
+     "1.63 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Thon à la sauce catalane · 140 g",
+     "1.68 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Thon Vapeur filet d'huile d'olive · 130 g",
+     "2.45 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Effilochés De Thon · —",
+     "2.36 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Et hop! Dans mes salades, effiloché de thon citron vert & basilic · 130 g",
+     "2.36 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Miettes de thon (huile de tournesol) · —",
+     "3.62 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "· —",
+     "2.1 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "Miette de thon à la tomate - Petit Navire - Petit Navire · —",
+     "2.61 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Petit Navire",
+     "· —",
+     "4.02 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-08"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier au naturel · 3x160 g",
+     "9.59 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-08"
+    ],
+    [
+     "Petit Navire",
+     "Thon entier au naturel · 190 g",
+     "10.32 EUR",
+     "Auchan Supermarché",
+     "France",
+     "2026-01-31"
+    ],
+    [
+     "Petit Navire",
+     "Thon · 3 x 160 g",
+     "5.81 EUR",
+     "E.Leclerc Drive",
+     "France",
+     "2025-12-08"
+    ],
+    [
+     "Petit Navire",
+     "Lot de 3 boites Morceaux de Thon au Naturel · 3 x 160 g",
+     "5.06 EUR",
+     "E.Leclerc Drive",
+     "France",
+     "2025-11-28"
+    ],
+    [
+     "Petit Navire",
+     "P’tits Filets de Maquereaux - Huile d’Olive & Tomates Séchées · 90 g",
+     "2.15 EUR",
+     "Franprix",
+     "France",
+     "2025-11-20"
+    ],
+    [
+     "Petit Navire",
+     "P'tits filets de maquereaux - Huile d'olive vierge extra · 90 g",
+     "1.77 EUR",
+     "E. Leclerc",
+     "France",
+     "2025-05-20"
+    ],
+    [
+     "Petit Navire",
+     "Filet de maquereau · 100 g",
+     "1.79 EUR",
+     "Netto",
+     "France",
+     "2025-04-14"
+    ],
+    [
+     "Petit Navire",
+     "Foie de morue · 120 g",
+     "2.14 EUR",
+     "Hyper U",
+     "France",
+     "2025-02-16"
+    ],
+    [
+     "Petit Navire",
+     "Saumon fumé Grand Nord Norvégien · 195 g",
+     "6.28 EUR",
+     "U Express",
+     "France",
+     "2024-12-30"
+    ],
+    [
+     "Petit Navire",
+     "Cap Végétal Émietté végétal mariné tomates & herbes · 80 g",
+     "1.89 EUR",
+     "Carrefour Lyon Part-Dieu",
+     "France",
+     "2024-12-14"
+    ],
+    [
+     "Petit Navire",
+     "Cap Végétal Émietté végétal mariné olives & origan · 80 g",
+     "1.89 EUR",
+     "Carrefour Lyon Part-Dieu",
+     "France",
+     "2024-12-14"
+    ],
+    [
+     "Petit Navire",
+     "Cap Végétal Émietté végétal mariné citron & thym · 80 g",
+     "1.89 EUR",
+     "Carrefour Lyon Part-Dieu",
+     "France",
+     "2024-12-14"
+    ],
+    [
+     "Petit Navire",
+     "Emietté de thon Le Mariné citron & thym (Lot de 2) · 2 x 110 g",
+     "3.99 EUR",
+     "U Express Lyon Université",
+     "France",
+     "2024-08-29"
+    ],
+    [
+     "Hawesta",
+     "Makrelenfilets Tomatensauce · 200 g",
+     "2.49 EUR",
+     "V-MARKT",
+     "Deutschland",
+     "2025-08-02"
+    ],
+    [
+     "Hawesta",
+     "Thunfischsalat - Asia · 160 g",
+     "1.59 EUR",
+     "Bayern",
+     "Deutschland",
+     "2024-11-16"
+    ],
+    [
+     "Hawesta",
+     "Thunfischsalat - India · 160 g",
+     "1.59 EUR",
+     "Bayern",
+     "Deutschland",
+     "2024-11-16"
+    ],
+    [
+     "Hawesta",
+     "Thunfisch Salat Milano · 160 g",
+     "1.59 EUR",
+     "Bayern",
+     "Deutschland",
+     "2024-11-16"
+    ],
+    [
+     "Hawesta",
+     "Thunfischsalat Couscous Super-Promo-Pack + Thunfischfilets · 400 g",
+     "3.79 EUR",
+     "Bayern",
+     "Deutschland",
+     "2024-10-14"
+    ],
+    [
+     "Hawesta",
+     "Thunfischsalat Mexico Super-Promo-Pack + Thunfischfilets · 400 g",
+     "3.79 EUR",
+     "Bayern",
+     "Deutschland",
+     "2024-10-14"
+    ],
+    [
+     "Hawesta",
+     "Thunfischsalat Couscous · 160 g",
+     "2.89 EUR",
+     "EDEKA Stroetmann",
+     "Deutschland",
+     "2024-01-24"
+    ],
+    [
+     "John West",
+     "Infusions tuna Lemon & Thyme · 80",
+     "1.85 GBP",
+     "Sainsbury's Pharmacy",
+     "United Kingdom",
+     "2025-11-14"
+    ],
+    [
+     "John West",
+     "Anchovy Fillets · 50g Drained",
+     "3.5 GBP",
+     "Tesco",
+     "United Kingdom",
+     "2025-01-27"
+    ],
+    [
+     "Parmentier",
+     "Sardines à l'huile d'olive et herbes de Provence · 135 g",
+     "2.49 EUR",
+     "Super U",
+     "France",
+     "2026-08-09"
+    ],
+    [
+     "Parmentier",
+     "Sardines à la tomate · 135 g",
+     "1.95 EUR",
+     "Carrefour City",
+     "France",
+     "2026-05-11"
+    ],
+    [
+     "Parmentier",
+     "Sardine huile tournesol et citron PARMENTIER, boîte 1/6 · 135g net 95g égoutté",
+     "2.35 EUR",
+     "Diagonal",
+     "France",
+     "2026-02-28"
+    ],
+    [
+     "Parmentier",
+     "Sardines sauce arrabiata · —",
+     "1.51 EUR",
+     "Centre Commercial E.Leclerc",
+     "France",
+     "2026-02-21"
+    ],
+    [
+     "Parmentier",
+     "Sardine à l'huile d'olive vierge extra · 3 x 55 g",
+     "3.64 EUR",
+     "E. Leclerc",
+     "France",
+     "2025-05-20"
+    ],
+    [
+     "Parmentier",
+     "· 135 g",
+     "3.24 EUR",
+     "E. Leclerc",
+     "France",
+     "2025-05-20"
+    ],
+    [
+     "Parmentier",
+     "Sardines huile de tournesol et citron · 3 x 135 g",
+     "7.1 EUR",
+     "Auchan Supermarché",
+     "France",
+     "2025-03-11"
+    ],
+    [
+     "Parmentier",
+     "Sardines huile d'olives et piment · 135g",
+     "1.71 EUR",
+     "E.Leclerc Levallois",
+     "France",
+     "2025-01-11"
+    ],
+    [
+     "King Oscar",
+     "Grovrevet Tunfisk Tørkede Tomater · 85g",
+     "21.9 NOK",
+     "Extra Danmarksplass",
+     "Norge",
+     "2026-06-15"
+    ],
+    [
+     "King Oscar",
+     "Grovrevet Tunfisk Fransk Dressing · 85g",
+     "21.9 NOK",
+     "Extra Danmarksplass",
+     "Norge",
+     "2026-06-15"
+    ],
+    [
+     "King Oscar",
+     "Makrell Pizza smak · —",
+     "9.9 NOK",
+     "Holdbart",
+     "Norge",
+     "2026-06-05"
+    ],
+    [
+     "King Oscar",
+     "Makrell Tacosmak · —",
+     "9.9 NOK",
+     "Holdbart",
+     "Norge",
+     "2026-06-05"
+    ],
+    [
+     "King Oscar",
+     "Wild Caught Sardines in Water · 85 g",
+     "3.12 USD",
+     "Walmart Supercenter",
+     "United States",
+     "2026-02-22"
+    ],
+    [
+     "King Oscar",
+     "Kippers Varmrøkt Norsk Sildefilet · —",
+     "38.9 NOK",
+     "Coop Prix Farmen",
+     "Norge",
+     "2025-10-25"
+    ],
+    [
+     "King Oscar",
+     "Tunfiskbiter · —",
+     "23.4 NOK",
+     "Kiwi Bøhmergaten",
+     "Norge",
+     "2025-03-24"
+    ],
+    [
+     "King Oscar",
+     "King oscar · 200 g",
+     "49.9 NOK",
+     "Bunnpris Damsgård",
+     "Norge",
+     "2024-05-25"
+    ],
+    [
+     "Chicken of the Sea",
+     "Wild-Caught Sardines in Water · 3.75 oz (106 g)",
+     "1.5 USD",
+     "Safeway",
+     "United States",
+     "2026-07-19"
+    ],
+    [
+     "Chicken of the Sea",
+     "SOLID WHITE PREMIUM TUNA · 56 g",
+     "4.99 USD",
+     "Safeway",
+     "United States",
+     "2026-07-19"
+    ],
+    [
+     "Chicken of the Sea",
+     "Chunk White Albacore Tuna · 56 g",
+     "2.0 USD",
+     "Safeway",
+     "United States",
+     "2026-07-19"
+    ],
+    [
+     "Chicken of the Sea",
+     "CHUNK LIGHT TUNA · —",
+     "1.5 USD",
+     "Safeway",
+     "United States",
+     "2026-07-19"
+    ],
+    [
+     "Chicken of the Sea",
+     "Fancy Smoked Oysters in Oil · —",
+     "5.29 USD",
+     "Safeway",
+     "United States",
+     "2026-07-19"
+    ],
+    [
+     "Chicken of the Sea",
+     "ALBACORE PREMIUM TUNA · 56 g",
+     "2.79 USD",
+     "Safeway",
+     "United States",
+     "2026-07-19"
+    ],
+    [
+     "Chicken of the Sea",
+     "Solid White Albacore Tuna In Water · 56 g",
+     "8.99 USD",
+     "Safeway",
+     "United States",
+     "2026-07-19"
+    ],
+    [
+     "Chicken of the Sea",
+     "CHUNK LIGHT TUNA · 7 oz",
+     "17.59 USD",
+     "Costco",
+     "United States",
+     "2026-02-15"
+    ],
+    [
+     "Chicken of the Sea",
+     "Cheddar Bay Biscuit Shrimp · 10.0 oz",
+     "11.99 USD",
+     "Safeway",
+     "United States",
+     "2026-01-23"
+    ],
+    [
+     "Chicken of the Sea",
+     "Crab meat · 16 oz",
+     "29.99 USD",
+     "Costco",
+     "United States",
+     "2025-12-12"
+    ],
+    [
+     "Chicken of the Sea",
+     "Infused with tuna · —",
+     "0.99 USD",
+     "Grocery Outlet",
+     "United States of America",
+     "2025-11-19"
+    ],
+    [
+     "Chicken of the Sea",
+     "Chunk Yellowfin Tuna · —",
+     "0.99 USD",
+     "Grocery Outlet",
+     "United States of America",
+     "2025-11-19"
+    ],
+    [
+     "Chicken of the Sea",
+     "Smoked Oysters in Oil · —",
+     "1.99 USD",
+     "Grocery Outlet",
+     "United States of America",
+     "2025-11-19"
+    ],
+    [
+     "Chicken of the Sea",
+     "White Tuna Salad Kit · —",
+     "1.49 USD",
+     "Grocery Outlet",
+     "United States of America",
+     "2025-11-19"
+    ],
+    [
+     "John West",
+     "John West Boneless Sardines In Tomato Sauce (95g) · —",
+     "2.0 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Atlantic Salmon Skinless & Boneless Lemon 115g · —",
+     "3.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Atlantic Salmon Skinless & Boneless Mediterranean 115g · —",
+     "3.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Atlantic Salmon Skinless & Boneless Olive Oil 115g · —",
+     "3.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Cracker Toppers Tuna Mayo Sweetcorn (80g) · —",
+     "1.25 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Herrings In Tomato (145g) · —",
+     "2.1 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Kipper Fillets In Oil (145g) · —",
+     "2.1 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Chilli & Garlic No Drain Tuna Infusions 80g · —",
+     "1.8 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Light On The Go Greek Tuna Pasta Salad · —",
+     "1.75 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Sweet Chilli No Drain Tuna Infusions 80g · —",
+     "1.8 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Lemon & Thyme No Drain Tuna Infusions 80g · —",
+     "1.8 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Fridge Pot Tuna Steak with a Little Brine 3x110g · —",
+     "5.0 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Fridge Pot Tuna Steak with a Little Brine 110g · —",
+     "2.0 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Fridge Pot Tuna Steak with a Little Spring Water 3x110g · —",
+     "5.0 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Fridge Pot Tuna Steak In Sunflower Oil (3x110g) · —",
+     "5.0 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Fridge Pot Tuna Steak with a Little Sunflower Oil 110g · —",
+     "2.0 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Tuna Steak in Brine (3x60g) · —",
+     "2.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Tuna Chunks with a Little Brine MSC 3x100g · —",
+     "3.75 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Tuna Steak in Oil (3x60g) · —",
+     "2.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Tuna Chunks with a Little Sunflower Oil MSC 3x100g · —",
+     "3.75 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Tuna Chunks with a Little Spring Water MSC 3x100g · —",
+     "3.75 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West No Drain Tuna Steak In Spring Water (3x60g) · —",
+     "2.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West On The Go Honey & Ginger Super Tuna Salad Gluten Free (220g) · —",
+     "1.75 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West On The Go Harissa Super Tuna Salad (220g) · —",
+     "1.75 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West On The Go French Tuna Pasta Salad (220g) · —",
+     "1.75 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West On The Go Italian Tuna Pasta Salad (220g) · —",
+     "1.75 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West On The Go Mediterranean Tuna Pasta Salad (220g) · —",
+     "1.75 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West On The Go Mexican Tuna Bean Salad Gluten Free (220g) · —",
+     "1.75 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Pink Salmon Fridgepot · —",
+     "2.25 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Salmon Fridgepot Lemon & Herb · —",
+     "2.25 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Sardines in Olive Oil (120g) · —",
+     "1.4 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Sardines in Spicy Tomato Sauce (120g) · —",
+     "1.4 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Sardines In Sunflower Oil (120g) · —",
+     "1.4 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Skippers Brisling in Tomato Sauce (106g) · —",
+     "1.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Stir & Serve Tuna in Mild Curry Sauce 300g · —",
+     "3.8 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Stir & Serve Tuna in Soy, Ginger & Honey Sauce 300g · —",
+     "3.8 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Stir & Serve Tuna in Spicy Mexican Sauce 300g · —",
+     "3.8 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Stir & Serve Tuna in Tomato & Basil Sauce 300g · —",
+     "3.8 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Tuna Chunks in Brine 4x125g (102g drained) · —",
+     "4.25 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Tuna Chunks in Brine MSC 125g (102g drained) · —",
+     "1.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Tuna Chunks in Spring Water 4x125g (102g drained) · —",
+     "4.25 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Tuna Chunks in Spring Water MSC 125g (102g drained) · —",
+     "1.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Tuna Chunks in Sunflower Oil MSC 125g (102g drained) · —",
+     "1.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Tuna Chunks in Sunflower Oil 4x125g (102g drained) · —",
+     "4.25 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "· —",
+     "None GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Wild Pink Salmon (213g) · —",
+     "3.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ],
+    [
+     "John West",
+     "John West Wild Red Salmon MSC (213g) · —",
+     "5.5 GBP",
+     "Morrisons",
+     "영국",
+     "2026-08-20"
+    ]
+   ],
+   "sid": "s4",
+   "section": "05 / 제품 카탈로그나라마다 갈리는 라인업",
+   "ord": 500839,
    "stage": "c04"
   },
   {
@@ -360,7 +5241,8 @@
     ]
    ],
    "sid": "s5",
-   "section": "05 / 생산과 원어 조달선단 없이 세계에서 가장 많이 산다",
+   "section": "06 / 생산과 원어 조달선단 없이 세계에서 가장 많이 산다",
+   "ord": 1138,
    "note": "가격이 예산을 밑돈 것이 오히려 문제였다. 회사는 그 결과를 이렇게 적었다. 원어가가 낮아 판매가를 올릴 수 없었고, 브랜드와 PL의 진열가 격차는 여전히 컸으며, 소매업체가 PL 가격을 브랜드보다 덜 올렸다. 즉 원가 하락분은 그대로 판가 인하 압력으로 흘렀다. Ambient 매출이 6% 줄어든 배경이다.",
    "stage": "c04"
   },
@@ -393,12 +5275,13 @@
     ]
    ],
    "sid": "s5",
-   "section": "05 / 생산과 원어 조달선단 없이 세계에서 가장 많이 산다",
+   "section": "06 / 생산과 원어 조달선단 없이 세계에서 가장 많이 산다",
+   "ord": 2395,
    "note": "한국 원양선사는 연간 계약 테이블에 앉는다",
    "stage": "c04"
   },
   {
-   "title": "생산능력: 연 100만 톤이 넘는다",
+   "title": "생산능력: 한 문서가 두 값을 적는다",
    "head": [
     "품목별 캐파 (One Report p.46)",
     "연간"
@@ -430,7 +5313,8 @@
     ]
    ],
    "sid": "s5",
-   "section": "05 / 생산과 원어 조달선단 없이 세계에서 가장 많이 산다",
+   "section": "06 / 생산과 원어 조달선단 없이 세계에서 가장 많이 산다",
+   "ord": 4365,
    "note": "공시 수치의 범위가 일치하지 않는다. PetCare는 221,000t와 195,000t, 냉동은 80,000t와 41,000t이 각각 병존해 생산능력을 단일 값으로 확정할 수 없다. 상온 가동률 60%는 뒤집어 말하면 연 28만 톤의 유휴 캐파다. 관세로 인한 재배치 여력이기도 하다.",
    "stage": "c04"
   },
@@ -593,7 +5477,8 @@
     ]
    ],
    "sid": "s5",
-   "section": "05 / 생산과 원어 조달선단 없이 세계에서 가장 많이 산다",
+   "section": "06 / 생산과 원어 조달선단 없이 세계에서 가장 많이 산다",
+   "ord": 5328,
    "note": "공장별 연간 톤 캐파에 가동률까지 붙은 곳은 i-Tail 두 공장뿐이다. 송클라 99,937 t과 사뭇사콘 101,924 t은 i-Tail이 자기 사업보고서에 공장별로 적은 값이다. 가동 중인 나머지 열일곱 곳은 연간 톤(송클라 18,000 t·두아르네네 4,200 t·캥페르 6,000 t·벤트비슈 5,000 t), 캔 수(폴란드 1억 5,000만), 일 처리량(세이셸 335 t·태국 400 t), 라인 수(포르투갈 8개), 훈연로 대수(독일 열훈 3기·냉훈 2기)처럼 서로 환산되지 않는 단위로 흩어져 있고 다섯 곳은 그마저 없다.",
    "stage": "c04"
   },
@@ -656,7 +5541,8 @@
     ]
    ],
    "sid": "s5",
-   "section": "05 / 생산과 원어 조달선단 없이 세계에서 가장 많이 산다",
+   "section": "06 / 생산과 원어 조달선단 없이 세계에서 가장 많이 산다",
+   "ord": 18834,
    "note": "태국에는 새우 양식과 종묘를 맡는 TCM Fishery·TMK Farm·Thai Union Hatchery도 있으나 소재지와 제원이 공개되지 않는다. 인도 Avanti Feeds(24.21%)와 Avanti Frozen Foods(54.53%)는 지분법 관계기업으로 새우 사료와 냉동을 맡는다.",
    "stage": "c04"
   },
@@ -737,8 +5623,8 @@
      "지분법이익",
      "861,726",
      "770,598",
-     "-",
-     "-"
+     "—",
+     "—"
     ],
     [
      "법인세차감전이익",
@@ -765,8 +5651,8 @@
      "└ 비지배지분",
      "1,035,616",
      "1,088,997",
-     "-",
-     "-"
+     "—",
+     "—"
     ],
     [
      "주당순이익 (밧)",
@@ -777,7 +5663,8 @@
     ]
    ],
    "sid": "s6",
-   "section": "06 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "section": "07 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "ord": 1123,
    "note": "연결 그룹 전체 개별 모회사 단독 56-1 One Report 감사 재무제표(문서 p357)",
    "stage": "c06"
   },
@@ -810,7 +5697,8 @@
     ]
    ],
    "sid": "s6",
-   "section": "06 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "section": "07 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "ord": 4436,
    "note": "이익은 줄었는데 주당이익은 올랐다. 분모가 줄어서다. 2025년에만 자사주 4억 주를 매입했다. 2억 주 소각은 2026-01-08 발효라 그해 EPS에는 아직 반영되지 않았다. 회사는 이를 \"supported by share cancellation\"이라고 적었지만, 2025년 분모를 줄인 것은 매입분이다. 언론 헤드라인은 대개 \"EPS 7.2% 성장\"만 옮긴다.",
    "stage": "c06"
   },
@@ -861,7 +5749,7 @@
     ],
     [
      "유동비율 (배)",
-     "-",
+     "—",
      "1.57",
      "1.70",
      "개선"
@@ -875,7 +5763,8 @@
     ]
    ],
    "sid": "s6",
-   "section": "06 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "section": "07 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "ord": 6189,
    "note": "순차입금이 EBITDA의 다섯 배를 넘었다",
    "stage": "c06"
   },
@@ -910,11 +5799,12 @@
     [
      "합계 매출 증감",
      "−4.1%",
-     "-"
+     "—"
     ]
    ],
    "sid": "s6",
-   "section": "06 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "section": "07 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "ord": 7808,
    "note": "물량은 8분기 연속 늘었는데 매출은 줄었다. 절반 이상이 환율 탓이다. 밧으로 실적을 내는 회사가 매출의 70%를 해외에서 벌면, 밧이 강해질 때 실적이 자동으로 깎인다. 이것은 영업의 실패라기보다 보고통화의 문제다. 다만 주주가 받는 밧 표시 이익은 실제로 줄어든다.",
    "stage": "c06"
   },
@@ -980,9 +5870,9 @@
     [
      "당기순이익 (비지배지분 포함)",
      "1,543",
-     "-",
+     "—",
      "2,932",
-     "-"
+     "—"
     ],
     [
      "지배주주 귀속 순이익",
@@ -1000,7 +5890,8 @@
     ]
    ],
    "sid": "s6",
-   "section": "06 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "section": "07 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "ord": 9354,
    "note": "연결 그룹 전체 2026-08-03 제출 검토 재무제표 및 MD&A. 상반기 매출은 제출본 65,899,364 천 밧과 자릿수까지 일치한다.",
    "stage": "c06"
   },
@@ -1051,7 +5942,8 @@
     ]
    ],
    "sid": "s6",
-   "section": "06 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "section": "07 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "ord": 11206,
    "note": "판매물량은 상반기 442,624톤으로 2.3% 늘어 열 분기 연속 증가했다. 지역별로는 태국이 9,068백만 밧으로 21.6% 뛰었고 중동은 1,284백만 밧으로 37.2% 줄었다. 미국·캐나다 26,420(+5.8%), 유럽 19,690(+3.4%), 일본 2,975(−9.4%), 기타 6,462(+1.6%)다.",
    "stage": "c06"
   },
@@ -1085,13 +5977,112 @@
     ],
     [
      "배당성향",
-     "-",
+     "—",
      "최소 50%"
     ]
    ],
    "sid": "s6",
-   "section": "06 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "section": "07 / 재무최고 마진, 줄어든 몸집, 늘어난 빚",
+   "ord": 13179,
    "note": "2026년 6월 말 총자산은 161,301백만 밧, 총부채 107,927백만 밧, 자기자본 53,374백만 밧이고 주당순자산은 11.92밧이다. 순차입금/EBITDA는 4.90배로 2025년 말 5.03배에서 내려왔으나 2024년 말 3.97배보다는 여전히 높다. 영업활동현금흐름 5,009백만 밧, 2분기 배당은 주당 0.40밧으로 2022년 이후 가장 크다.",
+   "stage": "c06"
+  },
+  {
+   "title": "세전이익과 법인세",
+   "head": [
+    "연결 · 감사 (백만 밧)",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "num": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "rows": [
+    [
+     "금융비용·법인세 차감 전 이익",
+     "8,114.69",
+     "8,996.27",
+     "8,007.10"
+    ],
+    [
+     "금융비용",
+     "−2,302.09",
+     "−2,492.36",
+     "−2,378.57"
+    ],
+    [
+     "세전이익",
+     "5,812.60",
+     "6,503.91",
+     "5,628.53"
+    ],
+    [
+     "법인세 비용",
+     "+619.94",
+     "−430.02",
+     "+16.51"
+    ],
+    [
+     "실효세율",
+     "−10.7%",
+     "6.6%",
+     "−0.3%"
+    ],
+    [
+     "계속영업 당기순이익",
+     "6,432.54",
+     "6,073.89",
+     "5,645.03"
+    ],
+    [
+     "당기순이익 (중단영업 포함)",
+     "−13,200.29",
+     "6,073.89",
+     "5,645.03"
+    ]
+   ],
+   "sid": "s6b",
+   "section": "08 / 조세혜택3년 실효세율이 마이너스인데 한 해가 만든다",
+   "ord": 1048,
+   "note": "원문과 부호 규약이 다르다. 원문은 차감항목을 양수 크기로 실어 금융비용이 +2,302.09이고 법인세 비용은 −619.94 · 430.02 · −16.51인데, 그 규약에서 음수는 환입이다. 위 표는 「이익에 미친 방향」으로 통일했다 — 양수는 이익을 늘린 값, 음수는 줄인 값이다.",
+   "stage": "c06"
+  },
+  {
+   "title": "회사가 스스로 적은 리스크",
+   "head": [
+    "회사가 적은 영향",
+    "내용"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "추가 세부담",
+     "「투자위원회 조세혜택 때문에 태국 실효세율이 15% 미만이라 태국에서 추가 세금을 낼 가능성. 태국의 제2기둥 입법은 이미 시행됐고 2025 회계연도부터 그룹에 영향」"
+    ],
+    [
+     "준수 비용",
+     "복잡한 신규 규정 이행에 비용이 들고 조세계획·보고 절차를 바꿔야 한다"
+    ],
+    [
+     "행정 부담",
+     "데이터 수집·통제·보고"
+    ],
+    [
+     "대응",
+     "영향 평가 완료, 국가별보고 전환기 세이프하버 적용 관할 식별, 계산용 재무데이터 준비, 이행계획 수립"
+    ]
+   ],
+   "sid": "s6b",
+   "section": "08 / 조세혜택3년 실효세율이 마이너스인데 한 해가 만든다",
+   "ord": 3643,
+   "note": "혜택의 크기를 회사는 적지 않는다",
    "stage": "c06"
   },
   {
@@ -1184,7 +6175,8 @@
     ]
    ],
    "sid": "s7",
-   "section": "07 / 리스크회사가 스스로 적은 열다섯 가지",
+   "section": "09 / 리스크회사가 스스로 적은 열다섯 가지",
+   "ord": 275,
    "note": "태국 최대 수산기업이 \"태국 밖으로 생산을 옮기겠다\"고 공시했다",
    "stage": "c06"
   },
@@ -1209,7 +6201,8 @@
     ]
    ],
    "sid": "s7",
-   "section": "07 / 리스크회사가 스스로 적은 열다섯 가지",
+   "section": "09 / 리스크회사가 스스로 적은 열다섯 가지",
+   "ord": 1391,
    "note": "태국 최대 수산기업이 \"태국 밖으로 생산을 옮기겠다\"고 공시했다",
    "stage": "c06"
   },
@@ -1248,7 +6241,8 @@
     ]
    ],
    "sid": "s8",
-   "section": "08 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "section": "10 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "ord": 971,
    "note": "온실가스 공시의 세 가지 범위",
    "stage": "c05"
   },
@@ -1287,13 +6281,14 @@
     ],
     [
      "전량 제거 목표",
-     "-",
+     "—",
      "2030",
      "폐수 방류 · 음식물 폐기 · 매립 폐기물 전부 제거"
     ]
    ],
    "sid": "s8",
-   "section": "08 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "section": "10 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "ord": 2494,
    "stage": "c05"
   },
   {
@@ -1364,7 +6359,8 @@
     ]
    ],
    "sid": "s8",
-   "section": "08 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "section": "10 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "ord": 3196,
    "note": "석탄 −61%, 스팀 0이 감축의 알맹이다. 대신 천연가스·LPG·전력이 늘었다. 고체연료에서 가스·전력으로 갈아탔다. 여기에 태양광 도입이 얹힌다: 태국 Chow Energy와 MOU를 맺고 공급망 협력사에 30 MW 태양광을 설치하기로 했다 (연간 약 17,500가구 전력에 해당).",
    "stage": "c05"
   },
@@ -1389,12 +6385,12 @@
     [
      "2022",
      "79%",
-     "-"
+     "—"
     ],
     [
      "2023",
      "90%",
-     "-"
+     "—"
     ],
     [
      "2024",
@@ -1408,7 +6404,8 @@
     ]
    ],
    "sid": "s8",
-   "section": "08 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "section": "10 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "ord": 5070,
    "note": "연승선의 지역 최소 옵서버 요건은 전체 조업의 5%에 불과하다. 타이유니온이 조달한 연승 참치의 3분의 2 이상에 옵서버 또는 EM이 있었다는 것은 규제 최소치의 13배를 자체 기준으로 요구했다는 뜻이다.",
    "stage": "c05"
   },
@@ -1455,7 +6452,7 @@
      "C5 컴플라이언스 (RFMO 블랙리스트)",
      "100%",
      "100% ○",
-     "-"
+     "—"
     ],
     [
      "C6 추적성 (선박 단위 + GDST)",
@@ -1465,7 +6462,8 @@
     ]
    ],
    "sid": "s8",
-   "section": "08 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "section": "10 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "ord": 6042,
    "note": "MSC 인증 어장 비율이 2년 만에 2배가 됐다. 2022년 31.0% → 2023년 39.4% → 2024년 71.4%. FIP(개선 프로젝트) 물량이 MSC 인증으로 졸업하면서 그쪽으로 옮겨 갔다(FIP 36.0 → 13.4%).",
    "stage": "c05"
   },
@@ -1509,7 +6507,8 @@
     ]
    ],
    "sid": "s8",
-   "section": "08 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "section": "10 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "ord": 7303,
    "note": "거래를 트려면 다섯 가지를 다 채워야 한다",
    "stage": "c05"
   },
@@ -1542,7 +6541,8 @@
     ]
    ],
    "sid": "s8",
-   "section": "08 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "section": "10 / 지속가능성SeaChange 2030: 숫자로 약속한 것들",
+   "ord": 11319,
    "note": "물 리스크는 WRI Aqueduct 4.0으로 평가했고, 제조 시설 12곳이 물 스트레스 심각 유역(>80%)에 있다. 태국 사뭇사콘 공장에서 폐수 무방류(Zero Wastewater Discharge) 파일럿을 완료했다. 정부(PMUC) 340만 밧 + 회사 840만 밧 투입, 5개 공장으로 확대 예정.",
    "stage": "c05"
   },
@@ -1582,12 +6582,13 @@
      "StarKist 벌금 $100M(법정 최고) + 보호관찰 13개월"
     ],
     [
-     "-",
+     "—",
      "COSI는 리니언시로 형사기소를 면했다"
     ]
    ],
    "sid": "s9",
-   "section": "09 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "section": "11 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "ord": 2888,
    "note": "자료: 미 DOJ 2015·2017·2019년 보도자료와 제9연방항소법원 판결문.",
    "stage": "c07"
   },
@@ -1626,7 +6627,8 @@
     ]
    ],
    "sid": "s9",
-   "section": "09 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "section": "11 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "ord": 4430,
    "note": "태국산 참치캔은 AKFTA·RCEP 모두에서 한국 양허 제외라 20%를 그대로 낸다. 베트남만 0%다. 베트남 74.3% vs 태국 12.8%라는 격차도 이 관세 구조에서 곧장 나온다. AKFTA·RCEP 양허표에서 태국산 HS 1604.14가 제외돼 적용세율은 20%다.",
    "stage": "c07"
   },
@@ -1663,7 +6665,8 @@
     ]
    ],
    "sid": "s9",
-   "section": "09 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "section": "11 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "ord": 5040,
    "note": "태국산 참치캔은 AKFTA·RCEP 모두에서 한국 양허 제외라 20%를 그대로 낸다. 베트남만 0%다. 베트남 74.3% vs 태국 12.8%라는 격차도 이 관세 구조에서 곧장 나온다. AKFTA·RCEP 양허표에서 태국산 HS 1604.14가 제외돼 적용세율은 20%다.",
    "stage": "c07"
   },
@@ -1697,7 +6700,8 @@
     ]
    ],
    "sid": "s9",
-   "section": "09 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "section": "11 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "ord": 6373,
    "note": "구도가 뚜렷하다. ISSF 참여기업 가입과 PVR 선박 등재는 별개다. 신라·사조·동원산업은 참여기업 명단에 없지만, 2026-08-20 현행 PVR에는 한국 국적선 92척(연승 67·대형 선망 24·지원선 1)이 등재돼 있다. 89척이 UVI ISSF 적합이고 대형 선망선 24척은 전부 적합이다. 타이유니온 조달 참치의 94%가 PVR 등재 선박에서 온다는 사실과 합치한다.",
    "stage": "c07"
   },
@@ -1730,7 +6734,8 @@
     ]
    ],
    "sid": "s9",
-   "section": "09 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "section": "11 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "ord": 7362,
    "note": "협상 테이블은 연간 계약이고, 그 테이블이 움직인다",
    "stage": "c07"
   },
@@ -1781,9 +6786,217 @@
     ]
    ],
    "sid": "s9",
-   "section": "09 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "section": "11 / 한국 관점'Korea' 1회에 담긴 비대칭",
+   "ord": 7855,
    "note": "협상 테이블은 연간 계약이고, 그 테이블이 움직인다",
    "stage": "c07"
+  },
+  {
+   "title": "시점 · 현금이 간 방향 · 무엇이",
+   "head": [
+    "시점",
+    "현금이 간 방향",
+    "무엇이"
+   ],
+   "num": [
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "1997~2016",
+     "← 밖으로 나감",
+     "Chicken of the Sea·MW Brands·King Oscar·Rügen Fisch를 차례로 인수"
+    ],
+    [
+     "2023 Q4",
+     "→ 정리",
+     "Red Lobster 철수 결정. 일회성 비현금 손상 184억 밧"
+    ],
+    [
+     "2024",
+     "→ 정리",
+     "영국 법인이 보유 지분 20%를 매각"
+    ],
+    [
+     "2024-07",
+     "← 밖으로 나감",
+     "사뭇사콘 신공장 상업가동"
+    ],
+    [
+     "2025",
+     "→ 주주에게",
+     "자사주 4억 주 매입. 자사주 매입은 자본을 깎는다"
+    ]
+   ],
+   "sid": "s9b",
+   "section": "12 / 전략사 모으던 회사가 덜어 내고 되돌려주는 쪽으로 돌았다",
+   "ord": 223,
+   "note": "화살표는 현금의 방향이다. 인수는 나가고, 정리와 환원은 들어오거나 자본을 줄인다.",
+   "stage": "c07"
+  },
+  {
+   "title": "고치기 전과 고친 뒤",
+   "head": [
+    "#",
+    "고치기 전",
+    "고친 뒤",
+    "근거"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "1",
+     "Fortress 소송은 초기 단계, 종결 예상 2026-12",
+     "2026-10-19 뉴욕 남부지방법원 벤치 재판 지정(2026-05-18 명령). 2026-08 사전심리",
+     "SDNY 1:24-cv-08399 도켓"
+    ],
+    [
+     "2",
+     "그룹 캐파 100만+ t",
+     "같은 문서 서술 102.1만 vs 표 93.6만. 원료와 완제품도 섞였다",
+     "56-1 One Report FY2025 p46·p47"
+    ],
+    [
+     "3",
+     "2025년 참치 매입량 −25%",
+     "그룹 전체가 아니다 — 방콕 양륙 서태평양 가다랑어, 상온 OEM·미국 사업분",
+     "One Report 리스크 6 원문"
+    ],
+    [
+     "4",
+     "미쓰비시 20% 시도 실패 「2025년 8월」",
+     "의향 08-04, 공개매수 09-08~09-26, 자동 취소 2025-09-29",
+     "SET 공시 Ref. 26/680929"
+    ],
+    [
+     "5",
+     "순차입금/EBITDA 5.03배",
+     "보고 EBITDA 기준에서만 5배 초과. 조정 EBITDA 131.15억 밧으로는 약 4.7배",
+     "MD&A FY2025"
+    ],
+    [
+     "6",
+     "인수 브랜드 전부 100% 보유",
+     "브랜드 지분은 맞다. 다만 제조는 다르다 — 세이셸 IOT 60%가 유럽 3브랜드를 만들고, 펫케어 i-Tail 은 79.30%다",
+     "One Report 자회사표"
+    ]
+   ],
+   "sid": "scorr",
+   "section": "13 / 정정 이력2026-09-05 · 열네 자리를 좁혔다",
+   "ord": 220,
+   "note": "브랜드를 100% 가진 것과 공장을 100% 가진 것은 다르다",
+   "stage": "c08"
+  },
+  {
+   "title": "2차 검토에서 더 나온 것",
+   "head": [
+    "#",
+    "고치기 전",
+    "고친 뒤",
+    "근거"
+   ],
+   "num": [
+    false,
+    false,
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "7",
+     "종업원 12,529명",
+     "같은 56-1이 월급여 12,529 + 일용 32,287 = 44,816명으로 나눠 적는다. 12,529는 그룹 총원이 아니다. 상장 자회사 i-Tail 의 같은 절은 15,367명으로 TU 값보다 크다",
+     "TU 56-1 §7.5 p.257–258 · ITC 56-1 §7.5"
+    ],
+    [
+     "8",
+     "공시된 법적 분쟁은 한 건뿐",
+     "Red Lobster GUC Trust 소송이 2026-05-15 플로리다 오렌지카운티에 제기됐고 Q2 2026 재무제표 주석 20.3 이 최초로 적는다 — 「early stage」·충당금 미인식. 56-1 §5.3 목록을 반증한다",
+     "TU Q2 2026 FS Note 20.3"
+    ],
+    [
+     "9",
+     "펫케어 캐파 두 값",
+     "세 값이다 — TU 서술 221,000 · TU 표 195,000 · i-Tail 56-1 201,861(송클라 99,937 + 사뭇사콘 101,924)",
+     "ITC 56-1 2025 p.30"
+    ],
+    [
+     "10",
+     "3년 실효세율 −1.15%",
+     "계속영업 기준이다. 회사가 2023년 세율을 낼 때 쓴 넓은 분모(계속+중단)를 3년에 적용하면 +12.23%가 된다. 세 해 모두 계속영업은 흑자였고, 2023년 이연세 환입 619,941이 2024년 비용 430,022을 넘긴 결과다",
+     "감사 FS Note 19·39"
+    ],
+    [
+     "11",
+     "순차입금/EBITDA 5.03",
+     "분자는 총차입 75,233 − 현금·단기투자 13,762 = 61,471이다. 보고서 라벨은 「interest bearing debt to EBITDA」인데 총차입으로 나누면 6.16이라 라벨과 숫자가 어긋난다. 내부 목표 상한은 4.0배로 두 읽기 모두 초과",
+     "MD&A FY2025 · FS 자본관리 주석"
+    ],
+    [
+     "12",
+     "브랜드 아홉 개",
+     "56-1 브랜드 장에 Genova · Frozen CotS · Qfresh · Ostsee Fisch · Lysell 이 더 있고 회사 사이트는 상온만 13개, IR 슬라이드는 18개로 적는다. 지분도 Thammachart 65% · i-Tail 79.30% 가 섞인다",
+     "TU 56-1 자회사·브랜드 장"
+    ],
+    [
+     "13",
+     "미국 관세 19%",
+     "2026-02-22 미 연방대법원 IEEPA 판결 뒤 회사 Q1 IR 은 대미 관세를 일시 10%(약 150일)로 적고 CBP 환급 창구가 2026-04-20 열렸다. 19%를 2026년 현재 세율로 고정하면 Q1·Q2 공시와 어긋난다",
+     "TU Q1·Q2 2026 IR"
+    ],
+    [
+     "14",
+     "「태국 밖으로 생산 이전」",
+     "2026-04-08 주총 의사록은 일부 미국 생산거점을 가나 및 태국으로 옮긴다고 적는다. 방향이 태국 밖으로만은 아니다",
+     "2026 AGM 의사록"
+    ]
+   ],
+   "sid": "scorr",
+   "section": "13 / 정정 이력2026-09-05 · 열네 자리를 좁혔다",
+   "ord": 1716,
+   "note": "467이라는 SKU 총수는 재현되지 않는다",
+   "stage": "c08"
+  },
+  {
+   "title": "2026년에 새로 나온 것",
+   "head": [
+    "시점",
+    "내용"
+   ],
+   "num": [
+    false,
+    false
+   ],
+   "rows": [
+    [
+     "2026-01-08",
+     "자사주 2억 주 감자. 발행주식 4,255,132,696주, 자기주식 비중 13.47% → 9.4%"
+    ],
+    [
+     "2026-05-05",
+     "Q1 매출 320.5억 밧 +7.6%, 지배주주 순이익 11.1억 밧, 법인세 환입 3.84억 밧 — 환입이 2026년에도 이어진다"
+    ],
+    [
+     "2026-08-03",
+     "Q2 매출총이익률 21.4%로 사상 최고. 상반기 매출 658.99억 밧 +4.3%, 순이익 23.8억 밧. 연간 가이던스 상향"
+    ],
+    [
+     "2026 상반기",
+     "i-Tail 매출 97.04억 밧 +11.3%. 펫케어 성장의 실체는 79.3% 자회사다"
+    ]
+   ],
+   "sid": "scorr",
+   "section": "13 / 정정 이력2026-09-05 · 열네 자리를 좁혔다",
+   "ord": 4301,
+   "note": "세 해 실효세율 −1.15%의 분모는 계속영업 세전이익이다. Red Lobster 중단영업 손상 184억 밧을 분모에 넣으면 그 비율은 성립하지 않는다. 본문은 이 구분을 이미 적고 있으나 옮겨 적을 때 빠지기 쉽다.",
+   "stage": "c08"
   }
  ]
 }

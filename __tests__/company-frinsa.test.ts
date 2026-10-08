@@ -9,8 +9,6 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  FRINSA_BRIEFING,
-  FRINSA_NARRATIVES,
   FRINSA_SOURCE_NOTES,
 } from '@/lib/company-frinsa-content';
 import {
@@ -28,6 +26,12 @@ import {
   sustainabilityBy,
   tunaPurchasedMt,
 } from '@/lib/data/company-frinsa';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+import { tablesForStage } from '@/lib/data/company-report-tables';
+
+// 서술은 조사보고서에서 그대로 읽어 온다. 손으로 쓴 상수는 더 없다.
+const FRINSA_NARRATIVES = proseStages('frinsa');
+const FRINSA_BRIEFING = proseBriefing('frinsa');
 
 /** 대시보드 파일에 실린 슬롯 제목. 컴포넌트를 import 하면 recharts 가 딸려와 느려진다. */
 const SLOT_TITLES: Record<string, string[]> = {
@@ -42,20 +46,14 @@ const SLOT_TITLES: Record<string, string[]> = {
 };
 
 describe('Frinsa 서술과 차트의 연결', () => {
-  it('본문의 「」는 그 단계에 실린 차트만 가리킨다', () => {
-    for (const n of FRINSA_NARRATIVES) {
-      const titles = SLOT_TITLES[n.key] ?? [];
-      const cited = [n.lede, ...n.paragraphs]
-        .flatMap((p) => [...p.matchAll(/「([^」]+)」/g)].map((m) => m[1]));
-      for (const c of cited) {
-        expect(titles, `${n.key} 단계가 「${c}」를 지목했다`).toContain(c);
-      }
-    }
-  });
 
-  it('모든 단계에 차트가 하나 이상 있다', () => {
+  it('모든 단계에 차트나 보고서 표가 하나 이상 있다', () => {
+    // 보고서 표는 이제 서술 흐름(flow) 안에 원문 자리로 들어간다.
+    // 손으로 고른 차트가 없는 단계라도 표가 있으면 근거가 비지 않는다.
     for (const n of FRINSA_NARRATIVES) {
-      expect(SLOT_TITLES[n.key]?.length ?? 0, `${n.key}`).toBeGreaterThan(0);
+      const curated = SLOT_TITLES[n.key]?.length ?? 0;
+      const tables = tablesForStage('frinsa', n.key).length;
+      expect(curated + tables, `${n.key}`).toBeGreaterThan(0);
     }
   });
 
@@ -64,14 +62,9 @@ describe('Frinsa 서술과 차트의 연결', () => {
     for (const b of FRINSA_BRIEFING) expect(keys).toContain(b.stage);
   });
 
-  it('인용은 큰따옴표를 쓴다 - 낫표는 차트 제목 전용이다', () => {
-    const prose = FRINSA_NARRATIVES.flatMap((n) => [n.lede, ...n.paragraphs]).join('\n');
-    // 차트 제목을 다 지운 뒤에도 낫표가 남으면 인용에 쓴 것이다.
-    const stripped = Object.values(SLOT_TITLES)
-      .flat()
-      .reduce((acc, t) => acc.split(`「${t}」`).join(''), prose);
-    expect(stripped).not.toMatch(/「/);
-  });
+  // 「」 를 차트 제목 전용으로 쓰던 규약은 손으로 서술을 쓸 때의 것이다. 지금 서술은
+  // 조사보고서를 그대로 읽어 오고, 보고서는 「」 를 인용에도 쓴다. 규약을 원문에
+  // 강제하면 보고서를 고쳐야 하므로 이 검사는 두지 않는다.
 });
 
 describe('Frinsa 수치', () => {

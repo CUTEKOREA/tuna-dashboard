@@ -81,7 +81,7 @@ export default function PorkUsdaWidgets({ filterPillar }: { filterPillar?: 'S1' 
             key={w.id}
             title={w.title}
             icon={Icon}
-            iconColor="#f97316"
+            iconColor="var(--w-orange-500)"
             pillar={w.pillar as any}
             cardDesc={w.cardDesc}
             telemetry={{ status: w.telemetry, syncDate: w.syncDate }}

@@ -1,0 +1,1363 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-procesa-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_prose.py",
+  "설명": "조사보고서 서술을 원문에서 그대로 읽는다. 손으로 옮기지 않는다."
+ },
+ "sections": [
+  {
+   "sid": "s1",
+   "numeral": "01",
+   "label": "개관",
+   "subtitle": "Herdez의 치아파스 참치 자산을 샀다고 밝힌 캔 회사, 그 상표에 질권과 보전처분이 겹쳐 있다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "멕시코 치아파스주 타파출라의 푸에르토 치아파스에서 Procesamiento Especializado de Alimentos, S.A.P.I. de C.V.는 참치를 캔과 파우치로 가공한다. Nair와 Marina Azul을 브랜드로 내걸고, 선망선은 Pesca Chiapas와 Hersea 두 법인 이름으로 등록돼 있다. IATTC 활성 명부에 오른 선망선은 네 척이다.",
+     "ord": 102
+    },
+    {
+     "kind": "para",
+     "text": "Herdez는 2020-07-29 치아파스의 참치 가공장, 관련 선박과 Nair 상표권을 매각한다고 공시했다. 그 공시에는 매수인과 대금이 적히지 않았다. Procesa는 2021-04-12 자체 보도자료에서 Herdez Del Fuerte의 선단 일부와 가공장, 주유소를 넘겨받았다고 밝혔다. 지역 매체는 Marina Azul이라는 이름의 참치 업체가 공장 부동산을 샀다고 보도했다. 매수 주체를 두고 Herdez 공시와 뒤의 두 자료가 밝히는 범위는 다르다.",
+     "ord": 333
+    },
+    {
+     "kind": "para",
+     "text": "Herdez 쪽 Alimentos del Fuerte에서 Procesa로 옮긴 NAIR 권리는 2022-08-10 IMPI에 등록됐다. 상표 원부가 직접 확인해 주는 것은 그 권리 이전이다. 이 기록만으로는 Herdez가 공시한 선박과 공장의 매수인까지 확정할 수 없다. Herdez 사업을 이어받았다는 회사의 설명과 등록기관이 남긴 권리 이전은 증거의 성격이 다르다.",
+     "ord": 602
+    },
+    {
+     "kind": "para",
+     "text": "가공 법인의 EU 승인 주소는 Calle Marina Azul이고 DENUE에 오른 사업장 주소는 Av. Central Sur다. 두 주소가 같은 건물을 가리키는지는 공개 기록에 없다. 선박 등록부도 Pesca Chiapas와 Hersea를 소유자로 적을 뿐 두 법인과 가공 법인 사이의 지분 사슬은 제시하지 않는다.",
+     "ord": 819
+    },
+    {
+     "kind": "para",
+     "text": "한눈표의 선단 비율과 순위는 선박 등록부가 따로 적은 두 소유 법인을 합쳐 계산한 값이다. 지분 관계가 공개됐다는 뜻은 아니다. 선령이 가장 높다는 표현도 모든 선박 소유자를 놓고 한 말이 아니다. 비교 대상은 네 척 이상을 가진 소유 그룹이다. 척수가 더 적은 소유자 가운데는 평균 선령이 높은 곳이 있다.",
+     "ord": 2732
+    },
+    {
+     "kind": "para",
+     "text": "가공 법인의 인력도 출처마다 다른 경계로 적힌다. DENUE의 종사자 구간은 개별 사업장 분류이고 회사가 내세운 직접고용은 사업 전체의 자칭 수치다. 두 값을 같은 시점의 같은 인원 장부처럼 맞춰 놓을 근거는 없다. 매출과 이익이 공개되지 않아 어느 수치를 택하든 노동생산성이나 수익성으로 곧바로 바꿀 수 없다.",
+     "ord": 5961
+    },
+    {
+     "kind": "para",
+     "text": "상표는 제품에 붙는 이름이면서 자금조달 담보의 대상이기도 했다. MARINA AZUL과 NAIR 계열 등록에는 시기를 달리한 질권이 적혔다. 앞선 질권의 상대방은 CAMIF II였고, 뒤의 담보 기록에는 Rabobank 뉴욕 지점이 나온다. NAIR의 주력 등록에는 질권과 법원 보전처분의 예비 기재가 함께 남아 있다. 다만 옛 MARINA AZUL 등록 가운데 862797·907205 두 건은 소멸했고, 새로 등록된 MARINA AZUL 표장에는 질권 이력이 없다. 살아 있는 다른 MARINA AZUL·MAR AZUL·Nair 등록에도 질권 기록이 있으므로 브랜드 이름 하나로 등록마다 다른 담보 상태를 묶을 수 없다.",
+     "ord": 6146
+    },
+    {
+     "kind": "para",
+     "text": "상표권에 걸린 새 절차들도 성격이 서로 다르다. 할리스코주 Jalostotitlán 법원의 보전처분은 IMPI에서 Procesa 명의 상표에 예비 기재됐다. 이와 별도로 채권양도와 그에 따른 담보양도를 인정받으려는 등록 신청에는 IMPI가 대리권 보정을 요구했다. 신청의 양수인과 최종 처리 결과는 공개 문서에 없다. 보전처분 기재가 채권양도 신청의 완료를 뜻하지는 않는다. 그 신청이 법원 사건의 청구 원인을 알려 주지도 않는다.",
+     "ord": 6506
+    },
+    {
+     "kind": "para",
+     "text": "두 브랜드의 판매 품목 수는 회사 카탈로그 기준으로 센 값이다. 브랜드의 상품 폭은 보여 주지만 생산량이나 매출에서 각 브랜드가 차지하는 몫은 알려 주지 않는다. Nair는 Herdez 쪽에서 넘어온 권리이고 Marina Azul은 Procesa 명의의 등록들이 새것과 옛것으로 갈린다.",
+     "ord": 6758
+    },
+    {
+     "kind": "para",
+     "text": "같은 항구에는 Bumble Bee Mexico라는 별도 법인도 등장한다. 이 법인은 치아파스주 정부가 알린 공식 가동식보다 앞선 2023-10-12부터 FDA 수입경보 기록에 올랐고, 참치 스낵 품목 기록은 2023-11-13이다. FDA에 적힌 번지는 Procesa의 EU 승인 가공장 주소와 다르고 DENUE의 Procesa 사업장 주소와는 같은 도로에 있다. 같은 부지나 건물인지는 공개 기록으로 가릴 수 없다.",
+     "ord": 6929
+    },
+    {
+     "kind": "para",
+     "text": "보전처분을 신청한 Diken International의 이름은 IMPI 공문에 적혀 있다. 그러나 법원 사건의 청구 원인과 질권 관련 대출의 금액·만기는 공개 문서에 없다. 채권양도 신청을 다룬 IMPI 공문에도 양수인 이름은 없다. 법원 사건이 어떤 청구에서 비롯됐는지는 여전히 공개되지 않았다.",
+     "ord": 7174
+    }
+   ],
+   "stage": "c01"
+  },
+  {
+   "sid": "s2",
+   "numeral": "02",
+   "label": "법인",
+   "subtitle": "라벨은 멕시코시티 사무소를 적고, EU 명부에는 Puerto Chiapas 공장 하나가 올라 있다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Nair와 Marina Azul의 라벨은 제조자를 Procesamiento Especializado de Alimentos, S.A.P.I. de C.V.로 적고 멕시코시티 사무소 주소를 싣는다. EU TRACES가 승인 가공장으로 적은 주소는 치아파스 타파출라의 Puerto Chiapas에 있다.",
+     "ord": 98
+    },
+    {
+     "kind": "para",
+     "text": "가공 법인의 RFC와 EU 승인번호는 같은 PEA0303203V5다. RFC의 날짜 부분은 2003-03-20으로 추정된다. 그 숫자만으로 법인의 등기상 설립일이 확정되지는 않는다.",
+     "ord": 287
+    },
+    {
+     "kind": "para",
+     "text": "IMPI는 2015-06-22 법적 형태가 S.A. de C.V.에서 S.A.P.I. de C.V.로 바뀌었다고 적었다. 회사 사이트는 설립 연도를 2003년으로 쓴다. 법적 형태 변경 기록과 사이트 연혁은 종류가 다른 자료다.",
+     "ord": 397
+    },
+    {
+     "kind": "para",
+     "text": "회사의 2021년 보도자료는 창업 연도를 2006년으로 적는다. 사이트와 보도자료 모두 회사가 낸 자료지만 시작 시점을 다르게 설명한다. 어느 문구도 두 연도의 차이를 풀어 주지 않는다.",
+     "ord": 533
+    },
+    {
+     "kind": "para",
+     "text": "식품을 가공하는 이름과 배를 소유하는 이름은 등록부에서 갈라진다. EU 승인 명부는 가공 법인을, IATTC는 Pesca Chiapas와 Hersea를 어선 소유자로 적는다. DENUE에는 연료 공급 사업체가 별도 상호로 올라 있다. 기록마다 주소와 연락처를 싣는 범위가 다르다.",
+     "ord": 646
+    },
+    {
+     "kind": "para",
+     "text": "라벨 두 종류에는 제조자명과 Av. Insurgentes Sur 730, Piso 17이 똑같이 적혀 있다. 다만 콜니아는 라벨에 따라 Del Valle Norte와 Del Valle Centro로 달리 표기된다. 같은 번지와 층은 Pesca Chiapas의 IATTC 주소에도 나온다. 그 명부는 선박 소유자의 연락 주소를 적은 것이라 라벨의 사무소와 나란히 놓을 수는 있다. 하지만 그 주소에서 법인의 주식 관계를 읽어 낼 수는 없다.",
+     "ord": 2068
+    },
+    {
+     "kind": "para",
+     "text": "Hersea의 IATTC 주소는 더 특이하다. 도로명 「Calzada San Bartolo Naucalpan #360」은 Herdez 본사 주소에서 왔는데 같은 주소 칸의 도시와 우편번호는 「Ensenada, B.C. 22890」이다. 이 주소 칸은 Herdez 본사(멕시코시티 Miguel Hidalgo) 주소를 그대로 옮긴 기록도, 엔세나다의 독립된 도로명 주소도 아닌 혼합 표기다. Hersea를 옛 Herdez 공장 소재지나 엔세나다 사업장으로 바로 연결하는 근거로 쓰기 어렵다.",
+     "ord": 2322
+    },
+    {
+     "kind": "para",
+     "text": "EU TRACES에는 Calle Marina Azul No.1의 승인 가공장 한 곳이 올라 있다. 중국의 2019년 명부도 같은 승인번호와 주소를 적었다. 두 명부에서 가공 법인의 식별번호는 바뀌지 않는다.",
+     "ord": 2603
+    },
+    {
+     "kind": "para",
+     "text": "DENUE에는 같은 가공 법인명의 사업장이 Av. Central Sur s/n의 Francisco I. Madero, C.P. 30830에 올라 있다. 이 사업장은 2010-07 등재됐다. 주소를 적는 방식은 EU 가공장 명부와 다르다.",
+     "ord": 2727
+    },
+    {
+     "kind": "para",
+     "text": "DENUE가 붙인 고용 규모는 「251 y más personas」(251명 이상)라는 사업장 단위 구간이다. 두 주소가 같은 건물을 가리키는지, 어느 쪽이 옛 Herdez 참치 공장에 해당하는지는 공개 기록으로 가릴 수 없다. 사업장 구간을 그룹 전체의 고용 인원으로 넓힐 근거도 없다.",
+     "ord": 2868
+    },
+    {
+     "kind": "para",
+     "text": "항만공사의 오래된 명부는 주소를 하나 더 보탠다. ASIPONA Puerto Chiapas의 2015년 기업명부는 Herdez Del Fuerte를 「Av. Central Norte s/n」에, Procesa를 「Av. Puerto Chiapas s/n Parque Industrial Pesquero」에 따로 올렸다. 이 항목을 DENUE의 Av. Central Sur 사업장과 합치거나 지금의 EU 승인 가공장과 같은 건물로 특정할 근거는 없다. 서로 다른 도로명은 시점과 기재 목적이 다른 명부에서 나왔다.",
+     "ord": 3038
+    },
+    {
+     "kind": "para",
+     "text": "이렇게 갈라진 사업체 위에 회사가 쓰는 이름은 「Grupo Procesa」다. 이 이름을 지주 법인의 등기명칭으로 확정할 문서나 주주·등기 임원 자료는 수집한 공개 문서에 없다(상업등기 SIGER는 조회 범위 밖). 가공 법인과 두 선단 법인 사이의 지분 자료도 공개되지 않는다. EU 승인번호는 가공장에 붙고, IATTC의 소유자란은 각 선단 법인의 이름으로 끝난다.",
+     "ord": 3333
+    },
+    {
+     "kind": "para",
+     "text": "묶음의 흔적은 따로 남아 있다. 회사가 게시한 ISSF 정책문서의 「propiedad de HERSEA S.A DE C.V. y Empresas Filiales」는 그 문서가 Hersea와 계열사 소유라는 뜻이다. DENUE의 Hersea 참치 어업 사업장과 연료 공급 사업체는 연락처에 @procesa.mx 도메인을 쓴다. 문서 소유 문구와 공통 연락처는 사업상 연결을 보여 주지만, 어느 법인이 다른 법인의 주식을 가졌는지는 적지 않는다.",
+     "ord": 3548
+    },
+    {
+     "kind": "para",
+     "text": "Bumble Bee Mexico는 별도 상호의 법인이다. FDA가 적은 주소 「Lte. 3 Y 4 , Avenida Central Sur C Y E; Puerto Madero」는 Procesa의 EU 승인 공장 주소와 다르다. DENUE의 Procesa 사업장과는 Av. Central Sur라는 도로명이 겹친다. 같은 부지인지는 공개 기록으로 가릴 수 없다. 이 주소만으로는 두 회사의 계약 형태도 정할 수 없다.",
+     "ord": 3804
+    },
+    {
+     "kind": "para",
+     "text": "지분 거래의 공개 흔적 가운데 가장 늦은 것은 2018년 보도다. El Financiero(2018-04-20)는 CAMIF II가 IGNIA의 Procesa 지분을 샀다고 전했지만 거래 금액은 공개하지 않았다. 그 보도는 이후 보유 상태도 적지 않는다. 선단 두 법인의 주식과 이어지는 지분 사슬 역시 공개 자료에 나타나지 않는다.",
+     "ord": 4045
+    }
+   ],
+   "stage": "c01"
+  },
+  {
+   "sid": "s3",
+   "numeral": "03",
+   "label": "Herdez 인수",
+   "subtitle": "Herdez가 판 것은 배·공장·상표였고, 매수자를 적은 등록부 기록은 상표 이전 하나다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Grupo Herdez는 2020-07-29 멕시코 증권거래소 공시에서 「Grupo Herdez y su asociada están vendiendo sus embarcaciones para la pesca de atún y equipo relacionado, su planta de procesamiento y empaquetamiento de productos de atún ubicada en Chiapas, así como los derechos sobre la marca 'Nair'」라고 밝혔다. Herdez와 관계사가 참치 어선·관련 장비, 치아파스의 가공·포장 공장, Nair 상표권을 매각 중이라는 내용이다. 공시는 이 자산을 누가 사는지와 얼마에 파는지를 적지 않았다.",
+     "ord": 104
+    },
+    {
+     "kind": "para",
+     "text": "매수인의 이름은 Procesa가 뒤에 낸 보도자료에 나온다. 회사는 「Herdez Del Fuerte, vendió a Grupo Procesa parte de su flota pesquera, la planta procesadora de atún y la estación de combustibles ubicados en Puerto Chiapas」라고 적었다. Herdez Del Fuerte가 선단 일부와 참치 공장, 푸에르토치아파스의 연료 공급소를 Grupo Procesa에 팔았다는 설명이다. 선단을 통째로 넘겨받았다는 문장이 아니며 연료 공급소는 앞선 거래소 공시의 매각 목록에는 없다.",
+     "ord": 512
+    },
+    {
+     "kind": "para",
+     "text": "자산별로 이름이 남는 방식도 다르다. 선박에는 Hersea라는 소유 명의와 개명 이력이 있고 공장 매수자는 회사 발표와 지역 보도에 나온다. Nair에는 양도인과 양수인을 함께 적은 IMPI의 상표 이전 등록이 있다. 선박 명부는 매매 방식을 적지 않으며, 공장 이전의 법적 형식도 이 공개 기록에서는 드러나지 않는다.",
+     "ord": 857
+    },
+    {
+     "kind": "para",
+     "text": "IMPI에 낸 상표 이전 신청에는 서로 다른 두 방향이 있었다. Alimentos del Fuerte에서 Procesa의 가공 법인으로 Nair 권리를 넘기는 신청과 그 법인에서 Banco Actinver가 수탁자인 신탁 4844로 다시 넘기는 신청이다. 등록된 것은 앞쪽의 이전이다. 상표 원부가 직접 적는 양수인은 Procesa의 가공 법인인 Procesamiento Especializado de Alimentos다.",
+     "ord": 2231
+    },
+    {
+     "kind": "para",
+     "text": "Procesa는 신탁 쪽 이전 신청을 2022-06-14 취하했다. IMPI는 2022-08-10 「Se tiene por desistida」, 곧 신청을 취하한 것으로 본다고 결정했다. 같은 상표를 둘러싼 연속 신청이 있었다고 해서 Banco Actinver에 대한 권리 이전까지 완료된 것은 아니다.",
+     "ord": 2478
+    },
+    {
+     "kind": "para",
+     "text": "Herdez가 2017년에 거느렸다고 보도된 여덟 척은 한 매수자에게 모이지 않았다. Conquista·Nair·Arkos I Chiapas는 Hersea 명의로 이어졌고, Bonnie·Nair II·El Duque는 Pesca Azteca 쪽으로 갔다. Hersea 명의의 세 척이 Procesa 선단에 들어왔다는 설명은 회사 발표와 맞지만, IATTC 명부만으로 Hersea의 지분이 어떻게 바뀌었는지는 알 수 없다.",
+     "ord": 2658
+    },
+    {
+     "kind": "para",
+     "text": "남은 배의 이력도 갈라진다. Cartadedeces는 Clarión으로 개명해 MT Pesca 명의에 올랐고 Nair III는 Maranatha I로 이름이 바뀌었다. 두 개명은 Herdez의 참치 사업 매각 공시보다 앞선 일이다. 그래서 당시 여덟 척의 목록을 곧바로 Procesa가 취득한 선박 목록으로 바꿀 수 없다.",
+     "ord": 2904
+    },
+    {
+     "kind": "para",
+     "text": "공장도 매각 발표와 현재 시설 명부 사이에 빈칸이 있다. 지역지는 Marina Azul이 「inmueble」(부동산)을 샀다고 썼지만 Marina Azul은 Procesa의 브랜드 이름이기도 하다. 이 보도만으로 등기상의 매수 법인을 특정할 수 없다. 옛 Herdez 공장과 Procesa의 EU 승인 가공장이 같은 건물인지도 공개 주소 기록은 가려 주지 않는다.",
+     "ord": 3095
+    },
+    {
+     "kind": "para",
+     "text": "KUO의 2019년 연차보고서는 옛 Herdez 시설을 「Planta Chiapas」로 싣는다. 생산 대상에는 참치뿐 아니라 어유와 단백분도 들어 있다. 이 표의 수치는 공장의 규모와 가동 상태를 보여 주지만, 인수 이후 Procesa가 어느 라인에서 무엇을 얼마나 만들었는지까지 설명하지 않는다.",
+     "ord": 3309
+    },
+    {
+     "kind": "para",
+     "text": "KUO가 적은 설비용량은 22.240 t, 가동률은 56 %다. 용량은 참치·어유·단백분을 합한 것이며 참치 통조림만의 능력이 아니다. 두 항목은 같은 시설을 설명하지만 생산량과 설비능력을 같은 값으로 취급할 수는 없다.",
+     "ord": 3486
+    },
+    {
+     "kind": "para",
+     "text": "설비용량에 가동률을 곱하면 약 12.454 t다. 계산으로 얻은 환산치다. KUO의 표에는 실제 생산량이 따로 공시되지 않았고 제품별 생산량도 없다. 따라서 이 값을 공장의 해당 연도 참치 생산 실적으로 옮길 수 없다.",
+     "ord": 3632
+    },
+    {
+     "kind": "para",
+     "text": "거래대금도 공개 문서에는 없다. KUO의 2022년 연차보고서는 참치 사업 처분과 관련해 「efecto positivo en flujo de Caja de $570.1 millones」이라고 적었다. 현금흐름에 그만큼 긍정적 효과가 있었다는 말이지, 매각 계약에 쓰인 가격이라는 뜻은 아니다.",
+     "ord": 3771
+    },
+    {
+     "kind": "para",
+     "text": "KUO가 제시한 비교치는 Herdez Del Fuerte를 50 % 비례연결한 pro forma 재무제표에 따른다. Herdez의 거래소 공시도 자산별 매수자와 대금을 나누어 싣지 않는다.",
+     "ord": 3945
+    },
+    {
+     "kind": "para",
+     "text": "Procesa는 같은 회사 발표에서 「$1,100 mdp invertidos en Puerto Chiapas durante los últimos dos años」라고 썼다. 최근 두 해 동안 푸에르토치아파스에 투자했다는 주장이다. 여러 사업에 걸친 투자액으로 제시됐으며 Herdez에 지급한 인수대금으로 따로 적힌 수치는 아니다. 매도인 쪽의 현금흐름 효과와 매수인 쪽의 투자 발표액은 각기 다른 범위를 센다.",
+     "ord": 4067
+    },
+    {
+     "kind": "para",
+     "text": "Nair는 Herdez의 연결 순매출에서 2019년 1,4 %를 차지했다. 이 비율은 브랜드의 당시 매출 비중이며 상표권의 매매 가격을 말하지 않는다. Herdez는 Nair 권리를 넘긴 뒤에도 자기 이름을 붙인 참치 제품의 유통과 판매를 이어가겠다고 적었다.",
+     "ord": 4307
+    },
+    {
+     "kind": "para",
+     "text": "KUO의 후속 연차보고서는 「Por otro lado el negocio continuará con la distribución y comercialización de productos a base de atún bajo la marca 'Herdez', mismos que serán maquilados por terceros」라고 썼다. Herdez 상표의 참치 제품을 제삼자가 위탁생산하고 Herdez 쪽이 유통·판매를 계속한다는 뜻이다. 문서에는 그 제삼자의 이름이 없어서 이를 Procesa의 위탁생산 계약으로 연결할 근거는 없다.",
+     "ord": 4469
+    },
+    {
+     "kind": "para",
+     "text": "Procesa는 Herdez 참치 사업 인원을 전원 다시 고용했다고 밝혔다. 이는 회사가 설명한 고용 승계이며 선박·공장·상표의 매수 법인을 한꺼번에 증명하는 문구는 아니다. COFECE 공개 검색·웹 범위에서 이 거래의 결합 신고·승인 기록은 확인되지 않는다. 선박 자산이 매매됐는지 Hersea 지분이 이동했는지, 공개된 거래 문서는 그 형식을 밝히지 않는다.",
+     "ord": 4782
+    }
+   ],
+   "stage": "c02"
+  },
+  {
+   "sid": "s4",
+   "numeral": "04",
+   "label": "상표와 담보",
+   "subtitle": "Marina Azul과 Nair에 두 차례 질권이 기재됐고, 2026년 법원 보전처분이 상표 17건(29류 NAIR·MARINA AZUL 검색 범위)에 예비 기재됐다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Procesamiento Especializado de Alimentos가 가진 Nair와 Marina Azul의 상표에는 제품 이름 이상의 이력이 붙어 있다. 권리 이전, 질권, 법원 보전처분은 기록된 문서도 시점도 각각 다르다. IMPI의 예비 기재는 여러 표장에 걸쳤지만 같은 이름의 등록도 효력과 담보 이력이 같지는 않다.",
+     "ord": 144
+    },
+    {
+     "kind": "para",
+     "text": "NAIR의 권리 이전 문서에는 양도인으로 Alimentos del Fuerte, 양수인으로 Procesa가 적힌다. IMPI는 이전을 등록했고 Procesa에서 Banco Actinver 신탁으로 다시 이전하려던 신청은 취하된 것으로 처리했다. 상표 소유권의 이동은 그 상표에 어떤 담보가 붙었는지와는 별개로 기록된다.",
+     "ord": 352
+    },
+    {
+     "kind": "para",
+     "text": "등록번호별로 보면 오래된 MARINA AZUL 권리와 새 MARINA AZUL 권리가 갈라진다. 목록 화면의 「REGISTRADO」 표시는 옛 번호에도 남아 있으나, IMPI 공문은 그중 소멸한 등록을 「caduco」(효력 소멸)라고 적었다. 예비 기재를 받은 번호와 기재가 거부된 번호를 나란히 놓으면 법원 조치의 범위가 드러난다.",
+     "ord": 541
+    },
+    {
+     "kind": "para",
+     "text": "IMPI에서는 같은 이름으로 시작된 출원과 등록도 별개 번호로 관리한다. 이번 기재 여부는 표장 이름보다 번호별 효력 상태에 따라 갈렸다. IMPI는 NAIR 계열과 MARINA AZUL, MAR AZUL의 번호들에 예비 기재를 했다. 소멸한 MARINA AZUL 등록에는 같은 신청이 접수됐어도 기재되지 않았다.",
+     "ord": 2599
+    },
+    {
+     "kind": "para",
+     "text": "질권 기록이 붙은 범위도 옛 MARINA AZUL 한 건으로 끝나지 않는다. 다른 MARINA AZUL 등록과 MAR AZUL, NAIR 계열에도 질권 이력이 있다. 한편 새 MARINA AZUL 등록에는 기존 질권 이력이 없고 법원 보전처분만 예비 기재됐다. 새 번호에 옛 질권이 승계됐다는 기재는 없다.",
+     "ord": 2785
+    },
+    {
+     "kind": "para",
+     "text": "담보 문서의 시간축에는 계약, 등록, 신청, 보정 요구가 따로 적힌다. 메자닌 펀드를 질권자로 적은 문서 뒤에 Rabobank 뉴욕 지점의 선순위 질권과 담보대리인 지위가 등장한다. 그러나 이 순서에 앞선 질권의 말소 기록까지 들어 있지는 않다. 이어지는 채권양도 서류 역시 등록 완료가 아니라 인정 등록을 구하는 신청이다.",
+     "ord": 2967
+    },
+    {
+     "kind": "para",
+     "text": "Rabobank가 한 문서에서는 질권자, 다른 문서에서는 담보대리인으로 적힌다. 문서가 밝힌 역할 차이일 뿐 대주단 명단을 보여 주는 자료는 아니다. 등록부에는 메자닌 펀드 질권의 말소가 적혀 있지 않다. 두 금융기관의 이름은 시간순으로 놓이지만 상환이나 채권자 교체를 확정하는 문서는 없다. 대출 금액과 만기도 공개 문서에 없다.",
+     "ord": 4919
+    },
+    {
+     "kind": "para",
+     "text": "채권양도 인정 신청은 상표 여러 건을 한꺼번에 대상으로 한다. 공증 문서 번호가 붙어 있어도 그 문서의 양수인은 IMPI 공문에 적혀 있지 않다. IMPI는 신청인의 대리권을 보완하라고 요구했고 기한 내 보정이 없으면 신청을 받아들이지 않는다고 통지했다. MARCia에는 보정 제출 흔적이 없으며 처리 결과는 미상이다. 채권양도의 인정 등록이 완료됐다는 기록도 없다.",
+     "ord": 5115
+    },
+    {
+     "kind": "para",
+     "text": "채권양도 인정 신청 약 33건과 법원 보전처분 접수 20건은 별도 행정 절차에 속한다. 두 목록은 상표 번호가 일부 겹치지만 다루는 권리변동이 다르다. 하나는 채권·담보 양도의 인정 등록을 구하고 다른 하나는 법원 결정을 원부에 예비 기재한다. IMPI 공문에는 Diken과 Rabobank 또는 메자닌 펀드를 같은 채권 관계로 잇는 설명이 없다.",
+     "ord": 5331
+    },
+    {
+     "kind": "para",
+     "text": "법원 사건은 질권 등록과 문서의 성격부터 다르다. IMPI 공문은 「Acto Judicial de Retención de Bienes … expediente número 175/2026, promovido por DIKEN INTERNATIONAL, SOCIEDAD DE RESPONSABILIDAD LIMITADA DE CAPITAL VARIABLE」라고 적는다. Diken International이 제기한 재산 보전처분 사건이라는 뜻이다. 법원은 할리스코주 Jalostotitlán에 있지만 그 지명은 신청인의 본점 소재지를 말해 주지 않는다. IMPI의 조치는 상표 원부에 그 처분을 예비 기재한 것이다.",
+     "ord": 5536
+    },
+    {
+     "kind": "para",
+     "text": "소멸 등록과 거절된 출원에도 같은 접수 번호가 붙었지만 IMPI는 해당 번호의 예비 기재를 거부했다. 사유는 두 등록의 소멸과 한 출원의 거절 이력이다. 예비 기재 문서에는 사건의 청구 원인이나 최종 판결이 적혀 있지 않다. 질권 문서와 법원 문서에 같은 상표가 나타나도 두 절차가 같은 채무에서 나왔다고 단정할 근거는 없다.",
+     "ord": 5889
+    },
+    {
+     "kind": "para",
+     "text": "신청인 Diken International은 IMPI 원부에서 산업용·식품 보존용 화학제품을 포함하는 1류 상표권자로 적힌다. 원부 주소는 코아우일라주 Ramos Arizpe다. 회사는 식품공장용 위생·안전 제품을 공급한다고 스스로 소개한다. 이 업종 설명은 회사가 영업 분야를 두고 한 말이고 법원 청구의 이유를 밝히는 자료는 아니다. 공개 문서에는 청구 원인도, Procesa와 어떤 거래가 있었는지도 나오지 않는다.",
+     "ord": 6082
+    },
+    {
+     "kind": "para",
+     "text": "질권이 처음 잡힌 옛 등록은 갱신되지 않아 소멸했다. 회사는 같은 이름을 다시 출원해 새 등록을 받았고 사용개시일은 과거 날짜로 신고했다. 새 등록에는 기존 질권 이력이 없지만 법원 보전처분의 예비 기재는 있다. 옛 등록을 갱신하지 않은 이유는 공개 문서에 없다.",
+     "ord": 6418
+    },
+    {
+     "kind": "para",
+     "text": "새 등록의 사용개시 신고는 그 날짜부터 같은 번호가 존재했다는 뜻이 아니다. 표장 이름은 다시 쓰였지만 등록번호와 담보 이력은 새로 시작한다. 보전처분은 그 새 번호에도 적혔으나 신청인과 회사 사이의 계약 내용까지 드러내지는 않는다.",
+     "ord": 6585
+    }
+   ],
+   "stage": "c02"
+  },
+  {
+   "sid": "s5",
+   "numeral": "05",
+   "label": "자본",
+   "subtitle": "정부 펀드·벤처 펀드의 출자 뒤로 메자닌 펀드의 지분 매입과 은행 질권이 기록돼 있다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "초기 투자 총액 33 mdp와 정부 펀드 FOCIR의 지분 참여는 Expansión 보도에 나온다. 그 뒤로 IGNIA Fund I·Endeavor Catalyst의 공동투자, CAMIF II의 상표 질권과 IGNIA 지분 매입, Rabobank 뉴욕 지점의 질권이 차례로 이어진다. 투자금, 지분 거래대금, 담보가 보장하는 채무액은 서로 다른 금액이다.",
+     "ord": 95
+    },
+    {
+     "kind": "para",
+     "text": "Expansión은 FOCIR를 농촌 분야에 투자하는 정부 펀드로 소개하며 초기 투자에 35 % 지분 출자가 붙었다고 보도했다. El Economista는 민간 투자자와 함께 Inbursa·Banco del Bajío·Banorte의 은행 여신을 적었다. 기사에는 이 여신의 실행일이나 원금, 만기가 없다. 연표 앞쪽의 보도 연도는 자금이 회사에 들어온 날이 아니라 그 기사가 나온 시점이다.",
+     "ord": 317
+    },
+    {
+     "kind": "para",
+     "text": "정부 펀드의 지분 출자와 세 은행의 여신은 초기 자금 조달로 함께 거론됐어도 권리가 다르다. 출자자는 주식에서 나오는 권리를, 은행은 채무 약정에서 나오는 상환 청구권을 갖는다. 공개 기사는 FOCIR가 어떤 종류의 주식을 취득했는지, 은행별 여신이 어느 자산을 담보로 잡았는지 설명하지 않는다. 세 은행 이름을 훗날 Rabobank의 상표 질권과 한 건의 공동대출로 묶을 근거도 없다.",
+     "ord": 2298
+    },
+    {
+     "kind": "para",
+     "text": "Funds Society는 투자 대상의 정식 법인명을 Procesamiento Especializado de Alimentos로 적었다. 보도 금액 104,4 mdp는 IGNIA Fund I와 Endeavor Catalyst의 공동투자 규모다. 두 펀드가 각각 얼마를 냈고 어떤 종류의 주식을 몇 주 취득했는지는 공개 문서에 없다. 뒤의 지분 매입 보도에는 가격이 따로 적히지 않았으니 이 공동투자액을 매입가로 옮길 근거도 없다.",
+     "ord": 2525
+    },
+    {
+     "kind": "para",
+     "text": "IMPI가 남긴 2017-12-28 계약에는 Procesa가 채무 담보 제공자, Central American Mezzanine Infrastructure Fund II(CAMIF II)가 질권자로 적혀 있다. 상표에 건 무점유 질권은 2019-04-29 등록됐다. 질권이 걸렸다는 사실은 채권자 이름을 보여 줄 뿐 채무원금이나 펀드가 가진 주식 수는 알려 주지 않는다.",
+     "ord": 2777
+    },
+    {
+     "kind": "para",
+     "text": "2018-04-20 El Financiero는 같은 펀드가 IGNIA의 Procesa 지분을 사들였다고 보도했다. 질권 계약은 이 지분 매입 보도보다 앞선다. 펀드 이름이 같아도 상표를 잡은 담보권과 주식을 사들여 얻은 권리는 별개다. 앞선 질권이 어느 대출을 담보했고 지분 매입 대금은 어떤 재원에서 나왔는지 공개 문서는 적지 않는다.",
+     "ord": 2995
+    },
+    {
+     "kind": "para",
+     "text": "El Financiero의 문구 「cuyo monto no fue revelado」는 매입 금액이 공개되지 않았다는 뜻이다. 같은 날 AMEXCAP도 CAMIF II의 IGNIA 지분 매입을 전했지만 가격은 빠져 있다. 보도 제목에 쓰인 투자 철회라는 표현은 본문을 보면 지분 매각을 가리킨다. 손실이 확정됐다거나 원금보다 적게 회수했다고 판단하려면 매입가와 투자자의 장부가가 있어야 한다. FOCIR와 Endeavor Catalyst가 같은 때 지분을 처분했다는 자료도 없다.",
+     "ord": 3194
+    },
+    {
+     "kind": "para",
+     "text": "상표 원부에 오른 담보가 회사 자본금이 움직였다는 뜻도 아니다. 질권자는 상표를 담보로 잡은 채권자의 지위를 보여 주지만 주주명부의 지분율은 보여 주지 않는다. 초기 담보가 걸린 MARINA AZUL 862797은 2024-10-29 만료됐다. 그러나 질권 기재는 다른 유효한 Marina Azul·Mar Azul·Nair 계열 상표에도 남아 있다. 만료된 한 등록만 보고 담보 관계 전체가 끝났다고 결론낼 수 없다.",
+     "ord": 3472
+    },
+    {
+     "kind": "para",
+     "text": "2022년에는 Rabobank 뉴욕 지점이 MARINA AZUL에 1순위 질권자로, NAIR에는 담보대리인으로 등장했다. 뒤이어 「Primer Convenio Modificatorio y de Ampliación」(질권 계약의 첫 변경·확대 약정)이 기록됐다. 이 표현은 담보계약의 변경을 가리킬 뿐, 새 자금이 실제로 얼마 실행됐는지, 기존 채무가 상환됐는지, CAMIF II의 질권이 말소됐는지는 말하지 않는다. 은행 이름은 나와 있어도 대출액과 만기, 담보권자 말고 다른 대주단 구성은 공개 문서에 없다.",
+     "ord": 3716
+    },
+    {
+     "kind": "para",
+     "text": "회사에 부채가 얼마 남았는지도 질권만으로는 계산할 수 없다. 상표가 담보로 잡혔다는 사실은 채권자의 권리를 보여 주지만, 대출원금이나 현재 잔액, 만기, 상환 일정은 따로 적혀 있지 않다. FOCIR, IGNIA, Endeavor Catalyst의 현재 주식 보유량도 공개 주주명부로는 확인할 수 없다. 초기 출자, 공동투자, 지분 매각, 은행 질권을 한 줄의 투자 회수표로 묶을 수 없다.",
+     "ord": 4014
+    },
+    {
+     "kind": "para",
+     "text": "Procesa의 매출·이익·자산을 적은 공개 재무제표는 없다. Expansión 500 FY2025 명단에도 이름이 보이지 않는다(500위 매출 3.067 mdp). 비상장사는 자료를 제출해야 명단에 오르므로 미등재가 매출 규모를 뜻하지는 않는다. 지분 매입 대금과 대출 잔액이 비어 있으니 영업 규모와 자본 조달의 관계를 재무 비율로 나타낼 자료도 없다.",
+     "ord": 4243
+    },
+    {
+     "kind": "para",
+     "text": "지주 이름으로 쓰이는 Grupo Procesa의 법인·주주·등기 임원은 수집한 공개 문서에 나타나지 않는다(상업등기 SIGER는 조회 범위 밖). CAMIF II가 취득한 지분의 종류·수량과 FOCIR의 현재 몫은 주주총회 기록 없이는 특정할 수 없다. IMPI에는 채무자와 상표 담보의 흔적이 있지만, 어느 법인이 얼마를 빌렸고 누가 지분을 보유하는지는 상업등기와 대출 약정의 문제로 남아 있다.",
+     "ord": 4454
+    }
+   ],
+   "stage": "c03"
+  },
+  {
+   "sid": "s6",
+   "numeral": "06",
+   "label": "선단",
+   "subtitle": "선망 4척의 평균 선령은 50,5년으로 4척 이상 가진 멕시코 소유 그룹 가운데 가장 높다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "IATTC 활성 선망 명부에서 Procesa 선단으로 묶이는 배는 Victoria, Jaguar, Conquista, Nair다. 등록상 소유자는 앞의 두 척이 Pesca Chiapas, 뒤의 두 척이 Hersea로 갈린다. 건조연도로 계산한 2026년 평균 선령은 50,5년이다.",
+     "ord": 98
+    },
+    {
+     "kind": "para",
+     "text": "네 배의 등록항은 모두 Puerto Chiapas다. Pesca Chiapas와 Hersea는 선박 소유자로 명부에 나오지만, 가공 법인 Procesamiento Especializado de Alimentos와의 지분 관계는 공개 문서에 적혀 있지 않다. 선박을 한 영업 선단으로 묶는 것과 가공 법인이 두 소유 법인의 주식을 보유한다는 것은 다른 주장이다.",
+     "ord": 279
+    },
+    {
+     "kind": "para",
+     "text": "멕시코 기국 활성 선망 전체에서 이 네 척이 차지하는 몫은 척수 7,5 %, 운반능력 7,8 %다. 운반능력으로는 Pinsa 계열, Grupomar 계열(Maratún·Martuna), MT Pesca Industrial에 이어 멕시코 소유 그룹 가운데 네 번째다. 척수의 분모는 활성 선박, 운반능력의 분모는 그 선박들이 실을 수 있는 중량이므로 두 비율은 서로 다른 크기를 말한다.",
+     "ord": 1613
+    },
+    {
+     "kind": "para",
+     "text": "네 척의 운반능력을 합치면 3.875 t이고, 멕시코 기국 활성 선망의 합계는 49.839 t이다. 어창 용적과 총톤수도 선박마다 IATTC에 따로 기재돼 있다. 어창의 세제곱미터와 운반능력의 톤은 같은 단위가 아니며, 어느 쪽도 연간 어획 실적을 적은 칸은 아니다.",
+     "ord": 1851
+    },
+    {
+     "kind": "para",
+     "text": "IATTC는 Victoria와 Jaguar의 옛 선명도 함께 기록한다. 운반능력이 가장 큰 Nair 역시 선명과 상표명이 같을 뿐, 소유 명의는 Hersea로 적혀 있다.",
+     "ord": 2023
+    },
+    {
+     "kind": "para",
+     "text": "선령은 선박 건조연도를 기준 연도에서 뺀 계산값이다. Jaguar가 다른 세 척보다 늦게 건조돼 Pesca Chiapas 쪽 평균을 낮춘다. 소유 법인별 평균은 Hersea가 52,5년, Pesca Chiapas가 48,5년이고, 두 법인을 합친 평균이 50,5년이다.",
+     "ord": 2129
+    },
+    {
+     "kind": "para",
+     "text": "한두 척을 가진 Camatún, Naviera y Pesquera del Pacífico, Marbea의 평균 선령은 Procesa 합산 선단보다 높다. 네 척 이상 가진 그룹에서는 Pesca Industrial Atunera de Altura, MT Pesca Industrial, Pinsa, Grupomar가 차례로 그 아래에 놓인다. 이 차이를 지운 순위는 소유 규모가 작은 선주의 배를 빠뜨린다.",
+     "ord": 3447
+    },
+    {
+     "kind": "para",
+     "text": "멕시코 활성 선망 전체의 평균 선령과 견주면 Procesa 합산 선단은 12년 늙었다. Pinsa와 Grupomar의 평균도 같은 IATTC 건조연도로 계산한 값이다. 선령은 선박이 언제 만들어졌는지를 보여 주지만 개별 선박의 정비 상태, 안전성이나 남은 사용 기간을 판정하는 수치는 아니다.",
+     "ord": 6888
+    },
+    {
+     "kind": "para",
+     "text": "활성 명부에서 빠진 Arkos I Chiapas도 Hersea 명의로 등록돼 있었다. IATTC는 이 배의 상태에 「Sunk on 21 Feb 2025」(2025년 2월 21일 침몰)라고 적는다.",
+     "ord": 7062
+    },
+    {
+     "kind": "para",
+     "text": "이 배가 비활성 선박 명부로 옮겨진 날짜는 2025-05-26이다. 상태가 달라진 선박은 현역 선령 평균에서도 빠진다. 회사가 침몰 전에 셌던 척수와 등록부가 이후 세는 활성 척수는 같은 시점의 숫자가 아니다.",
+     "ord": 7182
+    },
+    {
+     "kind": "para",
+     "text": "Atuna는 화재 뒤 침몰한 배의 승선자 25명 전원이 구조됐다고 보도했다. SEMAR 설명을 인용한 Milenio는 선박이 「pertenecía a una empresa pesquera de Chiapas」(치아파스의 어업 회사 소속이었다)라고 전했다. 그 인용에는 회사 이름이 없다. 사고 원인과 정확한 위치도 공개되지 않았다.",
+     "ord": 7310
+    },
+    {
+     "kind": "para",
+     "text": "구조에 나선 Nair는 멕시코 해군 함정의 이름이다. 활성 선망선 Nair는 IATTC 번호 4018로 Hersea 소유 명부에 남아 있고, NAIR는 참치 상표에도 쓰인다. 이름이 같아도 구조 함정, 조업 선박, 상품 표장은 세 대상이다. 해군 함정의 구조 활동을 선망선 Nair의 운항 기록으로 옮길 수 없다.",
+     "ord": 7506
+    },
+    {
+     "kind": "para",
+     "text": "회사 사이트는 「Nuestros 5 barcos」(우리 선박 다섯 척)라고 쓴다. 회사의 ISSF 부속서에는 Victoria·Jaguar·Conquista·Nair와 Arkos I Chiapas가 함께 실려 있다. MSC에 낸 양식에도 「Procesa - 5」(Procesa 다섯 척)라고 적혀 있다. 이 숫자는 침몰선까지 포함하면 맞지만 현행 IATTC 활성 명부의 척수와는 다르다.",
+     "ord": 7692
+    },
+    {
+     "kind": "para",
+     "text": "회사 연혁은 옛 Herdez의 치아파스 공장과 Nair 상표, 선박 세 척이 합류했다고 적는다. 현재 등록에서 Conquista와 Nair는 Hersea 소유로 남고, Arkos I Chiapas도 침몰 당시 같은 법인 명의였다. 회사가 선박 자산을 넘겨받았는지 Hersea의 지분을 넘겨받았는지 밝힌 공개 문서는 없다.",
+     "ord": 7918
+    },
+    {
+     "kind": "para",
+     "text": "Herdez의 2017년 여덟 척 명단을 현재 Procesa의 배로 셀 수도 없다. Bonnie·Nair II·El Duque는 Pesca Azteca 쪽으로 갔고, Cartadedeces와 Nair III는 각각 다른 이름과 소유자로 이어진다. 과거 한 기업의 선박 목록과 현재 한 항구에 등록된 활성 선박 목록은 시점도 소유 명의도 다르다.",
+     "ord": 8108
+    },
+    {
+     "kind": "para",
+     "text": "Hersea의 IATTC 주소에는 Herdez 본사의 도로명과 「Ensenada, B.C. 22890」이 한 줄에 붙어 있다. Arkos I Chiapas의 등록항도 Ensenada였다. 이 혼합 주소를 어느 한 도시의 현 본사 주소로 확정하거나, 도로명만 보고 현재 지분 소유자를 Herdez로 돌릴 수는 없다.",
+     "ord": 8311
+    },
+    {
+     "kind": "para",
+     "text": "EU TRACES의 선박 명부에는 Procesa 계열 선박이 올라 있지 않다. 그 명부에 실린 멕시코 선박 23행은 Pesca Azteca와 Mazpesca 명의다. 가공 법인은 EU의 가공시설 명부에 따로 올라 있다. 시설 등록과 선박 등록은 서로 다른 목록이므로 가공시설 등재를 선박 등재로 옮겨 쓸 수 없다.",
+     "ord": 8497
+    },
+    {
+     "kind": "para",
+     "text": "MSC에 제출된 해상노동 양식은 Grupomar의 외국인 어업 기술자 한 명을 예외로 든 뒤에 「The rest of the crew members in all companies are Mexicans …」(모든 회사의 나머지 선원은 멕시코인)이라고 적는다. Procesa 선단에 외국인 선원이 없다는 취지의 회사 측 진술이다. 선박별 선원 명부를 제시한 독립 등록 기록은 아니다.",
+     "ord": 8683
+    },
+    {
+     "kind": "para",
+     "text": "선박 등록과 가공시설 등록 사이에는 어획물 이동 기록이 놓여 있지 않다. 어느 배의 어획물이 어느 가공장에 얼마나 들어갔는지는 IATTC의 선박 명부와 EU TRACES의 시설 명부 어느 쪽에도 적혀 있지 않다.",
+     "ord": 8907
+    }
+   ],
+   "stage": "c03"
+  },
+  {
+   "sid": "s7",
+   "numeral": "07",
+   "label": "돌고래와 인증",
+   "subtitle": "MSC 인증은 2023년에 철회됐는데 회사 누리집은 여전히 인증을 적는다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Procesa가 참여한 PAST의 MSC 어업 인증은 철회된 상태다. 그런데 회사 누리집에는 여전히 「Certificación MSC」가 적혀 있다. 등록부는 현재 상태를 개선 프로그램으로 표시한다.",
+     "ord": 93
+    },
+    {
+     "kind": "para",
+     "text": "PAST는 Procesa를 포함한 멕시코 참치 업체 네 곳의 묶음으로 MSC 인증을 받았다. 인증 대상은 개별 통조림 상표명이 아니라 이 연합이 제출한 어업이다. 따라서 회사 누리집에 Nair나 Marina Azul이라는 이름이 나온다고 해서 각 제품의 현재 MSC 표시 자격을 정할 수는 없다.",
+     "ord": 228
+    },
+    {
+     "kind": "para",
+     "text": "인증 연표는 세 단계로 끊긴다. 처음 인증을 받은 뒤 정지됐고, 이어 철회됐다. 그 뒤에는 PAST가 개선 프로그램에 들어갔다는 기록이 생겼다. 정지·철회·개선 프로그램은 시점도 상태도 서로 다른 기재다.",
+     "ord": 404
+    },
+    {
+     "kind": "para",
+     "text": "회사 누리집 바닥글에는 「Junio 2024」가 적혀 있다. MSC 철회는 그보다 앞서 이뤄졌는데도 같은 누리집의 지속가능성 설명에는 인증 문구가 있다. 바닥글의 월 표기는 이 문구를 처음 쓴 날도, 나중에 마지막으로 고친 날도 특정하지 않는다. 다만 철회 뒤에도 회사 페이지가 인증을 계속 적고 있다는 사실은 남는다.",
+     "ord": 529
+    },
+    {
+     "kind": "para",
+     "text": "어업부문 페이지에는 「Certificación Dolphin Safe」와 「Estándar de Cadena de Custodia」도 적혀 있다. 앞 문구는 돌고래 안전 인증을, 뒤 문구는 유통 단계의 관리 기준을 내세운다. 두 표현은 이름부터 MSC 어업 인증의 등록 상태와 다르다. 같은 페이지에 실렸다고 해서 이들을 서로 같은 증서로 합칠 수는 없다.",
+     "ord": 718
+    },
+    {
+     "kind": "para",
+     "text": "회사는 BRCGS·SMETA·Kosher도 적는다. PAST MSC 등록부의 철회 연표는 이 가운데 MSC 어업 인증에 직접 해당한다. 나머지 항목의 증서 상태는 그 어업 등록부에 적히지 않는다.",
+     "ord": 928
+    },
+    {
+     "kind": "para",
+     "text": "표에 나오는 MSC 철회는 PAST의 어업 인증에 관한 기록이다. 회사가 적은 공급망 관리 기준의 별도 증서가 유효한지까지 이 기록 하나로 가릴 수는 없다. 거꾸로 공급망 기준을 적어 둔 문구가 있다고 해서 어업 인증이 다시 유효해지는 것도 아니다.",
+     "ord": 2348
+    },
+    {
+     "kind": "para",
+     "text": "「Dolphin Safe」도 회사 누리집에 적힌 표현이다. 외부에서 대조할 수 있는 MSC 등록 기록은 PAST의 어업 인증 연표이고, 회사 페이지에는 별도 Dolphin Safe 증서 번호나 유효기간이 붙어 있지 않다. 회사가 돌고래 안전을 말한다는 것과 어느 제도의 어느 증서가 지금 효력을 갖는다는 것은 별개의 명제다.",
+     "ord": 2498
+    },
+    {
+     "kind": "para",
+     "text": "회사 설명에서 BRCGS는 제조 시스템에, SMETA는 책임 있는 조달 심사에 붙어 있다. 회사가 이 이름들을 적는 것과 개별 사업장의 증서를 내보이는 것은 다르다. 공개된 회사 자료에는 항목별 증서 번호가 없다. 따라서 이 표기만으로는 어느 공장에 적용됐는지, 언제까지 유효한지 적을 수 없다.",
+     "ord": 2690
+    },
+    {
+     "kind": "para",
+     "text": "Marina Azul 제품 라벨에는 Kosher (U) 표시가 있다. 누리집의 「Certificación Kosher」와 라벨의 표시는 서로 맞아떨어지지만, 회사가 증서 번호와 유효기간을 공개한 것은 아니다. Nair도 같은 표시를 단다고 넓혀 말할 근거도 없다. 확인되는 것은 Marina Azul의 라벨과 회사의 인증 문구까지다.",
+     "ord": 2866
+    },
+    {
+     "kind": "para",
+     "text": "EU TRACES는 Procesamiento Especializado de Alimentos를 수산물 가공시설(PP)로 싣는다. 거기에 붙은 승인번호는 PEA0303203V5다. 이 명부는 가공시설 등록을 보여 줄 뿐, 회사가 나열한 BRCGS·SMETA·Kosher 증서의 목록은 아니다. 시설이 등록돼 있다는 것만으로 세 항목의 증서 상태를 확정할 수는 없다.",
+     "ord": 3063
+    },
+    {
+     "kind": "para",
+     "text": "회사에는 ISSF 조치 관련 정책문서도 있다. Hersea 명의 FAD 정책에는 2026-03-25 채택 날짜가 적혀 있다. Pesca Chiapas의 2021년 정책문서도 끝에 채택일을 적었지만, 첫머리 「Starting on ,」 뒤의 시행 시작일 칸은 비어 있다. 이 원문은 ‘시작일’이라는 머리말 뒤에 날짜가 없다는 뜻이다. 문서를 게시한 것과 시행일이 확정된 것은 같은 사실이 아니다.",
+     "ord": 3277
+    },
+    {
+     "kind": "para",
+     "text": "이 정책문서는 회사가 어업의 조업 규칙을 어떻게 적었는지 보여 준다. 그러나 문서에 이름이 적힌 법인과 게시일만으로는 특정 선박에 정책이 언제부터 적용됐는지 정해지지 않는다. 빈칸이 있는 Pesca Chiapas 문서에 시작일을 임의로 넣을 수 없는 것도 그래서다. Hersea 문서의 날짜를 다른 법인 문서의 빈칸에 옮길 수도 없다.",
+     "ord": 3508
+    },
+    {
+     "kind": "para",
+     "text": "미국 FDA의 멕시코 Import Alert Red List 69건에는 Procesa, Pesca Chiapas, Hersea, Marina Azul, Nair 이름이 0건이다. 이 부재는 멕시코 업체에 관한 Import Alert를 대상으로 한 기록이다. 이를 제품의 전체 수입 이력이나 모든 규제 조치가 없다는 뜻으로 넓혀 읽을 수는 없다. 인증의 효력과 FDA 경보 등재 여부도 서로 다른 항목이다.",
+     "ord": 3706
+    },
+    {
+     "kind": "para",
+     "text": "Puerto Chiapas 공단의 어류 폐사를 두고 PROFEPA는 2015-07 Herdez와 Procesa의 유해폐기물 관리를 점검했다. T21이 전한 PROFEPA 발표는 양쪽에서 「irregularidades de carácter administrativo y documental」을 발견했다고 한다. 이는 행정상·서류상의 불규칙 사항이라는 뜻이다. 이어 행정절차가 개시됐다는 기록도 있다.",
+     "ord": 3943
+    },
+    {
+     "kind": "para",
+     "text": "점검이 어류 폐사 뒤에 이뤄졌다고 해서 그 순서가 곧 폐사의 원인을 특정하지는 않는다. 보도에는 Procesa가 폐사 원인을 제공했는지가 적혀 있지 않다. 행정절차가 개시됐다는 것 역시 제재가 확정됐다는 말과 다르다. 이후 어떤 처분으로 끝났는지, 처분의 내용이 무엇인지는 공개 자료에 적혀 있지 않다.",
+     "ord": 4176
+    }
+   ],
+   "stage": "c04"
+  },
+  {
+   "sid": "s8",
+   "numeral": "08",
+   "label": "공장",
+   "subtitle": "등록된 가공장은 하나이고, 현행 공장의 면적·라인 수·설비 능력은 공개되지 않았다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "EU TRACES의 Procesa 가공시설(PP)에는 승인번호 PEA0303203V5와 Calle Marina Azul No.1이 붙는다. 중국 수산물 등록 명부도 같은 번호와 주소를 적는다. 이 등록 건수는 공장의 건물 수나 토지 경계를 설명하지 않는다.",
+     "ord": 93
+    },
+    {
+     "kind": "para",
+     "text": "INEGI DENUE에는 같은 가공 법인명으로 Av. Central Sur s/n, Col. Francisco I. Madero의 수산물 조제·포장 사업장이 올라 있다. 우편번호가 EU 주소와 같아도 도로명과 지구 이름은 다르다. DENUE의 종사자 구간은 그 사업장에 붙은 항목이며 EU 승인 공장의 별도 인력 명부가 아니다.",
+     "ord": 260
+    },
+    {
+     "kind": "para",
+     "text": "KUO는 옛 Herdez del Fuerte Planta Chiapas의 위치를 Puerto Chiapas로 적었다. 현지 보도는 공장이 parque Francisco I. Madero에 있다고 썼다. ASIPONA의 2015년 사업자 명부에는 Herdez Del Fuerte가 Av. Central Norte s/n, Procesa가 Av. Puerto Chiapas s/n으로 각각 적혔다.",
+     "ord": 454
+    },
+    {
+     "kind": "para",
+     "text": "주소가 여러 벌 나오는 이유를 설명한 토지·건물 기록은 공개되지 않는다. DENUE의 Av. Central Sur 사업장과 옛 Herdez 공장, EU 승인 공장이 같은 부지인지 공개 기록으로 가릴 수 없다. 공장 이전이나 증축을 지명 차이만으로 확정할 수도 없다.",
+     "ord": 685
+    },
+    {
+     "kind": "para",
+     "text": "EU와 중국 명부에 오른 PP는 승인번호 하나다. DENUE 행은 사업장 등록이고, 옛 Herdez 행은 매각 전 공장의 이력이다. 이 셋을 별도 공장 세 곳으로 더하거나 한 건물의 세 별칭으로 합칠 부지 대조표는 공개되지 않았다. PP는 수산물 가공시설이라는 등록 분류다. 같은 승인번호가 두 명부에 반복돼도 설비가 둘로 늘지는 않는다. 두 명부는 캔·파우치별 생산 라인 수나 연중 가동률을 적지 않는다.",
+     "ord": 2417
+    },
+    {
+     "kind": "para",
+     "text": "회사 연혁은 2005년 착공과 2006년 Planta Procesa 가동을 적는다. 같은 연혁은 멕시코 첫 참치 파우치를 만들었다고 자칭한다. 첫 가동 연도와 EU 명부 게시일은 성격이 다르다. 명부 게시일은 준공 기록이 아니다.",
+     "ord": 2655
+    },
+    {
+     "kind": "para",
+     "text": "회사 연혁에는 2016년 첫 캔 라인 가동이 나온다. 이 대목은 캔 생산을 시작한 시점은 알려 주지만 생산 라인 전체 개수와 시간당 처리량은 적지 않는다. 파우치와 캔의 설비 배치도 공개되지 않는다.",
+     "ord": 2794
+    },
+    {
+     "kind": "para",
+     "text": "Planta Chiapas와 Nair, 선박과 인력이 합류했다는 설명도 회사 연혁에 적혀 있다. Herdez 쪽 기존 설비가 어느 주소의 어느 건물에서 운영됐는지는 이 발표만으로는 가릴 수 없다. 매각을 공시한 Herdez는 치아파스의 공장과 선박, 상표를 열거했지만 공장 필지와 매수대금은 적지 않았다.",
+     "ord": 2916
+    },
+    {
+     "kind": "para",
+     "text": "공장 인수 발표는 건물이 거래 대상이었다는 회사 쪽 설명과 맞는다. 그러나 건물 취득과 그 안에 든 설비의 현재 성능은 같은 항목이 아니다. Herdez 시절의 설비 구성을 인수 후에도 그대로 쓴다는 자료는 공개되지 않았다.",
+     "ord": 3097
+    },
+    {
+     "kind": "para",
+     "text": "이후 회사는 펫푸드 작업을 시작했다고 적는다. 품목이 늘었다는 연혁과 공정별 설비 목록은 다르다. 펫푸드 설비의 주소·라인 수·능력은 공개 수치로 분리돼 있지 않다.",
+     "ord": 3233
+    },
+    {
+     "kind": "para",
+     "text": "옛 Herdez 공장의 KUO 수치는 참치, 어유, 단백분을 합친 설비 용량이다. 그 용량에 가동률을 곱한 약 12.454 t는 계산상 환산값이다. KUO는 이 값을 실제 생산량으로 공시하지 않았고, 매각 뒤 Procesa의 정격 능력도 적지 않았다.",
+     "ord": 3336
+    },
+    {
+     "kind": "para",
+     "text": "행사에서 Procesa 총괄책임자가 밝힌 연간 참치 생산 발언은 또 다른 종류의 수치다. 그 발언은 당시 물량과 상자 규격을 함께 들었지만 등록된 Calle Marina Azul 공장의 현행 명판능력이라고 적지 않았다. KUO의 복합 설비 수치와 합산하면 대상과 시점이 섞인다.",
+     "ord": 3493
+    },
+    {
+     "kind": "para",
+     "text": "인원 숫자도 회사 연혁·누리집·행사 보도마다 다르다. 회사 연혁은 해마다 커진 인원을 적고, 누리집은 직접고용 규모를 내세운다. DENUE는 한 사업장의 규모 구간을 싣는다. 어느 수치도 공장별 노동자 명부로 나뉘지 않아 설비별 인력 배치는 공개되지 않는다.",
+     "ord": 3659
+    },
+    {
+     "kind": "para",
+     "text": "투자액은 차이가 더 크다. 회사 보도자료는 Puerto Chiapas의 여러 사업에 쓴 돈을, 행사 보도는 펫푸드 투자와 주 장관이 말한 앞선 기간의 투자액을 각각 전한다. 이 금액을 합쳐 공장의 취득가나 장부가를 만들 수 없다.",
+     "ord": 3814
+    },
+    {
+     "kind": "para",
+     "text": "펫푸드 투자액은 제품군 확장에 관한 발표값이고, 전체 투자 발언은 기간을 묶은 액수다. Herdez 공장 매입대금도, 개별 설비의 장부가도 공개되지 않았다. 시설 면적과 취수·방류 수치도 공장별로 공개되지 않는다.",
+     "ord": 5646
+    },
+    {
+     "kind": "para",
+     "text": "원료가 들어오는 길도 공장 능력과 구분된다. Logistics World는 2021-04 원료가 과테말라·엘살바도르 항을 거쳐 반입된다고 보도했다. 이 경로는 어느 공장 주소로 얼마가 들어왔는지 알려 주지 않는다.",
+     "ord": 5776
+    },
+    {
+     "kind": "para",
+     "text": "DENUE는 Puerto Madero의 Suministradora de Combustibles y Lubricantes de Puerto Madero 법인을 따로 싣고 연락처에 @procesa.mx를 적는다. 회사 발표는 Herdez에서 연료 충전소를 공장과 함께 넘겨받았다고 한다. 연락 도메인과 회사 발표는 사업이 이어져 있음을 보여 주지만 충전소의 토지 소유나 두 법인의 지분 구조까지 적지는 않는다.",
+     "ord": 5906
+    },
+    {
+     "kind": "para",
+     "text": "FDA는 Bumble Bee Mexico의 주소를 「Lte. 3 Y 4 , Avenida Central Sur C Y E; Puerto Madero」로 적는다. 이 주소는 Calle Marina Azul의 EU 승인 주소와 다르고 DENUE에 오른 Procesa 사업장과는 같은 도로다. DENUE 주소에는 필지번호가 없어 같은 부지인지는 공개 기록으로 가릴 수 없다.",
+     "ord": 6144
+    },
+    {
+     "kind": "para",
+     "text": "Bumble Bee Mexico는 FDA에 별도 법인명으로 오른다. 두 회사의 주소를 대조해도 시설 소유자, 임차인, 위탁가공 상대를 정할 계약서는 나오지 않는다. 같은 도로의 사업장이라도 주소 표기만으로 생산시설과 노동력을 공유한다고 적을 수 없다.",
+     "ord": 6361
+    },
+    {
+     "kind": "para",
+     "text": "ASIPONA는 어업터미널 인수자를 「Factor Pesca, perteneciente a un grupo de empresas chiapanecas dedicadas a la industria atunera」라고 적었다. 치아파스 참치업체 그룹에 속한 Factor Pesca라는 뜻이다. ASIPONA는 이 인도로 그 그룹 참치 공장의 운영·생산 능력이 크게 늘 것이라고 적었다. 인수식에 나온 Procesa 총괄책임자는 「vienen mejores tiempos para la industria atunera」(참치 산업에 더 좋은 때가 온다)라고 말했다.",
+     "ord": 6512
+    },
+    {
+     "kind": "para",
+     "text": "터미널의 부분 양허 면적은 항만시설 구역의 값이다. 공장 면적으로 옮길 수 없고, Factor Pesca와 Procesa의 지분 관계도 공개 문서에 없다. ASIPONA의 능력 확대 게시 뒤 실제로 어느 가공장의 처리량이 얼마만큼 늘었는지도 적혀 있지 않다.",
+     "ord": 6836
+    }
+   ],
+   "stage": "c04"
+  },
+  {
+   "sid": "s9",
+   "numeral": "09",
+   "label": "Bumble Bee",
+   "subtitle": "같은 항구의 Bumble Bee Mexico는 2023년부터 FDA 기록이 있는 별도 법인이고, 두 회사의 계약 형태는 공개되지 않았다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "미국 FDA 수입경보에는 Bumble Bee Mexico, S. de R.L. de C.V. 명의의 참치 제품이 Puerto Madero 주소로 2023년부터 올라 있다. 치아파스주가 Puerto Chiapas에서 열린 Bumble Bee México 공식 가동식을 발표하기 전의 기록이다. Procesa와 Bumble Bee Mexico는 상호가 다른 별도 법인이다. 두 법인이 같은 항구의 생산을 어떻게 나눴는지 적은 공개 계약 문서는 없다.",
+     "ord": 131
+    },
+    {
+     "kind": "para",
+     "text": "FDA 기록은 Bumble Bee Mexico 명의 아래 SCOUT SEAFOOD SNACKS 품목을 적는다. 문제가 된 것은 황다랑어 올리브유 스낵의 나트륨과 철 표시다. 법인명·주소·제품이 함께 나오므로 그 이름을 단 참치 제품의 FDA 기록이 공식 가동식보다 앞섰다는 것까지는 이 기록으로 확인된다. 그러나 이 기록은 SCOUT 상표의 소유자나 Procesa의 제조 참여를 적지 않는다. 수입경보의 등재일을 새 공장의 준공일이나 첫 선적일로 바꿀 수도 없다. 수입 관리 기록에는 현장의 토지·설비 권리가 나오지 않는다.",
+     "ord": 3798
+    },
+    {
+     "kind": "para",
+     "text": "FDA의 Puerto Madero 주소와 EU TRACES가 적는 Procesa 승인 가공장 Calle Marina Azul No.1의 주소는 다르다. DENUE의 Procesa 사업장은 FDA 주소와 같은 Avenida Central Sur를 쓴다. 이 사업장은 종사자 251명 이상 구간에 있지만 주소가 번지 없는 s/n이다. DENUE 주소에는 FDA가 적은 필지 번호와 대조할 번지가 없어 같은 필지인지 가릴 수 없다. 도로와 항구가 같다고 해서 법인 간 설비 사용 관계가 설명되지는 않는다.",
+     "ord": 4102
+    },
+    {
+     "kind": "para",
+     "text": "DENUE 2026년판의 치아파스·시날로아·콜리마·바하칼리포르니아에는 Bumble Bee 상호의 사업장이 0곳이다. EU TRACES의 멕시코 승인 시설 목록에도 같은 상호의 행이 없다. 명부의 부재는 그 범위 안 시설의 명의에 관한 사실이다. 이 부재는 FDA가 적은 Bumble Bee Mexico 법인과 그 제품 기록을 지우거나 다른 회사의 공장 사용을 확정하는 근거가 되지 않는다.",
+     "ord": 4392
+    },
+    {
+     "kind": "para",
+     "text": "Procesa는 Western Pacific의 하역을 조율했다. ASIPONA는 같은 게시에서 미국 회사들과 제품의 위탁가공을 위해 협력한다고 적었다. 이 문장은 Procesa의 영업 관계를 말하지만 미국 측 상대를 이름으로 특정하지 않는다. 항만공사 게시만으로 그 상대를 Bumble Bee Mexico라고 적을 수 없다. 항만공사는 어느 미국 회사가 무슨 제품을 맡겼는지도 게시하지 않았다.",
+     "ord": 4620
+    },
+    {
+     "kind": "para",
+     "text": "타파출라 시장 발언을 전한 Diario del Sur 기사는 Bumble Bee의 투자·고용·경제효과를 열거한 뒤 「a través de la planta Procesa, ubicada en Puerto Chiapas」(푸에르토치아파스의 Procesa 공장을 통해)라고 썼다. 기사의 문장은 직접 인용이 아닌 간접화법이다. 끝에 놓인 전치사구가 투자, 고용 전망, 경제효과 중 어디에 걸리는지도 분명하지 않다. 시장의 말에 Procesa 공장 이름이 나온다는 사실과 구체 계약의 존재는 서로 다른 주장이다.",
+     "ord": 4851
+    },
+    {
+     "kind": "para",
+     "text": "타파출라 시장 발언을 전한 Diario del Sur 기사에는 Procesa 공장이 나온다. 시장의 2025-11-19 X 게시에는 Bumble Bee México 가동 행사에 Procesa 공동창업자가 배석했다고 적혀 있다. 두 기록 모두 계약 형태는 적지 않는다. FDA는 Bumble Bee Mexico의 별도 법인명을, WARN은 캘리포니아의 감원을, ASIPONA는 Procesa와 이름 없는 미국 회사들의 위탁가공 협력을 각각 뒷받침한다. 어느 기관 기록도 두 법인 사이 계약의 상대·권리·대가를 적지 않는다.",
+     "ord": 5252
+    },
+    {
+     "kind": "para",
+     "text": "주정부의 공식 가동식을 새 법인 설립일이나 첫 생산일을 선언한 기록으로 바꿔 읽을 수는 없다. 정부는 투자 규모와 장래 고용을 발표했지만 같은 날 Cuarto Poder가 전한 직접·간접 고용 전망은 다른 수치다. Atuna는 발표 월과 통화를 또 다르게 적었다. 정부의 달러 투자 발표와 업계지의 페소 금액을 하나의 집행액으로 합산할 근거는 없다. 발표액이 어떤 설비와 자산에 배분됐는지도 공개되지 않았다.",
+     "ord": 5563
+    },
+    {
+     "kind": "para",
+     "text": "주정부 문구의 「generará」(창출할 것이다)는 미래형이다. 그 뒤 El Sol de Chiapas는 시장과 Bumble Bee México 경영진의 면담에서 보고된 정식 고용 830명 초과와 여성 60 %를 전했다. 이 값은 면담 자리에서 보고된 내용을 매체가 전한 당시 고용 규모로, 정부가 발표한 장래 고용 전망과는 성격이 다르다. 공공 채용 포털의 공고는 고용주 칸에 이름을 적지만 부동산이나 설비의 소유자를 적지 않는다. 현장에서 일하는 사람들의 계약상 고용주가 누구인지는 이 수치로 나눌 수 없다.",
+     "ord": 5802
+    },
+    {
+     "kind": "para",
+     "text": "ImportGenius의 화면 누계에서 송하인은 Bumble Bee Mexico, 수입자는 BUMBLE BEE USA다. 송하인 주소는 멕시코시티로 적혀 있고 무료 표본은 Tapachula를 인수지, Tuxpan을 선적항으로 적는다. 화면 누계와 표본 한 건을 같은 운송건으로 좁힐 수 없다. 적하목록의 명의로 화물의 서류상 당사자는 알 수 있지만 참치를 어느 설비에서 손질하고 포장했는지까지는 알 수 없다. 송하인의 멕시코시티 주소도 실제 제조 주소를 특정하지 않는다.",
+     "ord": 6105
+    },
+    {
+     "kind": "para",
+     "text": "ImportGenius·Panjiva 공개 화면의 적하목록에는 Procesa 명의 대미 해상 선적이 없다. 트럭 통관과 공개 화면 밖 기간은 이 기록에 포함되지 않는다. 이 부재만으로 Procesa의 대미 공급 관계를 끊어 말할 수 없다. 반대로 Bumble Bee Mexico 명의 화물 기록을 Procesa의 수출 실적으로 돌릴 수도 없다. 송하인 이름과 공장의 법적 운영자 이름은 별도의 기록이다.",
+     "ord": 6379
+    },
+    {
+     "kind": "para",
+     "text": "California EDD의 WARN은 Santa Fe Springs 사업장에서 발생할 감원과 효력일을 기록한다. 「Layoff Permanent」(영구 감원)는 고용 조치의 분류이며 Puerto Chiapas의 증산이나 Procesa 계약을 뜻하지 않는다. Bumble Bee 대변인은 「reducing the number of processing points in the value stream」(가공 흐름의 처리 거점 수를 줄이고 있다)이라고 말했다. 이 발언에 멕시코는 나오지 않는다.",
+     "ord": 6615
+    },
+    {
+     "kind": "para",
+     "text": "Juanita's Foods의 Santa Fe Springs 공장 인수 보도에는 매각 조건이 적혀 있지 않다. 인수 업체는 Wilmington 생산을 옮겨 이곳을 주력 제조 거점으로 삼겠다고 했다. Atuna는 Bumble Bee 생산이 Puerto Chiapas로 옮겨질 가능성을 해석으로 적었지만 WARN과 매각 보도는 그 이동을 확인하지 않는다. 매각 사실에서 Procesa 공장으로 물량이 향한다는 결론도 나오지 않는다.",
+     "ord": 6901
+    }
+   ],
+   "stage": "c05"
+  },
+  {
+   "sid": "s10",
+   "numeral": "10",
+   "label": "매대",
+   "subtitle": "Nair 25 % 대두 캔은 자체상표 바로 위, Marina Azul 파우치 올리브유는 사다리 꼭대기에 있다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Procesa의 두 소비자 브랜드는 참치 매대에서 서로 다른 가격대를 차지한다. Chedraui의 판매가를 순중량으로 환산하면 대두를 넣은 Nair 캔은 자체상표 바로 위에, Marina Azul 올리브유 파우치는 비교 품목의 맨 위에 놓인다. 제조자 이름은 같지만 배합과 포장, 제품명은 다르다.",
+     "ord": 108
+    },
+    {
+     "kind": "para",
+     "text": "회사 카탈로그는 Nair를 12 SKU, Marina Azul을 26 SKU로 나눈다. Nair에는 「libre de soya」(대두 없음)와 대두를 넣은 plus+·vitaminas+ 계열이 함께 있다. Marina Azul은 Standard 물·기름 캔에서 고형 참치와 파우치까지 이어진다. 카탈로그의 범위와 어느 소매점의 당일 판매 목록은 같지 않다.",
+     "ord": 298
+    },
+    {
+     "kind": "para",
+     "text": "카탈로그 합계는 38 SKU다. 회사 누리집은 「¡Potencia tu marca con nosotros!」(우리와 함께 브랜드를 키우라는 뜻)라고 권하고, 자신을 「socio confiable para la elaboración de productos de atún en lata y pouch」(캔과 파우치 참치제품을 만들 믿을 만한 협력사)라고 부른다. 자사 브랜드를 판매하면서 다른 상표의 제품 제조도 영업한다는 회사의 설명이다. 이 문구에는 위탁 고객의 이름이나 거래 물량이 없다.",
+     "ord": 508
+    },
+    {
+     "kind": "para",
+     "text": "Nair의 대두 캔 앞면에는 「ATÚN CON 25 % DE SOYA EN AGUA」(대두 25 %를 표기한 물참치)가 적혀 있다. 원료 경고는 「CONTIENE: PESCADO Y SOYA」(생선과 대두 함유)라고 다시 밝힌다. 그런데 회사 카탈로그에는 이 대두 제품 설명에 「sin soya」(대두 없음)를 적은 곳이 있다. 성분을 가릴 때는 제품 라벨 문구가 카탈로그 설명보다 구체적이다.",
+     "ord": 793
+    },
+    {
+     "kind": "para",
+     "text": "무대두 Nair와 대두를 넣은 Nair를 한 상품으로 묶으면 매대의 아래쪽이 왜곡된다. Chedraui에서 가격이 제시된 Nair 물·기름 캔은 대두를 표시한 vitaminas+ 계열이다. 사진의 「EXCESO SODIO」(나트륨 과다) 경고 캔은 vitaminas+ 표기가 없는 다른 Nair 25 % 대두 물 캔(Open Food Facts 등록 제품)이다. 가격이 붙은 vitaminas+ 120 g 캔의 앞면 사진에는 이 경고가 보이지 않는다. vitaminas+ 표기가 없는 다른 대두 SKU의 표시를 가격이 붙은 vitaminas+ 120 g 상품의 표시로 옮길 수 없다.",
+     "ord": 1024
+    },
+    {
+     "kind": "para",
+     "text": "Marina Azul 사진 네 장에는 「LIBRE DE SOYA」(대두 없음)가 보이고, 고형 물참치 캔에는 PREMIUM이 붙는다. 파우치의 「ATÚN EN TROZOS EN AGUA」(물에 담근 참치 조각)는 제품 형태를 드러낸다. 또 다른 물 캔은 「BAJO EN SODIO」(저나트륨)를 앞세운다. 사진의 저나트륨 캔과 가격표의 큰 저나트륨 파우치는 포장과 규격이 다른 상품이다.",
+     "ord": 1373
+    },
+    {
+     "kind": "para",
+     "text": "사진 출처: Chedraui 온라인 상품 이미지·Open Food Facts 사진·회사 누리집.",
+     "ord": 519079
+    },
+    {
+     "kind": "para",
+     "text": "Nair 뒷면 사진의 「Elaborado por」(제조자) 뒤에는 Procesamiento Especializado de Alimentos, S.A.P.I. de C.V.가 적혀 있다. 주소는 Av. Insurgentes Sur 730, Piso 17의 멕시코시티 사무소 표기다. 라벨의 「HECHO EN MÉXICO」(멕시코 제조)는 국가 표시이며, 그 사무소 번지가 치아파스 생산설비의 위치라는 뜻은 아니다. 매대 상품과 공장 부지를 같은 주소로 읽을 수 없다.",
+     "ord": 519143
+    },
+    {
+     "kind": "para",
+     "text": "같은 날짜의 소매가격에서도 두 브랜드가 차지하는 폭은 넓다. Nair 대두 물·기름 캔은 Chedraui에서 가격이 같고, Marina Azul Standard 물·기름 캔도 서로 같은 값이다. Marina Azul 안에서는 고형 물 캔과 별도의 물 캔, 작은 파우치와 큰 파우치로 선택지가 늘어난다. 판매가와 별도로 표기된 정가는 상품마다 구분된다.",
+     "ord": 519414
+    },
+    {
+     "kind": "para",
+     "text": "큰 캔과 작은 파우치를 한 개 가격만으로 비교하면 포장 규격이 가린 차이가 남는다. kg당으로 바꿔도 참치의 형태, 대두 표시, 올리브유 같은 매질 차이는 그대로 남는다.",
+     "ord": 522312
+    },
+    {
+     "kind": "para",
+     "text": "Walmart의 Marina Azul 물 캔과 물 파우치는 같은 날 Chedraui보다 낮은 판매가로 올라 있다. 채널을 바꾸면 같은 제품의 표시가격도 움직인다. Walmart의 고형 올리브유 상품은 110 g 규격으로 실려 있고, 이 표의 Chedraui 가격과 kg당 값 칸은 비어 있다. 소매점 목록에 보이지 않는 품목을 그 브랜드의 미판매 상품으로 단정할 수도 없다.",
+     "ord": 522418
+    },
+    {
+     "kind": "para",
+     "text": "경쟁 브랜드의 비교값은 Chedraui의 전날 가격이다. 자체상표와 Herdez, Tuny, Dolores의 물 캔은 같은 순중량으로 적혀 있어 판매가와 kg당 값의 순서가 같다. Procesa 제품과는 규격이 다르고 가격 기준일이 하루 다르다. 그래도 Nair와 Marina Azul이 각기 어느 가격대에 놓이는지 보여 주는 기준점은 된다.",
+     "ord": 522644
+    },
+    {
+     "kind": "para",
+     "text": "표에 실은 품목 가운데서는 자체상표 바로 위의 Nair 다음에 Marina Azul Standard가 놓이고, 그 위로 Herdez·Tuny·Dolores의 물 캔이 이어진다. Marina Azul의 별도 물 캔은 이 비교 품목보다 위에 있다. 파우치 물은 더 높은 구간에, 올리브유 파우치는 그림의 비교 대상 중 가장 위에 선다. 같은 Marina Azul 이름 안에서도 포장과 매질을 바꾸면 가격 위치가 크게 달라진다.",
+     "ord": 523583
+    },
+    {
+     "kind": "para",
+     "text": "작은 파우치 두 종류는 일반 물 캔보다 한 개 가격이 낮다. 그러나 순중량으로 환산하면 두 파우치가 캔보다 위에 있다. 그래서 작은 판매 단위를 빼고는 가격층을 말할 수 없다. 이 간격을 곧바로 올리브유 원가나 회사의 이익으로 해석할 자료는 없다. 판매가에는 소매 채널의 할인과 상품별 포장 조건이 함께 들어간다.",
+     "ord": 528454
+    },
+    {
+     "kind": "para",
+     "text": "소매가격의 한 시점 기록은 제조사가 확보하는 돈을 보여 주지 않는다. 같은 상품이 Chedraui와 Walmart에서 서로 다른 값으로 올라 있다는 사실도 소매가격과 제조자 수익을 분리한다. 회사 누리집은 타사 브랜드 제품 제조를 영업하지만, 매대 가격에는 그 계약의 대가가 나타나지 않는다. 두 소비자 브랜드와 위탁생산이 전체 매출을 어떻게 나누는지는 이 가격표 밖에 남는다.",
+     "ord": 528640
+    }
+   ],
+   "stage": "c05"
+  },
+  {
+   "sid": "s11",
+   "numeral": "11",
+   "label": "품질 시험",
+   "subtitle": "PROFECO 2024 시험에서 Nair 무대두 플레이크는 전 항목 적합, Marina Azul은 다섯 제품 가운데 넷이 부적합이나 표시 불일치 판정을 받았다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "PROFECO가 2024년 3월 발표한 포장 참치 품질시험에서 Nair의 시험품은 모든 평가 항목에 적합했다. Marina Azul은 시험에 오른 제품마다 결과가 갈렸다. 고형 올리브유 제품은 적합했으나 다른 제품에는 규격이나 표시에 관한 판정이 붙었다. 이 결과의 단위는 브랜드 전체가 아니라 시험을 받은 개별 제품이다.",
+     "ord": 139
+    },
+    {
+     "kind": "para",
+     "text": "Nair 시험품의 앞면에는 「LIBRE DE SOYA」(대두 없음)라고 적혀 있다. PROFECO는 이 무대두 라인에서 물에 든 참치 플레이크 제품을 검사했다. Nair에는 대두를 25 % 넣었다고 표시한 제품군이 따로 있다. 같은 브랜드명 아래 원료 구성이 다른 제품이 공존하므로 시험품에서 나온 대두 결과를 다른 Nair 캔에 옮길 수 없다. 시험품이 받은 적합 판정도 대두 함유 라인에 내린 판정은 아니다. 제품명에 적힌 대두 함량과 시험에서 검출한 대두값은 같은 브랜드에 붙어 있어도 출처와 제품이 다르다. 어느 캔을 검사했는지 지우면 서로 다른 라인의 성적이 뒤섞인다.",
+     "ord": 343
+    },
+    {
+     "kind": "para",
+     "text": "PROFECO의 제품별 표에는 내용량과 고형량이 따로 적힌다. 고형량은 물이나 기름을 따라 낸 뒤 남는 부분이며 대두 비율도 시험품별 값이다. 아래 가격은 이 품질시험 당시의 조사값이어서 다른 시점에 매대에서 판매한 가격과 같은 가격열로 이어지지 않는다.",
+     "ord": 683
+    },
+    {
+     "kind": "para",
+     "text": "Marina Azul Premium이라는 이름은 한 가지 판정을 보증하지 않는다. 고형 올리브유 제품은 적합했고 고형 물 제품에는 「NO CUMPLE」(기준에 맞지 않음)가 붙었다. 두 제품은 같은 Premium 이름을 쓰지만 시험에서 다룬 규격과 매질이 다르다. 적합한 올리브유 제품의 결과로 물 제품의 판정을 덮으면 실제로 문제가 된 고형 참치의 형태 기준이 사라진다.",
+     "ord": 2177
+    },
+    {
+     "kind": "para",
+     "text": "PROFECO는 고형 물 제품을 두고 「Rebasó el 18% de la proporción de hojuelas y trozos que establece la NOM-235 … contiene de 20.5 a 21.6%」라고 적었다. NOM-235가 ‘고형 참치’ 명칭에 허용한 플레이크와 조각의 비율을 이 제품이 넘었다는 뜻이다. 따라서 이 행의 「NO CUMPLE」은 제품을 고형 참치라고 부르는 기준과 연결된다. 표의 대두 수치만 보고 판정의 원인을 대두로 바꿀 수 없다. 원문이 지목한 것은 ‘고형’이라는 이름과 실제 살의 형태 사이의 간격이다. 이 지적을 내용량 부족이나 단백질 부족이라는 별개의 문제로 옮길 근거도 없다.",
+     "ord": 2396
+    },
+    {
+     "kind": "para",
+     "text": "올리브유 파우치의 문제는 다른 곳에 있다. PROFECO는 포장 사진이 고형 참치를 보여 주지만 실제 제품은 조각 참치라고 적고 「NO ES VERAZ」(표시가 사실과 맞지 않음) 판정을 내렸다. 제품 사진과 내용물 형태가 어긋난다는 뜻이다. 이 행을 Premium 고형 올리브유 캔의 적합 판정과 합쳐 ‘올리브유 제품’ 하나로 묶을 수 없다. 같은 매질이라도 포장과 제시한 형태가 다르면 소비자가 보는 정보도 달라진다.",
+     "ord": 2763
+    },
+    {
+     "kind": "para",
+     "text": "물 파우치와 저염 물 파우치에는 「NO CUMPLE」과 「NO ES VERAZ」가 함께 붙었다. PROFECO 표가 따로 적은 두 판정을 하나의 대두 문제로 줄일 근거는 없다. 두 제품의 대두값도 다른 Marina Azul 시험품과 같다. 이 파우치들의 결과는 대두 여부와 기준 준수, 표시의 정확성이 별개의 검사 항목임을 보여 준다.",
+     "ord": 3009
+    },
+    {
+     "kind": "para",
+     "text": "Marina Azul의 시험품 다섯 가지는 대두가 모두 0 %였다. 그런데 그중 넷은 적합 판정을 받지 못하거나 포장 표시가 사실과 맞지 않는다는 판정을 받았다. 무대두라는 결과가 포장 사진의 정확성이나 제품 명칭의 적합성까지 말해 주지는 않는다. Nair 무대두 시험품이 적합했다고 해서 Marina Azul 각 제품이 받은 다른 판정이 지워지지도 않는다.",
+     "ord": 3207
+    },
+    {
+     "kind": "para",
+     "text": "PROFECO 2019년 보도자료가 열거한 대두 검출 제품 18개에는 Nair와 Marina Azul이 없다. 두 브랜드가 그 시험 대상이었는지는 보도자료에 나오지 않는다. 당시 Nair는 Herdez 소유였다.",
+     "ord": 3424
+    },
+    {
+     "kind": "para",
+     "text": "후속 기사에는 Marina Azul Premium을 「opciones recomendables」(권할 만한 선택)로 부르는 표현이 보인다. 2025~2026년 매체에 실린 이 표현은 새로 검사한 결과가 아니라 2024년 3월 시험을 다시 쓴 것이다. 그 시험에서 적합한 Premium 제품은 고형 올리브유였고 고형 물 제품에는 「NO CUMPLE」이 붙었다. Premium이라는 공통 이름만 남긴 제목으로 두 제품의 판정을 하나로 합칠 수 없다.",
+     "ord": 3553
+    },
+    {
+     "kind": "para",
+     "text": "2024년 3월 뒤로 새 PROFECO 참치 시험은 확인되지 않았다(범위: 2026년 Google News RSS·웹 보도). 뒤늦게 실린 추천 기사의 게시일은 새 품질시험의 날짜가 아니다. 따라서 공개된 판정은 당시 시험품의 규격과 포장에 붙은 결과로 남는다. 당시 시험품과 현행 제품의 배합·표시가 같은지는 이 시험 결과에 적혀 있지 않다.",
+     "ord": 3813
+    }
+   ],
+   "stage": "c06"
+  },
+  {
+   "sid": "s12",
+   "numeral": "12",
+   "label": "국가 조달",
+   "subtitle": "Diconsa 수의계약은 2012년에 정점을 찍었고 마지막 기록은 2019년이다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Diconsa가 Procesa 명의 공급자에게 발주한 수의계약은 2012년에 금액이 가장 컸다. QuiénEsQuién.wiki에 남은 계약은 2019년에 시작된 것이 마지막이다. 계약 기록이 끝난 해가 공급 관계가 끝난 해인지는 공개 기록으로 가릴 수 없다.",
+     "ord": 95
+    },
+    {
+     "kind": "para",
+     "text": "공공조달 기록에 오른 공급자 이름은 한 가지가 아니다. QuiénEsQuién.wiki는 Procesamiento Especializado de Alimentos의 S.A.P.I. de C.V. 표기와 S.A. de C.V. 표기에 기업 페이지를 따로 둔다. 이 집계의 원천은 CompraNet과 POT다. 다음 표의 금액은 각 페이지에 나온 값으로, 겹친 계약을 아직 걷어내지 않은 원수치다.",
+     "ord": 264
+    },
+    {
+     "kind": "para",
+     "text": "두 공급자 명의의 금액을 더한 원수치는 446,4백만 MXN, 건수는 232건이다. 같은 계약이 원천 자료나 공급자 표기마다 반복된 부분까지 들어 있다. 이 값을 서로 다른 계약의 확정 금액으로 쓰면 조달 규모가 부풀려진다.",
+     "ord": 1201
+    },
+    {
+     "kind": "para",
+     "text": "겹친 기록을 제외하면 약 350,7백만 MXN, 174건으로 추정된다. 중복 제거 추정치는 원수치와 나란히 적어야 금액의 경계가 드러난다. 어디까지나 겹침을 걸러 낸 집계이고, 계약별 실제 납품과 지급까지 확인한 장부는 아니다.",
+     "ord": 1337
+    },
+    {
+     "kind": "para",
+     "text": "두 기업 페이지에는 공급자 RFC(납세자번호)가 표시되지 않는다. Procesa와 이어 붙인 근거는 법인명 일치다. 표기가 S.A.와 S.A.P.I.로 나뉜다고 해서 서로 다른 납품 실적이 생기지도 않는다. 그래서 이름을 합산한 원수치와 겹침을 제거한 추정치를 구분한다.",
+     "ord": 1475
+    },
+    {
+     "kind": "para",
+     "text": "연도별 그림은 금액을 계약이 끝난 해나 상품이 실제로 들어간 해가 아니라 계약이 시작된 해에 놓는다. 막대는 두 공급자 표기에 적힌 원수치를 더했으므로 같은 계약의 반복도 함께 남는다. 시간에 따른 흐름은 보이지만, 그 막대를 회사의 연간 매출이나 실제 납품액으로 옮길 수는 없다.",
+     "ord": 1637
+    },
+    {
+     "kind": "para",
+     "text": "중복을 걷은 추정치로 보아도 2012년 계약금액은 약 219,6백만 MXN으로 정점이다. 계약금액은 발주 문서에 적힌 규모다. 납품이 언제 얼마만큼 이뤄졌는지, 그 대금이 회사 장부에 어떻게 들어갔는지는 이 집계에서 드러나지 않는다.",
+     "ord": 6094
+    },
+    {
+     "kind": "para",
+     "text": "기록 끝자락인 2018~2019년에는 연간 금액이 0,5~1,2백만 MXN 범위로 작아진다. 공개 수의계약 금액이 줄었다는 사실은 Diconsa의 총 참치 수요나 Procesa의 다른 판로를 설명하지 않는다. 발주 품목이나 공급자의 판매 경로가 바뀌었는지 판단할 자료도 이 합계에는 없다. 줄어든 폭은 보이지만 원인은 적혀 있지 않다.",
+     "ord": 6235
+    },
+    {
+     "kind": "para",
+     "text": "가장 큰 단일 계약은 AA-020VSS998-E552-2012-1133436이다. 계약 페이지에 적힌 금액은 MXN 108.388.938이며, 발주처는 Diconsa의 상업화 담당 부서다. 이 계약도 수의계약으로 분류돼 있다.",
+     "ord": 6433
+    },
+    {
+     "kind": "para",
+     "text": "계약 기간은 2012-05-23부터 2012-11-30까지다. 품목란에는 「TORTITA DE ATUN CON PAPA, ATUN, HAMBURGUESA DE ATUN Y ATUN ACEITE-AGUA」라고 적혀 있다. 감자를 넣은 참치 패티와 참치, 참치 햄버거, 기름·물에 담근 참치를 함께 가리키는 문구다. 이 품목명은 Diconsa가 조달한 상품군을 보여 주지만 제품별로 얼마씩 납품됐는지는 나눠 적지 않는다.",
+     "ord": 6570
+    },
+    {
+     "kind": "para",
+     "text": "품목명이 여러 상품을 한데 묶는다는 점은 금액을 해석할 때도 따져야 한다. 참치 원물 매입, 캔 제품 판매, 가공식품 조달을 하나의 물량으로 환산할 근거는 여기에 없다. 계약액은 구매자가 맺은 계약의 크기이고 회사 매출은 다른 장부 항목이다. 공개 문서에 Procesa의 매출·이익·자산 수치가 없으므로 Diconsa 계약이 매출에서 차지한 몫도 제시할 수 없다.",
+     "ord": 6814
+    },
+    {
+     "kind": "para",
+     "text": "두 이름의 집계에서 가장 늦은 계약 시작 연도는 2019년이다. 2020~2022년은 CompraNet 원본과 맞춰 본 수치가 없어, Procesa 명의 계약이 있었는지는 이 집계만으로 정해지지 않는다. 그 구간에 계약이 없었다고까지 결론 내리면 공개 기록의 공백을 실제 거래의 공백으로 바꿔 읽게 된다. 마지막 기록의 해는 말할 수 있지만, 그 뒤로 줄곧 계약이 끊겼다고 확정할 자료는 없다.",
+     "ord": 7028
+    },
+    {
+     "kind": "para",
+     "text": "따로 대조한 2023~2025년 CompraNet 자료에는 Procesa 명의 계약이 0건이다. 이는 공개 계약에 적힌 공급자 이름을 기준으로 한 결과다. 민간 판매, 타사 명의 납품, 제품의 최종 유통경로까지 아우른 사업 활동 전체를 세는 숫자는 아니다. 공개 조달 기록이 없다는 사실을 생산 중단이나 브랜드 판매 중단으로 옮겨 적을 근거도 없다.",
+     "ord": 7259
+    },
+    {
+     "kind": "para",
+     "text": "같은 기간 Alimentación para el Bienestar의 참치 계약에는 Pinsa Comercial과 Marindustrias 등이 공급자로 나온다. 공공 참치 조달이 사라진 것은 아니다. 다만 공급자 명단이 달라졌다는 사실만으로 Procesa가 계약에 참여했는지, 계약을 얻지 못했는지, 발주처와 거래를 끝냈는지는 밝혀지지 않는다. 명단에 거래가 끝난 이유가 적혀 있지는 않다.",
+     "ord": 7465
+    },
+    {
+     "kind": "para",
+     "text": "QuiénEsQuién.wiki의 누적 원수치에서는 Pinsa Comercial과 Marindustrias의 금액이 Procesa보다 크다. 공급자별 집계 기간과 중복 범위가 같다는 근거는 없다. 기간은 공급자별 첫·마지막 계약 시작 연도다. Pinsa Comercial은 2005~2022년, Marindustrias는 1999~2022년이고 Procesa는 2009~2019년이다.",
+     "ord": 7694
+    },
+    {
+     "kind": "para",
+     "text": "Procesa의 비교값에도 두 공급자 명의의 기록이 겹친 부분이 포함된다. 다른 공급자들의 중복 정도와 집계 기간도 이 표만으로는 같게 맞출 수 없다. 금액 순서만으로 국가 조달 시장에서 각 회사가 차지한 몫을 계산하면 원수치의 경계와 기간 차이가 사라진다.",
+     "ord": 8522
+    }
+   ],
+   "stage": "c06"
+  },
+  {
+   "sid": "s13",
+   "numeral": "13",
+   "label": "점유율과 수출",
+   "subtitle": "국내 점유율은 2016년에 1~2 %로 적혔고, 대미 해상 적하목록 무료 조회에는 회사 명의 선적이 보이지 않는다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Procesa Chiapas의 멕시코 캔참치 국내시장 점유율은 2016년 기사에서 1~2 %로 적혔다. Manufactura는 회사들이 인용한 Nielsen 자료를 바탕으로 이 값을 전했다. 이 수치는 당시 국내 캔참치 시장을 가리킨다.",
+     "ord": 116
+    },
+    {
+     "kind": "para",
+     "text": "기사가 적은 그 시장의 연간 판매액은 약 US$8억이다. 이 금액은 Procesa의 매출액이 아니라 회사별 점유율 옆에 놓인 시장 전체의 규모다. 기사에 적힌 비중을 회사의 전체 매출이나 생산량으로 바꾸려면 브랜드 외 납품과 수출을 함께 볼 자료가 필요하지만, 그런 연결 숫자는 공개되지 않는다.",
+     "ord": 278
+    },
+    {
+     "kind": "para",
+     "text": "이듬해 Expansión이 전한 수치는 다른 대상을 센다. 태평양지속가능참치연합(APAS)에 속한 Pinsa·Grupomar·Herdez·Procesa 네 회사가 멕시코 참치 생산의 90 %를 차지한다는 설명이다. 네 곳의 합계가 Procesa 한 곳의 점유율은 아니다. 생산 비중을 앞선 캔참치 판매액의 분모로 옮길 수도 없다.",
+     "ord": 454
+    },
+    {
+     "kind": "para",
+     "text": "회사는 나중에 「tercera más grande a nivel nacional」이라고 자신을 소개했다. 전국에서 세 번째로 큰 업체라는 뜻이지만, 2021년 보도자료에는 판매액·생산량·설비능력 중 무엇으로 순위를 매겼는지 적혀 있지 않다. 순위 주장은 회사가 자기 위치를 설명한 말로 남는다. 앞선 기사가 제시한 점유율을 갱신하는 값은 되지 않는다.",
+     "ord": 655
+    },
+    {
+     "kind": "para",
+     "text": "세 표현의 출처도 다르다. 시장 점유율은 회사들이 인용한 자료를 매체가 전한 것이다. 생산 비중은 연합에 묶인 기업들의 합계이고, 전국 순위는 회사 발표다. 이 수치들을 같은 줄의 시장 지분처럼 더하거나 이어 붙이면 대상부터 달라진다.",
+     "ord": 862
+    },
+    {
+     "kind": "para",
+     "text": "당시 점유율은 브랜드 구성이 바뀌기 전 시점의 값이다. 회사 연혁은 그 뒤 Nair가 Procesa에 합류했다고 적는다. 그 변화만으로 앞선 시장조사의 숫자가 얼마나 달라졌는지는 드러나지 않는다. Nair라는 브랜드가 더해졌다는 사실과 그 뒤의 회사별 시장 점유율은 각각 다른 기록이 필요하다.",
+     "ord": 1767
+    },
+    {
+     "kind": "para",
+     "text": "판매 채널을 적은 연혁도 곧바로 국경을 넘은 물량을 뜻하지 않는다. 회사는 2007년 Costco와 Sam’s Club 납품을 시작했다고 썼다. 어느 나라 점포에 들어갔는지, 구매자가 어느 법인인지는 그 문장에 없다. 유통망의 이름만으로 미국 세관에 신고된 Procesa 제품을 셀 수는 없다.",
+     "ord": 1942
+    },
+    {
+     "kind": "para",
+     "text": "회사는 2013년 연혁에 「Primera exportación de atún chiapaneco a EU」라고 적었다. 치아파스 참치의 첫 미국 수출이라는 뜻이다. 같은 연혁은 미국 유통사 Marina Blue를 샌디에이고에 세웠다고 소개한다. 연혁은 그 수출의 무게와 운송 방식, 세관에서 쓰인 회사 명의까지는 적지 않는다.",
+     "ord": 2117
+    },
+    {
+     "kind": "para",
+     "text": "유통사를 둔 도시와 제품을 보낸 국가는 사업의 방향을 보여 주지만 개별 선적의 증빙은 아니다. Marina Blue를 유통사로 소개한 회사 설명에는 어떤 브랜드가 언제 그 회사를 거쳐 팔렸는지 보여 줄 거래 장부가 없다. 회사 연혁에 적힌 첫 수출이라는 표현의 범위는 그 문장에 머문다.",
+     "ord": 2310
+    },
+    {
+     "kind": "para",
+     "text": "2021년 9월 행사를 전한 지역 매체는 회사 총괄책임자의 설명을 간접화법으로 옮기며 「Procesa estará embarcando los primeros contenedores con atún a Estados Unidos」라고 적었다. Procesa가 미국으로 첫 참치 컨테이너를 보내게 될 것이라는 장래형 발언이다. 그 기사에는 실제 선적일이나 선하증권, 미국 도착 물량이 붙어 있지 않다.",
+     "ord": 2481
+    },
+    {
+     "kind": "para",
+     "text": "회사의 2013년 첫 수출 연혁과 그 뒤에 나온 첫 컨테이너 발언은 시간 순서만으로 합쳐지지 않는다. 앞 문장은 과거의 수출을 주장하고, 뒤 문장은 앞으로 보낼 컨테이너를 예고한다. 첫 수출과 첫 컨테이너가 운송 방식이나 판매 계약에서 어떻게 갈리는지는 공개된 설명에 없다. 예정 발언을 이미 이행된 실적으로 읽을 근거도 없다.",
+     "ord": 2714
+    },
+    {
+     "kind": "para",
+     "text": "해상 적하목록의 공개 화면에 Procesa 명의 대미 선적은 없다(트럭 통관과 공개 화면 밖 기간 제외).",
+     "ord": 2908
+    },
+    {
+     "kind": "para",
+     "text": "미국 수입 통계는 회사 이름 대신 상대국과 품목을 축으로 묶인다. 미국이 신고한 멕시코발 HS 160414의 순중량은 월별로 나오지만 송하인이나 브랜드별 칸은 없다. 국가 전체가 미국에 판 물량을 회사 몫으로 나누려면 별도의 거래 자료가 필요하다.",
+     "ord": 2978
+    },
+    {
+     "kind": "para",
+     "text": "표에서 가장 큰 달은 2월이다. 그 정점을 특정 회사의 가동률이나 신규 납품으로 설명할 회사별 자료는 없다. 미국 신고의 월별 순중량과 상업 적하목록의 개별 해상 선적은 집계 단위도 다르다. 화물의 총중량이나 컨테이너 수를 이 표의 순중량과 곧바로 맞출 수도 없다.",
+     "ord": 3951
+    },
+    {
+     "kind": "para",
+     "text": "2025년 월평균도 한 회사의 기준선은 아니다. 그해 미국으로 들어간 멕시코발 해당 품목을 월 단위로 나눈 계산치다. 이후 어느 달이 그 값보다 높거나 낮다는 사실만으로 Procesa가 더 팔았는지 알 수 없다. 국내시장 점유율에 쓰인 판매액과 이 무역표의 무게도 측정 대상이 다르다.",
+     "ord": 4110
+    },
+    {
+     "kind": "para",
+     "text": "Bumble Bee Mexico 명의 적하목록은 별도 법인의 기록이며, 이 나라 단위 수치에서 Procesa의 몫을 산출하는 근거가 되지 않는다.",
+     "ord": 4280
+    },
+    {
+     "kind": "para",
+     "text": "Procesa의 미국 유통사라는 Marina Blue가 어떤 명의로 통관했는지, 회사 연혁의 수출과 행사 발언의 컨테이너가 각각 어느 제품에 해당하는지는 공개된 거래 문서에 적혀 있지 않다. 미국 쪽 판매 경로를 회사별 물량으로 이으려면 제품명과 송하인·수입자가 함께 적힌 개별 기록이 필요하다.",
+     "ord": 4390
+    }
+   ],
+   "stage": "c07"
+  },
+  {
+   "sid": "s14",
+   "numeral": "14",
+   "label": "사람과 사고",
+   "subtitle": "2026년 7월 통근버스 사고로 노동자 한 명이 숨졌고, 2025년 2월에는 같은 계열 명부의 선망선이 불타 가라앉았다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "2026-07-27 Procesa 직원 통근버스 사고가 났다. 중상을 입은 여성 노동자 한 명이 몇 시간 뒤 숨졌고, 사망은 이튿날 보도됐다. 검찰 수사가 시작됐지만 버스 운전자를 두고는 두 차례 보도가 서로 다르게 적는다.",
+     "ord": 118
+    },
+    {
+     "kind": "para",
+     "text": "nau.mx의 사고 당일 기사는 직원들이 회사로 향하던 버스에서 8명이 다쳤다고 전했다. 부상자 가운데 사망한 노동자는 27세였다. 사망은 사고 당일이 아니라 다음 날 전해졌다. 따라서 첫 보도의 부상자와 다음 날의 사망자를 별도 피해 집단으로 더할 수 없다.",
+     "ord": 267
+    },
+    {
+     "kind": "para",
+     "text": "첫 기사는 버스를 Procesa 인력 수송을 맡은 외주 업체의 차량이라고 불렀고, 사망을 전한 다음 날 기사는 Procesa의 버스라는 표현을 썼다. 직원 통근용이었다는 공통점과 차량의 소유·운영 주체를 가리키는 표현은 구분된다. 현장 운전자를 당국이 확보했다는 첫 보도와 행방을 모른다는 후속 보도도 맞지 않는다. 두 기사가 이렇게 엇갈려 운전자의 신병이나 회사가 차량을 직접 운영했는지는 확정할 수 없다.",
+     "ord": 423
+    },
+    {
+     "kind": "para",
+     "text": "치아파스 민방위의 속보는 「volcó un camión de la empresa Procesa」라고 적었다. Procesa 관련 차량이 뒤집혔다는 뜻이다. 현지 스페인어에서 camión은 버스를 가리킬 수도 있다. 게시 시각을 현지로 바꾸면 사고 당일 저녁이다. 속보가 적은 지점은 푸에르토 마데로 도로의 쿠아트로 밀파스다. 이 속보는 통근버스 사고와 같은 사건을 알린 것이어서 별개의 사고로 세지 않는다.",
+     "ord": 662
+    },
+    {
+     "kind": "para",
+     "text": "후속 기사는 Fiscalía Distrito Costa가 수사에 착수했다고 전한다. 공개된 두 기사는 사고와 사망을 전한다. 그러나 차량의 관리 계약, 운전자의 최종 신병 상태, 사고 원인이나 조사 결론은 한 가지 서술로 묶이지 않는다. 회사의 보상이나 안전 조치도 이 보도에는 나오지 않는다.",
+     "ord": 900
+    },
+    {
+     "kind": "para",
+     "text": "회사가 밝힌 인원은 해마다 달랐다. DENUE는 치아파스의 가공 법인 사업장을 종사자 구간으로 싣는다. 회사는 연혁에 해마다 인원 수를 적는다. 행사에서 전한 총괄책임자 발언과 2021-04 보도자료·누리집 문구에서도 직접고용을 말한다. 어느 한 수치를 다른 기록의 검증값으로 쓸 수는 없다.",
+     "ord": 1075
+    },
+    {
+     "kind": "para",
+     "text": "연혁의 인원은 회사가 스스로 제시한 값이다. 공장 개업을 적은 해와 선단 법인 설립을 적은 해의 인원을 같은 기준으로 계산했는지는 누리집이 설명하지 않는다. 행사 보도는 총괄책임자가 말한 직접고용 규모를 전했다. DENUE의 하한 구간은 개별 사업장의 분류로, 그룹 전체 인원을 확인하는 외부 장부가 아니다.",
+     "ord": 2305
+    },
+    {
+     "kind": "para",
+     "text": "회사는 Herdez의 치아파스 참치 사업을 이어받았다고 알리면서 해당 사업 직원 전원을 새 운영 체제에서 재고용했다고 발표했다. 이 대목은 2021-04 회사 발표에 나오는 고용 승계 주장이다. 발표에는 사업장별 인원 이전표가 없다. 선박과 공장에 몇 명씩 배치됐는지, 연혁 속 인원 증가에서 승계된 노동자가 차지한 몫이 얼마인지는 이 발표만으로 알 수 없다.",
+     "ord": 2488
+    },
+    {
+     "kind": "para",
+     "text": "2026-03-10 치아파스 주 인권위원회는 Procesa 여성 노동자를 위한 설명회를 알렸다. 여성 노동자를 대상으로 한 행사였다고 해서 고충 신고나 회사와의 분쟁이 있었다는 뜻은 아니다. Procesa의 파업이나 노동 분쟁, PTU(이익 분배) 다툼은 보도되지 않았다(범위: 2020~2026년 웹·X·Google News RSS). 이 보도 범위만으로 법원 사건이나 단체협약의 상태까지 판단할 수는 없다.",
+     "ord": 2700
+    },
+    {
+     "kind": "para",
+     "text": "선상 사고 기록의 중심은 Arkos I Chiapas다. IATTC는 Hersea를 등록 소유자로, 침몰일을 2025-02-21로 적는다. 회사의 선박 목록에는 이 배가 들어 있었지만 가공 법인 Procesamiento Especializado de Alimentos와 Hersea의 지분 관계를 보여 주는 공개 문서는 없다. 따라서 이 배는 같은 계열 명부에 있던 Hersea 명의의 선망선으로 구분된다.",
+     "ord": 2940
+    },
+    {
+     "kind": "para",
+     "text": "IATTC 선박 기록은 상태를 「침몰」로 적는다. 화재와 구조 상황은 Atuna와 해군 발표를 전한 Milenio의 보도에 나온다. Atuna는 승선자 25명이 전원 구조됐다고 적었다. 인명 구조를 전한 보도만으로 화재 경위를 정할 수는 없다. 정확한 화재 원인과 사고 위치는 공개되지 않았다.",
+     "ord": 3178
+    },
+    {
+     "kind": "para",
+     "text": "Arkos I Chiapas는 2025-05-26 비활성 명부로 옮겨졌다. 회사 ISSF 정책 부속서에 그 배가 남아 있어도 IATTC의 활성 선박으로 되돌아간 것은 아니다. 등록부가 보여 주는 것은 선박 상태의 변경까지다. 구조된 선원들의 이후 고용은 이 기록과 사고 보도에 적혀 있지 않다.",
+     "ord": 3353
+    }
+   ],
+   "stage": "c07"
+  },
+  {
+   "sid": "s15",
+   "numeral": "15",
+   "label": "전략 — 말과 돈",
+   "subtitle": "회사가 말한 확장과 등록부가 남긴 흔적이 서로 다른 곳을 가리킨다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "Puerto Chiapas의 Procesa는 브랜드와 가공장, 선단을 묶어 성장사를 말한다. 회사 발표에는 전국 순위와 고용, 투자, 타사 브랜드 제조가 등장한다. 상표 원부와 선박 명부에는 질권과 보전처분, 침몰 뒤 달라진 활성 척수가 남아 있다.",
+     "ord": 91
+    },
+    {
+     "kind": "para",
+     "text": "회사는 스스로를 멕시코 남동부의 선두 참치 기업이자 전국 세 번째 규모라고 소개했다. 그러나 매출과 순위의 분모는 공개되지 않는다. 직접고용 숫자도 발표마다 달랐다. 2021-04 회사 보도자료의 2.000명과 그해 9월 투자·확장 발표 행사에서 총괄책임자가 말한 1.400명은 일치하지 않는다. DENUE는 Procesa 명의 사업장 한 곳의 종사자 구간을 적으므로 회사 전체 현원과 같은 값으로 놓을 수 없다.",
+     "ord": 254
+    },
+    {
+     "kind": "para",
+     "text": "회사 누리집은 「Certificación MSC」(MSC 인증), 「Certificación Dolphin Safe」(Dolphin Safe 인증), 「Estándar de Cadena de Custodia」(유통과정 인증 기준)를 인증 항목으로 내걸었다. MSC의 PAST 어업 인증은 2023-03-08 철회됐고, 2026-05-20에는 개선 프로그램이 시작됐다. 개선 프로그램은 철회된 어업 인증의 회복을 뜻하지 않는다. PAST 연표만으로 Dolphin Safe나 별도의 유통과정 인증 상태를 판단할 수도 없다.",
+     "ord": 496
+    },
+    {
+     "kind": "para",
+     "text": "선단에서도 세는 범위가 바뀐다. 회사가 내세운 다섯 척(사이트 척수, ISSF 부속서 선명)에는 Arkos I Chiapas가 들어간다. IATTC 활성 명부에 남은 Hersea·Pesca Chiapas 선박은 네 척이다. Arkos I Chiapas는 2025-02-21 침몰해 비활성 명부로 옮겨졌다. 두 선박 법인과 가공 법인의 지분 관계는 공개 문서에 없다.",
+     "ord": 797
+    },
+    {
+     "kind": "para",
+     "text": "위탁생산은 회사가 앞세운 영업 방향이다. 누리집은 타사 브랜드의 참치 캔과 파우치 제조를 제안한다. 항만공사 ASIPONA는 2025-08-11 Procesa와 미국 회사들의 「maquila」(위탁가공) 협력을 게시했지만 상대 회사의 이름은 쓰지 않았다. 이 게시물만으로는 특정 미국 브랜드의 계약 상대를 정할 수 없다.",
+     "ord": 1012
+    },
+    {
+     "kind": "para",
+     "text": "Bumble Bee Mexico는 별도 법인이며 2023-10-12부터 FDA 수입경보에 나온다. 미국 적하목록에도 그 법인이 송하인으로 실리지만, 목록은 Procesa와의 제조 계약을 적지 않는다. FDA의 Puerto Madero 주소는 Procesa의 EU 승인 공장 번지와 다르다. DENUE의 Procesa 사업장과는 같은 Av. Central Sur에 있어 두 사업장이 같은 부지인지는 공개 기록으로 가릴 수 없다. 지역 일간지가 2025-11-20 게재한 시장 발언(간접화법)에는 Procesa 공장이 등장한다. 기자가 옮긴 간접화법이다. 수집한 보도 범위에서 두 회사를 함께 적은 기록은 이 발언과 시장 X 게시(2025-11-19)의 배석 기록이며, 어느 쪽도 계약 형태를 적지 않는다.",
+     "ord": 1202
+    },
+    {
+     "kind": "para",
+     "text": "투자액도 발표 주체에 따라 갈린다. 회사는 Puerto Chiapas의 여러 사업에 지난 두 해 동안 1.100 mdp를 투자했다고 말했고, 같은 해 주정부 장관은 약 800 mdp를 제시했다. 어느 수치도 Herdez 참치 사업의 인수대금으로 공시된 값은 아니다. 회사의 매출·이익·자산과 Rabobank 대출액·만기 역시 공개 문서에 없다.",
+     "ord": 1606
+    },
+    {
+     "kind": "para",
+     "text": "상표 원부에는 자금 조달의 흔적이 적혀 있다. MARINA AZUL 계열 상표에는 CAMIF II가 질권자로 등장한 기록이 있고, 뒤이어 Rabobank 뉴욕 지점의 1순위 질권이 기재됐다. NAIR 계열에도 Rabobank가 담보대리인으로 붙었다. 이 사슬로 담보는 드러나지만 실제 차입액은 드러나지 않는다. 2026-03-27 접수된 채권양도·담보양도 인정 등록 신청은 2026-05-13 대리권 보정 요구를 받았다. 최종 처리 결과는 공개 기록에 나타나지 않는다.",
+     "ord": 1809
+    },
+    {
+     "kind": "para",
+     "text": "이와 별도로 할리스코주 법원의 보전처분은 2026-06-19 Procesa 명의 상표 17건에 예비 기재됐다(조회 범위: MARCia 29류 NAIR·MARINA AZUL). 본안 전 「retención de bienes」(재산 보전) 기재이지, 파산이나 최종 채권 귀속을 적은 결정이 아니다. 회사가 말한 투자 규모와 원부에 나타난 담보·보전처분은 같은 회계 항목이 아니므로 서로 빼서 순투자를 계산할 수 없다.",
+     "ord": 2082
+    },
+    {
+     "kind": "para",
+     "text": "항만시설에서도 법인 명의는 나뉜다. ASIPONA는 2025-11-18 어업터미널을 Factor Pesca에 인도했다고 적었다. 같은 게시물에서 참치 공장 능력 확대는 항만공사 문안에 나오고, Procesa 총괄책임자는 신뢰에 감사하며 「vienen mejores tiempos para la industria atunera」(참치 산업에 더 나은 때가 온다)라고 말했다. 터미널 인수 법인과 Procesa의 지분 관계, 확대할 설비의 규모는 공개 문서에 없다. 항만공사 게시문의 공장 능력 확대 문안을 터미널 소유나 증설 완료 기록으로 바꿀 수 없다.",
+     "ord": 2324
+    },
+    {
+     "kind": "para",
+     "text": "선단을 같은 시점의 소유 그룹으로 좁히면 비교할 수 있는 값이 생긴다. Procesa 관련 선박의 평균 선령은 Pinsa 계열과 Grupomar 계열보다 높다. 세 회사의 위탁생산 계약이나 상표 담보 조건을 같은 기준으로 나열할 값은 제시되지 않았다. PAST의 개선 프로그램은 세 회사에 걸친 공통 일정이다.",
+     "ord": 4210
+    },
+    {
+     "kind": "para",
+     "text": "선령 차이는 공장 생산량이나 수익성을 뜻하지 않는다. Pinsa와 Grupomar의 위탁생산·담보 칸에는 나란히 놓을 값이 없고, Procesa의 질권에도 대출액이 적혀 있지 않다. 같은 업종의 세 이름이 한 표에 올라 있어도 선박 명부와 자금 계약의 공개 범위는 다르다.",
+     "ord": 5842
+    },
+    {
+     "kind": "para",
+     "text": "규제 달력에는 2026-05-20 MSC PAST 개선 프로그램이 있다. 어업 인증 쪽의 개선 일정이다. 이 일정만으로 Procesa의 판매 변화나 인증 회복을 계산할 회사 수치는 공개되지 않는다.",
+     "ord": 6005
+    },
+    {
+     "kind": "para",
+     "text": "미국의 Section 301 멕시코 추가관세는 2026-07-24부터 적용됐다(USMCA 무관세 통관분 면제, ⅬⅠ). 뒤이어 2026-09-17에는 Bumble Bee가 캘리포니아 Santa Fe Springs 공장을 Juanita's Foods에 매각했다는 업계지 보도가 나왔다. 매각 조건은 공개되지 않았고, 기사에는 멕시코나 치아파스가 등장하지 않는다. 두 사건을 Procesa의 주문 증가로 잇는 계약 기록도 없다.",
+     "ord": 6126
+    },
+    {
+     "kind": "para",
+     "text": "캘리포니아 고용당국의 WARN 기록은 Santa Fe Springs 사업장 197명 감원의 효력 예정일을 2026-11-19로 적는다. 미국 공장 매각 보도와 감원 기록은 날짜가 서로 다르고, 어느 쪽도 해당 물량의 목적지나 Procesa와의 계약을 밝히지 않는다.",
+     "ord": 6374
+    },
+    {
+     "kind": "para",
+     "text": "더 먼 달력에는 NAIR 343880 상표의 만료일 2032-06-25가 있다. 그 날짜는 공장이나 선박의 만기가 아니라 상표 등록의 기한이다. 상표권의 남은 기간만으로 생산시설의 확대나 자금 조달 조건을 읽을 수는 없다.",
+     "ord": 6533
+    },
+    {
+     "kind": "para",
+     "text": "앞으로의 고용 숫자에도 발화 주체가 붙는다. 치아파스 주정부는 2025-11-21 Bumble Bee 공장의 공식 가동식에서 직접고용이 3.000명 넘게 생길 것이라고 「generará」(창출할 것이다)라는 미래형으로 발표했다. 이 숫자는 Procesa의 현재 인원이 아니다.",
+     "ord": 6668
+    }
+   ],
+   "stage": "c08"
+  },
+  {
+   "sid": "s16",
+   "numeral": "16",
+   "label": "남은 물음",
+   "subtitle": "계약 형태·청구 원인·대출 금액이 공개되지 않은 칸으로 남아 있다",
+   "blocks": [
+    {
+     "kind": "lead",
+     "text": "공개 문서가 비워 둔 칸은 Bumble Bee Mexico와 Procesa의 계약 형태, 상표 담보와 보전처분 뒤의 채권 관계, 비상장 회사의 매출과 지분 구조에 몰려 있다.",
+     "ord": 87
+    },
+    {
+     "kind": "para",
+     "text": "ASIPONA Puerto Chiapas는 2025-08-11 Procesa가 미국 회사들과 제품 위탁가공으로 협력한다고 적었다. 상대 회사 이름은 쓰지 않았다. 지역 일간지가 2025-11-20 전한 타파출라 시장 발언에는 「a través de la planta Procesa」(Procesa 공장을 통해)라는 구절이 나온다. 그 구절이 투자·고용 전망·경제효과 가운데 어디에 걸리는지는 간접화법 문장만으로는 정해지지 않는다. Bumble Bee Mexico와 Procesa의 법적 관계와 대상 시설을 특정하는 계약서는 공개되지 않았다.",
+     "ord": 208
+    },
+    {
+     "kind": "para",
+     "text": "FDA가 적은 Bumble Bee Mexico의 주소는 Avenida Central Sur이고, EU가 승인한 Procesa 가공장의 주소는 Calle Marina Azul이다. DENUE에 오른 Procesa 사업장도 Avenida Central Sur에 있지만, 도로가 같다고 해서 두 사업장의 필지를 하나로 묶을 수는 없다. FDA에는 Bumble Bee Mexico가 별도 법인명으로 나오고 참치 제품 기록도 있다. 항만공사의 미국 회사들, 시장 발언의 Procesa 공장, FDA의 법인명은 서로 다른 기록이다. 어느 기록도 시설의 소유·임차나 양사 사이의 위탁 계약서를 싣지 않는다.",
+     "ord": 521
+    },
+    {
+     "kind": "para",
+     "text": "할리스코주 Jalostotitlán 1심 법원의 보전처분은 2026-06-19 IMPI에서 Procesa 명의 상표 17건에 예비 기재됐다(조회 범위: MARCia 29류 NAIR·MARINA AZUL). 신청인은 Diken International이다. IMPI 상표 원부가 적은 이 회사의 권리자 주소는 할리스코가 아닌 코아우일라 Ramos Arizpe다. 법원 소재지와 신청인 주소가 다르다고 해서 분쟁의 원인이 드러나지는 않는다. 상표 기재에는 청구 원인이나 당사자 사이의 거래 내용이 없다.",
+     "ord": 864
+    },
+    {
+     "kind": "para",
+     "text": "채권양도·담보양도 인정 등록 신청은 2026-03-27 IMPI에 들어갔다. 신청서에는 공증 문서가 언급되지만 공개 공문에는 양수인 이름이 없다.",
+     "ord": 1154
+    },
+    {
+     "kind": "para",
+     "text": "IMPI는 2026-05-13 대리권 보정을 요구했다. 이 단계는 양도 인정이 끝났다는 기록과 다르다.",
+     "ord": 1246
+    },
+    {
+     "kind": "para",
+     "text": "2026-09-25 MARCia 공개 이력에는 보정서 제출 흔적과 최종 처리 결과가 없다. Rabobank 뉴욕 지점은 앞선 상표 질권에서 질권자 또는 담보대리인으로 적힌다. 상표에 담보권이 설정돼 있다는 사실만으로는 대출 원금이나 만기, 채권의 새 보유자를 계산할 수 없다. 공증 원본과 RUG 등기는 양수인과 담보권자 명의를 가릴 다음 경로다.",
+     "ord": 1314
+    },
+    {
+     "kind": "para",
+     "text": "가공 법인의 상호는 Procesamiento Especializado de Alimentos, S.A.P.I. de C.V.이고, IATTC는 Hersea와 Pesca Chiapas를 선박 소유 법인으로 적는다. 선박 명의는 주주 명부가 아니다. DENUE의 Hersea 연락처가 Procesa 도메인을 쓴다는 점으로도 법인 간 지분율은 알 수 없다. ‘Grupo Procesa’가 별도 지주 법인인지, 누가 가공·선단 법인의 의결권을 갖는지는 공개 자료에 없다. El Financiero는 2018-04-20 CAMIF II가 IGNIA의 Procesa 지분을 샀다고 보도했으나 현재 보유 구조까지 적지는 않았다.",
+     "ord": 1519
+    },
+    {
+     "kind": "para",
+     "text": "Herdez는 2020-07-29 참치 선박·관련 장비, 치아파스 가공장과 Nair 권리를 판다고 공시했다. 매수자와 대금은 그 공시에 없다. Procesa는 이후 회사 발표에서 공장과 선단 일부 등을 인수했다고 밝혔다. 두 문서를 이어도 자산별 계약 가격은 나타나지 않는다.",
+     "ord": 1874
+    },
+    {
+     "kind": "para",
+     "text": "KUO 2022 BMV 연차가 2020년 참치 사업 처분의 현금흐름 효과로 적은 570,1 백만 MXN은 합작사업을 50 % 비례연결한 pro forma 수치다. 개별 자산의 매각 대금이 아니다. Procesa가 밝힌 Puerto Chiapas 투자액도 여러 사업을 포괄하며 Herdez 거래의 가격표가 되지 않는다.",
+     "ord": 2039
+    },
+    {
+     "kind": "para",
+     "text": "KUO의 2019 연차는 옛 Herdez 치아파스 공장의 설비 용량을 참치·어유·단백분을 합친 22.240 t로 적었다. 매각 전 복합 공장의 명세다. 현재 Procesa가 운영하는 시설별 면적·라인 수·용수 허가·명판능력을 그 수치에서 나눠 낼 수 없다.",
+     "ord": 2233
+    },
+    {
+     "kind": "para",
+     "text": "Procesa 경영진은 2021-09 행사에서 연 2만 t 생산을 말했다. 그 발언은 회사의 생산 설명이지 현재 시설 하나의 공식 설비 용량표가 아니다. 항만공사가 공장 능력 확대를 언급한 뒤에도 증설 구역의 면적, 취수량, 방류 조건을 한 시설명 아래 제시한 공개 문서는 없다. EU 승인 공장, DENUE 사업장, 옛 Herdez 공장을 같은 건물로 묶는 도면도 공개되지 않는다.",
+     "ord": 2393
+    },
+    {
+     "kind": "para",
+     "text": "IATTC는 Arkos I Chiapas가 2025-02-21 침몰했다고 적는다. SEMAR 설명을 인용한 보도에는 화재와 구조가 나온다. 이 기록들만으로는 화재의 발단, 침몰 지점, 이후 조사 결론을 알 수 없다. 구조에 나선 해군 함정 Nair는 선망선 Nair나 NAIR 상표와 이름만 같다.",
+     "ord": 2624
+    },
+    {
+     "kind": "para",
+     "text": "정부 펀드 FOCIR의 지분 출자 보도와 CONAPESCA의 디젤 보조금 수혜 명단은 다른 종류의 자료다. 출자 보도는 투자자 지분을 말하고, 수혜 명단은 선박이나 사업자가 지원을 받았는지를 가린다. CONAPESCA 디젤 수혜 명단(공개 CSV)은 접속이 차단돼(Akamai 403) Procesa와 두 선단 법인의 수혜 여부가 확인되지 않는다.",
+     "ord": 2801
+    },
+    {
+     "kind": "para",
+     "text": "2023~2025년(2025년 자료는 일부 기간) CompraNet 원본 범위에는 Procesa 명의 계약이 없다. 이 기록만으로 2020~2022년 계약 여부를 알 수 없다. 계약액 자체도 물품 납품액이나 회사 매출액과 같은 수치가 아니다.",
+     "ord": 3006
+    },
+    {
+     "kind": "para",
+     "text": "비상장인 Procesa의 매출·이익·자산은 공개 문서에 나오지 않는다. 회사가 말한 전국 순위에는 매출 분모가 붙어 있지 않고, 과거 정부 조달 계약액에도 실제 인식 매출이 적혀 있지 않다. Endeavor 기업가 프로필의 매출 구간과 IGNIA 포트폴리오 임팩트 보고서가 매출 규모를 가릴 다음 경로다.",
+     "ord": 3152
+    }
+   ],
+   "stage": "c08"
+  }
+ ]
+}

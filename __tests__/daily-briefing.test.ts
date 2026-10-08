@@ -14,7 +14,7 @@ import { spawnSync } from 'node:child_process';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it } from 'vitest';
 import MarketDashboard from '../components/MarketDashboard';
-import { dailyBriefing, buildDailyBriefingTakeaways } from '../lib/data/daily-briefing';
+import { dailyBriefing, weeklyBriefing, buildDailyBriefingTakeaways } from '../lib/data/daily-briefing';
 
 const fixture = join(
   process.cwd(),
@@ -108,13 +108,22 @@ describe('daily tuna briefing widget', () => {
   // 데이터는 매일 sync로 갱신된다 — 특정 날짜의 문구를 고정하지 말고
   // lib/data/daily-briefing.ts 가 노출하는 현재 데이터에서 기대값을 유도한다.
   // 2026-08-17 r5-A 채택: 신문 1면형(NewsFrontPage)이 데일리 브리핑 위젯을 대체
-  it('renders the front-page news with date line and lead headline on the market dashboard', () => {
+  it('renders the front-page news with the week range and lead headline on the market dashboard', () => {
     const markup = renderToStaticMarkup(React.createElement(MarketDashboard));
-    const displayDate = dailyBriefing.date.replaceAll('-', '.');
+    const md = (iso: string) => iso.slice(5).replace('-', '/');
+    const total = weeklyBriefing.days.reduce((n, d) => n + d.articles.length, 0);
+    // 2026-10-08: 하루치 → 주간(월~금 탭). 제호·메타가 바뀌었고 기준일 한 줄은 없어졌다.
+    const latest = weeklyBriefing.days[weeklyBriefing.days.length - 1];
 
-    expect(markup).toContain('오늘의 참치 뉴스');
-    expect(markup).toContain(`기준일 ${displayDate}`);
-    expect(markup).toContain(escapeHtml(dailyBriefing.articles[0].titleKo));
+    expect(markup).toContain('이번주 참치 뉴스');
+    expect(markup).toContain(`${md(weeklyBriefing.weekStart)}~${md(weeklyBriefing.weekEnd)}`);
+    expect(markup).toContain(`기사 ${total}건`);
+    // 기본 선택 = 가장 최신 날짜. 그 날의 리드가 보인다.
+    expect(markup).toContain(escapeHtml(latest.articles[0].titleKo));
+    // 기사 없는 요일은 탭 자체가 없다 — days 에 있는 날짜만 탭으로 뜬다.
+    for (const day of weeklyBriefing.days) {
+      expect(markup).toContain(md(day.date));
+    }
     expect(markup).not.toContain('저가 수요는 견고하지만 관세 부담은 공급망 안에서 재배분');
     expect(markup).not.toContain('태국 원어 수요 둔화와 연승선 투명성 요구를 동시에 관리');
   });

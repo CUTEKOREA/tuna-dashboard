@@ -196,8 +196,11 @@ export default function RootLayout({
               gtag('config', 'G-YYK3VGG39D');`,
           }}
         />
-        {/* Microsoft Clarity */}
-        <script
+        {/* Microsoft Clarity — 스니펫이 첫 <script> 앞에 태그를 끼워 넣어 hydration 전에 <head> 를 바꾼다.
+            next/script afterInteractive 로 hydration 뒤에 돌린다(2026-09-11, 오징어·시장 화면 hydration 경고). */}
+        <Script
+          id="ms-clarity"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -211,9 +214,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* AdSense */}
-        <script
+        {/* AdSense — 자동 광고 로더가 <head> 에 show_ads 스크립트를 끼워 넣는다. 같은 이유로 hydration 뒤에 싣는다. */}
+        <Script
+          id="adsense"
           async
+          strategy="afterInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8056702374530895"
           crossOrigin="anonymous"
         />

@@ -6,6 +6,7 @@ import liquidityRaw from '@/public/data/panofi/panofi_liquidity.json';
 import mirrorRaw from '@/public/data/panofi/ghana_tuna_mirror.json';
 import fsRaw from '@/public/data/panofi/panofi_fs_2025.json';
 import { fleetDailyPublicLatest, fleetDailyPublicDeltas } from '@/lib/data/fleet-daily-public';
+import { atlanticMails, mailMonthDay } from '@/lib/data/panofi-atlantic-mail';
 
 /**
  * 파노피(가나 참치 선망) 데이터 인테이크.
@@ -14,7 +15,7 @@ import { fleetDailyPublicLatest, fleetDailyPublicDeltas } from '@/lib/data/fleet
  * 이 모듈이 내보내는 파생 시리즈만 쓰고 원본 JSON 을 직접 import 하지 않는다.
  *
  * 원자료 2종:
- *  - panofi_weekly.json  : 주간동향 docx 31주 기계 추출 (scripts/extract_panofi.py)
+ *  - panofi_weekly.json  : 주간동향 docx 전주차 기계 추출 (scripts/extract_panofi.py)
  *  - panofi_profile.json : 전략보고·3개사 보고·외부 조사 수작업 정리 (근거등급 포함)
  */
 
@@ -36,7 +37,55 @@ export const profile = profileRaw;
 export const latest = weeks[weeks.length - 1];
 export const previous = weeks.length > 1 ? weeks[weeks.length - 2] : undefined;
 
-/** 주간 라벨은 '8/11' 처럼 월/일로 쓴다. 31주가 한 축에 들어가야 하므로 짧아야 한다. */
+/** 테마 두 채널의 격차. **같은 월 기준일 때만** 뺀다.
+ *
+ * 37주 내내 PFC·코스모는 같은 월 어가였는데 2026-09-08 에 처음 갈렸다 - PFC 는 9월
+ * $1,900 으로 확정됐고 코스모는 8월 $1,700 을 그대로 둔 채 9월 협의 중이다. 이걸 그냥
+ * 빼면 «PFC 가 $200 비싸다»가 되는데, 코스모의 9월 값은 아직 존재하지 않는다.
+ * 비교가 성립하지 않는 주는 숫자를 만들지 않고 null 을 낸다. */
+/** 프로필 `pfcDominance.measured` 는 손으로 적은 고정 창 실측이다. 창의 끝은
+ *  `currentPrices.asOf`. 그런데 그 뒤 NFD 파일명 탓에 빠져 있던 3주(0106·0127·0728)가
+ *  복원돼 같은 날짜 창의 실제 주차 수가 31 → 34 로 늘었고, 프로필의 SCODI 변동 23회는
+ *  복원 전 숫자라 3회 적다. 화면에 내보내는 카운트는 데이터에서 다시 센다 -
+ *  손으로 적은 값은 판정 서술의 근거로만 남긴다. */
+export const priceWindow = (() => {
+  const end = profile.pfcDominance.measured.currentPrices.asOf;
+  const rows = weeks.filter((w) => w.reportDate <= end);
+  const countChanges = (pick: (w: PanofiWeek) => number | null): number => {
+    let count = 0;
+    let prev: number | null = null;
+    for (const w of rows) {
+      const v = pick(w);
+      if (v !== null && prev !== null && v !== prev) count += 1;
+      if (v !== null) prev = v;
+    }
+    return count;
+  };
+  return {
+    end,
+    weekCount: rows.length,
+    changes: {
+      PFC: countChanges((w) => w.prices.pfcTema),
+      코스모: countChanges((w) => w.prices.cosmoTema),
+      SCODI: countChanges((w) => w.prices.scodiAbidjan),
+    },
+  };
+})();
+
+export const temaGap = (() => {
+  const { pfcTema, cosmoTema, pfcTemaMonth, cosmoTemaMonth, temaUnderNegotiation } = latest.prices;
+  const sameMonth = pfcTemaMonth != null && cosmoTemaMonth != null && pfcTemaMonth === cosmoTemaMonth;
+  const comparable = sameMonth && pfcTema != null && cosmoTema != null;
+  return {
+    usdPerT: comparable ? pfcTema - cosmoTema : null,
+    comparable,
+    pfcMonth: pfcTemaMonth,
+    cosmoMonth: cosmoTemaMonth,
+    underNegotiation: temaUnderNegotiation === true,
+  };
+})();
+
+/** 주간 라벨은 '8/11' 처럼 월/일로 쓴다. 전 주차가 한 축에 들어가야 하므로 짧아야 한다. */
 function shortLabel(iso: string): string {
   const [, m, d] = iso.split('-');
   return `${Number(m)}/${Number(d)}`;
@@ -77,6 +126,36 @@ export const receivableSeries: Point[] = weeks.map((w) => ({
   label: shortLabel(w.reportDate),
   미수금: w.receivables.totalUsd === null ? null : Math.round(w.receivables.totalUsd / 1000),
 }));
+
+/**
+ * 아비장 미수금 현황 — 최신 주간동향 실측에서 파생한다.
+ *
+ * 전략보고(profile)의 스냅샷(3,052천불·2026-07 기준)을 화면에 그대로 쓰던 때가 있었는데,
+ * 바로 아래 시계열은 주간동향을 따라가 2026-09-22 에 5,284천불을 찍었다 — 같은 화면에서
+ * 카드와 차트가 어긋났다. 정점과 회수 기간은 전략보고 값을 그대로 두고, 현재 잔액과 정점 대비
+ * 증감만 계열에서 다시 센다.
+ */
+export const receivableNow = (() => {
+  const dated = weeks.filter((w) => w.receivables.totalUsd !== null);
+  const last = dated[dated.length - 1];
+  const currentKusd = last ? Math.round(last.receivables.totalUsd! / 1000) : profile.receivables.abidjanKusd;
+  const peakKusd = Math.max(
+    profile.receivables.abidjanPeakKusd,
+    ...dated.map((w) => Math.round(w.receivables.totalUsd! / 1000)),
+  );
+  const prev = dated[dated.length - 2];
+  return {
+    asOf: last?.reportDate ?? null,
+    currentKusd,
+    peakKusd,
+    /** 직전 주간동향 대비 증감(천불, 음수 = 회수). 직전 주가 없으면 null */
+    weekDeltaKusd: prev ? currentKusd - Math.round(prev.receivables.totalUsd! / 1000) : null,
+    prevAsOf: prev?.reportDate ?? null,
+    /** 정점 대비 증감(음수 = 회수) */
+    sincePeakKusd: currentKusd - peakKusd,
+    recoveryPeriod: profile.receivables.recoveryPeriod,
+  };
+})();
 
 /** 가공사별 일일 처리량(톤). 파노피 어획을 실제로 받아주는 하류 용량이다. */
 export const processingSeries: Point[] = weeks.map((w) => ({
@@ -371,6 +450,25 @@ export const ytd = (() => {
   };
 })();
 
+/**
+ * 채널별 어가가 원장 손익분기를 넘은 주. 분기점이 원장 판마다 바뀌므로(7월판 1,558 → 8월판 1,445)
+ * «언제부터 넘었나»는 문장에 박지 않고 여기서 센다.
+ */
+export const bepChannelCross = (() => {
+  const channels = [
+    ['코스모', '코스모'], ['PFC', 'PFC'], ['SCODI', 'SCODI'],
+    ['아비장로컬', '아비장 로컬'], ['테마로컬', '테마 로컬'],
+  ] as const;
+  const rows = channels
+    .map(([key, name]) => {
+      const above = priceSeries.filter((p) => typeof p[key] === 'number' && (p[key] as number) > ytd.ledgerBepUsdPerT);
+      return { name, weeksAbove: above.length, firstLabel: above[0]?.label ?? null, firstDate: above[0]?.date ?? null };
+    })
+    .filter((r) => r.weeksAbove > 0)
+    .sort((a, b) => String(a.firstDate).localeCompare(String(b.firstDate)));
+  return { bep: ytd.ledgerBepUsdPerT, weekCount: priceSeries.length, rows };
+})();
+
 /** 연도별 실적(백만불). 2026 은 원장 누계이며 축 라벨에 기간을 박는다. */
 export const annualSeries = [
   ...strategyAnnual.map((a) => ({
@@ -514,6 +612,10 @@ export const liquidityBridge = (() => {
   if (!first || !last) return null;
   const d = (k: '현금' | '매출채권' | '매입채무' | '과부족') =>
     first[k] === null || last[k] === null ? null : Math.round(last[k]! - first[k]!);
+  // 직전 기준일 대비 — 연초 대비 방향과 최근 한 달 방향이 다를 수 있다(8/31: 연초 대비 악화, 한 달 개선).
+  const prev = rows[rows.length - 2] ?? null;
+  const step = (k: '현금' | '매출채권' | '매입채무' | '과부족') =>
+    !prev || prev[k] === null || last[k] === null ? null : Math.round(last[k]! - prev[k]!);
   return {
     from: first.asOf,
     to: last.asOf,
@@ -523,6 +625,8 @@ export const liquidityBridge = (() => {
     과부족: d('과부족'),
     startShortfall: first.과부족,
     endShortfall: last.과부족,
+    prevAsOf: prev?.asOf ?? null,
+    step: { 현금: step('현금'), 매출채권: step('매출채권'), 매입채무: step('매입채무'), 과부족: step('과부족') },
   };
 })();
 
@@ -654,3 +758,48 @@ export const dataQuality = {
   sources: profile.meta.sources,
   grades: profile.meta.grades,
 };
+
+/* ------------------------------------------------------ 주말 메일 대조 */
+
+/** «8/29» → 2026-08-29. 메일·주간동향 모두 연도를 적지 않는다. */
+const isoOf = (monthDay: string) => {
+  const [m, d] = monthDay.split('/').map(Number);
+  return `2026-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+};
+
+/** 일 가공량 비교 — 같은 주의 주간동향(화요일자)과 주말 메일. */
+export const mailProcessingVsWeekly = atlanticMails.map((mail) => {
+  const weekly = weeks.find((w) => w.reportDate === mail.weeklyPair) ?? null;
+  return {
+    mailLabel: mailMonthDay(mail.date),
+    weeklyLabel: mailMonthDay(mail.weeklyPair),
+    cosmoMail: mail.cosmo.dailyProcessingT,
+    cosmoWeekly: weekly?.dailyProcessing.COSMO ?? null,
+    scasaMail: mail.scasa.dailyProcessingT,
+    scasaWeekly: weekly?.dailyProcessing.SCASA ?? null,
+    pfcMailNote: mail.pfc.note,
+    pfcWeekly: weekly?.dailyProcessing.PFC ?? null,
+  };
+});
+
+/**
+ * 메일에서 «아직 출항 전»인 배를, 메일 직후 주간동향이 메일 날짜보다 앞선 날 이미 출항했다고 적은 경우.
+ * 같은 날 출항은 어긋남으로 보지 않는다(메일이 오전에 쓰였을 수 있다).
+ */
+export const mailDepartureConflicts = atlanticMails.flatMap((mail) => {
+  const next = weeks.find((w) => w.reportDate > mail.date);
+  if (!next) return [];
+  return mail.senegalCalls.flatMap((call) => {
+    if (call.depart) return [];
+    const row = next.senegalFleet.find((r) => r.vessel === call.vessel);
+    if (!row || !/^\d{1,2}\/\d{1,2}$/.test(row.depart ?? '')) return [];
+    if (isoOf(row.depart!) >= mail.date) return [];
+    return [{
+      vessel: call.vessel,
+      mailLabel: mailMonthDay(mail.date),
+      mailStatus: call.status,
+      weeklyLabel: mailMonthDay(next.reportDate),
+      weeklyDepart: row.depart!,
+    }];
+  });
+});

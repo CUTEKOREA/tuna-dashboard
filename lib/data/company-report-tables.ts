@@ -1,10 +1,64 @@
 import albacoraRaw from '@/public/data/companies/albacora_tables_v1.json';
 import boltonRaw from '@/public/data/companies/bolton_tables_v1.json';
 import fcfRaw from '@/public/data/companies/fcf_tables_v1.json';
+import frabelleRaw from '@/public/data/companies/frabelle_tables_v1.json';
 import frinsaRaw from '@/public/data/companies/frinsa_tables_v1.json';
 import itochuRaw from '@/public/data/companies/itochu_tables_v1.json';
 import jaisRaw from '@/public/data/companies/jais_tables_v1.json';
+import jealsaRaw from '@/public/data/companies/jealsa_tables_v1.json';
 import thaiunionRaw from '@/public/data/companies/thaiunion_tables_v1.json';
+import nauterraRaw from '@/public/data/companies/nauterra_tables_v1.json';
+import starkistRaw from '@/public/data/companies/starkist_tables_v1.json';
+import dongwonRaw from '@/public/data/companies/dongwon_tables_v1.json';
+import sajoRaw from '@/public/data/companies/sajo_tables_v1.json';
+import bumblebeeRaw from '@/public/data/companies/bumblebee_tables_v1.json';
+import umiosRaw from '@/public/data/companies/umios_tables_v1.json';
+import kyokuyoRaw from '@/public/data/companies/kyokuyo_tables_v1.json';
+import seavalueRaw from '@/public/data/companies/seavalue_tables_v1.json';
+import nissuiRaw from '@/public/data/companies/nissui_tables_v1.json';
+import centurypacificRaw from '@/public/data/companies/centurypacific_tables_v1.json';
+import boltonfoodRaw from '@/public/data/companies/boltonfood_tables_v1.json';
+import trimarineRaw from '@/public/data/companies/trimarine_tables_v1.json';
+import princesRaw from '@/public/data/companies/princes_tables_v1.json';
+import iotRaw from '@/public/data/companies/iot_tables_v1.json';
+import atiRaw from '@/public/data/companies/ati_tables_v1.json';
+import nirsaRaw from '@/public/data/companies/nirsa_tables_v1.json';
+import eurofishRaw from '@/public/data/companies/eurofish_tables_v1.json';
+import tecopescaRaw from '@/public/data/companies/tecopesca_tables_v1.json';
+import dongwonfnbRaw from '@/public/data/companies/dongwonfnb_tables_v1.json';
+import hagoromoRaw from '@/public/data/companies/hagoromo_tables_v1.json';
+import cnfcRaw from '@/public/data/companies/cnfc_tables_v1.json';
+import kaichuangRaw from '@/public/data/companies/kaichuang_tables_v1.json';
+import allianceRaw from '@/public/data/companies/alliance_tables_v1.json';
+import herdezRaw from '@/public/data/companies/herdez_tables_v1.json';
+import sajoseafoodRaw from '@/public/data/companies/sajoseafood_tables_v1.json';
+import garavillaRaw from '@/public/data/companies/garavilla_tables_v1.json';
+import salicaRaw from '@/public/data/companies/salica_tables_v1.json';
+import majesticRaw from '@/public/data/companies/majestic_tables_v1.json';
+import scaRaw from '@/public/data/companies/sca_tables_v1.json';
+import ghanaRaw from '@/public/data/companies/ghana_tables_v1.json';
+import azoresRaw from '@/public/data/companies/azores_tables_v1.json';
+import togRaw from '@/public/data/companies/tog_tables_v1.json';
+import mauritiusRaw from '@/public/data/companies/mauritius_tables_v1.json';
+import galapescaRaw from '@/public/data/companies/galapesca_tables_v1.json';
+import cosiRaw from '@/public/data/companies/cosi_tables_v1.json';
+import kingfisherRaw from '@/public/data/companies/kingfisher_tables_v1.json';
+import capsenRaw from '@/public/data/companies/capsen_tables_v1.json';
+import bountyRaw from '@/public/data/companies/bounty_tables_v1.json';
+import rdRaw from '@/public/data/companies/rd_tables_v1.json';
+import soltunaRaw from '@/public/data/companies/soltuna_tables_v1.json';
+import pafcoRaw from '@/public/data/companies/pafco_tables_v1.json';
+import pinsaRaw from '@/public/data/companies/pinsa_tables_v1.json';
+import sstcRaw from '@/public/data/companies/sstc_tables_v1.json';
+import grupomarRaw from '@/public/data/companies/grupomar_tables_v1.json';
+import procesaRaw from '@/public/data/companies/procesa_tables_v1.json';
+import tropicalRaw from '@/public/data/companies/tropical_tables_v1.json';
+import seatechRaw from '@/public/data/companies/seatech_tables_v1.json';
+import ppfRaw from '@/public/data/companies/ppf_tables_v1.json';
+import inepacaRaw from '@/public/data/companies/inepaca_tables_v1.json';
+import kflRaw from '@/public/data/companies/kfl_tables_v1.json';
+import sapmerRaw from '@/public/data/companies/sapmer_tables_v1.json';
+import patayaRaw from '@/public/data/companies/pataya_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -19,6 +73,8 @@ import thaiunionRaw from '@/public/data/companies/thaiunion_tables_v1.json';
  */
 
 export interface ReportTable {
+  /** 절 본문 안의 문자 오프셋. 원문 자리에 되돌릴 때 쓴다. */
+  ord: number;
   /** 표 바로 앞 소제목. 없으면 헤더 서명으로 대신한다. */
   title: string;
   head: string[];
@@ -50,6 +106,60 @@ const INTAKES: Record<string, Intake> = {
   itochu: itochuRaw as unknown as Intake,
   bolton: boltonRaw as unknown as Intake,
   jais: jaisRaw as unknown as Intake,
+  frabelle: frabelleRaw as unknown as Intake,
+  jealsa: jealsaRaw as unknown as Intake,
+  nauterra: nauterraRaw as unknown as Intake,
+  starkist: starkistRaw as unknown as Intake,
+  dongwon: dongwonRaw as unknown as Intake,
+  sajo: sajoRaw as unknown as Intake,
+  bumblebee: bumblebeeRaw as unknown as Intake,
+  umios: umiosRaw as unknown as Intake,
+  kyokuyo: kyokuyoRaw as unknown as Intake,
+  seavalue: seavalueRaw as unknown as Intake,
+  nissui: nissuiRaw as unknown as Intake,
+  centurypacific: centurypacificRaw as unknown as Intake,
+  boltonfood: boltonfoodRaw as unknown as Intake,
+  trimarine: trimarineRaw as unknown as Intake,
+  princes: princesRaw as unknown as Intake,
+  iot: iotRaw as unknown as Intake,
+  ati: atiRaw as unknown as Intake,
+  nirsa: nirsaRaw as unknown as Intake,
+  eurofish: eurofishRaw as unknown as Intake,
+  tecopesca: tecopescaRaw as unknown as Intake,
+  dongwonfnb: dongwonfnbRaw as unknown as Intake,
+  hagoromo: hagoromoRaw as unknown as Intake,
+  cnfc: cnfcRaw as unknown as Intake,
+  kaichuang: kaichuangRaw as unknown as Intake,
+  alliance: allianceRaw as unknown as Intake,
+  herdez: herdezRaw as unknown as Intake,
+  sajoseafood: sajoseafoodRaw as unknown as Intake,
+  garavilla: garavillaRaw as unknown as Intake,
+  salica: salicaRaw as unknown as Intake,
+  majestic: majesticRaw as unknown as Intake,
+  sca: scaRaw as unknown as Intake,
+  ghana: ghanaRaw as unknown as Intake,
+  azores: azoresRaw as unknown as Intake,
+  tog: togRaw as unknown as Intake,
+  mauritius: mauritiusRaw as unknown as Intake,
+  galapesca: galapescaRaw as unknown as Intake,
+  cosi: cosiRaw as unknown as Intake,
+  kingfisher: kingfisherRaw as unknown as Intake,
+  capsen: capsenRaw as unknown as Intake,
+  bounty: bountyRaw as unknown as Intake,
+  rd: rdRaw as unknown as Intake,
+  soltuna: soltunaRaw as unknown as Intake,
+  pafco: pafcoRaw as unknown as Intake,
+  pinsa: pinsaRaw as unknown as Intake,
+  sstc: sstcRaw as unknown as Intake,
+  grupomar: grupomarRaw as unknown as Intake,
+  procesa: procesaRaw as unknown as Intake,
+  tropical: tropicalRaw as unknown as Intake,
+  seatech: seatechRaw as unknown as Intake,
+  ppf: ppfRaw as unknown as Intake,
+  inepaca: inepacaRaw as unknown as Intake,
+  kfl: kflRaw as unknown as Intake,
+  sapmer: sapmerRaw as unknown as Intake,
+  pataya: patayaRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

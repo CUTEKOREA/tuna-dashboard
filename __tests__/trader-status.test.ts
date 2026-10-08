@@ -4,7 +4,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import TraderStatus, { traderFullPeriod } from '@/components/TraderStatus';
-import { HUB_ID } from '@/lib/chart-palette';
+import { SERIES, TRADER_ID } from '@/lib/chart-palette';
 import {
   BANGKOK_TRADERS,
   TRADER_LABELS,
@@ -32,10 +32,11 @@ describe('트레이더별 반입 위젯', () => {
 
   it('트레이더 색이 선단 DB 정체성 겹에서 온다', () => {
     const source = readFileSync(join(process.cwd(), 'components/TraderStatus.tsx'), 'utf8');
-    expect(source).toContain('HUB_ID.bkk');
-    expect(source).toContain('HUB_ID.mnt');
+    // 물류·방콕이 같은 트레이더 집(TRADER_ID)을 쓴다 — 같은 이름 같은 색
+    expect(source).toContain('TRADER_ID.FCF');
+    expect(source).toContain('TRADER_ID.DIRECT');
     expect(source).not.toContain('#509ee3');
-    expect(Object.values(HUB_ID)).toContain('#3b82f6');
+    expect(Object.values(TRADER_ID)).toContain(SERIES[0]);
   });
 
   it('2026 누계와 기존 2026-08-05 검산값의 차이를 감춘 채 두지 않는다', () => {

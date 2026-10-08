@@ -31,6 +31,7 @@ class Table:
     heading: str = ""
     note: str = ""
     sid: str = ""
+    ord: int = 0       # 절 본문 안의 문자 오프셋. 서술과 섞어 원문 순서로 되돌릴 때 쓴다.
 
     def title(self) -> str:
         """화면에 낼 제목. 표 바로 앞 소제목이 있으면 그것, 없으면 헤더 서명."""
@@ -44,6 +45,7 @@ class Table:
             "rows": self.rows,
             "sid": self.sid,
             "section": self.section,
+            "ord": self.ord,
             **({"caption": self.caption} if self.caption else {}),
             **({"note": self.note} if self.note else {}),
         }
@@ -158,7 +160,7 @@ def parse(doc: str) -> list[Table]:
             rows = [r for r in _grid(trs[1:], len(head)) if any(c for c in r)]
             cap = re.search(r"<caption[^>]*>(.*?)</caption>", block, re.S)
             out.append(Table(head=head, rows=rows, num=num, sid=sid, section=title,
-                             heading=heading, note=note,
+                             heading=heading, note=note, ord=t.start(),
                              caption=_cell(cap.group(1)) if cap else ""))
     return out
 

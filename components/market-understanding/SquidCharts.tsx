@@ -26,7 +26,7 @@ import {
   YAxis,
 } from 'recharts';
 
-import { CHART_RANK, HUB_ID, shareColor } from '@/lib/chart-palette';
+import { CHART_RANK, CHART_ROLE, SERIES, SERIES_OTHER } from '@/lib/chart-palette';
 import { getSmartRotation, truncateXAxis } from '@/lib/chart-standards';
 import {
   companiesByMonth,
@@ -56,9 +56,10 @@ import {
   SQUID_ROLE,
   colorForBasket,
   colorForSeries,
-  colorForSpecies,
+  colorForSpeciesGroup,
   dashForSeries,
 } from '@/lib/squid-chart-colors';
+import type { PeruImportRow } from '@/lib/data/squid-peru-supply';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -267,7 +268,7 @@ export function SpeciesMixChart({ data }: { data: SquidCatchData }) {
         <Tooltip content={<Tip unit=" 톤" />} />
         <Bar dataKey="어획량" name="어획량 (톤)" radius={[3, 3, 0, 0]} isAnimationActive={animate}>
           {rows.map((row, index) => (
-            <Cell key={index} fill={colorForSpecies(row.어종)} />
+            <Cell key={index} fill={colorForSpeciesGroup(row.어종)} />
           ))}
         </Bar>
       </BarChart>
@@ -600,7 +601,7 @@ export function KoreaSpeciesChart({ data }: { data: SquidCatchData }) {
           {rows.map((row, index) => (
             <Cell
               key={index}
-              fill={colorForSpecies(row.어종)}
+              fill={row.어종 === '살오징어' ? SQUID_ROLE.volume : SERIES_OTHER}
             />
           ))}
         </Bar>
@@ -619,11 +620,7 @@ export function ImportFormChart({ data }: { data: SquidTradeData }) {
         <XAxis type="number" {...AXIS} tickFormatter={(v: number) => `${Math.round(v / 1000)}천`} />
         <YAxis type="category" dataKey="구분" {...AXIS} width={70} />
         <Tooltip content={<Tip unit=" 톤" />} />
-        <Bar dataKey="수입량" name="수입량 (톤)" radius={[0, 3, 3, 0]} isAnimationActive={animate}>
-          {data.품목단계.map((row, index) => (
-            <Cell key={index} fill={shareColor(index)} />
-          ))}
-        </Bar>
+        <Bar dataKey="수입량" name="수입량 (톤)" radius={[0, 3, 3, 0]} isAnimationActive={animate} fill={CHART_RANK} />
       </BarChart>
     </SafeResponsiveContainer>
   );
@@ -955,7 +952,7 @@ export function OceanJiggerChart({ data }: { data: SquidOceanFleetData }) {
           type="monotone"
           dataKey="평균톤수"
           name="척당 평균 톤수 (톤)"
-          stroke={CHART_RANK}
+          stroke={CHART_ROLE.second}
           strokeWidth={2.4}
           dot={{ r: 4 }}
           isAnimationActive={animate}
@@ -980,9 +977,9 @@ export function SquidYearbookPriceChart({ rows }: {
           tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
         <Tooltip formatter={(value) => [`${Number(value ?? 0).toLocaleString()} 원/kg`, '']} />
         <Legend wrapperStyle={{ fontSize: 11 }} />
-        <Line type="monotone" dataKey="남서대서양" name="남서대서양 (원/kg)" stroke={HUB_ID.bkk} strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
-        <Line type="monotone" dataKey="뉴질랜드" name="뉴질랜드 (원/kg)" stroke={HUB_ID.mnt} strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
-        <Line type="monotone" dataKey="페루" name="페루 (원/kg)" stroke={HUB_ID.sey} strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
+        <Line type="monotone" dataKey="남서대서양" name="남서대서양 (원/kg)" stroke={SERIES[0]} strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
+        <Line type="monotone" dataKey="뉴질랜드" name="뉴질랜드 (원/kg)" stroke={SERIES[1]} strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
+        <Line type="monotone" dataKey="페루" name="페루 (원/kg)" stroke={SERIES[2]} strokeWidth={2} dot={{ r: 2 }} connectNulls={false} />
       </LineChart>
     </SafeResponsiveContainer>
   );
@@ -1052,7 +1049,7 @@ export function SquidAreaChart({ year }: { year: string }) {
         <Bar dataKey="생산량" name="생산량 (톤)" isAnimationActive={animate}>
           {rows.map((r) => (
             // 동남부가 SPRFMO 수역이다 — 다른 자료와 맞대는 칸이라 따로 짚는다.
-            <Cell key={r.해역} fill={r.해역 === '동남부' ? SQUID_ROLE.highlight : CHART_RANK} />
+            <Cell key={r.해역} fill={r.해역 === '동남부' ? SQUID_ROLE.highlight : SQUID_ROLE.volume} />
           ))}
         </Bar>
       </ComposedChart>
@@ -1126,7 +1123,7 @@ export function FalklandVesselChart() {
               return (
                 <Cell
                   key={`${row.name}-${row.company}`}
-                  fill={focus ? SQUID_ROLE.highlight : CHART_RANK}
+                  fill={focus ? SQUID_ROLE.highlight : SQUID_ROLE.volume}
                   fillOpacity={focus ? 1 : 0.38}
                   stroke={focus ? SQUID_ROLE.highlight : undefined}
                   strokeWidth={focus ? 1.2 : 0}
@@ -1138,7 +1135,7 @@ export function FalklandVesselChart() {
         </ComposedChart>
       </SafeResponsiveContainer>
       <p className={styles.catchSourceLine}>
-        진한 장미색과 위 칩이 선민수산·현원수산이다. 108은해는 선민 실적과 현원 0판이 따로 있어 축에 회사를 붙였다.
+        주황 막대와 위 칩이 선민수산·현원수산이다. 108은해는 선민 실적과 현원 0판이 따로 있어 축에 회사를 붙였다.
       </p>
     </>
   );
@@ -1197,7 +1194,7 @@ export function FalklandCompanyChart() {
             type="monotone"
             dataKey="vessels"
             name="보유 척수 (척)"
-            stroke={CHART_RANK}
+            stroke={CHART_ROLE.second}
             strokeWidth={2}
             dot={{ r: 3 }}
             isAnimationActive={animate}
@@ -1205,7 +1202,7 @@ export function FalklandCompanyChart() {
         </ComposedChart>
       </SafeResponsiveContainer>
       <p className={styles.catchSourceLine}>
-        진한 장미색과 위 칩이 선민수산·현원수산이다. 현원수산은 0판이라 막대가 없어도 칩·축·「0판」표기에 남아 있다.
+        주황 막대와 위 칩이 선민수산·현원수산이다. 현원수산은 0판이라 막대가 없어도 칩·축·「0판」표기에 남아 있다.
       </p>
     </>
   );
@@ -1239,10 +1236,39 @@ export function FalklandSeasonChart() {
           {rows.map((row) => (
             <Cell
               key={row.월}
-              fill={month !== 'all' && row.월 === selectedLabel ? SQUID_ROLE.highlight : CHART_RANK}
+              fill={month !== 'all' && row.월 === selectedLabel ? SQUID_ROLE.highlight : SQUID_ROLE.volume}
             />
           ))}
         </Bar>
+      </ComposedChart>
+    </SafeResponsiveContainer>
+  );
+}
+
+/** 페루산 오징어 수입 — 냉동 원물과 조제품을 쌓고, 선은 kg당 단가다. */
+export function PeruImportChart({ rows }: { rows: PeruImportRow[] }) {
+  const animate = useAnim();
+  return (
+    <SafeResponsiveContainer width="100%" height={300}>
+      <ComposedChart data={rows} margin={MARGIN}>
+        {grid}
+        <XAxis dataKey="연도" {...AXIS} />
+        <YAxis yAxisId="left" {...AXIS} tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}천`} />
+        <YAxis yAxisId="right" orientation="right" {...AXIS} tickFormatter={(v: number) => v.toFixed(1)} />
+        <Tooltip content={<Tip />} />
+        {legend}
+        <Bar yAxisId="left" dataKey="냉동_톤" name="냉동 원물 (톤)" stackId="peru" fill={SQUID_ROLE.volume} isAnimationActive={animate} />
+        <Bar yAxisId="left" dataKey="조제_톤" name="조제품 (톤)" stackId="peru" fill={SQUID_ROLE.processed} radius={[3, 3, 0, 0]} isAnimationActive={animate} />
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="단가_usd_kg"
+          name="단가 (달러/kg)"
+          stroke={CHART_RANK}
+          strokeWidth={2.4}
+          dot={{ r: 3 }}
+          isAnimationActive={animate}
+        />
       </ComposedChart>
     </SafeResponsiveContainer>
   );

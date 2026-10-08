@@ -17,7 +17,9 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
 import { ChartPatternDefs } from './ChartPatterns';
 import { purseSeineCatch } from '@/lib/fleet-operations-2026-08-23';
-import { CHART_RANK, shareColor } from '@/lib/chart-palette';
+import { fleetDailyPublicSeries } from '@/lib/data/fleet-daily-public';
+import { FLEET_IDLE_NOTES, FLEET_IDLE_THRESHOLD_DAYS, resolveFleetIdleVessels } from '@/lib/fleet-idle-vessels';
+import { CHART_RANK, SERIES, shareColor } from '@/lib/chart-palette';
 
 const subscribeClientReady = () => () => {};
 const getClientReadySnapshot = () => true;
@@ -245,3 +247,198 @@ export function CumulativeChart() {
 
 // Ensure the helper object handles exporting the table correctly
 export const CumulativeTableData = cumulativeData;
+
+/* 일간 어획 추이 — 해역 합계가 기본이고, 옵션으로 선박별 라인을 편다.
+ * 합계는 보고 헤더의 일간 어획량, 선박별은 상세 행의 어획량이라 검산 차이가 그대로 보인다. */
+const DAILY_TREND_REGIONS = {
+  pacific: { label: '태평양', color: SERIES[0] },
+  atlantic: { label: '대서양', color: SERIES[1] },
+} as const;
+
+type DailyTrendRegion = keyof typeof DAILY_TREND_REGIONS;
+
+function formatTrendDate(date: string) {
+  return `${Number(date.slice(5, 7))}/${Number(date.slice(8, 10))}`;
+}
+
+export function DailyCatchTrendChart() {
+  const mounted = useSyncExternalStore(subscribeClientReady, getClientReadySnapshot, getServerReadySnapshot);
+  const rc = useResponsiveChart();
+  const [region, setRegion] = React.useState<DailyTrendRegion | 'total'>('total');
+  const [vessel, setVessel] = React.useState<string | null>(null);
+
+  const series = fleetDailyPublicSeries;
+  const vesselNames = region === 'total'
+    ? []
+    : Object.keys(series[region].vessels);
+
+  const data = React.useMemo(() => series.dates.map((date, index) => ({
+    date: formatTrendDate(date),
+    fullDate: date,
+    태평양: series.pacific.totalMt[index] ?? 0,
+    대서양: series.atlantic.totalMt[index] ?? 0,
+    합계: (series.pacific.totalMt[index] ?? 0) + (series.atlantic.totalMt[index] ?? 0),
+    선박: region === 'total' || !vessel ? null : series[region].vessels[vessel]?.[index] ?? null,
+  })), [series, region, vessel]);
+
+  if (!mounted) return <div style={{ height: rc.mainChartHeight }} />;
+
+  const chipStyle = (active: boolean) => ({
+    padding: '4px 10px',
+    borderRadius: 999,
+    border: `1px solid ${active ? 'var(--accent-primary)' : 'var(--dsc-surface-border, rgba(0,0,0,.12))'}`,
+    background: active ? 'var(--accent-primary)' : 'transparent',
+    color: active ? '#ffffff' : 'var(--text-muted)',
+    fontSize: '0.75rem',
+    fontWeight: 600,
+    cursor: 'pointer',
+  });
+
+  return (
+    <div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
+        <button type="button" style={chipStyle(region === 'total')} onClick={() => { setRegion('total'); setVessel(null); }}>
+          해역 합계
+        </button>
+        {(Object.keys(DAILY_TREND_REGIONS) as DailyTrendRegion[]).map((key) => (
+          <button
+            key={key}
+            type="button"
+            style={chipStyle(region === key)}
+            onClick={() => { setRegion(key); setVessel(Object.keys(series[key].vessels)[0] ?? null); }}
+          >
+            {DAILY_TREND_REGIONS[key].label} 선박별
+          </button>
+        ))}
+      </div>
+      {region !== 'total' ? (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginBottom: 10 }}>
+          {vesselNames.map((name) => (
+            <button key={name} type="button" style={chipStyle(vessel === name)} onClick={() => setVessel(name)}>
+              {name}
+            </button>
+          ))}
+        </div>
+      ) : null}
+      <SafeResponsiveContainer width="100%" height={rc.mainChartHeight}>
+        <ComposedChart data={data} margin={rc.chartMargin}>
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" vertical={false} />
+          <XAxis
+            dataKey="date"
+            stroke="var(--chart-axis)"
+            tickLine={false}
+            axisLine={false}
+            tick={{ fontSize: rc.tickFontSize }}
+            interval={rc.isMobile ? 20 : 9}
+            minTickGap={12}
+          />
+          <YAxis
+            stroke="var(--chart-axis)"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fontSize: rc.tickFontSize }}
+            width={rc.isMobile ? 30 : 45}
+          />
+          <Tooltip content={<FleetChartTip />} />
+          <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
+          {region === 'total' ? (
+            <>
+              <Line type="monotone" dataKey="태평양" name="태평양 일간 어획량 (MT)" stroke={DAILY_TREND_REGIONS.pacific.color} strokeWidth={1.6} dot={false} />
+              <Line type="monotone" dataKey="대서양" name="대서양 일간 어획량 (MT)" stroke={DAILY_TREND_REGIONS.atlantic.color} strokeWidth={1.6} dot={false} />
+              <Line type="monotone" dataKey="합계" name="합계 일간 어획량 (MT)" stroke={CHART_RANK} strokeWidth={2.2} dot={false} />
+            </>
+          ) : (
+            <>
+              <Line
+                type="monotone"
+                dataKey={DAILY_TREND_REGIONS[region].label}
+                name={`${DAILY_TREND_REGIONS[region].label} 해역 합계 (MT)`}
+                stroke="var(--chart-axis)"
+                strokeWidth={1.2}
+                strokeDasharray="4 4"
+                dot={false}
+              />
+              <Line
+                type="monotone"
+                dataKey="선박"
+                name={`${vessel ?? '선박'} 일간 어획량 (MT)`}
+                stroke={DAILY_TREND_REGIONS[region].color}
+                strokeWidth={2.2}
+                dot={false}
+                connectNulls={false}
+              />
+            </>
+          )}
+        </ComposedChart>
+      </SafeResponsiveContainer>
+    </div>
+  );
+}
+
+/* 가동 중단 선박 — 일간 시계열에서 어획 공백을 직접 읽는다.
+ * 조업을 재개하면 목록에서 빠지므로 사고 종료 후 화면에 남지 않는다. */
+export function FleetIdleVesselPanel() {
+  const idle = resolveFleetIdleVessels();
+  if (idle.length === 0) return null;
+
+  return (
+    <div style={{ marginTop: 16 }}>
+      <h4 style={{ margin: '0 0 8px', fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-main)' }}>
+        가동 중단 선박 <span style={{ fontWeight: 400, color: 'var(--text-muted)', fontSize: '0.78rem' }}>
+          어획·적재 증가 공백 {FLEET_IDLE_THRESHOLD_DAYS}보고일 이상
+        </span>
+      </h4>
+      {idle.map((row) => {
+        const note = FLEET_IDLE_NOTES[row.vessel];
+        return (
+          <div
+            key={`${row.region}-${row.vessel}`}
+            style={{
+              border: '1px solid var(--dsc-surface-border, rgba(0,0,0,.1))',
+              borderRadius: 10,
+              padding: '10px 12px',
+              marginBottom: 8,
+            }}
+          >
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: 8 }}>
+              <strong style={{ fontSize: '0.88rem', color: 'var(--text-main)' }}>{row.vessel}</strong>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{row.region}</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--accent-danger)', fontWeight: 600 }}>
+                무실적 {row.idleDays}보고일
+              </span>
+            </div>
+            <p style={{ margin: '4px 0 0', fontSize: '0.78rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+              마지막 어획 {row.lastCatchDate}
+              {row.lastLoadIncreaseDate && row.lastLoadIncreaseDate > row.lastCatchDate ? ` · 마지막 적재 증가 ${row.lastLoadIncreaseDate}` : ''} ·
+              보고일 일평균 {row.dailyAverageMt} (MT) ·
+              기회손실 약 {row.forgoneMt.toLocaleString('ko-KR')} (MT) ·
+              해역 누계 비중 {row.regionSharePct}%
+            </p>
+            {note ? (
+              <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px dashed var(--dsc-surface-border, rgba(0,0,0,.12))' }}>
+                <p style={{ margin: 0, fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-main)', lineHeight: 1.6 }}>
+                  {note.headline}
+                </p>
+                <dl style={{ margin: '6px 0 0', display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '3px 10px' }}>
+                  {note.lines.map((line) => (
+                    <React.Fragment key={line.label}>
+                      <dt style={{ fontSize: '0.74rem', fontWeight: 600, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
+                        {line.label}
+                      </dt>
+                      <dd style={{ margin: 0, fontSize: '0.78rem', color: 'var(--text-main)', lineHeight: 1.6 }}>
+                        {line.text}
+                      </dd>
+                    </React.Fragment>
+                  ))}
+                </dl>
+                <p style={{ margin: '6px 0 0', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                  경위 {note.asOf} 보고 기준
+                </p>
+              </div>
+            ) : null}
+          </div>
+        );
+      })}
+    </div>
+  );
+}

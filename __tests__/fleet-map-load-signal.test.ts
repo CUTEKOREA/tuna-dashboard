@@ -82,21 +82,28 @@ describe('fleet map load signals', () => {
 });
 
 describe('fleet hold utilization', () => {
-  it('calculates a visible percentage only when loaded weight and capacity share MT units', () => {
+  it('calculates the MT percentage as a measured (non-estimated) ratio', () => {
     expect(resolveFleetHoldUtilization?.(10, { value: 1_300, unit: 'MT' })).toEqual({
       ratioPct: 0.8,
       barPct: expect.closeTo(10 / 13, 5),
       level: 'normal',
+      estimated: false,
+      capacityMtEquivalent: 1_300,
     });
     expect(resolveFleetHoldUtilization?.(766, { value: 1_200, unit: 'MT' })).toEqual({
       ratioPct: 63.8,
       barPct: expect.closeTo(63.833333, 5),
       level: 'normal',
+      estimated: false,
+      capacityMtEquivalent: 1_200,
     });
   });
 
-  it('does not mix MT loaded weight with cubic-metre hold capacity', () => {
-    expect(resolveFleetHoldUtilization?.(900, { value: 3_114.85, unit: '㎥' })).toBeNull();
+  it('converts cubic-metre capacity with the owner-approved 0.7 MT per cubic metre factor', () => {
+    // 2026-08-28 소유자 확정: ㎥ x 0.7 = MT 환산 추정 (estimated 표기)
+    const result = resolveFleetHoldUtilization?.(900, { value: 3_114.85, unit: '㎥' });
+    expect(result).toMatchObject({ estimated: true, capacityMtEquivalent: 2_180.4 });
+    expect(result?.ratioPct).toBeCloseTo(41.3, 1); // 900 / (3,114.85 x 0.7)
     expect(resolveFleetHoldUtilization?.(900, null)).toBeNull();
   });
 
@@ -105,6 +112,8 @@ describe('fleet hold utilization', () => {
       ratioPct: 105,
       barPct: 100,
       level: 'nearCapacity',
+      estimated: false,
+      capacityMtEquivalent: 1_000,
     });
   });
 

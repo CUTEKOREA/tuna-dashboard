@@ -44,6 +44,10 @@
 .dailyMetricCard small,.latestVesselMetrics small { color:var(--dsc-ink-muted); font-size:.68rem; font-weight:500; }
 .dailyMetricCard p { margin:5px 0; color:var(--dsc-ink-muted); font-size:.7rem; line-height:1.45; }
 .dailyMetricCard em { color:#3b82f6; font-size:.72rem; font-style:normal; font-weight:700; }
+/* 증감 색은 국내 시세 관례를 따른다 — 늘면 빨강, 줄면 파랑, 변화 없으면 중립. */
+.dailyMetricCard em[data-delta='up'] { color:#ef4444; }
+.dailyMetricCard em[data-delta='down'] { color:#3b82f6; }
+.dailyMetricCard em[data-delta='flat'] { color:var(--dsc-ink-muted); }
 .dailyDetailGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
 .dailyCardHeading { justify-content:flex-start; color:#3b82f6; }
 .scheduleList,.reconciliationList { display:flex; flex-direction:column; gap:8px; margin:12px 0 0; padding:0; list-style:none; }

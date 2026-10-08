@@ -6,16 +6,19 @@ import { musd, num, pct, n, latest, latestMonth } from '@/lib/data/cosmo'
 import {
   exportMeta, totals, concentration, byMarket, byBuyer, byInvoiceParty,
   bySpecGroup, byMedia, marketSpecCross, specGroups, buyerBand,
-  pricePosition, pricePositionMaterial, repricingUpside, ghanaShare, aggregateShare, ghanaTrend,
-  competitors, benchYear, tradeMeta, exportChecks, exportCheckFail, ANNUALIZE, sillaShare,
+  pricePosition, pricePositionMaterial, repricingUpside, ghanaShare, aggregateShare, ghanaTrend, ghanaMonthly, THIN_RATIO,
+  competitors, benchYear, partialYear, priceBasis, shareBasis, ledgerMonths, periodLabelKo, tradeMeta, exportChecks, exportCheckFail, ANNUALIZE, sillaShare,
   exportYoY, exportSources,
 } from '@/lib/data/cosmo-market'
+import { cosmoSalesReport as SR, ordersVsLedger } from '@/lib/data/cosmo-sales-report'
 
 const m1 = (v: number) => (v / 1e6).toFixed(1) + 'M'
 const m2 = (v: number) => '$' + (v / 1e6).toFixed(2) + 'M'
 const kg2 = (v: number) => '$' + v.toFixed(2) + '/kg'
 const k1 = (v: number) => '$' + (v / 1000).toFixed(1) + '천'
 const p1 = (v: number) => (v * 100).toFixed(1) + '%'
+/** 점유율끼리의 차는 퍼센트가 아니라 퍼센트포인트다 */
+const pp = (v: number) => (v > 0 ? '+' : '') + (v * 100).toFixed(2) + '%p'
 const S = SERIES
 
 export default function Market() {
@@ -32,6 +35,36 @@ export default function Market() {
   const gapRows = pricePosition.map((p) => ({ label: p.market, gap: p.vsMarket }))
   const trendRows = ghanaTrend
   const trendMarkets = ghanaShare.slice(0, 4).map((g) => g.market)
+  // 월별 - 창 합계를 달로 쪼갠다. 상위 4개 시장은 위 추이 차트와 같은 색을 쓴다.
+  // 잠정 칸(첫 발행분이라 신고가 덜 모인 달)은 차트에서 빼고 표에만 표시한다.
+  const GM = ghanaMonthly
+  const gmTop = GM.rows.slice(0, 4)
+  const gmDone = GM.total.map((t, i) => ({ t, i })).filter(({ t }) => t.complete)
+  const gmBarRows = gmDone.map(({ t, i }) => {
+    const row: Record<string, unknown> = { label: t.label, share: t.shareValue }
+    let topSum = 0
+    gmTop.forEach((r) => { const v = r.months[i]?.ghanaValueUsd ?? 0; row[r.market] = v; topSum += v })
+    row['기타'] = Math.max(0, t.ghanaValueUsd - topSum)
+    return row
+  })
+  const gmShareRows = GM.total.map((t, i) => {
+    const row: Record<string, unknown> = { label: t.label }
+    gmTop.forEach((r) => { const c = r.months[i]; row[r.market] = c && !c.provisional ? c.shareValue : null })
+    return row
+  })
+  const gmFirst = gmDone[0]?.t
+  const gmLast = gmDone[gmDone.length - 1]?.t
+  const gmPeak = gmDone.reduce((a, { t }) => ((t.shareValue ?? 0) > (a.shareValue ?? 0) ? t : a), gmFirst)
+  const gmLow = gmDone.reduce((a, { t }) => ((t.shareValue ?? 1) < (a.shareValue ?? 1) ? t : a), gmFirst)
+  const gmMove = gmTop.map((r) => {
+    const ok = r.months.filter((c): c is NonNullable<typeof c> => c != null && !c.provisional)
+    return { market: r.market, f: ok[0], l: ok[ok.length - 1] }
+  })
+  const gmProv = GM.total.filter((t) => !t.complete)
+  const monthKo = (m: string) => `${Number(m.slice(5))}월`
+  const cmp = ordersVsLedger()
+  const ordersYtd = { fcl: SR.ordersYtd.reduce((t, m) => t + m.fcl, 0), usd: SR.ordersYtd.reduce((t, m) => t + m.usd, 0) }
+  const ledgerFcl = cmp.reduce((t, c) => t + c.ledgerFcl, 0)
 
   return (
     <>
@@ -41,7 +74,9 @@ export default function Market() {
         meta={[
           `${totals.fcl.toFixed(0)} FCL · ${musd(totals.amountUsd)} (1~5월 선적)`,
           `바이어 ${exportMeta.buyerCount}곳 · 시장 ${exportMeta.marketCount}개`,
-          `수입통계 기준연도 ${benchYear} · 수집 ${tradeMeta.collected}`,
+          partialYear
+            ? `수입통계 ${partialYear.year}년 ${periodLabelKo(partialYear.period)} (${benchYear}년 연간과 비교) · 수집 ${tradeMeta.collected}`
+            : `수입통계 기준연도 ${benchYear} · 수집 ${tradeMeta.collected}`,
           `원장 ${exportSources.map((x) => `${x.year} ${x.period}`).join(' + ')}`,
           'CBU 수출만 - 내수·FBU 제외',
         ]}
@@ -89,7 +124,10 @@ export default function Market() {
       <div className="grid g2">
         <Card
           title="단가 포지션 - COSMO vs 시장 평균 vs 가나 평균"
-          sub={`kg당 실현 단가. 시장 평균은 ${benchYear}년 해당국 HS 160414 수입 총액 ÷ 총 물량.`}
+          sub={`kg당 실현 단가. 시장 평균은 ${priceBasis.period
+            ? `${priceBasis.year}년 ${periodLabelKo(priceBasis.period)}`
+            : `${benchYear}년`} 해당국 HS 160414 수입 총액 ÷ 총 물량 - `
+            + `원장과 같은 ${ledgerMonths}개월로 잘라 맞췄습니다.`}
           note={<>COSMO 평균 <b>{kg2(n(totals.usdPerKg))}</b>. 수입통계가 확보된 {pricePosition.length}개 시장 중
             <b> {above}곳만 시장 평균 이상</b>입니다. 주력 시장(매출 2% 이상) 가운데 최저는
             <b> {worst.market} {p1(worst.vsMarket)}</b>입니다
@@ -116,7 +154,8 @@ export default function Market() {
 
         <Card
           title="시장 평균 대비 격차"
-          sub="음(−)이면 시장 평균보다 싸게 팔고 있다는 뜻."
+          sub={`음(−)이면 시장 평균보다 싸게 팔고 있다는 뜻. 기준은 ${priceBasis.period
+            ? `${priceBasis.year}년 ${periodLabelKo(priceBasis.period)}` : `${benchYear}년 연간`}.`}
           note={<>모든 시장의 격차를 메워 시장 평균 단가까지 올렸다면 같은 물량에서
             <b> 약 {musd(repricingUpside.upsideUsd)}</b>(매출의 {pct(repricingUpside.ratio, 1)})를 더 받았을 계산입니다.
             <b>다만 이건 이론적 상한</b>입니다 - 판가를 올리면 물량이 그대로 유지되지 않고,
@@ -146,7 +185,7 @@ export default function Market() {
           <Chart
             data={top.map((m) => ({ label: m.key, amountUsd: m.amountUsd }))}
             x="label" height={250} yFmt={m1} xInterval={0}
-            series={[{ key: 'amountUsd', name: '매출', color: C.rank, type: 'bar', fmt: m2 }]}
+            series={[{ key: 'amountUsd', name: '매출', color: C.s1, type: 'bar', fmt: m2 }]}
           />
         </Card>
 
@@ -230,6 +269,126 @@ export default function Market() {
         </Card>
       </div>
 
+      <SecHead id="sec-sales-report">3분기 영업보고 ({SR.source.reportDate.slice(5).replace('-', '/')} · {SR.source.period})</SecHead>
+      <div className="grid g2">
+        <Card
+          title="4분기 수주 계획"
+          sub={`FCL · USD · 영업보고 ${SR.source.reportDate}. 원문 병합 셀은 같은 값으로 펼쳤다.`}
+          note={<>4분기 계획은 <b>{SR.q4Plan.total.fclTotal} FCL · {m2(SR.q4Plan.total.usdTotal)}</b>입니다. 1~9월 누적 수주는
+            {' '}{num(ordersYtd.fcl, 1)} FCL · {m2(ordersYtd.usd)}였습니다. 같은 보고는 생산량 감소로 좋은 단가의 추가 물량
+            수주(60+ 컨테이너)가 불발됐다고 적었습니다 - 계획 물량은 처리량이 받쳐 줄 때만 실적이 됩니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead>
+                <tr><th>품목</th>{SR.q4Plan.months.map((m) => <th key={m} className="n">{m}</th>)}<th className="n">합계 (FCL)</th><th className="n">금액</th><th className="n">$천/FCL</th></tr>
+              </thead>
+              <tbody>
+                {SR.q4Plan.rows.map((row) => (
+                  <tr key={row.type}>
+                    <td>{row.type}</td>
+                    {row.fcl.map((v, i) => <td key={i} className="n">{num(v, 0)}</td>)}
+                    <td className="n">{num(row.fclTotal, 0)}</td>
+                    <td className="n">{m2(row.usdTotal)}</td>
+                    <td className="n">{(row.usdPerFcl / 1000).toFixed(1)}</td>
+                  </tr>
+                ))}
+                <tr>
+                  <td><b>합계</b></td>
+                  {SR.q4Plan.total.fcl.map((v, i) => <td key={i} className="n"><b>{num(v, 0)}</b></td>)}
+                  <td className="n"><b>{num(SR.q4Plan.total.fclTotal, 0)}</b></td>
+                  <td className="n"><b>{m2(SR.q4Plan.total.usdTotal)}</b></td>
+                  <td className="n">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="월별 수주 - 영업보고 대 주간 원장"
+          sub="FCL. 영업보고는 수주 월, 주간 원장은 주차 말일이 속한 달로 묶는다."
+          note={<>1~9월 합계는 영업보고 <b>{num(ordersYtd.fcl, 1)} FCL</b>, 주간 원장 {num(ledgerFcl, 1)} FCL로
+            {' '}{num(ledgerFcl - ordersYtd.fcl, 1)} FCL 차이입니다. 월 경계를 걸친 주의 수주가 다음 달로 넘어간 몫이며,
+            9월은 두 자료가 같습니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>월</th><th className="n">영업보고</th><th className="n">주간 원장</th><th className="n">차이</th></tr></thead>
+              <tbody>
+                {cmp.map((c) => (
+                  <tr key={c.month}>
+                    <td>{c.month}월</td>
+                    <td className="n">{num(c.reportFcl, 1)}</td>
+                    <td className="n">{num(c.ledgerFcl, 1)}</td>
+                    <td className="n">{num(c.ledgerFcl - c.reportFcl, 1)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="주요 바이어 3곳"
+          sub="9월까지 수주 FCL과 영업보고의 상황 기재. 바이어 측 담당자는 직함으로만 적었다."
+          span={2}
+        >
+          <div className="grid g3">
+            {SR.buyers.map((b) => (
+              <div key={b.name}>
+                <Kpi k={`${b.name} · ${b.country}`} v={num(b.ordersFcl, 1)} unit=" FCL" d="9월까지 수주" />
+                <ul style={{ margin: '6px 0 0', paddingLeft: '1.1em', fontSize: 13, lineHeight: 1.55 }}>
+                  {b.notes.map((t) => <li key={t}>{t}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card
+          title="시장 오퍼가"
+          sub="영업보고 「현재 시장 내 오퍼가」 표 그대로. 경쟁 캐너리 오퍼이지 코스모 계약가가 아니다."
+          note={<>필리핀 1,705g 캔은 7월 ${SR.marketOffers[0].prices[0].toFixed(2)}에서 9월
+            {' '}${SR.marketOffers[0].prices[2].toFixed(2)}로 석 달 사이 {p1(SR.marketOffers[0].prices[2] / SR.marketOffers[0].prices[0] - 1)} 올랐습니다.
+            보고는 유럽 판매가가 지난 10년 중 최고 수준이라고 적었습니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>규격</th><th>출처</th>{SR.offerMonths.map((m) => <th key={m} className="n">{m}</th>)}</tr></thead>
+              <tbody>
+                {SR.marketOffers.map((o) => (
+                  <tr key={o.spec}>
+                    <td>{o.spec} <span style={{ color: 'var(--cosmo-muted)' }}>({o.unit})</span></td>
+                    <td>{o.source}</td>
+                    {o.prices.map((v, i) => <td key={i} className="n">${v.toFixed(2)}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <ul style={{ margin: '10px 0 0', paddingLeft: '1.1em', fontSize: 13, lineHeight: 1.55 }}>
+            {SR.market.map((t) => <li key={t}>{t}</li>)}
+          </ul>
+        </Card>
+
+        <Card
+          title="애로사항 · 4분기 영업 계획"
+          sub={`영업보고 「애로사항 및 본사 지원」·「신규 영업 계획」과 송부 메일(${SR.source.reportDate}).`}
+        >
+          <Callout kind="warn" label="애로사항">
+            <ul style={{ margin: 0, paddingLeft: '1.1em' }}>{SR.issues.map((t) => <li key={t}>{t}</li>)}</ul>
+          </Callout>
+          <ul style={{ margin: '10px 0 0', paddingLeft: '1.1em', fontSize: 13, lineHeight: 1.55 }}>
+            {SR.newPlans.map((t) => <li key={t}>{t}</li>)}
+            {SR.trips.map((t) => <li key={t.when}>{t.when} {t.what}</li>)}
+          </ul>
+          <ul style={{ margin: '10px 0 0', paddingLeft: '1.1em', fontSize: 13, lineHeight: 1.55, color: 'var(--cosmo-ink-2)' }}>
+            {SR.mail.map((t) => <li key={t}>{t}</li>)}
+          </ul>
+        </Card>
+      </div>
+
       <SecHead>전년 대비 구조 변화</SecHead>
       {exportYoY && (
         <div className="grid g2">
@@ -310,19 +469,26 @@ export default function Market() {
       <SecHead>전체 시장 대비 우리 자리</SecHead>
       <div className="grid g2">
         <Card
-          title={`가나 점유율 - ${benchYear}년`}
-          sub="해당국 참치캔 수입(HS 160414) 총액 중 가나發 비중. 무역통계 내부 값이라 신뢰도가 높다."
+          title={`가나 점유율 - ${shareBasis.period
+            ? `${shareBasis.year}년 ${periodLabelKo(shareBasis.period)}` : `${benchYear}년`}`}
+          sub={`해당국 참치캔 수입(HS 160414) 총액 중 가나發 비중. 무역통계 내부 값이라 신뢰도가 높다.`
+            + (shareBasis.period ? ` ${benchYear}년 연간과 나란히 놓았습니다 - 점유율은 기간 길이와 무관합니다.` : '')
+            + (gmProv.length ? ` ${gmProv.map((t) => t.label).join('·')}은 발행됐지만 잠정이라 뺐습니다(아래 월별 표).` : '')}
           note={<>가나는 {aggregateShare.markets}개 시장 수입 {musd(aggregateShare.marketUsd)} 중
             <b> {musd(aggregateShare.ghanaUsd)}({pct(aggregateShare.ghanaInMarket, 2)})</b>를 공급합니다.
-            COSMO 연환산 실적({musd(aggregateShare.cosmoAnnualUsd)})을 대면 <b>가나 물량의 약
-            {' '}{pct(aggregateShare.cosmoInGhana, 0)}</b>가 COSMO 몫입니다 -
-            가나에는 다른 참치캔 공장도 있으므로 이 비율이 곧 우리 위상입니다.</>}
+            같은 기간({priceBasis.period ? periodLabelKo(priceBasis.period) : `${benchYear}년`})으로 맞추면 COSMO 원장 실적
+            {' '}{musd(aggregateShare.cosmoLedgerUsd)}는 가나發 수입 {musd(aggregateShare.ghanaLedgerWindowUsd)}의
+            <b> 약 {pct(aggregateShare.cosmoInGhana, 0)}</b>입니다 - 가나에는 다른 참치캔 공장도 있으므로 이 비율이 곧 우리 위상입니다.
+            원장은 선적 기준, 수입통계는 통관 기준이라 한두 달 시차가 섞입니다.</>}
         >
           <div className="tw">
             <table>
               <thead>
                 <tr><th>시장</th><th className="n">시장 수입</th><th className="n">가나發</th>
-                  <th className="n">가나 점유(금액)</th><th className="n">가나 점유(물량)</th></tr>
+                  <th className="n">가나 점유(금액)</th>
+                  {shareBasis.period && <th className="n">{benchYear} 점유</th>}
+                  {shareBasis.period && <th className="n">증감</th>}
+                  <th className="n">가나 점유(물량)</th></tr>
               </thead>
               <tbody>
                 {ghanaShare.map((g) => (
@@ -331,6 +497,15 @@ export default function Market() {
                     <td className="n">{musd(g.marketValueUsd)}</td>
                     <td className="n">{musd(g.ghanaValueUsd)}</td>
                     <td className="n">{pct(g.shareValue, 2)}</td>
+                    {shareBasis.period && (
+                      <td className="n">{g.priorShareValue != null ? pct(g.priorShareValue, 2) : '-'}</td>
+                    )}
+                    {shareBasis.period && (
+                      <td className={`n ${g.shareValueDelta == null ? ''
+                        : g.shareValueDelta > 0 ? 'up' : g.shareValueDelta < 0 ? 'down' : ''}`}>
+                        {g.shareValueDelta == null ? '-' : pp(g.shareValueDelta)}
+                      </td>
+                    )}
                     <td className="n">{g.shareQty != null ? pct(g.shareQty, 2) : '-'}</td>
                   </tr>
                 ))}
@@ -341,7 +516,8 @@ export default function Market() {
 
         <Card
           title="가나 점유율 추이"
-          sub={`상위 ${trendMarkets.length}개 시장. 금액 기준.`}
+          sub={`상위 ${trendMarkets.length}개 시장. 금액 기준.`
+            + (partialYear ? ` 마지막 점은 ${partialYear.year}년 ${periodLabelKo(partialYear.period)} 부분 구간입니다.` : '')}
           note={<>우리 자리가 커지는지 줄어드는지를 보는 축입니다. 시장 규모가 커져도
             점유율이 내려가면 <b>성장하는 시장에서 밀리고 있다</b>는 뜻입니다.
             이 계열은 가나 전체이므로 COSMO 단독 추이와는 다를 수 있습니다.</>}
@@ -354,12 +530,100 @@ export default function Market() {
         </Card>
       </div>
 
+      {GM.months.length > 0 && gmFirst && gmLast && (
+        <>
+          <SecHead>월별로 본 가나 자리 ({partialYear ? `${partialYear.year}년 ` : ''}{monthKo(GM.months[0])}~{monthKo(GM.months[GM.months.length - 1])})</SecHead>
+          <div className="grid g2">
+            <Card
+              title="가나發 수입 월별"
+              sub={`${GM.rows.length}개 시장이 가나에서 들여온 참치캔(HS 160414) 금액 (막대, $M)과 그 달 시장 합계 중 가나 비중 (선, 오른쪽 축). 금액은 그 달 유럽중앙은행 기준환율 평균으로 달러 환산 - 여러 시장을 더한 비중은 유로·파운드 환율 영향을 조금 받는다.`
+                + (gmProv.length ? ` ${gmProv.map((t) => t.label).join('·')}은 잠정이라 뺐습니다.` : '')}
+              note={<>가나 비중은 {gmFirst.label} {pct(gmFirst.shareValue, 2)}에서 {gmLast.label} {pct(gmLast.shareValue, 2)}로 움직였고,
+                가장 높은 달은 <b>{gmPeak.label} {pct(gmPeak.shareValue, 2)}</b>, 가장 낮은 달은 <b>{gmLow.label} {pct(gmLow.shareValue, 2)}</b>입니다.
+                통관 기준 월값은 운반선 도착 시점에 따라 출렁이므로 한 달 급등락은 선적 한두 건일 수 있습니다 - 방향은 2~3개월 묶어 봅니다.</>}
+            >
+              <Legend items={[...gmTop.map((r, i) => ({ name: r.market, color: S[i % S.length], box: true })),
+                { name: '기타', color: C.mix[3], box: true }, { name: '가나 비중', color: S[4] }]} />
+              <Chart
+                data={gmBarRows} x="label" height={250} xInterval={0}
+                yFmt={(v) => '$' + (v / 1e6).toFixed(v % 1e6 ? 1 : 0) + 'M'} y2Fmt={(v) => (v * 100).toFixed(0) + '%'}
+                series={[
+                  ...gmTop.map((r, i) => ({ key: r.market, name: r.market, color: S[i % S.length], type: 'bar' as const, stackId: 'gh', fmt: (v: number) => musd(v) })),
+                  { key: '기타', name: '기타', color: C.mix[3], type: 'bar' as const, stackId: 'gh', fmt: (v: number) => musd(v) },
+                  { key: 'share', name: '가나 비중', color: S[4], axis: 'right' as const, fmt: (v: number) => pct(v, 2) },
+                ]}
+              />
+            </Card>
+
+            <Card
+              title="가나 점유율 월별"
+              sub={`상위 ${gmTop.length}개 시장. 금액 기준, 같은 통화끼리 나눠 환율 영향이 없다.`}
+              note={<>{gmMove.map((m, i) => (
+                <span key={m.market}>{i > 0 && ' · '}{m.market} {m.f ? `${monthKo(m.f.month)} ${pct(m.f.shareValue, 1)}(${m.f.ghanaRank ?? '-'}위)` : '-'}
+                  → <b>{m.l ? `${monthKo(m.l.month)} ${pct(m.l.shareValue, 1)}(${m.l.ghanaRank ?? '-'}위)` : '-'}</b></span>
+              ))}. 괄호는 그 달 공급국 중 가나 순위입니다. 잠정 칸은 선을 끊었습니다 - 영국(영국 국세관세청 통계)처럼 완결된 시장만 마지막 달까지 그립니다.</>}
+            >
+              <Legend items={gmTop.map((r, i) => ({ name: r.market, color: S[i % S.length] }))} />
+              <Chart
+                data={gmShareRows} x="label" height={250} xInterval={0} yFmt={(v) => (v * 100).toFixed(0) + '%'}
+                series={gmTop.map((r, i) => ({ key: r.market, name: r.market, color: S[i % S.length], fmt: (v: number) => pct(v, 2) }))}
+              />
+            </Card>
+          </div>
+
+          <Card
+            title="시장별 월간 가나 점유"
+            sub={`해당국 참치캔 수입 금액 중 가나發 비중. 아래 작은 글씨는 그 달 가나 순위/공급국 수. 오른쪽 끝은 ${partialYear ? periodLabelKo(partialYear.period) : ''} 합계(위 표와 같은 값).`}
+            note={gmProv.length ? <>{gmProv.map((t) => t.label).join('·')}은 <b>잠정</b>입니다 - 첫 발행분이라 신고가 덜 모였습니다.
+              {' '}{gmProv.map((t) => t.provisionalMarkets.join('·')).join(' / ')}은 공급국 수가 이전 달 중앙값의 {Math.round(THIN_RATIO * 100)}% 아래로 줄었습니다.
+              분모(시장 합계)가 비면 가나 몫이 부풀어 보이므로 이 달은 위 점유율 표·추이·차트에서 뺐고, 다음 수집 때 다시 받습니다.
+              완결된 시장(영국 등)의 그 달 값은 그대로 읽어도 됩니다.</> : undefined}
+          >
+            <div className="tw">
+              <table>
+                <thead>
+                  <tr><th>시장</th>{GM.total.map((t) => <th key={t.month} className="n">{t.label}{t.complete ? '' : ' (잠정)'}</th>)}
+                    <th className="n">{partialYear ? periodLabelKo(partialYear.period) : '합계'}</th></tr>
+                </thead>
+                <tbody>
+                  {GM.rows.map((r) => {
+                    const win = ghanaShare.find((g) => g.market === r.market)
+                    return (
+                      <tr key={r.market}>
+                        <td>{r.market}</td>
+                        {r.months.map((c, i) => (
+                          <td key={GM.months[i]} className={c?.provisional ? 'n prov' : 'n'}>
+                            {c ? pct(c.shareValue, 1) : '-'}
+                            {c?.provisional ? <span className="rk">잠정 · 공급국 {c.suppliers}</span>
+                              : c?.ghanaRank != null && <span className="rk">{c.ghanaRank}위/{c.suppliers}</span>}
+                          </td>
+                        ))}
+                        <td className="n"><b>{win ? pct(win.shareValue, 2) : '-'}</b></td>
+                      </tr>
+                    )
+                  })}
+                  <tr>
+                    <td><b>{GM.rows.length}개 시장 합계</b></td>
+                    {GM.total.map((t) => (
+                      <td key={t.month} className={t.complete ? 'n' : 'n prov'}><b>{pct(t.shareValue, 1)}</b><span className="rk">{musd(t.ghanaValueUsd)}</span></td>
+                    ))}
+                    <td className="n"><b>{pct(aggregateShare.ghanaInMarket, 2)}</b></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        </>
+      )}
+
       <SecHead>경쟁 공급국</SecHead>
-      <div className="grid g2">
+      <div className="grid gpair">
         {competitors.slice(0, 4).map((c) => (
           <Card key={c.market}
             title={`${c.market} - 공급국 Top${c.topN}`}
-            sub={`${benchYear}년 HS 160414 수입. 시장 평균 ${c.marketUsdKg ? kg2(c.marketUsdKg) : '-'}.`}
+            sub={`${c.year}년 ${c.periodLabel} HS 160414 수입. 시장 평균 ${c.marketUsdKg ? kg2(c.marketUsdKg) : '-'}`
+              + (c.priorYear ? ` · ${c.priorYear}년 연간 ${c.priorMarketUsdKg ? kg2(c.priorMarketUsdKg) : '-'}` : '')
+              + '. 금액은 부분 연도 대 연간이라 비교가 성립하지 않아 뺐습니다 - 점유·순위·단가로 봅니다.'}
             note={(() => {
               const gh = c.rows.find((r) => r.isGhana)
               const cheap = c.rows.filter((r) => r.usdPerKg != null && gh?.usdPerKg != null && r.usdPerKg < gh.usdPerKg)
@@ -369,6 +633,13 @@ export default function Market() {
                   점유 <b>{pct(gh.share, 2)}</b>({musd(gh.valueUsd)}), 단가 {gh.usdPerKg != null ? kg2(gh.usdPerKg) : '-'}
                   {c.marketUsdKg != null && gh.usdPerKg != null &&
                     <> - 시장 평균 대비 <b>{p1(gh.usdPerKg / c.marketUsdKg - 1)}</b></>}.
+                  {c.priorYear != null && (
+                    <> {c.priorYear}년 연간과 대면 점유는 {c.ghanaShareDelta == null ? '비교 불가' : <b>{pp(c.ghanaShareDelta)}</b>},
+                      순위는 {c.ghanaRankDelta == null ? '비교 불가'
+                        : c.ghanaRankDelta === 0 ? <b>그대로</b>
+                        : <b>{c.ghanaRankDelta > 0 ? `${c.ghanaRankDelta}계단 상승` : `${-c.ghanaRankDelta}계단 하락`}</b>}입니다
+                      (금액은 부분 연도 대 연간이라 대지 않습니다).</>
+                  )}
                   {c.ghanaOutsideTop && <> Top{c.topN} 밖이라 표 맨 아래에 따로 붙였습니다.</>}
                   {cheap.length > 0
                     ? <> 가나보다 싼 공급국이 <b>{cheap.length}곳</b>({cheap.slice(0, 3).map((r) => r.partner).join('·')})
@@ -381,19 +652,29 @@ export default function Market() {
             <div className="tw">
               <table>
                 <thead>
-                  <tr><th className="n">#</th><th>공급국</th><th className="n">금액</th>
-                    <th className="n">점유</th><th className="n">$/kg</th><th className="n">평균대비</th></tr>
+                  <tr><th className="n">#</th><th>공급국</th>
+                    <th className="n">점유</th>
+                    {c.priorYear != null && <th className="n">{c.priorYear} 점유</th>}
+                    {c.priorYear != null && <th className="n">증감</th>}
+                    <th className="n">$/kg</th></tr>
                 </thead>
                 <tbody>
                   {c.rows.map((r) => (
                     <tr key={r.partner} className={r.isGhana ? 'us' : undefined}>
                       <td className="n"><span className="rank">{r.rank}</span></td>
                       <td className="nowrap">{r.partner}</td>
-                      <td className="n">{musd(r.valueUsd)}</td>
                       <td className="n">{r.share != null ? pct(r.share, 2) : '-'}</td>
-                      <td className="n">{r.usdPerKg != null ? r.usdPerKg.toFixed(2) : '-'}</td>
-                      <td className="n">{r.usdPerKg != null && c.marketUsdKg
-                        ? p1(r.usdPerKg / c.marketUsdKg - 1) : '-'}</td>
+                      {c.priorYear != null && (
+                        <td className="n">{r.priorShare != null ? pct(r.priorShare, 2) : '신규'}</td>
+                      )}
+                      {c.priorYear != null && (
+                        <td className={`n ${r.shareDelta == null ? '' : r.shareDelta > 0 ? 'up' : r.shareDelta < 0 ? 'down' : ''}`}>
+                          {r.shareDelta == null ? '-' : pp(r.shareDelta)}
+                        </td>
+                      )}
+                      <td className={`n ${r.usdPerKg != null && c.marketUsdKg
+                        ? (r.usdPerKg < c.marketUsdKg ? 'down' : '') : ''}`}>
+                        {r.usdPerKg != null ? r.usdPerKg.toFixed(2) : '-'}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -477,9 +758,10 @@ export default function Market() {
           <br />
           <b>② 연환산은 단순 배수</b>입니다. 1~5월 실적 × {ANNUALIZE.toFixed(1)}로, 계절성을 보정하지 않았습니다.
           <br />
-          <b>③ 시점이 서로 어긋납니다.</b> 수입통계는 기준연도 {benchYear}, 수출 원장은 <b>2026년 1~5월</b>에서
-          멈춰 있는데, 손익은 {latestMonth.month}월·운영 주간은 {latest.week}주차까지 와 있습니다.
-          이 보드의 단가·점유율은 5월까지의 이야기입니다.
+          <b>③ 단가는 시점을 맞췄고, 점유율은 한 달 더 갑니다.</b> 단가 비교는 수입통계를 원장과 같은
+          {' '}<b>{ledgerMonths}개월</b>로 잘라 맞췄습니다. 점유율은 기간 길이에 좌우되지 않아
+          {partialYear && <> <b>{partialYear.year}년 {periodLabelKo(partialYear.period)}</b></>}까지 씁니다.
+          손익은 {latestMonth.month}월·운영 주간은 {latest.week}주차라 그보다 앞서 있습니다.
           <br />
           <b>④ 단가 비교는 믹스 차이를 포함</b>합니다. 우리 제품 구성(규격·사양)이 시장 평균 구성과 다르므로
           격차 전부가 가격 문제는 아닙니다.

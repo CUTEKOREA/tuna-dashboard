@@ -8,6 +8,7 @@ import { Activity, ShieldAlert, GitFork } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs } from './ChartPatterns';
+import { SERIES, SERIES_OTHER } from '@/lib/chart-palette';
 
 const customTooltipStyle = {
   background: 'rgba(10, 16, 40, 0.95)',
@@ -48,7 +49,26 @@ const processedMeatData = [
   { name: '덴마크', value: 10.3 },
   { name: '기타', value: 3.7 },
 ];
-const COLORS = ['#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#64748b'];
+// 두 도넛이 같은 나라를 같은 색으로 칠하도록 색을 이름에 고정한다. 예전엔 순번(index)으로 칠해서
+// 미국이 신선육에선 빨강, 가공육에선 amber 로 나왔다. 색은 공통 SERIES 순서(2026-09-11) — 신선육 조각 순서
+// (미국·스페인·캐나다·네덜란드·독일)대로 두 테마 모두 인접 검사를 통과한다. 이름은 아래 범례가 말한다.
+const SUPPLY_COLOR: Record<string, string> = {
+  미국: SERIES[0],
+  스페인: SERIES[1],
+  캐나다: SERIES[2],
+  네덜란드: SERIES[3],
+  독일: SERIES[4],
+  덴마크: SERIES[5],
+  기타: SERIES_OTHER,
+};
+// 표에 없는 나라가 데이터에 들어오면 회색(기타 색)으로 칠하고 범례에도 이름을 올린다 — 색이 비거나 범례에서 빠지지 않게.
+const supplyColor = (name: string) => SUPPLY_COLOR[name] ?? SUPPLY_COLOR['기타'];
+const supplyNames = new Set([...freshMeatData, ...processedMeatData].map((d) => d.name));
+const SUPPLY_LEGEND = [
+  ...Object.keys(SUPPLY_COLOR).filter((n) => n !== '기타' && supplyNames.has(n)),
+  ...[...supplyNames].filter((n) => !(n in SUPPLY_COLOR)),
+  ...(supplyNames.has('기타') ? ['기타'] : []),
+];
 
 export function InsightPorkSupplyChain({ accent = '#8b5cf6' }: any) {
   return (
@@ -66,14 +86,15 @@ export function InsightPorkSupplyChain({ accent = '#8b5cf6' }: any) {
         source: "관세청 수입통계 HS6별 분석 (2026.03-04, 2개월 누적)"
       }}
       chart={
-        <div style={{ height: 300, width: '100%', display: 'flex', gap: '10px' }}>
+        <div style={{ height: 300, width: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ flex: 1, minHeight: 0, width: '100%', display: 'flex', gap: '10px' }}>
           <div style={{ flex: 1, position: 'relative' }}>
             <p style={{ position: 'absolute', top: 10, left: 0, right: 0, textAlign: 'center', fontSize: '11px', color: 'var(--w-slate-400)', fontWeight: 600 }}>신선육 HS 0203 (118.4천톤·2개월)</p>
             <SafeResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Tooltip content={<CustomTooltip />} />
                 <Pie data={freshMeatData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={2} dataKey="value" stroke="none">
-                  {freshMeatData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
+                  {freshMeatData.map((entry) => <Cell key={entry.name} fill={supplyColor(entry.name)} />)}
                 </Pie>
               </PieChart>
             </SafeResponsiveContainer>
@@ -84,10 +105,19 @@ export function InsightPorkSupplyChain({ accent = '#8b5cf6' }: any) {
               <PieChart>
                 <Tooltip content={<CustomTooltip />} />
                 <Pie data={processedMeatData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={2} dataKey="value" stroke="none">
-                  {processedMeatData.map((entry, index) => <Cell key={`pcell-${index}`} fill={['var(--w-amber-500)', 'var(--w-emerald-500)', 'var(--w-slate-500)'][index % 3]} />)}
+                  {processedMeatData.map((entry) => <Cell key={entry.name} fill={supplyColor(entry.name)} />)}
                 </Pie>
               </PieChart>
             </SafeResponsiveContainer>
+          </div>
+        </div>
+          <div aria-label="범례" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '6px 14px', padding: '6px 4px 0', fontSize: '11px', color: 'var(--dsc-ink-muted)' }}>
+            {SUPPLY_LEGEND.map((name) => (
+              <span key={name} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                <span aria-hidden="true" style={{ width: 10, height: 10, borderRadius: 3, background: supplyColor(name) }} />
+                {name}
+              </span>
+            ))}
           </div>
         </div>
       }
@@ -107,7 +137,7 @@ const chinaFactorData = [
   { year: '2024(추정)', chinaInv: 415, globalPrice: 118, asfOutbreaks: 2 },
 ];
 
-export function InsightAsfChinaFactor({ accent = '#f43f5e' }: any) {
+export function InsightAsfChinaFactor({ accent = 'var(--w-rose-500)' }: any) {
   return (
     <WidgetCard
       title="차이나 팩터(China Factor) 및 ASF 리스크 선행지표"
@@ -131,9 +161,9 @@ export function InsightAsfChinaFactor({ accent = '#f43f5e' }: any) {
           <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[0, 200]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-          <Bar yAxisId="right" dataKey="asfOutbreaks" name="아시아 ASF 발병(건)" fill="url(#a11y-diag)" stroke="var(--w-red-500)" radius={[4, 4, 0, 0]} barSize={20} fillOpacity={0.4} />
-          <Area yAxisId="left" type="monotone" dataKey="chinaInv" name="중국 사육 두수(백만)" fill="url(#a11y-dots)" stroke="var(--w-amber-500)" fillOpacity={0.2} />
-          <Line yAxisId="right" type="step" dataKey="globalPrice" name="글로벌 돈가 지수" stroke="var(--w-sky-400)" strokeWidth={2.5} dot={{ r: 3 }} />
+          <Bar yAxisId="right" dataKey="asfOutbreaks" name="아시아 ASF 발병(건)" fill="url(#a11y-diag)" stroke={SERIES[0]} radius={[4, 4, 0, 0]} barSize={20} fillOpacity={0.4} />
+          <Area yAxisId="left" type="monotone" dataKey="chinaInv" name="중국 사육 두수(백만)" fill="url(#a11y-dots)" stroke={SERIES[1]} fillOpacity={0.2} />
+          <Line yAxisId="right" type="step" dataKey="globalPrice" name="글로벌 돈가 지수" stroke={SERIES[2]} strokeWidth={2.5} dot={{ r: 3 }} />
         </ComposedChart>
       }
     />
@@ -175,8 +205,8 @@ export function InsightHogCornRatio({ accent = '#ec4899' }: any) {
           <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[10, 25]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-          <Area yAxisId="left" type="monotone" dataKey="cornPrice" name="옥수수 단가($/t)" fill="var(--w-amber-500)" stroke="var(--w-amber-500)" fillOpacity={0.1} />
-          <Line yAxisId="left" type="monotone" dataKey="porkWholesale" name="돈육 도매($/100lb)" stroke="var(--w-sky-400)" strokeWidth={2} strokeDasharray="5 5" />
+          <Area yAxisId="left" type="monotone" dataKey="cornPrice" name="옥수수 단가($/t)" fill={SERIES[0]} stroke={SERIES[0]} fillOpacity={0.1} />
+          <Line yAxisId="left" type="monotone" dataKey="porkWholesale" name="돈육 도매($/100lb)" stroke={SERIES[1]} strokeWidth={2} strokeDasharray="5 5" />
           <Bar yAxisId="right" dataKey="ratio" name="Hog-Corn 비율" fill={accent} radius={[4, 4, 0, 0]} barSize={25}>
             {hogCornData.map((e, index) => <Cell key={`cell-${index}`} fillOpacity={e.ratio > 15 ? 0.8 : 0.4} />)}
           </Bar>

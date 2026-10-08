@@ -99,6 +99,13 @@ const carrierSummarySchema = z.object({
   assertAmountContract(row, 'expectedRemainingMt', 'expectedRemainingMtRaw', 'expectedRemainingParentheticalMt', ctx);
 });
 
+const dailySeriesRegionSchema = z.object({
+  totalMt: z.array(z.number().finite().nullable()),
+  vessels: z.record(z.string(), z.array(z.number().finite().nullable())),
+  /** 선박별 선적량이 마지막으로 늘어난 보고일. 수량은 싣지 않는다. */
+  lastLoadIncreaseDates: z.record(z.string(), z.iso.date().nullable()),
+}).strict();
+
 const dailySummarySchema = z.object({
   reportDate: z.iso.date(),
   asOf: z.iso.date(),
@@ -120,6 +127,9 @@ const reconciliationCheckSchema = z.object({
   reportedMt: nullableMt,
   knownRowsMt: z.number().finite(),
   missingCount: z.number().int().nonnegative(),
+  /* 머리글이 인쇄된 자릿수에서 나오는 반올림 폭. 운반선 머리글은 소수 1자리(6,854.1)인데
+   * 상세 행은 2자리를 들고 있어(합 6,854.13) 0.03 잔차가 남는다 - 불일치가 아니다. */
+  toleranceMt: z.number().positive(),
   status: z.enum([
     'completeMatch',
     'completeMismatch',
@@ -130,13 +140,14 @@ const reconciliationCheckSchema = z.object({
   ]),
 }).strict().superRefine((row, ctx) => {
   let expectedStatus: typeof row.status;
+  const tolerance = row.toleranceMt;
   if (row.reportedMt === null) expectedStatus = 'reportedMissing';
   else if (row.missingCount === 0) {
-    expectedStatus = Math.abs(row.reportedMt - row.knownRowsMt) < 0.001
+    expectedStatus = Math.abs(row.reportedMt - row.knownRowsMt) <= tolerance
       ? 'completeMatch'
       : 'completeMismatch';
-  } else if (row.knownRowsMt - row.reportedMt >= 0.001) expectedStatus = 'knownRowsExceedReported';
-  else if (Math.abs(row.reportedMt - row.knownRowsMt) >= 0.001) expectedStatus = 'incompletePartialDifference';
+  } else if (row.knownRowsMt - row.reportedMt > tolerance) expectedStatus = 'knownRowsExceedReported';
+  else if (Math.abs(row.reportedMt - row.knownRowsMt) > tolerance) expectedStatus = 'incompletePartialDifference';
   else expectedStatus = 'incompleteUnavailable';
   if (row.status !== expectedStatus) {
     ctx.addIssue({
@@ -165,6 +176,11 @@ const fleetDailySourceSchema = z.object({
   }).strict(),
   previous: dailySummarySchema,
   daily: z.array(dailySummarySchema).min(2),
+  dailySeries: z.object({
+    dates: z.array(z.iso.date()),
+    pacific: dailySeriesRegionSchema,
+    atlantic: dailySeriesRegionSchema,
+  }).strict(),
   quality: z.object({
     reconciliationChecks: z.array(reconciliationCheckSchema),
     duplicateVesselRows: z.array(z.iso.date()),

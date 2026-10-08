@@ -1,8 +1,20 @@
 name: Korea Consignment Data Sync
 
+# 2026-09-04: 6시간 주기를 껐다. 이 동기화가 먹이던 화면이 더 이상 없다.
+#   · /korea-market 은 2026-08-14 커밋 04fd1e4b 로 은퇴(notFound). 내용은 Drive
+#     agri_data/01_수산물(Seafood)/korea-market/intelligence_reports/ 에 HTML 로 있다.
+#   · consignment_3year.json 을 읽는 KoreaConsignmentDashboard·MackerelDashboard·
+#     TunaDashboard 는 전부 살아있는 메뉴(lib/dashboard-registry.ts)에 걸려 있지 않다.
+#   · TunaMofFisheryWidget 의 fetch 는 2026-06-11 에 이미 제거돼 STATIC 이다.
+# 게다가 저장소에 Actions 시크릿이 하나도 없어 FISHERY_API_KEY 단계에서 계속 실패해 왔다.
+# 아무도 보지 않는 데이터를 6시간마다 실패시키는 상태라 스케줄만 끄고 수동 트리거는 남긴다.
+#
+# 다시 켜려면: ① 소비하는 화면을 registry 에 올리고 ② FISHERY_API_KEY·DATA_GO_KR_NEW_KEY
+#              시크릿을 등록한 뒤 ③ 아래 schedule 주석을 해제한다.
+#              데이터는 2026-06 까지 있으므로 되살리면 7월부터 이어 받는다.
 on:
-  schedule:
-    - cron: '15 */6 * * *'
+  # schedule:
+  #   - cron: '15 */6 * * *'
   workflow_dispatch:
 
 concurrency:

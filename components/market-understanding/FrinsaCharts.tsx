@@ -33,15 +33,16 @@ import {
   sustainabilityBy,
 } from '@/lib/data/company-frinsa';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
+import { CHART_ROLE } from '@/lib/chart-palette';
 
 const MARGIN = { top: 12, right: 16, left: 0, bottom: 8 };
 const AXIS = { stroke: 'var(--mu-axis)', tick: { fill: 'var(--mu-axis)', fontSize: 11 } } as const;
 const grid = <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />;
 const legend = <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />;
 
-/* 스페인 캔참치 — 갈리시아 가공 클러스터. 시그니처 색은 품목이 아니라 회사에 준다. */
-const BASE = '#c2410c';
-const MARK = '#f59e0b';
+// 2026-09-11 팔레트 일원화 — 회사 브랜드색은 히어로 액센트(*_ACCENT)에만. 차트는 공통 역할색.
+const BASE = CHART_ROLE.volume;
+const MARK = CHART_ROLE.highlight;
 
 function Tip({ active, payload, label }: { active?: boolean; payload?: { name?: string; value?: number; color?: string }[]; label?: string }) {
   if (!active || !payload?.length) return null;

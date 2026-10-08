@@ -32,16 +32,17 @@ import {
   thaiUnionTc25,
 } from '@/lib/data/company-thaiunion';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
+import { CHART_ROLE } from '@/lib/chart-palette';
 
 const MARGIN = { top: 12, right: 16, left: 0, bottom: 8 };
 const AXIS = { stroke: 'var(--mu-axis)', tick: { fill: 'var(--mu-axis)', fontSize: 11 } } as const;
 const grid = <CartesianGrid stroke="var(--mu-grid)" strokeDasharray="3 3" vertical={false} />;
 const legend = <Legend wrapperStyle={{ fontSize: 11, color: 'var(--mu-axis)' }} />;
 
-/* 태국 왕실 남색 — Frinsa(주황)와 색으로도 회사를 가른다. */
-const BASE = '#1e40af';
-const MARK = '#f59e0b';
-const SEP = '#b45309';
+// 2026-09-11 팔레트 일원화 — 회사 브랜드색은 히어로 액센트(*_ACCENT)에만. 차트는 공통 역할색.
+const BASE = CHART_ROLE.volume;
+const MARK = CHART_ROLE.highlight;
+const SEP = CHART_ROLE.second;
 
 function Tip({ active, payload, label }: { active?: boolean; payload?: { name?: string; value?: number; color?: string }[]; label?: string }) {
   if (!active || !payload?.length) return null;

@@ -151,13 +151,13 @@ export default function Cash() {
             잔액 수준보다 주간 진폭이 큰 구조라 특정 주의 잔액만으로 판단하기 어렵습니다.</>}
         >
           <Legend items={[
-            { name: '현금잔액', color: C.rank, box: true },
+            { name: '현금잔액', color: C.s4, box: true },
             { name: `연초 ${musd(opening)}`, color: 'var(--cosmo-muted)', dash: true },
           ]} />
           <Chart
             data={rows} x="label" height={250} yFmt={m1} xInterval={3}
             refLines={opening != null ? [{ y: opening, color: 'var(--cosmo-muted)' }] : undefined}
-            series={[{ key: 'cashUsd', name: '현금잔액', color: C.rank, type: 'area', fmt: m2 }]}
+            series={[{ key: 'cashUsd', name: '현금잔액', color: C.s4, type: 'area', fmt: m2 }]}
           />
         </Card>
 

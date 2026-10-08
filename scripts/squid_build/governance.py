@@ -112,7 +112,7 @@ def load_sources(archive_root: Path) -> tuple[list[dict], list[dict]]:
                 "frequency": "event",
                 "landing_url": str(SOURCE_REGISTRY),
                 "archive_subdir": str(OPERATIONS_DIR),
-                "latest_verified": "2026-08-27",
+                "latest_verified": "2026-09-10",
                 "note": "각 행의 source_id가 실제 원출처를 역참조하는 운영 원장",
             },
             {
@@ -124,7 +124,7 @@ def load_sources(archive_root: Path) -> tuple[list[dict], list[dict]]:
                 "frequency": "event",
                 "landing_url": str(MONITORING_CALENDAR),
                 "archive_subdir": str(OPERATIONS_DIR),
-                "latest_verified": "2026-08-27",
+                "latest_verified": "2026-09-10",
                 "note": "각 행의 source_id가 실제 점검 대상 원출처를 역참조하는 운영 일정",
             },
         ]

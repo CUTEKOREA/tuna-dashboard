@@ -9,11 +9,12 @@
  */
 
 'use client';
-import React from 'react';
-import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, Line, Legend, ComposedChart } from 'recharts';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, Line, Legend, ComposedChart, LineChart } from 'recharts';
 import { Ship, Globe, Building2 } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+import { SERIES } from '@/lib/chart-palette';
 
 const FALLBACK_FISH = [
   { market: '부산공동어시장', volume: 12450, avgPrice: 8200 },
@@ -32,12 +33,23 @@ const FALLBACK_TRADE = [
   { month: '2024-12', export: 55, import: 210, balance: -155 },
 ];
 
-const FALLBACK_SHIPPING = [
-  { route: '부산→방콕', cost20ft: 850, cost40ft: 1450, trend: '↗ +8%' },
-  { route: '부산→오사카', cost20ft: 620, cost40ft: 1080, trend: '→ +1%' },
-  { route: '부산→LA', cost20ft: 2200, cost40ft: 3800, trend: '↗ +15%' },
-  { route: '부산→로테르담', cost20ft: 1900, cost40ft: 3200, trend: '↘ -3%' },
-];
+/**
+ * 관세청 해상수출입 운송비용 — 항로별 색.
+ * 색은 순위가 아니라 대상을 따른다. 항로가 몇 개 살아 오든 미국서부는 늘 같은 색이다.
+ */
+const ROUTE_COLOR: Record<string, string> = {
+  USW: SERIES[0],
+  USE: SERIES[1],
+  EU: SERIES[2],
+  CN: SERIES[3],
+  JP: SERIES[4],
+  VN: SERIES[5],
+};
+
+type FreightRow = { period: string } & Record<string, number | string>;
+type FreightResponse =
+  | { ok: true; unit: string; routes: string[]; routeNames: Record<string, string>; failed?: string[]; data: FreightRow[] }
+  | { ok: false; error: string };
 
 export function MofFishMarketWidget() {
   const data = FALLBACK_FISH;
@@ -146,7 +158,81 @@ export function MofTradeBalanceWidget() {
 }
 
 export function MofShippingCostWidget() {
-  const data = FALLBACK_SHIPPING;
+  const [res, setRes] = useState<FreightResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/mof-fishery?endpoint=shipping_cost_all', { signal: AbortSignal.timeout(20000) })
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((json: FreightResponse) => {
+        if (alive) setRes(json);
+      })
+      .catch((e) => {
+        if (alive) setRes({ ok: false, error: e?.message ?? '요청 실패' });
+      })
+      .finally(() => {
+        if (alive) setLoading(false);
+      });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const live = res?.ok ? res : null;
+  const rows = live?.data ?? [];
+  const routes = live?.routes ?? [];
+
+  // 최신 달 값과 12개월 전 대비 변화. 서술은 화면에 실제로 그려진 숫자만 인용한다.
+  const summary = useMemo(() => {
+    if (rows.length === 0) return [];
+    const last = rows[rows.length - 1];
+    const first = rows[0];
+    return routes
+      .map((code) => {
+        const now = Number(last[code]);
+        const then = Number(first[code]);
+        if (!Number.isFinite(now)) return null;
+        // 행이 하나뿐이면 비교 기준이 없다. 0% 로 적으면 「변동 없음」이라는 없는 사실이 생긴다.
+        const pct =
+          rows.length > 1 && Number.isFinite(then) && then > 0
+            ? Math.round(((now - then) / then) * 1000) / 10
+            : null;
+        return { code, name: live?.routeNames?.[code] ?? code, now, pct };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b!.now - a!.now) as Array<{ code: string; name: string; now: number; pct: number | null }>;
+  }, [rows, routes, live]);
+
+  const span = rows.length ? `${rows[0].period} ~ ${rows[rows.length - 1].period}` : null;
+  const dearest = summary[0];
+  const cheapest = summary[summary.length - 1];
+
+  const situation = live
+    ? `<div>
+<p>관세청 <strong>해상 수출입 운송비용</strong>은 40피트 컨테이너 한 대(2TEU)를 실어 나르는 데 든 총비용을 항로별·월별로 공표합니다. 운임에 할증료·수수료까지 포함한 값이고 단위는 <strong>천원</strong>입니다. 아래는 수입 방향 ${span} 실측치입니다.</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+${summary
+  .map(
+    (r) =>
+      `<li><strong>${r.name}</strong>: ${r.now.toLocaleString()}천원/2TEU${
+        r.pct === null ? '' : ` (기간 처음 대비 ${r.pct > 0 ? '+' : ''}${r.pct}%)`
+      }</li>`,
+  )
+  .join('\n')}
+</ul>
+<p>가장 비싼 항로(${dearest?.name})와 가장 싼 항로(${cheapest?.name})의 격차는 <strong>${
+        dearest && cheapest && cheapest.now > 0 ? (dearest.now / cheapest.now).toFixed(1) : '—'
+      }배</strong>입니다. 원물을 어디서 들여오느냐가 곧 물류비 구조를 정합니다.</p>
+${(live?.failed?.length ?? 0) > 0 ? `<p>받지 못한 항로: ${live!.failed!.join(' · ')}</p>` : ''}
+<p>주의: 이 통계는 <strong>항로 단위</strong>지 품목 단위가 아닙니다. 컨테이너 한 대에 얼마를 싣느냐에 따라 kg당 부담이 달라지므로, 착지원가로 옮길 때는 적재중량 가정을 함께 적어야 합니다.</p>
+</div>`
+    : `<div><p>관세청 해상 수출입 운송비용 API에서 데이터를 받지 못했습니다${
+        res && !res.ok && res.error ? ` (${res.error})` : ''
+      }. 숫자를 지어내지 않고 비워 둡니다.</p></div>`;
 
   return (
     <WidgetCard
@@ -154,48 +240,74 @@ export function MofShippingCostWidget() {
       icon={Ship}
       iconColor="#8b5cf6"
       pillar="S3"
-      cardDesc="KMI 해운지수·해운조합 컨테이너 운임 참고 자체 추정치(2026 초, API 미연동) - 주요 수출입 노선(부산→방콕·LA·로테르담 등) 20ft/40ft 운임 비교"
-      unit="(단위: USD/컨테이너)"
-      telemetry={{ status: 'STATIC', syncDate: '2026 초 추정' }}
+      cardDesc="관세청 해상 수출입 운송비용(data.go.kr 15129097) 실시간 연동 - 미국서부·미국동부·유럽연합·중국·일본·베트남 수입 항로의 월별 컨테이너 운송비용"
+      unit="(단위: 천원/2TEU · 40피트 1대)"
+      telemetry={
+        live
+          ? { status: 'LIVE', syncDate: rows[rows.length - 1]?.period as string, source: '관세청 무역통계' }
+          : { status: 'STATIC', syncDate: loading ? '불러오는 중' : '조회 실패' }
+      }
+      chartHeight={300}
+      chart={
+        live ? (
+          <LineChart data={rows} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
+            <XAxis dataKey="period" stroke="var(--w-slate-400)" tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }} />
+            <YAxis
+              stroke="var(--w-slate-400)"
+              tick={{ fill: 'var(--w-slate-300)', fontSize: 12, fontWeight: 500 }}
+              tickFormatter={(v) => `${(v as number).toLocaleString()}`}
+              label={{ value: '천원/2TEU', angle: -90, position: 'insideLeft', fill: 'var(--w-slate-300)', fontSize: 11 }}
+            />
+            <Tooltip
+              contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }}
+              formatter={(v: any, name: any) => [`${Number(v).toLocaleString()}천원`, name]}
+            />
+            <Legend />
+            {routes.map((code) => (
+              <Line
+                key={code}
+                type="monotone"
+                dataKey={code}
+                name={live.routeNames?.[code] ?? code}
+                stroke={ROUTE_COLOR[code] ?? SERIES[7]}
+                strokeWidth={2}
+                dot={false}
+                connectNulls
+              />
+            ))}
+          </LineChart>
+        ) : undefined
+      }
       customBody={
-        <div style={{ display: 'grid', gap: '12px', background: 'rgba(0, 0, 0, 0.2)', padding: '20px', borderRadius: '1rem', border: '1px dashed rgba(var(--w-slate-400-rgb), 0.1)' }}>
-          {data.map((r, i) => (
-            <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr', gap: 16, padding: '14px 20px', alignItems: 'center', background: 'rgba(255,255,255,0.03)', borderRadius: 8, border: '1px solid rgba(140,170,255,0.12)' }}>
-              <span style={{ fontSize: '0.9rem', color: 'var(--w-slate-50)', fontWeight: 600 }}>{r.route}</span>
-              <span style={{ fontSize: '0.85rem', color: '#0ea5e9', fontFamily: 'monospace' }}>20ft: ${r.cost20ft.toLocaleString()}</span>
-              <span style={{ fontSize: '0.85rem', color: 'var(--w-violet-500)', fontFamily: 'monospace' }}>40ft: ${r.cost40ft.toLocaleString()}</span>
-              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: r.trend.includes('+') ? 'var(--w-red-500)' : r.trend.includes('-') ? 'var(--w-emerald-500)' : 'var(--w-amber-500)', textAlign: 'right' }}>{r.trend}</span>
-            </div>
-          ))}
-        </div>
+        live ? undefined : (
+          <div
+            style={{
+              padding: '28px 20px',
+              textAlign: 'center',
+              color: 'var(--w-slate-300)',
+              fontSize: '0.9rem',
+              background: 'rgba(0, 0, 0, 0.2)',
+              borderRadius: '1rem',
+              border: '1px dashed rgba(140,170,255,0.2)',
+            }}
+          >
+            {loading ? '관세청 해상 운송비용 불러오는 중…' : '관세청 해상 운송비용을 불러오지 못했습니다. 숫자를 채우지 않습니다.'}
+          </div>
+        )
       }
       takeaway={{
-        situation: `<div>
-<p>해상운임은 글로벌 수산 무역 cost의 8~15%를 차지하는 핵심 변수. 노선별 추이를 보면 향후 6~12개월 우리 채널 전략이 결정됩니다.</p>
-<p>2026년 초 기준 노선별 운임 (20ft 컨테이너, 자체 추정):</p>
-<ul style="margin: 4px 0 0 18px; padding: 0;">
-<li><strong>부산→LA</strong>: <strong>$2,200 (+15% YoY)</strong> - 홍해 분쟁 여파로 지속 상승</li>
-<li><strong>부산→오사카</strong>: $620 (+1%) - 아시아 노선 상대적 안정</li>
-<li><strong>부산→로테르담</strong>: <strong>$1,900 (-3%)</strong> - 소폭 하락 추세</li>
-</ul>
-<p>패턴 해석:</p>
-<ul style="margin: 4px 0 0 18px; padding: 0;">
-<li>북미 노선(LA·NY): 홍해·수에즈 우회로 운임 상승 - 미국 수출 가격 경쟁력 약화</li>
-<li>아시아 노선(오사카·홍콩): 단거리 안정 - 일본·동남아 채널이 sweet spot</li>
-<li>EU 노선(로테르담·함부르크): 운임 하락 추세 - EU 수출 확대 윈도우 열림</li>
-</ul>
-<p>의미: 단기 채널 우선순위가 미국 → EU + 일본 + 동남아로 자동 재배치 필요. 운임 시그널이 곧 마진 시그널.</p>
-</div>`,
+        situation,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 해상운임 추이는 단순 cost 변수가 아닌 <strong>"채널 우선순위 dynamic rebalancing signal"</strong>. 본사 trade desk가 분기마다 노선별 운임을 마진 매트릭스에 reflect.</p>
+<p><strong>재정의</strong>: 항로별 운송비용은 원가표의 한 줄이 아니라 <strong>「원물을 어디서 받을지」를 정하는 값</strong>입니다. 같은 물건이라도 항로에 따라 컨테이너당 부담이 몇 배로 갈립니다.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>방콕 직항 물류 집중</strong>: 부산→방콕 노선에 물량 집중하여 단위당 운임 -15~20% 절감 (volume discount). 태국 가공 OEM 비중 확대와 시너지.</li>
-<li style="margin-bottom: 8px;"><strong>LA행 장기계약(TAC) 체결</strong>: Maersk·MSC·CMA CGM 3사와 <strong>$1,800/20ft 이하 락인</strong>하는 5년 TAC. 현재 spot $2,200 대비 -18% 마진 확보.</li>
-<li><strong>EU 수출 확대 윈도우 활용</strong>: 로테르담 운임 하락 추세를 활용해 EU 통조림·loin 수출 30% 확대. 동시에 EU 무관세 혜택(에콰도르 가공 거점 활용) 결합 시 통합 가격 경쟁력 +25%p 회수.</li>
+<li style="margin-bottom: 8px;"><strong>소싱 비교표에 이 값을 붙인다</strong>: 산지 견적(FOB)만 놓고 고르지 말고 항로 운송비용을 더한 값으로 비교한다. 착지원가 시뮬레이터(<code>/api/landed-cost</code>)가 같은 API를 쓴다.</li>
+<li style="margin-bottom: 8px;"><strong>고가 항로는 계약 물량으로 잠근다</strong>: 변동이 큰 항로일수록 스팟 노출을 줄인다. 위 그래프에서 기간 중 진폭이 가장 큰 항로가 우선 대상이다.</li>
+<li><strong>적재중량 가정을 명시한다</strong>: 이 통계는 컨테이너 단위다. kg당으로 바꿔 쓸 때는 몇 kg을 싣는다고 보았는지 문서에 남긴다 — 가정이 빠지면 다른 원가표와 비교가 안 된다.</li>
 </ol>
 </div>`,
-        source: 'KMI 해운지수 부산항 · 해운조합 컨테이너 운임 (SCFI는 상하이 출발이라 부산 출발 운임은 KMI/KOBC가 정확)',
+        source: '관세청 해상 수출입 운송비용 (공공데이터포털 15129097, getSeaImexTrnpCst) · 단위 천원/2TEU',
       }}
     />
   );

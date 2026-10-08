@@ -1,4 +1,5 @@
 import rawBriefing from '../../public/data/tuna_daily_briefing.json';
+import rawWeeklyBriefing from '../../public/data/tuna_weekly_briefing.json';
 
 export type DailyBriefingDigestItem = {
   readonly title: string;
@@ -14,6 +15,12 @@ export type DailyBriefing = {
   readonly date: string;
   readonly digest: readonly DailyBriefingDigestItem[];
   readonly articles: readonly DailyBriefingArticle[];
+};
+
+export type WeeklyBriefing = {
+  readonly weekStart: string;
+  readonly weekEnd: string;
+  readonly days: readonly DailyBriefing[];
 };
 
 export type DailyBriefingTakeaways = {
@@ -47,16 +54,20 @@ function arrayAt(value: unknown, path: string): unknown[] {
   return value;
 }
 
-function validateIsoDate(value: unknown): string {
-  const rawDate = stringAt(value, 'date');
+function validateIsoDateField(value: unknown, field: string): string {
+  const rawDate = stringAt(value, field);
   if (!ISO_DATE_PATTERN.test(rawDate)) {
-    throw new Error('date는 YYYY-MM-DD 형식이어야 합니다.');
+    throw new Error(`${field}는 YYYY-MM-DD 형식이어야 합니다.`);
   }
   const parsed = new Date(`${rawDate}T00:00:00Z`);
   if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== rawDate) {
-    throw new Error(`date가 유효하지 않습니다: ${rawDate}`);
+    throw new Error(`${field}가 유효하지 않습니다: ${rawDate}`);
   }
   return rawDate;
+}
+
+function validateIsoDate(value: unknown): string {
+  return validateIsoDateField(value, 'date');
 }
 
 export function parseDailyBriefing(value: unknown): DailyBriefing {
@@ -140,7 +151,44 @@ export function buildDailyBriefingTakeaways(
   };
 }
 
+export function parseWeeklyBriefing(value: unknown): WeeklyBriefing {
+  const root = recordAt(value, 'weeklyBriefing');
+  const weekStart = validateIsoDateField(root.weekStart, 'weekStart');
+  const weekEnd = validateIsoDateField(root.weekEnd, 'weekEnd');
+  const monday = new Date(`${weekStart}T00:00:00Z`);
+  const friday = new Date(monday);
+  friday.setUTCDate(friday.getUTCDate() + 4);
+  if (monday.getUTCDay() !== 1 || friday.toISOString().slice(0, 10) !== weekEnd) {
+    throw new Error('weekStart와 weekEnd는 같은 주의 월요일부터 금요일이어야 합니다.');
+  }
+  const days = arrayAt(root.days, 'days').map((day, index) => (
+    parseDailyBriefing(recordAt(day, `days[${index}]`))
+  ));
+  if (days.length === 0) {
+    throw new Error('days는 비어 있을 수 없습니다.');
+  }
+  for (const day of days) {
+    const weekday = new Date(`${day.date}T00:00:00Z`).getUTCDay();
+    if (weekday === 0 || weekday === 6) {
+      throw new Error(`주말 브리핑은 주간 파일에 넣을 수 없습니다: ${day.date}`);
+    }
+    if (day.date < weekStart || day.date > weekEnd) {
+      throw new Error(`days.date가 주간 범위를 벗어났습니다: ${day.date}`);
+    }
+  }
+  for (let index = 1; index < days.length; index += 1) {
+    if (days[index - 1].date === days[index].date) {
+      throw new Error(`days.date가 중복되었습니다: ${days[index].date}`);
+    }
+    if (days[index - 1].date > days[index].date) {
+      throw new Error('days는 날짜 오름차순이어야 합니다.');
+    }
+  }
+  return { weekStart, weekEnd, days };
+}
+
 export const dailyBriefing = parseDailyBriefing(rawBriefing);
+export const weeklyBriefing = parseWeeklyBriefing(rawWeeklyBriefing);
 
 /* ── V3 뉴스 임팩트 표현 (A안: 리드 기사 + 임팩트 넘버, 2026-08-15 사용자 확정) ── */
 
@@ -169,7 +217,11 @@ export type BriefingImpactNumber = {
   readonly label: string;
 };
 
-const NUMBER_TOKEN_PATTERN = /([+-]?\d[\d,.]*\s?%|USD\s?[\d,.]+|\$[\d,.]+|[\d,.]+\s?(?:달러|톤|만))/;
+// 통화 금액은 뒤따르는 한국어 단위(억·만)까지 한 토큰으로 묶는다. 2026-09-21 「USD 2,500만」이
+// 「USD 2,500」으로 잘려 1만분의 1로 표시됐고, EUR 는 패턴에 없어 「EUR 30억 3,000만」이 「3,000만」이 됐다.
+// 2026-09-22 「… 상반기 64,782 M/T(전년比 -13%)」 에서 물량 대신 뒤쪽 -13% 가 잡혔다 — M/T 도 단위로 센다.
+const NUMBER_TOKEN_PATTERN =
+  /((?:USD|EUR|\$)\s?[\d,.]+(?:\s?억(?:\s?[\d,.]+)?)?(?:\s?만)?|[+-]?\d[\d,.]*\s?%|[\d,.]+\s?억(?:\s?[\d,.]+\s?만)?|[\d,.]+\s?(?:만|달러|톤|M\/T|MT))/;
 
 /**
  * 다이제스트 문구에서 수치 토큰을 원문 그대로 추출해 임팩트 넘버로 쓴다.

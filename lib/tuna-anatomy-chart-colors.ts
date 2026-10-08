@@ -1,16 +1,12 @@
 /**
- * 참치 해부 차트 시리즈 색 — 선망·수출·캔이 같은 역할을 같은 색으로 그린다.
- *
- * 참치 시장이해(남색 계열)와 겹치지 않게 기본은 깊은 바다의 남청(#1e3a8a 계열 대신 #0c4a6e),
- * 강조는 대비 3:1 산호(#c2410c), 둘째는 선단 DB 호박.
+ * 참치 해부 차트 역할 색 — 어획·위판·창구가 같은 역할을 같은 색으로 그린다.
+ * 색값은 lib/chart-palette 의 CHART_ROLE(전 메뉴 공통)이다. 이 파일은 메뉴 액센트만 따로 둔다.
  */
 
-import { HUB_ID } from '@/lib/chart-palette';
+import { CHART_ROLE } from '@/lib/chart-palette';
 
-export const TUNA_ANATOMY_ROLE = {
-  volume: '#0c4a6e',
-  highlight: '#c2410c',
-  second: HUB_ID.sey,
-} as const;
+/** 데이터 색은 전 메뉴 공통 역할(주 물량·강조·보조)을 쓴다 — 2026-09-11 팔레트 일원화. */
+export const TUNA_ANATOMY_ROLE = CHART_ROLE;
 
-export const TUNA_ANATOMY_ACCENT = TUNA_ANATOMY_ROLE.volume;
+/** 메뉴 톤 — 히어로·섹션 머리 같은 차트 밖에만 쓴다. 데이터 마크에 쓰지 않는다. */
+export const TUNA_ANATOMY_ACCENT = '#0c4a6e';

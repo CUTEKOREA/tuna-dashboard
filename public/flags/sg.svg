@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 24" width="36" height="24" role="img" aria-label="싱가포르">
+  <rect width="36" height="24" fill="#fff"/>
+  <rect width="36" height="12" fill="#ED2939"/>
+  <g fill="#fff">
+    <circle cx="9.4" cy="6" r="4.2"/>
+    <circle cx="11.6" cy="6" r="4.2" fill="#ED2939"/>
+    <g>
+      <circle cx="10.7" cy="2.9" r="0.72"/>
+      <circle cx="12.9" cy="4.5" r="0.72"/>
+      <circle cx="12.05" cy="7.1" r="0.72"/>
+      <circle cx="9.35" cy="7.1" r="0.72"/>
+      <circle cx="8.5" cy="4.5" r="0.72"/>
+    </g>
+  </g>
+</svg>

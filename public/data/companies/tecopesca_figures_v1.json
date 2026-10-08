@@ -1,0 +1,90 @@
+{
+ "_meta": {
+  "출처": "docs/evidence/company-tecopesca-2026-09/보고서.html",
+  "생성": "python3 scripts/build_report_figures.py",
+  "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
+ },
+ "figures": [
+  {
+   "stage": "c02",
+   "sid": "s4",
+   "kind": "chart",
+   "ord": 868,
+   "caption": "회사감독청 순위 원자료. 2020년 순이익 칸(−116.2)은 자본 증가와 맞지 않아 줄에서 비웠다. 막대 위 숫자는 백만 달러 반올림이다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Tecopesca 매출과 순이익 2011~2024\"><text x=\"44\" y=\"14\" font-size=\"12.5\" fill=\"#7a828b\">매출(백만 달러, 막대) · 순이익(백만 달러, 아래 줄)</text><line x1=\"44\" y1=\"130.0\" x2=\"660\" y2=\"130.0\" stroke=\"#a9aeb5\" stroke-dasharray=\"2 3\"/><text x=\"38\" y=\"134.0\" text-anchor=\"end\" font-size=\"11\" fill=\"#7a828b\">100</text><line x1=\"44\" y1=\"70.0\" x2=\"660\" y2=\"70.0\" stroke=\"#a9aeb5\" stroke-dasharray=\"2 3\"/><text x=\"38\" y=\"74.0\" text-anchor=\"end\" font-size=\"11\" fill=\"#7a828b\">200</text><rect x=\"50.0\" y=\"110.6\" width=\"30\" height=\"79.4\" fill=\"#6f8fa3\"/><text x=\"65.0\" y=\"105.6\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">132</text><text x=\"65.0\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">11</text><text x=\"65.0\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">5.6</text><rect x=\"92.6\" y=\"79.0\" width=\"30\" height=\"111.0\" fill=\"#6f8fa3\"/><text x=\"107.6\" y=\"74.0\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">185</text><text x=\"107.6\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">12</text><text x=\"107.6\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">4.6</text><rect x=\"135.1\" y=\"75.6\" width=\"30\" height=\"114.4\" fill=\"#6f8fa3\"/><text x=\"150.1\" y=\"70.6\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">191</text><text x=\"150.1\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">13</text><text x=\"150.1\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">7.0</text><rect x=\"177.7\" y=\"95.0\" width=\"30\" height=\"95.0\" fill=\"#6f8fa3\"/><text x=\"192.7\" y=\"90.0\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">158</text><text x=\"192.7\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">14</text><text x=\"192.7\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">8.5</text><rect x=\"220.3\" y=\"142.2\" width=\"30\" height=\"47.8\" fill=\"#6f8fa3\"/><text x=\"235.3\" y=\"137.2\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">80</text><text x=\"235.3\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">15</text><text x=\"235.3\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">0.6</text><rect x=\"262.9\" y=\"136.9\" width=\"30\" height=\"53.1\" fill=\"#6f8fa3\"/><text x=\"277.9\" y=\"131.9\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">89</text><text x=\"277.9\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">16</text><text x=\"277.9\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#B2503A\">−0.2</text><rect x=\"305.4\" y=\"116.2\" width=\"30\" height=\"73.8\" fill=\"#6f8fa3\"/><text x=\"320.4\" y=\"111.2\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">123</text><text x=\"320.4\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">17</text><text x=\"320.4\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">0.0</text><rect x=\"348.0\" y=\"106.0\" width=\"30\" height=\"84.0\" fill=\"#6f8fa3\"/><text x=\"363.0\" y=\"101.0\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">140</text><text x=\"363.0\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">18</text><text x=\"363.0\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">0.2</text><rect x=\"390.6\" y=\"111.3\" width=\"30\" height=\"78.7\" fill=\"#6f8fa3\"/><text x=\"405.6\" y=\"106.3\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">131</text><text x=\"405.6\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">19</text><text x=\"405.6\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">1.4</text><rect x=\"433.1\" y=\"109.7\" width=\"30\" height=\"80.3\" fill=\"#6f8fa3\"/><text x=\"448.1\" y=\"104.7\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">134</text><text x=\"448.1\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">20</text><text x=\"448.1\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">—</text><rect x=\"475.7\" y=\"109.7\" width=\"30\" height=\"80.3\" fill=\"#6f8fa3\"/><text x=\"490.7\" y=\"104.7\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">134</text><text x=\"490.7\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">21</text><text x=\"490.7\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#B2503A\">−1.9</text><rect x=\"518.3\" y=\"108.4\" width=\"30\" height=\"81.6\" fill=\"#6f8fa3\"/><text x=\"533.3\" y=\"103.4\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">136</text><text x=\"533.3\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">22</text><text x=\"533.3\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">0.0</text><rect x=\"560.9\" y=\"100.9\" width=\"30\" height=\"89.1\" fill=\"#6f8fa3\"/><text x=\"575.9\" y=\"95.9\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6f8fa3\">149</text><text x=\"575.9\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">23</text><text x=\"575.9\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">0.3</text><rect x=\"603.4\" y=\"42.7\" width=\"30\" height=\"147.3\" fill=\"#B2503A\"/><text x=\"618.4\" y=\"37.7\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"700\" fill=\"#B2503A\">246</text><text x=\"618.4\" y=\"205\" text-anchor=\"middle\" font-size=\"10\" fill=\"#7a828b\">24</text><text x=\"618.4\" y=\"224\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"700\" fill=\"#7a828b\">1.4</text><line x1=\"44\" y1=\"190\" x2=\"660\" y2=\"190\" stroke=\"#a9aeb5\"/><text x=\"38\" y=\"224\" text-anchor=\"end\" font-size=\"10\" fill=\"#7a828b\">순이익</text></svg>"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 411,
+   "caption": "Tunalia 로모 170 g. 이 회사가 2018년 관계사에 판 상표다.",
+   "alt": "Tunalia 참치 로모 식물성유 170g 캔",
+   "src": "/data/companies/figures/tecopesca/04efd443f506.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 80057,
+   "caption": "240 g 묶음(사진상 80 g×3). kg당 9.79달러로 단캔보다 비싸다.",
+   "alt": "Tunalia 참치 80g 세 캔 묶음",
+   "src": "/data/companies/figures/tecopesca/31c6aeccd791.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 164273,
+   "caption": "올리브유 유리병 190 g. 유리병 라인은 인증서 범위에 있다.",
+   "alt": "Tunalia 올리브유 참치 유리병 190g",
+   "src": "/data/companies/figures/tecopesca/1f52b1f4e04c.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 260420,
+   "caption": "벤트레스카 110 g. 상자에 물뺀중량 77 g.",
+   "alt": "Tunalia 벤트레스카 올리브유 110g",
+   "src": "/data/companies/figures/tecopesca/5ad6d9fc7205.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 323562,
+   "caption": "Real 160 g(NIRSA, ⅩⅩⅤ편).",
+   "alt": "Real 참치 로모 해바라기유 160g 캔",
+   "src": "/data/companies/figures/tecopesca/0e485731723b.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 406885,
+   "caption": "Isabel 160 g(Bolton 계열).",
+   "alt": "Isabel 참치 해바라기유 160g 캔",
+   "src": "/data/companies/figures/tecopesca/9b3025ce327b.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 538723,
+   "caption": "Van Camp's 184 g.",
+   "alt": "Van Camp's 참치 해바라기유 184g 캔",
+   "src": "/data/companies/figures/tecopesca/caee1078867d.jpg"
+  },
+  {
+   "stage": "c04",
+   "sid": "s8",
+   "kind": "shot",
+   "ord": 588815,
+   "caption": "Manabí(Eurofish, ⅩⅩⅥ편). 캔 라벨에 순중량 160 g · 물뺀중량 104 g.",
+   "alt": "Manabí 참치 로모 해바라기유 160g 캔",
+   "src": "/data/companies/figures/tecopesca/34b6a3213379.jpg"
+  }
+ ]
+}

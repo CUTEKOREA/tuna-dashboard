@@ -1,0 +1,42 @@
+{
+ "_meta": {
+  "회사": "Grupomar(Grupo Marítimo Industrial) — 멕시코 콜리마주 만사니요 Fondeport 산업단지 Calle Don Antonio Suárez Gutiérrez No. 5의 참치 그룹. 캔 제조·유럽연합 승인 가공장 Marindustrias(RFC MAR9308174P1), 냉동창고 Marfrigo, 선망선 소유 Maratún·Martuna, 상표 권리자 Prestadores de Servicios de Colima",
+  "국가": "멕시코",
+  "업종": "캔참치(Tuny·Ancla)·파우치·냉동 로인·제관, 선망 선단 6척. 캔은 Tuny(2024 시험 대두 0 %)와 Ancla(대두 단백 20 % 표기) 두 층",
+  "종목": "비상장. 지주 이름 Grupo Maritimo Industrial S.A. de C.V.은 상업 DB(EMIS)·선하증권에 나오고 조회한 공개 명부에는 없다",
+  "출처": "IATTC 선박 등록부 · EU TRACES NT · IMPI 상표 등록부·공문 · USPTO · INEGI DENUE · CompraNet · QuiénEsQuién.wiki(PODER) · PROFECO 품질시험 · CONAPESCA · PROFEPA · MSC · FisheryProgress · UN Comtrade · Eurostat Comext · 회사 누리집·라벨·X · EMIS·Panjiva·ImportGenius · 멕시코 경제지·콜리마 현지 매체 · Atuna",
+  "조사일": "2026-09-24"
+ },
+ "card": {
+  "numeral": "ⅬⅢ",
+  "tagline": "한 단지의 사슬, 나뉜 이름 — 만사니요 한 단지에 캔 공장·냉동창고와 선단 법인의 주소가 모였고, 가장 새 배를 들이고도 선단은 한 척 줄었다"
+ },
+ "stats": {
+  "주소": "Calle Don Antonio Suárez Gutiérrez No. 5, Parque Industrial Fondeport, C.P. 28219",
+  "RFC": "MAR9308174P1",
+  "상표": "439123",
+  "척수": 6,
+  "운반능력_t": 6784,
+  "운반능력_몫_pct": 13.6,
+  "분모_t": 49839,
+  "평균선령": 20.8,
+  "멕시코평균선령": 38.4,
+  "신조": 4,
+  "척수_2023": 7,
+  "동태평양_선망": 279,
+  "MSC철회": "2023-03-08",
+  "MSC개선": "2026-05-20",
+  "조달_Marindustrias_mdp": 1539.5,
+  "조달_PinsaComercial_mdp": 1546.3,
+  "조달_행수": 3361,
+  "조달_2025_Marindustrias_MXN": 3775729.68,
+  "조달_2025_Pinsa_MXN": 19376950.2,
+  "매출_mdp": 11500,
+  "고형량_표기_g": 100,
+  "고형량_하한_g": 91.7,
+  "고형량_상한_g": 98.2,
+  "배상청구_MXN": 2800000,
+  "USPTO_재등록": "2026-03-17"
+ },
+ "sourcenotes": []
+}

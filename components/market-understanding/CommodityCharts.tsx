@@ -54,7 +54,7 @@ import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import styles from './TunaIndustryDashboard.module.css';
 
 /**
- * 품목별 시그니처 색 (룰북 D-04). 강조색은 「여기를 보라」는 신호로만 쓰고,
+ * 품목 역할 색 — 2026-09-11부터 전 품목 공통 CHART_ROLE(시그니처는 룰북 D-04대로 차트 밖에만). 강조색은 「여기를 보라」는 신호로만 쓰고,
  * 나머지 항목은 전부 기본색으로 둔다 — 색이 많아지면 강조가 죽는다.
  */
 const PALETTE = {
@@ -1398,7 +1398,7 @@ export function TunaAnatomyBangkokChart({ data }: { data: TunaAnatomyData }) {
       <LineChart data={data.가격.방콕} margin={MARGIN}>
         {grid}
         <XAxis dataKey="월" {...AXIS} interval={2} angle={-45} textAnchor="end" height={56} tick={{ fill: 'var(--mu-axis)', fontSize: 10 }} />
-        <YAxis {...AXIS} domain={[1000, 2000]} />
+        <YAxis {...AXIS} domain={[1000, 2200]} />
         <Tooltip content={<Tip unit=" 달러/톤" />} />
         <Line type="monotone" dataKey="방콕" name="방콕 가다랑어 (달러/톤)" stroke={HIGHLIGHT} strokeWidth={2.2} dot isAnimationActive={animate} />
       </LineChart>

@@ -51,6 +51,11 @@ def extract_peru_pota(archive_root: Path, spec: WidgetSpec) -> dict:
     research_rel, research_text = next(
         value for name, value in sources.items() if "RM00269" in name
     )
+    # RM00304(2026-08-29)는 RM000075 를 폐지하고 LMCTP 를 재설정한 뒤 조업 개시일을 적은
+    # 상업 재개 공문이다. 스펙에 없으면(옛 스냅샷) 중단 상태 그대로 둔다.
+    reopening_source = next(
+        (value for name, value in sources.items() if "RM00304" in name), None
+    )
 
     lmctp_match = _required_match(
         r"1\.1\s+Establecer\s+el\s+L[ií]mite\s+M[aá]ximo.*?"
@@ -168,6 +173,61 @@ def extract_peru_pota(archive_root: Path, spec: WidgetSpec) -> dict:
             "source_path": research_rel,
         }
     )
+    if reopening_source:
+        reopen_rel, reopen_text = reopening_source
+        new_lmctp = _required_match(
+            r"1\.1\s+Establecer\s+el\s+L[ií]mite\s+M[aá]ximo.*?"
+            r"\(([0-9][0-9\s]+)\)\s+toneladas",
+            reopen_text,
+            "RM00304 LMCTP",
+        )
+        period_limit = _required_match(
+            r"1\.2\s+Desde\s+el\s+30\s+de\s+agosto\s+hasta\s+el\s+31\s+de\s+diciembre.*?"
+            r"\(([0-9][0-9\s]+)\)\s+toneladas",
+            reopen_text,
+            "RM00304 Aug-Dec limit",
+        )
+        # 제3조 g) 조업 개시 일정 — 선단 유형 셋, 날짜 둘. 날짜는 원문에서만 가져온다.
+        start_dates = re.findall(
+            r"Desde\s+el\s+(\d{1,2})\s+de\s+(agosto|setiembre|septiembre)\s+del\s+a[nñ]o\s+2026",
+            reopen_text,
+            flags=re.IGNORECASE,
+        )
+        if len(start_dates) < 3:
+            raise ValueError("RM00304 is missing the three fleet start dates")
+        month_no = {"agosto": "08", "setiembre": "09", "septiembre": "09"}
+        starts = [f"2026-{month_no[m.lower()]}-{int(d):02d}" for d, m in start_dates[:3]]
+        events.append(
+            {
+                "date": "2026-08-29",
+                "event": "법정 최대 허용어획량 재설정 (RM 00304-2026, RM 000075-2026 폐지)",
+                "quota_semantics": "legal_limit",
+                "tonnes": _tonnes(new_lmctp.group(1)),
+                "source_path": reopen_rel,
+            }
+        )
+        events.append(
+            {
+                "date": "2026-08-30",
+                "event": "상업 조업 재개 (8월 30일~12월 31일 기간 한도)",
+                "quota_semantics": "reopening_notice",
+                # 톤수 키를 tonnes 로 두면 한도가 실적으로 읽힌다 — 기간 한도임을 키에 박는다.
+                "period_limit_tonnes": _tonnes(period_limit.group(1)),
+                "windows": [
+                    {
+                        "kind": "위성추적장치 보유 32.6㎥ 이하 · 미보유 20㎥ 이하",
+                        "start": starts[0],
+                        "end": "2026-12-31",
+                    },
+                    {
+                        "kind": "위성추적장치 미보유 20~32.6㎥",
+                        "start": starts[2],
+                        "end": "2026-12-31",
+                    },
+                ],
+                "source_path": reopen_rel,
+            }
+        )
     events.sort(key=lambda event: event["date"])
     return {
         "chartType": spec.chart_type,
@@ -176,15 +236,16 @@ def extract_peru_pota(archive_root: Path, spec: WidgetSpec) -> dict:
         "series": ["tonnes", "progress_pct"],
         "unit": "톤·%",
         "methodology": (
-            "PRODUCE 4개 문서에서 법정한도·누적하역·중단공지·조사탐사인가를 분리 추출하고 "
+            "PRODUCE 문서에서 법정한도·누적하역·중단공지·조사탐사인가·재개공지를 분리 추출하고 "
             "사건일 오름차순 정렬. 2026-08-17 RM00269 는 IMARPE 조사와 탐사조업 인가이며 "
-            "상업 재개가 아니다 — 원문에 재개 문구가 없음을 추출 단계에서 확인한다"
+            "상업 재개가 아니다 — 원문에 재개 문구가 없음을 추출 단계에서 확인한다. "
+            "상업 재개는 2026-08-29 RM00304 의 조업 개시 일정(제3조 g)으로만 판정한다"
         ),
         "basis": {
             "coverage_start": events[0]["date"],
             "coverage_end": events[-1]["date"],
             "published_at": events[-1]["date"],
-            "retrieved_at": "2026-08-18",
+            "retrieved_at": "2026-09-01" if reopening_source else "2026-08-18",
             "metrics": list(spec.metrics),
             "quota_semantics": "legal_limit",
         },

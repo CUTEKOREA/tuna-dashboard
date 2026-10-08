@@ -17,6 +17,22 @@ import PillTabs from './v2/PillTabs';
 import styles from './LogisticsCommandCenter.module.css';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 import { reeferWeeklyReport } from '@/lib/data/reefer-weekly';
+import { reeferMonthlyIntake, recentReeferMonths } from '@/lib/data/reefer-monthly-intake';
+
+/* 운반선 카드의 주차·기간·척수·배분량은 매주 바뀐다. 손으로 적어두면 표만 갈리고
+ * 카드 설명·SIT·TAK·syncDate 가 지난 주차에 남는다 - 2026-09-10 에 표가 36주차인데
+ * 카드가 34주차(25,214.952MT·PATSORN)를 말하고 있었다. */
+const reeferMt = (row: (typeof reeferWeeklyReport.rows)[number]) =>
+  Object.entries(row.deliveries).reduce((sum, [key, value]) => (
+    key === 'OTHER' || key === 'SHIP' || value === ''   // OTHER 는 하역처가 아니라 부두다
+      ? sum : sum + Number.parseFloat(value.replaceAll(',', ''))), 0);
+const reeferWeek = reeferWeeklyReport.source.week;
+const reeferPeriod = `${reeferWeeklyReport.source.startDate}~${reeferWeeklyReport.source.endDate}`;
+const reeferVessels = reeferWeeklyReport.rows.length;
+const reeferTotalMt = reeferWeeklyReport.rows.reduce((sum, row) => sum + reeferMt(row), 0);
+const reeferTopVessel = reeferWeeklyReport.rows
+  .map((row) => ({ carrier: row.carrier, mt: reeferMt(row) }))
+  .reduce((best, row) => (row.mt > best.mt ? row : best));
 import { bangkokMeta } from '@/lib/data/bangkok-weekly';
 
 type LogisticsTab = 'operations' | 'receipts' | 'canneries' | 'vessels';
@@ -28,9 +44,87 @@ const tabs: Array<{ id: LogisticsTab; label: string; description: string }> = [
   { id: 'vessels', label: '선박·보고자료', description: '하역 현황과 보고 시점 이동표' },
 ];
 
+/* 월별 반입은 주간표를 접어 만든다 - 카드 문장도 같은 집계에서 뽑아 표와 어긋나지 않게 한다. */
+const intakeMonths = recentReeferMonths(6);
+/* 진행 중인 달(마지막 주간표 기준일이 말일 전)은 문장 비교에서 뺀다 - 10/8까지 1척을 다 찬 9월과 견주면 급감처럼 읽힌다 */
+const intakeOpen = reeferMonthlyIntake.inProgressMonth;
+const intakeComplete = intakeMonths.filter((row) => row.month !== intakeOpen?.month);
+const intakeLatest = intakeComplete.at(-1)!;
+const intakePrev = intakeComplete.at(-2) ?? null;
+const intakePeak = intakeMonths.reduce((best, row) => (row.mt > best.mt ? row : best), intakeMonths[0]);
+const intakeMaxMt = intakePeak.mt;
+const monthLabel = (month: string) => `${Number(month.slice(5))}월`;
+const intakeEstimate = reeferMonthlyIntake.thirdPartyEstimate;
+const intakeEstimateOf = (month: string) => intakeEstimate.months.find((row) => row.month === month) ?? null;
+
+export function ReeferMonthlyIntakeChart() {
+  return (
+    <div>
+      <div style={{ display: 'grid', gap: 8 }}>
+        {intakeMonths.map((row) => {
+          const estimate = intakeEstimateOf(row.month);
+          return (
+            <div key={row.month} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ flex: '0 0 auto', minWidth: 44, fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-muted)' }}>
+                {monthLabel(row.month)}{row.month === intakeOpen?.month && (
+                  <small style={{ display: 'block', fontWeight: 400, fontSize: '0.66rem' }}>{Number(intakeOpen.through.slice(5, 7))}/{Number(intakeOpen.through.slice(8))}까지</small>
+                )}
+              </span>
+              <span style={{ flex: '1 1 auto', minWidth: 0 }}>
+                <span
+                  style={{
+                    display: 'block', height: 14, borderRadius: 7,
+                    width: `${Math.max(3, (row.mt / intakeMaxMt) * 100)}%`,
+                    background: 'var(--color-info)',
+                  }}
+                />
+              </span>
+              <span style={{ flex: '0 0 auto', minWidth: 132, textAlign: 'right', fontSize: '0.78rem', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
+                {Math.round(row.mt).toLocaleString('ko-KR')} (MT) · {row.vessels}척
+              </span>
+              <span style={{ flex: '0 0 auto', minWidth: 104, textAlign: 'right', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                {estimate ? `추산 ${estimate.mt.toLocaleString('ko-KR')}${estimate.qualifier ?? ''}` : '추산 없음'}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      <p style={{ margin: '10px 0 0', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+        보유 주차 {reeferMonthlyIntake.weeksHeld.join('·')}주차 - 주간표가 연속이 아니라 월 합계는 하한입니다.
+        같은 선박·같은 일자는 한 번만 셌고 부두(OTHER)·선박 간 전재(SHIP)는 뺐습니다.
+        오른쪽 값은 {intakeEstimate.reportDate.replace(/-/g, '.')} 출장보고의 {intakeEstimate.note}입니다.
+      </p>
+    </div>
+  );
+}
+
 const reeferRows = reeferWeeklyReport.rows;
-const carrierSituation = '8월 5일 입항 예정이던 SEIN VENUS는 하역 원장에서 8월 22일 하역 완료가 확인됐고, HENG HONG 9는 31·32주차 운반선 배분 보고에서 8월 6일 입항·배분이 확인됐습니다.';
-const carrierAction = '두 선박의 예정 상태 경고를 해제하고, 보고 당시 예정일과 후속 확인 근거를 함께 보존합니다.';
+const weeklyReportDate = logisticsWeeklyReport.source.reportDate;
+const weeklyReportMonth = `${Number(weeklyReportDate.slice(5, 7))}월`;
+const carrierUnloading = logisticsWeeklyReport.unloading;
+/* 월 누계 문장이므로 월별표 최신 행에서 고른다 - 하역 중 표(vessels)는 주마다 범위가 바뀐다 */
+const latestReceipts = logisticsWeeklyReport.traderReceipts.latestMonth;
+const carrierTopTrader = logisticsWeeklyReport.traderReceipts.traders
+  .map((trader) => ({ trader: trader.label, mt: latestReceipts[trader.key] }))
+  .sort((left, right) => right.mt - left.mt)[0];
+const carrierSituation = `${weeklyReportMonth} 방콕 반입은 운반선 ${carrierUnloading.monthToDate.vessels}척·${carrierUnloading.monthToDate.amount.toLocaleString()}MT이며, ${carrierTopTrader.trader}가 ${carrierTopTrader.mt.toLocaleString()}MT로 가장 큽니다. 보고 시점에 ${carrierUnloading.unloadingNow.port}에서 하역 중인 배는 ${carrierUnloading.unloadingNow.vessels}척입니다.`;
+const carrierAction = '원문 입항표에서 하역이 끝난 배가 빠져 월 누계와 어긋난 전례가 있으므로, 다음 주 보고는 척수·물량을 월별표와 대조한 뒤 반영합니다.';
+
+const canneryStats = (rows: readonly { maxProduction: number; currentProduction: number; storageCapacity: number; currentStock: number }[]) => {
+  const production = rows.reduce((total, row) => total + row.currentProduction, 0);
+  const capacity = rows.reduce((total, row) => total + row.maxProduction, 0);
+  const stock = rows.reduce((total, row) => total + row.currentStock, 0);
+  const storage = rows.reduce((total, row) => total + row.storageCapacity, 0);
+  return {
+    count: rows.length,
+    production,
+    stock,
+    utilization: Math.round((production / capacity) * 100),
+    storageRate: Math.round((stock / storage) * 100),
+  };
+};
+const bangkokCannery = canneryStats(logisticsWeeklyReport.canneries.bangkok);
+const songkhlaCannery = canneryStats(logisticsWeeklyReport.canneries.songkhla);
 
 const reeferDeliveryTotal = (row: (typeof reeferRows)[number]) => Object.entries(row.deliveries)
   .filter(([destination]) => destination !== 'OTHER' && destination !== 'SHIP')
@@ -103,7 +197,7 @@ export function LogisticsHero() {
       className={styles.logisticsHero}
       variant="map"
       title="물류·가공"
-      subtitle={`조업지(태평양 어장)→하역지(방콕) 정적 항로도 · ${reeferWeeklyReport.source.week}주차 운반선 보고 기준 · 입항 재확인 2척 후속 확인 완료`}
+      subtitle={`조업지(태평양 어장)→하역지(방콕) 정적 항로도 · ${reeferWeeklyReport.source.week}주차 운반선 보고 기준 · ${weeklyReportMonth} 방콕 반입 ${carrierUnloading.monthToDate.vessels}척`}
       background={<FishingGroundToBangkokRouteMap />}
       primaryKpi={{ label: '주간 하역 합계', value: reeferTotal, unit: '(MT)', decimals: 3 }}
       secondaryKpis={[
@@ -183,6 +277,20 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
           <small>{logisticsWeeklyReport.market.reportDate} 보고 · 트레이더-통조림 공장 협의 가격</small>
         </div>
         <WidgetCard
+          title="월별 방콕 반입량"
+          icon={TrendingUp}
+          iconColor="var(--color-info)"
+          pillar="S3"
+          cardDesc={`TTA 운반선 주간동향을 선박·일자 중복 제거해 월별로 접은 값 (보유 ${reeferMonthlyIntake.weeksHeld.length}개 주차, 하한)`}
+          telemetry={{ status: 'STATIC', syncDate: reeferWeeklyReport.source.endDate, label: '정적' }}
+          customBody={<ReeferMonthlyIntakeChart />}
+          takeaway={{
+            situation: `${monthLabel(intakeLatest.month)} 반입은 ${Math.round(intakeLatest.mt).toLocaleString('ko-KR')}MT(${intakeLatest.vessels}척)로 최근 6개월 최고인 ${monthLabel(intakePeak.month)} ${Math.round(intakePeak.mt).toLocaleString('ko-KR')}MT의 ${Math.round((intakeLatest.mt / intakePeak.mt) * 100)}% 수준입니다.${intakePrev ? ` 직전 달 ${Math.round(intakePrev.mt).toLocaleString('ko-KR')}MT 대비 ${Math.round(intakeLatest.mt - intakePrev.mt).toLocaleString('ko-KR')}MT 차이입니다.` : ''} 같은 기간을 본 ${intakeEstimate.note}도 9월을 2만MT 미만으로 적어 방향이 같습니다.`,
+            actionPlan: '반입 감소가 이어지는 동안은 어가 하방이 제한되므로, 운반선 판매는 월 반입이 회복되는 시점을 기다리기보다 현 국면에서 물량을 나눠 파는 쪽이 유리합니다.',
+            source: `TTA 운반선 이동표 ${reeferMonthlyIntake.weeksHeld.at(0)}~${reeferMonthlyIntake.weeksHeld.at(-1)}주차 · 제3자 추산은 ${intakeEstimate.reportDate} 출장보고`,
+          }}
+        />
+        <WidgetCard
           title="트레이더별 반입 물량"
           icon={TrendingUp}
           iconColor="var(--color-info)"
@@ -191,7 +299,7 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
           telemetry={{ status: 'STATIC', syncDate: bangkokMeta.last, label: '정적' }}
           customBody={<TraderStatus />}
           takeaway={{
-            situation: `${traderFullPeriod.range} ${traderFullPeriod.months}개월 트레이더별 반입 누계는 ${traderFullPeriod.grandMt.toLocaleString()}MT이며, 최대 공급원은 ${traderTop.name} ${traderTop.total.toLocaleString()}MT(${traderShare(traderTop.total)}%)입니다. 2026년 누계는 ${traderFullPeriod.total2026.toLocaleString()}MT로 기존 2026-08-05 보고 기준값보다 ${Math.abs(traderFullPeriod.diff2026).toLocaleString()}MT 많습니다.`,
+            situation: `${traderFullPeriod.range} ${traderFullPeriod.months}개월 트레이더별 반입 누계는 ${traderFullPeriod.grandMt.toLocaleString()}MT이며, 최대 공급원은 ${traderTop.name} ${traderTop.total.toLocaleString()}MT(${traderShare(traderTop.total)}%)입니다. 2026년 누계는 ${traderFullPeriod.total2026.toLocaleString()}MT로 기존 보고 기준값보다 ${Math.abs(traderFullPeriod.diff2026).toLocaleString()}MT 많습니다.`,
             actionPlan: `직거래가 ${traderDirect.toLocaleString()}MT(${traderShare(traderDirect)}%)로 이토추(${traderShare(traderItochu)}%)를 이미 앞선 만큼, 다음 분기 물량 배분에서 직거래 비중을 우선 검토해 트레이더 마진 구간을 재협상합니다.`,
             source: `방콕사무소 주간보고 종합분석 (${bangkokMeta.reports}건, 최신 ${bangkokMeta.last})`,
           }}
@@ -215,13 +323,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
             icon={Factory}
             iconColor="var(--color-success)"
             pillar="S2"
-            cardDesc="태국 방콕 통조림 공장 가동률·재고 - 주간 보고 (2026-08-05 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-08-05', label: '정적' }}
+            cardDesc={`태국 방콕 통조림 공장 가동률·재고 - 주간 보고 (${weeklyReportDate} 기준)`}
+            telemetry={{ status: 'STATIC', syncDate: weeklyReportDate, label: '정적' }}
             customBody={<CanneryStatusCharts />}
             takeaway={{
-              situation: '2026-08-05 보고 기준 방콕 13개 공장은 일 2,650MT를 생산하고 원어 122,300MT를 보유해 생산능력 대비 64%, 보관능력 대비 59% 수준입니다.',
-              actionPlan: 'THAI UNION의 창고 포화(62,000/62,000MT)와 KINGFISHER의 저가동(20/200MT)을 우선 확인합니다.',
-              source: '방콕 사무소 주간보고 (2026-08-05)',
+              situation: `${weeklyReportDate} 보고 기준 방콕 ${bangkokCannery.count}개 공장은 일 ${bangkokCannery.production.toLocaleString()}MT를 생산하고 원어 ${bangkokCannery.stock.toLocaleString()}MT를 보유해 생산능력 대비 ${bangkokCannery.utilization}%, 보관능력 대비 ${bangkokCannery.storageRate}% 수준입니다.`,
+              actionPlan: 'SPA의 창고 포화(4,000/4,000MT)와 KINGFISHER의 저가동(20/200MT)을 우선 확인합니다.',
+              source: `방콕 사무소 주간보고 (${weeklyReportDate})`,
             }}
           />
 
@@ -230,13 +338,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
             icon={Factory}
             iconColor="var(--color-success)"
             pillar="S2"
-            cardDesc="태국 송클라 통조림 공장 가동률·재고 - 주간 보고 (2026-08-05 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-08-05', label: '정적' }}
+            cardDesc={`태국 송클라 통조림 공장 가동률·재고 - 주간 보고 (${weeklyReportDate} 기준)`}
+            telemetry={{ status: 'STATIC', syncDate: weeklyReportDate, label: '정적' }}
             customBody={<SongkhlaCanneryStatusCharts />}
             takeaway={{
-              situation: '2026-08-05 보고 기준 송클라 4개 공장은 일 330MT를 생산하고 원어 4,500MT를 보유해 생산능력 대비 37%, 보관능력 대비 17% 수준입니다.',
+              situation: `${weeklyReportDate} 보고 기준 송클라 ${songkhlaCannery.count}개 공장은 일 ${songkhlaCannery.production.toLocaleString()}MT를 생산하고 원어 ${songkhlaCannery.stock.toLocaleString()}MT를 보유해 생산능력 대비 ${songkhlaCannery.utilization}%, 보관능력 대비 ${songkhlaCannery.storageRate}% 수준입니다.`,
               actionPlan: '송클라의 낮은 재고율과 SCC 저가동(50/250MT)을 확인한 뒤 물량 전환 가능성을 판단합니다.',
-              source: '방콕 사무소 주간보고 (2026-08-05)',
+              source: `방콕 사무소 주간보고 (${weeklyReportDate})`,
             }}
           />
 
@@ -249,9 +357,9 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
             telemetry={{ status: 'STATIC', syncDate: '2026-05-20', label: '정적', source: '추정 시뮬레이션 + KCS 통관' }}
             customBody={<ValueChainMarginIndex />}
             takeaway={{
-              situation: `2026-05-20 시나리오는 원어 원가 $2,100/MT를 전제로 전구간 순마진 29.7%를 산출했습니다. ${logisticsWeeklyReport.market.reportDate} 주간보고의 원어 협의가는 $${logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt.toLocaleString()}/MT로 전제보다 $170 낮습니다. 물류비 $350·가공비 $500·판매가 $4,200은 실측 원천이 없는 추정값이라 함께 갱신할 수 없습니다.`,
+              situation: `2026-05-20 시나리오는 원어 원가 $2,100/MT를 전제로 전구간 순마진 29.7%를 산출했습니다. ${logisticsWeeklyReport.market.reportDate} 주간보고의 원어 협의가는 $${logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt.toLocaleString()}/MT로 ${(() => { const d = logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt - 2100; return `전제보다 $${Math.abs(d).toLocaleString()} ${d >= 0 ? '높습니다' : '낮습니다'}`; })()}. 물류비 $350·가공비 $500·판매가 $4,200은 실측 원천이 없는 추정값이라 함께 갱신할 수 없습니다.`,
               actionPlan: '원어 원가만 실측으로 바꾸면 나머지 3구간이 5월 전제로 남아 마진율이 왜곡되므로, 운임·가공비·판매가 실측 원천을 확보한 뒤 4구간을 동시에 재산출합니다. 확보 전까지 본 지표는 참고용으로만 씁니다.',
-              source: '시나리오 추정 (2026-05-20 갱신) · 원어 협의가 대조: 방콕 사무소 주간보고 (2026-08-05)',
+              source: `시나리오 추정 (2026-05-20 갱신) · 원어 협의가 대조: 방콕 사무소 주간보고 (${weeklyReportDate})`,
             }}
           />
         </div>
@@ -274,13 +382,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
             icon={Ship}
             iconColor="var(--color-info)"
             pillar="S3"
-            cardDesc="방콕항 운반선 하역·입항 현황 - 주간 보고 (2026-08-05 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-08-05', label: '정적' }}
+            cardDesc={`방콕항 운반선 하역 현황 - 주간 보고 (${weeklyReportDate} 기준)`}
+            telemetry={{ status: 'STATIC', syncDate: weeklyReportDate, label: '정적' }}
             customBody={<CarrierUnloadingStatus />}
             takeaway={{
               situation: carrierSituation,
               actionPlan: carrierAction,
-              source: '방콕 사무소 주간보고 (2026-08-05) · 하역 원장 · 31·32주차 운반선 배분 보고',
+              source: `방콕 사무소 주간보고 (${weeklyReportDate}) · 원문 정정 4건 반영`,
             }}
           />
 
@@ -294,13 +402,13 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
                   icon={Navigation}
                   iconColor="var(--color-info)"
                   pillar="S3"
-                  cardDesc="방콕권 운반선 이동 스케줄 - 34주차 주간 보고 (2026-08-21~08-27 기준)"
-                  telemetry={{ status: 'STATIC', syncDate: '2026-08-27', label: '정적' }}
+                  cardDesc={`방콕권 운반선 이동 스케줄 - ${reeferWeek}주차 주간 보고 (${reeferPeriod} 기준)`}
+                  telemetry={{ status: 'STATIC', syncDate: reeferWeeklyReport.source.endDate, label: '정적' }}
                   customBody={<ReeferMovement />}
                   takeaway={{
-                    situation: '34주차(2026-08-21~08-27) TTA 보고에는 방콕권 7척의 캔 공장별 배분 25,214.952MT가 기록됐으며, PATSORN 2,324.679MT가 8월 25일 새로 포함됐습니다.',
-                    actionPlan: 'PATSORN의 MMP·TUM·UC 배분 합계 2,324.679MT와 SAMUTSAKORN 기재를 다음 보고에서 교차 확인하고 실제 하역 진행을 추적합니다.',
-                    source: 'TTA 운반선 이동표 34주차 (2026-08-27 기준)',
+                    situation: `${reeferWeek}주차(${reeferPeriod}) TTA 보고에는 방콕권 ${reeferVessels}척의 캔 공장별 배분 ${reeferTotalMt.toLocaleString('ko-KR')}MT가 기록됐습니다. ${reeferTopVessel.carrier} ${reeferTopVessel.mt.toLocaleString('ko-KR')}MT가 최대 배분입니다.`,
+                    actionPlan: `${reeferTopVessel.carrier}의 배분 합계와 부두 기재를 다음 보고에서 교차 확인하고 실제 하역 진행을 추적합니다.`,
+                    source: `TTA 운반선 이동표 ${reeferWeek}주차 (${reeferWeeklyReport.source.endDate} 기준)`,
                   }}
                 />
               </div>

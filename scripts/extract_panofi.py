@@ -93,9 +93,12 @@ def parse_temps(text: str) -> dict:
     cur = re.findall(r"조류[^\n]*?연\s*안:\s*([^\n\t]+)", blk)
     if cur:
         out["coastalCurrent"] = cur[0].strip()
-    cur2 = re.findall(r"대\s*양:\s*(동류|서류|[가-힣]+류)", blk)
+    # 「대 양: 조류방향 불규칙」처럼 방향어가 아닌 주가 있다 - '조류'를 방향으로 읽지 않는다
+    cur2 = re.findall(r"대\s*양:\s*([^\n\t]+)", blk)
     if cur2:
-        out["oceanCurrent"] = cur2[-1].strip()
+        raw = cur2[-1].strip()
+        direction = re.search(r"(동류|서류|남류|북류)", raw)
+        out["oceanCurrent"] = direction.group(1) if direction else ("불규칙" if "불규칙" in raw else raw)
     return out
 
 
@@ -110,10 +113,24 @@ def parse_prices(text: str) -> dict:
         m = re.search(re.escape(after) + r"[^\$\n]{0,12}\$\s*([\d,]+)", s)
         return num(m.group(1)) if m else None
 
+    def month(s: str, after: str) -> str | None:
+        """어가 뒤 괄호의 적용 월. «PFC - $1,900(9월)» -> '9월'.
+
+        37주 내내 PFC·COSMO 가 같은 월이었다가 2026-09-08 에 처음 갈렸다
+        (PFC 9월 확정 / COSMO 8월 값 유지, 9월 협의 중). 월을 버리면 두 값의
+        차이가 동일 기준 격차로 읽힌다 - 실제로는 비교 자체가 성립하지 않는다."""
+        m = re.search(re.escape(after) + r"[^\$\n]{0,12}\$\s*[\d,]+\s*\(\s*(\d{1,2}\s*월)\s*\)", s)
+        return m.group(1).replace(" ", "") if m else None
+
     return {
         "pfcTema": dollar(tema, "PFC"),
+        "pfcTemaMonth": month(tema, "PFC"),
         "cosmoTema": dollar(tema, "COSMO"),
+        "cosmoTemaMonth": month(tema, "COSMO"),
+        # «⇒ 9월어가 협의 중» - 한쪽이 지난달 값을 그대로 들고 있다는 신호다
+        "temaUnderNegotiation": bool(re.search(r"어가\s*협의\s*중", tema)),
         "scodiAbidjan": num(m.group(1)) if (m := re.search(r"\$\s*([\d,]+)", abj)) else None,
+        "scodiAbidjanMonth": m.group(1).replace(" ", "") if (m := re.search(r"\(\s*(\d{1,2}\s*월)\s*\)", abj)) else None,
         "marketTemaCedi": num(m.group(1)) if (m := re.search(r"[￠¢]\s*([\d,]+)", mkt)) else None,
         "marketTemaUsd": num(m.group(1)) if (m := re.search(r"[￠¢][\d,]+\s*\(\$\s*([\d,]+)", mkt)) else None,
         "marketAbidjanCfa": num(m.group(1)) if (m := re.search(r"([\d,]+)\s*CFA", mkt)) else None,
@@ -142,6 +159,10 @@ def parse_processing(text: str) -> dict:
 def parse_receivables(text: str) -> dict:
     """아비장 미수금 — 표에 전주/금주가 나란히 온다. 마지막(=금주) 값을 쓴다."""
     blk = section(text, "아비장 마켓 미수금", "INTER OCEAN 법적", "유가")
+    # parse_senegal 과 같은 이유로 셀 경계 \n\t 를 접는다. 접지 않으면 바이어 행이 이름 셀에서
+    # 끊겨 ETS BADARA·SDMG 가 38주 내내 null 이었다 (2026-09-09 수정). INTER OCEAN 은
+    # 아래 '잔 액' 경로가 여러 줄을 보므로 영향이 없었다.
+    blk = blk.replace("\n\t", "\t")
     out: dict = {"buyers": [], "totalCfa": None, "totalUsd": None}
     for buyer in ["INTER OCEAN", "ETS BADARA", "SDMG"]:
         row = section(blk, buyer, "\n\n")
@@ -176,6 +197,9 @@ def parse_fuel(text: str) -> dict:
     표가 **라벨 행 → 값 행** 2단으로 오므로 라벨 옆에서 값을 찾으면 실패한다
     (라벨과 값 사이에 개행·탭이 끼어 있다). 라벨 등장 순서와 `$N/KL` 등장 순서를
     각각 뽑아 위치로 짝짓는다. 초기 주차는 '유가 : $957/KL' 단일값 형태다.
+
+    슬래시는 매주 붙는 게 아니다 — 2026-09-15 판의 DAKAR 는 '$1,324KL' 로 찍혔고, 이 한 칸 때문에
+    4지점 표가 단일값으로 떨어져 나머지 세 지점이 null 이 됐다. 구분자를 선택으로 둔다.
     """
     blk = section(text, "유가", "선박 동향", "기타사항")
     out = {"abidjan": None, "tema": None, "dakar": None, "tanker": None, "single": None}
@@ -186,7 +210,7 @@ def parse_fuel(text: str) -> dict:
         if key not in seen:
             seen.add(key)
             keys.append(key)
-    values = [num(v) for v in re.findall(r"\$\s*([\d,]+)\s*/\s*KL", blk)]
+    values = [num(v) for v in re.findall(r"\$\s*([\d,]+)\s*/?\s*KL", blk)]
 
     if keys and len(values) >= len(keys):
         for key, val in zip(keys, values):
@@ -214,12 +238,25 @@ def parse_own_vessels(text: str) -> tuple[list[dict], str]:
         if i < 0:
             continue
         line = head[i + len(name):].split("\n")[0].strip(" \t:")
+        # 어기교대 문장에 선장 실명이 온다(2026-09-29 «사재용 선장 → 박성호 선장»). 직함만 남긴다.
+        line = PERSON_TITLE.sub(r"\1", line)
         out.append({"vessel": name, "code": short, "status": line[:200] or None})
     if out:
         return out, "detailed"
     if NOMINAL in head:
         return [], "nominal"
     return [], "missing"
+
+
+# 선단 라벨은 주마다 표기가 흔들린다 - «EU 선단»·«EU선단»·«EU», 셀이 두 문단으로 갈라진 «그랑»/«블루».
+# 모르는 표기는 라벨이 아니라 선박명 후보로 넘어가 행이 통째로 빠지고, 뒤 행은 앞 라벨을 물려받아
+# 소속이 틀렸다 (2026-09-09: EU 13주·그랑블루 12주에서 실측). 공백을 뺀 뒤 정규 이름으로 접는다.
+FLEET_LABELS = {
+    "캅센": "캅센",
+    "그랑블루": "그랑블루", "그랑": "그랑블루", "블루": "그랑블루",
+    "EU선단": "EU", "EU": "EU",
+    "운반선": "운반선",
+}
 
 
 def parse_senegal(text: str) -> list[dict]:
@@ -236,8 +273,9 @@ def parse_senegal(text: str) -> list[dict]:
         cells = [c.strip() for c in line.split("\t") if c.strip()]
         if not cells:
             continue
-        if cells[0] in ("캅센", "그랑블루", "그랑", "EU 선단", "운반선", "블루"):
-            fleet = cells[0]
+        label = FLEET_LABELS.get(cells[0].replace(" ", ""))
+        if label:
+            fleet = label
             cells = cells[1:]
         if not cells:
             continue
@@ -259,6 +297,17 @@ def parse_senegal(text: str) -> list[dict]:
     return rows
 
 
+# «한글 이름 2~4자 + 직함» — 저장소에는 직함만 둔다
+PERSON_TITLE = re.compile(r"[가-힣]{2,4}\s*(선장|기관장|항해사|법인장|지사장|부장|차장|과장|대리)")
+
+
+def author_title(raw: str) -> str | None:
+    """「작성자」 칸에서 직함만 남긴다. 저장소에 사람 이름을 두지 않는다 — «홍길동 법인장» → «법인장».
+    직함 없이 이름만 적힌 칸은 버린다."""
+    parts = raw.split()
+    return parts[-1] if len(parts) > 1 else None
+
+
 def parse_week(path: Path) -> dict:
     text = docx_text(path)
     stamp = re.search(r"(\d{8})", path.name).group(1)
@@ -266,7 +315,7 @@ def parse_week(path: Path) -> dict:
     author = None
     m = re.search(r"작성자\s*\t?\s*([^\n\t]+)", text)
     if m:
-        author = m.group(1).strip()
+        author = author_title(m.group(1))
 
     # 원문 '일자'가 파일명과 어긋나는 주가 있다(2026년 보고에 2025년으로 오타).
     # 파일명 스탬프를 정본으로 쓰고 불일치는 플래그로 남겨 나중에 원본 대조를 돕는다.

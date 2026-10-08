@@ -50,13 +50,13 @@ function contrastOverFlag(ink: string, flagHex: string): number {
 }
 
 const CARDS: CompanyCard[] = [
-  { key: 'frinsa', numeral: 'Ⅰ', name: 'Frinsa del Noroeste', country: '스페인 · 갈리시아', tagline: '', stats: [], flagCss: '', backInk: '#4a2f00' },
-  { key: 'thaiunion', numeral: 'Ⅱ', name: 'Thai Union Group', country: '태국 · 사뭇사콘', tagline: '', stats: [], flagCss: '', backInk: '#f4f5f0' },
-  { key: 'albacora', numeral: 'Ⅲ', name: 'Albacora, S.A.', country: '스페인 · 바스크 베르메오', tagline: '', stats: [], flagCss: '', backInk: '#f4f5f0' },
-  { key: 'fcf', numeral: 'Ⅳ', name: 'FCF Co., Ltd.', country: '대만 · 가오슝', tagline: '', stats: [], flagCss: '', backInk: '#f4f5f0' },
-  { key: 'itochu', numeral: 'Ⅴ', name: 'ITOCHU Corporation', country: '일본 · 오사카 · 도쿄', tagline: '', stats: [], flagCss: '', backInk: '#1b2733' },
-  { key: 'bolton', numeral: 'Ⅵ', name: 'Bolton Group', country: '이탈리아 · 밀라노', tagline: '', stats: [], flagCss: '', backInk: '#f4f5f0' },
-  { key: 'jais', numeral: 'Ⅶ', name: 'JAIS S.R.L.', country: '이탈리아 · 밀라노', tagline: '', stats: [], flagCss: '', backInk: '#1f2a24' },
+  { key: 'frinsa', numeral: 'Ⅰ', name: 'Frinsa del Noroeste', country: '스페인 · 갈리시아', tagline: '', stats: [], flagSrc: '', backInk: '#4a2f00' },
+  { key: 'thaiunion', numeral: 'Ⅱ', name: 'Thai Union Group', country: '태국 · 사뭇사콘', tagline: '', stats: [], flagSrc: '', backInk: '#f4f5f0' },
+  { key: 'albacora', numeral: 'Ⅲ', name: 'Albacora, S.A.', country: '스페인 · 바스크 베르메오', tagline: '', stats: [], flagSrc: '', backInk: '#f4f5f0' },
+  { key: 'fcf', numeral: 'Ⅳ', name: 'FCF Co., Ltd.', country: '대만 · 가오슝', tagline: '', stats: [], flagSrc: '', backInk: '#f4f5f0' },
+  { key: 'itochu', numeral: 'Ⅴ', name: 'ITOCHU Corporation', country: '일본 · 오사카 · 도쿄', tagline: '', stats: [], flagSrc: '', backInk: '#1b2733' },
+  { key: 'bolton', numeral: 'Ⅵ', name: 'Bolton Group', country: '이탈리아 · 밀라노', tagline: '', stats: [], flagSrc: '', backInk: '#f4f5f0' },
+  { key: 'jais', numeral: 'Ⅶ', name: 'JAIS S.R.L.', country: '이탈리아 · 밀라노', tagline: '', stats: [], flagSrc: '', backInk: '#1f2a24' },
 ];
 
 describe('규모 축 데이터', () => {

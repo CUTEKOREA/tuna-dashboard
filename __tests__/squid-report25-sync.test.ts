@@ -31,10 +31,11 @@ describe('보고서 제25판 → 시장 이해 동기화', () => {
     expect(f?.grade).toBe('C');
   });
 
-  it('s07 소비자가가 8월 하순 확정 관측으로 갱신됐다', () => {
+  it('s07 소비자가가 9월 확정 관측으로 갱신됐다', () => {
     const c = stage('s07').facts.find((f) => f.label === '한국 소비자가');
-    expect(c?.value).toBe('5,570 원/마리');
-    expect(c?.asOf).toBe('2026-08-25');
+    expect(c?.value).toBe('5,077 원/마리');
+    expect(c?.asOf).toBe('2026-09-08');
+    expect(c?.grade).toBe('A');
   });
 
   it('s09에 수협 계통판매 어종 분해와 결측 한계가 실려 있다', () => {

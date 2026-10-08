@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 199,
-  "widgets": 110,
-  "dataFiles": 74,
+  "files": 305,
+  "widgets": 120,
+  "dataFiles": 343,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -45,6 +45,10 @@
    ],
    "dataFiles": []
   },
+  "components/EmbeddedFrame.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
   "components/FfaGoodStandingPanel.tsx": {
    "dataModules": [
     "lib/data/ffa-vrst.ts"
@@ -54,18 +58,27 @@
    ]
   },
   "components/FleetAnalysisPanels.tsx": {
-   "dataModules": [],
-   "dataFiles": []
+   "dataModules": [
+    "lib/data/fleet-daily-public.ts"
+   ],
+   "dataFiles": [
+    "lib/data/generated/fleet-daily-public.json"
+   ]
   },
   "components/FleetCharts.tsx": {
-   "dataModules": [],
-   "dataFiles": []
+   "dataModules": [
+    "lib/data/fleet-daily-public.ts"
+   ],
+   "dataFiles": [
+    "lib/data/generated/fleet-daily-public.json"
+   ]
   },
   "components/FleetCommandCenter.tsx": {
    "dataModules": [
     "lib/data/fleet-daily-public.ts"
    ],
    "dataFiles": [
+    "data/vds_company_burn.json",
     "lib/data/generated/fleet-daily-public.json"
    ]
   },
@@ -85,6 +98,10 @@
    "dataModules": [],
    "dataFiles": []
   },
+  "components/FleetPortSchedule.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
   "components/FleetRealMap.tsx": {
    "dataModules": [],
    "dataFiles": []
@@ -99,8 +116,13 @@
   },
   "components/HeroMarketCommand.tsx": {
    "dataModules": [
-    "lib/data/atuna-price-summary.ts"
+    "lib/data/atuna-price-summary.ts",
+    "lib/data/skj-price-context.ts"
    ],
+   "dataFiles": []
+  },
+  "components/KamisObservatoryDashboard.tsx": {
+   "dataModules": [],
    "dataFiles": []
   },
   "components/KeepAlivePanel.tsx": {
@@ -114,10 +136,27 @@
   "components/LogisticsDashboard.tsx": {
    "dataModules": [
     "lib/data/bangkok-weekly.ts",
+    "lib/data/reefer-monthly-intake.ts",
     "lib/data/reefer-weekly.ts"
    ],
    "dataFiles": [
+    "data/reefer_week19.json",
+    "data/reefer_week22.json",
+    "data/reefer_week24.json",
+    "data/reefer_week26.json",
+    "data/reefer_week27.json",
+    "data/reefer_week29.json",
+    "data/reefer_week30.json",
+    "data/reefer_week31.json",
+    "data/reefer_week32.json",
+    "data/reefer_week33.json",
     "data/reefer_week34.json",
+    "data/reefer_week35.json",
+    "data/reefer_week36.json",
+    "data/reefer_week37.json",
+    "data/reefer_week38.json",
+    "data/reefer_week39.json",
+    "data/reefer_week40.json",
     "public/data/bangkok_weekly_kpi.json",
     "public/data/bangkok_weekly_payload.json"
    ]
@@ -135,7 +174,8 @@
     "lib/data/atuna-price-summary.ts"
    ],
    "dataFiles": [
-    "public/data/tuna_daily_briefing.json"
+    "public/data/tuna_daily_briefing.json",
+    "public/data/tuna_weekly_briefing.json"
    ]
   },
   "components/MgoChartModal.tsx": {
@@ -147,7 +187,8 @@
     "lib/data/daily-briefing.ts"
    ],
    "dataFiles": [
-    "public/data/tuna_daily_briefing.json"
+    "public/data/tuna_daily_briefing.json",
+    "public/data/tuna_weekly_briefing.json"
    ]
   },
   "components/PageTransition.tsx": {
@@ -155,7 +196,10 @@
    "dataFiles": []
   },
   "components/PnaAccessFeeWidgets.tsx": {
-   "dataModules": [],
+   "dataModules": [
+    "lib/data/access-conditions-2027.ts",
+    "lib/data/pna-access-fee.ts"
+   ],
    "dataFiles": []
   },
   "components/PorkDashboard.tsx": {
@@ -189,7 +233,9 @@
    "dataFiles": []
   },
   "components/PurseSeinerDashboard.tsx": {
-   "dataModules": [],
+   "dataModules": [
+    "lib/data/ffa-vrst.ts"
+   ],
    "dataFiles": [
     "public/data/ffa_vrst_v1.json",
     "public/data/tuna_purse_seiners_v1.json"
@@ -200,7 +246,7 @@
     "lib/data/reefer-weekly.ts"
    ],
    "dataFiles": [
-    "data/reefer_week34.json"
+    "data/reefer_week40.json"
    ]
   },
   "components/SafeResponsiveContainer.tsx": {
@@ -248,13 +294,31 @@
    "dataModules": [],
    "dataFiles": []
   },
+  "components/UnloadingFishingGroundsMap.tsx": {
+   "dataModules": [],
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
+  },
+  "components/UnloadingFleetInsights.tsx": {
+   "dataModules": [
+    "lib/data/unloading-fleet-insights.ts"
+   ],
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
+  },
   "components/UnloadingHistory.tsx": {
    "dataModules": [],
-   "dataFiles": []
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
   },
   "components/UnloadingHistoryBoundary.tsx": {
    "dataModules": [],
-   "dataFiles": []
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
   },
   "components/UnloadingReportGenerator.tsx": {
    "dataModules": [],
@@ -264,7 +328,9 @@
    "dataModules": [
     "lib/data/unloading-static.ts"
    ],
-   "dataFiles": []
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
   },
   "components/UnloadingTimelineReplay.tsx": {
    "dataModules": [],
@@ -279,8 +345,12 @@
    "dataFiles": []
   },
   "components/VdsStrategyMatrix.tsx": {
-   "dataModules": [],
-   "dataFiles": []
+   "dataModules": [
+    "lib/data/vds-company-burn.ts"
+   ],
+   "dataFiles": [
+    "data/vds_company_burn.json"
+   ]
   },
   "components/VesselVdsStatus.tsx": {
    "dataModules": [],
@@ -295,9 +365,13 @@
     "lib/data/bangkok-weekly.ts"
    ],
    "dataFiles": [
+    "public/data/bangkok/seasia_ledger.json",
     "public/data/bangkok/seasia_processors.json",
+    "public/data/bangkok/vn_surimi_suppliers.json",
     "public/data/bangkok_weekly_kpi.json",
-    "public/data/bangkok_weekly_payload.json"
+    "public/data/bangkok_weekly_payload.json",
+    "public/data/singapore_mgo.json",
+    "public/data/skj_seasonal_outlook.json"
    ]
   },
   "components/bangkok/tabs/CanneryTab.tsx": {
@@ -320,11 +394,16 @@
   },
   "components/bangkok/tabs/HomeTab.tsx": {
    "dataModules": [
-    "lib/data/bangkok-weekly.ts"
+    "lib/data/bangkok-weekly.ts",
+    "lib/data/singapore-mgo.ts",
+    "lib/data/skj-price-context.ts",
+    "lib/data/skj-seasonal-outlook.ts"
    ],
    "dataFiles": [
     "public/data/bangkok_weekly_kpi.json",
-    "public/data/bangkok_weekly_payload.json"
+    "public/data/bangkok_weekly_payload.json",
+    "public/data/singapore_mgo.json",
+    "public/data/skj_seasonal_outlook.json"
    ]
   },
   "components/bangkok/tabs/LeadingTab.tsx": {
@@ -347,10 +426,14 @@
   },
   "components/bangkok/tabs/ProcessorsTab.tsx": {
    "dataModules": [
-    "lib/data/seasia-processors.ts"
+    "lib/data/seasia-ledger.ts",
+    "lib/data/seasia-processors.ts",
+    "lib/data/vn-surimi-suppliers.ts"
    ],
    "dataFiles": [
+    "public/data/bangkok/seasia_ledger.json",
     "public/data/bangkok/seasia_processors.json",
+    "public/data/bangkok/vn_surimi_suppliers.json",
     "public/data/bangkok_weekly_kpi.json",
     "public/data/bangkok_weekly_payload.json"
    ]
@@ -419,6 +502,7 @@
   "components/cosmo/tabs/HomeTab.tsx": {
    "dataModules": [
     "lib/data/cosmo-monthly-report.ts",
+    "lib/data/cosmo-quality-report.ts",
     "lib/data/cosmo-weekly-report.ts",
     "lib/data/cosmo.ts"
    ],
@@ -431,6 +515,7 @@
   "components/cosmo/tabs/MarketTab.tsx": {
    "dataModules": [
     "lib/data/cosmo-market.ts",
+    "lib/data/cosmo-sales-report.ts",
     "lib/data/cosmo.ts"
    ],
    "dataFiles": [
@@ -442,6 +527,9 @@
   },
   "components/cosmo/tabs/ProductionTab.tsx": {
    "dataModules": [
+    "lib/data/cosmo-fbu-report.ts",
+    "lib/data/cosmo-monthly-report.ts",
+    "lib/data/cosmo-quality-report.ts",
     "lib/data/cosmo.ts"
    ],
    "dataFiles": [
@@ -462,7 +550,9 @@
   },
   "components/cosmo/tabs/QualityTab.tsx": {
    "dataModules": [
-    "lib/data/cosmo.ts"
+    "lib/data/cosmo-panofi-mail.ts",
+    "lib/data/cosmo.ts",
+    "lib/data/panofi-atlantic-mail.ts"
    ],
    "dataFiles": [
     "public/data/cosmo/cosmo_2026.json",
@@ -542,31 +632,316 @@
   "components/market-understanding/CompanyAnatomyDashboard.tsx": {
    "dataModules": [
     "lib/data/company-albacora.ts",
+    "lib/data/company-alliance.ts",
+    "lib/data/company-ati.ts",
+    "lib/data/company-azores.ts",
     "lib/data/company-bolton.ts",
+    "lib/data/company-boltonfood.ts",
+    "lib/data/company-bounty.ts",
+    "lib/data/company-bumblebee.ts",
+    "lib/data/company-capsen.ts",
+    "lib/data/company-centurypacific.ts",
+    "lib/data/company-cnfc.ts",
+    "lib/data/company-cosi.ts",
+    "lib/data/company-dongwon.ts",
+    "lib/data/company-dongwonfnb.ts",
+    "lib/data/company-eurofish.ts",
     "lib/data/company-fcf.ts",
+    "lib/data/company-frabelle.ts",
     "lib/data/company-frinsa.ts",
+    "lib/data/company-galapesca.ts",
+    "lib/data/company-garavilla.ts",
+    "lib/data/company-ghana.ts",
+    "lib/data/company-grupomar.ts",
+    "lib/data/company-hagoromo.ts",
+    "lib/data/company-herdez.ts",
+    "lib/data/company-inepaca.ts",
+    "lib/data/company-iot.ts",
     "lib/data/company-itochu.ts",
     "lib/data/company-jais.ts",
+    "lib/data/company-jealsa.ts",
+    "lib/data/company-kaichuang.ts",
+    "lib/data/company-kfl.ts",
+    "lib/data/company-kingfisher.ts",
+    "lib/data/company-kyokuyo.ts",
+    "lib/data/company-majestic.ts",
+    "lib/data/company-mauritius.ts",
+    "lib/data/company-nauterra.ts",
+    "lib/data/company-nirsa.ts",
+    "lib/data/company-nissui.ts",
+    "lib/data/company-pafco.ts",
+    "lib/data/company-pataya.ts",
+    "lib/data/company-pinsa.ts",
+    "lib/data/company-ppf.ts",
+    "lib/data/company-princes.ts",
+    "lib/data/company-procesa.ts",
+    "lib/data/company-rd.ts",
+    "lib/data/company-report-figures.ts",
     "lib/data/company-report-tables.ts",
+    "lib/data/company-sajo.ts",
+    "lib/data/company-sajoseafood.ts",
+    "lib/data/company-salica.ts",
+    "lib/data/company-sapmer.ts",
+    "lib/data/company-sca.ts",
+    "lib/data/company-seatech.ts",
+    "lib/data/company-seavalue.ts",
+    "lib/data/company-soltuna.ts",
+    "lib/data/company-sstc.ts",
+    "lib/data/company-starkist.ts",
+    "lib/data/company-tecopesca.ts",
     "lib/data/company-thaiunion-skus.ts",
-    "lib/data/company-thaiunion.ts"
+    "lib/data/company-thaiunion.ts",
+    "lib/data/company-tog.ts",
+    "lib/data/company-trimarine.ts",
+    "lib/data/company-tropical.ts",
+    "lib/data/company-umios.ts"
    ],
    "dataFiles": [
+    "public/data/companies/albacora_figures_v1.json",
+    "public/data/companies/albacora_prose_v1.json",
     "public/data/companies/albacora_tables_v1.json",
     "public/data/companies/albacora_v1.json",
+    "public/data/companies/alliance_figures_v1.json",
+    "public/data/companies/alliance_prose_v1.json",
+    "public/data/companies/alliance_tables_v1.json",
+    "public/data/companies/alliance_v1.json",
+    "public/data/companies/ati_figures_v1.json",
+    "public/data/companies/ati_prose_v1.json",
+    "public/data/companies/ati_tables_v1.json",
+    "public/data/companies/ati_v1.json",
+    "public/data/companies/azores_figures_v1.json",
+    "public/data/companies/azores_prose_v1.json",
+    "public/data/companies/azores_tables_v1.json",
+    "public/data/companies/azores_v1.json",
+    "public/data/companies/bolton_figures_v1.json",
+    "public/data/companies/bolton_prose_v1.json",
     "public/data/companies/bolton_tables_v1.json",
     "public/data/companies/bolton_v1.json",
+    "public/data/companies/boltonfood_figures_v1.json",
+    "public/data/companies/boltonfood_prose_v1.json",
+    "public/data/companies/boltonfood_tables_v1.json",
+    "public/data/companies/boltonfood_v1.json",
+    "public/data/companies/bounty_figures_v1.json",
+    "public/data/companies/bounty_prose_v1.json",
+    "public/data/companies/bounty_tables_v1.json",
+    "public/data/companies/bounty_v1.json",
+    "public/data/companies/bumblebee_figures_v1.json",
+    "public/data/companies/bumblebee_prose_v1.json",
+    "public/data/companies/bumblebee_tables_v1.json",
+    "public/data/companies/bumblebee_v1.json",
+    "public/data/companies/capsen_figures_v1.json",
+    "public/data/companies/capsen_prose_v1.json",
+    "public/data/companies/capsen_tables_v1.json",
+    "public/data/companies/capsen_v1.json",
+    "public/data/companies/centurypacific_figures_v1.json",
+    "public/data/companies/centurypacific_prose_v1.json",
+    "public/data/companies/centurypacific_tables_v1.json",
+    "public/data/companies/centurypacific_v1.json",
+    "public/data/companies/cnfc_figures_v1.json",
+    "public/data/companies/cnfc_prose_v1.json",
+    "public/data/companies/cnfc_tables_v1.json",
+    "public/data/companies/cnfc_v1.json",
+    "public/data/companies/cosi_figures_v1.json",
+    "public/data/companies/cosi_prose_v1.json",
+    "public/data/companies/cosi_tables_v1.json",
+    "public/data/companies/cosi_v1.json",
+    "public/data/companies/dongwon_figures_v1.json",
+    "public/data/companies/dongwon_prose_v1.json",
+    "public/data/companies/dongwon_tables_v1.json",
+    "public/data/companies/dongwon_v1.json",
+    "public/data/companies/dongwonfnb_figures_v1.json",
+    "public/data/companies/dongwonfnb_prose_v1.json",
+    "public/data/companies/dongwonfnb_tables_v1.json",
+    "public/data/companies/dongwonfnb_v1.json",
+    "public/data/companies/eurofish_figures_v1.json",
+    "public/data/companies/eurofish_prose_v1.json",
+    "public/data/companies/eurofish_tables_v1.json",
+    "public/data/companies/eurofish_v1.json",
+    "public/data/companies/fcf_figures_v1.json",
+    "public/data/companies/fcf_prose_v1.json",
     "public/data/companies/fcf_tables_v1.json",
     "public/data/companies/fcf_v1.json",
+    "public/data/companies/frabelle_figures_v1.json",
+    "public/data/companies/frabelle_prose_v1.json",
+    "public/data/companies/frabelle_tables_v1.json",
+    "public/data/companies/frabelle_v1.json",
+    "public/data/companies/frinsa_figures_v1.json",
+    "public/data/companies/frinsa_prose_v1.json",
     "public/data/companies/frinsa_tables_v1.json",
     "public/data/companies/frinsa_v1.json",
+    "public/data/companies/galapesca_figures_v1.json",
+    "public/data/companies/galapesca_prose_v1.json",
+    "public/data/companies/galapesca_tables_v1.json",
+    "public/data/companies/galapesca_v1.json",
+    "public/data/companies/garavilla_figures_v1.json",
+    "public/data/companies/garavilla_prose_v1.json",
+    "public/data/companies/garavilla_tables_v1.json",
+    "public/data/companies/garavilla_v1.json",
+    "public/data/companies/ghana_figures_v1.json",
+    "public/data/companies/ghana_prose_v1.json",
+    "public/data/companies/ghana_tables_v1.json",
+    "public/data/companies/ghana_v1.json",
+    "public/data/companies/grupomar_figures_v1.json",
+    "public/data/companies/grupomar_prose_v1.json",
+    "public/data/companies/grupomar_tables_v1.json",
+    "public/data/companies/grupomar_v1.json",
+    "public/data/companies/hagoromo_figures_v1.json",
+    "public/data/companies/hagoromo_prose_v1.json",
+    "public/data/companies/hagoromo_tables_v1.json",
+    "public/data/companies/hagoromo_v1.json",
+    "public/data/companies/herdez_figures_v1.json",
+    "public/data/companies/herdez_prose_v1.json",
+    "public/data/companies/herdez_tables_v1.json",
+    "public/data/companies/herdez_v1.json",
+    "public/data/companies/inepaca_figures_v1.json",
+    "public/data/companies/inepaca_prose_v1.json",
+    "public/data/companies/inepaca_tables_v1.json",
+    "public/data/companies/inepaca_v1.json",
+    "public/data/companies/iot_figures_v1.json",
+    "public/data/companies/iot_prose_v1.json",
+    "public/data/companies/iot_tables_v1.json",
+    "public/data/companies/iot_v1.json",
+    "public/data/companies/itochu_figures_v1.json",
+    "public/data/companies/itochu_prose_v1.json",
     "public/data/companies/itochu_tables_v1.json",
     "public/data/companies/itochu_v1.json",
+    "public/data/companies/jais_figures_v1.json",
+    "public/data/companies/jais_prose_v1.json",
     "public/data/companies/jais_tables_v1.json",
     "public/data/companies/jais_v1.json",
+    "public/data/companies/jealsa_figures_v1.json",
+    "public/data/companies/jealsa_prose_v1.json",
+    "public/data/companies/jealsa_tables_v1.json",
+    "public/data/companies/jealsa_v1.json",
+    "public/data/companies/kaichuang_figures_v1.json",
+    "public/data/companies/kaichuang_prose_v1.json",
+    "public/data/companies/kaichuang_tables_v1.json",
+    "public/data/companies/kaichuang_v1.json",
+    "public/data/companies/kfl_figures_v1.json",
+    "public/data/companies/kfl_prose_v1.json",
+    "public/data/companies/kfl_tables_v1.json",
+    "public/data/companies/kfl_v1.json",
+    "public/data/companies/kingfisher_figures_v1.json",
+    "public/data/companies/kingfisher_prose_v1.json",
+    "public/data/companies/kingfisher_tables_v1.json",
+    "public/data/companies/kingfisher_v1.json",
+    "public/data/companies/kyokuyo_figures_v1.json",
+    "public/data/companies/kyokuyo_prose_v1.json",
+    "public/data/companies/kyokuyo_tables_v1.json",
+    "public/data/companies/kyokuyo_v1.json",
+    "public/data/companies/majestic_figures_v1.json",
+    "public/data/companies/majestic_prose_v1.json",
+    "public/data/companies/majestic_tables_v1.json",
+    "public/data/companies/majestic_v1.json",
+    "public/data/companies/mauritius_figures_v1.json",
+    "public/data/companies/mauritius_prose_v1.json",
+    "public/data/companies/mauritius_tables_v1.json",
+    "public/data/companies/mauritius_v1.json",
+    "public/data/companies/nauterra_figures_v1.json",
+    "public/data/companies/nauterra_prose_v1.json",
+    "public/data/companies/nauterra_tables_v1.json",
+    "public/data/companies/nauterra_v1.json",
+    "public/data/companies/nirsa_figures_v1.json",
+    "public/data/companies/nirsa_prose_v1.json",
+    "public/data/companies/nirsa_tables_v1.json",
+    "public/data/companies/nirsa_v1.json",
+    "public/data/companies/nissui_figures_v1.json",
+    "public/data/companies/nissui_prose_v1.json",
+    "public/data/companies/nissui_tables_v1.json",
+    "public/data/companies/nissui_v1.json",
+    "public/data/companies/pafco_figures_v1.json",
+    "public/data/companies/pafco_prose_v1.json",
+    "public/data/companies/pafco_tables_v1.json",
+    "public/data/companies/pafco_v1.json",
+    "public/data/companies/pataya_figures_v1.json",
+    "public/data/companies/pataya_prose_v1.json",
+    "public/data/companies/pataya_tables_v1.json",
+    "public/data/companies/pataya_v1.json",
+    "public/data/companies/pinsa_figures_v1.json",
+    "public/data/companies/pinsa_prose_v1.json",
+    "public/data/companies/pinsa_tables_v1.json",
+    "public/data/companies/pinsa_v1.json",
+    "public/data/companies/ppf_figures_v1.json",
+    "public/data/companies/ppf_prose_v1.json",
+    "public/data/companies/ppf_tables_v1.json",
+    "public/data/companies/ppf_v1.json",
+    "public/data/companies/princes_figures_v1.json",
+    "public/data/companies/princes_prose_v1.json",
+    "public/data/companies/princes_tables_v1.json",
+    "public/data/companies/princes_v1.json",
+    "public/data/companies/procesa_figures_v1.json",
+    "public/data/companies/procesa_prose_v1.json",
+    "public/data/companies/procesa_tables_v1.json",
+    "public/data/companies/procesa_v1.json",
+    "public/data/companies/rd_figures_v1.json",
+    "public/data/companies/rd_prose_v1.json",
+    "public/data/companies/rd_tables_v1.json",
+    "public/data/companies/rd_v1.json",
+    "public/data/companies/sajo_figures_v1.json",
+    "public/data/companies/sajo_prose_v1.json",
+    "public/data/companies/sajo_tables_v1.json",
+    "public/data/companies/sajo_v1.json",
+    "public/data/companies/sajoseafood_figures_v1.json",
+    "public/data/companies/sajoseafood_prose_v1.json",
+    "public/data/companies/sajoseafood_tables_v1.json",
+    "public/data/companies/sajoseafood_v1.json",
+    "public/data/companies/salica_figures_v1.json",
+    "public/data/companies/salica_prose_v1.json",
+    "public/data/companies/salica_tables_v1.json",
+    "public/data/companies/salica_v1.json",
+    "public/data/companies/sapmer_figures_v1.json",
+    "public/data/companies/sapmer_prose_v1.json",
+    "public/data/companies/sapmer_tables_v1.json",
+    "public/data/companies/sapmer_v1.json",
+    "public/data/companies/sca_figures_v1.json",
+    "public/data/companies/sca_prose_v1.json",
+    "public/data/companies/sca_tables_v1.json",
+    "public/data/companies/sca_v1.json",
+    "public/data/companies/seatech_figures_v1.json",
+    "public/data/companies/seatech_prose_v1.json",
+    "public/data/companies/seatech_tables_v1.json",
+    "public/data/companies/seatech_v1.json",
+    "public/data/companies/seavalue_figures_v1.json",
+    "public/data/companies/seavalue_prose_v1.json",
+    "public/data/companies/seavalue_tables_v1.json",
+    "public/data/companies/seavalue_v1.json",
+    "public/data/companies/soltuna_figures_v1.json",
+    "public/data/companies/soltuna_prose_v1.json",
+    "public/data/companies/soltuna_tables_v1.json",
+    "public/data/companies/soltuna_v1.json",
+    "public/data/companies/sstc_figures_v1.json",
+    "public/data/companies/sstc_prose_v1.json",
+    "public/data/companies/sstc_tables_v1.json",
+    "public/data/companies/sstc_v1.json",
+    "public/data/companies/starkist_figures_v1.json",
+    "public/data/companies/starkist_prose_v1.json",
+    "public/data/companies/starkist_tables_v1.json",
+    "public/data/companies/starkist_v1.json",
+    "public/data/companies/tecopesca_figures_v1.json",
+    "public/data/companies/tecopesca_prose_v1.json",
+    "public/data/companies/tecopesca_tables_v1.json",
+    "public/data/companies/tecopesca_v1.json",
+    "public/data/companies/thaiunion_figures_v1.json",
+    "public/data/companies/thaiunion_prose_v1.json",
     "public/data/companies/thaiunion_skus_v1.json",
     "public/data/companies/thaiunion_tables_v1.json",
-    "public/data/companies/thaiunion_v1.json"
+    "public/data/companies/thaiunion_v1.json",
+    "public/data/companies/tog_figures_v1.json",
+    "public/data/companies/tog_prose_v1.json",
+    "public/data/companies/tog_tables_v1.json",
+    "public/data/companies/tog_v1.json",
+    "public/data/companies/trimarine_figures_v1.json",
+    "public/data/companies/trimarine_prose_v1.json",
+    "public/data/companies/trimarine_tables_v1.json",
+    "public/data/companies/trimarine_v1.json",
+    "public/data/companies/tropical_figures_v1.json",
+    "public/data/companies/tropical_prose_v1.json",
+    "public/data/companies/tropical_tables_v1.json",
+    "public/data/companies/tropical_v1.json",
+    "public/data/companies/umios_figures_v1.json",
+    "public/data/companies/umios_prose_v1.json",
+    "public/data/companies/umios_tables_v1.json",
+    "public/data/companies/umios_v1.json"
    ]
   },
   "components/market-understanding/CompanyGallery.tsx": {
@@ -577,6 +952,7 @@
   },
   "components/market-understanding/CompanyResearchTables.tsx": {
    "dataModules": [
+    "lib/data/squid-peru-supply.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
@@ -584,8 +960,10 @@
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
+    "public/data/maru_registry_status_v1.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
     "public/data/tuna_ocean_operators_v1.json",
@@ -612,21 +990,30 @@
    "dataModules": [
     "lib/data/commodity-industry.ts",
     "lib/data/mackerel-country-series.ts",
+    "lib/data/mackerel-industry-tables.ts",
+    "lib/data/mackerel-roster.ts",
+    "lib/data/mof-live.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "lib/data/mackerel-tables.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
+    "public/data/landed_cost_trend_v1.json",
     "public/data/mackerel_company_research_v1.json",
     "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
+    "public/data/maru_registry_status_v1.json",
+    "public/data/mof_auction_daily_v1.json",
+    "public/data/mof_trade_monthly_v1.json",
     "public/data/pollock_industry_v1.json",
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/tuna_anatomy_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
@@ -636,13 +1023,55 @@
     "public/data/whelk_industry_v1.json"
    ]
   },
-  "components/market-understanding/PollockIndustryDashboard.tsx": {
+  "components/market-understanding/MofLiveCharts.tsx": {
    "dataModules": [
-    "lib/data/commodity-industry.ts"
+    "lib/data/mof-live.ts"
    ],
    "dataFiles": [
+    "public/data/landed_cost_trend_v1.json",
+    "public/data/mof_auction_daily_v1.json",
+    "public/data/mof_trade_monthly_v1.json"
+   ]
+  },
+  "components/market-understanding/OctopusCharts.tsx": {
+   "dataModules": [
+    "lib/data/octopus-industry.ts"
+   ],
+   "dataFiles": [
+    "public/data/octopus_company_research_v1.json",
+    "public/data/octopus_industry_v1.json"
+   ]
+  },
+  "components/market-understanding/OctopusIndustryDashboard.tsx": {
+   "dataModules": [
+    "lib/data/mof-live.ts",
+    "lib/data/octopus-industry-tables.ts",
+    "lib/data/octopus-industry.ts"
+   ],
+   "dataFiles": [
+    "lib/data/octopus-tables.json",
+    "public/data/landed_cost_trend_v1.json",
+    "public/data/mof_auction_daily_v1.json",
+    "public/data/mof_trade_monthly_v1.json",
+    "public/data/octopus_company_research_v1.json",
+    "public/data/octopus_industry_v1.json"
+   ]
+  },
+  "components/market-understanding/PollockIndustryDashboard.tsx": {
+   "dataModules": [
+    "lib/data/commodity-industry.ts",
+    "lib/data/mof-live.ts",
+    "lib/data/pollock-company-research.ts",
+    "lib/data/pollock-industry-tables.ts"
+   ],
+   "dataFiles": [
+    "lib/data/pollock-tables.json",
+    "public/data/landed_cost_trend_v1.json",
     "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
+    "public/data/mof_auction_daily_v1.json",
+    "public/data/mof_trade_monthly_v1.json",
+    "public/data/pollock_company_research_v1.json",
     "public/data/pollock_industry_v1.json",
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_industry_v1.json",
@@ -655,23 +1084,31 @@
   "components/market-understanding/ShrimpIndustryDashboard.tsx": {
    "dataModules": [
     "lib/data/commodity-industry.ts",
+    "lib/data/mof-live.ts",
     "lib/data/shrimp-argentina.ts",
     "lib/data/shrimp-country-series.ts",
+    "lib/data/shrimp-industry-tables.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "lib/data/shrimp-tables.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
+    "public/data/landed_cost_trend_v1.json",
     "public/data/mackerel_company_research_v1.json",
     "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
+    "public/data/maru_registry_status_v1.json",
+    "public/data/mof_auction_daily_v1.json",
+    "public/data/mof_trade_monthly_v1.json",
     "public/data/pollock_industry_v1.json",
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/tuna_anatomy_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
@@ -685,15 +1122,18 @@
    "dataModules": [
     "lib/data/deepsea-fishery.ts",
     "lib/data/falkland-squid-vessels.ts",
-    "lib/data/squid-industry.ts"
+    "lib/data/squid-industry.ts",
+    "lib/data/squid-peru-supply.ts"
    ],
    "dataFiles": [
     "public/data/deepsea_fishery_v1.json",
     "public/data/falkland_squid_vessels_v1.json",
+    "public/data/maru_registry_status_v1.json",
     "public/data/squid_fleet_v1.json",
     "public/data/squid_industry_v1.json",
     "public/data/squid_industry_widgets_v1.json",
     "public/data/squid_ocean_fleet_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/squid_trade_v1.json"
    ]
   },
@@ -701,22 +1141,31 @@
    "dataModules": [
     "lib/data/deepsea-fishery.ts",
     "lib/data/falkland-squid-vessels.ts",
+    "lib/data/mof-live.ts",
+    "lib/data/squid-industry-tables.ts",
     "lib/data/squid-industry.ts",
+    "lib/data/squid-peru-supply.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "lib/data/squid-tables.json",
     "public/data/deepsea_fishery_v1.json",
     "public/data/falkland_squid_vessels_v1.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
+    "public/data/landed_cost_trend_v1.json",
     "public/data/mackerel_company_research_v1.json",
+    "public/data/maru_registry_status_v1.json",
+    "public/data/mof_auction_daily_v1.json",
+    "public/data/mof_trade_monthly_v1.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/squid_company_research_v1.json",
     "public/data/squid_fleet_v1.json",
     "public/data/squid_industry_v1.json",
     "public/data/squid_industry_widgets_v1.json",
     "public/data/squid_ocean_fleet_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/squid_trade_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
@@ -746,7 +1195,8 @@
   },
   "components/market-understanding/TunaAnatomyDashboard.tsx": {
    "dataModules": [
-    "lib/data/commodity-industry.ts"
+    "lib/data/commodity-industry.ts",
+    "lib/data/tuna-anatomy-roster.ts"
    ],
    "dataFiles": [
     "public/data/mackerel_country_series_v1.json",
@@ -755,6 +1205,7 @@
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
+    "public/data/tuna_anatomy_roster_v1.json",
     "public/data/tuna_anatomy_v1.json",
     "public/data/whelk_country_series_v1.json",
     "public/data/whelk_industry_v1.json"
@@ -799,16 +1250,20 @@
   },
   "components/market-understanding/TunaIndustryDashboard.tsx": {
    "dataModules": [
+    "lib/data/tuna-industry-tables.ts",
     "lib/data/tuna-industry.ts",
     "lib/data/valuechain-companies.ts"
    ],
    "dataFiles": [
+    "lib/data/tuna-tables.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
     "public/data/mackerel_company_research_v1.json",
+    "public/data/maru_registry_status_v1.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
     "public/data/tuna_fleet_v1.json",
@@ -821,6 +1276,14 @@
     "public/data/whelk_company_research_v1.json"
    ]
   },
+  "components/market-understanding/TunafarmIndustryDashboard.tsx": {
+   "dataModules": [
+    "lib/data/tunafarm-industry.ts"
+   ],
+   "dataFiles": [
+    "lib/data/tunafarm-tables.json"
+   ]
+  },
   "components/market-understanding/ValueChainSpine.tsx": {
    "dataModules": [],
    "dataFiles": []
@@ -828,22 +1291,31 @@
   "components/market-understanding/WhelkIndustryDashboard.tsx": {
    "dataModules": [
     "lib/data/commodity-industry.ts",
+    "lib/data/mof-live.ts",
     "lib/data/valuechain-companies.ts",
-    "lib/data/whelk-country-series.ts"
+    "lib/data/whelk-company-research.ts",
+    "lib/data/whelk-country-series.ts",
+    "lib/data/whelk-industry-tables.ts"
    ],
    "dataFiles": [
+    "lib/data/whelk-tables.json",
     "public/data/kofa_fleet_age_v1.json",
     "public/data/kofa_insights_v1.json",
     "public/data/kofa_series_v1.json",
+    "public/data/landed_cost_trend_v1.json",
     "public/data/mackerel_company_research_v1.json",
     "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
+    "public/data/maru_registry_status_v1.json",
+    "public/data/mof_auction_daily_v1.json",
+    "public/data/mof_trade_monthly_v1.json",
     "public/data/pollock_industry_v1.json",
     "public/data/shrimp_argentina.json",
     "public/data/shrimp_company_research_v1.json",
     "public/data/shrimp_industry_v1.json",
     "public/data/shrimp_real_data_v4.json",
     "public/data/squid_company_research_v1.json",
+    "public/data/squid_peru_supply_v1.json",
     "public/data/tuna_anatomy_v1.json",
     "public/data/tuna_carrier_fleet_v1.json",
     "public/data/tuna_company_research_v1.json",
@@ -851,6 +1323,14 @@
     "public/data/whelk_company_research_v1.json",
     "public/data/whelk_country_series_v1.json",
     "public/data/whelk_industry_v1.json"
+   ]
+  },
+  "components/panofi/AtlanticVesselTable.tsx": {
+   "dataModules": [
+    "lib/data/fleet-daily-public.ts"
+   ],
+   "dataFiles": [
+    "lib/data/generated/fleet-daily-public.json"
    ]
   },
   "components/panofi/PanofiDashboard.tsx": {
@@ -870,6 +1350,8 @@
   },
   "components/panofi/PanofiTabs.tsx": {
    "dataModules": [
+    "lib/data/fleet-daily-public.ts",
+    "lib/data/panofi-atlantic-mail.ts",
     "lib/data/panofi.ts"
    ],
    "dataFiles": [
@@ -943,17 +1425,111 @@
    "components/PorkDashboard.tsx",
    "components/PorkUsdaWidgets.tsx"
   ],
+  "data/reefer_week19.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week22.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week24.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week26.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week27.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week29.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week30.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week31.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week32.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week33.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
   "data/reefer_week34.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week35.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week36.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week37.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week38.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week39.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week40.json": [
    "components/LogisticsDashboard.tsx",
    "components/ReeferMovement.tsx"
   ],
+  "data/vds_company_burn.json": [
+   "components/FleetCommandCenter.tsx",
+   "components/VdsStrategyMatrix.tsx"
+  ],
   "lib/data/generated/fleet-daily-public.json": [
+   "components/FleetAnalysisPanels.tsx",
+   "components/FleetCharts.tsx",
    "components/FleetCommandCenter.tsx",
    "components/FleetDailyOperations.tsx",
+   "components/panofi/AtlanticVesselTable.tsx",
    "components/panofi/PanofiDashboard.tsx",
    "components/panofi/PanofiTabs.tsx"
   ],
+  "lib/data/mackerel-tables.json": [
+   "components/market-understanding/MackerelIndustryDashboard.tsx"
+  ],
+  "lib/data/octopus-tables.json": [
+   "components/market-understanding/OctopusIndustryDashboard.tsx"
+  ],
+  "lib/data/pollock-tables.json": [
+   "components/market-understanding/PollockIndustryDashboard.tsx"
+  ],
+  "lib/data/shrimp-tables.json": [
+   "components/market-understanding/ShrimpIndustryDashboard.tsx"
+  ],
+  "lib/data/squid-tables.json": [
+   "components/market-understanding/SquidIndustryDashboard.tsx"
+  ],
+  "lib/data/tuna-tables.json": [
+   "components/market-understanding/TunaIndustryDashboard.tsx"
+  ],
+  "lib/data/tunafarm-tables.json": [
+   "components/market-understanding/TunafarmIndustryDashboard.tsx"
+  ],
+  "lib/data/unloading-fleet-insights.json": [
+   "components/UnloadingFishingGroundsMap.tsx",
+   "components/UnloadingFleetInsights.tsx",
+   "components/UnloadingHistory.tsx",
+   "components/UnloadingHistoryBoundary.tsx",
+   "components/UnloadingStatus.tsx"
+  ],
+  "lib/data/whelk-tables.json": [
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/bangkok/seasia_ledger.json": [
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/ProcessorsTab.tsx"
+  ],
   "public/data/bangkok/seasia_processors.json": [
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/ProcessorsTab.tsx"
+  ],
+  "public/data/bangkok/vn_surimi_suppliers.json": [
    "components/bangkok/BangkokDashboard.tsx",
    "components/bangkok/tabs/ProcessorsTab.tsx"
   ],
@@ -983,11 +1559,59 @@
    "components/bangkok/tabs/QualityTab.tsx",
    "components/bangkok/tabs/UnloadTab.tsx"
   ],
+  "public/data/companies/albacora_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/albacora_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/albacora_tables_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/albacora_v1.json": [
    "components/market-understanding/AlbacoraCharts.tsx",
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/alliance_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ati_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ati_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ati_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ati_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/azores_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/azores_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/azores_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/azores_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bolton_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bolton_prose_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/bolton_tables_v1.json": [
@@ -996,10 +1620,154 @@
   "public/data/companies/bolton_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/boltonfood_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/boltonfood_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/boltonfood_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/boltonfood_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bounty_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bounty_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bounty_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bounty_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bumblebee_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bumblebee_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bumblebee_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/bumblebee_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/capsen_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/capsen_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/capsen_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/capsen_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/centurypacific_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/centurypacific_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/centurypacific_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/centurypacific_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cnfc_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cosi_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cosi_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cosi_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/cosi_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwon_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwon_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwon_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwon_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwonfnb_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwonfnb_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwonfnb_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/dongwonfnb_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/eurofish_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/eurofish_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/eurofish_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/eurofish_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/fcf_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/fcf_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/fcf_tables_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/fcf_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/frabelle_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/frabelle_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/frabelle_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/frabelle_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/frinsa_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/frinsa_prose_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/frinsa_tables_v1.json": [
@@ -1009,16 +1777,466 @@
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/FrinsaCharts.tsx"
   ],
+  "public/data/companies/galapesca_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/galapesca_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/galapesca_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/galapesca_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/garavilla_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/garavilla_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/garavilla_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/garavilla_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ghana_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ghana_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ghana_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ghana_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/grupomar_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/hagoromo_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/hagoromo_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/hagoromo_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/hagoromo_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/herdez_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/herdez_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/herdez_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/herdez_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/inepaca_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/inepaca_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/inepaca_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/inepaca_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/iot_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/iot_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/iot_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/iot_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/itochu_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/itochu_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/itochu_tables_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/itochu_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
+  "public/data/companies/jais_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/jais_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
   "public/data/companies/jais_tables_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/jais_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/jealsa_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/jealsa_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/jealsa_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/jealsa_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kaichuang_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kaichuang_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kaichuang_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kaichuang_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kfl_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kfl_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kfl_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kfl_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kingfisher_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kingfisher_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kingfisher_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kingfisher_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kyokuyo_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kyokuyo_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kyokuyo_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/kyokuyo_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/majestic_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/majestic_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/majestic_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/majestic_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/mauritius_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/mauritius_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/mauritius_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/mauritius_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nauterra_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nauterra_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nauterra_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nauterra_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nirsa_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nirsa_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nirsa_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nirsa_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nissui_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nissui_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nissui_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/nissui_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pafco_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pafco_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pafco_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pafco_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pataya_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pataya_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pataya_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pataya_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/pinsa_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ppf_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ppf_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ppf_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/ppf_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/princes_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/princes_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/princes_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/princes_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/procesa_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/procesa_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/procesa_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/procesa_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/rd_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/rd_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/rd_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/rd_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajo_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajo_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajo_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajo_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajoseafood_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajoseafood_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajoseafood_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sajoseafood_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/salica_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/salica_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/salica_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/salica_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sapmer_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sca_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sca_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sca_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sca_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seatech_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seavalue_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seavalue_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seavalue_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/seavalue_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/soltuna_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/soltuna_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/soltuna_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/soltuna_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/sstc_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/starkist_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/starkist_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/starkist_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/starkist_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tecopesca_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tecopesca_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tecopesca_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tecopesca_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/thaiunion_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/thaiunion_prose_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/companies/thaiunion_skus_v1.json": [
@@ -1030,6 +2248,54 @@
   "public/data/companies/thaiunion_v1.json": [
    "components/market-understanding/CompanyAnatomyDashboard.tsx",
    "components/market-understanding/ThaiUnionCharts.tsx"
+  ],
+  "public/data/companies/tog_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tog_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tog_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tog_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/trimarine_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/trimarine_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/trimarine_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/trimarine_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tropical_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tropical_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tropical_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/tropical_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/umios_figures_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/umios_prose_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/umios_tables_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
+  ],
+  "public/data/companies/umios_v1.json": [
+   "components/market-understanding/CompanyAnatomyDashboard.tsx"
   ],
   "public/data/cosmo/cosmo_2026.json": [
    "components/cosmo/CosmoDashboard.tsx",
@@ -1115,6 +2381,15 @@
    "components/market-understanding/TunaIndustryDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
+  "public/data/landed_cost_trend_v1.json": [
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/MofLiveCharts.tsx",
+   "components/market-understanding/OctopusIndustryDashboard.tsx",
+   "components/market-understanding/PollockIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
   "public/data/mackerel_company_research_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",
    "components/market-understanding/MackerelIndustryDashboard.tsx",
@@ -1139,6 +2414,41 @@
    "components/market-understanding/ShrimpIndustryDashboard.tsx",
    "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/maru_registry_status_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidCharts.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/mof_auction_daily_v1.json": [
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/MofLiveCharts.tsx",
+   "components/market-understanding/OctopusIndustryDashboard.tsx",
+   "components/market-understanding/PollockIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/mof_trade_monthly_v1.json": [
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/MofLiveCharts.tsx",
+   "components/market-understanding/OctopusIndustryDashboard.tsx",
+   "components/market-understanding/PollockIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/octopus_company_research_v1.json": [
+   "components/market-understanding/OctopusCharts.tsx",
+   "components/market-understanding/OctopusIndustryDashboard.tsx"
+  ],
+  "public/data/octopus_industry_v1.json": [
+   "components/market-understanding/OctopusCharts.tsx",
+   "components/market-understanding/OctopusIndustryDashboard.tsx"
   ],
   "public/data/panofi/ghana_tuna_mirror.json": [
    "components/panofi/PanofiDashboard.tsx",
@@ -1167,6 +2477,9 @@
   "public/data/panofi/panofi_weekly.json": [
    "components/panofi/PanofiDashboard.tsx",
    "components/panofi/PanofiTabs.tsx"
+  ],
+  "public/data/pollock_company_research_v1.json": [
+   "components/market-understanding/PollockIndustryDashboard.tsx"
   ],
   "public/data/pollock_industry_v1.json": [
    "components/market-understanding/CommodityCharts.tsx",
@@ -1209,6 +2522,14 @@
    "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
   ],
+  "public/data/singapore_mgo.json": [
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/HomeTab.tsx"
+  ],
+  "public/data/skj_seasonal_outlook.json": [
+   "components/bangkok/BangkokDashboard.tsx",
+   "components/bangkok/tabs/HomeTab.tsx"
+  ],
   "public/data/squid_company_research_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",
    "components/market-understanding/MackerelIndustryDashboard.tsx",
@@ -1238,10 +2559,22 @@
    "components/market-understanding/SquidIndustryDashboard.tsx",
    "components/market-understanding/SquidWidgetView.tsx"
   ],
+  "public/data/squid_peru_supply_v1.json": [
+   "components/market-understanding/CompanyResearchTables.tsx",
+   "components/market-understanding/MackerelIndustryDashboard.tsx",
+   "components/market-understanding/ShrimpIndustryDashboard.tsx",
+   "components/market-understanding/SquidCharts.tsx",
+   "components/market-understanding/SquidIndustryDashboard.tsx",
+   "components/market-understanding/TunaIndustryDashboard.tsx",
+   "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
   "public/data/squid_trade_v1.json": [
    "components/market-understanding/SquidCharts.tsx",
    "components/market-understanding/SquidIndustryDashboard.tsx",
    "components/market-understanding/SquidWidgetView.tsx"
+  ],
+  "public/data/tuna_anatomy_roster_v1.json": [
+   "components/market-understanding/TunaAnatomyDashboard.tsx"
   ],
   "public/data/tuna_anatomy_v1.json": [
    "components/market-understanding/CommodityCharts.tsx",
@@ -1314,6 +2647,10 @@
    "components/market-understanding/TunaCatchCharts.tsx",
    "components/market-understanding/TunaIndustryChart.tsx",
    "components/market-understanding/TunaIndustryDashboard.tsx"
+  ],
+  "public/data/tuna_weekly_briefing.json": [
+   "components/MarketDashboard.tsx",
+   "components/NewsFrontPage.tsx"
   ],
   "public/data/whelk_company_research_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",

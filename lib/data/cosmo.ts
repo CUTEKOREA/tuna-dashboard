@@ -62,7 +62,14 @@ export type Month = {
   /** 부문별 영업손익 — 7월 보고서부터 공시 (이전 월은 null) */
   op_cannery?: number | null; op_fishmeal?: number | null; op_fbu?: number | null
   costLines: Record<string, number>
+  /** 원가 계정 전년 동기 누계 — 원문 「YTD <월> 2025 ACTUAL」 블록 */
+  costLinesPrevYtd?: Record<string, number>
+  /** 매출 세부 계정(Export·Local·Precooked Loin·Raw Fish…) 당해·전년 누계 */
+  revenueLinesYtd?: Record<string, number>; revenueLinesPrevYtd?: Record<string, number>
   fishPriceSJ?: number | null; fishPriceYF?: number | null; forex?: number | null
+  source?: string; sha256?: string
+  /** 인쇄 당월값이 YTD 차분과 어긋나 복원한 칸 — 키는 `행:계정:부문`, 값은 인쇄값 */
+  correction?: { method: string; printed: Record<string, number | null> }
 }
 export type Quote = {
   week: number; kind: string; customer: string; qty: string; expected: string
@@ -462,6 +469,22 @@ export const yoy = (() => {
     salesYoY: s25?.salesCumUsd && s26?.salesCumUsd ? s26.salesCumUsd / s25.salesCumUsd - 1 : null,
     /** 2025 연간 전체 (참고) */
     fullYear2025: cbuAggregate(weeks2025),
+  }
+})()
+
+/** 2026년 3분기(7~9월). 주차는 말일이 속한 달로 묶는다 - 영업보고 월별 수주 대조(ordersVsLedger)와 같은 기준.
+ *  27주차(6/29~7/5)가 3분기 첫 주이고, 9/28~9/30 은 40주차 보고에 들어간다. */
+export const q3_2026 = (() => {
+  const inQ = weeks.filter((w) => [7, 8, 9].includes(Number(String(w.periodEnd ?? '').split('/')[0])))
+  const first = inQ[0]
+  const last = inQ[inQ.length - 1]
+  const before = first ? weeks.filter((w) => w.week < first.week).pop() : undefined
+  return {
+    firstWeek: first?.week ?? null, lastWeek: last?.week ?? null,
+    from: first?.periodStart ?? null, to: last?.periodEnd ?? null,
+    ...cbuAggregate(inQ),
+    /** 분기 판매액 = 마지막 주 누적 − 분기 직전 주 누적 */
+    salesUsd: last?.salesCumUsd != null && before?.salesCumUsd != null ? last.salesCumUsd - before.salesCumUsd : null,
   }
 })()
 

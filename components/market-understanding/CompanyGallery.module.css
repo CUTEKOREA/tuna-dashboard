@@ -126,6 +126,7 @@
 
 .card {
   width: 240px;
+  max-width: 100%;
   aspect-ratio: 1 / 1.55;
   perspective: 1200px;
   background: none;
@@ -177,14 +178,26 @@
   flex-direction: column;
 }
 
-/* 뒷면 — 그 나라 국기 연상 배경(회사별 인라인)이 기본으로 보이는 면 */
+/* 국기 전체와 명판을 분리해 문양을 가리지 않는다. */
 .back {
   border: 1px solid var(--cg-gold);
+  background: var(--cg-surface);
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 1rem;
+  gap: 0.9rem;
+  padding: 1.5rem 1.2rem;
   text-align: center;
+}
+
+.back > .backFlag {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  flex-shrink: 0;
+}
+
+.flagImage {
+  object-fit: contain;
 }
 
 .backFrame {
@@ -204,8 +217,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0.42rem;
-  width: calc(100% - 30px);
+  width: 100%;
+  min-height: 6.2rem;
   padding: 0.7rem 0.6rem 0.6rem;
   border-radius: 9px;
   border: 1px solid rgba(217, 164, 65, 0.45);
@@ -233,6 +248,13 @@
   font-size: 0.95rem;
   letter-spacing: 0.35em;
   text-indent: 0.35em;
+  opacity: 0.85;
+  color: var(--cg-ink-muted);
+}
+
+.backCountry {
+  font-size: 0.78rem;
+  line-height: 1.4;
   opacity: 0.85;
 }
 

@@ -3,17 +3,22 @@ import { C } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import {
-  weeks, weeklySeries, annual, latest, meta, yoy,
+  weeks, weeklySeries, annual, latest, meta, yoy, q3_2026,
   gapDecomposition, gapValuation, musd, num, pct, n,
 } from '@/lib/data/cosmo'
+import { cosmoMonthlyReport as mr } from '@/lib/data/cosmo-monthly-report'
+import { cosmoQualityReport as qr } from '@/lib/data/cosmo-quality-report'
+import { cosmoFbuReport as fb, fbuLedgerComparison } from '@/lib/data/cosmo-fbu-report'
 
 const mt = (v: number) => v.toLocaleString('en-US', { maximumFractionDigits: 0 }) + ' MT'
+const n0 = (v: number) => v.toLocaleString('en-US')
 const mtk = (v: number) => (v / 1000).toFixed(0) + 'k'
 const dly = (v: number) => v.toFixed(1) + ' MT/일'
 const day = (v: number) => v.toFixed(1) + '일'
 const pp = (v: number | null | undefined) => (v == null ? '-' : (v * 100).toFixed(2) + '%p')
 const usdFmt = (v: number | null | undefined) => (v == null ? '-' : '$' + num(v, 0))
 const musdFmt = (v: number) => '$' + (v / 1e6).toFixed(2) + 'M'
+const t2 = (v: number | null) => (v == null ? '미확정' : num(v, 2))
 
 /** 값 폭이 좁은 계열은 0 기준 축에서 한 선으로 뭉갠다 — 데이터 범위 ±pad 로 자른 축 */
 const tightDomain = (vals: (number | null | undefined)[], pad = 0.3): [number, number] => {
@@ -25,6 +30,46 @@ const tightDomain = (vals: (number | null | undefined)[], pad = 0.3): [number, n
 }
 
 export default function Production() {
+  // 월간 업무보고의 월별 표 — 계획 대비 변경계획을 12개월로 편다.
+  // 1~mr.rawThroughput.actualThrough 월이 실적이고 그 뒤는 변경계획이라, 화면에서 구간을 갈라 표시한다.
+  const tp = mr.rawThroughput
+  const cn = mr.containers
+  const monthRows = tp.plan.map((plan, i) => ({
+    label: `${i + 1}월`,
+    계획: plan,
+    '실적·변경': tp.revised[i],
+    gap: tp.revised[i] - plan,
+    days: tp.days[i],
+    daily: tp.dailyMt[i],
+    actual: i < tp.actualThrough,
+  }))
+  const ctnRows = cn.cbuPlan.map((plan, i) => ({
+    label: `${i + 1}월`,
+    'CBU 계획': plan,
+    'CBU 실적·변경': cn.cbuOnBoard[i],
+    FBU: cn.fbu[i],
+    gap: cn.cbuOnBoard[i] - plan,
+    actual: i < cn.actualThrough,
+  }))
+  // 실적 구간(1~6월)만의 누적 — 변경계획을 실적처럼 읽지 않기 위해 따로 센다
+  const actualPlan = tp.plan.slice(0, tp.actualThrough).reduce((a, b) => a + b, 0)
+  const actualDone = tp.revised.slice(0, tp.actualThrough).reduce((a, b) => a + b, 0)
+  const ctnActualPlan = cn.cbuPlan.slice(0, cn.actualThrough).reduce((a, b) => a + b, 0)
+  const ctnActualDone = cn.cbuOnBoard.slice(0, cn.actualThrough).reduce((a, b) => a + b, 0)
+  // 실적 구간의 일 처리량 vs 남은 변경계획 일 처리량 — «개정 계획이 회복을 전제하는가»를 문장에 박지 않고 센다
+  const actualDays = tp.days.slice(0, tp.actualThrough).reduce((a, b) => a + b, 0)
+  const actualDaily = actualDays ? actualDone / actualDays : 0
+  const restDaily = tp.dailyMt.slice(tp.actualThrough)
+  const restAbove = restDaily.filter((d) => d > actualDaily).length
+  // 컨테이너 연간은 행 합계 — 원문 합계 열이 8월 수정 전 값으로 남아 있다
+  const sumOf = (a: readonly number[]) => a.reduce((x, y) => x + y, 0)
+  const ctnAnnual = { cbuPlan: sumOf(cn.cbuPlan), cbuOnBoard: sumOf(cn.cbuOnBoard), fbu: sumOf(cn.fbu) }
+  const ctnPrintedStale = ctnAnnual.cbuOnBoard !== cn.printedAnnual.cbuOnBoard || ctnAnnual.fbu !== cn.printedAnnual.fbu
+  const ctnOverMonths = cn.cbuOnBoard.slice(0, cn.actualThrough)
+    .map((v, i) => ({ m: i + 1, over: v - cn.cbuPlan[i] })).filter((r) => r.over > 0)
+  const cleanerDrop = qr.cleaners.rows[0].count - qr.cleaners.rows[2].count
+  const cleaningClaims = qr.claims.filter((c) => c.defects.some((d) => d.includes('클리닝 부적합'))).length
+  const freezerDays = qr.freezer.recovery.reduce((a, r) => a + (r.elapsedDays ?? 0), 0)
   const cbu = latest.production?.CBU
   const fbu = latest.production?.FBU
   const gap = gapDecomposition(cbu)
@@ -98,18 +143,21 @@ export default function Production() {
 
   const lastAnnual = annual[annual.length - 1]
 
+  const fbuCmp = fbuLedgerComparison()
+
   /* 동일 주차 구간(1~현재주) 대조 — 계절성 통제 */
   const yrRows = [
-    { k: '수율', sub: '원어량 가중', a: pct(yoy.yield2025, 2), b: pct(yoy.yield2026, 2),
+    { k: '수율', sub: '원어량 가중', a: pct(yoy.yield2025, 2), b: pct(yoy.yield2026, 2), q: pct(q3_2026.yield, 2),
       d: pp(yoy.yieldDelta), neg: yoy.yieldDelta < 0 },
-    { k: '일 처리량', sub: 'Σ원어 ÷ Σ생산일', a: dly(yoy.daily2025), b: dly(yoy.daily2026),
+    { k: '일 처리량', sub: 'Σ원어 ÷ Σ생산일', a: dly(yoy.daily2025), b: dly(yoy.daily2026), q: dly(q3_2026.daily),
       d: (yoy.dailyDelta >= 0 ? '+' : '') + yoy.dailyDelta.toFixed(1), neg: yoy.dailyDelta < 0 },
-    { k: '원어처리량', sub: '구간 합계', a: mt(yoy.rawMt2025), b: mt(yoy.rawMt2026),
+    { k: '원어처리량', sub: '구간 합계', a: mt(yoy.rawMt2025), b: mt(yoy.rawMt2026), q: mt(q3_2026.rawMt),
       d: (yoy.rawMtDelta >= 0 ? '+' : '') + num(yoy.rawMtDelta, 0) + ' MT', neg: yoy.rawMtDelta < 0 },
-    { k: '생산일수', sub: '구간 합계', a: day(yoy.days2025), b: day(yoy.days2026),
+    { k: '생산일수', sub: '구간 합계', a: day(yoy.days2025), b: day(yoy.days2026), q: day(q3_2026.days),
       d: (yoy.days2026 - yoy.days2025 >= 0 ? '+' : '') + (yoy.days2026 - yoy.days2025).toFixed(1) + '일',
       neg: yoy.days2026 < yoy.days2025 },
     { k: '누적 판매액', sub: `${yoy.upTo}주차 시점`, a: musd(yoy.salesCum2025), b: musd(yoy.salesCum2026),
+      q: q3_2026.salesUsd != null ? `${musd(q3_2026.salesUsd)} (분기)` : '-',
       d: yoy.salesYoY != null ? pct(yoy.salesYoY, 1) : '-', neg: (yoy.salesYoY ?? 0) < 0 },
   ]
 
@@ -334,13 +382,13 @@ export default function Production() {
         >
           <Legend items={[
             { name: 'CBU', color: C.s1, box: true },
-            { name: 'FBU', color: C.s4, box: true },
+            { name: 'FBU', color: C.s3, box: true },
           ]} />
           <Chart
             data={prod} x="label" height={250} xInterval={3} yFmt={(v) => v.toFixed(0)}
             series={[
               { key: 'cbuRawWeek', name: 'CBU', color: C.s1, type: 'bar', stackId: 'raw', fmt: mt },
-              { key: 'fbuRawWeek', name: 'FBU', color: C.s4, type: 'bar', stackId: 'raw', fmt: mt },
+              { key: 'fbuRawWeek', name: 'FBU', color: C.s3, type: 'bar', stackId: 'raw', fmt: mt },
             ]}
           />
         </Card>
@@ -385,11 +433,84 @@ export default function Production() {
         </Card>
       </div>
 
+      <SecHead id="fbu-monthly">FBU 월간 현황 ({fb.source.reportDate.slice(5, 7).replace(/^0/, '')}월 · 로인 가공)</SecHead>
+      <div className="grid g2">
+        <Card
+          title="재고와 원어 입고"
+          sub={`${fb.inventory.asOf} 기준 · MT · 현지용 부산물·미선별 원어 제외. 재고가치는 원어·로인만 인쇄됐다(벨리·EU-MEAT 는 부산물 정산).`}
+          note={<>로인 재고 <b>{num(fb.inventory.total.loin, 2)} MT</b>({usdFmt(fb.inventory.valueUsd.loin)})가 출고를 기다리고,
+            원어는 <b>{num(fb.inventory.total.raw, 1)} MT</b>만 남았다. 1~8월 하역 {num(fb.intake.janAug.unloadedMt, 1)} MT 중
+            {' '}{num(fb.intake.janAug.returnMt, 1)} MT({pct(fb.intake.janAug.returnMt / fb.intake.janAug.unloadedMt, 1)})가 반품으로 빠져
+            최종 입고는 {num(fb.intake.janAug.finalMt, 1)} MT, 매입비용 {usdFmt(fb.intake.janAug.costUsd)}다. {fb.intake.note}</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>어종</th><th className="n">원어</th><th className="n">로인</th><th className="n">벨리</th><th className="n">EU-MEAT</th></tr></thead>
+              <tbody>
+                {fb.inventory.rows.map((r) => (
+                  <tr key={r.species}><td>{r.species}</td><td className="n">{num(r.raw, 2)}</td><td className="n">{num(r.loin, 2)}</td><td className="n">{num(r.belly, 2)}</td><td className="n">{num(r.euMeat, 2)}</td></tr>
+                ))}
+                <tr><td><b>합계</b></td><td className="n"><b>{num(fb.inventory.total.raw, 2)}</b></td><td className="n"><b>{num(fb.inventory.total.loin, 2)}</b></td><td className="n"><b>{num(fb.inventory.total.belly, 2)}</b></td><td className="n"><b>{num(fb.inventory.total.euMeat, 2)}</b></td></tr>
+                <tr><td>재고가치</td><td className="n">{usdFmt(fb.inventory.valueUsd.raw)}</td><td className="n">{usdFmt(fb.inventory.valueUsd.loin)}</td><td className="n" colSpan={2}>부산물 정산</td></tr>
+              </tbody>
+            </table>
+            <table>
+              <thead><tr><th>원어 입고</th><th className="n">하역량</th><th className="n">반품</th><th className="n">최종 입고</th><th className="n">매입비용</th></tr></thead>
+              <tbody>
+                <tr><td>1~8월</td><td className="n">{t2(fb.intake.janAug.unloadedMt)}</td><td className="n">{t2(fb.intake.janAug.returnMt)}</td><td className="n">{t2(fb.intake.janAug.finalMt)}</td><td className="n">{usdFmt(fb.intake.janAug.costUsd)}</td></tr>
+                <tr><td>9월</td><td className="n">{t2(fb.intake.sep.unloadedMt)}</td><td className="n">{fb.intake.sep.returnMt == null ? '-' : t2(fb.intake.sep.returnMt)}</td><td className="n">{t2(fb.intake.sep.finalMt)}</td><td className="n">{fb.intake.sep.costUsd == null ? '미확정' : usdFmt(fb.intake.sep.costUsd)}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="가공과 수출"
+          sub={`9월 가공 ${fb.processing.sep.days}일 · 수출 송장 ${fb.exports.total.containers}건. 누계 원어는 재가공 물량을 포함한다(원문 각주).`}
+          note={<>9월 원어 {num(fb.processing.sep.rawMt, 1)} MT를 넣어 로인 {num(fb.processing.sep.loinMt, 1)} MT, 수율 <b>{fb.processing.sep.yieldPct.toFixed(2)}%</b>.
+            9월 수출은 <b>{fb.exports.total.containers} CONT · {num(fb.exports.total.mt, 1)} MT · {usdFmt(fb.exports.total.usd)}</b>,
+            누계 {fb.exports.ytd.containers} CONT · {num(fb.exports.ytd.mt, 1)} MT · {musdFmt(fb.exports.ytd.usd)}다.
+            {' '}주간 원장의 FBU 원어 누계({fbuCmp.ledgerEnd}까지)는 {num(fbuCmp.ledgerRawMt, 0)} MT·{fbuCmp.ledgerDays}일이고
+            월간보고(9/30까지, 재가공 포함)는 {num(fbuCmp.reportRawMt, 0)} MT·{fbuCmp.reportDays}일이라 {num(fbuCmp.gapMt, 0)} MT·{fbuCmp.gapDays}일 차이가 난다 - 기준 차이로 맞추지 않았다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>수출 오더</th><th>제품</th><th className="n">중량 (MT)</th><th>도착지</th><th className="n">송장 금액</th><th>판매처</th></tr></thead>
+              <tbody>
+                {fb.exports.rows.map((r) => (
+                  <tr key={r.order}><td>{r.order}</td><td>{r.product}</td><td className="n">{num(r.mt, 2)}</td><td>{r.dest}</td><td className="n">{usdFmt(r.usd)}</td><td>{r.buyer}</td></tr>
+                ))}
+                <tr><td colSpan={2}><b>9월 합계</b></td><td className="n"><b>{num(fb.exports.total.mt, 2)}</b></td><td>{fb.exports.total.containers} CONT</td><td className="n"><b>{usdFmt(fb.exports.total.usd)}</b></td><td /></tr>
+                <tr><td colSpan={2}>2026년 누계</td><td className="n">{num(fb.exports.ytd.mt, 2)}</td><td>{fb.exports.ytd.containers} CONT</td><td className="n">{usdFmt(fb.exports.ytd.usd)}</td><td /></tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card title="인원" sub={`총 ${fb.staff.total}명 (부서장 ${fb.staff.hod}명 포함)`}>
+          <div className="tw">
+            <table>
+              <thead><tr><th>부문</th><th className="n">인원</th><th>구성</th></tr></thead>
+              <tbody>
+                {fb.staff.groups.map((g) => (<tr key={g.name}><td>{g.name}</td><td className="n">{g.count}명</td><td>{g.detail}</td></tr>))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card title="현안" sub={`FBU 월간 현황 보고 ${fb.source.reportDate} · ${fb.source.author}`}>
+          {fb.issues.map((iss) => (
+            <Callout key={iss.title} kind="warn" label={iss.title}>
+              {iss.lines.join(' ')}
+            </Callout>
+          ))}
+        </Card>
+      </div>
+
       <SecHead>이 갭은 얼마짜리인가</SecHead>
       <div className="grid g2">
         {gapValuation && (
           <Card
-            span={2}
             title={`부족분 ${mt(gapValuation.shortMt)}의 금액 환산`}
             sub="조치의 가치를 설비 투자·인력 투입과 비교하려면 금액이 필요하다. 두 기준을 범위로 놓는다."
             note={<>총원가 기준은 <b>{musd(gapValuation.costBasis)}</b>
@@ -423,11 +544,221 @@ export default function Production() {
         )}
       </div>
 
+      <SecHead id="monthly-plan">월간 업무보고 — 월별 계획 대비</SecHead>
+      <div className="grid g2">
+        <Card
+          span={2} /* 카드 안 6열 표가 반폭이면 가로 스크롤이 생긴다 — 전체 폭 예외 */
+          title="월별 원어 처리량 — 계획 vs 실적·변경"
+          sub={`${mr.source.file} 기준. 1~${tp.actualThrough}월은 실적, ${tp.actualThrough + 1}월 이후는 변경계획이다. 단위 MT.`}
+          note={<>실적 구간 1~{tp.actualThrough}월만 보면 계획 {n0(actualPlan)} MT 대비 <b>{n0(actualDone)} MT</b>
+            ({pct(actualDone / actualPlan - 1, 1)})입니다. 연간은 계획 {n0(tp.annual.planMt)} MT 를
+            {' '}<b>{n0(tp.annual.revisedMt)} MT 로 하향</b>({n0(tp.annual.revisedMt - tp.annual.planMt)} MT) 개정했는데,
+            {' '}{tp.actualThrough + 1}월 이후 변경계획의 일 처리량은 {Math.min(...restDaily)}~{Math.max(...restDaily)}톤으로,
+            1~{tp.actualThrough}월 실적 일 처리량 {actualDaily.toFixed(0)}톤보다 높은 달이 {restDaily.length}개월 중 {restAbove}개월입니다
+            {restAbove > 0 ? <> — <b>개정 계획은 남은 기간의 회복을 일부 전제</b>합니다</> : ' — 개정 계획은 현재 속도 이하로 잡혀 있습니다'}.
+            연간 일 처리량 {tp.annual.dailyMt}톤 × {tp.annual.days}일이 개정치의 근거입니다.</>}
+        >
+          <Legend items={[
+            { name: '계획', color: C.s2, box: true },
+            { name: '실적·변경', color: C.s1, box: true },
+          ]} />
+          <Chart
+            data={monthRows} x="label" height={230} yFmt={mtk}
+            series={[
+              { key: '계획', name: '계획', color: C.s2, type: 'bar', fmt: mt },
+              { key: '실적·변경', name: '실적·변경', color: C.s1, type: 'bar', fmt: mt },
+            ]}
+          />
+          <div className="tw" style={{ marginTop: 12 }}>
+            <table>
+              <thead>
+                <tr>
+                  <th>월</th><th className="n">계획 (MT)</th><th className="n">실적·변경 (MT)</th>
+                  <th className="n">차이 (MT)</th><th className="n">생산일수</th><th className="n">일 처리량 (MT)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {monthRows.map((r) => (
+                  <tr key={r.label} className={r.gap <= -400 ? 'warn' : undefined}>
+                    <td>{r.label} {!r.actual && <span className="tag">변경계획</span>}</td>
+                    <td className="n">{n0(r.계획)}</td>
+                    <td className="n">{n0(r['실적·변경'])}</td>
+                    <td className={`n ${r.gap < 0 ? 'down' : r.gap > 0 ? 'up' : ''}`}>{r.gap === 0 ? '-' : n0(r.gap)}</td>
+                    <td className="n">{r.days}일</td>
+                    <td className="n">{r.daily}</td>
+                  </tr>
+                ))}
+                <tr className="bad">
+                  <td><b>연간</b></td>
+                  <td className="n">{n0(tp.annual.planMt)}</td>
+                  <td className="n">{n0(tp.annual.revisedMt)}</td>
+                  <td className="n down">{n0(tp.annual.revisedMt - tp.annual.planMt)}</td>
+                  <td className="n">{tp.annual.days}일</td>
+                  <td className="n">{tp.annual.dailyMt}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="컨테이너 출고 — CBU 계획 대비 선적"
+          sub={`CBU 는 계획 대비 On Board, FBU 는 계획 구분 없이 한 행이다. 단위 FCL.`}
+          note={<>실적 구간 1~{cn.actualThrough}월 CBU 는 계획 {ctnActualPlan} FCL 대비 <b>{ctnActualDone} FCL</b>
+            ({pct(ctnActualDone / ctnActualPlan - 1, 1)})입니다. 연간(실적+변경)으로는 {n0(ctnAnnual.cbuPlan)} → {n0(ctnAnnual.cbuOnBoard)} FCL 로
+            {' '}<b>{ctnAnnual.cbuOnBoard - ctnAnnual.cbuPlan} FCL</b> 부족합니다
+            {ctnPrintedStale && <>(원문 합계 열은 {n0(cn.printedAnnual.cbuOnBoard)} · {cn.printedAnnual.cbuGap} · FBU {cn.printedAnnual.fbu} 로 {cn.actualThrough}월 수정 전 값이 남아 있어 행 합계를 씁니다)</>}.
+            {ctnOverMonths.length ? `${ctnOverMonths.map((r) => `${r.m}월`).join('·')}에만` : '어느 달도'} 계획을 넘겼는데
+            {ctnOverMonths[0] && <>, {ctnOverMonths[0].m}월 원어 처리량은 계획 대비 {n0(tp.revised[ctnOverMonths[0].m - 1] - tp.plan[ctnOverMonths[0].m - 1])} MT 였습니다</>} —
+            <b>출고는 생산이 아니라 재고와 선적 일정을 따릅니다</b>. 월간보고: {cn.note}.
+            FBU 는 연간 {ctnAnnual.fbu} FCL 로 CBU 의 {(ctnAnnual.fbu / ctnAnnual.cbuOnBoard * 100).toFixed(0)}% 규모입니다.</>}
+        >
+          <Legend items={[
+            { name: 'CBU 계획', color: C.s2, box: true },
+            { name: 'CBU 실적·변경', color: C.s1, box: true },
+            { name: 'FBU', color: C.s3, box: true },
+          ]} />
+          <Chart
+            data={ctnRows} x="label" height={210} yFmt={(v) => String(v)}
+            series={[
+              { key: 'CBU 계획', name: 'CBU 계획', color: C.s2, type: 'bar', fmt: (v) => v + ' FCL' },
+              { key: 'CBU 실적·변경', name: 'CBU 실적·변경', color: C.s1, type: 'bar', fmt: (v) => v + ' FCL' },
+              { key: 'FBU', name: 'FBU', color: C.s3, type: 'bar', fmt: (v) => v + ' FCL' },
+            ]}
+          />
+        </Card>
+      </div>
+
+      <SecHead id="quality-claim">품질 클레임과 개선 대책</SecHead>
+      <div className="grid g2">
+        <Card
+          title={`${qr.trigger.buyer} 클레임 접수 내역`}
+          sub={`${qr.source.title} (${qr.source.reportDate}) 기준. 클레임 접수일과 해당 제품의 제조일자.`}
+          note={<>{qr.trigger.date.replace(/-/g, '.')} 접수된 공문이 이 보고를 촉발했습니다.
+            2025년 이후 <b>{qr.claims.length}건</b> 중 <b>{cleaningClaims}건이 클리닝 부적합</b>이고
+            {' '}{qr.claims.filter((c) => c.defects.some((d) => d.includes('어두움'))).length}건이 색상 문제이며,
+            모두 같은 제품({qr.claims[0].product})입니다. 접수와 제조 사이가
+            {' '}{qr.claims.map((c) => Math.round((Date.parse(c.receivedAt) - Date.parse(c.producedAt[0])) / 86400000 / 30)).join('·')}개월로
+            벌어져 있어, <b>불량은 생산 시점보다 한참 뒤에 드러납니다</b> — 지금 라인의 품질이 좋아져도 클레임은 당분간 더 들어옵니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>접수일</th><th>클레임 내용</th><th>제품 제조일자</th></tr></thead>
+              <tbody>
+                {qr.claims.map((c) => (
+                  <tr key={c.receivedAt} className={c.defects.some((d) => d.includes('클리닝 부적합')) ? 'warn' : undefined}>
+                    <td>{c.receivedAt.replace(/-/g, '.')}</td>
+                    <td>{c.defects.join(' · ')}{c.note && <span className="tag">{c.note}</span>}</td>
+                    <td>{c.producedAt.map((d) => d.replace(/-/g, '.')).join(', ')}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="클리너 인원과 생산성"
+          sub={`인원은 ${qr.cleaners.basis}, 생산성은 원어 사이즈가 비슷한 ${qr.productivity.basis} 비교다. 기준 월이 달라 두 표를 섞지 않는다.`}
+          note={<>능숙한 클리너가 2024년 {qr.cleaners.rows[0].count}명에서 <b>{qr.cleaners.rows[2].count}명
+            ({cleanerDrop}명, {pct(qr.cleaners.rows[2].count / qr.cleaners.rows[0].count - 1, 0)})</b>으로 줄었습니다.
+            같은 기간 인당 생산성은 {qr.productivity.rows[0].kgPerManHour} → <b>{qr.productivity.rows[2].kgPerManHour} kg/인시</b>로 올랐는데,
+            같은 기간 평균 원어 사이즈는 {qr.productivity.rows[0].kgPerFish} → {qr.productivity.rows[2].kgPerFish} kg/미로 거의 같아,
+            어체가 커져서 오른 것이 아닙니다. <b>이 상승은 품질을 깎아 산 것</b>이라는 것이 보고의 진단입니다 — Bruise 를 표면만 제거하고 갈변 표층을 남기면 처리는 빨라집니다.
+            대책(완전 제거·Deep Cleaning)은 그래서 <b>수율과 처리량을 동시에 떨어뜨립니다</b>.
+            보고는 인센티브·등급제로 품질과 개인 생산성을 함께 걸어 상쇄를 노립니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead>
+                <tr><th>연도</th><th className="n">클리너 수</th>
+                  <th className="n">생산성 (kg/인시)</th><th className="n">전년비</th></tr>
+              </thead>
+              <tbody>
+                {qr.productivity.rows.map((r, i) => (
+                  <tr key={r.year} className={i === 2 ? 'warn' : undefined}>
+                    <td>{r.year}</td>
+                    <td className="n">{n0(qr.cleaners.rows[i].count)}</td>
+                    <td className="n">{r.kgPerManHour}</td>
+                    <td className="n up">{r.yoy == null ? '-' : pct(r.yoy, 1)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="공정별 원인과 개선 대책"
+          sub={`입고보관부터 멸균까지 ${qr.processStages.length}개 공정. 핵심 관리 공정은 ${qr.criticalStage}이다.`}
+          span={2}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>공정</th><th>불량 유형</th><th>현황·문제점</th><th>개선 대책</th></tr></thead>
+              <tbody>
+                {qr.processStages.map((st) => (
+                  <tr key={st.stage} className={st.stage.includes('클리닝') ? 'warn' : undefined}>
+                    <td>{st.stage}</td>
+                    <td>{st.defect}</td>
+                    <td>{st.problem}</td>
+                    <td>{st.action}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="냉동창고 회복 기록과 보수 견적"
+          sub={`${qr.freezer.unit} — 만창 ${n0(qr.freezer.capacityMt)}톤 상태의 온도 기록.`}
+          note={<>{qr.freezer.issue} 만창에서 −18℃ 에 닿기까지 <b>{freezerDays}일</b> 걸렸습니다.
+            콘덴서 1기 보수 견적은 <b>{(qr.freezer.quote.totalKrw / 1e6).toFixed(0)}백만원</b>
+            (콘덴서 4EA {n0(qr.freezer.quote.items[0].unitKrw / 1e6)}백만원 등)입니다.
+            원문 우선순위 표기가 «{qr.freezer.priorityRaw}» 로 #2가 두 번 나오는데, 원문 그대로 옮겼습니다 — <b>확인이 필요합니다</b>.
+            Scow 는 가나 사업장 누적 {n0(qr.scows.total)}개 중 Plate Type 이 {n0(qr.scows.plateType)}개
+            ({pct(qr.scows.plateType / qr.scows.total, 0)})뿐이라, 「Plate 우선 사용」은 당분간 물량 제약을 받습니다.</>}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th>일자</th><th className="n">냉동고 온도</th><th className="n">소요일수</th></tr></thead>
+              <tbody>
+                {qr.freezer.recovery.map((r) => (
+                  <tr key={r.date}>
+                    <td>{r.date.replace(/-/g, '.')}</td>
+                    <td className="n">{r.tempC} ℃</td>
+                    <td className="n">{r.elapsedDays == null ? '-' : r.elapsedDays + '일'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card
+          title="세부 실행 계획"
+          sub={`보고가 낸 ${qr.actions.length}건. 이행 여부는 원자료에 없어 진척을 표시하지 않는다.`}
+        >
+          <div className="tw">
+            <table>
+              <thead><tr><th className="n">No</th><th>항목</th><th>내용</th></tr></thead>
+              <tbody>
+                {qr.actions.map((a) => (
+                  <tr key={a.no}><td className="n">{a.no}</td><td>{a.title}</td><td>{a.detail}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+      </div>
+
       <SecHead>2025년 대비</SecHead>
       <div className="grid g2">
         <Card
           title="같은 공장, 낮아진 처리 성능"
-          sub={`2025년 ${yoy.weeks2025Count}주 전체가 확보돼 **같은 주차 구간(1~${yoy.upTo}주)**으로 비교한다. 계절성이 통제된 비교다.`}
+          sub={<>2025년 {yoy.weeks2025Count}주 전체가 확보돼 <b>같은 주차 구간(1~{yoy.upTo}주)</b>으로 비교한다. 계절성이 통제된 비교다.
+            3분기 열은 주차 말일 기준 {q3_2026.firstWeek}~{q3_2026.lastWeek}주({q3_2026.from}~{q3_2026.to})이며 전년대비는 1~{yoy.upTo}주 구간끼리다.</>}
           span={2}
           note={<>같은 1~{yoy.upTo}주 구간에서 <b>일처리량 {dly(yoy.daily2025)} → {dly(yoy.daily2026)},
             {' '}{yoy.dailyDelta.toFixed(1)} MT/일</b>, 수율 {pp(yoy.yieldDelta)}, 원어처리량
@@ -440,6 +771,9 @@ export default function Production() {
               {' '}{annual.filter((a) => n(a.daily) < n(cbu?.cumDaily)).length}개년보다 높고
               {' '}{annual.filter((a) => n(a.daily) >= n(cbu?.cumDaily)).map((a) => a.year).join('·')}년에는 미달입니다
               (장기 추이 보드).</>}
+            {' '}3분기({q3_2026.firstWeek}~{q3_2026.lastWeek}주)만 보면 일처리량 <b>{dly(q3_2026.daily)}</b>·수율 {pct(q3_2026.yield, 2)}로
+            {' '}1~{latest.week}주 평균({dly(yoy.daily2026)}·{pct(yoy.yield2026, 2)})보다 일처리량 {(q3_2026.daily - yoy.daily2026 >= 0 ? '+' : '') + (q3_2026.daily - yoy.daily2026).toFixed(1)} MT/일,
+            {' '}수율 {pp(q3_2026.yield - yoy.yield2026)}이고, 분기 판매액은 {musd(q3_2026.salesUsd)}입니다.
             {' '}2025년 결측은 {yoy.missing2025.map((w) => `W${w}`).join('·') || '없음'}이며 집계에서 제외했습니다.</>}
         >
           <div className="tw">
@@ -449,7 +783,8 @@ export default function Production() {
                   <th>기준</th>
                   <th className="n">2025 (1~{yoy.upTo}주)</th>
                   <th className="n">2026 (1~{latest.week}주)</th>
-                  <th className="n">차이</th>
+                  <th className="n">2026 3분기 ({q3_2026.firstWeek}~{q3_2026.lastWeek}주)</th>
+                  <th className="n">전년대비</th>
                 </tr>
               </thead>
               <tbody>
@@ -458,6 +793,7 @@ export default function Production() {
                     <td>{r.k} <span className="tag">{r.sub}</span></td>
                     <td className="n">{r.a}</td>
                     <td className="n">{r.b}</td>
+                    <td className="n">{r.q}</td>
                     <td className={`n ${r.neg ? 'down' : 'up'}`}>{r.d}</td>
                   </tr>
                 ))}
@@ -465,6 +801,7 @@ export default function Production() {
                   <td>집계에 쓴 가동주 <span className="tag">0일 주 제외</span></td>
                   <td className="n">{yoy.sampleWeeks2025}주 / {day(yoy.days2025)}</td>
                   <td className="n">{yoy.sampleWeeks2026}주 / {day(yoy.days2026)}</td>
+                  <td className="n">{q3_2026.count}주 / {day(q3_2026.days)}</td>
                   <td className="n">-</td>
                 </tr>
               </tbody>

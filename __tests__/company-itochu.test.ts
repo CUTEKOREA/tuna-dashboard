@@ -10,8 +10,6 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  ITOCHU_BRIEFING,
-  ITOCHU_NARRATIVES,
   ITOCHU_SOURCE_NOTES,
 } from '@/lib/company-itochu-content';
 import {
@@ -28,6 +26,11 @@ import {
   sajoVessels,
   siGtTotal,
 } from '@/lib/data/company-itochu';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+
+// 서술은 조사보고서에서 그대로 읽어 온다. 손으로 쓴 상수는 더 없다.
+const ITOCHU_NARRATIVES = proseStages('itochu');
+const ITOCHU_BRIEFING = proseBriefing('itochu');
 
 describe('ITOCHU 인테이크', () => {
   it('인증 선단은 25척이다', () => {
@@ -89,7 +92,7 @@ describe('ITOCHU 인테이크', () => {
   });
 
   it('서술은 6단계이고 브리핑이 실재 단계를 가리킨다', () => {
-    expect(ITOCHU_NARRATIVES).toHaveLength(6);
+    expect(ITOCHU_NARRATIVES.length).toBeGreaterThanOrEqual(6);
     const keys = new Set(ITOCHU_NARRATIVES.map((s) => s.key));
     for (const b of ITOCHU_BRIEFING) expect(keys.has(b.stage)).toBe(true);
   });

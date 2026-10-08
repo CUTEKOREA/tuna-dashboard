@@ -1,6 +1,7 @@
 'use client';
 
-import Chart, { type Serie } from '../../cosmo/Chart';
+import { useEffect, useMemo, useState } from 'react';
+import Chart, { Legend, type Serie } from '../../cosmo/Chart';
 import { Grid, Panel, Sec, Stat, Stats, Table } from '../../panofi/PanofiUi';
 import {
   bangkokWeeklyKpi,
@@ -8,6 +9,10 @@ import {
   bangkokYearly,
   type BangkokWeek,
 } from '@/lib/data/bangkok-weekly';
+import { singaporeMgoAt, singaporeMgoMeta } from '@/lib/data/singapore-mgo';
+import { appendSeasonalOutlook, buildOverviewRows, type AtunaHistoryRow } from '@/lib/bangkok-price-overview';
+import { skjSeasonalOutlook } from '@/lib/data/skj-seasonal-outlook';
+import { skjPriceContext } from '@/lib/data/skj-price-context';
 import { C } from '../palette';
 
 /* ── 표기 헬퍼 ─────────────────────────────────────────────────────────── */
@@ -35,9 +40,25 @@ const latestUnload = latest((w) => w.unloadMt);
 
 /* ── 차트 데이터 (모듈 스코프 — 원천이 정적이다) ───────────────────────── */
 
-const priceRows = bangkokWeeks.map((w) => ({ 주: w.date.slice(2, 7), 시세: w.price }));
+/** 가격 3종은 단위가 같아($/t) 한 축에, 재고(MT)·가동률(%)은 같은 시간축의 별도 패널에 — 이중 축은 쓰지 않는다. */
+// 계절 패턴 참고선은 계열이 아니라 주석이라 중립 회색 — 어튜나 주황과 혼동 방지(2026-09-02 사용자 지시)
+const PRICE_COLORS = { office: C.bangkok, atuna: '#d95926', mgo: '#199e70', seasonal: '#64748b' } as const;
 const priceSeries: Serie[] = [
-  { key: '시세', name: '원어 시세', color: C.bangkok, fmt: (v) => `${num(v)} 달러/톤` },
+  { key: '방콕사무소', name: '방콕사무소 원어 시세', color: PRICE_COLORS.office, fmt: (v) => `${num(v)} 달러/톤` },
+  { key: '어튜나', name: '어튜나 SKJ 방콕', color: PRICE_COLORS.atuna, fmt: (v) => `${num(v)} 달러/톤` },
+  { key: 'MGO', name: '싱가포르 MGO', color: PRICE_COLORS.mgo, dash: true, fmt: (v) => `${num(v)} 달러/톤` },
+  // 계절 패턴 참고선 — 예측이 아니다. 어튜나 기준점과 목표월 두 점만 있고 connectNulls로 잇는다.
+  { key: '계절밴드', name: '계절 패턴 80% 밴드', color: PRICE_COLORS.seasonal, type: 'area', connectNulls: true, fmt: (v) => `${num(v)} 달러/톤` },
+  { key: '계절패턴', name: skjSeasonalOutlook.label, color: PRICE_COLORS.seasonal, dash: true, connectNulls: true, fmt: (v) => `${num(v)} 달러/톤` },
+];
+/* 계절 기준선은 9→12월 하락을 말하는데 업계는 반대 전제로 사고 있다. 한쪽을 지우지 않고 같이 적는다. */
+const industryPremise = `다만 ${skjPriceContext.source[0].reportDate.replace(/-/g, '.')} 출장보고 기준 업계 전제는 반대다 — ${skjPriceContext.premise.find((item) => item.label === '엘니뇨 전제')?.detail ?? ''}`;
+const outlookCaption = `${skjSeasonalOutlook.label}: ${skjSeasonalOutlook.asOf.replace('-', '.')} $${num(skjSeasonalOutlook.anchorPrice)} → ${skjSeasonalOutlook.targetMonth.replace('-', '.')} $${num(skjSeasonalOutlook.value)} (80% 밴드 ${num(skjSeasonalOutlook.band80[0])}~${num(skjSeasonalOutlook.band80[1])}). 과거 ${skjSeasonalOutlook.history.years}년 중 하락 ${skjSeasonalOutlook.history.down}회(평균 ${skjSeasonalOutlook.history.meanPct}%), 최근 10년은 ${skjSeasonalOutlook.recent10y.down}/${skjSeasonalOutlook.recent10y.years}회(평균 ${skjSeasonalOutlook.recent10y.meanPct}%). 예측치가 아니라 과거 계절 패턴이며 밴드는 백테스트 선행 잔차다. 출발점은 ${skjSeasonalOutlook.anchorSource.split(' (')[0]} 시세이고, 변화율과 밴드는 어튜나 32년 월별에서 계산했다. ${industryPremise}`;
+const stockSeries: Serie[] = [
+  { key: '재고', name: '방콕 캐너리 보유 원어 합', color: '#0891b2', type: 'area', fmt: (v) => `${num(v)} MT` },
+];
+const utilSeries: Serie[] = [
+  { key: '가동률', name: '방콕 캐너리 평균 가동률', color: '#c98500', fmt: (v) => `${num1(v)} %` },
 ];
 
 const unloadRows = bangkokYearly.map((y) => ({ 연도: String(y.year), 하역: y.unloadTotalMt }));
@@ -48,6 +69,28 @@ const unloadSeries: Serie[] = [
 /* ── 개관 탭 ───────────────────────────────────────────────────────────── */
 
 export function HomeTab() {
+  // 어튜나 시세는 페이월 자료라 정적 번들에 넣지 않는다 — 소유자 로그인 세션으로 라우트에서 받아 온다.
+  const [atunaHistory, setAtunaHistory] = useState<AtunaHistoryRow[]>([]);
+  const [atunaState, setAtunaState] = useState<'idle' | 'ready' | 'error'>('idle');
+  useEffect(() => {
+    const ctrl = new AbortController();
+    fetch('/api/atuna-prices', { cache: 'no-store', credentials: 'same-origin', signal: ctrl.signal })
+      .then((res) => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
+      .then((body: { history?: AtunaHistoryRow[]; restricted?: boolean }) => {
+        if (body.restricted || !Array.isArray(body.history)) throw new Error('restricted');
+        setAtunaHistory(body.history);
+        setAtunaState('ready');
+      })
+      .catch((err: unknown) => {
+        if ((err as Error)?.name !== 'AbortError') setAtunaState('error');
+      });
+    return () => ctrl.abort();
+  }, []);
+  const actualRows = useMemo(() => buildOverviewRows(bangkokWeeks, singaporeMgoAt, atunaHistory), [atunaHistory]);
+  const overviewRows = useMemo(
+    () => appendSeasonalOutlook(actualRows, skjSeasonalOutlook),
+    [actualRows],
+  );
   return (
     <>
       <Stats>
@@ -89,10 +132,17 @@ export function HomeTab() {
           span={12}
           title="원어 시세 추이"
           unit="달러/톤 · 전체 기간"
-          note="값이 없는 주는 선을 끊어 표시한다 (보간하지 않음)."
-          src={SRC}
+          note={`값이 없는 주와 의심 플래그 주(이웃 대비 급변)는 선을 끊어 표시한다 (보간하지 않음; 2024-01-10 원문 오기 $2,000은 근거를 남기고 $1,450으로 정정). 어튜나 시세는 로그인 세션으로 불러오며${atunaState === 'error' ? ' — 이번엔 불러오지 못했다' : ''}, 싱가포르 MGO는 보고일 직전 영업일 종가(${singaporeMgoMeta.first}~${singaporeMgoMeta.last}). ${outlookCaption}`}
+          src={`${SRC} · 어튜나 SKJ 1.8kg CFR 방콕 · Ship & Bunker 싱가포르 MGO`}
         >
-          <Chart data={priceRows} x="주" height={260} series={priceSeries} xInterval={25} yFmt={num} />
+          <Legend items={priceSeries.map((s) => ({ name: s.name, color: s.color, dash: s.dash }))} />
+          <Chart data={overviewRows} x="주" height={260} series={priceSeries} xInterval={25} yFmt={num} />
+        </Panel>
+        <Panel span={6} title="방콕 캐너리 보유 원어 합" unit="MT · 주간보고 냉동재고 SUM" src={SRC}>
+          <Chart data={actualRows} x="주" height={180} series={stockSeries} xInterval={40} yFmt={num} />
+        </Panel>
+        <Panel span={6} title="방콕 캐너리 평균 가동률" unit="% · 일생산 ÷ 최대생산" src={SRC}>
+          <Chart data={actualRows} x="주" height={180} series={utilSeries} xInterval={40} yFmt={num1} domain={[0, 100]} />
         </Panel>
       </Grid>
 

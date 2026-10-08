@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styles from './TelemetryBadge.module.css';
+import { freshnessOf, toneOf } from '@/lib/sync-freshness';
 
 const STATUS_KO: Record<'LIVE' | 'SYNCED' | 'STATIC', string> = {
   LIVE: '실시간',
@@ -33,19 +34,33 @@ export const TelemetryBadge: React.FC<TelemetryBadgeProps> = ({
   const isLive = normalizedStatus === 'LIVE';
   const isSynced = normalizedStatus === 'SYNCED';
 
+  /* 기준일의 «나이». 문자열은 그대로 두고 읽기만 한다 — 형식이 네 가지로
+     섞여 있고 58개는 아예 날짜가 아니다(lib/sync-freshness.ts).
+     오래됐거나(18개월 초과) 못 읽는 값만 색을 받는다. */
+  const fresh = freshnessOf(normalizedStatus, syncDate);
+  const tone = toneOf(fresh.tier);
+  const unknownDate = fresh.tier === 'unknown' && !!syncDate;
+  const dateTitle = unknownDate
+    ? `기준일 미상 — 이 값은 날짜가 아니라 출처 표기다: ${syncDate}`
+    : fresh.ageText
+      ? `기준일 ${syncDate} · ${fresh.ageText}`
+      : undefined;
+
   if (variant === 'caption') {
     const showStatus = isLive || isSynced || !syncDate;
     return (
       <span
         data-telemetry-status={normalizedStatus}
-        data-telemetry-tone={isLive ? 'accent' : 'neutral'}
+        data-telemetry-tone={tone}
         data-telemetry-variant="caption"
         className={styles.caption}
+        title={dateTitle}
       >
         {showStatus ? (
           <span className={styles.captionStatus}>{label ?? STATUS_KO[normalizedStatus]}</span>
         ) : null}
         {syncDate ? <span className={styles.captionDate}>{syncDate}</span> : null}
+        {fresh.ageText ? <span className={styles.age}>{fresh.ageText}</span> : null}
       </span>
     );
   }
@@ -55,8 +70,9 @@ export const TelemetryBadge: React.FC<TelemetryBadgeProps> = ({
   return (
     <div
       data-telemetry-status={normalizedStatus}
-      data-telemetry-tone={isLive ? 'accent' : 'neutral'}
+      data-telemetry-tone={tone}
       className={styles.badge}
+      title={dateTitle}
     >
       {(isLive || isSynced) && (
         <div className={styles.dotWrap}>
@@ -72,6 +88,12 @@ export const TelemetryBadge: React.FC<TelemetryBadgeProps> = ({
           {syncDate}
         </span>
       )}
+      {/* 나이는 날짜 «옆»에 붙는다. 원문 문자열을 고치지 않고도 «얼마나 묵었나»가 보인다.
+          못 읽는 값은 숨기지 않고 미상이라고 적는다 — 숨기면 영영 안 채워진다. */}
+      {!isLive && fresh.ageText && (
+        <span className={styles.age}>{fresh.ageText}</span>
+      )}
+      {unknownDate && <span className={styles.age}>기준일 미상</span>}
     </div>
   );
 };

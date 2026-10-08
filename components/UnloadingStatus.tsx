@@ -552,7 +552,9 @@ function getCompartmentCoords(vesselId: string, holdId: string) {
 
 // W-04 freshness: derive the latest report date ('M/D' text, year from dateRange)
 // for a vessel so each block can display its data base date.
-function vesselLatestReport(v: { dateRange?: string; timeline?: { date: string }[] }): { label: string; sortKey: number } | null {
+function vesselLatestReport(
+  v: { dateRange?: string; timeline?: { date: string; reportYear?: number | null }[] },
+): { label: string; sortKey: number } | null {
   const rangeDates = String(v?.dateRange || '').match(/20\d{2}\.\d{2}\.\d{2}/g);
   if (rangeDates && rangeDates.length >= 2) {
     const last = rangeDates[rangeDates.length - 1];
@@ -564,19 +566,23 @@ function vesselLatestReport(v: { dateRange?: string; timeline?: { date: string }
   const yearMatch = String(v?.dateRange || '').match(/20\d{2}/);
   const year = yearMatch ? parseInt(yearMatch[0], 10) : 2026;
   let maxKey: number | null = null;
+  let maxYear = year;
   (v?.timeline || []).forEach(t => {
     // Take the last 'M/D' token so ranges like '4/30~5/01' resolve to the end date.
     const tokens = String(t?.date || '').match(/\d{1,2}\/\d{1,2}/g);
     if (!tokens || tokens.length === 0) return;
     const [m, d] = tokens[tokens.length - 1].split('/').map(Number);
     if (isNaN(m) || isNaN(d)) return;
-    const key = m * 100 + d;
-    if (maxKey === null || key > maxKey) maxKey = key;
+    // 접안 전 선적기록처럼 항차 시작보다 앞선 보고는 연도가 따로 적혀 있다
+    const entryYear = t?.reportYear ?? year;
+    const key = entryYear * 10000 + m * 100 + d;
+    if (maxKey === null || key > maxKey) { maxKey = key; maxYear = entryYear; }
   });
   if (maxKey === null) return null;
-  const mm = String(Math.floor(maxKey / 100)).padStart(2, '0');
-  const dd = String(maxKey % 100).padStart(2, '0');
-  return { label: `${year}.${mm}.${dd}`, sortKey: year * 10000 + maxKey };
+  const monthDay = maxKey % 10000;
+  const mm = String(Math.floor(monthDay / 100)).padStart(2, '0');
+  const dd = String(monthDay % 100).padStart(2, '0');
+  return { label: `${maxYear}.${mm}.${dd}`, sortKey: maxKey };
 }
 
 type VesselDemurrageSnapshot = {
@@ -586,7 +592,7 @@ type VesselDemurrageSnapshot = {
 };
 
 function getVesselDemurrage(
-  vessel: Pick<UnloadingVesselData, 'dateRange' | 'timeline' | 'reportedTotal'>,
+  vessel: Pick<UnloadingVesselData, 'dateRange' | 'timeline' | 'reportedTotal' | 'arrivalDate'>,
 ): VesselDemurrageSnapshot | null {
   const start = String(vessel.dateRange || '').match(/(20\d{2})\.(\d{2})\.(\d{2})/);
   const latest = vesselLatestReport(vessel);
@@ -594,7 +600,8 @@ function getVesselDemurrage(
   const shortBase = latest?.label.match(/^(\d{1,2})\/(\d{1,2})$/);
   if (!start || (!fullBase && !shortBase) || !vessel.reportedTotal) return null;
 
-  const startDate = `${start[1]}-${start[2]}-${start[3]}`;
+  // 입항일이 있으면 입항 대기 포함 (소유자 산식 원칙) - 없으면 하역 개시일 폴백
+  const startDate = vessel.arrivalDate || `${start[1]}-${start[2]}-${start[3]}`;
   const baseDate = fullBase
     ? `${fullBase[1]}-${fullBase[2]}-${fullBase[3]}`
     : `${start[1]}-${String(shortBase?.[1]).padStart(2, '0')}-${String(shortBase?.[2]).padStart(2, '0')}`;
@@ -602,7 +609,7 @@ function getVesselDemurrage(
   return {
     startDate,
     baseDate,
-    calc: calcDemurrage({ cargoMt: vessel.reportedTotal, startDate, baseDate }),
+    calc: calcDemurrage({ cargoMt: vessel.reportedTotal, startDate, baseDate, waitingIncluded: Boolean(vessel.arrivalDate) }),
   };
 }
 
@@ -629,6 +636,7 @@ type VesselCargoBasis = {
   totalLoaded: number;
   dischargeTarget: number;
   excludedCargo: number;
+  excludedLabel: string;
 };
 
 const vesselCargoBases: Record<string, VesselCargoBasis> = {
@@ -638,6 +646,17 @@ const vesselCargoBases: Record<string, VesselCargoBasis> = {
     totalLoaded: 3214,
     dischargeTarget: 2929,
     excludedCargo: 285,
+    excludedLabel: '#2-A 별도 배정',
+  },
+  // 9/14 일일업무보고의 선적 현황 «MK-956, MI-890, 타사-1,596». 타사 화물은 같은 배에 실려
+  // 있을 뿐 우리 하역 대상이 아니라 하역 목표에서 뺀다.
+  'sein-galaxy-bangkok-2026-09': {
+    sourceDate: '2026.09.14',
+    capacity: 3500,
+    totalLoaded: 3442,
+    dischargeTarget: 1846,
+    excludedCargo: 1596,
+    excludedLabel: '타사 화물',
   },
 };
 
@@ -1098,7 +1117,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                     <strong>여유 {calc.balanceDays}일</strong>
                   )}
                   <span style={{ display: 'block', fontSize: '0.72rem', marginTop: '2px', color: 'var(--text-dim)' }}>
-                    {vessel.name} · 하역 개시일 기준 (입항 대기 미반영 - 입항일 확보 시 자동 정밀화)
+                    {vessel.name} · {calc.waitingIncluded ? '입항일 기준 (입항 대기 포함)' : '하역 개시일 기준 (입항 대기 미반영 - 입항일 확보 시 자동 정밀화)'}
                   </span>
                 </div>
               </>
@@ -1190,10 +1209,10 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
         </div>
 
         {selectedCargoBasis && (
-          <section className={styles.cargoBasisPanel} data-testid="hikari-cargo-basis" aria-label="HIKARI 1 물량 기준">
+          <section className={styles.cargoBasisPanel} data-testid="vessel-cargo-basis" aria-label={`${selectedData.name.replace(/^M\/V\s+/, '')} 물량 기준`}>
             <div className={styles.cargoBasisHeader}>
               <div>
-                <span>HIKARI 1 물량 기준</span>
+                <span>{selectedData.name.replace(/^M\/V\s+/, '')} 물량 기준</span>
                 <strong>방콕 FCF 하역대상과 선박 총 적재량을 분리 집계</strong>
               </div>
               <BaseDateTag date={selectedCargoBasis.sourceDate} />
@@ -1202,7 +1221,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
               <div><span>정격 적재능력</span><strong>{formatNum(selectedCargoBasis.capacity)} MT</strong></div>
               <div><span>선박 총 적재량</span><strong>{formatNum(selectedCargoBasis.totalLoaded)} MT</strong></div>
               <div><span>FCF 하역대상</span><strong>{formatNum(selectedCargoBasis.dischargeTarget)} MT</strong></div>
-              <div><span>#2-A 별도 배정</span><strong>{formatNum(selectedCargoBasis.excludedCargo)} MT</strong></div>
+              <div><span>{selectedCargoBasis.excludedLabel}</span><strong>{formatNum(selectedCargoBasis.excludedCargo)} MT</strong></div>
             </div>
           </section>
         )}
@@ -1744,7 +1763,7 @@ export default function UnloadingStatus({ heroOnly = false }: { heroOnly?: boole
                         </div>
                       </div>
                       <div style={{ gridColumn: '1 / -1', fontSize: '0.72rem', lineHeight: 1.5, color: 'var(--text-dim)' }}>
-                        2026년 {demurrageRows.length}항차 동일 산식 적용 · 일요일 {selectedDemurrage.calc.excludedSundays}일·태국 공휴일 {selectedDemurrage.calc.excludedHolidays}일 제외 · 하역 개시일 기준(입항 대기 미반영)
+                        2026년 {demurrageRows.length}항차 동일 산식 적용 · 일요일 {selectedDemurrage.calc.excludedSundays}일·태국 공휴일 {selectedDemurrage.calc.excludedHolidays}일 제외 · {selectedDemurrage.calc.waitingIncluded ? '입항일 기준(입항 대기 포함)' : '하역 개시일 기준(입항 대기 미반영)'}
                       </div>
                     </div>
                   ) : (

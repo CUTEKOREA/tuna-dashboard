@@ -481,7 +481,7 @@ def main() -> None:
             "원본": "public/data/tuna_real_data_v3.json (93위젯)",
             "선별": f"{kept}개",
             "규칙": (
-                "밸류체인 7단계 + 횡단 3축으로 재배치. 제목은 결론 선언형에서 서술형으로 고쳐 썼고 "
+                "밸류체인 7단계 + 횡단 3축 + 보고서 이식 8축(2026-09-10)으로 재배치. 제목은 결론 선언형에서 서술형으로 고쳐 썼고 "
                 "데이터·출처·방법론·SIT·TAK 는 원문 그대로 보존한다."
             ),
             "텔레메트리": "런타임 fetch 가 없는 정적 재사용이므로 전부 SYNCED (L-09)",
@@ -499,7 +499,8 @@ def main() -> None:
         "stages": stages_out,
     }
 
-    OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    # 앰대시는 화면 문체 규칙(출판형: 앰대시 금지)에 따라 하이픈으로 낸다. 커밋본과 빌더를 일치시킨다.
+    OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1).replace("—", "-"), encoding="utf-8")
     size_kb = OUT.stat().st_size / 1024
     print(f"✅ {OUT} ({size_kb:,.0f} KB)")
     print(f"   {len(stages_out)}단계 · 위젯 {kept}개 선별 (원본 93개 중)")

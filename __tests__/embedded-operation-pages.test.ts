@@ -9,13 +9,13 @@ describe('bangkok native dashboard', () => {
     const intake = await import('../lib/data/bangkok-weekly');
 
     expect(intake.bangkokWeeklyKpi).toEqual({
-      period: '2020.05~2026.08',
-      // 2026-08-26 주간보고 반영 (매주 sync로 갱신되는 확정 KPI)
-      weeks: 289,
-      latestPrice: 2030,
-      stockMt: 104500,
-      processDays: 49,
-      cumUnloadMt: 333498,
+      period: '2020.05~2026.10',
+      // 2026-10-07 주간보고(정정본) 반영 (매주 sync로 갱신되는 확정 KPI)
+      weeks: 295,
+      latestPrice: 2360,
+      stockMt: 81700,
+      processDays: 43,
+      cumUnloadMt: 368039,
       highSaltUsd: 142000,
     });
 
@@ -138,12 +138,29 @@ describe('bangkok native dashboard', () => {
 
   it('네이티브 히어로 + 탭을 렌더하고 iframe은 남기지 않는다', async () => {
     const { default: BangkokDashboard } = await import('../components/bangkok/BangkokDashboard');
+    const { bangkokWeeklyKpi: intakeKpi } = await import('../lib/data/bangkok-weekly');
     const markup = renderToStaticMarkup(React.createElement(BangkokDashboard));
 
     expect(markup).toContain('방콕사무소');
     expect(markup).toContain('data-now="true"');
-    expect(markup).toContain('분석 기간 2020.05~2026.08 · 고유 289주');
-    for (const value of [2030, 104500, 333498, 49]) {
+    // 주차 수는 매주 는다 - 값을 못박지 말고 계약에서 파생시킨다
+    expect(markup).toContain(`분석 기간 2020.05~2026.10 · 고유 ${intakeKpi.weeks}주`);
+    // 2026-09-02 사용자 지시: 하이솔트 확정액 타일은 히어로에서 뺀다 (KPI 계약의 highSaltUsd는 유지).
+    expect(markup).not.toContain('하이솔트 확정액');
+    // 2026-09-02: 개관 시세 차트가 어튜나·방콕사무소·싱가포르 MGO 3종(같은 $/t 축) + 재고·가동률 소패널로 확장
+    for (const text of ['방콕사무소 원어 시세', '어튜나 SKJ 방콕', '싱가포르 MGO', '방콕 캐너리 보유 원어 합', '방콕 캐너리 평균 가동률']) {
+      expect(markup).toContain(text);
+    }
+    expect(markup).not.toContain('yAxisId="right"'); // 이중 축 금지 — 단위가 다르면 패널을 나눈다
+    // 2026-09-02 Fable 5.1 검증 조건: 계절 패턴은 «예측» 라벨로 그리지 않는다
+    expect(markup).toContain('과거 같은 달 평균 변화');
+    expect(markup).toContain('최근 10년은');
+    expect(markup).not.toContain('예측치:');
+    // 2026-09-02 사용자 지시: 계절 패턴 선·밴드는 어튜나 주황(#d95926)이 아니라 중립 회색이어야 한다
+    expect(markup).toContain('#64748b');
+
+    // 히어로 KPI 4종은 매주 바뀐다 - 계약에서 파생시켜 주차마다 손대지 않게 한다
+    for (const value of [intakeKpi.latestPrice, intakeKpi.stockMt, intakeKpi.cumUnloadMt, intakeKpi.processDays]) {
       expect(markup).toContain(`data-kpi-value="${value}"`);
     }
     for (const label of [

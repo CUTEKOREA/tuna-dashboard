@@ -1,29 +1,19 @@
 import { describe, expect, it } from 'vitest';
 
 import reeferWeek33 from '@/data/reefer_week33.json';
-import { reeferWeeklyReport } from '@/lib/data/reefer-weekly';
+import reeferWeek34 from '@/data/reefer_week34.json';
 
 const parseMt = (value: string) => Number.parseFloat(value.replaceAll(',', ''));
 
-const sumDeliveries = (row: (typeof reeferWeeklyReport.rows)[number]) =>
+const sumDeliveries = (row: (typeof reeferWeek34)[number]) =>
   Object.entries(row.deliveries).reduce((sum, [key, value]) => {
     if (key === 'OTHER' || key === 'SHIP' || value === '') return sum;
     return sum + parseMt(value);
   }, 0);
 
-describe('TTA 2026년 34주차 운반선 이동표', () => {
-  it('34주차 원본과 보고기간을 최신 계약으로 고정한다', () => {
-    expect(reeferWeeklyReport.source).toEqual({
-      file: 'Reefer ship movement for week 34th.xlsx',
-      sha256: '1076d085bcf7908b20887c224e5fe771f0415a97f1c439221190c8e14c554ef3',
-      week: 34,
-      startDate: '2026-08-21',
-      endDate: '2026-08-27',
-    });
-  });
-
+describe('TTA 2026년 34주차 운반선 이동표 이력', () => {
   it('기존 6척에 PATSORN을 추가한 7척 접안 기록을 보존한다', () => {
-    expect(reeferWeeklyReport.rows.map((row) => row.carrier)).toEqual([
+    expect(reeferWeek34.map((row) => row.carrier)).toEqual([
       'SEA STAR V',
       'SEIN PRINCESS',
       'SEIN VENUS',
@@ -32,7 +22,7 @@ describe('TTA 2026년 34주차 운반선 이동표', () => {
       'HIKARI 1',
       'PATSORN',
     ]);
-    expect(reeferWeeklyReport.rows.map((row) => row.date)).toEqual([
+    expect(reeferWeek34.map((row) => row.date)).toEqual([
       '31.07.26',
       '03.08.26',
       '06.08.26',
@@ -44,7 +34,7 @@ describe('TTA 2026년 34주차 운반선 이동표', () => {
   });
 
   it('PATSORN의 세 공장 배분과 SAMUTSAKORN 기재를 원문 그대로 보존한다', () => {
-    expect(reeferWeeklyReport.rows.at(-1)).toMatchObject({
+    expect(reeferWeek34.at(-1)).toMatchObject({
       carrier: 'PATSORN',
       deliveries: {
         MMP: '1,000.646',
@@ -56,7 +46,7 @@ describe('TTA 2026년 34주차 운반선 이동표', () => {
   });
 
   it('선박별 배분과 25,214.952MT 전체 합계를 독립 검산한다', () => {
-    expect(reeferWeeklyReport.rows.map((row) => sumDeliveries(row))).toEqual([
+    expect(reeferWeek34.map((row) => sumDeliveries(row))).toEqual([
       3_951.273,
       4_940,
       3_275,
@@ -65,14 +55,14 @@ describe('TTA 2026년 34주차 운반선 이동표', () => {
       2_929,
       2_324.679,
     ]);
-    expect(reeferWeeklyReport.rows.reduce((sum, row) => sum + sumDeliveries(row), 0))
+    expect(reeferWeek34.reduce((sum, row) => sum + sumDeliveries(row), 0))
       .toBeCloseTo(25_214.952, 3);
   });
 
-  it('33주차 이력을 보존하고 최신 행은 보고 시점 자료로 표기한다', () => {
+  it('33주차 이력을 보존하고 34주차 행도 보고 시점 자료로 표기한다', () => {
     expect(reeferWeek33).toHaveLength(6);
-    expect(reeferWeeklyReport.rows.every((row) => row.status === '주간 보고 기록')).toBe(true);
-    expect(reeferWeeklyReport.rows.every((row) => row.daysRemaining === null)).toBe(true);
-    expect(reeferWeeklyReport.rows.every((row) => row.priority === '이력')).toBe(true);
+    expect(reeferWeek34.every((row) => row.status === '주간 보고 기록')).toBe(true);
+    expect(reeferWeek34.every((row) => row.daysRemaining === null)).toBe(true);
+    expect(reeferWeek34.every((row) => row.priority === '이력')).toBe(true);
   });
 });

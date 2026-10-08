@@ -15,7 +15,7 @@ import {
   type ConsignmentSyncState,
 } from '../lib/consignment-data.ts';
 import { createRoundRobinThrottle } from '../lib/request-throttle.ts';
-import { requireEnv } from '../app/api/_shared/env';
+import { requireEnv } from '../app/api/_shared/env.ts';
 
 const PRIMARY_SERVICE_KEY = () => requireEnv('FISHERY_API_KEY');
 const SECONDARY_SERVICE_KEY = () => requireEnv('DATA_GO_KR_NEW_KEY');

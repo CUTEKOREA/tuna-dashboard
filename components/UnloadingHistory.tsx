@@ -17,9 +17,10 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { BarChart3, Database, MapPinned, Ship, TrendingUp } from 'lucide-react';
+import { BarChart3, Database, MapPinned, Scale, Ship, TrendingUp } from 'lucide-react';
 import {
   CANONICAL_PORTS,
+  HISTORY_METHOD,
   HISTORY_YEARS,
   type HistoryNavigationKey,
   type HistoryYear,
@@ -32,6 +33,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
 import TermTooltip from './TermTooltip';
+import UnloadingFleetInsights from './UnloadingFleetInsights';
 import styles from './UnloadingHistory.module.css';
 import { CHART_RANK } from '@/lib/chart-palette';
 
@@ -94,6 +96,38 @@ export function getVisibleHistoryVoyages(
       const dateOrder = (b.period.endDate ?? '').localeCompare(a.period.endDate ?? '');
       return dateOrder || a.vessel.canonicalName.localeCompare(b.vessel.canonicalName, 'ko');
     });
+}
+
+export interface ReportedVariance {
+  voyageCount: number;
+  reportedMt: number;
+  actualMt: number;
+  differenceMt: number;
+  differencePct: number;
+}
+
+// 보고량은 항차 전체 값이라 연도 배분량이 아닌 항차 전체 실측과만 비교한다.
+export function getReportedVarianceForYear(
+  voyages: PublicHistoryVoyage[],
+  year: HistoryYear,
+): ReportedVariance | null {
+  const rows = voyages.filter((voyage) => (
+    voyage.verification === 'verified'
+    && voyage.reportedMt !== null
+    && voyage.reportedMt > 0
+    && voyage.actualMt !== null
+    && (voyage.completionYear ?? voyage.sourceYear) === year
+  ));
+  if (rows.length === 0) return null;
+  const reportedMt = rows.reduce((sum, row) => sum + row.reportedMt!, 0);
+  const actualMt = rows.reduce((sum, row) => sum + row.actualMt!, 0);
+  return {
+    voyageCount: rows.length,
+    reportedMt,
+    actualMt,
+    differenceMt: actualMt - reportedMt,
+    differencePct: ((actualMt - reportedMt) / reportedMt) * 100,
+  };
 }
 
 export function getVoyagePortsForYear(
@@ -321,7 +355,7 @@ const isPublicMetadata = (value: unknown) => {
     && typeof value.dataAsOf === 'string'
     && isIsoDateOrNull(value.dataAsOf)
     && value.schemaVersion === '1.0.0'
-    && value.method === '결정론적 Excel 추출·최종보고 우선·일보 교차검증'
+    && value.method === HISTORY_METHOD
     && hasExactKeys(value.apiHealth, ['ok'])
     && value.apiHealth.ok === true;
 };
@@ -350,6 +384,20 @@ const formatMt = (value: number) => value.toLocaleString('ko-KR', {
   minimumFractionDigits: 3,
   maximumFractionDigits: 3,
 });
+
+const formatSignedMt = (value: number) => `${value >= 0 ? '+' : '−'}${formatMt(Math.abs(value))}`;
+
+const formatSignedPct = (value: number) => `${value >= 0 ? '+' : '−'}${Math.abs(value).toFixed(1)}%`;
+
+const reportedLabel = (voyage: PublicHistoryVoyage) => {
+  if (voyage.reportedMt === null || voyage.reportedMt === 0) return null;
+  if (voyage.actualMt === null) return { reported: `${formatMt(voyage.reportedMt)} MT`, variance: '실측 미확인' };
+  const diff = voyage.actualMt - voyage.reportedMt;
+  return {
+    reported: `${formatMt(voyage.reportedMt)} MT`,
+    variance: `${formatSignedMt(diff)} MT (${formatSignedPct((diff / voyage.reportedMt) * 100)})`,
+  };
+};
 
 const formatDate = (value: string | null) => value?.replaceAll('-', '.') ?? '날짜 미확인';
 
@@ -385,6 +433,7 @@ export function UnloadingHistoryView({
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const annual = dataset.annual.find((row) => row.year === selectedYear)!;
   const voyages = getVisibleHistoryVoyages(dataset.voyages, selectedYear, selectedPort);
+  const variance = getReportedVarianceForYear(dataset.voyages, selectedYear);
   const availablePorts = annual.ports;
   const chartData = dataset.annual.map((row) => ({
     year: String(row.year),
@@ -506,6 +555,24 @@ export function UnloadingHistoryView({
             <strong>{annual.portCount}곳</strong>
             <small>{annual.ports.map((port) => port.nameKo).join(' · ') || '항만 미확인'}</small>
           </article>
+          <article className={styles.kpiCard}>
+            <Scale size={17} />
+            <span>
+              보고 대비 실측{' '}
+              <TermTooltip
+                term="검량 차이"
+                description="본선이 보고한 적재량과 하역 후 실제 검량한 양의 차이입니다. 보고량이 확인된 검증 항차만, 완료연도 기준으로 항차 전체 값을 비교합니다."
+              />
+            </span>
+            <strong data-testid="history-kpi-variance">
+              {variance ? `${formatSignedMt(variance.differenceMt)} MT (${formatSignedPct(variance.differencePct)})` : '보고량 미확인'}
+            </strong>
+            <small>
+              {variance
+                ? `보고량 확인 ${variance.voyageCount}항차 · 완료연도 기준`
+                : '이 연도에 보고량이 확인된 항차가 없습니다'}
+            </small>
+          </article>
         </div>
 
         <div className={styles.portFilters} aria-label="항만 필터">
@@ -530,17 +597,19 @@ export function UnloadingHistoryView({
           <>
             <div className={styles.desktopTable}>
               <table>
-                <thead><tr><th>운반선</th><th>기간</th><th>항만</th><th>선택연도 실제량</th><th>검증 상태</th><th>근거</th></tr></thead>
+                <thead><tr><th>운반선</th><th>기간</th><th>항만</th><th>선택연도 실제량</th><th>보고량 · 검량 차이</th><th>검증 상태</th><th>근거</th></tr></thead>
                 <tbody>
                   {voyages.map((voyage) => {
                     const actual = getVoyageActualForYear(voyage, selectedYear);
                     const ports = getVoyagePortsForYear(voyage, selectedYear);
+                    const reported = reportedLabel(voyage);
                     return (
                       <tr key={voyage.voyageId}>
                         <th scope="row">{voyage.vessel.canonicalName}</th>
                         <td>{formatDate(voyage.period.startDate)} ~ {formatDate(voyage.period.endDate)}</td>
                         <td>{ports.map((port) => port.nameKo).join(' · ') || '항만 미확인'}</td>
                         <td>{actual === null ? '미확인' : `${formatMt(actual)} MT`}<small>{yearBasisLabel(voyage, selectedYear)}</small></td>
+                        <td>{reported ? reported.reported : '미확인'}{reported && <small>{reported.variance} · 항차 전체</small>}</td>
                         <td><span className={`${styles.status} ${styles[voyage.verification]}`}>{statusLabel(voyage)}</span></td>
                         <td>{voyage.evidenceDocumentCount}건</td>
                       </tr>
@@ -553,6 +622,7 @@ export function UnloadingHistoryView({
               {voyages.map((voyage) => {
                 const actual = getVoyageActualForYear(voyage, selectedYear);
                 const ports = getVoyagePortsForYear(voyage, selectedYear);
+                const reported = reportedLabel(voyage);
                 return (
                   <article className={styles.voyageCard} key={voyage.voyageId}>
                     <h3>{voyage.vessel.canonicalName}</h3>
@@ -564,6 +634,13 @@ export function UnloadingHistoryView({
                         <dd>
                           {actual === null ? '미확인' : `${formatMt(actual)} MT`}
                           <small>{yearBasisLabel(voyage, selectedYear)}</small>
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>보고량</dt>
+                        <dd>
+                          {reported ? reported.reported : '미확인'}
+                          {reported && <small>{reported.variance} · 항차 전체</small>}
                         </dd>
                       </div>
                       <div><dt>상태</dt><dd>{statusLabel(voyage)}</dd></div>
@@ -578,9 +655,9 @@ export function UnloadingHistoryView({
       </div>
 
       <TakeawayBox
-        situation={`${selectedYear}년 검증 완료 ${annual.verifiedVoyageCount}항차의 실제 하역량은 ${formatMt(annual.verifiedActualMt)} MT입니다. 부분·미확인 항차는 합계에서 제외했습니다.`}
+        situation={`${selectedYear}년 검증 완료 ${annual.verifiedVoyageCount}항차의 실제 하역량은 ${formatMt(annual.verifiedActualMt)} MT입니다. 부분·미확인 항차는 합계에서 제외했습니다.${variance ? ` 보고량이 확인된 ${variance.voyageCount}항차는 본선 보고 대비 실측이 ${formatSignedMt(variance.differenceMt)} MT(${formatSignedPct(variance.differencePct)})입니다.` : ''}`}
         takeaway="항만별 처리량과 연도경계 배분량을 현재 선박 배치의 용량·지연 리스크 검토 기준으로 삼습니다. 부분·미확인 항차는 확정 의사결정 분모에서 제외합니다."
-        source="구글 드라이브 하역업무 정제본(2021~2025)"
+        source="구글 드라이브 하역업무 정제본(2021~2025) · 보고량은 최종 하역결과 AI 추출값·본선별 하역결과 xlsx 합계 중 실측 일치 항차만"
       />
     </section>
   );
@@ -652,5 +729,10 @@ export default function UnloadingHistory() {
       />
     );
   }
-  return <UnloadingHistoryView dataset={state.dataset} />;
+  return (
+    <>
+      <UnloadingHistoryView dataset={state.dataset} />
+      <UnloadingFleetInsights />
+    </>
+  );
 }

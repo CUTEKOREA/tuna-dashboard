@@ -1,0 +1,82 @@
+[
+  {
+    "carrier": "SEITA MARU",
+    "date": "29.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "AEC": "56",
+      "DIA": "494",
+      "MMP": "20",
+      "TUG": "25",
+      "TUM": "2,837",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "FONG KUO NO.818",
+    "date": "01.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "AEC": "630",
+      "CMC": "250",
+      "DIA": "200",
+      "ISA": "1,000",
+      "MMP": "222",
+      "PTY": "500",
+      "SK": "250",
+      "TUM": "314",
+      "UC": "1,514",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "FONG KUO NO.819",
+    "date": "14.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "CMC": "208",
+      "GB": "1,240",
+      "GPZ": "200",
+      "ISA": "1,038",
+      "MMP": "672",
+      "TUM": "803",
+      "UC": "750",
+      "OTHER": "21A"
+    }
+  },
+  {
+    "carrier": "SEIN GALAXY",
+    "date": "17.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "CMC": "340",
+      "GB": "155",
+      "ISA": "24",
+      "RMK": "150",
+      "UC": "1,177",
+      "OTHER": "41"
+    }
+  },
+  {
+    "carrier": "RYOMA",
+    "date": "22.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "ISA": "930",
+      "TUG": "212",
+      "TUM": "1,278",
+      "UC": "870",
+      "OTHER": "23"
+    }
+  }
+]

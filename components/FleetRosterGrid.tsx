@@ -26,7 +26,9 @@ function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
   const spec = vessel.vesselSpec ?? null;
   const utilization = resolveFleetHoldUtilization(vessel.loadedMt, capacity);
   const capacityText = capacity ? `${formatCapacity(capacity.value)} ${capacity.unit}` : '미확인';
-  const utilizationText = utilization ? `${utilization.ratioPct}%` : capacity ? '미산출' : '미확인';
+  const utilizationText = utilization
+    ? `${utilization.ratioPct}%${utilization.estimated ? ' (환산)' : ''}`
+    : capacity ? '미산출' : '미확인';
   const utilizationStatus = utilization?.level === 'nearCapacity'
     ? '만재 임박'
     : utilization?.level === 'high'
@@ -75,7 +77,11 @@ function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
             <span className={s.holdProgressFill} style={{ width: `${utilization.barPct}%` }} />
           </div>
         ) : null}
-        {capacity?.unit === '㎥' ? <p className={s.holdCapacityNote}>적재량 MT와 어창 용량 ㎥의 단위가 다릅니다.</p> : null}
+        {capacity?.unit === '㎥' && utilization ? (
+          <p className={s.holdCapacityNote}>적재율은 ㎥ 용량 x 0.7 MT/㎥ 환산 추정입니다 (환산 용량 {formatCapacity(utilization.capacityMtEquivalent)} MT).</p>
+        ) : capacity?.unit === '㎥' ? (
+          <p className={s.holdCapacityNote}>적재량 MT와 어창 용량 ㎥의 단위가 다릅니다.</p>
+        ) : null}
         {capacity?.reference ? <p className={s.holdEvidence}>용량 근거: {capacity.reference}</p> : null}
       </div>
       {vessel.note !== '-' ? <p className={s.latestVesselNote}>보고 당시 비고: {formatFleetDailyNote(vessel.note)}</p> : null}
@@ -85,9 +91,15 @@ function FishingVesselCard({ vessel }: { vessel: FishingFleetRow }) {
 
 function CarrierCard({ vessel }: { vessel: CarrierFleetRow }) {
   const [hovered, setHovered] = useState(false);
-  const loadedPercent = vessel.loadedMt === null || vessel.capacityMt === null
+  // 어선 카드와 같은 게이지 규칙 재사용 (용량 MT 실측 - 75% 고적재 / 90% 만재 임박)
+  const utilization = vessel.capacityMt === null
     ? null
-    : Math.min(Math.round(vessel.loadedMt / vessel.capacityMt * 100), 100);
+    : resolveFleetHoldUtilization(vessel.loadedMt, { value: vessel.capacityMt, unit: 'MT' });
+  const utilizationStatus = utilization?.level === 'nearCapacity'
+    ? '만재 임박'
+    : utilization?.level === 'high'
+      ? '고적재'
+      : null;
   return (
     <article
       onMouseEnter={() => setHovered(true)}
@@ -101,7 +113,33 @@ function CarrierCard({ vessel }: { vessel: CarrierFleetRow }) {
         <div><span>선적</span><strong>{formatMt(vessel.loadedMt)} <small>(MT)</small></strong></div>
         <div><span>예상잔량</span><strong>{formatMt(vessel.expectedRemainingMt)} <small>(MT)</small></strong></div>
       </div>
-      <p className={s.latestVesselNote}>{vessel.entityType === 'container' ? '컨테이너 화물 기록' : `용량 ${formatMt(vessel.capacityMt)} (MT) · 적재율 ${loadedPercent === null ? '미보고' : `${loadedPercent}%`}`} · 보고 당시 비고: {formatFleetDailyNote(vessel.note)}</p>
+      {vessel.entityType !== 'container' && vessel.capacityMt !== null ? (
+        <div
+          className={s.holdUtilization}
+          data-level={utilization?.level ?? 'missing'}
+          aria-label={`선적 용량 ${formatMt(vessel.capacityMt)} MT · 적재율 ${utilization ? `${utilization.ratioPct}%` : '미보고'}`}
+        >
+          <div className={s.holdUtilizationHeader}>
+            <span>선적 용량</span><strong>{formatMt(vessel.capacityMt)} <small>(MT)</small></strong>
+            <span>적재율</span>
+            <strong>{utilization ? `${utilization.ratioPct}%` : '미보고'}</strong>
+          </div>
+          {utilizationStatus ? <div className={s.holdStatusRow}><em className={s.holdStatusLabel}>{utilizationStatus}</em></div> : null}
+          {utilization ? (
+            <div
+              className={s.holdProgress}
+              role="progressbar"
+              aria-label={`${vessel.displayName} 적재율 ${utilization.ratioPct}%${utilizationStatus ? ` · ${utilizationStatus}` : ''}`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.min(utilization.ratioPct, 100)}
+            >
+              <span className={s.holdProgressFill} style={{ width: `${utilization.barPct}%` }} />
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+      <p className={s.latestVesselNote}>{vessel.entityType === 'container' ? '컨테이너 화물 기록 · ' : ''}보고 당시 비고: {formatFleetDailyNote(vessel.note)}</p>
     </article>
   );
 }
@@ -110,11 +148,30 @@ function LonglineCard({ vessel }: { vessel: LonglineFleetRow }) {
   return <article className={s.latestVesselCard} data-longline-record="true"><div className={s.latestVesselHeader}><strong>{vessel.displayName}</strong></div><div className={s.latestVesselMetrics}><div><span>선적</span><strong>{formatMt(vessel.loadedMt)} <small>(MT)</small></strong></div></div><p className={s.latestVesselNote}>보고 당시 비고: {formatFleetDailyNote(vessel.note || '미보고')}</p></article>;
 }
 
-function SectionHeader({ icon: Icon, title, count, summary, countLabel = `${count}척 보고` }: { icon: LucideIcon; title: string; count: number; summary: string; countLabel?: string }) {
+/** 태평양 선망 10척 중 신라 국적선 6척. 나머지 4척은 합작선이다. */
+const PACIFIC_NATIONAL_VESSELS = new Set(['S/EXP', 'S/PIO', 'S/CHA', 'S/HAR', 'S/JUP', 'S/SPR']);
+
+/** 일간 어획만 상세 행에서 국적·합작으로 가른다. 월간·연간 누계는 행 합계와 다르므로 나누지 않는다. */
+function splitDailyCatch(vessels: { name: string; catchMt: number | null }[]) {
+  let national = 0;
+  let joint = 0;
+  for (const vessel of vessels) {
+    if (PACIFIC_NATIONAL_VESSELS.has(vessel.name)) national += vessel.catchMt ?? 0;
+    else joint += vessel.catchMt ?? 0;
+  }
+  return { national, joint, total: national + joint };
+}
+
+function SectionHeader({ icon: Icon, title, count, summary, split, countLabel = `${count}척 보고` }: { icon: LucideIcon; title: string; count: number; summary: string; split?: { national: number; joint: number; total: number }; countLabel?: string }) {
   return (
     <header className={s.latestRosterHeader}>
       <div><Icon size={18} aria-hidden="true" /><strong>{title}</strong><span>{countLabel}</span></div>
       <p>{summary}</p>
+      {split ? (
+        <p>
+          일간 내역 · 국적 {split.national.toLocaleString()} (MT) + 합작 {split.joint.toLocaleString()} (MT) = 합계 {split.total.toLocaleString()} (MT)
+        </p>
+      ) : null}
     </header>
   );
 }
@@ -122,12 +179,13 @@ function SectionHeader({ icon: Icon, title, count, summary, countLabel = `${coun
 export default function FleetRosterGrid({ detail }: { detail: FleetDailyDetailPayload }) {
   const roster = useMemo(() => buildFleetRoster(detail), [detail]);
   const pacificSummary = `일간 ${detail.pacific.dailyMt.toLocaleString()} (MT) · 월간 ${detail.pacific.monthlyMt.toLocaleString()} (MT) · 연간 ${detail.pacific.annualMt.toLocaleString()} (MT) · ${detail.asOf}`;
+  const pacificSplit = useMemo(() => splitDailyCatch(detail.pacific.vessels), [detail.pacific.vessels]);
   const atlanticSummary = `일간 ${detail.atlantic.dailyMt.toLocaleString()} (MT) · 월간 ${detail.atlantic.monthlyMt.toLocaleString()} (MT) · 연간 ${detail.atlantic.annualMt.toLocaleString()} (MT) · ${detail.asOf} · VOLTA GLORY는 매각 완료(사내 확인)로 현행 조업 명부에서 제외`;
 
   return (
     <div className={s.rosterGrid}>
       <section className={s.rosterSection}>
-        <SectionHeader icon={Navigation} title="태평양 선망" count={roster.pacific.length} summary={pacificSummary} />
+        <SectionHeader icon={Navigation} title="태평양 선망" count={roster.pacific.length} summary={pacificSummary} split={pacificSplit} />
         <div className={s.latestRosterCards}>{roster.pacific.map((vessel) => <FishingVesselCard key={vessel.name} vessel={vessel} />)}</div>
       </section>
       <section className={s.rosterSection}>

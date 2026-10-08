@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import {
   Anchor,
   BarChart3,
@@ -26,6 +26,14 @@ import {
 } from 'lucide-react';
 import WidgetCard, { Pillar, TelemetryStatus } from '@/components/WidgetCard';
 import { TelemetryBadge } from '@/components/TelemetryBadge';
+
+/* 텔레메트리 배지가 기준일의 «나이»를 같이 그린다(lib/sync-freshness.ts).
+   시계를 안 세우면 «8개월 전»이 내일은 다른 글자가 되어 스냅샷이 날마다 깨진다. */
+beforeAll(() => {
+  vi.useFakeTimers({ toFake: ['Date'] });
+  vi.setSystemTime(new Date('2026-09-15T00:00:00Z'));
+});
+afterAll(() => { vi.useRealTimers(); });
 
 const PILLAR_LABELS: Record<Pillar, string> = {
   S1: '원료 수급',

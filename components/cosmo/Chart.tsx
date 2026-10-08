@@ -41,6 +41,8 @@ export type Serie = {
   color: string                 // CSS var name, e.g. 'var(--cosmo-s1)'
   type?: 'line' | 'bar' | 'area'
   dash?: boolean
+  /** 결측 사이를 이어 그린다 — 두 점만 있는 참고선(계절 패턴 등)용. 기본은 끊는다. */
+  connectNulls?: boolean
   axis?: 'left' | 'right'
   stackId?: string
   fmt?: (v: number) => string
@@ -239,12 +241,12 @@ export default function Chart({
               return (
                 <Area key={s.key} yAxisId={axis as string | undefined} dataKey={s.key} name={s.name} type="monotone"
                   stroke={c(s.color)} fill={c(s.color)} fillOpacity={0.18} strokeWidth={1.8}
-                  stackId={s.stackId} connectNulls={false} dot={false} isAnimationActive={false} />
+                  stackId={s.stackId} connectNulls={Boolean(s.connectNulls)} dot={false} isAnimationActive={false} />
               )
             }
             return (
               <Line key={s.key} yAxisId={axis as string | undefined} dataKey={s.key} name={s.name} type="monotone"
-                stroke={c(s.color)} strokeWidth={2.1} dot={false} connectNulls={false}
+                stroke={c(s.color)} strokeWidth={2.1} dot={false} connectNulls={Boolean(s.connectNulls)}
                 strokeDasharray={s.dash ? '6 4' : undefined}
                 activeDot={{ r: 3.5, strokeWidth: 2, stroke: c('var(--cosmo-surface)') }} isAnimationActive={false} />
             )

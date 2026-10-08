@@ -15,7 +15,8 @@ describe('market dashboard composition', () => {
     const hero = readFileSync(join(process.cwd(), 'components/HeroMarketCommand.tsx'), 'utf8');
 
     // 스프레드 KPI 카드 2장은 지휘형 카드로 대체 — 되돌아오면 실패
-    expect(source).toContain('<HeroMarketCommand rows={priceData} />');
+    // 「몇 년 만」 판정용 전 계열을 따로 넘긴다 - 차트용 창(2022년 이후)으로 재면 2017년 고점이 사라진다
+    expect(source).toContain('<HeroMarketCommand rows={priceData} historyRows={priceHistoryAll} />');
     expect(source).not.toContain('SKJ 가다랑어 지역 스프레드');
     expect(source).not.toContain('YF 황다랑어 지역 스프레드');
     // 지휘형 카드 계약: 허브 클릭 전환 + 주식 컨벤션 컬러 + 기준일

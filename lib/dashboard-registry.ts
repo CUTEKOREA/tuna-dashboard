@@ -52,10 +52,16 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'whelk-industry', title: '골뱅이', section: 'understanding', accent: 'amber', sidebar: { icon: 'Shell' } },
   { key: 'shrimp-industry', title: '새우', section: 'understanding', accent: 'teal', sidebar: { icon: 'Shrimp' } },
   { key: 'pollock-industry', title: '명태', section: 'understanding', accent: 'teal', sidebar: { icon: 'Snowflake' } },
+  // 문어 전용 세번은 0307521000 하나다. 옛 `/octopus`(낙지 위젯, 404)와 키를 나누려고 -industry 를 붙인다.
+  { key: 'octopus-industry', title: '문어', section: 'understanding', accent: 'rose', sidebar: { icon: 'LongArmOctopus' } },
+  // 같은 참치를 기른 쪽에서 본다. 「참치」는 세계 밸류체인, 「참치 양식」은 축양 명부·층·원가.
+  { key: 'tunafarm-industry', title: '참치 양식', section: 'understanding', accent: 'teal', sidebar: { icon: 'Waves' } },
   // 같은 참치를 한국 쪽에서 본다. 「참치」는 세계 밸류체인, 「참치 해부」는 한국 원양·환적·판매 상대·캔.
   { key: 'tuna-anatomy', title: '참치 해부', section: 'understanding', accent: 'cyan', sidebar: { icon: 'Ship' } },
   // 품목이 아니라 회사를 해부한다. 경쟁·조달 판단에 쓰는 자료라 「전략 분석」에 둔다.
   { key: 'company-anatomy', title: '기업 해부', section: 'strategy', accent: 'amber', sidebar: { icon: 'Factory', suffix: 'Company' } },
+  // KAMIS 도·소매가에 관세청 수입 원가를 이어 붙인 품목별 가격 사다리(가치사슬 관측소). 정적 스냅샷을 iframe 으로 띄운다.
+  { key: 'kamis', title: 'KAMIS 가격 사다리', section: 'strategy', accent: 'emerald', sidebar: { icon: 'BarChart2', label: 'KAMIS' } },
   { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'purse-seiner-db', title: '선단 DB', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Ship', suffix: 'FleetDb' } },
@@ -188,8 +194,11 @@ export const DASHBOARD_PANEL_ORDER = [
   'whelk-industry',
   'shrimp-industry',
   'pollock-industry',
+  'octopus-industry',
+  'tunafarm-industry',
   'tuna-anatomy',
   'company-anatomy',
+  'kamis',
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
@@ -201,6 +210,8 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'whelk-industry',
     'shrimp-industry',
     'pollock-industry',
+    'octopus-industry',
+    'tunafarm-industry',
     'tuna-anatomy',
   ],
   fishery: [],
@@ -209,6 +220,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     // cross-intelligence 는 종전대로 명령 팔레트 전용이다.
     'purse-seiner-db',
     'company-anatomy',
+    'kamis',
   ],
   agriculture: [],
   livestock: ['pork'],
