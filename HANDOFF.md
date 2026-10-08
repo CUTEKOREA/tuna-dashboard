@@ -1,3 +1,9 @@
+> ✅ **2026-10-08 20:33 KST — nodemailer 9.1.1 → 10.0.16 (프로덕션 high 취약점 마지막 1건)** [CC]:
+> - 브랜치 `chore/nodemailer-10-20261008` 는 `origin/chore/prod-audit-20261008`(#1396) 위. lockfile 변경은 nodemailer 한 항목뿐. `npm audit --omit=dev` **0 vulnerabilities**.
+> - 10.x 는 `dist/esm/nodemailer.d.ts` 자체 타입을 낸다(`moduleResolution: bundler` 에서 import 가 이쪽으로 해석). `@types/nodemailer@8.0.1` 은 남아도 충돌 없음(typecheck 0) — 정리는 별도 PR 감. engines `node>=20`, CI node 24.
+> - `lib/mail/company-smtp.ts` 무수정. 새 테스트 `mail-company-smtp-nodemailer-render.test.ts` 가 실제 10.x streamTransport·jsonTransport 로 한 통을 조립해 9.1.1 기준 원문과 바이트 비교(Message-ID·Date 치환).
+> - `npm run verify` exit 0: Vitest 216 files / 1,822 · API cache 161/161 · 정적 118 · bundle 33. **실발송 미확인** — 배포 후 사용자 확인 절차는 PR 본문.
+
 > 🚀 **2026-10-08 15:52 KST — #1387 `/logistics` TTA 40주차 배포** [CC]:
 > - merge `6491df27`, App Quality Gate 통과, Vercel production READY. 시크릿 변경 없음.
 > - 라이브 실측(Aside 로그인 세션·캐시 우회, 4탭 전부): 「40주차」·HUA FU 107·8,255·「10/8까지」·「9월 반입은 26,269MT」, 옛 값(6,705·「09월」) 잔존 0. 배포 후 error log 확인.
