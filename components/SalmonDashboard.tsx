@@ -615,8 +615,9 @@ export default function SalmonDashboard() {
     // LIVE 분기를 두지 않고 STATIC으로 고정한다. SYNCED는 실 API 연동 시에만.
     const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' = 'STATIC';
     // 패턴 E: 일괄 '2026-05' 빌드월 스탬프는 JSON에서 제거 완료 — 남은 syncDate는 실제
-    // 데이터 빈티지이므로 그대로 노출하고, 미기재 시 기본 데이터셋 빈티지 라벨로 폴백(L-09).
-    const syncDate = w.syncDate || 'FishStatJ 1950-2024';
+    // 데이터 빈티지이므로 그대로 노출한다. 미기재면 비워 둔다 — 일괄 폴백은 Comtrade 출처
+    // 위젯(w08_import)에 FishStatJ 기간을 붙이는 오표시였다(Codex 리뷰 2026-10-08).
+    const syncDate = w.syncDate;
 
     return (
       <WidgetCard
@@ -627,7 +628,7 @@ export default function SalmonDashboard() {
         pillar={pillar}
         cardDesc={cardDesc}
         unit={w.unit}
-        telemetry={{ status: telemetryStatus, syncDate }}
+        telemetry={{ status: telemetryStatus, syncDate, source: w.source }}
         chartHeight={250}
         chart={renderChart(w)}
         takeaway={{ situation, actionPlan: takeaway, source: w.source || 'FAO FishStatJ 1950-2024 (정적 데이터셋) · 일부 지표 자체 추정' }}

@@ -40,7 +40,6 @@ WHITELIST_TOKEN = re.compile(
     r"|^v?\d[\d.]*$"                                      # 숫자·버전
     r"|^HS\d{4,10}$"                                      # HS 코드 (HS160559)
     r"|^\d+(?:\.\d+)?(?:mm|cm|m|mg|g|kg|t|MT)$"          # 수치+단위 (50mm, 200mg)
-    r"|^(?:[A-Z]{2,6} )?[A-Z]{2,6}\([A-Z][A-Za-z ]+\)$"   # 약어(영문 풀네임) — IOTC(Indian Ocean Tuna Commission)
 )
 WHITELIST_PHRASE = {
     "OK", "N/A", "TBD", "AI", "ESG", "SDG", "FTA", "WTO", "OECD", "WCPO",
@@ -51,6 +50,10 @@ WHITELIST_PHRASE = {
     # 고유명사 — 기업명·간행물명·인증 라벨·국제 합의 (2026-10-08 영문 잔존 35건 판정)
     "CP Foods", "Betagro", "RD Tuna Canners", "MSC Yearbook 2026",
     "Dolphin-Safe", "OECD Pillar Two",
+    # 약어(영문 풀네임) — 정규식은 RISK(High Impact) 같은 노출 문구까지 삼켜 명시 목록으로 둔다 (Codex 리뷰 2026-10-08)
+    "IOTC(Indian Ocean Tuna Commission)", "SCFI(Shanghai Containerized Freight Index)",
+    "AI FAD(Fish Aggregating Device)", "MSC(Marine Stewardship Council)",
+    "MMPA(Marine Mammal Protection Act)", "TAC(Total Allowable Catch)",
 }
 
 
