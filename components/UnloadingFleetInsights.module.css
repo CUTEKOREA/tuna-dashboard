@@ -5,7 +5,7 @@
 .block h3 svg { color: #38bdf8; }
 .note { margin: 0 0 12px; color: #94a3b8; font-size: .72rem; line-height: 1.5; }
 .rows { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
-.row { display: grid; grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr) 4.6rem; align-items: center; gap: 10px; font-size: .78rem; }
+.row { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) 4.6rem; align-items: center; gap: 10px; font-size: .78rem; }
 .label { overflow: hidden; color: #e2e8f0; text-overflow: ellipsis; white-space: nowrap; }
 .label small { margin-left: 4px; color: #64748b; font-size: .68rem; }
 .track { position: relative; height: 10px; border-radius: 999px; background: rgba(148, 163, 184, .12); }
