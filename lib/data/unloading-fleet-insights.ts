@@ -6,7 +6,7 @@ const Mt = z.number().nonnegative();
 const Year = z.number().int().min(2021).max(2030);
 
 export const FleetInsightsSchema = z.object({
-  schemaVersion: z.literal('1.0.0'),
+  schemaVersion: z.literal('1.1.0'),
   snapshotStatus: z.literal('SYNCED'),
   syncDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   coverage: z.object({
@@ -49,6 +49,29 @@ export const FleetInsightsSchema = z.object({
     unassociatedPct: z.number().min(0).max(100),
     driftingFadPct: z.number().min(0).max(100),
     otherPct: z.number().min(0).max(100),
+  }).strict()),
+  grounds: z.array(z.object({
+    year: Year,
+    cells: z.array(z.tuple([
+      z.number().min(-25).max(25),
+      z.number().min(120).max(220),
+      z.number().int().positive(),
+      Mt,
+    ])).min(1),
+  }).strict()),
+  efficiency: z.array(z.object({
+    vessel: z.string().min(1),
+    year: Year,
+    sets: z.number().int().positive(),
+    catchPerSet: Mt,
+    zeroSetPct: z.number().min(0).max(100),
+  }).strict()),
+  schoolEfficiency: z.array(z.object({
+    year: Year,
+    school: z.enum(['unassociated', 'drifting_fad']),
+    sets: z.number().int().positive(),
+    catchPerSet: Mt,
+    zeroSetPct: z.number().min(0).max(100),
   }).strict()),
 }).strict();
 

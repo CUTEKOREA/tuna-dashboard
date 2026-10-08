@@ -7,6 +7,7 @@
 """
 import collections
 import json
+import math
 import re
 import statistics
 import sys
@@ -159,32 +160,88 @@ def logsheet_rows():
     return best
 
 
-def logsheet_section():
-    sheets = logsheet_rows()
-    by_year = collections.defaultdict(lambda: {"sets": 0, "catch": 0.0, **{g: 0.0 for g in SCHOOL_GROUPS.values()}, "other": 0.0})
-    for s, rows in sheets.values():
+VESSEL_ALIASES = {"PIONEER": "SHILLA PIONEER"}
+COORD = re.compile(r"(\d{1,3})\s*[-°º ]\s*(\d{1,2}(?:\.\d+)?)\s*'?\s*([NSEW])")
+
+
+def coord(text, limit):
+    m = COORD.search(str(text or "").upper())
+    if not m:
+        return None
+    deg, minutes, hemi = int(m.group(1)), float(m.group(2)), m.group(3)
+    if minutes >= 60 or deg > limit:
+        return None
+    value = deg + minutes / 60
+    return -value if hemi in "SW" else value
+
+
+def position(row):
+    """(lat, lon east 0–360) inside the western/central Pacific purse-seine area, else None."""
+    lat, lon = coord(row.get("lat"), 90), coord(row.get("lon"), 180)
+    if lat is None or lon is None:
+        return None
+    lon %= 360
+    return (lat, lon) if -25 <= lat <= 25 and 120 <= lon <= 220 else None
+
+
+def set_rows():
+    """Every fishing set (activity code 1) with its calendar year, vessel and catch (MT)."""
+    for s, rows in logsheet_rows().values():
         dep_year = re.search(r"(20\d{2})", str(s.get("departure_utc") or ""))
         year = int(dep_year.group(1)) if dep_year else s.get("year")
         months = [r.get("month") for r in rows if isinstance(r.get("month"), int)]
         if not isinstance(year, int) or not months:
             continue
+        key = vessel_key(s.get("vessel") or "")
+        vessel = VESSEL_ALIASES.get(key, key)
         first_month = months[0]
         for r in rows:
             if r.get("activity_code") != 1:
                 continue
-            catch = sum(r.get(k) or 0 for k in ("skj", "yft", "bet"))
-            if catch <= 0:
-                continue
             month = r.get("month") if isinstance(r.get("month"), int) else first_month
-            y = year + 1 if month < first_month else year
-            cell = by_year[y]
-            cell["sets"] += 1
-            cell["catch"] += catch
-            cell[SCHOOL_GROUPS.get(r.get("school_code"), "other")] += catch
-    return {"logsheets": len(sheets), "by_year": {
-        y: {"sets": v["sets"], "catch_mt": round(v["catch"], 1),
-            **{f"{g}_pct": round(100 * v[g] / v["catch"], 1) for g in (*SCHOOL_GROUPS.values(), "other")}}
-        for y, v in sorted(by_year.items())}}
+            catch = sum(r.get(k) or 0 for k in ("skj", "yft", "bet"))
+            yield (year + 1 if month < first_month else year), vessel, r, catch
+
+
+def logsheet_section():
+    sets = list(set_rows())
+    by_year = collections.defaultdict(lambda: {"sets": 0, "catch": 0.0, **{g: 0.0 for g in SCHOOL_GROUPS.values()}, "other": 0.0})
+    grounds = collections.defaultdict(lambda: [0, 0.0])
+    eff = collections.defaultdict(lambda: {"sets": 0, "positive": 0, "catch": 0.0})
+    school_eff = collections.defaultdict(lambda: {"sets": 0, "positive": 0, "catch": 0.0})
+    for y, vessel, r, catch in sets:
+        e = eff[(vessel, y)]
+        e["sets"] += 1
+        se = school_eff[(y, SCHOOL_GROUPS.get(r.get("school_code"), "other"))]
+        se["sets"] += 1
+        se["catch"] += catch
+        if catch <= 0:
+            continue
+        se["positive"] += 1
+        e["positive"] += 1
+        e["catch"] += catch
+        cell = by_year[y]
+        cell["sets"] += 1
+        cell["catch"] += catch
+        cell[SCHOOL_GROUPS.get(r.get("school_code"), "other")] += catch
+        pos = position(r)
+        if pos:
+            g = grounds[(y, math.floor(pos[0]) + 0.5, math.floor(pos[1]) + 0.5)]
+            g[0] += 1
+            g[1] += catch
+    return {
+        "logsheets": len(logsheet_rows()),
+        "by_year": {y: {"sets": v["sets"], "catch_mt": round(v["catch"], 1),
+                        **{f"{g}_pct": round(100 * v[g] / v["catch"], 1) for g in (*SCHOOL_GROUPS.values(), "other")}}
+                    for y, v in sorted(by_year.items())},
+        "grounds": [{"year": y, "lat": la, "lon": lo, "sets": n, "catch_mt": round(c, 1)}
+                    for (y, la, lo), (n, c) in sorted(grounds.items())],
+        "efficiency": [{"vessel": v, "year": y, "sets": e["sets"], "positive_sets": e["positive"],
+                        "catch_mt": round(e["catch"], 1)} for (v, y), e in sorted(eff.items())],
+        "school_efficiency": [{"year": y, "school": g, "sets": e["sets"], "positive_sets": e["positive"],
+                               "catch_mt": round(e["catch"], 1)}
+                              for (y, g), e in sorted(school_eff.items())],
+    }
 
 
 PORT_NAMES = {"RABAUL": "라바울(파푸아뉴기니)", "FUNAFUTI": "푸나푸티(투발루)", "TARAWA": "타라와(키리바시)",
@@ -193,12 +250,22 @@ PORT_NAMES = {"RABAUL": "라바울(파푸아뉴기니)", "FUNAFUTI": "푸나푸�
 MIN_TRANSFERS = 5
 MIN_SETS = 100
 MIN_SIZING_VOYAGES = 5
+MIN_VESSEL_SETS = 40
+MIN_SCHOOL_SETS = 50
+
+
+def per_set(catch, sets):
+    return round(catch / sets, 1)
+
+
+def zero_pct(positive, sets):
+    return round(100 * (1 - positive / sets), 1)
 
 
 def dashboard_payload(data, sync_date):
     r, s, lg = data["results"], data["sizing"], data["logsheet"]
     return {
-        "schemaVersion": "1.0.0",
+        "schemaVersion": "1.1.0",
         "snapshotStatus": "SYNCED",
         "syncDate": sync_date,
         "coverage": {"resultsVoyages": r["voyages"], "resultsTransfers": r["documents"],
@@ -218,6 +285,17 @@ def dashboard_payload(data, sync_date):
                      "unassociatedPct": v["unassociated_pct"], "driftingFadPct": v["drifting_fad_pct"],
                      "otherPct": round(v["log_pct"] + v["anchored_fad_pct"] + v["other_pct"], 1)}
                     for y, v in lg["by_year"].items() if v["sets"] >= MIN_SETS],
+        "grounds": [{"year": int(y), "cells": [[c["lat"], c["lon"], c["sets"], c["catch_mt"]]
+                                               for c in lg["grounds"] if c["year"] == y]}
+                    for y, v in lg["by_year"].items() if v["sets"] >= MIN_SETS],
+        "efficiency": [{"vessel": e["vessel"], "year": e["year"], "sets": e["sets"],
+                        "catchPerSet": per_set(e["catch_mt"], e["sets"]), "zeroSetPct": zero_pct(e["positive_sets"], e["sets"])}
+                       for e in lg["efficiency"] if e["sets"] >= MIN_VESSEL_SETS],
+        "schoolEfficiency": [{"year": e["year"], "school": e["school"], "sets": e["sets"],
+                              "catchPerSet": per_set(e["catch_mt"], e["sets"]),
+                              "zeroSetPct": zero_pct(e["positive_sets"], e["sets"])}
+                             for e in lg["school_efficiency"]
+                             if e["school"] in ("unassociated", "drifting_fad") and e["sets"] >= MIN_SCHOOL_SETS],
     }
 
 
@@ -231,8 +309,10 @@ def main():
     data = {"results": results_section(actual), "sizing": sizing_section(actual), "logsheet": logsheet_section()}
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     if args.export:
-        args.export.write_text(json.dumps(dashboard_payload(data, args.sync_date), ensure_ascii=False, indent=1) + "\n",
-                               encoding="utf-8")
+        text = json.dumps(dashboard_payload(data, args.sync_date), ensure_ascii=False, indent=1)
+        text = re.sub(r"\[\s+([-\d.]+(?:,\s+[-\d.]+)*)\s+\]",
+                      lambda m: "[" + ", ".join(x.strip() for x in m.group(1).split(",")) + "]", text)
+        args.export.write_text(text + "\n", encoding="utf-8")
         print(f"내보냄: {args.export}")
     r, s = data["results"], data["sizing"]
     print(f"[본선별 결과] 항차 {r['voyages']} · 문서 {r['documents']}")

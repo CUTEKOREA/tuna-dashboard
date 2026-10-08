@@ -32,7 +32,7 @@
       "year": 2023,
       "verifiedActualMt": 89338.33,
       "verifiedVoyageCount": 27,
-      "candidateVoyageCount": 28
+      "candidateVoyageCount": 27
     },
     {
       "year": 2024,
@@ -845,7 +845,7 @@
           "nameKo": "방콕"
         }
       ],
-      "reportedMt": null,
+      "reportedMt": 5119.0,
       "actualMt": 5227.722,
       "verification": "verified",
       "kpiIncluded": true,
@@ -2003,7 +2003,7 @@
           "nameKo": "방콕"
         }
       ],
-      "reportedMt": null,
+      "reportedMt": 7331.0,
       "actualMt": 7408.549,
       "verification": "verified",
       "kpiIncluded": true,
@@ -3327,7 +3327,7 @@
           "nameKo": "방콕"
         }
       ],
-      "reportedMt": null,
+      "reportedMt": 985.0,
       "actualMt": 999.76,
       "verification": "verified",
       "kpiIncluded": true,
@@ -3523,7 +3523,7 @@
     "syncDate": "2026-10-08",
     "dataAsOf": "2026-08-13",
     "schemaVersion": "1.0.0",
-    "method": "결정론적 Excel 추출·최종보고 우선·일보 교차검증·보고량은 최종보고 AI 추출 중 실측 일치 항차만",
+    "method": "결정론적 Excel 추출·최종보고 우선·일보 교차검증·보고량은 최종보고 AI 추출 또는 본선별 하역결과 xlsx 합계 중 실측 일치 항차만",
     "apiHealth": {
       "ok": true
     }
