@@ -141,7 +141,7 @@ export function Table({
   children: ReactNode;
 }) {
   return (
-    <div className="pf-table-wrap">
+    <div className="pf-table-wrap" tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
       <table className="pf-table">
         <thead><tr>{head.map((h) => <th key={h}>{h}</th>)}</tr></thead>
         <tbody>{children}</tbody>

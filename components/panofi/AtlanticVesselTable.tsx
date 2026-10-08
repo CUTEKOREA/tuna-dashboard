@@ -69,7 +69,7 @@ export function AtlanticVesselTable() {
   const t = (v: number | null | undefined) => (v == null ? '-' : v.toLocaleString('en-US'));
 
   return (
-    <div className="pf-table-wrap" style={{ margin: '0 0 8px' }}>
+    <div className="pf-table-wrap" style={{ margin: '0 0 8px' }} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
       <table className="pf-table" data-atlantic-vessels>
         <thead>
           <tr>
