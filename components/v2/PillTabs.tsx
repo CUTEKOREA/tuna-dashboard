@@ -55,6 +55,8 @@ export interface PillTabsProps {
    * 단계 내비처럼 «전체를 한눈에 보는 것»이 목적인 곳에서는 줄을 늘리는 편이 낫다.
    */
   wrap?: boolean;
+  /** 활성 패널만 DOM 에 있을 때 true — 비활성 탭의 aria-controls 가 없는 id 를 가리키지 않게 한다. */
+  lazyPanels?: boolean;
 }
 
 export default function PillTabs({
@@ -68,6 +70,7 @@ export default function PillTabs({
   tabIdPrefix,
   panelIdPrefix,
   wrap = false,
+  lazyPanels = false,
 }: PillTabsProps) {
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const reduce = useReducedMotion();
@@ -116,7 +119,7 @@ export default function PillTabs({
       {tabs.map((tab, index) => {
         const active = tab.key === activeKey;
         const tabId = tabIdPrefix ? `${tabIdPrefix}-${tab.key}` : undefined;
-        const panelId = panelIdPrefix ? `${panelIdPrefix}-${tab.key}` : undefined;
+        const panelId = panelIdPrefix && (active || !lazyPanels) ? `${panelIdPrefix}-${tab.key}` : undefined;
         return (
           <button
             key={tab.key}

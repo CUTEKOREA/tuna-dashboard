@@ -109,6 +109,12 @@
   background: var(--accent-primary);
 }
 
+/* 라이트 테마 액센트(#2870ae·#2563eb)는 어두워서 짙은 글자가 3.6:1 — 흰 글자로 5.2:1 */
+[data-v3='light'] .primaryButton,
+[data-theme='light'] .primaryButton {
+  color: #fff;
+}
+
 .secondaryButton {
   color: var(--text-primary);
   background: rgba(56, 189, 248, 0.08);

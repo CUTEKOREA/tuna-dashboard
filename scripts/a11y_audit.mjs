@@ -8,9 +8,9 @@
 //   (DASHBOARD_E2E_MODE=local + 루프백 + x-dashboard-e2e-secret, lib/auth/local-e2e-access.ts).
 // - 라우트 목록: app/sitemap.ts 의 PUBLIC_ROUTES + lib/dashboard-registry.ts 메뉴 키([category] 실제 값)
 //   + app/ 정적 폴더. notFound() 한 줄짜리 은퇴 화면은 `skipped: retired`,
-//   로그인·권한 화면(404·로그인 리다이렉트·401/403/503)은 `skipped: auth` 로 적는다.
+//   로그인·권한 화면(404·로그인 리다이렉트·401/403)은 `skipped: auth`, 5xx 는 오류로 적는다.
 // - 규칙은 끄지 않는다. 태그 wcag2a·wcag2aa·wcag21aa 만 고른다.
-// - 위반이 있어도 exit 0 (리포트 도구). 서버가 안 뜨거나 측정한 화면이 0개면 exit 1.
+// - 위반이 있어도 exit 0 (리포트 도구). 서버가 안 뜨거나, 측정한 화면이 0개거나, 화면 오류가 하나라도 있으면 exit 1.
 import { spawn } from 'node:child_process';
 import crypto from 'node:crypto';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -127,7 +127,7 @@ async function settle(page) {
 function classifySkip(status, finalUrl) {
   const u = new URL(finalUrl);
   if (u.pathname === '/login' || u.pathname.endsWith('/login') || u.pathname.startsWith('/auth')) return 'auth';
-  if ([401, 403, 404, 503].includes(status)) return 'auth';
+  if ([401, 403, 404].includes(status)) return 'auth';
   return null;
 }
 
@@ -152,6 +152,11 @@ async function auditRoute(browser, base, secret, route, vp) {
     const skip = route === 'login' || route.endsWith('/login') ? 'auth' : classifySkip(status, page.url());
     if (skip) {
       rec.skipped = skip;
+      return rec;
+    }
+    // 5xx 는 인증 경계가 아니라 서버 오류 — 스킵으로 숨기지 않는다
+    if (status >= 500) {
+      rec.error = `HTTP ${status}`;
       return rec;
     }
     await settle(page);
@@ -287,7 +292,7 @@ async function main() {
   console.log(`\n측정 ${summary.measuredPages}페이지 · 스킵 ${new Set(summary.skipped.map((r) => r.route)).size} · 은퇴 ${retired.length} · 오류 ${summary.errors.length}`);
   console.log(`impact: ${IMPACTS.map((i) => `${i} ${summary.byImpact[i] || 0}`).join(' · ')}`);
   console.log(`리포트: ${path.relative(ROOT, OUT_DIR)}/report.{json,md}`);
-  if (summary.measuredPages === 0) process.exitCode = 1;
+  if (summary.measuredPages === 0 || summary.errors.length) process.exitCode = 1;
 }
 
 main().catch((e) => {

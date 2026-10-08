@@ -552,6 +552,7 @@ export default function CommodityIndustryDashboard({
           ariaLabel="밸류체인 단계"
           tabIdPrefix={`${spec.key}-industry-tab`}
           panelIdPrefix={`${spec.key}-industry-panel`}
+          lazyPanels={!spec.continuous}
           wrap
         />
       </nav>
