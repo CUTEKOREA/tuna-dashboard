@@ -327,6 +327,9 @@ const EuPriceTable: React.FC<{ rows: EuRow[] }> = ({ rows }) => {
   return (
     <div style={{ minWidth: 0 }}>
       <div
+        tabIndex={0}
+        role="region"
+        aria-label="표 (스크롤)"
         style={{
           maxHeight: 420,
           overflowY: 'auto',

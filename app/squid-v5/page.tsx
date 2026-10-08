@@ -45,7 +45,7 @@ function DataPeek({ data }: { data: any }) {
 
   return (
     <div style={{ minWidth: 0 }}>
-      <div style={{ overflowX: 'auto' }}>
+      <div style={{ overflowX: 'auto' }} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
         <table style={{ borderCollapse: 'collapse', fontSize: '0.7rem', width: '100%' }}>
           <thead>
             <tr>
@@ -156,7 +156,7 @@ export default function SquidV5Preview() {
             <section key={key} style={{ marginTop: '32px' }}>
               <h2 style={{ fontSize: '1rem', fontWeight: 800, color: '#cbd5e1',
                            margin: '0 0 12px' }}>
-                {key}. {label} <span style={{ color: '#64748b', fontWeight: 500 }}>({list.length})</span>
+                {key}. {label} <span style={{ color: '#94a3b8', fontWeight: 500 }}>({list.length})</span>
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '14px' }}>
                 {list.map(([id, w]) => (

@@ -147,7 +147,7 @@ const SourceRegistry: React.FC<{ rows: RegistryRow[] }> = ({ rows }) => {
         C등급은 위험 탐색용 - 단독으로 법규나 시장규모를 확정할 수 없다 (게이트 G-010).
       </p>
 
-      <div style={{ minWidth: 0, maxHeight: 460, overflowY: 'auto', overflowX: 'auto' }}>
+      <div style={{ minWidth: 0, maxHeight: 460, overflowY: 'auto', overflowX: 'auto' }} tabIndex={0} role="region" aria-label="표 (스크롤)">
         <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 760 }}>
           <thead>
             <tr>
@@ -297,7 +297,7 @@ const MonitoringCalendar: React.FC<{ rows: CalendarRow[] }> = ({ rows }) => {
 
   return (
     <div style={{ minWidth: 0 }}>
-      <div style={{ minWidth: 0, overflowX: 'auto' }}>
+      <div style={{ minWidth: 0, overflowX: 'auto' }} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
         <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 640 }}>
           <thead>
             <tr>

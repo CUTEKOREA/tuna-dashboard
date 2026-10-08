@@ -85,7 +85,7 @@ export const DataTable: React.FC<{ data: any; previewRows?: number }> = ({ data,
 
   return (
     <div style={{ minWidth: 0 }}>
-      <div style={{ overflowX: 'auto' }}>
+      <div style={{ overflowX: 'auto' }} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
         <table style={{ borderCollapse: 'collapse', fontSize: '0.7rem', width: '100%' }}>
           <thead>
             <tr>
