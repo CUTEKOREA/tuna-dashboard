@@ -135,13 +135,15 @@ export function Signal({
 /* ── 표 ───────────────────────────────────────────────────────────────── */
 
 export function Table({
-  head, children,
+  head, children, label,
 }: {
   head: string[];
   children: ReactNode;
+  /** 스크롤 영역 이름 — 패널 제목처럼 표의 주제를 담는다. 같은 탭의 표끼리 겹치지 않게. */
+  label: string;
 }) {
   return (
-    <div className="pf-table-wrap">
+    <div className="pf-table-wrap" tabIndex={0} role="region" aria-label={label}>
       <table className="pf-table">
         <thead><tr>{head.map((h) => <th key={h}>{h}</th>)}</tr></thead>
         <tbody>{children}</tbody>

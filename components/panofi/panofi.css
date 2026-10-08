@@ -192,7 +192,7 @@
 .panofi-root .pf-signal-warn {
   font: 500 10.5px var(--cosmo-mono);
   font-variant-numeric: tabular-nums;
-  color: var(--cosmo-warn);
+  color: var(--cosmo-warn-ink);
 }
 .panofi-root .pf-signal-act {
   font-size: 10.5px;
@@ -203,7 +203,10 @@
 /* ── 표 — 자릿수를 맞춘다 ─────────────────────────────────────────────── */
 
 .panofi-root .pf-table-wrap { overflow-x: auto; }
+/* 가로 스크롤은 래퍼(tabIndex·role=region)가 맡는다. globals.css 모바일 규칙(table{display:block;overflow-x:auto})이
+   표 자체를 포커스 못 받는 스크롤 영역으로 만들지 않게 표시 방식을 표로 되돌린다(axe scrollable-region-focusable). */
 .panofi-root table.pf-table {
+  display: table;
   width: 100%;
   border-collapse: collapse;
   font-size: 11.5px;

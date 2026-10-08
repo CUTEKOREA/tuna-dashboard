@@ -96,12 +96,12 @@ function CellView({ c }: { c: Cell | undefined }) {
   );
 }
 
-function RowsTable({ rows, limit }: { rows: Row[]; limit?: number }) {
+function RowsTable({ rows, limit, label }: { rows: Row[]; limit?: number; label: string }) {
   const heads = headsOf(rows);
   const shown = limit ? rows.slice(0, limit) : rows;
   if (!heads.length) return <div className="pf-note">자료 없음</div>;
   return (
-    <Table head={heads}>
+    <Table label={label} head={heads}>
       {shown.map((r, i) => (
         <tr key={i}>
           {heads.map((h) => (
@@ -192,7 +192,7 @@ export function ProcessorsTab() {
               note={`${vnSupplierMeta.surimiPeriod}. ${vnSupplierMeta.note}`}
               src={`${vnSupplierMeta.source} · ${vnSupplierMeta.ledger}`}
             >
-              <RowsTable rows={vnSurimiRows} />
+              <RowsTable label="베트남 연육 수출사 표" rows={vnSurimiRows} />
             </Panel>
             <Panel
               span={12}
@@ -201,7 +201,7 @@ export function ProcessorsTab() {
               note={`${vnSupplierMeta.squidPeriod}. ${vnSupplierMeta.overlap}`}
               src={`${vnSupplierMeta.source} · ${vnSupplierMeta.ledger}`}
             >
-              <RowsTable rows={vnSquidTopRows} />
+              <RowsTable label="베트남산 오징어류 제조소 상위 10 표" rows={vnSquidTopRows} />
             </Panel>
           </Grid>
         </>
@@ -233,7 +233,7 @@ export function ProcessorsTab() {
                 note={`어종군 ${speciesLine(country)} / 원료 원산지 ${originLine(country)}. ${seasiaLedgerMeta.diff} ${seasiaLedgerMeta.merge}`}
                 src={`${seasiaLedgerMeta.source} · ${seasiaLedgerMeta.ledger} · 어종 ${seasiaLedgerMeta.species}`}
               >
-                <RowsTable rows={ledgerTopRows(country)} />
+                <RowsTable label={`${country} 가공 제조소 상위 20 표`} rows={ledgerTopRows(country)} />
               </Panel>
               {led.thirdFacilities > 0 && (
                 <Panel
@@ -248,7 +248,7 @@ export function ProcessorsTab() {
                   }
                   src={`${seasiaLedgerMeta.source} · ${seasiaLedgerMeta.basis}`}
                 >
-                  <RowsTable rows={ledgerThirdRows(country)} />
+                  <RowsTable label="제3국 원료를 쓰는 제조소 표" rows={ledgerThirdRows(country)} />
                 </Panel>
               )}
             </Grid>
@@ -265,7 +265,7 @@ export function ProcessorsTab() {
           note="조사자가 먼저 추린 후보다. 아래 심층 프로파일·순위표와 함께 읽는다."
           src={src}
         >
-          <RowsTable rows={rep.topPicks} />
+          <RowsTable label="Top Picks 표" rows={rep.topPicks} />
         </Panel>
       </Grid>
 
@@ -278,7 +278,7 @@ export function ProcessorsTab() {
           note="등급은 원본 보고서가 매긴 것을 그대로 옮겼다. 재계산하거나 재정렬하지 않았다."
           src={src}
         >
-          <RowsTable rows={rep.shortlist} />
+          <RowsTable label="Shortlist 표" rows={rep.shortlist} />
         </Panel>
       </Grid>
 
@@ -293,7 +293,7 @@ export function ProcessorsTab() {
             .join(' · ')}. 「불가」는 자료를 못 구했다는 뜻이지 값이 0이라는 뜻이 아니다.`}
           src={src}
         >
-          <RowsTable rows={rep.profiles} />
+          <RowsTable label={`${country} 가공사 비교표`} rows={rep.profiles} />
         </Panel>
       </Grid>
 
@@ -310,7 +310,7 @@ export function ProcessorsTab() {
           }
           src={src}
         >
-          <RowsTable rows={registry} limit={showAll ? undefined : 30} />
+          <RowsTable label="통관 표기 기준 전수 표" rows={registry} limit={showAll ? undefined : 30} />
           {registry.length > 30 && (
             <button
               type="button"

@@ -28,6 +28,11 @@
   --cosmo-warn-soft: #26200E;
   --cosmo-bad: #D9584A;
   --cosmo-bad-soft: #2A1815;
+  /* 경보 글자색 — 칩·라벨 텍스트 전용. 다크는 경보색 그대로, 라이트만 같은 색상의 진한 단계로
+     내린다(연한 바탕 4.5:1, 2026-10-08 axe). 차트·테두리·점은 위 경보색을 그대로 쓴다. */
+  --cosmo-ok-ink: #38996E;
+  --cosmo-warn-ink: #B6880F;
+  --cosmo-bad-ink: #D9584A;
   --cosmo-grid: #222C32;
   --cosmo-axis: #647680;
   --cosmo-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px -18px rgba(0, 0, 0, .6);
@@ -132,9 +137,9 @@
   display: inline-flex; align-items: center; gap: 5px; border-radius: 999px;
   padding: 2px 9px; font: 700 10px var(--cosmo-mono); letter-spacing: .04em;
 }
-.cosmo-root .pill.ok { background: var(--cosmo-ok-soft); color: var(--cosmo-ok); }
-.cosmo-root .pill.warn { background: var(--cosmo-warn-soft); color: var(--cosmo-warn); }
-.cosmo-root .pill.bad { background: var(--cosmo-bad-soft); color: var(--cosmo-bad); }
+.cosmo-root .pill.ok { background: var(--cosmo-ok-soft); color: var(--cosmo-ok-ink); }
+.cosmo-root .pill.warn { background: var(--cosmo-warn-soft); color: var(--cosmo-warn-ink); }
+.cosmo-root .pill.bad { background: var(--cosmo-bad-soft); color: var(--cosmo-bad-ink); }
 
 /* ---------- table ---------- */
 .cosmo-root .tw { overflow-x: auto; margin: 0 -18px -16px; border-radius: 0 0 var(--dsc-card-radius) var(--dsc-card-radius); }
@@ -193,8 +198,8 @@
 .cosmo-root .callout.warn { border-left-color: var(--cosmo-warn); background: var(--cosmo-warn-soft); }
 .cosmo-root .callout b { color: var(--cosmo-ink); }
 .cosmo-root .callout .lab { display: block; font: 700 9px var(--cosmo-mono); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; color: var(--cosmo-data); }
-.cosmo-root .callout.bad .lab { color: var(--cosmo-bad); }
-.cosmo-root .callout.warn .lab { color: var(--cosmo-warn); }
+.cosmo-root .callout.bad .lab { color: var(--cosmo-bad-ink); }
+.cosmo-root .callout.warn .lab { color: var(--cosmo-warn-ink); }
 .cosmo-root .sechead { scroll-margin-top: 18px; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--cosmo-muted); text-transform: uppercase; margin: 26px 0 10px; font-family: var(--cosmo-mono); }
 .cosmo-root footer.foot { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--cosmo-line); font: 500 11px var(--cosmo-mono); color: var(--cosmo-muted); line-height: 1.7; }
 
@@ -303,7 +308,7 @@
   --cosmo-surface-2: #f1f2f4;
   --cosmo-ink: #22242b;
   --cosmo-ink-2: #4c5773;
-  --cosmo-muted: #8d93a5;
+  --cosmo-muted: #626879; /* #8d93a5 는 흰 바탕 3.06:1 — 공통 수정과 같은 값으로(5.56:1, #f1f2f4 4.97:1) */
   --cosmo-line: #e2e4e9;
   --cosmo-line-2: #eceef1;
   --cosmo-accent-soft: #fdf0f2;
@@ -311,6 +316,9 @@
   --cosmo-ok-soft: #f0f7ee;
   --cosmo-warn-soft: #fbf6e7;
   --cosmo-bad-soft: #fdf1ef;
+  --cosmo-ok-ink: #2d7b59;
+  --cosmo-warn-ink: #8e6a0c;
+  --cosmo-bad-ink: #c83a2a;
   --cosmo-grid: #e8eaee;
   --cosmo-axis: #8d93a5;
   --cosmo-shadow: 0 4px 8px -2px rgba(16, 24, 40, 0.10), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
