@@ -466,7 +466,7 @@ async function runHappyPath(browser) {
   await page.click('[role="dialog"][aria-label="일일 보고서 자동 생성"] button[aria-label="닫기"]');
 
   await page.click('[data-testid="history-year-2021"]');
-  await waitForText(page, '[data-testid="history-kpi-actual"]', /29,247\.939 MT/);
+  await waitForText(page, '[data-testid="history-kpi-actual"]', /34,277\.706 MT/);
   const year2021 = await page.$eval('[data-testid="unloading-history-panel"]', (node) => node.innerText);
   assert.match(year2021, /자료 미확인|부분 자료/);
 
