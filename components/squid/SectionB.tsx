@@ -329,7 +329,7 @@ const EuPriceTable: React.FC<{ rows: EuRow[] }> = ({ rows }) => {
       <div
         tabIndex={0}
         role="region"
-        aria-label="표 (스크롤)"
+        aria-label="유럽 오징어 가격 표"
         style={{
           maxHeight: 420,
           overflowY: 'auto',
