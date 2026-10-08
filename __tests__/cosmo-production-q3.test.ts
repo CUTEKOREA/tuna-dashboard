@@ -32,6 +32,6 @@ describe('생산 탭 2026년 3분기 열', () => {
     expect(markup).toContain('전년대비');
     expect(markup).not.toContain('>차이<');
     expect(markup).not.toContain('**');
-    expect(markup).toContain('<b>같은 주차 구간(1~39주)</b>');
+    expect(markup).toContain('<b>같은 주차 구간(1~40주)</b>');
   });
 });

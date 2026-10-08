@@ -6,6 +6,15 @@
 > - `npm run verify` 통과: Vitest 213 files / **1,812** · API cache 161/161 · 정적 118 · fleet leak · bundle 33. 로컬 production `/fleet` 1440·390px 200·overflow 0·error 0.
 > - 상태: 브랜치 `data/fleet-daily-261008`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
 
+> ✅ **2026-10-08 14:50 KST — `/cosmo` 주간보고 40주차(9/28~10/4) 반영** [CC]:
+> - 원자료: `COSMO 주간보고 (40주차)-첨부파일.xlsx` SHA-256 `f8fa9a80c29e570fd53758363cfe76e2b84db654a58ca7221e13fa4af874c5d7`(72,186 B), `2026.10.07_COSMO 주간보고 (40주차).docx` SHA-256 `c63587a802ee7bcf193dbaf1081ff0484a8277aca94ad81dd7542d395865a497`(70,820 B), 둘 다 `unzip -t` 정상. `sync_cosmo_weekly.py` → 40주(결측 없음), 견적 168건. 수주 6 FCL·$533,935, 잔량 307 FCL·$21,313,260, 주간 판매 $1,888,718, CBU 466.6 MT(수율 40.11%), 재고 $12,795,098, 현금 $6,770,629.
+> - **검산 1건 실패(지우지 않음)**: 재고 이월 −$701,138.36 = 원어 YF/BE 한 행. 수량 171.439 MT 그대로인데 금액 $1,013,157 → $312,019. 37주에 수량이 675.011 → 205.563 MT 로 469 MT 줄 때 금액 $1,056,019 가 그대로 넘어와 단가가 톤당 $5,137~9,394 로 부풀었고 40주 기초에서 톤당 약 $1,820 으로 정리됐다. 품질 탭 이슈 표에 한 행 추가. 37~39주 원어·재고 합계 금액은 그만큼 과대.
+> - docx 서술 계약(`cosmo-weekly-report.ts`): 2027년 1분기 오퍼 준비·바이어 신중, 에콰도르 원어 $2,350/MT 인데 제품 오퍼가 인하, 3분기 결산·2025 GRA 세무조사, 출고 18컨·CY 38컨, 차주 과장급 파리 SIAL 출장(실명 제외). 심사·하역은 없는 주라 null 유지.
+> - **docx 원문 오기(사용자 보고, 값 미반영)**: 주간 매출 「189만불 = 수출 267만 + 내수 1만」 — 원장은 수출 $1,879,767 + 내수 $8,951. 수출 267만은 39주 값으로 보인다.
+> - 수정 하나: `fbuLedgerComparison()` 이 최신 주를 골라 40주(10/4까지)가 9월 월간보고(9/30까지)와 대조됐다 — 보고 마감일 이전에 끝난 마지막 주(39주)를 고르게 했다.
+> - 테스트 `cosmo-weekly-report`·`cosmo-production-q3` 갱신, `cosmo-fbu-report` 는 수정 후 그대로 GREEN. `npm run verify` 통과: Vitest 213 files / **1,807** · API cache 161/161 · 정적 118 · bundle 33. 로컬 production `/cosmo` 1440·390px 200·overflow 0·error 0, 브리핑 헤딩 「40주차 업무 브리핑 (09-28 ~ 10-04)」.
+> - 상태: 브랜치 `data/cosmo-week40`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-08 13:29 KST — #1376 2026-10-07 참치 데일리 브리핑 /market 배포** [CC/tuna-dashboard-publisher]:
 > - 게이트: `state/audit-2026-10-07.txt` = AUDIT_PASS(제목 수치 승격·입간판 정합 후 재감사 P0=0 P1=0), `state/humanize-2026-10-07.txt` = ADOPTED(blocks=45 changed=19 rate=0.5%). 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(71+/58-), 날짜 2026-10-07 · 다이제스트 6 · 기사 6.
 > - squash 병합 `fb02d58d`(PR #1376, 직전은 10/06 `69e21bb7`). origin/main 대조는 내용 해시로 — SHA-256 `df896a0a…f3f695` 로컬=origin/main 일치.
