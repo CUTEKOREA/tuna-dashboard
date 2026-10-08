@@ -1,7 +1,7 @@
 > ✅ **2026-10-09 06:50 KST — `/squid`·`/squid-v5` 접근성(axe) 위반 0** [CC]:
 > - 원인 두 가지: ① 스크롤 표 래퍼가 포커스를 못 받음(`scrollable-region-focusable`) — `squid/GenericWidget` DataTable·`SectionB` 유럽 가격표·`SectionE` 출처 등록부·모니터링 달력·`app/squid-v5` DataPeek 에 `tabIndex=0 role=region aria-label` (기존 `fix_a11y_table_wrap.py` 와 같은 이름). 래퍼가 region 이 되면서 모바일 전역 `table{display:block}` 해제 규칙도 걸려 표 자체의 이중 스크롤 노드가 같이 사라진다. ② 대비 — `--w-slate-500`(#71717a, 바탕 #070b18 4.06) → `--w-slate-400`, `/squid-v5` 절 개수 #64748b→#94a3b8, 1부 색 #8b5cf6(4.4)→#a78bfa.
 > - 로컬 측정(두 화면, critical+serious 노드): 라이트·다크 각 /squid 25·26 → 0·0, /squid-v5 48·50 → 0·0 (데스크톱·모바일). 영향 화면은 두 화면뿐(`components/squid/*` 는 `SquidDashboard` 만 쓴다).
-> - 기준선: 손편집 안 함 — CI `a11y-baseline-candidate` 로 갱신. 상태: 브랜치 `fix/a11y-squid-20261009` PR(병합 안 함). **프로덕션 미배포**.
+> - 기준선: 손편집 안 함 — CI run 37848295940 candidate job 로그 블록을 `--decode`(artifact zip 은 세션 프록시가 blob 호스트를 막아 못 받음). 낮춤 16 · 올림 0, CI 라이트 serious 396→**246**. 상태: 브랜치 `fix/a11y-squid-20261009` PR(병합 안 함). **프로덕션 미배포**.
 
 > 🚀 **2026-10-09 06:10 KST — #1403 `/market` 2026-10-08 참치 데일리 브리핑 + 주간 위젯 배포** [CC]:
 > - merge `066c8d19`(squash), Vercel commit status success(`2bAvZDjxsURDdS8zGKVsfTdo3Qwg`). 직전 배포 `fb02d58d`(10-07).

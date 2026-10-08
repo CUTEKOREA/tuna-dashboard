@@ -21,7 +21,7 @@
       }
     ],
     "updatedAt": "2026-10-08",
-    "measuredAt": "CI run 37838772880 · fe45984 · Linux ubuntu24",
+    "measuredAt": "CI run 37848295940 · 9b91114 · Linux ubuntu24",
     "determinism": "같은 커밋 CI 3회(테마별) 측정 집계가 바이트 단위로 동일 — allow 를 둔 키 없음. 단 옛 게이트 run 37797565296/37797640417 사이 라이트 /unloading color-contrast 가 14↔13 으로 한 번 달랐다(뷰포트 합). 다시 흔들리면 여러 CI run 의 counts.json 으로 --update 해 allow·reason 을 둔다."
   },
   "themes": {
@@ -429,24 +429,10 @@
       },
       "/squid": {
         "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 10
-            },
-            "scrollable-region-focusable": {
-              "serious": 11
-            }
-          }
+          "rules": {}
         },
         "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 10
-            },
-            "scrollable-region-focusable": {
-              "serious": 12
-            }
-          }
+          "rules": {}
         }
       },
       "/squid-industry": {
@@ -467,24 +453,10 @@
       },
       "/squid-v5": {
         "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 6
-            },
-            "scrollable-region-focusable": {
-              "serious": 39
-            }
-          }
+          "rules": {}
         },
         "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 6
-            },
-            "scrollable-region-focusable": {
-              "serious": 40
-            }
-          }
+          "rules": {}
         }
       },
       "/tuna-anatomy": {
@@ -919,24 +891,10 @@
       },
       "/squid": {
         "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 10
-            },
-            "scrollable-region-focusable": {
-              "serious": 11
-            }
-          }
+          "rules": {}
         },
         "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 10
-            },
-            "scrollable-region-focusable": {
-              "serious": 12
-            }
-          }
+          "rules": {}
         }
       },
       "/squid-industry": {
@@ -949,24 +907,10 @@
       },
       "/squid-v5": {
         "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 6
-            },
-            "scrollable-region-focusable": {
-              "serious": 39
-            }
-          }
+          "rules": {}
         },
         "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 6
-            },
-            "scrollable-region-focusable": {
-              "serious": 40
-            }
-          }
+          "rules": {}
         }
       },
       "/tuna-anatomy": {
