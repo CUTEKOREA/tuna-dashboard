@@ -1253,6 +1253,10 @@
 - components/market-understanding/TunaIndustryChart.tsx
 - components/market-understanding/TunaIndustryDashboard.tsx
 
+## public/data/tuna_weekly_briefing.json
+- components/MarketDashboard.tsx
+- components/NewsFrontPage.tsx
+
 ## public/data/whelk_company_research_v1.json
 - components/market-understanding/CompanyResearchTables.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx

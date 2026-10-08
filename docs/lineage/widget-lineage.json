@@ -174,7 +174,8 @@
     "lib/data/atuna-price-summary.ts"
    ],
    "dataFiles": [
-    "public/data/tuna_daily_briefing.json"
+    "public/data/tuna_daily_briefing.json",
+    "public/data/tuna_weekly_briefing.json"
    ]
   },
   "components/MgoChartModal.tsx": {
@@ -186,7 +187,8 @@
     "lib/data/daily-briefing.ts"
    ],
    "dataFiles": [
-    "public/data/tuna_daily_briefing.json"
+    "public/data/tuna_daily_briefing.json",
+    "public/data/tuna_weekly_briefing.json"
    ]
   },
   "components/PageTransition.tsx": {
@@ -2645,6 +2647,10 @@
    "components/market-understanding/TunaCatchCharts.tsx",
    "components/market-understanding/TunaIndustryChart.tsx",
    "components/market-understanding/TunaIndustryDashboard.tsx"
+  ],
+  "public/data/tuna_weekly_briefing.json": [
+   "components/MarketDashboard.tsx",
+   "components/NewsFrontPage.tsx"
   ],
   "public/data/whelk_company_research_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",
