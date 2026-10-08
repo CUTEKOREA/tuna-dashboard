@@ -6,6 +6,9 @@ const path = require('node:path');
 const port = process.env.PORT || 3027;
 const url = `http://127.0.0.1:${port}/unloading`;
 const appOrigin = new URL(url).origin;
+// Next 16.3 의 Turbopack 런타임은 네트워크 오류로 실패한 청크를 한 번 더 받는다.
+// 첫 요청과 그 재시도를 모두 막아야 오류 경계가 뜬다.
+const BLOCKED_CHUNK_ATTEMPTS = 2;
 const thirdPartyHosts = [
   'fonts.googleapis.com',
   'fonts.gstatic.com',
@@ -79,7 +82,7 @@ async function preparePage(
     }
     if (
       blockedAppPath
-      && blockedAppRequestCount === 0
+      && blockedAppRequestCount < BLOCKED_CHUNK_ATTEMPTS
       && new URL(request.url()).pathname === blockedAppPath
     ) {
       blockedAppRequestCount += 1;
@@ -594,7 +597,7 @@ async function runChunkFailureIsolation(browser) {
   assertAnnualTotal(body);
   const done = body.match(/완료 선박:\s*(\d+)\s*척/);
   assert.ok(done && Number(done[1]) >= 12, '완료 선박 척수를 읽지 못했거나 줄었습니다.');
-  assert.equal(getBlockedAppRequestCount(), 1);
+  assert.equal(getBlockedAppRequestCount(), BLOCKED_CHUNK_ATTEMPTS);
   await Promise.all([
     page.waitForNavigation({ waitUntil: 'networkidle0' }),
     page.click('[data-testid="unloading-history-boundary-error"] button'),
@@ -605,7 +608,7 @@ async function runChunkFailureIsolation(browser) {
   assertAnnualTotal(recoveredBody);
   const doneRecovered = recoveredBody.match(/완료 선박:\s*(\d+)\s*척/);
   assert.ok(doneRecovered && Number(doneRecovered[1]) >= 12, '복구 후 완료 선박 척수가 줄었습니다.');
-  assert.equal(getBlockedAppRequestCount(), 1);
+  assert.equal(getBlockedAppRequestCount(), BLOCKED_CHUNK_ATTEMPTS);
   assert.equal(pageErrors.length, 0, pageErrors.join('\n'));
   assert.equal(consoleErrors.length, 0, consoleErrors.join('\n'));
   assert.equal(networkErrors.length, 0, networkErrors.join('\n'));
