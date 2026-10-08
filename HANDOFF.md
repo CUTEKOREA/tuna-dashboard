@@ -1,3 +1,9 @@
+> ✅ **2026-10-09 01:04 KST — 공유 접근성 2건: 다크 대비 4곳 + 모바일 표 이중 스크롤** [CC]:
+> - 다크 대비(라이트 값 불변): TelemetryBadge 날짜·경과 #71717a→#a1a1aa(배지 바탕 #17171a 3.70→6.98) · 사이드바 구역 제목 다크 스코프만 #8a8a8a(#101524 4.36→5.27, `--text-dim` 토큰 무변경) · 다크 모드 토글 「켜짐」 #1c6bb0→#509ee3(합성 #162337 2.84→5.52) · NowCard 「지금」 칩 글자 #fafafa→#18181b(#fbbf24 1.60→10.61, 라이트는 `[data-v3='light']` 로 예전 #22242b 유지).
+> - 표: 모바일 전역 `table{display:block;overflow-x:auto}` 는 래퍼 없는 표의 안전망으로 남기고, 부모가 이미 스크롤 래퍼(role=region+tabindex · 인라인 overflow auto)인 표만 `:where()` 로 display:table 복귀. 통째 삭제는 `/fleet` 입어 탭 VDS 히트맵 끝 열이 잘려서 기각. 390px 전 화면·전 탭 표 3,570 스냅숏에서 잘린 셀 수 옛 규칙과 동일(6 = `/gmts` 항만 탭 기존).
+> - axe(노드 합) 라이트 413→**397** · 다크 964→**826**, 화면×규칙 증가 0. 리포트 `artifacts/a11y/{before,after}-{light,dark}/`·`before-after.md`(gitignore).
+> - 스펙 불일치(미수정·보고): 「#fff on #38bdf8」 는 NowCard 가 아니라 `components/v2/PillTabs.tsx` 활성 알약(다크 34노드). 화면 파일 몫: `/squid`·`/squid-v5` 인라인 스크롤 래퍼, `/cosmo` `.tw`, `/unloading` 분석 표 래퍼에 tabIndex 필요.
+> - 상태: 브랜치 `fix/a11y-shared-dark-20261009` PR #1402 → main squash afc1b546(2026-10-09 사용자 「병합」).
 > ✅ **2026-10-09 KST — 접근성(axe) 기준선 CI 게이트** [CC] (PR #1401, Codex 리뷰 1·2·3·6 반영):
 > - `scripts/check_a11y_baseline.mjs` + `scripts/a11y-baseline.json`(형식 `a11y-baseline/2`). 비교 키 = **테마×화면×뷰포트×규칙×impact**(critical·serious) — 뷰포트 상쇄·serious→critical 승격을 잡는다. 기준선 화면은 리포트에 있어야 하고 meta.viewports 전부 측정돼야 함(누락·스킵·오류 = 실패). 리포트 meta(axe 버전·태그·뷰포트·테마) ≠ 기준선 meta → 실패.
 > - **래칫**: 늘어도 줄어도 실패. 줄었으면 그 CI run 의 artifact `a11y-baseline-candidate` 를 받아 그대로 커밋(받을 수 없으면 job 로그의 `BEGIN A11Y GZIP BASE64` 블록을 `--decode <로그>`). 기준선은 **CI(ubuntu-latest) 값** — 로컬 리눅스는 /squid·/squid-v5·/financial-risk·/unloading 에서 노드 수가 다르다(로컬 라이트 serious 413 vs CI 396). `--update` 는 기준선보다 높아지는 키가 있으면 `--accept-increase` 없이 거부.

@@ -91,7 +91,7 @@
 .date {
   font-size: 0.56rem;
   font-weight: 500;
-  color: #71717a;
+  color: #a1a1aa; /* 접근성(다크): #71717a 는 배지 바탕(#17171a) 3.7:1 → zinc 한 단 밝게 6.98:1 */
   min-width: 0;
   overflow-wrap: anywhere;
   word-break: break-all;
@@ -104,7 +104,7 @@
 .age {
   font-size: 0.56rem;
   font-weight: 500;
-  color: #71717a;
+  color: #a1a1aa; /* .date 와 같은 이유 — 라이트는 아래 [data-v3='light'] 가 #626879 로 덮는다 */
   white-space: nowrap;
 }
 
