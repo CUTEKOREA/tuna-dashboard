@@ -10,7 +10,7 @@ import re
 import sys
 import tempfile
 from dataclasses import dataclass, field
-from datetime import date
+from datetime import date, timedelta
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, Sequence
@@ -267,6 +267,62 @@ def parse_briefing_html(source: Path) -> dict[str, Any]:
     }
 
 
+def iso_week_monday_friday(briefing_date: str) -> tuple[str, str]:
+    parsed = date.fromisoformat(briefing_date)
+    monday = parsed - timedelta(days=parsed.weekday())
+    friday = monday + timedelta(days=4)
+    return monday.isoformat(), friday.isoformat()
+
+
+def should_include_in_weekly_file(briefing_date: str) -> bool:
+    return date.fromisoformat(briefing_date).weekday() < 5
+
+
+def load_weekly_briefing(path: Path) -> dict[str, Any]:
+    if not path.is_file():
+        return {"weekStart": "", "weekEnd": "", "days": []}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        raise BriefingSyncError(f"주간 브리핑 JSON을 읽지 못했습니다: {path}") from error
+    if not isinstance(payload, dict):
+        raise BriefingSyncError(f"주간 브리핑 JSON 루트가 객체가 아닙니다: {path}")
+    days = payload.get("days", [])
+    if not isinstance(days, list):
+        raise BriefingSyncError(f"주간 브리핑 days가 배열이 아닙니다: {path}")
+    return {
+        "weekStart": payload.get("weekStart", ""),
+        "weekEnd": payload.get("weekEnd", ""),
+        "days": days,
+    }
+
+
+def upsert_weekly_day(weekly: dict[str, Any], day_briefing: dict[str, Any]) -> dict[str, Any]:
+    briefing_date = day_briefing["date"]
+    if not should_include_in_weekly_file(briefing_date):
+        return weekly
+
+    week_start, week_end = iso_week_monday_friday(briefing_date)
+    if weekly.get("weekStart") != week_start:
+        weekly = {"weekStart": week_start, "weekEnd": week_end, "days": []}
+    else:
+        weekly = {
+            "weekStart": week_start,
+            "weekEnd": week_end,
+            "days": list(weekly.get("days", [])),
+        }
+
+    days: list[dict[str, Any]] = [
+        day for day in weekly["days"] if day.get("date") != briefing_date
+    ]
+    days.append(day_briefing)
+    days.sort(key=lambda day: day["date"])
+    weekly["days"] = days
+    weekly["weekStart"] = week_start
+    weekly["weekEnd"] = week_end
+    return weekly
+
+
 def write_json_atomically(output: Path, payload: dict[str, Any]) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
     serialized = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
@@ -310,7 +366,16 @@ def build_argument_parser() -> argparse.ArgumentParser:
         / "public/data/tuna_daily_briefing.json",
         help="출력 JSON 경로",
     )
+    parser.add_argument(
+        "--weekly-output",
+        type=Path,
+        help="주간 브리핑 JSON 경로 (기본값: 일간 출력과 같은 폴더)",
+    )
     return parser
+
+
+def weekly_output_path(args: argparse.Namespace) -> Path:
+    return args.weekly_output or args.output.with_name("tuna_weekly_briefing.json")
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -319,6 +384,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         source = args.input or discover_latest_briefing(args.source_dir)
         briefing = parse_briefing_html(source)
         write_json_atomically(args.output, briefing)
+        weekly_path = weekly_output_path(args)
+        weekly = load_weekly_briefing(weekly_path)
+        weekly = upsert_weekly_day(weekly, briefing)
+        if should_include_in_weekly_file(briefing["date"]):
+            write_json_atomically(weekly_path, weekly)
     except (BriefingSyncError, OSError) as error:
         print(f"브리핑 동기화 실패: {error}", file=sys.stderr)
         return 1

@@ -1,4 +1,5 @@
 import rawBriefing from '../../public/data/tuna_daily_briefing.json';
+import rawWeeklyBriefing from '../../public/data/tuna_weekly_briefing.json';
 
 export type DailyBriefingDigestItem = {
   readonly title: string;
@@ -14,6 +15,12 @@ export type DailyBriefing = {
   readonly date: string;
   readonly digest: readonly DailyBriefingDigestItem[];
   readonly articles: readonly DailyBriefingArticle[];
+};
+
+export type WeeklyBriefing = {
+  readonly weekStart: string;
+  readonly weekEnd: string;
+  readonly days: readonly DailyBriefing[];
 };
 
 export type DailyBriefingTakeaways = {
@@ -47,16 +54,20 @@ function arrayAt(value: unknown, path: string): unknown[] {
   return value;
 }
 
-function validateIsoDate(value: unknown): string {
-  const rawDate = stringAt(value, 'date');
+function validateIsoDateField(value: unknown, field: string): string {
+  const rawDate = stringAt(value, field);
   if (!ISO_DATE_PATTERN.test(rawDate)) {
-    throw new Error('date는 YYYY-MM-DD 형식이어야 합니다.');
+    throw new Error(`${field}는 YYYY-MM-DD 형식이어야 합니다.`);
   }
   const parsed = new Date(`${rawDate}T00:00:00Z`);
   if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== rawDate) {
-    throw new Error(`date가 유효하지 않습니다: ${rawDate}`);
+    throw new Error(`${field}가 유효하지 않습니다: ${rawDate}`);
   }
   return rawDate;
+}
+
+function validateIsoDate(value: unknown): string {
+  return validateIsoDateField(value, 'date');
 }
 
 export function parseDailyBriefing(value: unknown): DailyBriefing {
@@ -140,7 +151,44 @@ export function buildDailyBriefingTakeaways(
   };
 }
 
+export function parseWeeklyBriefing(value: unknown): WeeklyBriefing {
+  const root = recordAt(value, 'weeklyBriefing');
+  const weekStart = validateIsoDateField(root.weekStart, 'weekStart');
+  const weekEnd = validateIsoDateField(root.weekEnd, 'weekEnd');
+  const monday = new Date(`${weekStart}T00:00:00Z`);
+  const friday = new Date(monday);
+  friday.setUTCDate(friday.getUTCDate() + 4);
+  if (monday.getUTCDay() !== 1 || friday.toISOString().slice(0, 10) !== weekEnd) {
+    throw new Error('weekStart와 weekEnd는 같은 주의 월요일부터 금요일이어야 합니다.');
+  }
+  const days = arrayAt(root.days, 'days').map((day, index) => (
+    parseDailyBriefing(recordAt(day, `days[${index}]`))
+  ));
+  if (days.length === 0) {
+    throw new Error('days는 비어 있을 수 없습니다.');
+  }
+  for (const day of days) {
+    const weekday = new Date(`${day.date}T00:00:00Z`).getUTCDay();
+    if (weekday === 0 || weekday === 6) {
+      throw new Error(`주말 브리핑은 주간 파일에 넣을 수 없습니다: ${day.date}`);
+    }
+    if (day.date < weekStart || day.date > weekEnd) {
+      throw new Error(`days.date가 주간 범위를 벗어났습니다: ${day.date}`);
+    }
+  }
+  for (let index = 1; index < days.length; index += 1) {
+    if (days[index - 1].date === days[index].date) {
+      throw new Error(`days.date가 중복되었습니다: ${days[index].date}`);
+    }
+    if (days[index - 1].date > days[index].date) {
+      throw new Error('days는 날짜 오름차순이어야 합니다.');
+    }
+  }
+  return { weekStart, weekEnd, days };
+}
+
 export const dailyBriefing = parseDailyBriefing(rawBriefing);
+export const weeklyBriefing = parseWeeklyBriefing(rawWeeklyBriefing);
 
 /* ── V3 뉴스 임팩트 표현 (A안: 리드 기사 + 임팩트 넘버, 2026-08-15 사용자 확정) ── */
 
