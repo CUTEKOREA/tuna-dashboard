@@ -1,3 +1,12 @@
+> 🚀 **2026-10-09 06:10 KST — #1403 `/market` 2026-10-08 참치 데일리 브리핑 + 주간 위젯 배포** [CC]:
+> - merge `066c8d19`(squash), Vercel commit status success(`2bAvZDjxsURDdS8zGKVsfTdo3Qwg`). 직전 배포 `fb02d58d`(10-07).
+> - 게이트: `state/audit-2026-10-08.txt` = `AUDIT_PASS`(P0=0 P1=0, 윤문 채택·제목 수치 승격·입간판 정합 후 재감사). 변경 파일은 `public/data/tuna_daily_briefing.json`·`public/data/tuna_weekly_briefing.json` **2개뿐**(주간 위젯 도입분).
+> - 반영 판정은 커밋 메시지 아닌 **blob/sha256 대조**: daily `c7529e90d63145d3`·weekly `ffff7544eda80ad2` 가 origin/main 과 동일, `git diff origin/main` 빈 출력.
+> - 데이터: daily date=2026-10-08 다이제스트 6 / 기사 6. weekly weekStart 2026-10-05 ~ weekEnd 2026-10-09, 4일(10-05 5 · 10-06 5 · 10-07 6 · 10-08 6) 합계 **22건**. 로컬 `daily-briefing`·`weekly-briefing-sync`·`weekly-briefing-cron` 14 tests passed.
+> - 라이브 실측(Aside 로그인 세션 — curl 은 307·15B 라 판정 불가): 「이번주 참치 뉴스」/ 메타 **「10/05~10/09 · 기사 22건 · 파이프라인 동기」**. 요일 탭 **4개**(월 10/05·화 10/06·수 10/07·목 10/08), 금요일 탭 없음. 기본 선택 목 10/08 · 리드 「소지쓰, NESI 인수로 참치·수산 사업 확대 의지 강화」 · 오늘의 수치 **USD 2,350**(다이제스트 2행 만타 가다랑어 톤당). 월 10/05 로 전환 시 리드 「EU 생산국들의 캔참치 수출 감소」·수치 13%·`aria-labelledby`가 `briefing-tab-2026-10-05` 로 갱신.
+> - 접근성 잔존 확인: `role="tablist"` 1 · `role="tab"` 4(`aria-selected` 정확히 1개 true, `aria-controls=briefing-tabpanel`) · `role="tabpanel"` 1(`id=briefing-tabpanel`).
+> - 배포 직후 1차 조회는 옛 상태(16건·3탭)였고 Vercel 빌드 완료 후 재조회에서 22건·4탭 확인 — 전파 지연이었다. 정리는 `git switch -c sync/2026-10-08c origin/main` 만(gh 가 권한 `git worktree remove`·`git branch -D` 는 무시, 에이전트 정의 ⓒ).
+
 > ✅ **2026-10-09 01:04 KST — 공유 접근성 2건: 다크 대비 4곳 + 모바일 표 이중 스크롤** [CC]:
 > - 다크 대비(라이트 값 불변): TelemetryBadge 날짜·경과 #71717a→#a1a1aa(배지 바탕 #17171a 3.70→6.98) · 사이드바 구역 제목 다크 스코프만 #8a8a8a(#101524 4.36→5.27, `--text-dim` 토큰 무변경) · 다크 모드 토글 「켜짐」 #1c6bb0→#509ee3(합성 #162337 2.84→5.52) · NowCard 「지금」 칩 글자 #fafafa→#18181b(#fbbf24 1.60→10.61, 라이트는 `[data-v3='light']` 로 예전 #22242b 유지).
 > - 표: 모바일 전역 `table{display:block;overflow-x:auto}` 는 래퍼 없는 표의 안전망으로 남기고, 부모가 이미 스크롤 래퍼(role=region+tabindex · 인라인 overflow auto)인 표만 `:where()` 로 display:table 복귀. 통째 삭제는 `/fleet` 입어 탭 VDS 히트맵 끝 열이 잘려서 기각. 390px 전 화면·전 탭 표 3,570 스냅숏에서 잘린 셀 수 옛 규칙과 동일(6 = `/gmts` 항만 탭 기존).
