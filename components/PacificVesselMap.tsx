@@ -158,7 +158,6 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
   return (
     <>
       <style>{`
-        .brighter-map-tiles { filter: brightness(1.05) contrast(1.05); }
         @keyframes flow-wave {
           0% { fill-opacity: 0.15; stroke-opacity: 0; }
           50% { fill-opacity: 0.35; stroke-opacity: 0.2; }
@@ -216,17 +215,16 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
         {typhoonActive && (
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', background: 'rgba(var(--w-red-500-rgb), 0.1)', zIndex: 500, animation: 'defcon-pulse 2s infinite' }}></div>
         )}
-        <MapContainer 
-          center={[-1.0, 170.0]} 
-          zoom={4} 
-          scrollWheelZoom={false} 
-          style={{ height: '100%', width: '100%', zIndex: 1 }}
-        attributionControl={false}
-      >
+        <MapContainer
+          center={[-1.0, 170.0]}
+          zoom={4}
+          scrollWheelZoom={false}
+          style={{ height: '100%', width: '100%', zIndex: 1, background: '#dbeafe' }}
+        >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          attribution='&copy; OpenStreetMap contributors &copy; CARTO'
-          className="brighter-map-tiles"
+          url="https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}"
+          attribution="지도 타일 &copy; Esri - GEBCO · NOAA · National Geographic · Garmin 등 출처 포함"
+          maxZoom={13}
         />
 
         {/* Live Typhoon GeoJSON (GDACS) */}
