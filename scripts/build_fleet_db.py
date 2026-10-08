@@ -247,6 +247,16 @@ def to_int(value) -> int | None:
         return None
 
 
+def iccat_length_m(value) -> float | None:
+    """ICCAT LOAm의 유럽식 소수점 쉼표를 미터 소수로 보존한다."""
+    try:
+        text = str(value).strip().replace(" ", "")
+        number = float(text.replace(",", "."))
+        return round(number, 2) if number > 0 else None
+    except (TypeError, ValueError):
+        return None
+
+
 def tonnage_from_text(text: str | None) -> int | None:
     m = re.search(r"([\d,.]+)", text or "")
     return to_int(m.group(1)) if m else None
@@ -303,7 +313,7 @@ def main() -> None:  # noqa: C901 — 등록부 5개를 그대로 다루는 함�
                 "g": ko_gear(r.get("IsscfgCode"), gear_warn),
                 "t": to_int(r.get("Tonnage")),
                 "y": to_int(r.get("YearBuilt")),
-                "l": to_int(r.get("LOAm")),
+                "l": iccat_length_m(r.get("LOAm")),
                 "w": clean_owner(r.get("OwName")),
                 "p": clean_owner(r.get("OpName")),
                 "h": (r.get("HomePort") or "").strip() or None,
@@ -423,7 +433,7 @@ def main() -> None:  # noqa: C901 — 등록부 5개를 그대로 다루는 함�
                 "같은 배가 여러 기구에 등록될 수 있어 행 합계는 실제 척수가 아니다. "
                 "ICCAT 은 20m 미만 소형·레저 낚시선까지 담아 행이 많다. "
                 "IOTC 는 최신 활성 연도 기준이고 건조년이 없다. "
-                "법인 표지가 없는 소유·운영자는 실명 보호를 위해 「개인 소유(추정)」으로 묶었다 — 표지 없는 소규모 법인이 일부 섞일 수 있다."
+                "법인 표지가 없는 소유·운영자는 실명 보호를 위해 「개인 소유(추정)」으로 묶었다 - 표지 없는 소규모 법인이 일부 섞일 수 있다."
             ),
             "기구별": {},
             "갱신방법": "python3 scripts/build_fleet_db.py",

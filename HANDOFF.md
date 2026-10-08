@@ -8715,3 +8715,13 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - 2026-08-23 배포본 전용 단계 신설: 시장 이해 > 오징어 「D 인수 이후의 플레이」(x04). **신라교역이 선민수산·현원수산을 인수했다는 가정** 위에서 원양 조업·유통·가공 전략을 적었다. 리드 첫 줄에 가정임을 명시. 보고서(Drive 8_)에는 넣지 않는다 — 사실 보고와 시나리오를 섞지 않기 위해서다. 탭 19개.
 - 2026-08-23 인수 확정 반영: 보고서에 **16절 「전략 — 인수 이후의 플레이」** 신설(표 32 인수 대상 요약·표 33 세 갈래 다음 수), 15절 말미 자료 출처 각주를 문서 말미로 이동하고 수협계통판매·KAMIS 지역/경락 출처 보강. 80쪽. 대시보드 D 단계 리드도 같은 전제 표현으로 통일(사내 확정·공개 근거 없음·출처 등급 미부여).
 - 2026-08-24 크레탑 재무 수집 반영: 가공 상위 100 중 **90곳** 재무 확보(전자공시 15 + 신용조사 75, 생산량 88.3%). 전자공시 밖 원양 법인 **11곳 전부** 재무 확인(해창수산 377억·씨맥스피셔리 154억, 자본잠식 3곳). 원양어업통계로 **2025년 오징어류 어획 52,122t**(FAO는 2024까지) 확보. 위젯 `F_processing_financials`·`F_deepsea_financials`·`F_deepsea_catch` 신설(11·13단계 배치), 출처 `SQ-FIN-CRETOP`(등급 B)·`SQ-CATCH-MOF-DWF`. 원본 PDF 109건은 Drive `02_출처원본/크레탑_재무제표_2026-08-24/`.
+
+> ✅ **2026-08-28 05:54 KST — `/fleet` Panofi·Naoero 어창 용량·등록 제원 검증 반영** [Codex]:
+> - ICCAT SCRS/2024/127 Table 2의 FHV(㎥)를 Panofi 7척에 적용했다: MASTER 1,163·DISCOVERER 3,200·FORE-RUNNER 3,000·PATH-FINDER 3,200·COMMANDER 1,488·QUEEN 1,538·GRACE 1,538. 기존 ICCAT `CarCapacity`를 FHV로 잘못 표시하던 값을 교체했다.
+> - Panofi 7척은 ICCAT 등록 IMO·GRT와 SCRS 전장·건조년을, NAOERO SUN/STAR는 WCPFC RFV IMO `8812203`/`8813477`·GT 1,742·전장 68.29m·건조 1990년을 보호 상세 DTO에 결합했다. Naoero FHC 1,614㎥는 FFA Good Standing 근거를 따로 보존했다. 독립 리뷰가 Panofi 톤수를 GT로 단정한 초기 오류를 찾아 GRT/GT 단위 필드를 분리했고, 수정 후 Critical·Important·Minor 없음으로 승인받았다.
+> - `/fleet` 선박 카드에 IMO·총톤수·전장·건조년·제원/용량 근거를 추가했다. MT 적재량과 ㎥ 어창은 환산하지 않고 `적재율 미산출`을 유지한다. VOLTA GLORY는 사내 확인상 매각 완료로 현행 조업 명부에서 제외함을 표시했다.
+> - ICCAT `LOAm` 유럽식 소수점 쉼표를 천 단위로 오인하던 파서를 분리했다. 재생성한 참치 선박 DB에서 전장 10,594건만 수정됐고 기타 필드 변경은 0건이다. Panofi MASTER `566→56.6m`, GRACE `694→69.4m`, VOLTA GLORY `938→93.8m`를 회귀 테스트로 고정했다.
+> - 전체 원문 143건 결정성 검사와 `npm run verify`가 통과했다: ESLint 0 errors(기존 warnings 12), Python 운영 테스트, Vitest 160파일·1,232 passed/1 skipped, API cache 158/158, Next 118페이지, client-leak·bundle 33경로 통과. 로컬 production 1440px·375px에서 표시값·줄바꿈·가로 overflow 0·page/console/request/HTTP 오류 0을 확인했다.
+> - **다음 단계**: 로컬 브랜치 `feat/fleet-verified-hold-specs-20260827`에서 준비됐으며 미배포다. 사용자가 `배포`를 명시하면 최신 main 통합 → PR gate → `FLEET_DAILY_DETAIL_JSON` 교체 → Production READY → 로그인 라이브 `/fleet` 검증을 진행한다.
+>
+> 마지막 업데이트: 2026-08-28 05:54 KST [Codex]
