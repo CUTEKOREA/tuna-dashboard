@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 299,
-  "widgets": 117,
-  "dataFiles": 341,
+  "files": 305,
+  "widgets": 120,
+  "dataFiles": 343,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -98,6 +98,10 @@
    "dataModules": [],
    "dataFiles": []
   },
+  "components/FleetPortSchedule.tsx": {
+   "dataModules": [],
+   "dataFiles": []
+  },
   "components/FleetRealMap.tsx": {
    "dataModules": [],
    "dataFiles": []
@@ -152,6 +156,7 @@
     "data/reefer_week37.json",
     "data/reefer_week38.json",
     "data/reefer_week39.json",
+    "data/reefer_week40.json",
     "public/data/bangkok_weekly_kpi.json",
     "public/data/bangkok_weekly_payload.json"
    ]
@@ -239,7 +244,7 @@
     "lib/data/reefer-weekly.ts"
    ],
    "dataFiles": [
-    "data/reefer_week39.json"
+    "data/reefer_week40.json"
    ]
   },
   "components/SafeResponsiveContainer.tsx": {
@@ -287,13 +292,31 @@
    "dataModules": [],
    "dataFiles": []
   },
+  "components/UnloadingFishingGroundsMap.tsx": {
+   "dataModules": [],
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
+  },
+  "components/UnloadingFleetInsights.tsx": {
+   "dataModules": [
+    "lib/data/unloading-fleet-insights.ts"
+   ],
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
+  },
   "components/UnloadingHistory.tsx": {
    "dataModules": [],
-   "dataFiles": []
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
   },
   "components/UnloadingHistoryBoundary.tsx": {
    "dataModules": [],
-   "dataFiles": []
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
   },
   "components/UnloadingReportGenerator.tsx": {
    "dataModules": [],
@@ -303,7 +326,9 @@
    "dataModules": [
     "lib/data/unloading-static.ts"
    ],
-   "dataFiles": []
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
   },
   "components/UnloadingTimelineReplay.tsx": {
    "dataModules": [],
@@ -1323,6 +1348,7 @@
   },
   "components/panofi/PanofiTabs.tsx": {
    "dataModules": [
+    "lib/data/fleet-daily-public.ts",
     "lib/data/panofi-atlantic-mail.ts",
     "lib/data/panofi.ts"
    ],
@@ -1443,6 +1469,9 @@
    "components/LogisticsDashboard.tsx"
   ],
   "data/reefer_week39.json": [
+   "components/LogisticsDashboard.tsx"
+  ],
+  "data/reefer_week40.json": [
    "components/LogisticsDashboard.tsx",
    "components/ReeferMovement.tsx"
   ],
@@ -1479,6 +1508,13 @@
   ],
   "lib/data/tunafarm-tables.json": [
    "components/market-understanding/TunafarmIndustryDashboard.tsx"
+  ],
+  "lib/data/unloading-fleet-insights.json": [
+   "components/UnloadingFishingGroundsMap.tsx",
+   "components/UnloadingFleetInsights.tsx",
+   "components/UnloadingHistory.tsx",
+   "components/UnloadingHistoryBoundary.tsx",
+   "components/UnloadingStatus.tsx"
   ],
   "lib/data/whelk-tables.json": [
    "components/market-understanding/WhelkIndustryDashboard.tsx"

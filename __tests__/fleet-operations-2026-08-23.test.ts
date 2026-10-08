@@ -12,38 +12,37 @@ import {
 
 describe('2026-09-13 fleet operations sources', () => {
   it('reconciles the national VDS report at vessel and area grain', () => {
-    expect(nationalVds.asOf).toBe('2026-09-27');
+    expect(nationalVds.asOf).toBe('2026-10-05');
     expect(nationalVds.vessels).toHaveLength(6);
     expect(nationalVds.areas).toHaveLength(8);
-    expect(nationalVds.totals).toEqual({ allocated: 1_457, consumed: 1_210.2, remaining: 246.8, weekly: 32.6 });
+    expect(nationalVds.totals).toEqual({ allocated: 1_479.5, consumed: 1_239.1, remaining: 240.4, weekly: 28.9 });
 
     const kiribati = nationalVds.areas.find((area) => area.area === '키리바시');
     // 인쇄 소계를 그대로 둔다. 배정 763.98 대 764 는 1/6 반올림이지만,
-    // 소진 754.9 대 755 는 반올림으로 생길 수 없는 0.10 차이다 — 소진일은 소수 1자리이고,
-    // 같은 행 잔여 9.1(=764−754.9)과 국적 총합계 1,137.8 이 모두 754.9 기준이다.
-    // 09-20·09-27 판도 키리바시 소계 소진을 755.00 으로 그대로 찍었다(행 합 754.9) - 세 주째 같은 어긋남이다.
-    expect(kiribati?.totals).toEqual({ allocated: 764, consumed: 755, remaining: 9.1, weekly: 0 });
+    // 소진 752.5 대 752.6 은 반올림으로 생길 수 없는 0.10 차이다 — 소진일은 소수 1자리다.
+    // 09-13 판부터 네 판째 같은 0.1 어긋남이 이어진다(10-05 판 행 합 752.5 · 인쇄 752.6).
+    expect(kiribati?.totals).toEqual({ allocated: 764, consumed: 752.6, remaining: 11.5, weekly: -2.4 });
     expect(kiribati?.rowSums.allocated).toBeCloseTo(763.98, 2);
-    expect(kiribati?.rowSums.consumed).toBeCloseTo(754.9, 2);
-    expect(kiribati!.totals.allocated - kiribati!.rowSums.consumed).toBeCloseTo(kiribati!.totals.remaining, 2);
-    // 국적 총합계 소진은 수역 소계가 아니라 선박 행을 더한 값과 맞는다
+    expect(kiribati?.rowSums.consumed).toBeCloseTo(752.5, 2);
+    // 국적 총합계 소진 1,239.1 은 수역 소계 합(1,239.2)이 아니라 선박 행을 더한 값과 맞는다
     const counted = nationalVds.areas.filter((area) => area.includedInGrandTotal);
-    expect(counted.reduce((sum, area) => sum + area.rowSums.consumed, 0)).toBeCloseTo(1_210.2, 2);
-    expect(kiribati?.rowSums.weekly).toBeCloseTo(0, 2);
+    expect(counted.reduce((sum, area) => sum + area.rowSums.consumed, 0)).toBeCloseTo(1_239.1, 2);
+    // 키리바시 주간 소모 음수 2칸(S/CHA -1.4 · S/HAR -1.0) - 지난 판 추정 소진의 되돌림
+    expect(kiribati?.rowSums.weekly).toBeCloseTo(-2.4, 2);
     expect(nationalVds.areas.find((area) => area.area === '동부 공해')?.includedInGrandTotal).toBe(false);
-    // 09-27 판: 솔로몬/S/EXP 가 -1.77 → -0.47 로 줄었지만 여전히 초과다. 초과 칸은 11칸 그대로
-    expect(nationalVds.areas.flatMap((item) => item.rows).filter((row) => row.remaining < 0)).toHaveLength(11);
+    // 10-05 판: 솔로몬 배정이 44 → 66.5일로 늘어 S/EXP(-0.47)는 초과가 풀렸고 S/HAR 는 -0.17 → -1.72 로 커졌다. 11칸 → 10칸
+    expect(nationalVds.areas.flatMap((item) => item.rows).filter((row) => row.remaining < 0)).toHaveLength(10);
   });
 
   it('keeps Kiribati VDS as a separate four-vessel population', () => {
-    expect(kiribatiVds.asOf).toBe('2026-09-27');
+    expect(kiribatiVds.asOf).toBe('2026-10-05');
     expect(kiribatiVds.vessels).toEqual(['MOAMARI', 'MOAKONA', 'NAOERO SUN', 'NAOERO STAR']);
-    expect(kiribatiVds.totals).toEqual({ allocated: 770, consumed: 607.5, remaining: 162.5, weekly: 16.6 });
+    expect(kiribatiVds.totals).toEqual({ allocated: 767.5, consumed: 607.8, remaining: 159.7, weekly: 9.3 });
     expect(kiribatiVds.areas.find((area) => area.area === '키리바시')?.totals).toEqual({
-      allocated: 411,
-      consumed: 408.3,
-      remaining: 2.6,
-      weekly: 9.2,
+      allocated: 431,
+      consumed: 406.5,
+      remaining: 24.5,
+      weekly: -1.9,
     });
     expect(kiribatiVds.areas.find((area) => area.area === '파푸아뉴기니 양자')?.totals).toEqual({
       allocated: 88,
@@ -59,28 +58,28 @@ describe('2026-09-13 fleet operations sources', () => {
     });
   });
 
-  it('preserves the September fourth-week catch hierarchy and monthly reconciliation', () => {
-    expect(purseSeineCatch.period).toEqual({ from: '2026-09-21', to: '2026-09-27' });
+  it('preserves the October first-week catch hierarchy and monthly reconciliation', () => {
+    expect(purseSeineCatch.period).toEqual({ from: '2026-09-28', to: '2026-10-04' });
     expect(purseSeineCatch.summary).toEqual({
-      nationalWeekly: 1_362,
-      jointWeekly: 640,
-      weeklyTotal: 2_002,
-      nationalMonthly: 3_096,
-      jointMonthly: 2_206,
-      monthlyTotal: 5_302,
-      nationalAnnual: 31_141,
-      jointAnnual: 22_402,
-      annualTotal: 53_543,
+      nationalWeekly: 1_550,
+      jointWeekly: 875,
+      weeklyTotal: 2_425,
+      nationalMonthly: 915,
+      jointMonthly: 440,
+      monthlyTotal: 1_355,
+      nationalAnnual: 32_691,
+      jointAnnual: 23_277,
+      annualTotal: 55_968,
     });
     expect(purseSeineCatch.weeklyRanking).toEqual([
-      { rank: 1, captain: '오복근', vessel: 'S/HAR', catchMt: 510, dailyAverageMt: 72.86 },
-      { rank: 2, captain: '김형주', vessel: 'N/SUN', catchMt: 370, dailyAverageMt: 52.86 },
-      { rank: 3, captain: '강창훈', vessel: 'S/JUP', catchMt: 315, dailyAverageMt: 45 },
-      { rank: 4, captain: '김승현', vessel: 'S/PIO', catchMt: 238, dailyAverageMt: 34 },
-      { rank: 5, captain: '이평규', vessel: 'KONA', catchMt: 205, dailyAverageMt: 29.29 },
-      { rank: 6, captain: '최용석', vessel: 'S/CHA', catchMt: 200, dailyAverageMt: 28.57 },
-      { rank: 7, captain: '공준식', vessel: 'S/EXP', catchMt: 99, dailyAverageMt: 14.14 },
-      { rank: 8, captain: '이진우', vessel: 'N/STAR', catchMt: 65, dailyAverageMt: 9.29 },
+      { rank: 1, captain: '김형주', vessel: 'N/SUN', catchMt: 640, dailyAverageMt: 91.43 },
+      { rank: 2, captain: '공준식', vessel: 'S/EXP', catchMt: 440, dailyAverageMt: 62.86 },
+      { rank: 3, captain: '김승현', vessel: 'S/PIO', catchMt: 440, dailyAverageMt: 62.86 },
+      { rank: 4, captain: '최용석', vessel: 'S/CHA', catchMt: 280, dailyAverageMt: 40 },
+      { rank: 5, captain: '강창훈', vessel: 'S/JUP', catchMt: 260, dailyAverageMt: 37.14 },
+      { rank: 6, captain: '이평규', vessel: 'KONA', catchMt: 180, dailyAverageMt: 25.71 },
+      { rank: 7, captain: '오복근', vessel: 'S/HAR', catchMt: 130, dailyAverageMt: 18.57 },
+      { rank: 8, captain: '이진우', vessel: 'N/STAR', catchMt: 55, dailyAverageMt: 7.86 },
       { rank: 9, captain: '김효원', vessel: 'S/SPR', catchMt: 0, dailyAverageMt: 0 },
       { rank: 10, captain: '김정훈', vessel: 'MARI', catchMt: 0, dailyAverageMt: 0 },
     ]);
@@ -88,27 +87,26 @@ describe('2026-09-13 fleet operations sources', () => {
     for (const row of purseSeineCatch.weeklyRanking) {
       expect(Math.abs(row.catchMt / 7 - row.dailyAverageMt)).toBeLessThan(0.02);
     }
-    expect(purseSeineCatch.weeklyRanking.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(2_002);
+    expect(purseSeineCatch.weeklyRanking.reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(2_425);
     const nationalVessels = new Set(nationalVds.vessels);
-    expect(purseSeineCatch.weeklyRanking.filter((vessel) => nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(1_362);
-    expect(purseSeineCatch.weeklyRanking.filter((vessel) => !nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(640);
-    // 월별 계열은 아직 8월 넷째주 판이다. 9월 넷째주 보고의 월별 그래프도 스택 막대
-    // 이미지뿐이라 월별 칸을 못 읽는다 - 연간 라벨에서 1~8월 합을 빼 9월을 파생하면
-    // 5,397 이 나와 인쇄값 5,302 와 95 MT 어긋난다(1~8월 칸도 손질된 것으로 보인다).
-    // 그래서 summary 는 인쇄값을 쓰고, 계열이 어느 기준일인지 화면이 알 수 있게 따로 연다.
+    expect(purseSeineCatch.weeklyRanking.filter((vessel) => nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(1_550);
+    expect(purseSeineCatch.weeklyRanking.filter((vessel) => !nationalVessels.has(vessel.vessel)).reduce((sum, vessel) => sum + vessel.catchMt, 0)).toBe(875);
+    // 월별 계열은 아직 8월 넷째주 판이다. 10월 첫째주 보고의 월별 그래프도 스택 막대 이미지뿐이라
+    // 월별 칸을 다 못 읽는다. 다만 선박별 연간 라벨 합은 인쇄 연간과 맞는다(국적 6척 32,691 · 합작 4척 23,277).
     expect(purseSeineCatch.monthlySeriesAsOf).toBe('2026-08-30');
     expect(purseSeineCatch.monthlyByVessel.every((v) => v.monthlyMt.length === 8)).toBe(true);
     expect(purseSeineCatch.monthlyByVessel.reduce((sum, vessel) => sum + vessel.totalMt, 0))
       .toBeLessThan(purseSeineCatch.summary.annualTotal);
-    expect(purseSeineCatch.seasonAverageDailyMt).toBe(19.1);
-    expect([...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank)[0]).toMatchObject({ captain: '김효원', vessel: 'S/SPR', dailyCatchMt: 26.2, rank: 1 });
+    expect(purseSeineCatch.seasonAverageDailyMt).toBe(19.5);
+    expect([...purseSeineCatch.seasonRanking].sort((a, b) => a.rank - b.rank)[0]).toMatchObject({ captain: '김효원', vessel: 'S/SPR', dailyCatchMt: 25.7, rank: 1 });
     // 현어기 일어획량 = 어획량 ÷ 어기일수. 원문 반올림 폭 안에서만 허용한다
     for (const row of purseSeineCatch.seasonRanking) {
       expect(Math.abs(row.catchMt / row.seasonDays - row.dailyCatchMt)).toBeLessThan(0.06);
     }
-    expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'S/EXP')?.leaderDeltaMt).toBe(-12.96);
+    // 지난주(9/21~9/27) 누계 + 이번 주 어획 = 이번 주 누계, 어기일수는 모두 +7
+    expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'S/EXP')?.leaderDeltaMt).toBe(-9.4);
     expect(purseSeineCatch.seasonRanking.find((row) => row.vessel === 'N/STAR')).toMatchObject({
-      captain: '이진우', boardingDate: '2026-08-19', seasonDays: 40, catchMt: 445, dailyCatchMt: 11.1, rank: 10,
+      captain: '이진우', boardingDate: '2026-08-19', seasonDays: 47, catchMt: 500, dailyCatchMt: 10.6, rank: 10,
     });
   });
 

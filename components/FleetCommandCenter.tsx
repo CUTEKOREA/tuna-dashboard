@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { AlertTriangle, LockKeyhole, RotateCcw, Ship } from 'lucide-react';
+import FleetPortSchedule from '@/components/FleetPortSchedule';
 import type { FleetDailyDetailErrorCode, FleetDailyDetailState } from '@/lib/contracts/fleet-daily-api';
 import { validateFleetDailyDetailResponse } from '@/lib/contracts/fleet-daily-api';
 import {
+  fleetDailyDeltaLabel,
   fleetDailyPublicDeltas,
   fleetDailyPublicLatest,
   fleetDailyPublicReconciliation,
@@ -51,10 +53,10 @@ const dailyHeroSecondaryKpis = [
 ];
 
 const decisions = [
-  { icon: Ship, level: '태평양', title: `일간 ${fleetDailyPublicLatest.pacific.dailyMt.toLocaleString()} (MT)`, detail: `전일 대비 ${formatFleetDailyDelta(fleetDailyPublicDeltas.pacificDailyMt)} (MT) · 월간 ${fleetDailyPublicLatest.pacific.monthlyMt.toLocaleString()} (MT)`, tone: 'primary' },
-  { icon: Ship, level: '대서양', title: `일간 ${fleetDailyPublicLatest.atlantic.dailyMt.toLocaleString()} (MT)`, detail: `전일 대비 ${formatFleetDailyDelta(fleetDailyPublicDeltas.atlanticDailyMt)} (MT) · 월간 ${fleetDailyPublicLatest.atlantic.monthlyMt.toLocaleString()} (MT)`, tone: 'primary' },
+  { icon: Ship, level: '태평양', title: `일간 ${fleetDailyPublicLatest.pacific.dailyMt.toLocaleString()} (MT)`, detail: `${fleetDailyDeltaLabel} ${formatFleetDailyDelta(fleetDailyPublicDeltas.pacificDailyMt)} (MT) · 월간 ${fleetDailyPublicLatest.pacific.monthlyMt.toLocaleString()} (MT)`, tone: 'primary' },
+  { icon: Ship, level: '대서양', title: `일간 ${fleetDailyPublicLatest.atlantic.dailyMt.toLocaleString()} (MT)`, detail: `${fleetDailyDeltaLabel} ${formatFleetDailyDelta(fleetDailyPublicDeltas.atlanticDailyMt)} (MT) · 월간 ${fleetDailyPublicLatest.atlantic.monthlyMt.toLocaleString()} (MT)`, tone: 'primary' },
   { icon: Ship, level: '운반선', title: `선적 ${formatOptionalMt(fleetDailyPublicLatest.carrier.loadedTotalMt)} (MT)`, detail: `예상잔량 ${formatOptionalMt(fleetDailyPublicLatest.carrier.expectedRemainingMt)} (MT)`, tone: 'primary' },
-  { icon: AlertTriangle, level: '검산', title: fleetDailyPublicReconciliation.valid ? '최신 상세 행 검산 일치' : fleetDailyPublicReconciliation.unavailableCount > 0 ? '미보고 포함 · 검산 불가' : '최신 상세 행 확인 필요', detail: `전일 합계 ${formatFleetDailyDelta(fleetDailyPublicDeltas.totalDailyMt)} (MT) · 이슈 ${fleetDailyPublicReconciliation.issueCount}건`, tone: fleetDailyPublicReconciliation.valid ? 'primary' : 'danger' },
+  { icon: AlertTriangle, level: '검산', title: fleetDailyPublicReconciliation.valid ? '최신 상세 행 검산 일치' : fleetDailyPublicReconciliation.unavailableCount > 0 ? '미보고 포함 · 검산 불가' : '최신 상세 행 확인 필요', detail: `${fleetDailyDeltaLabel} 합계 ${formatFleetDailyDelta(fleetDailyPublicDeltas.totalDailyMt)} (MT) · 이슈 ${fleetDailyPublicReconciliation.issueCount}건`, tone: fleetDailyPublicReconciliation.valid ? 'primary' : 'danger' },
 ] as const;
 
 function accessAction(code: FleetDailyDetailErrorCode) {
@@ -145,7 +147,7 @@ export default function FleetCommandCenter({ heroOnly = false }: { heroOnly?: bo
       <FleetHeroCommand />
       <PillTabs className={s.taskTabs} tabs={taskTabs.map((tab) => ({ key: tab.id, label: tab.label }))} activeKey={activeTab} onChange={(key) => setActiveTab(key as FleetTaskTab)} ariaLabel="선단 업무 보기" tabIdPrefix="fleet-tab" panelIdPrefix="fleet-panel" />
       <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}><FleetDailyOperations detailState={detailState} /></section>
-      <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}><VesselDetailBoundary state={detailState} onRetry={() => { setDetailState({ status: 'loading' }); setRetryCount((value) => value + 1); }} /></section>
+      <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}><VesselDetailBoundary state={detailState} onRetry={() => { setDetailState({ status: 'loading' }); setRetryCount((value) => value + 1); }} /><FleetPortSchedule /></section>
       <section id="fleet-panel-performance" role="tabpanel" aria-labelledby="fleet-tab-performance" className={s.tabPanel} hidden={activeTab !== 'performance'}><FleetHeroKPI mode="weekly" /><FleetChartSection /><FleetDetailPanel /></section>
       <section id="fleet-panel-access" role="tabpanel" aria-labelledby="fleet-tab-access" className={s.tabPanel} hidden={activeTab !== 'access'}><div className={s.accessAlert}><AlertTriangle size={18} aria-hidden="true" /><div><strong>국적선과 키리바시 선박을 분리 집계</strong><p>국적선 6척과 키리바시 선박 4척은 별도 모집단입니다. 음수 잔여는 원문을 그대로 표시했습니다.</p></div></div><VesselVdsStatus /><VdsStrategyMatrix /><PnaAccessFeeWidgets /></section>
     </div>

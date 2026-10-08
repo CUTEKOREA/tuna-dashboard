@@ -51,8 +51,8 @@ describe('GMTS dashboard decision surface', () => {
     expect(html).toContain('데이터 품질');
     expect(html).toContain('2026년 1~9월');
     expect(html).toContain('79,312');
-    expect(html).toContain('$2,025');
-    expect(html).toContain('$2,140');
+    expect(html).toContain('$2,300');
+    expect(html).toContain('$2,400');
     expect(html).toContain('원문 분모 미기재');
     expect(html).toContain('원문 단위 미기재');
     expect(html).not.toContain('$/MT');
@@ -167,17 +167,17 @@ describe('GMTS dashboard decision surface', () => {
     const html = renderDashboard('port');
 
     expect(html).toContain('하역 중');
-    // 9/23 판은 하역 중이 0척이고 FRANSESCA LT 가 종료 레인으로 넘어갔다
-    expect(html).toContain('FRANSESCA LT');
+    // 10/7 판은 VOLTA VICTORY 가 9/30 부터 하역 중이다
+    expect(html).toContain('VOLTA VICTORY');
     expect(html).toContain('WEBO 307');
   });
 
-  it('renders all 36 source reports and the revision and capacity warnings', () => {
+  it('renders all 38 source reports and the revision and capacity warnings', () => {
     const html = renderDashboard('quality');
 
-    expect(html.match(/data-source-report=/g)).toHaveLength(36);
-    expect(html).toContain('36건');
-    expect(html).toContain('44쪽');
+    expect(html.match(/data-source-report=/g)).toHaveLength(38);
+    expect(html).toContain('38건');
+    expect(html).toContain('46쪽');
     expect(html).toContain('원문에서 확인되지 않은 값은 화면에서도 확정하지 않음');
     expect(html).toContain('6,220');
     expect(html).toContain('11,968');

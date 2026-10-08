@@ -1,3 +1,188 @@
+> 🚀 **2026-10-08 15:52 KST — #1387 `/logistics` TTA 40주차 배포** [CC]:
+> - merge `6491df27`, App Quality Gate 통과, Vercel production READY. 시크릿 변경 없음.
+> - 라이브 실측(Aside 로그인 세션·캐시 우회, 4탭 전부): 「40주차」·HUA FU 107·8,255·「10/8까지」·「9월 반입은 26,269MT」, 옛 값(6,705·「09월」) 잔존 0. 배포 후 error log 확인.
+
+> ✅ **2026-10-08 15:39 KST — `/logistics` TTA 운반선 주간동향 40주차(10/2~10/8) 반영** [CC]:
+> - 원자료: `Reefer ship movement for week 40th.xlsx` SHA-256 `75e8882958d585c33e75b4fcf8752a65de45b1683550a525773db222b5e15087`(13,526 B, `unzip -t` 정상, AJ2=40, A1 「02/10/26 - 08/10/26」). `sync_reefer_weekly.py` → `data/reefer_week40.json`(git add -f).
+> - 2척 **8,255 MT** — CHERRY STAR 3,415(9/28, 39주와 배분 동일) · HUA FU 107 4,840(10/4, 신규). RYOMA 는 빠졌다. 행 합 = 원문 TOTAL 열, OTHER(부두 33·11B) 제외. 방콕 주간보고 10/7 정정본 하역 표의 두 척 물량과 같다.
+> - 월별 반입: 10월이 처음 열려 HUA FU 107 1척 4,840 MT. 기준일(10/8)이 말일 전이라 `reeferMonthlyIntake.inProgressMonth` 를 두고, 카드 SIT 비교는 다 찬 달(9월 26,269 MT·7척)로, 차트는 「10월 / 10/8까지」로 표시. 진행 중인 달을 넣으면 「직전 달 대비 −21,429MT」 급감 문장이 나왔다. 월 라벨 「09월」 → 「9월」.
+> - 테스트 `reefer-week39-data` → `reefer-week40-data`, `reefer-monthly-intake` 갱신. `npm run verify` 통과: Vitest 213 files / **1,812** · API cache 161/161 · 정적 118 · bundle 33. 로컬 production `/logistics` 4탭 1440·390px 200·overflow 0·error 0.
+> - 상태: 브랜치 `data/reefer-week40`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 🚀 **2026-10-08 15:23 KST — #1382 `/cosmo` 40주차 · #1383 `/fleet` 261008 배포** [CC]:
+> - #1382 `d14131bd` → #1383 `992c6f19`, 둘 다 App Quality Gate 통과 후 squash. 병합 배포 READY 뒤 `swap_fleet_detail_secret.sh`(canonical `216ae7aa…` 일치) → 재배포 `dpl_25gtCb1zPa5Ckur34hjmE6PZw4ws` READY · leedonggun.co.kr 연결.
+> - 라이브 실측(Aside 로그인 세션·캐시 우회): `/fleet` 「2026-10-08 보고 · 2026-10-07 조업 기준」·일간 313·연간 96,890.8·운반선 11,434.3·태평양 1,943·대서양 780, 보호 패널 경고 없음, 입항 일정표 10행. `/cosmo` 「40주차 업무 브리핑 (09-28 ~ 10-04)」·GRA 세무조사·파리 SIAL, 데이터 품질 탭 YF/BE −$701,138 이슈 행.
+> - 배포 후 error log(30분) 확인.
+
+> ✅ **2026-10-08 14:58 KST — `/fleet` 해양수산본부 일일업무보고 261008(목) 반영** [CC]:
+> - 원자료: `해양수산본부 일일업무보고-261008 (목).docx` SHA-256 `7686f906daa042e64ca0fa1452c9d9d0a8915cfd8173ca083ee4853f0b7d0297`(167,652 B, `unzip -t` 정상). 증분 동기화 170건.
+> - 머리글 연속성: 태평양 1,710 + 233 = **1,943**(연간 56,322.8 → **56,555.8**), 대서양 700 + 80 = **780**(40,255 → **40,335**). 운반선 적재 10,204.3 → **11,434.3**(+1,230)·잔여 4,406 → **3,176**(−1,230). 행 합 대조 전부 일치, 품질 카운트 변화 없음(검산 676 → 680회). 「전일 대비」 −12 MT.
+> - MOAMARI 비고는 10/7 과 같다(상가수리 10/4~10/10, 10/11 출항) — `asOf` 2026-10-08, 보고일 170 / 달력 265일, 일평균 19.79 MT, 조업손실 환산 42~55보고일(손실량 840~1,080 MT 그대로).
+> - 상세 DTO `detailSha256` `216ae7aa…`(compat `50b886c9…`) → 배포 시 `swap_fleet_detail_secret.sh` 필요(`--check` 일치).
+> - `npm run verify` 통과: Vitest 213 files / **1,812** · API cache 161/161 · 정적 118 · fleet leak · bundle 33. 로컬 production `/fleet` 1440·390px 200·overflow 0·error 0.
+> - 상태: 브랜치 `data/fleet-daily-261008`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> ✅ **2026-10-08 14:50 KST — `/cosmo` 주간보고 40주차(9/28~10/4) 반영** [CC]:
+> - 원자료: `COSMO 주간보고 (40주차)-첨부파일.xlsx` SHA-256 `f8fa9a80c29e570fd53758363cfe76e2b84db654a58ca7221e13fa4af874c5d7`(72,186 B), `2026.10.07_COSMO 주간보고 (40주차).docx` SHA-256 `c63587a802ee7bcf193dbaf1081ff0484a8277aca94ad81dd7542d395865a497`(70,820 B), 둘 다 `unzip -t` 정상. `sync_cosmo_weekly.py` → 40주(결측 없음), 견적 168건. 수주 6 FCL·$533,935, 잔량 307 FCL·$21,313,260, 주간 판매 $1,888,718, CBU 466.6 MT(수율 40.11%), 재고 $12,795,098, 현금 $6,770,629.
+> - **검산 1건 실패(지우지 않음)**: 재고 이월 −$701,138.36 = 원어 YF/BE 한 행. 수량 171.439 MT 그대로인데 금액 $1,013,157 → $312,019. 37주에 수량이 675.011 → 205.563 MT 로 469 MT 줄 때 금액 $1,056,019 가 그대로 넘어와 단가가 톤당 $5,137~9,394 로 부풀었고 40주 기초에서 톤당 약 $1,820 으로 정리됐다. 품질 탭 이슈 표에 한 행 추가. 37~39주 원어·재고 합계 금액은 그만큼 과대.
+> - docx 서술 계약(`cosmo-weekly-report.ts`): 2027년 1분기 오퍼 준비·바이어 신중, 에콰도르 원어 $2,350/MT 인데 제품 오퍼가 인하, 3분기 결산·2025 GRA 세무조사, 출고 18컨·CY 38컨, 차주 과장급 파리 SIAL 출장(실명 제외). 심사·하역은 없는 주라 null 유지.
+> - **docx 원문 오기(사용자 보고, 값 미반영)**: 주간 매출 「189만불 = 수출 267만 + 내수 1만」 — 원장은 수출 $1,879,767 + 내수 $8,951. 수출 267만은 39주 값으로 보인다.
+> - 수정 하나: `fbuLedgerComparison()` 이 최신 주를 골라 40주(10/4까지)가 9월 월간보고(9/30까지)와 대조됐다 — 보고 마감일 이전에 끝난 마지막 주(39주)를 고르게 했다.
+> - 테스트 `cosmo-weekly-report`·`cosmo-production-q3` 갱신, `cosmo-fbu-report` 는 수정 후 그대로 GREEN. `npm run verify` 통과: Vitest 213 files / **1,807** · API cache 161/161 · 정적 118 · bundle 33. 로컬 production `/cosmo` 1440·390px 200·overflow 0·error 0, 브리핑 헤딩 「40주차 업무 브리핑 (09-28 ~ 10-04)」.
+> - 상태: 브랜치 `data/cosmo-week40`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 🚀 **2026-10-08 13:29 KST — #1376 2026-10-07 참치 데일리 브리핑 /market 배포** [CC/tuna-dashboard-publisher]:
+> - 게이트: `state/audit-2026-10-07.txt` = AUDIT_PASS(제목 수치 승격·입간판 정합 후 재감사 P0=0 P1=0), `state/humanize-2026-10-07.txt` = ADOPTED(blocks=45 changed=19 rate=0.5%). 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(71+/58-), 날짜 2026-10-07 · 다이제스트 6 · 기사 6.
+> - squash 병합 `fb02d58d`(PR #1376, 직전은 10/06 `69e21bb7`). origin/main 대조는 내용 해시로 — SHA-256 `df896a0a…f3f695` 로컬=origin/main 일치.
+> - 라이브 실측(Aside, 로그인 세션): `/market` 「기준일 2026.10.07 · 기사 6건 · 파이프라인 동기」, 리드 「인도네시아, 선원 모집업체에 등록 압박」. 「오늘의 수치」 = **50% / Alimentos Prosalud, 2029년까지 매출** — 다이제스트 2행의 50%가 위젯까지 올라온 것을 화면으로 확인. 첫 확인(배포 직후)엔 아직 10.06 이 떠 있었고 약 2분 뒤 재확인에서 10.07 로 바뀌었다.
+> - ⚠ 이번에도 `gh pr merge --delete-branch` 가 «To finish cleanup … `git worktree remove /Users/idong-geon/my-project/silla-tuna-daily/dash`» 를 안내했다. **따르지 않았다.** 정리는 `git switch -c sync/2026-10-07 origin/main` 만.
+
+> 🚀 **2026-10-07 18:20 KST — #1366 `/fleet` 주간 실적 10월 첫째주 배포** [CC]:
+> - merge `00aa479d`, App Quality Gate 통과, Vercel production READY. 선단 상세 시크릿 교체 불필요(일일보고 무변경).
+> - 라이브 실측(Aside 로그인 세션·캐시 우회): 실적 분석 탭 「26.09.28~10.04」·2,425·1,355·55,968·「N/SUN(김형주) 640t」·「주간은 9/28~9/30을 포함하고 월간은 10월분이라 … 그 3일치입니다」, 옛 문장(「월간은 9월분」·「그 하루치」·5,302) 잔존 0, 보호 패널 경고 없음.
+
+> ✅ **2026-10-07 18:11 KST — `/fleet` 주간 실적 현황 10월 첫째주(9/28~10/4) 반영** [CC]:
+> - 원자료: 사용자 첨부 캡처 4장(주간 실적 요약·선장 주간 실적·선박별 주간 그래프·월간 어획량 스택·현어기 선장 누계). 주간 국적 **1,550** · 합작 **875** · 계 **2,425**, 월간(10월분) 915 · 440 · **1,355**, 연간 32,691 · 23,277 · **55,968** MT. 선장 주간 10행(1위 N/SUN 640t)·현어기 누계 10행 전부 갱신, 평균 19.5.
+> - 검산: 주간 행 합 2,425, 국적·합작 분할(국적 VDS 6척) 1,550·875 일치, 일평균 = 주간 ÷ 7, 현어기 일어획 = 누계 ÷ 어기일수(반올림 폭 안), 지난주 누계 + 이번 주 어획 = 이번 주 누계(10척 모두, 어기일수 +7). 월간 스택 그래프의 선박별 연간 라벨 합도 국적 32,691 · 합작 23,277 로 인쇄 연간과 맞는다. 월별 칸은 여전히 이미지에서 다 못 읽어 `monthlySeriesAsOf` 2026-08-30 유지.
+> - 문장 결함 수정: 주간 창이 월을 걸칠 때 「월간은 9월분 · 그 하루치」가 손으로 박혀 있었다. 이번 주는 월간이 10월분이고 차이 1,070t 은 9/28~9/30 **사흘치**다 — `monthBoundaryDay` 에 `endDate`·`days`·`month` 를 계산해 「주간은 9/28~9/30을 포함하고 월간은 10월분이라, 차이 1,070t(국적 635t, 합작 435t)이 그 3일치입니다」로 낸다.
+> - `npm run verify` 통과: Vitest 212 files / **1,798** · API cache 161/161 · 정적 118 · fleet leak · bundle 33. 선단 상세 시크릿은 바뀌지 않는다(일일보고 무변경).
+> - 상태: 브랜치 `data/fleet-weekly-catch-1004` — 사용자 「완료 시 배포까지」 지시로 이어서 배포.
+
+> 🚀 **2026-10-07 17:07 KST — #1359 입항 일정표 · #1360 방콕 10/7 · #1362 선단 261007 · #1364 GMTS 9/30·10/7 배포** [CC]:
+> - 순서: `FLEET_PORT_SCHEDULE_JSON` 프로덕션 등록(병합 전, `set_fleet_port_schedule_secret.sh`) → #1359 `b5403e82` → #1360 `a97c656e` → #1362 `55fcce98` → GMTS 는 선단 브랜치 위에 쌓였던 커밋을 최신 main 에 cherry-pick 해 #1364 `a4fa3dd3`. 네 PR 모두 App Quality Gate 통과 후 squash.
+> - 마지막 병합 배포 READY 뒤 `swap_fleet_detail_secret.sh`(canonical `50b886c9…` 일치) → 재배포 `dpl_6kWhiXbEZqbt9jBCmYKiEciz7JJA` READY · leedonggun.co.kr 연결.
+> - 라이브 실측(Aside 로그인 세션·캐시 우회): `/fleet` 「2026-10-07 보고 · 2026-10-06 조업 기준」·「전일 대비」·보호 패널 경고 없음, 선박·수역 탭 「입항 일정 · 선원 교대 · 수리 계획」 10행(실명 없음). `/bangkok-office` 2,360·81,700·368,039·295주, `/logistics` 「10월 방콕 반입 1척」·2,360, `/gmts` 2026.10.07·$2,300·$2,400·38건.
+> - 배포 후 error log(30분): `/api/mgo` AuthRefreshDiscardedError 1건(기존 반복분, 이번 변경과 무관). 그 외 0.
+
+> ✅ **2026-10-07 15:50 KST — `/gmts` 주간보고 9/30·10/7 반영(37·38주차)** [CC]:
+> - 원자료: `GMTS Weekly Report 20260930.pdf` SHA-256 `2ca4b9f669a0148db5dedc810ddda4f9a25000fddefa0dc39107ca0fc575c559`(475,012 B, 1쪽, 사용자가 오늘 올림 — 그 전엔 주간 연속성 게이트가 빌드를 막았다), `…20261007.pdf` SHA-256 `576982fd6425066a2a76680a5ac1d7593e82b1ab5bfa3738b569e1be9684d4ff`(472,867 B, 1쪽). `build_gmts_dashboard.py` → 36 → **38건**, 46쪽, coverageEnd 2026-10-07.
+> - 10/7: 하역 중 **1척**(VOLTA VICTORY 9/30 입항·하역 시작, 총화물 1,253.728 · 양하 97.360 MT), 종료 0, 입항 예정 **3척**(WEBO 307 TBA·10/12, IZAR ARGIA 4,191.090·10/7, SHIN FUJI 2,252.708·10/6 AMEND). 어가 non-GSP **$2,300**·GSP **$2,400**(9/23 $2,025·$2,140). 캐너리 합계는 9/23 판과 숫자가 같다(895/1,095·17,550/40,600) — Celebes 122% 용량 초과 플래그가 두 판에 하나씩 늘어 품질 플래그 48 → 50.
+> - 원문 불일치(인쇄값 유지, 사용자 보고): VOLTA VICTORY 잔량 625.820 ≠ 총화물 − 양하 1,156.368 · 총화물 9/30 1,298.987 → 10/7 1,253.728 · SHIN FUJI 9/30 3,252.708 → 10/7 2,252.708(1,000 MT 차이).
+> - 문장 수정 둘: 배정량 null 일 때 「미확정로」 → 「미확정으로」, 입항 예정 합계가 일부만 확정일 때 「(N척 화물 미확정 제외)」를 붙인다(10/7 은 WEBO 307 TBA 라 6,443.798 MT 는 2척분).
+> - 테스트 `gmts-dashboard-data`·`gmts-dashboard-render`·`gmts-presentation` 갱신·GREEN. `npm run verify` 통과: Vitest 211 files / **1,791** · API cache 160/160 · 정적 118 · bundle 33. 로컬 production `/gmts` 1440·390px 200·overflow 0·error 0.
+> - **브랜치를 `data/fleet-daily-261007` 위에 쌓았다**(`data/gmts-weekly-1007-stacked`) — 선단 상세 원자료가 git 밖이라 169건 기준이다. 선단 브랜치 → 이 브랜치 순으로 병합. **프로덕션 미배포**.
+
+> ✅ **2026-10-07 10:58 KST — `/fleet` 해양수산본부 일일업무보고 261007(수) 반영** [CC]:
+> - 원자료: `해양수산본부 일일업무보고-261007 (수).docx` SHA-256 `78172e080e1ead07940858910022ae31ebce4975b79c3263bd860e511ee39c92`(167,479 B, `unzip -t` 정상). `sync_fleet_daily_reports.py --latest-report` 증분(169건). 원본 파일명 그대로 넘겨야 한다 — 이름을 바꾼 사본은 「일일업무보고가 아닙니다」로 거부된다.
+> - 머리글 연속성: 태평양 1,455 + 255 = **1,710**(연간 56,067.8 → **56,322.8**), 대서양 630 + 70 = **700**(40,185 → **40,255**). 운반선 적재 10,204.3 유지·잔여 4,356 → **4,406**. 행 합 대조 4항목 전부 일치, 품질 카운트 변화 없음(검산 672 → 676회).
+> - 비교 라벨은 10/6 다음 날이라 「전일 대비」(+95 MT). MOAMARI 비고는 원문이 10/6 과 같다(상가수리 10/4~10/10, 10/11 출항) — `asOf` 2026-10-07, 보고일 169 / 달력 264일, 일평균 3,365 ÷ 169 = 19.91 MT 로 재계산, 조업손실 범위 840~1,080 MT 는 그대로.
+> - 상세 DTO `detailSha256` `50b886c9…` → 배포 시 `swap_fleet_detail_secret.sh` 필요(`--check` 일치).
+> - `npm run verify` 통과: Vitest 211 files / **1,791** · API cache 160/160 · 정적 118 · fleet leak · bundle 33. 로컬 production `/fleet` 1440·390px 200·overflow 0·error 0, 「직전 보고(10/2) 대비」·「-625」 잔존 0.
+> - 상태: 브랜치 `data/fleet-daily-261007`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> ✅ **2026-10-07 10:46 KST — 방콕 주간보고 10/7판(정정본) `/bangkok-office`·`/logistics` 반영 + 마스터 엑셀 갱신** [CC]:
+> - 원자료: `20261007 Bangkok Office Weekly Report.docx`(정정본) SHA-256 `d83616a537eb08be465a6f0c762bfba205e85de2a57d9c3d086dafa325f319a2`. 원문(`12d11928…`)은 같은 폴더 `…backup_before_fix.docx`.
+> - 원문이 또 수정 전 서식 위에 작성돼 정정분이 되돌아가 있었다(2023 합계 627,248·218척 = 2022 소계, 2025 FCF 214,135 등, RYOMA 3,490, SHIN FUJI 83.480, 7. Other). 신규 오류: 방콕 캐너리 SUM(1,840·81,200 → 행 합 1,900·81,700, 가동률 46%·43일), SEA VALUE·GOLDEN PRIZE·R.S CANNERY 가동률/일수가 지난주 값, 본문 2,110 t/d·44% → 2,170·43%. 사용자 지시로 문서에서 고쳤고, RYOMA(TTA 39주차도 3,290)·SHIN FUJI 는 지난 결정대로 다시 맞췄다. 어가 $2,360 은 사용자 지시로 유지(어튜나 10/2 $2,300 과 다름).
+> - 마스터 `데이터 정리.xlsx`: 백업 `…backup_20261007.xlsx`. 차트 12개 보존 위해 시트 XML 셀만 수정(+`fullCalcOnLoad`). 원어 반입량 9월 ITOCHU 3,415·10월 FCF 4,840(9월 직거래 11,747 유지), 태국캐너리 9월 5주차(9/30)·10월 1주차(10/7) 생산·재고, 원어재고·생산량 스냅샷 17개 공장. 월 행 추가·차트 범위 이동은 기존 관행대로 월말에.
+> - `/bangkok-office`: `docs/bangkok_week_20261007.json` → `append_bangkok_week.py`(자가검증 7항목 일치) → `sync_bangkok_report.sh`. 종합분석 HTML 백업 `…backup_20261007.html`. 주차 294 → **295**, 재고 **81,700MT**·**43일**, 10월 **1척 4,840MT**, 2026 누계 **368,039MT**, 어가 **$2,360**. 고반려 4건·301.4MT(넷째 행은 「All rejection 1.99 by negotiation」만 있어 물량 0). 어가가 바뀌어 `forecast_skj_monthly.py` 로 계절 기준선 재생성: 10→1월 $2,360 → **$2,331**(밴드 1,841~2,923).
+> - `/logistics`: 계약을 10/7판으로. `latestMonth` 를 마지막 행에서 고르게, 고반려 `note` 필드 추가(어종 처리량 없는 행). 손으로 박힌 문장 3곳 파생화 — 관제판 「SPA 창고 포화」(이번 주 SPA 88%) → 점유율 최고 캐너리·비율, 원가 시나리오 「전제보다 $200 높습니다」·ValueChainMarginIndex 「−200 낮습니다」(부호 오류) → 차이·방향 계산.
+> - `npm run verify` 통과: ESLint 0 errors(warnings 30) · Vitest **211 files / 1,791** · API cache 160/160 · 정적 118 · fleet leak · bundle 33. 로컬 production `/bangkok-office`·`/logistics` 1440·390px 200·overflow 0·error 0, 옛 값(87,300·363,199·29,901·11,585·SPA 창고 포화·9→12월) 잔존 0. (다른 브랜치 빌드의 `.next/types` 잔재로 typecheck 가 한 번 깨져 캐시만 지웠다.)
+> - 상태: 브랜치 `data/bangkok-weekly-1007`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> ✅ **2026-10-07 10:06 KST — `/fleet` 선박·수역 탭에 「입항 일정 · 선원 교대 · 수리 계획」 추가 (보호 경로)** [CC]:
+> - 원자료: 사용자 첨부 캡처 「선박 입항일정 및 선원 교대/선박 수리 계획」 SHA-256 `f8c68848…a70a50e`. 머리글 「2027. 10. 7. (화)」는 연도 오기로 보고 기준일 2026-10-07 로 둔다(원문 표기는 `printedDate` 에 보존). 10척 — 선적량·입항지·ETA/ETD·옵서버 교체·선원 교대·수리 계획. MARI(=MOAMARI) 젠산 10/2~10/11 도킹은 일일보고와 일치.
+> - ⚠ 저장소가 **공개**라 일정 값은 git 에 두지 않는다 — 선박 상세와 같은 구조: 원본 `artifacts/fleet-port-schedule.json`(gitignore 추가) → 프로덕션 env `FLEET_PORT_SCHEDULE_JSON` → `app/api/fleet/schedule`(authorizeFleetRequest, private no-store) → `components/FleetPortSchedule.tsx`(클라이언트 fetch). 정적 번들에 일정 문자열 0 확인.
+> - 실명 제외: 선원 교대는 **직책만**(예: 승선 2기사 / 하선 3기사), 국적 표기·이름은 버렸다. 계약(`lib/contracts/fleet-port-schedule.ts`)이 교대 항목을 한글 직책 정규식으로만 통과시켜 영문 이름이 섞이면 거부한다(테스트). 수리 계획의 사람 이름·직급도 「선박팀 부장」「협력사 기술자」로.
+> - 배포 절차: `bash scripts/set_fleet_port_schedule_secret.sh` 로 **병합 전** env 등록(검사 → 등록) → 병합 배포가 바로 읽는다. 일정만 바꿀 땐 `--redeploy`.
+> - 테스트 `fleet-schedule-route.test.ts` 7건(401/403 비로딩 · 200 · 503 · 실명 거부 · 표 렌더 · 로컬 원본 계약 통과). `npm run verify` 통과: Vitest 1,798/1,798 · API cache 161/161 · build 정적 118 · fleet client leak · bundle 33 · feature-map 갱신. 로컬은 인증 설정이 없어 보호 경로가 닫힌 상태(「불러오지 못했습니다」)로 렌더 — 라이브에서 표 확인 필요.
+> - 상태: 브랜치 `feat/fleet-port-schedule-1007`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 🚀 **2026-10-07 08:40 KST — #1357 2026-10-06 참치 데일리 브리핑 /market 배포** [CC]:
+> - 게이트: `state/audit-2026-10-06.txt` = AUDIT_PASS(윤문 채택·재감사 통과). 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(58+/60-), 날짜 2026-10-06 · 다이제스트 5 · 기사 5.
+> - squash 병합 `69e21bb7`(PR #1357). origin/main 대조는 커밋 메시지가 아니라 내용 해시로 — SHA-256 `ad6276e9…36827c` 로컬=origin/main 일치.
+> - 라이브 실측(Aside, 로그인 세션): `/market` 「기준일 2026.10.06 · 기사 5건 · 파이프라인 동기」, 리드 「은행 문제로 미국 캔참치 합의금 지급 지연」. 「오늘의 수치」 = **16% / 무역협상 속 태국의 EU 캔참치 수출 상반기** — 다이제스트 5행 승격분이 위젯까지 올라온 것을 확인.
+> - ⚠ `gh pr merge --delete-branch` 가 «To finish cleanup … `git worktree remove /Users/idong-geon/my-project/silla-tuna-daily/dash`» 를 안내한다. **따르지 마라** — 10/05 에 워크트리가 사라진 사고의 경로로 보인다. 원격 병합은 이미 끝나 있으니 로컬은 `git switch -c sync/<날짜> origin/main` 으로만 정리한다(이번엔 `sync/2026-10-06` 이 이미 있어 `sync/2026-10-06b`).
+
+> 🚀 **2026-10-07 07:58 KST — #1354 파노피 주간동향 20261006 배포** [CC]:
+> - CI 통과(종료 코드 0) 후 squash 병합 `8dd15d5f`. 자동 배포 Production `dpl_APswVaE6z6XxgJRrtToApsxeUKrK` READY, alias `https://leedonggun.co.kr`. 선단 데이터 변경 없음 → 시크릿 교체 없음.
+> - 라이브 실측(Aside): `/panofi` 「42주 (2025-12-23~2026-10-06)」, 「10월 어가는 두 채널 모두 협의 중」, 「650천불 줄었다(회수)」, 세네갈 표 「주간동향 10/6 · 톤」·ALBONIGA, 옛 «비교할 수 없다» 문장 0.
+> - 배포 후 production error log(15분) 0건.
+
+> ✅ **2026-10-07 07:34 KST — `/panofi` 주간동향 20261006 반영 + 테마 격차·미수금·세네갈 표 문장 정정** [CC]:
+> - 원자료: `PANOFI 주간동향20261006.docx` SHA-256 `76a9807c5c05264ccd673b68403e0277ff9979d2e11c9af945e31e966b2440b4`, unzip OK. `scripts/extract_panofi.py` 로 42주차(2025-12-23~2026-10-06) 재생성 — 기존 41주 변경 0, 새 주차 값 원문 표와 전부 일치(선박 P/PATH·P/COMM 아비장 입항 · 수온 · 세네갈 4행 · 어가 · 환율 11.77/585 · 가공 · 미수금 · 유가 1,325/1,678/1,342/1,535).
+> - 어가: 코스모 $1,850·PFC $1,900(9월) 그대로 「→ 10월 어가 협의 중」, SCODI 10월 $1,800. ⚠ 협의 플래그가 비교보다 먼저 걸려 «코스모는 9월 값을 그대로 둔 채 협의 중이라 비교할 수 없다»는 틀린 문장이 나왔다 — 같은 달 값이 둘 다 있으면 비교(격차 $50 PFC 우위)를 먼저 쓰고 «10월 어가는 두 채널 모두 협의 중»을 덧붙이게 고쳤다(`nextMonthKo`).
+> - 미수금: 합계 $5,329,046 → **$4,679,473**(ETS BADARA −273천불 · SDMG −376천불, INTER OCEAN 그대로). 카드 문장이 «다시 늘었다»에서 멈춰 이번 주 회수를 말하지 않던 것을 `receivableNow.weekDeltaKusd` 로 «직전 주(9/29) 대비 650천불 줄었다(회수)» 덧붙임.
+> - 세네갈 선단 표: 주말 메일(9/20)에 고정돼 있었다 — 메일과 주간동향 중 최신인 쪽을 쓰게 바꿔 10/6 주간동향(COSMOS KIM · WESTERN KIM 790톤 출항 · ALBONIGA 450톤 · ORANGE ICE)이 나온다. 「주간동향과 어긋남」 대조는 그대로.
+> - 테스트 `panofi-dashboard` 7건 · `panofi-atlantic-mail` 1건 갱신(+미수금 주간 증감·협의 문장 가드). `npm run verify` 통과: Vitest 1,791/1,791 · build 정적 118 · bundle 33. 브라우저(로컬 production 1440·390) 9개 탭 overflow 0 · error 0 · 옛 문장 0.
+> - 상태: 브랜치 `data/panofi-weekly-1006`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 🚀 **2026-10-06 15:06 KST — #1351 시장 동향 가다랑어 방콕 해설(Atuna 한 달 기사 기반) 배포** [CC]:
+> - CI 통과(종료 코드 0) 후 squash 병합 `a3c2b156`. 자동 배포 Production `dpl_4jVZ2nefnEN28Ym2awVqPY41ctQk` READY, alias `https://leedonggun.co.kr`.
+> - 라이브 실측(Aside): `/market` 해설 상자 4항목(가격 흐름·공급 부족·캐너리 대응·앞으로 볼 것) 표시, 출처 「Atuna 기사 10건 (9/9·…·10/2)」, 출장보고 문구 0.
+> - 배포 후 production error log(15분) 0건.
+
+> ✅ **2026-10-06 13:53 KST — `/market` 상단 「가다랑어 방콕」 해설을 Atuna 최근 한 달 기사 기반으로 교체** [CC]:
+> - 요청: 출장보고(9/16)·위원회 자료(9/21) 기반이던 해설을 Atuna 최근 1달 기사로 다시 분석.
+> - 원자료: 데일리 브리핑이 받아 둔 Atuna 영문 원문 `~/silla-tuna-daily/sources/2026-09-07~10-05.txt` 21일치(기사 115건) → 가다랑어 가격·수급 관련 23건 선별 → 근거 기사 10건(8일치, 일자 파일 SHA-256 계약에 기록).
+> - 집필 Codex(읽기 전용, JSON) → 메인이 원문 대조로 수정: TTIA 발언 오역(«소비자가 인상 어렵다» → 원문 «높은 운영비가 소비자에게 닿지 않게 하는 것이 최우선»), 영문 단위(per ton·percent) 한글화, 관련 약한 엘살바도르 항목을 세이셸 CFR 비교·에콰도르 양륙 감소로 교체.
+> - 새 계약 `skjAtunaMonthContext`(`lib/data/skj-price-context.ts`): 4항목(가격 흐름 · 공급 부족 · 캐너리 대응 · 앞으로 볼 것) + 공급 메모 3건, 문장마다 근거 기사 날짜. 핵심: 9/9 $2,100 → 9/15 $2,200 → 10/2 $2,300, 연초 대비 53%, 역대 고점 $2,350 에 $50 · FAD 금어기 후에도 WCPO 어획 부진 + 9~11월 강한 엘니뇨 · 싱가포르 MGO $1,448(+14%/주) · JP모건 Thai Union 이익 전망 17~19% 하향 · 선주 호가 +$100~150 미체결 · 독자 설문 «고점 도달» 4%.
+> - 화면: `HeroMarketCommand` 해설·출처 줄(「Atuna 기사 10건 (9/9·…·10/2)」)을 새 계약으로. 방콕 사무소 탭은 출장보고 전제(`skjPriceContext`)를 그대로 쓴다.
+> - 테스트 `skj-atuna-month-context.test.ts` 5건(RED → GREEN) + `market-price-context` 상단 렌더 기대값 갱신. `npm run verify` 통과: Vitest 1,791/1,791 · build 정적 118 · bundle 33. 브라우저(로컬 production 1440·390) overflow 0 · error 0.
+> - 상태: 브랜치 `data/skj-context-atuna-1006`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 🚀 **2026-10-06 13:00 KST — #1349 Atuna 방콕 10/2 $2,300 배포** [CC]:
+> - CI 통과(종료 코드 0) 후 squash 병합 `e7f1eaa5`. 자동 배포 Production `dpl_6j9Y67rTwmj6aekfxQ5F2nmc8ccs` READY, alias `https://leedonggun.co.kr`. 선단 데이터 변경 없음 → 시크릿 교체 없음.
+> - 라이브 실측(Aside): `/market` 「방콕 현물가 기준일 2026.10.02 · 직전 고시 대비 +4.5%」, 「가다랑어 방콕 $2,300 — 2017.10 이후 처음(9년 만)」, 상단 시세 띠 10.02 표시.
+> - 배포 후 production error log(15분) 0건.
+
+> ✅ **2026-10-06 12:46 KST — `/market` Atuna 어가 대조 · 가다랑어 방콕 10/2 $2,300 반영** [CC]:
+> - 원자료: 로그인된 Aside 세션으로 Atuna 가격 페이지 8종의 차트 CSV(`www.atuna.com/wp-content/uploads/*.csv`, 같은 도메인으로 받아야 CORS 통과)를 받아 대조. 본문 SHA-256 앞 8자리: skjbkk `b6e1b205`(9/20 `536233cc` → 변경) · skjmnt `4cf0d932` · skjabj `84c18313` · skjvig `e70fe650` · skjsey `51f8ec2d` · yfvig `cc457062` · yfabj `9d528086` · yfsey `5f586cd5` — **방콕 외 7종은 9/20 과 해시가 같아 변동 없음.**
+> - 방콕 2024~2026 행 전수 대조: 기존 값 불일치 0, 빠진 값 1건 **10/2 $2,300(+4.55%)** 추가.
+> - 화면은 계열 파생이라 자동 반영: 히어로 「방콕 현물가 기준일 2026.10.02 · 직전 고시 대비 +4.5%」, 헤드라인 「$2,300 — 2017.10 이후 처음(9년 만)」(직전 이상 고시 2017-10-11 $2,350). 라벨이 「9년 0개월 만」으로 나오던 것을 개월 0 이면 생략하도록 고쳤다.
+> - 참고: 방콕 맥락 블록의 「10월 $2,200 수용」은 9/16 출장보고의 전제 문장(출처 날짜 표기)이라 그대로 둔다 — 10/2 고시는 그보다 $100 높다.
+> - 테스트 `atuna-prices-data`·`market-price-context` 갱신. `npm run verify` 통과: Vitest 1,786/1,786 · build 정적 118 · bundle 33. 브라우저(로컬 production 1440·390) overflow 0 · error 0.
+> - 상태: 브랜치 `data/atuna-prices-1006`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 🚀 **2026-10-06 11:46 KST — #1343 코스모 8월 docx · #1344 VDS 10-05·FFA 9월 · #1346 선단 261006 배포** [CC]:
+> - 순차 병합(squash), 각 PR 은 `gh pr checks --watch` 종료 코드 0 확인 후 병합: #1343 `c3599ef9` → #1344 `209a9028` → #1346 `9161043c`(HANDOFF 충돌은 각각 main 병합 커밋으로 해소).
+> - 자동 배포 정상(이번엔 웹훅 발화): Production `dpl_2V2pjAzHTfHBAynmNvehFoMuNcSU` READY. 이어 `swap_fleet_detail_secret.sh --check` 일치(`42f1f01a…`) 후 `FLEET_DAILY_DETAIL_JSON` 교체·재배포 `dpl_ELFXyTJGtsNCB2NKcwn5j7ZNdcVo` READY, alias `https://leedonggun.co.kr`.
+> - 라이브 실측(Aside, 소유자 로그인·캐시 우회): `/fleet` 「2026-10-06 보고 · 2026-10-05 조업 기준」, KPI 230 / 2,085 / 96,252.8 / 10,204.3, 「전체 보고 168건」, 「직전 보고(10/2) 대비」, **보호 패널 경고 없음**, MOAMARI 10/11·840~1,080·10/18. VDS·입어료 2026-10-05 · 1,479.5 · 1,239.1, 키리바시 선박 767.5 · 607.8. 선단 DB FFA 「805척」. `/cosmo` 경영요약 1,046명 · 385명(37%). `/panofi` 선단·조업 「직전 보고(10/2) 대비」, 선박별 비고 3척 표시.
+> - 배포 후 production error log(20분) 0건.
+
+> ✅ **2026-10-06 11:20 KST — `/fleet` 해양수산본부 일일업무보고 261006(화) 반영 + 「전일 대비」 라벨을 보고 간격에서 파생** [CC]:
+> - 원자료: `해양수산본부 일일업무보고-261006 (화).docx` SHA-256 `e7b118112ee77ca6064d9885f5010fa58d6d3cb2ae0499787795fa1b6e8ca454`, unzip OK. 직전 보고는 261002(금) — 폴더에 261005 가 없어 나흘 간격이다.
+> - 증분 동기화: 보고 168건, 기준 10/6 보고 · 10/5 조업. 태평양 일간 100 · 월간 1,455 · 연간 56,067.8, 대서양 130 · 630 · 40,185. 연속성: 월간 증가분(+820 · +410) = 연간 증가분 — 10/2~10/5 나흘치가 누계에 들어갔고 일간은 10/5 하루치다. 운반선 적재 5,824.3 → 10,204.3(SEIN KASAMA 4,039 → 5,099 · SEIN FRONTIER 0 → 3,020 · BAO LUCKY 신규 300, 행 합 일치)·예상잔량 4,356. 검산 668 → 672, 새 이슈 0. `detailSha256` 변경(`42f1f01a…`) → **배포 시 `swap_fleet_detail_secret.sh` 필요**.
+> - MOAMARI: 원문 「10/2 08:30 GENSAN 입항, 상가수리(10/4~10/10) 후 10/11 출항 예정」 — 수리가 10/2~10/8 → 10/4~10/10 으로 이틀 밀리고 출항 10/10 → 10/11. 복귀 10/18 전후, 조업손실 66~85일 → 42~54보고일(168/263) × 일평균 20.03 = 약 840~1,080 MT(연간 3,365 의 25~32%)로 재계산. 좌표 없음.
+> - 라벨: 증감이 «직전 보고» 비교라 나흘 간격에 「전일 대비 -625」는 틀린 말이었다. `fleetDailyDeltaLabel`(보고일 간격 1일 이하 → 「전일 대비」, 그 외 → 「직전 보고(10/2) 대비」)을 /fleet 2곳·/panofi 1곳에 적용.
+> - 날짜 고정 테스트(fleet-daily · security-boundary · command-center) 갱신. `npm run verify` 통과: Vitest 1,784/1,784 · build 정적 118 · fleet client leak 137/29 · bundle 33. 브라우저(로컬 production 1440·390): 히어로 「2026-10-06 보고 · 2026-10-05 조업 기준」, KPI 230 / 2,085 / 96,252.8 / 10,204.3, 「전체 보고 168건」, MOAMARI 10/11·10/18·840~1,080, /panofi 「직전 보고(10/2) 대비」, overflow 0 · error 0 · 옛 문구 0.
+> - 로컬 비공개 원천(private JSON)은 여전히 165건(전수 재파싱 정지 상태, 증분은 정상).
+> - 상태: 브랜치 `data/fleet-daily-261006`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> ✅ **2026-10-06 11:14 KST — `/fleet` VDS 2026-10-05 판(국적선·키리코레) + FFA VRST 9월 월간판 반영** [CC]:
+> - 원자료 3건: `태평양 선망 VDS 현황_2026.10.05.pdf` SHA-256 `12348df4…cbe9a8fc`(1쪽) · `KFC 태평양 선망 VDS 현황_2026.10.05.pdf` `61619e56…648ce`(1쪽) · `All Vessels in FFA Good Standing VMS VRST Monthly Report 1- 30 September 2026.xlsx` `8255e5d2…daed224`(unzip OK).
+> - 국적선 VDS: 배정 1,457 → **1,479.5**일 · 소진 1,210.2 → **1,239.1** · 잔여 240.4 · 주간 28.9. 솔로몬 배정 44 → 66.5일(척당 7.33 → 11.08), 초과 칸 11 → 10(S/EXP 해소, S/HAR −0.17 → −1.72). 키리바시 주간 소모 음수 2칸(S/CHA −1.4 · S/HAR −1.0, 추정 소진 되돌림). 키리바시 소계 소진 인쇄 752.6 대 행 합 752.5 — 네 판째 같은 0.1 어긋남, 인쇄값 유지.
+> - 키리코레 VDS: 배정 770 → **767.5**일 · 소진 607.8 · 잔여 159.7 · 주간 9.3. 키리바시 척당 102.75 → 107.75(411 → 431), **솔로몬 양자 34 → 11.5일 — 줄어든 22.5일이 국적선 솔로몬 증가분과 같아 수역 몫 이전으로 읽힌다.** 예인 중이던 MOAMARI 키리바시 소진 104.3 → 99.9(−4.4, 통과 소진 정정)로 초과가 풀렸다. 솔로몬 양자 척당 2.875일이 2.88 로 인쇄돼 소계 11.50 대 행 합 11.52·잔여 0.01 차 — 인쇄값 유지, 테스트에 공개. 미크로네시아 양자 주간 8.9 는 지난 판과 같은 값(이어 적음으로 읽힘). 공해 271 → 284.
+> - FFA VRST: 8월 → **9월 월간판**(9/1~30). 805척(811 → 805) · 국기 20 · 미보고 30척(34) · 한국 52척(53), 기간 이후 등록 6척(MOAMARI 10/2 재등록 포함). ⚠ 시트 이름이 `FFAVMS_VRST_Report` → `VMSReport` 로 바뀌어 `build_ffa_vrst.py` 가 이름 대신 머리글(«Vessel Name» + 날짜 열)로 시트를 찾게 고쳤다. 새 선종 `SUPPORT VESSEL` → 「지원선」. 이번 판은 집계 시트와 원표가 일치해 「주의」 문구가 비던 것(«— .») 을 「일치한다」로 분기.
+> - 테스트: `kiribati-vds-2026-09-27` → `kiribati-vds-2026-10-05`(재작성) · `fleet-operations-2026-08-23` VDS 2건 · `ffa-vrst` 3건 갱신. `npm run verify` 통과: Vitest 1,784/1,784 · build 정적 118 · fleet client leak · bundle 33. 브라우저(로컬 production 1440·390): /fleet VDS·입어료(국적선 1,479.5·1,239.1, 키리바시 선박 4척 767.5·607.8), 선단 DB FFA 탭 「(805척)」·지원선·일치 문구, overflow 0 · error 0 · 옛 값 0.
+> - 상태: 브랜치 `data/fleet-vds-vrst-1006`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음). 선단 상세 데이터는 바뀌지 않아 배포 시 시크릿 교체 불필요.
+
+> ✅ **2026-10-06 09:53 KST — `/cosmo` 8월 업무보고 docx 판본 대조·반영** [CC]:
+> - 원자료: `COSMO 2026 08 업무보고.docx` SHA-256 `da4980278391fb1d2f6c9f880ed641ce74e877853dbc022e5dbd08aa82981cec`, unzip OK. 기존 계약이 쓰던 `COSMO 월간보고 (9월).pptx`(제목 「COSMO 8월 업무보고」)와 같은 보고의 docx 판본이다(7월 docx 선례와 같은 처리).
+> - 표 2개(월별 원어 처리량·컨테이너 출고)는 `word/media/image1·2.png` 이미지로 들어 있어 꺼내 읽었다 — 계약 숫자와 **완전히 같다**. 원문 합계 열이 갱신되지 않은 것(On Board 934 · FBU 48 인쇄값 대 행 합 889 · 46)도 그대로다.
+> - docx 에만 있는 것: ① 「8월 누계 신규 클리너 1,046명 채용 → 385명 잔류」(잔류율 약 37%) → `cleanerHiring` 신설, 경영요약 품질 클레임 문장에 노출 ② 임금 협상 배경(세디 강세·회사 재정 고려, 클리너 확보에 유리) → 주요 업무 문구 보강 ③ 컨테이너 이월 「30 FCL 이상」으로 표현 정정. 유동성·재고자산·생산지표·PANOFI 어대금·원어재고는 docx 에 없어 pptx 값 유지.
+> - 작성 인명(SIAL 출장 과장)은 기존대로 직급으로만.
+> - 테스트 `cosmo-monthly-report.test.ts` +2건(RED → GREEN). `npm run verify` 통과: Vitest 1,783/1,783 · build 정적 118 · fleet client leak · bundle 33. 브라우저(로컬 production 1440·390) overflow 0 · error 0.
+> - 상태: 브랜치 `data/cosmo-monthly-08-docx`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
+> 🚀 **2026-10-06 10:05 KST — `/tunafarm-industry` 「참치 양식」 L1285 기간 불일치 정정 배포 (#1341)** [CC]:
+> - 발견: 정본 숫자 차집합 검사(`~/.claude/harness/verify/verify_number_delta.py`) + Codex 표본 판정. 「관세청 중량 필레·어육 81.2% · 통마리 18.8%」는 **2025년 단년** 값인데 원장(2024-04-03~2026-09-11) 건수 91.1%·8.9% 와 기간 표시 없이 맞대 있었다. 「통마리가 건당 무거우니」는 두 자료로 입증할 수 없는 인과.
+> - 정정: `lib/data/tunafarm-tables.json` 교차검증 콜아웃 → 관세청 2024~2026 합 **83.4% · 16.6%**(근거표 Drive `11_분석·가공데이터/20261006-관세청_부위형태_중량비중.csv`), 기간·단위를 각각 밝히고 인과 삭제. `lib/tunafarm-industry-content.ts` 서술 → 원장 기간과 「관세청 2025년」을 명시, 인과 삭제(81.2% 는 2025년 값이라 유지).
+> - 회귀 테스트: `__tests__/tunafarm-industry-render.test.ts` 「철회된 주장」 목록에 두 줄 + 정정 문장 존재 검사. 수정 전 데이터에서 3건 실패 → 수정 후 45/45. `npm run verify` rc=0(210 파일 · 1,782 통과 · 정적 118 · 번들 33 OK).
+> - 보고서 본체(Drive HTML·MD·PDF)도 같은 날 정정. 기록: `~/my-project/개발/_workspace/2026-10-06-보고서정정/README.md`.
+> - 배포: PR #1341 CI `lint typecheck test build` 통과(run 37396246785, 4m32s) → squash 병합 `6655988a`(00:57:03Z) → Vercel 자동 배포 발화, `dpl_CRk22NzSHH7PW9BAj6ctcsZTZnvE` Ready, `leedonggun.co.kr` 서빙 확인(`vercel inspect`).
+> - 라이브 실측(Aside, 로그인 세션, 데스크톱): 새 콜아웃 문장·원장 기간·「관세청 2025년 중량으로는 81.2%」 서술 표시, 「통마리 18.8%」 0건·「건당 무거우니」 0건, 가로 넘침 없음(1140 ≤ 1152). 390px 모바일 실측은 못 했다 — Aside 탭이 뷰포트 변경을 지원하지 않음. 문구만 바뀐 변경이라 레이아웃 영향은 없다고 보지만 미검증으로 남긴다.
+> - 배포 후 20분 프로덕션 로그: error 0 · 5xx 0(`vercel logs --level error` · `--status-code 5xx`).
+> - 작업은 `origin/main` 에서 판 분리 worktree(`~/my-project/_wt/tunafarm-l1285`)에서 했다. 자동 브리핑 worktree(`silla-tuna-daily/dash`, `sync/2026-10-06`)에 올라가 있던 같은 수정은 되돌려 브리핑 대시보드 준비가 dirty 로 멈추지 않게 했다.
+
+> ✅ **2026-10-05 23:56 KST — 참치 데일리 브리핑 2026-10-05 `/market` 배포 (#1339)** [CC]:
+> - `public/data/tuna_daily_briefing.json` 단일 파일 (date=2026-10-05, 다이제스트 5건, 기사 5건). 다른 파일 섞임 없음.
+> - 게이트: `state/audit-2026-10-05.txt` = `AUDIT_PASS`(제목 수정 뒤 3차 재감사까지 통과), 윤문 `ADOPTED`(blocks=41 changed=9 rate=1.6%).
+> - PR #1339 squash 병합 `ccf15e54`(14:55:58Z). 직전 배포는 2026-10-02 `97e9c602`.
+> - 반영 판정은 커밋 메시지가 아니라 **내용 해시 대조**: 로컬 준비분과 `origin/main` 의 브리핑 JSON sha256 선두 16자리가 `418a11c822befcb4` 로 일치.
+> - 라이브 실측(Aside, 로그인 세션): `/market` ROW4 「오늘의 참치 뉴스」 — **기준일 2026.10.05 · 기사 5건 · 파이프라인 동기**. 10.02 → 10.05 전환 확인. Vercel 자동 배포는 이번엔 정상 발화(#1334 때와 달리 CLI 배포 불필요).
+> - **「오늘의 수치」 위젯 정상**: 다이제스트 2행 「Atunsa, 2025년 매출 13% 줄어든 Pevasa 인수 마무리」 에서 `13%` 추출, 라벨 「Atunsa, 2025년 매출」 로 화면에 렌더됨(육안 확인). 나머지 4개 다이제스트는 수치 토큰이 없어 건너뜀 — 위젯에 1건만 표시되는 것이 정상 동작(fail-closed).
+> - ⚠ **배포 중 워크트리 `~/silla-tuna-daily/dash` 가 사라졌다.** push 직후 `gh pr merge --squash --delete-branch` 가 로컬 정리 단계에서 `fatal: Unable to read current working directory` 로 실패했고, 디렉터리와 `my-project/tuna-dashboard` 의 워크트리 등록이 모두 없어진 상태다(원격 병합은 정상 완료). 브랜치 `briefing/2026-10-05`(커밋 `797f324e`)와 원격 ref 는 남아 있다. 이 세션이 지우지 않았다 — 동시 실행 세션의 정리로 추정. **다음 회차 `prepare_dashboard()` 가 워크트리 부재로 시작하지 못한다. 워크트리 재생성이 선행돼야 한다**(퍼블리셔는 워크트리 생성·삭제 권한이 없어 손대지 않았다).
+
 > 🚀 **2026-10-05 18:45 KST — #1334 코스모 FBU 9월 월간 현황 배포 (Vercel 자동 배포 미발화 → CLI 배포)** [CC]:
 > - #1334 CI 통과(종료 코드 0) 후 squash 병합 `f5a52ba7`(18:26).
 > - ⚠ 병합 커밋에 Vercel 상태·배포가 15분 넘게 생기지 않았다(직전 #1331 `8224d0cf` 까지는 정상 자동 배포). GitHub → Vercel 연동 신호가 오지 않은 것으로 판단하고, `f5a52ba7` 을 깨끗한 분리 워크트리로 체크아웃해 `vercel deploy --prod` 로 배포했다(추적 파일만, `.vercel/project.json` 복사). Production `dpl_6FC6d9N4ZT6wKT8SqBhmJcRHo2pS` READY, alias `https://leedonggun.co.kr`. 첫 CLI 실행이 같은 소스로 배포 하나(`tuna-dashboard-lvrfrckue`)를 더 만들었으나 alias 는 최신을 가리킨다.

@@ -11,15 +11,15 @@
  */
 export const cosmoWeeklyReport = {
   source: {
-    file: '2026.9.30_COSMO 주간보고 (39주차).docx',
-    sha256: '02a02d6d0758661de3a4e7e6d044f042048a126cd76292c90bd90bdf149126bc',
-    period: '2026-09-21~2026-09-27',
+    file: '2026.10.07_COSMO 주간보고 (40주차).docx',
+    sha256: 'c63587a802ee7bcf193dbaf1081ff0484a8277aca94ad81dd7542d395865a497',
+    period: '2026-09-28~2026-10-04',
   },
   market: {
     productionSecuredThrough: '2026년 생산분',
-    summary: '연말까지 생산 물량을 모두 확보해 신규 오퍼는 당분간 자제하고, 10월 중순부터 2027년 선적 물량 오퍼를 재개할 예정입니다. 독일 REWE 입찰 오퍼를 준비 중이며 에콰도르 오퍼 수준을 확인한 뒤 비슷한 가격대로 제출할 계획입니다.',
+    summary: '2027년 1분기 물량 오퍼를 준비 중이며 차주부터 본격적으로 오퍼를 낼 예정입니다. 바이어 구매 문의와 수요는 이어지고 있으나, 어가 하락 가능성을 내다보고 구매 결정에는 다소 신중한 분위기입니다.',
     rawFishPressure:
-      '이번 주 보고에는 원어 어가·수급 서술이 없습니다. '
+      '에콰도르 캐너리는 원어 어가가 여전히 $2,350/MT 수준인데도 향후 어가 하락을 미리 반영해 지난주부터 제품 오퍼 가격을 내리고 있습니다. '
       + '원어구매 비중은 PANOFI 99.8%입니다.',
   },
   litigation: {
@@ -28,7 +28,7 @@ export const cosmoWeeklyReport = {
     status: '재심리 재판 진행 중',
   },
   operations: {
-    qualityFocus: '3분기 결산 업무를 진행했습니다.',
+    qualityFocus: '3분기 결산 업무와 2025년 사업연도 GRA 세무조사가 진행 중입니다.',
     /** 그 주에 심사가 없으면 null. 지난 심사를 이번 주 일처럼 내보내지 않는다. */
     audit: null as null | { name: string; start: string; end: string; result?: string },
     /** 그 주에 하역이 없으면 null. */
@@ -41,13 +41,12 @@ export const cosmoWeeklyReport = {
     },
     /** 심사·하역이 없는 주에 브리핑 카드를 채우는 그 주의 물류 현황. */
     logistics: {
-      headline: '3분기 결산 업무',
-      // 출고 19컨·CY 66컨은 38주차 보고와 같은 숫자다 - 원문 그대로 싣고 같다는 사실을 밝힌다
-      detail: '39주차 공장 출고 19컨 · CY 선적대기 66컨(38주차 보고와 같은 숫자) · 원어구매 비중 PANOFI 99.8%',
+      headline: '2025년 GRA 세무조사',
+      detail: '40주차 공장 출고 18컨 · CY 선적대기 38컨 · CBU 제품 재고 564만불(공장 321만 + CY 243만) · 원어구매 비중 PANOFI 99.8%',
     },
   },
   nextActions: [
-    '주 5일 생산',
-    '10월 중순부터 2027년 선적 물량 오퍼 재개',
+    '과장급 파리 SIAL 박람회 참석 출장(10/12~10/22, 런던·파리)',
+    '2027년 1분기 물량 오퍼 본격 진행',
   ],
 } as const;

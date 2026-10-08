@@ -13,11 +13,11 @@ describe('FleetCommandCenter daily operations', () => {
   it('renders the latest daily report as the hero KPI source', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('2026-10-02 보고 · 2026-10-01 조업 기준');
+    expect(markup).toContain('2026-10-08 보고 · 2026-10-07 조업 기준');
     // 9월 첫 보고라 일간과 월간 누계가 같은 295 MT다.
-    expect(markup).toContain('data-kpi-value="855"');
-    expect(markup).toContain('data-kpi-value="95022.8"');
-    expect(markup).toContain('data-kpi-value="5824.3"');
+    expect(markup).toContain('data-kpi-value="313"');
+    expect(markup).toContain('data-kpi-value="96890.8"');
+    expect(markup).toContain('data-kpi-value="11434.3"');
   });
 
   it('renders public deltas and fail-closed quality coverage without private schedules', () => {
@@ -25,8 +25,8 @@ describe('FleetCommandCenter daily operations', () => {
 
     for (const value of [
       // 9/2 기준: 태평양 전일 대비 0(175→175), 대서양 +75, 합계 +75
-      '+80 (MT)', 'SYNCED',
-      '전체 보고 167건', '전기간 검산 668회', '완전 검산 668회', '미보고 포함 0회 / 0문서',
+      '-12 (MT)', '전일 대비', 'SYNCED',
+      '전체 보고 170건', '전기간 검산 680회', '완전 검산 680회', '미보고 포함 0회 / 0문서',
       // 20/18 이었다가 14/12 로 줄었다 - 운반선 머리글의 0.03 반올림 잔차 6건이
       // 불일치로 잡히던 것을 인쇄 자릿수 허용 폭으로 걸러냈다 (2026-09-07)
       '부분합 차이 전체 14건 / 12문서', '확정 불일치 14건 / 12문서', '미보고 포함 차이 0건 / 0문서',
@@ -56,13 +56,13 @@ describe('FleetCommandCenter daily operations', () => {
   it('keeps the weekly performance and VDS contracts while withholding the latest roster', () => {
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
 
-    expect(markup).toContain('26.09.21~09.27');
-    expect(markup).toContain('data-kpi-value="2002"');
-    expect(markup).toContain('data-kpi-value="5302"');
-    expect(markup).toContain('data-kpi-value="53543"');
+    expect(markup).toContain('26.09.28~10.04');
+    expect(markup).toContain('data-kpi-value="2425"');
+    expect(markup).toContain('data-kpi-value="1355"');
+    expect(markup).toContain('data-kpi-value="55968"');
     // 문장은 계약에서 파생한다 - 차트만 갈리고 문장이 지난주에 남는 사고를 막는다
-    expect(markup).toContain('S/HAR(오복근) 510t');
-    expect(markup).toContain('주간 총 어획량은 2,002t(국적 1,362t, 합작 640t)');
+    expect(markup).toContain('N/SUN(김형주) 640t');
+    expect(markup).toContain('주간 총 어획량은 2,425t(국적 1,550t, 합작 875t)');
     expect(markup).not.toContain('645t');
     // 월별 카드 라벨은 계열에서 파생한다 - 계열이 한 달 늘어도 «8월»이 남지 않는다
     expect(markup).toContain('월별 계열은 2026-08-30 보고 기준');
@@ -112,13 +112,13 @@ describe('FleetCommandCenter daily operations', () => {
     expect(fleetDailyPublicReconciliation.carrierLoaded.matches).toBe(true);
   });
 
-  it('주간 창이 한 달 안에 들어오면 월 경계 설명을 쓰지 않는다', () => {
-    /* 9월 첫째주(8/31~9/6)는 주간이 월 경계를 걸쳐 차이를 하루치로 설명할 수 있었다.
-     * 9월 넷째주(9/21~9/27)는 한 달 안이라 월간(5,302)이 주간(2,002)보다 훨씬 크다 -
-     * 그 문장을 그대로 두면 「차이 -3,300t이 그 하루치」라는 거짓말이 된다. */
-    expect(monthBoundaryDay).toBeNull();
+  it('주간 창이 월을 걸치면 앞달에 든 날수와 월간의 달을 계산해 설명한다', () => {
+    /* 10월 첫째주(9/28~10/4): 월간 1,355 는 10/1~10/4 분이고, 주간과의 차이 1,070t 은 9/28~9/30 사흘치다.
+     * 「월간은 9월분 · 그 하루치」를 손으로 박아 두면 이 주에 거짓말이 된다. */
+    expect(monthBoundaryDay).toMatchObject({ date: '2026-09-28', endDate: '2026-09-30', days: 3, month: 10, totalMt: 1_070, nationalMt: 635, jointMt: 435 });
     const markup = renderToStaticMarkup(React.createElement(FleetCommandCenter));
-    expect(markup).toContain('주간 창이 한 달 안에 들어와');
+    expect(markup).toContain('주간은 9/28~9/30을 포함하고 월간은 10월분이라, 차이 1,070t(국적 635t, 합작 435t)이 그 3일치입니다.');
+    expect(markup).not.toContain('월간은 9월분');
     expect(markup).not.toContain('그 하루치입니다');
   });
 });

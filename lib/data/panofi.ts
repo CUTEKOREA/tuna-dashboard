@@ -143,10 +143,14 @@ export const receivableNow = (() => {
     profile.receivables.abidjanPeakKusd,
     ...dated.map((w) => Math.round(w.receivables.totalUsd! / 1000)),
   );
+  const prev = dated[dated.length - 2];
   return {
     asOf: last?.reportDate ?? null,
     currentKusd,
     peakKusd,
+    /** 직전 주간동향 대비 증감(천불, 음수 = 회수). 직전 주가 없으면 null */
+    weekDeltaKusd: prev ? currentKusd - Math.round(prev.receivables.totalUsd! / 1000) : null,
+    prevAsOf: prev?.reportDate ?? null,
     /** 정점 대비 증감(음수 = 회수) */
     sincePeakKusd: currentKusd - peakKusd,
     recoveryPeriod: profile.receivables.recoveryPeriod,

@@ -46,11 +46,14 @@ const tabs: Array<{ id: LogisticsTab; label: string; description: string }> = [
 
 /* 월별 반입은 주간표를 접어 만든다 - 카드 문장도 같은 집계에서 뽑아 표와 어긋나지 않게 한다. */
 const intakeMonths = recentReeferMonths(6);
-const intakeLatest = intakeMonths.at(-1)!;
-const intakePrev = intakeMonths.at(-2) ?? null;
+/* 진행 중인 달(마지막 주간표 기준일이 말일 전)은 문장 비교에서 뺀다 - 10/8까지 1척을 다 찬 9월과 견주면 급감처럼 읽힌다 */
+const intakeOpen = reeferMonthlyIntake.inProgressMonth;
+const intakeComplete = intakeMonths.filter((row) => row.month !== intakeOpen?.month);
+const intakeLatest = intakeComplete.at(-1)!;
+const intakePrev = intakeComplete.at(-2) ?? null;
 const intakePeak = intakeMonths.reduce((best, row) => (row.mt > best.mt ? row : best), intakeMonths[0]);
 const intakeMaxMt = intakePeak.mt;
-const monthLabel = (month: string) => `${month.slice(5)}월`;
+const monthLabel = (month: string) => `${Number(month.slice(5))}월`;
 const intakeEstimate = reeferMonthlyIntake.thirdPartyEstimate;
 const intakeEstimateOf = (month: string) => intakeEstimate.months.find((row) => row.month === month) ?? null;
 
@@ -63,7 +66,9 @@ export function ReeferMonthlyIntakeChart() {
           return (
             <div key={row.month} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ flex: '0 0 auto', minWidth: 44, fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-muted)' }}>
-                {monthLabel(row.month)}
+                {monthLabel(row.month)}{row.month === intakeOpen?.month && (
+                  <small style={{ display: 'block', fontWeight: 400, fontSize: '0.66rem' }}>{Number(intakeOpen.through.slice(5, 7))}/{Number(intakeOpen.through.slice(8))}까지</small>
+                )}
               </span>
               <span style={{ flex: '1 1 auto', minWidth: 0 }}>
                 <span
@@ -352,7 +357,7 @@ export default function LogisticsDashboard({ heroOnly = false }: { heroOnly?: bo
             telemetry={{ status: 'STATIC', syncDate: '2026-05-20', label: '정적', source: '추정 시뮬레이션 + KCS 통관' }}
             customBody={<ValueChainMarginIndex />}
             takeaway={{
-              situation: `2026-05-20 시나리오는 원어 원가 $2,100/MT를 전제로 전구간 순마진 29.7%를 산출했습니다. ${logisticsWeeklyReport.market.reportDate} 주간보고의 원어 협의가는 $${logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt.toLocaleString()}/MT로 전제보다 $200 높습니다. 물류비 $350·가공비 $500·판매가 $4,200은 실측 원천이 없는 추정값이라 함께 갱신할 수 없습니다.`,
+              situation: `2026-05-20 시나리오는 원어 원가 $2,100/MT를 전제로 전구간 순마진 29.7%를 산출했습니다. ${logisticsWeeklyReport.market.reportDate} 주간보고의 원어 협의가는 $${logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt.toLocaleString()}/MT로 ${(() => { const d = logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt - 2100; return `전제보다 $${Math.abs(d).toLocaleString()} ${d >= 0 ? '높습니다' : '낮습니다'}`; })()}. 물류비 $350·가공비 $500·판매가 $4,200은 실측 원천이 없는 추정값이라 함께 갱신할 수 없습니다.`,
               actionPlan: '원어 원가만 실측으로 바꾸면 나머지 3구간이 5월 전제로 남아 마진율이 왜곡되므로, 운임·가공비·판매가 실측 원천을 확보한 뒤 4구간을 동시에 재산출합니다. 확보 전까지 본 지표는 참고용으로만 씁니다.',
               source: `시나리오 추정 (2026-05-20 갱신) · 원어 협의가 대조: 방콕 사무소 주간보고 (${weeklyReportDate})`,
             }}

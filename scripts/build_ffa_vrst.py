@@ -46,6 +46,7 @@ TYPE_KO = {
     'FISH CARRIER/REEFER': '운반선', 'FISH CARRIER': '운반선',
     'BUNKER': '급유선', 'POLE AND LINE': '채낚기',
     'SCOUT VESSEL': '탐색선', 'SEARCH/ANCHOR/LIGHT': '집어·양묘',
+    'SUPPORT VESSEL': '지원선',
 }
 
 
@@ -63,7 +64,15 @@ def main() -> int:
     args = ap.parse_args()
 
     wb = openpyxl.load_workbook(args.xlsx, read_only=True, data_only=True)
-    vr = list(wb['FFAVMS_VRST_Report'].iter_rows(values_only=True))
+    # 시트 이름에 기대지 않는다 - 2026-09 판에서 «FFAVMS_VRST_Report» 가 «VMSReport» 로 바뀌었다.
+    # 첫 행에 «Vessel Name» 과 날짜 헤더가 함께 있는 시트를 선박별 일별 보고 시트로 본다.
+    def _is_vrst(ws) -> bool:
+        head = next(ws.iter_rows(max_row=1, values_only=True), ())
+        return bool(head) and head[0] == 'Vessel Name' and any(hasattr(h, 'strftime') for h in head)
+    vrst_sheets = [ws for ws in wb.worksheets if _is_vrst(ws)]
+    if len(vrst_sheets) != 1:
+        raise SystemExit(f'선박별 일별 보고 시트를 하나로 특정하지 못했다: {[ws.title for ws in vrst_sheets]}')
+    vr = list(vrst_sheets[0].iter_rows(values_only=True))
     gs = list(wb['Good Standing Vessels'].iter_rows(values_only=True))
 
     vhdr = vr[0]
@@ -241,9 +250,9 @@ def main() -> int:
             '기간후등록제외': [f"{v['선박']}({v['등록']})" for v in after_period],
             '등급': 'A',
             '주의': (
-                '원본 집계 시트(Countbyflag)의 선종 열 합이 실제 척수와 다르다 — '
-                + ' · '.join(type_gap)
-                + '. 이 페이지는 집계 시트가 아니라 선박별 원표에서 직접 세었다.'
+                ('원본 집계 시트(Countbyflag)의 선종 열 합이 실제 척수와 다르다 - ' + ' · '.join(type_gap) + '. '
+                 if type_gap else '이번 판은 원본 집계 시트(Countbyflag)와 선박별 원표가 일치한다. ')
+                + '이 페이지는 집계 시트가 아니라 선박별 원표에서 직접 세었다.'
             ),
             '측정경계': (
                 '조업허가(Good Standing)는 FFA 회원국 수역 조업 자격이다. 실제 조업 여부나 '

@@ -1,0 +1,36 @@
+[
+  {
+    "carrier": "CHERRY STAR",
+    "date": "28.09.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "CMC": "500",
+      "GPZ": "373",
+      "ISA": "430",
+      "SPA": "1,000",
+      "TUM": "530",
+      "UC": "582",
+      "OTHER": "33"
+    }
+  },
+  {
+    "carrier": "HUA FU 107",
+    "date": "04.10.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "ASIAN": "176",
+      "CMC": "732",
+      "GB": "1,251",
+      "PTY": "943",
+      "RMK": "300",
+      "TUG": "350",
+      "TUM": "300",
+      "UC": "788",
+      "OTHER": "11B"
+    }
+  }
+]

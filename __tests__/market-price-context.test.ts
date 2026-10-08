@@ -21,11 +21,12 @@ describe('SKJ 방콕 어가 맥락', () => {
   it('「몇 년 만의 수준인가」를 계열에서 파생한다', () => {
     const mark = skjPriceHighMark(rows)!;
 
-    // 2026-09-15 $2,200 이상이었던 직전 고시는 2017-10-26 $2,275 다
-    expect(mark).toMatchObject({ price: 2_200, date: '2026-09-15' });
-    expect(mark.previous).toEqual({ date: '2017-10-26', price: 2_275 });
-    expect(mark.monthsSince).toBe(107);
-    expect(skjPriceHighMarkLabel(mark)).toBe('$2,200 — 2017.10 이후 처음(8년 11개월 만)');
+    // 2026-10-02 $2,300 이상이었던 직전 고시는 2017-10-11 $2,350 이다(9/15 $2,200 때는 10/26 $2,275 였다)
+    expect(mark).toMatchObject({ price: 2_300, date: '2026-10-02' });
+    expect(mark.previous).toEqual({ date: '2017-10-11', price: 2_350 });
+    expect(mark.monthsSince).toBe(108);
+    // 개월이 0이면 «9년 0개월 만» 이 아니라 «9년 만»
+    expect(skjPriceHighMarkLabel(mark)).toBe('$2,300 — 2017.10 이후 처음(9년 만)');
   });
 
   it('계열이 비거나 최고가를 경신하면 문장이 달라진다', () => {
@@ -59,16 +60,17 @@ describe('SKJ 방콕 어가 맥락', () => {
     const markup = renderToStaticMarkup(React.createElement(HeroMarketCommand, { rows }));
 
     expect(markup).toContain('2017.10 이후 처음');
-    expect(markup).toContain('엘니뇨 전제');
-    expect(markup).toContain('2027년 2월');
+    // 2026-10-06: 시장 동향 상단 해설은 Atuna 한 달 기사 기반으로 바뀌었다(출장보고 전제는 방콕 사무소 탭에 남는다)
+    expect(markup).toContain('공급 부족');
+    expect(markup).toContain('엘니뇨');
     // 출처를 밝히지 않으면 화면이 «누가 그렇게 보는지» 를 말하지 못한다
-    expect(markup).toContain('방콕 출장보고');
+    expect(markup).toContain('Atuna 기사');
   });
 
   it('차트용으로 자른 창이 아니라 전 계열에서 「몇 년 만」을 잰다', () => {
     // 시장 화면 차트는 2022년 이후만 그린다 - 그 창으로 재면 2017년 고점이 사라져 «사상 최고» 가 된다
     const since2022 = rows.filter((row) => row.date >= '2022-01-01');
-    expect(skjPriceHighMarkLabel(skjPriceHighMark(since2022))).toBe('$2,200 — 계열 사상 최고');
+    expect(skjPriceHighMarkLabel(skjPriceHighMark(since2022))).toBe('$2,300 — 계열 사상 최고');
     const markup = renderToStaticMarkup(
       React.createElement(HeroMarketCommand, { rows: since2022, historyRows: rows }),
     );

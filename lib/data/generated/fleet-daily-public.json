@@ -1,62 +1,62 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "reportCount": 167,
+    "reportCount": 170,
     "firstReportDate": "2026-01-16",
-    "latestReportDate": "2026-10-02",
-    "latestAsOf": "2026-10-01",
-    "detailSha256": "95ca17fc5138e35454674f3dc38e0f870dc671d4e793750a8fb7c7ef8b0aff32",
+    "latestReportDate": "2026-10-08",
+    "latestAsOf": "2026-10-07",
+    "detailSha256": "216ae7aa78cfde8fbf61290d0d7d1e5439e62b9814644695933dfd69112a8dc0",
     "detailSha256Compat": [
-      "f92cf647a3078fdf546e58a15c4d1ff0c7c16fe9d9916d24bdb8a86928c33b08"
+      "50b886c990a2c80d4c5b3938764780494ee08ce1166f5070e655827a6d074201"
     ]
   },
   "latest": {
-    "reportDate": "2026-10-02",
-    "asOf": "2026-10-01",
+    "reportDate": "2026-10-08",
+    "asOf": "2026-10-07",
     "pacific": {
-      "asOf": "2026-10-01",
-      "dailyMt": 635,
-      "monthlyMt": 635,
-      "annualMt": 55247.8
+      "asOf": "2026-10-07",
+      "dailyMt": 233,
+      "monthlyMt": 1943,
+      "annualMt": 56555.8
     },
     "atlantic": {
-      "asOf": "2026-10-01",
-      "dailyMt": 220,
-      "monthlyMt": 220,
-      "annualMt": 39775
+      "asOf": "2026-10-07",
+      "dailyMt": 80,
+      "monthlyMt": 780,
+      "annualMt": 40335
     },
     "carrier": {
-      "loadedTotalMt": 5824.3,
-      "expectedRemainingMt": 8436
+      "loadedTotalMt": 11434.3,
+      "expectedRemainingMt": 3176
     }
   },
   "deltas": {
-    "pacificDailyMt": 45,
-    "atlanticDailyMt": 35,
-    "totalDailyMt": 80
+    "pacificDailyMt": -22,
+    "atlanticDailyMt": 10,
+    "totalDailyMt": -12
   },
   "reconciliation": {
     "pacificDaily": {
-      "reportedMt": 635,
-      "rowsMt": 635,
+      "reportedMt": 233,
+      "rowsMt": 233,
       "matches": true,
       "missingCount": 0
     },
     "atlanticDaily": {
-      "reportedMt": 220,
-      "rowsMt": 220,
+      "reportedMt": 80,
+      "rowsMt": 80,
       "matches": true,
       "missingCount": 0
     },
     "carrierLoaded": {
-      "reportedMt": 5824.3,
-      "rowsMt": 5824.3,
+      "reportedMt": 11434.3,
+      "rowsMt": 11434.3,
       "matches": true,
       "missingCount": 0
     },
     "carrierExpectedRemaining": {
-      "reportedMt": 8436,
-      "rowsMt": 8436,
+      "reportedMt": 3176,
+      "rowsMt": 3176,
       "matches": true,
       "missingCount": 0
     },
@@ -232,7 +232,10 @@
       "2026-09-29",
       "2026-09-30",
       "2026-10-01",
-      "2026-10-02"
+      "2026-10-02",
+      "2026-10-06",
+      "2026-10-07",
+      "2026-10-08"
     ],
     "pacific": {
       "totalMt": [
@@ -402,7 +405,10 @@
         195,
         285,
         590,
-        635
+        635,
+        100,
+        255,
+        233
       ],
       "vessels": {
         "S/EXP": [
@@ -572,7 +578,10 @@
           0,
           55,
           0,
-          225
+          225,
+          0,
+          0,
+          0
         ],
         "S/PIO": [
           50,
@@ -741,7 +750,10 @@
           40,
           0,
           260,
-          80
+          80,
+          0,
+          0,
+          25
         ],
         "S/CHA": [
           0,
@@ -910,7 +922,10 @@
           0,
           20,
           180,
-          0
+          0,
+          20,
+          0,
+          30
         ],
         "S/HAR": [
           0,
@@ -1079,7 +1094,10 @@
           0,
           0,
           0,
-          0
+          0,
+          10,
+          40,
+          140
         ],
         "S/JUP": [
           0,
@@ -1248,7 +1266,10 @@
           25,
           20,
           35,
-          135
+          135,
+          0,
+          0,
+          0
         ],
         "S/SPR": [
           0,
@@ -1417,6 +1438,9 @@
           0,
           0,
           0,
+          0,
+          0,
+          0,
           0
         ],
         "MOAMARI": [
@@ -1554,6 +1578,9 @@
           0,
           0,
           85,
+          0,
+          0,
+          0,
           0,
           0,
           0,
@@ -1755,7 +1782,10 @@
           0,
           0,
           0,
-          75
+          75,
+          40,
+          165,
+          8
         ],
         "NAOERO SUN": [
           0,
@@ -1924,7 +1954,10 @@
           120,
           160,
           100,
-          120
+          120,
+          0,
+          0,
+          0
         ],
         "NAOERO STAR": [
           0,
@@ -2093,20 +2126,23 @@
           10,
           30,
           15,
-          0
+          0,
+          30,
+          50,
+          30
         ]
       },
       "lastLoadIncreaseDates": {
-        "S/EXP": "2026-10-02",
-        "S/PIO": "2026-10-02",
-        "S/CHA": "2026-10-01",
-        "S/HAR": "2026-09-28",
-        "S/JUP": "2026-10-02",
+        "S/EXP": "2026-10-06",
+        "S/PIO": "2026-10-08",
+        "S/CHA": "2026-10-08",
+        "S/HAR": "2026-10-08",
+        "S/JUP": "2026-10-06",
         "S/SPR": "2026-09-21",
         "MOAMARI": "2026-08-18",
-        "MOAKONA": "2026-10-02",
-        "NAOERO SUN": "2026-10-02",
-        "NAOERO STAR": "2026-10-01"
+        "MOAKONA": "2026-10-08",
+        "NAOERO SUN": "2026-10-06",
+        "NAOERO STAR": "2026-10-08"
       }
     },
     "atlantic": {
@@ -2277,7 +2313,10 @@
         190,
         110,
         185,
-        220
+        220,
+        130,
+        70,
+        80
       ],
       "vessels": {
         "P/MAS": [
@@ -2447,6 +2486,9 @@
           15,
           15,
           35,
+          30,
+          30,
+          15,
           30
         ],
         "P/DIS": [
@@ -2616,7 +2658,10 @@
           10,
           0,
           0,
-          0
+          0,
+          0,
+          20,
+          5
         ],
         "P/FORE": [
           0,
@@ -2785,7 +2830,10 @@
           75,
           0,
           80,
-          55
+          55,
+          0,
+          10,
+          25
         ],
         "P/PATH": [
           30,
@@ -2954,7 +3002,10 @@
           35,
           15,
           5,
-          20
+          20,
+          0,
+          0,
+          0
         ],
         "P/COM": [
           0,
@@ -3123,7 +3174,10 @@
           25,
           50,
           35,
-          65
+          65,
+          0,
+          0,
+          0
         ],
         "P/QUEEN": [
           0,
@@ -3292,7 +3346,10 @@
           30,
           30,
           30,
-          50
+          50,
+          60,
+          0,
+          0
         ],
         "P/GRACE": [
           0,
@@ -3461,24 +3518,27 @@
           0,
           0,
           0,
-          0
+          0,
+          40,
+          25,
+          20
         ]
       },
       "lastLoadIncreaseDates": {
-        "P/MAS": "2026-10-02",
-        "P/DIS": "2026-09-29",
-        "P/FORE": "2026-10-02",
-        "P/PATH": "2026-10-02",
-        "P/COM": "2026-10-02",
-        "P/QUEEN": "2026-10-02",
-        "P/GRACE": "2026-09-28"
+        "P/MAS": "2026-10-08",
+        "P/DIS": "2026-10-08",
+        "P/FORE": "2026-10-08",
+        "P/PATH": "2026-10-06",
+        "P/COM": "2026-10-06",
+        "P/QUEEN": "2026-10-06",
+        "P/GRACE": "2026-10-08"
       }
     }
   },
   "quality": {
     "counts": {
-      "reconciliationChecks": 668,
-      "reconciliationCompleteChecks": 668,
+      "reconciliationChecks": 680,
+      "reconciliationCompleteChecks": 680,
       "reconciliationUnavailableChecks": 0,
       "reconciliationUnavailableDocuments": 0,
       "reconciliationIssues": 14,

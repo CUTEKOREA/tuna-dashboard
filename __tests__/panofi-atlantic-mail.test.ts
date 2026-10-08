@@ -63,9 +63,12 @@ describe('PANOFI 대서양 주말 메일', () => {
      * 그 문장은 조건부로 붙게 돼 있어 저절로 빠진다 - 빠졌는지까지 본다. */
     expect(price).not.toContain('주간동향은 같은 값을 이어 적고 메일만 움직인다.');
     const fleet = renderToStaticMarkup(React.createElement(FleetTab));
-    // 선단 탭은 최신 메일의 세네갈 입출항을 싣는다 - 9/20 메일에 새로 붙은 두 척이 보여야 한다
+    // 선단 탭 세네갈 입출항은 주말 메일과 주간동향 중 더 최신인 쪽을 싣는다.
+    // 10/6 주간동향이 9/20 메일보다 최신이라 주간동향 표(ALBONIGA 450톤 등)가 나와야 한다.
+    expect(fleet).toContain('주간동향 10/6 · 톤');
+    expect(fleet).toContain('ALBONIGA');
     expect(fleet).toContain('WESTERN KIM');
-    expect(fleet).toContain('SEA FRONTIER');
+    expect(fleet).not.toContain('SEA FRONTIER');
     expect(fleet).toContain('SEA DEFENDER - 8/30 메일은 「하역 중」인데 9/1 주간동향은 8/29 출항 완료로 적었다.');
   });
 });
