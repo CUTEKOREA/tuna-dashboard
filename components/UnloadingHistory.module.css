@@ -31,7 +31,7 @@
 .yearTabActive { color: #f8fafc; border-color: rgba(56, 189, 248, .35); background: rgba(14, 165, 233, .2); }
 .yearTab:focus-visible, .portButton:focus-visible, .retryButton:focus-visible { outline: 3px solid rgba(56, 189, 248, .55); outline-offset: 2px; }
 
-.kpiGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.kpiGrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .kpiCard { min-width: 0; padding: 16px; border: 1px solid rgba(148, 163, 184, .14); border-radius: 13px; background: rgba(15, 23, 42, .56); }
 .kpiCard > svg { color: #38bdf8; }
 .kpiCard span { display: block; margin: 7px 0; color: #94a3b8; font-size: .75rem; }

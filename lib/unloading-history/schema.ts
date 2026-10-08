@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { CANONICAL_PORT_CODES } from './constants';
+import { CANONICAL_PORT_CODES, HISTORY_METHOD } from './constants';
 
 export const HistoryYearSchema = z.union([
   z.literal(2021),
@@ -154,7 +154,7 @@ export const UnloadingHistoryPublicResponseSchema = z.object({
     syncDate: IsoDateSchema,
     dataAsOf: IsoDateSchema,
     schemaVersion: z.literal('1.0.0'),
-    method: z.literal('결정론적 Excel 추출·최종보고 우선·일보 교차검증'),
+    method: z.literal(HISTORY_METHOD),
     apiHealth: z.object({
       ok: z.literal(true),
     }).strict(),

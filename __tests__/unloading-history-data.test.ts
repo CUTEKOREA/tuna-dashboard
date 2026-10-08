@@ -48,8 +48,8 @@ describe('2021-2025 public unloading history snapshot', () => {
     expect(new Set(data.voyages.map(({ voyageId }) => voyageId)).size).toBe(98);
     expect(data.meta).toMatchObject({
       candidateVoyageCount: 98,
-      verifiedVoyageCount: 88,
-      partialVoyageCount: 4,
+      verifiedVoyageCount: 89,
+      partialVoyageCount: 3,
       unverifiedVoyageCount: 6,
       failedFileCount: 0,
     });
@@ -59,18 +59,35 @@ describe('2021-2025 public unloading history snapshot', () => {
 
   it('matches both annual bases without changing the five-year total', () => {
     expect(data.annual.map(({ verifiedActualMt }) => verifiedActualMt)).toEqual([
-      29247.939, 28086.502, 94075.08, 111659.476, 76050.2388,
+      34277.706, 28086.502, 94075.08, 111659.476, 76050.2388,
     ]);
     expect(data.completionYearBaseline.map(({ verifiedActualMt }) => verifiedActualMt)).toEqual([
-      29247.939, 25985.162, 89338.33, 118497.566, 76050.2388,
+      34277.706, 25985.162, 89338.33, 118497.566, 76050.2388,
     ]);
     expect(data.annual.reduce((sum, row) => sum + row.verifiedActualMt, 0)).toBeCloseTo(
-      339119.2358,
+      344149.0028,
       4,
     );
     expect(
       data.completionYearBaseline.reduce((sum, row) => sum + row.verifiedActualMt, 0),
-    ).toBeCloseTo(339119.2358, 4);
+    ).toBeCloseTo(344149.0028, 4);
+  });
+
+  it('promotes the 2021 LIAOYU REEFER 1 two-port voyage from its TOTAL sheet', () => {
+    // 최종 하역결과 TOTAL 5,029.767 = 젠산 1,730.07 + 방콕 3,299.697. 일보 09-03 누계 5,029.92와 0.153 MT 차.
+    expect(data.voyages.find(({ voyageId }) => voyageId === 'liaoyu-reefer-1-2021-07-31-ges'))
+      .toMatchObject({
+        reportedMt: 5002,
+        actualMt: 5029.767,
+        verification: 'verified',
+        kpiIncluded: true,
+        yearAllocations: [{ year: 2021, actualMt: 5029.767, method: 'completion_year', portCodes: ['GES', 'BKK'] }],
+      });
+    expect(data.annual.find(({ year }) => year === 2021)).toMatchObject({
+      verifiedVoyageCount: 10,
+      candidateVoyageCount: 16,
+      partialCount: 1,
+    });
   });
 
   it('preserves the three reviewed cross-year allocations', () => {
@@ -103,7 +120,6 @@ describe('2021-2025 public unloading history snapshot', () => {
         yearAllocations,
       }))).toEqual([
       { voyageId: 'liaoyu-reefer-1-2021-03-17-bkk', actualMt: 1061.14, kpiIncluded: false, yearAllocations: [] },
-      { voyageId: 'liaoyu-reefer-1-2021-07-31-ges', actualMt: 1730.07, kpiIncluded: false, yearAllocations: [] },
       { voyageId: 'sein-venus-2022-01-10-bkk', actualMt: 2170.64, kpiIncluded: false, yearAllocations: [] },
       { voyageId: 'sein-venus-2022-04-12-bkk', actualMt: 191.29, kpiIncluded: false, yearAllocations: [] },
     ]);

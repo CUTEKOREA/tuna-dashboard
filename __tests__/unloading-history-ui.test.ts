@@ -10,6 +10,7 @@ import {
   reduceHistoryLoadState,
   UnloadingHistoryView,
   getNextHistoryYear,
+  getReportedVarianceForYear,
   getVisibleHistoryVoyages,
 } from '../components/UnloadingHistory';
 
@@ -55,6 +56,23 @@ describe('UnloadingHistoryView', () => {
     expect(getVoyageActualForYear(partial, 2022)).toBeNull();
     expect(getVoyagePortsForYear(taiJi, 2022).map((port) => port.code)).toEqual(['HCM']);
     expect(getVoyagePortsForYear(taiJi, 2023).map((port) => port.code)).toEqual(['HCM']);
+  });
+
+  it('compares whole-voyage reported and actual only for verified voyages with a reported amount', () => {
+    const v2025 = getReportedVarianceForYear(dataset.voyages, 2025)!;
+    expect(v2025.voyageCount).toBe(16);
+    expect(v2025.reportedMt).toBe(74214);
+    expect(v2025.differenceMt).toBeCloseTo(836.4788, 4);
+    expect(v2025.differencePct).toBeCloseTo(1.127, 3);
+
+    const noReported = dataset.voyages.map((row) => ({ ...row, reportedMt: null }));
+    expect(getReportedVarianceForYear(noReported, 2025)).toBeNull();
+
+    const markup = renderToStaticMarkup(
+      React.createElement(UnloadingHistoryView, { dataset }),
+    );
+    expect(markup).toContain('+836.479 MT (+1.1%)');
+    expect(markup).toContain('보고량 확인 16항차 · 완료연도 기준');
   });
 
   it('rejects malformed nested API data instead of rendering it as ready', () => {
