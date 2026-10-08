@@ -170,7 +170,7 @@ export default function SalmonDashboard() {
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
       <RefreshCcw size={32} style={{ color: SALMON_THEME.primary, animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: 'var(--w-slate-400)', fontSize: '1rem' }}>Loading Intelligence...</p>
+      <p style={{ color: 'var(--w-slate-400)', fontSize: '1rem' }}>데이터 불러오는 중...</p>
     </div>
   );
 
@@ -273,7 +273,7 @@ export default function SalmonDashboard() {
             </ComposedChart>
           );
         default:
-          return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+          return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>지원하지 않는 차트 유형</div>;
       }
     }
 
@@ -355,7 +355,7 @@ export default function SalmonDashboard() {
           </ComposedChart>
         );
       default:
-        return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+        return <div style={{color:'var(--w-slate-500)',textAlign:'center',marginTop:'40px'}}>지원하지 않는 차트 유형</div>;
     }
   };
 
@@ -603,27 +603,20 @@ export default function SalmonDashboard() {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
     const situation = w.sit || w.situation || w.desc || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    const isLive = w.isLiveApi;
     const isEstimate = w.reliability && w.reliability < 70;
 
-    const badgeSuffix = [
-      isLive ? '🟢 LIVE API' : '',
-      isEstimate ? '📐 추정' : '',
-    ].filter(Boolean).join(' · ');
+    const badgeSuffix = isEstimate ? '📐 추정' : '';
 
     const cardDescParts = [w.subtitle, badgeSuffix].filter(Boolean);
     const cardDesc = cardDescParts.join(' - ') || '연어 인텔리전스 위젯';
 
     // L-09: 이 위젯들은 정적 JSON(/data/salmon_real_data_v4.json, FAO FishStatJ 1950-2024)을
-    // import할 뿐 실시간 fetch 분기가 없다. isLiveApi가 참인 위젯이 실재하지 않으므로
-    // 기본값을 SYNCED(허위 신선도)가 아닌 STATIC으로 둔다. SYNCED는 실 API 연동 시에만.
-    const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' =
-      isLive ? 'LIVE' : 'STATIC';
+    // import할 뿐 실시간 fetch 분기가 없다. JSON에 isLiveApi 키 자체가 없으므로(2026-10-08 확인)
+    // LIVE 분기를 두지 않고 STATIC으로 고정한다. SYNCED는 실 API 연동 시에만.
+    const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' = 'STATIC';
     // 패턴 E: 일괄 '2026-05' 빌드월 스탬프는 JSON에서 제거 완료 — 남은 syncDate는 실제
     // 데이터 빈티지이므로 그대로 노출하고, 미기재 시 기본 데이터셋 빈티지 라벨로 폴백(L-09).
-    const syncDate = isLive
-      ? new Date().toISOString().split('T')[0]
-      : (w.syncDate || 'FishStatJ 1950-2024');
+    const syncDate = w.syncDate || 'FishStatJ 1950-2024';
 
     return (
       <WidgetCard

@@ -211,7 +211,7 @@ export default function GarlicDashboard() {
             {/* 페이지 레벨 동기화 표기: 최신 실데이터 빈티지(KCS·FAOSTAT 2026-06-06 갱신)와 일치 */}
             <TelemetryBadge status="synced" syncDate="2026-06-06" />
             <div style={{ fontSize: '0.85rem', padding: '0.5rem 1.2rem', background: '#282828', borderRadius: '20px', color: 'var(--text-secondary)', fontWeight: 600 }}>
-            <span style={{ color: '#eab308' }}>Global Market 2026</span> · Sourcing · Hubs · ESG
+            <span style={{ color: '#eab308' }}>글로벌 시장 2026</span> · 소싱 · 허브 · ESG
             </div>
           </div>
         </div>

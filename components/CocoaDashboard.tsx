@@ -404,7 +404,7 @@ export default function CocoaDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"COCOBOD(Ghana Cocoa Board)"란 가나 국가가 운영하는 국영 카카오 단일 구매·수출 기관. 농가 수매가는 정부 산식(FOB 가격의 70%)에 묶여 있어 글로벌 시장가가 폭등해도 국내 농가는 그 혜택을 못 받는 구조. 이 디커플링이 임계점을 넘으면 농가는 가격이 더 높은 인접국(코트디부아르·토고·부르키나)으로 <strong>cross-border smuggling</strong>을 강행 - supply chain 자체가 grey market으로 이동.</p>
+                <p>"COCOBOD(Ghana Cocoa Board)"란 가나 국가가 운영하는 국영 카카오 단일 구매·수출 기관. 농가 수매가는 정부 산식(FOB 가격의 70%)에 묶여 있어 글로벌 시장가가 폭등해도 국내 농가는 그 혜택을 못 받는 구조. 이 디커플링이 임계점을 넘으면 농가는 가격이 더 높은 인접국(코트디부아르·토고·부르키나)으로 <strong>국경 밀반출</strong>을 강행 - supply chain 자체가 grey market으로 이동.</p>
                 <p>실측: <strong>2025-10 가나 농가 수매가 58,000세디/MT (FOB의 70% = 약 $3,600/MT) vs 동기 ICE 시장가 한때 $10,000+ → 농가 입장에서는 글로벌가의 36%만 받는 셈. 2023/24 시즌 가나 국경 외 유출 추정량 16만 톤(가나 총 생산의 27%). COCOBOD 유동성 위기로 농가 대금 지급 평균 90일 지연</strong>.</p>
               </div>
             ),

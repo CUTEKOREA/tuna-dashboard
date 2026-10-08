@@ -140,7 +140,7 @@ export function EnsoCorrelationWidget() {
       }
       takeaway={{
         situation: `<div>
-<p><strong>ENSO(El Niño-Southern Oscillation)</strong>는 태평양 적도 수온 변화 주기. <strong>엘니뇨(El Niño)</strong>는 평균보다 따뜻해지고 <strong>라니냐(La Niña)</strong>는 차가워지는 현상, 그 중간이 <strong>Neutral</strong>. NOAA가 매월 ONI(Oceanic Niño Index)로 측정·공시.</p>
+<p><strong>ENSO(El Niño-Southern Oscillation)</strong>는 태평양 적도 수온 변화 주기. <strong>엘니뇨(El Niño)</strong>는 평균보다 따뜻해지고 <strong>라니냐(La Niña)</strong>는 차가워지는 현상, 그 중간이 <strong>중립(Neutral)</strong>. NOAA가 매월 ONI(Oceanic Niño Index)로 측정·공시.</p>
 <p>참치 어획과 ENSO의 관계: 가다랑어는 따뜻한 표층수에 모이는 어종. 라니냐 → Neutral 전환기에 가다랑어가 더 깊은 수심으로 분산되며 어획 효율(CPUE) 일시 하락. 과거 10년 데이터: <strong>La Niña→Neutral 전환기에 WCPO 가다랑어 -5~-8% 감소 + 산지가격 +10~12% 상승</strong> 패턴 반복.</p>
 <p>현재 상황: <strong>2025 후반 약 La Niña → 2026 초 Neutral로 이미 전환 완료</strong>(NOAA 기준). 즉 ENSO 충격은 이미 가격에 반영된 상태.</p>
 <p>중요한 caveat: <strong>2026 Q2 현재 가격 변동성의 1차 변수는 ENSO가 아닌 호르무즈 봉쇄 외생 MGO 충격</strong>. ENSO 시그널만 보고 매입 결정하면 호르무즈 변수를 놓침 - 두 변수 동시 모니터링 필수.</p>

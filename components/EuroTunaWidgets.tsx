@@ -266,7 +266,7 @@ export function EuroValueChainWidget() {
           <Factory style={{ width: 20, height: 20, color: COLORS.accent.cyan }} />
           EU 캔참치 밸류체인 맵
         </h3>
-        <span style={badge(COLORS.accent.cyan)}>Supply Flow</span>
+        <span style={badge(COLORS.accent.cyan)}>공급 흐름</span>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', position: 'relative', zIndex: 2 }}>
@@ -324,7 +324,7 @@ export function EuroPremiumWidget() {
           <DollarSign style={{ width: 20, height: 20, color: COLORS.accent.amber }} />
           MSC 가격 프리미엄 실증 분석
         </h3>
-        <span style={badge(COLORS.accent.amber)}>Hedonic 2025</span>
+        <span style={badge(COLORS.accent.amber)}>헤도닉 분석 2025</span>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', position: 'relative', zIndex: 2 }}>

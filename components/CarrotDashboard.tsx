@@ -275,7 +275,7 @@ export default function CarrotDashboard() {
                 </div>
               </div>
             ) : (
-              <div style={{ color:'var(--w-slate-500)', fontSize:'0.8rem' }}>Loading Arbitrage Data...</div>
+              <div style={{ color:'var(--w-slate-500)', fontSize:'0.8rem' }}>차익거래 데이터 불러오는 중...</div>
             )}
           </div>
           
@@ -305,7 +305,7 @@ export default function CarrotDashboard() {
                 )}
               </div>
             ) : (
-              <div style={{ color:'var(--w-slate-500)', fontSize:'0.8rem' }}>Loading TRQ Data...</div>
+              <div style={{ color:'var(--w-slate-500)', fontSize:'0.8rem' }}>TRQ 데이터 불러오는 중...</div>
             )}
           </div>
         </div>
@@ -878,7 +878,7 @@ export default function CarrotDashboard() {
             actionPlan: (
               <div>
                 <p><strong>재정의</strong>: 중국산 우위 인식은 "단가 환상" - <strong>"VKFTA 0% 관세가 MA 포장 등 부가 cost를 흡수하고도 Landed Cost -7%(-$34/MT) 우위가 자동 발생하는 영구 cost moat"</strong>.</p>
-                <p><strong>3단계</strong>: ① 모든 B2B 견적·내부 매입 의사결정을 단가 → <strong>Landed Cost</strong> 표준으로 강제 전환 ② MA 특수 포장은 capex 회수가 6개월 - 자체 패키징 라인 신설로 단가 -$15/MT 추가 절감 ③ "VKFTA Landed Cost Champion" 포지셔닝을 IR 자료에 KPI화 → exit 시 PE 실사에서 단가 협상력 정량 증명 → +1.4x valuation premium.</p>
+                <p><strong>3단계</strong>: ① 모든 B2B 견적·내부 매입 의사결정을 단가 → <strong>착지원가(Landed Cost)</strong> 표준으로 강제 전환 ② MA 특수 포장은 capex 회수가 6개월 - 자체 패키징 라인 신설로 단가 -$15/MT 추가 절감 ③ "VKFTA Landed Cost Champion" 포지셔닝을 IR 자료에 KPI화 → exit 시 PE 실사에서 단가 협상력 정량 증명 → +1.4x valuation premium.</p>
               </div>
             ),
             source: "관세청 KCS Open API 농산물 관세표(E04-2026) + 한-베트남 FTA(VKFTA) 양허표",
