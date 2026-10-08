@@ -1,0 +1,248 @@
+{
+ "schemaVersion": "1.0.0",
+ "snapshotStatus": "SYNCED",
+ "syncDate": "2026-10-08",
+ "coverage": {
+  "resultsVoyages": 74,
+  "resultsTransfers": 327,
+  "sizingVoyages": 38,
+  "logsheets": 208
+ },
+ "vessels": [
+  {
+   "vessel": "NAOERO SUN",
+   "transfers": 32,
+   "reportedMt": 31945.0,
+   "actualMt": 33423.654,
+   "variancePct": 4.63
+  },
+  {
+   "vessel": "NAOERO STAR",
+   "transfers": 35,
+   "reportedMt": 30885.0,
+   "actualMt": 31795.379,
+   "variancePct": 2.95
+  },
+  {
+   "vessel": "MOAKONA",
+   "transfers": 30,
+   "reportedMt": 26789.0,
+   "actualMt": 27309.04,
+   "variancePct": 1.94
+  },
+  {
+   "vessel": "SHILLA JUPITER",
+   "transfers": 22,
+   "reportedMt": 18677.0,
+   "actualMt": 19006.628,
+   "variancePct": 1.76
+  },
+  {
+   "vessel": "SHILLA HARVESTER",
+   "transfers": 30,
+   "reportedMt": 29185.0,
+   "actualMt": 29630.461,
+   "variancePct": 1.53
+  },
+  {
+   "vessel": "MOAMARI",
+   "transfers": 33,
+   "reportedMt": 29669.0,
+   "actualMt": 30004.631,
+   "variancePct": 1.13
+  },
+  {
+   "vessel": "SHILLA CHALLENGER",
+   "transfers": 28,
+   "reportedMt": 23405.0,
+   "actualMt": 23622.84,
+   "variancePct": 0.93
+  },
+  {
+   "vessel": "SHILLA EXPLORER",
+   "transfers": 32,
+   "reportedMt": 25118.0,
+   "actualMt": 25267.091,
+   "variancePct": 0.59
+  },
+  {
+   "vessel": "SHILLA PIONEER",
+   "transfers": 31,
+   "reportedMt": 25887.0,
+   "actualMt": 26003.909,
+   "variancePct": 0.45
+  },
+  {
+   "vessel": "SHILLA SPRINTER",
+   "transfers": 36,
+   "reportedMt": 33379.0,
+   "actualMt": 33352.569,
+   "variancePct": -0.08
+  }
+ ],
+ "transferPorts": [
+  {
+   "port": "RABAUL",
+   "nameKo": "라바울(파푸아뉴기니)",
+   "actualMt": 83801.6,
+   "sharePct": 28.7
+  },
+  {
+   "port": "FUNAFUTI",
+   "nameKo": "푸나푸티(투발루)",
+   "actualMt": 63312.3,
+   "sharePct": 21.7
+  },
+  {
+   "port": "TARAWA",
+   "nameKo": "타라와(키리바시)",
+   "actualMt": 46689.8,
+   "sharePct": 16.0
+  },
+  {
+   "port": "HONIARA",
+   "nameKo": "호니아라(솔로몬제도)",
+   "actualMt": 45351.2,
+   "sharePct": 15.5
+  },
+  {
+   "port": "CHRISTMAS",
+   "nameKo": "크리스마스섬(키리바시)",
+   "actualMt": 40784.5,
+   "sharePct": 14.0
+  },
+  {
+   "port": "KIRIBATI(미상)",
+   "nameKo": "키리바시(항구 미기재)",
+   "actualMt": 9961.8,
+   "sharePct": 3.4
+  },
+  {
+   "port": "POHNPEI",
+   "nameKo": "폰페이(미크로네시아)",
+   "actualMt": 2332.3,
+   "sharePct": 0.8
+  }
+ ],
+ "leadDays": [
+  {
+   "year": 2023,
+   "medianDays": 36.5,
+   "transfers": 84
+  },
+  {
+   "year": 2024,
+   "medianDays": 40.0,
+   "transfers": 112
+  },
+  {
+   "year": 2025,
+   "medianDays": 43,
+   "transfers": 83
+  },
+  {
+   "year": 2026,
+   "medianDays": 41.0,
+   "transfers": 44
+  }
+ ],
+ "sizing": [
+  {
+   "year": 2024,
+   "voyages": 13,
+   "species": [
+    {
+     "species": "BET",
+     "largePct": 14.2,
+     "totalMt": 761.9
+    },
+    {
+     "species": "SJ",
+     "largePct": 49.8,
+     "totalMt": 50792.2
+    },
+    {
+     "species": "YF",
+     "largePct": 43.8,
+     "totalMt": 3211.8
+    }
+   ]
+  },
+  {
+   "year": 2025,
+   "voyages": 11,
+   "species": [
+    {
+     "species": "BET",
+     "largePct": 68.6,
+     "totalMt": 1472.4
+    },
+    {
+     "species": "SJ",
+     "largePct": 76.9,
+     "totalMt": 37446.7
+    },
+    {
+     "species": "YF",
+     "largePct": 79.6,
+     "totalMt": 6438.8
+    }
+   ]
+  },
+  {
+   "year": 2026,
+   "voyages": 10,
+   "species": [
+    {
+     "species": "BET",
+     "largePct": 58.2,
+     "totalMt": 290.4
+    },
+    {
+     "species": "SJ",
+     "largePct": 81.8,
+     "totalMt": 29729.4
+    },
+    {
+     "species": "YF",
+     "largePct": 89.1,
+     "totalMt": 5156.6
+    }
+   ]
+  }
+ ],
+ "schools": [
+  {
+   "year": 2023,
+   "sets": 708,
+   "catchMt": 42608.0,
+   "unassociatedPct": 41.9,
+   "driftingFadPct": 58.1,
+   "otherPct": 0.0
+  },
+  {
+   "year": 2024,
+   "sets": 1298,
+   "catchMt": 71454.0,
+   "unassociatedPct": 72.7,
+   "driftingFadPct": 26.6,
+   "otherPct": 0.7
+  },
+  {
+   "year": 2025,
+   "sets": 1433,
+   "catchMt": 69725.0,
+   "unassociatedPct": 70.7,
+   "driftingFadPct": 28.5,
+   "otherPct": 0.8
+  },
+  {
+   "year": 2026,
+   "sets": 484,
+   "catchMt": 23593.0,
+   "unassociatedPct": 88.3,
+   "driftingFadPct": 11.3,
+   "otherPct": 0.4
+  }
+ ]
+}
