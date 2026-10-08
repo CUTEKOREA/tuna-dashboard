@@ -92,7 +92,15 @@ export const cosmoFbuReport = {
  * 기준이 다르다 - 원장은 주차 말일(9/27)까지, 월간보고는 9/30까지이고 재가공 물량을 포함한다.
  */
 export function fbuLedgerComparison() {
-  const last = [...weeks].reverse().find((w) => w.production?.FBU?.cumRawMt != null);
+  /* 월간보고 마감일(9/30) 이전에 끝난 마지막 주만 고른다. 최신 주를 고르면 40주(9/28~10/4)처럼
+   * 다음 달 날짜가 섞인 누계와 대조해 차이가 기준 차이가 아니게 된다. periodEnd 는 「M/D」 표기다. */
+  const [ry, rm, rd] = cosmoFbuReport.source.reportDate.split('-').map(Number);
+  const reportKey = rm * 100 + rd;
+  const endKey = (w: (typeof weeks)[number]) => {
+    const [m, d] = String(w.periodEnd ?? '').split('/').map(Number);
+    return Number(w.year ?? ry) === ry && m && d ? m * 100 + d : Number.POSITIVE_INFINITY;
+  };
+  const last = [...weeks].reverse().find((w) => w.production?.FBU?.cumRawMt != null && endKey(w) <= reportKey);
   const fbu = last?.production?.FBU;
   const ledgerRawMt = Number(fbu?.cumRawMt ?? 0);
   const ledgerDays = Number(fbu?.cumDays ?? 0);
