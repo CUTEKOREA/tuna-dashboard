@@ -8,10 +8,16 @@
   --ps-red-ink: #f87171; /* 다크: red-400 · 틴트 위 6.05:1 (#ef4444 는 4.45:1) */
 }
 
-/* data-theme='light'(단축키 d)는 data-v3 와 따로 놀아 다크 v3 위에서도 밝은 바탕을 만든다 — 같이 묶는다 */
-:global([data-v3='light']) .root,
-:global([data-theme='light']) .root {
+:global([data-v3='light']) .root {
   --ps-amber-ink: #92400e; /* amber-800 · #fbf1e6 위 6.36:1 (#d97706 은 2.86:1) */
   --ps-green-ink: #3f6212; /* lime-800 · #f0f5eb 위 6.39:1 (#88bf4d 는 1.97:1) */
   --ps-red-ink: #b91c1c; /* red-700 · #fceeef 위 5.74:1 */
+}
+
+/* data-theme='light'(단축키 d)는 data-v3 와 따로 놀아 다크 v3 위에 밝은 필터 바(--surface-2 #f1f5f9)를 만든다.
+ * 그 바 위의 초기화(red)·CSV(green)만 진하게: red-400 2.23→5.21:1, emerald-400 1.61→5.92:1.
+ * amber 는 바 밖(다크 카드)에 있어 다크 값 그대로 둔다 — 진하게 하면 2.21:1 로 떨어진다. */
+:global([data-theme='light']) .root {
+  --ps-green-ink: #3f6212;
+  --ps-red-ink: #b91c1c;
 }
