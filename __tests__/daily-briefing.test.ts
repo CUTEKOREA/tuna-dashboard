@@ -124,6 +124,17 @@ describe('daily tuna briefing widget', () => {
     for (const day of weeklyBriefing.days) {
       expect(markup).toContain(md(day.date));
     }
+    // 2026-10-08 라이브 지적: 선택 상태가 배경색뿐이라 스크린리더가 못 읽었다.
+    expect(markup).toContain('role="tablist"');
+    expect(markup).toContain('role="tabpanel"');
+    for (const day of weeklyBriefing.days) {
+      const selected = day.date === latest.date;
+      expect(markup).toContain(
+        `role="tab" id="briefing-tab-${day.date}" aria-selected="${selected}"`,
+      );
+    }
+    // 선택된 탭은 정확히 하나다.
+    expect(markup.match(/aria-selected="true"/g)).toHaveLength(1);
     expect(markup).not.toContain('저가 수요는 견고하지만 관세 부담은 공급망 안에서 재배분');
     expect(markup).not.toContain('태국 원어 수요 둔화와 연승선 투명성 요구를 동시에 관리');
   });
