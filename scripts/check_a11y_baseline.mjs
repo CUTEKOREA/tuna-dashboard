@@ -16,7 +16,7 @@
 // - allow(허용폭)는 같은 커밋 반복 측정에서 흔들린 키에만, reason 과 함께 둔다. 전역 허용폭은 없다.
 // - --update: 측정으로 기준선을 다시 쓴다. 같은 테마 리포트가 여럿이면 키마다 최솟값 + (최댓값-최솟값)을 allow 로.
 //   기존 기준선 범위(nodes~nodes+allow) 안이면 기존 값을 그대로 두고, 범위보다 높아지는 키가 있으면
-//   --accept-increase 없이는 거부한다(회귀를 기준선에 묻지 않도록).
+//   --accept-increase 없이는 거부한다(회귀를 기준선에 묻지 않도록). 기준선에 있던 화면이 측정에 없으면 --accept-drop 없이는 거부한다.
 import assert from 'node:assert/strict';
 import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -215,7 +215,7 @@ export function compare(baseline, aggregates) {
 /* ─── 기준선 갱신 ─── */
 // prev: 기존 기준선(없거나 형식이 다르면 무시), aggregates: counts 여러 개(테마별 1회 이상)
 // 반환: { baseline, raised: [...], lowered: [...] } — raised 가 있고 acceptIncrease 가 아니면 throw
-export function buildBaseline(prev, aggregates, { acceptIncrease = false, extraMeta = {} } = {}) {
+export function buildBaseline(prev, aggregates, { acceptIncrease = false, acceptDrop = false, extraMeta = {} } = {}) {
   const usablePrev = prev?.format === BASELINE_FORMAT ? prev : null;
   const byTheme = new Map();
   let meta = null;
@@ -290,6 +290,11 @@ export function buildBaseline(prev, aggregates, { acceptIncrease = false, extraM
   if (raised.length && !acceptIncrease) {
     const lines = raised.map((r) => `  ↑ [${r.theme}] ${r.route} · ${r.vp} · ${r.rule} (${r.impact}) ${r.from}${r.allow ? `(+${r.allow})` : ''} → ${r.to}`);
     throw new Error(`기준선보다 높아지는 키 ${raised.length}개 — 회귀를 기준선에 묻을 수 없습니다. 화면을 고치세요(의도한 수용이면 --accept-increase 와 PR 에 근거).\n${lines.join('\n')}`);
+  }
+  // 측정에서 빠진 기존 화면을 조용히 지우면 다음 실행부터 그 화면의 스킵이 통과한다
+  if (dropped.length && !acceptDrop) {
+    const lines = dropped.map((d) => `  − [${d.theme}] ${d.route}`);
+    throw new Error(`기준선에 있던 화면 ${dropped.length}개가 측정에 없습니다 — 측정 누락을 기준선에 묻을 수 없습니다. 화면을 실제로 없앤 경우에만 --accept-drop 과 PR 에 근거.\n${lines.join('\n')}`);
   }
   const ordered = Object.fromEntries(Object.entries(themes).sort());
   return {
@@ -414,6 +419,10 @@ function selfTest() {
   // --update 로 회귀를 묻지 못한다
   assert.throws(() => buildBaseline(b3, [aggregate(rep('light', both('/a', [v('color-contrast', 'serious', 5)])))]), /높아지는 키 2개/);
   assert.equal(buildBaseline(b3, [aggregate(rep('light', both('/a', [v('color-contrast', 'serious', 5)])))], { acceptIncrease: true }).raised.length, 2);
+  // --update 로 화면 누락을 묻지 못한다
+  const b2r = buildBaseline(null, [aggregate(rep('light', [...both('/a', []), ...both('/b', [])]))]).baseline;
+  assert.throws(() => buildBaseline(b2r, [aggregate(rep('light', both('/a', [])))]), /화면 1개가 측정에 없습니다/);
+  assert.deepEqual(buildBaseline(b2r, [aggregate(rep('light', both('/a', [])))], { acceptDrop: true }).dropped, [{ theme: 'light', route: '/b' }]);
   // 키가 0 으로 사라져도 감소
   r = run(b5, both('/a', []));
   assert.equal(r.ok, false);
@@ -457,7 +466,7 @@ function selfTest() {
 
 /* ─── CLI ─── */
 function parseArgs(argv) {
-  const a = { reports: [], baseline: DEFAULT_BASELINE, update: false, selfTest: false, md: null, out: null, countsOut: null, print: false, printCounts: false, acceptIncrease: false, decode: null };
+  const a = { reports: [], baseline: DEFAULT_BASELINE, update: false, selfTest: false, md: null, out: null, countsOut: null, print: false, printCounts: false, acceptIncrease: false, acceptDrop: false, decode: null };
   for (let i = 0; i < argv.length; i += 1) {
     const x = argv[i];
     if (x === '--report') a.reports.push(argv[++i]);
@@ -470,6 +479,7 @@ function parseArgs(argv) {
     else if (x === '--print') a.print = true;
     else if (x === '--print-counts') a.printCounts = true;
     else if (x === '--accept-increase') a.acceptIncrease = true;
+    else if (x === '--accept-drop') a.acceptDrop = true;
     else if (x === '--self-test') a.selfTest = true;
     else throw new Error(`알 수 없는 인자: ${x}`);
   }
@@ -501,7 +511,7 @@ function main() {
     const target = args.out || args.baseline;
     let res;
     try {
-      res = buildBaseline(prev, aggs, { acceptIncrease: args.acceptIncrease, extraMeta: {
+      res = buildBaseline(prev, aggs, { acceptIncrease: args.acceptIncrease, acceptDrop: args.acceptDrop, extraMeta: {
         updatedAt: new Date().toISOString().slice(0, 10),
         ...(process.env.GITHUB_RUN_ID ? { measuredAt: `CI run ${process.env.GITHUB_RUN_ID} · ${(process.env.GITHUB_SHA || '').slice(0, 7)} · ${process.env.RUNNER_OS || ''} ${process.env.ImageOS || ''}`.trim() } : {}),
       } });
