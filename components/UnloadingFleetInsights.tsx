@@ -18,10 +18,18 @@ const SPECIES_ORDER = ['SJ', 'YF', 'BET'] as const;
 const formatMt = (value: number) => value.toLocaleString('ko-KR', { maximumFractionDigits: 0 });
 const formatSignedPct = (value: number) => `${value > 0 ? '+' : ''}${value.toFixed(2)}%`;
 
+export const isPartialYear = (data: FleetInsights, year: number) =>
+  year >= Number(data.syncDate.slice(0, 4));
+
 export function summarizeFleetInsights(data: FleetInsights) {
+  const complete = <T extends { year: number }>(rows: T[]) => {
+    const sorted = [...rows].sort((a, b) => a.year - b.year);
+    const done = sorted.filter((row) => !isPartialYear(data, row.year));
+    return done.length ? done : sorted;
+  };
   const vessels = [...data.vessels].sort((a, b) => b.variancePct - a.variancePct);
-  const latestSchool = [...data.schools].sort((a, b) => a.year - b.year);
-  const leadDays = [...data.leadDays].sort((a, b) => a.year - b.year);
+  const latestSchool = complete(data.schools);
+  const leadDays = complete(data.leadDays);
   return {
     widest: vessels[0],
     narrowest: vessels[vessels.length - 1],
@@ -40,6 +48,7 @@ export function UnloadingFleetInsightsView({ data }: { data: FleetInsights }) {
   const maxShare = Math.max(...data.transferPorts.map((p) => p.sharePct), 1);
   const maxLead = Math.max(...data.leadDays.map((l) => l.medianDays), 1);
   const { widest, narrowest, topPort, firstSchool, lastSchool, firstLead, lastLead } = summary;
+  const partial = (year: number) => (isPartialYear(data, year) ? ' · 진행 중' : '');
 
   return (
     <section
@@ -94,7 +103,7 @@ export function UnloadingFleetInsightsView({ data }: { data: FleetInsights }) {
       <div className={styles.grid}>
         <div className={styles.block} data-testid="fleet-vessel-variance">
           <h3><Ship size={16} />본선별 보고 대비 실측</h3>
-          <p className={styles.note}>전재 {Math.min(...vessels.map((v) => v.transfers))}회 이상 본선 · 실측이 보고보다 많으면 +</p>
+          <p className={styles.note}>전재 5회 이상 본선 {vessels.length}척 · 실측이 보고보다 많으면 +</p>
           <ul className={styles.rows}>
             {vessels.map((v) => (
               <li className={styles.row} key={v.vessel}>
@@ -129,7 +138,7 @@ export function UnloadingFleetInsightsView({ data }: { data: FleetInsights }) {
           <ul className={styles.rows}>
             {data.leadDays.map((l) => (
               <li className={styles.row} key={l.year}>
-                <span className={styles.label}>{l.year}년<small>{l.transfers}건</small></span>
+                <span className={styles.label}>{l.year}년<small>{l.transfers}건{partial(l.year)}</small></span>
                 <span className={styles.track} aria-hidden="true">
                   <span className={styles.fill} style={{ width: `${(l.medianDays / maxLead) * 100}%` }} />
                 </span>
@@ -145,7 +154,7 @@ export function UnloadingFleetInsightsView({ data }: { data: FleetInsights }) {
           <ul className={styles.rows}>
             {data.schools.map((s) => (
               <li className={styles.row} key={s.year}>
-                <span className={styles.label}>{s.year}년<small>{s.sets.toLocaleString('ko-KR')}회</small></span>
+                <span className={styles.label}>{s.year}년<small>{s.sets.toLocaleString('ko-KR')}회{partial(s.year)}</small></span>
                 <span
                   className={styles.stack}
                   role="img"
@@ -181,7 +190,7 @@ export function UnloadingFleetInsightsView({ data }: { data: FleetInsights }) {
             <tbody>
               {data.sizing.map((row) => (
                 <tr key={row.year}>
-                  <td>{row.year}년<small>{row.voyages}항차</small></td>
+                  <td>{row.year}년<small>{row.voyages}항차{partial(row.year)}</small></td>
                   {SPECIES_ORDER.map((sp) => {
                     const cell = row.species.find((c) => c.species === sp);
                     return (

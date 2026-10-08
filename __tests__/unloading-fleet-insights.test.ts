@@ -57,6 +57,16 @@ describe('UnloadingFleetInsightsView', () => {
     expect(markup).not.toContain('LIVE');
   });
 
+  it('headlines the latest complete year and marks the sync year as in progress', () => {
+    const syncYear = Number(data.syncDate.slice(0, 4));
+    const summary = summarizeFleetInsights(data);
+    expect(summary.lastLead.year).toBeLessThan(syncYear);
+    expect(summary.lastSchool.year).toBeLessThan(syncYear);
+    const markup = renderToStaticMarkup(React.createElement(UnloadingFleetInsightsView, { data }));
+    expect(markup).toContain(`(${summary.lastLead.year})`);
+    if (data.schools.some((s) => s.year >= syncYear)) expect(markup).toContain('진행 중');
+  });
+
   it('orders vessels from widest to narrowest variance', () => {
     const summary = summarizeFleetInsights(data);
     expect(summary.widest.variancePct).toBeGreaterThanOrEqual(summary.narrowest.variancePct);
