@@ -1,0 +1,815 @@
+{
+  "$comment": "접근성(axe) 기준선 — 테마×화면별 impact 노드 수(데스크톱+모바일 합)와 critical·serious 규칙별 노드 수. scripts/check_a11y_baseline.mjs 가 비교한다. 손으로 늘리지 말고 --update 로 다시 쓴다. allow 는 반복 측정에서 흔들린 항목에만, reason 과 함께.",
+  "meta": {
+    "axeVersion": "4.13.0",
+    "updatedAt": "2026-10-08",
+    "measuredAt": "b6570fc (origin/main) · linux · next build + next start · 테마별 3회",
+    "determinism": "같은 커밋 3회 측정(테마별)에서 모든 화면·규칙의 노드 수가 동일 — allow 를 둔 항목 없음. 감사 도구가 reduced-motion 을 켜고 DOM 안정(1.5초)까지 기다려 애니메이션·지연 마운트의 흔들림이 관측되지 않았다."
+  },
+  "themes": {
+    "light": {
+      "/": {
+        "critical": 0,
+        "serious": 16,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 14
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/bangkok-office": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/bni-global": {
+        "critical": 0,
+        "serious": 2,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/company-anatomy": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/cosmo": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/cross-intelligence": {
+        "critical": 0,
+        "serious": 40,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 38
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/design-lab": {
+        "critical": 0,
+        "serious": 12,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 12
+          }
+        }
+      },
+      "/falkland": {
+        "critical": 0,
+        "serious": 33,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 31
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/ffa-report": {
+        "critical": 0,
+        "serious": 14,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 14
+          }
+        }
+      },
+      "/financial-risk": {
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 1
+          }
+        }
+      },
+      "/fleet": {
+        "critical": 0,
+        "serious": 10,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 10
+          }
+        }
+      },
+      "/gmts": {
+        "critical": 0,
+        "serious": 2,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/kamis": {
+        "critical": 0,
+        "serious": 7,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 7
+          }
+        }
+      },
+      "/logistics": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/mackerel-industry": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/management": {
+        "critical": 0,
+        "serious": 62,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 62
+          }
+        }
+      },
+      "/manual": {
+        "critical": 0,
+        "serious": 6,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 6
+          }
+        }
+      },
+      "/market": {
+        "critical": 0,
+        "serious": 16,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 14
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/octopus-industry": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/omo-preview": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/panofi": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/pollock-industry": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/pork": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/port-intel": {
+        "critical": 0,
+        "serious": 14,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 12
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/purse-seiner-db": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/shrimp-industry": {
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 1
+          }
+        }
+      },
+      "/squid": {
+        "critical": 0,
+        "serious": 56,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 24
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 32
+          }
+        }
+      },
+      "/squid-industry": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/squid-v5": {
+        "critical": 0,
+        "serious": 98,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 12
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 86
+          }
+        }
+      },
+      "/tuna-anatomy": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/tuna-industry": {
+        "critical": 0,
+        "serious": 2,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/tunafarm-industry": {
+        "critical": 0,
+        "serious": 7,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 6
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 1
+          }
+        }
+      },
+      "/unloading": {
+        "critical": 0,
+        "serious": 14,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 14
+          }
+        }
+      },
+      "/whelk-industry": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      }
+    },
+    "dark": {
+      "/": {
+        "critical": 0,
+        "serious": 37,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 35
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/bangkok-office": {
+        "critical": 0,
+        "serious": 16,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 16
+          }
+        }
+      },
+      "/bni-global": {
+        "critical": 0,
+        "serious": 2,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/company-anatomy": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/cosmo": {
+        "critical": 0,
+        "serious": 49,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 49
+          }
+        }
+      },
+      "/cross-intelligence": {
+        "critical": 0,
+        "serious": 17,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 15
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/design-lab": {
+        "critical": 0,
+        "serious": 12,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 12
+          }
+        }
+      },
+      "/falkland": {
+        "critical": 0,
+        "serious": 33,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 31
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/ffa-report": {
+        "critical": 0,
+        "serious": 14,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 14
+          }
+        }
+      },
+      "/financial-risk": {
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 1
+          }
+        }
+      },
+      "/fleet": {
+        "critical": 0,
+        "serious": 11,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 11
+          }
+        }
+      },
+      "/gmts": {
+        "critical": 0,
+        "serious": 16,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 16
+          }
+        }
+      },
+      "/kamis": {
+        "critical": 0,
+        "serious": 7,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 7
+          }
+        }
+      },
+      "/logistics": {
+        "critical": 0,
+        "serious": 7,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 7
+          }
+        }
+      },
+      "/mackerel-industry": {
+        "critical": 0,
+        "serious": 44,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 44
+          }
+        }
+      },
+      "/management": {
+        "critical": 0,
+        "serious": 62,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 62
+          }
+        }
+      },
+      "/manual": {
+        "critical": 0,
+        "serious": 6,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 6
+          }
+        }
+      },
+      "/market": {
+        "critical": 0,
+        "serious": 37,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 35
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/octopus-industry": {
+        "critical": 0,
+        "serious": 39,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 39
+          }
+        }
+      },
+      "/omo-preview": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {}
+      },
+      "/panofi": {
+        "critical": 0,
+        "serious": 9,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 9
+          }
+        }
+      },
+      "/pollock-industry": {
+        "critical": 0,
+        "serious": 37,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 37
+          }
+        }
+      },
+      "/pork": {
+        "critical": 0,
+        "serious": 7,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 7
+          }
+        }
+      },
+      "/port-intel": {
+        "critical": 0,
+        "serious": 2,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/purse-seiner-db": {
+        "critical": 0,
+        "serious": 33,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 33
+          }
+        }
+      },
+      "/shrimp-industry": {
+        "critical": 0,
+        "serious": 59,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 59
+          }
+        }
+      },
+      "/squid": {
+        "critical": 0,
+        "serious": 56,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 24
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 32
+          }
+        }
+      },
+      "/squid-industry": {
+        "critical": 0,
+        "serious": 67,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 67
+          }
+        }
+      },
+      "/squid-v5": {
+        "critical": 0,
+        "serious": 98,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 12
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 86
+          }
+        }
+      },
+      "/tuna-anatomy": {
+        "critical": 0,
+        "serious": 49,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 49
+          }
+        }
+      },
+      "/tuna-industry": {
+        "critical": 0,
+        "serious": 6,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 4
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 2
+          }
+        }
+      },
+      "/tunafarm-industry": {
+        "critical": 0,
+        "serious": 71,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 70
+          },
+          "scrollable-region-focusable": {
+            "impact": "serious",
+            "nodes": 1
+          }
+        }
+      },
+      "/unloading": {
+        "critical": 0,
+        "serious": 9,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 9
+          }
+        }
+      },
+      "/whelk-industry": {
+        "critical": 0,
+        "serious": 51,
+        "moderate": 0,
+        "minor": 0,
+        "rules": {
+          "color-contrast": {
+            "impact": "serious",
+            "nodes": 51
+          }
+        }
+      }
+    }
+  }
+}

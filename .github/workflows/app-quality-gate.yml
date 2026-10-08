@@ -19,6 +19,9 @@ on:
       - 'scripts/requirements-dashboard-sync.txt'
       - 'scripts/audit_api_cache_policy.mjs'
       - 'scripts/check_route_bundle_budget.mjs'
+      - 'scripts/a11y_audit.mjs'
+      - 'scripts/check_a11y_baseline.mjs'
+      - 'scripts/a11y-baseline.json'
       - 'eslint.config.mjs'
       - 'tsconfig.json'
       - 'next.config.mjs'
@@ -43,6 +46,9 @@ on:
       - 'scripts/requirements-dashboard-sync.txt'
       - 'scripts/audit_api_cache_policy.mjs'
       - 'scripts/check_route_bundle_budget.mjs'
+      - 'scripts/a11y_audit.mjs'
+      - 'scripts/check_a11y_baseline.mjs'
+      - 'scripts/a11y-baseline.json'
       - 'eslint.config.mjs'
       - 'tsconfig.json'
       - 'next.config.mjs'
@@ -82,3 +88,55 @@ jobs:
 
       - name: Run unloading history browser acceptance
         run: npm run test:e2e:unloading-history
+
+  # 접근성(axe) 기준선 게이트 — critical·serious 노드가 기준선보다 늘면 실패.
+  # 전 화면 1테마 감사가 ~13.5분(2026-10-08 실측)이라 2테마를 verify job(20분)에 못 넣는다(다크는 ~17분) → 테마별 병렬 job.
+  # 빌드는 job 마다 다시 한다: .next 산출물(캐시 제외 ~137MB)을 artifact 로 넘기면
+  # 「빌드 job → 업로드 → 다운로드」가 직렬로 붙어 job 안에서 빌드(~1.5분)하는 것보다 항상 길다.
+  a11y:
+    name: a11y baseline (${{ matrix.theme }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        theme: [light, dark]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit
+
+      - name: Check baseline script self-test
+        run: node scripts/check_a11y_baseline.mjs --self-test
+
+      - name: Build
+        run: npm run build
+
+      - name: Run axe audit
+        run: npm run a11y -- --theme ${{ matrix.theme }} --out artifacts/a11y/${{ matrix.theme }}
+
+      - name: Compare with baseline
+        if: ${{ !cancelled() }}
+        run: >-
+          node scripts/check_a11y_baseline.mjs
+          --report artifacts/a11y/${{ matrix.theme }}/report.json
+          --md artifacts/a11y/${{ matrix.theme }}/gate.md
+
+      - name: Upload a11y report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-report-${{ matrix.theme }}
+          path: |
+            artifacts/a11y/${{ matrix.theme }}/report.md
+            artifacts/a11y/${{ matrix.theme }}/gate.md
+            artifacts/a11y/${{ matrix.theme }}/report.json
+          if-no-files-found: warn

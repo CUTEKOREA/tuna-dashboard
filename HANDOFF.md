@@ -1,3 +1,8 @@
+> ✅ **2026-10-09 KST — 접근성(axe) 기준선 CI 게이트** [CC]:
+> - `scripts/check_a11y_baseline.mjs` + `scripts/a11y-baseline.json`. `npm run a11y` 의 report.json 을 테마×화면×규칙(critical·serious, 데스크톱+모바일 합)으로 기준선과 비교 — 늘면 exit 1, 줄면 통과+「기준선 갱신 가능」, 측정 오류·측정 0·기준선 화면 스킵이면 exit 1, 새 화면은 critical·serious 0 이어야 통과. `--update` 로 재작성(여러 리포트면 최솟값 + 흔들림만큼 `allow`·`reason`). `--self-test` assert 자체 점검.
+> - 기준선: origin/main `b6570fc` 에서 테마별 3회 측정 — 라이트 serious 413 · 다크 serious 964 · critical 0, 34화면, 3회 모두 화면·규칙 노드 수 동일 → 허용폭 0건.
+> - 시간(로컬 실측): 1테마 13.5~17분 → verify job(20분)에 못 넣어 `app-quality-gate.yml` 에 테마별 matrix job `a11y`(needs 없음·35분). 빌드는 job 안에서 다시(~1.5분) — .next(캐시 제외 ~137MB) artifact 전달은 직렬 경로가 더 길다. report.md·gate.md·report.json 을 artifact 로 업로드.
+> - 위반을 줄이면 `node scripts/check_a11y_baseline.mjs --update --report <light> --report <dark>` 로 기준선을 내린다(래칫).
 > ✅ **2026-10-08 21:10 KST — axe-core 접근성 전수 감사 도입 + 공통 컴포넌트 위반 수정** [CC]:
 > - 도구: `npm run a11y` (`scripts/a11y_audit.mjs`, devDep `@axe-core/puppeteer` 하나). 빌드 산출물을 `next start` 로 띄우고 로컬 E2E 경계(`DASHBOARD_E2E_MODE=local` + 헤더)로 접속, 라우트 34개 × 데스크톱 1280×800·모바일 390×844, 태그 wcag2a·wcag2aa·wcag21aa(규칙 끄기 없음). 끝까지 스크롤 → DOM 1.5초 안정 후 측정. `--theme dark`·`--routes`·`--out` 옵션. 리포트 `artifacts/a11y/report.{json,md}`(gitignore). CI 연동 안 함.
 > - 라우트: sitemap `PUBLIC_ROUTES` + 레지스트리 메뉴 키 24 + app 정적 폴더. 스킵(auth) 3 = `/mail`(404)·`/mail/login`·`/login`(503, `DASHBOARD_PUBLIC_BASE_URL` 미설정). 은퇴 18 제외.
