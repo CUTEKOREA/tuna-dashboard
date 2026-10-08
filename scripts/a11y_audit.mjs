@@ -127,10 +127,11 @@ async function settle(page) {
 
 function classifySkip(status, finalUrl) {
   const u = new URL(finalUrl);
-  if (u.pathname === '/login' || u.pathname.endsWith('/login') || u.pathname.startsWith('/auth')) {
-    // 로그인 화면 5xx 는 보통 DASHBOARD_PUBLIC_BASE_URL 미설정(lib/auth/proxy.ts) — 인증 스킵과 구분해 드러낸다
-    return status >= 500 ? 'auth-unconfigured' : 'auth';
-  }
+  const isLogin = u.pathname === '/login' || u.pathname.endsWith('/login');
+  // 로그인 화면 5xx 는 보통 DASHBOARD_PUBLIC_BASE_URL 미설정(lib/auth/proxy.ts) — 인증 스킵과 구분해 드러낸다
+  if (isLogin && status >= 500) return 'auth-unconfigured';
+  if (status >= 500) return null; // 그 밖의 5xx 는 오류
+  if (isLogin || u.pathname.startsWith('/auth')) return 'auth';
   if ([401, 403, 404].includes(status)) return 'auth';
   return null;
 }
