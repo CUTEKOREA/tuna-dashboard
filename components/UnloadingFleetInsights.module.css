@@ -35,3 +35,25 @@
   .kpiGrid4 { grid-template-columns: minmax(0, 1fr); }
   .row { grid-template-columns: minmax(0, 7rem) minmax(0, 1fr) 4rem; }
 }
+
+[data-v3='light'] .block { border-color: var(--dsc-surface-border); background: var(--dsc-bg); }
+[data-v3='light'] .block h3 { color: var(--dsc-ink); }
+[data-v3='light'] .block h3 svg { color: var(--accent-primary); }
+[data-v3='light'] .note,
+[data-v3='light'] .legend { color: var(--dsc-ink-muted); }
+[data-v3='light'] .label { color: var(--dsc-ink); }
+[data-v3='light'] .label small,
+[data-v3='light'] .table td small { color: var(--dsc-ink-faint); }
+[data-v3='light'] .value { color: var(--dsc-ink); }
+[data-v3='light'] .track,
+[data-v3='light'] .stack { background: rgba(141, 147, 165, 0.16); }
+[data-v3='light'] .fill,
+[data-v3='light'] .segFree { background: #0284c7; }
+[data-v3='light'] .fillWarn,
+[data-v3='light'] .segFad { background: #d97706; }
+[data-v3='light'] .fillMuted,
+[data-v3='light'] .segOther { background: #94a3b8; }
+[data-v3='light'] .table th { color: var(--dsc-ink-muted); background: var(--dsc-bg-deep); }
+[data-v3='light'] .table th,
+[data-v3='light'] .table td { border-bottom-color: var(--dsc-surface-border); }
+[data-v3='light'] .table td { color: var(--dsc-ink); }
