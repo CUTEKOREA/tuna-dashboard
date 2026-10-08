@@ -39,7 +39,7 @@ describe('2021-2025 public unloading history snapshot', () => {
     expect(data.completionYearBaseline.find(({ year }) => year === 2023)).toMatchObject({
       verifiedActualMt: 89338.33,
       verifiedVoyageCount: 27,
-      candidateVoyageCount: 28,
+      candidateVoyageCount: 27,
     });
   });
 

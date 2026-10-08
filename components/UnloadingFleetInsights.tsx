@@ -1,6 +1,8 @@
 'use client';
 
-import { Anchor, Clock, Fish, Ruler, Scale, Ship } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
+import { Anchor, Clock, Fish, Gauge, MapPinned, Ruler, Scale, Ship } from 'lucide-react';
 import {
   unloadingFleetInsights,
   type FleetInsights,
@@ -10,6 +12,12 @@ import TelemetryBadge from './TelemetryBadge';
 import TermTooltip from './TermTooltip';
 import historyStyles from './UnloadingHistory.module.css';
 import styles from './UnloadingFleetInsights.module.css';
+import { catchBreaks, GROUND_RAMP } from '../lib/unloading-history/fishing-grounds';
+
+const FishingGroundsMap = dynamic(() => import('./UnloadingFishingGroundsMap'), {
+  ssr: false,
+  loading: () => <div className={styles.mapLoading}>지도를 불러오는 중…</div>,
+});
 
 const SPECIES_KO = { SJ: '가다랑어', YF: '황다랑어', BET: '눈다랑어' } as const;
 const LARGE_THRESHOLD = { SJ: '7.5 lbs 이상', YF: '20 lbs 이상', BET: '20 lbs 이상' } as const;
@@ -30,7 +38,17 @@ export function summarizeFleetInsights(data: FleetInsights) {
   const vessels = [...data.vessels].sort((a, b) => b.variancePct - a.variancePct);
   const latestSchool = complete(data.schools);
   const leadDays = complete(data.leadDays);
+  const effYear = complete(data.efficiency).at(-1)?.year;
+  const schoolYear = complete(data.schoolEfficiency).at(-1)?.year;
+  const schoolRow = (school: 'unassociated' | 'drifting_fad') =>
+    data.schoolEfficiency.find((e) => e.year === schoolYear && e.school === school);
   return {
+    effYear,
+    effVessels: data.efficiency.filter((e) => e.year === effYear).sort((a, b) => b.catchPerSet - a.catchPerSet),
+    schoolYear,
+    freeSet: schoolRow('unassociated'),
+    fadSet: schoolRow('drifting_fad'),
+    groundYear: complete(data.grounds).at(-1)?.year,
     widest: vessels[0],
     narrowest: vessels[vessels.length - 1],
     topPort: [...data.transferPorts].sort((a, b) => b.sharePct - a.sharePct)[0],
@@ -49,6 +67,12 @@ export function UnloadingFleetInsightsView({ data }: { data: FleetInsights }) {
   const maxLead = Math.max(...data.leadDays.map((l) => l.medianDays), 1);
   const { widest, narrowest, topPort, firstSchool, lastSchool, firstLead, lastLead } = summary;
   const partial = (year: number) => (isPartialYear(data, year) ? ' · 진행 중' : '');
+  const { effYear, effVessels, schoolYear, freeSet, fadSet } = summary;
+  const [groundYear, setGroundYear] = useState(summary.groundYear);
+  const ground = data.grounds.find((g) => g.year === groundYear) ?? data.grounds.at(-1);
+  const groundSets = ground ? ground.cells.reduce((sum, c) => sum + c[2], 0) : 0;
+  const breaks = ground ? catchBreaks(ground.cells) : [];
+  const schoolYears = [...new Set(data.schoolEfficiency.map((e) => e.year))].sort((a, b) => a - b);
 
   return (
     <section
@@ -205,11 +229,96 @@ export function UnloadingFleetInsightsView({ data }: { data: FleetInsights }) {
             </tbody>
           </table>
         </div>
+
+        {ground ? (
+          <div className={`${styles.block} ${styles.wide}`} data-testid="fleet-fishing-grounds">
+            <h3><MapPinned size={16} />조업 위치 (1° 격자)</h3>
+            <p className={styles.note}>
+              어획 일지의 성공 투망 위치를 1°×1° 칸으로 묶은 어획량입니다. 본선명·일자는 넣지 않았습니다.
+              {` ${groundYear}년 투망 ${groundSets.toLocaleString('ko-KR')}회 · ${ground.cells.length}칸${partial(ground.year)}`}
+            </p>
+            <div className={historyStyles.yearTabs} role="group" aria-label="조업 위치 연도">
+              {data.grounds.map((g) => (
+                <button
+                  key={g.year}
+                  type="button"
+                  className={`${historyStyles.yearTab} ${g.year === ground.year ? historyStyles.yearTabActive : ''}`}
+                  aria-pressed={g.year === ground.year}
+                  data-testid={`ground-year-${g.year}`}
+                  onClick={() => setGroundYear(g.year)}
+                >
+                  {g.year}{isPartialYear(data, g.year) ? '*' : ''}
+                </button>
+              ))}
+            </div>
+            <div className={styles.map}>
+              <FishingGroundsMap key={ground.year} cells={ground.cells} />
+            </div>
+            <div className={styles.legend}>
+              {GROUND_RAMP.map((color, i) => (
+                <span key={color}>
+                  <i style={{ background: color }} />
+                  {i === 0 ? `≤ ${formatMt(breaks[0])}` : i < breaks.length ? `≤ ${formatMt(breaks[i])}` : `> ${formatMt(breaks[breaks.length - 1])}`} MT
+                </span>
+              ))}
+              <span>* 진행 중인 연도</span>
+            </div>
+          </div>
+        ) : null}
+
+        {effYear ? (
+          <div className={styles.block} data-testid="fleet-vessel-efficiency">
+            <h3><Gauge size={16} />본선별 조업 효율 ({effYear})</h3>
+            <p className={styles.note}>투망 40회 이상 본선 · 회당 어획량은 실패 투망 포함 평균, 실패율은 어획 0인 투망 비중</p>
+            <table className={styles.table}>
+              <thead>
+                <tr><th scope="col">본선</th><th scope="col">투망</th><th scope="col">회당 MT</th><th scope="col">실패율</th></tr>
+              </thead>
+              <tbody>
+                {effVessels.map((e) => (
+                  <tr key={e.vessel}>
+                    <td>{e.vessel}</td>
+                    <td>{e.sets}회</td>
+                    <td>{e.catchPerSet}</td>
+                    <td>{e.zeroSetPct}%</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : null}
+
+        {schoolYears.length ? (
+          <div className={styles.block} data-testid="fleet-school-efficiency">
+            <h3><Fish size={16} />어군 유형별 투망 효율</h3>
+            <p className={styles.note}>투망 50회 이상인 연도·유형만 · 회당 어획량(실패 포함)과 실패율</p>
+            <table className={styles.table}>
+              <thead>
+                <tr><th scope="col">연도</th><th scope="col">자유군 회당</th><th scope="col">표류 FAD 회당</th></tr>
+              </thead>
+              <tbody>
+                {schoolYears.map((year) => {
+                  const cell = (school: 'unassociated' | 'drifting_fad') => {
+                    const e = data.schoolEfficiency.find((x) => x.year === year && x.school === school);
+                    return e ? <>{e.catchPerSet} MT<small>{e.sets.toLocaleString('ko-KR')}회 · 실패 {e.zeroSetPct}%</small></> : '—';
+                  };
+                  return (
+                    <tr key={year}>
+                      <td>{year}년{partial(year) ? <small>진행 중</small> : null}</td>
+                      <td>{cell('unassociated')}</td>
+                      <td>{cell('drifting_fad')}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : null}
       </div>
 
       <TakeawayBox
-        situation={`본선별 실측은 보고 대비 ${narrowest.vessel} ${formatSignedPct(narrowest.variancePct)}에서 ${widest.vessel} ${formatSignedPct(widest.variancePct)}까지 벌어집니다. 환적항은 ${topPort.nameKo}가 ${topPort.sharePct}%로 가장 많고, 환적부터 하역까지 중앙값은 ${firstLead.year}년 ${firstLead.medianDays}일에서 ${lastLead.year}년 ${lastLead.medianDays}일로 바뀌었습니다. 자유군 어획 비중은 ${firstSchool.year}년 ${firstSchool.unassociatedPct}%에서 ${lastSchool.year}년 ${lastSchool.unassociatedPct}%입니다.`}
-        takeaway="검량 차이가 큰 본선은 보고량을 판매·배선 계획에 그대로 쓰지 말고 과거 차이율로 보정해 검토합니다. 환적→하역 일수 증가는 운반선 회전과 재고 보유 기간 점검 신호로 봅니다. 사이즈·어군 비중은 확인된 항차 표본 기준이며 전체 어획을 대표하지 않습니다."
+        situation={`본선별 실측은 보고 대비 ${narrowest.vessel} ${formatSignedPct(narrowest.variancePct)}에서 ${widest.vessel} ${formatSignedPct(widest.variancePct)}까지 벌어집니다. 환적항은 ${topPort.nameKo}가 ${topPort.sharePct}%로 가장 많고, 환적부터 하역까지 중앙값은 ${firstLead.year}년 ${firstLead.medianDays}일에서 ${lastLead.year}년 ${lastLead.medianDays}일로 바뀌었습니다. 자유군 어획 비중은 ${firstSchool.year}년 ${firstSchool.unassociatedPct}%에서 ${lastSchool.year}년 ${lastSchool.unassociatedPct}%입니다.${freeSet && fadSet ? ` ${schoolYear}년 투망 1회당 어획량은 표류 FAD ${fadSet.catchPerSet} MT, 자유군 ${freeSet.catchPerSet} MT이고 실패율은 각각 ${fadSet.zeroSetPct}%, ${freeSet.zeroSetPct}%입니다.` : ''}`}
+        takeaway="검량 차이가 큰 본선은 보고량을 판매·배선 계획에 그대로 쓰지 말고 과거 차이율로 보정해 검토합니다. 환적→하역 일수 증가는 운반선 회전과 재고 보유 기간 점검 신호로 봅니다. 자유군 비중이 커진 만큼 투망당 어획이 줄고 실패 투망이 늘어나는지 본선별 효율과 함께 점검합니다. 사이즈·어군·조업 위치는 확인된 일지·항차 표본 기준이며 전체 어획을 대표하지 않습니다."
         source={`구글 드라이브 하역업무 원자료 · 본선별 Results of unloading xlsx(결정론적 파싱) · SIZING 판정서(SAP 파싱 + Claude 추출, 합계 검증) · SPC/FFA 선망 LOGSHEET(Claude 추출, 쪽별 합계 검증) · 집계 ${data.syncDate}`}
       />
     </section>

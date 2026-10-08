@@ -10,6 +10,12 @@ import {
   summarizeFleetInsights,
   UnloadingFleetInsightsView,
 } from '../components/UnloadingFleetInsights';
+import {
+  catchBreaks,
+  formatPosition,
+  GROUND_RAMP,
+  rampColor,
+} from '../lib/unloading-history/fishing-grounds';
 
 describe('unloading fleet insights snapshot', () => {
   it('parses under the strict schema and stays SYNCED', () => {
@@ -41,7 +47,58 @@ describe('unloading fleet insights snapshot', () => {
   });
 });
 
+describe('fishing grounds and set efficiency', () => {
+  it('keeps grid cells on 1° centres inside the Pacific purse-seine box, without vessel names', () => {
+    for (const g of data.grounds) {
+      for (const [lat, lon, sets, catchMt] of g.cells) {
+        expect(Math.abs((lat % 1) + (lat < 0 ? 1 : 0) - 0.5)).toBeLessThan(1e-9);
+        expect(Math.abs((lon % 1) - 0.5)).toBeLessThan(1e-9);
+        expect(sets).toBeGreaterThan(0);
+        expect(catchMt).toBeGreaterThan(0);
+      }
+      expect(JSON.stringify(g)).not.toMatch(/SHILLA|NAOERO|MOA/);
+    }
+  });
+
+  it('never maps more sets than the logsheet year total', () => {
+    for (const g of data.grounds) {
+      const year = data.schools.find((s) => s.year === g.year);
+      expect(year).toBeDefined();
+      expect(g.cells.reduce((sum, c) => sum + c[2], 0)).toBeLessThanOrEqual(year!.sets);
+    }
+  });
+
+  it('only publishes efficiency rows backed by enough sets', () => {
+    for (const e of data.efficiency) expect(e.sets).toBeGreaterThanOrEqual(40);
+    for (const e of data.schoolEfficiency) expect(e.sets).toBeGreaterThanOrEqual(50);
+  });
+
+  it('colours cells by quantile breaks and formats positions across the date line', () => {
+    const cells: [number, number, number, number][] = [10, 20, 30, 40, 50, 60, 70, 80, 90, 1000].map((c, i) => [0.5, 150.5 + i, 1, c]);
+    const breaks = catchBreaks(cells);
+    expect(breaks).toHaveLength(4);
+    expect(rampColor(10, breaks)).toBe(GROUND_RAMP[0]);
+    expect(rampColor(5000, breaks)).toBe(GROUND_RAMP[GROUND_RAMP.length - 1]);
+    expect(formatPosition(-4.5, 152.5)).toBe('4.5°S · 152.5°E');
+    expect(formatPosition(1.5, 202.5)).toBe('1.5°N · 157.5°W');
+  });
+});
+
 describe('UnloadingFleetInsightsView', () => {
+  it('renders the map shell, efficiency tables and headline efficiency on complete years', () => {
+    const markup = renderToStaticMarkup(React.createElement(UnloadingFleetInsightsView, { data }));
+    const summary = summarizeFleetInsights(data);
+    const syncYear = Number(data.syncDate.slice(0, 4));
+    for (const id of ['fleet-fishing-grounds', 'fleet-vessel-efficiency', 'fleet-school-efficiency']) {
+      expect(markup).toContain(`data-testid="${id}"`);
+    }
+    expect(summary.effYear).toBeLessThan(syncYear);
+    expect(summary.groundYear).toBeLessThan(syncYear);
+    expect(markup).toContain(`aria-pressed="true" data-testid="ground-year-${summary.groundYear}"`);
+    expect(markup).toContain(summary.effVessels[0].vessel);
+    expect(markup).toContain('본선명·일자는 넣지 않았습니다');
+  });
+
   it('renders the four blocks, KPIs and the takeaway with source', () => {
     const markup = renderToStaticMarkup(React.createElement(UnloadingFleetInsightsView, { data }));
     const summary = summarizeFleetInsights(data);

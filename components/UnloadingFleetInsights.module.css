@@ -57,3 +57,10 @@
 [data-v3='light'] .table th,
 [data-v3='light'] .table td { border-bottom-color: var(--dsc-surface-border); }
 [data-v3='light'] .table td { color: var(--dsc-ink); }
+
+.wide { grid-column: 1 / -1; }
+.map { height: 440px; margin-top: 12px; overflow: hidden; border: 1px solid rgba(148, 163, 184, .18); border-radius: 12px; }
+.mapLoading { display: grid; height: 100%; place-items: center; color: #94a3b8; font-size: .78rem; }
+@media (max-width: 560px) { .map { height: 320px; } }
+[data-v3='light'] .map { border-color: var(--dsc-surface-border); }
+[data-v3='light'] .mapLoading { color: var(--dsc-ink-muted); }
