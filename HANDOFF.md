@@ -1,3 +1,7 @@
+> 🚀 **2026-10-08 15:52 KST — #1387 `/logistics` TTA 40주차 배포** [CC]:
+> - merge `6491df27`, App Quality Gate 통과, Vercel production READY. 시크릿 변경 없음.
+> - 라이브 실측(Aside 로그인 세션·캐시 우회, 4탭 전부): 「40주차」·HUA FU 107·8,255·「10/8까지」·「9월 반입은 26,269MT」, 옛 값(6,705·「09월」) 잔존 0. 배포 후 error log 확인.
+
 > ✅ **2026-10-08 15:39 KST — `/logistics` TTA 운반선 주간동향 40주차(10/2~10/8) 반영** [CC]:
 > - 원자료: `Reefer ship movement for week 40th.xlsx` SHA-256 `75e8882958d585c33e75b4fcf8752a65de45b1683550a525773db222b5e15087`(13,526 B, `unzip -t` 정상, AJ2=40, A1 「02/10/26 - 08/10/26」). `sync_reefer_weekly.py` → `data/reefer_week40.json`(git add -f).
 > - 2척 **8,255 MT** — CHERRY STAR 3,415(9/28, 39주와 배분 동일) · HUA FU 107 4,840(10/4, 신규). RYOMA 는 빠졌다. 행 합 = 원문 TOTAL 열, OTHER(부두 33·11B) 제외. 방콕 주간보고 10/7 정정본 하역 표의 두 척 물량과 같다.
