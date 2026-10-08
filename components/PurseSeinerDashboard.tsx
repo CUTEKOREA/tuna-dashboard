@@ -24,6 +24,7 @@ import FfaGoodStandingPanel from './FfaGoodStandingPanel';
 import { ffaSummary } from '@/lib/data/ffa-vrst';
 import HeroZone from './v2/HeroZone';
 import { SERIES } from '@/lib/chart-palette';
+import styles from './PurseSeinerDashboard.module.css';
 
 /* ───────── 데이터 기준일 (data/purseSeinerData.ts 최종 검증일) ───────── */
 const DATA_DATE = '2026-08-17';
@@ -192,10 +193,21 @@ const sectionTitle: React.CSSProperties = {
   marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8,
 };
 
+/* 흰 글자 배지 배경 — RFMO_COLORS(차트·테두리 식별색)와 같은 색조의 700 단계.
+ * 500 단계 위 흰 글자는 2.1~4.2:1 이라 4.5:1 미달(2026-10-08 axe 감사). 배경이 불투명이라 두 테마 동일. */
+const BADGE_BG: Record<string, string> = {
+  '#3b82f6': '#1d4ed8', // WCPFC 파랑 → blue-700 · 6.70:1
+  '#10b981': '#047857', // IOTC 초록 → emerald-700 · 5.48:1
+  '#f59e0b': '#b45309', // IATTC 주황 → amber-700 · 5.02:1
+  '#ef4444': '#b91c1c', // ICCAT 빨강 → red-700 · 6.47:1
+  '#8b5cf6': '#6d28d9', // CCSBT 보라 → violet-700 · 7.10:1
+  '#6b7280': '#4b5563', // 미분류 회색 → gray-600 · 7.56:1
+};
+
 const badge = (color: string): React.CSSProperties => ({
   display: 'inline-block', padding: '2px 10px', borderRadius: 12,
   fontSize: 11, fontWeight: 600, color: '#fff',
-  background: color, lineHeight: '18px',
+  background: BADGE_BG[color] || color, lineHeight: '18px',
 });
 
 /* ───────── W-04 위젯 헤더 (제목 + cardDesc + TelemetryBadge) ───────── */
@@ -206,7 +218,7 @@ function WidgetHead({ icon, title, desc }: { icon: React.ReactNode; title: strin
         <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>{icon} {title}</span>
         <TelemetryBadge status="STATIC" syncDate={DATA_DATE} />
       </div>
-      <p style={{ margin: 0, fontSize: 11, color: 'var(--w-slate-500)', lineHeight: 1.5 }}>{desc}</p>
+      <p style={{ margin: 0, fontSize: 11, color: 'var(--w-slate-400)', lineHeight: 1.5 }}>{desc}</p>
     </div>
   );
 }
@@ -251,7 +263,7 @@ function KpiCard({ icon, label, value, sub }: {
         <CountUp end={value} duration={1.6} separator="," />
       </div>
       <div style={{ fontSize: 13, color: 'var(--dsc-ink-muted)', fontWeight: 500 }}>{label}</div>
-      {sub && <div style={{ fontSize: 11, color: 'var(--dsc-ink-faint)' }}>{sub}</div>}
+      {sub && <div style={{ fontSize: 11, color: 'var(--dsc-ink-muted)' }}>{sub}</div>}
     </motion.div>
   );
 }
@@ -336,11 +348,11 @@ function RfmoCards({ onFilter }: { onFilter: (rfmo: string) => void }) {
                   </div>
                   <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--w-slate-200)' }}>{s.count}척</span>
                 </div>
-                <div style={{ fontSize: 11, color: 'var(--w-slate-500)', display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <div style={{ fontSize: 11, color: 'var(--w-slate-400)', display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                   <span>🏳 {topFlags.map(([f, c]) => `${FLAG_EMOJI[f] || ''} ${flagKo(f)} ${c}`).join(', ')}</span>
                 </div>
                 {topOps.length > 0 && (
-                  <div style={{ fontSize: 11, color: 'var(--w-slate-500)', marginTop: 2 }}>
+                  <div style={{ fontSize: 11, color: 'var(--w-slate-400)', marginTop: 2 }}>
                     🏢 {topOps.map(([o, c]) => `${o} (${c})`).join(', ')}
                   </div>
                 )}
@@ -372,7 +384,7 @@ function CountryBarChart({ onFilter }: { onFilter: (flag: string) => void }) {
       <SafeResponsiveContainer width="100%" height={400}>
         <BarChart data={data} layout="vertical" margin={V_BAR_MARGIN}
           onClick={(e: any) => { if (e?.activePayload?.[0]) onFilter(e.activePayload[0].payload.flag); }}>
-          <XAxis type="number" tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
+          <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
           <YAxis type="category" dataKey="name" interval={0} width={yAxisWidthFor(data.map((d) => d.name), 12)}
             tick={({ x, y, payload }) => (
               <SingleLineYTick x={x} y={y} payload={{ value: String(payload?.value ?? '') }} fontSize={12} />
@@ -441,7 +453,7 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
           display: 'flex', alignItems: 'center', gap: 8,
           padding: '8px 12px', marginBottom: 12, borderRadius: 8,
           background: 'rgba(var(--w-amber-500-rgb), 0.1)', border: '1px solid rgba(var(--w-amber-500-rgb), 0.2)',
-          fontSize: 12, color: 'var(--w-amber-500)',
+          fontSize: 12, color: 'var(--ps-amber-ink)',
         }}>
           <AlertTriangle size={14} />
           운영사 미식별: {naCount}척 ({(naCount / TOTAL_VESSELS * 100).toFixed(1)}%)
@@ -450,7 +462,7 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
       <SafeResponsiveContainer width="100%" height={400}>
         <BarChart data={data} layout="vertical" margin={V_BAR_MARGIN}
           onClick={(e: any) => { if (e?.activePayload?.[0]) onFilter(e.activePayload[0].payload.fullName); }}>
-          <XAxis type="number" tick={{ fill: 'var(--w-slate-500)', fontSize: 11 }} />
+          <XAxis type="number" tick={{ fill: 'var(--w-slate-400)', fontSize: 11 }} />
           <YAxis type="category" dataKey="name" interval={0} width={yAxisWidthFor(data.map((d) => d.name), 11)}
             tick={({ x, y, payload }) => (
               <SingleLineYTick x={x} y={y} payload={{ value: String(payload?.value ?? '') }} fontSize={11} />
@@ -499,8 +511,9 @@ function OperatorRfmoMatrix() {
         title="운영사 × RFMO 매트릭스"
         desc="상위 12개 운영사의 RFMO별 등록 선박 수 교차 집계 - 다중 해역 조업 운영사 식별용"
       />
-      <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 3, fontSize: 12 }}>
+      <div style={{ overflowX: 'auto' }} tabIndex={0} role="region" aria-label="운영사 × RFMO 매트릭스 표 (가로 스크롤)">
+        {/* display: table — 전역 모바일 규칙(table{display:block;overflow-x:auto})이 표 자체를 포커스 없는 스크롤 영역으로 만든다. 스크롤은 감싼 region 이 맡는다 */}
+        <table style={{ display: 'table', width: '100%', borderCollapse: 'separate', borderSpacing: 3, fontSize: 12 }}>
           <thead>
             <tr>
               <th style={{ textAlign: 'left', color: 'var(--w-slate-400)', padding: '6px 8px', fontWeight: 600 }}>운영사</th>
@@ -522,7 +535,7 @@ function OperatorRfmoMatrix() {
                     <td key={r} style={{
                       textAlign: 'center', padding: '4px 8px', borderRadius: 6,
                       background: val > 0 ? `rgba(59, 130, 246, ${0.1 + intensity * 0.6})` : 'transparent',
-                      color: val > 0 ? 'var(--w-slate-200)' : '#475569',
+                      color: val > 0 ? 'var(--dsc-ink)' : '#475569', // 파랑 틴트 최대(0.7) 위 라이트 6.45:1 · 다크 5.78:1
                       fontWeight: val > 0 ? 600 : 400,
                     }}>
                       {val || '-'}
@@ -635,7 +648,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
         borderRadius: 12, border: '1px solid var(--dsc-surface-border)',
       }}>
         <div style={{ position: 'relative', flex: '1 1 200px' }}>
-          <Search size={14} style={{ position: 'absolute', left: 10, top: 9, color: 'var(--w-slate-500)' }} />
+          <Search size={14} style={{ position: 'absolute', left: 10, top: 9, color: 'var(--w-slate-400)' }} />
           <input
             type="text" placeholder="선박명 / IMO / 운영사 검색..."
             value={search} onChange={e => { setSearch(e.target.value); setPage(1); }}
@@ -646,17 +659,17 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
             }}
           />
         </div>
-        <select value={rfmoFilter} onChange={e => { setRfmoFilter(e.target.value); setPage(1); }}
+        <select aria-label="RFMO 필터" value={rfmoFilter} onChange={e => { setRfmoFilter(e.target.value); setPage(1); }}
           style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--dsc-surface-border)', background: 'var(--dsc-surface)', color: 'var(--dsc-ink)', fontSize: 12, cursor: 'pointer' }}>
           <option value="">전체 RFMO</option>
           {['WCPFC', 'IOTC', 'IATTC', 'ICCAT'].map(r => <option key={r} value={r}>{r}</option>)}
         </select>
-        <select value={flagFilter} onChange={e => { setFlagFilter(e.target.value); setPage(1); }}
+        <select aria-label="선적국 필터" value={flagFilter} onChange={e => { setFlagFilter(e.target.value); setPage(1); }}
           style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--dsc-surface-border)', background: 'var(--dsc-surface)', color: 'var(--dsc-ink)', fontSize: 12, cursor: 'pointer', maxWidth: 150 }}>
           <option value="">전체 국가</option>
           {allFlags.map(f => <option key={f} value={f}>{FLAG_EMOJI[f] || ''} {flagKo(f)}</option>)}
         </select>
-        <select value={opFilter} onChange={e => { setOpFilter(e.target.value); setPage(1); }}
+        <select aria-label="운영사 필터" value={opFilter} onChange={e => { setOpFilter(e.target.value); setPage(1); }}
           style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--dsc-surface-border)', background: 'var(--dsc-surface)', color: 'var(--dsc-ink)', fontSize: 12, cursor: 'pointer', maxWidth: 180 }}>
           <option value="">전체 운영사</option>
           {allOps.map(o => <option key={o} value={o}>{o}</option>)}
@@ -665,7 +678,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
           <button onClick={resetFilters}
             style={{
               padding: '7px 14px', borderRadius: 8, border: '1px solid rgba(var(--w-red-500-rgb), 0.3)',
-              background: 'rgba(var(--w-red-500-rgb), 0.1)', color: 'var(--color-danger)', fontSize: 12, cursor: 'pointer',
+              background: 'rgba(var(--w-red-500-rgb), 0.1)', color: 'var(--ps-red-ink)', fontSize: 12, cursor: 'pointer',
               display: 'flex', alignItems: 'center', gap: 4,
             }}>
             <X size={12} /> 초기화
@@ -674,7 +687,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
         <button onClick={exportCSV}
           style={{
             padding: '7px 14px', borderRadius: 8, border: '1px solid rgba(var(--w-emerald-500-rgb), 0.3)',
-            background: 'rgba(var(--w-emerald-500-rgb), 0.1)', color: 'var(--w-emerald-400)', fontSize: 12, cursor: 'pointer',
+            background: 'rgba(var(--w-emerald-500-rgb), 0.1)', color: 'var(--ps-green-ink)', fontSize: 12, cursor: 'pointer',
             display: 'flex', alignItems: 'center', gap: 4,
           }}>
           <Download size={12} /> CSV
@@ -682,18 +695,18 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
       </div>
 
       {/* Result Count */}
-      <div style={{ fontSize: 12, color: 'var(--w-slate-500)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
+      <div style={{ fontSize: 12, color: 'var(--w-slate-400)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
         <Filter size={12} />
         검색 결과: <strong style={{ color: 'var(--w-slate-200)' }}>{filtered.length}척</strong> / 전체 {TOTAL_VESSELS}척
-        {hasFilters && <span style={{ color: 'var(--w-amber-500)' }}> (필터 적용 중)</span>}
+        {hasFilters && <span style={{ color: 'var(--ps-amber-ink)' }}> (필터 적용 중)</span>}
       </div>
 
       {/* Table */}
-      <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+      <div style={{ overflowX: 'auto' }} tabIndex={0} role="region" aria-label="선박 명부 표 (가로 스크롤)">
+        <table style={{ display: 'table', width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
           <thead>
             <tr style={{ borderBottom: '1px solid var(--dsc-surface-border)' }}>
-              <th style={{ padding: '10px 8px', color: 'var(--w-slate-500)', textAlign: 'left', fontSize: 11, fontWeight: 600 }}>#</th>
+              <th style={{ padding: '10px 8px', color: 'var(--w-slate-400)', textAlign: 'left', fontSize: 11, fontWeight: 600 }}>#</th>
               {[
                 { key: 'name', label: '선박명', w: 200 },
                 { key: 'imo', label: 'IMO 번호', w: 90 },
@@ -728,13 +741,13 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
                 onMouseEnter={e => (e.currentTarget.style.background = 'var(--hover-bg)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
               >
-                <td style={{ padding: '8px', color: 'var(--text-dim)', fontSize: 11 }}>{(page - 1) * pageSize + i + 1}</td>
+                <td style={{ padding: '8px', color: 'var(--w-slate-400)', fontSize: 11 }}>{(page - 1) * pageSize + i + 1}</td>
                 <td style={{ padding: '8px', color: 'var(--w-slate-200)', fontWeight: 500 }}>{v.name}</td>
                 <td style={{ padding: '8px', color: 'var(--w-slate-400)', fontFamily: 'monospace', fontSize: 12 }}>{v.imo}</td>
-                <td style={{ padding: '8px', color: v.operator === 'N/A' ? 'var(--text-dim)' : 'var(--w-slate-300)', fontStyle: v.operator === 'N/A' ? 'italic' : 'normal' }}>
+                <td style={{ padding: '8px', color: v.operator === 'N/A' ? 'var(--w-slate-400)' : 'var(--w-slate-300)', fontStyle: v.operator === 'N/A' ? 'italic' : 'normal' }}>
                   {v.operator === 'N/A' ? '미식별' : v.operator}
                 </td>
-                <td style={{ padding: '8px', color: v.gt ? 'var(--w-slate-200)' : 'var(--text-dim)', textAlign: 'right' }}>
+                <td style={{ padding: '8px', color: v.gt ? 'var(--w-slate-200)' : 'var(--w-slate-400)', textAlign: 'right' }}>
                   {v.gt ? v.gt.toLocaleString() : '-'}
                 </td>
                 <td style={{ padding: '8px', color: 'var(--w-slate-300)', fontSize: 12 }}>
@@ -821,7 +834,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
 
   if (heroOnly) {
     return (
-      <div style={pageStyle}>
+      <div className={styles.root} style={pageStyle}>
         {purseSeinerHero}
       </div>
     );
@@ -848,7 +861,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
 
   if (dbTab !== 'purse') {
     return (
-      <div style={pageStyle}>
+      <div className={styles.root} style={pageStyle}>
         {purseSeinerHero}
         <div style={{ display: 'flex', gap: '0.5rem', marginBottom: 20, flexWrap: 'wrap' }}>
           {tabButton('purse', '선망선 (등록부 파생 · 2,076척)')}
@@ -871,7 +884,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
   }
 
   return (
-    <div style={pageStyle}>
+    <div className={styles.root} style={pageStyle}>
       {purseSeinerHero}
 
       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: 20, flexWrap: 'wrap' }}>
@@ -916,7 +929,7 @@ export default function PurseSeinerDashboard({ heroOnly = false }: { heroOnly?: 
       <div style={{
         marginTop: 24, padding: '12px 16px', borderRadius: 'var(--dsc-card-radius)',
         background: 'var(--dsc-surface)', border: '1px solid var(--dsc-surface-border)',
-        fontSize: 11, color: 'var(--dsc-ink-faint)', textAlign: 'center',
+        fontSize: 11, color: 'var(--dsc-ink-muted)', textAlign: 'center',
       }}>
         데이터 출처: 5개 RFMO 공개 등록부 전사 (scripts/build_purse_seiner_data.py 재현 가능) ·
         검증 통과율: 22.9% (155/678) · 일부 선박의 실존 여부는 추가 교차 검증 필요
