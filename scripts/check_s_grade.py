@@ -35,11 +35,25 @@ JSX_PROP_EN = re.compile(
     rf'\b(?:{USER_PROPS})\s*=\s*["\']([A-Za-z][A-Za-z0-9 .,\-&/()\'%]{{2,}}?)["\']'
 )
 
-WHITELIST_TOKEN = re.compile(r"^[A-Z]{2,6}[0-9]?$|^v?\d[\d.]*$")
+WHITELIST_TOKEN = re.compile(
+    r"^[A-Z]{2,6}[0-9]?$"                                 # 약어 (MSC, CN8)
+    r"|^v?\d[\d.]*$"                                      # 숫자·버전
+    r"|^HS\d{4,10}$"                                      # HS 코드 (HS160559)
+    r"|^\d+(?:\.\d+)?(?:mm|cm|m|mg|g|kg|t|MT)$"          # 수치+단위 (50mm, 200mg)
+)
 WHITELIST_PHRASE = {
     "OK", "N/A", "TBD", "AI", "ESG", "SDG", "FTA", "WTO", "OECD", "WCPO",
     "EU", "US", "UK", "PNG", "KFAS", "INFOFISH", "TAC", "MOF", "OEM",
     "SIT", "TAK", "ID", "CN8", "HS",
+    # 단위 토큰 (FDA 50mg/kg 류 규격 표기)
+    "kg",
+    # 고유명사 — 기업명·간행물명·인증 라벨·국제 합의 (2026-10-08 영문 잔존 35건 판정)
+    "CP Foods", "Betagro", "RD Tuna Canners", "MSC Yearbook 2026",
+    "Dolphin-Safe", "OECD Pillar Two",
+    # 약어(영문 풀네임) — 정규식은 RISK(High Impact) 같은 노출 문구까지 삼켜 명시 목록으로 둔다 (Codex 리뷰 2026-10-08)
+    "IOTC(Indian Ocean Tuna Commission)", "SCFI(Shanghai Containerized Freight Index)",
+    "AI FAD(Fish Aggregating Device)", "MSC(Marine Stewardship Council)",
+    "MMPA(Marine Mammal Protection Act)", "TAC(Total Allowable Catch)",
 }
 
 
@@ -142,7 +156,10 @@ EXCLUDED_FILES = {
 }
 
 # Phase E+ 확장: API endpoint hardcoded mock 의심 (역참조)
-FAKE_LIVE = re.compile(r"🟢 LIVE API|status:\s*['\"]🟢")
+# `cond ? '🟢 LIVE API'` 꼴은 제외 — 라우트가 선언한 isLive === true 로만 켜지는 조건부 칩(L-09/L-12,
+# MackerelDashboard L874). 무조건 리터럴·JSX 텍스트·status:'🟢' 하드코딩만 잡는다.
+# 한계: 조건식 자체가 휴리스틱(apiSource 유무 등)인지는 정규식으로 못 가린다.
+FAKE_LIVE = re.compile(r"""(?<!\? ['"])🟢 LIVE API|status:\s*['"]🟢""")
 
 
 def measure_file(path: Path) -> dict:
