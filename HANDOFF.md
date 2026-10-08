@@ -6,6 +6,11 @@
 > - 스냅숏 1개 갱신: `widget-render-snapshots` 해시가 globals.css `--w-*` hex 를 읽어 섞는다 → slate-400/500 라이트 값 변경으로 해시만 바뀜(구조 카운트 동일).
 > - 다음 단계(2차, 페이지 고유): `/cosmo`·`/panofi`·`/bangkok-office` 자체 muted(#8d93a5 하드코딩), `/purse-seiner-db` 흰 글자 상태 배지·`select` 이름 3개, `/squid`·`/squid-v5` 인라인 표 스크롤(전역 모바일 `table{display:block;overflow-x:auto}` 가 원인), `/management`·`/cross-intelligence` 하드코딩 색, `/falkland`·`/ffa-report` 다크 회색, `/market` 뉴스 칩(#8d93a5·#d95926 배경 흰 글자, `NEWS_CATEGORY_ID` 테스트 고정).
 > - 상태: 브랜치 `feat/a11y-audit-20261008` PR(병합 안 함). **프로덕션 미배포**.
+> ✅ **2026-10-08 20:33 KST — nodemailer 9.1.1 → 10.0.16 (프로덕션 high 취약점 마지막 1건)** [CC]:
+> - 브랜치 `chore/nodemailer-10-20261008` 는 `origin/chore/prod-audit-20261008`(#1396) 위. lockfile 변경은 nodemailer 한 항목뿐. `npm audit --omit=dev` **0 vulnerabilities**.
+> - 10.x 는 `dist/esm/nodemailer.d.ts` 자체 타입을 낸다(`moduleResolution: bundler` 에서 import 가 이쪽으로 해석). `@types/nodemailer@8.0.1` 은 남아도 충돌 없음(typecheck 0) — 정리는 별도 PR 감. engines `node>=20`, CI node 24.
+> - `lib/mail/company-smtp.ts` 무수정. 새 테스트 `mail-company-smtp-nodemailer-render.test.ts` 가 실제 10.x streamTransport·jsonTransport 로 한 통을 조립해 9.1.1 기준 원문과 바이트 비교(Message-ID·Date 치환).
+> - `npm run verify` exit 0: Vitest 216 files / 1,822 · API cache 161/161 · 정적 118 · bundle 33. **실발송 미확인** — 배포 후 사용자 확인 절차는 PR 본문.
 
 > 🚀 **2026-10-08 15:52 KST — #1387 `/logistics` TTA 40주차 배포** [CC]:
 > - merge `6491df27`, App Quality Gate 통과, Vercel production READY. 시크릿 변경 없음.
