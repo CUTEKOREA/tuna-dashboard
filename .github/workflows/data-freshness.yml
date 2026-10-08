@@ -85,7 +85,32 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const fs = require('fs');
+            const runUrl = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+            const label = 'phase-A-G-regression';
+
+            // 같은 라벨의 열린 이슈가 이미 있으면 그 이슈에 run URL 코멘트만 달고 끝낸다.
+            // (push 마다 새 이슈를 만들어 열린 자동 이슈가 수백 건 쌓였던 회귀 방지, 2026-10-08)
+            const { data: candidates } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: label,
+              sort: 'created',
+              direction: 'asc',
+              per_page: 20,
+            });
+            const existing = candidates.find(i => !i.pull_request);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body: `S-Grade audit 재실패 — run #${{ github.run_number }} (\`${{ github.sha }}\`)\n${runUrl}`,
+              });
+              core.info(`기존 이슈 #${existing.number}에 코멘트 추가 (새 이슈 미생성)`);
+              return;
+            }
+
             let body = '## 주간 S-Grade audit 실패\n\n';
             body += '`scripts/check_s_grade.py --strict`가 1건 이상의 위반을 감지했습니다.\n\n';
             body += '### 감지 카테고리 (Phase A~G 회귀)\n';
@@ -96,9 +121,9 @@ jobs:
             body += '1. Workflow run의 `s-grade-weekly-${{ github.run_number }}` artifact에서 `s_grade_weekly.md` 다운로드\n';
             body += '2. 위반 위치 파악 후 정정 (L-07 일괄 변환 스크립트 권장)\n';
             body += '3. tsc + npm run build 통과 확인 후 push\n\n';
-            body += `**Workflow URL**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n`;
+            body += `**Workflow URL**: ${runUrl}\n`;
 
-            github.rest.issues.create({
+            await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `[Auto] 주간 S-Grade audit 실패 (${new Date().toISOString().slice(0, 10)})`,
