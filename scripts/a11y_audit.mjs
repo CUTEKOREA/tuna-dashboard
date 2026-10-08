@@ -8,7 +8,8 @@
 //   (DASHBOARD_E2E_MODE=local + 루프백 + x-dashboard-e2e-secret, lib/auth/local-e2e-access.ts).
 // - 라우트 목록: app/sitemap.ts 의 PUBLIC_ROUTES + lib/dashboard-registry.ts 메뉴 키([category] 실제 값)
 //   + app/ 정적 폴더. notFound() 한 줄짜리 은퇴 화면은 `skipped: retired`,
-//   로그인·권한 화면(404·로그인 리다이렉트·401/403)은 `skipped: auth`, 5xx 는 오류로 적는다.
+//   로그인·권한 화면(404·로그인 리다이렉트·401/403)은 `skipped: auth`, 로그인 화면 5xx 는
+//   `skipped: auth-unconfigured`(공개 URL 미설정), 그 밖의 5xx 는 오류로 적는다.
 // - 규칙은 끄지 않는다. 태그 wcag2a·wcag2aa·wcag21aa 만 고른다.
 // - 위반이 있어도 exit 0 (리포트 도구). 서버가 안 뜨거나, 측정한 화면이 0개거나, 화면 오류가 하나라도 있으면 exit 1.
 import { spawn } from 'node:child_process';
@@ -126,7 +127,10 @@ async function settle(page) {
 
 function classifySkip(status, finalUrl) {
   const u = new URL(finalUrl);
-  if (u.pathname === '/login' || u.pathname.endsWith('/login') || u.pathname.startsWith('/auth')) return 'auth';
+  if (u.pathname === '/login' || u.pathname.endsWith('/login') || u.pathname.startsWith('/auth')) {
+    // 로그인 화면 5xx 는 보통 DASHBOARD_PUBLIC_BASE_URL 미설정(lib/auth/proxy.ts) — 인증 스킵과 구분해 드러낸다
+    return status >= 500 ? 'auth-unconfigured' : 'auth';
+  }
   if ([401, 403, 404].includes(status)) return 'auth';
   return null;
 }
@@ -149,7 +153,7 @@ async function auditRoute(browser, base, secret, route, vp) {
     const status = res?.status() ?? 200;
     rec.status = status;
     // 로그인 화면은 그 자체로 보호 경계 — 측정 대상이 아니다
-    const skip = route === 'login' || route.endsWith('/login') ? 'auth' : classifySkip(status, page.url());
+    const skip = route === 'login' || route.endsWith('/login') ? classifySkip(status, `${base}/login`) : classifySkip(status, page.url());
     if (skip) {
       rec.skipped = skip;
       return rec;
