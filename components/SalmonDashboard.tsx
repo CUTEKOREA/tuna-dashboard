@@ -628,7 +628,7 @@ export default function SalmonDashboard() {
         pillar={pillar}
         cardDesc={cardDesc}
         unit={w.unit}
-        telemetry={{ status: telemetryStatus, syncDate, source: w.source }}
+        telemetry={{ status: telemetryStatus, syncDate }}
         chartHeight={250}
         chart={renderChart(w)}
         takeaway={{ situation, actionPlan: takeaway, source: w.source || 'FAO FishStatJ 1950-2024 (정적 데이터셋) · 일부 지표 자체 추정' }}
