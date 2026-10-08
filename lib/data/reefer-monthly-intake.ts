@@ -14,6 +14,8 @@ import week36 from '../../data/reefer_week36.json';
 import week37 from '../../data/reefer_week37.json';
 import week38 from '../../data/reefer_week38.json';
 import week39 from '../../data/reefer_week39.json';
+import week40 from '../../data/reefer_week40.json';
+import { reeferWeeklyReport } from '@/lib/data/reefer-weekly';
 
 /**
  * TTA 운반선 주간동향을 월별 방콕 반입량으로 접는다.
@@ -21,7 +23,7 @@ import week39 from '../../data/reefer_week39.json';
  * 주간표는 그 주에 «보고된» 선박을 싣기 때문에 같은 배가 여러 주차에 반복해서 나온다.
  * 선박명+일자로 한 번만 세고, 배분처가 아닌 OTHER·SHIP 열은 빼서 캔 공장 반입만 더한다.
  *
- * **보유 주차가 연속이 아니다.** 19·22·24·26·27·29~39 주차만 갖고 있어 월 합계는
+ * **보유 주차가 연속이 아니다.** 19·22·24·26·27·29~40 주차만 갖고 있어 월 합계는
  * 실제 반입의 하한이다 - 화면이 그 사실을 같이 말하도록 `weeksHeld` 를 내보낸다.
  */
 type ReeferRow = { carrier: string; date: string; deliveries: Record<string, string | undefined> };
@@ -43,6 +45,7 @@ const WEEKLY: ReadonlyArray<{ week: number; rows: ReeferRow[] }> = [
   { week: 37, rows: week37 as unknown as ReeferRow[] },
   { week: 38, rows: week38 as unknown as ReeferRow[] },
   { week: 39, rows: week39 as unknown as ReeferRow[] },
+  { week: 40, rows: week40 as unknown as ReeferRow[] },
 ];
 
 export interface ReeferMonthlyIntake {
@@ -87,9 +90,18 @@ function buildMonthly(): ReeferMonthlyIntake[] {
   return [...byMonth.values()].sort((left, right) => left.month.localeCompare(right.month));
 }
 
+/** 마지막 주간표 기준일이 그 달 말일보다 앞이면 그 달은 아직 차는 중이다 - 다 찬 달과 비교하면 급감처럼 읽힌다. */
+const inProgressMonth = (() => {
+  const end = reeferWeeklyReport.source.endDate;
+  const [y, m, d] = end.split('-').map(Number);
+  const lastDay = new Date(Date.UTC(y, m, 0)).getUTCDate();
+  return d < lastDay ? { month: end.slice(0, 7), through: end } : null;
+})();
+
 export const reeferMonthlyIntake = {
   weeksHeld: WEEKLY.map(({ week }) => week),
   months: buildMonthly(),
+  inProgressMonth,
   /**
    * 같은 기간을 보는 제3자 추정 - 2026-09-16 방콕 출장보고에 기록된 스페인 선사 자체 추산이다.
    * 우리 집계는 TTA 가 추적하는 운반선만 담고 보유 주차도 띄엄띄엄이라 낮게 나온다.

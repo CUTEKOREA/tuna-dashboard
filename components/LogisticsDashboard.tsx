@@ -46,11 +46,14 @@ const tabs: Array<{ id: LogisticsTab; label: string; description: string }> = [
 
 /* 월별 반입은 주간표를 접어 만든다 - 카드 문장도 같은 집계에서 뽑아 표와 어긋나지 않게 한다. */
 const intakeMonths = recentReeferMonths(6);
-const intakeLatest = intakeMonths.at(-1)!;
-const intakePrev = intakeMonths.at(-2) ?? null;
+/* 진행 중인 달(마지막 주간표 기준일이 말일 전)은 문장 비교에서 뺀다 - 10/8까지 1척을 다 찬 9월과 견주면 급감처럼 읽힌다 */
+const intakeOpen = reeferMonthlyIntake.inProgressMonth;
+const intakeComplete = intakeMonths.filter((row) => row.month !== intakeOpen?.month);
+const intakeLatest = intakeComplete.at(-1)!;
+const intakePrev = intakeComplete.at(-2) ?? null;
 const intakePeak = intakeMonths.reduce((best, row) => (row.mt > best.mt ? row : best), intakeMonths[0]);
 const intakeMaxMt = intakePeak.mt;
-const monthLabel = (month: string) => `${month.slice(5)}월`;
+const monthLabel = (month: string) => `${Number(month.slice(5))}월`;
 const intakeEstimate = reeferMonthlyIntake.thirdPartyEstimate;
 const intakeEstimateOf = (month: string) => intakeEstimate.months.find((row) => row.month === month) ?? null;
 
@@ -63,7 +66,9 @@ export function ReeferMonthlyIntakeChart() {
           return (
             <div key={row.month} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ flex: '0 0 auto', minWidth: 44, fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-muted)' }}>
-                {monthLabel(row.month)}
+                {monthLabel(row.month)}{row.month === intakeOpen?.month && (
+                  <small style={{ display: 'block', fontWeight: 400, fontSize: '0.66rem' }}>{Number(intakeOpen.through.slice(5, 7))}/{Number(intakeOpen.through.slice(8))}까지</small>
+                )}
               </span>
               <span style={{ flex: '1 1 auto', minWidth: 0 }}>
                 <span
