@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 301,
-  "widgets": 118,
-  "dataFiles": 341,
+  "files": 303,
+  "widgets": 119,
+  "dataFiles": 342,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -291,13 +291,25 @@
    "dataModules": [],
    "dataFiles": []
   },
+  "components/UnloadingFleetInsights.tsx": {
+   "dataModules": [
+    "lib/data/unloading-fleet-insights.ts"
+   ],
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
+  },
   "components/UnloadingHistory.tsx": {
    "dataModules": [],
-   "dataFiles": []
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
   },
   "components/UnloadingHistoryBoundary.tsx": {
    "dataModules": [],
-   "dataFiles": []
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
   },
   "components/UnloadingReportGenerator.tsx": {
    "dataModules": [],
@@ -307,7 +319,9 @@
    "dataModules": [
     "lib/data/unloading-static.ts"
    ],
-   "dataFiles": []
+   "dataFiles": [
+    "lib/data/unloading-fleet-insights.json"
+   ]
   },
   "components/UnloadingTimelineReplay.tsx": {
    "dataModules": [],
@@ -1484,6 +1498,12 @@
   ],
   "lib/data/tunafarm-tables.json": [
    "components/market-understanding/TunafarmIndustryDashboard.tsx"
+  ],
+  "lib/data/unloading-fleet-insights.json": [
+   "components/UnloadingFleetInsights.tsx",
+   "components/UnloadingHistory.tsx",
+   "components/UnloadingHistoryBoundary.tsx",
+   "components/UnloadingStatus.tsx"
   ],
   "lib/data/whelk-tables.json": [
    "components/market-understanding/WhelkIndustryDashboard.tsx"

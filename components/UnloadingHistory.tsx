@@ -33,6 +33,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
 import TermTooltip from './TermTooltip';
+import UnloadingFleetInsights from './UnloadingFleetInsights';
 import styles from './UnloadingHistory.module.css';
 import { CHART_RANK } from '@/lib/chart-palette';
 
@@ -728,5 +729,10 @@ export default function UnloadingHistory() {
       />
     );
   }
-  return <UnloadingHistoryView dataset={state.dataset} />;
+  return (
+    <>
+      <UnloadingHistoryView dataset={state.dataset} />
+      <UnloadingFleetInsights />
+    </>
+  );
 }

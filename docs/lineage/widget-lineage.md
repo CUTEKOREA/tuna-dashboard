@@ -1,7 +1,7 @@
 # 위젯 리니지 — 데이터 파일별 영향 범위
 
 > `python3 scripts/widget_lineage.py`로 재생성. 손으로 고치지 말 것.
-> 진입점 app/page.tsx · closure 301파일 · 위젯 118개 · 데이터 파일 341개.
+> 진입점 app/page.tsx · closure 303파일 · 위젯 119개 · 데이터 파일 342개.
 > 데이터 파일 필드를 바꾸기 전에 여기서 영향 위젯을 확인한다 (파손 진단 1단계).
 
 ## data/beef_usda_widgets.json
@@ -112,6 +112,12 @@
 
 ## lib/data/tunafarm-tables.json
 - components/market-understanding/TunafarmIndustryDashboard.tsx
+
+## lib/data/unloading-fleet-insights.json
+- components/UnloadingFleetInsights.tsx
+- components/UnloadingHistory.tsx
+- components/UnloadingHistoryBoundary.tsx
+- components/UnloadingStatus.tsx
 
 ## lib/data/whelk-tables.json
 - components/market-understanding/WhelkIndustryDashboard.tsx

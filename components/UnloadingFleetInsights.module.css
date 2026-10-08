@@ -1,0 +1,37 @@
+.kpiGrid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.block { min-width: 0; padding: 16px; border: 1px solid rgba(148, 163, 184, .14); border-radius: 14px; background: rgba(2, 8, 23, .32); }
+.block h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; color: #f1f5f9; font-size: .92rem; }
+.block h3 svg { color: #38bdf8; }
+.note { margin: 0 0 12px; color: #94a3b8; font-size: .72rem; line-height: 1.5; }
+.rows { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.row { display: grid; grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr) 4.6rem; align-items: center; gap: 10px; font-size: .78rem; }
+.label { overflow: hidden; color: #e2e8f0; text-overflow: ellipsis; white-space: nowrap; }
+.label small { margin-left: 4px; color: #64748b; font-size: .68rem; }
+.track { position: relative; height: 10px; border-radius: 999px; background: rgba(148, 163, 184, .12); }
+.fill { position: absolute; inset: 0 auto 0 0; border-radius: 999px; background: #38bdf8; }
+.fillWarn { background: #f59e0b; }
+.fillMuted { background: #64748b; }
+.value { color: #f8fafc; font-variant-numeric: tabular-nums; text-align: right; }
+.stack { display: flex; height: 14px; overflow: hidden; border-radius: 999px; background: rgba(148, 163, 184, .12); }
+.segFree { background: #38bdf8; }
+.segFad { background: #f59e0b; }
+.segOther { background: #64748b; }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; color: #94a3b8; font-size: .7rem; }
+.legend i { display: inline-block; width: 9px; height: 9px; margin-right: 5px; border-radius: 2px; vertical-align: -1px; }
+.table { width: 100%; border-collapse: collapse; font-size: .78rem; font-variant-numeric: tabular-nums; }
+.table th, .table td { padding: 7px 6px; border-bottom: 1px solid rgba(148, 163, 184, .1); text-align: right; }
+.table th:first-child, .table td:first-child { text-align: left; }
+.table th { color: #94a3b8; font-size: .7rem; font-weight: 600; }
+.table td { color: #e2e8f0; }
+.table td small { display: block; color: #64748b; font-size: .66rem; }
+
+@media (max-width: 1100px) {
+  .kpiGrid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .kpiGrid4 { grid-template-columns: minmax(0, 1fr); }
+  .row { grid-template-columns: minmax(0, 7rem) minmax(0, 1fr) 4rem; }
+}
