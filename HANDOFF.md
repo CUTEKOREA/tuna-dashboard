@@ -1,3 +1,9 @@
+> 🚀 **2026-10-08 13:29 KST — #1376 2026-10-07 참치 데일리 브리핑 /market 배포** [CC/tuna-dashboard-publisher]:
+> - 게이트: `state/audit-2026-10-07.txt` = AUDIT_PASS(제목 수치 승격·입간판 정합 후 재감사 P0=0 P1=0), `state/humanize-2026-10-07.txt` = ADOPTED(blocks=45 changed=19 rate=0.5%). 변경분은 `public/data/tuna_daily_briefing.json` 단일 파일(71+/58-), 날짜 2026-10-07 · 다이제스트 6 · 기사 6.
+> - squash 병합 `fb02d58d`(PR #1376, 직전은 10/06 `69e21bb7`). origin/main 대조는 내용 해시로 — SHA-256 `df896a0a…f3f695` 로컬=origin/main 일치.
+> - 라이브 실측(Aside, 로그인 세션): `/market` 「기준일 2026.10.07 · 기사 6건 · 파이프라인 동기」, 리드 「인도네시아, 선원 모집업체에 등록 압박」. 「오늘의 수치」 = **50% / Alimentos Prosalud, 2029년까지 매출** — 다이제스트 2행의 50%가 위젯까지 올라온 것을 화면으로 확인. 첫 확인(배포 직후)엔 아직 10.06 이 떠 있었고 약 2분 뒤 재확인에서 10.07 로 바뀌었다.
+> - ⚠ 이번에도 `gh pr merge --delete-branch` 가 «To finish cleanup … `git worktree remove /Users/idong-geon/my-project/silla-tuna-daily/dash`» 를 안내했다. **따르지 않았다.** 정리는 `git switch -c sync/2026-10-07 origin/main` 만.
+
 > 🚀 **2026-10-07 18:20 KST — #1366 `/fleet` 주간 실적 10월 첫째주 배포** [CC]:
 > - merge `00aa479d`, App Quality Gate 통과, Vercel production READY. 선단 상세 시크릿 교체 불필요(일일보고 무변경).
 > - 라이브 실측(Aside 로그인 세션·캐시 우회): 실적 분석 탭 「26.09.28~10.04」·2,425·1,355·55,968·「N/SUN(김형주) 640t」·「주간은 9/28~9/30을 포함하고 월간은 10월분이라 … 그 3일치입니다」, 옛 문장(「월간은 9월분」·「그 하루치」·5,302) 잔존 0, 보호 패널 경고 없음.
