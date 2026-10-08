@@ -179,10 +179,10 @@
   color: #1c6bb0;
 }
 [data-v3='light'] .date {
-  color: #8d93a5;
+  color: #626879; /* 접근성: #8d93a5 는 흰 바탕 3.06:1 */
 }
 [data-v3='light'] .age {
-  color: #8d93a5;
+  color: #626879;
 }
 [data-v3='light'] .badge[data-telemetry-tone='stale'] {
   border-color: rgba(180, 105, 0, 0.55);
@@ -197,7 +197,7 @@
   color: #6b7280;
 }
 [data-v3='light'] .caption {
-  color: #8d93a5;
+  color: #626879;
 }
 [data-v3='light'] .caption[data-telemetry-tone='accent'] {
   color: #1c6bb0;

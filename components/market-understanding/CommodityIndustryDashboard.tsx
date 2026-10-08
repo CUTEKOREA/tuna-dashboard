@@ -266,7 +266,12 @@ function StageSection({
   const rest = charts;
 
   return (
-    <section className={styles.stage} aria-labelledby={`${prefix}-stage-${narrative.key}`}>
+    <section
+      // PillTabs 의 aria-controls(`${prefix}-industry-panel-<key>`)가 가리키는 대상 — 없으면 무효 참조(axe aria-valid-attr-value)
+      id={`${prefix}-industry-panel-${narrative.key}`}
+      className={styles.stage}
+      aria-labelledby={`${prefix}-stage-${narrative.key}`}
+    >
       <header className={styles.stageHeader}>
         <span className={styles.stageNumeral}>{narrative.numeral}</span>
         <div>
@@ -547,6 +552,7 @@ export default function CommodityIndustryDashboard({
           ariaLabel="밸류체인 단계"
           tabIdPrefix={`${spec.key}-industry-tab`}
           panelIdPrefix={`${spec.key}-industry-panel`}
+          lazyPanels={!spec.continuous}
           wrap
         />
       </nav>

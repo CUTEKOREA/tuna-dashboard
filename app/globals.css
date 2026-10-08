@@ -1121,7 +1121,7 @@ img, video, canvas, svg {
   --dsc-surface-blur: none;
   --dsc-ink: #22242b;        /* 잉크 네이비 — 순검정 금지 */
   --dsc-ink-muted: #5a6072;  /* 회청 본문 */
-  --dsc-ink-faint: #8d93a5;
+  --dsc-ink-faint: #626879;  /* 접근성: #8d93a5 는 흰 바탕 3.06:1 → 4.5:1 이상으로 (2026-10-08 axe 감사) */
   --dsc-card-shadow: 0 4px 8px -2px rgba(16, 24, 40, 0.10), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
   --elev-1: 0 8px 24px -12px rgba(16, 24, 40, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
   --elev-2: 0 16px 36px -14px rgba(16, 24, 40, 0.16), 0 0 0 1px rgba(15, 111, 222, 0.16);
@@ -1154,7 +1154,13 @@ img, video, canvas, svg {
   --surface-3: #ffffff;
   --chart-grid: #e2e4e9;
   --chart-axis: #8d93a5;
-  --accent-primary: #509ee3;  /* Metabase 브랜드 블루 */
+  /* Metabase 브랜드 블루를 한 단계 진하게 — #509ee3 는 흰 글자·흰 바탕 모두 2.86:1 이라
+   * 활성 필 탭(흰 글자)·강조 글자가 WCAG AA 에 못 미쳤다 (2026-10-08 axe 감사). */
+  --accent-primary: #2870ae;
+  /* 다크 :root 값(#f3727f·#ef4444·#3b82f6)은 라이트 바탕에서 2.6~3.8:1 — 같은 색상 계열로 진하게 */
+  --accent-danger: #c93744;
+  --delta-up: #c62828;
+  --delta-down: #2563eb;
   --accent-secondary: #22242b;
 
   /* 레거시 카드·텍스트 계층 (WidgetCard 등) */
@@ -1172,7 +1178,7 @@ img, video, canvas, svg {
   --text-primary: #22242b;
   --text-secondary: #4c5773;
   --text-tertiary: #5a6072;
-  --text-dim: #8d93a5;
+  --text-dim: #626879;       /* 접근성: 사이드바 구역 제목 등 — #8d93a5(3.06:1) → 5.56:1 */
   --text-disabled: #c6c9d2;
   --glow-cyan: 0 4px 8px -2px rgba(16, 24, 40, 0.10);
   --glow-accent: 0 4px 8px -2px rgba(16, 24, 40, 0.10);
@@ -1182,8 +1188,8 @@ img, video, canvas, svg {
   --w-slate-50: #22242b;     --w-slate-50-rgb: 34, 36, 43;
   --w-slate-200: #4c5773;    --w-slate-200-rgb: 76, 87, 115;
   --w-slate-300: #5a6072;    --w-slate-300-rgb: 90, 96, 114;
-  --w-slate-400: #8d93a5;    --w-slate-400-rgb: 141, 147, 165;
-  --w-slate-500: #a6acba;    --w-slate-500-rgb: 166, 172, 186;
+  --w-slate-400: #626879;    --w-slate-400-rgb: 98, 104, 121;   /* 접근성: was #8d93a5 (3.06:1) */
+  --w-slate-500: #686e81;    --w-slate-500-rgb: 104, 110, 129;  /* 접근성: was #a6acba (2.27:1) */
   --w-sky-400: #509ee3;      --w-sky-400-rgb: 80, 158, 227;
   --w-blue-500: #3685ca;     --w-blue-500-rgb: 54, 133, 202;
   --w-cyan-500: #0891b2;     --w-cyan-500-rgb: 8, 145, 178;

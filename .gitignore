@@ -118,3 +118,6 @@ seafresh-docs/
 
 # 라이브 화면 증거 (scripts/verify_live.mjs)
 /artifacts/live-evidence/
+
+# 접근성 감사 리포트 (scripts/a11y_audit.mjs)
+/artifacts/a11y/

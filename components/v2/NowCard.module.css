@@ -42,6 +42,11 @@
   color: var(--w-amber-400);
 }
 
+/* 라이트 바탕에서 --w-amber-400(#e8b921)은 1.84:1 — 같은 호박색 계열로 진하게 (2026-10-08 axe 감사) */
+[data-v3='light'] .now .eyebrow {
+  color: #8a6a00;
+}
+
 .chip {
   display: inline-flex;
   align-items: center;
