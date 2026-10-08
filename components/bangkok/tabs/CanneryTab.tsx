@@ -320,7 +320,7 @@ export function CanneryTab() {
       <Sec>캐너리 스냅샷</Sec>
       <Grid>
         <Panel span={12} src={SRC}>
-          <Table label="캐너리별 원어재고 추이 표" head={['이름', '권역', '가동 (톤/일)', '가동률 (%)', '재고 (MT)', '가공일수 (일)']}>
+          <Table label="캐너리 스냅샷 표" head={['이름', '권역', '가동 (톤/일)', '가동률 (%)', '재고 (MT)', '가공일수 (일)']}>
             {bangkokCanneries.map((c) => (
               <tr key={c.name}>
                 <td>{c.name}</td>
