@@ -12,7 +12,12 @@
 > - 표: 모바일 전역 `table{display:block;overflow-x:auto}` 는 래퍼 없는 표의 안전망으로 남기고, 부모가 이미 스크롤 래퍼(role=region+tabindex · 인라인 overflow auto)인 표만 `:where()` 로 display:table 복귀. 통째 삭제는 `/fleet` 입어 탭 VDS 히트맵 끝 열이 잘려서 기각. 390px 전 화면·전 탭 표 3,570 스냅숏에서 잘린 셀 수 옛 규칙과 동일(6 = `/gmts` 항만 탭 기존).
 > - axe(노드 합) 라이트 413→**397** · 다크 964→**826**, 화면×규칙 증가 0. 리포트 `artifacts/a11y/{before,after}-{light,dark}/`·`before-after.md`(gitignore).
 > - 스펙 불일치(미수정·보고): 「#fff on #38bdf8」 는 NowCard 가 아니라 `components/v2/PillTabs.tsx` 활성 알약(다크 34노드). 화면 파일 몫: `/squid`·`/squid-v5` 인라인 스크롤 래퍼, `/cosmo` `.tw`, `/unloading` 분석 표 래퍼에 tabIndex 필요.
-> - 상태: 브랜치 `fix/a11y-shared-dark-20261009` PR(병합 안 함). **프로덕션 미배포**.
+> - 상태: 브랜치 `fix/a11y-shared-dark-20261009` PR #1402 → main squash afc1b546(2026-10-09 사용자 「병합」).
+> ✅ **2026-10-09 KST — 접근성(axe) 기준선 CI 게이트** [CC] (PR #1401, Codex 리뷰 1·2·3·6 반영):
+> - `scripts/check_a11y_baseline.mjs` + `scripts/a11y-baseline.json`(형식 `a11y-baseline/2`). 비교 키 = **테마×화면×뷰포트×규칙×impact**(critical·serious) — 뷰포트 상쇄·serious→critical 승격을 잡는다. 기준선 화면은 리포트에 있어야 하고 meta.viewports 전부 측정돼야 함(누락·스킵·오류 = 실패). 리포트 meta(axe 버전·태그·뷰포트·테마) ≠ 기준선 meta → 실패.
+> - **래칫**: 늘어도 줄어도 실패. 줄었으면 그 CI run 의 artifact `a11y-baseline-candidate` 를 받아 그대로 커밋(받을 수 없으면 job 로그의 `BEGIN A11Y GZIP BASE64` 블록을 `--decode <로그>`). 기준선은 **CI(ubuntu-latest) 값** — 로컬 리눅스는 /squid·/squid-v5·/financial-risk·/unloading 에서 노드 수가 다르다(로컬 라이트 serious 413 vs CI 396). `--update` 는 기준선보다 높아지는 키가 있으면 `--accept-increase` 없이 거부.
+> - 기준선: 776e589 에서 CI 3회(run 37801149446·37801158673·37801169275) 테마별 집계가 바이트 동일 → allow 0. 라이트 serious 396 · 다크 932 · critical 0, 34화면. 옛 run 사이 라이트 /unloading mobile color-contrast 6↔7 한 번 흔들림 — 재발하면 여러 run counts.json 으로 `--update` 해 allow·reason.
+> - 워크플로: `.github/workflows/a11y-gate.yml` 로 분리(verify 의 `app-quality-gate.yml` 은 main 과 동일). 트리거 app·components·lib·**hooks·public·data**·proxy.ts·설정·a11y 스크립트. 테마별 matrix(35분, CI 실측 job ~13~15분) + `candidate` job.
 > ✅ **2026-10-08 21:10 KST — axe-core 접근성 전수 감사 도입 + 공통 컴포넌트 위반 수정** [CC]:
 > - 도구: `npm run a11y` (`scripts/a11y_audit.mjs`, devDep `@axe-core/puppeteer` 하나). 빌드 산출물을 `next start` 로 띄우고 로컬 E2E 경계(`DASHBOARD_E2E_MODE=local` + 헤더)로 접속, 라우트 34개 × 데스크톱 1280×800·모바일 390×844, 태그 wcag2a·wcag2aa·wcag21aa(규칙 끄기 없음). 끝까지 스크롤 → DOM 1.5초 안정 후 측정. `--theme dark`·`--routes`·`--out` 옵션. 리포트 `artifacts/a11y/report.{json,md}`(gitignore). CI 연동 안 함.
 > - 라우트: sitemap `PUBLIC_ROUTES` + 레지스트리 메뉴 키 24 + app 정적 폴더. 스킵(auth) 3 = `/mail`(404)·`/mail/login`·`/login`(503, `DASHBOARD_PUBLIC_BASE_URL` 미설정). 은퇴 18 제외.

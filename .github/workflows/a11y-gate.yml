@@ -1,0 +1,138 @@
+name: A11y Baseline Gate
+
+# 접근성(axe) 기준선 게이트 — 테마 × 화면 × 뷰포트 × 규칙 × impact 노드 수가 기준선과 달라지면 실패(늘어도·줄어도, 래칫).
+# app-quality-gate.yml(verify job)과 파일을 나눈 이유: 두 job 이 같은 on: 을 공유하면 화면에 영향 주는 hooks/**·public/**·data/**·proxy.ts 를
+# 넣는 순간 verify job 의 트리거까지 바뀐다. 파일을 나눠 verify 트리거는 main 그대로 두고 이 게이트만 화면 경로를 덮는다.
+on:
+  pull_request:
+    paths:
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'hooks/**'
+      - 'public/**'
+      - 'data/**'
+      - 'proxy.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'next.config.mjs'
+      - 'postcss.config.mjs'
+      - 'tsconfig.json'
+      - 'scripts/a11y_audit.mjs'
+      - 'scripts/check_a11y_baseline.mjs'
+      - 'scripts/a11y-baseline.json'
+      - '.github/workflows/a11y-gate.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'hooks/**'
+      - 'public/**'
+      - 'data/**'
+      - 'proxy.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'next.config.mjs'
+      - 'postcss.config.mjs'
+      - 'tsconfig.json'
+      - 'scripts/a11y_audit.mjs'
+      - 'scripts/check_a11y_baseline.mjs'
+      - 'scripts/a11y-baseline.json'
+      - '.github/workflows/a11y-gate.yml'
+  workflow_dispatch:
+
+jobs:
+  # 테마별 병렬. CI 실측(2026-10-08 run 37797640417): job 15분 2초(라이트)·14분 31초(다크), 그중 감사 13분 5초·빌드 1분 9초.
+  # timeout 35분 = 실측 15분의 2배 + 여유 — 화면 수가 늘거나 러너가 느린 날을 견디되, 멈춘 감사를 오래 붙들지 않는다.
+  # 빌드는 job 마다 다시 한다: .next(캐시 제외 ~137MB)를 artifact 로 넘기면 「빌드 job → 업로드 → 다운로드」가 직렬로 붙어 더 길다.
+  a11y:
+    name: a11y baseline (${{ matrix.theme }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        theme: [light, dark]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit
+
+      - name: Check baseline script self-test
+        run: node scripts/check_a11y_baseline.mjs --self-test
+
+      - name: Build
+        run: npm run build
+
+      - name: Run axe audit
+        run: npm run a11y -- --theme ${{ matrix.theme }} --out artifacts/a11y/${{ matrix.theme }}
+
+      - name: Compare with baseline
+        if: ${{ !cancelled() }}
+        run: >-
+          node scripts/check_a11y_baseline.mjs
+          --report artifacts/a11y/${{ matrix.theme }}/report.json
+          --md artifacts/a11y/${{ matrix.theme }}/gate.md
+          --counts-out artifacts/a11y/${{ matrix.theme }}/counts.json
+          --print-counts
+
+      - name: Upload a11y report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-report-${{ matrix.theme }}
+          path: |
+            artifacts/a11y/${{ matrix.theme }}/report.md
+            artifacts/a11y/${{ matrix.theme }}/gate.md
+            artifacts/a11y/${{ matrix.theme }}/report.json
+            artifacts/a11y/${{ matrix.theme }}/counts.json
+          if-no-files-found: warn
+
+  # 래칫용 기준선 후보 — 두 테마 측정(CI 리눅스 값)으로 scripts/a11y-baseline.json 을 다시 쓴 파일.
+  # 감소로 게이트가 실패하면 이 artifact(a11y-baseline-candidate)를 내려받아 그대로 커밋한다.
+  # 기준선보다 높아지는 키가 있으면 만들지 않고 실패한다(회귀를 기준선에 묻지 않도록).
+  candidate:
+    name: a11y baseline candidate
+    needs: a11y
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Download a11y counts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: a11y-report-*
+          path: artifacts/a11y
+
+      - name: Build baseline candidate
+        run: >-
+          node scripts/check_a11y_baseline.mjs --update --print
+          --report artifacts/a11y/a11y-report-light/counts.json
+          --report artifacts/a11y/a11y-report-dark/counts.json
+          --out artifacts/a11y-baseline-candidate/a11y-baseline.json
+
+      - name: Upload baseline candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-baseline-candidate
+          path: artifacts/a11y-baseline-candidate/a11y-baseline.json
+          if-no-files-found: error
