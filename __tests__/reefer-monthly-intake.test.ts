@@ -18,6 +18,8 @@ describe('운반선 주간표 → 월별 방콕 반입량', () => {
     expect(byMonth['2026-08'].mt).toBeCloseTo(24_696, 0);
     expect(byMonth['2026-09'].mt).toBeCloseTo(26_269, 0);
     expect(byMonth['2026-09'].vessels).toBe(7);
+    // 10월은 HUA FU 107 한 척(10/8까지) - CHERRY STAR(9/28)는 39·40주에 겹쳐도 9월에 한 번만 센다
+    expect(byMonth['2026-10']).toEqual({ month: '2026-10', mt: 4_840, vessels: 1 });
     // 5~6월은 주차를 더 갖고 있어 두 배 이상이다 - 감소 방향이 자료 밖 사정이 아니라는 근거
     expect(byMonth['2026-05'].mt).toBeGreaterThan(50_000);
     expect(byMonth['2026-06'].mt).toBeGreaterThan(50_000);
@@ -29,8 +31,10 @@ describe('운반선 주간표 → 월별 방콕 반입량', () => {
   });
 
   it('보유 주차가 띄엄띄엄이라는 사실을 계약이 들고 있다', () => {
-    expect(reeferMonthlyIntake.weeksHeld).toEqual([19, 22, 24, 26, 27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]);
-    expect(recentReeferMonths(3).map((row) => row.month)).toEqual(['2026-07', '2026-08', '2026-09']);
+    expect(reeferMonthlyIntake.weeksHeld).toEqual([19, 22, 24, 26, 27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]);
+    // 40주차(10/2~10/8)가 10월을 처음 연다 - 기준일이 말일 전이라 «진행 중» 으로 표시한다
+    expect(reeferMonthlyIntake.inProgressMonth).toEqual({ month: '2026-10', through: '2026-10-08' });
+    expect(recentReeferMonths(3).map((row) => row.month)).toEqual(['2026-08', '2026-09', '2026-10']);
   });
 
   it('제3자 추정을 맞추지 않고 나란히 싣는다', () => {
@@ -51,6 +55,8 @@ describe('운반선 주간표 → 월별 방콕 반입량', () => {
     const markup = renderToStaticMarkup(React.createElement(ReeferMonthlyIntakeChart));
 
     expect(markup).toContain('26,269');
+    // 진행 중인 10월은 기준일을 붙이고, 문장 비교는 다 찬 9월로 한다
+    expect(markup).toContain('10/8까지');
     expect(markup).toContain('보유 주차');
     expect(markup).toContain('스페인 선사 자체 추산');
     // 추산은 우리 값과 나란히 보인다 - 9월은 «미만» 이라는 단서까지

@@ -1,3 +1,10 @@
+> ✅ **2026-10-08 15:39 KST — `/logistics` TTA 운반선 주간동향 40주차(10/2~10/8) 반영** [CC]:
+> - 원자료: `Reefer ship movement for week 40th.xlsx` SHA-256 `75e8882958d585c33e75b4fcf8752a65de45b1683550a525773db222b5e15087`(13,526 B, `unzip -t` 정상, AJ2=40, A1 「02/10/26 - 08/10/26」). `sync_reefer_weekly.py` → `data/reefer_week40.json`(git add -f).
+> - 2척 **8,255 MT** — CHERRY STAR 3,415(9/28, 39주와 배분 동일) · HUA FU 107 4,840(10/4, 신규). RYOMA 는 빠졌다. 행 합 = 원문 TOTAL 열, OTHER(부두 33·11B) 제외. 방콕 주간보고 10/7 정정본 하역 표의 두 척 물량과 같다.
+> - 월별 반입: 10월이 처음 열려 HUA FU 107 1척 4,840 MT. 기준일(10/8)이 말일 전이라 `reeferMonthlyIntake.inProgressMonth` 를 두고, 카드 SIT 비교는 다 찬 달(9월 26,269 MT·7척)로, 차트는 「10월 / 10/8까지」로 표시. 진행 중인 달을 넣으면 「직전 달 대비 −21,429MT」 급감 문장이 나왔다. 월 라벨 「09월」 → 「9월」.
+> - 테스트 `reefer-week39-data` → `reefer-week40-data`, `reefer-monthly-intake` 갱신. `npm run verify` 통과: Vitest 213 files / **1,812** · API cache 161/161 · 정적 118 · bundle 33. 로컬 production `/logistics` 4탭 1440·390px 200·overflow 0·error 0.
+> - 상태: 브랜치 `data/reefer-week40`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-08 15:23 KST — #1382 `/cosmo` 40주차 · #1383 `/fleet` 261008 배포** [CC]:
 > - #1382 `d14131bd` → #1383 `992c6f19`, 둘 다 App Quality Gate 통과 후 squash. 병합 배포 READY 뒤 `swap_fleet_detail_secret.sh`(canonical `216ae7aa…` 일치) → 재배포 `dpl_25gtCb1zPa5Ckur34hjmE6PZw4ws` READY · leedonggun.co.kr 연결.
 > - 라이브 실측(Aside 로그인 세션·캐시 우회): `/fleet` 「2026-10-08 보고 · 2026-10-07 조업 기준」·일간 313·연간 96,890.8·운반선 11,434.3·태평양 1,943·대서양 780, 보호 패널 경고 없음, 입항 일정표 10행. `/cosmo` 「40주차 업무 브리핑 (09-28 ~ 10-04)」·GRA 세무조사·파리 SIAL, 데이터 품질 탭 YF/BE −$701,138 이슈 행.
