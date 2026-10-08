@@ -304,6 +304,7 @@ export function buildBaseline(prev, aggregates, { acceptIncrease = false, extraM
     raised,
     lowered,
     dropped,
+    fresh: !usablePrev,
   };
 }
 
@@ -514,7 +515,7 @@ function main() {
     for (const l of res.raised) console.log(`  ↑ [${l.theme}] ${l.route} · ${l.vp} · ${l.rule} (${l.impact}) ${l.from} → ${l.to}  (--accept-increase)`);
     const n = Object.entries(res.baseline.themes).map(([t, r]) => `${t} ${Object.keys(r).length}화면`).join(' · ');
     const changed = res.lowered.length + res.raised.length + res.dropped.length;
-    console.log(`기준선 ${changed ? `갱신(낮춤 ${res.lowered.length} · 올림 ${res.raised.length} · 뺀 화면 ${res.dropped.length})` : '변화 없음'}: ${path.relative(ROOT, path.resolve(target))} (${n})`);
+    console.log(`기준선 ${res.fresh ? '새로 작성(이전 기준선 없음·옛 형식)' : changed ? `갱신(낮춤 ${res.lowered.length} · 올림 ${res.raised.length} · 뺀 화면 ${res.dropped.length})` : '변화 없음'}: ${path.relative(ROOT, path.resolve(target))} (${n})`);
     if (args.print) console.log(`\n기준선 후보(로그 전달용 — --decode 로 풀기):\n${encodeForLog(res.baseline)}`);
     return;
   }
