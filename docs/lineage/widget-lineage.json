@@ -3,7 +3,7 @@
   "entry": "app/page.tsx",
   "files": 305,
   "widgets": 120,
-  "dataFiles": 343,
+  "dataFiles": 344,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {

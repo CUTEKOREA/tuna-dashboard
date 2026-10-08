@@ -222,7 +222,11 @@ export default function NewsFrontPage() {
         </span>
       </header>
 
-      <nav
+      {/* 선택 상태를 색으로만 알리면 스크린리더가 못 읽는다 — role/aria-selected 로 알린다.
+          tabIndex 로빙은 넣지 않았다: 화살표 키 처리 없이 비활성 탭을 -1 로 두면
+          키보드로 다른 날짜에 닿을 수 없어 지금보다 나빠진다. 모든 탭을 Tab 으로 짚는다. */}
+      <div
+        role="tablist"
         aria-label="요일 선택"
         style={{
           display: 'flex', gap: 8, overflowX: 'auto', flexWrap: 'nowrap',
@@ -235,6 +239,10 @@ export default function NewsFrontPage() {
             <button
               key={day.date}
               type="button"
+              role="tab"
+              id={`briefing-tab-${day.date}`}
+              aria-selected={active}
+              aria-controls="briefing-tabpanel"
               onClick={() => {
                 setSelectedDate(day.date);
                 setOpen(null);
@@ -255,15 +263,21 @@ export default function NewsFrontPage() {
             </button>
           );
         })}
-      </nav>
+      </div>
 
-      <DayFrontPage
-        briefing={selectedDay}
-        open={open}
-        setOpen={setOpen}
-        hover={hover}
-        setHover={setHover}
-      />
+      <div
+        role="tabpanel"
+        id="briefing-tabpanel"
+        aria-labelledby={`briefing-tab-${selectedDay.date}`}
+      >
+        <DayFrontPage
+          briefing={selectedDay}
+          open={open}
+          setOpen={setOpen}
+          hover={hover}
+          setHover={setHover}
+        />
+      </div>
 
       <p style={{ margin: '14px 0 0', fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-muted)' }}>
         기사 클릭 = 전문 펼침 · 수치는 기사 원문에서 그대로 뽑았다
