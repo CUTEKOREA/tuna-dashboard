@@ -46,7 +46,7 @@
   --mu-surface: #ffffff;
   --mu-surface-2: #f1f2f4;
   --mu-line: #e2e4e9;
-  --mu-accent: #3b82f6;
+  --mu-accent: #2563eb; /* 접근성: #3b82f6 은 회색 바탕 3.28:1 (2026-10-08 axe 감사) */
   --mu-accent-deep: #1d4ed8;
   --mu-canned: #3b82f6;
   --mu-sashimi: #be123c;
@@ -57,7 +57,7 @@
   --mu-grade-a-bg: rgba(5, 150, 105, 0.14);
   --mu-grade-a-ink: #047857;
   --mu-grade-b-bg: rgba(245, 158, 11, 0.16);
-  --mu-grade-b-ink: #b45309;
+  --mu-grade-b-ink: #a14a07; /* 접근성: #b45309 는 B 등급 바탕 4.42:1 */
   --mu-grade-c-bg: rgba(100, 116, 139, 0.16);
   --mu-grade-c-ink: #475569;
 }
@@ -1108,6 +1108,19 @@
   border: 1px solid var(--mu-line);
   border-radius: 8px;
   background: var(--mu-surface);
+}
+
+/* 스크롤은 래퍼 한 곳에서만 — globals.css 의 모바일 `table { display:block; overflow-x:auto }` 가
+   표 자체를 두 번째 스크롤 영역으로 만들면 포커스 가능한 래퍼(tabIndex=0) 안에 포커스 못 받는
+   스크롤 영역이 또 생긴다(axe scrollable-region-focusable). 래퍼가 이미 가로 스크롤을 맡는다. */
+.dataTableWrap > .dataTable {
+  display: table;
+  overflow: visible;
+}
+
+.dataTableWrap:focus-visible {
+  outline: 2px solid var(--mu-accent);
+  outline-offset: 2px;
 }
 
 .dataTable {

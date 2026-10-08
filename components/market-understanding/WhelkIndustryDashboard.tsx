@@ -226,7 +226,7 @@ const EXTRACT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026-09-1
 /** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
 function ExtractedReportTable({ table }: { table: WhelkReportTable }) {
   return (
-    <div className={styles.dataTableWrap}>
+    <div className={styles.dataTableWrap} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
       <table className={styles.dataTable}>
         <thead>
           <tr>

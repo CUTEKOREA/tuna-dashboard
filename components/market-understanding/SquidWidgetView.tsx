@@ -238,7 +238,7 @@ function TableView({ widget }: { widget: SquidWidget }) {
   const hidden = rows.length - shown.length;
 
   return (
-    <div className={styles.dataTableWrap}>
+    <div className={styles.dataTableWrap} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
       <table className={styles.dataTable}>
         <thead>
           <tr>

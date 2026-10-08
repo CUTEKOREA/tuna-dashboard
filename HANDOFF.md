@@ -1,3 +1,12 @@
+> ✅ **2026-10-08 21:10 KST — axe-core 접근성 전수 감사 도입 + 공통 컴포넌트 위반 수정** [CC]:
+> - 도구: `npm run a11y` (`scripts/a11y_audit.mjs`, devDep `@axe-core/puppeteer` 하나). 빌드 산출물을 `next start` 로 띄우고 로컬 E2E 경계(`DASHBOARD_E2E_MODE=local` + 헤더)로 접속, 라우트 34개 × 데스크톱 1280×800·모바일 390×844, 태그 wcag2a·wcag2aa·wcag21aa(규칙 끄기 없음). 끝까지 스크롤 → DOM 1.5초 안정 후 측정. `--theme dark`·`--routes`·`--out` 옵션. 리포트 `artifacts/a11y/report.{json,md}`(gitignore). CI 연동 안 함.
+> - 라우트: sitemap `PUBLIC_ROUTES` + 레지스트리 메뉴 키 24 + app 정적 폴더. 스킵(auth) 3 = `/mail`(404)·`/mail/login`·`/login`(503, `DASHBOARD_PUBLIC_BASE_URL` 미설정). 은퇴 18 제외.
+> - 결과(라이트, 노드 합): critical 24 → **6** · serious 2,720 → **733**. 다크: 24/1,370 → 6/1,159, 페이지×규칙 증가 0건.
+> - 공통 수정: `[data-v3='light']` 대비 토큰(`--text-dim`·`--dsc-ink-faint`·`--w-slate-400/500`·`--accent-primary` #509ee3→#2870ae·`--accent-danger`·`--delta-up/down` 라이트 값 신설), TelemetryBadge 라이트 날짜·경과, NowCard 라이트 머리글, 품목 공용 모듈 `--mu-accent`·등급 B, `StageSection` 에 PillTabs `aria-controls` 대상 id, 품목 표 래퍼 8곳 `tabIndex=0 role=region`(`scripts/fix_a11y_table_wrap.py`) + 래퍼 안 표의 이중 스크롤 해제. 다크 토큰 무변경.
+> - 스냅숏 1개 갱신: `widget-render-snapshots` 해시가 globals.css `--w-*` hex 를 읽어 섞는다 → slate-400/500 라이트 값 변경으로 해시만 바뀜(구조 카운트 동일).
+> - 다음 단계(2차, 페이지 고유): `/cosmo`·`/panofi`·`/bangkok-office` 자체 muted(#8d93a5 하드코딩), `/purse-seiner-db` 흰 글자 상태 배지·`select` 이름 3개, `/squid`·`/squid-v5` 인라인 표 스크롤(전역 모바일 `table{display:block;overflow-x:auto}` 가 원인), `/management`·`/cross-intelligence` 하드코딩 색, `/falkland`·`/ffa-report` 다크 회색, `/market` 뉴스 칩(#8d93a5·#d95926 배경 흰 글자, `NEWS_CATEGORY_ID` 테스트 고정).
+> - 상태: 브랜치 `feat/a11y-audit-20261008` PR(병합 안 함). **프로덕션 미배포**.
+
 > 🚀 **2026-10-08 15:52 KST — #1387 `/logistics` TTA 40주차 배포** [CC]:
 > - merge `6491df27`, App Quality Gate 통과, Vercel production READY. 시크릿 변경 없음.
 > - 라이브 실측(Aside 로그인 세션·캐시 우회, 4탭 전부): 「40주차」·HUA FU 107·8,255·「10/8까지」·「9월 반입은 26,269MT」, 옛 값(6,705·「09월」) 잔존 0. 배포 후 error log 확인.
