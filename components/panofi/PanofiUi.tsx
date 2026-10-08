@@ -139,11 +139,11 @@ export function Table({
 }: {
   head: string[];
   children: ReactNode;
-  /** 스크롤 영역 이름. 없으면 열 제목 앞 세 개로 만든다 — 같은 화면의 표끼리 이름이 겹치지 않게. */
-  label?: string;
+  /** 스크롤 영역 이름 — 패널 제목처럼 표의 주제를 담는다. 같은 탭의 표끼리 겹치지 않게. */
+  label: string;
 }) {
   return (
-    <div className="pf-table-wrap" tabIndex={0} role="region" aria-label={label ?? `${head.slice(0, 3).join('·')} 표`}>
+    <div className="pf-table-wrap" tabIndex={0} role="region" aria-label={label}>
       <table className="pf-table">
         <thead><tr>{head.map((h) => <th key={h}>{h}</th>)}</tr></thead>
         <tbody>{children}</tbody>

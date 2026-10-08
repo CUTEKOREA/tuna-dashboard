@@ -121,7 +121,7 @@ export function LeadingTab() {
           }
           src={SRC}
         >
-          <Table head={['지표', ...bangkokCorr[0].lags.map((l) => `시차 ${l.lagWeeks}주`)]}>
+          <Table label="지표별 시세 선행 상관 표" head={['지표', ...bangkokCorr[0].lags.map((l) => `시차 ${l.lagWeeks}주`)]}>
             {bangkokCorr.map((m) => (
               <tr key={m.metric}>
                 <td>{m.label}</td>

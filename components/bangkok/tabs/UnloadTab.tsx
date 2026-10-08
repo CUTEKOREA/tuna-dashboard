@@ -232,7 +232,7 @@ export function UnloadTab() {
           note={partialYears ? `12개월 미만 집계: ${partialYears}.` : undefined}
           src={SRC}
         >
-          <Table head={['연도', ...BANGKOK_TRADERS.map((t) => TRADER_LABELS[t]), '합계', '척수']}>
+          <Table label="연도별 트레이더 점유 표" head={['연도', ...BANGKOK_TRADERS.map((t) => TRADER_LABELS[t]), '합계', '척수']}>
             {bangkokTraderAnnual.map((y) => (
               <tr key={y.year}>
                 <td>{y.year}</td>
@@ -253,7 +253,7 @@ export function UnloadTab() {
           note={`트레이더 표의 계산합과 보고서 발표합이 어긋난 건이 ${bangkokMismatch.length}건 있다 - 전체 내역을 아래에 둔다 (조용히 덮지 않음).`}
           src={SRC}
         >
-          <Table head={['구분', '계산합', '보고합', '격차', '확인 보고서']}>
+          <Table label="계산합 대 보고합 격차 표" head={['구분', '계산합', '보고합', '격차', '확인 보고서']}>
             {bangkokMismatch.map((m) => (
               <tr key={m.where}>
                 <td>{m.where}</td>

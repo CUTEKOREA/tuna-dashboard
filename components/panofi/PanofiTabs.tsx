@@ -269,7 +269,7 @@ export function FleetTab() {
           note={`개별 총톤수는 회사 공개자료(sla.co.kr)와 ICCAT 등록부가 일치하는 값이며 7척 합 ${num(fleetTotals.totalGt)} G/T 다. ${ytd.label} 생산은 원장 실적(생산) 시트 기준으로 누계 ${orNA(actuals.byVessel.totals.생산량MT, (n) => num(Math.round(n)))}톤과 맞는다 - 어종·사이즈 배분 합계 ${num(actuals.meta.catchMixTotalMT)}톤과는 ${num(ytd.catchMixGapT)}톤 차이가 나며 원본 그대로 두었다. 주간동향 원문에는 자사선 조업량이 없어(입출항·상태만 기재) 척별 생산은 원장에서만 온다.`}
           src={`${SRC.strategy} §5-1 + ${SRC.ledger} + 선박 등록 제원(sla.co.kr·ICCAT)`}
         >
-          <Table head={['선박', '총톤수 (G/T)', `${ytd.label} 생산 (톤)`, '직접마진 순위', '완전손익 순위', '변동', '세전이익 (달러)']}>
+          <Table label="선박별 손익 순위 역전 표" head={['선박', '총톤수 (G/T)', `${ytd.label} 생산 (톤)`, '직접마진 순위', '완전손익 순위', '변동', '세전이익 (달러)']}>
             {marginRankShift.map((r) => (
               <tr key={r.name}>
                 <td>{r.name}</td>
@@ -393,7 +393,7 @@ export function FleetTab() {
             : '주간동향(화요일자) 사이에 오는 주말 메일이라 입출항이 며칠 더 최신이다. 톤수를 확인 중인 배는 「자료 없음」이다.'}
           src={weeklyNewer ? SRC.weekly : ATLANTIC_MAIL_SOURCE}
         >
-          <Table head={['선박', '물량', '입항', '출항', '상태']}>
+          <Table label="세네갈 선단 입출항 표" head={['선박', '물량', '입항', '출항', '상태']}>
             {calls.map((c) => (
               <tr key={c.vessel}>
                 <td>{c.vessel}</td>
@@ -529,7 +529,7 @@ export function PriceTab() {
       <Sec>채널 정책과 국제 기준가</Sec>
       <Grid>
         <Panel span={6} title="채널 정책" unit="7월 기준" src={`${SRC.strategy} §6`}>
-          <Table head={['채널', '지역', '어가 (달러/톤)', '성격', '하반기 방침']}>
+          <Table label="채널 정책 표" head={['채널', '지역', '어가 (달러/톤)', '성격', '하반기 방침']}>
             {channels.map((c) => (
               <tr key={c.channel}>
                 <td>{c.channel}</td>
@@ -573,7 +573,7 @@ export function PriceTab() {
           })()}
           src={ATLANTIC_MAIL_SOURCE}
         >
-          <Table head={['항목', ...atlanticMails.map((m) => mailMonthDay(m.date))]}>
+          <Table label="주말 메일 어가·운임 표" head={['항목', ...atlanticMails.map((m) => mailMonthDay(m.date))]}>
             <tr>
               <td>스카사 어가</td>
               {atlanticMails.map((m) => <td key={m.date}>{usd(m.scasa.priceUsd)}</td>)}
@@ -667,7 +667,7 @@ export function ProfitTab() {
           note={`매출 ${man(fs2025.breakdown.revenue)}은 원장 8,376만불(판매기준)·전략보고 8,400만불과 기준이 다르다. 회계 결산은 세디 장부를 달러로 환산한 값이라 다른 두 수치와 맞추지 않았다. 영업이익 ${man(fs2025.breakdown.op)}(+7.2%)은 전략보고 기준의 기록 경신과 방향이 같지만(회계 기준 시계열은 2개년뿐) 이자 ${man(Math.abs(fs2025.breakdown.interest))}이 여전히 이익을 잠식하고, 기타 대손상각 ${man(fs2025.breakdown.badDebt)}이 새로 얹혔다.`}
           src={SRC.fs}
         >
-          <Table head={['구분', '2024', '2025', '전년비']}>
+          <Table label="2025 확정 결산 표" head={['구분', '2024', '2025', '전년비']}>
             {fs2025.isRows.map((r) => (
               <tr key={r.item}>
                 <td>{r.item}</td>
@@ -816,7 +816,7 @@ export function CashTab() {
           note="부채 111.2백만불이 자산 73.5백만불을 넘어 자본총계 -37.7백만불의 완전자본잠식이다. 전년 -46.5백만불에서 8.7백만불 개선됐지만 이는 사실상 세디 절상 환산이익의 성격이라 체질 개선이 아니다. 순이익 +23.0백만불인데 개선이 8.7백만불에 그친 것은 기초 음(-)자본을 낮아진 기말환율로 재환산한 -18.9백만불이 상쇄했기 때문이다(배당·오류 아님). 부채 쪽은 장기외화미지급금이 41.4백만불에서 17.7백만불로 급감하고 미지급금 29.2백만불이 새로 계상됐다 - 상환인지 유동 재분류인지 원본에 설명이 없어 «구성 변화»로만 적는다. 단기차입금은 여전히 41.8백만불 남아 있다."
           src={`${SRC.fs} · 세디 환율 실측은 ${SRC.weekly}`}
         >
-          <Table head={['항목', '2024', '2025']}>
+          <Table label="재무상태표 (2025-12-31)" head={['항목', '2024', '2025']}>
             {fs2025.bsRows.map((r) => (
               <tr key={r.item}>
                 <td>{r.item}</td>
@@ -869,7 +869,7 @@ export function CashTab() {
           src={SRC.board}
         >
           {liquidityBridge && (
-            <Table head={['항목', '증감 (천 달러)']}>
+            <Table label="과부족 요인 표" head={['항목', '증감 (천 달러)']}>
               <tr><td>현금</td><td className={(liquidityBridge.현금 ?? 0) >= 0 ? 'up' : 'down'}>{num(liquidityBridge.현금)}</td></tr>
               <tr><td>매출채권</td><td className={(liquidityBridge.매출채권 ?? 0) <= 0 ? 'up' : 'down'}>{num(liquidityBridge.매출채권)}</td></tr>
               <tr><td>매입채무</td><td className={(liquidityBridge.매입채무 ?? 0) > 0 ? 'down' : 'up'}>{num(liquidityBridge.매입채무)}</td></tr>
@@ -957,7 +957,7 @@ export function StrategyTab() {
           note={`전제 - 하방: ${scenarios.premise.down} · 기준: ${scenarios.premise.base} · 상향: ${scenarios.premise.up}`}
           src={`${SRC.strategy} §8 - 2025 실적은 실측(A), 3안은 내부 가정(C)`}
         >
-          <Table head={['구분', '2025 하반기 실적', '하방', '기준', '상향']}>
+          <Table label="시나리오 3안 표" head={['구분', '2025 하반기 실적', '하방', '기준', '상향']}>
             {scenarios.rows.map((r) => (
               <tr key={r.metric}>
                 <td>{r.metric}</td>
@@ -1020,7 +1020,7 @@ export function IndustryTab() {
           note={`${industry.cannersNote} ${industry.capacityCaveat} 고용 인원은 출처마다 갈린다 - 파이오니어 푸드 캐너리 1,800명 이상 / 약 1,100명(최고경영자 발언) / 1,000명 이상, 코스모 씨푸드 600명 이상 / 407명(수혜자 보고서). 교차검증이 필요하다.`}
           src={`${SRC.nlm} · 흡수 사실은 사내 확인(2026-08-15)`}
         >
-          <Table head={['공장', '소유', '설립', '처리능력', '고용', '주력 제품']}>
+          <Table label="테마항 가공공장 표" head={['공장', '소유', '설립', '처리능력', '고용', '주력 제품']}>
             {industry.cannersDetail.map((c) => (
               <tr key={c.plant}>
                 <td>{c.plantKo}</td>
@@ -1052,7 +1052,7 @@ export function IndustryTab() {
           note={industry.exports.monthlyCompleteness}
           src={`${industry.exports.basis} · 월별 12개월 대조 2026-08-15`}
         >
-          <Table head={['구분', '2024', '2025', '전년비']}>
+          <Table label="Comtrade 실측 대비 외부 조사 표" head={['구분', '2024', '2025', '전년비']}>
             <tr>
               <td>Comtrade 실측</td>
               <td>{num(Math.round(industry.exports.cannedTunaUsd2024 / 1e6))}</td>
@@ -1167,7 +1167,7 @@ export function TradeTab() {
       <Sec>품목·어종·상대국</Sec>
       <Grid>
         <Panel span={6} title="품목별 수출" unit={`${tradeYear}년`} src={SRC.comtrade}>
-          <Table head={['품목', '금액 (백만 달러)', '물량 (톤)', '단가 (달러/톤)']}>
+          <Table label="품목별 수출 표" head={['품목', '금액 (백만 달러)', '물량 (톤)', '단가 (달러/톤)']}>
             {exportByCommodity.map((c) => (
               <tr key={c.label}>
                 <td>{c.label}</td>
@@ -1278,7 +1278,7 @@ export function QualityTab() {
           note="자료를 불러올 때마다 항목별 확보율을 점검해, 양식이 바뀐 주차를 놓치지 않는다."
           src={SRC.weekly}
         >
-          <Table head={['항목', '확보 주차', '비율']}>
+          <Table label="주간동향 필드별 확보율 표" head={['항목', '확보 주차', '비율']}>
             {Object.entries(dataQuality.coverage).map(([k, v]) => (
               <tr key={k}>
                 <td>{COVERAGE_LABEL[k] ?? k}</td>
@@ -1321,7 +1321,7 @@ export function QualityTab() {
         </Panel>
 
         <Panel span={6} title="근거 등급" src="자체 정의">
-          <Table head={['등급', '뜻']}>
+          <Table label="근거 등급 표" head={['등급', '뜻']}>
             {Object.entries(dataQuality.grades).map(([k, v]) => (
               <tr key={k}><td>{k}</td><td style={{ textAlign: 'left' }}>{v}</td></tr>
             ))}
@@ -1332,7 +1332,7 @@ export function QualityTab() {
           span={12} title="출처"
           src={`최신 주간동향 원본 - ${latest.source} · SHA-256 ${latest.sha256.slice(0, 16)}… · 총 ${weeks.length}주`}
         >
-          <Table head={['구분', '자료', '기준일']}>
+          <Table label="출처 표" head={['구분', '자료', '기준일']}>
             {dataQuality.sources.map((s) => (
               <tr key={s.key}>
                 <td>{s.type}</td>

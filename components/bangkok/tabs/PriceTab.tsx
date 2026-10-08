@@ -164,7 +164,7 @@ export function PriceTab() {
           note={`의심 플래그 주차 ${suspectWeeks}주 / 전체 ${bangkokWeeks.length}주 - 이웃 주 중앙값 대비 급변 기준. 원 기록은 정정하지 않고 그대로 둔다.`}
           src={SRC}
         >
-          <Table head={['날짜', '기록값 (달러/톤)', '이웃 중앙값 (달러/톤)', '괴리율 (%)']}>
+          <Table label="시세 이상치 플래그 표" head={['날짜', '기록값 (달러/톤)', '이웃 중앙값 (달러/톤)', '괴리율 (%)']}>
             {bangkokPriceFlags.map((f) => (
               <tr key={f.date}>
                 <td>{f.date}</td>

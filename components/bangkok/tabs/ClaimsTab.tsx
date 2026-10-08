@@ -107,7 +107,7 @@ export function ClaimsTab() {
           note={`전체 ${num(bangkokSalt.byCannery.length)}개 캐너리 중 이슈 물량 상위 8.`}
           src={SRC_SALT}
         >
-          <Table head={['캐너리', '건수 (건)', '이슈 물량 (t)', '확정액 (달러)']}>
+          <Table label="캐너리별 하이솔트 표" head={['캐너리', '건수 (건)', '이슈 물량 (t)', '확정액 (달러)']}>
             {canneryTop.map((r) => (
               <tr key={r.key}>
                 <td>{r.key}</td>
@@ -125,7 +125,7 @@ export function ClaimsTab() {
           note={`전체 ${num(bangkokSalt.byReefer.length)}척 중 이슈 물량 상위 8.`}
           src={SRC_SALT}
         >
-          <Table head={['운반선', '건수 (건)', '이슈 물량 (t)', '확정액 (달러)']}>
+          <Table label="운반선별 하이솔트 표" head={['운반선', '건수 (건)', '이슈 물량 (t)', '확정액 (달러)']}>
             {reeferTop.map((r) => (
               <tr key={r.key}>
                 <td>{r.key}</td>
@@ -146,7 +146,7 @@ export function ClaimsTab() {
           note={`원장 ${num(bangkokSalt.rows)}건 전량 분류 - 상태 합계 ${num(settleTotal)}건.`}
           src={SRC_SALT}
         >
-          <Table head={['정산 상태', '건수 (건)', '비중 (%)']}>
+          <Table label="정산 상태 요약 표" head={['정산 상태', '건수 (건)', '비중 (%)']}>
             {settlement.map((s) => (
               <tr key={s.status}>
                 <td>{SETTLE_LABELS[s.status] ?? s.status}</td>

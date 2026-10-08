@@ -153,7 +153,7 @@ export function HomeTab() {
         </Panel>
 
         <Panel span={6} title="연도별 요약" unit="주간보고 집계" src={SRC}>
-          <Table head={['연도', '주차 (주)', '시세 평균 (달러/톤)', '가동률 평균 (%)', '하역 총량 (MT)', '입항 (척)']}>
+          <Table label="연도별 요약 표" head={['연도', '주차 (주)', '시세 평균 (달러/톤)', '가동률 평균 (%)', '하역 총량 (MT)', '입항 (척)']}>
             {bangkokYearly.map((y) => (
               <tr key={y.year}>
                 <td>{y.year}</td>

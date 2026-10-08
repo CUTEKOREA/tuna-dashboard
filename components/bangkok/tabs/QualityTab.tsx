@@ -53,7 +53,7 @@ export function QualityTab() {
           note="주간 행을 직접 합산한 값과 보고서 발표치가 다른 구간. 척수 단위는 (척), 물량 단위는 (MT)이며 항목명에 지표가 적혀 있다."
           src={SRC}
         >
-          <Table head={['항목', '집계값', '보고값', '차이', '출처 보고서']}>
+          <Table label="집계값과 보고값 불일치 표" head={['항목', '집계값', '보고값', '차이', '출처 보고서']}>
             {bangkokMismatch.map((m) => (
               <tr key={`${m.where}-${m.sourceFile}`}>
                 <td>{m.where}</td>
@@ -76,7 +76,7 @@ export function QualityTab() {
           note={`원문 표기 오류를 유형별로 정정한 내역 - 총 ${num(correctionTotal)}건.`}
           src={SRC}
         >
-          <Table head={['유형', '건수']}>
+          <Table label="표기 정정 요약 표" head={['유형', '건수']}>
             {bangkokCorrectionSummary.map((c) => (
               <tr key={c.type}>
                 <td>{CORRECTION_LABELS[c.type] ?? c.type}</td>
@@ -93,7 +93,7 @@ export function QualityTab() {
           note="같은 주차에 파일이 두 개인 경우 - 채택 파일 한 개만 시계열에 반영했다."
           src={SRC}
         >
-          <Table head={['보고일', '채택 파일', '제외 파일']}>
+          <Table label="중복 보고 표" head={['보고일', '채택 파일', '제외 파일']}>
             {bangkokDupes.map((d) => (
               <tr key={d.date}>
                 <td>{d.date}</td>
@@ -111,7 +111,7 @@ export function QualityTab() {
           note="이웃 주차 중앙값 대비 급변한 시세 - 정정하지 않고 의심 플래그만 남겼다."
           src={SRC}
         >
-          <Table head={['보고일', '보고 시세', '이웃 중앙값']}>
+          <Table label="시세 이상치 의심 표" head={['보고일', '보고 시세', '이웃 중앙값']}>
             {bangkokPriceFlags.map((f) => (
               <tr key={f.date}>
                 <td>{f.date}</td>
