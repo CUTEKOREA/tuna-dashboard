@@ -376,7 +376,8 @@ export default function Home() {
             padding: '8px 12px', margin: '4px 0',
             border: '1px solid ' + (darkMode ? 'rgba(80, 158, 227, 0.5)' : 'var(--dsc-surface-border, #e2e4e9)'),
             borderRadius: 8, background: darkMode ? 'rgba(80, 158, 227, 0.10)' : 'transparent',
-            color: darkMode ? '#1c6bb0' : 'var(--text-tertiary)',
+            /* 다크: #1c6bb0 은 토글 바탕(#162237) 2.87:1 — 테두리와 같은 파랑 계열(#509ee3)로 5.57:1 */
+            color: darkMode ? '#509ee3' : 'var(--text-tertiary)',
             fontSize: 12, fontWeight: 700, cursor: 'pointer', width: '100%',
           }}
         >
