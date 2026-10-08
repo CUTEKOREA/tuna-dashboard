@@ -1,3 +1,9 @@
+> ✅ **2026-10-09 01:04 KST — 공유 접근성 2건: 다크 대비 4곳 + 모바일 표 이중 스크롤** [CC]:
+> - 다크 대비(라이트 값 불변): TelemetryBadge 날짜·경과 #71717a→#a1a1aa(배지 바탕 #17171a 3.70→6.98) · 사이드바 구역 제목 다크 스코프만 #8a8a8a(#101524 4.36→5.27, `--text-dim` 토큰 무변경) · 다크 모드 토글 「켜짐」 #1c6bb0→#509ee3(합성 #162337 2.84→5.52) · NowCard 「지금」 칩 글자 #fafafa→#18181b(#fbbf24 1.60→10.61, 라이트는 `[data-v3='light']` 로 예전 #22242b 유지).
+> - 표: 모바일 전역 `table{display:block;overflow-x:auto}` 는 래퍼 없는 표의 안전망으로 남기고, 부모가 이미 스크롤 래퍼(role=region+tabindex · 인라인 overflow auto)인 표만 `:where()` 로 display:table 복귀. 통째 삭제는 `/fleet` 입어 탭 VDS 히트맵 끝 열이 잘려서 기각. 390px 전 화면·전 탭 표 3,570 스냅숏에서 잘린 셀 수 옛 규칙과 동일(6 = `/gmts` 항만 탭 기존).
+> - axe(노드 합) 라이트 413→**397** · 다크 964→**826**, 화면×규칙 증가 0. 리포트 `artifacts/a11y/{before,after}-{light,dark}/`·`before-after.md`(gitignore).
+> - 스펙 불일치(미수정·보고): 「#fff on #38bdf8」 는 NowCard 가 아니라 `components/v2/PillTabs.tsx` 활성 알약(다크 34노드). 화면 파일 몫: `/squid`·`/squid-v5` 인라인 스크롤 래퍼, `/cosmo` `.tw`, `/unloading` 분석 표 래퍼에 tabIndex 필요.
+> - 상태: 브랜치 `fix/a11y-shared-dark-20261009` PR(병합 안 함). **프로덕션 미배포**.
 > ✅ **2026-10-08 21:10 KST — axe-core 접근성 전수 감사 도입 + 공통 컴포넌트 위반 수정** [CC]:
 > - 도구: `npm run a11y` (`scripts/a11y_audit.mjs`, devDep `@axe-core/puppeteer` 하나). 빌드 산출물을 `next start` 로 띄우고 로컬 E2E 경계(`DASHBOARD_E2E_MODE=local` + 헤더)로 접속, 라우트 34개 × 데스크톱 1280×800·모바일 390×844, 태그 wcag2a·wcag2aa·wcag21aa(규칙 끄기 없음). 끝까지 스크롤 → DOM 1.5초 안정 후 측정. `--theme dark`·`--routes`·`--out` 옵션. 리포트 `artifacts/a11y/report.{json,md}`(gitignore). CI 연동 안 함.
 > - 라우트: sitemap `PUBLIC_ROUTES` + 레지스트리 메뉴 키 24 + app 정적 폴더. 스킵(auth) 3 = `/mail`(404)·`/mail/login`·`/login`(503, `DASHBOARD_PUBLIC_BASE_URL` 미설정). 은퇴 18 제외.

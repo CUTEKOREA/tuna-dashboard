@@ -494,6 +494,7 @@
 }
 
 :root[data-theme='light'] {
+  --toggle-on-ink: #1c6bb0; /* 다크 모드 토글 「켜짐」 — 밝은 바탕 #eef5fc 위 5.05:1 (app/page.tsx) */
   --bg-color: #F8F7F4;
   --panel-bg: #FFFFFF;
   --panel-border: rgba(0, 0, 0, 0.06);
@@ -856,11 +857,29 @@ img, video, canvas, svg {
     border-radius: var(--radius-md);
   }
 
-  /* Tables horizontal scroll on mobile */
+  /* 래퍼 없는 표의 안전망 — 화면 밖으로 넘치지 않게 표 자체를 가로 스크롤 */
   table {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* 이미 가로 스크롤 래퍼 안에 있는 표는 래퍼가 스크롤한다. 표까지 block 스크롤 영역이 되면
+   * 포커스 못 받는 이중 스크롤이 생긴다(axe scrollable-region-focusable).
+   * 래퍼 판정: 키보드 스크롤 영역(role=region + tabindex) · 인라인 overflow 스크롤.
+   * :where() 로 특이도를 table 과 같게(0,0,1) 둬 화면 모듈 CSS 가 계속 이긴다.
+   * overflow 는 건드리지 않는다 — display:table 상자엔 overflow 가 먹지 않고, 모듈이 display 를
+   * grid 등으로 바꾼 표(/gmts 항만 탭)는 예전처럼 자기 스크롤을 유지해야 잘리지 않는다.
+   * 전역 규칙을 통째로 지우면 /fleet 입어 탭 VDS 히트맵(래퍼 없음, 최소폭 381px)의 끝 열이
+   * body{overflow-x:hidden} 에 잘린다 — 2026-10-09 390px 전 화면·전 탭 실측. */
+  :where(
+    [role='region'][tabindex],
+    [style*='overflow-x:auto'],
+    [style*='overflow-x: auto'],
+    [style*='overflow:auto'],
+    [style*='overflow: auto']
+  ) > table {
+    display: table;
   }
 
   /* KPI numbers scale down */
