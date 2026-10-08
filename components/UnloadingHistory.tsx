@@ -657,7 +657,7 @@ export function UnloadingHistoryView({
       <TakeawayBox
         situation={`${selectedYear}년 검증 완료 ${annual.verifiedVoyageCount}항차의 실제 하역량은 ${formatMt(annual.verifiedActualMt)} MT입니다. 부분·미확인 항차는 합계에서 제외했습니다.${variance ? ` 보고량이 확인된 ${variance.voyageCount}항차는 본선 보고 대비 실측이 ${formatSignedMt(variance.differenceMt)} MT(${formatSignedPct(variance.differencePct)})입니다.` : ''}`}
         takeaway="항만별 처리량과 연도경계 배분량을 현재 선박 배치의 용량·지연 리스크 검토 기준으로 삼습니다. 부분·미확인 항차는 확정 의사결정 분모에서 제외합니다."
-        source="구글 드라이브 하역업무 정제본(2021~2025) · 보고량은 최종 하역결과 AI 추출값 중 실측 일치 항차만"
+        source="구글 드라이브 하역업무 정제본(2021~2025) · 보고량은 최종 하역결과 AI 추출값·본선별 하역결과 xlsx 합계 중 실측 일치 항차만"
       />
     </section>
   );
