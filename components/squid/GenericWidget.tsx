@@ -70,7 +70,7 @@ export const SignalBoard: React.FC<{ data: any[] }> = ({ data }) => (
 );
 
 /** 어떤 모양의 data 든 표로 떨어뜨린다. */
-export const DataTable: React.FC<{ data: any; previewRows?: number }> = ({ data, previewRows = 6 }) => {
+export const DataTable: React.FC<{ data: any; previewRows?: number; label?: string }> = ({ data, previewRows = 6, label }) => {
   const [all, setAll] = useState(false);
   const rows: any[] = Array.isArray(data) ? data : [data];
   if (!rows.length) return null;
@@ -85,7 +85,7 @@ export const DataTable: React.FC<{ data: any; previewRows?: number }> = ({ data,
 
   return (
     <div style={{ minWidth: 0 }}>
-      <div style={{ overflowX: 'auto' }}>
+      <div style={{ overflowX: 'auto' }} tabIndex={0} role="region" aria-label={label ? `${label} 표` : '표 (가로 스크롤)'}>
         <table style={{ borderCollapse: 'collapse', fontSize: '0.7rem', width: '100%' }}>
           <thead>
             <tr>
@@ -226,7 +226,7 @@ export const ExcerptList: React.FC<{ data: any[]; previewItems?: number }> = ({
 export const GenericWidgetBody: React.FC<{ widget: SquidWidget }> = ({ widget }) => {
   if (widget.chartType === 'signal') return <SignalBoard data={widget.data as any[]} />;
   if (isExcerptOnly(widget.data)) return <ExcerptList data={widget.data as any[]} />;
-  return <DataTable data={widget.data} />;
+  return <DataTable data={widget.data} label={widget.title} />;
 };
 
 export default GenericWidgetBody;

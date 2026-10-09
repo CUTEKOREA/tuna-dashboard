@@ -30,7 +30,7 @@ const SIGNAL_COLOR: Record<string, string> = {
 };
 
 /** 어떤 모양이든 표로 떨어뜨린다. 확인용이므로 정교할 필요가 없다. */
-function DataPeek({ data }: { data: any }) {
+function DataPeek({ data, label }: { data: any; label?: string }) {
   const [all, setAll] = useState(false);
   const rows: any[] = Array.isArray(data) ? data : [data];
   if (!rows.length) return null;
@@ -45,7 +45,7 @@ function DataPeek({ data }: { data: any }) {
 
   return (
     <div style={{ minWidth: 0 }}>
-      <div style={{ overflowX: 'auto' }}>
+      <div style={{ overflowX: 'auto' }} tabIndex={0} role="region" aria-label={label ? `${label} 표` : '표 (가로 스크롤)'}>
         <table style={{ borderCollapse: 'collapse', fontSize: '0.7rem', width: '100%' }}>
           <thead>
             <tr>
@@ -156,14 +156,14 @@ export default function SquidV5Preview() {
             <section key={key} style={{ marginTop: '32px' }}>
               <h2 style={{ fontSize: '1rem', fontWeight: 800, color: '#cbd5e1',
                            margin: '0 0 12px' }}>
-                {key}. {label} <span style={{ color: '#64748b', fontWeight: 500 }}>({list.length})</span>
+                {key}. {label} <span style={{ color: '#94a3b8', fontWeight: 500 }}>({list.length})</span>
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '14px' }}>
                 {list.map(([id, w]) => (
                   <SquidCard key={id} widget={w} sources={doc.sources} builtAt={doc.meta.built_at}>
                     {w.chartType === 'signal'
                       ? <SignalBoard data={w.data as any[]} />
-                      : <DataPeek data={w.data} />}
+                      : <DataPeek data={w.data} label={w.title} />}
                   </SquidCard>
                 ))}
               </div>

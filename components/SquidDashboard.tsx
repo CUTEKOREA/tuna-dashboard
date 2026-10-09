@@ -49,7 +49,7 @@ function SectionNav() {
           >
             <span style={{ color: meta.color }}>{meta.orderLabel}</span>
             {meta.label}
-            <span style={{ color: 'var(--w-slate-500)', fontWeight: 500 }}>{count}</span>
+            <span style={{ color: 'var(--w-slate-400)', fontWeight: 500 }}>{count}</span>
           </a>
         );
       })}
@@ -97,7 +97,7 @@ export default function SquidDashboard() {
               </>
             )}
           </p>
-          <p style={{ color: 'var(--w-slate-500)', fontSize: '0.72rem', marginTop: 4, wordBreak: 'keep-all' }}>
+          <p style={{ color: 'var(--w-slate-400)', fontSize: '0.72rem', marginTop: 4, wordBreak: 'keep-all' }}>
             모든 카드 하단의 근거 칩은 어종·중량기준·거래단계·기준일·출처 등급을 표시한다.
             칩을 누르면 원문 경로와 금지 용법이 열린다.
           </p>
