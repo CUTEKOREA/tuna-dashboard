@@ -1,3 +1,13 @@
+> 🚀 **2026-10-10 KST — #1408 `/market` 2026-10-09 참치 데일리 브리핑 + 주간 탭 5일 배포** [CC]:
+> - merge `840df66f`(squash), Vercel commit status success. 직전 배포 `066c8d19`(10-08). 로컬 커밋 `67c7cc94`.
+> - 게이트: `state/audit-2026-10-09.txt` = `AUDIT_PASS`(윤문 ADOPTED, 제목 수치 승격·입간판 정합 후 재감사 P0=0 P1=0). 변경 파일은 `public/data/tuna_daily_briefing.json`·`public/data/tuna_weekly_briefing.json` **2개뿐**.
+> - 반영 판정은 커밋 메시지 아닌 **blob 해시 대조**: daily `0c15b095…`·weekly `20db0abf…` 가 origin/main 과 동일, `git diff origin/main -- public/data/` 빈 출력.
+> - 데이터: daily date=2026-10-09 다이제스트 6 / 기사 6. weekly 10-05~10-09 **5일**(10-05 5 · 10-06 5 · 10-07 6 · 10-08 6 · 10-09 6) 합계 **28건** — 이번 주가 다 찼다.
+> - 라이브 실측(Aside 로그인 세션): 「이번주 참치 뉴스」/ 메타 **「10/05~10/09 · 기사 28건 · 파이프라인 동기」**. 요일 탭 **5개**(월~금), 기본 선택 **금 10/09** · 리드 「Parlevliet 가문의 PP Group 인수, 지분 대가 EUR 4억 5,250만 드러나」 · 오늘의 수치 **EUR 4억 5,250만**. 월 10/05 전환 시 리드 「EU 생산국들의 캔참치 수출 감소」, 금 복귀 시 `aria-labelledby=briefing-tab-2026-10-09`.
+> - 접근성: `role="tab"` 5 · `aria-selected="true"` 정확히 1 · `role="tabpanel"` 1.
+> - **탭 가로 스크롤이 실제로 걸린 첫 회차**(탭 5개). 컨테이너 폭 390px → tablist client 336 / scroll 410, 340px → 286 / 410. 둘 다 한 줄 유지(`tabRows=1`), 버튼 내부 잘림 0, `scrollLeft` 최대(74·124)에서 마지막 탭 전체 노출, 카드·문서 가로 오버플로 없음(`docScrollWidth == clientWidth`).
+> - 배포 직후 1차 조회는 옛 상태(22건·4탭)였고 ~2.5분 뒤 재조회에서 28건·5탭 — 전파 지연. 정리는 `git switch -c sync/2026-10-09b origin/main` 만(gh 가 권한 `git worktree remove`·`git branch -D` 는 무시, 에이전트 정의 ⓒ).
+
 > ✅ **2026-10-10 KST — `/management` 접근성(axe) 위반 0** [CC]:
 > - 원인 두 가지(전부 color-contrast): ① 화면 자체 팔레트를 글자에 그대로 씀 — `theme.success` #059669(흰 3.77·크림 3.46)·`theme.gold` #C9A050(크림 2.23)·`theme.danger` #dc2626(크림 4.43)·`theme.muted` #64748b(크림 4.37, 탭 버튼). 글자 전용 토큰 `successText` #047857·`goldText` #b45309·`dangerText` #b91c1c·`mutedText` #475569 를 더하고 글자 color 에만 썼다(막대·선·아이콘·테두리는 원색 유지). ② `InfoTooltip`(사용처 이 화면 하나)이 `--w-slate-400` 을 읽는데, 이 화면은 `data-v3` 밖이라 테마와 무관하게 다크 값 #a1a1aa(흰 2.56)가 잡혔다 → `<main>` 에서 라이트 토큰 값 #626879(5.56)·#686e81 로 고정. 라이트·다크 수치가 같았던 이유도 이것(화면이 항상 크림·흰 바탕).
 > - 계열사 표 가로 스크롤 래퍼 `tabIndex=0 role=region aria-label`(탭별 이름). M&A 리스크 칩 중간 #d97706→goldText(#fef3c7 2.86→4.51)·높음 →dangerText.
