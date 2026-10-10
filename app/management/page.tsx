@@ -28,6 +28,11 @@ const theme = {
   borderLight: '#f0ede7',
   danger: '#dc2626',
   success: '#059669',
+  // 글자 전용(접근성 4.5:1) — 막대·선·아이콘·테두리는 위 원색 그대로 둔다
+  successText: '#047857', // 흰 바탕 5.48 · 크림 5.03 (원색 #059669 는 3.77·3.46)
+  dangerText: '#b91c1c',  // 크림 5.94 (원색 #dc2626 는 크림에서 4.43)
+  goldText: '#b45309',    // 흰 바탕 5.02 · 크림 4.61 (원색 #C9A050 은 2.43·2.23)
+  mutedText: '#475569',   // 크림 6.95 (원색 #64748b 는 크림에서 4.37)
   // Gradient tokens
   navyGradient: 'linear-gradient(135deg, #0F1A2E 0%, #1E3050 100%)',
   goldGradient: 'linear-gradient(90deg, #C9A050, #E8D5A3)',
@@ -120,7 +125,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 const KPICard = ({ title, dataObj, color, icon: Icon, tooltipDesc }: any) => {
   const isDanger = dataObj.progress < 20;
   const isSuccess = dataObj.progress >= 25;
-  const progressColor = isSuccess ? theme.success : (isDanger ? theme.danger : theme.gold);
+  const progressColor = isSuccess ? theme.successText : (isDanger ? theme.dangerText : theme.goldText);
 
   return (
     <div style={{ 
@@ -199,7 +204,7 @@ const KPICard = ({ title, dataObj, color, icon: Icon, tooltipDesc }: any) => {
         <div style={{ fontSize: '12px', color: theme.muted, fontWeight: 500 }}>전월 대비 증감 (MoM)</div>
         <div style={{ 
           display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', fontWeight: 700,
-          color: dataObj.mom_diff > 0 ? theme.success : theme.danger
+          color: dataObj.mom_diff > 0 ? theme.successText : theme.danger
         }}>
           {dataObj.mom_diff > 0 ? <ArrowUpRight size={16} /> : <ArrowDownRight size={16} />}
           {Math.abs(dataObj.mom_diff).toLocaleString()}억 ({dataObj.mom_diff > 0 ? '+' : ''}{dataObj.mom_diff_percent}%)
@@ -278,7 +283,7 @@ export default function ManagementDashboard() {
             </h3>
             <div style={{ color: '#374151', fontSize: '14.5px', lineHeight: 1.7 }}>
               <div style={{ color: theme.navy, fontWeight: 700, marginTop: '8px', marginBottom: '4px', fontSize: '15px' }}>1. 수익성·자산 효율</div>
-              신라교역의 <strong style={{ color: theme.success, fontWeight: 600 }}>영업이익률(OPM)은 3.38%</strong>로 안정적인 Cash-cow 역할을 수행 중입니다. <strong style={{ color: theme.success, fontWeight: 600 }}>재고자산 회전율(2.8배)</strong>은 고부가가치 어종 선별 보관 전략(Premium Pricing Strategy)에 기인하며, 동종업계 대비 다소 보수적이나 이익률 방어에 효과적으로 작용하고 있습니다.
+              신라교역의 <strong style={{ color: theme.successText, fontWeight: 600 }}>영업이익률(OPM)은 3.38%</strong>로 안정적인 Cash-cow 역할을 수행 중입니다. <strong style={{ color: theme.successText, fontWeight: 600 }}>재고자산 회전율(2.8배)</strong>은 고부가가치 어종 선별 보관 전략(Premium Pricing Strategy)에 기인하며, 동종업계 대비 다소 보수적이나 이익률 방어에 효과적으로 작용하고 있습니다.
               
               <div style={{ color: theme.navy, fontWeight: 700, marginTop: '16px', marginBottom: '4px', fontSize: '15px' }}>2. 밸류에이션 배수·재평가(Re-rating) 여력</div>
               반면, 당사의 <strong style={{ color: theme.danger, fontWeight: 600 }}>PBR은 0.32배</strong>로 경쟁사인 동원산업(0.58배), 사조산업 대비 현저한 Deep-Value 구간에 머물러 있습니다. 이는 보유 자산의 내재가치가 시장에서 완전히 할인(Discount)되고 있음을 의미하며, 향후 배당 성향 확대 및 자사주 매입 등 주주환원(Value-up) 정책을 통해 즉각적인 Re-rating 및 기업가치 제고 여력이 매우 높다고 판단됩니다.
@@ -307,7 +312,7 @@ export default function ManagementDashboard() {
               그룹 내 <strong style={{ color: theme.danger, fontWeight: 600 }}>원일특강(순현금 -569억)</strong> 및 <strong style={{ color: theme.danger, fontWeight: 600 }}>신라에스지(-194억)</strong>의 단기 차입금 비중이 그룹 내 가장 높은 수준입니다. 매크로 고금리 기조를 감안할 때, 해당 계열사들의 Refinancing Risk 점검 및 비핵심 자산 매각(Carve-out)을 통한 De-leveraging 전략이 즉각적으로 요구됩니다.
               
               <div style={{ color: theme.navy, fontWeight: 700, marginTop: '16px', marginBottom: '4px', fontSize: '15px' }}>2. 캐시카우·투자 여력(Dry-powder) 배분</div>
-              반면, <strong style={{ color: theme.success, fontWeight: 600 }}>신라교역(+734억)</strong>과 <strong style={{ color: theme.success, fontWeight: 600 }}>비전힐스(+629억)</strong>는 견고한 잉여현금흐름(FCF)을 바탕으로 전월 대비 현금보유고를 늘리며 그룹 내 핵심 Cash-Cow 역할을 지속 수행 중입니다. 확보된 유동성은 향후 Inorganic Growth(M&A)를 위한 Dry-powder로 활용하거나 그룹 전반의 유동성 버퍼로 기능할 것입니다.
+              반면, <strong style={{ color: theme.successText, fontWeight: 600 }}>신라교역(+734억)</strong>과 <strong style={{ color: theme.successText, fontWeight: 600 }}>비전힐스(+629억)</strong>는 견고한 잉여현금흐름(FCF)을 바탕으로 전월 대비 현금보유고를 늘리며 그룹 내 핵심 Cash-Cow 역할을 지속 수행 중입니다. 확보된 유동성은 향후 Inorganic Growth(M&A)를 위한 Dry-powder로 활용하거나 그룹 전반의 유동성 버퍼로 기능할 것입니다.
             </div>
           </div>
         </div>
@@ -329,7 +334,7 @@ export default function ManagementDashboard() {
               <h3 style={{ margin: 0, color: theme.navy, fontSize: '16px', fontFamily: 'serif', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <FileSearch size={18} color={theme.gold}/> [투자심의 메모] 2026 푸드테크 심층분석·인수 전략
               </h3>
-              <span style={{ fontSize: '12px', fontWeight: 600, color: theme.muted, background: theme.cream, padding: '4px 10px', borderRadius: '4px', letterSpacing: '0.05em' }}>
+              <span style={{ fontSize: '12px', fontWeight: 600, color: theme.mutedText, background: theme.cream, padding: '4px 10px', borderRadius: '4px', letterSpacing: '0.05em' }}>
                 출처: Future Food-Tech 2026 (샌프란시스코)
               </span>
             </div>
@@ -456,7 +461,7 @@ export default function ManagementDashboard() {
                           <span style={{ color: theme.muted, fontSize: '13px' }}>매출액 (Top-line)</span>
                           <span style={{ color: theme.navy, fontWeight: 700, fontSize: '15px' }}>
                             {co.q1_revenue?.toLocaleString()}억
-                            <span style={{ fontSize: '12px', marginLeft: '6px', color: co.yoy_revenue > 0 ? theme.success : theme.danger }}>
+                            <span style={{ fontSize: '12px', marginLeft: '6px', color: co.yoy_revenue > 0 ? theme.successText : theme.danger }}>
                               ({co.yoy_revenue > 0 ? '+' : ''}{co.yoy_revenue}%)
                             </span>
                           </span>
@@ -465,7 +470,7 @@ export default function ManagementDashboard() {
                           <span style={{ color: theme.muted, fontSize: '13px' }}>영업이익 (OP)</span>
                           <span style={{ color: theme.navy, fontWeight: 700, fontSize: '15px' }}>
                             {co.q1_op?.toLocaleString()}억
-                            <span style={{ fontSize: '12px', marginLeft: '6px', color: co.yoy_op !== null ? (co.yoy_op > 0 ? theme.success : theme.danger) : theme.danger }}>
+                            <span style={{ fontSize: '12px', marginLeft: '6px', color: co.yoy_op !== null ? (co.yoy_op > 0 ? theme.successText : theme.danger) : theme.danger }}>
                               {co.yoy_op !== null ? `(${co.yoy_op > 0 ? '+' : ''}${co.yoy_op}%)` : '(적자전환)'}
                             </span>
                           </span>
@@ -486,7 +491,7 @@ export default function ManagementDashboard() {
                         <div>
                           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
                             <span style={{ color: theme.muted, fontSize: '13px' }}>영업이익률 (OPM)</span>
-                            <span style={{ color: co.opm > 5 ? theme.gold : (co.opm > 0 ? theme.navy : theme.danger), fontWeight: 700, fontSize: '14px' }}>{co.opm}%</span>
+                            <span style={{ color: co.opm > 5 ? theme.goldText : (co.opm > 0 ? theme.navy : theme.danger), fontWeight: 700, fontSize: '14px' }}>{co.opm}%</span>
                           </div>
                           <div style={{ width: '100%', height: '6px', background: '#e2e8f0', borderRadius: '3px', overflow: 'hidden' }}>
                             <div style={{ height: '100%', width: `${Math.min(100, Math.max(0, co.opm * 5))}%`, background: co.opm > 5 ? theme.gold : theme.navy }} />
@@ -495,7 +500,7 @@ export default function ManagementDashboard() {
                         <div>
                           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
                             <span style={{ color: theme.muted, fontSize: '13px' }}>순이익률 (NIM)</span>
-                            <span style={{ color: co.nim > 5 ? theme.gold : (co.nim > 0 ? theme.navy : theme.danger), fontWeight: 700, fontSize: '14px' }}>{co.nim}%</span>
+                            <span style={{ color: co.nim > 5 ? theme.goldText : (co.nim > 0 ? theme.navy : theme.danger), fontWeight: 700, fontSize: '14px' }}>{co.nim}%</span>
                           </div>
                           <div style={{ width: '100%', height: '6px', background: '#e2e8f0', borderRadius: '3px', overflow: 'hidden' }}>
                             <div style={{ height: '100%', width: `${Math.min(100, Math.max(0, co.nim * 5))}%`, background: co.nim > 5 ? theme.gold : theme.navy }} />
@@ -524,7 +529,7 @@ export default function ManagementDashboard() {
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px', paddingTop: '8px', borderTop: `1px dashed ${theme.border}` }}>
                           <span style={{ color: theme.navy, fontSize: '13px', fontWeight: 600 }}>부채비율 (Leverage)</span>
-                          <span style={{ color: co.debt_ratio > 100 ? theme.danger : theme.success, fontWeight: 800, fontSize: '15px' }}>{co.debt_ratio}%</span>
+                          <span style={{ color: co.debt_ratio > 100 ? theme.danger : theme.successText, fontWeight: 800, fontSize: '15px' }}>{co.debt_ratio}%</span>
                         </div>
                       </div>
                     </div>
@@ -737,7 +742,7 @@ export default function ManagementDashboard() {
                     <span style={{ fontSize: '12px', fontWeight: 700, color: theme.navy, background: theme.cream, padding: '4px 8px', borderRadius: '4px' }}>{target.id}</span>
                     <h4 style={{ margin: 0, fontSize: '18px', color: theme.navy, fontFamily: 'serif' }}>{target.name}</h4>
                   </div>
-                  <div style={{ color: theme.gold, fontSize: '13px', fontWeight: 600, marginBottom: '12px' }}>{target.sector}</div>
+                  <div style={{ color: theme.goldText, fontSize: '13px', fontWeight: 600, marginBottom: '12px' }}>{target.sector}</div>
                   <p style={{ margin: 0, fontSize: '13.5px', color: '#4b5563', lineHeight: 1.6 }}>{target.rationale}</p>
                 </div>
 
@@ -754,7 +759,7 @@ export default function ManagementDashboard() {
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px' }}>
                     <span style={{ color: theme.muted }}>마진</span>
-                    <span style={{ fontWeight: 700, color: target.margin < 0 ? theme.danger : theme.success }}>{target.margin}%</span>
+                    <span style={{ fontWeight: 700, color: target.margin < 0 ? theme.danger : theme.successText }}>{target.margin}%</span>
                   </div>
                 </div>
 
@@ -778,7 +783,7 @@ export default function ManagementDashboard() {
                     <span style={{ 
                       fontSize: '12px', fontWeight: 700, padding: '4px 10px', borderRadius: '4px',
                       background: target.risk === 'Low' ? '#ecfdf5' : (target.risk === 'Medium' ? '#fef3c7' : '#fef2f2'),
-                      color: target.risk === 'Low' ? theme.success : (target.risk === 'Medium' ? '#d97706' : theme.danger),
+                      color: target.risk === 'Low' ? theme.successText : (target.risk === 'Medium' ? theme.goldText : theme.dangerText),
                       border: `1px solid ${target.risk === 'Low' ? '#bbf7d0' : (target.risk === 'Medium' ? '#fde68a' : '#fecaca')}`
                     }}>
                       {target.risk === 'Low' ? '낮음' : target.risk === 'Medium' ? '중간' : '높음'} 리스크
@@ -862,8 +867,10 @@ export default function ManagementDashboard() {
 
   const renderTable = () => {
     if (activeTab === 'benchmark' || activeTab === 'listed_companies' || activeTab === 'research_insight' || activeTab === 'm_and_a') return null; // Hide table on benchmark, listed_companies, research_insight, and m_and_a tab
+    // 가로 스크롤 래퍼 — 키보드로도 스크롤되도록 포커스·이름을 준다(탭마다 다른 표라 이름도 탭별)
+    const tableLabel = { revenue: '계열사별 매출 표', op: '계열사별 영업이익 표', ptp: '계열사별 세전이익 표', cash: '계열사별 현금 리스크 표' }[activeTab] ?? '계열사별 실적 표';
     return (
-      <div style={{ overflowX: 'auto', background: theme.white, borderRadius: '4px', border: `1px solid ${theme.border}`, boxShadow: '0 4px 12px rgba(0,0,0,0.02)', height: '100%' }}>
+      <div tabIndex={0} role="region" aria-label={tableLabel} style={{ overflowX: 'auto', background: theme.white, borderRadius: '4px', border: `1px solid ${theme.border}`, boxShadow: '0 4px 12px rgba(0,0,0,0.02)', height: '100%' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'right', fontSize: '13px' }}>
           <thead>
             <tr style={{ backgroundColor: theme.cream, borderBottom: `2px solid ${theme.navy}` }}>
@@ -916,9 +923,9 @@ export default function ManagementDashboard() {
                   ) : (
                     <>
                       <td style={{ padding: '16px', color: theme.muted }}>{row.current_actual?.toLocaleString() || '-'}</td>
-                      <td style={{ padding: '16px', fontWeight: 600, color: row.achievement_rate < 90 ? theme.danger : (row.achievement_rate >= 100 ? theme.success : theme.navy) }}>{row.achievement_rate ? `${row.achievement_rate}%` : '-'}</td>
+                      <td style={{ padding: '16px', fontWeight: 600, color: row.achievement_rate < 90 ? theme.dangerText : (row.achievement_rate >= 100 ? theme.successText : theme.navy) }}>{row.achievement_rate ? `${row.achievement_rate}%` : '-'}</td>
                       <td style={{ padding: '16px', fontWeight: 800, color: theme.navy }}>{row.cumulative_actual?.toLocaleString() || '-'}</td>
-                      <td style={{ padding: '16px', fontWeight: 600, color: row.yoy_diff < 0 ? theme.danger : theme.success }}>{row.yoy_diff > 0 ? '+' : ''}{row.yoy_diff?.toLocaleString() || '-'}</td>
+                      <td style={{ padding: '16px', fontWeight: 600, color: row.yoy_diff < 0 ? theme.dangerText : theme.successText }}>{row.yoy_diff > 0 ? '+' : ''}{row.yoy_diff?.toLocaleString() || '-'}</td>
                     </>
                   )}
                 </tr>
@@ -931,7 +938,13 @@ export default function ManagementDashboard() {
   };
 
   return (
-    <main style={{ minHeight: '100vh', padding: '0', maxWidth: '100%', margin: '0 auto', fontFamily: 'var(--font-inter), "Pretendard", -apple-system, sans-serif' }}>
+    <main style={{
+      minHeight: '100vh', padding: '0', maxWidth: '100%', margin: '0 auto', fontFamily: 'var(--font-inter), "Pretendard", -apple-system, sans-serif',
+      // 이 화면은 테마와 무관하게 크림·흰 바탕이다 → InfoTooltip 이 읽는 회색 토큰을 라이트 테마 값으로 고정
+      // (globals.css [data-v3='light'] 의 --w-slate-400 #626879 흰 바탕 5.56 · --w-slate-500 #686e81 5.08; 다크 값 #a1a1aa 는 2.56)
+      '--w-slate-400': '#626879', '--w-slate-400-rgb': '98, 104, 121',
+      '--w-slate-500': '#686e81', '--w-slate-500-rgb': '104, 110, 129',
+    } as React.CSSProperties}>
       
       {/* Premium Full-Width Header Banner */}
       <div style={{
@@ -1059,7 +1072,7 @@ export default function ManagementDashboard() {
           
           <div style={{ 
             display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 700,
-            color: theme.success, background: '#ecfdf5', padding: '8px 14px', borderRadius: '8px',
+            color: theme.successText, background: '#ecfdf5', padding: '8px 14px', borderRadius: '8px',
             border: '1px solid #bbf7d0', width: 'fit-content', position: 'relative', zIndex: 1
           }}>
             <ArrowUpRight size={16} /> 전월 대비 {performData.summary.net_cash.mom_diff}억 증가
@@ -1098,7 +1111,7 @@ export default function ManagementDashboard() {
                     padding: '9px 20px',
                     fontSize: '13px', 
                     fontWeight: isActive ? 600 : 500,
-                    color: isActive ? theme.white : theme.muted,
+                    color: isActive ? theme.white : theme.mutedText,
                     cursor: 'pointer',
                     transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
                     borderRadius: '8px',
@@ -1119,7 +1132,7 @@ export default function ManagementDashboard() {
             padding: '8px 16px', borderRadius: '10px', border: `1px solid ${theme.borderLight}`, 
             display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600
           }}>
-            <DollarSign size={14} color={theme.gold} /> <span style={{ color: theme.muted }}>진척률 기준:</span> <strong style={{ color: theme.navy }}>25.0%</strong>
+            <DollarSign size={14} color={theme.gold} /> <span style={{ color: theme.mutedText }}>진척률 기준:</span> <strong style={{ color: theme.navy }}>25.0%</strong>
           </div>
         </div>
         
