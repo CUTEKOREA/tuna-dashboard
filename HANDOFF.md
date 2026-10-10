@@ -1,3 +1,10 @@
+> ✅ **2026-10-10 KST — `/management` 접근성(axe) 위반 0** [CC]:
+> - 원인 두 가지(전부 color-contrast): ① 화면 자체 팔레트를 글자에 그대로 씀 — `theme.success` #059669(흰 3.77·크림 3.46)·`theme.gold` #C9A050(크림 2.23)·`theme.danger` #dc2626(크림 4.43)·`theme.muted` #64748b(크림 4.37, 탭 버튼). 글자 전용 토큰 `successText` #047857·`goldText` #b45309·`dangerText` #b91c1c·`mutedText` #475569 를 더하고 글자 color 에만 썼다(막대·선·아이콘·테두리는 원색 유지). ② `InfoTooltip`(사용처 이 화면 하나)이 `--w-slate-400` 을 읽는데, 이 화면은 `data-v3` 밖이라 테마와 무관하게 다크 값 #a1a1aa(흰 2.56)가 잡혔다 → `<main>` 에서 라이트 토큰 값 #626879(5.56)·#686e81 로 고정. 라이트·다크 수치가 같았던 이유도 이것(화면이 항상 크림·흰 바탕).
+> - 계열사 표 가로 스크롤 래퍼 `tabIndex=0 role=region aria-label`(탭별 이름). M&A 리스크 칩 중간 #d97706→goldText(#fef3c7 2.86→4.51)·높음 →dangerText.
+> - 로컬 측정(serious 노드): 라이트·다크 각 데스크톱 34→0 · 모바일 28→0. 공유 컴포넌트 무수정 → 다른 화면 영향 없음.
+> - 기준선: 손편집 안 함 — CI run 38027480540 candidate job 로그 블록을 `--decode`(artifact 는 세션 프록시가 blob 호스트를 막아 못 받음, 10-09 와 같음). 낮춤 4 · 올림 0 · 뺀 화면 0, CI serious 라이트 246→**184** · 다크 660→**598**. CI 측정도 로컬과 같다(라이트·다크 각 34·28 → 0).
+> - 상태: 브랜치 `fix/a11y-management-20261010` PR #1406(병합 안 함). **프로덕션 미배포**.
+
 > ✅ **2026-10-09 06:50 KST — `/squid`·`/squid-v5` 접근성(axe) 위반 0** [CC]:
 > - 원인 두 가지: ① 스크롤 표 래퍼가 포커스를 못 받음(`scrollable-region-focusable`) — `squid/GenericWidget` DataTable·`SectionB` 유럽 가격표·`SectionE` 출처 등록부·모니터링 달력·`app/squid-v5` DataPeek 에 `tabIndex=0 role=region aria-label` (기존 `fix_a11y_table_wrap.py` 와 같은 이름). 래퍼가 region 이 되면서 모바일 전역 `table{display:block}` 해제 규칙도 걸려 표 자체의 이중 스크롤 노드가 같이 사라진다. ② 대비 — `--w-slate-500`(#71717a, 바탕 #070b18 4.06) → `--w-slate-400`, `/squid-v5` 절 개수 #64748b→#94a3b8, 1부 색 #8b5cf6(4.4)→#a78bfa.
 > - 로컬 측정(두 화면, critical+serious 노드): 라이트·다크 각 /squid 25·26 → 0·0, /squid-v5 48·50 → 0·0 (데스크톱·모바일). 영향 화면은 두 화면뿐(`components/squid/*` 는 `SquidDashboard` 만 쓴다).
