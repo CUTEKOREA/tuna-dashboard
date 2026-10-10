@@ -32,6 +32,11 @@
   --mu-grade-b-ink: #fcd34d;
   --mu-grade-c-bg: rgba(148, 163, 184, 0.2);
   --mu-grade-c-ink: #cbd5e1;
+  /* 참치 양식 「읽는 법」 콜아웃 — 다크 바탕 #0e1116 기준(2026-10-10 axe): 경고 8.36 · 확정 10.85 · 정보 6.61 · 본문 12.74 :1 */
+  --mu-callout-warn: #fb923c;
+  --mu-callout-good: #4ade80;
+  --mu-callout-info: #509ee3;
+  --mu-callout-body: #cbd5e1;
 
   display: flex;
   flex-direction: column;
@@ -60,18 +65,27 @@
   --mu-grade-b-ink: #a14a07; /* 접근성: #b45309 는 B 등급 바탕 4.42:1 */
   --mu-grade-c-bg: rgba(100, 116, 139, 0.16);
   --mu-grade-c-ink: #475569;
+  /* 라이트 바탕 #f1f5fa 기준: 경고 4.73 · 확정 4.58 · 정보 4.77(#509ee3 는 2.61) · 본문 8.62 :1 */
+  --mu-callout-warn: #c2410c;
+  --mu-callout-good: #15803d;
+  --mu-callout-info: #2870ae;
+  --mu-callout-body: #3f4657;
 }
 
 .page[data-commodity='squid'] {
-  --mu-accent: #6d28d9;
-  --mu-accent-deep: #5b21b6;
+  /* 접근성: 라이트 값(#6d28d9·#5b21b6)을 다크에 그대로 쓰면 바탕 #0d0f17 2.69:1·#140d20 2.10:1 (2026-10-10 axe)
+     → 같은 보라 계열 violet-400(6.74~7.03:1)·violet-300(10.26:1) */
+  --mu-accent: #a78bfa;
+  --mu-accent-deep: #c4b5fd;
   --mu-hover: rgba(109, 40, 217, 0.10);
+  --mu-focus-ink: #f9a8d4; /* 강조 회사 칩 바탕 #28142a 9.46:1 (라이트 #9f1239 는 2.14:1) */
 }
 
 :global([data-v3='light']) .page[data-commodity='squid'] {
   --mu-accent: #6d28d9;
   --mu-accent-deep: #5b21b6;
   --mu-hover: rgba(109, 40, 217, 0.08);
+  --mu-focus-ink: #9f1239;
 }
 
 .page[data-commodity='mackerel'] {
@@ -1264,7 +1278,7 @@
   border-radius: 999px;
   border: 1px solid #be185d;
   background: color-mix(in srgb, #be185d 14%, var(--mu-surface));
-  color: #9f1239;
+  color: var(--mu-focus-ink, #9f1239);
   font-size: 0.8125rem;
   font-weight: 650;
   line-height: 1.2;
