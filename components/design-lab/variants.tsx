@@ -5,14 +5,21 @@
  */
 'use client';
 
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
-import HeroMarketCommand from '../HeroMarketCommand';
-import NewsFrontPage from '../NewsFrontPage';
-import FleetHeroCommand from '../FleetHeroCommand';
-import UnloadingVoyageGantt from '../UnloadingVoyageGantt';
-import { UNLOADING_STATIC_VESSELS } from '../../lib/data/unloading-static';
-import FilterBar from '../v2/FilterBar';
 import { type AtunaPriceRow } from '../../lib/data/atuna-price-summary';
+
+/* 채택본 5종을 정적으로 들여오면 실페이지 위젯 전부가 이 내부 갤러리의 first-load 에
+   얹힌다(1.31MB, 예산 1.30MB 초과). 시안은 하이드레이션 뒤에 보이면 되는 것이라
+   지연 로드로 옮긴다 — 평가 대상은 실제 컴포넌트라는 원칙(SOUL)은 그대로다. */
+const Loading = () => (
+  <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>시안 불러오는 중…</p>
+);
+const HeroMarketCommand = dynamic(() => import('../HeroMarketCommand'), { ssr: false, loading: Loading });
+const NewsFrontPage = dynamic(() => import('../NewsFrontPage'), { ssr: false, loading: Loading });
+const FleetHeroCommand = dynamic(() => import('../FleetHeroCommand'), { ssr: false, loading: Loading });
+const FilterBar = dynamic(() => import('../v2/FilterBar'), { ssr: false, loading: Loading });
+const UnloadingGanttMerged = dynamic(() => import('./UnloadingGanttMerged'), { ssr: false, loading: Loading });
 
 export interface DesignVariant {
   /** localStorage 평가 키 — 라운드가 바뀌어도 재사용하지 않는다 */
@@ -121,18 +128,4 @@ function FilterAdoptedPreview() {
       scopeNote="시안 미리보기 - 더미 상태"
     />
   );
-}
-
-/** 채택본 미리보기 — 실페이지와 같은 병합(정적 원장 ∪ DB)으로 13척 전부 렌더 (r7 «누락분» 판정 해소) */
-function UnloadingGanttMerged() {
-  const [db, setDb] = useState<Record<string, unknown> | null>(null);
-  useEffect(() => {
-    fetch('/api/unloading-db', { cache: 'no-store' })
-      .then((res) => res.json())
-      .then((json) => setDb(json?.success && json.data ? json.data : {}))
-      .catch(() => setDb({}));
-  }, []);
-  if (db === null) return <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>하역 데이터 수신 중…</p>;
-  const merged = { ...UNLOADING_STATIC_VESSELS, ...(db as Record<string, never>) };
-  return <UnloadingVoyageGantt vesselsById={merged as never} />;
 }

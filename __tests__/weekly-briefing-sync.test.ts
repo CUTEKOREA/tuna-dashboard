@@ -9,7 +9,15 @@ const validDay = {
     { title: 'EU-세이셸 참치 협정, 이행 단계로' },
   ],
   articles: [
-    { titleKo: '기사 A', paragraphs: ['첫 문단.'] },
+    {
+      titleKo: '기사 A',
+      paragraphs: ['첫 문단.'],
+      figs: [
+        { value: '86%', caption: '연료비 상승' },
+        { value: '53%', caption: '방콕 가다랑어 가격 상승' },
+        { value: 'EU-세이셸', caption: '참치 협정 이행 단계' },
+      ],
+    },
     { titleKo: '기사 B', paragraphs: ['첫 문단.'] },
     { titleKo: '기사 C', paragraphs: ['첫 문단.'] },
   ],

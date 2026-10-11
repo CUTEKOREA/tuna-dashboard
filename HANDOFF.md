@@ -1,3 +1,28 @@
+> 🟢 **2026-10-11 KST — `npm run verify` 가 처음으로 rc=0** [CC]:
+> - 막고 있던 둘 다 이번 변경과 무관한 기존 실패였다(`origin/main` 에서도 같이 깨졌다).
+> - **typecheck 3건** — `__tests__/mail-company-smtp-nodemailer-render.test.ts` 49·67·99. 뿌리는 헬퍼가 옵션을 `Parameters<typeof createTransport>[0]` 로 받은 것: 그러면 **마지막 오버로드**(`Transport<T> | TransportOptions`)로 좁혀져 `streamTransport`·`jsonTransport` 가 없는 타입이 되고, 반환 `SentMessageInfo` 에도 `message` 가 없어 캐스팅으로 메워야 했다. 고친 방식 = **호출부가 자기 오버로드를 직접 고르게** 썽크(`() => createTransport({ streamTransport: true, … })`)로 넘기고, 헬퍼는 `Transporter<T, D>` 를 제네릭으로 받는다. 캐스팅 0개. 테스트 2건 그대로 통과(기준 RFC822 원문 단언 유지).
+> - **bundle budget** — `/design-lab` 1.31MB > 1.30MB(초과 7,457B). `components/design-lab/variants.tsx` 가 채택본 5종(HeroMarketCommand·NewsFrontPage·FleetHeroCommand·UnloadingVoyageGantt·FilterBar)과 정적 원장을 **정적 import** 해서, 실페이지 위젯 전부가 URL 직접접근 전용 내부 갤러리의 first-load 에 얹혔다. `next/dynamic`(`ssr: false`)으로 옮기고 `UnloadingGanttMerged` 는 파일을 분리했다(정적 원장까지 밖으로). 예산 초과 0건, `/design-lab` 이 상위 5위 밖으로 빠졌다. 시안을 실제 컴포넌트로 평가한다는 원칙은 그대로다 — 지연 로드일 뿐 더미가 아니다.
+> - 예산 게이트(`scripts/check_route_bundle_budget.mjs`)는 커밋 `fa2986d2` 이후 한 번도 손대지 않았다. 예산을 올리지 않고 실제 바이트를 줄였다.
+
+> 🔧 **2026-10-11 KST — 「오늘의 수치」를 다이제스트 제목 정규식 → 기사 figs 로 교체** [CC]:
+> - 왜: 위젯이 제목에서 수치를 긁어 **제목에 수치가 없는 날은 배포가 막혔다**. 10/05~10/09 5회 연속 제목을 손질했고, 10/05 에는 EU 전체 평균가를 생산국 제목에 붙였다가 귀속 오류로 P1 기각. 게시판 기사에는 값·캡션이 이미 분리된 핵심수치 스트립(figs)이 있다.
+> - 선택 규칙: **리드 기사(articles[0])의 figs 3개**를 순서대로, `value`·`caption` 가공 없이. 라벨 잘림(「Alimentos Prosalud, 2029년까지 매출」)이 사라진다.
+> - 정규식 시절 회귀 2건이 **구조적으로 불가능**해졌다 — 09/21 「USD 2,500만」→「USD 2,500」절단, 09/22 물량 대신 뒤쪽 `-13%` 선택. 둘 다 문장에서 숫자를 떼어내려다 난 것이고 지금은 떼어내지 않는다.
+> - 게이트 변경: 「다이제스트 제목에 수치 토큰 1건 이상」 → 「**리드 기사에 figs 3건**」. 다이제스트 2건 이상 조건은 유지. `NUMBER_TOKEN_PATTERN` 과 정규식 추출 경로 삭제(코드 참조 0건, 이 문서의 과거 기록에만 남음).
+> - 독립 검증(Codex, 작성자≠검증자)에서 **P1 2건·P2 2건** 나왔고 전부 고쳤다: ① figs 셀이 4개여도 네 번째를 조용히 버리고 게이트 통과 ② 정적 JSON 직접 반영 경로에 리드 figs 강제 없음(위젯이 빈칸으로 나감) ③ 같은 스타일 div 중복 시 값·캡션 조용히 덮어쓰기 ④ 실데이터 테스트가 `value` 에 숫자를 요구 — 게시판 figs 값은 「과테말라」·「수백 곳」처럼 숫자가 없을 수도 있어 **정당한 회차를 막을 함정**이었다. ②는 `parseDailyBriefing` 에서 빌드 시점에 막는다.
+> - 데이터 무결성: 강화한 파서로 10/05~10/09 5일을 다시 백필해도 두 JSON 이 **직전과 완전히 동일**(제목·문단·수치 불변, figs 84개 = 28기사 × 3).
+> - 검증: `npm test` 1,834 통과 / 2 skip(218 파일) · `test:briefing-sync` 4종 OK · lint 0 errors(30 warnings) · `npm run build` 성공. `npx tsc --noEmit` 은 `__tests__/mail-company-smtp-nodemailer-render.test.ts` 49·67·99 의 nodemailer 타입 오류 3건으로 실패하지만 **`origin/main` 에서도 같이 실패**하는 기존 문제다(이 변경과 무관).
+
+> 🚀 **2026-10-10 KST — #1408 `/market` 2026-10-09 참치 데일리 브리핑 + 주간 탭 5일 배포** [CC]:
+> - merge `840df66f`(squash), Vercel commit status success. 직전 배포 `066c8d19`(10-08). 로컬 커밋 `67c7cc94`.
+> - 게이트: `state/audit-2026-10-09.txt` = `AUDIT_PASS`(윤문 ADOPTED, 제목 수치 승격·입간판 정합 후 재감사 P0=0 P1=0). 변경 파일은 `public/data/tuna_daily_briefing.json`·`public/data/tuna_weekly_briefing.json` **2개뿐**.
+> - 반영 판정은 커밋 메시지 아닌 **blob 해시 대조**: daily `0c15b095…`·weekly `20db0abf…` 가 origin/main 과 동일, `git diff origin/main -- public/data/` 빈 출력.
+> - 데이터: daily date=2026-10-09 다이제스트 6 / 기사 6. weekly 10-05~10-09 **5일**(10-05 5 · 10-06 5 · 10-07 6 · 10-08 6 · 10-09 6) 합계 **28건** — 이번 주가 다 찼다.
+> - 라이브 실측(Aside 로그인 세션): 「이번주 참치 뉴스」/ 메타 **「10/05~10/09 · 기사 28건 · 파이프라인 동기」**. 요일 탭 **5개**(월~금), 기본 선택 **금 10/09** · 리드 「Parlevliet 가문의 PP Group 인수, 지분 대가 EUR 4억 5,250만 드러나」 · 오늘의 수치 **EUR 4억 5,250만**. 월 10/05 전환 시 리드 「EU 생산국들의 캔참치 수출 감소」, 금 복귀 시 `aria-labelledby=briefing-tab-2026-10-09`.
+> - 접근성: `role="tab"` 5 · `aria-selected="true"` 정확히 1 · `role="tabpanel"` 1.
+> - **탭 가로 스크롤이 실제로 걸린 첫 회차**(탭 5개). 컨테이너 폭 390px → tablist client 336 / scroll 410, 340px → 286 / 410. 둘 다 한 줄 유지(`tabRows=1`), 버튼 내부 잘림 0, `scrollLeft` 최대(74·124)에서 마지막 탭 전체 노출, 카드·문서 가로 오버플로 없음(`docScrollWidth == clientWidth`).
+> - 배포 직후 1차 조회는 옛 상태(22건·4탭)였고 ~2.5분 뒤 재조회에서 28건·5탭 — 전파 지연. 정리는 `git switch -c sync/2026-10-09b origin/main` 만(gh 가 권한 `git worktree remove`·`git branch -D` 는 무시, 에이전트 정의 ⓒ).
+
 > ✅ **2026-10-10 KST — `/tunafarm-industry`·`/squid-industry` 접근성(axe) 위반 0** [CC]:
 > - 원인: ① 공유 `components/v2/PillTabs.tsx` 활성 알약 흰 글자 on 다크 `--accent-primary` #38bdf8(2.14) → 새 토큰 `--accent-primary-ink`(다크 #0f172a 8.33, 라이트·light·crisis 테마 #ffffff 유지). ② 오징어 `--mu-accent`·`-deep` 다크 값이 라이트 값(#6d28d9·#5b21b6) 그대로 → #a78bfa·#c4b5fd(6.74~10.26), 강조 회사 칩 #9f1239 → 다크 `--mu-focus-ink` #f9a8d4(9.46). ③ 축양 「읽는 법」 콜아웃 인라인 hex → `--mu-callout-*` 테마 토큰(다크 #fb923c·#4ade80·#509ee3·#cbd5e1 / 라이트 #c2410c·#15803d·#2870ae·#3f4657). ④ 축양 표 래퍼 `tabIndex=0 role=region aria-label=슬롯 제목`.
 > - 두 화면 critical+serious(데스크톱·모바일): 다크 /tunafarm 35·34 → 0·0, /squid 31·34 → 0·0 · 라이트 /tunafarm 4·3 → 0·0, /squid 0·0 유지. PillTabs 영향으로 다크 16화면 각 −1(/fleet·/logistics·/unloading·/panofi·/cosmo·/bangkok-office·/gmts·/pork·품목 8).

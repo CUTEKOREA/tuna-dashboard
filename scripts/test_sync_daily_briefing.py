@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
-"""배포 게이트가 「오늘의 수치」 위젯과 같은 기준으로 수치를 세는지 확인한다.
+"""배포 게이트가 「오늘의 수치」 위젯과 같은 기준(리드 기사 figs 3개)을 검사하는지 확인한다.
 
-게이트가 위젯보다 느슨하면 화면은 빈 채로 파이프라인만 OK 를 찍는다 —
-2026-09-29·10-01 회차가 「SIAL 파리 2026」 같은 연도 하나로 통과해 그렇게 나갔다.
-
-주간 파일 upsert 규칙(중복 교체·주 초기화·토·일 제외·날짜 정렬)도 같은 게이트에서 검증한다.
+핵심수치 스트립 파싱·주간 파일 upsert 규칙도 같은 스크립트에서 검증한다.
 """
 import importlib.util
 import json
@@ -17,20 +14,6 @@ spec = importlib.util.spec_from_file_location("syncdb", ROOT / "scripts" / "sync
 sync = importlib.util.module_from_spec(spec)
 sys.modules["syncdb"] = sync
 spec.loader.exec_module(sync)
-
-# 위젯 정본과 같은 판정이어야 하는 표본. False = 위젯이 못 뽑는 것.
-CASES = [
-    ("SIAL 파리 2026", False),                        # 연도만 — 옛 게이트는 열렸다
-    ("중국산 급감 속 EU 날개다랑어 수입 감소", False),   # 숫자 없음
-    ("채낚기선 20척 이탈", False),                      # 「척」은 위젯 단위 목록에 없다
-    ("Cepesca, 연료비 86% 급증", True),
-    ("방콕 가다랑어 가격 올해 53% 상승", True),
-    ("EUR 30억 3,000만 수출", True),
-    ("상반기 64,782 M/T", True),
-    ("USD 2,500만 계약", True),
-    ("대형 선망선 어획능력 3% 증가", True),
-]
-
 
 def _sample_day(day_date: str) -> dict:
     return {
@@ -114,6 +97,96 @@ def test_weekly_upsert_contract() -> list[str]:
     return errors
 
 
+def test_figs_parsing() -> list[str]:
+    errors: list[str] = []
+    row = (
+        '<td width="34%"><div style="font-size:18px;font-weight:bold;">A</div>'
+        '<div style="font-size:12px;">캡션 A</div></td>'
+        '<td width="33%"><div style="font-size:18px;font-weight:bold;">B</div>'
+        '<div style="font-size:12px;">캡션 B</div></td>'
+        '<td width="33%"><div style="font-size:18px;font-weight:bold;">C</div>'
+        '<div style="font-size:12px;">캡션 C</div></td>'
+    )
+    parsed = sync.parse_figs_row(row)
+    if parsed != [
+        {"value": "A", "caption": "캡션 A"},
+        {"value": "B", "caption": "캡션 B"},
+        {"value": "C", "caption": "캡션 C"},
+    ]:
+        errors.append("값·캡션 분리가 맞지 않습니다")
+
+    html = (
+        '<table style="border-collapse:collapse;margin:6px 0 0 0;"><tr>'
+        + row
+        + "</tr></table>"
+    )
+    strips = sync.extract_figs_strips(html)
+    if len(strips) != 1 or len(strips[0]) != 3:
+        errors.append("기사당 figs 3개 추출이 맞지 않습니다")
+
+    bad_row = row.replace('width="33%"', 'width="32%"', 1)
+    try:
+        sync.parse_figs_row(bad_row)
+        errors.append("셀 개수·너비가 다를 때 에러가 나야 합니다")
+    except sync.BriefingSyncError:
+        pass
+
+    # 네 번째 셀을 조용히 버리면 게시판에 있는 수치가 위젯에서 사라진다.
+    extra_row = row + (
+        '<td width="33%"><div style="font-size:18px;font-weight:bold;">D</div>'
+        '<div style="font-size:12px;">캡션 D</div></td>'
+    )
+    try:
+        sync.parse_figs_row(extra_row)
+        errors.append("셀이 3개보다 많으면 에러가 나야 합니다")
+    except sync.BriefingSyncError:
+        pass
+
+    # 같은 스타일 div 가 둘이면 뒤엣것이 앞엣것을 덮어써 값이 바뀐다.
+    dup_row = row.replace(
+        '<div style="font-size:12px;">캡션 A</div>',
+        '<div style="font-size:12px;">캡션 A</div>'
+        '<div style="font-size:12px;">덧붙은 캡션</div>',
+        1,
+    )
+    try:
+        sync.parse_figs_row(dup_row)
+        errors.append("같은 스타일 div 가 중복되면 에러가 나야 합니다")
+    except sync.BriefingSyncError:
+        pass
+
+    return errors
+
+
+def test_impact_numbers_gate() -> list[str]:
+    errors: list[str] = []
+    digest = [{"title": "헤드 1"}, {"title": "헤드 2"}, {"title": "헤드 3"}]
+    lead_figs = [
+        {"value": "1", "caption": "캡션 1"},
+        {"value": "2", "caption": "캡션 2"},
+        {"value": "3", "caption": "캡션 3"},
+    ]
+    articles = [{"titleKo": "리드", "paragraphs": ["본문."], "figs": lead_figs}]
+    try:
+        sync.validate_impact_numbers_gate(digest, articles)
+    except sync.BriefingSyncError:
+        errors.append("리드 figs 3개·다이제스트 2건 이상이면 통과해야 합니다")
+
+    try:
+        sync.validate_impact_numbers_gate(digest, [{"titleKo": "리드", "paragraphs": ["본문."]}])
+        errors.append("리드 figs 없으면 게이트가 막혀야 합니다")
+    except sync.BriefingSyncError:
+        pass
+
+    try:
+        sync.validate_impact_numbers_gate([{"title": "헤드 1"}], articles)
+        errors.append("다이제스트 1건이면 게이트가 막혀야 합니다")
+    except sync.BriefingSyncError:
+        pass
+
+    return errors
+
+
 def test_weekly_output_selection() -> list[str]:
     errors: list[str] = []
     with tempfile.TemporaryDirectory() as tmp:
@@ -132,16 +205,19 @@ def test_weekly_output_selection() -> list[str]:
 
 
 def main() -> int:
-    pattern = sync.widget_number_token_pattern()
-    bad = [(t, bool(pattern.search(t)), want) for t, want in CASES if bool(pattern.search(t)) != want]
-    for title, want in CASES:
-        hit = pattern.search(title)
-        print(f"{'HIT ' + hit.group() if hit else '--':<12} {title}")
-    if bad:
-        for title, got, want in bad:
-            print(f"FAIL {title!r}: got {got}, want {want}", file=sys.stderr)
+    figs_errors = test_figs_parsing()
+    if figs_errors:
+        for message in figs_errors:
+            print(f"FAIL figs parsing: {message}", file=sys.stderr)
         return 1
-    print(f"OK sync_daily_briefing 게이트 — 위젯 정본과 {len(CASES)}케이스 일치")
+    print("OK figs parsing — 값·캡션 분리, 기사당 3개, 개수 불일치 시 에러")
+
+    gate_errors = test_impact_numbers_gate()
+    if gate_errors:
+        for message in gate_errors:
+            print(f"FAIL impact gate: {message}", file=sys.stderr)
+        return 1
+    print("OK impact gate — 리드 figs 3개·다이제스트 2건 이상")
 
     weekly_errors = test_weekly_upsert_contract()
     if weekly_errors:

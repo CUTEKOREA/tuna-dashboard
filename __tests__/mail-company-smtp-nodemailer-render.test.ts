@@ -1,4 +1,6 @@
 import { createTransport } from 'nodemailer';
+import type { Transporter, TransportOptions } from 'nodemailer';
+import type MimeNode from 'nodemailer/lib/mime-node';
 import { describe, expect, it } from 'vitest';
 import {
   sendCompanySmtpMessage,
@@ -38,19 +40,28 @@ const EXPECTED_RFC822 = [
 
 type Captured = { options: unknown; envelope: unknown; message: string };
 
-function realTransportFactory(
-  transportOptions: Parameters<typeof createTransport>[0],
+// streamTransport·jsonTransport 는 createTransport 의 서로 다른 오버로드다. 옵션을
+// 하나의 타입으로 묶으면 오버로드 해석이 깨져 캐스팅으로 메워야 하니(그러면 반환되는
+// SentMessageInfo 의 message 가 사라진다), 호출부가 자기 오버로드를 직접 고르게 둔다.
+type RenderedMessageInfo = {
+  envelope: MimeNode.Envelope;
+  /** streamTransport 는 Buffer(또는 Readable), jsonTransport 는 JSON 문자열을 돌려준다. */
+  message: unknown;
+};
+
+function realTransportFactory<
+  T extends RenderedMessageInfo,
+  D extends TransportOptions,
+>(
+  makeTransport: () => Transporter<T, D>,
   captured: Captured[],
 ): SmtpTransportFactory {
   return (options) => {
-    const transport = createTransport(transportOptions);
+    const transport = makeTransport();
     return {
       async sendMail(mail) {
-        const info = await transport.sendMail(mail) as {
-          envelope: { from: string; to: string[] };
-          message: Buffer | string;
-        };
-        captured.push({ options, envelope: info.envelope, message: info.message.toString() });
+        const info = await transport.sendMail(mail);
+        captured.push({ options, envelope: info.envelope, message: String(info.message) });
         // SMTP 서버가 없으므로 수락 목록은 조립된 envelope 수신자로 대신한다.
         return { accepted: [...info.envelope.to], rejected: [], envelope: info.envelope };
       },
@@ -64,7 +75,10 @@ describe('회사 SMTP — 실제 nodemailer 로 조립한 메시지', () => {
     await sendCompanySmtpMessage({
       config: CONFIG,
       message: MESSAGE,
-      createTransport: realTransportFactory({ streamTransport: true, buffer: true, newline: 'unix' }, captured),
+      createTransport: realTransportFactory(
+        () => createTransport({ streamTransport: true, buffer: true, newline: 'unix' }),
+        captured,
+      ),
     });
 
     expect(captured).toHaveLength(1);
@@ -96,7 +110,10 @@ describe('회사 SMTP — 실제 nodemailer 로 조립한 메시지', () => {
     await sendCompanySmtpMessage({
       config: CONFIG,
       message: MESSAGE,
-      createTransport: realTransportFactory({ jsonTransport: true }, captured),
+      createTransport: realTransportFactory(
+        () => createTransport({ jsonTransport: true }),
+        captured,
+      ),
     });
 
     expect(captured).toHaveLength(1);
