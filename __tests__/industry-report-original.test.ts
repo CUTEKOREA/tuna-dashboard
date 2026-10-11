@@ -15,7 +15,6 @@ import OctopusIndustryDashboard from '../components/market-understanding/Octopus
 import PollockIndustryDashboard from '../components/market-understanding/PollockIndustryDashboard';
 import ShrimpIndustryDashboard from '../components/market-understanding/ShrimpIndustryDashboard';
 import SquidIndustryDashboard from '../components/market-understanding/SquidIndustryDashboard';
-import TunaAnatomyDashboard from '../components/market-understanding/TunaAnatomyDashboard';
 import SurimiIndustryDashboard from '../components/market-understanding/SurimiIndustryDashboard';
 import TunafarmIndustryDashboard from '../components/market-understanding/TunafarmIndustryDashboard';
 import WhelkIndustryDashboard from '../components/market-understanding/WhelkIndustryDashboard';
@@ -32,7 +31,8 @@ const PAGES = [
   ['octopus', OctopusIndustryDashboard],
   ['shrimp', ShrimpIndustryDashboard],
   ['squid', SquidIndustryDashboard],
-  ['tuna', TunaAnatomyDashboard],
+  // 2026-10-12 「참치 해부」를 「참치」로 합쳤다. 참치 페이지가 해부보고서 원문을 싣는다.
+  ['tuna', TunaIndustryDashboard],
   ['surimi', SurimiIndustryDashboard],
   ['mackerel', MackerelIndustryDashboard],
   ['tunafarm', TunafarmIndustryDashboard],
@@ -69,9 +69,9 @@ describe('화면 렌더', () => {
     expect(html.indexOf(link)).toBeLessThan(html.indexOf('30초 브리핑'));
   });
 
-  it('원문 링크는 원문이 있는 품목에만 붙는다', () => {
-    // 「참치」(세계 밸류체인)는 해부보고서 원문이 없다.
-    expect(renderToStaticMarkup(React.createElement(TunaIndustryDashboard))).not.toContain('보고서 원문 보기');
+  it('참치 원문 링크는 한 번만 붙는다(참치 해부 통합 뒤 중복 없음)', () => {
+    const html = markup.get('tuna') ?? '';
+    expect(html.split('보고서 원문 보기').length - 1).toBe(1);
   });
 
   it.each([
