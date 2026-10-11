@@ -163,6 +163,23 @@
 
 /* ─── 30초 브리핑 ─────────────────────────────────────────────── */
 
+/* 히어로 아래 「보고서 원문 보기」 링크와 인쇄 안내 한 줄 */
+.reportLink {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.9rem;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--mu-ink-muted);
+}
+.reportLink a {
+  color: var(--mu-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .briefing {
   background: var(--mu-surface);
   border: 1px solid var(--mu-line);

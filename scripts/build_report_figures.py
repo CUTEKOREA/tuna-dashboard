@@ -27,8 +27,10 @@ SPECS = {k: {"src": v["src"], "stages": v["stages"]} for k, v in _TABLES.SPECS.i
 
 def build(key: str, spec: dict) -> tuple[int, int, int]:
     src = ROOT / spec["src"]
+    # 품목 해부보고서는 그림 틀이 달라 원문 조각을 통째로 싣는다(report_figures._parse_rich).
+    rich = "/industry-" in str(spec["src"])
     fs = parse(src.read_text(encoding="utf8", errors="replace"),
-               key, IMG_ROOT / key, f"{URL_ROOT}/{key}")
+               key, IMG_ROOT / key, f"{URL_ROOT}/{key}", rich=rich)
     kept = []
     for f in fs.figures:
         stage = "c01" if f.sid == "cover" else spec["stages"].get(f.sid)
@@ -38,6 +40,7 @@ def build(key: str, spec: dict) -> tuple[int, int, int]:
                      "caption": f.caption, "alt": f.alt,
                      **({"src": f.src} if f.src else {}),
                      **({"svg": f.svg} if f.svg else {}),
+                     **({"html": f.html} if f.html else {}),
                      **({"css": f.css} if f.css else {})})
     payload = {
         "_meta": {
@@ -52,7 +55,8 @@ def build(key: str, spec: dict) -> tuple[int, int, int]:
     shots = sum(1 for f in kept if f["kind"] == "shot")
     charts = sum(1 for f in kept if f["kind"] == "chart")
     docs = sum(1 for f in kept if f["kind"] == "doc")
-    return shots, charts, docs, p.stat().st_size
+    html = sum(1 for f in kept if f["kind"] == "html")
+    return shots, charts + html, docs, p.stat().st_size
 
 
 def main() -> int:
@@ -64,7 +68,7 @@ def main() -> int:
             return 1
         s, c, d, b = build(k, SPECS[k])
         ts += s; tc += c; td += d; tb += b
-        print(f"{k:12s} 팩샷 {s:3d} · 차트 {c:2d} · 문서 {d:2d} · JSON {b // 1024:3d} KB")
+        print(f"{k:12s} 팩샷 {s:3d} · 차트·조각 {c:2d} · 문서 {d:2d} · JSON {b // 1024:3d} KB")
     disk = sum(f.stat().st_size for f in IMG_ROOT.rglob("*.jpg")) if IMG_ROOT.exists() else 0
     print(f"{'합계':12s} 팩샷 {ts:3d} · 차트 {tc:2d} · 문서 {td:2d} · JSON {tb // 1024:3d} KB · 정적 이미지 {disk // 1024:,} KB")
     return 0

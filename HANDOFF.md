@@ -1,3 +1,10 @@
+> ✅ **2026-10-11 KST — 시장 이해 5품목(명태·문어·새우·오징어·참치 해부)을 해부보고서 원문에 더 가깝게: 그림·장 제목·원문 보기** [CC]:
+> - **그림**: `report_figures.py` 에 품목용 rich 경로(src 가 `docs/evidence/industry-*` 일 때만). 지표 타일(div.metrics)·막대(div.bars)·figure(종 도판·어법 모식도·SVG)를 원문 마크업 조각(kind=html)으로 싣고 이미지는 `public/data/companies/figures/squid/` 정적 파일, 조각이 쓰는 클래스 규칙·변수만 범위 지정. 오징어 원문 지표 묶음 2(타일 6)·막대 묶음 4(막대 16)·figure 8(종 도판 7·SVG 11) → 화면 14슬롯. 다른 넷은 원문에 그림이 없어 0. 회사 편 JSON 무변화(전체 재생성 시 pinsa 1건 ord 차이는 #1247 원문 개정 뒤 미재생성분 — 이번 변경과 무관, 되돌림).
+> - 다섯 화면의 inlineReport 복사본을 `components/market-understanding/IndustryReportFlow.tsx` 하나로 모음(표·그림 자리 + 장 제목).
+> - **장 제목**: 단계 첫 절의 h2(라벨 + 부제)가 손 작성 단계 제목에 묻혀 빠지던 것(명태 9·문어 9·새우 11·오징어 14·참치 13)을 절마다 소제목으로 세움.
+> - **원문 보기**: `scripts/sync_industry_report_html.py` 가 원문을 `public/reports/industry/<key>-2026-10.html` 로 바이트 그대로 복사. 히어로 아래 「보고서 원문 보기」(새 탭) + 인쇄 PDF 안내(`CommoditySpec.reportHref`). 로그인 보호는 proxy matcher 그대로.
+> - 원문 HTML 을 고치면 `build_report_{tables,prose,figures}.py` 와 `sync_industry_report_html.py` 를 다시 돌린다(테스트가 바이트 대조). push·배포하지 않았다.
+
 > ✅ **2026-10-11 KST — `/tuna-anatomy`(참치 해부) 서술을 최종 해부보고서 원문 인테이크로 교체 + 결정 6·7 적용** [CC]:
 > - 대상 화면은 해부보고서를 싣는 `tuna-anatomy`(`TunaAnatomyDashboard`·`lib/tuna-anatomy-content.ts`)다. 원문 `docs/evidence/industry-tuna-2026-10/보고서.html`(10-11 정정본) 본문 17절을 15단계에 매핑했다: s01~s15→같은 키(요약 s01 맨 앞) · s16(기관 리포트)→s07 · s17(기업 지도·밸류체인·이해당사자)→s11. 부록 sA·sB 제외.
 > - 공용 인테이크에 `tuna` 등록: 서술 17절·44,880자, 표 39개(`drop` 없음, 절별 `expect` 고정). 그림 파이프라인 대상에서는 다른 품목처럼 제외. 다른 편 JSON 바이트 변화 없음.

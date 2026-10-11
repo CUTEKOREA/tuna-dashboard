@@ -18,10 +18,9 @@ import {
 } from '@/lib/data/octopus-industry';
 import { OCTOPUS_ACCENT } from '@/lib/octopus-chart-colors';
 import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
-import { proseForStage } from '@/lib/data/company-report-prose';
+import { dropEmptyLabel, industryInlineReport } from './IndustryReportFlow';
 import {
   type ReportTable as IntakeReportTable,
-  tablesForStage,
 } from '@/lib/data/company-report-tables';
 import { OCTOPUS_NARRATIVES, OCTOPUS_SOURCE_NOTES } from '@/lib/octopus-industry-content';
 import type { HeroKpi } from '../v2/HeroZone';
@@ -29,7 +28,6 @@ import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
-  type FlowItem,
   type StageNarrative,
 } from './CommodityIndustryDashboard';
 import {
@@ -192,37 +190,14 @@ function ExtractedReportTable({ table }: { table: IntakeReportTable }) {
  * 각 단계 끝 「근거」에서 그대로 렌더된다.
  */
 function inlineReport(n: StageNarrative): StageNarrative {
-  if (!n.flow) return n;
-
-  const sectionIndex = new Map(
-    proseForStage('octopus', n.key).map((section, index) => [section.sid, index]),
-  );
-  const extras: FlowItem[] = tablesForStage('octopus', n.key).map((table) => ({
-    kind: 'slot',
-    ord: (sectionIndex.get(table.sid) ?? 0) * 1_000_000 + table.ord,
-    slot: {
-      title: table.title,
-      caption: table.note ?? table.caption ?? '',
-      telemetry: REPORT_SYNC,
-      render: () => <ExtractedReportTable table={table} />,
-      span: 'full',
-      sourceLine: `한국 문어 산업 해부 ${table.section}`,
-    },
-  }));
-  const merged = [...n.flow, ...extras].sort((a, b) => a.ord - b.ord);
-  const deduped = merged.filter((item, index) => {
-    if (item.kind !== 'head') return true;
-    const next = merged[index + 1];
-    return !(next?.kind === 'slot' && next.slot.title === item.text);
+  return industryInlineReport('octopus', n, {
+    telemetry: REPORT_SYNC,
+    source: '한국 문어 산업 해부',
+    renderTable: (table) => <ExtractedReportTable table={table} />,
   });
-  if (deduped[0]?.kind === 'head' && deduped[0].text === n.question) deduped.shift();
-  return { ...n, flow: deduped };
 }
 
 const REPORT_STAGES = new Map(proseStages('octopus').map((stage) => [stage.key, stage]));
-
-/** 절 번호(kicker)가 비면 공용 proseStages 가 「: 부제」 머리를 만든다. 명태와 같게 걷는다. */
-const dropEmptyLabel = (text: string) => text.replace(/^(\*\*)?: /, '$1');
 
 /**
  * 해부보고서 원문에 대응 절이 없는 단계. s09(신라에스지 내부 검토)는 객관 시점의
@@ -465,6 +440,7 @@ const SPEC: CommoditySpec = {
   // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다.
   continuous: true,
   key: 'octopus',
+  reportHref: '/reports/industry/octopus-2026-10.html',
   title: '문어',
   subtitle:
     '문어 산업 해부 · 문어라는 이름의 세 칸 - 종·세계·국내·교역·달력·가공·명의·매대와 내부 검토',

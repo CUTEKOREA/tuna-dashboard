@@ -29,10 +29,9 @@ import {
 } from '@/lib/data/squid-industry';
 import { SQUID_ALL_NARRATIVES, SQUID_SOURCE_NOTES } from '@/lib/squid-industry-content';
 import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
-import { proseForStage } from '@/lib/data/company-report-prose';
+import { dropEmptyLabel, industryInlineReport } from './IndustryReportFlow';
 import {
   type ReportTable as IntakeReportTable,
-  tablesForStage,
 } from '@/lib/data/company-report-tables';
 import type { HeroKpi } from '../v2/HeroZone';
 import { SQUID_ROLE } from '@/lib/squid-chart-colors';
@@ -83,7 +82,6 @@ import SquidWidgetView from './SquidWidgetView';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
-  type FlowItem,
   type StageNarrative,
 } from './CommodityIndustryDashboard';
 import { BrandMarketTable, PeruPlantTable } from './CompanyResearchTables';
@@ -247,37 +245,14 @@ function ReportTable({ table }: { table: IntakeReportTable }) {
  * 각 단계 끝 「근거」에서 그대로 렌더된다.
  */
 function inlineReport(n: StageNarrative): StageNarrative {
-  if (!n.flow) return n;
-
-  const sectionIndex = new Map(
-    proseForStage('squid', n.key).map((section, index) => [section.sid, index]),
-  );
-  const extras: FlowItem[] = tablesForStage('squid', n.key).map((table) => ({
-    kind: 'slot',
-    ord: (sectionIndex.get(table.sid) ?? 0) * 1_000_000 + table.ord,
-    slot: {
-      title: table.title,
-      caption: table.note ?? table.caption ?? '',
-      telemetry: REPORT_SYNC,
-      render: () => <ReportTable table={table} />,
-      span: 'full',
-      sourceLine: `한국 오징어 산업 해부 ${table.section}`,
-    },
-  }));
-  const merged = [...n.flow, ...extras].sort((a, b) => a.ord - b.ord);
-  const deduped = merged.filter((item, index) => {
-    if (item.kind !== 'head') return true;
-    const next = merged[index + 1];
-    return !(next?.kind === 'slot' && next.slot.title === item.text);
+  return industryInlineReport('squid', n, {
+    telemetry: REPORT_SYNC,
+    source: '한국 오징어 산업 해부',
+    renderTable: (table) => <ReportTable table={table} />,
   });
-  if (deduped[0]?.kind === 'head' && deduped[0].text === n.question) deduped.shift();
-  return { ...n, flow: deduped };
 }
 
 const REPORT_STAGES = new Map(proseStages('squid').map((stage) => [stage.key, stage]));
-
-/** 절 번호(kicker)가 비면 공용 proseStages 가 「: 부제」 머리를 만든다. 명태와 같게 걷는다. */
-const dropEmptyLabel = (text: string) => text.replace(/^(\*\*)?: /, '$1');
 
 /**
  * 해부보고서 원문에 대응 절이 없는 단계. s03(어법)·s04(쿼터와 규칙)·s05(가공과 제품)·
@@ -631,6 +606,7 @@ const SPEC: CommoditySpec = {
   // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
   continuous: true,
   key: 'squid',
+  reportHref: '/reports/industry/squid-2026-10.html',
   title: '오징어',
   subtitle:
     '오징어 산업 해부 · 한 해살이 자원이 만드는 시장 · 사슬 15단계와 그것을 관통하는 3개 축',

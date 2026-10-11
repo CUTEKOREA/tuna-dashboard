@@ -6,6 +6,9 @@
  * **그림이 단계에 붙어 있는가**, **이미지 바이트가 번들에 새지 않는가**,
  * **차트가 인쇄와 다크 모드에서 살아남을 형태인가.**
  */
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -17,12 +20,12 @@ import {
 import { REPORT_TABLE_COMPANIES } from '@/lib/data/company-report-tables';
 
 const 그림있는회사 = ['frinsa', 'thaiunion', 'albacora', 'fcf', 'itochu', 'bolton', 'jealsa', 'jais'];
-const 그림파이프라인제외 = new Set(['pollock', 'octopus', 'shrimp', 'squid', 'tuna']);
+// 품목 해부보고서. 그림 틀이 회사 편과 달라 원문 마크업 조각(kind=html)으로 싣는다.
+const 품목 = ['pollock', 'octopus', 'shrimp', 'squid', 'tuna'];
 
 describe('인테이크 구성', () => {
-  it('표 인테이크 가운데 그림 파이프라인 대상 편을 전부 덮는다', () => {
-    const expected = REPORT_TABLE_COMPANIES.filter((key) => !그림파이프라인제외.has(key));
-    expect(REPORT_FIGURE_COMPANIES.sort()).toEqual(expected.sort());
+  it('표 인테이크를 전부 덮는다(품목 다섯 편 포함)', () => {
+    expect([...REPORT_FIGURE_COMPANIES].sort()).toEqual([...REPORT_TABLE_COMPANIES].sort());
   });
 
   it('그림 88장을 밑돌지 않는다', () => {
@@ -86,7 +89,8 @@ describe('차트는 인라인 SVG 로 남는다', () => {
 
   it('편마다 차트가 하나는 있다', () => {
     // 넷은 차트가 아예 없었다 — 표만 있는 편은 읽는 사람이 규모를 눈으로 못 잡는다.
-    for (const c of REPORT_FIGURE_COMPANIES) {
+    // 품목 해부보고서는 원문에 그림이 없으면 0개가 맞다(아래 「품목 해부보고서 그림」).
+    for (const c of REPORT_FIGURE_COMPANIES.filter((key) => !품목.includes(key))) {
       const n = reportFigures(c).filter((x) => x.kind === 'chart').length;
       expect(n, `${c} 차트 0`).toBeGreaterThan(0);
     }
@@ -138,6 +142,74 @@ describe('설명이 붙어 있다', () => {
       for (const f of reportFigures(c)) {
         expect((f.alt || f.caption).length, `${c} ${f.sid} 설명 없음`).toBeGreaterThan(0);
       }
+    }
+  });
+});
+
+describe('품목 해부보고서 그림', () => {
+  const html = (key: string) => readFileSync(
+    join(process.cwd(), `docs/evidence/industry-${key}-2026-10/보고서.html`), 'utf8');
+
+  it('오징어 원문의 지표 묶음 2 · 막대 묶음 4 · figure 8 이 전부 올라온다', () => {
+    const doc = html('squid');
+    const figs = reportFigures('squid');
+    const count = (re: RegExp) => (doc.match(re) ?? []).length;
+    expect(count(/class="metrics"/g)).toBe(2);
+    expect(count(/class="bars"/g)).toBe(4);
+    expect(count(/<figure[\s>]/g)).toBe(8);
+    expect(figs).toHaveLength(14);
+    expect(figs.every((f) => f.kind === 'html')).toBe(true);
+    // 원문 안의 요소가 조각 안에 그대로 있다 — 타일 6 · 막대 16 · 종 도판 7 · SVG 11
+    const inFigs = (re: RegExp) => figs.reduce((a, f) => a + ((f.html ?? '').match(re) ?? []).length, 0);
+    expect(inFigs(/class="metric"/g)).toBe(count(/class="metric"/g));
+    expect(inFigs(/class="bar"/g)).toBe(count(/class="bar"/g));
+    expect(inFigs(/class="spc"/g)).toBe(count(/class="spc"/g));
+    expect(inFigs(/<svg[\s>]/g)).toBe(count(/<svg[\s>]/g));
+    expect(inFigs(/<img /g)).toBe(count(/<img /g));
+  });
+
+  it.each(['pollock', 'octopus', 'shrimp', 'tuna'])('%s - 원문에 그림이 없어 0개다', (key) => {
+    const doc = html(key);
+    expect(doc).not.toMatch(/<figure[\s>]|class="(metrics|bars)"/);
+    expect(reportFigures(key)).toEqual([]);
+  });
+
+  it('조각에 base64 가 없고 이미지는 public 아래 정적 URL 이다', () => {
+    for (const key of 품목) {
+      for (const f of reportFigures(key)) {
+        expect(f.html ?? '', `${key} ${f.sid}`).not.toContain('base64');
+        for (const m of (f.html ?? '').matchAll(/<img[^>]*src="([^"]+)"/g)) {
+          expect(m[1]).toMatch(/^\/data\/companies\/figures\/squid\/[0-9a-f]{12}\.jpg$/);
+        }
+      }
+    }
+  });
+
+  it('조각이 쓰는 클래스마다 범위 규칙이 있고 변수가 정의돼 있다', () => {
+    for (const f of reportFigures('squid')) {
+      const css = f.css ?? '';
+      expect(css.startsWith(':scope{'), f.sid).toBe(true);
+      // 원문 규칙이 있는 클래스만 본다(.fl 처럼 규칙 없는 이름이 섞일 수 있다)
+      for (const cls of ['metrics', 'metric', 'bars', 'bar', 'spg', 'spc', 'gg', 'gc2', 'fi']) {
+        if ((f.html ?? '').includes(`class="${cls}"`)) expect(css, `${f.sid} .${cls}`).toContain(`.${cls}{`);
+      }
+      // 표지(.cf)·목차(.toc) 규칙이 섞이지 않는다
+      expect(css).not.toMatch(/\.(cf|toc)\b/);
+      for (const m of css.matchAll(/var\(\s*(--[a-z0-9-]+)/g)) {
+        expect(css, `${f.sid} ${m[1]}`).toContain(`${m[1]}:`);
+      }
+    }
+  });
+
+  it('그림은 그 절이 붙은 단계에 붙는다', () => {
+    const doc = html('squid');
+    for (const f of reportFigures('squid')) {
+      expect(figuresForStage('squid', f.stage)).toContain(f);
+      // ord 는 절 본문 안의 자리다 — 그 자리에 조각의 첫머리가 있다
+      const sec = new RegExp(`<section id="${f.sid}"[^>]*>`).exec(doc);
+      expect(sec, f.sid).not.toBeNull();
+      const at = doc.slice(sec!.index + sec![0].length + f.ord, sec!.index + sec![0].length + f.ord + 30);
+      expect(at).toMatch(/^<(figure|div class="(metrics|bars)")/);
     }
   });
 });

@@ -36,6 +36,8 @@ import {
 import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
 import { proseStages } from '@/lib/company-prose-stages';
 import { tablesForStage } from '@/lib/data/company-report-tables';
+import { figuresForStage, reportFigures } from '@/lib/data/company-report-figures';
+import { chapterHead } from '@/components/market-understanding/IndustryReportFlow';
 import {
   proseForStage,
   proseStagesUsed,
@@ -153,6 +155,10 @@ describe('명태 최종 해부보고서 서술 추출', () => {
       ]),
     ];
     const tables = POLLOCK_REPORT_NARRATIVES.flatMap((stage) => tablesForStage('pollock', stage.key));
+    // 그림 캡션과 설명(지표 타일·막대 이름)도 원문 그대로다.
+    for (const f of POLLOCK_REPORT_NARRATIVES.flatMap((stage) => figuresForStage('pollock', stage.key))) {
+      for (const part of [...f.caption.split(' · '), ...f.alt.split(' · ')]) visible.push(['그림 캡션', part]);
+    }
     for (const table of tables) {
       // 원문 표 앞에 소제목이 없으면 제목은 헤더 서명(앞 세 열)이다. 헤더는 아래서 따로 대조한다.
       if (table.title !== table.head.slice(0, 3).join(' · ')) visible.push(['표 제목', table.title]);
@@ -227,6 +233,10 @@ describe('문어 최종 해부보고서 서술 추출', () => {
       ]),
     ];
     const tables = fromReport.flatMap((stage) => tablesForStage('octopus', stage.key));
+    // 그림 캡션과 설명(지표 타일·막대 이름)도 원문 그대로다.
+    for (const f of fromReport.flatMap((stage) => figuresForStage('octopus', stage.key))) {
+      for (const part of [...f.caption.split(' · '), ...f.alt.split(' · ')]) visible.push(['그림 캡션', part]);
+    }
     for (const table of tables) {
       if (table.title !== table.head.slice(0, 3).join(' · ')) visible.push(['표 제목', table.title]);
       visible.push(['표 설명', table.note ?? ''], ['표 캡션', table.caption ?? '']);
@@ -299,6 +309,10 @@ describe('새우 최종 해부보고서 서술 추출', () => {
       ]),
     ];
     const tables = fromReport.flatMap((stage) => tablesForStage('shrimp', stage.key));
+    // 그림 캡션과 설명(지표 타일·막대 이름)도 원문 그대로다.
+    for (const f of fromReport.flatMap((stage) => figuresForStage('shrimp', stage.key))) {
+      for (const part of [...f.caption.split(' · '), ...f.alt.split(' · ')]) visible.push(['그림 캡션', part]);
+    }
     for (const table of tables) {
       if (table.title !== table.head.slice(0, 3).join(' · ')) visible.push(['표 제목', table.title]);
       visible.push(['표 설명', table.note ?? ''], ['표 캡션', table.caption ?? '']);
@@ -369,6 +383,10 @@ describe('오징어 최종 해부보고서 서술 추출', () => {
       ]),
     ];
     const tables = fromReport.flatMap((stage) => tablesForStage('squid', stage.key));
+    // 그림 캡션과 설명(지표 타일·막대 이름)도 원문 그대로다.
+    for (const f of fromReport.flatMap((stage) => figuresForStage('squid', stage.key))) {
+      for (const part of [...f.caption.split(' · '), ...f.alt.split(' · ')]) visible.push(['그림 캡션', part]);
+    }
     // 표 파서는 칸 안의 <br> 줄바꿈을 「 · 」로 잇는다. 줄마다 원문에 있는지 본다.
     const lines = (kind: string, text: string): [string, string][] =>
       text.split(' · ').map((part): [string, string] => [kind, part]);
@@ -444,6 +462,10 @@ describe('참치 최종 해부보고서 서술 추출 (참치 해부 화면)', (
       ]),
     ];
     const tables = fromReport.flatMap((stage) => tablesForStage('tuna', stage.key));
+    // 그림 캡션과 설명(지표 타일·막대 이름)도 원문 그대로다.
+    for (const f of fromReport.flatMap((stage) => figuresForStage('tuna', stage.key))) {
+      for (const part of [...f.caption.split(' · '), ...f.alt.split(' · ')]) visible.push(['그림 캡션', part]);
+    }
     // 표 파서는 칸 안의 <br> 줄바꿈을 「 · 」로 잇는다. 줄마다 원문에 있는지 본다.
     const lines = (kind: string, text: string): [string, string][] =>
       text.split(' · ').map((part): [string, string] => [kind, part]);
@@ -476,6 +498,48 @@ describe('참치 최종 해부보고서 서술 추출 (참치 해부 화면)', (
       expect(stage.facts).toEqual([]);
       expect(stage.terms).toEqual([]);
     }
+  });
+});
+
+describe('품목 해부보고서 장 제목·그림 자리', () => {
+  const cases = [
+    ['pollock', POLLOCK_REPORT_NARRATIVES, new Set<string>()],
+    ['octopus', OCTOPUS_REPORT_NARRATIVES, OCTOPUS_HANDWRITTEN_STAGES],
+    ['shrimp', SHRIMP_REPORT_NARRATIVES, SHRIMP_HANDWRITTEN_STAGES],
+    ['squid', SQUID_REPORT_NARRATIVES, SQUID_HANDWRITTEN_STAGES],
+    ['tuna', TUNA_ANATOMY_REPORT_NARRATIVES, TUNA_ANATOMY_HANDWRITTEN_STAGES],
+  ] as const;
+
+  it.each(cases)('%s - 원문 본문 절의 장 제목(라벨 + 부제)이 하나도 빠지지 않고 화면 머리글에 있다', (key, narratives, hand) => {
+    const fromReport = narratives.filter((stage) => !hand.has(stage.key));
+    const heads = new Set(fromReport.flatMap((stage) => [
+      stage.title,
+      ...(stage.flow ?? []).flatMap((item) => (item.kind === 'head' ? [item.text] : [])),
+    ]));
+    const secs = reportProse(key);
+    expect(secs.length).toBeGreaterThan(10);
+    const missing = secs.map(chapterHead).filter((head) => !heads.has(head));
+    expect(missing, `${key} 화면에 없는 장 제목`).toEqual([]);
+    // 장 제목은 그 절의 서술보다 앞에 선다
+    for (const stage of fromReport) {
+      const flow = stage.flow ?? [];
+      const firstHead = flow.findIndex((item) => item.kind === 'head');
+      if (proseForStage(key, stage.key)[0] && chapterHead(proseForStage(key, stage.key)[0]) !== stage.title) {
+        expect(firstHead, `${key} ${stage.key}`).toBe(0);
+      }
+    }
+  });
+
+  it.each(cases)('%s - 원문 표와 그림이 전부 서술 흐름 안에 자리 잡는다', (key, narratives, hand) => {
+    const fromReport = narratives.filter((stage) => !hand.has(stage.key));
+    const slots = fromReport.flatMap((stage) => (stage.flow ?? []).filter((item) => item.kind === 'slot'));
+    const tables = fromReport.flatMap((stage) => tablesForStage(key, stage.key));
+    expect(slots).toHaveLength(tables.length + reportFigures(key).length);
+  });
+
+  it('오징어 그림 14개가 화면 흐름에 오른다(다른 넷은 원문에 그림이 없다)', () => {
+    expect(reportFigures('squid')).toHaveLength(14);
+    for (const key of ['pollock', 'octopus', 'shrimp', 'tuna']) expect(reportFigures(key)).toEqual([]);
   });
 });
 

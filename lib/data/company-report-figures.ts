@@ -59,6 +59,12 @@ import inepacaRaw from '@/public/data/companies/inepaca_figures_v1.json';
 import kflRaw from '@/public/data/companies/kfl_figures_v1.json';
 import sapmerRaw from '@/public/data/companies/sapmer_figures_v1.json';
 import patayaRaw from '@/public/data/companies/pataya_figures_v1.json';
+// 품목 해부보고서. 그림이 없는 편은 빈 배열이다(오징어만 지표 타일·막대·도판이 있다).
+import pollockRaw from '@/public/data/companies/pollock_figures_v1.json';
+import octopusRaw from '@/public/data/companies/octopus_figures_v1.json';
+import shrimpRaw from '@/public/data/companies/shrimp_figures_v1.json';
+import squidRaw from '@/public/data/companies/squid_figures_v1.json';
+import tunaRaw from '@/public/data/companies/tuna_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -77,14 +83,19 @@ export interface ReportFigure {
   sid: string;
   /** 절 본문 안의 문자 오프셋. 원문 자리에 되돌릴 때 쓴다. */
   ord: number;
-  /** shot=제품 팩샷 · chart=인라인 SVG · doc=문서 캡처 */
-  kind: 'shot' | 'chart' | 'doc';
+  /**
+   * shot=제품 팩샷 · chart=인라인 SVG · doc=문서 캡처 ·
+   * html=원문 마크업 조각(품목 해부보고서의 지표 타일·막대·도판 격자. 이미지는 정적 URL)
+   */
+  kind: 'shot' | 'chart' | 'doc' | 'html';
   caption: string;
   alt: string;
   /** 정적 이미지 URL (shot·doc) */
   src?: string;
   /** 인라인 SVG 문자열 (chart) */
   svg?: string;
+  /** 원문 마크업 조각 (html) */
+  html?: string;
   /** 그 SVG 가 쓰는 클래스 규칙. 보고서 style 에만 있어 함께 실어야 한다 */
   css?: string;
 }
@@ -156,6 +167,11 @@ const INTAKES: Record<string, Intake> = {
   kfl: kflRaw as unknown as Intake,
   sapmer: sapmerRaw as unknown as Intake,
   pataya: patayaRaw as unknown as Intake,
+  pollock: pollockRaw as unknown as Intake,
+  octopus: octopusRaw as unknown as Intake,
+  shrimp: shrimpRaw as unknown as Intake,
+  squid: squidRaw as unknown as Intake,
+  tuna: tunaRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);
