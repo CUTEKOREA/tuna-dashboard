@@ -16,7 +16,8 @@ import TunafarmIndustryDashboard, {
   TUNAFARM_REPORT_NARRATIVES,
 } from '@/components/market-understanding/TunafarmIndustryDashboard';
 import { getTunafarmCounts, getTunafarmChapterNames } from '@/lib/data/tunafarm-industry';
-import { isActiveMenu, getDashboardTitle, SIDEBAR_SECTIONS } from '@/lib/dashboard-registry';
+import { isActiveMenu, getDashboardTitle } from '@/lib/dashboard-registry';
+import { industryItem } from '@/lib/data/industry-registry';
 import {
   TUNAFARM_BRIEFING_POINTS,
   TUNAFARM_CHAPTER_BY_STAGE,
@@ -34,9 +35,8 @@ describe('참치 양식 - 레지스트리', () => {
   });
 
   it('시장 이해 구역에 들어 있다', () => {
-    const understanding = SIDEBAR_SECTIONS.find((s) => s.items.some((i) => i.key === 'tunafarm-industry'));
-    expect(understanding).toBeDefined();
-    expect(understanding?.items.map((i) => i.key)).toContain('tunafarm-industry');
+    // 2026-10-12: 메뉴는 주력 5 고정 + 분류 접기. 참치 양식은 「수산」 그룹에서 전용 경로로 간다.
+    expect(industryItem('tunafarm')).toMatchObject({ category: '수산', href: '/tunafarm-industry' });
   });
 });
 

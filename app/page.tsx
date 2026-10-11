@@ -27,6 +27,7 @@ import CommandPalette from '../components/CommandPalette';
 import KeepAlivePanel from '../components/KeepAlivePanel';
 
 import { LongArmOctopusIcon } from '../components/SeafoodSidebarIcons';
+import IndustrySidebarNav from '../components/IndustrySidebarNav';
 
 // ─── Dynamic imports (loaded on-demand per page) ───
 const MgoChartModal = dynamic(() => import('../components/MgoChartModal'));
@@ -57,7 +58,7 @@ const PollockIndustryDashboard = dynamic(() => import('../components/market-unde
 const OctopusIndustryDashboard = dynamic(() => import('../components/market-understanding/OctopusIndustryDashboard'));
 const SurimiIndustryDashboard = dynamic(() => import('../components/market-understanding/SurimiIndustryDashboard'));
 const TunafarmIndustryDashboard = dynamic(() => import('../components/market-understanding/TunafarmIndustryDashboard'));
-const TunaAnatomyDashboard = dynamic(() => import('../components/market-understanding/TunaAnatomyDashboard'));
+const IndustryHub = dynamic(() => import('../components/market-understanding/IndustryHub'));
 const CompanyAnatomyDashboard = dynamic(() => import('../components/market-understanding/CompanyAnatomyDashboard'));
 const KamisObservatoryDashboard = dynamic(() => import('../components/KamisObservatoryDashboard'));
 
@@ -100,6 +101,8 @@ export default function Home() {
   
   const activeMenu = React.useMemo<ActiveMenu>(() => {
     const path = pathname?.replace('/', '');
+    // 허브(/industry)와 공통 품목 라우트(/industry/<key>)는 한 패널이 경로를 보고 가른다.
+    if (path === 'industry' || path?.startsWith('industry/')) return 'industry';
     if (path && isActiveMenu(path)) return path;
     return 'market';
   }, [pathname]);
@@ -248,7 +251,7 @@ export default function Home() {
   // Ambient color based on active page
   const ambientAccent = getDashboardAccent(activeMenu);
   const isPanelActive = (menu: ActiveMenu) => activeMenu === menu;
-  const renderSidebarItem = (item: SidebarMenuItem) => {
+  const renderSidebarItem = (item: SidebarMenuItem, pinned = false) => {
     if (item.key === 'mail' && !mailAdminVisible) return null;
     const Icon = SIDEBAR_ICONS[item.icon];
 
@@ -259,7 +262,7 @@ export default function Home() {
         onClick={() => { handleMenuClick(item.key); setIsMobileSidebarOpen(false); }}
       >
         <Icon size={18} />
-        <span>{item.label}</span>
+        <span>{pinned ? `★ ${item.label}` : item.label}</span>
       </button>
     );
   };
@@ -287,7 +290,7 @@ export default function Home() {
     'octopus-industry': <OctopusIndustryDashboard />,
     'surimi-industry': <SurimiIndustryDashboard />,
     'tunafarm-industry': <TunafarmIndustryDashboard />,
-    'tuna-anatomy': <TunaAnatomyDashboard />,
+    industry: <IndustryHub />,
     'company-anatomy': <CompanyAnatomyDashboard />,
     kamis: <KamisObservatoryDashboard />,
   };
@@ -359,7 +362,24 @@ export default function Home() {
             <div className={styles.sidebarTitle} style={index === 0 ? undefined : { marginTop: '1.25rem' }}>
               {section.title}
             </div>
-            {section.items.map(renderSidebarItem)}
+            {section.section === 'understanding' ? (
+              <>
+                {/* 주력 5개 고정(★) → 분류 접기 8개 → 전체 품목(허브) */}
+                {section.items.map((item) => renderSidebarItem(item, true))}
+                <IndustrySidebarNav
+                  pathname={pathname}
+                  onNavigate={(href) => {
+                    if (href === pathname) window.location.reload();
+                    else router.replace(href, { scroll: false });
+                    setIsMobileSidebarOpen(false);
+                  }}
+                  itemClassName={styles.menuItem}
+                  activeClassName={styles.menuItemActive}
+                />
+              </>
+            ) : (
+              section.items.map((item) => renderSidebarItem(item))
+            )}
           </React.Fragment>
         ))}
 

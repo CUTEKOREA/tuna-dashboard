@@ -58,13 +58,16 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'surimi-industry', title: '연육', section: 'understanding', accent: 'teal', sidebar: { icon: 'Factory' } },
   // 같은 참치를 기른 쪽에서 본다. 「참치」는 세계 밸류체인, 「참치 양식」은 축양 명부·층·원가.
   { key: 'tunafarm-industry', title: '참치 양식', section: 'understanding', accent: 'teal', sidebar: { icon: 'Waves' } },
-  // 같은 참치를 한국 쪽에서 본다. 「참치」는 세계 밸류체인, 「참치 해부」는 한국 원양·환적·판매 상대·캔.
-  { key: 'tuna-anatomy', title: '참치 해부', section: 'understanding', accent: 'cyan', sidebar: { icon: 'Ship' } },
+  // 「참치 해부」(tuna-anatomy)는 2026-10-12 「참치」로 합쳤다. /tuna-anatomy 는 next.config 가 /tuna-industry 로 보낸다.
+  // 허브(/industry)와 공통 품목 라우트(/industry/[key]). 메뉴에서는 「전체 품목(N)」과 분류 접기 그룹으로 들어온다.
+  { key: 'industry', title: '전체 품목', section: 'understanding', accent: 'teal' },
   // 품목이 아니라 회사를 해부한다. 경쟁·조달 판단에 쓰는 자료라 「전략 분석」에 둔다.
   { key: 'company-anatomy', title: '기업 해부', section: 'strategy', accent: 'amber', sidebar: { icon: 'Factory', suffix: 'Company' } },
   // KAMIS 도·소매가에 관세청 수입 원가를 이어 붙인 품목별 가격 사다리(가치사슬 관측소). 정적 스냅샷을 iframe 으로 띄운다.
   { key: 'kamis', title: 'KAMIS 가격 사다리', section: 'strategy', accent: 'emerald', sidebar: { icon: 'BarChart2', label: 'KAMIS' } },
-  { key: 'pork', title: '돼지고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
+  // 2026-10-12: 메뉴의 「돼지고기」는 시장 이해 > 축산 분류의 /industry/pork(해부보고서 원문)로 옮겼다.
+  // 옛 손 작성 위젯 화면(/pork)은 직접 URL 로만 남는다.
+  { key: 'pork', title: '돼지고기', section: 'understanding', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'purse-seiner-db', title: '선단 DB', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Ship', suffix: 'FleetDb' } },
 ] as const satisfies readonly DashboardMenuConfigShape[];
@@ -199,24 +202,20 @@ export const DASHBOARD_PANEL_ORDER = [
   'octopus-industry',
   'surimi-industry',
   'tunafarm-industry',
-  'tuna-anatomy',
+  'industry',
   'company-anatomy',
   'kamis',
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
   operation: ['market', 'fleet', 'port-intel', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts', 'mail'],
+  // 주력 5개(★)만 고정한다. 나머지 품목은 분류 접기 그룹(lib/industry-registry.ts)에서 들어온다.
   understanding: [
     'tuna-industry',
     'squid-industry',
-    'mackerel-industry',
-    'whelk-industry',
-    'shrimp-industry',
     'pollock-industry',
-    'octopus-industry',
     'surimi-industry',
-    'tunafarm-industry',
-    'tuna-anatomy',
+    'shrimp-industry',
   ],
   fishery: [],
   strategy: [
@@ -227,7 +226,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'kamis',
   ],
   agriculture: [],
-  livestock: ['pork'],
+  livestock: [],
 };
 
 function getMenuConfig(menu: ActiveMenu): DashboardMenuConfig {
