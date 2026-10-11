@@ -127,7 +127,7 @@ def _grid(trs: list[str], ncols: int) -> list[list[str]]:
 def parse(doc: str) -> list[Table]:
     """문서의 모든 표를 절 단위 표시와 함께 뽑는다."""
     out: list[Table] = []
-    for sec in re.finditer(r'<section id="(s[0-9a-z]+)">(.*?)</section>', doc, re.S):
+    for sec in re.finditer(r'<section id="(s[0-9a-z]+)"[^>]*>(.*?)</section>', doc, re.S):
         sid, body = sec.groups()
         h2 = re.search(r"<h2[^>]*>(.*?)</h2>", body, re.S)
         title = _cell(h2.group(1)) if h2 else ""

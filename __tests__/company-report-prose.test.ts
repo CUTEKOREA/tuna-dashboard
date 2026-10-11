@@ -18,6 +18,11 @@ import {
   OCTOPUS_REPORT_BRIEFING,
   OCTOPUS_REPORT_NARRATIVES,
 } from '@/components/market-understanding/OctopusIndustryDashboard';
+import {
+  SHRIMP_HANDWRITTEN_STAGES,
+  SHRIMP_REPORT_BRIEFING,
+  SHRIMP_REPORT_NARRATIVES,
+} from '@/components/market-understanding/ShrimpIndustryDashboard';
 import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
 import { proseStages } from '@/lib/company-prose-stages';
 import { tablesForStage } from '@/lib/data/company-report-tables';
@@ -212,6 +217,78 @@ describe('문어 최종 해부보고서 서술 추출', () => {
     }
 
     expect(tables).toHaveLength(18);
+    expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
+    const missing = visible
+      .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
+      .map(([kind, text]) => `${kind}: ${normalize(text).slice(0, 80)}`);
+    expect(missing, '원문에 없는 화면 문자열').toEqual([]);
+  });
+
+  it('절 머리가 「: 」로 시작하지 않는다', () => {
+    for (const stage of fromReport) {
+      for (const item of stage.flow ?? []) {
+        if (item.kind === 'head') expect(item.text, stage.key).not.toMatch(/^:/);
+      }
+    }
+  });
+
+  it('손으로 쓴 사실표·용어표는 원문 단계 서술에서 빠진다', () => {
+    for (const stage of fromReport) {
+      expect(stage.facts).toEqual([]);
+      expect(stage.terms).toEqual([]);
+    }
+  });
+});
+
+describe('새우 최종 해부보고서 서술 추출', () => {
+  const secs = reportProse('shrimp');
+  const fromReport = SHRIMP_REPORT_NARRATIVES.filter((stage) => !SHRIMP_HANDWRITTEN_STAGES.has(stage.key));
+  // 원문 본문 절 id. s16 은 없다 — 원문 「16 남은 물음」이 s15, 「15 제도」는 s14 안에 있다.
+  const BODY = ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10',
+    's11', 's12', 's13', 's14', 's15', 's17', 's18'];
+
+  it('본문 17절이 열한 단계에 전부 붙고 부록은 제외된다', () => {
+    expect(secs.map((section) => section.sid)).toEqual(BODY);
+    expect(proseStagesUsed('shrimp')).toEqual([
+      's01', 's02', 's03', 's04', 's07', 's08', 's09', 's10', 's11', 's12', 's13',
+    ]);
+    expect(secs.some((section) => /^s[A-Z]$/.test(section.sid))).toBe(false);
+    // 요약 절은 첫 단계 맨 앞이다
+    expect(proseForStage('shrimp', 's01')[0].sid).toBe('s01');
+  });
+
+  it('원문에 대응 절이 없는 단계는 x01·s05·s06 셋이다', () => {
+    expect([...SHRIMP_HANDWRITTEN_STAGES]).toEqual(['x01', 's05', 's06']);
+    expect(fromReport).toHaveLength(11);
+  });
+
+  it('화면 서술·머리글·브리핑·표 전부가 원문 HTML 텍스트에 그대로 있다', () => {
+    const html = readFileSync(
+      join(process.cwd(), 'docs/evidence/industry-shrimp-2026-10/보고서.html'),
+      'utf8',
+    );
+    const original = sourceText(html);
+    const flow = fromReport.flatMap((stage) => stage.flow ?? []);
+    const visible: [string, string][] = [
+      ...fromReport.map((stage): [string, string] => ['리드', stage.lede]),
+      ...flow.flatMap((item): [string, string][] => {
+        if (item.kind === 'text') return [['본문', item.text]];
+        if (item.kind === 'head') return item.text.split(': ').map((part): [string, string] => ['머리글', part]);
+        return [];
+      }),
+      ...SHRIMP_REPORT_BRIEFING.flatMap((point): [string, string][] => [
+        ['브리핑 제목', point.headline ?? ''],
+        ['브리핑', point.text],
+      ]),
+    ];
+    const tables = fromReport.flatMap((stage) => tablesForStage('shrimp', stage.key));
+    for (const table of tables) {
+      if (table.title !== table.head.slice(0, 3).join(' · ')) visible.push(['표 제목', table.title]);
+      visible.push(['표 설명', table.note ?? ''], ['표 캡션', table.caption ?? '']);
+      for (const cell of [...table.head, ...table.rows.flat()]) visible.push(['표 셀', cell]);
+    }
+
+    expect(tables).toHaveLength(41);
     expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
     const missing = visible
       .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))

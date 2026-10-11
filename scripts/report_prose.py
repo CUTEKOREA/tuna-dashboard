@@ -114,7 +114,7 @@ class Section:
 
 def parse(doc: str) -> list[Section]:
     out: list[Section] = []
-    for m in re.finditer(r'<section id="(s[0-9a-z]+)">(.*?)</section>', doc, re.S):
+    for m in re.finditer(r'<section id="(s[0-9a-z]+)"[^>]*>(.*?)</section>', doc, re.S):
         sid, body = m.groups()
         h2 = re.search(r"<h2[^>]*>(.*?)</h2>", body, re.S)
         numeral = label = subtitle = ""

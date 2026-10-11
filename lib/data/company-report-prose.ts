@@ -61,6 +61,7 @@ import sapmerRaw from '@/public/data/companies/sapmer_prose_v1.json';
 import patayaRaw from '@/public/data/companies/pataya_prose_v1.json';
 import pollockRaw from '@/public/data/companies/pollock_prose_v1.json';
 import octopusRaw from '@/public/data/companies/octopus_prose_v1.json';
+import shrimpRaw from '@/public/data/companies/shrimp_prose_v1.json';
 
 /**
  * 조사보고서 서술 전량 인테이크.
@@ -163,6 +164,7 @@ const INTAKES: Record<string, Intake> = {
   pataya: patayaRaw as unknown as Intake,
   pollock: pollockRaw as unknown as Intake,
   octopus: octopusRaw as unknown as Intake,
+  shrimp: shrimpRaw as unknown as Intake,
   thaiunion: thaiunionRaw as unknown as Intake,
 };
 

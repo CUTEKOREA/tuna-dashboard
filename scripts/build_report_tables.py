@@ -985,6 +985,31 @@ SPECS: dict[str, dict] = {
             "s07": 2, "s08": 1, "s09": 1, "s10": 1, "s11": 5,
         },
     },
+    "shrimp": {
+        "src": "docs/evidence/industry-shrimp-2026-10/보고서.html",
+        # 해부보고서 본문 16절(s16 id 없음 — 원문 16 「남은 물음」이 s15, 15 「제도」는 s14 안)을
+        # 시장 이해 단계에 접는다. 부록 sA·sB·sC는 파서 대상이 아니며 본문 표는 하나도 버리지 않는다.
+        # 화면 x01(바스켓)·s05(아르헨티나)·s06(수입 창구)에 맞는 절은 원문에 없다.
+        "stages": {
+            "s01": "s01",
+            "s02": "s02",
+            "s18": "s03",
+            "s05": "s04",
+            "s03": "s07", "s04": "s07", "s06": "s07",
+            "s07": "s08",
+            "s08": "s09", "s09": "s09", "s10": "s09",
+            "s11": "s10", "s12": "s10",
+            "s13": "s11",
+            "s14": "s12",
+            "s15": "s13", "s17": "s13",
+        },
+        "drop": [],
+        "expect": {
+            "s02": 1, "s03": 1, "s04": 3, "s05": 5, "s06": 2, "s07": 1,
+            "s08": 5, "s09": 1, "s10": 2, "s11": 1, "s12": 4, "s13": 5,
+            "s14": 4, "s17": 1, "s18": 5,
+        },
+    },
 
 }
 
@@ -997,7 +1022,7 @@ def _assert_all_sections_mapped(key: str, doc: str, spec: dict) -> None:
     사라졌고, 2026-09-05 에는 Jealsa 정정 이력 절이 id 를 `corr` 로 붙였다가 빠졌다.
     조용한 누락을 빌드 실패로 바꾼다.
     """
-    ids = re.findall(r'<section id="(s[0-9a-z]+)">', doc)
+    ids = re.findall(r'<section id="(s[0-9a-z]+)"[^>]*>', doc)
     missing = [i for i in dict.fromkeys(ids) if i not in spec["stages"]]
     if missing:
         raise SystemExit(

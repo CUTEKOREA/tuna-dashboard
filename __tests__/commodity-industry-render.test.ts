@@ -20,6 +20,9 @@ import MackerelIndustryDashboard, {
 } from '../components/market-understanding/MackerelIndustryDashboard';
 import ShrimpIndustryDashboard, {
   SHRIMP_CHART_SLOTS,
+  SHRIMP_HANDWRITTEN_STAGES,
+  SHRIMP_REPORT_BRIEFING,
+  SHRIMP_REPORT_NARRATIVES,
 } from '../components/market-understanding/ShrimpIndustryDashboard';
 import WhelkIndustryDashboard, {
   WHELK_CHART_SLOTS,
@@ -46,11 +49,7 @@ import {
   MACKEREL_NARRATIVES,
   MACKEREL_SOURCE_NOTES,
 } from '../lib/mackerel-industry-content';
-import {
-  SHRIMP_BRIEFING_POINTS,
-  SHRIMP_NARRATIVES,
-  SHRIMP_SOURCE_NOTES,
-} from '../lib/shrimp-industry-content';
+import { SHRIMP_NARRATIVES, SHRIMP_SOURCE_NOTES } from '../lib/shrimp-industry-content';
 import {
   WHELK_BRIEFING_POINTS,
   WHELK_NARRATIVES,
@@ -72,6 +71,10 @@ interface Page {
   render: () => React.ReactElement;
 }
 
+/** 서술이 원문 보고서에서 그대로 오는 단계인가(손 사실표·낫표 차트 지목 규약 밖). */
+const fromReport = (page: Page, stage: StageNarrative) =>
+  page.이름 === '명태' || (page.이름 === '새우' && !SHRIMP_HANDWRITTEN_STAGES.has(stage.key));
+
 const PAGES: Page[] = [
   {
     이름: '고등어',
@@ -91,9 +94,9 @@ const PAGES: Page[] = [
   },
   {
     이름: '새우',
-    narratives: SHRIMP_NARRATIVES,
+    narratives: SHRIMP_REPORT_NARRATIVES,
     slots: SHRIMP_CHART_SLOTS,
-    briefing: SHRIMP_BRIEFING_POINTS,
+    briefing: SHRIMP_REPORT_BRIEFING,
     notes: SHRIMP_SOURCE_NOTES,
     render: () => React.createElement(ShrimpIndustryDashboard),
   },
@@ -125,11 +128,13 @@ describe('시장 이해 3품목 - 서술 골격', () => {
       expect(stage.question).not.toBe('');
       expect(stage.lede.length).toBeGreaterThan(20);
       expect(stage.paragraphs.length).toBeGreaterThanOrEqual(3);
-      if (page.이름 === '명태') {
-        // 명태 서술은 원문 보고서에서 그대로 오고 손 사실표가 없다(facts = []).
-        // 근거는 단계 흐름에 붙는 원문 표다.
+      if (fromReport(page, stage)) {
+        // 명태·새우 서술은 원문 보고서에서 그대로 오고 손 사실표가 없다(facts = []).
+        // 근거는 단계 흐름에 붙는 원문 표다. 새우 s01(요약 절)만 원문에 표가 없다.
         const tables = (stage.flow ?? []).filter((item) => item.kind === 'slot');
-        expect(tables.length, `명태 ${stage.key} 원문 표`).toBeGreaterThanOrEqual(1);
+        if (!(page.이름 === '새우' && stage.key === 's01')) {
+          expect(tables.length, `${page.이름} ${stage.key} 원문 표`).toBeGreaterThanOrEqual(1);
+        }
         continue;
       }
       // 근거 없는 서술을 막는다. 참치·오징어와 같은 기준이다
@@ -165,14 +170,14 @@ describe('시장 이해 3품목 - 서술 골격', () => {
 });
 
 describe('시장 이해 3품목 - 차트 참조 무결성', () => {
-  // 명태 서술은 원문 보고서 문장이라 낫표가 차트 지목이 아니라 인용이다.
-  // 원문 대조는 company-report-prose.test.ts 가 맡는다.
+  // 명태·새우 원문 단계는 보고서 문장이라 낫표가 차트 지목이 아니라 인용이다.
+  // 원문 대조는 company-report-prose.test.ts 가 맡는다. 새우 손 작성 단계는 그대로 검사한다.
   it.each(PAGES.filter((page) => page.이름 !== '명태'))('$이름 - 본문이 지목한 낫표 이름이 실제 차트 제목이다', (page) => {
     const titles = new Set(
       Object.values(page.slots).flatMap((slots) => slots.map((slot) => slot.title)),
     );
 
-    for (const stage of page.narratives) {
+    for (const stage of page.narratives.filter((st) => !fromReport(page, st))) {
       const text = [stage.lede, ...stage.paragraphs].join('\n');
       for (const match of text.matchAll(/「([^」]+)」/g)) {
         expect(
@@ -391,6 +396,10 @@ describe('골뱅이 - 집계와 본문 대조', () => {
 
 describe('새우 - 집계와 본문 대조', () => {
   const data = getShrimpIndustryData();
+  // 2026-10-11 화면 서술은 최종 해부보고서 원문으로 바뀌었다(SHRIMP_REPORT_NARRATIVES).
+  // 원문은 FAO 집계를 「881만 톤·73.8%·64.1%」(담수 갑각류 제외)로 적어 이 JSON 의
+  // 9,501,198톤·60.01%·2010년 같은 값이 화면 본문에 없다. 이 블록은 집계 JSON 과
+  // 손 작성 본문(lib/shrimp-industry-content.ts)의 대조로 남긴다.
   const text = SHRIMP_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
   const facts = SHRIMP_NARRATIVES.flatMap((s) => s.facts);
 

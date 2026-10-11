@@ -1,3 +1,13 @@
+> ✅ **2026-10-11 KST — `/shrimp-industry` 서술을 최종 해부보고서 원문 인테이크로 교체** [CC]:
+> - 원문 `docs/evidence/industry-shrimp-2026-10/보고서.html`(10-11 정정본) 본문 17절(`s16` id 없음 — 「16 남은 물음」이 `s15`, 「15 제도」는 `s14` 안)을 화면 단계에 매핑했다: s01→s01(요약 맨 앞) · s02→s02 · s18→s03 · s05→s04 · s03·s04·s06→s07 · s07→s08 · s08·s09·s10→s09 · s11·s12→s10 · s13→s11 · s14→s12 · s15·s17→s13. 부록 `sA`·`sB`·`sC` 제외.
+> - 공용 인테이크에 `shrimp` 등록: 서술 17절·33,563자, 표 41개(`drop` 없음, 절별 `expect` 고정). 그림 파이프라인 대상에서는 명태·문어처럼 제외.
+> - **파서 수정**: `s18` 이 `<section id="s18" style=…>` 라 `report_tables.py`·`report_prose.py`·`_assert_all_sections_mapped` 의 정규식이 절을 통째로 놓쳤다(누락 가드도 같이 못 봄). `<section id="…"[^>]*>` 로 넓혔고, 다른 편 JSON 은 재생성 후 바이트 변화 없음.
+> - 화면은 `proseStages('shrimp')`·`proseBriefing('shrimp')` + inlineReport(절 순번 오프셋). 단계 번호는 x01=「A」가 사이에 있어 기존 화면 번호를 쓴다. 손 작성 차트·표 위젯은 단계 끝 「근거」에 유지(옛 보고서 표 위젯 telemetry 는 그대로), 옛 `reportSlots`(`shrimp-industry-tables`)는 걷었다.
+> - **⚠ x01(바스켓)·s05(아르헨티나)·s06(수입 창구)은 원문에 대응 절이 없다.** 손 작성 서술을 그대로 남겼다(`SHRIMP_HANDWRITTEN_STAGES`). 유지·삭제는 메인 결정.
+> - ⚠ 히어로 KPI(FAO 자체 집계: 양식 74.4%·흰다리 60.01%·세계 12,768,242톤)와 원문 본문(담수 갑각류 제외: 73.8%·64.1%·1,195만 톤)이 다른 값이다. 고치지 않았다.
+> - 남은 것: `lib/shrimp-industry-content.ts` 의 교체된 11단계 서술·브리핑과 `lib/data/shrimp-industry-tables.ts` 는 화면에서 빠졌지만 파일은 남겼다. render 테스트의 「새우 - 집계와 본문 대조」는 손 작성 본문 대조로 남겼다(원문엔 JSON 정밀값이 없다).
+> - push·배포하지 않았다.
+
 > ✅ **2026-10-11 KST — `/octopus-industry` 서술을 최종 해부보고서 원문 인테이크로 교체** [CC]:
 > - 원문 `docs/evidence/industry-octopus-2026-10/보고서.html`(10-11 정정본) 본문 `s01`~`s11`을 화면 단계에 매핑했다: s01→s01(요약 맨 앞) · s02·s09→s02 · s03→s03 · s04→s04 · s06→s05 · s07→s06 · s11→s07 · s05→s08 · s08·s10→x01. 부록 `sA` 제외.
 > - 공용 인테이크에 `octopus` 등록: 서술 11절·28,071자, 표 18개(`drop` 없음, 절별 `expect` 고정). 그림 파이프라인 대상에서는 명태처럼 제외.

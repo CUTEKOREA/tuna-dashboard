@@ -22,15 +22,19 @@ import {
   PROCESSOR_TAB_MATCH,
 } from '@/lib/data/shrimp-argentina';
 import { seriesRoles } from '@/lib/data/shrimp-country-series';
+import { SHRIMP_NARRATIVES, SHRIMP_SOURCE_NOTES } from '@/lib/shrimp-industry-content';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+import { proseForStage } from '@/lib/data/company-report-prose';
 import {
-  SHRIMP_BRIEFING_POINTS,
-  SHRIMP_NARRATIVES,
-  SHRIMP_SOURCE_NOTES,
-} from '@/lib/shrimp-industry-content';
+  type ReportTable as IntakeReportTable,
+  tablesForStage,
+} from '@/lib/data/company-report-tables';
 import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
+  type FlowItem,
+  type StageNarrative,
 } from './CommodityIndustryDashboard';
 import {
   ShrimpArgentinaCatchChart,
@@ -51,10 +55,6 @@ import {
   tradeCaption,
 } from './MofLiveCharts';
 import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
-import {
-  getShrimpTables,
-  type ShrimpReportTable,
-} from '@/lib/data/shrimp-industry-tables';
 
 const DATA = getShrimpIndustryData();
 const SYNC = { status: 'STATIC' as const, syncDate: `${DATA.요약.기준연도}년 확정` };
@@ -116,7 +116,9 @@ function ArgentinaRouteTable() {
 }
 
 const SERIES_SYNC = { status: 'STATIC' as const, syncDate: '관세청 2026년 1~6월' };
+/** 손 작성 표 위젯(07~13단계)은 옛 보고서 값이다. 원문 표는 NEW_REPORT_SYNC 로 단다. */
 const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '2026-08-23 보고서 · 2026-09-10 갱신' };
+const NEW_REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026년 10월판' };
 
 function ReportTable({
   headers,
@@ -191,7 +193,7 @@ function SeriesRolesTable() {
 }
 
 /** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
-function ExtractedReportTable({ table }: { table: ShrimpReportTable }) {
+function ExtractedReportTable({ table }: { table: IntakeReportTable }) {
   return (
     <div className={styles.dataTableWrap} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
       <table className={styles.dataTable}>
@@ -220,16 +222,72 @@ function ExtractedReportTable({ table }: { table: ShrimpReportTable }) {
   );
 }
 
-/** 보고서 표를 단계별 슬롯으로. 손으로 만든 차트 뒤에 붙는다. */
-function reportSlots(stage: string): ChartSlot[] {
-  return getShrimpTables(stage).map((t, i) => ({
-    title: `보고서 표 ${i + 1} — ${t.title}`,
-    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
-    telemetry: REPORT_SYNC,
-    span: 'full' as const,
-    render: () => <ExtractedReportTable table={t} />,
+/**
+ * 최종 해부보고서 표를 설명 문장 옆의 원래 자리로 되돌린다(명태·문어와 같다).
+ *
+ * 한 단계에 절이 여럿 붙으므로 절별 오프셋 구간을 따로 둔다. 그렇지 않으면 뒤 절의
+ * 표가 첫 절 문장 사이에 섞인다. 손으로 만든 차트·표는 chartSlots에 남아
+ * 각 단계 끝 「근거」에서 그대로 렌더된다.
+ */
+function inlineReport(n: StageNarrative): StageNarrative {
+  if (!n.flow) return n;
+
+  const sectionIndex = new Map(
+    proseForStage('shrimp', n.key).map((section, index) => [section.sid, index]),
+  );
+  const extras: FlowItem[] = tablesForStage('shrimp', n.key).map((table) => ({
+    kind: 'slot',
+    ord: (sectionIndex.get(table.sid) ?? 0) * 1_000_000 + table.ord,
+    slot: {
+      title: table.title,
+      caption: table.note ?? table.caption ?? '',
+      telemetry: NEW_REPORT_SYNC,
+      render: () => <ExtractedReportTable table={table} />,
+      span: 'full',
+      sourceLine: `한국 새우 산업 해부 ${table.section}`,
+    },
   }));
+  const merged = [...n.flow, ...extras].sort((a, b) => a.ord - b.ord);
+  const deduped = merged.filter((item, index) => {
+    if (item.kind !== 'head') return true;
+    const next = merged[index + 1];
+    return !(next?.kind === 'slot' && next.slot.title === item.text);
+  });
+  if (deduped[0]?.kind === 'head' && deduped[0].text === n.question) deduped.shift();
+  return { ...n, flow: deduped };
 }
+
+const REPORT_STAGES = new Map(proseStages('shrimp').map((stage) => [stage.key, stage]));
+
+/** 절 번호(kicker)가 비면 공용 proseStages 가 「: 부제」 머리를 만든다. 명태와 같게 걷는다. */
+const dropEmptyLabel = (text: string) => text.replace(/^(\*\*)?: /, '$1');
+
+/**
+ * 해부보고서 원문에 대응 절이 없는 단계. x01(바스켓 — FAO 통계 경계), s05(아르헨티나 조달
+ * 경로), s06(시리즈 6개국 수입 창구)은 객관 시점의 최종 보고서에 같은 주제의 절이 없어
+ * 기존 손 작성 서술을 그대로 둔다(발주서 밖 — 메인 결정 대기).
+ */
+export const SHRIMP_HANDWRITTEN_STAGES = new Set(['x01', 's05', 's06']);
+
+/**
+ * 단계 순서·번호·제목·질문은 기존 화면 값을 쓰고(발주서 허용), 서술은 원문에서 온다.
+ */
+export const SHRIMP_REPORT_NARRATIVES: StageNarrative[] = SHRIMP_NARRATIVES.map((hand) => {
+  if (SHRIMP_HANDWRITTEN_STAGES.has(hand.key)) return hand;
+  const stage = REPORT_STAGES.get(hand.key);
+  if (!stage) throw new Error(`새우 보고서에 ${hand.key} 단계 서술이 없다`);
+  return inlineReport({
+    ...stage,
+    // 손 작성 단계(x01 = 'A')가 사이에 끼어 있어 순번 대신 기존 화면 번호를 쓴다.
+    numeral: hand.numeral,
+    title: hand.title,
+    question: hand.question,
+    paragraphs: stage.paragraphs.map(dropEmptyLabel),
+    flow: stage.flow?.map((item) => item.kind === 'head' ? { ...item, text: dropEmptyLabel(item.text) } : item),
+  });
+});
+
+export const SHRIMP_REPORT_BRIEFING = proseBriefing('shrimp');
 
 export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -248,7 +306,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => <ShrimpEnvChart data={DATA} />,
     },
-      ...reportSlots('s01'),
   ],
   s02: [
     {
@@ -257,7 +314,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => <ShrimpSpeciesChart data={DATA} />,
     },
-      ...reportSlots('s02'),
   ],
   s03: [
     {
@@ -282,7 +338,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       render: () => <ShrimpCountryChart data={DATA} />,
       // 차트는 상위 12개국만 그린다. 몇 나라가 잘렸는지는 그래프만 봐서는 알 수 없다.
     },
-      ...reportSlots('s03'),
   ],
   s05: [
     {
@@ -321,7 +376,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       span: 'full',
       render: () => <ArgentinaRouteTable />,
     },
-      ...reportSlots('s05'),
   ],
   s04: [
     {
@@ -338,7 +392,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SYNC,
       render: () => <ShrimpKoreaChart data={DATA} />,
     },
-      ...reportSlots('s04'),
   ],
   s06: [
     {
@@ -363,7 +416,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
       telemetry: SERIES_SYNC,
       render: () => <ShrimpSeriesUnitChart />,
     },
-      ...reportSlots('s06'),
   ],
   s07: [
     {
@@ -414,7 +466,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
-      ...reportSlots('s07'),
   ],
   s08: [
     {
@@ -445,7 +496,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
-      ...reportSlots('s08'),
   ],
   s09: [
     {
@@ -467,7 +517,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
-      ...reportSlots('s09'),
   ],
   s10: [
     {
@@ -489,7 +538,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
-      ...reportSlots('s10'),
   ],
   s11: [
     {
@@ -512,7 +560,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
-      ...reportSlots('s11'),
   ],
   s12: [
     {
@@ -534,7 +581,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
-      ...reportSlots('s12'),
   ],
   s13: [
     {
@@ -558,7 +604,6 @@ export const SHRIMP_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
-      ...reportSlots('s13'),
   ],
 };
 
@@ -604,8 +649,8 @@ const SPEC: CommoditySpec = {
       body: '12,050원/kg (서울, 2026-09-01)',
     },
   ],
-  briefing: SHRIMP_BRIEFING_POINTS,
-  narratives: SHRIMP_NARRATIVES,
+  briefing: SHRIMP_REPORT_BRIEFING,
+  narratives: SHRIMP_REPORT_NARRATIVES,
   chartSlots: SHRIMP_CHART_SLOTS,
   sourceNotes: SHRIMP_SOURCE_NOTES,
   sourceMeta: [
