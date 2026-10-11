@@ -199,7 +199,7 @@ const STAGE_06: StageNarrative = {
 const STAGE_07: StageNarrative = {
   key: 's07',
   numeral: '07',
-  title: '누구에게 파나 - 방콕·가나·FCF',
+  title: '누구에게 파나 - 방콕·트레이더·계열사',
   question: '한국 선망 가다랑어를 사는 회사는 누구인가',
   lede: '고객은 나라가 아니라 회사다. FCF는 신라교역 매출의 4할(원양·유통 두 부문 합), 타이유니온은 방콕의 첫 고객, 볼튼 명단에는 한국 선망선 14척, 이토추의 MSC 선단 명단(2022~2023년)에는 사조 계열 11척이 있었다.',
   paragraphs: [
