@@ -65,6 +65,7 @@ import shrimpRaw from '@/public/data/companies/shrimp_tables_v1.json';
 import squidRaw from '@/public/data/companies/squid_tables_v1.json';
 import tunaRaw from '@/public/data/companies/tuna_tables_v1.json';
 import surimiRaw from '@/public/data/companies/surimi_tables_v1.json';
+import mackerelRaw from '@/public/data/companies/mackerel_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -172,6 +173,7 @@ const INTAKES: Record<string, Intake> = {
   squid: squidRaw as unknown as Intake,
   tuna: tunaRaw as unknown as Intake,
   surimi: surimiRaw as unknown as Intake,
+  mackerel: mackerelRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

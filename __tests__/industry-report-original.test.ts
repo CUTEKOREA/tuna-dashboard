@@ -17,9 +17,11 @@ import ShrimpIndustryDashboard from '../components/market-understanding/ShrimpIn
 import SquidIndustryDashboard from '../components/market-understanding/SquidIndustryDashboard';
 import TunaAnatomyDashboard from '../components/market-understanding/TunaAnatomyDashboard';
 import SurimiIndustryDashboard from '../components/market-understanding/SurimiIndustryDashboard';
+import TunaIndustryDashboard from '../components/market-understanding/TunaIndustryDashboard';
 import { chapterHead } from '../components/market-understanding/IndustryReportFlow';
 import { reportFigures } from '../lib/data/company-report-figures';
 import { reportProse } from '../lib/data/company-report-prose';
+import { MACKEREL_NARRATIVES } from '../lib/mackerel-industry-content';
 
 const PAGES = [
   ['pollock', PollockIndustryDashboard],
@@ -28,6 +30,7 @@ const PAGES = [
   ['squid', SquidIndustryDashboard],
   ['tuna', TunaAnatomyDashboard],
   ['surimi', SurimiIndustryDashboard],
+  ['mackerel', MackerelIndustryDashboard],
 ] as const;
 
 const root = process.cwd();
@@ -61,7 +64,22 @@ describe('화면 렌더', () => {
   });
 
   it('원문 링크는 원문이 있는 품목에만 붙는다', () => {
-    expect(renderToStaticMarkup(React.createElement(MackerelIndustryDashboard))).not.toContain('보고서 원문 보기');
+    // 「참치」(세계 밸류체인)는 해부보고서 원문이 없다.
+    expect(renderToStaticMarkup(React.createElement(TunaIndustryDashboard))).not.toContain('보고서 원문 보기');
+  });
+
+  it.each([
+    ['mackerel', MACKEREL_NARRATIVES],
+  ] as const)('%s - 손 작성 리드·문단·사실표가 화면에 남지 않는다', (key, hand) => {
+    const html = (markup.get(key) ?? '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#x27;/g, "'").replace(/&quot;/g, '"');
+    const probe = (text: string) => text.replace(/\*\*/g, '').slice(0, 40);
+    // 손 작성 문장이 원문을 그대로 인용한 경우는 원문 추출로도 나오므로 원문에 없는 것만 본다.
+    const source = readFileSync(join(root, `docs/evidence/industry-${key}-2026-10/보고서.html`), 'utf8')
+      .replace(/<[^>]+>/g, '').replace(/&amp;/g, '&');
+    const left = hand.flatMap((stage) => [stage.lede, ...stage.paragraphs, ...stage.facts.map((f) => f.note ?? '')])
+      .filter((text) => text.length > 40 && html.includes(probe(text)) && !source.includes(probe(text)))
+      .map(probe);
+    expect(left).toEqual([]);
   });
 
   it.each(PAGES)('%s - 원문 본문 절의 장 제목이 렌더된 화면에 있다', (key) => {

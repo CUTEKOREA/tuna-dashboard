@@ -103,6 +103,45 @@ describe('연육 최종 해부보고서 표 추출', () => {
   });
 });
 
+describe.each([
+  // [키, 본문 표 수, 표가 붙는 단계(골뱅이 요지 단계는 표가 없다)]
+  ['mackerel', 49, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 'x01']],
+] as const)('%s 원문 표 추출', (key, count, stages) => {
+  const tables = reportTables(key);
+
+  it('본문 표를 전부 싣고 부록·별첨 표는 없다', () => {
+    expect(REPORT_TABLE_COMPANIES).toContain(key);
+    expect(tables).toHaveLength(count);
+    expect(tables.every((table) => /^s\d\d$/.test(table.sid))).toBe(true);
+    expect(tables.every((table) => table.rows.length > 0)).toBe(true);
+  });
+
+  it('원문 단계에만 배치한다', () => {
+    const used = stagesUsed(key);
+    expect(used).toEqual([...stages]);
+    const total = used.reduce((sum, stage) => sum + tablesForStage(key, stage).length, 0);
+    expect(total).toBe(tables.length);
+  });
+
+  it('모든 행·숫자 표시가 헤더 열 수와 맞는다', () => {
+    for (const table of tables) {
+      expect(table.num.length, `${table.sid} ${table.title}`).toBe(table.head.length);
+      for (const row of table.rows) {
+        expect(row.length, `${table.sid} ${table.title}`).toBe(table.head.length);
+      }
+    }
+  });
+});
+
+describe('표 값 — 원문 첫 행 대조', () => {
+  it('고등어 02절 시점 표: 첫 행 9월 말~10월 초 ICES 권고', () => {
+    const t = reportTables('mackerel').find((table) => table.sid === 's02');
+    expect(t).toBeDefined();
+    expect(t!.head).toEqual(['시점', '무엇이 나오는가', '공급·가격에 주는 신호']);
+    expect(t!.rows[0]).toEqual(['9월 말~10월 초', 'ICES 이듬해 권고', '방향과 폭. 다만 실제 물량이 아니다']);
+  });
+});
+
 describe('오징어 두 줄 머리글 표', () => {
   it('둘째 머리글 줄이 열 이름에 붙고 데이터 행은 연도로 시작한다', () => {
     const t = reportTables('squid').find((table) =>

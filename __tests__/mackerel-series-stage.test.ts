@@ -117,8 +117,9 @@ describe('고등어 05단계 - 수입 창구', () => {
     expect(text).toContain(SERIES_KR_FILLET_TONNES.toLocaleString('en-US'));
   });
 
-  it('s05 슬롯이 사람이 읽을 수치를 실제로 그려낸다', () => {
-    const slots = MACKEREL_CHART_SLOTS.s05;
+  // 화면 서술이 해부보고서 원문(10월판)으로 바뀌며 수입 창구 차트는 원문 05절이 붙은 04단계(수입) 근거로 옮겼다.
+  it('수입 단계 근거 슬롯이 사람이 읽을 수치를 실제로 그려낸다', () => {
+    const slots = MACKEREL_CHART_SLOTS.s04;
     expect(slots).toBeTruthy();
     // 손으로 만든 차트 셋이 앞에 오고 그 뒤로 보고서 표가 붙는다(개수는 보고서 개정에 따라 는다).
     // 이 검사가 지키는 것은 개수가 아니라 아래 probe 가 실제로 그려지는가다.
@@ -142,14 +143,14 @@ describe('고등어 05단계 - 수입 창구', () => {
   });
 
   it('슬롯 캡션이 제품중량·세번 경계를 밝힌다', () => {
-    const caps = MACKEREL_CHART_SLOTS.s05.map((s) => s.caption).join(' ');
+    const caps = MACKEREL_CHART_SLOTS.s04.map((s) => s.caption).join(' ');
     expect(caps).toMatch(/제품중량|세번/);
     expect(caps).toMatch(/더할 수 없다|만들지 않는다/);
   });
 
   it('물량·단가 차트는 전폭이 아니라 한 줄에 좌우로 앉는다', () => {
-    const volume = MACKEREL_CHART_SLOTS.s05.find((s) => s.title.startsWith('수입 창구 물량'));
-    const unit = MACKEREL_CHART_SLOTS.s05.find((s) => s.title.startsWith('수입 창구 단가'));
+    const volume = MACKEREL_CHART_SLOTS.s04.find((s) => s.title.startsWith('수입 창구 물량'));
+    const unit = MACKEREL_CHART_SLOTS.s04.find((s) => s.title.startsWith('수입 창구 단가'));
     expect(volume?.span).not.toBe('full');
     expect(unit?.span).not.toBe('full');
   });

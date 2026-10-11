@@ -39,6 +39,14 @@ import {
   SURIMI_REPORT_NARRATIVES,
   SURIMI_STAGES,
 } from '@/components/market-understanding/SurimiIndustryDashboard';
+import {
+  MACKEREL_HERO_KPIS,
+  MACKEREL_REPORT_BRIEFING,
+  MACKEREL_REPORT_NARRATIVES,
+  MACKEREL_STAGES,
+} from '@/components/market-understanding/MackerelIndustryDashboard';
+import type { HeroKpi } from '@/components/v2/HeroZone';
+import type { BriefingPoint, StageNarrative } from '@/components/market-understanding/CommodityIndustryDashboard';
 import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
 import { proseStages } from '@/lib/company-prose-stages';
 import { tablesForStage } from '@/lib/data/company-report-tables';
@@ -580,6 +588,96 @@ describe('연육 최종 해부보고서 서술 추출 (위젯 없는 화면)', (
   });
 });
 
+/**
+ * 고등어·참치 양식·골뱅이 — 손 작성 서술을 걷고 원문 추출로 바꾼 세 화면(2026-10-12).
+ * 참치 양식·골뱅이 조달은 절 id 가 없어 h2 단위로 자른다(report_tables.sections).
+ */
+const BODY = (n: number) => Array.from({ length: n }, (_, i) => `s${String(i + 1).padStart(2, '0')}`);
+const THREE: Array<{
+  key: string; 이름: string; sections: number; tables: number; briefing: number;
+  stages: string[]; groups: Record<string, string[]>;
+  narratives: StageNarrative[]; hand: Array<{ key: string }>; brief: BriefingPoint[]; hero: HeroKpi[];
+}> = [
+  {
+    key: 'mackerel', 이름: '고등어', sections: 15, tables: 49, briefing: 15,
+    stages: ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 'x01'],
+    groups: { s01: ['s01', 's02'], s07: ['s08', 's09'], s09: ['s11', 's14', 's15'], x01: ['s12', 's13'] },
+    narratives: MACKEREL_REPORT_NARRATIVES, hand: MACKEREL_STAGES, brief: MACKEREL_REPORT_BRIEFING, hero: MACKEREL_HERO_KPIS,
+  },
+];
+
+describe.each(THREE)('$key 원문 서술 추출 (손 작성 서술 대체)', (c) => {
+  const secs = reportProse(c.key);
+
+  it('본문 절이 단계에 전부 붙고 부록·별첨은 제외된다', () => {
+    expect(secs.map((section) => section.sid)).toEqual(BODY(c.sections));
+    expect(proseStagesUsed(c.key)).toEqual([...c.stages].sort());
+    for (const [stage, sids] of Object.entries(c.groups)) {
+      expect(proseForStage(c.key, stage).map((section) => section.sid), stage).toEqual(sids);
+    }
+    expect(secs.some((section) => /^(부록|별첨)/.test(section.subtitle) || /^(부록|별첨)/.test(section.numeral))).toBe(false);
+  });
+
+  it('화면 단계는 원문 단계 전부이고 손 작성 서술·사실표가 없다', () => {
+    expect(c.narratives.map((stage) => stage.key)).toEqual(c.hand.map((stage) => stage.key));
+    expect([...c.narratives.map((stage) => stage.key)].sort()).toEqual([...c.stages].sort());
+    for (const stage of c.narratives) {
+      expect(stage.badge).toBeUndefined();
+      expect(stage.facts).toEqual([]);
+      expect(stage.terms).toEqual([]);
+      for (const item of stage.flow ?? []) {
+        if (item.kind === 'head') expect(item.text, stage.key).not.toMatch(/^:/);
+      }
+    }
+  });
+
+  it('화면 서술·머리글·브리핑·표·그림 캡션·히어로 수치 전부가 원문 HTML 텍스트에 그대로 있다', () => {
+    const html = readFileSync(join(process.cwd(), `docs/evidence/industry-${c.key}-2026-10/보고서.html`), 'utf8');
+    const original = sourceText(html);
+    const flow = c.narratives.flatMap((stage) => stage.flow ?? []);
+    const visible: [string, string][] = [
+      ...c.narratives.map((stage): [string, string] => ['리드', stage.lede]),
+      ...flow.flatMap((item): [string, string][] => {
+        // 콜아웃은 「**제목** 본문」으로 붙는다. 참치 양식 원문은 제목(span.h)과 본문(p) 사이에 공백이 없어 따로 대조한다.
+        const call = item.kind === 'text' ? /^\*\*(.+?)\*\* ([\s\S]*)$/.exec(item.text) : null;
+        if (call) return [['콜아웃 제목', call[1]], ['본문', call[2]]];
+        if (item.kind === 'text') return [['본문', item.text]];
+        if (item.kind === 'head') return item.text.split(': ').map((part): [string, string] => ['머리글', part]);
+        return [];
+      }),
+      ...c.brief.flatMap((point): [string, string][] => [
+        ['브리핑 제목', point.headline ?? ''],
+        ['브리핑', point.text],
+      ]),
+      ...c.hero.map((kpi): [string, string] => ['히어로', kpi.value.toLocaleString('en-US', {
+        minimumFractionDigits: kpi.decimals ?? 0, maximumFractionDigits: kpi.decimals ?? 0,
+      })]),
+    ];
+    const tables = c.narratives.flatMap((stage) => tablesForStage(c.key, stage.key));
+    const figures = c.narratives.flatMap((stage) => figuresForStage(c.key, stage.key));
+    for (const f of figures) {
+      for (const part of [...f.caption.split(' · '), ...f.alt.split(' · ')]) visible.push(['그림 캡션', part]);
+    }
+    const lines = (kind: string, text: string): [string, string][] =>
+      text.split(' · ').map((part): [string, string] => [kind, part]);
+    for (const table of tables) {
+      const signature = table.head.slice(0, 3).filter(Boolean).join(' · ');
+      if (table.title !== signature) visible.push(['표 제목', table.title]);
+      visible.push(...lines('표 설명', table.note ?? ''), ...lines('표 캡션', table.caption ?? ''));
+      for (const cell of [...table.head, ...table.rows.flat()]) visible.push(...lines('표 셀', cell));
+    }
+
+    expect(tables).toHaveLength(c.tables);
+    expect(figures).toEqual([]);
+    expect(c.brief).toHaveLength(c.briefing);
+    expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThanOrEqual(c.sections);
+    const missing = visible
+      .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
+      .map(([kind, text]) => `${kind}: ${normalize(text).slice(0, 80)}`);
+    expect(missing, '원문에 없는 화면 문자열').toEqual([]);
+  });
+});
+
 describe('품목 해부보고서 장 제목·그림 자리', () => {
   const cases = [
     ['pollock', POLLOCK_REPORT_NARRATIVES, new Set<string>()],
@@ -588,6 +686,7 @@ describe('품목 해부보고서 장 제목·그림 자리', () => {
     ['squid', SQUID_REPORT_NARRATIVES, SQUID_HANDWRITTEN_STAGES],
     ['tuna', TUNA_ANATOMY_REPORT_NARRATIVES, TUNA_ANATOMY_HANDWRITTEN_STAGES],
     ['surimi', SURIMI_REPORT_NARRATIVES, new Set<string>()],
+    ['mackerel', MACKEREL_REPORT_NARRATIVES, new Set<string>()],
   ] as const;
 
   it.each(cases)('%s - 원문 본문 절의 장 제목(라벨 + 부제)이 하나도 빠지지 않고 화면 머리글에 있다', (key, narratives, hand) => {
@@ -617,9 +716,9 @@ describe('품목 해부보고서 장 제목·그림 자리', () => {
     expect(slots).toHaveLength(tables.length + reportFigures(key).length);
   });
 
-  it('오징어 그림 14개가 화면 흐름에 오른다(다른 넷은 원문에 그림이 없다)', () => {
+  it('오징어 그림 14개가 화면 흐름에 오른다(다른 넷과 고등어·참치 양식·골뱅이는 원문에 그림이 없다)', () => {
     expect(reportFigures('squid')).toHaveLength(14);
-    for (const key of ['pollock', 'octopus', 'shrimp', 'tuna']) expect(reportFigures(key)).toEqual([]);
+    for (const key of ['pollock', 'octopus', 'shrimp', 'tuna', 'mackerel']) expect(reportFigures(key)).toEqual([]);
   });
 });
 

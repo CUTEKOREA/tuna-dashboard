@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 EDITION = "2026-10"
-KEYS = ("pollock", "octopus", "shrimp", "squid", "tuna", "surimi")
+KEYS = ("pollock", "octopus", "shrimp", "squid", "tuna", "surimi", "mackerel")
 OUT = ROOT / "public/reports/industry"
 
 
