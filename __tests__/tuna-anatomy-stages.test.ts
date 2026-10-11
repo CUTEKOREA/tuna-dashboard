@@ -89,19 +89,26 @@ describe('참치 해부 페이지 - 보고서 전수 대조 보강', () => {
     expect(TUNA_ANATOMY_BRIEFING_POINTS.some((b) => b.stage === 's05')).toBe(true);
   });
 
-  it('명부 표 슬롯이 법인명을 그린다', () => {
-    const html = ['s04', 's08', 's09', 's10']
-      .flatMap((k) => TUNA_ANATOMY_CHART_SLOTS[k] ?? [])
+  it('남긴 명부 표 슬롯이 법인명을 그린다', () => {
+    // 2026-10-11 사용자 결정 7: 원양선사·해외 캐너리·국내 캔·수입 명의 명부는 10월판 원문 표
+    // (04·08·09·17절)와 주제가 같아 내렸다. 원문에 표가 없는 횟감 공장·브랜드 명부만 남는다.
+    const titles = Object.values(TUNA_ANATOMY_CHART_SLOTS).flat().map((s) => s.title);
+    for (const dropped of [
+      '원양선사 명부 (법인명·수치 성격)',
+      '해외 캐너리·조업 법인 명부 (법인명·수치 성격)',
+      '국내 캔 공장 명부 (법인명·수치 성격)',
+      '수입 명의 명부 (건수≠물량)',
+    ]) {
+      expect(titles, dropped).not.toContain(dropped);
+    }
+    const html = (TUNA_ANATOMY_CHART_SLOTS.s09 ?? [])
       .map((s) => renderToStaticMarkup(React.createElement(React.Fragment, null, s.render())))
       .join('');
     for (const probe of [
-      '대해수산',
-      '오뚜기에스에프',
-      '토키오인터네셔널',
-      'COSMO SEAFOODS',
+      '사조씨푸드',
+      '남궁튜나',
       '비지에프푸드',
       '커클랜드',
-      '그 밖',
       '국가별 캔·조제품 평균 수입단가',
     ]) {
       expect(html, `마크업에 없음: ${probe}`).toContain(probe);

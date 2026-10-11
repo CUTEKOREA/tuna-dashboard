@@ -28,6 +28,11 @@ import {
   SQUID_REPORT_BRIEFING,
   SQUID_REPORT_NARRATIVES,
 } from '@/components/market-understanding/SquidIndustryDashboard';
+import {
+  TUNA_ANATOMY_HANDWRITTEN_STAGES,
+  TUNA_ANATOMY_REPORT_BRIEFING,
+  TUNA_ANATOMY_REPORT_NARRATIVES,
+} from '@/components/market-understanding/TunaAnatomyDashboard';
 import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
 import { proseStages } from '@/lib/company-prose-stages';
 import { tablesForStage } from '@/lib/data/company-report-tables';
@@ -89,6 +94,9 @@ describe('Frabelle 보고서 서술 추출', () => {
 function sourceText(html: string): string {
   return html
     .replace(/<br\s*\/?>/gi, ' ')
+    // 거듭제곱(10<sup>8</sup>)은 추출기가 위 첨자(10⁸)로 남긴다. 각주 표시와 달리 값이다.
+    .replace(/(\d)<sup[^>]*>(\d+)<\/sup>/g, (_, base: string, exp: string) =>
+      base + [...exp].map((d) => '⁰¹²³⁴⁵⁶⁷⁸⁹'[Number(d)]).join(''))
     .replace(/<[^>]+>/g, '')
     .replace(/&#x([0-9a-f]+);/gi, (_, hex: string) => String.fromCodePoint(Number.parseInt(hex, 16)))
     .replace(/&#(\d+);/g, (_, decimal: string) => String.fromCodePoint(Number(decimal)))
@@ -388,6 +396,83 @@ describe('오징어 최종 해부보고서 서술 추출', () => {
 
   it('손으로 쓴 사실표·용어표는 원문 단계 서술에서 빠진다', () => {
     for (const stage of fromReport) {
+      expect(stage.facts).toEqual([]);
+      expect(stage.terms).toEqual([]);
+    }
+  });
+});
+
+describe('참치 최종 해부보고서 서술 추출 (참치 해부 화면)', () => {
+  const secs = reportProse('tuna');
+  const BODY = Array.from({ length: 17 }, (_, i) => `s${String(i + 1).padStart(2, '0')}`);
+  const STAGES = Array.from({ length: 15 }, (_, i) => `s${String(i + 1).padStart(2, '0')}`);
+
+  it('본문 17절이 열다섯 단계에 전부 붙고 부록은 제외된다', () => {
+    expect(secs.map((section) => section.sid)).toEqual(BODY);
+    expect(proseStagesUsed('tuna')).toEqual(STAGES);
+    expect(secs.some((section) => /^s[A-Z]$/.test(section.sid))).toBe(false);
+    // 요약 절은 첫 단계 맨 앞, 16절은 07단계 뒤, 17절은 11단계 뒤다
+    expect(proseForStage('tuna', 's01')[0].sid).toBe('s01');
+    expect(proseForStage('tuna', 's07').map((section) => section.sid)).toEqual(['s07', 's16']);
+    expect(proseForStage('tuna', 's11').map((section) => section.sid)).toEqual(['s11', 's17']);
+  });
+
+  it('원문에 대응 절이 없는 손 작성 단계가 없다', () => {
+    expect([...TUNA_ANATOMY_HANDWRITTEN_STAGES]).toEqual([]);
+    expect(TUNA_ANATOMY_REPORT_NARRATIVES.map((stage) => stage.key)).toEqual(STAGES);
+    expect(TUNA_ANATOMY_REPORT_NARRATIVES.some((stage) => stage.badge)).toBe(false);
+  });
+
+  it('화면 서술·머리글·브리핑·표 전부가 원문 HTML 텍스트에 그대로 있다', () => {
+    const html = readFileSync(
+      join(process.cwd(), 'docs/evidence/industry-tuna-2026-10/보고서.html'),
+      'utf8',
+    );
+    const original = sourceText(html);
+    const fromReport = TUNA_ANATOMY_REPORT_NARRATIVES;
+    const flow = fromReport.flatMap((stage) => stage.flow ?? []);
+    const visible: [string, string][] = [
+      ...fromReport.map((stage): [string, string] => ['리드', stage.lede]),
+      ...flow.flatMap((item): [string, string][] => {
+        if (item.kind === 'text') return [['본문', item.text]];
+        if (item.kind === 'head') return item.text.split(': ').map((part): [string, string] => ['머리글', part]);
+        return [];
+      }),
+      ...TUNA_ANATOMY_REPORT_BRIEFING.flatMap((point): [string, string][] => [
+        ['브리핑 제목', point.headline ?? ''],
+        ['브리핑', point.text],
+      ]),
+    ];
+    const tables = fromReport.flatMap((stage) => tablesForStage('tuna', stage.key));
+    // 표 파서는 칸 안의 <br> 줄바꿈을 「 · 」로 잇는다. 줄마다 원문에 있는지 본다.
+    const lines = (kind: string, text: string): [string, string][] =>
+      text.split(' · ').map((part): [string, string] => [kind, part]);
+    for (const table of tables) {
+      // 11절 표는 첫 머리칸이 비어 헤더 서명이 빈칸을 건너뛴다(「선망선 · 연승선」).
+      const signature = table.head.slice(0, 3).filter(Boolean).join(' · ');
+      if (table.title !== signature) visible.push(['표 제목', table.title]);
+      visible.push(...lines('표 설명', table.note ?? ''), ...lines('표 캡션', table.caption ?? ''));
+      for (const cell of [...table.head, ...table.rows.flat()]) visible.push(...lines('표 셀', cell));
+    }
+
+    expect(tables).toHaveLength(39);
+    expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(40);
+    const missing = visible
+      .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
+      .map(([kind, text]) => `${kind}: ${normalize(text).slice(0, 80)}`);
+    expect(missing, '원문에 없는 화면 문자열').toEqual([]);
+  });
+
+  it('절 머리가 「: 」로 시작하지 않는다', () => {
+    for (const stage of TUNA_ANATOMY_REPORT_NARRATIVES) {
+      for (const item of stage.flow ?? []) {
+        if (item.kind === 'head') expect(item.text, stage.key).not.toMatch(/^:/);
+      }
+    }
+  });
+
+  it('손으로 쓴 사실표·용어표는 원문 단계 서술에서 빠진다', () => {
+    for (const stage of TUNA_ANATOMY_REPORT_NARRATIVES) {
       expect(stage.facts).toEqual([]);
       expect(stage.terms).toEqual([]);
     }

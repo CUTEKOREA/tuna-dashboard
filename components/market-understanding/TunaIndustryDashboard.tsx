@@ -98,10 +98,6 @@ import CommodityIndustryDashboard, {
 } from './CommodityIndustryDashboard';
 import ValueChainSpine from './ValueChainSpine';
 import styles from './TunaIndustryDashboard.module.css';
-import {
-  getTunaTables,
-  type TunaReportTable,
-} from '@/lib/data/tuna-industry-tables';
 
 const CATCH = getTunaCatchData();
 const PRICES = getSkjPriceTimeline();
@@ -549,54 +545,18 @@ const CATCH_BASE_SLOTS: Record<string, ChartSlot[]> = {
   ],
 };
 
-const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026-08-23 통합본' };
-
-/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
-function ExtractedReportTable({ table }: { table: TunaReportTable }) {
-  return (
-    <div className={styles.dataTableWrap} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
-      <table className={styles.dataTable}>
-        <thead>
-          <tr>
-            {table.head.map((h, i) => (
-              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {table.rows.map((r, i) => (
-            <tr key={i}>
-              {r.map((c, j) => (
-                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
-                  {c}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-/** 보고서 표를 단계별 슬롯으로. 차트·위젯 뒤에 붙는다. */
-function reportSlots(stage: string): ChartSlot[] {
-  return getTunaTables(stage).map((t, i) => ({
-    title: `보고서 표 ${i + 1} — ${t.title}`,
-    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
-    telemetry: REPORT_SYNC,
-    span: 'full' as const,
-    render: () => <ExtractedReportTable table={t} />,
-  }));
-}
+/*
+ * 2026-10-11: 옛 「한국 참치 산업 해부」 통합본(2026-08-23)에서 옮긴 표 31개(「보고서 표 N — …」)를 내렸다.
+ * 같은 보고서의 10월판 원문 표 39개가 참치 해부 페이지(tuna-anatomy)에 서술 옆 제자리로 들어가므로,
+ * 여기 남기면 같은 표가 옛판·원문판 두 벌로 뜬다(사용자 결정 7 · 2026-09-10 역할 분리).
+ * `lib/data/tuna-industry-tables.ts`·`tuna-tables.json` 은 파일만 남겼다.
+ */
 
 /** 차트 슬롯 + 위젯 슬롯. 위젯은 차트 뒤에 이어 붙는다(기존 배치 유지). */
 export const CATCH_CHART_SLOTS: Record<string, ChartSlot[]> = Object.fromEntries(
   ALL_STAGES.map((stage) => [
     stage.key,
-    [...(CATCH_BASE_SLOTS[stage.key] ?? []), ...widgetSlots(stage.key), ...reportSlots(stage.key)],
+    [...(CATCH_BASE_SLOTS[stage.key] ?? []), ...widgetSlots(stage.key)],
   ]),
 );
 

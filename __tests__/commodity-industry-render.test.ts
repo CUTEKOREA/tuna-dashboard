@@ -34,7 +34,14 @@ import PollockIndustryDashboard, {
   POLLOCK_REPORT_BRIEFING,
   POLLOCK_REPORT_NARRATIVES,
 } from '../components/market-understanding/PollockIndustryDashboard';
-import TunaAnatomyDashboard, { TUNA_ANATOMY_CHART_SLOTS } from '../components/market-understanding/TunaAnatomyDashboard';
+import TunaAnatomyDashboard, {
+  TUNA_ANATOMY_CHART_SLOTS,
+  TUNA_ANATOMY_DROPPED_WIDGETS,
+  TUNA_ANATOMY_HERO_KPIS,
+  TUNA_ANATOMY_REPORT_BRIEFING,
+  TUNA_ANATOMY_REPORT_NARRATIVES,
+  TUNA_ANATOMY_REPORT_SOURCE_NOTES,
+} from '../components/market-understanding/TunaAnatomyDashboard';
 import type { HeroKpi } from '../components/v2/HeroZone';
 import type {
   BriefingPoint,
@@ -59,11 +66,6 @@ import {
   WHELK_SOURCE_NOTES,
 } from '../lib/whelk-industry-content';
 import { POLLOCK_SOURCE_NOTES } from '../lib/pollock-industry-content';
-import {
-  TUNA_ANATOMY_BRIEFING_POINTS,
-  TUNA_ANATOMY_NARRATIVES,
-  TUNA_ANATOMY_SOURCE_NOTES,
-} from '../lib/tuna-anatomy-content';
 
 /** 해부보고서 원문 HTML 의 본문 텍스트(태그를 걷은 것). 히어로 KPI 대조용. */
 function reportText(key: string): string {
@@ -91,7 +93,11 @@ interface Page {
 
 /** 서술이 원문 보고서에서 그대로 오는 단계인가(손 사실표·낫표 차트 지목 규약 밖). */
 const fromReport = (page: Page, stage: StageNarrative) =>
-  page.이름 === '명태' || (page.이름 === '새우' && !SHRIMP_HANDWRITTEN_STAGES.has(stage.key));
+  page.이름 === '명태' || page.이름 === '참치 해부' ||
+  (page.이름 === '새우' && !SHRIMP_HANDWRITTEN_STAGES.has(stage.key));
+
+/** 원문 절에 표가 없는 단계(요약·남은 물음 절). */
+const NO_REPORT_TABLE: Record<string, string[]> = { 새우: ['s01'], '참치 해부': ['s01', 's15'] };
 
 const PAGES: Page[] = [
   {
@@ -128,10 +134,10 @@ const PAGES: Page[] = [
   },
   {
     이름: '참치 해부',
-    narratives: TUNA_ANATOMY_NARRATIVES,
+    narratives: TUNA_ANATOMY_REPORT_NARRATIVES,
     slots: TUNA_ANATOMY_CHART_SLOTS,
-    briefing: TUNA_ANATOMY_BRIEFING_POINTS,
-    notes: TUNA_ANATOMY_SOURCE_NOTES,
+    briefing: TUNA_ANATOMY_REPORT_BRIEFING,
+    notes: TUNA_ANATOMY_REPORT_SOURCE_NOTES,
     render: () => React.createElement(TunaAnatomyDashboard),
   },
 ];
@@ -147,10 +153,10 @@ describe('시장 이해 3품목 - 서술 골격', () => {
       expect(stage.lede.length).toBeGreaterThan(20);
       expect(stage.paragraphs.length).toBeGreaterThanOrEqual(3);
       if (fromReport(page, stage)) {
-        // 명태·새우 서술은 원문 보고서에서 그대로 오고 손 사실표가 없다(facts = []).
-        // 근거는 단계 흐름에 붙는 원문 표다. 새우 s01(요약 절)만 원문에 표가 없다.
+        // 명태·새우·참치 해부 서술은 원문 보고서에서 그대로 오고 손 사실표가 없다(facts = []).
+        // 근거는 단계 흐름에 붙는 원문 표다. 요약·남은 물음 절만 원문에 표가 없다.
         const tables = (stage.flow ?? []).filter((item) => item.kind === 'slot');
-        if (!(page.이름 === '새우' && stage.key === 's01')) {
+        if (!(NO_REPORT_TABLE[page.이름] ?? []).includes(stage.key)) {
           expect(tables.length, `${page.이름} ${stage.key} 원문 표`).toBeGreaterThanOrEqual(1);
         }
         continue;
@@ -565,5 +571,45 @@ describe('명태 - 집계와 본문 대조', () => {
     const last = data.재고.rows[data.재고.rows.length - 1];
     expect(last.월).toBe('2026-07');
     expect(text).toContain(last.재고.toLocaleString('en-US'));
+  });
+});
+
+describe('참치 해부 - 집계와 본문 대조', () => {
+  // 2026-10-11 사용자 결정 7: 대조 기준은 해부보고서 원문(2026년 10월판)이다.
+  const html = reportText('tuna');
+
+  it('히어로 KPI 값이 원문 HTML 텍스트에 있다', () => {
+    expect(TUNA_ANATOMY_HERO_KPIS).toHaveLength(4);
+    for (const kpi of TUNA_ANATOMY_HERO_KPIS) {
+      expect(html, `${kpi.label} ${kpiText(kpi)}`).toContain(kpiText(kpi));
+    }
+  });
+
+  it('원문 표와 겹치는 옛 위젯은 내렸고, 남긴 차트는 별도 집계임을 밝힌다', () => {
+    const slots = Object.values(TUNA_ANATOMY_CHART_SLOTS).flat();
+    const titles = slots.map((slot) => slot.title);
+    expect(TUNA_ANATOMY_DROPPED_WIDGETS).toHaveLength(10);
+    for (const dropped of TUNA_ANATOMY_DROPPED_WIDGETS) expect(titles, dropped).not.toContain(dropped);
+    expect(slots).toHaveLength(11);
+    for (const slot of slots) {
+      expect(slot.caption, slot.title).toContain('보고서 표와 별도 집계다');
+      expect(slot.caption, slot.title).toMatch(/출처 .+ · 기준 .+/);
+    }
+  });
+
+  it('원문 서술에 옛 손 작성 값(초판·보도 9%)이 남지 않는다', () => {
+    const text = TUNA_ANATOMY_REPORT_NARRATIVES.flatMap((stage) => [
+      stage.lede,
+      ...(stage.flow ?? []).flatMap((item) => (item.kind === 'slot' ? [] : [item.text])),
+    ]).join('\n');
+    // 10월판 원문 값
+    for (const probe of ['332,602톤', '211,513톤', '144,435.4톤', '65,091.4톤', '2,100달러']) {
+      expect(text, probe).toContain(probe);
+    }
+    // 손 작성 브리핑에만 있던 값(원문에 없음)
+    for (const gone of ['동원F&B 참치캔류 평균', '34,834,425']) {
+      expect(html, gone).not.toContain(gone);
+      expect(text, gone).not.toContain(gone);
+    }
   });
 });
