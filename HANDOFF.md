@@ -1,3 +1,12 @@
+> ✅ **2026-10-11 KST — `/pollock-industry` 서술을 최종 해부보고서 원문 인테이크로 교체** [Cursor→CC]:
+> - `docs/evidence/industry-pollock-2026-10/보고서.html` 본문 `s01`~`s17`을 발주서의 아홉 단계에 매핑했다. 부록 `sA`~`sC`는 제외했다.
+> - 공용 보고서 인테이크에 `pollock`을 등록해 서술 17절·44,000자와 표 37개를 생성했다. 표는 `drop` 없이 전량이며 절별 개수를 빌드 게이트에 고정했다.
+> - 화면은 `proseStages('pollock')`·`proseBriefing('pollock')`을 쓰고 표를 원문 오프셋 자리에 끼운다. 기존 인터랙티브 차트·명부 슬롯은 단계 끝 「근거」에 유지했다.
+> - 회귀 검사는 본문 17절/아홉 단계, 표 37개/아홉 단계, 부록 제외, 화면 서술 전건의 원문 HTML 부분 문자열 일치를 확인한다.
+> - 단계 순서·제목·질문은 기존 손 작성 값을 유지했다(발주서 허용). 명태 보고서는 절 번호(kicker) 없는 절이 많아 공용 `proseStages`가 「: 부제」 머리를 만든다 — 명태 화면에서만 앞의 「: 」를 걷었고 공용 코드는 손대지 않았다.
+> - 남은 것: `lib/pollock-industry-content.ts`의 손 작성 `POLLOCK_NARRATIVES`·`POLLOCK_BRIEFING_POINTS`와 `lib/data/pollock-industry-tables.ts`(`pollock-tables.json`)는 화면에서 빠졌지만 파일은 남겼다. `__tests__/pollock-industry-stages.test.ts`·`commodity-industry-render.test.ts`(명태 항목)는 아직 이 손 작성 본문을 검사한다 — 정리 여부는 다음 결정.
+> - 커밋·배포하지 않았다. 다음 단계는 메인이 diff와 완료 명령 결과를 확인한 뒤 커밋하는 것이다.
+
 > 🟢 **2026-10-11 KST — `npm run verify` 가 처음으로 rc=0** [CC]:
 > - 막고 있던 둘 다 이번 변경과 무관한 기존 실패였다(`origin/main` 에서도 같이 깨졌다).
 > - **typecheck 3건** — `__tests__/mail-company-smtp-nodemailer-render.test.ts` 49·67·99. 뿌리는 헬퍼가 옵션을 `Parameters<typeof createTransport>[0]` 로 받은 것: 그러면 **마지막 오버로드**(`Transport<T> | TransportOptions`)로 좁혀져 `streamTransport`·`jsonTransport` 가 없는 타입이 되고, 반환 `SentMessageInfo` 에도 `message` 가 없어 캐스팅으로 메워야 했다. 고친 방식 = **호출부가 자기 오버로드를 직접 고르게** 썽크(`() => createTransport({ streamTransport: true, … })`)로 넘기고, 헬퍼는 `Transporter<T, D>` 를 제네릭으로 받는다. 캐스팅 0개. 테스트 2건 그대로 통과(기준 RFC822 원문 단언 유지).

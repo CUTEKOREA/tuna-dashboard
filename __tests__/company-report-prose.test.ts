@@ -5,10 +5,17 @@
  * 그대로 읽으므로 옮겨 적기 오류가 없는 대신, **추출이 조용히 비는 것**이 새 실패 모드다.
  * 절이 사라지거나 단계 매핑이 끊기면 화면에서 통째로 없어지므로 여기서 잡는다.
  */
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
+import {
+  POLLOCK_REPORT_BRIEFING,
+  POLLOCK_REPORT_NARRATIVES,
+} from '@/components/market-understanding/PollockIndustryDashboard';
 import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
 import { proseStages } from '@/lib/company-prose-stages';
+import { tablesForStage } from '@/lib/data/company-report-tables';
 import {
   proseForStage,
   proseStagesUsed,
@@ -61,6 +68,93 @@ describe('Frabelle 보고서 서술 추출', () => {
     }
     // Majestic 폐쇄 인력은 1,300명이다. 5,000명은 2013년 계획치가 전이된 값이라 쓰지 않는다.
     expect(all).not.toContain('5,000명 실직');
+  });
+});
+
+function sourceText(html: string): string {
+  return html
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex: string) => String.fromCodePoint(Number.parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, decimal: string) => String.fromCodePoint(Number(decimal)))
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&middot;/g, '·')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+const normalize = (text: string) => text.replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
+
+describe('명태 최종 해부보고서 서술 추출', () => {
+  const secs = reportProse('pollock');
+
+  it('본문 17절이 아홉 단계에 전부 붙고 부록은 제외된다', () => {
+    expect(secs).toHaveLength(17);
+    expect(secs.map((section) => section.sid)).toEqual(
+      Array.from({ length: 17 }, (_, index) => `s${String(index + 1).padStart(2, '0')}`),
+    );
+    expect(proseStagesUsed('pollock')).toEqual([
+      's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 'x01',
+    ]);
+    expect(secs.some((section) => ['sA', 'sB', 'sC'].includes(section.sid))).toBe(false);
+  });
+
+  it('화면 서술·머리글·브리핑·표 전부가 원문 HTML 텍스트에 그대로 있다', () => {
+    const html = readFileSync(
+      join(process.cwd(), 'docs/evidence/industry-pollock-2026-10/보고서.html'),
+      'utf8',
+    );
+    const original = sourceText(html);
+    const flow = POLLOCK_REPORT_NARRATIVES.flatMap((stage) => stage.flow ?? []);
+    const visible: [string, string][] = [
+      ...POLLOCK_REPORT_NARRATIVES.map((stage): [string, string] => ['리드', stage.lede]),
+      ...flow.flatMap((item): [string, string][] => {
+        if (item.kind === 'text') return [['본문', item.text]];
+        // 절 머리는 「절 이름: 부제」로 합쳐 만든다. 원문에선 두 요소라 나눠 대조한다.
+        // 「: 」 머리를 걷은 뒤의 문자열이다.
+        if (item.kind === 'head') return item.text.split(': ').map((part): [string, string] => ['머리글', part]);
+        return [];
+      }),
+      ...POLLOCK_REPORT_BRIEFING.flatMap((point): [string, string][] => [
+        ['브리핑 제목', point.headline ?? ''],
+        ['브리핑', point.text],
+      ]),
+    ];
+    const tables = POLLOCK_REPORT_NARRATIVES.flatMap((stage) => tablesForStage('pollock', stage.key));
+    for (const table of tables) {
+      // 원문 표 앞에 소제목이 없으면 제목은 헤더 서명(앞 세 열)이다. 헤더는 아래서 따로 대조한다.
+      if (table.title !== table.head.slice(0, 3).join(' · ')) visible.push(['표 제목', table.title]);
+      visible.push(['표 설명', table.note ?? ''], ['표 캡션', table.caption ?? '']);
+      // 숫자 열 우측정렬은 스타일일 뿐이라 셀 문자열은 원문 그대로다.
+      for (const cell of [...table.head, ...table.rows.flat()]) visible.push(['표 셀', cell]);
+    }
+
+    expect(tables.length).toBeGreaterThan(30);
+    expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
+    const missing = visible
+      .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
+      .map(([kind, text]) => `${kind}: ${normalize(text).slice(0, 80)}`);
+    expect(missing, '원문에 없는 화면 문자열').toEqual([]);
+  });
+
+  it('절 번호 없는 절의 머리가 「: 」로 시작하지 않는다', () => {
+    for (const stage of POLLOCK_REPORT_NARRATIVES) {
+      for (const item of stage.flow ?? []) {
+        if (item.kind === 'head') expect(item.text, stage.key).not.toMatch(/^:/);
+      }
+    }
+  });
+
+  it('손으로 쓴 사실표·용어표는 화면 서술에서 빠진다', () => {
+    for (const stage of POLLOCK_REPORT_NARRATIVES) {
+      expect(stage.facts).toEqual([]);
+      expect(stage.terms).toEqual([]);
+    }
   });
 });
 

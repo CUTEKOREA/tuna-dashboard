@@ -26,6 +26,8 @@ import WhelkIndustryDashboard, {
 } from '../components/market-understanding/WhelkIndustryDashboard';
 import PollockIndustryDashboard, {
   POLLOCK_CHART_SLOTS,
+  POLLOCK_REPORT_BRIEFING,
+  POLLOCK_REPORT_NARRATIVES,
 } from '../components/market-understanding/PollockIndustryDashboard';
 import TunaAnatomyDashboard, { TUNA_ANATOMY_CHART_SLOTS } from '../components/market-understanding/TunaAnatomyDashboard';
 import type {
@@ -54,11 +56,7 @@ import {
   WHELK_NARRATIVES,
   WHELK_SOURCE_NOTES,
 } from '../lib/whelk-industry-content';
-import {
-  POLLOCK_BRIEFING_POINTS,
-  POLLOCK_NARRATIVES,
-  POLLOCK_SOURCE_NOTES,
-} from '../lib/pollock-industry-content';
+import { POLLOCK_SOURCE_NOTES } from '../lib/pollock-industry-content';
 import {
   TUNA_ANATOMY_BRIEFING_POINTS,
   TUNA_ANATOMY_NARRATIVES,
@@ -101,9 +99,9 @@ const PAGES: Page[] = [
   },
   {
     이름: '명태',
-    narratives: POLLOCK_NARRATIVES,
+    narratives: POLLOCK_REPORT_NARRATIVES,
     slots: POLLOCK_CHART_SLOTS,
-    briefing: POLLOCK_BRIEFING_POINTS,
+    briefing: POLLOCK_REPORT_BRIEFING,
     notes: POLLOCK_SOURCE_NOTES,
     render: () => React.createElement(PollockIndustryDashboard),
   },
@@ -127,6 +125,13 @@ describe('시장 이해 3품목 - 서술 골격', () => {
       expect(stage.question).not.toBe('');
       expect(stage.lede.length).toBeGreaterThan(20);
       expect(stage.paragraphs.length).toBeGreaterThanOrEqual(3);
+      if (page.이름 === '명태') {
+        // 명태 서술은 원문 보고서에서 그대로 오고 손 사실표가 없다(facts = []).
+        // 근거는 단계 흐름에 붙는 원문 표다.
+        const tables = (stage.flow ?? []).filter((item) => item.kind === 'slot');
+        expect(tables.length, `명태 ${stage.key} 원문 표`).toBeGreaterThanOrEqual(1);
+        continue;
+      }
       // 근거 없는 서술을 막는다. 참치·오징어와 같은 기준이다
       expect(stage.facts.length).toBeGreaterThanOrEqual(3);
       for (const fact of stage.facts) {
@@ -160,7 +165,9 @@ describe('시장 이해 3품목 - 서술 골격', () => {
 });
 
 describe('시장 이해 3품목 - 차트 참조 무결성', () => {
-  it.each(PAGES)('$이름 - 본문이 지목한 낫표 이름이 실제 차트 제목이다', (page) => {
+  // 명태 서술은 원문 보고서 문장이라 낫표가 차트 지목이 아니라 인용이다.
+  // 원문 대조는 company-report-prose.test.ts 가 맡는다.
+  it.each(PAGES.filter((page) => page.이름 !== '명태'))('$이름 - 본문이 지목한 낫표 이름이 실제 차트 제목이다', (page) => {
     const titles = new Set(
       Object.values(page.slots).flatMap((slots) => slots.map((slot) => slot.title)),
     );
@@ -444,8 +451,8 @@ describe('새우 - 집계와 본문 대조', () => {
 
 describe('명태 - 집계와 본문 대조', () => {
   const data = getPollockIndustryData();
-  const text = POLLOCK_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
-  const facts = POLLOCK_NARRATIVES.flatMap((s) => s.facts);
+  // 원문 보고서 서술이라 사실표(facts)가 없다. 값 대조는 본문으로 한다.
+  const text = POLLOCK_REPORT_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
 
   it('원본이 낡으면 알 수 있게 기준연도가 2024년 이상이다', () => {
     expect(Number(data.세계어획._meta.기준연도)).toBeGreaterThanOrEqual(2024);
@@ -460,7 +467,7 @@ describe('명태 - 집계와 본문 대조', () => {
     expect(text).toContain(String(data.세계어획._meta.러미비중));
     expect(data.세계어획.국가[0].국가).toBe('러시아');
     expect(data.세계어획.국가.findIndex((r) => r.국가 === '한국')).toBe(4);
-    expect(facts.some((f) => f.value.includes(String(data.세계어획._meta.한국비중)))).toBe(true);
+    expect(text).toContain(String(data.세계어획._meta.한국비중));
   });
 
   it('할당과 어획이 붙어 있고 2026년 할당이 처음 줄었다', () => {
@@ -481,7 +488,6 @@ describe('명태 - 집계와 본문 대조', () => {
     const russia = data.수입원산지.rows[0];
     expect(russia.원산지).toBe('러시아');
     expect(text).toContain(String(russia.비중));
-    expect(facts.some((f) => f.value.includes(String(russia.비중)))).toBe(true);
   });
 
   it('가공 합계와 업체 수, 어묵이 따로 세어져 있다', () => {

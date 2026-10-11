@@ -22,6 +22,8 @@ import { REPORT_PROSE_COMPANIES } from '@/lib/data/company-report-prose';
 import { REPORT_TABLE_COMPANIES } from '@/lib/data/company-report-tables';
 
 const DIR = join(process.cwd(), 'public/data/companies');
+// 명태 시장 이해는 발주서가 표·서술 파이프라인만 지정했다. 회사 팩샷·차트 추출 대상이 아니다.
+const FIGURE_PIPELINE_EXCLUDED = new Set(['pollock']);
 
 function onDisk(kind: 'tables' | 'prose' | 'figures'): string[] {
   return readdirSync(DIR)
@@ -42,10 +44,12 @@ describe('보고서 인테이크가 빠짐없이 로더에 걸려 있다', () =>
     expect([...loaded()].sort()).toEqual(disk);
   });
 
-  it('세 인테이크가 같은 편 집합을 본다', () => {
+  it('표·서술은 같은 편을 보고 그림은 명시적 제외 편만 빠진다', () => {
     // 표만 있고 서술이 없는 편이 생기면 화면 절반이 빈다
     const t = [...REPORT_TABLE_COMPANIES].sort();
     expect([...REPORT_PROSE_COMPANIES].sort()).toEqual(t);
-    expect([...REPORT_FIGURE_COMPANIES].sort()).toEqual(t);
+    expect([...REPORT_FIGURE_COMPANIES].sort()).toEqual(
+      t.filter((key) => !FIGURE_PIPELINE_EXCLUDED.has(key)),
+    );
   });
 });

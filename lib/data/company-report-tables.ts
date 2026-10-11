@@ -59,6 +59,7 @@ import inepacaRaw from '@/public/data/companies/inepaca_tables_v1.json';
 import kflRaw from '@/public/data/companies/kfl_tables_v1.json';
 import sapmerRaw from '@/public/data/companies/sapmer_tables_v1.json';
 import patayaRaw from '@/public/data/companies/pataya_tables_v1.json';
+import pollockRaw from '@/public/data/companies/pollock_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -160,6 +161,7 @@ const INTAKES: Record<string, Intake> = {
   kfl: kflRaw as unknown as Intake,
   sapmer: sapmerRaw as unknown as Intake,
   pataya: patayaRaw as unknown as Intake,
+  pollock: pollockRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);
