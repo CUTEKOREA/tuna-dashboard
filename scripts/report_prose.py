@@ -17,6 +17,8 @@ import html as H
 import re
 from dataclasses import dataclass, field
 
+from report_tables import sections
+
 # 등급 칩은 문장 끝에 「원본」「매체」 같은 낱말로 남아 종결어미와 붙어 읽힌다.
 # 텍스트로 풀지 않고 근거 표시로 따로 담는다.
 _CHIP = re.compile(r'<span class="chip[^"]*"[^>]*>(.*?)</span>', re.S)
@@ -118,19 +120,26 @@ class Section:
 
 def parse(doc: str) -> list[Section]:
     out: list[Section] = []
-    for m in re.finditer(r'<section id="(s[0-9a-z]+)"[^>]*>(.*?)</section>', doc, re.S):
-        sid, body = m.groups()
+    for sid, body in sections(doc):
         h2 = re.search(r"<h2[^>]*>(.*?)</h2>", body, re.S)
         numeral = label = subtitle = ""
         if h2:
             inner = h2.group(1)
             n = re.search(r'<span class="h2n">(.*?)</span>', inner, re.S)
+            # h2n 대신 h2 앞 장 표지(「Ⅰ · 경계」)로 번호·라벨을 다는 틀(참치 양식)
+            part = re.match(r'\s*<p class="part"[^>]*>([^<]*)</p>', body[:h2.start()])
             if n:
                 head, _ = _text(n.group(1))
                 parts = [p.strip() for p in head.split("/", 1)]
                 numeral = parts[0]
                 label = parts[1] if len(parts) > 1 else ""
                 subtitle, _ = _text(inner[n.end():])
+            elif part:
+                head, _ = _text(part.group(1))
+                parts = [p.strip() for p in head.split("·", 1)]
+                numeral = parts[0]
+                label = parts[1] if len(parts) > 1 else ""
+                subtitle, _ = _text(inner)
             else:
                 subtitle, _ = _text(inner)
         sec = Section(sid=sid, numeral=numeral, label=label, subtitle=subtitle)
@@ -156,7 +165,9 @@ def parse(doc: str) -> list[Section]:
                 for t in ("warn", "hot"):
                     if t in (el.group(1) or ""):
                         tone = t
-                ct = re.search(r'<p class="ct">(.*?)</p>', el.group(2), re.S)
+                # 제목은 p.ct 에, 참치 양식 보고서는 span.h 에 둔다
+                ct = (re.search(r'<p class="ct">(.*?)</p>', el.group(2), re.S)
+                      or re.match(r'\s*<span class="h">(.*?)</span>', el.group(2), re.S))
                 title, _ = _text(ct.group(1)) if ct else ("", [])
                 inner = el.group(2)[ct.end():] if ct else el.group(2)
                 # 콜아웃은 문단 여럿을 담는다. 첫 문단만 담으면 나머지가 통째로 사라진다.

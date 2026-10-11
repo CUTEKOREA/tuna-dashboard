@@ -128,11 +128,49 @@ def _grid(trs: list[str], ncols: int) -> list[list[str]]:
     return out
 
 
+_SECTION_ID = re.compile(r'<section id="(s[0-9a-z]+)"[^>]*>(.*?)</section>', re.S)
+# h2 바로 앞의 장 표지(「Ⅰ · 경계」). 참치 양식 보고서가 이 틀이다. 장 머리로 같이 묶는다.
+_PART = re.compile(r'<p class="part"[^>]*>[^<]*</p>\s*$')
+_APPENDIX = re.compile(r'^\s*(별첨|부록)')
+_DOC_END = re.compile(r'<footer\b|</main>|<p class="foot"|</body>')
+
+
+def sections(doc: str) -> list[tuple[str, str]]:
+    """문서를 (절 id, 절 본문) 으로 나눈다. 표·서술·그림 추출기가 같은 절을 보게 한다.
+
+    해부보고서는 `<section id="sNN">` 으로 절을 감싼다 — 그 틀이면 지금까지와 똑같이 읽는다.
+    절 id 가 없는 보고서(참치 양식·골뱅이 조달)는 **h2 단위로** 자른다. 장 표지(p.part)가 h2
+    바로 앞에 있으면 그 장에 붙이고, 부록·별첨으로 시작하는 장은 해부보고서의 대문자 부록
+    id(sA)처럼 뺀다. id 는 본문 장 순서대로 s01, s02 … 를 붙인다.
+    """
+    found = [(m.group(1), m.group(2)) for m in _SECTION_ID.finditer(doc)]
+    if found:
+        return found
+    heads = []
+    for m in re.finditer(r"<h2\b", doc):
+        lo = max(0, m.start() - 400)
+        part = _PART.search(doc, lo, m.start())
+        heads.append(part.start() if part else m.start())
+    if not heads:
+        return []
+    end = _DOC_END.search(doc, heads[-1])
+    bounds = heads[1:] + [end.start() if end else len(doc)]
+    out, n = [], 0
+    for a, b in zip(heads, bounds):
+        body = doc[a:b]
+        part = re.match(r'\s*<p class="part"[^>]*>(.*?)</p>', body, re.S)
+        h2 = re.search(r"<h2[^>]*>(.*?)</h2>", body, re.S)
+        if _APPENDIX.match(_cell(part.group(1) if part else h2.group(1))):
+            continue
+        n += 1
+        out.append((f"s{n:02d}", body))
+    return out
+
+
 def parse(doc: str) -> list[Table]:
     """문서의 모든 표를 절 단위 표시와 함께 뽑는다."""
     out: list[Table] = []
-    for sec in re.finditer(r'<section id="(s[0-9a-z]+)"[^>]*>(.*?)</section>', doc, re.S):
-        sid, body = sec.groups()
+    for sid, body in sections(doc):
         h2 = re.search(r"<h2[^>]*>(.*?)</h2>", body, re.S)
         title = _cell(h2.group(1)) if h2 else ""
         for t in re.finditer(r"<table.*?</table>", body, re.S):

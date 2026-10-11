@@ -23,7 +23,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from report_tables import TableSet  # noqa: E402
+from report_tables import TableSet, sections  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public/data/companies"
@@ -1093,7 +1093,7 @@ def _assert_all_sections_mapped(key: str, doc: str, spec: dict) -> None:
     사라졌고, 2026-09-05 에는 Jealsa 정정 이력 절이 id 를 `corr` 로 붙였다가 빠졌다.
     조용한 누락을 빌드 실패로 바꾼다.
     """
-    ids = re.findall(r'<section id="(s[0-9a-z]+)"[^>]*>', doc)
+    ids = [sid for sid, _ in sections(doc)]
     missing = [i for i in dict.fromkeys(ids) if i not in spec["stages"]]
     if missing:
         raise SystemExit(

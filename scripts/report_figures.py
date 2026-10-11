@@ -23,6 +23,8 @@ from pathlib import Path
 
 from PIL import Image
 
+from report_tables import sections
+
 MAX_EDGE = 900
 MAX_BYTES = 120_000
 
@@ -207,7 +209,6 @@ def parse(html: str, key: str, out_dir: Path, url_base: str, rich: bool = False)
 # 읽으면 SVG 넷과 학명·저작권이 사라진다. 그래서 원문 마크업 조각을 통째로 싣고(kind=html),
 # 그 조각이 쓰는 클래스 규칙만 함께 뽑는다. 회사 편 JSON 을 바꾸지 않도록 이 경로는 따로 둔다.
 
-_RICH_SECTION = re.compile(r'<section id="(s[0-9a-z]+)"[^>]*>(.*?)</section>', re.S)
 _DIV_OPEN = re.compile(r'<div\b[^>]*\bclass="(metrics|bars)"[^>]*>')
 _DIV_TOKEN = re.compile(r'<div\b|</div>')
 _IMG_DATA = re.compile(r'src="data:image/[a-z+]+;base64,([^"]+)"')
@@ -289,8 +290,7 @@ def _parse_rich(doc: str, out_dir: Path, url_base: str) -> FigureSet:
             return f'src="{seen[digest]}" loading="lazy"'
         return _IMG_DATA.sub(sub, frag)
 
-    for sm in _RICH_SECTION.finditer(doc):
-        sid, sec = sm.group(1), sm.group(2)
+    for sid, sec in sections(doc):
         found: list[tuple[int, Figure]] = []
         spans: list[tuple[int, int]] = []
         for fm in _FIGURE.finditer(sec):

@@ -51,6 +51,36 @@ export function ReportFigureView({ f, id }: { f: ReportFigure; id: string }) {
   );
 }
 
+/** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
+export function ReportTableView({ table }: { table: ReportTable }) {
+  return (
+    <div className={styles.dataTableWrap} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
+      <table className={styles.dataTable}>
+        <thead>
+          <tr>
+            {table.head.map((h, i) => (
+              <th key={i} style={table.num[i] ? { textAlign: 'right' } : undefined}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} style={table.num[j] ? { textAlign: 'right' } : undefined}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export interface InlineOptions {
   telemetry: { status: 'STATIC' | 'SYNCED' | 'LIVE'; syncDate?: string };
   /** 출처 줄 머리. 예: 「한국 오징어 산업 해부」 */
