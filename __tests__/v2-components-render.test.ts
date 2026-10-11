@@ -514,9 +514,9 @@ describe('Deep Sea Command V2 - PillTabs', () => {
     );
 
     expect(markup).toContain('border-radius:12px');
-    // 활성 필은 accent-primary 단색 + 흰 글자 — 저대비 틴트(«${accentFrom}22») 금지
+    // 활성 필은 accent-primary 단색 + 그 위 글자 토큰(라이트 흰색·다크 slate-900, 폴백 흰색) — 저대비 틴트(«${accentFrom}22») 금지
     expect(markup).toContain('background:var(--accent-primary)');
-    expect(markup).toContain('color:#ffffff');
+    expect(markup).toContain('color:var(--accent-primary-ink, #ffffff)');
     expect(markup).not.toContain('#12345622');
     expect(markup).not.toContain('#abcdef');
     expect(markup).not.toContain('linear-gradient');

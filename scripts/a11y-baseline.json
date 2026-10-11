@@ -21,7 +21,7 @@
       }
     ],
     "updatedAt": "2026-10-10",
-    "measuredAt": "CI run 38027480540 · 4d5887e · Linux ubuntu24",
+    "measuredAt": "CI run 38058580511 · fc8f40d · Linux ubuntu24",
     "determinism": "같은 커밋 CI 3회(테마별) 측정 집계가 바이트 단위로 동일 — allow 를 둔 키 없음. 단 옛 게이트 run 37797565296/37797640417 사이 라이트 /unloading color-contrast 가 14↔13 으로 한 번 달랐다(뷰포트 합). 다시 흔들리면 여러 CI run 의 counts.json 으로 --update 해 allow·reason 을 둔다."
   },
   "themes": {
@@ -52,14 +52,14 @@
         "desktop": {
           "rules": {
             "color-contrast": {
-              "serious": 7
+              "serious": 6
             }
           }
         },
         "mobile": {
           "rules": {
             "color-contrast": {
-              "serious": 7
+              "serious": 6
             }
           }
         }
@@ -92,14 +92,14 @@
         "desktop": {
           "rules": {
             "color-contrast": {
-              "serious": 21
+              "serious": 20
             }
           }
         },
         "mobile": {
           "rules": {
             "color-contrast": {
-              "serious": 21
+              "serious": 20
             }
           }
         }
@@ -187,32 +187,24 @@
       },
       "/fleet": {
         "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 1
-            }
-          }
+          "rules": {}
         },
         "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 1
-            }
-          }
+          "rules": {}
         }
       },
       "/gmts": {
         "desktop": {
           "rules": {
             "color-contrast": {
-              "serious": 3
+              "serious": 2
             }
           }
         },
         "mobile": {
           "rules": {
             "color-contrast": {
-              "serious": 3
+              "serious": 2
             }
           }
         }
@@ -231,32 +223,24 @@
       },
       "/logistics": {
         "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 1
-            }
-          }
+          "rules": {}
         },
         "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 1
-            }
-          }
+          "rules": {}
         }
       },
       "/mackerel-industry": {
         "desktop": {
           "rules": {
             "color-contrast": {
-              "serious": 19
+              "serious": 18
             }
           }
         },
         "mobile": {
           "rules": {
             "color-contrast": {
-              "serious": 23
+              "serious": 22
             }
           }
         }
@@ -311,14 +295,14 @@
         "desktop": {
           "rules": {
             "color-contrast": {
-              "serious": 17
+              "serious": 16
             }
           }
         },
         "mobile": {
           "rules": {
             "color-contrast": {
-              "serious": 20
+              "serious": 19
             }
           }
         }
@@ -333,50 +317,34 @@
       },
       "/panofi": {
         "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 1
-            }
-          }
+          "rules": {}
         },
         "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 1
-            }
-          }
+          "rules": {}
         }
       },
       "/pollock-industry": {
         "desktop": {
           "rules": {
             "color-contrast": {
-              "serious": 16
+              "serious": 15
             }
           }
         },
         "mobile": {
           "rules": {
             "color-contrast": {
-              "serious": 19
+              "serious": 18
             }
           }
         }
       },
       "/pork": {
         "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 1
-            }
-          }
+          "rules": {}
         },
         "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 1
-            }
-          }
+          "rules": {}
         }
       },
       "/port-intel": {
@@ -407,14 +375,14 @@
         "desktop": {
           "rules": {
             "color-contrast": {
-              "serious": 27
+              "serious": 26
             }
           }
         },
         "mobile": {
           "rules": {
             "color-contrast": {
-              "serious": 30
+              "serious": 29
             }
           }
         }
@@ -429,18 +397,10 @@
       },
       "/squid-industry": {
         "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 31
-            }
-          }
+          "rules": {}
         },
         "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 34
-            }
-          }
+          "rules": {}
         }
       },
       "/squid-v5": {
@@ -455,14 +415,14 @@
         "desktop": {
           "rules": {
             "color-contrast": {
-              "serious": 22
+              "serious": 21
             }
           }
         },
         "mobile": {
           "rules": {
             "color-contrast": {
-              "serious": 25
+              "serious": 24
             }
           }
         }
@@ -470,9 +430,6 @@
       "/tuna-industry": {
         "desktop": {
           "rules": {
-            "color-contrast": {
-              "serious": 1
-            },
             "scrollable-region-focusable": {
               "serious": 1
             }
@@ -480,9 +437,6 @@
         },
         "mobile": {
           "rules": {
-            "color-contrast": {
-              "serious": 1
-            },
             "scrollable-region-focusable": {
               "serious": 1
             }
@@ -491,11 +445,16 @@
       },
       "/tunafarm-industry": {
         "desktop": {
+          "rules": {}
+        },
+        "mobile": {
+          "rules": {}
+        }
+      },
+      "/unloading": {
+        "desktop": {
           "rules": {
             "color-contrast": {
-              "serious": 34
-            },
-            "scrollable-region-focusable": {
               "serious": 1
             }
           }
@@ -503,23 +462,7 @@
         "mobile": {
           "rules": {
             "color-contrast": {
-              "serious": 34
-            }
-          }
-        }
-      },
-      "/unloading": {
-        "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 2
-            }
-          }
-        },
-        "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 2
+              "serious": 1
             }
           }
         }
@@ -528,14 +471,14 @@
         "desktop": {
           "rules": {
             "color-contrast": {
-              "serious": 20
+              "serious": 19
             }
           }
         },
         "mobile": {
           "rules": {
             "color-contrast": {
-              "serious": 23
+              "serious": 22
             }
           }
         }
@@ -923,21 +866,10 @@
       },
       "/tunafarm-industry": {
         "desktop": {
-          "rules": {
-            "color-contrast": {
-              "serious": 3
-            },
-            "scrollable-region-focusable": {
-              "serious": 1
-            }
-          }
+          "rules": {}
         },
         "mobile": {
-          "rules": {
-            "color-contrast": {
-              "serious": 3
-            }
-          }
+          "rules": {}
         }
       },
       "/unloading": {

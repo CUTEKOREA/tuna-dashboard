@@ -23,6 +23,11 @@
 > - **탭 가로 스크롤이 실제로 걸린 첫 회차**(탭 5개). 컨테이너 폭 390px → tablist client 336 / scroll 410, 340px → 286 / 410. 둘 다 한 줄 유지(`tabRows=1`), 버튼 내부 잘림 0, `scrollLeft` 최대(74·124)에서 마지막 탭 전체 노출, 카드·문서 가로 오버플로 없음(`docScrollWidth == clientWidth`).
 > - 배포 직후 1차 조회는 옛 상태(22건·4탭)였고 ~2.5분 뒤 재조회에서 28건·5탭 — 전파 지연. 정리는 `git switch -c sync/2026-10-09b origin/main` 만(gh 가 권한 `git worktree remove`·`git branch -D` 는 무시, 에이전트 정의 ⓒ).
 
+> ✅ **2026-10-10 KST — `/tunafarm-industry`·`/squid-industry` 접근성(axe) 위반 0** [CC]:
+> - 원인: ① 공유 `components/v2/PillTabs.tsx` 활성 알약 흰 글자 on 다크 `--accent-primary` #38bdf8(2.14) → 새 토큰 `--accent-primary-ink`(다크 #0f172a 8.33, 라이트·light·crisis 테마 #ffffff 유지). ② 오징어 `--mu-accent`·`-deep` 다크 값이 라이트 값(#6d28d9·#5b21b6) 그대로 → #a78bfa·#c4b5fd(6.74~10.26), 강조 회사 칩 #9f1239 → 다크 `--mu-focus-ink` #f9a8d4(9.46). ③ 축양 「읽는 법」 콜아웃 인라인 hex → `--mu-callout-*` 테마 토큰(다크 #fb923c·#4ade80·#509ee3·#cbd5e1 / 라이트 #c2410c·#15803d·#2870ae·#3f4657). ④ 축양 표 래퍼 `tabIndex=0 role=region aria-label=슬롯 제목`.
+> - 두 화면 critical+serious(데스크톱·모바일): 다크 /tunafarm 35·34 → 0·0, /squid 31·34 → 0·0 · 라이트 /tunafarm 4·3 → 0·0, /squid 0·0 유지. PillTabs 영향으로 다크 16화면 각 −1(/fleet·/logistics·/unloading·/panofi·/cosmo·/bangkok-office·/gmts·/pork·품목 8).
+> - 기준선: CI run 38058580511(origin/main #1406 병합 뒤) candidate job 로그 블록 `--decode`. 낮춤 38 · 올림 0. CI serious 라이트 184→**177** · 다크 598→**434**. PillTabs 렌더 테스트 단언 `color:#ffffff` → 토큰 참조로 갱신. 상태: 브랜치 `fix/a11y-industry-dark-20261010` PR #1407(병합 안 함). **프로덕션 미배포**.
+
 > ✅ **2026-10-10 KST — `/management` 접근성(axe) 위반 0** [CC]:
 > - 원인 두 가지(전부 color-contrast): ① 화면 자체 팔레트를 글자에 그대로 씀 — `theme.success` #059669(흰 3.77·크림 3.46)·`theme.gold` #C9A050(크림 2.23)·`theme.danger` #dc2626(크림 4.43)·`theme.muted` #64748b(크림 4.37, 탭 버튼). 글자 전용 토큰 `successText` #047857·`goldText` #b45309·`dangerText` #b91c1c·`mutedText` #475569 를 더하고 글자 color 에만 썼다(막대·선·아이콘·테두리는 원색 유지). ② `InfoTooltip`(사용처 이 화면 하나)이 `--w-slate-400` 을 읽는데, 이 화면은 `data-v3` 밖이라 테마와 무관하게 다크 값 #a1a1aa(흰 2.56)가 잡혔다 → `<main>` 에서 라이트 토큰 값 #626879(5.56)·#686e81 로 고정. 라이트·다크 수치가 같았던 이유도 이것(화면이 항상 크림·흰 바탕).
 > - 계열사 표 가로 스크롤 래퍼 `tabIndex=0 role=region aria-label`(탭별 이름). M&A 리스크 칩 중간 #d97706→goldText(#fef3c7 2.86→4.51)·높음 →dangerText.

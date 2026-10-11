@@ -141,7 +141,7 @@ export default function PillTabs({
               borderRadius: 8,
               border: 'none',
               background: 'transparent',
-              color: active ? '#ffffff' : 'var(--dsc-ink-muted)',
+              color: active ? 'var(--accent-primary-ink, #ffffff)' : 'var(--dsc-ink-muted)',
               fontSize: '0.85rem',
               fontWeight: active ? 700 : 400,
               cursor: 'pointer',
@@ -159,7 +159,7 @@ export default function PillTabs({
                   position: 'absolute',
                   inset: 0,
                   borderRadius: 8,
-                  /* 활성 필은 전역 강조색 단색 + 흰 글자로 고정한다.
+                  /* 활성 필은 전역 강조색 단색 + 그 위 글자색(--accent-primary-ink: 라이트 흰색·다크 slate-900)으로 고정한다.
                      품목 시그니처 색을 여기 넣으면 흰 글자 대비가 4.5:1 아래로 떨어지는
                      조합이 생긴다(예: teal-600). 시그니처 색은 히어로와 차트가 낸다. */
                   background: 'var(--accent-primary)',
