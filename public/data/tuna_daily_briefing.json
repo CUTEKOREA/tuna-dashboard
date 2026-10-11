@@ -33,7 +33,21 @@
         "Quote에 따르면 인수 자금은 여러 경로로 조달됐다. 회사는 인수를 위해 EUR 2억의 브리지론을 확보했고, Van der Plas 가문은 EUR 1억 1,250만의 판매자 대출(vendor loan)을 제공해 사실상 매각 대금 일부를 스스로 조달했다. 나머지 금액은 어업 사업에서 창출된 현금으로 충당했다.",
         "PP Group은 7월 Thunnus Overseas Group(TOG)을 완전 소유하게 됐다. TOG에는 코트디부아르의 가공 사업장인 SCODI와 Pêche et Froid Côte d’Ivoire, 마다가스카르 통조림공장 Pêche et Froid Océan Indien이 포함된다. TOG의 프랑스 캔참치 시장 점유율은 약 25%로 추정된다. 이 거래로 PP Group은 CFTO 어선, 아프리카·인도양 가공 자산, 유럽 유통으로 이어지는 더 통합된 참치 체인을 갖추게 됐다. 회사는 9월 CFTO가 Sapmer의 마지막 선망선 3척을 매입했다고 확인했다."
       ],
-      "titleEn": "Financial Details Emerge On Parlevliet Family’s PP Group Buyout"
+      "titleEn": "Financial Details Emerge On Parlevliet Family’s PP Group Buyout",
+      "figs": [
+        {
+          "value": "EUR 4억 5,250만",
+          "caption": "Van der Plas 지분 인수 대금"
+        },
+        {
+          "value": "EUR 6,000만",
+          "caption": "언아웃 추가 지급 가능 (향후 3년 실적 조건)"
+        },
+        {
+          "value": "EUR 15억 이상",
+          "caption": "2025년 매출 (이익 EUR 6,700만)"
+        }
+      ]
     },
     {
       "titleKo": "FAO, IATTC의 생태계 기반 어업관리 접근 높이 평가",
@@ -45,7 +59,21 @@
         "IATTC 과학연구부장 Alexandre da Silva는 “위원회는 생태계 지표, 혼획 연구, 생태계 현황 보고를 포함해 점점 더 견고한 생태계 과학 체계를 구축해 왔다”고 말했다.",
         "그는 이 결의가 그러한 정보를 관리 논의와 의사결정 과정에 더 체계적으로 반영하기 위한 틀을 제공한다고 덧붙였다."
       ],
-      "titleEn": "FAO Praises IATTC’s Ecosystem Approach In Fisheries"
+      "titleEn": "FAO Praises IATTC’s Ecosystem Approach In Fisheries",
+      "figs": [
+        {
+          "value": "C-26-08",
+          "caption": "IATTC EAFM 결의"
+        },
+        {
+          "value": "8/31~9/4",
+          "caption": "IATTC 연례회의"
+        },
+        {
+          "value": "과테말라",
+          "caption": "공동 제안 발의·주도 (Bernal Chavarria)"
+        }
+      ]
     },
     {
       "titleKo": "미 세관, 불법 참치 수입 사기 단속",
@@ -62,7 +90,21 @@
         "CBP는 일반 대중이 CBP.gov의 e-Allegation 포털로 위반 의심 사례를 신고해 미국 무역의 건전성 보호를 도울 수 있다고 밝혔다.",
         "미국 세관 자료에 따르면 2025년 8월부터 2026년 7월까지 마이애미를 통해 통관된 참치 수입은 16,062톤, USD 1억 3,619만어치였다. 과반은 신선 참치(9,833톤)였고, 냉동 생(raw) 로인·필레는 3,766톤, 냉동 원어(WR)는 207톤이었다. 나머지 물량은 조제·저장 제품이었다. 어종은 대부분 황다랑어, 눈다랑어, 참다랑어였다."
       ],
-      "titleEn": "US Customs Cracks Down On Illegal Tuna Import Scam"
+      "titleEn": "US Customs Cracks Down On Illegal Tuna Import Scam",
+      "figs": [
+        {
+          "value": "약 USD 850만",
+          "caption": "CBP 추산 미납 세수"
+        },
+        {
+          "value": "약 USD 890만",
+          "caption": "처벌 사건 10건 잠재적 처벌금 합계"
+        },
+        {
+          "value": "16,062톤",
+          "caption": "마이애미 통관 참치 수입 (2025.8~2026.7)"
+        }
+      ]
     },
     {
       "titleKo": "설문: 가다랑어 원가 상승, 소매가에는 언제 반영될까?",
@@ -73,7 +115,21 @@
         "Atuna는 소비자가 언제 캔참치 가격 인상을 보게 될지 독자 의견을 듣고자 한다.",
         "설문 문항은 “가다랑어 원가 상승은 언제 소비자에게 닿을까?”이며, 보기는 3개월 이내, 3~6개월 이내, 6개월 이후다."
       ],
-      "titleEn": "Poll: When Will The Impact Of Higher Skipjack Costs Be Felt At Retail?"
+      "titleEn": "Poll: When Will The Impact Of Higher Skipjack Costs Be Felt At Retail?",
+      "figs": [
+        {
+          "value": "USD 2,350/톤",
+          "caption": "만타 가다랑어 (이번 주)"
+        },
+        {
+          "value": "USD 2,300 근접",
+          "caption": "방콕 가다랑어 (톤당, 이번 주)"
+        },
+        {
+          "value": "8월부터",
+          "caption": "사조그룹 캔참치 등 가격 인상 발표"
+        }
+      ]
     },
     {
       "titleKo": "MSC, 어업 표준 개정안 의견 수렴",
@@ -85,7 +141,21 @@
         "최종안에 대한 30일간의 추가 공개 의견수렴은 2027년 4월 진행될 것으로 예상된다. 어업 표준 버전 4는 2027년 9월 발표될 것으로 예상되며, 발표일로부터 6개월 뒤 발효된다.",
         "MSC 어업 표준은 지속가능한 어업의 세계적 기준을 제시한다. MSC 성명에 따르면 개정안은 남획 종식과 생물다양성 보호 노력을 강화하는 한편 요건을 명확히 하고 복잡성을 줄이며 어업 평가의 일관성을 높이는 것을 목표로 한다. 10월 8일 시작된 공개 의견수렴은 12월 8일 마감된다."
       ],
-      "titleEn": "MSC Seeks Feedback On Proposed Fisheries Standard Changes"
+      "titleEn": "MSC Seeks Feedback On Proposed Fisheries Standard Changes",
+      "figs": [
+        {
+          "value": "60일",
+          "caption": "공개 의견수렴 (10/8~12/8)"
+        },
+        {
+          "value": "2027년 4월",
+          "caption": "최종안 30일 추가 의견수렴 (예상)"
+        },
+        {
+          "value": "2027년 9월",
+          "caption": "어업 표준 버전 4 발표 (예상), 6개월 뒤 발효"
+        }
+      ]
     },
     {
       "titleKo": "Gomes da Costa, 브라질서 참치 판매 촉진 프로모션",
@@ -96,7 +166,21 @@
         "Nauterra 대변인은 이번 사업이 하반기 카테고리 매출을 끌어올리기에 더없이 좋은 시점에 나왔다고 말했다. “참치 카테고리에 집중하고 파테 라인에 추가 혜택을 제공함으로써, 브랜드는 판매 시점에서 직접적인 유인을 만들어 소비자와 유통 파트너 모두에게 이익이 된다.”",
         "이 브랜드는 지난해 10월 참치·파스타 콤보를 알리는 캠페인을 내놓고 소셜미디어에서 홍보했다."
       ],
-      "titleEn": "Gomes Da Costa Launches Promotion To Drive Tuna Sales In Brazil"
+      "titleEn": "Gomes Da Costa Launches Promotion To Drive Tuna Sales In Brazil",
+      "figs": [
+        {
+          "value": "9/21~11/19",
+          "caption": "프로모션 기간"
+        },
+        {
+          "value": "BRL 20 이상",
+          "caption": "참여 최소 구매액 (USD 3.98)"
+        },
+        {
+          "value": "최대 BRL 700",
+          "caption": "상당 경품 (USD 140)·자동차 당첨 기회"
+        }
+      ]
     }
   ]
 }

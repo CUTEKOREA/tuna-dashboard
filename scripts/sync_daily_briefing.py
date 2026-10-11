@@ -94,25 +94,83 @@ def has_styles(block: HtmlBlock, *declarations: str) -> bool:
     return all(declaration in style for declaration in declarations)
 
 
+EXPECTED_FIG_WIDTHS = ("34%", "33%", "33%")
+FIGS_TABLE_RE = re.compile(
+    r'<table\b[^>]*\bstyle="[^"]*border-collapse:collapse[^"]*margin:6px[^"]*"[^>]*>'
+    r"\s*<tr>(.*?)</tr>\s*</table>",
+    re.DOTALL | re.IGNORECASE,
+)
+FIG_CELL_RE = re.compile(
+    r'<td\s+width="(?P<width>34%|33%)"[^>]*>(?P<body>.*?)</td>',
+    re.DOTALL | re.IGNORECASE,
+)
 
-WIDGET_SOURCE = Path(__file__).resolve().parent.parent / "lib" / "data" / "daily-briefing.ts"
 
-
-def widget_number_token_pattern() -> "re.Pattern[str]":
-    """「오늘의 수치」 위젯이 쓰는 수치 토큰 정규식을 TS 정본에서 읽어 온다.
-
-    복사해 두면 갈라진다 — 배포 게이트가 위젯과 다른 기준으로 통과를 내주면
-    화면은 비는데 파이프라인은 OK 를 찍는다. 정본은 daily-briefing.ts 하나다.
-    """
-    src = WIDGET_SOURCE.read_text(encoding="utf-8")
-    m = re.search(r"const NUMBER_TOKEN_PATTERN\s*=\s*/(.+?)/;", src, re.S)
-    if not m:
+def parse_fig_cell(td_inner: str) -> dict[str, str]:
+    mini = LegacyBriefingParser()
+    mini.feed(td_inner)
+    mini.close()
+    value: str | None = None
+    caption: str | None = None
+    for block in mini.blocks:
+        if block.tag != "div":
+            continue
+        if has_styles(block, "font-size:18px", "font-weight:bold"):
+            if value is not None:
+                raise BriefingSyncError(
+                    "핵심수치 셀에 값(18px bold) div 가 2개 이상입니다."
+                )
+            value = block.text
+            continue
+        if has_styles(block, "font-size:12px"):
+            if caption is not None:
+                raise BriefingSyncError(
+                    "핵심수치 셀에 캡션(12px) div 가 2개 이상입니다."
+                )
+            caption = block.text
+    if not value or not caption:
         raise BriefingSyncError(
-            f"NUMBER_TOKEN_PATTERN 을 {WIDGET_SOURCE} 에서 찾지 못했습니다 — "
-            "위젯 정규식이 옮겨졌는지 확인하십시오."
+            "핵심수치 셀에서 값(18px bold) 또는 캡션(12px)을 찾지 못했습니다."
         )
-    # JS 와 Python 에서 뜻이 같은 문법만 쓰고 있다(lookbehind·named group 없음).
-    return re.compile(m.group(1))
+    return {"value": value, "caption": caption}
+
+
+def parse_figs_row(row_html: str) -> list[dict[str, str]]:
+    figs: list[dict[str, str]] = []
+    cursor = 0
+    for expected_width in EXPECTED_FIG_WIDTHS:
+        match = FIG_CELL_RE.search(row_html, cursor)
+        if not match or match.group("width").lower() != expected_width.lower():
+            raise BriefingSyncError(
+                f"핵심수치 행의 셀 너비가 34%·33%·33% 순서가 아닙니다: "
+                f"기대 {expected_width}"
+            )
+        figs.append(parse_fig_cell(match.group("body")))
+        cursor = match.end()
+    if FIG_CELL_RE.search(row_html, cursor):
+        raise BriefingSyncError(
+            f"핵심수치 행에 셀이 {len(EXPECTED_FIG_WIDTHS)}개보다 많습니다."
+        )
+    return figs
+
+
+def extract_figs_strips(html: str) -> list[list[dict[str, str]]]:
+    strips: list[list[dict[str, str]]] = []
+    for table_match in FIGS_TABLE_RE.finditer(html):
+        strips.append(parse_figs_row(table_match.group(1)))
+    return strips
+
+
+def validate_impact_numbers_gate(digest: list[dict[str, Any]], articles: list[dict[str, Any]]) -> None:
+    """「오늘의 수치」 위젯이 실제로 읽는 리드 기사 figs 3개를 검사한다."""
+    lead_figs = articles[0].get("figs") if articles else None
+    lead_count = len(lead_figs) if isinstance(lead_figs, list) else 0
+    if len(digest) < 2 or lead_count != 3:
+        raise BriefingSyncError(
+            "「오늘의 수치」를 채울 수 없습니다 — 리드 기사(articles[0])에 핵심수치(figs) "
+            "가 정확히 3개 있어야 하고, 다이제스트는 2건 이상 필요합니다."
+        )
+
 
 def is_digest_title(block: HtmlBlock) -> bool:
     return block.tag == "td" and has_styles(
@@ -187,12 +245,13 @@ def parse_briefing_html(source: Path) -> dict[str, Any]:
         raise BriefingSyncError(f"입력 파일을 찾을 수 없습니다: {source}")
 
     briefing_date = filename_date(source)
-    parser = LegacyBriefingParser()
     try:
-        parser.feed(source.read_text(encoding="utf-8"))
-        parser.close()
+        html_text = source.read_text(encoding="utf-8")
     except (OSError, UnicodeError) as error:
         raise BriefingSyncError(f"HTML을 UTF-8로 읽지 못했습니다: {source}") from error
+    parser = LegacyBriefingParser()
+    parser.feed(html_text)
+    parser.close()
 
     digest = [
         {"title": block.text}
@@ -234,6 +293,20 @@ def parse_briefing_html(source: Path) -> dict[str, Any]:
         if not article["paragraphs"]:
             raise BriefingSyncError(f"상세 기사 {index}의 본문 문단이 비어 있습니다.")
 
+    figs_per_article = extract_figs_strips(html_text)
+    if len(figs_per_article) != len(articles):
+        raise BriefingSyncError(
+            f"핵심수치 스트립 수({len(figs_per_article)})와 기사 수({len(articles)})가 "
+            "일치하지 않습니다."
+        )
+    for index, article in enumerate(articles, start=1):
+        figs = figs_per_article[index - 1]
+        if len(figs) != 3:
+            raise BriefingSyncError(
+                f"상세 기사 {index}의 핵심수치는 정확히 3개여야 합니다: {len(figs)}개"
+            )
+        article["figs"] = figs
+
     # TAK 사전 검증 — lib/data/daily-briefing.ts 의 DIRECTIVE_PATTERN 과 동일 기준.
     # 렌더 시점 throw(첫화면 파손)를 막기 위해 나쁜 JSON 은 여기서 생성 자체를 거부한다.
     directive_pattern = re.compile(r"(촉구했다|권고했다|요구했다|제안했다|주문했다|요청했다|경고했다|해야 한다|필요가 있다)[.!?]?\s*$")
@@ -243,16 +316,7 @@ def parse_briefing_html(source: Path) -> dict[str, Any]:
         for paragraph in article["paragraphs"]
         for sentence in re.split(r"(?<=[.!?])\s+", paragraph)
     )
-    # 「숫자가 하나라도 있으면 통과」로는 게이트가 거짓말을 한다. 위젯은 단위가 붙은 토큰만
-    # 뽑으므로 「SIAL 파리 2026」 같은 연도로 계약은 열리고 「오늘의 수치」는 빈 채 나간다
-    # (9/28·9/29 실측). 그래서 위젯이 실제로 쓰는 정규식을 TS 에서 그대로 읽어 같은 기준으로 센다.
-    token_pattern = widget_number_token_pattern()
-    numeric_digest = [d for d in digest if token_pattern.search(d["title"])]
-    if len(digest) < 2 or not numeric_digest:
-        raise BriefingSyncError(
-            "SIT 를 만들 수 없습니다 — 위젯이 뽑을 수 있는 수치 토큰(단위·통화 포함)이 든 "
-            "다이제스트가 최소 1건, 전체 2건 이상 필요합니다."
-        )
+    validate_impact_numbers_gate(digest, articles)
 
     # 2026-08-17: 지침 문장 없음은 실패가 아니다. 그날 기사가 전부 관측·보고형일 수 있다
     # (8/17 5건 전부 해당). TAK 은 데일리 브리핑 렌더 경로에 쓰이지 않으므로 차단하지 않고

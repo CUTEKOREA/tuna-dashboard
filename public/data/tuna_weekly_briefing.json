@@ -34,7 +34,21 @@
             "포르투갈은 캔참치 수출국으로 떠오르고 있다. 일부는 자국에서 생산한 제품이지만, 상당 부분은 포르투(Porto)에 도착해 트럭으로 비고(Vigo)까지 운송되는 컨테이너를 스페인으로 재분배하는 물량이다.",
             "체코, 슬로바키아, 오스트리아는 가공 시설이 없지만, 체코와 슬로바키아의 Orkla Foods 같은 식품 유통 기업이 수입한 캔참치를 재판매한다. 대표 브랜드는 스웨덴으로 가는 Abba와 중부 유럽 국가들로 가는 Hamé다. 오스트리아의 Glatz는 스페인과 포르투갈에서 만든 제품을 거래하며, VOG는 NewPrinces 소유의 Vier Diamanten 브랜드를 수출한다. 이 브랜드는 주로 모리셔스에서, 태국과 인도네시아에서도 생산된다."
           ],
-          "titleEn": "Canned Tuna Exports By EU Producing Nations Declined"
+          "titleEn": "Canned Tuna Exports By EU Producing Nations Declined",
+          "figs": [
+            {
+              "value": "157,262 M/T",
+              "caption": "1~6월 EU 캔참치 수출 (전년 대비 약 +8,200톤)"
+            },
+            {
+              "value": "EUR 6,020",
+              "caption": "톤당 평균 가격 (−3%)"
+            },
+            {
+              "value": "EUR 5,922",
+              "caption": "프랑스 톤당 가격 (+14%)"
+            }
+          ]
         },
         {
           "titleKo": "Atunsa, 2025년 매출 13% 줄어든 Pevasa 인수 마무리",
@@ -48,7 +62,21 @@
             "Pevasa의 2025년 매출은 13% 줄어 EUR 5,211만이었고, 손실은 EUR 1,300만, 운전자본은 −EUR 950만이었다. 선원 급여를 빼고도 선망선 한 척을 바다에 내보내는 데 매달 약 EUR 60만의 투자가 필요하다는 점을 알면, 운전자본이 마이너스인 것도 놀랍지 않다. 반면 Atunsa는 매출이 2024년보다 7.7% 줄어든 EUR 8,100만, 이익은 2024년의 20배인 EUR 300만이었다.",
             "두 회사 모두 비상장 기업이어서 연간 실적을 공개할 의무가 없다. Atunsa는 Zulueta 가문이 운영하며 현 회장은 Jose Ignacio Zulueta다. Pevasa는 여러 주주가 소유하고 있으며 회장은 Felipe Ruano, 대표이사(Managing Director)는 Borja Soroa다."
           ],
-          "titleEn": "Atunsa Finalizes Acquisition Of Pevasa"
+          "titleEn": "Atunsa Finalizes Acquisition Of Pevasa",
+          "figs": [
+            {
+              "value": "9월 30일",
+              "caption": "Pevasa 매각 공증 등록"
+            },
+            {
+              "value": "선망선 5척",
+              "caption": "새 경영진이 운영"
+            },
+            {
+              "value": "EUR 1,300만",
+              "caption": "Pevasa 2025년 손실"
+            }
+          ]
         },
         {
           "titleKo": "CNPF 임원, 걸프 지역 수출 성공의 전략을 상세히 설명",
@@ -73,7 +101,21 @@
             "그는 “둘 다 집중된 출발 기반과 매대까지의 효율적인 경로를 제공한다. 더 큰 기회는 필리핀인 인구층만이 아니라 더 넓은 걸프 소비자를 끌어들이는 데서 나온다”고 말했다.",
             "Atuna는 지난주 Century Pacific의 중동·북아프리카(MENA) 사업 호조에 관한 Banzon의 발표와, 그가 TUNA 2026에서 이 지역에 대해 제시한 개관을 보도했다."
           ],
-          "titleEn": "CNPF Exec Details Strategy Behind Gulf Region’s Export Success"
+          "titleEn": "CNPF Exec Details Strategy Behind Gulf Region’s Export Success",
+          "figs": [
+            {
+              "value": "약 210만 명",
+              "caption": "걸프 국가 거주 필리핀인"
+            },
+            {
+              "value": "77% 이상",
+              "caption": "가구 침투율 중 동남아시아인 비중"
+            },
+            {
+              "value": "200곳 이상",
+              "caption": "UnMEAT 출시 2개월 내 입점 소매점"
+            }
+          ]
         },
         {
           "titleKo": "EU 경보: 아질산염 처리 참치 유입 계속",
@@ -85,7 +127,21 @@
             "폴란드 세관은 9월 14일 선드라이드 토마토 드레싱 참치에서 관능적으로 변형된 병변(비정상 조직 부위)이 보였고 캔이 부풀어 있었다고 당국에 알렸다. RASFF 사이트에는 “관능검사 결과 부적합, 부풀어 오른 캔(주석캔 팽창)으로 인해 화물 전체가 허용 불가하며, 따라서 Regulation (EC) No 178/2002 제14조에 규정된 대로 사람이 섭취하기에 부적합하다”고 적혀 있다. 에콰도르산인 이 제품은 국경에서 반입이 거부됐다.",
             "스페인은 9월 21일 모로코산 참다랑어의 수은을 보고했다. EU는 최대 1 mg/kg(ppm)까지 허용하지만, 이 제품은 1.5 mg/kg(ppm)을 넘었다. 화물은 국경 검사 중에 확인됐고, 반출(released)됐다. RASFF에 따르면 ‘심각한 위험(serious risk)’ 등급에 해당한 이 제품은 시장에서 회수됐다."
           ],
-          "titleEn": "EU Alerts: Influx Of Nitrite-Treated Tuna Continues"
+          "titleEn": "EU Alerts: Influx Of Nitrite-Treated Tuna Continues",
+          "figs": [
+            {
+              "value": "6건",
+              "caption": "9월 RASFF 참치 관련 사례"
+            },
+            {
+              "value": "17 / 21 mg/kg",
+              "caption": "베트남산 황다랑어 아질산염 (9/11 / 9/18)"
+            },
+            {
+              "value": "1.5 mg/kg 초과",
+              "caption": "모로코산 참다랑어 수은 (EU 허용 1 mg/kg)"
+            }
+          ]
         },
         {
           "titleKo": "멕시코 선망선, 1차 휴어기 뒤 참치 조업 재개 준비",
@@ -94,7 +150,21 @@
             "멕시코는 에콰도르에 이어 동태평양(EPO)에서 두 번째로 큰 참치 선단(61척)을 보유하고 있지만, 8월 6일 시작된 휴어기를 택한 선박은 16척뿐이었다. 이 선박들은 10월 9일 EPO에서 조업을 재개할 수 있다. 나머지 선박들은 11월 9일부터 2027년 1월 11일까지 이어지는 2차 금어기에 참여할 것으로 예상된다.",
             "에콰도르는 선망선 107척 가운데 44척이 현재 진행 중인 휴어기 동안 조업을 멈추기로 했다. 이 가운데 35척은 어창 용량이 363 M/T를 넘는 Class 6 선박이어서 에콰도르 가공업체들의 공급난 위험을 키우고 있다. 에콰도르 통조림 공장들은 이미 몇 달째 가다랑어 공급 감소에 시달리고 있다."
           ],
-          "titleEn": "Mexican Seiners Prepare To Resume Tuna Fishing After First Veda"
+          "titleEn": "Mexican Seiners Prepare To Resume Tuna Fishing After First Veda",
+          "figs": [
+            {
+              "value": "10월 9일",
+              "caption": "1차 휴어 참여 선망선 조업 재개"
+            },
+            {
+              "value": "16척",
+              "caption": "멕시코 선단 61척 중 1차 휴어 참여"
+            },
+            {
+              "value": "44척",
+              "caption": "에콰도르 선망선 107척 중 휴어 참여"
+            }
+          ]
         }
       ]
     },
@@ -125,7 +195,21 @@
             "공식 합의 관리자 웹사이트에 따르면 지급은 9월 8일 이뤄졌지만 일부 수표는 수령인이 입금한 뒤 거절됐다. 관리자는 영향을 받은 모든 집단소송 구성원(class members)에게 이메일로 문제를 설명했고 9월 28일 대체 수표를 우편으로 보냈다고 밝혔다. 대체 수표에는 수령인이 부담한 은행 수수료를 상쇄하는 데 도움이 되도록 USD 20이 추가됐다.",
             "7월 캘리포니아 남부지구(Southern District of California)의 Dana Sabraw 연방판사는 주요 브랜드 StarKist, Bumble Bee, 치킨오브더씨의 캔참치를 구매한 미국 소비자(최종 구매자)에게 USD 1억 5,220만 지급을 승인했다. 소비자들은 이들 회사와 모회사들이 가격을 담합했다고 주장하며 2015년 집단소송을 제기했다."
           ],
-          "titleEn": "Banking Issue Delays US Canned Tuna Settlement Payments"
+          "titleEn": "Banking Issue Delays US Canned Tuna Settlement Payments",
+          "figs": [
+            {
+              "value": "USD 1억 5,220만",
+              "caption": "포장 참치 합의 규모"
+            },
+            {
+              "value": "9월 28일",
+              "caption": "대체 수표 우편 발송"
+            },
+            {
+              "value": "USD 20",
+              "caption": "대체 수표 추가분 (은행 수수료 상쇄 지원)"
+            }
+          ]
         },
         {
           "titleKo": "일본 도시, 해상 의료 개선",
@@ -138,7 +222,21 @@
             "대상 선원 약 120명 가운데 약 70명이 LINE에 등록해 선원 고령화에도 관심이 커지고 있음을 보여준다. 비용과 일정 관련 장벽을 없앤 것이 접근성을 넓히고 도움을 구하는 데 따르는 낙인을 줄인 것으로 보인다.",
             "그러나 상담 대부분은 여전히 심각한 사례다. “가벼운 건강 상담”을 활성화하겠다는 시의 목표는 아직 달성되지 않은 셈이다. 프로그램 운영자들은 장벽을 낮추고 예방적 이용을 장려하려는 시도로 LINE을 통해 익명화한 사례와 실용 정보를 공유한다."
           ],
-          "titleEn": "Japanese City Improves Offshore Medical Care"
+          "titleEn": "Japanese City Improves Offshore Medical Care",
+          "figs": [
+            {
+              "value": "약 70명",
+              "caption": "LINE 등록 선원 (대상 약 120명 중)"
+            },
+            {
+              "value": "24시간",
+              "caption": "의사·간호사 응대 LINE 상담"
+            },
+            {
+              "value": "2025년 12월",
+              "caption": "무예약·이용자 무료 방식 전환"
+            }
+          ]
         },
         {
           "titleKo": "WCPFC 회원국 간 항만국 조치, 여전히 고르지 않아",
@@ -154,7 +252,21 @@
             "원문 기사의 그림은 2012~2025년 항만 검사 활동에서 확인된 제25조(2) 관련 위반 혐의를 WCPFC 회원들이 조사한 결과를 요약한다(그림은 이 게시글에 싣지 않았다). 그 결과 입항 거부와 관련된 사례가 5건 나왔다. 선박 허가(vessel authorizations) 부문의 사례와 제재가 가장 많았다. 상어 관리 조치와 전재 조치에 따른 위반에서도 각각 제재가 2건씩 나타났다.",
             "사무국은 준수 사례 파일 시스템(Compliance Case File System)이 이 기간의 모든 항만 검사 보고서를 반영하지는 않는다고 밝혔다. 일부 잠재적 준수 사례는 WCPFC가 해당 보고서에 접근할 수 없었기 때문에 최근에야 생성됐다. 다른 사례들은 GIES 시스템 오류로 지연됐으며 일부 검사 보고서는 위반된 구체적인 보존조치 의무를 특정하거나 뒷받침 증거를 제시할 만큼 상세하지 않았다."
           ],
-          "titleEn": "Port State Measures Remain Uneven Among WCPFC Members"
+          "titleEn": "Port State Measures Remain Uneven Among WCPFC Members",
+          "figs": [
+            {
+              "value": "816건",
+              "caption": "2024년 4월 이후 WCPFC 접수 검사 보고서"
+            },
+            {
+              "value": "197건",
+              "caption": "올해 들어 지금까지 접수"
+            },
+            {
+              "value": "26곳 중 24곳",
+              "caption": "PSMA 서명·당사국인 WCPFC 정회원"
+            }
+          ]
         },
         {
           "titleKo": "수산 부문의 부패를 억제하는 방법",
@@ -169,7 +281,21 @@
             "법 집행 기관은 공동 수사, 조화된 집행, 그리고 국가·지역수산기구(RFMO)·파트너 간 정보 공유의 뒷받침을 받아 “돈을 추적(follow the money)”해 비리 구조를 드러내고 무너뜨려야 한다. 단편적인 증거, 그리고 실소유(beneficial ownership)·자금 흐름·집행 결과·부문 관련 부패 사례에 관한 데이터 부족이 진전을 제약하고 있다.",
             "UNODC는 “어떤 체계도 부패를 완전히 없앨 수는 없지만, 부패 위험 관리는 부패 행위의 가능성과 영향을 모두 줄이는 구조화되고 선제적인 접근법을 제공한다”고 강조한다. UNODC는 다양한 어업 맥락에서 부패가 어떻게 나타나고 생태적·경제적·사회적 압력과 어떻게 연결되는지 더 잘 이해하기 위해 추가 연구와 체계적인 데이터 수집을 권고한다."
           ],
-          "titleEn": "How To Curb Corruption In The Fisheries Sector"
+          "titleEn": "How To Curb Corruption In The Fisheries Sector",
+          "figs": [
+            {
+              "value": "제2판",
+              "caption": "UNODC ‘Rotten Fish’ 지침"
+            },
+            {
+              "value": "2개 범주",
+              "caption": "지침의 범죄 분류"
+            },
+            {
+              "value": "모잠비크",
+              "caption": "참치 채권 스캔들 사례"
+            }
+          ]
         },
         {
           "titleKo": "무역협상 속 태국의 EU 캔참치 수출 상반기 16% 감소",
@@ -188,7 +314,21 @@
             "영국 수출은 전년보다 503 M/T 줄었으며 화물은 최고가인 USD 5,595에 매입됐다. 타이유니온 소유의 John West가 이 시장의 주된 참치 브랜드이며 일부 물량은 이 회사의 사뭇사콘(Samut Sakhon) 통조림 공장에서 생산된다.",
             "스위스 소매업체, 무역업체, 브랜드의 수요는 급감했다. 이들의 구매는 대부분 PB용이었으며 여기에는 태국에서 생산한 자체 PB로 MSC 캔참치를 판매하는 소매업체 Coop의 Qualité & Prix와 Migros의 M-Classic이 포함된다."
           ],
-          "titleEn": "Thai Canned Tuna Trade With EU Remains Dismal Amid Trade Talks"
+          "titleEn": "Thai Canned Tuna Trade With EU Remains Dismal Amid Trade Talks",
+          "figs": [
+            {
+              "value": "4,511 M/T",
+              "caption": "2026년 상반기 태국의 EU 캔참치 수출 (16% 감소)"
+            },
+            {
+              "value": "USD 5,174",
+              "caption": "2026년 상반기 EU행 톤당 평균 수출 가격(하락)"
+            },
+            {
+              "value": "15,209 M/T",
+              "caption": "2026년 상반기 EU 밖 유럽 국가행 (전년 대비 +2%)"
+            }
+          ]
         }
       ]
     },
@@ -228,7 +368,21 @@
             "미국 비영리단체 Seafood Task Force(STF)도 원양 참치 선단, 특히 대만 국적 연승선에 모집되는 인도네시아 이주 어선원을 위한 보호장치 개선에 집중해 왔다. STF는 5월 인도네시아에서 선원 복지와 모집 과제를 다루는 정상회의(summit)를 열었다. 이어 6월 23~24일 중부 자바에서 인도네시아 이주 어선원 송출업체 40곳 이상이 참여한 워크숍을 열었다. 이 워크숍은 책임 있는 모집을 진전시키고 업체들이 관행을 STF의 기대와 인도네시아 규정에 맞추도록 돕기 위한 것이었다.",
             "8월 STF는 5개년 참치 선박 보증·시정(assurance and remediation) 프로그램을 시작했다. 이 프로그램은 특히 인도네시아·대만 당국과 함께 모집 수수료, 채무 노예(debt bondage), 허술한 고용계약, 노동 송출업체 간 일관성 없는 관행 등의 위험에 대응할 예정이다."
           ],
-          "titleEn": "Indonesia Pushes Crew Recruitment Agencies To Register"
+          "titleEn": "Indonesia Pushes Crew Recruitment Agencies To Register",
+          "figs": [
+            {
+              "value": "제83조",
+              "caption": "선원 배치·모집 규율 (KKP 규정 2026년 제4호)"
+            },
+            {
+              "value": "40곳 이상",
+              "caption": "STF 6월 워크숍 참여 송출업체"
+            },
+            {
+              "value": "5개년",
+              "caption": "STF 참치 선박 보증·시정 프로그램 (8월 시작)"
+            }
+          ]
         },
         {
           "titleKo": "Alimentos Prosalud, 2029년까지 매출 50% 성장 목표 제시하고 새 정체성 공개",
@@ -244,7 +398,21 @@
             "APS는 공급망 혁신도 원하며 이미 인공지능을 활용해 공정을 강화하고 있다. 회사는 새 공장 설계도 모색하고 있다. 푼타레나스(원문 표기 ‘Punteneras’) 엘 로블레(El Roble)에 본사를 둔 이 회사는 주력 수산물 가공단지도 이곳에 두고 있다. APS는 참치, 정어리, 어분을 생산하기 위해 현 공장을 2002년 열었다.",
             "Larios는 LinkedIn 게시물에서 “우리의 포부는 세계를 향하지만, 우리의 책임은 여전히 지역에 있다. 푼타레나스는 우리가 성장하면서 떠나고 싶은 곳이 아니다. 계속 성장해 나가고 싶은 출발점이다. 이것은 단지 새 정체성에 관한 것이 아니다. 우리는 50년 된 사업을 다음 50년을 위해 바꾸고 있다”고 말했다."
           ],
-          "titleEn": "Alimentos Prosalud Projects Growth & Unveils New Identity"
+          "titleEn": "Alimentos Prosalud Projects Growth & Unveils New Identity",
+          "figs": [
+            {
+              "value": "50%",
+              "caption": "2029년까지 매출 성장 목표"
+            },
+            {
+              "value": "1,600명 이상",
+              "caption": "직원 수"
+            },
+            {
+              "value": "800개 이상",
+              "caption": "제품 수 (브랜드 11개 이상·PB 27개)"
+            }
+          ]
         },
         {
           "titleKo": "Europêche, 참치 양륙의무에 더 많은 유연성 요구",
@@ -258,7 +426,21 @@
             "그는 이번 제안이 원치 않는 어획을 줄이면서도 해상에서 실행 가능하고 효과적인 체계를 구축하는 데 필요한 입법 변화를 이끌어내는 것을 목표로 한다고 덧붙였다.",
             "EC의 2026년 4월 평가는 CFP가 EU 어업 관리에 여전히 적절하고 중요한 틀이지만 이행상의 공백이 있으며 조정 없이는 미래의 압력에 충분히 대비돼 있지 않다고 결론지었다. EC는 CFP가 더 적응력을 갖춰야 한다고도 밝혔다."
           ],
-          "titleEn": "Europêche Demands More Flexibility In Tuna Landing Obligation"
+          "titleEn": "Europêche Demands More Flexibility In Tuna Landing Obligation",
+          "figs": [
+            {
+              "value": "지난주",
+              "caption": "EC에 양륙의무 개정 제안 제출"
+            },
+            {
+              "value": "10년 넘게",
+              "caption": "CFP 양륙의무 도입 후 경과"
+            },
+            {
+              "value": "2026년 4월",
+              "caption": "EC CFP 평가"
+            }
+          ]
         },
         {
           "titleKo": "EU-세이셸 참치 협정, 이행 단계로",
@@ -270,7 +452,21 @@
             "마요트 수역 입어와 관련해, 최신 협정에 따라 세이셸 국적 선망선 8척과 보급선(supply vessels) 2척이 마요트 수역에서 조업할 수 있다. 회의는 선단 입어, 그리고 마요트가 참치 입어료를 어업 감시·감독 재원과 현지 어업 부문 지원에 쓰는 것을 포함해 협정 이행을 검토했다.",
             "EU와 세이셸은 7월 SFPA에 서명했으며 이 협정은 2030년 7월 26일까지 매년 EU 선망선과 연승선에 세이셸 수역의 참치와 기타 회유성 어종에 대한 입어를 허용한다. EU는 4년간 세이셸에 EUR 2,300만을 지급하며, 이 가운데 EUR 300만은 세이셸의 지속가능한 어업 부문 지원에 배정된다. EU 분담금 외에 이 협정에 따라 조업하는 유럽 선주들은 어획량에 따른 입어료를 내야 하므로, 세이셸이 얻는 전체 재정 혜택은 EUR 2,300만을 넘을 수 있다. 이전 SFPA 의정서는 올해 2월 23일 만료됐다."
           ],
-          "titleEn": "EU-Seychelles Tuna Pact Moves Into Implementation Phase"
+          "titleEn": "EU-Seychelles Tuna Pact Moves Into Implementation Phase",
+          "figs": [
+            {
+              "value": "EUR 2,300만",
+              "caption": "4년간 EU 지급 (EUR 300만 어업 지원 배정)"
+            },
+            {
+              "value": "55,000톤",
+              "caption": "EU 선박 세이셸 수역 어획 상한"
+            },
+            {
+              "value": "8척·2척",
+              "caption": "마요트 수역 세이셸 선망선·보급선"
+            }
+          ]
         },
         {
           "titleKo": "Anfaco “사업 모델 달라 EU-태국 협정 불가능”",
@@ -287,7 +483,21 @@
             "EU는 최근 자율관세쿼터(ATQ)를 1년 더 연장했으며 앞으로 몇 년 안에 지속가능성 기준을 추가하는 것을 검토하고 있다. Alonso는 이 조치를 환영하며 쿼터에 따라 냉동 자숙 참치 로인을 공급하는 국가와의 교역에서 지속가능성이 핵심 초점이 돼야 한다고 말했다.",
             "화요일 Atuna는 EU-태국 교역에 관한 시장 데이터를 살펴봤다. 현재 EU로 가는 물량은 미미하지만 양측의 최종 조건에 따라 달라질 수 있다."
           ],
-          "titleEn": "Anfaco Says EU-Thailand Deal Impossible Over Different Business Models"
+          "titleEn": "Anfaco Says EU-Thailand Deal Impossible Over Different Business Models",
+          "figs": [
+            {
+              "value": "50% 이상",
+              "caption": "EU 시장 자격 미달 태국산 참치 (Alonso)"
+            },
+            {
+              "value": "24%",
+              "caption": "EU 선단 외 조달 어류 관세 (최종 결정 미발표)"
+            },
+            {
+              "value": "1년",
+              "caption": "EU 자율관세쿼터(ATQ) 추가 연장"
+            }
+          ]
         },
         {
           "titleKo": "프랑스 당국, CFTO 선망선 선원 사망 조사",
@@ -295,7 +505,21 @@
             "프랑스 당국은 프랑스 참치 회사 Compagnie Française du Thon Océanique(CFTO)가 운영하는 프랑스 국적 선망선 ‘Gueriden’호가 기니만에서 조업하던 중 일어난 사고로 아프리카 출신 선원이 숨진 사건을 조사하고 있다.",
             "뉴스 사이트 Le Télégramme에 따르면, 사망자는 9월 13일 조업 중 냉동 탱크(refrigeration tank)에 빠진 것으로 전해졌다. 선주는 그가 즉시 구조됐지만 얼마 지나지 않아 갑작스러운 질환(sudden illness)으로 숨졌다고 밝혔다. 프랑스 해양사고조사국(BEAmer)은 웹사이트를 통해 이미 사고 조사에 착수했다고 발표했다. 길이 82m의 ‘Gueriden’호는 기니만에서 조업하는 CFTO 선박 4척 가운데 1척이며 나머지 선단은 인도양에서 조업한다."
           ],
-          "titleEn": "French Authorities Probe Death Of Sailor Aboard CFTO Seiner"
+          "titleEn": "French Authorities Probe Death Of Sailor Aboard CFTO Seiner",
+          "figs": [
+            {
+              "value": "9월 13일",
+              "caption": "조업 중 사고 발생"
+            },
+            {
+              "value": "82m",
+              "caption": "‘Gueriden’호 선박 길이"
+            },
+            {
+              "value": "4척",
+              "caption": "기니만 조업 CFTO 선박"
+            }
+          ]
         }
       ]
     },
@@ -336,7 +560,21 @@
             "NESI 인수는 소지쓰의 다른 여러 수산 투자에 이은 것이다. 소지쓰는 2022년 일본 가공업체 Marine Foods를 인수했고, 2023년에는 지분 10%를 보유하던 참치 공급업체 Try를 완전 소유로 전환했으며, 2024년에는 미국 매장 내 스시 운영업체 Sushi Avenue를 인수했다.",
             "소지쓰의 최근 인수들은 참치 조달과 일본식 수산 전문성을 북미·유럽의 가공 역량 및 소비자 대상 판매 채널과 연결하려는 노력을 시사한다."
           ],
-          "titleEn": "Sojitz Strengthens Tuna And Seafood Ambitions With NESI Acquisition"
+          "titleEn": "Sojitz Strengthens Tuna And Seafood Ambitions With NESI Acquisition",
+          "figs": [
+            {
+              "value": "10월 2일",
+              "caption": "인수 발표 (금액 비공개)"
+            },
+            {
+              "value": "5년간 4번째",
+              "caption": "소지쓰의 수산 부문 인수"
+            },
+            {
+              "value": "USD 57억",
+              "caption": "영국 수산물 소비시장 규모"
+            }
+          ]
         },
         {
           "titleKo": "만타 가다랑어 가격 톤당 USD 2,350, 잇단 위기 속 역대 최고치 근접",
@@ -352,7 +590,21 @@
             "한편 선단들은 참치를 찾아 전통 어장에서 더 멀리 나가고 있다. 엘니뇨 상황이 동태평양의 조업 어려움을 가중시켰다. 9월 30일자 NOAA 자료에 따르면 태평양 해수면 온도는 26℃~30℃였으며, 이런 조건이 참치를 통상적인 어장에서 벗어나게 한 것으로 전해졌다.",
             "세계 참치 가공 거점의 더 많은 가격은 Tuna Market Price Watch를 참조."
           ],
-          "titleEn": "Manta Skipjack Price Approaches Historic High Amid Multiple Crises"
+          "titleEn": "Manta Skipjack Price Approaches Historic High Amid Multiple Crises",
+          "figs": [
+            {
+              "value": "USD 2,350/톤",
+              "caption": "SKJ1.8:MNT (3주 전 USD 2,300, 약 2%↑)"
+            },
+            {
+              "value": "USD 2,400/톤",
+              "caption": "2017년 10월 만타 가다랑어 역대 최고치"
+            },
+            {
+              "value": "185~200%",
+              "caption": "AV1 전국 요금 평균 인상 예상 (10~12월)"
+            }
+          ]
         },
         {
           "titleKo": "인도네시아 참치 컨소시엄, 어획전략 진전시켜",
@@ -368,7 +620,21 @@
             "Atuna가 이런 프로그램이 어업인에게 도움이 되는지 묻자, Komaling은 이행상의 공백은 남아 있지만 프로그램이 어업 공동체에 보호를 제공한다고 말했다. “인도네시아 참치 어업인은 어느 정도 정부의 보호를 받고 있지만, 더 나은 관리도 필요하다. 예를 들어 대부분의 어업인은 외딴 지역에 산다. 배를 등록하려면 몇 시간씩 이동해 관공서에 가야 한다. 정말 시간이 많이 든다. 또 이 모든 일에 드는 비용을 감당하기도 쉽지 않다. 현재는 그 모든 것이 어업인에게 떨어진다. 전반적으로, 이 나라에 수십만 명의 어업인이 있다는 점을 생각하면 정부가 조치를 취하고 있다는 것이 자랑스럽다. 쉽지 않지만 우리는 나아가고 있다.”",
             "Komaling은 가족을 따라 업계에 들어오는 젊은 인도네시아인이 참치 조업 부문에 점점 더 많이 진입하고 있다고 말했다. 정부는 또 어업이 주요 생계 수단인 지역에 젊은이들이 남도록 장려하기 위해 농어촌 공동체의 교육, 의료, 위생에도 투자하고 있다."
           ],
-          "titleEn": "Indonesia Tuna Consortium Takes Harvest Strategy Forward"
+          "titleEn": "Indonesia Tuna Consortium Takes Harvest Strategy Forward",
+          "figs": [
+            {
+              "value": "2021년",
+              "caption": "참치 컨소시엄 설립 (Walton Family Foundation)"
+            },
+            {
+              "value": "2023년 6월",
+              "caption": "어획전략 사업 시작"
+            },
+            {
+              "value": "수십만 명",
+              "caption": "인도네시아 어업인 (Komaling)"
+            }
+          ]
         },
         {
           "titleKo": "CONXEMAR 2026, 세계 참치·수산업계 비고로 불러 모아",
@@ -380,7 +646,21 @@
             "참석자들은 해양보호구역(MPA) 지정, 조업의 환경영향평가, 지역수산기구(RFMO)와의 조정, 조업 활동의 부정적 영향을 막는 방안을 논의했다. 또 여러 나라 선주, 수산 당국, 외교 부처 간 대화를 강화할 필요성도 토론했다. TUNACONS 보도자료에 따르면 지속가능성, 모니터링, 연구, 취약 어종에 대한 영향 저감 면에서 업계가 이룬 진전에 관한 정보도 부각됐다.",
             "TUNACONS는 해양 생물다양성 보전과 지속가능한 어업의 지속이 조율된 방식으로 함께 나아가야 한다고 강조했다. BBNJ 과정에 어업 부문이 정보를 갖추고 참여하면, 해양을 보호하고 고용·식량안보·지역사회 발전에 대한 어업의 기여를 인정하는 결정에 이바지할 수 있다."
           ],
-          "titleEn": "CONXEMAR 2026 Draws Global Tuna And Seafood Industry To Vigo"
+          "titleEn": "CONXEMAR 2026 Draws Global Tuna And Seafood Industry To Vigo",
+          "figs": [
+            {
+              "value": "제27회",
+              "caption": "CONXEMAR 국제 냉동수산물 박람회"
+            },
+            {
+              "value": "10월 6일",
+              "caption": "개막·스페인-나미비아 MoU 서명"
+            },
+            {
+              "value": "수백 곳",
+              "caption": "참가 수산업체"
+            }
+          ]
         },
         {
           "titleKo": "Yeo’s, 두 가지 맛으로 캔참치 첫 진출",
@@ -391,7 +671,21 @@
             "Yeo’s Teriyaki Tuna(순중량 150g)는 온라인 쇼핑몰 Shopee Malaysia에서 약 RM 6.49(USD 1.41)에 판매되고 있다. 이번 출시는 시장 선두업체 Ayam Brand, 그리고 말레이시아에서 캔참치를 판매하는 또 다른 브랜드 TC Boy와의 경쟁을 심화시킬 것으로 보인다. Ayam Brand는 캔참치 제품 12종을 내놓고 있으며 동남아 지역에서도 판매한다.",
             "말레이시아의 기성 식음료 브랜드 가운데 하나인 Yeo’s는 1901년으로 거슬러 올라가며, 통조림 식품, 아시아 음료, 소스, 즉석면 등 제품 혁신의 오랜 역사를 갖고 있다. 말레이시아 사업장은 여러 해외 시장 수출을 위한 제조 기지 역할도 한다. Yeo’s는 싱가포르 상장 식음료 기업 Yeo Hiap Seng Limited(YHS)가 소유하고 있으며, YHS의 2025년 매출은 USD 2억 9,240만이었다."
           ],
-          "titleEn": "Yeo’s Makes First Foray Into Canned Tuna With Two Flavors"
+          "titleEn": "Yeo’s Makes First Foray Into Canned Tuna With Two Flavors",
+          "figs": [
+            {
+              "value": "약 RM 6.49",
+              "caption": "Teriyaki Tuna 150g (USD 1.41, Shopee Malaysia)"
+            },
+            {
+              "value": "12종",
+              "caption": "선두 Ayam Brand 캔참치 제품"
+            },
+            {
+              "value": "USD 2억 9,240만",
+              "caption": "모회사 YHS 2025년 매출"
+            }
+          ]
         },
         {
           "titleKo": "독자들 “EU-태국 FTA, 원산지 규정 붙여 참치 포함될 수도”",
@@ -400,7 +694,21 @@
             "Costas Kadis EU 수산 담당 집행위원은 EU의 원산지 규정이 협정 이행의 핵심 조건이 될 것이라고 말했다. 수요일 Atuna는 Anfaco-Cytma의 Roberto Alonso 사무총장이 EU와 태국은 서로 다른 사업 모델로 운영되며 태국의 모델은 아직 유럽 시장과 맞지 않아 FTA가 이행될 수 없다고 말했다고 보도했다.",
             "Atuna는 독자들에게 캔참치가 EU-태국 FTA에 포함될지 물었다. 65%는 원산지 규정을 붙여 포함될 것이라고 답했고, 24%는 제외될 것으로 예상했다. 나머지 12%는 쿼터를 통한 포함을 예상했다."
           ],
-          "titleEn": "Readers: EU-Thai FTA Could Include Tuna With Rules Of Origin"
+          "titleEn": "Readers: EU-Thai FTA Could Include Tuna With Rules Of Origin",
+          "figs": [
+            {
+              "value": "65%",
+              "caption": "원산지 규정 붙여 포함 예상"
+            },
+            {
+              "value": "24%",
+              "caption": "제외 예상"
+            },
+            {
+              "value": "12%",
+              "caption": "쿼터 통한 포함 예상"
+            }
+          ]
         }
       ]
     },
@@ -439,7 +747,21 @@
             "Quote에 따르면 인수 자금은 여러 경로로 조달됐다. 회사는 인수를 위해 EUR 2억의 브리지론을 확보했고, Van der Plas 가문은 EUR 1억 1,250만의 판매자 대출(vendor loan)을 제공해 사실상 매각 대금 일부를 스스로 조달했다. 나머지 금액은 어업 사업에서 창출된 현금으로 충당했다.",
             "PP Group은 7월 Thunnus Overseas Group(TOG)을 완전 소유하게 됐다. TOG에는 코트디부아르의 가공 사업장인 SCODI와 Pêche et Froid Côte d’Ivoire, 마다가스카르 통조림공장 Pêche et Froid Océan Indien이 포함된다. TOG의 프랑스 캔참치 시장 점유율은 약 25%로 추정된다. 이 거래로 PP Group은 CFTO 어선, 아프리카·인도양 가공 자산, 유럽 유통으로 이어지는 더 통합된 참치 체인을 갖추게 됐다. 회사는 9월 CFTO가 Sapmer의 마지막 선망선 3척을 매입했다고 확인했다."
           ],
-          "titleEn": "Financial Details Emerge On Parlevliet Family’s PP Group Buyout"
+          "titleEn": "Financial Details Emerge On Parlevliet Family’s PP Group Buyout",
+          "figs": [
+            {
+              "value": "EUR 4억 5,250만",
+              "caption": "Van der Plas 지분 인수 대금"
+            },
+            {
+              "value": "EUR 6,000만",
+              "caption": "언아웃 추가 지급 가능 (향후 3년 실적 조건)"
+            },
+            {
+              "value": "EUR 15억 이상",
+              "caption": "2025년 매출 (이익 EUR 6,700만)"
+            }
+          ]
         },
         {
           "titleKo": "FAO, IATTC의 생태계 기반 어업관리 접근 높이 평가",
@@ -451,7 +773,21 @@
             "IATTC 과학연구부장 Alexandre da Silva는 “위원회는 생태계 지표, 혼획 연구, 생태계 현황 보고를 포함해 점점 더 견고한 생태계 과학 체계를 구축해 왔다”고 말했다.",
             "그는 이 결의가 그러한 정보를 관리 논의와 의사결정 과정에 더 체계적으로 반영하기 위한 틀을 제공한다고 덧붙였다."
           ],
-          "titleEn": "FAO Praises IATTC’s Ecosystem Approach In Fisheries"
+          "titleEn": "FAO Praises IATTC’s Ecosystem Approach In Fisheries",
+          "figs": [
+            {
+              "value": "C-26-08",
+              "caption": "IATTC EAFM 결의"
+            },
+            {
+              "value": "8/31~9/4",
+              "caption": "IATTC 연례회의"
+            },
+            {
+              "value": "과테말라",
+              "caption": "공동 제안 발의·주도 (Bernal Chavarria)"
+            }
+          ]
         },
         {
           "titleKo": "미 세관, 불법 참치 수입 사기 단속",
@@ -468,7 +804,21 @@
             "CBP는 일반 대중이 CBP.gov의 e-Allegation 포털로 위반 의심 사례를 신고해 미국 무역의 건전성 보호를 도울 수 있다고 밝혔다.",
             "미국 세관 자료에 따르면 2025년 8월부터 2026년 7월까지 마이애미를 통해 통관된 참치 수입은 16,062톤, USD 1억 3,619만어치였다. 과반은 신선 참치(9,833톤)였고, 냉동 생(raw) 로인·필레는 3,766톤, 냉동 원어(WR)는 207톤이었다. 나머지 물량은 조제·저장 제품이었다. 어종은 대부분 황다랑어, 눈다랑어, 참다랑어였다."
           ],
-          "titleEn": "US Customs Cracks Down On Illegal Tuna Import Scam"
+          "titleEn": "US Customs Cracks Down On Illegal Tuna Import Scam",
+          "figs": [
+            {
+              "value": "약 USD 850만",
+              "caption": "CBP 추산 미납 세수"
+            },
+            {
+              "value": "약 USD 890만",
+              "caption": "처벌 사건 10건 잠재적 처벌금 합계"
+            },
+            {
+              "value": "16,062톤",
+              "caption": "마이애미 통관 참치 수입 (2025.8~2026.7)"
+            }
+          ]
         },
         {
           "titleKo": "설문: 가다랑어 원가 상승, 소매가에는 언제 반영될까?",
@@ -479,7 +829,21 @@
             "Atuna는 소비자가 언제 캔참치 가격 인상을 보게 될지 독자 의견을 듣고자 한다.",
             "설문 문항은 “가다랑어 원가 상승은 언제 소비자에게 닿을까?”이며, 보기는 3개월 이내, 3~6개월 이내, 6개월 이후다."
           ],
-          "titleEn": "Poll: When Will The Impact Of Higher Skipjack Costs Be Felt At Retail?"
+          "titleEn": "Poll: When Will The Impact Of Higher Skipjack Costs Be Felt At Retail?",
+          "figs": [
+            {
+              "value": "USD 2,350/톤",
+              "caption": "만타 가다랑어 (이번 주)"
+            },
+            {
+              "value": "USD 2,300 근접",
+              "caption": "방콕 가다랑어 (톤당, 이번 주)"
+            },
+            {
+              "value": "8월부터",
+              "caption": "사조그룹 캔참치 등 가격 인상 발표"
+            }
+          ]
         },
         {
           "titleKo": "MSC, 어업 표준 개정안 의견 수렴",
@@ -491,7 +855,21 @@
             "최종안에 대한 30일간의 추가 공개 의견수렴은 2027년 4월 진행될 것으로 예상된다. 어업 표준 버전 4는 2027년 9월 발표될 것으로 예상되며, 발표일로부터 6개월 뒤 발효된다.",
             "MSC 어업 표준은 지속가능한 어업의 세계적 기준을 제시한다. MSC 성명에 따르면 개정안은 남획 종식과 생물다양성 보호 노력을 강화하는 한편 요건을 명확히 하고 복잡성을 줄이며 어업 평가의 일관성을 높이는 것을 목표로 한다. 10월 8일 시작된 공개 의견수렴은 12월 8일 마감된다."
           ],
-          "titleEn": "MSC Seeks Feedback On Proposed Fisheries Standard Changes"
+          "titleEn": "MSC Seeks Feedback On Proposed Fisheries Standard Changes",
+          "figs": [
+            {
+              "value": "60일",
+              "caption": "공개 의견수렴 (10/8~12/8)"
+            },
+            {
+              "value": "2027년 4월",
+              "caption": "최종안 30일 추가 의견수렴 (예상)"
+            },
+            {
+              "value": "2027년 9월",
+              "caption": "어업 표준 버전 4 발표 (예상), 6개월 뒤 발효"
+            }
+          ]
         },
         {
           "titleKo": "Gomes da Costa, 브라질서 참치 판매 촉진 프로모션",
@@ -502,7 +880,21 @@
             "Nauterra 대변인은 이번 사업이 하반기 카테고리 매출을 끌어올리기에 더없이 좋은 시점에 나왔다고 말했다. “참치 카테고리에 집중하고 파테 라인에 추가 혜택을 제공함으로써, 브랜드는 판매 시점에서 직접적인 유인을 만들어 소비자와 유통 파트너 모두에게 이익이 된다.”",
             "이 브랜드는 지난해 10월 참치·파스타 콤보를 알리는 캠페인을 내놓고 소셜미디어에서 홍보했다."
           ],
-          "titleEn": "Gomes Da Costa Launches Promotion To Drive Tuna Sales In Brazil"
+          "titleEn": "Gomes Da Costa Launches Promotion To Drive Tuna Sales In Brazil",
+          "figs": [
+            {
+              "value": "9/21~11/19",
+              "caption": "프로모션 기간"
+            },
+            {
+              "value": "BRL 20 이상",
+              "caption": "참여 최소 구매액 (USD 3.98)"
+            },
+            {
+              "value": "최대 BRL 700",
+              "caption": "상당 경품 (USD 140)·자동차 당첨 기회"
+            }
+          ]
         }
       ]
     }
