@@ -34,6 +34,8 @@
   /* Accents — 참치 해양 브랜드 cyan 통일 (2026-06-27 [CC]: Spotify 잔재 #1ed760 제거).
    * 라이트 테마는 이미 #2563EB(파랑)였음 — 다크도 브랜드 cyan으로 일치. */
   --accent-primary: #38bdf8;   /* sky cyan (was #1ed760 Spotify green) */
+  /* 강조색 바탕 위 글자 — 흰 글자는 #38bdf8 위 2.14:1 이라 다크는 slate-900(8.33:1) (2026-10-10 axe) */
+  --accent-primary-ink: #0f172a;
   --accent-secondary: #ffffff;
   --accent-warning: #ffa42b;
   --accent-danger: #f3727f;
@@ -515,6 +517,7 @@
   --pastel-orchid: #E0C3FC;
 
   --accent-primary: #2563EB;   
+  --accent-primary-ink: #ffffff;
   --accent-secondary: #059669; 
   --accent-warning: #D97706;   
   --accent-danger: #DC2626;    
@@ -601,6 +604,7 @@
   --pastel-orchid: #991b1b; 
 
   --accent-primary: #ef4444;
+  --accent-primary-ink: #ffffff;
   --accent-secondary: #f87171;
   --accent-warning: #facc15;
   --accent-danger: #dc2626;
@@ -1176,6 +1180,7 @@ img, video, canvas, svg {
   /* Metabase 브랜드 블루를 한 단계 진하게 — #509ee3 는 흰 글자·흰 바탕 모두 2.86:1 이라
    * 활성 필 탭(흰 글자)·강조 글자가 WCAG AA 에 못 미쳤다 (2026-10-08 axe 감사). */
   --accent-primary: #2870ae;
+  --accent-primary-ink: #ffffff; /* #2870ae 위 5.23:1 */
   /* 다크 :root 값(#f3727f·#ef4444·#3b82f6)은 라이트 바탕에서 2.6~3.8:1 — 같은 색상 계열로 진하게 */
   --accent-danger: #c93744;
   --delta-up: #c62828;

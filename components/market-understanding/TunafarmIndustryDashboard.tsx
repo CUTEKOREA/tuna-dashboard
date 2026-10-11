@@ -43,9 +43,9 @@ const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '세계 참치 양식
 /** 숫자·단위만 든 칸은 오른쪽으로 붙인다. 한글이 섞이면 왼쪽. */
 const NUMERIC = /^[\d,.\s%+\-~·()t€$/]*$/;
 
-function ReportTable({ table }: { table: TunafarmTable }) {
+function ReportTable({ table, label }: { table: TunafarmTable; label: string }) {
   return (
-    <div className={styles.factWrap}>
+    <div className={`${styles.factWrap} ${styles.factWrapScroll}`} tabIndex={0} role="region" aria-label={label}>
       <table className={styles.factTable}>
         <thead>
           <tr>
@@ -73,8 +73,13 @@ function ReportTable({ table }: { table: TunafarmTable }) {
 }
 
 function ReportCallout({ callout }: { callout: TunafarmCallout }) {
+  // 색은 테마별 토큰(--mu-callout-*) — 라이트 값을 다크에 그대로 쓰면 2.0~3.8:1 이었다
   const border =
-    callout.kind === 'warn' ? '#c2410c' : callout.kind === 'good' ? '#15803d' : '#509ee3';
+    callout.kind === 'warn'
+      ? 'var(--mu-callout-warn)'
+      : callout.kind === 'good'
+        ? 'var(--mu-callout-good)'
+        : 'var(--mu-callout-info)';
   return (
     <div
       style={{
@@ -96,7 +101,7 @@ function ReportCallout({ callout }: { callout: TunafarmCallout }) {
       >
         {callout.head}
       </div>
-      <div style={{ fontSize: '0.86rem', lineHeight: 1.75, color: '#3f4657' }}>{callout.body}</div>
+      <div style={{ fontSize: '0.86rem', lineHeight: 1.75, color: 'var(--mu-callout-body)' }}>{callout.body}</div>
     </div>
   );
 }
@@ -114,13 +119,16 @@ const CHART_SLOTS: Record<string, ChartSlot[]> = (() => {
     const chapterName = TUNAFARM_CHAPTER_BY_STAGE[n.key];
     if (!chapterName) continue;
     const chapter = getTunafarmChapter(chapterName);
-    const slots: ChartSlot[] = chapter.tables.map((t, i) => ({
-      title: `${chapterName} 표 ${i + 1} — ${t.title}`,
-      caption: t.caption,
-      telemetry: REPORT_SYNC,
-      span: 'full' as const,
-      render: () => <ReportTable table={t} />,
-    }));
+    const slots: ChartSlot[] = chapter.tables.map((t, i) => {
+      const title = `${chapterName} 표 ${i + 1} — ${t.title}`;
+      return {
+        title,
+        caption: t.caption,
+        telemetry: REPORT_SYNC,
+        span: 'full' as const,
+        render: () => <ReportTable table={t} label={title} />,
+      };
+    });
     if (chapter.callouts.length > 0) {
       slots.push({
         title: `${chapterName} — 읽는 법`,
