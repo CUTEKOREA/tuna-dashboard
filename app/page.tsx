@@ -55,6 +55,7 @@ const WhelkIndustryDashboard = dynamic(() => import('../components/market-unders
 const ShrimpIndustryDashboard = dynamic(() => import('../components/market-understanding/ShrimpIndustryDashboard'));
 const PollockIndustryDashboard = dynamic(() => import('../components/market-understanding/PollockIndustryDashboard'));
 const OctopusIndustryDashboard = dynamic(() => import('../components/market-understanding/OctopusIndustryDashboard'));
+const SurimiIndustryDashboard = dynamic(() => import('../components/market-understanding/SurimiIndustryDashboard'));
 const TunafarmIndustryDashboard = dynamic(() => import('../components/market-understanding/TunafarmIndustryDashboard'));
 const TunaAnatomyDashboard = dynamic(() => import('../components/market-understanding/TunaAnatomyDashboard'));
 const CompanyAnatomyDashboard = dynamic(() => import('../components/market-understanding/CompanyAnatomyDashboard'));
@@ -284,6 +285,7 @@ export default function Home() {
     'shrimp-industry': <ShrimpIndustryDashboard />,
     'pollock-industry': <PollockIndustryDashboard />,
     'octopus-industry': <OctopusIndustryDashboard />,
+    'surimi-industry': <SurimiIndustryDashboard />,
     'tunafarm-industry': <TunafarmIndustryDashboard />,
     'tuna-anatomy': <TunaAnatomyDashboard />,
     'company-anatomy': <CompanyAnatomyDashboard />,

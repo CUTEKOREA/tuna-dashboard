@@ -54,6 +54,8 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'pollock-industry', title: '명태', section: 'understanding', accent: 'teal', sidebar: { icon: 'Snowflake' } },
   // 문어 전용 세번은 0307521000 하나다. 옛 `/octopus`(낙지 위젯, 404)와 키를 나누려고 -industry 를 붙인다.
   { key: 'octopus-industry', title: '문어', section: 'understanding', accent: 'rose', sidebar: { icon: 'LongArmOctopus' } },
+  // 연육(수리미)은 어묵의 원료다. 위젯 없이 해부보고서 원문(서술·표·그림)만 싣는다.
+  { key: 'surimi-industry', title: '연육', section: 'understanding', accent: 'teal', sidebar: { icon: 'Factory' } },
   // 같은 참치를 기른 쪽에서 본다. 「참치」는 세계 밸류체인, 「참치 양식」은 축양 명부·층·원가.
   { key: 'tunafarm-industry', title: '참치 양식', section: 'understanding', accent: 'teal', sidebar: { icon: 'Waves' } },
   // 같은 참치를 한국 쪽에서 본다. 「참치」는 세계 밸류체인, 「참치 해부」는 한국 원양·환적·판매 상대·캔.
@@ -195,6 +197,7 @@ export const DASHBOARD_PANEL_ORDER = [
   'shrimp-industry',
   'pollock-industry',
   'octopus-industry',
+  'surimi-industry',
   'tunafarm-industry',
   'tuna-anatomy',
   'company-anatomy',
@@ -211,6 +214,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'shrimp-industry',
     'pollock-industry',
     'octopus-industry',
+    'surimi-industry',
     'tunafarm-industry',
     'tuna-anatomy',
   ],

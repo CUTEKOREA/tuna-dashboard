@@ -1,5 +1,5 @@
 /**
- * 시장 이해 다섯 품목 화면의 「보고서 원문 보기」와 원문 그림·장 제목 렌더.
+ * 시장 이해 여섯 품목 화면의 「보고서 원문 보기」와 원문 그림·장 제목 렌더.
  *
  * 원문 HTML 은 `scripts/sync_industry_report_html.py` 가 docs/evidence 에서 public 으로
  * **바이트 그대로** 복사한다. 원문을 고치면 다시 돌려야 하고, 잊으면 여기서 죽는다.
@@ -16,6 +16,7 @@ import PollockIndustryDashboard from '../components/market-understanding/Pollock
 import ShrimpIndustryDashboard from '../components/market-understanding/ShrimpIndustryDashboard';
 import SquidIndustryDashboard from '../components/market-understanding/SquidIndustryDashboard';
 import TunaAnatomyDashboard from '../components/market-understanding/TunaAnatomyDashboard';
+import SurimiIndustryDashboard from '../components/market-understanding/SurimiIndustryDashboard';
 import { chapterHead } from '../components/market-understanding/IndustryReportFlow';
 import { reportFigures } from '../lib/data/company-report-figures';
 import { reportProse } from '../lib/data/company-report-prose';
@@ -26,6 +27,7 @@ const PAGES = [
   ['shrimp', ShrimpIndustryDashboard],
   ['squid', SquidIndustryDashboard],
   ['tuna', TunaAnatomyDashboard],
+  ['surimi', SurimiIndustryDashboard],
 ] as const;
 
 const root = process.cwd();
@@ -89,5 +91,13 @@ describe('화면 렌더', () => {
     for (const m of html.matchAll(/<img[^>]*src="([^"]+)"/g)) {
       if (m[1].includes('/figures/')) expect(existsSync(join(root, 'public', m[1])), m[1]).toBe(true);
     }
+  });
+
+  it('연육 - 원문 지표 타일 묶음 1개가 범위 지정 스타일과 함께 렌더된다', () => {
+    const html = markup.get('surimi') ?? '';
+    expect((html.match(/<div[^>]*data-fig="surimi-/g) ?? []).length).toBe(reportFigures('surimi').length);
+    expect(reportFigures('surimi')).toHaveLength(1);
+    expect(html).toContain('class="metrics"');
+    expect(html).toContain('2025년 국내 연육 생산');
   });
 });
