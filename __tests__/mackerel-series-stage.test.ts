@@ -52,7 +52,8 @@ describe('고등어 05단계 - 수입 창구', () => {
   it('측정 경계를 본문 첫 문단과 출처 각주 양쪽에서 밝힌다', () => {
     expect(STAGE?.paragraphs[0]).toMatch(/더할 수 없다/);
     expect(STAGE?.paragraphs[0]).toMatch(/연환산하지 않는다|연간으로 읽지 않는다/);
-    expect(MACKEREL_SOURCE_NOTES.some((n) => n.includes('05단계'))).toBe(true);
+    // 옛 「05단계」 번호는 2026-10 원문 단계로 바뀌어 차트 이름으로 가리킨다
+    expect(MACKEREL_SOURCE_NOTES.some((n) => n.includes('수입 창구 차트'))).toBe(true);
     expect(seriesMeta.measurementBoundary).toMatch(/더하거나 연환산하지 않는다/);
   });
 
