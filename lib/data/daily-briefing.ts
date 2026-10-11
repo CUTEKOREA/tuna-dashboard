@@ -5,10 +5,16 @@ export type DailyBriefingDigestItem = {
   readonly title: string;
 };
 
+export type DailyBriefingFig = {
+  readonly value: string;
+  readonly caption: string;
+};
+
 export type DailyBriefingArticle = {
   readonly titleKo: string;
   readonly titleEn?: string;
   readonly paragraphs: readonly string[];
+  readonly figs?: readonly DailyBriefingFig[];
 };
 
 export type DailyBriefing = {
@@ -93,10 +99,21 @@ export function parseDailyBriefing(value: unknown): DailyBriefing {
       throw new Error(`articles[${index}].paragraphs는 비어 있을 수 없습니다.`);
     }
 
+    const figs = record.figs === undefined
+      ? undefined
+      : arrayAt(record.figs, `articles[${index}].figs`).map((fig, figIndex) => {
+        const figRecord = recordAt(fig, `articles[${index}].figs[${figIndex}]`);
+        return {
+          value: stringAt(figRecord.value, `articles[${index}].figs[${figIndex}].value`),
+          caption: stringAt(figRecord.caption, `articles[${index}].figs[${figIndex}].caption`),
+        };
+      });
+
     return {
       titleKo: stringAt(record.titleKo, `articles[${index}].titleKo`),
       ...(titleEn ? { titleEn } : {}),
       paragraphs,
+      ...(figs ? { figs } : {}),
     };
   });
 
@@ -105,6 +122,13 @@ export function parseDailyBriefing(value: unknown): DailyBriefing {
   }
   if (articles.length < 3) {
     throw new Error(`articles는 3건 이상이어야 합니다: ${articles.length}건`);
+  }
+  // 「오늘의 수치」는 리드 기사 figs 만 읽는다. 비면 위젯이 조용히 빈칸으로 나가므로
+  // 렌더가 아니라 빌드에서 막는다(파이프라인 게이트와 같은 조건).
+  if ((articles[0].figs?.length ?? 0) !== 3) {
+    throw new Error(
+      `articles[0].figs는 3건이어야 합니다: ${articles[0].figs?.length ?? 0}건`,
+    );
   }
 
   return {
@@ -211,41 +235,20 @@ export function categorizeBriefingTitle(title: string): BriefingCategory {
 }
 
 export type BriefingImpactNumber = {
-  /** 원문에서 그대로 뽑은 수치 토큰 (창작·재계산 금지) */
+  /** 기사 figs 스트립의 값 (창작·재계산 금지) */
   readonly value: string;
-  /** 수치를 품은 다이제스트 문구 (라벨) */
+  /** 기사 figs 스트립의 캡션 (라벨) */
   readonly label: string;
 };
 
-// 통화 금액은 뒤따르는 한국어 단위(억·만)까지 한 토큰으로 묶는다. 2026-09-21 「USD 2,500만」이
-// 「USD 2,500」으로 잘려 1만분의 1로 표시됐고, EUR 는 패턴에 없어 「EUR 30억 3,000만」이 「3,000만」이 됐다.
-// 2026-09-22 「… 상반기 64,782 M/T(전년比 -13%)」 에서 물량 대신 뒤쪽 -13% 가 잡혔다 — M/T 도 단위로 센다.
-const NUMBER_TOKEN_PATTERN =
-  /((?:USD|EUR|\$)\s?[\d,.]+(?:\s?억(?:\s?[\d,.]+)?)?(?:\s?만)?|[+-]?\d[\d,.]*\s?%|[\d,.]+\s?억(?:\s?[\d,.]+\s?만)?|[\d,.]+\s?(?:만|달러|톤|M\/T|MT))/;
-
-/**
- * 다이제스트 문구에서 수치 토큰을 원문 그대로 추출해 임팩트 넘버로 쓴다.
- * 숫자가 없는 항목은 건너뛴다 — 수치를 만들어내지 않는다 (fail-closed).
- */
+/** 리드 기사(articles[0])의 핵심수치 스트립(figs)을 순서대로 임팩트 넘버로 쓴다. */
 export function buildBriefingImpactNumbers(
   briefing: DailyBriefing,
   limit = 3,
 ): readonly BriefingImpactNumber[] {
-  const numbers: BriefingImpactNumber[] = [];
-  for (const item of briefing.digest) {
-    const match = item.title.match(NUMBER_TOKEN_PATTERN);
-    if (!match || match.index === undefined) continue;
-    // 라벨 = 수치 앞의 문구 (조사·구두점 정리). 너무 짧으면 항목 전체에서 수치만 제거.
-    let label = item.title
-      .slice(0, match.index)
-      .replace(/[,·]\s*$/, '')
-      .replace(/(으로|로)\s*$/, '')
-      .trim();
-    if (label.length < 4) {
-      label = item.title.replace(NUMBER_TOKEN_PATTERN, '').replace(/\s{2,}/g, ' ').trim();
-    }
-    numbers.push({ value: match[0].trim(), label });
-    if (numbers.length >= limit) break;
-  }
-  return numbers;
+  const leadFigs = briefing.articles[0]?.figs ?? [];
+  return leadFigs.slice(0, limit).map((fig) => ({
+    value: fig.value,
+    label: fig.caption,
+  }));
 }
