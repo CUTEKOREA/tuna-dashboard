@@ -1,3 +1,11 @@
+> ✅ **2026-10-11 KST — `/octopus-industry` 서술을 최종 해부보고서 원문 인테이크로 교체** [CC]:
+> - 원문 `docs/evidence/industry-octopus-2026-10/보고서.html`(10-11 정정본) 본문 `s01`~`s11`을 화면 단계에 매핑했다: s01→s01(요약 맨 앞) · s02·s09→s02 · s03→s03 · s04→s04 · s06→s05 · s07→s06 · s11→s07 · s05→s08 · s08·s10→x01. 부록 `sA` 제외.
+> - 공용 인테이크에 `octopus` 등록: 서술 11절·28,071자, 표 18개(`drop` 없음, 절별 `expect` 고정). 그림 파이프라인 대상에서는 명태처럼 제외.
+> - 화면은 `proseStages('octopus')`·`proseBriefing('octopus')` + inlineReport(절 순번 오프셋). 손 작성 차트·표 위젯은 단계 끝 「근거」에 유지, 옛 `reportSlots`(제2판 표)는 걷었다.
+> - **⚠ s09(신라에스지 내부 검토)는 객관 시점의 새 보고서에 대응 절이 없다.** 손 작성 서술을 그대로 남겼다(`OCTOPUS_HANDWRITTEN_STAGES`). 브리핑은 원문 리드라 s09 항목이 없다. 유지·삭제는 메인 결정.
+> - 남은 것: `lib/octopus-industry-content.ts`의 s09 외 손 작성 서술·브리핑과 `lib/data/octopus-industry-tables.ts`(`octopus-tables.json`)는 화면에서 빠졌지만 파일은 남겼다. `__tests__/octopus-industry-render.test.ts`는 손 작성 본문 검사를 유지하고, 화면에서 빠진 수치 7개는 본문 검사로 옮겼다.
+> - push·배포하지 않았다.
+
 > ✅ **2026-10-11 KST — `/pollock-industry` 서술을 최종 해부보고서 원문 인테이크로 교체** [Cursor→CC]:
 > - `docs/evidence/industry-pollock-2026-10/보고서.html` 본문 `s01`~`s17`을 발주서의 아홉 단계에 매핑했다. 부록 `sA`~`sC`는 제외했다.
 > - 공용 보고서 인테이크에 `pollock`을 등록해 서술 17절·44,000자와 표 37개를 생성했다. 표는 `drop` 없이 전량이며 절별 개수를 빌드 게이트에 고정했다.

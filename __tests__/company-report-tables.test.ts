@@ -69,6 +69,35 @@ describe('명태 최종 해부보고서 표 추출', () => {
   });
 });
 
+describe('문어 최종 해부보고서 표 추출', () => {
+  const tables = reportTables('octopus');
+
+  it('본문 표 18개를 전부 싣고 부록 표는 제외한다', () => {
+    expect(REPORT_TABLE_COMPANIES).toContain('octopus');
+    expect(tables).toHaveLength(18);
+    expect(tables.some((table) => table.sid === 'sA')).toBe(false);
+    expect(tables.every((table) => table.rows.length > 0)).toBe(true);
+  });
+
+  it('원문 대응 아홉 단계에만 배치한다', () => {
+    expect(stagesUsed('octopus')).toEqual([
+      's02', 's03', 's04', 's05', 's06', 's07', 's08', 'x01',
+    ]);
+    const total = stagesUsed('octopus')
+      .reduce((sum, stage) => sum + tablesForStage('octopus', stage).length, 0);
+    expect(total).toBe(tables.length);
+  });
+
+  it('모든 행·숫자 표시가 헤더 열 수와 맞는다', () => {
+    for (const table of tables) {
+      expect(table.num.length, `${table.sid} ${table.title}`).toBe(table.head.length);
+      for (const row of table.rows) {
+        expect(row.length, `${table.sid} ${table.title}`).toBe(table.head.length);
+      }
+    }
+  });
+});
+
 describe('표가 표로 남아 있는가', () => {
   it.each(회사)('%s - 모든 행의 열 수가 헤더와 같다', (c) => {
     for (const t of reportTables(c)) {

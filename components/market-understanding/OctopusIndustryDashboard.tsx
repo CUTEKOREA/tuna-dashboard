@@ -17,15 +17,19 @@ import {
   type OctopusRosterRow,
 } from '@/lib/data/octopus-industry';
 import { OCTOPUS_ACCENT } from '@/lib/octopus-chart-colors';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+import { proseForStage } from '@/lib/data/company-report-prose';
 import {
-  OCTOPUS_BRIEFING_POINTS,
-  OCTOPUS_NARRATIVES,
-  OCTOPUS_SOURCE_NOTES,
-} from '@/lib/octopus-industry-content';
+  type ReportTable as IntakeReportTable,
+  tablesForStage,
+} from '@/lib/data/company-report-tables';
+import { OCTOPUS_NARRATIVES, OCTOPUS_SOURCE_NOTES } from '@/lib/octopus-industry-content';
 import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
+  type FlowItem,
+  type StageNarrative,
 } from './CommodityIndustryDashboard';
 import {
   OctopusAuctionChart,
@@ -41,10 +45,6 @@ import {
   tradeCaption,
 } from './MofLiveCharts';
 import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
-import {
-  getOctopusTables,
-  type OctopusReportTable,
-} from '@/lib/data/octopus-industry-tables';
 
 const DATA = getOctopusIndustryData();
 const RESEARCH = getOctopusCompanyResearch();
@@ -55,7 +55,9 @@ const FIPS_SYNC = { status: 'STATIC' as const, syncDate: '수협 계통판매 20
 const KCS_SYNC = { status: 'STATIC' as const, syncDate: '관세청 2025년 확정' };
 const MFDS_SYNC = { status: 'STATIC' as const, syncDate: '식약처 2026-09-02 전수' };
 const IMP_SYNC = { status: 'STATIC' as const, syncDate: '수입신고 2025-09~2026-09' };
-const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 제2판 2026-09-03' };
+const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026년 10월판' };
+/** 손 작성 위젯(원료 달력·s09 내부 검토)은 옛 OEM 제안계획 보고서 제2판 값이다. */
+const OLD_REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 제2판 2026-09-03' };
 
 const fmt = (value: number) => value.toLocaleString('ko-KR');
 
@@ -135,7 +137,7 @@ const trade2025 = DATA.수입.연도별.find((r) => r.연도 === '2025');
 const auction2025 = DATA.위판.연도별.find((r) => r.연도 === '2025');
 
 /** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
-function ExtractedReportTable({ table }: { table: OctopusReportTable }) {
+function ExtractedReportTable({ table }: { table: IntakeReportTable }) {
   return (
     <div className={styles.dataTableWrap} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
       <table className={styles.dataTable}>
@@ -164,16 +166,72 @@ function ExtractedReportTable({ table }: { table: OctopusReportTable }) {
   );
 }
 
-/** 보고서 시장 절 표 가운데 대시보드에 아직 없는 것. 사내 검토 절은 싣지 않는다. */
-function reportSlots(stage: string): ChartSlot[] {
-  return getOctopusTables(stage).map((t, i) => ({
-    title: `보고서 표 ${i + 1} — ${t.title}`,
-    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
-    telemetry: REPORT_SYNC,
-    span: 'full' as const,
-    render: () => <ExtractedReportTable table={t} />,
+/**
+ * 최종 해부보고서 표를 설명 문장 옆의 원래 자리로 되돌린다.
+ *
+ * 한 단계에 절이 여럿 붙으므로 절별 오프셋 구간을 따로 둔다. 그렇지 않으면 뒤 절의
+ * 표가 첫 절 문장 사이에 섞인다. 손으로 만든 인터랙티브 차트는 chartSlots에 남아
+ * 각 단계 끝 「근거」에서 그대로 렌더된다.
+ */
+function inlineReport(n: StageNarrative): StageNarrative {
+  if (!n.flow) return n;
+
+  const sectionIndex = new Map(
+    proseForStage('octopus', n.key).map((section, index) => [section.sid, index]),
+  );
+  const extras: FlowItem[] = tablesForStage('octopus', n.key).map((table) => ({
+    kind: 'slot',
+    ord: (sectionIndex.get(table.sid) ?? 0) * 1_000_000 + table.ord,
+    slot: {
+      title: table.title,
+      caption: table.note ?? table.caption ?? '',
+      telemetry: REPORT_SYNC,
+      render: () => <ExtractedReportTable table={table} />,
+      span: 'full',
+      sourceLine: `한국 문어 산업 해부 ${table.section}`,
+    },
   }));
+  const merged = [...n.flow, ...extras].sort((a, b) => a.ord - b.ord);
+  const deduped = merged.filter((item, index) => {
+    if (item.kind !== 'head') return true;
+    const next = merged[index + 1];
+    return !(next?.kind === 'slot' && next.slot.title === item.text);
+  });
+  if (deduped[0]?.kind === 'head' && deduped[0].text === n.question) deduped.shift();
+  return { ...n, flow: deduped };
 }
+
+const REPORT_STAGES = new Map(proseStages('octopus').map((stage) => [stage.key, stage]));
+
+/** 절 번호(kicker)가 비면 공용 proseStages 가 「: 부제」 머리를 만든다. 명태와 같게 걷는다. */
+const dropEmptyLabel = (text: string) => text.replace(/^(\*\*)?: /, '$1');
+
+/**
+ * 해부보고서 원문에 대응 절이 없는 단계. s09(신라에스지 내부 검토)는 객관 시점의
+ * 최종 보고서에서 빠졌으므로 기존 손 작성 서술을 그대로 둔다(발주서 밖 — 메인 결정 대기).
+ */
+export const OCTOPUS_HANDWRITTEN_STAGES = new Set(['s09']);
+
+/**
+ * 단계 순서·제목·질문은 기존 화면 값을 쓰고(발주서 허용), 서술은 전부 원문에서 온다.
+ */
+export const OCTOPUS_REPORT_NARRATIVES: StageNarrative[] = OCTOPUS_NARRATIVES.map(
+  (hand, index) => {
+    if (OCTOPUS_HANDWRITTEN_STAGES.has(hand.key)) return hand;
+    const stage = REPORT_STAGES.get(hand.key);
+    if (!stage) throw new Error(`문어 보고서에 ${hand.key} 단계 서술이 없다`);
+    return inlineReport({
+      ...stage,
+      numeral: String(index + 1).padStart(2, '0'),
+      title: hand.title,
+      question: hand.question,
+      paragraphs: stage.paragraphs.map(dropEmptyLabel),
+      flow: stage.flow?.map((item) => item.kind === 'head' ? { ...item, text: dropEmptyLabel(item.text) } : item),
+    });
+  },
+);
+
+export const OCTOPUS_REPORT_BRIEFING = proseBriefing('octopus');
 
 export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -309,7 +367,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
       title: '12개월 원료 달력',
       caption:
         '위판 물량·위판가·냉동 수입은 2023~2025 평균 지수(연평균 100)다. 모로코·모리타니 어기는 GLOBEFISH와 현지 언론이 인용한 정부 결정이다.',
-      telemetry: REPORT_SYNC,
+      telemetry: OLD_REPORT_SYNC,
       span: 'full',
       render: () => (
         <Table
@@ -319,7 +377,6 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
       ),
       sourceLine: '수협 계통판매 월별 · 관세청 0307521000 월별 중량 · 보고서 §04 표',
     },
-    ...reportSlots('s05'),
   ],
   s06: [
     {
@@ -436,7 +493,6 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
-    ...reportSlots('s07'),
   ],
   s08: [
     {
@@ -458,7 +514,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: 'OEM 제품 후보 13개 (내부 검토)',
       caption: '우선순위 A는 즉시 제안, B는 2차, C는 보류다. 시장 규모·성장·경쟁 공백·원료 경제성 네 기준의 정성 판단이며 매출 추정은 없다.',
-      telemetry: REPORT_SYNC,
+      telemetry: OLD_REPORT_SYNC,
       span: 'full',
       render: () => (
         <Table
@@ -471,7 +527,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '문어 제품 형태별 설비 적합성 (내부 검토)',
       caption: '신라에스지 부산공장 기준 판정이다. 문어 생산 실적이 아니며, 가능 판정도 시험 전 단계다.',
-      telemetry: REPORT_SYNC,
+      telemetry: OLD_REPORT_SYNC,
       span: 'full',
       render: () => (
         <Table
@@ -484,7 +540,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '신라에스지 공시 요약 (내부 검토)',
       caption: RESEARCH.내부검토.요지,
-      telemetry: REPORT_SYNC,
+      telemetry: OLD_REPORT_SYNC,
       span: 'full',
       render: () => (
         <RosterTable
@@ -525,8 +581,8 @@ const SPEC: CommoditySpec = {
     { eyebrow: '휴어', title: '모리타니 입항 5월→7월', body: '285 t → 124 t' },
     { now: true, eyebrow: '지금', title: '연근해 문어류 2026.07 잠정', body: '1,569 t' },
   ],
-  briefing: OCTOPUS_BRIEFING_POINTS,
-  narratives: OCTOPUS_NARRATIVES,
+  briefing: OCTOPUS_REPORT_BRIEFING,
+  narratives: OCTOPUS_REPORT_NARRATIVES,
   chartSlots: OCTOPUS_CHART_SLOTS,
   sourceNotes: OCTOPUS_SOURCE_NOTES,
   sourceMeta: [

@@ -13,6 +13,11 @@ import {
   POLLOCK_REPORT_BRIEFING,
   POLLOCK_REPORT_NARRATIVES,
 } from '@/components/market-understanding/PollockIndustryDashboard';
+import {
+  OCTOPUS_HANDWRITTEN_STAGES,
+  OCTOPUS_REPORT_BRIEFING,
+  OCTOPUS_REPORT_NARRATIVES,
+} from '@/components/market-understanding/OctopusIndustryDashboard';
 import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
 import { proseStages } from '@/lib/company-prose-stages';
 import { tablesForStage } from '@/lib/data/company-report-tables';
@@ -152,6 +157,78 @@ describe('명태 최종 해부보고서 서술 추출', () => {
 
   it('손으로 쓴 사실표·용어표는 화면 서술에서 빠진다', () => {
     for (const stage of POLLOCK_REPORT_NARRATIVES) {
+      expect(stage.facts).toEqual([]);
+      expect(stage.terms).toEqual([]);
+    }
+  });
+});
+
+describe('문어 최종 해부보고서 서술 추출', () => {
+  const secs = reportProse('octopus');
+  const fromReport = OCTOPUS_REPORT_NARRATIVES.filter((stage) => !OCTOPUS_HANDWRITTEN_STAGES.has(stage.key));
+
+  it('본문 11절이 아홉 단계에 전부 붙고 부록은 제외된다', () => {
+    expect(secs).toHaveLength(11);
+    expect(secs.map((section) => section.sid)).toEqual(
+      Array.from({ length: 11 }, (_, index) => `s${String(index + 1).padStart(2, '0')}`),
+    );
+    expect(proseStagesUsed('octopus')).toEqual([
+      's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 'x01',
+    ]);
+    expect(secs.some((section) => section.sid === 'sA')).toBe(false);
+    // 요약 절은 첫 단계 맨 앞이다
+    expect(proseForStage('octopus', 's01')[0].sid).toBe('s01');
+  });
+
+  it('원문에 대응 절이 없는 단계는 s09(내부 검토) 하나다', () => {
+    expect([...OCTOPUS_HANDWRITTEN_STAGES]).toEqual(['s09']);
+    expect(fromReport).toHaveLength(9);
+  });
+
+  it('화면 서술·머리글·브리핑·표 전부가 원문 HTML 텍스트에 그대로 있다', () => {
+    const html = readFileSync(
+      join(process.cwd(), 'docs/evidence/industry-octopus-2026-10/보고서.html'),
+      'utf8',
+    );
+    const original = sourceText(html);
+    const flow = fromReport.flatMap((stage) => stage.flow ?? []);
+    const visible: [string, string][] = [
+      ...fromReport.map((stage): [string, string] => ['리드', stage.lede]),
+      ...flow.flatMap((item): [string, string][] => {
+        if (item.kind === 'text') return [['본문', item.text]];
+        if (item.kind === 'head') return item.text.split(': ').map((part): [string, string] => ['머리글', part]);
+        return [];
+      }),
+      ...OCTOPUS_REPORT_BRIEFING.flatMap((point): [string, string][] => [
+        ['브리핑 제목', point.headline ?? ''],
+        ['브리핑', point.text],
+      ]),
+    ];
+    const tables = fromReport.flatMap((stage) => tablesForStage('octopus', stage.key));
+    for (const table of tables) {
+      if (table.title !== table.head.slice(0, 3).join(' · ')) visible.push(['표 제목', table.title]);
+      visible.push(['표 설명', table.note ?? ''], ['표 캡션', table.caption ?? '']);
+      for (const cell of [...table.head, ...table.rows.flat()]) visible.push(['표 셀', cell]);
+    }
+
+    expect(tables).toHaveLength(18);
+    expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
+    const missing = visible
+      .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
+      .map(([kind, text]) => `${kind}: ${normalize(text).slice(0, 80)}`);
+    expect(missing, '원문에 없는 화면 문자열').toEqual([]);
+  });
+
+  it('절 머리가 「: 」로 시작하지 않는다', () => {
+    for (const stage of fromReport) {
+      for (const item of stage.flow ?? []) {
+        if (item.kind === 'head') expect(item.text, stage.key).not.toMatch(/^:/);
+      }
+    }
+  });
+
+  it('손으로 쓴 사실표·용어표는 원문 단계 서술에서 빠진다', () => {
+    for (const stage of fromReport) {
       expect(stage.facts).toEqual([]);
       expect(stage.terms).toEqual([]);
     }
