@@ -1,7 +1,7 @@
 # 위젯 리니지 — 데이터 파일별 영향 범위
 
 > `python3 scripts/widget_lineage.py`로 재생성. 손으로 고치지 말 것.
-> 진입점 app/page.tsx · closure 298파일 · 위젯 122개 · 데이터 파일 363개.
+> 진입점 app/page.tsx · closure 300파일 · 위젯 124개 · 데이터 파일 364개.
 > 데이터 파일 필드를 바꾸기 전에 여기서 영향 위젯을 확인한다 (파손 진단 1단계).
 
 ## data/beef_usda_widgets.json
@@ -142,6 +142,8 @@
 
 ## public/data/companies/albacora_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -150,11 +152,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/albacora_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -163,11 +168,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/albacora_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -176,6 +184,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -185,6 +194,8 @@
 
 ## public/data/companies/alliance_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -193,11 +204,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/alliance_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -206,11 +220,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/alliance_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -219,6 +236,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -227,6 +245,8 @@
 
 ## public/data/companies/ati_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -235,11 +255,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/ati_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -248,11 +271,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/ati_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -261,6 +287,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -269,6 +296,8 @@
 
 ## public/data/companies/azores_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -277,11 +306,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/azores_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -290,11 +322,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/azores_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -303,6 +338,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -311,6 +347,8 @@
 
 ## public/data/companies/bolton_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -319,11 +357,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/bolton_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -332,11 +373,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/bolton_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -345,6 +389,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -353,6 +398,8 @@
 
 ## public/data/companies/boltonfood_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -361,11 +408,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/boltonfood_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -374,11 +424,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/boltonfood_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -387,6 +440,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -395,6 +449,8 @@
 
 ## public/data/companies/bounty_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -403,11 +459,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/bounty_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -416,11 +475,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/bounty_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -429,6 +491,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -437,6 +500,8 @@
 
 ## public/data/companies/bumblebee_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -445,11 +510,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/bumblebee_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -458,11 +526,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/bumblebee_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -471,6 +542,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -479,6 +551,8 @@
 
 ## public/data/companies/capsen_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -487,11 +561,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/capsen_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -500,11 +577,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/capsen_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -513,6 +593,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -521,6 +602,8 @@
 
 ## public/data/companies/centurypacific_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -529,11 +612,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/centurypacific_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -542,11 +628,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/centurypacific_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -555,6 +644,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -563,6 +653,8 @@
 
 ## public/data/companies/cnfc_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -571,11 +663,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/cnfc_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -584,11 +679,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/cnfc_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -597,6 +695,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -605,6 +704,8 @@
 
 ## public/data/companies/cosi_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -613,11 +714,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/cosi_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -626,11 +730,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/cosi_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -639,6 +746,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -647,6 +755,8 @@
 
 ## public/data/companies/dongwon_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -655,11 +765,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/dongwon_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -668,11 +781,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/dongwon_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -681,6 +797,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -689,6 +806,8 @@
 
 ## public/data/companies/dongwonfnb_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -697,11 +816,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/dongwonfnb_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -710,11 +832,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/dongwonfnb_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -723,6 +848,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -731,6 +857,8 @@
 
 ## public/data/companies/eurofish_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -739,11 +867,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/eurofish_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -752,11 +883,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/eurofish_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -765,6 +899,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -773,6 +908,8 @@
 
 ## public/data/companies/fcf_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -781,11 +918,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/fcf_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -794,11 +934,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/fcf_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -807,6 +950,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -815,6 +959,8 @@
 
 ## public/data/companies/frabelle_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -823,11 +969,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/frabelle_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -836,11 +985,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/frabelle_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -849,6 +1001,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -857,6 +1010,8 @@
 
 ## public/data/companies/frinsa_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -865,11 +1020,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/frinsa_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -878,11 +1036,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/frinsa_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -891,6 +1052,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -900,6 +1062,8 @@
 
 ## public/data/companies/galapesca_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -908,11 +1072,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/galapesca_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -921,11 +1088,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/galapesca_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -934,6 +1104,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -942,6 +1113,8 @@
 
 ## public/data/companies/garavilla_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -950,11 +1123,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/garavilla_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -963,11 +1139,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/garavilla_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -976,6 +1155,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -984,6 +1164,8 @@
 
 ## public/data/companies/ghana_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -992,11 +1174,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/ghana_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1005,11 +1190,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/ghana_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1018,6 +1206,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1026,6 +1215,8 @@
 
 ## public/data/companies/grupomar_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1034,11 +1225,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/grupomar_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1047,11 +1241,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/grupomar_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1060,6 +1257,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1068,6 +1266,8 @@
 
 ## public/data/companies/hagoromo_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1076,11 +1276,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/hagoromo_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1089,11 +1292,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/hagoromo_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1102,6 +1308,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1110,6 +1317,8 @@
 
 ## public/data/companies/herdez_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1118,11 +1327,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/herdez_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1131,11 +1343,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/herdez_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1144,6 +1359,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1152,6 +1368,8 @@
 
 ## public/data/companies/inepaca_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1160,11 +1378,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/inepaca_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1173,11 +1394,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/inepaca_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1186,6 +1410,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1194,6 +1419,8 @@
 
 ## public/data/companies/iot_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1202,11 +1429,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/iot_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1215,11 +1445,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/iot_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1228,6 +1461,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1236,6 +1470,8 @@
 
 ## public/data/companies/itochu_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1244,11 +1480,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/itochu_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1257,11 +1496,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/itochu_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1270,6 +1512,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1278,6 +1521,8 @@
 
 ## public/data/companies/jais_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1286,11 +1531,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/jais_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1299,11 +1547,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/jais_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1312,6 +1563,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1320,6 +1572,8 @@
 
 ## public/data/companies/jealsa_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1328,11 +1582,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/jealsa_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1341,11 +1598,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/jealsa_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1354,6 +1614,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1362,6 +1623,8 @@
 
 ## public/data/companies/kaichuang_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1370,11 +1633,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/kaichuang_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1383,11 +1649,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/kaichuang_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1396,6 +1665,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1404,6 +1674,8 @@
 
 ## public/data/companies/kfl_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1412,11 +1684,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/kfl_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1425,11 +1700,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/kfl_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1438,6 +1716,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1446,6 +1725,8 @@
 
 ## public/data/companies/kingfisher_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1454,11 +1735,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/kingfisher_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1467,11 +1751,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/kingfisher_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1480,6 +1767,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1488,6 +1776,8 @@
 
 ## public/data/companies/kyokuyo_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1496,11 +1786,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/kyokuyo_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1509,11 +1802,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/kyokuyo_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1522,6 +1818,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1530,6 +1827,8 @@
 
 ## public/data/companies/mackerel_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1538,11 +1837,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/mackerel_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1551,11 +1853,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/mackerel_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1564,11 +1869,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/majestic_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1577,11 +1885,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/majestic_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1590,11 +1901,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/majestic_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1603,6 +1917,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1611,6 +1926,8 @@
 
 ## public/data/companies/mauritius_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1619,11 +1936,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/mauritius_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1632,11 +1952,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/mauritius_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1645,6 +1968,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1653,6 +1977,8 @@
 
 ## public/data/companies/nauterra_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1661,11 +1987,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/nauterra_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1674,11 +2003,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/nauterra_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1687,6 +2019,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1695,6 +2028,8 @@
 
 ## public/data/companies/nirsa_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1703,11 +2038,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/nirsa_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1716,11 +2054,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/nirsa_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1729,6 +2070,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1737,6 +2079,8 @@
 
 ## public/data/companies/nissui_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1745,11 +2089,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/nissui_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1758,11 +2105,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/nissui_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1771,6 +2121,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1779,6 +2130,8 @@
 
 ## public/data/companies/octopus_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1787,11 +2140,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/octopus_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1800,11 +2156,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/octopus_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1813,11 +2172,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/pafco_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1826,11 +2188,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/pafco_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1839,11 +2204,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/pafco_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1852,6 +2220,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1860,6 +2229,8 @@
 
 ## public/data/companies/pataya_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1868,11 +2239,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/pataya_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1881,11 +2255,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/pataya_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1894,6 +2271,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1902,6 +2280,8 @@
 
 ## public/data/companies/pinsa_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1910,11 +2290,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/pinsa_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1923,11 +2306,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/pinsa_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1936,6 +2322,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -1944,6 +2331,8 @@
 
 ## public/data/companies/pollock_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1952,11 +2341,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/pollock_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1965,11 +2357,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/pollock_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1978,11 +2373,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/ppf_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -1991,11 +2389,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/ppf_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2004,11 +2405,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/ppf_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2017,6 +2421,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2025,6 +2430,8 @@
 
 ## public/data/companies/princes_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2033,11 +2440,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/princes_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2046,11 +2456,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/princes_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2059,6 +2472,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2067,6 +2481,8 @@
 
 ## public/data/companies/procesa_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2075,11 +2491,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/procesa_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2088,11 +2507,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/procesa_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2101,6 +2523,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2109,6 +2532,8 @@
 
 ## public/data/companies/rd_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2117,11 +2542,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/rd_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2130,11 +2558,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/rd_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2143,6 +2574,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2151,6 +2583,8 @@
 
 ## public/data/companies/sajo_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2159,11 +2593,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sajo_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2172,11 +2609,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sajo_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2185,6 +2625,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2193,6 +2634,8 @@
 
 ## public/data/companies/sajoseafood_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2201,11 +2644,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sajoseafood_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2214,11 +2660,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sajoseafood_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2227,6 +2676,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2235,6 +2685,8 @@
 
 ## public/data/companies/salica_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2243,11 +2695,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/salica_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2256,11 +2711,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/salica_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2269,6 +2727,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2277,6 +2736,8 @@
 
 ## public/data/companies/sapmer_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2285,11 +2746,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sapmer_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2298,11 +2762,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sapmer_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2311,6 +2778,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2319,6 +2787,8 @@
 
 ## public/data/companies/sca_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2327,11 +2797,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sca_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2340,11 +2813,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sca_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2353,6 +2829,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2361,6 +2838,8 @@
 
 ## public/data/companies/seatech_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2369,11 +2848,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/seatech_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2382,11 +2864,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/seatech_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2395,6 +2880,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2403,6 +2889,8 @@
 
 ## public/data/companies/seavalue_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2411,11 +2899,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/seavalue_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2424,11 +2915,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/seavalue_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2437,6 +2931,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2445,6 +2940,8 @@
 
 ## public/data/companies/shrimp_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2453,11 +2950,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/shrimp_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2466,11 +2966,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/shrimp_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2479,11 +2982,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/soltuna_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2492,11 +2998,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/soltuna_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2505,11 +3014,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/soltuna_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2518,6 +3030,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2526,6 +3039,8 @@
 
 ## public/data/companies/squid_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2534,11 +3049,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/squid_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2547,11 +3065,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/squid_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2560,11 +3081,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sstc_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2573,11 +3097,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sstc_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2586,11 +3113,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/sstc_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2599,6 +3129,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2607,6 +3138,8 @@
 
 ## public/data/companies/starkist_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2615,11 +3148,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/starkist_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2628,11 +3164,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/starkist_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2641,6 +3180,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2649,6 +3189,8 @@
 
 ## public/data/companies/surimi_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2657,11 +3199,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/surimi_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2670,11 +3215,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/surimi_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2683,11 +3231,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tecopesca_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2696,11 +3247,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tecopesca_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2709,11 +3263,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tecopesca_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2722,6 +3279,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2730,6 +3288,8 @@
 
 ## public/data/companies/thaiunion_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2738,11 +3298,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/thaiunion_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2751,6 +3314,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2759,6 +3323,8 @@
 
 ## public/data/companies/thaiunion_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2767,6 +3333,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2776,6 +3343,8 @@
 
 ## public/data/companies/tog_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2784,11 +3353,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tog_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2797,11 +3369,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tog_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2810,6 +3385,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2818,6 +3394,8 @@
 
 ## public/data/companies/trimarine_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2826,11 +3404,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/trimarine_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2839,11 +3420,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/trimarine_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2852,6 +3436,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2860,6 +3445,8 @@
 
 ## public/data/companies/tropical_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2868,11 +3455,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tropical_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2881,11 +3471,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tropical_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2894,6 +3487,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -2902,6 +3496,8 @@
 
 ## public/data/companies/tuna_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2910,11 +3506,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tuna_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2923,11 +3522,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tuna_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2936,11 +3538,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tunafarm_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2949,11 +3554,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tunafarm_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2962,11 +3570,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/tunafarm_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2975,11 +3586,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/umios_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -2988,11 +3602,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/umios_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -3001,11 +3618,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/umios_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -3014,6 +3634,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -3022,6 +3643,8 @@
 
 ## public/data/companies/whelk_figures_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -3030,11 +3653,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/whelk_prose_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -3043,11 +3669,14 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/whelk_tables_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
 - components/market-understanding/IndustryReportFlow.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/OctopusIndustryDashboard.tsx
@@ -3056,6 +3685,7 @@
 - components/market-understanding/SquidIndustryDashboard.tsx
 - components/market-understanding/SurimiIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
@@ -3116,6 +3746,11 @@
 - components/PorkDashboard.tsx
 - components/PorkUsdaWidgets.tsx
 
+## public/data/industry/hub_v1.json
+- components/IndustrySidebarNav.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
+
 ## public/data/kofa_fleet_age_v1.json
 - components/market-understanding/CompanyResearchTables.tsx
 - components/market-understanding/MackerelIndustryDashboard.tsx
@@ -3167,6 +3802,7 @@
 - components/market-understanding/PollockIndustryDashboard.tsx
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/mackerel_industry_v1.json
@@ -3175,6 +3811,7 @@
 - components/market-understanding/PollockIndustryDashboard.tsx
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/maru_registry_status_v1.json
@@ -3249,6 +3886,7 @@
 - components/market-understanding/PollockIndustryDashboard.tsx
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/shrimp_argentina.json
@@ -3257,6 +3895,7 @@
 - components/market-understanding/PollockIndustryDashboard.tsx
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/shrimp_company_research_v1.json
@@ -3274,6 +3913,7 @@
 - components/market-understanding/PollockIndustryDashboard.tsx
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/shrimp_real_data_v4.json
@@ -3282,6 +3922,7 @@
 - components/market-understanding/PollockIndustryDashboard.tsx
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/singapore_mgo.json
@@ -3337,6 +3978,7 @@
 
 ## public/data/tuna_anatomy_roster_v1.json
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 
 ## public/data/tuna_anatomy_v1.json
 - components/market-understanding/CommodityCharts.tsx
@@ -3344,6 +3986,7 @@
 - components/market-understanding/PollockIndustryDashboard.tsx
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/tuna_carrier_fleet_v1.json
@@ -3429,6 +4072,7 @@
 - components/market-understanding/PollockIndustryDashboard.tsx
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/whelk_industry_v1.json
@@ -3437,4 +4081,5 @@
 - components/market-understanding/PollockIndustryDashboard.tsx
 - components/market-understanding/ShrimpIndustryDashboard.tsx
 - components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/WhelkIndustryDashboard.tsx
