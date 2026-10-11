@@ -1,5 +1,5 @@
 /**
- * 시장 이해 여섯 품목 화면의 「보고서 원문 보기」와 원문 그림·장 제목 렌더.
+ * 시장 이해 아홉 품목 화면의 「보고서 원문 보기」와 원문 그림·장 제목 렌더.
  *
  * 원문 HTML 은 `scripts/sync_industry_report_html.py` 가 docs/evidence 에서 public 으로
  * **바이트 그대로** 복사한다. 원문을 고치면 다시 돌려야 하고, 잊으면 여기서 죽는다.
@@ -15,19 +15,28 @@ import OctopusIndustryDashboard from '../components/market-understanding/Octopus
 import PollockIndustryDashboard from '../components/market-understanding/PollockIndustryDashboard';
 import ShrimpIndustryDashboard from '../components/market-understanding/ShrimpIndustryDashboard';
 import SquidIndustryDashboard from '../components/market-understanding/SquidIndustryDashboard';
-import TunaAnatomyDashboard from '../components/market-understanding/TunaAnatomyDashboard';
 import SurimiIndustryDashboard from '../components/market-understanding/SurimiIndustryDashboard';
+import TunafarmIndustryDashboard from '../components/market-understanding/TunafarmIndustryDashboard';
+import WhelkIndustryDashboard from '../components/market-understanding/WhelkIndustryDashboard';
+import TunaIndustryDashboard from '../components/market-understanding/TunaIndustryDashboard';
 import { chapterHead } from '../components/market-understanding/IndustryReportFlow';
 import { reportFigures } from '../lib/data/company-report-figures';
 import { reportProse } from '../lib/data/company-report-prose';
+import { MACKEREL_NARRATIVES } from '../lib/mackerel-industry-content';
+import { TUNAFARM_NARRATIVES } from '../lib/tunafarm-industry-content';
+import { WHELK_NARRATIVES } from '../lib/whelk-industry-content';
 
 const PAGES = [
   ['pollock', PollockIndustryDashboard],
   ['octopus', OctopusIndustryDashboard],
   ['shrimp', ShrimpIndustryDashboard],
   ['squid', SquidIndustryDashboard],
-  ['tuna', TunaAnatomyDashboard],
+  // 2026-10-12 「참치 해부」를 「참치」로 합쳤다. 참치 페이지가 해부보고서 원문을 싣는다.
+  ['tuna', TunaIndustryDashboard],
   ['surimi', SurimiIndustryDashboard],
+  ['mackerel', MackerelIndustryDashboard],
+  ['tunafarm', TunafarmIndustryDashboard],
+  ['whelk', WhelkIndustryDashboard],
 ] as const;
 
 const root = process.cwd();
@@ -60,8 +69,25 @@ describe('화면 렌더', () => {
     expect(html.indexOf(link)).toBeLessThan(html.indexOf('30초 브리핑'));
   });
 
-  it('원문 링크는 원문이 있는 품목에만 붙는다', () => {
-    expect(renderToStaticMarkup(React.createElement(MackerelIndustryDashboard))).not.toContain('보고서 원문 보기');
+  it('참치 원문 링크는 한 번만 붙는다(참치 해부 통합 뒤 중복 없음)', () => {
+    const html = markup.get('tuna') ?? '';
+    expect(html.split('보고서 원문 보기').length - 1).toBe(1);
+  });
+
+  it.each([
+    ['mackerel', MACKEREL_NARRATIVES],
+    ['tunafarm', TUNAFARM_NARRATIVES],
+    ['whelk', WHELK_NARRATIVES],
+  ] as const)('%s - 손 작성 리드·문단·사실표가 화면에 남지 않는다', (key, hand) => {
+    const html = (markup.get(key) ?? '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#x27;/g, "'").replace(/&quot;/g, '"');
+    const probe = (text: string) => text.replace(/\*\*/g, '').slice(0, 40);
+    // 손 작성 문장이 원문을 그대로 인용한 경우는 원문 추출로도 나오므로 원문에 없는 것만 본다.
+    const source = readFileSync(join(root, `docs/evidence/industry-${key}-2026-10/보고서.html`), 'utf8')
+      .replace(/<[^>]+>/g, '').replace(/&amp;/g, '&');
+    const left = hand.flatMap((stage) => [stage.lede, ...stage.paragraphs, ...stage.facts.map((f) => f.note ?? '')])
+      .filter((text) => text.length > 40 && html.includes(probe(text)) && !source.includes(probe(text)))
+      .map(probe);
+    expect(left).toEqual([]);
   });
 
   it.each(PAGES)('%s - 원문 본문 절의 장 제목이 렌더된 화면에 있다', (key) => {

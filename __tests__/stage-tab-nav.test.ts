@@ -23,10 +23,12 @@ import WhelkIndustryDashboard from '@/components/market-understanding/WhelkIndus
 const DASHBOARDS = [
   // 08 선박별(사내 자료) + 보고서 이식 09~15 + 배포본 전용 D 가 붙어 19단계다.
   ['오징어', SquidIndustryDashboard, 19],
-  ['참치', TunaIndustryDashboard, 10],
+  // 2026-10-12 참치 해부 통합: 원문 15단계
+  ['참치', TunaIndustryDashboard, 15],
   ['새우', ShrimpIndustryDashboard, 14],
   ['고등어', MackerelIndustryDashboard, 10],
-  ['골뱅이', WhelkIndustryDashboard, 10],
+  // 조달 보고서 원문(요지·Ⅰ~Ⅳ장)을 네 단계에 싣는다.
+  ['골뱅이', WhelkIndustryDashboard, 4],
 ] as const;
 
 function tabLabels(html: string): string[] {

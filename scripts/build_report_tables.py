@@ -23,7 +23,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from report_tables import TableSet  # noqa: E402
+from report_tables import TableSet, sections  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public/data/companies"
@@ -1036,7 +1036,7 @@ SPECS: dict[str, dict] = {
         "expect": {
             "s02": 3, "s03": 2, "s04": 5, "s05": 5, "s06": 5, "s07": 4,
             "s08": 2, "s09": 1, "s10": 2, "s11": 2, "s12": 5, "s13": 5,
-            "s14": 3, "s15": 3, "s16": 3, "s17": 3, "s18": 4, "s19": 4,
+            "s14": 3, "s15": 3, "s16": 3, "s17": 3, "s18": 4, "s19": 7,
             "s20": 1, "s21": 6,
         },
     },
@@ -1081,8 +1081,77 @@ SPECS: dict[str, dict] = {
             "s14": 1, "s15": 1,
         },
     },
+    "mackerel": {
+        "src": "docs/evidence/industry-mackerel-2026-10/보고서.html",
+        # 해부보고서 본문 15절을 시장 이해 열 단계에 접는다. h2 에 번호 라벨(h2n)이 없어
+        # 장 제목은 「01. 여덟 가지 요약」 통째다. 부록 sZA·sB·sC·sZZ(표 10개)는 id 가
+        # 대문자라 파서 대상이 아니며 본문 표 49개는 하나도 버리지 않는다.
+        "stages": {
+            "s01": "s01", "s02": "s01",
+            "s03": "s02",
+            "s04": "s03",
+            "s05": "s04",
+            "s06": "s05",
+            "s07": "s06",
+            "s08": "s07", "s09": "s07",
+            "s10": "s08",
+            "s11": "s09", "s14": "s09", "s15": "s09",
+            "s12": "x01", "s13": "x01",
+        },
+        "drop": [],
+        "expect": {
+            "s02": 1, "s03": 5, "s04": 6, "s05": 7, "s06": 10, "s07": 3,
+            "s08": 2, "s09": 1, "s10": 4, "s11": 1, "s12": 2, "s14": 1, "s15": 6,
+        },
+    },
+    "tunafarm": {
+        "src": "docs/evidence/industry-tunafarm-2026-10/보고서.html",
+        # 세계 참치 양식 조사 제1보. 절 id 가 없어 h2 단위로 자른다(report_tables.sections).
+        # s01 = 「0 · 요지」, s02~s10 = Ⅰ~Ⅸ장. 별첨 「자료와 한계」는 부록처럼 뺀다(표 0개).
+        # 요지는 경계(Ⅰ)와 한 단계로, Ⅱ~Ⅸ장은 옛 화면과 같은 s02~s09 에 하나씩 붙인다.
+        "stages": {
+            "s01": "s01", "s02": "s01",
+            "s03": "s02", "s04": "s03", "s05": "s04", "s06": "s05",
+            "s07": "s06", "s08": "s07", "s09": "s08", "s10": "s09",
+        },
+        "drop": [],
+        "expect": {
+            "s02": 2, "s03": 5, "s04": 3, "s05": 6, "s06": 3,
+            "s07": 4, "s08": 3, "s09": 4, "s10": 15,
+        },
+    },
+    "whelk": {
+        "src": "docs/evidence/industry-whelk-2026-10/보고서.html",
+        # 골뱅이 조달 보고서(2026-09-12). 해부보고서가 아니라 조달조사 보고서다. 절 id 가 없어
+        # h2 단위로 자른다 — s01 요지, s02 Ⅰ 수입현황, s03 Ⅱ 생산과 산업, s04 Ⅲ 가공국별 제조소,
+        # s05 Ⅳ 한국 수입자. 별첨 A(표 0개)는 뺀다. Ⅲ장은 표만 있고 문단이 없어 Ⅱ장과 한 단계다.
+        "stages": {
+            "s01": "s01",
+            "s02": "s02",
+            "s03": "s03", "s04": "s03",
+            "s05": "s04",
+        },
+        "drop": [],
+        "expect": {"s02": 6, "s03": 2, "s04": 8, "s05": 1},
+    },
 
 }
+
+
+# ── 공통 품목 라우트(/industry/[key]) ──────────────────────────────────────────
+# 농축산 36품목과 갈치·주꾸미·연어는 모두 12절 표준 틀(s01~s11 본문 + 부록 sA)이다.
+# 품목마다 손으로 적지 않는다 — 레지스트리(lib/industry-items.json)에서 키를 읽고 1절=1단계로 붙인다.
+# 부록 sA 는 id 가 대문자라 파서 대상이 아니다. 절이 늘면 _assert_all_sections_mapped 가 잡는다.
+# 절별 표 개수는 여기 못박지 않고 테스트가 원문 HTML 의 표 수와 대조한다(industry-generic-route.test.ts).
+INDUSTRY_ITEMS = json.loads((ROOT / "lib/industry-items.json").read_text(encoding="utf8"))["items"]
+for _it in INDUSTRY_ITEMS:
+    if "route" in _it:
+        continue
+    SPECS[_it["key"]] = {
+        "src": f"docs/evidence/industry-{_it['key']}-2026-10/보고서.html",
+        "stages": {f"s{i:02d}": f"s{i:02d}" for i in range(1, 12)},
+        "drop": [],
+    }
 
 
 def _assert_all_sections_mapped(key: str, doc: str, spec: dict) -> None:
@@ -1093,7 +1162,7 @@ def _assert_all_sections_mapped(key: str, doc: str, spec: dict) -> None:
     사라졌고, 2026-09-05 에는 Jealsa 정정 이력 절이 id 를 `corr` 로 붙였다가 빠졌다.
     조용한 누락을 빌드 실패로 바꾼다.
     """
-    ids = re.findall(r'<section id="(s[0-9a-z]+)"[^>]*>', doc)
+    ids = [sid for sid, _ in sections(doc)]
     missing = [i for i in dict.fromkeys(ids) if i not in spec["stages"]]
     if missing:
         raise SystemExit(

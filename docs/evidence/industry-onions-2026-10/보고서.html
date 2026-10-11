@@ -1,0 +1,721 @@
+<title>한국 양파 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 양파<br>
+        세계 생산 · 국내 생산과 저장 · 무역 · 가격 · 유통 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">국내 수확과 저장이 시장을 움직이는 채소 · 리포트 2026</p>
+      <h1><span class="scr">Onion</span> <span class="lt">한국 양파 산업 해부</span></h1>
+      <p class="cover-sub">한국은 2007년 이후 매년 양파를 100만 톤 이상 생산했다. 수확기에 들어온 물량은 저장을 거쳐 이듬해 햇양파가 나올 때까지 공급되며, 신선양파와 건조양파 수입은 서로 다른 시장을 이룬다. 생산·재고·수입·가격·유통·제도를 각각의 원자료와 발표 시점에 맞춰 읽는다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2026 국내 생산</div><div class="v">120.7만</div><div class="n">톤 · 국가데이터처 공표·KOSIS 전국 양파</div></div>
+      <div class="cf"><div class="k">2025 전남 비중</div><div class="v">30.8%</div><div class="n">전국 생산량 대비 · KOSIS</div></div>
+      <div class="cf"><div class="k">2024 세계 생산</div><div class="v">1억 826만</div><div class="n">톤 · 건양파·샬롯 포함 · FAOSTAT</div></div>
+      <div class="cf"><div class="k">2025 신선양파 수입</div><div class="v">13.51만</div><div class="n">톤 · 국내 HS10 양파 두 세번 합계, 샬롯 제외</div></div>
+      <div class="cf"><div class="k">2025 건조양파 수입</div><div class="v">1,662</div><div class="n">톤 · HS 0712.20.0000</div></div>
+      <div class="cf"><div class="k">2025 중국 비중</div><div class="v">97.9%</div><div class="n">한국 HS6 0703.10 수입 중량 · 샬롯 포함 · Comtrade</div></div>
+      <div class="cf"><div class="k">2026.3 양파 도매가</div><div class="v">710</div><div class="n">원/kg · 가락시장 상품 · KREI 농업관측</div></div>
+      <div class="cf"><div class="k">2026 WTO TRQ</div><div class="v">20,645</div><div class="n">톤 · 양파 3개 세번 공동 시장접근물량</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">국내 수확과 저장이 중심이고, 수입은 품목·시기에 따라 달라진다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">인도와 중국 본토가 건양파 생산을 이끌지만, 교역의 중심은 다르다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">수확량보다 저장 출고 시점이 공급의 모양을 바꾼다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">신선양파·샬롯·건조양파의 범위에 따라 수입의 크기가 달라진다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">산지·도매·소매·통관 단가는 서로 다른 단계의 값이다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">한국의 신선양파·샬롯 수입은 중국에 집중되고, 세계 수출은 여러 체계로 움직인다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">생산자·농협·저장업체·산지유통인이 공급 시점을 나눈다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">WTO TRQ, 실제 적용세율, 수급 조치는 다른 층이다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">한국 저장 관측과 인도 기상 보고가 직접적인 단서를 준다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 관찰 지표·남은 물음</span><span class="t">월별 저장 출고와 품목별 수입을 함께 본다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">국내 저장·유통과 중국산 신선양파, 중국·미국산 건조양파</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>국내 수확과 저장이 중심이고, 수입은 품목·시기에 따라 달라진다</h2>
+<p class="lead">한국 양파 산업의 규모를 하나의 수입액으로 설명할 수는 없다. 2025년 국내 생산량은 118만 1,556톤이고, 같은 해 신선양파 두 세번의 수입량은 13만 5,103톤이다. 두 수치는 각각 생산연도와 통관연도의 물량이며 재고 이동, 감모, 가공, 수출을 반영하지 않는다. 따라서 단순히 더해 소비량이라고 부르지 않는다. 양파 시장의 공급과 가격에는 국내 수확량, 저장 출고 속도, 계절별 수입, 유통 단계별 가격이 함께 관련된다(KOSIS; 관세청 HS10 원자료; 03~05절).</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>국내 생산.</strong> KOSIS 「채소생산량(조미채소)」의 2025년 전국 양파 생산량은 약 118.2만 톤(1,181,555.9538톤)이다. 2024년 1,175,275.7347톤보다 0.53% 많다. 2025년 전남은 전국 생산량의 30.8%이며, 전남·경남·경북·전북의 합계는 81.13%다(03절, 근거 E02). 2026년산 생산량은 1,206,552.5458톤으로 2025년보다 2.1% 많다. 재배면적은 0.7% 줄고 10a당 생산량은 2.8% 늘었다(<a href="https://mods.go.kr/board.es?act=view&amp;bid=228&amp;list_no=446236&amp;mid=a10301010000">국가데이터처, 「2026년 보리, 마늘, 양파 생산량조사 결과」, 2026-07-30</a>; KOSIS, E02).</li>
+<li><strong>세계 생산.</strong> FAOSTAT의 2024년 세계 「건양파와 샬롯, 탈수품 제외」 생산량은 약 1억 826만 톤(108,260,011.29톤)이다. 이 분류에서 인도와 중국 본토(<code>China, mainland</code>, 코드 41)가 각각 세계의 약 22%를 생산한다. FAOSTAT 수치는 한국 통계의 ‘양파’와 품목 경계가 다르다(02절, E01).</li>
+<li><strong>신선양파 수입.</strong> 관세청 HS10 기준 2025년 0703.10.1010과 0703.10.1090의 수입 중량 합계는 약 13.51만 톤(135,102,594kg), 금액은 37,119,008달러다. 별도 세번인 샬롯 0703.10.3000은 이 합계에서 뺐다(04절, E04).</li>
+<li><strong>건조양파 수입.</strong> 관세청 HS10 기준 2025년 0712.20.0000은 약 1,662톤(1,662,119kg)·5,278,520달러다. 신선양파와 수분 함량 및 용도가 달라 두 중량을 ‘양파 수입량’ 하나로 합치지 않는다(04절, E04).</li>
+<li><strong>진행연도 무역.</strong> 2026년 1~8월 기준(잠정) 신선양파 두 세번 수입은 46,885,170kg으로 전년 같은 기간의 86,155,857kg보다 45.58% 적다. 수입 통계의 2026년은 미완 기간이므로 연간 점유율로 읽지 않는다(04절, E05).</li>
+<li><strong>원산지.</strong> 한국 신고 기준 UN Comtrade HS6 0703.10 수입 중량에서 중국의 비중은 2024년 98.23%, 2025년 97.90%다. 건조양파 HS6 0712.20의 2025년 비중은 중국 77.01%, 미국 22.95%다. 두 HS6은 품목 범위가 다르고, 0703.10에는 샬롯이 포함된다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2024&amp;cmdCode=070310&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2024년 HS6 0703.10 수입 조회</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=070310&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년 0703.10 조회</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=071220&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년 0712.20 조회</a>; 04절, E07).</li>
+<li><strong>저장과 가격.</strong> KREI 2026년 4월 양파 관측은 2025년산의 3월 말 추정 재고를 약 1만 3천 톤, 2026년 3월 가락시장 상품 양파 도매가격을 710원/kg으로 제시했다. 재고는 모형 추정이고 가격은 특정 시장·등급의 도매 단계 값이다(03·05절, E08).</li>
+<li><strong>제도.</strong> 농식품부 2026년 WTO TRQ 운영계획의 양파 3개 세번은 시장접근물량 20,645톤, 계획서의 저율·고율 표시 50%·135%다. 이것을 모든 원산지의 실제 적용세율로 읽지 않는다(08절, E13).</li>
+</ul>
+<h3>확인된 관계와 확인되지 않은 관계</h3>
+<p>KREI는 2026년 3월 가격 약세를 햇양파 출하 전 저장양파의 집중 출고와 낮은 품위의 물량에 연결했다. 연간 생산량보다 수확·저장 출고가 겹치는 시기의 공급량이 해당 월의 가격을 얼마나 설명하는지는 동일 등급·도매시장의 월별 가격, 반입량, 재고를 연결한 자료로 검증되지 않았다(KREI 2026년 4월호; 03·05절).</p>
+<p>신선양파와 건조양파는 통관 단가가 크게 다르고, 완료연도인 2025년의 원산지 구성도 다르다. 동일 기간의 용도·원산지·가격 변동에서 두 품목이 같은 수요와 공급 충격으로 움직이는지는 확인되지 않았다(04·06절).</p>
+<p>2026년산 국내 생산 증가는 공표됐고 같은 해 1~8월 신선양파 수입은 줄었다. KREI는 2026년 3월 수입양파의 시장 출하가능가격을 관세 135% 적용 시 1,140~1,200원/kg으로, 같은 달 국산 상품 도매가격을 710원/kg으로 제시했다. 농식품부는 국내산 가격이 낮아 신선양파 수입이 크게 감소했다고 설명했다. 이는 기관의 가격 비교와 원인 설명이다. 동일 등급의 국내산·수입산 가격과 통관량을 연결한 월별 시계열 분석까지 뜻하지는 않는다(KREI, 「양념채소 농업관측」 2026년 4월호, 2쪽; <a href="https://www.mafra.go.kr/bbs/home/793/578231/artclView.do">농림축산식품부, 「양파 생산자 등 합의를 통한 수급안정 대책 추진으로 가격 회복 중」, 2026-06-23</a>; 04·05·10절).</p>
+<p>수치의 성격을 구분한다. KOSIS·관세청·FAOSTAT의 수치는 각 기관이 정한 범위의 관측 또는 공식 집계다. KREI의 재고와 전망은 추정·전망이다. 2026년 생산은 공표된 연간 값이며, 2026년 수입·가격의 부분 기간을 연간 값처럼 확장하지 않는다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>인도와 중국 본토가 건양파 생산을 이끌지만, 교역의 중심은 다르다</h2>
+<p class="lead">이 절의 세계 양파 생산은 FAOSTAT의 품목 경계를 따른다. 이 원자료에는 「Onions and shallots, dry (excluding dehydrated)」와 「Onions and shallots, green」이 따로 있다. 전자는 건양파와 샬롯을 포함하되 탈수품을 제외하는 생산 분류다. 한국의 신선양파 HS10, 건조양파 HS 0712.20, 국내 KOSIS ‘양파’와 정확히 일치하지 않는다. 이 절의 세계 생산 순위는 첫 분류의 <code>Element=Production</code>, <code>Year=2024</code>, <code>Unit=t</code>만 비교한다(FAOSTAT QCL; 근거 E01).</p>
+<p>2024년 세계 건양파·샬롯 생산은 1억 826만 톤으로 2023년 1억 1,136만 톤보다 2.78% 적다. FAO의 「Agricultural production statistics 2010–2024」 분석 브리프도 양파 생산이 2010~2023년 늘다가 2024년에 줄었다고 설명한다. 같은 브리프의 세계 채소 생산 12억 톤은 양파 생산량이 아니며, 양파 수치와 바꾸어 쓸 수 없다(FAOSTAT 원자료; FAO 분석 브리프, 아카이브).</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 건양파·샬롯 생산의 주요국(2024년)</caption>
+<thead><tr><th>국가</th><th class="num">생산량(톤)</th><th class="num">세계 생산 대비</th><th>FAOSTAT 표시</th></tr></thead>
+<tbody>
+<tr><td>인도</td><td class="num">24,266,712</td><td class="num">22.42%</td><td>A</td></tr>
+<tr><td>중국 본토</td><td class="num">24,221,236</td><td class="num">22.37%</td><td>E</td></tr>
+<tr><td>미국</td><td class="num">3,499,013</td><td class="num">3.23%</td><td>A</td></tr>
+<tr><td>이집트</td><td class="num">3,439,646</td><td class="num">3.18%</td><td>I</td></tr>
+<tr><td>방글라데시</td><td class="num">2,917,354</td><td class="num">2.69%</td><td>A</td></tr>
+<tr><td>세계</td><td class="num">108,260,011</td><td class="num">100%</td><td>E</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_onions.csv</code>, 2024년 <code>Item=Onions and shallots, dry (excluding dehydrated)</code>·<code>Element=Production</code>·<code>Unit=t</code>. 세계 행을 분모로 계산했다. 표의 중국 본토는 <code>China, mainland</code>(코드 41)다. FAOSTAT의 <code>China</code>(코드 351)는 본토·홍콩·마카오·대만을 합친 24,284,075톤으로, 본토 값과 더하지 않는다. FAO 브리프의 ‘중국 22%·최대 생산국’은 이 351 집계와 순위가 맞는다. 본토 기준 표에서는 인도가 근소하게 많다(FAOSTAT QCL; FAO, 「Agricultural production statistics 2010–2024」 분석 브리프).</p>
+<p>인도와 중국 본토의 생산 규모는 가깝지만 무역에서 맡는 역할까지 같다는 뜻은 아니다. FAOSTAT 2024년 건양파·샬롯 세계 수출량 행은 9,808,987.35톤, 세계 수입량 행은 8,465,667.19톤이다. 두 세계 합계는 보고 방식과 상대국 포착 차이 때문에 맞아떨어지는 재고 항등식이 아니다. 생산량에서 수출량을 빼 곧바로 소비량이나 재고를 계산하지 않는다(FAOSTAT TCL; E03).</p>
+<p>UN Comtrade의 HS6 0703.10 수출 합계 행에서는 네덜란드가 2024년과 2025년 모두 가장 크다. 아래 표는 <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, <code>partnerCode=0</code>을 만족하고 <code>netWgt</code>가 있는 신고국을 2025년 중량으로 정렬했다. 상위 5개국은 두 해 모두 신고했으며, 인도는 2025년에 중국을 넘어 2위가 됐다. 이는 <strong>파일에 잡힌 신고국의 순서</strong>로, 모든 나라의 생산 순위나 동일 원산지의 재수출을 구분한 순위가 아니다(UN Comtrade 원자료; E07).</p>
+<div class="tw">
+<table>
+<caption>표 2. 조회된 UN Comtrade 신고국의 신선양파·샬롯 수출(HS6 0703.10, 2025년 순위)</caption>
+<thead><tr><th class="num">2025 순위</th><th>신고국</th><th class="num">2024 순중량(톤)</th><th class="num">2025 순중량(톤)</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>네덜란드</td><td class="num">1,805,160</td><td class="num">1,961,420</td></tr>
+<tr><td class="num">2</td><td>인도</td><td class="num">893,710</td><td class="num">1,498,900</td></tr>
+<tr><td class="num">3</td><td>중국</td><td class="num">1,276,470</td><td class="num">1,348,900</td></tr>
+<tr><td class="num">4</td><td>멕시코</td><td class="num">512,120</td><td class="num">555,140</td></tr>
+<tr><td class="num">5</td><td>미국</td><td class="num">394,460</td><td class="num">416,590</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>onions_comtrade_annual.csv</code>, 해당 연도 <code>flowCode=X</code>·<code>cmdCode=070310</code>·합계 행 필터, <code>netWgt÷1,000</code>. 표시값은 10톤 단위 반올림이며 파일에 잡힌 신고국만 정렬했다. FAOSTAT TCL의 추정·보완 신고까지 포함하면 2024년 아프가니스탄 568,074톤(<code>X</code>)과 우즈베키스탄 563,309톤(<code>I</code>)이 멕시코보다 커서 하위 순서는 달라진다.</p>
+<p>공급의 계절성은 국가별 생산연도와 수확 달력을 함께 읽어야 한다. 인도 정부는 2025/26년 양파 생산을 307.37 LMT로 추정했고, 2026년 8월 비축양파 방출을 시작했다고 발표했다. LMT는 인도식 <code>lakh metric tonne</code> 단위다. 이는 정부의 <strong>추정치와 정책 발표</strong>이며 FAOSTAT의 2024년 확정연도 생산량과 이어 붙인 동일 시계열이 아니다(<a href="https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2303587&amp;lang=2&amp;reg=48">인도 보도정보국, 2026-08-26</a>, 조사 노트 A등급).</p>
+<p>네덜란드 통계청은 2025년 종자양파 총수확량을 잠정 173만 톤으로 추계하고 전년 대비 17% 증가했다고 발표했다. 통계청은 토양병에 따른 품질 저하와 손실 가능성도 명시했다. 생산량 증가를 곧바로 수출 가능량 증가로 바꿀 수 없는 이유다(<a href="https://www.cbs.nl/en-gb/news/2025/44/largest-harvest-of-ware-potatoes-and-seed-onions-in-25-years">네덜란드 통계청, 2025-10-27</a>, 조사 노트 A등급).</p>
+<p>세계 소비·재고의 빈칸은 구체적으로 남긴다. 품목 아카이브의 <code>raw_data/NOT_AVAILABLE.txt</code>에는 USDA PSD 양파 미수록이 기록돼 있다. 반면 FAOSTAT SCL에는 국가별 식량공급량이 있으므로 「양파 소비 통계가 없다」고 쓰지 않는다. 확보한 SCL은 2023년까지이고 식량공급은 실제 섭취 조사와 다르다. 이 보고서가 확인한 자료에는 전 세계 양파 재고를 한 기준으로 측정한 시계열이 없다. 시도 경로는 USDA PSD 안내, FAOSTAT SCL, KREI 농업전망 및 관측이다(아카이브 <code>NOT_AVAILABLE.txt</code>; FAOSTAT SCL; KREI 2026년 4월호).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>수확량보다 저장 출고 시점이 공급의 모양을 바꾼다</h2>
+<p class="lead">국내 양파 생산은 KOSIS 「채소생산량(조미채소)」의 전국·시도별 면적, 10a당 생산량, 생산량으로 확인한다. 2025년 전국 생산량은 1,181,555.9538톤, 재배면적은 17,677.2086ha, 10a당 생산량은 6,684.0641kg이다. 2024년 생산량 1,175,275.7347톤과의 차이는 6,280.2191톤이다. KOSIS 가공 파일의 연도별 값과 품목별 원자료의 전국 행도 서로 맞는다(근거 E02).</p>
+<p>산지는 전남에만 몰려 있지 않다. 2025년 전남이 전국의 30.8%, 경남이 22.8%, 경북이 14.1%, 전북이 13.4%를 차지한다. 네 지역 합계 81.13%는 전국 생산량을 분모로 계산한 값이다. 이 비중은 생산량의 위치를 보여줄 뿐, 저장시설의 위치나 시장 반입량의 비중을 보여주지 않는다. 산지별 수확 시점, 저장 능력, 품위, 저장 감모가 다르면 같은 연간 생산량에서도 월별 공급 곡선이 달라진다(KOSIS; E02).</p>
+<div class="tw">
+<table>
+<caption>표 3. 한국 양파 생산과 주요 산지(2025년)</caption>
+<thead><tr><th>구분</th><th class="num">생산량(톤)</th><th class="num">전국 대비</th></tr></thead>
+<tbody>
+<tr><td>전국</td><td class="num">1,181,556</td><td class="num">100.0%</td></tr>
+<tr><td>전라남도</td><td class="num">364,157</td><td class="num">30.8%</td></tr>
+<tr><td>경상남도</td><td class="num">269,403</td><td class="num">22.8%</td></tr>
+<tr><td>경상북도</td><td class="num">166,111</td><td class="num">14.1%</td></tr>
+<tr><td>전북특별자치도</td><td class="num">158,919</td><td class="num">13.4%</td></tr>
+<tr><td>네 지역 합계</td><td class="num">958,590</td><td class="num">81.13%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>kosis_crops_veg_seasoning_onions.csv</code>, <code>PRD_DE=2025</code>·<code>ITM_NM=양파:생산량</code>·<code>UNIT_NM=톤</code>. 비중은 각 시도 값÷전국 1,181,555.9538×100, 표시값은 반올림했다.</p>
+<p>FAOSTAT의 한국 2024년 건양파·샬롯 생산은 1,175,276톤으로 KOSIS 2024년 양파 생산 1,175,275.7347톤을 반올림한 값과 사실상 같다. 그러나 이 근접성만으로 모든 연도의 품목 경계가 동일하다고 단정하지 않는다. FAOSTAT QI의 한국 2024년 총생산지수 88.53은 <code>2014~2016=100</code> 지수이고, QV의 2024년 125,976은 <code>1000 USD</code> 단위의 <strong>추정된 경상 생산액</strong>이다. 둘 다 실제 생산량 118만 톤이나 국내 유통 매출로 바꾸어 쓰지 않는다(FAOSTAT QCL·QI·QV; E01·E09).</p>
+<p>저장은 ‘연산’과 ‘통관연도’를 갈라놓는다. KREI 「농업관측 2026년 4월호」는 2025년산 양파의 3월 말 재고량을 약 1만 3천 톤으로 추정했고, 전년 동기 대비 17.3% 많다고 설명했다. 같은 자료는 출고 지연과 저품위 잔여 물량을 함께 언급한다. 이 재고는 전국의 모든 창고를 실사한 수치가 아니라 농업관측센터가 감모율과 수급 대책을 반영한 추정치다. 연간 생산량에서 임의로 차감하거나 현재 재고라고 부르지 않는다(KREI, 「양념채소 농업관측」 2026년 4월호, 아카이브 PDF).</p>
+<p>KREI의 2026년 4월 관측은 2026년산 조생종 생산량을 약 21만 5천 톤으로, 중만생종을 100만 3천 톤으로 전망했다. 중만생종 전망은 전년보다 7.2% 적다는 방향이었다. 이후 국가데이터처가 공표한 2026년 전국 양파 생산량은 1,206,552.5458톤으로 2025년보다 2.1% 많다. 봄철 품종별 전망과 수확 후 연간 집계는 시점과 범위가 다르다(<a href="https://mods.go.kr/board.es?act=view&amp;bid=228&amp;list_no=446236&amp;mid=a10301010000">국가데이터처, 「2026년 보리, 마늘, 양파 생산량조사 결과」, 2026-07-30</a>; KOSIS 「채소생산량(조미채소)」; KREI, 「양념채소 농업관측」 2026년 4월호, 3쪽).</p>
+<p>소비를 나타내는 가장 가까운 확보 통계는 FAOSTAT SCL의 2023년 한국 건양파·샬롯 <code>Food supply quantity (tonnes)</code> 1,194,849.39톤이다. 이 행은 <code>Flag=E</code>의 식량공급 추정치다. 같은 파일에 <code>Food supply quantity (g/capita/day)</code> 63.26g도 있지만 이는 공급표의 1인당 환산값이며 가계가 실제 먹은 양을 계측한 값이 아니다. 폐기, 조리 손실, 비식용 용도를 파악하지 않고 2025년 생산과 2023년 공급량을 나눠 2025년 자급률이라고 부르지 않는다(FAOSTAT SCL; E10).</p>
+<p>양파 산업을 읽는 최소 연결고리는 <strong>생산 → 저장 입고 → 감모 → 월별 출고 → 도매 반입 → 소매 판매</strong>다. 현재 자료는 첫 단계의 연간 통계가 촘촘하고, 중간 단계는 KREI 관측치에 의존한다. 저장업체별 재고 원장과 동일 품위의 월별 출고량이 확보되면 가격 변화의 원인을 더 분명히 가를 수 있다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>신선양파·샬롯·건조양파의 범위에 따라 수입의 크기가 달라진다</h2>
+<p class="lead">양파 수입을 집계할 때 첫 갈림길은 세번이다. 국내 HS10의 0703.10.1010은 껍질 벗긴 신선·냉장 양파, 0703.10.1090은 그 밖의 신선·냉장 양파, 0703.10.3000은 샬롯, 0712.20.0000은 건조양파다. 국제 HS6 0703.10은 앞의 신선양파와 샬롯을 합친다. 0712.20은 건조양파이며 양파 가공품 전체가 아니다. 이 보고서의 ‘신선양파’는 국내 양파 두 세번만, ‘HS6 신선양파·샬롯’은 세 세번을 뜻한다(품목 registry; 관세청 원자료; E04).</p>
+<p>관세청 품목별 월간 원자료는 2024년 11월부터 2026년 8월까지 22개월, 각 월 네 세번을 담고 있다. 따라서 2024년 관세청 파일의 두 달을 2024년 연간 수입으로 사용하지 않는다. 완결된 2025년 신선양파 수입은 135,102,594kg·37,119,008달러, 샬롯은 4,416,391kg·4,051,648달러다. 건조양파는 1,662,119kg·5,278,520달러다(관세청; E04).</p>
+<div class="tw">
+<table>
+<caption>표 4. 한국 양파 관련 HS10 수입의 서로 다른 범위</caption>
+<thead><tr><th>기간·품목</th><th>해당 세번</th><th class="num">수입 중량(kg)</th><th class="num">수입 금액(달러)</th><th class="num">단가(달러/kg)</th></tr></thead>
+<tbody>
+<tr><td>2025 신선양파</td><td>0703.10.1010+1090</td><td class="num">135,102,594</td><td class="num">37,119,008</td><td class="num">0.275</td></tr>
+<tr><td>2025 샬롯</td><td>0703.10.3000</td><td class="num">4,416,391</td><td class="num">4,051,648</td><td class="num">0.917</td></tr>
+<tr><td>2025 건조양파</td><td>0712.20.0000</td><td class="num">1,662,119</td><td class="num">5,278,520</td><td class="num">3.176</td></tr>
+<tr><td>2026.1~8 신선양파</td><td>0703.10.1010+1090</td><td class="num">46,885,170</td><td class="num">12,868,020</td><td class="num">0.274</td></tr>
+<tr><td>2026.1~8 건조양파</td><td>0712.20.0000</td><td class="num">1,333,180</td><td class="num">4,033,213</td><td class="num">3.025</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>customs_item_trade_monthly_onions.csv</code>, 해당 연월·HS10별 <code>impWgt</code>·<code>impDlr</code> 합계. 단가=<code>impDlr÷impWgt</code>, 세 자리 반올림. 2026년 통관값은 부분 기간이다.</p>
+<p>같은 1~8월끼리 보면 신선양파 수입 중량은 2025년 86,155,857kg에서 2026년 46,885,170kg으로 45.58% 줄었다. 건조양파는 같은 기간 1,069,468kg에서 1,333,180kg으로 늘었다. 두 흐름을 하나의 수입 증감률로 뭉개면 용도 차이가 사라진다. KREI는 2026년 3월 수입 신선양파의 시장 출하가능가격을 관세 135% 적용 시 1,140~1,200원/kg, 국산 상품 도매가격을 710원/kg으로 제시했다. 농식품부는 국내산 저가를 수입 감소의 원인으로 설명했다. 이 설명은 동일 등급·월별 가격과 통관량을 연결한 인과 추정과 구별한다(KREI, 「양념채소 농업관측」 2026년 4월호, 2쪽; <a href="https://www.mafra.go.kr/bbs/home/793/578231/artclView.do">농림축산식품부, 「양파 생산자 등 합의를 통한 수급안정 대책 추진으로 가격 회복 중」, 2026-06-23</a>; E05).</p>
+<p>완료연도 원산지 비교는 한국 신고 기준 UN Comtrade HS6 합계 행으로 한다. 0703.10의 중국 중량은 2024년 87,671,060kg/전체 89,247,385.3kg으로 98.23%, 2025년 136,588,101.786kg/전체 139,518,983.386kg으로 97.90%다. 2025년 건조양파 0712.20은 중국 1,279,930.6kg/전체 1,662,116.69kg으로 77.01%, 미국 381,383.035kg으로 22.95%다. 이는 샬롯을 포함한 국제 HS6 범위이며 국내 HS10 신선양파 두 세번만의 원산지 비중이 아니다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2024&amp;cmdCode=070310&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2024년 HS6 0703.10 수입 조회</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=070310&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년 0703.10 조회</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=071220&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년 0712.20 조회</a>; E07).</p>
+<p>관세청 국가별 월간 수집본의 2026년 3~8월 값은 진행연도 흐름을 보여준다. 이 기간 기준(잠정) HS6 0703.10 수입은 32,096,195kg이고 중국이 30,744,765kg으로 95.79%다. 같은 기간 건조양파 HS6 0712.20 수입 825,597kg에서 중국은 609,535kg, 미국은 188,917kg이다. 2026년 1~2월이 없는 이 수집본의 비중을 연간 점유율로 쓰지 않는다(관세청 국가별 월간 수집본; E06).</p>
+<div class="tw">
+<table>
+<caption>표 5. 한국의 국가별 HS6 양파 수입(2026년 3~8월 기준, 잠정)</caption>
+<thead><tr><th>품목 범위</th><th>원산지</th><th class="num">중량(kg)</th><th class="num">해당 HS6 중량 대비</th></tr></thead>
+<tbody>
+<tr><td>0703.10 신선양파·샬롯</td><td>중국</td><td class="num">30,744,765</td><td class="num">95.79%</td></tr>
+<tr><td>0703.10 신선양파·샬롯</td><td>미얀마</td><td class="num">590,200</td><td class="num">1.84%</td></tr>
+<tr><td>0703.10 신선양파·샬롯</td><td>대만</td><td class="num">456,000</td><td class="num">1.42%</td></tr>
+<tr><td>0703.10 신선양파·샬롯</td><td>그 밖의 원산지</td><td class="num">305,230</td><td class="num">0.95%</td></tr>
+<tr><td>0712.20 건조양파</td><td>중국</td><td class="num">609,535</td><td class="num">73.83%</td></tr>
+<tr><td>0712.20 건조양파</td><td>미국</td><td class="num">188,917</td><td class="num">22.88%</td></tr>
+<tr><td>0712.20 건조양파</td><td>그 밖의 원산지</td><td class="num">27,145</td><td class="num">3.29%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>onions_customs_kr_monthly.csv</code>, <code>period=202603~202608</code>·<code>hsCd</code>별 <code>impWgt</code> 합계. 비중은 각 HS6의 전체 중량을 분모로 계산했다. ‘그 밖’은 전체에서 앞의 표시 원산지를 뺀 값이다.</p>
+<p>UN Comtrade에는 2024년 한국의 HS6 0703.10 수입 순중량 89,247,385.3kg·수입액 31,302,334달러, 수출 순중량 498,261kg·수출액 190,448달러가 있다. 2025년 같은 HS6 수입은 139,518,983.386kg·41,170,656달러다. 2025년 관세청 HS10 신선양파와 샬롯 중량을 합친 139,518,985kg과 거의 같지만, 신고·반올림 차이를 없앤 동일 값이라고 선언하지 않는다. Comtrade를 집계할 때 통관절차 세부 행과 운송수단 행을 더하면 합계가 부풀기 때문에 합계 행만 사용했다(UN Comtrade; 관세청; E07).</p>
+<p>아카이브의 FAOSTAT TCL·TM은 2024년 한국 건양파·샬롯 수입 89,247.39톤과 중국 본토(<code>China, mainland</code>, 코드 41)→한국 87,671.06톤의 양자 흐름을 제공한다. FAOSTAT 무역품목은 건양파·샬롯 분류이고, Comtrade HS6와 정의가 완전히 같다고 가정하지 않는다. OEC의 2024년 한국 수입액 27,885,133달러 및 수출액 294,778달러는 같은 시기 Comtrade 값과 다르다. OEC를 1차 통관값에 더하거나 그 차이를 거래 증가·감소로 해석하지 않았다(FAOSTAT TCL·TM; OEC 아카이브 CSV; E11).</p>
+<p>미국 Census, EU Comext, 브라질 Comexstat 분할 파일은 비교시장 감시에 쓸 수 있다. 그러나 국가별 표에는 지역 합계 코드, 통계절차, 운송·통관 구분이 섞여 있다. 국제 비교의 핵심 수치는 범위를 명시한 FAOSTAT 세계 행과 Comtrade 합계 행에 한정한다.</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>산지·도매·소매·통관 단가는 서로 다른 단계의 값이다</h2>
+<p class="lead">양파 가격은 한 줄의 ‘시장가격’으로 정리되지 않는다. 국내 산지 거래가격, 도매시장 가격, 중도매인 판매가격, 소매가격은 거래 단계와 등급, 포장 단위가 다르다. 수입 단가는 통관 금액을 중량으로 나눈 값으로 유통가격이 아니다. KAMIS의 <code>평년</code>은 최근 5년의 같은 시기 값에서 최고·최저를 뺀 3년 평균이므로 해당 날짜의 실측값으로 넣지 않는다. 이 보고서의 KAMIS 원자료 분석은 <code>평균</code> 또는 서울 판매처의 실제 날짜 행을 대상으로 한다(<a href="https://kamis.or.kr/customer/archive/archive.do?action=detail&amp;archiveNo=173">한국농수산식품유통공사 KAMIS, 「식재료 아카이브」의 평년 정의</a>; KAMIS 처리 원자료).</p>
+<p>KREI 「농업관측 2026년 4월호」는 2026년 3월 가락시장 상품 양파 도매가격을 710원/kg으로 제시했다. 전년 같은 달보다 60.9% 낮다고 설명하며, 햇양파 출하 전 저장양파 출고 집중과 저품위 물량을 배경으로 들었다. 같은 호의 4월 상품 도매가격 950원/kg 내외는 <strong>발간 당시 전망</strong>이다. 관측 이후 실제 4월 가격을 확인하지 않고 예측값을 실적으로 바꾸지 않는다(KREI, 「양념채소 농업관측」 2026년 4월호, 2쪽; E08).</p>
+<p>농식품부는 2026년 6월 설명자료에서 가락시장 상품 도매가격을 5월 570원/kg, 6월 668원/kg이라고 적었다. KREI의 3월 710원/kg도 가락시장 상품 기준이다. 세 수치는 시장·등급이 같지만 발표 기관과 집계 방식의 차이를 확인한 뒤 월별 변화율을 계산해야 한다(<a href="https://www.mafra.go.kr/bbs/home/793/578231/artclView.do">농림축산식품부, 「양파 생산자 등 합의를 통한 수급안정 대책 추진으로 가격 회복 중」, 2026-06-23</a>; KREI, 「양념채소 농업관측」 2026년 4월호, 2쪽).</p>
+<p>KAMIS 중도매인 판매가격 조회의 지역코드 <code>2200</code>에서 2025년 양파 상품·15kg 연평균은 19,072원이다. KAMIS 소매 공개 화면의 전체 지역 2026년 5월 22일 상품·1kg 값은 1,822원이다. 아카이브 KAMIS 소매 수집본의 <code>평균</code> 행은 같은 날 서울 판매처의 <code>양파(1kg)</code> 유효 가격 9개를 산술평균한 값과 일치한다. 이 수집본의 5월 22일 1,799원과 전체 지역 화면의 1,822원은 지역 범위가 달라 차이가 난다. 수집본의 3월 9일 평균은 2,357원, 9월 30일 평균은 1,986원이다(KAMIS <code>onions_kamis_price.csv</code>; <a href="https://www.kamis.or.kr/customer/price/wholesale/period.do?action=yearly&amp;countycode=2200&amp;itemcategorycode=200&amp;itemcode=245&amp;kindcode=&amp;yyyy=2025">한국농수산식품유통공사 KAMIS, 「중도매인 판매가격—기간별」, 2025년 조회</a>; <a href="https://www.kamis.or.kr/customer/info/retail/period.do?action=daily&amp;countycode=&amp;itemcategorycode=200&amp;itemcode=245&amp;kindcode=&amp;marketclscode=01&amp;productrankcode=&amp;regday=2026.05.22">「소매가격—기간별」, 2026-05-22 조회</a>; E12).</p>
+<div class="tw">
+<table>
+<caption>표 6. 확인 가능한 양파 가격: 단계와 단위</caption>
+<thead><tr><th>지표</th><th>기간·조건</th><th class="num">값</th><th>읽을 때의 경계</th></tr></thead>
+<tbody>
+<tr><td>KREI 가락시장 상품 도매가격</td><td>2026년 3월</td><td class="num">710원/kg</td><td>농업관측의 실적 설명</td></tr>
+<tr><td>KREI 가락시장 상품 도매가격 전망</td><td>2026년 4월</td><td class="num">약 950원/kg</td><td>발간 당시 전망, 실적 아님</td></tr>
+<tr><td>KAMIS 중도매인 판매가격·지역코드 2200</td><td>2025년 상품·15kg 연평균</td><td class="num">19,072원/15kg</td><td>해당 지역 조회값, 소매·산지 가격 아님</td></tr>
+<tr><td>KAMIS 소매 공개 화면·전체 지역</td><td>2026년 5월 22일 상품·1kg</td><td class="num">1,822원/kg</td><td>공개 조회 화면의 해당 조건</td></tr>
+<tr><td>KAMIS 서울 소매 판매처 평균</td><td>2026년 9월 30일 양파·1kg</td><td class="num">1,986원/kg</td><td>유효 가격 9개 판매처의 평균</td></tr>
+<tr><td>관세청 신선양파 수입 단가</td><td>2025년 HS10 두 세번</td><td class="num">0.275달러/kg</td><td>통관금액÷수입중량</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KREI 「양념채소 농업관측」 2026년 4월호; KAMIS 공개 조회 화면과 <code>onions_kamis_price.csv</code>; <code>customs_item_trade_monthly_onions.csv</code>. 각 행의 거래 단계·시점·통화가 다르므로 표 안에서 배수나 마진을 계산하지 않았다.</p>
+<p>FAOSTAT PP에는 한국 건양파·샬롯 생산자가격지수 2025년 67.42(<code>2014~2016=100</code>, <code>Flag=E</code>)가 있다. 이것은 원/kg이 아니라 지수다. 아카이브의 <code>pinksheet_NOT_AVAILABLE.txt</code>는 세계은행 Pink Sheet 양파 항목 미수록을 기록한다. 따라서 이 보고서는 국제 공통 양파 현물가격을 임의로 만들지 않는다. 인도의 일별 가격 모니터링과 네덜란드 WUR 가격 화면에는 거래 지역·품위가 명시된 지표가 있으나, WUR 그래프 수치는 확보하지 못했다(FAOSTAT PP; 아카이브 안내; <a href="https://consumeraffairs.gov.in/pages/price-monitoring-division">인도 소비자부</a>; <a href="https://agrimatie.nl/ThemaResultaat.aspx?indicatorID=3155&amp;subpubID=2232&amp;themaID=2263">WUR 가격 화면</a>, 조사 노트 A/B등급).</p>
+<p>미국 USDA ERS의 「Vegetables and Pulses Outlook: December 2025」는 미국 양파의 2025년 1~10월 생산자 가격을 파운드당 26센트로, 전년 같은 기간 46센트보다 43% 낮게 제시한다. 이는 미국 생산자·해당 기간의 비교다. 한국 도매가격과 환율을 적용해 같은 단계의 가격처럼 비교하지 않는다(USDA ERS VGS-377, 아카이브 PDF; E14).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>한국의 신선양파·샬롯 수입은 중국에 집중되고, 세계 수출은 여러 체계로 움직인다</h2>
+<p class="lead">국내 양파의 주 공급 기반은 한국 산지다. 2025년 국내 생산은 118만 톤대이고, 신선양파 두 세번의 수입은 13.51만 톤이다. 단순 수입량÷국내 생산량은 11.43%지만 이는 자급률의 역수도, 소비 중 수입품 비중도 아니다. 수확연도·통관연도, 재고와 감모, 샬롯과 가공품의 경계가 다르기 때문이다(KOSIS; 관세청 HS10; E02·E04).</p>
+<p>완료연도 수입 원산지에서도 중국 집중이 확인된다. 한국 신고 기준 UN Comtrade HS6 0703.10의 중국 중량 비중은 2024년 98.23%, 2025년 97.90%다. 2025년 건조양파 HS6 0712.20에서는 중국이 77.01%, 미국이 22.95%다. 신선양파·샬롯에는 운송 거리와 수확 후 상태가, 건조양파에는 가공 규격과 장기 보관성이 별도로 작용할 수 있다. 다만 이 비중만으로 원산지 선택의 이유를 단정하지 않는다. 실제 계약 규격과 국내 전처리 수요는 확보되지 않았다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2024&amp;cmdCode=070310&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2024년 HS6 0703.10 수입 조회</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=070310&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년 0703.10 조회</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=071220&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년 0712.20 조회</a>; E07).</p>
+<p>2026년 3~8월 관세청 국가별 수집본의 잠정 비중은 HS6 0703.10 중국 95.79%, HS6 0712.20 중국 73.83%·미국 22.88%다. 이는 완료연도 통계의 대체값이 아니라 이후 부분 기간의 관찰값이다. FAOSTAT TM의 2024년 중국 본토(<code>China, mainland</code>, 코드 41)→한국 건양파·샬롯 수입량은 87,671.06톤으로, 같은 FAOSTAT TCL 한국 총수입 89,247.39톤의 대부분이다. FAOSTAT와 Comtrade의 품목·집계 경로는 각각 표시한다. 2022년 OEC 중국→한국 무역액 30,459,995달러는 과거 금액 자료이며 원산지 중량 비중의 분모로 쓰지 않는다(관세청 국가별 수집본; FAOSTAT TM·TCL; OEC 양자무역 CSV; E06·E11).</p>
+<p>인도는 세계 생산과 수출 정책 양쪽에서 중요하다. 인도는 2024년 9월 양파 수출 최저가격 USD 550/MT 조건을 폐지하고, 2025년 4월부터 20% 수출관세를 철회했다. 인도 정부 발표에 따르면 2026/27년 가격안정기금용 양파 수매 목표는 2.00 LMT이고 2026년 8월 비축양파 방출을 시작했다. 생산량이 많다는 사실만으로 언제든 같은 가격에 수출할 수 있다는 뜻은 아니다. 수출 제한과 국내 비축 정책도 공급 가능 시점과 가격의 조건이다(<a href="https://apeda.gov.in/sites/default/files/dgft_notifications/Notification_No_28_2024_25.pdf">인도 DGFT 고시</a>; <a href="https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2114060&amp;lang=2&amp;reg=48">인도 소비자부 발표</a>; <a href="https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2303587&amp;lang=2&amp;reg=48">비축 방출 발표</a>, 조사 노트 A등급).</p>
+<p>인도 APEDA의 2025/26 회계연도 신선양파 수출량은 1,547,940.11MT이며 말레이시아·스리랑카·UAE·네팔 등을 주요 목적지로 든다. 이 값은 회계연도 수출통계로, Comtrade의 달력연도 수출 순중량과 직접 증감률을 계산하지 않는다(<a href="https://apeda.gov.in/FreshOnions">APEDA 「Fresh Onions」</a>, 2026-10-07 열람, 조사 노트 A등급).</p>
+<p>네덜란드는 Comtrade 합계 행에서 2024년과 2025년 신선양파·샬롯 수출 신고량이 가장 큰 나라다. 2025년 신고 순중량은 1,961,417톤이다. 다만 수출 신고량에는 자국 생산품과 재수출품이 섞일 수 있다. 네덜란드 통계청의 2025년 종자양파 잠정 수확량 173만 톤과 Comtrade 수출량을 빼서 재고 부족을 계산하는 것은 잘못이다. 품목과 재수출 포함 여부가 다르다(UN Comtrade <code>onions_comtrade_annual.csv</code>; <a href="https://www.cbs.nl/en-gb/news/2025/44/largest-harvest-of-ware-potatoes-and-seed-onions-in-25-years">네덜란드 통계청</a>; E07).</p>
+<p>한국의 공급국 비교에는 <strong>물량 외의 통과 조건</strong>도 있다. 검역본부의 수입가능여부 조회는 국가·식물 부위·생/건/냉동 상태를 각각 지정한다. 공개 조회 경로만으로 특정 국가의 신선양파 수입 허용 여부를 확정하지 않았다. 해당 조건의 실제 조회 결과와 수입식품 검사 항목이 없어 원산지 다변화 가능성도 확인되지 않았다(<a href="https://www.pqis.go.kr/minwon/imq/imqList.html">농림축산검역본부 수입가능여부조회</a>, 조사 노트 A등급).</p>
+<p>이 보고서의 공급국 결론은 좁다. 한국 수입 통계의 중국 편중은 완료연도와 진행연도 자료 모두에서 확인된다. 인도와 네덜란드는 세계 공급·정책의 중요한 관찰 대상이다. 이들 국가가 한국 시장에 지금 곧 대체 물량을 공급할 수 있다는 주장은 통관·검역·규격 자료가 없어 하지 않는다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>생산자·농협·저장업체·산지유통인이 공급 시점을 나눈다</h2>
+<p class="lead">한국 양파 유통을 특정 회사의 매출로 대표하기 어렵다. 산지에서 수확한 양파는 선별·전처리·저장을 거쳐 도매시장, 대형·중소형 소매, 식자재, 외식, 가공 채널로 이동한다. 이 경로마다 거래 단위와 품위가 다르다. 농식품부는 2026년 양파 중앙주산지협의회 참여 주체를 생산자·농협·저장업체·산지유통인으로 명시했다. 이는 실제 수급 조절에 여러 주체가 관여한다는 공식 설명이지, 각각의 전국 점유율 자료는 아니다(<a href="https://www.mafra.go.kr/bbs/home/793/578231/artclView.do">농식품부, 2026-06-23</a>, 조사 노트 A등급).</p>
+<p>2025년 농식품부의 수급대책은 3만 톤 수매비축, 품위저하품 4천 톤 자율 출하 억제, 중생종 3천 톤 출하 연기를 계획했다. 생산 이후 저장·출하의 시점을 바꾸는 것이 정책 수단이라는 점을 보여준다. 발표 당시의 계획 물량이며 실제 완료량으로 바꾸어 쓰지 않는다(<a href="https://www.mafra.go.kr/bbs/home/792/574269/artclView.do">농식품부, 2025-05-26</a>, 조사 노트 A등급).</p>
+<p>농식품부의 스마트 APC 확대 참고자료에는 전남서남부채소농협, 무안군농협조공법인, 목포신안조공법인, 합천유통㈜, 함양군농협조공법인이 양파 관련 후보군 예시로 나온다. 2026년 햇양파·가공품 판매업체 목록에는 농협몰, 화원농협, 황토랑양파즙 영농조합법인, 옥반식품 영농조합법인, 팜앤피아 등이 있다. 앞은 사업 후보군, 뒤는 행사 판매처 명단이다. 어느 쪽도 취급량·매출 순위가 아니다(<a href="https://www.mafra.go.kr/bbs/home/792/569336/download.do">농식품부 스마트 APC 참고자료</a>; <a href="https://www.mafra.go.kr/bbs/home/792/597388/download.do">햇양파 판매업체 목록</a>, 조사 노트 A등급).</p>
+<div class="tw">
+<table>
+<caption>표 7. 확인된 유통 주체와 확인되지 않은 규모</caption>
+<thead><tr><th>위치</th><th>확인된 주체·자료</th><th>이 자료로 말할 수 있는 것</th><th>이 자료로 말할 수 없는 것</th></tr></thead>
+<tbody>
+<tr><td>생산·수급 협의</td><td>생산자·농협·저장업체·산지유통인</td><td>협의회 참여 범위</td><td>주체별 출하량·전국 점유율</td></tr>
+<tr><td>산지 집하·선별</td><td>스마트 APC 후보군 예시</td><td>후보 사업체의 존재</td><td>취급량 상위 순위</td></tr>
+<tr><td>저장·출하</td><td>KREI 저장양파 추정</td><td>연산별 잔여 재고의 관측 추정</td><td>창고별 재고와 감모</td></tr>
+<tr><td>소매·가공 판매</td><td>햇양파·가공품 행사 판매처</td><td>행사 참여 업체</td><td>시장점유율·상시 매출</td></tr>
+<tr><td>수입·전처리</td><td>관세청 HS10 수입</td><td>품목별 전체 통관 물량</td><td>수입업체별 물량·가공 투입량</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.mafra.go.kr/bbs/home/793/578231/artclView.do">농식품부 중앙주산지협의회 설명</a>, <a href="https://www.mafra.go.kr/bbs/home/792/569336/download.do">스마트 APC 참고자료</a>, <a href="https://www.mafra.go.kr/bbs/home/792/597388/download.do">판매업체 목록</a>; KREI 2026년 4월호; 관세청 HS10 원자료.</p>
+<p>업체별 취급량·점유율 순위가 비어 있는 이유도 시도 경로와 함께 적는다. 식약처의 2025년 10월~2026년 9월 양파 신고에서는 수입업소의 신고 건수 서열이 확인되지만, 전국 업체별 통관 중량·양파 매출·시장점유율 순위는 확보되지 않았다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>, A등급). 따라서 APC 후보 명단의 나열 순서를 점유율 순위로 바꾸지 않는다. 수입업체의 신고 건수 역시 중량이나 매출의 대체값이 될 수 없다(조사 노트 「미확보 목록」).</p>
+<p>산업 구조상 중요한 것은 ‘누가 가장 큰가’보다 ‘어디에서 공급 시점과 품위가 바뀌는가’다. KREI가 지목한 저장양파 출고 집중과 낮은 품위는 같은 톤수라도 도매가격을 다르게 만들 수 있는 연결고리다. 산지별 저장 입고·출고, 도매시장 등급별 반입, 전처리 물량을 같은 월 기준으로 연결한 자료는 이 보고서에 없다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>WTO TRQ, 실제 적용세율, 수급 조치는 다른 층이다</h2>
+<p class="lead">양파의 세율을 말할 때 ‘50%’나 ‘135%’만 제시하면 오해가 생긴다. 농식품부 「Management Plan of WTO TRQ 2026」은 신선·냉장 양파 0703.10.1010·0703.10.1090과 건조양파 0712.20.0000을 묶어 시장접근물량 20,645톤, 저율·고율 50%·135%로 적는다. 이는 <strong>WTO TRQ 운영계획의 표기</strong>다. 국가별 FTA, 세부 통관 요건, 특정 기간의 다른 세율 조치까지 포함한 ‘모든 수입품의 실제 세율’이 아니다(<a href="https://mafra.go.kr/bbs/english/25/593609/download.do">농림축산식품부, 「Management Plan of WTO TRQ 2026」, 2026년</a>; E13).</p>
+<p>한·미 FTA 시행령 별표 20에는 양파 관련 세번 0703.10.1010·0703.10.1090·0712.20.0000의 2026년 특별긴급관세 기준발동물량 5,808미터톤과 특별긴급관세율 135%가 있다. 이것은 <strong>특정 협정의 특별긴급관세 조건</strong>으로, WTO TRQ의 시장접근물량 20,645톤과 같은 숫자가 아니다. 발동 여부와 실제 수입 건별 적용은 별도로 확인해야 한다(<a href="https://law.go.kr/LSW/flDownload.do?bylClsCd=110201&amp;flSeq=153473705&amp;gubun=">국가법령정보센터, 「자유무역협정의 이행을 위한 관세법의 특례에 관한 법률 시행령」 별표 20, 2024-12-30 개정</a>; E13).</p>
+<p>KREI는 2026년 4월호에서 수입 신선양파의 시장 출하가능가격을 <strong>관세 135% 적용</strong> 기준으로 1,140~1,200원/kg이라고 계산했다. 이는 해당 가격 계산에 사용한 세율의 근거다. 원산지별 FTA 실행세율과 개별 통관 건의 실제 적용세율까지 확정하는 근거는 아니다(KREI, 「양념채소 농업관측」 2026년 4월호, 2쪽).</p>
+<div class="tw">
+<table>
+<caption>표 8. 한국 양파 제도의 서로 다른 기준</caption>
+<thead><tr><th>제도·조치</th><th>문서에서 확인한 값 또는 대상</th><th>판독 범위</th></tr></thead>
+<tbody>
+<tr><td>WTO TRQ 운영계획</td><td>양파 3개 세번, 20,645톤, 저율/고율 50%/135%</td><td>2026년 운영계획의 시장접근물량과 세율 표기</td></tr>
+<tr><td>한·미 FTA 특별긴급관세 별표</td><td>기준발동물량 5,808미터톤, 세율 135%</td><td>해당 협정·세번의 별표 조건</td></tr>
+<tr><td>KREI 수입양파 가격 계산</td><td>관세 135% 적용</td><td>2026년 4월호의 출하가능가격 계산 조건</td></tr>
+<tr><td>2025년 국내 수급 계획</td><td>수매비축 3만 톤, 출하 억제 4천 톤, 출하 연기 3천 톤</td><td>발표 당시 계획</td></tr>
+<tr><td>2026년 2월 국내 수급 계획</td><td>정부 비축 2만 5천 톤 중 1만 5천 톤 수출 계획</td><td>계획, 실행 완료량 아님</td></tr>
+<tr><td>검역본부 수입가능여부조회</td><td>국가·식물 부위·상태별 조회</td><td>개별 조건에 따른 허용 여부는 이 자료에서 미확인</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://mafra.go.kr/bbs/english/25/593609/download.do">농식품부 WTO TRQ 2026</a>, <a href="https://law.go.kr/LSW/flDownload.do?bylClsCd=110201&amp;flSeq=153473705&amp;gubun=">FTA 시행령 별표</a>, KREI 「양념채소 농업관측」 2026년 4월호, <a href="https://www.mafra.go.kr/bbs/home/792/574269/artclView.do">농식품부 2025년 수급대책</a>, <a href="https://www.mafra.go.kr/home/5109/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaG9tZSUyRjc5MiUyRjU3Njc5NSUyRmFydGNsVmlldy5kbyUzRg%3D%3D">2026년 2월 발표</a>, <a href="https://www.pqis.go.kr/minwon/imq/imqList.html">검역본부 조회</a>.</p>
+<p>국내 수급 조치는 연도별 발표 시점을 구별한다. 농식품부는 2026년 2월 정부 수매비축 양파 2만 5천 톤 중 1만 5천 톤을 수출할 계획이라고 발표했다. 2026년 8월 자료에서는 출하정지·출하연기·수매비축 확대 등을 포함한 대책 규모를 10.2만 톤이라고 성과 설명으로 제시했다. 계획과 성과 설명의 범주가 달라 둘을 더해 2026년 총 처리량으로 만들지 않는다(<a href="https://www.mafra.go.kr/home/5109/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaG9tZSUyRjc5MiUyRjU3Njc5NSUyRmFydGNsVmlldy5kbyUzRg%3D%3D">농림축산식품부, 2026년 2월 발표</a>; <a href="https://www.mafra.go.kr/bbs/home/792/578872/artclView.do">농림축산식품부, 「국민과 함께하는 특별성과 포상! 탁월한 성과에는 파격적인 보상을」, 2026-08-27</a>).</p>
+<p>검역은 국가 이름만으로 결정되지 않는다. 검역본부는 국가·식물 부위·생/건/냉동 상태별 수입가능여부 조회 경로를 제공한다. 부산지방식약청은 2026년 5월 「수입 양파 및 마늘 검사 알림」을 게시했지만 공개 게시문에는 세부 검사 항목이 나오지 않았다. 검사 조건이나 특정 원산지 허용을 이 제목만으로 추정하지 않는다(<a href="https://www.pqis.go.kr/minwon/imq/imqList.html">검역본부</a>; <a href="https://www.mfds.go.kr/brd/m_767/view.do?itm_seq_1=0&amp;itm_seq_2=0&amp;multi_itm_seq=0&amp;page=2&amp;seq=33871">부산지방식약청 게시문</a>, 조사 노트 A등급).</p>
+<p>원산지 표시는 판매 단계에서 별도 의무다. 농관원 안내에 따르면 국산 농산물은 ‘국산/국내산’ 또는 생산 지역을, 수입 농산물은 대외무역법에 따른 원산지를 표시한다. 이력추적관리 표시와 수입 농산물 유통이력 관리는 서로 다른 제도다. 표기 의무와 저장·선별 과정의 실제 추적 가능성을 같은 것으로 취급하지 않는다(<a href="https://www.naqs.go.kr/hp/contents/contentsTab.do?menuId=MN30559">국립농산물품질관리원 원산지 표시 관리</a>, 조사 노트 A등급).</p>
+<p>남은 세율 확인 범위는 2026년 양파의 기본세율, 원산지별 FTA 실행세율, 별도 할당·조정관세 고시와 개별 통관 건의 실제 적용세율이다. KREI의 135% 가격 계산과 WTO TRQ의 50/135 표기를 이 항목 전체의 답으로 바꾸지 않는다. 특정 국가의 신선양파 검역 허용 조건과 수입식품 검사 세부 항목도 조건별 원문 조회가 필요하다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>한국 저장 관측과 인도 기상 보고가 직접적인 단서를 준다</h2>
+<p class="lead">은행·기관 자료는 통계의 대체물이 아니라 질문을 만드는 자료다. 은행 리포트 색인 <code>index.csv</code>에서 <code>items</code>에 <code>onions</code>가 정확히 들어간 문서는 15건이다. 구성은 ICICI Bank 1건과 페루 중앙은행 BCRP의 지역 경제 보고서 14건이다. BCRP의 지역 보고서는 페루 산지의 생산 동향이며 한국 양파 수급이나 한국 수입업체 순위로 확대할 수 없다(은행 색인; E15).</p>
+<p>ICICI Bank Economic Research Group의 「Monsoon: Risk to kharif production amidst floods in some states」는 2025년 인도 일부 주의 과다 강우와 농작물 위험을 살핀다. 보고서는 Maharashtra가 인도 양파 생산의 44%를 차지하고 상위 5개 주가 약 79%를 생산한다고 적는다. 홍수 영향을 받은 주들이 인도 양파 생산의 약 51%를 차지한다고도 설명한다. 이는 해당 은행이 당시 인용·분석한 인도 산지 구조이며, FAOSTAT 2024년 국가별 세계 생산 순위와 같은 자료가 아니다(<a href="https://www.icici.bank.in/content/dam/icicibank/india/erg/thematic/monsoon-2025-final.pdf">ICICI Bank 원문</a>; 로컬 <code>.md</code> 원문; E15).</p>
+<p>페루 중앙은행 BCRP의 「Síntesis de Actividad Económica de Arequipa — Junio 2026」는 2026년 6월 Arequipa의 양파 생산 감소를 전년 동월 대비 47.6%, 1~6월 누계를 23.9%로 적는다. 이는 페루 <strong>한 지역</strong>의 전년 대비 생산 변화다. La Libertad·Lambayeque의 월간 보고서에도 양파가 들어가지만 이 지역 수치를 페루 전체 또는 한국의 공급 부족으로 바꾸지 않는다(<a href="https://www.bcrp.gob.pe/docs/Sucursales/Arequipa/2026/sintesis-arequipa-06-2026.pdf">BCRP Arequipa 2026년 6월호</a>; 로컬 <code>.md</code> 원문; E15).</p>
+<p>한국 수급에 더 직접적인 것은 KREI의 농업관측이다. 2026년 4월호는 3월 상품 도매가격 710원/kg, 3월 말 저장양파 잔여 약 1만 3천 톤을 함께 제시했다. 「농업전망 2026」 제9장은 2025년산 저장 재고 증가에 따른 2026년 상반기 가격 약세 <strong>가능성</strong>을 다룬다. 「양파 가격 예측 고도화를 위한 인공지능 활용방안 연구」는 예측모형 비교 연구다. 두 문서의 전망과 방법론을 KOSIS 확정 생산값으로 취급하지 않는다(KREI 아카이브 2026년 4월호; <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">KREI 농업전망 2026 제9장</a>; <a href="https://repository.krei.re.kr/handle/2018.oak/33291">KREI 예측 연구</a>, 조사 노트 B등급).</p>
+<div class="tw">
+<table>
+<caption>표 9. 양파 관련 은행·기관 문서와 사용 범위</caption>
+<thead><tr><th>기관</th><th>문서·시점</th><th>확인한 주장</th><th>이 보고서의 사용</th></tr></thead>
+<tbody>
+<tr><td>KREI</td><td>양념채소 농업관측, 2026년 4월</td><td>3월 도매가·3월 말 저장 재고 추정</td><td>국내 공급·가격 연결</td></tr>
+<tr><td>KREI</td><td>농업전망 2026 제9장</td><td>저장 재고 증가와 상반기 가격 약세 가능성</td><td>전망으로만 기록</td></tr>
+<tr><td>USDA ERS</td><td>VGS-377, 2025년 12월</td><td>미국 양파 생산자가격 전년 하락</td><td>해외 가격 단계 비교</td></tr>
+<tr><td>ICICI Bank ERG</td><td>인도 몬순 보고서, 2025년</td><td>인도 양파 산지·기상 위험</td><td>주요 생산국 위험 설명</td></tr>
+<tr><td>BCRP Arequipa</td><td>지역 경제 동향, 2026년 6월</td><td>해당 지역 양파 생산 감소</td><td>지역 자료로만 기록</td></tr>
+<tr><td>Rabobank</td><td>유럽 경종농업 전망, 2026년 6월</td><td>네덜란드 양파의 2022·2023년 가격 언급</td><td>양파 단독 전망으로 사용하지 않음</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KREI·USDA ERS 아카이브 원문, <code>_banks/index.csv</code>와 해당 은행 리포트 <code>.md</code>; <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">KREI 농업전망</a>, <a href="https://www.icici.bank.in/content/dam/icicibank/india/erg/thematic/monsoon-2025-final.pdf">ICICI Bank</a>, <a href="https://www.bcrp.gob.pe/docs/Sucursales/Arequipa/2026/sintesis-arequipa-06-2026.pdf">BCRP</a>, <a href="https://www.rabobank.nl/kennis/d011530846-margeverwachting-europese-akkerbouw-in-2026-minder-over-onderaan-de-streep">Rabobank</a>. 조사 노트의 등급은 문서별 A 또는 B를 그대로 따른다.</p>
+<p>Rabobank 글은 유럽 경종농업 전반의 마진 전망이며 네덜란드 양파가 2022·2023년에 양호한 가격을 기록했다는 언급이 있다. 양파 단독의 최신 수급 전망이라고 표제를 바꾸지 않는다. aT 양파 유통실태 보고서의 본문과 Rabobank의 양파 단독 최근 보고서는 조사 노트의 열람·검색 경로에서 확보되지 않았다. 따라서 이 절에는 업체별 유통마진이나 2026년 유럽 양파가격 전망치를 채우지 않는다(조사 노트 B등급 및 「미확보 목록」).</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 관찰 지표·남은 물음</span>월별 저장 출고와 품목별 수입을 함께 본다</h2>
+<p class="lead">한국 양파 산업에서 살펴볼 위험의 첫째는 연간 생산량의 증감만이 아니라 <strong>같은 시기에 팔 수 있는 물량이 얼마나 나오는가</strong>다. 이 시기별 공급량이 해당 월의 가격을 얼마나 설명하는지는 월별 가격·반입량·재고를 연결한 자료로 아직 검증되지 않았다(01절). 2026년 3월에는 저장양파 출고 집중과 낮은 품위가 도매가격 약세의 설명으로 제시됐다. 저장 감모가 커지면 총 재고가 같아도 상품 등급의 공급량은 줄 수 있다. 반대로 저품위품이 일시에 나오면 평균 가격의 의미가 달라진다(KREI 2026년 4월호).</p>
+<p>둘째는 <strong>원산지와 품목의 집중</strong>이다. 한국 신고 기준 UN Comtrade의 2025년 HS6 신선양파·샬롯 수입에서 중국은 중량의 97.90%다. 건조양파 HS6에서는 중국이 77.01%, 미국이 22.95%로 구성이 다르다. 2026년 3~8월 관세청 국가별 자료의 중국 비중은 신선양파·샬롯 95.79%, 건조양파 73.83%인 잠정 관찰값이다. 어느 국가의 생산·정책 충격이 한국에 전달되는지는 물량 비중뿐 아니라 통관 허용, 계약 품위, 국내 대체 가능성으로 달라진다. 통계가 직접 확인하는 것은 기간별 구성이지 미래의 공급 차질이나 손실액이 아니다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=070310&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2025년 HS6 0703.10 수입 조회</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=071220&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년 0712.20 조회</a>; 관세청 국가별 수집본; E06·E07).</p>
+<p>셋째는 <strong>관세·수급정책의 변화</strong>다. 한국의 WTO TRQ, 특별긴급관세 조건, 정부의 비축·출하 조치는 서로 다른 제도다. 인도도 수출 최저가격과 관세를 바꾸고 비축양파를 방출했다. 정책 발표일, 시행일, 실제 적용 기간을 각각 기록하지 않으면 서로 다른 시기의 가격과 무역량을 잘못 연결하게 된다(농식품부·인도 정부 자료; 06·08절).</p>
+<p>넷째는 <strong>지표 간 범위 차이</strong>다. KOSIS 국내 양파, FAOSTAT 건양파·샬롯, 관세청 HS10 신선양파, Comtrade HS6 신선양파·샬롯은 이름이 비슷하지만 완전히 같은 품목이 아니다. 도매가와 소매가, KAMIS <code>평균</code>과 <code>평년</code>, 원산지별 HS6와 품목별 HS10도 범위가 다르다. 범위가 다른 숫자를 한 그래프에 연결하면 방향이 맞아 보이더라도 해석은 틀릴 수 있다.</p>
+<div class="tw">
+<table>
+<caption>표 10. 월별 관찰 지표와 갱신 판단</caption>
+<thead><tr><th>관찰 항목</th><th>자료·필터</th><th>확인할 변화</th><th>해석 전 점검</th></tr></thead>
+<tbody>
+<tr><td>국내 연간 생산</td><td>KOSIS 양파 전국·시도별 생산량</td><td>산지 비중·단수 변화</td><td>2026년 공표값과 행정구역 중복 행 구분</td></tr>
+<tr><td>저장 잔여·감모</td><td>KREI 양념채소 농업관측</td><td>입고·출고·품위 추정</td><td>연산과 발표 월, 추정 여부</td></tr>
+<tr><td>도매 반입·가격</td><td>KREI·KAMIS 등급·시장별</td><td>공급 집중과 가격 동행</td><td>상품/중품, 경락/판매가격</td></tr>
+<tr><td>소매 실측</td><td>KAMIS <code>countyname≠평년</code></td><td>가계 구매 단계의 변화</td><td>규격·시장·누락값</td></tr>
+<tr><td>신선양파 수입</td><td>관세청 HS10 0703.10.1010+1090</td><td>같은 월의 중량·단가</td><td>샬롯 제외, 달러/kg</td></tr>
+<tr><td>건조양파 수입</td><td>관세청 HS10 0712.20.0000</td><td>중량·단가·용도 차이</td><td>신선 중량과 합치지 않음</td></tr>
+<tr><td>원산지 구성</td><td>Comtrade 완료연도·관세청 국가별 HS6</td><td>중국·기타국 비중</td><td>샬롯 포함, 기간과 신고 기준</td></tr>
+<tr><td>국제 교역</td><td>Comtrade 합계 행·FAOSTAT TCL</td><td>주요 신고국의 수출 변화</td><td>완료연도, 합계 행, 미보고 순중량</td></tr>
+<tr><td>제도</td><td>농식품부·법령·검역본부</td><td>TRQ·수급 조치·허용 조건</td><td>발표/시행/적용 구분</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS·KREI·KAMIS·관세청·UN Comtrade·FAOSTAT 원자료와 농식품부·검역본부 원문. 각 수집기의 보유 기간은 부록 A에 적었다.</p>
+<p>관찰의 우선순위는 월별로 바뀐다. 수확기에는 산지별 단수·반입량과 저장 입고를, 저장 출하기에는 감모·품위·출고와 도매가격을, 수입 급증기에는 국내 HS10 두 양파 세번과 국가별 HS6의 범위 차이를 먼저 확인한다. 국제 변수는 한국 통관에 영향을 주는 경로가 확인될 때에만 국내 가격의 설명으로 연결한다.</p>
+<h3>남은 확인 작업</h3>
+<ul>
+<li>KREI 재고 추정과 동일 연산·동일 월의 도매시장 반입량·등급별 가격을 대조해 저장양파 출고 집중 설명을 검증한다.</li>
+<li>산지별 저장 입고·출고와 전처리 물량을 같은 월 기준으로 연결해 공급 시점과 품위의 변화를 확인한다.</li>
+<li>신선양파와 건조양파의 용도·원산지·가격 변동을 같은 기간에 대조해 수요와 공급 충격이 겹치는지 확인한다.</li>
+<li>KREI가 제시한 수입양파 출하가능가격과 국산 도매가격의 비교를 동일 등급·월별 시계열로 확장하고, 통관량·환율·계약 시점을 연결해 농식품부의 수입 감소 설명을 검증한다(KREI, 「양념채소 농업관측」 2026년 4월호, 2쪽; <a href="https://www.mafra.go.kr/bbs/home/793/578231/artclView.do">농림축산식품부, 「양파 생산자 등 합의를 통한 수급안정 대책 추진으로 가격 회복 중」, 2026-06-23</a>).</li>
+<li>인도와 네덜란드의 거래 지역·품위별 가격을 분리해 추적하고, WUR 그래프 수치를 확인한다.</li>
+<li>국가·식물 부위·상태별 검역 조회 결과와 수입식품 검사 항목을 확인해 원산지별 공급 가능 범위를 검증한다.</li>
+<li>특별긴급관세 발동 여부와 수입 건별 실제 적용세율을 통관 조건에 맞춰 확인한다.</li>
+<li>KAMIS <code>평균</code>·<code>평년</code>, 도매·소매, HS6·HS10의 범위를 구분하고 서울 판매처 평균과 전체 지역 화면값을 별도로 추적한다.</li>
+</ul>
+<p>남은 물음은 명확하다. 전국의 업체별 양파 취급량과 점유율, 시기별 실제 저장 출고량, 국가·상태별 검역 허용 조건, 2026년 각 원산지의 실행세율, 건조양파의 최종 가공용도별 투입량은 확보되지 않았다. 이 빈칸이 메워지기 전에는 특정 기업을 산업의 대표로 세우거나 미래 가격을 단정할 수 없다.</p>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>국내 저장·유통과 중국산 신선양파, 중국·미국산 건조양파</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">한국 신고 기준 2025년 UN Comtrade <strong>수입 중량</strong>에서 10% 이상을 차지한 공급국은 HS6 0703.10 신선양파·샬롯의 중국(97.90%), HS6 0712.20 건조양파의 중국(77.01%)과 미국(22.95%)이다. 네덜란드는 한국의 10% 이상 공급국이 아니라 세계 신선양파 수출 주요국으로 비교한다. 2025년 관세청 HS10의 신선양파·샬롯·건조양파 수입액 합계 46,449,176달러 중 건조양파는 5,278,520달러(11.36%)이므로 건조양파 공급기업을 별도로 표시한다. 두 HS6의 품목 경계와 식약처 신고 품목명은 일치하지 않는다(<a href="https://comtradeplus.un.org/TradeFlow">UN Comtrade</a> A·2025; <a href="https://www.tradedata.go.kr/cts/index.do">관세청 수출입무역통계</a> A·2025).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 공급국과 세계 수출국의 양파 수출·가공기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표·연도</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>중국</td><td>AGRIGULF LTD</td><td>신선양파 수출</td><td>확인된 공개 매출·수출량 없음</td><td>식약처 2025.10~2026.09 양파 신고의 해외 제조사명 235건 일치. 2017년 식약처 검사지시에도 중국산 신선양파 수출사로 명시</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025~2026; <a href="https://mfds.go.kr/brd/m_1105/view.do?company_cd=&amp;company_nm=&amp;itm_seq_1=0&amp;itm_seq_2=0&amp;multi_itm_seq=0&amp;page=78&amp;seq=28353&amp;srchFr=&amp;srchTo=&amp;srchTp=&amp;srchWord=">식약처 검사지시</a> A·2017</td></tr>
+<tr><td>중국</td><td>QINGDAO HERUNDA FOOD CO., LTD</td><td>재배·선별·가공</td><td>기업 소개의 저장능력 4,000톤; 기준연도 미표기, 2026년 열람</td><td>같은 기간 식약처 해외 제조사명 167건 일치</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025~2026; <a href="https://chinaonion.en.made-in-china.com/">기업 소개</a> B·2026년 열람</td></tr>
+<tr><td>중국</td><td>GAOMI SHENGHUA FOOD CO., LTD</td><td>양파 생산·가공</td><td>확인된 공개 매출·수출량 없음</td><td>같은 기간 식약처 해외 제조사명 128건 일치; 2025년 인증기관 명단에 양파 취급 기재</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025~2026; <a href="https://agricert.pt/tr/files/documents/07052025_GLOBAL.G.A.P..pdf">인증기관 명단</a> B·2025</td></tr>
+<tr><td>미국</td><td>Olam West Coast, Inc. / ofi의 Olam Spices</td><td>건조양파 생산·가공</td><td>ofi는 건조양파 세계 최대 공급업체라고 자체 설명; 기업별 수출량 미공개, 2026년 열람</td><td>식약처 신고의 Olam West Coast 표기 58건이 건조양파류 제품과 일치. ofi 사이트에는 이 법인 명의의 양파 가공 인증서 게시</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025~2026; <a href="https://www.ofi.com/en-ca/spices/onion">ofi 양파 사업</a> B·2026년 열람; <a href="https://shop.ofi.com/mpattachment/file/download/id/368/">Olam West Coast 인증서</a> B·2023</td></tr>
+<tr><td>미국</td><td>Sensient Agricultural Ingredients</td><td>양파 탈수·가공</td><td>2025년 Agricultural Ingredients 매출 2억 5,817만 달러; 양파 단독 매출 아님</td><td>식약처에 같은 법인명의 양파분말 6건 신고. 품목명은 ‘과·채가공품’</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025~2026; <a href="https://www.sec.gov/Archives/edgar/data/310142/000114036126005311/ef20060630_10k.htm">SEC 2025년 10-K</a> A·2025</td></tr>
+<tr><td>미국</td><td>BCFoods 미국 사업</td><td>건조원료 가공·공급</td><td>양파 단독 매출·수출량 공개 확인 없음</td><td>해당 기업의 한국행 양파 공급은 확인된 공개 자료 없음. 미국 사업은 중국·인도 등에서도 원료를 조달하므로 미국 원산지 물량으로 배분하지 않음</td><td><a href="https://bcfoods.com/regions/united-states/">BCFoods 미국 사업</a> B·2026년 열람; <a href="https://bcfoods.com/products/vegetables/onion-2/">양파 제품</a> B·2026년 열람</td></tr>
+<tr><td>네덜란드</td><td>Waterman Onions</td><td>선별·포장·수출</td><td>확인된 최신 연간 양파 수출량 없음</td><td>해당 기업의 한국행 양파 공급은 확인된 공개 자료 없음</td><td><a href="https://www.waterman-onions.nl/uploads/documents/20250926/2765_inkoopvoorwaarden-20waterman-20onions.pdf">기업 구매약관</a> B·2025</td></tr>
+<tr><td>네덜란드</td><td>Wiskerke Onions</td><td>선별·포장·수출</td><td>125개국 이상 수출이라는 기업 소개; 실적 기준연도 미표기, 2026년 열람</td><td>해당 기업의 한국행 양파 공급은 확인된 공개 자료 없음</td><td><a href="https://www.wiskerke-onions.nl/en/">기업 소개</a> B·2026년 열람</td></tr>
+<tr><td>네덜란드</td><td>MSP Onions</td><td>선별·포장·수출</td><td>82개국 수출이라는 기업 소개; 실적 기준연도 미표기, 2026년 열람</td><td>해당 기업의 한국행 양파 공급은 확인된 공개 자료 없음</td><td><a href="https://www.msp-onions.com/en/">기업 소개</a> B·2026년 열람</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 식약처·공시·기업 자료. 식약처 수치는 <strong>신고 건수 기준</strong>이며 중량·금액·시장점유율이 아니다. 신고서의 제조국 칸이 원물의 재배국이나 FTA·표시상 원산지와 같은지는 이 자료만으로 확정하지 않으며, 수출국(선적국)은 별도 칸이다. 식약처 기간은 2025년 10월~2026년 9월이다.</p>
+<p>기업별 수출량에 근거한 <strong>세계 최대 양파 수출기업</strong> 순위는 확인되지 않았다. ofi의 ‘세계 최대’는 건조양파 공급업체라는 자체 설명이다. 국가 단위에서는 정본의 2025년 HS6 0703.10 수출 신고 중량에서 네덜란드가 약 196만 톤으로 가장 크지만, 이 수치를 특정 기업의 수출량으로 배분할 수 없다(<a href="https://www.ofi.com/en-ca/spices/onion">ofi</a> B·2026년 열람; <a href="https://comtradeplus.un.org/TradeFlow">UN Comtrade</a> A·2025).</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처의 2025년 10월~2026년 9월 <strong>품목명이 ‘양파’로 시작하는 신고</strong>는 2,570건이다. 신선 1,857건, 냉동 628건, 건조 85건이며 표 11-2는 이 범위의 <strong>신고 건수 기준</strong> 서열이다. 별도로 양파분말·건조양파·퓨레·어니언링 등 양파 단독 제품이 ‘과·채가공품’으로 625건 신고됐다. 그 제조국은 중국 355건, 미국 84건, 네덜란드 52건 등을 포함한다. 특히 미국산 건조·분말류 62건은 이 별도 품목명에 있어, 표 11-2의 ‘양파(건조)’ 85건만으로 건조양파 전체 공급국을 설명할 수 없다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025~2026).</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 식약처 양파 품목명 신고 건수 상위 수입업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>엠에스무역(주)</td><td class="num">203</td><td>중국 203</td><td>신선 203</td></tr>
+<tr><td>(주)글로벌 가보농산</td><td class="num">151</td><td>중국 151</td><td>신선 151</td></tr>
+<tr><td>주식회사 경인</td><td class="num">149</td><td>중국 149</td><td>신선 149</td></tr>
+<tr><td>유한회사 나윤</td><td class="num">135</td><td>중국 135</td><td>신선 135</td></tr>
+<tr><td>(주)와이비무역</td><td class="num">90</td><td>중국 90</td><td>냉동 90</td></tr>
+<tr><td>주식회사 리더후레쉬</td><td class="num">90</td><td>중국 89·미국 1</td><td>신선 90</td></tr>
+<tr><td>주식회사 명가무역</td><td class="num">88</td><td>중국 88</td><td>신선 88</td></tr>
+<tr><td>경원무역</td><td class="num">54</td><td>중국 54</td><td>신선 54</td></tr>
+<tr><td>주식회사 케이원무역</td><td class="num">52</td><td>중국 52</td><td>냉동 52</td></tr>
+<tr><td>주식회사 더신선</td><td class="num">52</td><td>중국 52</td><td>신선 52</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025.10~2026.09. 업소명 표기 변형을 합쳤고, ‘주요 제조국’은 각 업소의 상위 두 제조국을 표시했다. 건별 중량이 다르므로 신고 건수를 수입 물량 점유율로 읽지 않는다.</p>
+<p>신고업소에는 식자재·식품가공 기업도 포함된다. 아래 매출은 <strong>회사 또는 공시 사업부문의 전체 매출</strong>로, 양파 매출이나 양파 시장점유율이 아니다. 표 11-2 상위 무역업소의 공개 매출은 확인된 자료가 없어 신고 건수 순서와 기업 규모 순서를 연결하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 양파 관련 신고가 확인된 국내 가공·식자재·외식기업</caption>
+<thead><tr><th>기업</th><th>신고 건수·품목</th><th>사업 성격</th><th>공개 규모 지표</th><th>해석 범위</th></tr></thead>
+<tbody>
+<tr><td>오뚜기</td><td>과·채가공품 42건</td><td>식품 제조·유통</td><td>2025년 연결 매출 3조 6,745억원; 농수산 가공품류 매출 7,140억원</td><td>두 매출 모두 양파 단독 매출 아님</td></tr>
+<tr><td>CJ프레시웨이</td><td>양파 품목명 43건·냉동</td><td>식자재 유통·급식</td><td>2025년 연결 매출 3조 4,811억원; 공시 농산물 상품 매출 3,801억원</td><td>농산물 범주에 다른 품목 포함</td></tr>
+<tr><td>동원홈푸드</td><td>양파 품목명 27건·냉동, 별도 과·채가공품 31건</td><td>식재·조미식품·급식</td><td>2025년 공시 매출 2조 6,433억원; 식재조미부문 1조 4,106억원</td><td>과·채가공품에는 Olam West Coast 건조양파류 22건 포함; 부문 매출은 양파 단독 매출 아님</td></tr>
+<tr><td>비케이알</td><td>과·채가공품 59건·어니언링</td><td>외식 프랜차이즈</td><td>2025년 매출 8,922억원으로 보도; 직접 열람 가능한 감사보고서 URL 미확보</td><td>회사 전체 매출이며 원물 양파 수입량 아님</td></tr>
+<tr><td>농업회사법인 한우물</td><td>양파 품목명 28건·냉동</td><td>냉동 간편식 제조</td><td>2025년 aT FIS 기업 현황 매출 1,088.62억원</td><td>회사 전체 매출</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025.10~2026.09; <a href="https://kind.krx.co.kr/external/2026/03/18/000725/20260318003615/11011.htm">오뚜기 2025년 사업보고서</a> A·2025; <a href="https://kind.krx.co.kr/external/2026/03/19/001307/20260319005363/11011.htm">CJ프레시웨이 2025년 사업보고서</a> A·2025; <a href="https://kind.krx.co.kr/external/2026/03/18/001675/20260318007758/11011.htm">동원산업 2025년 사업보고서의 동원홈푸드 부문</a> A·2025; <a href="https://www.atfis.or.kr/home/company.do?act=detail&amp;beginYear=0&amp;businessType=food&amp;cpnyCd=100000003394692&amp;endYear=0&amp;orderField=slsAmt&amp;orderGubun=DESC&amp;orderYear=0&amp;pageIndex=5&amp;pageUnit=30">aT FIS 한우물 기업 현황</a> A·2025; <a href="https://nwww.newsis.com/view/NISX20260401_0003573515">비케이알 실적공시 인용 보도</a> C·2026. 공시의 백만원 단위는 억원으로 환산·반올림했다. 비케이알 매출은 보도 인용값으로 구분했다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 한국 양파의 단계별 밸류체인</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>국내 농가·농협, 해외 산지 농가</td><td>2025년 국내 생산 1,181,556톤; 전남·경남·경북·전북 81.13%</td><td>산지 계약·출하 거래</td><td>기상·단수·품위</td></tr>
+<tr><td>1차 가공</td><td>산지 APC·선별·저장업체</td><td>전국 선별량 미확보; 2025년산의 2026년 3월 말 재고 약 1만 3천 톤은 KREI 추정</td><td>선별 등급·저장 출고 계약</td><td>저장 감모·출고 집중</td></tr>
+<tr><td>수출·국제 무역</td><td>중국 신선양파 공급망, 중국·미국 건조양파 공급망</td><td>2025년 한국 반입 신선양파 두 세번 135,103톤·건조양파 1,662톤</td><td>산지 매입·수출 계약</td><td>원산지 집중·운임·수출정책</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·검역본부·식약처</td><td>2025년 신선양파 수입액 3,712만 달러, 건조양파 528만 달러</td><td>수입 계약·통관 단계</td><td>관세·검역·검사·환율</td></tr>
+<tr><td>국내 가공</td><td>전처리·냉동식품·조미식품 제조업체</td><td>업체별 양파 투입량 미확보</td><td>원료 계약·가공품 납품 계약</td><td>원료 규격·안전성·가공 수율</td></tr>
+<tr><td>도매·유통</td><td>농협·산지유통인·도매시장·식자재업체</td><td>2026년 3월 가락시장 상품 도매가 710원/kg, 관측치·잠정</td><td>도매시장 거래·식자재 납품 계약</td><td>동시 출하·품위별 가격 차</td></tr>
+<tr><td>소매·외식</td><td>소매점·급식·외식업체</td><td>2026년 5월 22일 KAMIS 전체 지역 상품 소매가 1,822원/kg, 조회값·잠정</td><td>소매 판매·급식 납품 계약</td><td>구매력·폐기·원산지 표시</td></tr>
+<tr><td>소비</td><td>가계·외식 이용자</td><td>FAOSTAT 2023년 한국 식량공급 추정 1,194,849톤; 실제 섭취량 아님</td><td>최종 구매 선택</td><td>가격 부담·식품 안전</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://mods.go.kr/board.es?act=view&amp;bid=228&amp;list_no=446236&amp;mid=a10301080700">국가데이터처 생산량조사</a> A·2025/2026; <a href="https://www.tradedata.go.kr/cts/index.do">관세청 수출입무역통계</a> A·2025; <a href="https://www.mafra.go.kr/bbs/home/793/578231/artclView.do">농식품부 수급 설명</a> A·2026; <a href="https://aglook.krei.re.kr/main/uObserveMonth/OVR0000000036">KREI 양념채소 농업관측</a> B·2026년 4월; <a href="https://www.kamis.or.kr/customer/info/retail/period.do?action=daily&amp;countycode=&amp;itemcategorycode=200&amp;itemcode=245&amp;kindcode=&amp;marketclscode=01&amp;productrankcode=&amp;regday=2026.05.22">KAMIS 소매가격</a> A·2026; <a href="https://www.fao.org/faostat/en/">FAOSTAT</a> A·2023. 단계별 수치는 시점·거래조건·품목 경계가 달라 합산하지 않는다.</p>
+<p><strong>부가가치가 생기는 곳</strong>은 수확 이후에도 이어진다. 선별·저장은 판매 시기와 등급을 바꾸고, 전처리·건조·냉동은 납품 규격과 보관성을 만든다. 2025년 통관 단가는 신선양파 0.275달러/kg, 건조양파 3.176달러/kg이지만 수분 함량과 용도가 달라 차액을 가공 마진으로 계산할 수 없다(<a href="https://www.tradedata.go.kr/cts/index.do">관세청 수출입무역통계</a> A·2025). 2026년 3월 도매가 710원/kg과 5월 22일 소매가 1,822원/kg도 시점·거래조건이 달라 유통 마진의 확정값이 아니다(<a href="https://aglook.krei.re.kr/main/uObserveMonth/OVR0000000036">KREI</a> B·2026; <a href="https://www.kamis.or.kr/customer/info/retail/period.do?action=daily&amp;countycode=&amp;itemcategorycode=200&amp;itemcode=245&amp;kindcode=&amp;marketclscode=01&amp;productrankcode=&amp;regday=2026.05.22">KAMIS</a> A·2026). 업체별 선별 수율·저장 감모·양파 투입량이 공개되지 않아 단계별 부가가치액은 산정할 수 없다.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 양파 산업의 이해당사자와 영향 경로</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>농림축산식품부·농림축산검역본부·식품의약품안전처·관세청·국립농산물품질관리원</td><td>수급·TRQ, 식물검역, 수입식품 검사, 통관, 원산지 표시</td><td>공급 안정·안전성과 생산자 가격·소비자 부담을 함께 다룸</td></tr>
+<tr><td>해외 정부</td><td>중국 수출·검역 당국, 미국 USDA, 인도 DGFT</td><td>생산·수출·검역 규칙과 국제 공급 여건에 영향</td><td>정책 변경이 수출 가능 시기와 비용에 영향</td></tr>
+<tr><td>생산자·단체</td><td>양파 생산자·농협·전남서남부채소농협·양파 중앙주산지협의회</td><td>재배·집하·선별·저장·출하 협의</td><td>산지 가격·저장비·출하 시점에 직접 이해관계</td></tr>
+<tr><td>수출·가공기업</td><td>식약처 신고 중국 제조사·Olam West Coast·Sensient·네덜란드 양파 수출기업</td><td>선별·탈수·포장·국제 판매</td><td>규격·식품안전·운송비·판로에 영향</td></tr>
+<tr><td>수입·유통기업</td><td>식약처 신고 수입업소·CJ프레시웨이·동원홈푸드·오뚜기·비케이알</td><td>수입·가공·식자재 조달·외식 공급</td><td>원료가격·규격·안정적 납품에 이해관계</td></tr>
+<tr><td>소비자·시민사회</td><td>가계 소비자·대한영양사협회</td><td>소매 구매, 급식 수요·식단 선택</td><td>판매가격·안전성·원산지 정보에 관심</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·UN Comtrade·GLOBALG.A.P.</td><td>생산·무역 통계, 인증·추적성 기준</td><td>비교 가능한 정보와 인증 신뢰도에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.mafra.go.kr/bbs/home/793/578231/artclView.do">농식품부 중앙주산지협의회 설명</a> A·2026; <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025~2026; <a href="https://apeda.gov.in/sites/default/files/dgft_notifications/Notification_No_28_2024_25.pdf">인도 DGFT 고시</a> A·2024; <a href="https://www.fao.org/faostat/en/">FAOSTAT</a> A·2026년 열람; <a href="https://comtradeplus.un.org/TradeFlow">UN Comtrade</a> A·2026년 열람; <a href="https://globalgap.org/what-we-offer/solutions/chain-of-custody/">GLOBALG.A.P. 관리 체계</a> B·2026년 열람; 표 11-1·11-3의 기업별 출처. 표의 영향 경로는 각 주체의 역할에 따른 산업적 해석이며 특정 한국행 계약의 결정 주체를 뜻하지 않는다.</p>
+<p>출하를 늦추거나 격리하면 산지 가격을 지지할 수 있지만 식자재 구매자와 소비자는 안정적인 공급과 낮은 구매가격을 원한다. 수입 선택지가 늘면 구매자는 공급을 조정하기 쉬워지고 국내 생산자는 출하 시기의 경쟁 압력을 받을 수 있다. 검사·추적성 강화는 안전정보의 신뢰도를 높이는 한편 생산·가공·수입 주체의 준수 비용을 늘린다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황</h2>
+<p class="lead">양파 수집기 현황의 기준일은 2026년 10월 7일이다. 아래 ‘최신’은 해당 파일에서 발견된 가장 늦은 기간 표시이며, 그 연도의 국제 신고가 모두 끝났다는 뜻은 아니다. <code>kosis</code> 가공 파일은 열 이름이 <code>연도</code>여서 자동 기간 탐지에는 ‘기간 열 없음’으로 표시된다. 그 가공 파일의 마지막 연도는 2025년이고, 별도 품목별 KOSIS 원자료에는 공표된 2026년 생산량 행이 있다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 양파 수집기 현황(2026-10-07)</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">268</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">233</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">3,098</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">278</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">88</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">836</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">1,934</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">28,045</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">44,886</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">75,160</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>kosis_crops_veg_seasoning</td><td class="num">543</td><td>2026</td><td>2026-10-07</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">2,876</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">96</td><td>2026.08</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>kamis</td><td class="num">1,884</td><td>2026-09-30</td><td>2026-10-07</td></tr>
+<tr><td>월간 수집</td><td>kosis</td><td class="num">21</td><td>기간 열 없음</td><td>2026-07-06</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>의 <code>rawbulk.report_delta.coverage("onions")</code> 반환값. 마지막 KOSIS 가공 파일명은 <code>KOSIS_양파_생산량_2005-2025.csv</code>다.</p>
+<p>원자료 품목 분할 외에 아카이브에는 FAOSTAT QCL·QI·QV·PP·SCL·TCL·TM, OEC 과거 무역 CSV, KREI·USDA ERS·FAO PDF가 있다. 같은 원천의 <code>.md</code> 변환본은 CSV 또는 PDF의 별도 관측이 아니다. USDA PSD와 세계은행 Pink Sheet의 양파 미수록 안내도 있다. 이는 해당 두 상품 표에 양파 시계열이 없다는 안내일 뿐, 모든 국제 양파 자료가 없다는 주장은 아니다. FAOSTAT 공급·생산·무역과 KREI 관측은 별도로 있다.</p>
+<p>표 12의 범위는 <code>archive_inventory/onions.csv</code>에 기재된 44개 자료다. 이 범위 밖의 <code>archive_cache/onions/</code>에는 원문 PDF가 아니라 경로 문자열만 담긴 포인터 9건(USDA ERS VGS 4건, OECD-FAO 전망·FAO 통계연감 각 1건, USDA GAIN 3건)이 있다. 이 포인터의 대상 문서는 표 12의 원문 검토 범위에 포함하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 검토 범위 요약</caption>
+<thead><tr><th>범위</th><th class="num">파일 수</th><th>처리</th></tr></thead>
+<tbody>
+<tr><td><code>intelligence_reports</code></td><td class="num">7</td><td>관련 PDF 3건 본문 반영; 안내·목록은 메타자료</td></tr>
+<tr><td><code>processed_data</code></td><td class="num">3</td><td>Comtrade·관세청·KAMIS 범위 확인 후 반영</td></tr>
+<tr><td><code>raw_data</code></td><td class="num">33</td><td>FAOSTAT·OEC 원천 확인; 중복 변환본·무관 집계 구분</td></tr>
+<tr><td><code>scripts</code></td><td class="num">1</td><td>수집 코드로 확인, 통계 근거로 사용하지 않음</td></tr>
+<tr class="tot"><td>전체</td><td class="num">44</td><td>원장 기재 자료</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/onions.csv</code>와 <code>archive_cache/onions/</code>의 해당 경로. 행별 판정과 사유는 아카이브 원장에 기록돼 있다.</p>
+<p>웹 자료의 출처는 본문 각 문장에 링크로 달았다. 전국 기업 순위, 국가별 검역 허용 조건, 원산지별 FTA 실행세율, 단일 국제 양파 기준가격은 이 보고서의 근거 자료에 없다.</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 양파 산업 해부: 국내 수확과 저장이 시장을 움직이는 채소</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · KOSIS·관세청·FAOSTAT·UN Comtrade 원자료, KREI·USDA 원문, 기관 공식 자료 및 출처 등급이 기록된 조사 노트</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>원자료 수치는 KOSIS·관세청·UN Comtrade·FAOSTAT 원자료에서 파일·필터 단위로 재계산했다.</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>국내 생산·저장·소비의 확인 가능한 지표와 HS6 0703.10·0712.20. 국내 HS10에서는 신선양파와 샬롯을 분리했다.</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>2026년 생산량은 공표됐으나 수입·가격은 부분 기간이다. KREI 재고·전망은 추정이다. KAMIS 수집본의 서울 판매처 평균과 전체 지역 공개 화면은 범위가 다르다. 전국 기업별 점유율, 국가별 검역 허용 조건, 원산지별 FTA 실행세율, 국제 단일 양파 가격은 확보하지 못했다.</span></div>
+</footer>
+</div>
+

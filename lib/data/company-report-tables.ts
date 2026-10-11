@@ -65,6 +65,9 @@ import shrimpRaw from '@/public/data/companies/shrimp_tables_v1.json';
 import squidRaw from '@/public/data/companies/squid_tables_v1.json';
 import tunaRaw from '@/public/data/companies/tuna_tables_v1.json';
 import surimiRaw from '@/public/data/companies/surimi_tables_v1.json';
+import mackerelRaw from '@/public/data/companies/mackerel_tables_v1.json';
+import tunafarmRaw from '@/public/data/companies/tunafarm_tables_v1.json';
+import whelkRaw from '@/public/data/companies/whelk_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -172,9 +175,20 @@ const INTAKES: Record<string, Intake> = {
   squid: squidRaw as unknown as Intake,
   tuna: tunaRaw as unknown as Intake,
   surimi: surimiRaw as unknown as Intake,
+  mackerel: mackerelRaw as unknown as Intake,
+  tunafarm: tunafarmRaw as unknown as Intake,
+  whelk: whelkRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);
+
+/**
+ * 공통 품목 라우트(/industry/[key])는 품목이 39개라 정적 import 로 묶으면 번들이 수 MB 붙는다.
+ * 화면이 `/data/companies/<key>_*_v1.json` 을 받아 여기 등록한 뒤 같은 함수로 읽는다.
+ */
+export function registerReportIntake(key: string, raw: unknown): void {
+  INTAKES[key] = raw as Intake;
+}
 
 /** 그 회사 보고서에서 옮겨 온 표 전량. */
 export function reportTables(company: string): ReportTable[] {

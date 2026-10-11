@@ -1,0 +1,797 @@
+<title>한국 해바라기씨유 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 해바라기씨유<br>
+        세계 수급 · 한국 수입 · 가격 · 공급망 · 제도<br>
+        2023~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">정제유 수입이 중심인 식용유 · 리포트 2026</p>
+      <h1><span class="scr">Sunflower</span> <span class="lt">한국 해바라기씨유 산업 해부</span></h1>
+      <p class="cover-sub">한국은 해바라기씨유를 주로 정제유 형태로 수입한다.
+        세계의 생산과 수출은 러시아·우크라이나에 집중돼 있지만, 한국은 유럽 가공국과 아르헨티나 등에서도 들여온다.
+        생산·소비 통계의 범위, 무역 세번의 경계, 가격과 제도를 원자료별로 구분해 살핀다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2025 한국 수입</div><div class="v">37,903</div>
+        <div class="n">톤 · 관세청 해바라기씨유 HS10</div></div>
+      <div class="cf"><div class="k">2025 수입액</div><div class="v">6,834만</div>
+        <div class="n">달러 · 같은 범위</div></div>
+      <div class="cf"><div class="k">정제유 비중</div><div class="v">99.3%</div>
+        <div class="n">2025 수입 중량 기준</div></div>
+      <div class="cf"><div class="k">2026년 1~8월 수입</div><div class="v up">+22.3%</div>
+        <div class="n">전년 같은 기간 대비 · 진행연도</div></div>
+      <div class="cf"><div class="k">2026년 1~8월 수입 단가</div><div class="v">1.87</div>
+        <div class="n">달러/kg · 수입액 ÷ 중량</div></div>
+      <div class="cf"><div class="k">세계 조유 생산</div><div class="v">2,266만</div>
+        <div class="n">톤 · FAOSTAT 2023년 추정 포함</div></div>
+      <div class="cf"><div class="k">러시아·우크라이나 수출</div><div class="v">824만</div>
+        <div class="n">톤 · USDA PSD 2025/26 시장연도 추정 합</div></div>
+      <div class="cf"><div class="k">국제 기준가격</div><div class="v">1,795</div>
+        <div class="n">달러/톤 · IMF PCPS 2026년 8월</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">한국은 정제유를 여러 공급국에서 들여온다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">러시아·우크라이나의 수출량이 세계 흐름의 중심이다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">통관, 식품제조 원료, 판매액은 다른 지표다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">한국 수입은 정제유 중심이며 상대국은 분산돼 있다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">국제 기준가격과 한국 수입 단가는 서로 다른 거래다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">수출국과 한국의 수입 상대국을 구별한다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">국내판매액은 확인되지만 업체별 점유율은 확인되지 않았다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">한국은 정제유 할당관세를 적용하고 산지국은 수출을 관리한다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">품목명 색인보다 본문의 대상이 중요하다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·지표</span><span class="t">관찰 지표와 남은 물음</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">정제유 수입과 해외 가공기업의 연결</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>한국은 정제유를 여러 공급국에서 들여온다</h2>
+<p class="lead">한국 해바라기씨유 산업을 하나의 숫자로 표현하기는 어렵다. 관세청 HS10은 수입 실적을, FAO 식량수급표는 식품 공급 추정량을, KOSIS 식용유지류 표는 국내판매액을 나타낸다. KOSIS의 품목명은 2019년부터 <code>해바라기유</code>에서 <code>해바라기유(압착해바라기유 포함)</code>으로 바뀌었으며 2025년 행까지 있다. 이 세 지표를 현재 국내 소비량이나 산업 전체 매출로 서로 바꿔 쓸 수는 없다(E01·E06·E10).</p>
+<h3>관측과 추정</h3>
+<ul>
+<li><strong>수입 규모.</strong> 관세청 품목별 HS10에서 <code>statKor=해바라기씨유</code>만 합하면 2025년 수입은 37,903.0톤, 수입액은 6,833.9만 달러, 평균 수입 단가는 1.803달러/kg이다. 잇꽃유는 제외했다(E01).</li>
+<li><strong>형태.</strong> 같은 해 정제유 HS10 수입은 37,627.9톤으로 해바라기씨유 수입 중량의 99.3%다. 조유는 275.1톤이다. 통관 형태가 국내 병입·가공량을 뜻하지는 않는다(E02).</li>
+<li><strong>연간 흐름.</strong> 잇꽃유가 포함되는 Comtrade HS6 <code>151211</code>·<code>151219</code> 합계는 2024년 44,319.6톤에서 2025년 37,973.1톤으로 14.3% 줄었다. 따라서 2026년 1~8월 관세청 HS10의 전년 동기 대비 중량 증가율 22.3%를 장기 성장률로 해석하지 않는다. 2026년 같은 기간의 수입액은 5,362.8만 달러, 단가는 1.871달러/kg이다(E03·E13·E28).</li>
+<li><strong>세계 생산.</strong> FAOSTAT의 2023년 세계 해바라기씨 <strong>조유 생산</strong>은 약 2,266만 톤이며 추정 Flag를 포함한다. USDA PSD <code>Market_Year=2025</code>는 국가별 시작월이 다른 <strong>2025/26 시장연도</strong>의 수급 추정·전망이다. 러시아 생산 689.7만 톤, 우크라이나 451.5만 톤, 유럽연합 325.6만 톤, 아르헨티나 252.1만 톤을 FAOSTAT의 달력연도 실적과 직접 비교하지 않는다(E04·E05).</li>
+<li><strong>수출 구조.</strong> 같은 PSD 판본의 러시아·우크라이나 수출량 합은 823.6만 톤이다. 세계 수출 합계 1,351.0만 톤의 약 61.0%에 해당한다. 이는 PSD 수급표의 추정·전망 비중이며 한국향 직접 공급 비중은 아니다(E05).</li>
+<li><strong>국내 판매·원료 사용.</strong> KOSIS의 2025년 <code>해바라기유(압착해바라기유 포함)</code> 국내판매액은 45,149,416천 원(451.5억 원), 식용유지류 표의 점유율은 1.35%다. 별도 <code>고올레산 해바라기유</code> 행은 11,955,280천 원(119.6억 원), 0.36%다. 두 행의 포함관계를 확인하지 못해 합산하지 않았다. 식품제조업의 2024년 <code>해바라기유</code> 원료 사용량은 10,134톤이다(E10·E29·E30).</li>
+<li><strong>가격.</strong> IMF PCPS <code>PSUNO</code>, <code>USD</code>의 2026년 8월 가격은 1,794.674달러/톤이다. 전월 대비 0.4%, 전년 동월 대비 16.6% 높다. FAO는 별도의 2026년 9월 식물성유지 가격지수 발표에서 해바라기유 시세가 석 달 연속 하락했다고 설명했다. 계열과 기준월이 달라 두 진술을 하나의 가격 추세로 합치지 않는다(E09·E34).</li>
+<li><strong>제도.</strong> 2026년 한국의 정제 해바라기씨유 할당관세 별표 5는 7월 1일~12월 31일 수입신고분에 적용된다. 한계수량 10,000톤에는 시행 전 별표 2에 따라 이미 할당관세가 적용된 수량이 합산된다. 하반기에 별도 10,000톤이 새로 열린다는 뜻이 아니다. 국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」, 대통령령 제36450호, 2026-06-30, <a href="https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010102&amp;lsId=011318">제정·개정문</a>(E33).</li>
+</ul>
+<h3>이 보고서의 판단</h3>
+<ul>
+<li>2026년 연간 실적에서도 한국 수입이 정제유 중심일 것으로 본다. 2025년 정제유 비중은 99.3%이고 2026년 1~8월 해바라기씨유 HS10 조유 수입은 92kg이다. <strong>반증 조건:</strong> 2026년 연간 정제유 중량 비중이 95% 미만으로 내려가는 것(E02).</li>
+<li>흑해 수출 변동이 한국의 수입 단가나 공급국 구성에 미치는 크기는 검증되지 않았다. 2024년 FAOSTAT의 한국 수입 상대국 표에서는 스페인 28.9%, 우크라이나 21.0%, 헝가리 19.8%, 아르헨티나 10.9%, 튀르키예 9.1%였다. 2025년 UN Comtrade HS6 <code>151219</code> 기준 한국 수입 상대국은 스페인 25.6%, 헝가리 17.8%, 아르헨티나 17.6%, 우크라이나 16.0%, 튀르키예 11.4%, 러시아 1.1%였다. 분모는 37,681.3톤이며, 같은 HS6 안의 정제 잇꽃유는 0.14%다(E28). 2024년 FAOSTAT 표는 <code>Sunflower-seed oil, crude</code>라는 명칭에도 조유와 정제유가 섞이는 무역 범위다. <strong>반증 조건:</strong> 공급 변동에도 같은 기간 한국의 단가·상대국 구성이 안정적으로 유지되는 완료연도 자료가 확인되는 것(E21·E28).</li>
+</ul>
+<p>국내 착유·정제·병입량과 업체별 점유율은 확인하지 못했다. 완료연도 상대국 구성은 2024년 FAOSTAT 양자 무역과 2025년 UN Comtrade HS6 <code>151219</code>로 확인했다(04절). 아카이브 원장의 판정은 부록 A에 적었다(E16·E28).</p>
+<h3>읽는 순서</h3>
+<p>02절은 세계 수급, 03절은 국내 공급과 원료 사용, 04절은 관세청 HS10 및 상대국 자료를 다룬다. 05절은 가격 지표를 분리하고, 06~08절은 공급국·기업·제도를, 09~10절은 기관 견해와 갱신 지표를 다룬다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>러시아·우크라이나의 수출량이 세계 흐름의 중심이다</h2>
+<p class="lead">해바라기씨유는 종자 생산, 착유, 정제, 수출의 단계를 거친다. FAOSTAT의 <code>Sunflower-seed oil, crude</code> <strong>생산</strong> 행은 조유 생산이다. 그러나 같은 명칭의 <strong>무역</strong> 행은 정제유까지 포함하는 범위로 관측된다. USDA PSD의 <code>Oil, Sunflowerseed</code>는 별도의 수급표다(E04·E05·E07·E21).</p>
+<p>FAOSTAT에서 확인한 마지막 세계 조유 생산 연도는 2023년이다. <code>Area=World</code>, <code>Element=Production</code> 값은 22,655,348톤, Flag <code>E</code>다. 러시아 7,038,700톤과 우크라이나 6,044,500톤에는 각각 Flag <code>X</code>가 붙는다. 2024년 세계 조유 생산 행이 없는 이 파일을 2025/26 시장연도 PSD 실적으로 연장하지 않는다(E04).</p>
+<p>별도의 FAOSTAT 종자 계열에서 2024년 세계 해바라기 종자 총생산지수는 119.97(<code>2014~2016=100</code>, Flag <code>E</code>)다. 2023년은 133.89였다. 2024년 종자 총생산액은 경상가격 19,666,397천 달러, 약 196.66억 달러다. 이 값들은 조유 생산량이나 유지 수출액이 아니다(E19·E20).</p>
+<div class="tw wide">
+<table>
+<caption>표 1. 해바라기씨유 주요 생산 지역의 수급(USDA PSD, 2025/26 시장연도, 천 톤)</caption>
+<thead><tr><th>지역·국가</th><th class="num">생산</th><th class="num">내수</th><th class="num">수출</th><th class="num">수입</th><th class="num">기말재고</th></tr></thead>
+<tbody>
+<tr><td>러시아</td><td class="num">6,897</td><td class="num">2,575</td><td class="num">4,200</td><td class="num">1</td><td class="num">318</td></tr>
+<tr><td>우크라이나</td><td class="num">4,515</td><td class="num">455</td><td class="num">4,036</td><td class="num">0</td><td class="num">265</td></tr>
+<tr><td>유럽연합</td><td class="num">3,256</td><td class="num">4,988</td><td class="num">700</td><td class="num">2,400</td><td class="num">386</td></tr>
+<tr><td>아르헨티나</td><td class="num">2,521</td><td class="num">562</td><td class="num">1,925</td><td class="num">0</td><td class="num">150</td></tr>
+<tr><td>튀르키예</td><td class="num">1,109</td><td class="num">1,415</td><td class="num">1,000</td><td class="num">1,300</td><td class="num">103</td></tr>
+<tr><td>카자흐스탄</td><td class="num">964</td><td class="num">270</td><td class="num">800</td><td class="num">125</td><td class="num">66</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>usda_psd_all_sunflower_oil.csv</code>, <code>Commodity_Description=Oil, Sunflowerseed</code>, <code>Market_Year=2025</code>, 단위 <code>(1000 MT)</code>(E05). 이는 국가별 시작월이 다른 2025/26 시장연도 추정·전망이며 완료된 달력연도 통관 실적이 아니다. 유럽연합과 회원국을 다시 합산하지 않는다.</p>
+<p>PSD의 우크라이나 수출량은 생산량에 가깝고 러시아는 국내 소비도 257.5만 톤이다. PSD는 항만별 실제 선적량을 제공하지 않는다. 다만 USDA FAS 키이우 사무소는 2026년 4월 보고 당시 오데사·초르노모르스크·피우데니 해항과 도나우강 항만이 정상 운영 중이라고 적었다. 이 서술을 10월의 항만 상태로 연장하지 않는다. USDA FAS, <em>Oilseeds and Products Annual</em>, 2026-04-08, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Kyiv_Ukraine_UP2026-0011.pdf">UP2026-0011 원문</a>(E32).</p>
+<p>같은 GAIN 보고서는 우크라이나의 2025/26 시장연도 해바라기유 수출을 약 450만 톤으로 <strong>추정</strong>했다. 이 보고서의 PSD 수집본 403.6만 톤과는 판본·작성 주체가 달라 같은 실적으로 합치지 않았다. USDA FAS, <em>Oilseeds and Products Annual</em>, 2026-04-08, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Kyiv_Ukraine_UP2026-0011.pdf">UP2026-0011 원문</a>(E32).</p>
+<p>수입 측에서 인도 310.0만 톤과 유럽연합 240.0만 톤은 PSD 2025/26 열의 큰 수요처다. 튀르키예는 130.0만 톤을 수입하고 100.0만 톤을 수출한다. 수출 전량을 자국 종자에서 착유한 물량으로 해석할 수는 없다(E05).</p>
+<p>FAOSTAT <strong>무역</strong> 통계의 2024년 <code>Sunflower-seed oil, crude</code> 수출량은 우크라이나 6,008,495톤, 러시아 4,532,430톤, 세계 17,780,850톤이다. 러시아 값의 Flag는 <code>I</code>다. 무역 품목에는 정제유가 포함되므로 이 수치에 <code>조유 수출량</code>이라는 이름을 붙이지 않는다. PSD와는 연도·품목·작성 방식도 달라 증감률을 계산하지 않는다(E07).</p>
+<p>OEC의 HS6 금액 자료에서 2024년 우크라이나 <code>151211</code> 수출액은 4,683,204,303달러, 인도 같은 코드 수입액은 3,227,510,783달러, 벨기에 <code>151219</code> 수입액은 297,694,617달러다. HS6에는 잇꽃유가 포함될 수 있고 위 FAOSTAT 톤수와 단가 산식의 짝도 아니다(E23·E24·E27).</p>
+<p>2026/27 시장연도 PSD 행은 진행 중인 시장연도의 전망이다. FAO의 2026년 9월 가격지수 설명에 나온 흑해 공급 기대 역시 생산·선적 완료 실적이 아니다. FAO, <em>FAO Food Price Index</em>, 2026-10-02, <a href="https://www.fao.org/worldfoodsituation/foodpricesindex/en/">발표 원문</a>.</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>통관, 식품제조 원료, 판매액은 다른 지표다</h2>
+<p class="lead">2025년 해바라기씨유 HS10 수입은 37,903.0톤, 수출은 187.0톤이다. 단순 차감값 37,716.0톤에는 재고 변동, 국내 가공, 재수출, 식품과 비식품 용도가 반영되지 않는다. 이를 국내 소비량으로 부르지 않는다(E01·E08).</p>
+<p>FAOSTAT 조유 생산 파일에는 한국 행이 없고 KOSIS <code>특용작물생산량</code> 수집본에도 <code>해바라기</code> 행이 없다. 이는 국내 생산 0톤의 증거가 아니다. KOSIS 식품제조업 원료 사용표에는 2024년 <code>해바라기유</code>의 <strong>국산사용량 6톤</strong>이 있다. 이 값은 제조업이 사용한 원료의 출처 분류이며 국내 종자 생산량이나 착유량과 동일하지 않다(E11·E30).</p>
+<div class="tw">
+<table>
+<caption>표 2. FAO 식량수급표의 대한민국 해바라기씨유</caption>
+<thead><tr><th>달력연도</th><th class="num">수입량</th><th class="num">국내 공급량</th><th class="num">식품용</th><th class="num">1인당 식품 공급</th></tr></thead>
+<tbody>
+<tr><td>2021</td><td class="num">43천 톤</td><td class="num">43천 톤</td><td class="num">43천 톤</td><td class="num">연 0.84kg</td></tr>
+<tr><td>2022</td><td class="num">42천 톤</td><td class="num">42천 톤</td><td class="num">42천 톤</td><td class="num">연 0.82kg</td></tr>
+<tr><td>2023</td><td class="num">29천 톤</td><td class="num">29천 톤</td><td class="num">29천 톤</td><td class="num">연 0.56kg</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_food_balance/2026-10-06__faostat_FBS.zip</code>, <code>Area=Republic of Korea</code>, <code>Item=Sunflowerseed Oil</code>(E06). 중량 행 Flag는 <code>I</code>, 1인당 행은 <code>E</code>다. 세 지표가 같은 것은 독립 소비조사 세 건의 결과가 아니라 식량수급 모형의 균형값이다.</p>
+<p>KOSIS <code>식용유지류 품목별 국내판매액 변동현황</code>에서 <code>해바라기유</code> 행은 2018년 26,636,825천 원·점유율 1.36%까지 있다. <strong>2019년부터 품목명이 <code>해바라기유(압착해바라기유 포함)</code>으로 바뀌어 시계열이 이어진다.</strong> 새 이름의 2025년 국내판매액은 45,149,416천 원(451.5억 원), 점유율은 1.35%다. 정의에 <code>압착해바라기유 포함</code>이 추가됐으므로 두 이름의 값을 주석 없이 완전히 동일한 계열로 연결하지 않는다. <code>고올레산 해바라기유</code>는 별도 2025년 행에 11,955,280천 원(119.6억 원)·0.36%로 기록된다. 두 행의 포함관계가 확인되지 않아 합계는 내지 않는다(E10·E29).</p>
+<div class="tw">
+<table>
+<caption>표 2-1. 식품제조업의 <code>해바라기유</code> 원료 사용(KOSIS)</caption>
+<thead><tr><th>연도</th><th class="num">총량</th><th class="num">국산사용량</th><th class="num">수입산사용량</th></tr></thead>
+<tbody>
+<tr><td>2023</td><td class="num">9,161톤</td><td class="num">6톤</td><td class="num">9,155톤</td></tr>
+<tr><td>2024</td><td class="num">10,134톤</td><td class="num">6톤</td><td class="num">10,128톤</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>kosis_food_raw_material/2026-10-06__kosis_food_raw_material.json</code>, <code>TBL_ID=DT_114010_A001</code>, <code>C1_NM=해바라기유</code>(E30). 이 표는 식품제조업 원료 사용량으로, 외식·가정 소비를 포함한 전체 수요가 아니다.</p>
+<p>식약처 수입식품 품목별 통계의 <code>해바라기유</code> 신고 중량은 2024년 16,008,414kg, 2025년 11,982,259kg이다. 2025년 값은 관세청 해바라기씨유 HS10 수입 중량의 약 31.6%다. 식약처 품목명·신고 대상과 관세청 HS10의 범위가 달라 나머지 물량을 특정 제품형태에 배분하지 않는다. 식품의약품안전처, <em>수입식품 품목별 통계</em>, <a href="https://www.foodsafetykorea.go.kr/portal/safefoodlife/foodImport/statistics/item.do">조회 화면·중량 단위 kg</a>(E31).</p>
+<p>식품제조업 원료 사용량은 확인됐지만 외식·가정·비식품 용도 간 배분, 업체별 사용량, 실제 섭취량은 확인되지 않았다. 통관 후 병입·정제·재고 흐름까지 연결한 원장이 필요하다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>한국 수입은 정제유 중심이며 상대국은 분산돼 있다</h2>
+<p class="lead">한국 총량의 기준은 관세청 <strong>해바라기씨유 HS10</strong>이다. HS6 <code>151211</code>·<code>151219</code>에는 잇꽃유가 함께 들어간다. 품목별 원자료에서 <code>statKor=해바라기씨유</code>를 선택하고, 조유 <code>1512111000</code>과 정제유 <code>1512191010</code>·<code>1512199010</code>을 구분했다(E01·E02).</p>
+<p>같은 범위의 연간 추세를 보려면 Comtrade HS6끼리 비교해야 한다. 한국 수입 <code>151211</code>·<code>151219</code>, <code>partnerCode=0</code>, <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>의 중량 합은 2024년 44,319.6톤, 2025년 37,973.1톤이다. 감소율은 14.3%다. FAOSTAT 무역의 더 이른 2023년 한국 수입은 26,546.8톤이지만 다른 계열이므로 한 줄의 동일 분류 시계열로 연결하지 않는다(E28).</p>
+<div class="tw">
+<table>
+<caption>표 3. 한국 해바라기씨유 통관 수입(관세청 HS10)</caption>
+<thead><tr><th>기간</th><th class="num">수입 중량</th><th class="num">수입액</th><th class="num">평균 수입 단가</th><th>기간 성격</th></tr></thead>
+<tbody>
+<tr><td>2025년 1~8월</td><td class="num">23,441.7톤</td><td class="num">4,130.8만 달러</td><td class="num">1.762달러/kg</td><td>비교 기준</td></tr>
+<tr><td>2025년 연간</td><td class="num">37,903.0톤</td><td class="num">6,833.9만 달러</td><td class="num">1.803달러/kg</td><td>완료연도</td></tr>
+<tr><td>2026년 1~8월</td><td class="num">28,666.0톤</td><td class="num">5,362.8만 달러</td><td class="num">1.871달러/kg</td><td>진행연도</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>customs_item_trade_monthly_sunflower_oil.csv</code>, <code>statKor=해바라기씨유</code>, 해당 기간의 <code>impWgt</code>·<code>impDlr</code>(E01·E03).</p>
+<p>2025년 정제유 HS10 수입은 37,627.9톤, 조유는 275.1톤으로 정제유 비중이 99.3%다. 2026년 1~8월 조유 수입은 92kg이다. 2026년 1~8월 수입 중량은 전년 동기보다 22.3% 늘었으나, 2025년 연간 HS6 수입이 전년보다 감소한 뒤의 증가다. 통관 시점·재고·최종 수요 중 어느 요인이 작용했는지는 이 파일만으로 알 수 없다(E02·E03·E28).</p>
+<h3>완료연도 상대국과 진행연도 관측값</h3>
+<p>FAOSTAT의 2024년 한국 양자 수입 파일은 상대국 전체를 담는다. 품목명 <code>Sunflower-seed oil, crude</code>에도 정제유가 포함되는 무역 범위이며, 아래를 조유 원산지 표로 읽어서는 안 된다. 분모는 한국 수입 44,317.95톤이다(E21·E28).</p>
+<div class="tw">
+<table>
+<caption>표 3-1. 한국의 2024년 해바라기씨유 무역 품목 상대국(FAOSTAT)</caption>
+<thead><tr><th>상대국</th><th class="num">수입 중량</th><th class="num">분모 대비</th></tr></thead>
+<tbody>
+<tr><td>스페인</td><td class="num">12,826.8톤</td><td class="num">28.9%</td></tr>
+<tr><td>우크라이나</td><td class="num">9,293.2톤</td><td class="num">21.0%</td></tr>
+<tr><td>헝가리</td><td class="num">8,776.1톤</td><td class="num">19.8%</td></tr>
+<tr><td>아르헨티나</td><td class="num">4,817.6톤</td><td class="num">10.9%</td></tr>
+<tr><td>튀르키예</td><td class="num">4,044.7톤</td><td class="num">9.1%</td></tr>
+<tr><td>그 밖의 상대국</td><td class="num">4,559.7톤</td><td class="num">10.3%</td></tr>
+<tr class="tot"><td>합계</td><td class="num">44,318.0톤</td><td class="num">100.0%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>TM_sunflower_oil.csv</code>, <code>Reporter Countries=Republic of Korea</code>, <code>Item=Sunflower-seed oil, crude</code>, <code>Element=Import quantity</code>, <code>Year=2024</code>(E28). 개별 행과 합계 행의 소수점 반올림 차이를 유지했다.</p>
+<p>2025년 한국의 <code>151219</code> 수입을 UN Comtrade 공개 preview의 상대국 행으로 나누면 아래와 같다. 상대국 행의 합은 World 행 37,681,258kg과 같다. 관세청 HS10 기준으로 같은 HS6 안의 정제 잇꽃유는 53,305kg(0.14%)이므로, 아래 비중은 해바라기씨유 정제유만의 구성과 0.2%포인트 안에서 같다. UN Comtrade, <em>Public preview — Republic of Korea, imports, HS 151219, 2025</em>, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=151219&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">조회 원문</a>(E28).</p>
+<div class="tw">
+<table>
+<caption>표 3-2. 한국의 2025년 <code>151219</code> 수입 상대국(UN Comtrade)</caption>
+<thead><tr><th>상대국</th><th class="num">수입 중량</th><th class="num">비중</th><th class="num">수입액</th></tr></thead>
+<tbody>
+<tr><td>스페인</td><td class="num">9,636.9톤</td><td class="num">25.6%</td><td class="num">1,713.1만 달러</td></tr>
+<tr><td>헝가리</td><td class="num">6,713.7톤</td><td class="num">17.8%</td><td class="num">1,227.9만 달러</td></tr>
+<tr><td>아르헨티나</td><td class="num">6,633.4톤</td><td class="num">17.6%</td><td class="num">1,222.2만 달러</td></tr>
+<tr><td>우크라이나</td><td class="num">6,029.9톤</td><td class="num">16.0%</td><td class="num">1,066.5만 달러</td></tr>
+<tr><td>튀르키예</td><td class="num">4,278.2톤</td><td class="num">11.4%</td><td class="num">676.9만 달러</td></tr>
+<tr><td>인도</td><td class="num">1,392.3톤</td><td class="num">3.7%</td><td class="num">197.0만 달러</td></tr>
+<tr><td>미국</td><td class="num">514.5톤</td><td class="num">1.4%</td><td class="num">140.8만 달러</td></tr>
+<tr><td>이탈리아</td><td class="num">503.0톤</td><td class="num">1.3%</td><td class="num">135.7만 달러</td></tr>
+<tr><td>러시아</td><td class="num">410.2톤</td><td class="num">1.1%</td><td class="num">58.9만 달러</td></tr>
+<tr><td>그 밖의 상대국(28개)</td><td class="num">1,569.1톤</td><td class="num">4.2%</td><td class="num">352.7만 달러</td></tr>
+<tr class="tot"><td>합계</td><td class="num">37,681.3톤</td><td class="num">100.0%</td><td class="num">6,791.6만 달러</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 위 preview, <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, <code>netWgt</code>·<code>primaryValue</code>. 비중은 반올림해 합이 100.1%다.</p>
+<p>관세청 국가별 파일의 2026년 3~8월 <code>151219</code> 수입은 23,318,252kg이다. 같은 기간 품목별 HS10 정제 해바라기씨유 23,285,804kg과의 차이는 32,448kg이다. HS10의 정제 잇꽃유는 <strong>32,450kg</strong>이며, HS10 <code>151219</code> 전체 23,318,254kg과 국가별 HS6 파일 사이에 2kg의 기관·집계 차이가 남는다. 따라서 국가별 HS6과 해바라기씨유 HS10의 차이 32,448kg은 정제 잇꽃유 32,450kg에서 두 수집본 간 2kg 차이를 뺀 값이다(E12·E35).</p>
+<div class="tw">
+<table>
+<caption>표 4. 한국의 <code>151219</code> 국가별 수입 관측값(2026년 3~8월, 잠정)</caption>
+<thead><tr><th>국가·묶음</th><th class="num">수입 중량</th></tr></thead>
+<tbody>
+<tr><td>아르헨티나</td><td class="num">7,890.6톤</td></tr>
+<tr><td>스페인</td><td class="num">4,450.0톤</td></tr>
+<tr><td>헝가리</td><td class="num">3,139.8톤</td></tr>
+<tr><td>우크라이나</td><td class="num">3,070.8톤</td></tr>
+<tr><td>튀르키예</td><td class="num">1,644.5톤</td></tr>
+<tr><td>러시아</td><td class="num">191.3톤</td></tr>
+<tr><td>그 밖의 국가</td><td class="num">2,931.2톤</td></tr>
+<tr class="tot"><td>합계</td><td class="num">23,318.3톤</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>processed_data/customs_kr/sunflower_oil_customs_kr_monthly.csv</code>, <code>year=2026.03~2026.08</code>, <code>hsCd=151219</code>(E12). 러시아는 물량 상위국이 아니라 흑해 정책 위험의 별도 관찰 대상으로 남겼다. 인도 1,187.4톤, 말레이시아 636.5톤, 멕시코 390.1톤은 <code>그 밖</code>에 포함된다. 진행연도 HS6이므로 해바라기씨유만의 연간 순위가 아니다.</p>
+<p>2025년 Comtrade HS6 합계 37,973,107.514kg과 관세청 해바라기씨유 HS10 37,903,049kg의 차이는 70,058.514kg이다. 관세청 HS10의 잇꽃유 <code>1512112000</code>·<code>1512191020</code>·<code>1512199020</code> 합은 69,825kg이고, 약 233.5kg의 차이가 남는다. <code>70.1톤 전부가 잇꽃유</code>라고 단정하지 않는다(E13·E35).</p>
+<p>미국 Census, EU Comext, 브라질 ComexStat의 세번·국가군·통관 절차는 서로 다르다. 일본 재무성 e-Stat 공통 ZIP에도 2026년 1~8월 HS9 <code>151211110</code>·<code>151211120</code>·<code>151219010</code>·<code>151219090</code> 수입 행이 있다. 일본 자료를 한국 상대국 표와 합치지 않았을 뿐, 원자료가 없었던 것은 아니다(E36).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>국제 기준가격과 한국 수입 단가는 서로 다른 거래다</h2>
+<p class="lead">국제 기준가격, 한국 수입 단가, 소비자물가지수, 종자 생산자가격은 품목·거래 단계·기간이 다르다. 서로 빼서 유통마진을 계산하지 않는다.</p>
+<p>FRED <code>PSUNOUSDM</code>과 IMF PCPS <code>PSUNO</code>, <code>DATA_TRANSFORMATION=USD</code>는 같은 IMF 해바라기유 월별 가격 계열이다. FRED 수집본은 2026년 7월까지이나 IMF 공통 수집본에는 8월이 있다. 2026년 8월 원값은 1,794.674008달러/톤으로 7월보다 0.4%, 2025년 8월보다 16.6% 높다. 2026년 1~8월 산술평균은 1,779.99달러/톤이다(E09·E34).</p>
+<div class="tw">
+<table>
+<caption>표 5. 가격 지표별 관측값과 범위</caption>
+<thead><tr><th>지표</th><th>기간</th><th class="num">값</th><th>해석 범위</th></tr></thead>
+<tbody>
+<tr><td>IMF/FRED 해바라기유 국제가격</td><td>2024 연평균</td><td class="num">1,270.17달러/톤</td><td>월별 기준가격 단순평균</td></tr>
+<tr><td>IMF/FRED 해바라기유 국제가격</td><td>2025 연평균</td><td class="num">1,525.67달러/톤</td><td>월별 기준가격 단순평균</td></tr>
+<tr><td>IMF PCPS 해바라기유 국제가격</td><td>2026년 1~8월 평균</td><td class="num">1,779.99달러/톤</td><td>진행연도 8개월 평균</td></tr>
+<tr><td>IMF PCPS 해바라기유 국제가격</td><td>2026년 8월</td><td class="num">1,794.67달러/톤</td><td>공통 수집본 최신 월</td></tr>
+<tr><td>FAOSTAT 우크라이나 해바라기 종자 생산자가격</td><td>2023 연간</td><td class="num">341.80달러/톤</td><td>착유 전 종자 가격</td></tr>
+<tr><td>한국 해바라기씨유 수입 단가</td><td>2025 연간</td><td class="num">1.803달러/kg</td><td>관세청 HS10 통관액 ÷ 중량</td></tr>
+<tr><td>한국 해바라기씨유 수입 단가</td><td>2026년 1~8월</td><td class="num">1.871달러/kg</td><td>진행연도 통관액 ÷ 중량</td></tr>
+<tr><td>한국 <code>식용유지</code> 소비자물가지수</td><td>2026년 9월</td><td class="num">152.52</td><td>2020=100, 해바라기유 단독 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>processed_data/fred/sunflower_oil_fred.csv</code>, <code>_raw/imf_pcps/2026-10-06__imf_pcps.csv.gz</code>의 <code>PSUNO</code>·<code>USD</code>·월별 행, <code>PP_sunflower_oil.csv</code>, 관세청 HS10, KOSIS 소비자물가지수(E01·E03·E09·E10·E18·E34). <a href="https://fred.stlouisfed.org/series/PSUNOUSDM">FRED 계열 설명</a>.</p>
+<p>2026년 8월 국제가격을 kg 단위로 바꾸면 약 1.795달러/kg이다. 이를 한국의 1~8월 통관 단가 1.871달러/kg과 뺀 값은 유통마진이 아니다. 거래조건·품질·정제 수준·운임·보험·계약 시점이 분리되지 않는다.</p>
+<p>FAOSTAT의 우크라이나 2023년 <code>Sunflower seed</code> 생산자가격은 톤당 341.80달러, Flag <code>A</code>다. 종자 가격이며 같은 해의 기름 판매가격이 아니다(E18).</p>
+<p>FAO의 2026년 9월 식물성유지 가격지수는 198.6포인트로 전월 대비 0.9%, 전년 동월 대비 18.3% 높다. FAO는 같은 발표에서 해바라기유 시세가 석 달 연속 하락했다고 설명했다. IMF 8월의 전월 상승과 모순으로 처리하지 않는다. 지표의 시장·집계 방식과 기준월이 다르기 때문이다. FAO, <em>FAO Food Price Index</em>, 2026-10-02, <a href="https://www.fao.org/worldfoodsituation/foodpricesindex/en/">발표 원문</a>.</p>
+<p>KOSIS <code>식용유지</code> 소비자물가지수는 2025년 9월 159.00에서 2026년 9월 152.52로 4.1% 낮아졌다. 이는 여러 식용유의 지수이며 해바라기씨유 병당 가격이 아니다(E10).</p>
+<p>KAMIS 수집본에서는 해바라기유 전용 공개 시계열을 확인하지 못했다. KAMIS의 <code>평년</code>은 <strong>최근 5년 중 최고·최저 연도를 제외한 3년 평균</strong>으로, 특정 해의 실측 가격이 아니다. 세계은행 Pink Sheet 공통 파일의 해바라기유 열은 2024년 12월 이후 값이 없어 2025~2026년 가격에 사용하지 않았다.</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>수출국과 한국의 수입 상대국을 구별한다</h2>
+<p class="lead">세계 생산·수출 규모와 한국향 통관 상대국은 다른 지표다. USDA PSD의 생산·내수·수출·수입을 함께 보면 종자 생산국, 가공국, 큰 수입국의 역할을 구분할 수 있다.</p>
+<div class="tw">
+<table>
+<caption>표 6. 주요 지역의 2025/26 해바라기씨유 수급 위치(USDA PSD, 천 톤)</caption>
+<thead><tr><th>지역·국가</th><th class="num">생산</th><th class="num">수출</th><th class="num">수입</th><th>수급에서 확인되는 역할</th></tr></thead>
+<tbody>
+<tr><td>러시아</td><td class="num">6,897</td><td class="num">4,200</td><td class="num">1</td><td>대형 생산·수출국</td></tr>
+<tr><td>우크라이나</td><td class="num">4,515</td><td class="num">4,036</td><td class="num">0</td><td>생산 대비 수출 비중이 큰 공급국</td></tr>
+<tr><td>아르헨티나</td><td class="num">2,521</td><td class="num">1,925</td><td class="num">0</td><td>남미의 대형 생산·수출국</td></tr>
+<tr><td>유럽연합</td><td class="num">3,256</td><td class="num">700</td><td class="num">2,400</td><td>생산과 큰 수입이 공존</td></tr>
+<tr><td>튀르키예</td><td class="num">1,109</td><td class="num">1,000</td><td class="num">1,300</td><td>수입과 수출이 함께 큼</td></tr>
+<tr><td>인도</td><td class="num">38</td><td class="num">80</td><td class="num">3,100</td><td>대형 수입국</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>usda_psd_all_sunflower_oil.csv</code>, <code>Commodity_Description=Oil, Sunflowerseed</code>, <code>Market_Year=2025</code>(E05). 2025/26은 국가별 시작월이 다른 시장연도이며, 이 표는 달력연도 통관 완료 실적이 아니다.</p>
+<p>러시아·우크라이나의 PSD 수출량 합은 823.6만 톤으로 세계 합계의 약 61.0%다. 그러나 PSD만으로 항만 폐쇄, 운임, 보험료가 한국 수입 단가에 미친 효과를 계산할 수 없다. USDA FAS의 2026년 4월 우크라이나 연차 보고서는 당시 주요 해항과 도나우강 항만이 정상 운영 중이라고 기록하고, 2025/26 시장연도 해바라기유 수출을 약 450만 톤으로 추정한다. 후자는 이 보고서의 PSD 수집본 403.6만 톤과 다른 판본의 추정이다. USDA FAS, <em>Oilseeds and Products Annual</em>, 2026-04-08, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Kyiv_Ukraine_UP2026-0011.pdf">UP2026-0011 원문</a>(E32).</p>
+<p>한국의 2024년 FAOSTAT 양자 무역에서는 스페인 12,826.8톤, 우크라이나 9,293.2톤, 헝가리 8,776.1톤, 아르헨티나 4,817.6톤, 튀르키예 4,044.7톤이 기록된다. 원자료의 품목명은 <code>Sunflower-seed oil, crude</code>이지만 이 <strong>무역</strong> 범위에는 정제유가 섞인다. 한국의 2024년 Comtrade 조유 HS6 <code>151211</code> 수입 전체가 241.0톤이므로 아르헨티나 양자 4,817.6톤을 <code>조유 수입</code>이라고 부를 수 없다. UN Comtrade 2024년 공개 preview에서 한국의 아르헨티나 상대국 <code>151219</code> 수입은 4,817,587.8kg으로 FAOSTAT 양자 값과 같다. 같은 해 <code>151211</code> 상대국 21개에는 아르헨티나가 없다(E21·E28).</p>
+<p>2025년 한국의 <code>151219</code> 상대국은 스페인 25.6%, 헝가리 17.8%, 아르헨티나 17.6%, 우크라이나 16.0%, 튀르키예 11.4% 순이다(04절 표 3-2). 2026년 3~8월 관세청 국가별 <code>151219</code>에서는 아르헨티나 7,890.6톤, 스페인 4,450.0톤, 헝가리 3,139.8톤, 우크라이나 3,070.8톤이 관측된다. 이는 진행연도 HS6이며 잇꽃유를 완전히 분리한 연간 원산지 점유율이 아니다(E12·E28).</p>
+<p>유럽연합은 PSD에서 325.6만 톤을 생산하고 240.0만 톤을 수입한다. 한국 통관 상대국이 스페인이나 헝가리라는 사실만으로 해당 기름의 종자 산지까지 정해지지 않는다. 원산지 문서와 가공 경로가 필요하다.</p>
+<p>OEC의 2022년 양자 HS6 교역액은 러시아→튀르키예 <code>151211</code> 1,187,417,499달러, 스페인→한국 <code>151219</code> 22,196,800달러다. 2024년 튀르키예 <code>151219</code> 수출액은 1,008,426,016달러다. 세 수치는 종자 산지나 재수출률을 증명하지 않으며 PSD의 다른 시장연도 톤수와 나누어 단가를 만들지 않는다(E22·E25·E26).</p>
+<p>여러 완료연도의 월별 상대국 자료가 없어 2026년의 월별 물량 차이를 반복되는 계절성으로 판정하지 않는다. 브라질 ComexStat 및 EU Comext 세부 행도 세번·절차를 맞춘 뒤 비교해야 한다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>국내판매액은 확인되지만 업체별 점유율은 확인되지 않았다</h2>
+<p class="lead">2025년 한국의 해바라기씨유 수입 중량 99.3%가 정제유 HS10이었다. 통관 뒤 병입, 식품제조 원료, 업소용, 소매 판매로 나뉘는 물량은 연결돼 있지 않다. 수입 상대국과 소비자 브랜드를 같은 기업의 거래로 연결하지 않는다(E02).</p>
+<p>식약처 수입식품 신고 확인 자료에서 2025년 10월~2026년 9월 수입업소·해외 제조사·제조국별 신고 건수는 확인됐다. DART·KIND 사업보고서에서는 오뚜기·사조대림·삼양사 등의 유지류 또는 식품부문 규모도 확인됐다. 그러나 신고 건수는 업체별 수입 중량·금액 순위가 아니며, 공시된 부문 매출은 해바라기씨유 단독 매출이나 시장 점유율이 아니다(11절).</p>
+<div class="tw">
+<table>
+<caption>표 7. 국내 기업 구조를 확인하기 위해 검토한 자료</caption>
+<thead><tr><th>자료</th><th>이번에 확인한 것</th><th>아직 연결하지 못한 것</th></tr></thead>
+<tbody>
+<tr><td>관세청 품목별 HS10</td><td>월별 수입·수출 중량과 금액</td><td>신고업체·최종 사용처</td></tr>
+<tr><td>관세청 국가별 HS6</td><td>2026년 3~8월 151219 상대국</td><td>해바라기씨유만의 업체별 중량</td></tr>
+<tr><td>KOSIS 식용유지류 판매</td><td>2025년 해바라기유(압착해바라기유 포함) 451.5억 원·1.35%; 별도 고올레산 행 119.6억 원·0.36%</td><td>두 품목의 포함관계·업체별 매출</td></tr>
+<tr><td>KOSIS 식품제조업 원료 사용</td><td>2024년 해바라기유 10,134톤</td><td>업체별 투입량·외식·가정 수요</td></tr>
+<tr><td>식약처 수입식품 품목별 통계</td><td>2025년 해바라기유 신고 중량 11,982,259kg</td><td>관세청 HS10과의 품목별 대응·업체별 중량</td></tr>
+<tr><td>식약처 수입식품 신고 확인</td><td>2025년 10월~2026년 9월 업소·제조사·제조국별 신고 건수</td><td>업체별 물량·금액·최종 사용처</td></tr>
+<tr><td>DART·KIND</td><td>오뚜기 유지류, 사조대림 식용유지, 삼양사 식품부문의 2025년 공시 규모</td><td>해바라기씨유 단독 매출·업체별 점유율</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 HS10·HS6(E01·E12), KOSIS 판매·원료 사용(E10·E29·E30), 식약처 <a href="https://www.foodsafetykorea.go.kr/portal/safefoodlife/foodImport/statistics/item.do">품목별 통계</a>(E31)와 <a href="https://data.mfds.go.kr/">신고 확인 자료 제공기관</a>, <a href="https://www.otoki.com/pds/investment/2603/34f6f527b91b450b9eff2596922237c2.pdf">오뚜기 사업보고서</a>, <a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">사조대림 사업보고서</a>, <a href="https://kind.krx.co.kr/external/2026/03/18/002283/20260318010651/11011.htm">삼양사 사업보고서</a>.</p>
+<p>2018년 <code>해바라기유</code> 국내판매액은 26,636,825천 원이었고, 2019년부터 품목명이 <code>해바라기유(압착해바라기유 포함)</code>으로 바뀐다. 2025년 새 이름의 판매액 45,149,416천 원을 현재 기업 매출의 분모로 사용할 수 없다. KOSIS의 판매액과 관세청 통관액은 통화·범위·단계가 다르며, 고올레산 행과 일반 행의 포함관계도 미확인이다(E10·E29).</p>
+<p>2024년 식품제조업 원료 사용량은 확인됐으므로 제조업 사용 자체를 <code>미확보</code>로 쓰지 않는다. 여전히 업체별 물량·제품별 매출·외식 및 가정 소비 배분은 확인되지 않았다. 신고 건수도 물량 점유율의 분모가 아니다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>한국은 정제유 할당관세를 적용하고 산지국은 수출을 관리한다</h2>
+<p class="lead">한국의 할당관세는 수입 세번·기간·한계수량을 정한다. 러시아와 우크라이나의 종자 수출관세, 튀르키예의 종자·조유 수입쿼터와 대상·국경 방향이 다르다.</p>
+<div class="tw">
+<table>
+<caption>표 8. 이번 조사에서 확인한 해바라기 관련 제도</caption>
+<thead><tr><th>지역·문서</th><th>대상·기간</th><th>확인된 내용</th><th>확인 범위</th></tr></thead>
+<tbody>
+<tr><td>한국 할당관세 별표 2</td><td>정제 해바라기씨유 <code>1512.19</code>, 2026년 1~6월 수입신고</td><td>0%, 한계수량 5,000톤</td><td>기존 별표 조사값</td></tr>
+<tr><td>한국 할당관세 별표 5</td><td>정제 해바라기씨유 <code>1512.19</code>, 2026년 7~12월 수입신고</td><td>0%, 한계수량 10,000톤. 시행 전 별표 2 적용량을 합산하는 누적 한도</td><td>별표 조사값·부칙 제2조② 원문</td></tr>
+<tr><td>러시아 정부 결의 제1640호</td><td>유지종자·유·박의 역외 수출</td><td>종자 50% 또는 톤당 최소 32,000루블; 유·박은 70% 산식. 2028년 8월 말까지 연장</td><td>정부 발표</td></tr>
+<tr><td>우크라이나 법률 제1033-XIV호</td><td>해바라기 종자 <code>1206</code> 수출</td><td>종자 수출관세 10%. 해바라기유 세율이 아님</td><td>법률 원문</td></tr>
+<tr><td>튀르키예 저율관세쿼터</td><td>종자 및 조유, 2026-01-12~05-31</td><td>종자 100만 톤 <strong>또는 환산 조유 40만 톤</strong>. 쿼터 내 관세 종자 0%, 조유 20%</td><td>USDA FAS GAIN 원문</td></tr>
+<tr><td>한국 원산지표시 고시 제2026-54호</td><td>국산 표시대상 특용작물</td><td>목록에 종자 <code>해바라기</code>가 있음</td><td>가공품 기름의 적용 여부 미확인</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 한국 별표 수치는 Grok 조사노트의 별표 열람값이며, 누적 한도는 국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」, 대통령령 제36450호, 2026-06-30, <a href="https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010102&amp;lsId=011318">제정·개정문</a>. 러시아 정부, <em>Export duties on sunflower seeds and products</em>, <a href="https://government.ru/en/docs/56637">제1640호 설명</a>. 우크라이나 최고라다, 「일부 유지종자 수출관세율에 관한 법률」 제1033-XIV호 제1조(2025-09-04 개정판), <a href="https://zakon.rada.gov.ua/laws/show/1033-14/print">인쇄본 원문</a>. USDA FAS, <em>Turkiye Announces Tariff Quota for Sunflower Seed-Crude Sunflower Oil</em>, 2025-08-08, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Turkiye+Announces+Tariff+Quota+for+Sunflower+Seed-Crude+Sunflower+Oil+_Ankara_Turkiye_TU2025-0041.pdf">TU2025-0041 원문</a>(E17·E33).</p>
+<p>한국 별표 5의 10,000톤은 상반기 별표 2에 따라 할당관세가 적용된 물량을 포함한다. 상반기 5,000톤과 하반기 10,000톤을 더해 연간 15,000톤의 독립 쿼터라고 계산하지 않는다. 실제 추천·통관 적용량은 확보하지 못했다. 국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」, 부칙 제2조②, 2026-06-30, <a href="https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010102&amp;lsId=011318">원문</a>(E33).</p>
+<p>튀르키예 GAIN 원문은 2026년 1월 12일~5월 31일 종자 100만 톤을 조유 40만 톤과 <strong>환산 관계</strong>로 적는다. 두 물량을 더한 별도 한도가 아니다. 표의 MFN 세율은 종자 27%, 조유 36%이고 쿼터 내 세율은 각각 0%, 20%다. 신청 기업의 국내 종자 구매 조건과 실제 집행량은 구분한다. USDA FAS, <em>Turkiye Announces Tariff Quota for Sunflower Seed-Crude Sunflower Oil</em>, 2025-08-08, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Turkiye+Announces+Tariff+Quota+for+Sunflower+Seed-Crude+Sunflower+Oil+_Ankara_Turkiye_TU2025-0041.pdf">TU2025-0041 원문</a>(E17).</p>
+<p>우크라이나 법률 제1033-XIV호는 해바라기 종자 <code>1206</code>의 표상 세율 16%를 2007년부터 해마다 1%포인트씩 10%까지 내리도록 정했다. 이 세율을 해바라기씨유 수출관세로 옮기지 않는다. 우크라이나 최고라다, 「일부 유지종자 수출관세율에 관한 법률」 제1033-XIV호 제1조(2025-09-04 개정판), <a href="https://zakon.rada.gov.ua/laws/show/1033-14/print">인쇄본 원문</a>(E33).</p>
+<p>한국의 현행 기본세율·FTA별 적용세율, 신고 건별 할당 추천 여부, 러시아 월별 변동관세 세액, 식품공전의 세부 규격은 이 자료만으로 계산하지 않는다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>품목명 색인보다 본문의 대상이 중요하다</h2>
+<p class="lead">은행·기관 리포트 색인 <code>_raw/_banks/index.csv</code>의 <code>items</code>에 <code>sunflower_oil</code>이 붙은 행은 7건이다. 검색어가 붙었다고 7건 모두 한국 해바라기씨유 시장을 분석한 것은 아니다. 두 건은 팜유 산업 전망에서 식물성유지 비교 대상으로 언급하고, 한 건은 아르헨티나 <strong>해바라기 종자</strong>에 가깝다. 또 한 건은 인도 유지종자 작황을 다룬다. 직접적인 흑해·해바라기 공급 맥락은 Rabobank 월보에 더 선명하다(E14).</p>
+<div class="tw">
+<table>
+<caption>표 9. 색인에 잡힌 은행 보고서의 해바라기 관련 범위</caption>
+<thead><tr><th>기관·문서</th><th>날짜</th><th>이번에 확인한 주장·관찰</th><th>해석 한계</th></tr></thead>
+<tbody>
+<tr><td>Krungsri Research, <em>Palm Oil Industry Outlook 2026–2028</em></td><td>2026-05-05</td><td>팜유와 다른 식물성유지의 수율·가격을 비교하며 해바라기유를 포함</td><td>주제는 팜유 산업</td></tr>
+<tr><td>Krungsri Research, <em>Palm Oil Industry Outlook 2025–2027</em></td><td>2025-03-21</td><td>식물성유지 가격 비교와 인도 기름 관세 변화를 언급</td><td>한국 해바라기유 분석 아님</td></tr>
+<tr><td>BBVA Research, <em>Argentina: Situación Agricultura 2026</em></td><td>2026-10-01</td><td>아르헨티나 농업의 <code>girasol</code>을 주요 작물로 언급</td><td>종자 문장을 기름 수출량으로 전환 불가</td></tr>
+<tr><td>Rabobank Australia, <em>Agribusiness Monthly</em></td><td>2026-07·08</td><td>유럽 해바라기 작황·흑해 지역 공급을 카놀라 가격의 관찰 변수로 설명</td><td>시황 견해이며 확정 수급통계 아님</td></tr>
+<tr><td>ICICI Bank, <em>Monsoon: Risk to kharif production</em></td><td>2025년 보고서</td><td>인도 우기의 유지종자 작황에서 sunflower를 언급</td><td>인도의 해바라기씨유 수입 통계 아님</td></tr>
+<tr><td>Rabobank, <em>Australia Agribusiness Monthly</em></td><td>2026-10 수집본</td><td>흑해 해바라기 흐름에서 생산과 수출 차질을 함께 관찰하라고 제시</td><td>선적 차질량의 공식 집계 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>_raw/_banks/index.csv</code>, 해당 <code>bank_id</code> 아래의 동명 <code>.md</code>·<code>.html</code> 원문(E14). 날짜는 색인 제목 또는 원문 표기에 따른다. 색인 URL은 아래 본문에 둔다.</p>
+<p>Krungsri의 <a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/palm-oil/io/plam-oil-2026">2026년 팜유 전망</a>과 <a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/palm-oil/io/plam-oil-industry-2025-2027">2025년판</a>은 해바라기유를 대체 식물성유지의 하나로 취급한다. 단위면적 수율 비교는 작물의 경제성을 설명하는 참고자료지만, 한국 소비자 가격이나 한국 수입업체별 원가를 산출하지 않는다.</p>
+<p><a href="https://www.bbvaresearch.com/publicaciones/argentina-situacion-agricultura-2026/">BBVA의 아르헨티나 농업 보고서</a>는 <code>girasol</code>이라는 작물 언급을 포함한다. 이는 아르헨티나가 해바라기 종자를 다루는 나라라는 맥락에 도움이 되지만, 이 보고서의 한국 원산지별 해바라기씨유 물량을 증명하지 않는다. 아르헨티나의 한국향 2026년 부분 HS6 거래는 관세청 자료에서 별도로 관측했으며 두 자료를 합쳐 2025년 시장 점유율을 만들지 않았다(04절).</p>
+<p><a href="https://www.rabobank.com.au/content/dam/ranz/au/pdf/agribusiness-monthly/2026/RaboResearch_Australia-agribusiness-monthly_Jul2026.pdf">Rabobank Australia 2026년 7월 월보</a>는 러시아·우크라이나의 해바라기 작황 전망을 서술한다. <a href="https://www.rabobank.com.au/content/dam/ranz/au/pdf/agribusiness-monthly/2026/RaboResearch_Australia-agribusiness-monthly_Aug2026.pdf">8월 월보</a>는 유럽의 더위와 해바라기 수량 위험을 카놀라 가격 배경으로 둔다. 10월 월보의 현지 저장본은 흑해 작황과 수출 중단 가능성을 함께 언급한다. 세 문서는 가격·작황 위험을 읽는 데 쓰되, USDA PSD의 완료연도 실적을 대신하지 않는다.</p>
+<p><a href="https://www.icici.bank.in/content/dam/icicibank/india/erg/thematic/monsoon-2025-final.pdf">ICICI의 인도 우기 보고서</a>는 일부 지역의 해바라기 종자 피해 가능성을 다룬다. 인도 PSD의 2025 해바라기씨유 수입 310.0만 톤과 원인이 같다고 단정할 수 없다. 작물 피해와 정제유 수입은 시차, 대체 유지, 재고를 거쳐 연결된다.</p>
+<p>Grok 조사에서는 KREI 「농업전망 2026」의 공개 목차에서 해바라기유 전용 장을 찾지 못했고, 해외곡물시장 월보의 열람 페이지에서도 이 품목 분석을 확인하지 못했다(<a href="https://repository.krei.re.kr/handle/2018.oak/32556">KREI 저장소</a>, <a href="https://krei.re.kr/grain/page/266">해외곡물시장 월보</a>, A등급은 목차·열람 페이지에 한정). Rabobank 공개 보고서가 없다는 이전 조사 메모의 표현은 은행 색인과 원문 확인 결과에 비추어 채택하지 않았다. 대신 “한국 해바라기씨유 단독의 최근 은행 산업보고서는 이번 색인에서 확인하지 못했다”로 범위를 한정한다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·지표</span>관찰 지표와 남은 물음</h2>
+<p class="lead">한국 해바라기씨유 HS10과 잇꽃유가 포함되는 HS6, FAOSTAT의 조유 생산과 정제유까지 섞이는 무역 품목, 달력연도와 USDA PSD 시장연도를 구분해야 한다. 이를 섞으면 공급 위험과 국내 시장 규모가 잘못 계산된다.</p>
+<h3>확인된 위험과 아직 검증하지 못한 연결</h3>
+<p>첫째, 세계 공급의 지역 집중이다. PSD <code>Market_Year=2025</code>, 곧 2025/26 시장연도 수급표에서 러시아·우크라이나 수출 합은 823.6만 톤, 세계 합의 약 61.0%다. USDA FAS는 2026년 4월 우크라이나 주요 항만이 정상 운영 중이라고 기록했다. 이 한 시점의 상태나 PSD 수급량으로 항만별 실제 선적·운임·한국 계약가격의 변화를 계산할 수 없다. USDA FAS, <em>Oilseeds and Products Annual</em>, 2026-04-08, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Kyiv_Ukraine_UP2026-0011.pdf">UP2026-0011 원문</a>(E05·E32).</p>
+<p>둘째, 한국의 수입 형태는 정제유에 집중돼 있다. 2025년 정제유 중량 비중은 99.3%다. 국내 조유 정제 설비와 재고를 확인하지 않았으므로 공급 차질 때 대체 가능량은 알 수 없다(E02).</p>
+<p>셋째, 가격의 시차다. IMF PCPS의 2026년 8월 국제 기준가격은 전년 동월보다 16.6% 높고, 한국의 2026년 1~8월 통관 단가는 전년 동기보다 6.2% 높다. FAO는 9월 해바라기유 시세의 최근 하락을 설명한다. 기간·계열·거래조건이 달라 인과를 확정하지 않는다(E03·E34).</p>
+<p>넷째, 국내 사용처의 연결 공백이다. 2024년 식품제조업 원료 사용 10,134톤과 2025년 식약처 수입식품 <code>해바라기유</code> 신고 중량 11,982,259kg은 각각 확인됐다. 외식·가정 소비, 제조업체별 사용량, 두 통계와 관세청 HS10의 품목 대응은 아직 확인되지 않았다(E30·E31).</p>
+<h3>갱신할 지표</h3>
+<div class="tw">
+<table>
+<caption>표 10. 해바라기씨유 산업의 관찰 지표</caption>
+<thead><tr><th>지표</th><th>원천·필터</th><th>주기</th><th>현재 확인 범위</th><th>다음 질문</th></tr></thead>
+<tbody>
+<tr><td>한국 수입 중량·금액</td><td>관세청 HS10 <code>statKor=해바라기씨유</code></td><td>월</td><td>2026년 8월까지</td><td>증가가 일시적 통관 집중인가</td></tr>
+<tr><td>조유·정제유 구성</td><td>같은 파일의 형태별 세번</td><td>월·연</td><td>2025년 정제유 99.3%</td><td>국내 가공 입력이 달라지는가</td></tr>
+<tr><td>한국 수입 상대국</td><td>FAOSTAT 양자·Comtrade HS6·관세청 HS10</td><td>연</td><td>2024년 FAOSTAT 양자, 2025년 Comtrade HS6 <code>151219</code></td><td>완료연도 구성이 어떻게 변했는가</td></tr>
+<tr><td>세계 생산·수출·재고</td><td>USDA PSD <code>Oil, Sunflowerseed</code></td><td>시장연도·판본</td><td>2025/26 추정·전망</td><td>실제 통관·선적과 일치하는가</td></tr>
+<tr><td>세계 조유 생산</td><td>FAOSTAT 생산</td><td>연</td><td>2023년</td><td>새 생산연도 행이 나오는가</td></tr>
+<tr><td>세계 유지 무역</td><td>FAOSTAT 무역, 조유·정제유 혼합 범위</td><td>연</td><td>2024년</td><td>Comtrade 형태별 수치와 맞는가</td></tr>
+<tr><td>국제 기준가격</td><td>IMF PCPS <code>PSUNO</code>, <code>USD</code></td><td>월</td><td>2026년 8월까지</td><td>한국 통관 단가와 시차는 얼마인가</td></tr>
+<tr><td>국내판매액</td><td>KOSIS 식용유지류, 변경된 품목명</td><td>연</td><td>2025년까지</td><td>품목 정의·고올레산 포함관계는 무엇인가</td></tr>
+<tr><td>식품제조업 원료 사용</td><td>KOSIS <code>DT_114010_A001</code></td><td>연</td><td>2024년까지</td><td>업체·제품별 사용처는 무엇인가</td></tr>
+<tr><td>할당관세·수출관세</td><td>한국 별표·러시아 정부·우크라이나 법령</td><td>개정 때</td><td>한국 2026년 하반기 누적 한도</td><td>실제 적용량은 얼마인가</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 품목별·공통 원자료의 필터와 한계는 <code>30_근거_수치.md</code>에 기록했다. 자동 숫자대조 결과는 <code>update_2026-10-07/20_숫자대조.txt</code>에 있다(빌드할 때마다 다시 돌린다).</p>
+<h3>다음 판에서 풀어야 할 물음</h3>
+<p>1. 2025년 Comtrade HS6 상대국 구성을 관세청 국가별 HS10(해바라기씨유·잇꽃유 분리)으로 다시 검산할 수 있는가.</p>
+<p>2. 국내 종자 재배·착유·정제·병입량은 어떤 생산실적에서 구분되는가.</p>
+<p>3. KOSIS 판매표의 일반 해바라기유와 고올레산 해바라기유는 포함관계인가, 별도 품목인가.</p>
+<p>4. 식약처 <code>해바라기유</code> 신고 중량과 관세청 HS10 수입 중량의 차이는 품목명·신고 대상·제품형태 중 무엇으로 설명되는가.</p>
+<p>5. 식품제조업 원료 사용 뒤 외식·가정·비식품 용도는 어떻게 나뉘는가.</p>
+<p>6. 업체별 수입·제조 물량과 품목별 매출을 같은 분모로 연결할 수 있는가.</p>
+<p>7. 2026년 정제유 할당관세의 상반기 적용분과 하반기 잔여 한도, 실제 추천·통관량은 얼마인가.</p>
+<p>8. 흑해 작황·정책·항만 상태 변화가 실제 수출과 한국 수입 단가에 반영됐는가.</p>
+<p>9. 유럽 경유 물량의 종자 산지와 가공·재수출 경로는 무엇인가.</p>
+<p>10. 여러 완료연도의 월별 상대국 자료에서 반복되는 계절성이 나타나는가.</p>
+<p>이 보고서의 정량 전망은 2026년에도 한국 수입이 정제유 중심일 것이라는 판단이다. 다른 연결 관계는 후속 원자료가 확보될 때 검증한다.</p>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>정제유 수입과 해외 가공기업의 연결</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국의 HS 151219 수입 중량에서 비중이 10% 이상인 상대국은 스페인 25.6%, 헝가리 17.8%, 아르헨티나 17.6%, 우크라이나 16.0%, 튀르키예 11.4%다. 분모는 <strong>37,681.3톤</strong>이며 정제 잇꽃유가 일부 포함된다. 같은 범위의 수입액은 6,791.6만 달러다(04절 표 3-2). 04절의 해바라기씨유 HS 표에는 별도 조제품 세번이 없다. <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=151219&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 2025년 한국 수입 조회</a>(A).</p>
+<p>식약처 신고 집계기간은 <strong>2025년 10월~2026년 9월</strong>이다. 아래 기업의 한국 연결은 해외 <strong>제조사명 일치 신고 건수 기준</strong>으로 확인했으며, 중량·금액·시장점유율이 아니다. 집계 대상은 품목명 ‘해바라기유’ 239건과 제품명에 해바라기가 들어간 ‘정제,가공을거쳐야하는식품원료’ 143건, 합계 382건이다. ‘향미유’ 22건과 ‘혼합식용유’ 3건은 제외했다. 식약처 신고 원자료에서 제조국과 수출국은 별도 항목이다. 제조국만으로 종자 산지를 정하지 않는다. 2026년 신고분은 잠정이다. <a href="https://data.mfds.go.kr/">식약처 식의약 데이터 포털</a>(A).</p>
+<p>식약처 신고 건수에서는 이탈리아 51건과 미국 27건도 많다. 그러나 신고 건수 순위는 04절의 수입 <strong>중량</strong> 비중 순위와 다르다. 표 11-1은 2025년 HS 151219 중량 비중 10% 이상인 다섯 공급국을 대상으로 한다.</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 한국의 주요 정제유 공급국별 수출·가공기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>스페인 25.6%</td><td>Borges Agricultural &amp; Industrial Edible Oils</td><td>가공·무역</td><td>2023/24년 여러 유지 등 판매 30.2만 톤; 해바라기유 단독 아님</td><td>제조사명 일치 20건</td><td><a href="https://borges-baieo.com/wp-content/uploads/1/2025/03/BRG_Tri%CC%81ptic23-24_BAIEO_ENG_Digital.pdf">사업 요약</a>(B)</td></tr>
+<tr><td>스페인</td><td>Aceites Abril</td><td>정제·병입·수출</td><td>여러 유지의 정제능력 하루 900톤; 2026년 확인</td><td>제조사명 일치 14건</td><td><a href="https://aceitesabril.com/export-ready/">기업 설비</a>(B)</td></tr>
+<tr><td>스페인</td><td>Migasa Aceites·Migasa Envasado</td><td>가공·병입·무역</td><td>그룹의 식물성유지 등 판매망 120개국 이상; 2026년 확인</td><td>두 제조사명 각각 11건</td><td><a href="https://www.migasa.com/en/">그룹 소개</a>(B)</td></tr>
+<tr><td>헝가리 17.8%</td><td>Bunge Zrt.</td><td>착유·정제·병입</td><td>Martfű 공장 바이오매스 보일러 투자 5,000만 달러 초과, 2025년 발표; 해바라기유 생산능력 아님</td><td>제조사명 일치 10건</td><td><a href="https://bunge.com/stories/a-bunge-jelentos-beruhazassal-tovabb-erositi-magyarorszagi-jelenletet">Bunge 발표</a>(B)</td></tr>
+<tr><td>헝가리</td><td>Louis Dreyfus Company Foktő Kft.</td><td>착유·정제·무역</td><td>Foktő 다종자 착유·정제공장은 회사가 유럽 최대급 해바라기씨 가공시설로 설명. <strong>별도</strong> 저장·물류시설 3곳의 합산 저장능력은 약 15만 톤, 2025년 인수</td><td>제조사명 일치 5건</td><td><a href="https://www.ldc.com/cn/en/press-releases/louis-dreyfus-company-announces-the-successful-acquisition-of-grains-oilseeds-activities-in-hungary-and-poland/">LDC 인수 발표</a>(B)</td></tr>
+<tr><td>헝가리</td><td>NT Food Production and Trade</td><td>착유·정제·병입</td><td>2021년 공장 증설 착수 당시 발표한 증설 후 해바라기씨 처리능력 연 45만 톤 <strong>계획</strong></td><td>확인된 공개 자료 없음</td><td><a href="https://hipa.hu/news/nt-kft-is-going-to-increase-its-sunflower-seed-processing-capacity-to-more-than-double-and-half/">헝가리 투자청</a>(A)</td></tr>
+<tr><td>아르헨티나 17.6%</td><td>Bunge Argentina</td><td>정제·병입·무역</td><td>San Jerónimo Sud 병입시설 시간당 3만 7,500병 능력; 여러 유지 합산, 2026년 확인</td><td>제조사명 일치 46건</td><td><a href="https://www.bunge.ar/alimentos-e-ingredientes/aceites-refinados">아르헨티나 사업</a>(B)</td></tr>
+<tr><td>아르헨티나</td><td>Aceitera General Deheza</td><td>착유·정제·병입</td><td>여러 식용유의 월 병입능력 1,700만 리터; 2026년 확인</td><td>확인된 공개 자료 없음</td><td><a href="https://www.agd.com.ar/es/complejo-general-deheza">General Deheza 공장</a>(B)</td></tr>
+<tr><td>아르헨티나</td><td>Molinos Agro</td><td>착유·무역</td><td>해바라기씨·대두 전환형 착유능력 하루 1,600톤; 2026년 확인</td><td>확인된 공개 자료 없음</td><td><a href="https://molinosagro.com.ar/quienes-somos/">기업 소개</a>(B)</td></tr>
+<tr><td>우크라이나 16.0%</td><td>Dnipro Oil Extraction Plant, Bunge 계열</td><td>착유·가공</td><td>공장별 해바라기유 생산량은 확인된 공개 자료 없음</td><td>제조사명 일치 20건</td><td><a href="https://bungepro.ua/en/pro-kompaniiu-bunge">Bunge 우크라이나 사업</a>(B)</td></tr>
+<tr><td>우크라이나</td><td>Delta Wilmar Ukraine</td><td>착유·정제·가공</td><td>2025년 생산·수출량은 확인된 공개 자료 없음</td><td>제조사명 일치 10건</td><td><a href="https://data.mfds.go.kr/">식약처 신고 확인 자료</a>(A)</td></tr>
+<tr><td>우크라이나</td><td>Gradoil</td><td>착유·정제·수출</td><td>해바라기씨 처리능력 하루 700톤; 2026년 확인</td><td>제조사명 일치 4건</td><td><a href="https://gradoil.com.ua/ua/">기업 소개</a>(B)</td></tr>
+<tr><td>우크라이나</td><td>Kernel</td><td>착유·정제·수출</td><td>세계 해바라기유 수출의 9%라는 자사 설명; 2026년 확인</td><td>확인된 공개 자료 없음</td><td><a href="https://career.kernel.ua/olijnoekstrakczijni-zavodi/">기업 사업 설명</a>(B)</td></tr>
+<tr><td>튀르키예 11.4%</td><td>Sayınlar Gıda</td><td>정제·병입</td><td>여러 식물성유의 정제능력 하루 400톤; 2026년 확인</td><td>제조사명 일치 17건</td><td><a href="https://turna.com.tr/en/corporate/">Turna 기업 소개</a>(B)</td></tr>
+<tr><td>튀르키예</td><td>Elita Gıda</td><td>착유·정제·수출</td><td>여러 제품을 60개국 이상에 수출한다는 회사 설명; 2026년 확인</td><td>제조사명 일치 11건</td><td><a href="https://elitagida.com.tr/hakkimizda/">기업 소개</a>(B)</td></tr>
+<tr><td>튀르키예</td><td>Bunge Gıda</td><td>착유·정제·병입</td><td>튀르키예 생산사업장 3곳을 회사가 열거; 2026년 확인, 해바라기유 단독 능력 아님</td><td>Lüleburgaz 제조사명 일치 8건</td><td><a href="https://www.bunge.com/en/turkiye">튀르키예 사업</a>(B)</td></tr>
+<tr><td>튀르키예</td><td>Yonca Gıda</td><td>가공·병입·수출</td><td>해바라기유를 포함한 제품군을 80개국 이상에 수출한다는 회사 설명; 2026년 확인</td><td>Manisa 지점 7건·Yonca Food Industries 1건, 합계 8건 일치</td><td><a href="https://www.yonca.com.tr/tr/ihracatimiz/">수출 제품</a>(B)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 기업 규모·사업은 각 행의 자료, 한국 연결은 <a href="https://data.mfds.go.kr/">식약처 식의약 데이터 포털</a>(A)의 2025년 10월~2026년 9월 수입식품 신고 확인 자료를 대조했다. 제조사명 표기 변형을 합친 <strong>신고 건수 기준</strong>이며 물량 점유율이 아니다.</p>
+<p>세계 주요 수출기업 가운데 Kernel은 자신을 우크라이나 최대 해바라기유 생산·수출기업으로 소개하고 세계 수출의 9%를 공급한다고 설명한다. 이는 <a href="https://career.kernel.ua/olijnoekstrakczijni-zavodi/">기업 자체 발표</a>(B)이며 독립적으로 확정된 기업별 세계 순위나 한국향 물량은 아니다.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>표 11-2의 제조국은 업소별 신고서 제조국 상위 두 곳이다. 동률인 제조국은 비고에 적었다. 신고 순위는 수입 물량 순위가 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 해바라기유 관련 식약처 신고 건수 상위 수입업소, 2025년 10월~2026년 9월</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>오뚜기</td><td class="num">33</td><td>헝가리 9·우크라이나 8</td><td>정제 전 원료 품목명</td></tr>
+<tr><td>롯데상사</td><td class="num">32</td><td>아르헨티나 14·우크라이나 8</td><td>정제 전 원료 31건</td></tr>
+<tr><td>CJ제일제당</td><td class="num">29</td><td>스페인 15·아르헨티나 14</td><td>정제 전 원료 25건</td></tr>
+<tr><td>예천유통</td><td class="num">25</td><td>미국 25</td><td>해바라기유</td></tr>
+<tr><td>비앤비코리아</td><td class="num">22</td><td>인도 10·우크라이나 5</td><td>헝가리도 5건으로 공동 2위</td></tr>
+<tr><td>이마트</td><td class="num">13</td><td>스페인 7·이탈리아 6</td><td>해바라기유</td></tr>
+<tr><td>사조대림 칠서공장</td><td class="num">12</td><td>스페인 12</td><td>정제 전 원료 품목명</td></tr>
+<tr><td>에이치와이인터내셔널</td><td class="num">11</td><td>스페인 11</td><td>정제 전 원료 품목명</td></tr>
+<tr><td>서영이앤티</td><td class="num">10</td><td>이탈리아 10</td><td>해바라기유</td></tr>
+<tr><td>대상</td><td class="num">9</td><td>스페인 9</td><td>정제 전 원료 8건</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://data.mfds.go.kr/">식약처 식의약 데이터 포털</a>(A), 2025년 10월~2026년 9월 수입식품 신고 확인 자료. 업소명 표기 변형을 합친 <strong>신고 건수 기준</strong>이며 중량·금액이 아니다. 2026년 신고분은 잠정이다.</p>
+<p>아래 매출은 각 회사의 여러 제품 또는 전체 사업을 포함한 규모다. 해바라기씨유 단독 매출이나 업체별 시장점유율이 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 신고 상위 30곳에 포함된 국내 주요 가공·수입·유통기업의 공개 규모</caption>
+<thead><tr><th>기업</th><th class="num">신고 건수</th><th>공개 규모 지표</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>오뚜기</td><td class="num">33</td><td>2025년 연결 유지류 매출 4,405.1억 원</td><td><a href="https://www.otoki.com/pds/investment/2603/34f6f527b91b450b9eff2596922237c2.pdf">2025 사업보고서</a>(A)</td></tr>
+<tr><td>롯데상사</td><td class="num">32</td><td>2025년 연결 매출 8,851억 원, 전 사업</td><td><a href="https://m.kisrating.com/fileDown.do?fileName=rs20260623-44.pdf&amp;gubun=2&amp;menuCd=R8">한국신용평가 기업평가</a>(B)</td></tr>
+<tr><td>CJ제일제당</td><td class="num">29</td><td>2025년 연결 식품부문 매출 11조 5,222.5억 원</td><td><a href="https://kind.krx.co.kr/external/2026/03/16/001719/20260316005125/11011.htm">2025 사업보고서</a>(A)</td></tr>
+<tr><td>이마트</td><td class="num">13</td><td>2025년 할인점 사업 매출 11조 6,494억 원</td><td><a href="https://company.emart.com/ko/m/investor/finance03.do">이마트 투자정보</a>(B)</td></tr>
+<tr><td>사조대림</td><td class="num">18</td><td>2025년 연결 식용유지 매출 3,074.1억 원, 여러 유지 합산. 신고는 칠서공장 12건·법인 표기 6건</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">2025 사업보고서</a>(A)</td></tr>
+<tr><td>대상</td><td class="num">9</td><td>2025년 별도 매출 3조 5,288.6억 원, 전 사업</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/000923/20260318004497/11011.htm">2025 사업보고서</a>(A)</td></tr>
+<tr><td>코스트코코리아</td><td class="num">8</td><td>2025년 8월 결산 매출 약 7조 3,220억 원, 전 사업</td><td><a href="https://www.news1.kr/amp/industry/distribution/5981812">감사보고서 인용 보도</a>(C)</td></tr>
+<tr><td>씨피엘비</td><td class="num">8</td><td>2025년 매출 약 2조 1,778억 원, 전 사업</td><td><a href="https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/K09qNTI3UjdwZzN1WEd1UUlBL0xLZz09/company_nm/%EC%94%A8%ED%94%BC%EC%97%98%EB%B9%84%28%EC%A3%BC%29">NICE 재무정보 재게시</a>(C)</td></tr>
+<tr><td>삼양사</td><td class="num">8</td><td>2025년 연결 식품부문 매출 1조 5,152.7억 원</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/002283/20260318010651/11011.htm">2025 사업보고서</a>(A)</td></tr>
+<tr><td>롯데쇼핑 롯데마트사업본부</td><td class="num">4</td><td>2025년 연결 매출 13조 7,384억 원, 전 사업</td><td><a href="https://kind.krx.co.kr/external/2026/03/12/002374/20260312005365/11011.htm">2025 사업보고서</a>(A)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 신고 건수는 <a href="https://data.mfds.go.kr/">식약처 식의약 데이터 포털</a>(A)의 <strong>신고 건수 기준</strong> 자료, 매출은 각 행의 공시·기업 발표·보도 자료다. 매출의 사업 범위가 서로 달라 기업 간 해바라기씨유 매출 순위로 읽을 수 없다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 해바라기씨유의 종자 생산에서 소비까지</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>종자 생산</td><td>우크라이나·러시아·아르헨티나·EU 농가</td><td>국내 종자 생산량 미확인</td><td>산지 종자 거래</td><td>작황·종자 수출정책</td></tr>
+<tr><td>1차 가공</td><td>산지 착유·정제업체</td><td>국내 착유량 미확인</td><td>종자 매입·조유 및 정제유 계약</td><td>원료 부족·설비 가동</td></tr>
+<tr><td>수출·국제 무역</td><td>산지 수출사·국제상사</td><td>2025년 한국 해바라기씨유 HS10 수입 37,903.0톤</td><td>국제 계약·운임·보험</td><td>흑해 물류·환율</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·식약처</td><td>2025년 수입 중량의 99.3%가 정제유</td><td>계약가격·관세 적용</td><td>품목 분류·검사·할당관세</td></tr>
+<tr><td>국내 가공</td><td>병입·식품제조업체</td><td>2024년 식품제조업 원료 사용 10,134톤</td><td>원료·가공 계약</td><td>업체별 투입량 미확인</td></tr>
+<tr><td>도매·유통</td><td>식자재상·종합유통사</td><td>업체별 해바라기유 도매량 미확인</td><td>도매·납품 계약</td><td>재고·물류비</td></tr>
+<tr><td>소매·외식</td><td>마트·식품점·외식업체</td><td>2025년 해바라기유 국내판매액 451.5억 원</td><td>진열·납품·메뉴 가격</td><td>판매액과 외식 사용량의 범위 차이</td></tr>
+<tr><td>소비</td><td>가정·외식 소비자</td><td>실제 섭취량 미확인</td><td>최종 구매가격</td><td>대체 식용유 가격·표시 신뢰</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://tradedata.go.kr/">관세청 수출입무역통계</a>(A), <a href="https://kosis.kr/statisticsList/statisticsListIndex.do?outLink=Y&amp;publicationYN=Y&amp;statId=2008041">KOSIS 통계목록</a>(A). 수치의 품목·연도 범위는 01·03·04절과 같다.</p>
+<p>종자를 기름과 박으로 나누는 착유, 정제, 병입, 식품제조와 유통에서 부가가치가 생긴다. 2025년 한국 수입 중량의 99.3%가 정제유였으므로 한국향 물량의 착유·정제는 상당 부분 수입 전에 이뤄졌지만, 단계별 부가가치액은 분리되지 않는다. 국내에서 확인된 지표는 2024년 식품제조업의 원료 사용 10,134톤과 2025년 해바라기유 국내판매액 451.5억 원이다. 기간과 범위가 다른 두 값, 또는 2025년 통관액 6,833.9만 달러와 국내판매액의 차이를 유통마진으로 계산할 수 없다.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 해바라기씨유 산업의 주요 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>재정경제부·관세청·식품의약품안전처</td><td>할당관세 제도·통관 집계·수입식품 검사</td><td>수입 비용과 안전 기준에 영향</td></tr>
+<tr><td>해외 정부</td><td>우크라이나 최고라다·관세청, 튀르키예 무역부</td><td>종자 수출관세·종자 및 조유 수입쿼터 등 결정</td><td>산지 가공 유인과 국제 공급 경로에 영향</td></tr>
+<tr><td>생산자·단체</td><td>우크라이나 해바라기 재배농가·UkrOilProm</td><td>종자 공급·유지산업 의견 대변</td><td>종자 가격·국내 착유·수출 여건에 관심</td></tr>
+<tr><td>수출·가공기업</td><td>Bunge·Kernel·LDC·Aceitera General Deheza</td><td>착유·정제·국제 판매</td><td>원료 조달·설비 가동·계약가격에 영향</td></tr>
+<tr><td>수입·유통기업</td><td>오뚜기·롯데상사·CJ제일제당·이마트·사조대림</td><td>원료·완제품 수입과 국내 가공·판매</td><td>조달 비용·품질·재고에 관심</td></tr>
+<tr><td>소비자·시민사회</td><td>가정 소비자·한국소비자원</td><td>가격·품질·표시 정보 이용과 소비자 문제 제기</td><td>구매 선택과 제품 신뢰에 영향</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·ISCC</td><td>수급·가격 정보와 자발적 인증체계 제공</td><td>정보 비교와 공급망 검증에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 국내 제도는 <a href="https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010102&amp;lsId=011318">국가법령정보센터</a>(A), 해외 제도는 <a href="https://customs.gov.ua/documents/zakon-ukrayini-vid-10-09-1999-no-1033-xiv-pro-stavki-viviznogo-eksportnogo-mita-na-nasinnia-deiakikh-vidiv-oliinikh-kultur-iz-zminami-ta-dopovnenniami-191">우크라이나 관세청의 법률 안내</a>(A)와 <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Turkiye+Announces+Tariff+Quota+for+Sunflower+Seed-Crude+Sunflower+Oil+_Ankara_Turkiye_TU2025-0041.pdf">USDA FAS 튀르키예 보고서</a>(B), 단체·기관의 역할은 <a href="https://ukroilprom.org.ua/about/">UkrOilProm</a>(B)·<a href="https://www.kca.go.kr/kca/sub.do?menukey=5303">한국소비자원</a>(A)·<a href="https://www.fao.org/">FAO</a>(A)·<a href="https://iscc-system.org/">ISCC</a>(B)에 따른다. 인증체계의 존재가 한국향 화물의 인증을 뜻하지는 않는다.</p>
+<p>종자 수출관세는 산지 착유업체의 원료 확보와 생산자의 종자 수출 선택에 서로 다른 영향을 준다. 구매자의 수입 비용 절감 요구와 가공·유통기업의 원료·운임 상승분 반영 요구가 엇갈린다. 원산지와 가공경로의 추적 요구는 검증 비용 및 조달 속도와 맞물린다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황</h2>
+<p class="lead"><code>rawbulk.report_delta.coverage("sunflower_oil")</code>의 2026-10-07 결과를 기록한다. 원자료 품목 분할과 월간 수집 파일은 범위가 겹치므로 행수를 더해 관측 건수로 쓰지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 해바라기씨유 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">118</td><td>2026-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">155</td><td>2026-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">1,075</td><td>2026</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">121</td><td>2026</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">128</td><td>2026.08</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">852</td><td>202607</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">1,812</td><td>202606</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">6,430</td><td>2023</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">44,773</td><td>2024</td></tr>
+<tr><td>원자료 품목 분할</td><td>usda_psd_all</td><td class="num">87,941</td><td>시장연도·판본 별도 확인</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">2,838</td><td>2025</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">146</td><td>2026.08</td></tr>
+<tr><td>월간 수집</td><td>fred</td><td class="num">43</td><td>2026-07</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 수집기 출력(E15). FRED의 별도 품목 수집본은 7월까지이지만 IMF PCPS 공통 수집본 <code>PSUNO</code>, <code>USD</code>에는 2026년 8월이 있다(E34).</p>
+<p>공통 원자료에서 FAOSTAT FBS의 대한민국 <code>Sunflowerseed Oil</code> 2023년 행, KOSIS <code>해바라기유(압착해바라기유 포함)</code>의 2025년 국내판매액 행, 별도 <code>고올레산 해바라기유</code>의 2025년 행, KOSIS 식품제조업의 <code>해바라기유</code> 2024년 원료 사용량 행, 식약처의 2025년 품목별 신고 중량 행을 확인했다(E06·E29~E31).</p>
+<p>USDA FAS GAIN의 우크라이나 <code>UP2026-0011</code>과 튀르키예 <code>TU2025-0041</code> PDF 본문을 직접 읽었다. 나머지 GAIN PDF 26개와 FAO·OECD-FAO PDF 2개는 아카이브 원장(<code>01_조사노트/01_아카이브_원장.csv</code>)에 <code>미검토</code> 행으로 추가했다. PDF가 존재한다는 사실과 내용이 검증됐다는 판단은 구별한다. USDA FAS, <em>Oilseeds and Products Annual</em>, 2026-04-08, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Kyiv_Ukraine_UP2026-0011.pdf">UP2026-0011 원문</a>. USDA FAS, <em>Turkiye Announces Tariff Quota for Sunflower Seed-Crude Sunflower Oil</em>, 2025-08-08, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Turkiye+Announces+Tariff+Quota+for+Sunflower+Seed-Crude+Sunflower+Oil+_Ankara_Turkiye_TU2025-0041.pdf">TU2025-0041 원문</a>.</p>
+<h3>아카이브 원장의 판정</h3>
+<p>아카이브 원장은 81행이다. 기존 51행에 2026-10-08 PDF 30행을 더했다.</p>
+<div class="tw wide">
+<table>
+<caption>표 12. 아카이브 원장 판정</caption>
+<thead><tr><th>레인</th><th class="num">목록</th><th class="num">반영</th><th class="num">불필요</th><th class="num">불필요(최신본 반영)</th><th class="num">미검토</th></tr></thead>
+<tbody>
+<tr><td>intelligence_reports</td><td class="num">34</td><td class="num">3</td><td class="num">3</td><td class="num">0</td><td class="num">28</td></tr>
+<tr><td>processed_data</td><td class="num">3</td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td>raw_data</td><td class="num">43</td><td class="num">13</td><td class="num">29</td><td class="num">1</td><td class="num">0</td></tr>
+<tr><td>scripts</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">0</td></tr>
+<tr class="tot"><td>합계</td><td class="num">81</td><td class="num">19</td><td class="num">33</td><td class="num">1</td><td class="num">28</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>01_조사노트/01_아카이브_원장.csv</code>의 <code>판정</code> 열 직접 집계(E16). 2026-10-08에 추가된 30행(GAIN PDF 2건 반영, GAIN 26건·FAO·OECD-FAO 2건 미검토)은 <code>레인</code> 열이 비어 있어 경로 접두어 <code>intelligence_reports/</code>로 분류했다.</p>
+<p>Drive 원본과 로컬 캐시의 바이트 단위 동일성은 검증하지 않았다. 자동 숫자대조 결과는 <code>update_2026-10-07/20_숫자대조.txt</code>에 있다(빌드할 때마다 다시 돌린다).</p>
+</section>
+
+<div class="wrap">
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 해바라기씨유 산업 해부: 정제유 수입과 공급국 구성</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · 관세청 HS10·FAOSTAT·USDA PSD·KOSIS·IMF PCPS·OEC 원자료의 기간과 품목 범위를 구분</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>재현 조건은 30_근거_수치.md, 결과는 update_2026-10-07/20_숫자대조.txt</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>한국 해바라기씨유는 관세청 HS10 품목명 기준. 국제 HS6에는 잇꽃유가 섞일 수 있고 FAOSTAT 무역 품목명에는 정제유가 포함될 수 있음</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>업체별 중량과 Drive 원본·로컬 캐시의 바이트 동일성은 미검증</span></div>
+</footer>
+</div>
+

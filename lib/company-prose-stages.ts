@@ -77,8 +77,10 @@ export function proseStages(company: string): StageNarrative[] {
       const head = secs[0];
       // 리드 없이 소제목으로 여는 절이 있다(Frinsa 06절). 그럴 때는 첫 서술 블록을
       // 리드 자리에 놓는다 — 비워 두면 단계 머리가 통째로 빈다.
+      // 요지 절이 목록뿐인 보고서(참치 양식·골뱅이 조달)는 첫 목록 줄이 리드다.
       const lead = head.blocks.find((b) => b.kind === 'lead')
-        ?? head.blocks.find((b) => b.kind === 'para' || b.kind === 'call');
+        ?? head.blocks.find((b) => b.kind === 'para' || b.kind === 'call')
+        ?? head.blocks.find((b) => b.kind === 'li');
       const paragraphs = [
         ...blocksToParagraphs(head, false, lead),
         ...secs.slice(1).flatMap((s) => blocksToParagraphs(s, true)),
@@ -104,10 +106,16 @@ export function proseStages(company: string): StageNarrative[] {
     });
 }
 
-/** 30초 브리핑. 절마다 리드 문장을 그대로 쓴다. */
-export function proseBriefing(company: string): BriefingPoint[] {
+/**
+ * 30초 브리핑. 절마다 리드 문장을 그대로 쓴다.
+ *
+ * `firstBlock` — 리드(p.lead)를 쓰지 않는 보고서(고등어·골뱅이 조달)는 리드만 고르면 브리핑이
+ * 빈다. 그때는 절의 첫 문단·콜아웃·목록 줄을 리드 자리에 쓴다. 기존 화면은 이 옵션을 켜지 않는다.
+ */
+export function proseBriefing(company: string, opts: { firstBlock?: boolean } = {}): BriefingPoint[] {
   return reportProse(company).flatMap((sec): BriefingPoint[] => {
-    const lead = sec.blocks.find((b) => b.kind === 'lead');
+    const lead = sec.blocks.find((b) => b.kind === 'lead')
+      ?? (opts.firstBlock ? sec.blocks.find((b) => b.kind === 'para' || b.kind === 'call' || b.kind === 'li') : undefined);
     return lead ? [{ stage: sec.stage, headline: sec.subtitle, text: lead.text }] : [];
   });
 }

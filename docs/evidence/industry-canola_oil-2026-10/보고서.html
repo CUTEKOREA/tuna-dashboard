@@ -1,0 +1,782 @@
+<title>한국 카놀라유 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 카놀라유<br>
+        세계 수급 · 국내 생산과 판매 · 원유와 정제유 · 가격 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">수입 원유와 국내 식용유 시장 · 리포트 2026</p>
+      <h1><span class="scr">Canola</span> <span class="lt">한국 카놀라유 산업 해부</span></h1>
+      <p class="cover-sub">한국의 저에루크산 유채유 수입은 원유에 집중된다. 국내 통계에는 유채유 제조와 카놀라유 국내판매액이 각각 잡히지만, 수입 원유가 어느 기업에서 얼마나 정제·판매됐는지는 연결되지 않는다. 원료국의 착유·연료 수요와 한국의 수입·판매·가격 지표를 서로 다른 범위로 구분해 읽는다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2025 저에루크산 유채 원유 수입</div><div class="v">153,699</div><div class="n">톤 · 관세청 HS 1514110000</div></div>
+      <div class="cf"><div class="k">2025 정제유 수입</div><div class="v">6,548</div><div class="n">톤 · 관세청 HS 1514191000</div></div>
+      <div class="cf"><div class="k">두 세번 중 원유 비중</div><div class="v">95.9%</div><div class="n">2025년 수입 중량 기준</div></div>
+      <div class="cf"><div class="k">2025 원유 수입 단가</div><div class="v">1.129</div><div class="n">달러/kg · 수입액 ÷ 수입 중량</div></div>
+      <div class="cf"><div class="k">2025 채종유 국내판매액</div><div class="v">2,021</div><div class="n">억원 · KOSIS 식용유지류 품목 통계</div></div>
+      <div class="cf"><div class="k">식용유지류 판매액 내 비중</div><div class="v">6.04%</div><div class="n">2025년 · KOSIS 공표값</div></div>
+      <div class="cf"><div class="k">한국 유채유 소비 추정</div><div class="v">15.5만</div><div class="n">톤 · USDA PSD MY2025(2025/26 시장연도)</div></div>
+      <div class="cf"><div class="k">세계 최대 유채유 생산 권역</div><div class="v">EU</div><div class="n">1,083.6만 톤 · USDA PSD MY2025(2025/26) 추정</div></div>
+    </div>
+
+  </div>
+</header>
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">한국 시장의 척추는 수입 원유와 국내 판매 통계다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">유채유는 EU·중국이 많이 만들고 캐나다가 많이 판다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">생산 통계는 존재하지만 수입과 판매를 잇는 표는 비어 있다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">2025년 원유 상대국은 캐나다가 가장 크다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">국제 현물·통관 단가·국내 물가는 각기 다른 값을 잰다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">2025년 한국의 유채 원유 수입 상대국은 캐나다가 앞섰다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">산업 통계는 있으나 카놀라유 기업별 점유율은 미확보다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">종자 관세와 기름 관세, 연료 의무와 식품 표시를 나눠 읽는다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">작황보다 착유와 연료 수요의 연결을 주목한다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표</span><span class="t">매달 원유 물량과 가격을 같은 세번으로 대조한다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">원유 수입에서 국내 정제·판매까지</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>한국 시장의 척추는 수입 원유와 국내 판매 통계다</h2>
+<p class="lead">카놀라유는 저에루크산 유채의 기름을 가리킨다. 통계에서는 «Oil, Rapeseed», «채종유», HS 1514처럼 더 넓은 명칭도 쓰인다. 이 보고서는 한국 수입의 중심을 HS 1514110000(저에루크산 유채 원유)과 1514191000(정제유)으로 좁혀 읽는다. HS 1514 전체에는 다른 유채유·겨자유가 포함될 수 있다. 원유 수입 중량, 국내 제조 통계의 생산액, 식용유지류 국내판매액, 가정용 식용유 시장 규모는 각각 다른 지표다.</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>수입 형태.</strong> 2025년 한국은 HS 1514110000 원유 약 153,699톤(원값 153,699.166톤)과 HS 1514191000 정제유 약 6,548톤(원값 6,547.814톤)을 수입했다. 두 세번 합계 160,246.980톤 중 원유가 95.9%다. 이는 국내에 정제·가공 단계가 존재할 가능성을 강하게 시사하지만, 수입 원유 전량이 국내에서 식용으로 정제됐다는 뜻은 아니다. 식품제조업의 채종유 원료 사용량은 별도로 확인되며, 원유 투입부터 최종 출하까지의 연결표는 확보하지 못했다(관세청 품목별 월간 원자료, 2025년; KOSIS 식품제조업 원료 사용량, 2024년; E01·E25).</li>
+</ul>
+<ul>
+<li><strong>수입액과 단가.</strong> 같은 해 원유 수입액은 1억 7,355만 달러, 중량 가중 평균 단가는 kg당 1.129달러다. 정제유는 957만 달러, kg당 1.461달러다. 단가는 관세청 신고 수입액을 신고 중량으로 나눈 값이며 산지 계약가격이나 국내 공장 출하가격이 아니다(관세청 품목별 월간 원자료, 2025년; E01).</li>
+</ul>
+<ul>
+<li><strong>국내 시장의 관측값.</strong> KOSIS 「식용유지류 품목별 국내판매액 변동현황」의 2025년 «채종유(유채유 또는 카놀라유)» 국내판매액은 약 2,021억원(원자료 202,122,193천원, 환산 표시 2,021.2억원), 식용유지류 합계 내 공표 점유율은 6.04%다. 판매액은 2024년 2,362.7억원에서 14.5% 감소했다. 가정용 소매 판매액만을 뜻하지 않으며, 수입액과 같은 거래 단계도 아니다(KOSIS, 2025년; E03).</li>
+</ul>
+<ul>
+<li><strong>국내 제조.</strong> KOSIS 제조업 품목 통계는 2024년 «채종유(유채유)» 원유 품목을 생산하는 10인 이상 사업체 6개와 생산액 613억 2,600만원을 기록한다. 이 값으로 한국의 정제유 총생산량이나 기업별 점유율을 계산할 수는 없다(KOSIS, 2024년; E04). USDA PSD의 MY2025는 2025/26 시장연도이며 국가별 시작월이 다르다. 이 기준의 한국 «Oil, Rapeseed» 생산은 1천 톤, 국내 소비는 15.5만 톤(원값 155천 톤)으로 추정된다. USDA 수급표와 KOSIS 제조업 조사 및 관세청의 연도·범위가 달라 기계적으로 차감하지 않는다(USDA PSD, MY2025; E02).</li>
+</ul>
+<ul>
+<li><strong>세계 수급.</strong> USDA PSD MY2025(2025/26 시장연도) 추정에서 세계 최대 유채유 생산 권역인 EU의 생산은 1,083.6만 톤이다. 중국은 756.6만 톤, 캐나다는 548만 톤, 인도는 409만 톤이다. 여기서 중국은 USDA PSD의 <code>China</code>이며 FAOSTAT Area 351 수치가 아니다. 이는 유채 <em>기름</em>의 생산량이며 유채 <em>종자</em> 생산량과 구별된다. 같은 자료에서 캐나다의 유채유 수출은 334.6만 톤으로 추정된다(USDA PSD, MY2025; E02).</li>
+</ul>
+<ul>
+<li><strong>공급국 단서.</strong> UN Comtrade의 한국 신고 HS6 <code>151411</code> 원유 수입에서 2024년 호주 비중은 60.0%, 캐나다는 37.1%였다. 2025년에는 캐나다 119,682.956톤(77.9%), 호주 24,315.003톤(15.8%)으로 순서가 바뀌었다. 이는 저에루크산 유채 원유의 <em>무역 상대국</em> 비중이며 종자 재배 산지를 뜻하지 않는다. 2026년 관세청 국가별 파일은 3~8월 부분기간만 담으므로 연간 순위로 이어 붙이지 않는다(UN Comtrade 공개 preview, 한국 신고 수입, 2024·2025년; 관세청 국가별 월간 원자료, 2026년 3~8월; E06·E23).</li>
+</ul>
+<ul>
+<li><strong>가격 층위.</strong> IMF PCPS <code>PROIL</code>의 유채 원유 로테르담 FOB 가격은 2025년 평균 톤당 1,224.20달러, 2026년 8월 1,449.45달러다. 2026년 8월 값은 전년 동월보다 19.2% 높다. 국내 «식용유» 소비자물가지수는 2026년 9월 144.53(2020=100)이다. 두 지표는 유종·거래단계·기간이 달라 직접 마진으로 해석할 수 없다(IMF PCPS, 2026-10-06 추출본; 한국은행 ECOS, 2026년 9월; E09·E24). KAMIS의 카놀라유 지정 가격은 이번 품목 설정에 없으며, «평년» 값을 실측 가격과 섞지 않았다.</li>
+</ul>
+<ul>
+<li><strong>제도.</strong> 한국의 RFS 경유 바이오디젤 혼합의무비율은 2024~2026년 4.0%다. 공개 제도 설명은 카놀라유를 의무 원료로 지정하지 않는다. 중국은 캐나다산 유채 <em>종자</em>에 2026년 3월부터 반덤핑세율 5.9%를 적용한다(중국 상무부, 「商务部公告2026年第14号」, 2026-02-28, https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=104994). 캐나다산 <em>유채유</em>에는 2025년 3월 20일부터 별도의 100% 추가관세가 적용됐다(중국 국무원 관세세칙위원회, 「关于对原产于加拿大的部分进口商品加征关税的公告」, 2025-03-08, https://gss.mof.gov.cn/gzdt/zhengcefabu/202503/t20250307_3959523.htm). 종자와 기름의 규제는 별개다(E12).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li>이 보고서는 한국의 카놀라유 산업을 «원유 수입 → 국내 정제·가공 → 여러 판매 경로»라는 구조로 보는 것이 현재 자료와 가장 잘 맞는다고 판단한다. 근거는 두 세번 수입에서 원유가 95.9%를 차지하고, 국내 제조업 품목·식품제조업 원료 사용량·판매 통계가 별도로 존재한다는 점이다. <strong>반증 조건:</strong> 원유의 주된 최종 용도가 정제 식용유가 아니라 재수출·비식용으로 확인되거나, 국내 정제량이 이 연결을 설명할 만큼 크지 않다는 공장별 투입·산출 자료가 나오는 경우다.</li>
+</ul>
+<ul>
+<li>이 보고서는 원산지와 에너지 정책을 한국 수입 원가의 잠재 변수로 본다. 캐나다의 산업용 유채유 소비 추정은 MY2024(2024/25) 55만 톤에서 MY2025(2025/26) 110만 톤으로 커졌고, 중국의 종자·유채유 관세가 캐나다 물량의 행선지를 바꿀 수 있다. <strong>반증 조건:</strong> 공급국별 원유 수입단가와 국제 유채유 가격이 여러 달 동안 이러한 변화와 무관하게 움직인다는 일관된 자료가 확인되는 경우다(E02·E12).</li>
+</ul>
+<ul>
+<li>이 보고서는 한국의 시장 규모를 단일 숫자로 환원하면 범위 오류가 생긴다고 판단한다. KOSIS 국내판매액, 관세청 수입액, USDA 국내 소비 추정, 가정용 식용유 소매시장 기사는 서로 다른 대상을 센다. <strong>반증 조건:</strong> 동일 연도·유종·거래단계로 맞춘 생산·수입·재고·판매 연결표가 공개되어 각 지표가 한 회계식으로 재현되는 경우다.</li>
+</ul>
+<p>이 보고서의 수입·판매·제조 숫자는 원자료의 필터와 계산식을 <code>30_근거_수치.md</code>에 적었다. 로컬 캐시의 물리 파일은 97개이고 아카이브 원장은 49행이므로, 원장 판정을 캐시 전 파일의 열람으로 해석하지 않는다. 원장에서 «반영필요»였던 7행은 로컬 캐시와 대조해 4행을 반영하고 3행은 더 최근 연도 값이 이미 본문에 있어 제외했다. 기존 42행의 판정은 원장에 기록된 판단을 유지했다. EU 전망은 PDF 본문이 아닌 USDA FAS 보고서 색인 초록에서 확인한 범위로만 서술했다(E18~E22).</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>유채유는 EU·중국이 많이 만들고 캐나다가 많이 판다</h2>
+<p class="lead">유채 종자와 유채유는 다른 시장이다. 종자는 착유공장에 들어가 기름과 박으로 갈라진다. 종자 생산국이 곧 기름 수출국인 것은 아니다. 종자를 수입해 착유하는 나라와 식용·산업용으로 기름을 소비하는 나라는 서로 다른 통계 대상이다. USDA PSD는 이 세 단계를 각각 «Oilseed, Rapeseed», «Oil, Rapeseed», «Meal, Rapeseed»로 기록한다. 또한 PSD의 유채유는 저에루크산 카놀라유보다 넓은 분류다. 아래 <code>Market_Year=2025</code>는 MY2025, 즉 2025/26 시장연도이며 시작월은 국가별로 다르다.</p>
+<div class="tw">
+<table>
+<caption>표 1. USDA PSD MY2025(2025/26 시장연도) 유채유 수급 추정(천 톤)</caption>
+<thead><tr><th>국가·권역</th><th class="num">유채유 생산</th><th class="num">국내 소비</th><th class="num">기말 재고</th><th class="num">유채유 수출</th></tr></thead>
+<tbody>
+<tr><td>EU</td><td class="num">10,836</td><td class="num">10,550</td><td class="num">549</td><td class="num">650</td></tr>
+<tr><td>중국</td><td class="num">7,566</td><td class="num">9,700</td><td class="num">996</td><td class="num">120</td></tr>
+<tr><td>캐나다</td><td class="num">5,480</td><td class="num">1,975</td><td class="num">907</td><td class="num">3,346</td></tr>
+<tr><td>인도</td><td class="num">4,090</td><td class="num">4,080</td><td class="num">392</td><td class="num">15</td></tr>
+<tr><td>러시아</td><td class="num">1,677</td><td class="num">200</td><td class="num">144</td><td class="num">1,600</td></tr>
+<tr><td>미국</td><td class="num">904</td><td class="num">3,832</td><td class="num">65</td><td class="num">88</td></tr>
+<tr><td>호주</td><td class="num">497</td><td class="num">285</td><td class="num">41</td><td class="num">235</td></tr>
+<tr><td>한국</td><td class="num">1</td><td class="num">155</td><td class="num">18</td><td class="num">0</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: USDA PSD <code>usda_psd_all_canola_oil.csv</code>, <code>Commodity_Description=Oil, Rapeseed</code>, <code>Market_Year=2025</code>, 각 <code>Attribute_Description</code>; E02. 값은 USDA 수급 추정이며 국가의 실측 무역 신고와 같지 않다. 러시아 행의 자료 갱신 표시는 2026년 4월이고 인도 등 일부 행은 2026년 9월이므로 판본 시점이 다르다. 중국은 USDA PSD의 <code>China</code>이며 FAOSTAT Area 351 집계가 아니다.</p>
+<p>EU는 표의 생산량이 가장 크지만 국내 소비도 거의 같은 규모다. 중국은 생산보다 국내 소비가 크고, 미국은 생산보다 국내 소비가 훨씬 크다. 반면 캐나다는 기름 생산에 견줘 수출이 크다. 공급국을 비교할 때 생산량만으로 수출 여력을 판단할 수 없는 이유다. 러시아도 PSD상 유채유 수출 규모가 크지만, 한국의 공급국으로 얼마나 연결되는지는 별도의 한국 수입 상대국 자료가 필요하다.</p>
+<p>캐나다의 MY2025(2025/26 시장연도) 유채 종자 생산은 2,222.7만 톤, 착유량은 1,289.1만 톤이다. 같은 자료에서 유채유 생산은 548만 톤, 유채유 수출은 334.6만 톤, 식용 국내 소비는 87.5만 톤, 산업용 국내 소비는 110만 톤이다. 종자 착유와 기름 생산을 혼동하면 공급량을 여러 번 세게 된다. 캐나다의 산업용 소비는 MY2024(2024/25) 55만 톤에서 MY2025(2025/26) 110만 톤으로 늘어난 추정이다. 이것이 한국 수입가격 상승의 단독 원인이라는 증거는 없다. 다만 식용과 연료용이 같은 원료를 놓고 경쟁한다는 관찰 지표다(USDA PSD, MY2025; E02).</p>
+<p>호주는 다른 구조다. PSD MY2025(2025/26)의 유채 종자 생산은 768만 톤, 종자 수출은 555만 톤, 유채유 생산은 49.7만 톤이다. 호주는 종자를 외국 착유공장에 파는 비중이 크므로, 호주산 종자 수출 증가와 호주산 유채유 수출 증가를 같은 사건으로 보아서는 안 된다. 한국의 2026년 3~8월 기준(잠정) 원유 수입에 호주산이 나타나는 것은 확인되지만, 이 부분기간을 연간 한국 시장 점유율로 바꾸지 않는다(USDA PSD, MY2025; 관세청, 2026년 3~8월; E02·E06).</p>
+<p>MY2026(2026/27 시장연도) 숫자는 전망으로만 읽는다. ABARES의 2026년 9월 작황 보고서는 호주 카놀라 종자 생산을 전년보다 5% 적은 730만 톤으로 전망한다. 이는 유채유 생산량이 아니다. USDA FAS 캐나다 보고서 공개 초록은 2026/27년 캐나다 유지종자 전체 생산을 2,755만 톤으로 전망하는데, 이 범주에는 카놀라뿐 아니라 대두·해바라기씨도 들어간다. 두 값을 맞대 카놀라 시장의 증감을 계산하지 않았다(ABARES·USDA FAS, 제공된 Grok 조사 노트 A; E13).</p>
+<p>USDA FAS 비엔나의 EU 유지종자 연차보고서 색인 초록은 EU의 2026/27년 유지종자 생산 증가와 유지종자 수입 감소를 전망한다. 수입 감소의 설명으로 해바라기씨와 유채 종자의 역내 공급 확대를 든다. 전망의 대상은 <em>유지종자 전체</em> 수입이며 EU 유채유 수입량이나 한국향 유채유 공급량의 전망이 아니다(USDA FAS 비엔나, <code>manifest.csv</code>의 <code>E42026-0029</code> 초록, 2026-04-10; E19).</p>
+<p>FAO 「Food Outlook」 2025년 11월호는 세계 유지작물 전체의 2025/26년 생산을 7억 1,410만 톤, 유지류 전체 이용을 2억 7,180만 톤으로 전망한다. 이 값도 카놀라유 단독 수급이 아니다. 보고서가 유채 생산의 반등을 언급하는 데에는 호주·캐나다·EU의 양호한 작황 전망이 포함된다. 범주가 넓은 숫자를 카놀라유 세계시장 규모로 바꿔 적지 않았다(FAO, 제공된 Grok 조사 노트 A; E13).</p>
+<p>세계 수급에는 종자 수확, 착유, 기름 생산, 식용·산업용 소비, 재고와 무역이 차례로 연결된다. 특히 유채유를 바이오디젤·재생연료 원료로 쓰는 시장에서는 작황이 좋아도 식용유에 풀리는 양이 같은 비율로 늘지 않을 수 있다. 이번 자료만으로는 향후 종자 생산과 착유·산업용 소비·기말 재고가 어떻게 함께 움직일지 확인되지 않는다.</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>생산 통계는 존재하지만 수입과 판매를 잇는 표는 비어 있다</h2>
+<p class="lead">한국의 카놀라유 산업을 «국내 생산이 없다»고 적을 근거는 없다. 먼저 확보한 원자료부터 확인하면 KOSIS 제조업 품목 통계에 «채종유(유채유)» 행이 있고, USDA PSD 한국 행에도 유채 종자·유채유 생산 추정이 있다. 다만 두 통계는 조사 대상과 측정단위가 다르다. 제조업 통계의 금액을 물량으로 바꾸거나, USDA 추정을 개별 업체의 생산 실적으로 돌릴 수 없다.</p>
+<p>KOSIS 「품목분류별 사업체수，생산액，출하 및 연말재고액(10명이상 2024년)」의 전국 «채종유(유채유)» 행은 사업체 6개, 생산액 613억 2,600만원, 출하액 616억 6,100만원, 완제품 연말재고액 36억 700만원이다. 영문 품목명은 <code>Rape oil.crude</code>로 표시된다. 조사 대상이 10인 이상 사업체이므로 영세 업체를 포함한 산업 전체 업체 수가 아니다. 또한 원유 품목 금액이어서 국내 정제유 생산량으로 쓸 수 없다(E04).</p>
+<p>KOSIS 특용작물생산량의 «유채:생산량» 전국 <code>계</code> 행은 2016~2020년 각각 숫자 <code>0</code>으로 기록됐고, 2021~2023년 행은 추출본에 없다. 2024년과 2025년 값은 <code>-</code>이며 이 기호의 범례는 추출본에서 확인되지 않았다. 따라서 후자의 두 해를 숫자 0으로 바꾸지 않는다. USDA PSD MY2025(2025/26 시장연도) 한국 «Oilseed, Rapeseed» 생산 추정은 1천 톤이고, 착유량은 2천 톤이다. 종자 생산과 착유량의 차이는 수입 종자·재고·통계 추정 범위까지 살펴야 설명된다(E02·E05).</p>
+<p>FAOSTAT의 한국 «Rape or colza seed» 2024년 현가 생산가치는 631천 달러이며 추정치 <code>E</code>로 표시돼 있다. 이는 <em>유채 종자</em>의 생산가치이지 KOSIS의 <em>유채 원유</em> 제조업 생산액이나 국내 카놀라유 시장 매출이 아니다(FAOSTAT <code>QV_canola_oil.csv</code>, 2024년; E21).</p>
+<div class="tw">
+<table>
+<caption>표 2. 채종유 국내판매액과 식용유지류 내 비중</caption>
+<thead><tr><th>연도</th><th class="num">국내판매액(억원)</th><th class="num">공표 점유율</th></tr></thead>
+<tbody>
+<tr><td>2021</td><td class="num">1,844.2</td><td class="num">6.65%</td></tr>
+<tr><td>2022</td><td class="num">3,004.3</td><td class="num">8.76%</td></tr>
+<tr><td>2023</td><td class="num">2,920.9</td><td class="num">8.92%</td></tr>
+<tr><td>2024</td><td class="num">2,362.7</td><td class="num">7.69%</td></tr>
+<tr><td>2025</td><td class="num">2,021.2</td><td class="num">6.04%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS <code>kosis_edible_oil_sales/2026-10-06__kosis_edible_oil_sales.json</code>, 표 <code>TX_14503_A055</code>, 품목 <code>채종유(유채유 또는 카놀라유)</code>; 판매액 <code>DT(천원)÷100,000</code>, 점유율은 공표 <code>DT</code>; E03.</p>
+<p>2025년 판매액은 전년보다 341.5억원 적고 감소율은 14.5%다. 공표 점유율도 2023년 8.92%에서 2025년 6.04%로 낮아졌다. 이 움직임만으로 판매 물량이 줄었다고 단정할 수는 없다. 금액 변화에는 유종 가격, 제품 구성, 판촉, 판매 경로 변화가 함께 들어간다. 이 통계에 카놀라유 물량 행이나 원유·정제유 구분이 붙어 있는지는 확보한 추출본에서 확인되지 않았다(E03).</p>
+<p>KOSIS 「식품제조업 농축수산물 사용량(비식품류 제외)」에는 별도의 채종유 원료 사용량이 있다. 2024년 총량은 32,352톤이고, 표의 <code>수입산사용량</code>은 30,371톤, <code>국산사용량</code>은 1,981톤, 국산비중은 6.1%다. 2022년 총량은 27,060톤, 2023년은 30,596톤이었다. 이 표는 식품제조업의 원료 사용 경로만 보여 주며, 수입 원유의 정제·혼합 투입량이나 전체 가정용·외식·비식용 소비량을 뜻하지 않는다(KOSIS, 「식품제조업 농축수산물 사용량(비식품류 제외)」, 표 <code>DT_114010_A001</code>, 2024년 자료·2026-02-26 수정; E25).</p>
+<div class="tw">
+<table>
+<caption>표 3. 국내 유채유 관련 통계가 세는 대상</caption>
+<thead><tr><th>원자료</th><th>최신 확인 기간</th><th>관측값</th><th>포함·제외의 경계</th></tr></thead>
+<tbody>
+<tr><td>KOSIS 제조업 품목</td><td>2024</td><td>원유 품목 사업체 6개·생산액 613억 2,600만원</td><td>10인 이상 사업체·금액 기준</td></tr>
+<tr><td>KOSIS 식용유지류 판매</td><td>2025</td><td>채종유 국내판매액 2,021.2억원</td><td>판매액·유종 기준, 기업별 물량 아님</td></tr>
+<tr><td>KOSIS 식품제조업 원료 사용량</td><td>2024</td><td>채종유 총량 32,352톤</td><td>비식품류 제외·식품제조업 경로 한정</td></tr>
+<tr><td>USDA PSD 한국 유채유</td><td>MY2025(2025/26)</td><td>생산 1천 톤·국내 소비 15만 5천 톤</td><td>국제 수급 추정·유채유 광의 분류</td></tr>
+<tr><td>KOSIS 특용작물 유채</td><td>2016~2020·2024~2025</td><td>전국 생산량 전자는 <code>0</code>, 후자는 <code>-</code></td><td><code>-</code>의 범례 미확인·숫자 0으로 치환 불가</td></tr>
+<tr><td>FAOSTAT 유채 종자 생산가치</td><td>2024</td><td>현가 631천 달러·추정치 <code>E</code></td><td>종자 생산가치, 유채유 제조액 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS 제조업·식용유지류·식품제조업 원료·특용작물 원자료, USDA PSD 한국 행, FAOSTAT <code>QV_canola_oil.csv</code>; E02~E05·E21·E25.</p>
+<p>USDA PSD의 MY2025(2025/26 시장연도) 한국 유채유 수급은 수입 15만 5천 톤, 생산 1천 톤, 식용 국내 소비 15만 5천 톤, 기말 재고 1만 8천 톤이다. 국내 소비의 산업용 행은 0으로 기록돼 있다. 이는 USDA 추정 수급표의 분류 결과이지 국내에서 유채유가 비식용으로 한 방울도 쓰이지 않았다는 확인서가 아니다. 관세청 2025 달력연도 HS 1514110000 원유 수입 15만 3,699톤과 근접해도 수입량을 곧 소비량으로 대체하지 않는다. 연도 기준, 품목 범위, 재고 이동이 다르기 때문이다(E01·E02).</p>
+<p>국내 공정의 공개 자료에서 빈칸 하나는 원유 투입과 정제유 산출의 연결이다. 식품제조업의 채종유 원료 사용량은 확인됐지만, 수입 원유가 어느 정도 정제유·혼합유·가정용·외식용·비식용 출하로 이어졌는지는 이 표로 계산할 수 없다. 한 기업의 생산설비 소개나 브랜드 판매량도 이 빈칸을 산업 전체로 메워 주지는 않는다. 확보한 제조업 품목, 식품제조업 원료 사용량, 식약처 수입 신고, 기업 공시는 같은 연도·단위의 투입·산출표로 연결되지 않았다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>2025년 원유 상대국은 캐나다가 가장 크다</h2>
+<p class="lead">HS 1514는 유채유와 겨자유를 함께 포괄한다. 한국의 10자리 세번을 쓰면 저에루크산 유채 원유 <code>1514110000</code>과 정제유 <code>1514191000</code>을 분리할 수 있다. <code>1514199000</code>의 «기타»도 HS6 <code>151419</code>에 속하는 저에루크산 유채유지만 아래 핵심 두 세번 합계에서는 제외했다. <code>151491·151499</code>의 다른 유채유·겨자유 역시 더하지 않는다. 이 보고서의 «핵심 수입»은 두 세번의 합이다. HS 1514 전체를 카놀라유 수입량으로 부르지 않는다(E01).</p>
+<div class="tw wide">
+<table>
+<caption>표 4. 한국의 저에루크산 유채유 수입: 원유와 정제유 두 세번</caption>
+<thead><tr><th>기간</th><th class="num">원유 1514110000(톤)</th><th class="num">원유 수입액(백만 달러)</th><th class="num">정제유 1514191000(톤)</th><th class="num">정제유 수입액(백만 달러)</th><th class="num">두 세번 합계(톤)</th></tr></thead>
+<tbody>
+<tr><td>2025 연간</td><td class="num">153,699.166</td><td class="num">173.551</td><td class="num">6,547.814</td><td class="num">9.569</td><td class="num">160,246.980</td></tr>
+<tr><td>2025.1~8</td><td class="num">101,139.258</td><td class="num">109.920</td><td class="num">3,116.003</td><td class="num">4.982</td><td class="num">104,255.261</td></tr>
+<tr><td>2026.1~8</td><td class="num">82,773.213</td><td class="num">99.795</td><td class="num">7,517.640</td><td class="num">11.065</td><td class="num">90,290.853</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 품목별 월간 <code>customs_item_trade_monthly_canola_oil.csv</code>, <code>hsCode</code> 두 세번·<code>year</code> 기간 필터; <code>impWgt÷1,000</code>, <code>impDlr÷1,000,000</code>; E01. 2026년은 진행연도다. 제외한 저에루크산 유채유 <code>1514199000</code> 수입은 2025년 1,518.105톤, 2026년 1~8월 472.583톤이다. 따라서 표의 95.9%는 저에루크산 유채유 전체가 아닌 <em>두 세번 중</em> 원유 비중이다.</p>
+<p>2025년 연간 두 세번 수입 중 원유 비중은 중량 기준 95.9%다. <code>1514199000</code>까지 더한 세 세번 기준 원유 비중은 95.0%다. 2026년 1~8월에는 두 세번 중 원유가 전년 같은 기간보다 18.2% 적고, 정제유는 141.3% 많다. 두 세번 합계는 13.4% 감소했다. <code>1514199000</code>까지 더한 세 세번 합계의 같은 기간 증감은 −14.2%다. 정제유 증가율의 비교 기준인 2025년 1~8월 수입량은 3,116톤이다. 진행연도 수치를 한 해의 구조 변화로 확정하지 않는다(E01).</p>
+<p>UN Comtrade 연간 파일의 2024년 한국 <code>151411</code> 원유 수입 합계는 116,541.798톤이고, 2025년은 153,699.167톤이다. 두 완료연도를 비교하면 2025년이 31.9% 많다. 2025년 Comtrade 값은 관세청 10자리 원유 합계와 반올림 수준에서 맞는다. 이 대조에는 <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, <code>partnerCode=0</code>, <code>flowCode=M</code>인 세계 합계 행만 사용했다. 운송수단별·통관절차별 세부 행을 더하지 않았다(E07).</p>
+<div class="tw">
+<table>
+<caption>표 4-1. UN Comtrade 한국 신고 HS6 <code>151411</code> 원유 수입 상대국(톤·세계 합계 대비)</caption>
+<thead><tr><th>상대국</th><th class="num">2024년 물량</th><th class="num">2024년 비중</th><th class="num">2025년 물량</th><th class="num">2025년 비중</th></tr></thead>
+<tbody>
+<tr><td>캐나다</td><td class="num">43,183.043</td><td class="num">37.1%</td><td class="num">119,682.956</td><td class="num">77.9%</td></tr>
+<tr><td>호주</td><td class="num">69,920.681</td><td class="num">60.0%</td><td class="num">24,315.003</td><td class="num">15.8%</td></tr>
+<tr><td>체코</td><td class="num">3,432.910</td><td class="num">2.9%</td><td class="num">7,097.559</td><td class="num">4.6%</td></tr>
+<tr><td>중국</td><td class="num">—</td><td class="num">—</td><td class="num">2,594.307</td><td class="num">1.7%</td></tr>
+<tr><td>세계 합계</td><td class="num">116,541.798</td><td class="num">100.0%</td><td class="num">153,699.167</td><td class="num">100.0%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: UN Comtrade 공개 preview, 한국 <code>reporterCode=410</code>, <code>flowCode=M</code>, <code>cmdCode=151411</code>, <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, 2024·2025년 <code>netWgt</code>; E23. 중국은 Comtrade 상대국 코드 156이며 FAOSTAT Area 351 집계가 아니다. 2024년 응답의 <code>151411</code>에는 중국(156) 상대국 행이 없어 «—»로 표시했다. 수입 0으로 단정하지 않는다.</p>
+<p>2024년 원유 HS6에서 호주가 앞섰지만 2025년에는 캐나다가 77.9%로 가장 컸다. 연도별 수입 상대국이 바뀐 사실과 중국의 캐나다산 유채유 관세 시행 시기가 겹친다. 두 자료만으로 관세가 한국의 수입선 전환을 일으켰다고 판단하지 않는다(E12·E23).</p>
+<p>정제유의 가격을 원유와 비교할 때 신고 단가에는 해석상의 한계가 있다. 2025년 원유 수입 단가는 1.129달러/kg, 정제유는 1.461달러/kg이다. 두 평균값의 차이가 곧 한국 정제업체의 마진이라는 뜻은 아니다. 거래 상대국, 제품 품질, 인도조건, 운임·보험, 계약 시점과 포장 단위가 다르다. 공장 비용·수율·판매가도 이 계산에 들어 있지 않다(E01).</p>
+<p>FAOSTAT의 한국 상대국별 무역 파일에는 2024년 <code>Rapeseed or canola oil, crude</code> 수입 상대국으로 호주 73,340.55톤, 캐나다 43,593.94톤이 기록돼 있다. 이는 같은 해 Comtrade HS6 상대국 값과 품목 분류·처리 방식이 다르다. FAOSTAT 값을 한국 HS10 <code>1514110000</code>과 동일시하거나 2025년 공급국 점유율의 분자로 쓰지 않는다(FAOSTAT <code>TM_canola_oil.csv</code>, 2024년; E22·E23).</p>
+<p>2026년 3~8월 기준(잠정) 관세청 국가별 월간 파일은 HS6 <code>151411</code> 원유의 호주산 29,330.101톤과 캐나다산 18,920.481톤을 기록한다. 이 파일에는 2026년 1~2월과 2025년 국가별 행이 없다. 따라서 두 값은 관측된 부분기간의 중량일 뿐, 2025년 한국의 공급국 순위나 2026년 연간 점유율이 아니다. 같은 부분기간 <code>151419</code>에는 중국·호주·아랍에미리트 등 여러 나라가 나타나지만 HS6 «기타»는 세부 제품 구분을 잃는다(E06).</p>
+<p>Comtrade의 캐나다 신고 2025년 세계 수출 합계는 <code>151411</code> 원유 141.8만 톤, <code>151419</code> 기타 저에루크산 유채유 181.0만 톤이다. 이는 캐나다가 한국에 판매한 양이 아니라 전 세계를 상대로 신고한 수출이다. 보유한 Comtrade <em>가공 파일</em>의 한국 2025년 행에는 상대국 <code>World</code> 합계만 있지만, 공개 preview에는 상대국 행이 있다. 2025년 한국 HS6 <code>151419</code> 수입 상대국 가운데 호주 2,275.740톤, 캐나다 1,900.688톤, UAE 1,774.621톤, 중국 1,505.936톤이 확인된다. 이는 HS10 <code>1514191000</code> 정제유만의 상대국 순위가 아니다(UN Comtrade 공개 preview, 한국 신고 수입, 2025년; E07·E23).</p>
+<p>같은 Comtrade HS6 <code>151419</code>의 한국 세계 수입 합계는 2024년 12,463.545톤, 2025년 8,199.718톤이다. 2025년 값이 두 연도 중 낮고, HS6 <code>151411</code>·<code>151419</code> 합계에서 원유 비중은 2024년 90.3%에서 2025년 94.9%로 올랐다. 따라서 2026년 1~8월의 두 세번 증감만으로 원유 비중이 지속 하락한다고 말할 수 없다(E07·E23).</p>
+<p>미국 Census HS10·EU Comext·브라질 ComexStat 품목별 파일도 확인했다. 미국 파일은 2026년 7월 한 달, EU 파일은 2026년 6~7월, 브라질 파일은 2026년 일부 월만 담고 있다. 이 기간의 대외무역을 한국의 2025년 연간 공급국 구조와 나란히 놓아 점유율을 추정하지 않았다. 같은 세번·기간·신고 방향으로 맞춘 보조 비교도 이번 판에는 없다.</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>국제 현물·통관 단가·국내 물가는 각기 다른 값을 잰다</h2>
+<p class="lead">유채유 가격에는 최소한 네 층이 있다. 종자 선물가격, 국제 유채유 현물가격, 한국 통관 수입단가, 국내 소매가격이다. 어느 하나가 다른 하나의 가격표를 대신하지 않는다. 종자에는 착유 수율과 유채박 가치가 끼고, 통관 단가에는 산지·품질·계약 시점이 섞이며, 소매가격에는 정제·포장·유통 비용이 더해진다.</p>
+<div class="tw">
+<table>
+<caption>표 5. 확보한 가격 지표와 해석 범위</caption>
+<thead><tr><th>지표</th><th class="num">확인값</th><th>기간·단위</th><th>해석의 경계</th></tr></thead>
+<tbody>
+<tr><td>세계은행 Pink Sheet 유채유</td><td class="num">1,089.39</td><td>2024년 12개월 평균·달러/톤</td><td>보유 파일은 2024년 12월에서 종료</td></tr>
+<tr><td>세계은행 Pink Sheet 유채유</td><td class="num">1,180.82</td><td>2024년 12월·달러/톤</td><td>국제 기준가격, 한국 수입계약가 아님</td></tr>
+<tr><td>IMF PCPS <code>PROIL</code> 유채 원유</td><td class="num">1,224.20</td><td>2025년 12개월 평균·달러/톤</td><td>로테르담 FOB 기준</td></tr>
+<tr><td>IMF PCPS <code>PROIL</code> 유채 원유</td><td class="num">1,449.45</td><td>2026년 8월·달러/톤</td><td>전년 동월 1,215.56달러/톤 대비 +19.2%</td></tr>
+<tr><td>한국 원유 통관 단가</td><td class="num">1.129</td><td>2025년·달러/kg</td><td>관세청 수입액÷중량</td></tr>
+<tr><td>한국 정제유 통관 단가</td><td class="num">1.461</td><td>2025년·달러/kg</td><td>원유와 상대국·제품 구성 다름</td></tr>
+<tr><td>FAOSTAT 한국 유채 종자 생산자가격지수</td><td class="num">109</td><td>2025년·2014~2016=100</td><td>종자 지수·추정치 <code>E</code>, 유채유 가격 아님</td></tr>
+<tr><td>한국 «식용유» 소비자물가지수</td><td class="num">164.87 → 144.53</td><td>2025.9 → 2026.9·2020=100</td><td>유종 전체, 카놀라유 단독 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 세계은행 Pink Sheet 보유 원본, IMF PCPS 월별 추출본, 관세청 품목별 월간 원자료, FAOSTAT <code>PP_canola_oil.csv</code>, ECOS 소비자물가지수 추출본; E01·E08·E09·E20·E24.</p>
+<p>세계은행 보유 파일의 <code>Monthly Prices</code> 시트에는 실제로 <code>Rapeseed oil</code> 열이 있다. 품목 아카이브의 오래된 <code>pinksheet_NOT_AVAILABLE.txt</code> 파일명만 보고 가격이 없다고 결론내리면 오류다. 현재 확인한 공통 원본은 «Updated on January 03, 2025» 판이며 유채유 값은 2024년 12월까지만 있다. 2023년 12개월 평균은 1,065.14달러/톤, 2024년 평균은 1,089.39달러/톤이다. 이후 월별 가격은 별도의 IMF PCPS 자료로 확인한다(E08·E24).</p>
+<p>IMF PCPS <code>PROIL</code> 월별 USD 시계열은 2026년 8월까지 확인된다. IMF의 가격 명세에서 이 지표의 대상은 로테르담 FOB 유채 <em>원유</em>이며 한국 수입계약가나 국내 소매가격이 아니다(국제통화기금, 「Primary Commodity Price System: Technical Documentation」, https://www.imf.org/-/media/files/research/commodityprices/monthly/pcps-technical-documentation.pdf; E24). 2026년 8월 가격은 전년 동월보다 19.2% 높았고, 한국 HS10 원유의 1~8월 누계 통관단가는 2025년 1.087달러/kg에서 2026년 1.206달러/kg으로 10.9% 높았다. ECOS의 «식용유» 지수는 별도 기간인 2025년 9월에서 2026년 9월 사이 12.3% 낮아졌다. 상품·거래단계·비교 기간이 달라 이 세 변화율을 가격 전가율로 계산하지 않는다(E01·E09·E24).</p>
+<p>FAOSTAT은 한국의 2025년 <code>Rape or colza seed</code> 생산자가격지수를 109.00으로 기록하고 추정치 <code>E</code>를 붙였다. 기준은 2014~2016년=100이다. 이 지수는 국내 유채 <em>종자</em>의 생산자 단계 지표이며, 유채 <em>기름</em>의 원화/톤 가격이나 한국 카놀라유 정제업체의 매입 단가가 아니다(FAOSTAT <code>PP_canola_oil.csv</code>, 2025년; E20).</p>
+<p>제공된 FAO 조사 노트의 2026년 8월 설명은 세계 식물유 가격지수가 전월보다 1.1포인트, 0.6% 올랐다고 전한다. 동시에 유채유 국제가격은 수입 수요 부진과 2026/27년 공급 여유로 소폭 하락했다고 적는다. 종합 지수의 상승과 개별 유종의 하락은 모순이 아니다. 지수는 여러 식물유의 가격을 묶는다. FAO 페이지에는 네덜란드 공장도 유채유 가격이 지수 구성 항목으로 표시되지만, 이번에 받은 노트에는 유채유 단독 월별 달러/톤 원표가 없다(FAO Markets and Trade, 조사 노트 A; E10).</p>
+<p>ICE Canola Futures의 심볼은 RS이고, 계약 명세상 1계약은 종자 20톤이다. 이 명세는 가격 시계열 자체가 아니다. 종자 선물과 정제유 수입가격의 관계에는 종자 착유율과 부산물인 유채박 가격, 환율, 운임이 개입한다. Rabobank 호주 2026년 8월 보고서는 7월 MATIF 카놀라 종자 선물이 톤당 864호주달러, ICE가 778호주달러, 로테르담 카놀라유가 1,864호주달러였다고 적었다. 서로 다른 시장·상품·인도조건의 값이며 한국 통관단가와 직접 비교하지 않았다(Rabobank, 2026년 8월, 원문 B; E11).</p>
+<p>한국은행 ECOS 추출본의 «식용유» 소비자물가지수는 2025년 9월 164.87에서 2026년 9월 144.53으로 12.3% 낮아졌다. 이 하락은 카놀라유만의 소매가격 하락률이 아니다. 카놀라유 전용 KAMIS 도소매 시계열은 registry의 <code>kamis: null</code>과 제공된 조사 노트에서 확보되지 않았다. KAMIS에 카놀라유 가격이 영원히 없다고 단정하지 않는다. KAMIS의 <code>countyname=평년</code>은 최근 5년 중 최고·최저를 제외한 3년 평균 참고값이며 월간 실측과 다른 통계다(한국농수산식품유통공사 KAMIS, 「식재료 백과(카미위키) - 오이」 페이지의 평년 정의, https://www.kamis.or.kr/customer/archive/archive.do?action=detail&amp;archiveNo=158; E09).</p>
+<p>국제 가격이 오른 달에도 한국 통관 평균이 바로 오르지 않을 수 있다. 한국 통관치는 그달 입항한 여러 계약의 중량 가중 결과이고, 소매지수에는 재고·정제·포장·판매가격 결정 시차가 들어간다. 월별 국제 유채유 가격은 확보됐지만 카놀라유 단독 소매가격과 동일 상품·계약 시점의 수입가격은 없다. 따라서 이 자료만으로 가격 전가 시차를 추정하지 않는다.</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>2025년 한국의 유채 원유 수입 상대국은 캐나다가 앞섰다</h2>
+<p class="lead">한국의 2025년 완료연도 상대국 자료는 UN Comtrade 공개 preview의 HS6 <code>151411</code>에서 확인된다. 이 기준의 최대 상대국은 캐나다다. 한국 HS10 원유·정제유를 각각 분리한 완료연도 국가별 원장은 여전히 확보되지 않았다. FAOSTAT의 2024년 유채 원유 상대국 자료, 2025년 Comtrade HS6, 2026년 관세청 3~8월 부분기간은 각각의 품목·기간으로 읽는다. 아래 USDA 표는 한국행 실적이 아니라 각 나라의 산업 구조다(E06·E22·E23).</p>
+<div class="tw wide">
+<table>
+<caption>표 6. 주요 권역의 유채 종자와 유채유 구조(USDA PSD MY2025, 2025/26 시장연도·천 톤)</caption>
+<thead><tr><th>국가·권역</th><th class="num">종자 생산</th><th class="num">종자 수출</th><th class="num">종자 착유</th><th class="num">유채유 생산</th><th class="num">유채유 수출</th></tr></thead>
+<tbody>
+<tr><td>캐나다</td><td class="num">22,227</td><td class="num">8,959</td><td class="num">12,891</td><td class="num">5,480</td><td class="num">3,346</td></tr>
+<tr><td>호주</td><td class="num">7,680</td><td class="num">5,550</td><td class="num">1,200</td><td class="num">497</td><td class="num">235</td></tr>
+<tr><td>EU</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">10,836</td><td class="num">650</td></tr>
+<tr><td>중국</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">7,566</td><td class="num">120</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: USDA PSD <code>usda_psd_all_canola_oil.csv</code>, <code>Market_Year=2025</code>, 종자는 <code>Oilseed, Rapeseed</code>, 기름은 <code>Oil, Rapeseed</code>; E02. <code>—</code>는 이 표에서 종자 세부값을 싣지 않은 칸이며 값이 0이라는 뜻이 아니다. 중국은 USDA PSD의 <code>China</code>이며 FAOSTAT Area 351 값이 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 6-1. 한국 신고 HS6 <code>151411</code> 원유의 주요 수입 상대국(톤·세계 합계 대비)</caption>
+<thead><tr><th>상대국</th><th class="num">2024년 물량·비중</th><th class="num">2025년 물량·비중</th></tr></thead>
+<tbody>
+<tr><td>캐나다</td><td class="num">43,183.043 · 37.1%</td><td class="num">119,682.956 · 77.9%</td></tr>
+<tr><td>호주</td><td class="num">69,920.681 · 60.0%</td><td class="num">24,315.003 · 15.8%</td></tr>
+<tr><td>체코</td><td class="num">3,432.910 · 2.9%</td><td class="num">7,097.559 · 4.6%</td></tr>
+<tr><td>중국</td><td class="num">해당 응답에서 확인되지 않음</td><td class="num">2,594.307 · 1.7%</td></tr>
+<tr><td>세계 합계</td><td class="num">116,541.798 · 100.0%</td><td class="num">153,699.167 · 100.0%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: UN Comtrade 공개 preview, 한국 <code>reporterCode=410</code>, 수입 <code>flowCode=M</code>, HS6 <code>cmdCode=151411</code>, 2024·2025년 <code>netWgt</code>; E23. 중국 상대국은 Comtrade 코드 156이다. 2024년 미확인 칸을 수입 0으로 해석하지 않는다.</p>
+<p>FAOSTAT 상대국 파일의 한국 2024년 유채 원유 수입 행은 호주 73,340.55톤, 캐나다 43,593.94톤이다. 상대국은 기름의 무역 상대이며 유채 <em>종자</em>의 재배 산지를 증명하지 않는다. 품목 <code>Rapeseed or canola oil, crude</code>는 한국 HS10 <code>1514110000</code>이나 Comtrade HS6 <code>151411</code>과 범위가 같다고 확인되지 않았으므로, FAOSTAT 물량을 2025년 HS6 수입 합계의 분자로 쓰지 않는다(FAOSTAT <code>TM_canola_oil.csv</code>, 2024년; E22·E23).</p>
+<h3>캐나다: 종자·착유·기름 수출이 함께 크다</h3>
+<p>캐나다는 PSD MY2025(2025/26) 유채유 생산 548만 톤 가운데 334.6만 톤을 수출하는 것으로 추정된다. 산업용 국내 소비는 110만 톤으로 전년 추정의 두 배다. 기름 수출 가능량을 종자 작황만으로 예측하면 국내 연료용 수요의 변화를 놓친다. 캐나다 환경부의 Clean Fuel Regulations 개정 협의문은 국내 생산 바이오매스 디젤의 90%가 캐나다산 카놀라를 원료로 했다고 설명한다. 이는 특정 기간의 캐나다 연료산업 자료이지 한국 카놀라유의 용도 비중이 아니다(USDA PSD E02; 캐나다 환경부 조사 노트 A, E13).</p>
+<p>중국과 캐나다의 정책 변화도 수출 흐름의 변수다. 중국은 캐나다산 유채유에 2025년 3월 20일부터 100% 추가관세를 적용했다(중국 국무원 관세세칙위원회, 「关于对原产于加拿大的部分进口商品加征关税的公告」, 2025-03-08, https://gss.mof.gov.cn/gzdt/zhengcefabu/202503/t20250307_3959523.htm). 캐나다산 유채 <em>종자</em>에는 2026년 3월부터 별도 반덤핑세율 5.9%를 적용한다(중국 상무부, 「商务部公告2026年第14号」, 2026-02-28, https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=104994). 두 조치의 시기와 품목이 다르며, 한국 수입 상대국 변화의 인과관계는 이 자료만으로 단정하지 않는다(E12·E23).</p>
+<h3>호주: 큰 종자 수출과 상대적으로 작은 기름 수출</h3>
+<p>호주의 PSD MY2025(2025/26) 유채 종자 수출 추정은 555만 톤이고 유채유 수출은 23.5만 톤이다. 호주산 원료가 세계에 공급되는 중심 경로가 종자임을 보여 준다. ABARES는 2026/27년 호주 카놀라 종자 생산을 730만 톤으로 전망했다. 파종면적은 늘어도 서호주 수율이 낮을 것으로 본다. 이것은 확정 생산 실적이 아니며 한국향 원유 물량 전망도 아니다(USDA PSD E02; ABARES 조사 노트 A, E13).</p>
+<p>호주 정부의 중국행 카놀라 식물위생 요건은 2026년 6~7월에 확인됐다. 벌크 선적 시험, 이물질 비율, 블랙레그 검사와 허가된 가공시설 조건이 적혀 있다. 이 요건은 호주 <em>종자</em>의 중국행 경로에 관한 것이다. 한국의 호주산 유채 <em>기름</em> 수입 검역 요건으로 옮겨 적지 않는다(호주 DAFF Micor, 조사 노트 A; E13).</p>
+<h3>EU·중국: 큰 생산이 곧 순수출은 아니다</h3>
+<p>EU는 PSD상 유채유 생산이 가장 크지만 국내 소비도 1천만 톤을 넘는다. 중국은 자체 생산이 756.6만 톤인 동시에 970만 톤을 소비한다. 두 시장의 기름 수요 변화는 국제가격을 통해 한국에 닿을 수 있지만, 한국의 직접 공급국이라는 뜻은 아니다. FAO와 은행 리포트가 다루는 바이오연료 수요는 해당 시장 소비의 한 구성요소다. 한국의 2025년 HS6 원유 수입 상대국은 Comtrade에서 확인되지만, HS10 기준 원유·정제유 분리 상대국과 종자 원산지는 이번 자료에서 확인되지 않았다(E22·E23).</p>
+<p>계절성은 호주 겨울작물의 수확·선적과 캐나다 북반구 수확이 서로 다른 달에 나타난다는 수준에서만 다룬다. 월별 한국 수입 패턴으로 공급국의 수확철 효과를 정량화하려면 수년의 국가별 월간 원장이 필요하다. 현재 파일은 그 조건을 채우지 못한다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>산업 통계는 있으나 카놀라유 기업별 점유율은 미확보다</h2>
+<p class="lead">한국 카놀라유의 흐름은 기업 이름만으로 재구성되지 않는다. 원유 수입 신고인은 정제업체일 수도, 원료상일 수도 있다. 정제·혼합·포장과 브랜드 판매가 한 법인 안에서 이뤄질 수도 있고 여러 법인으로 나뉠 수도 있다. 관세청 총량 통계만으로 수입 명의·정제 공장·최종 판매 브랜드를 연결할 수 없다. 식약처 수입업소 원장과 DART 기업 공시가 필요하지만 이번 자료 묶음에서는 카놀라유 품목으로 연결된 기업별 물량을 확보하지 못했다.</p>
+<p>산업의 공개 단서는 있다. KOSIS 제조업 조사에 2024년 채종유 원유 품목의 10인 이상 사업체 6개가 잡힌다. 이는 산업 전체 업체 수나 수입업체 수가 아니다. 같은 조사에 생산액 613억 2,600만원이 있고, 별도 KOSIS 품목 통계에는 2025년 채종유 국내판매액 2,021.2억원이 있다. 조사 범위와 연도가 달라 둘의 차액을 정제·유통 부가가치로 계산할 수 없다(E03·E04). KOSIS 식품제조업 원료 사용량에는 2024년 채종유 총량 32,352톤도 확인된다. 이는 가공식품 경로의 사용량이며 업체별 제조·판매 물량을 보여 주지 않는다(E25).</p>
+<div class="tw">
+<table>
+<caption>표 7. 기업 자료의 확인 범위</caption>
+<thead><tr><th>자료</th><th>확인된 내용</th><th>이 보고서에서 허용되는 해석</th></tr></thead>
+<tbody>
+<tr><td>KOSIS 제조업 품목</td><td>2024년 원유 품목 10인 이상 사업체 6개</td><td>사업체 규모의 하한·제조업 범위</td></tr>
+<tr><td>KOSIS 식용유지류 판매</td><td>2025년 채종유 국내판매액 2,021.2억원</td><td>유종별 국내판매액, 기업별 판매 아님</td></tr>
+<tr><td>KOSIS 식품제조업 원료 사용량</td><td>2024년 채종유 32,352톤</td><td>식품제조업 원료 사용 경로만 확인</td></tr>
+<tr><td>파이낸셜뉴스의 aT 인용 기사</td><td>2025년 가정용 식용유 전체 시장 3,613억원</td><td>B2C 전체 유종의 맥락만 제공</td></tr>
+<tr><td>관세청·식약처·DART 기업별 연결</td><td>카놀라유 물량·매출 원장 미확보</td><td>카놀라유 상위 기업 순위 산출 불가</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS 원자료 E03·E04·E25; 파이낸셜뉴스 2026-08-20 제공 조사 노트 C, E14. aT 원표는 이번 판에서 열지 못했다.</p>
+<p>파이낸셜뉴스는 aT 식품산업통계정보를 인용해 2025년 가정용 식용유 전체 시장의 판매액을 3,613억원으로 보도했다. 기사에 나온 기업별 전체 식용유 판매액은 CJ제일제당 1,125억원, 사조대림 846억원, 오뚜기 365억원, 대상 203억원이다. 이 수치는 카놀라유로 유종을 나누지 않았고, 기사 자체가 2차 자료다. 따라서 이 순서를 카놀라유 기업 순위로 옮기지 않는다. KOSIS의 채종유 국내판매액 2,021.2억원과 기사 속 전체 가정용 식용유 시장 3,613억원을 같은 분모에 놓고 점유율을 계산하는 것도 범위 오류다(E14).</p>
+<p>원유 수입이 정제유 수입보다 압도적으로 큰 사실은 국내 정제·가공망을 조사할 근거가 된다. 식품제조업의 채종유 원료 사용량도 공개돼 있다. 그러나 어느 회사가 원유를 얼마나 정제하는지, 식용과 비식용 출하가 어떻게 나뉘는지, 외주 정제·OEM이 얼마나 되는지 연결하는 산업 원장은 없다. 이번 보고서는 특정 회사의 공시나 브랜드 홍보를 산업 전체 사실로 일반화하지 않는다(E01·E25).</p>
+<p>이번 자료에서는 관세청 HS10 수입신고 업체, 식약처 수입식품 신고의 제품명·수입업소·제조업소, DART의 원료 투입·생산량·매출 공시가 하나의 카놀라유 물량 체계로 연결되지 않았다. 신고 건수는 물량이 아니며, 수입업소명은 브랜드 소유자나 정제공장과 같지 않을 수 있다. 이 연결이 이뤄지기 전에는 상위 기업 점유율을 미확보로 유지한다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>종자 관세와 기름 관세, 연료 의무와 식품 표시를 나눠 읽는다</h2>
+<p class="lead">관세와 식품 규격은 세번·제품 형태·원산지에 따라 달라진다. 중국의 캐나다산 유채 종자 조치가 한국의 캐나다산 유채유 수입관세를 뜻하지 않는다. 한국의 바이오디젤 혼합의무가 카놀라유 사용의무를 뜻하지도 않는다. 이 절은 원문에서 확인된 내용과 별표·조문을 아직 읽지 못한 내용을 구분한다.</p>
+<div class="tw">
+<table>
+<caption>표 8. 카놀라유 산업에 연결되는 제도와 확인 수준</caption>
+<thead><tr><th>관할·제도</th><th>확인한 내용</th><th>확인 수준·남은 원문</th></tr></thead>
+<tbody>
+<tr><td>한국 RFS</td><td>경유 바이오디젤 혼합의무 2024~2026년 4.0%, 2027~2029년 4.5%, 2030년 이후 5.0%</td><td>한국에너지공단 공개 설명 A. 카놀라유를 의무 원료로 지정하지 않음</td></tr>
+<tr><td>중국의 캐나다산 유채 종자</td><td>잠정 반덤핑 보증금률 75.8%는 2025-08-14부터 적용; 최종 반덤핑세율 5.9%는 2026-03-01부터 5년</td><td>중국 상무부 최종 공고. 잠정 기간의 보증금은 최종 공고의 정산·환급 대상</td></tr>
+<tr><td>중국의 캐나다산 유채유</td><td>2025-03-20부터 100% 추가관세</td><td>중국 국무원 관세세칙위원회 2025년 제3호 공고</td></tr>
+<tr><td>중국의 캐나다산 유채박</td><td>2026-03-01~12-31 한시적 0%라는 캐나다 업계 정리</td><td>캐나다카놀라협회 B. 중국 측 조정 원문은 별도 확인 필요</td></tr>
+<tr><td>한국 유전자변형 표시</td><td>USDA FAS 초록은 식용유까지 표시 확대 발표를 서술</td><td>USDA FAS 초록 A. 한국 법령 조문·시행 범위 미확인</td></tr>
+<tr><td>한국 HS 1514 관세·할당관세</td><td>현행 규정의 개정 표제까지 확인</td><td>세율표·할당관세 별표 미열람; 세율 미확보</td></tr>
+<tr><td>한국 식품공전·원산지 표시</td><td>식품공전 고시 게시 위치 확인</td><td>카놀라유 규격 본문·원산지 별표 미열람</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 한국에너지공단·중국 상무부·중국 국무원 관세세칙위원회·캐나다카놀라협회·USDA FAS·국가법령정보센터·식약처; E12·E15. 중국 종자 최종 공고: 중국 상무부, 「商务部公告2026年第14号」, 2026-02-28, https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=104994. 중국 유채유 추가관세 공고: 중국 국무원 관세세칙위원회, 「关于对原产于加拿大的部分进口商品加征关税的公告」, 2025-03-08, https://gss.mof.gov.cn/gzdt/zhengcefabu/202503/t20250307_3959523.htm.</p>
+<p>한국에너지공단은 연료혼합의무화제도 설명에 자동차용 경유의 바이오디젤 혼합의무비율을 위 기간별로 적는다. 카놀라유가 국내 연료 수요를 얼마나 차지하는지는 이 자료로 알 수 없다. 원료별 실제 투입 자료와 바이오디젤 생산·수입 통계가 있어야 식용유 시장에 대한 경쟁 정도를 계산할 수 있다. 한국의 제도를 캐나다의 Clean Fuel Regulations와 같은 제도로 묶어 설명하지 않는다.</p>
+<p>중국 상무부의 2026년 2월 최종 공고는 캐나다산 유채 <em>종자</em>에 대한 반덤핑 조사 결과다. 최종 세율은 5.9%이며, 업계 정리는 기존 최혜국 관세 9%를 더해 14.9%라고 설명한다(중국 상무부, 「商务部公告2026年第14号」, 2026-02-28, https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=104994; Canola Council of Canada, 「Trade with China」, https://www.canolacouncil.org/china-update/). 잠정 조치의 75.8%는 최종 세율이 아니다. 중국 상무부 최종 공고에 따르면 2025-08-14~12-13 납부 보증금은 최종 5.9%에 맞춰 정산하고 초과분을 환급하며, 2025-12-14~2026-02-28 납부 보증금은 환급한다(중국 상무부, 「商务部公告2026年第14号」, 2026-02-28, https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=104994).</p>
+<p>중국의 캐나다산 유채 <em>기름</em> 100% 추가관세는 종자 반덤핑세와 다른 조치이며 시행일은 2025년 3월 20일이다(중국 국무원 관세세칙위원회, 「关于对原产于加拿大的部分进口商品加征关税的公告」, 2025-03-08, https://gss.mof.gov.cn/gzdt/zhengcefabu/202503/t20250307_3959523.htm). 유채박은 2026년 3~12월 한시적으로 0%가 됐다는 캐나다카놀라협회의 정리가 있지만, 이를 유채유 관세 철회로 읽지 않는다(Canola Council of Canada, 「Trade with China」, https://www.canolacouncil.org/china-update/; E12).</p>
+<p>한국의 2026년 HS 1514 기본세율, WTO 양허세율, 한-캐나다·한-호주 FTA 협정세율, 할당관세·조정관세 대상 여부는 이번 판에서 수치로 싣지 않는다. 제공 조사 노트는 국가법령정보센터의 2026년 2월 개정 표제까지 열었으나 별표 본문을 읽지 못했다고 명시한다. 검색 결과에 어떤 품목이 보이지 않는다는 이유로 카놀라유가 할당관세 대상이 아니라고 단정할 수 없다(E15).</p>
+<p>식품공전의 카놀라유 에루스산·산가 등 규격 수치도 고시 전문 압축파일을 열어 해당 조항을 대조하기 전까지 미확보다. 유전자변형 유래 원료를 사용한 식용유 표시 확대는 USDA FAS 한국 FAIRS 보고서의 공개 초록에 적힌 범위로만 인용한다. 시행일·예외·제품별 표시 문구는 한국 법령 원문을 보지 못했다. 원산지 표시가 정제유의 종자 생산국까지 요구하는지 역시 미확보다. 제품 표면의 원산지와 통관상 원산지, 원재료 종자 산지는 서로 다른 개념이다(E15).</p>
+<p>이 절의 결론은 품목과 문서의 경계에 관한 것이다. 종자 1205와 유채유 1514, 저에루크산 원유와 정제유, 식품 표시와 통관 원산지, 연료 의무와 원료 선정은 서로 다른 질문이다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>작황보다 착유와 연료 수요의 연결을 주목한다</h2>
+<p class="lead">은행·기관 리포트 색인의 <code>items</code>에 <code>canola_oil</code>이 포함된 항목을 확인했다. 색인에 올랐다는 것만으로 리포트 전체가 카놀라유를 다룬다는 뜻은 아니다. 태국 Krungsri의 팜유 전망은 유채유를 다른 식물유와 비교하는 자료이고, Rabobank·Westpac의 호주 보고서는 주로 카놀라 <em>종자</em>와 선물가격을 논한다. 국내 카놀라유 시장 규모나 한국 기업 점유율의 1차 자료로 쓰지 않았다.</p>
+<div class="tw">
+<table>
+<caption>표 9. 은행·기관 원문의 채택 주장</caption>
+<thead><tr><th>발행기관·문서·시점</th><th>확인한 주장</th><th>보고서에서의 사용</th></tr></thead>
+<tbody>
+<tr><td>Rabobank Australia, Agribusiness Monthly, 2026년 6월</td><td>세계 카놀라 종자 생산 약 8,600만 톤·착유 약 8,100만 톤 전망; 착유 증가가 공급 증가를 흡수할 수 있다고 봄</td><td>전망으로만 인용. 유채유 실측 생산량 아님</td></tr>
+<tr><td>Rabobank Australia, Agribusiness Monthly, 2026년 8월</td><td>7월 유럽 폭염과 대체 유지작물 우려; MATIF·ICE 종자 선물 및 로테르담 카놀라유 가격 제시</td><td>가격 방향의 배경. 한국 통관가격과 직접 비교하지 않음</td></tr>
+<tr><td>Westpac Economics, Quarterly Agriculture Report, 2026년 9월</td><td>2026/27년 호주 카놀라 생산 감소 전망과 바이오디젤 수요가 가격을 받친다는 판단</td><td>호주 작황·수요에 관한 은행 전망</td></tr>
+<tr><td>Krungsri Research, Palm Oil Industry Outlook, 2026년 5월</td><td>팜유와 유채유의 생산비·토지당 기름 수율을 비교</td><td>다른 유종과의 구조 비교만 채택</td></tr>
+<tr><td>ABARES, Australian Crop Report, 2026년 9월</td><td>호주 2026/27년 카놀라 종자 생산 730만 톤 전망</td><td>정부기관 전망 A, 06절 공급 배경</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>_raw/_banks/index.csv</code>의 <code>items=canola_oil</code> 항목과 각 은행 <code>.md</code>·<code>.html</code> 원문; ABARES는 제공 Grok 조사 노트 A; E11·E13·E16.</p>
+<p>Rabobank 2026년 6월호의 세계 종자 생산 약 8,600만 톤은 은행의 당시 전망이다. 같은 시점의 착유 약 8,100만 톤 전망과 나란히 놓으면 은행이 공급 증가만큼 가공 수요도 늘어날 것으로 봤다는 해석이 가능하다. 두 수치를 USDA PSD의 2025 유채유 생산과 합치지 않는다. 종자·기름 단위가 다르고 발표 시점도 다르다(E16).</p>
+<p>Rabobank 8월호는 유럽 해바라기 작황 우려, 캐나다의 양호한 생육과 호주의 전망을 한 문서에서 다룬다. 이 보고서는 은행이 «공급 확대가 가격 상승폭을 제한할 수 있다»고 판단한 근거와, 대체 식물유 부족·연료 가격이 반대 방향으로 작용할 수 있다는 근거를 모두 남긴다. 은행 전망은 원자료의 확정 관측이 아니다. 이번 판에서는 수확 결과와 착유·재고·국제 현물 가격을 대조한 사후 가격 판단을 제시하지 않는다(E11).</p>
+<p>Westpac 2026년 9월호는 호주 2026/27년 생산이 약 5% 줄어도 장기 평균보다 높을 수 있다고 설명하고, 바이오디젤 수요와 유럽 원료 시장의 긴축을 가격 지지 요인으로 든다. ABARES의 동시기 730만 톤 전망과 방향이 같지만, 같은 근거를 서로 독립된 두 관측처럼 세지 않는다. Westpac 2026년 1월과 4월 보고서의 호주 생산 추정은 서로 다른 시점에 작성돼 값이 달랐다. 최신 작황 판단을 쓸 때는 같은 빈티지의 원문을 우선한다(E13·E16).</p>
+<p>Krungsri의 팜유 보고서는 유채유를 대체 식물유로 다루며, 팜유의 토지당 기름 수율이 높다는 비교를 제시한다. 이 자료에서 태국 팜유 산업 전망을 한국 카놀라유 전망으로 옮기지 않았다. Rabobank의 호주 바이오연료 보고서도 호주 카놀라 수출을 국내 바이오디젤로 돌리는 가상 시나리오를 제시하지만, 실제 전환 물량이나 한국으로부터의 물량 전환 예측으로 읽지 않는다(E16).</p>
+<p>USDA FAS 캐나다 연차보고·한국 FAIRS 초록, FAO 유지작물 전망과 월간 가격 설명은 은행 자료보다 제도·수급의 직접 출처에 가깝다. 다만 이번 조사 노트에서 전문 PDF를 열지 못한 USDA FAS 문서는 공개 초록에 있는 주장만 인용했다. 기관 명의만으로 열지 않은 본문 수치를 보충하지 않았다. 리포트는 가격 해석에 쓰인 수급 항목을 드러내지만, 수급표의 빈칸을 임의의 숫자로 채우지는 않는다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표</span>매달 원유 물량과 가격을 같은 세번으로 대조한다</h2>
+<p class="lead">한국 카놀라유 산업의 위험은 한 나라의 작황에만 있지 않다. 한국은 원유를 많이 수입하고, 공급국에서는 종자 착유와 연료용 기름 수요가 함께 움직인다. 국내에서는 수입가격, 정제·포장, 식용유 판매가 서로 다른 시차를 가진다. 정책은 종자와 기름을 다르게 다룰 수 있다. 따라서 매달 관찰하는 지표에도 세번과 거래단계를 붙여야 한다.</p>
+<h3>위험 넷</h3>
+<p>첫째는 <strong>HS10 공급국·제품별 측정 공백</strong>이다. UN Comtrade 공개 preview로 한국의 2025년 HS6 <code>151411</code> 원유 수입 상대국을 확인했다. 캐나다가 119,682.956톤(77.9%)으로 가장 컸고 호주는 24,315.003톤(15.8%)이었다. 그러나 HS10에서 원유·정제유·저에루크산 기타 품목을 나눈 완료연도 상대국 원장은 확보하지 못했다. 2024년 FAOSTAT과 2026년 관세청 부분기간은 연도·품목 범위가 달라 그대로 연결할 수 없다(UN Comtrade 공개 preview, 한국 신고 수입, 2025년; FAOSTAT <code>TM_canola_oil.csv</code>, 2024년; 관세청, 2026년 3~8월; E06·E22·E23).</p>
+<p>둘째는 <strong>식용과 연료용의 경쟁</strong>이다. 캐나다 PSD의 산업용 유채유 소비 추정은 커졌고, 은행·기관 리포트는 유럽과 북미의 바이오연료 수요를 가격 변수로 지목한다. 그렇다고 한국 카놀라유의 일정 비율이 곧 연료로 전용된다고 말할 수는 없다. 종자 착유량, 유채유 산업용 소비, 유채박 수급, 기름 수출을 함께 봐야 한다(E02·E11).</p>
+<p>셋째는 <strong>통관가격과 국내판매액의 엇갈림</strong>이다. 2025년 KOSIS 채종유 판매액은 2024년보다 줄었지만, 이 사실만으로 소비 중량 감소를 증명하지 않는다. IMF PCPS의 월별 유채 원유 가격은 2026년 8월까지 확인되며, 2026년 8월은 전년 동월보다 19.2% 높다. 한국 원유 통관단가의 1~8월 누계는 2025년보다 2026년에 10.9% 높았고, 유종 전체 ECOS 식용유 지수는 2025년 9월에서 2026년 9월 사이 12.3% 낮아졌다. 서로 다른 기간·상품·거래단계의 변화이므로 가격 전가나 판매 물량의 기여도를 계산하지 않는다(E01·E03·E09·E24).</p>
+<p>넷째는 <strong>제도 해석의 오류</strong>다. 중국의 종자 반덤핑세와 유채유 추가관세는 다른 조치이고, 한국의 바이오디젤 혼합의무는 카놀라유 사용의무가 아니다. 한국 관세율·할당관세·식품공전 규격의 별표가 미확보인 상태에서 정확한 세율이나 성분 기준을 적는 것은 위험하다(E12·E15).</p>
+<div class="tw">
+<table>
+<caption>표 10. 월간·분기 관찰 지표</caption>
+<thead><tr><th>지표</th><th>원자료·주기</th><th>비교 방법</th><th>확인하려는 질문</th></tr></thead>
+<tbody>
+<tr><td>한국 원유·정제유 수입 중량</td><td>관세청 HS10 월간</td><td>같은 세번·같은 월 누계</td><td>원유와 정제유 비중이 바뀌는가</td></tr>
+<tr><td>한국 원유·정제유 통관 단가</td><td>관세청 HS10 월간</td><td>수입액÷중량, 이상치 확인</td><td>가격 변화가 어느 제품에서 먼저 나타나는가</td></tr>
+<tr><td>한국 국가별 원유 물량</td><td>UN Comtrade HS6 연간·관세청 국가별 월간·FAOSTAT 상대국별 연간</td><td>품목 범위·완료연도·부분기간을 구분</td><td>호주·캐나다 등 공급선이 달라지는가</td></tr>
+<tr><td>캐나다 종자 착유·유채유 수출</td><td>USDA PSD 갱신</td><td>시장연도·개정판 표시</td><td>국내 착유와 수출 여력이 함께 변하는가</td></tr>
+<tr><td>호주 종자 작황</td><td>ABARES 분기 작황</td><td>전망판과 실적판 분리</td><td>작황 변동이 공급에 반영되는가</td></tr>
+<tr><td>국제 유채유 현물</td><td>IMF PCPS 월간·세계은행 Pink Sheet 보유판</td><td>동일 상품·통화·인도조건</td><td>종자 선물과 기름 현물이 다르게 움직이는가</td></tr>
+<tr><td>국내 식용유 물가·채종유 판매액</td><td>ECOS 월간·KOSIS 연간</td><td>유종 전체와 채종유 전용 분리</td><td>국내 판매액 변화가 가격과 같은 방향인가</td></tr>
+<tr><td>식품제조업 채종유 원료 사용량</td><td>KOSIS 연간</td><td>식품제조업 경로와 전체 수급 분리</td><td>가공식품 경로가 변하는가</td></tr>
+<tr><td>관세·표시·연료 제도</td><td>정부 원문 개정 때</td><td>조문·별표·시행일 기록</td><td>종자와 기름의 적용 범위가 바뀌는가</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청·UN Comtrade·FAOSTAT·USDA PSD·KOSIS·ECOS·IMF 원자료 및 ABARES·정부 원문 조사 노트; E01~E25.</p>
+<h3>남은 물음</h3>
+<p>2025년 완료연도 HS6 원유 상대국 비중은 확인됐다. 남은 공급국 자료 공백은 <strong>HS10 세번별 완료연도 국가 원장</strong>이다. HS6 <code>151419</code>에는 한국 10자리 정제유와 저에루크산 기타 품목이 함께 들어가므로, HS6 상대국 비중을 정제유 HS10의 상대국별 단가로 바꿀 수 없다. 현재 KOSIS의 6개 사업체는 업체 명부가 아니고, 식용유 전체 시장 기사도 카놀라유 기업별 순위가 아니다(E04·E23).</p>
+<p>KOSIS 판매액과 ECOS 식용유지수를 같은 그래프에 놓는 것만으로 실질 소비량을 만들 수 없다. 세계은행 보유판의 유채유 값은 2024년 말에서 멈추지만 IMF PCPS 월별 가격은 2026년 8월까지 있다. 아래 항목은 이번 판의 판단을 검증할 때 남는 확인 작업이다(E08·E24).</p>
+<ul>
+<li><strong>공급국:</strong> 한국의 2025년 완료연도 국가별 HS10 원유·정제유 원장을 확보해 Comtrade HS6 상대국 자료, 2024년 FAOSTAT 자료, 2026년 3~8월 기준(잠정) 관세청 자료와 품목·기간을 맞춰 비교한다.</li>
+<li><strong>국내 공정:</strong> 제조업 품목의 정제유 행, KOSIS 식품제조업 원료 사용량, 식약처 수입 신고의 용도, 기업 공시의 원재료·생산량을 같은 연도·단위로 연결해 원유 투입과 식용·비식용 출하를 확인한다.</li>
+<li><strong>기업 연결:</strong> 관세청 HS10 수입신고 업체의 식별 가능 범위와 식약처의 제품명·수입업소·제조업소를 확인한 뒤 DART의 법인별 투입·생산·매출 공시와 대조한다.</li>
+<li><strong>세계 수급:</strong> 종자 수확 결과, 착유량, 유채유 산업용 소비, 유채박 수급, 기말 재고와 기름 수출을 같은 시장연도·자료판으로 대조한다.</li>
+<li><strong>가격:</strong> IMF PCPS 월별 유채 원유 가격과 한국 통관 단가를 상품·기간·계약 시차를 표시해 비교한다. 종자 선물과의 비교에는 착유율·유채박 가격·환율·운임을 반영한다.</li>
+<li><strong>국내 판매:</strong> 카놀라유 단독 소매가격과 판매 물량을 확보해 KOSIS 판매액 변화에서 가격과 물량의 기여도를 구분한다. KAMIS «평년»은 실측 월간 가격과 분리한다.</li>
+<li><strong>제도:</strong> 한국의 세번별 관세율표·할당관세 별표, 식품공전 규격, 유전자변형·원산지 표시 조문에서 적용 품목과 시행일을 확인한다.</li>
+<li><strong>계절·해외 비교:</strong> 수년의 한국 국가별 월간 수입 원장으로 수확철 효과를 살피고, 미국·EU·브라질 파일은 세번·기간·신고 방향을 맞춘 뒤 보조 비교에 쓴다.</li>
+</ul>
+<p>원유 비중의 장기 변화는 같은 HS 범위의 완료연도끼리 확인해야 한다. Comtrade HS6 <code>151411</code>·<code>151419</code> 합계에서 원유 비중은 2024년 90.3%, 2025년 94.9%로 높아졌다. 향후 같은 기준에서 비중이 지속적으로 낮아지고 기업별 투입·출하 자료가 이를 뒷받침하면 «국내 정제 중심»이라는 설명을 재검토할 수 있다(E23).</p>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>원유 수입에서 국내 정제·판매까지</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국 신고 HS6 151411 원유 수입의 세계 합계 대비 중량 비중은 캐나다 77.9%, 호주 15.8%, 체코 4.6%다. 10% 이상인 상대국은 캐나다와 호주이며, 세 번째 공급국인 체코도 기업 지도에 포함했다. 이는 <strong>수입 상대국</strong> 비중으로 유채 종자의 재배국 비중이 아니다. 식약처 신고서의 제조국은 이 가공품의 가공국이며 수출국·선적국과도 구별된다. 같은 해 핵심 두 세번의 수입액에서 정제유 1514191000은 약 5.2%여서 가공품 세번을 별도 지도화하는 10% 기준에 미치지 않는다. 출처: <a href="https://comtradeplus.un.org/">UN Comtrade A, 2025</a>, <a href="https://tradedata.go.kr/cts/index.do?menuId=ETS_MNU_00000177">관세청 A, 2025</a>.</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 수입 상대국의 유채유 가공·무역기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>캐나다</td><td>Bunge Canada</td><td>착유·정제·무역</td><td>그룹 연질유지종자 부문 매출 112.52억 달러(2025); 카놀라·캐나다 단독 아님</td><td>식약처 제조사명 일치 19건</td><td><a href="https://investors.bunge.com/~/media/Files/B/Bunge-IR/documents/financial-information/annual-reports/bunge-2025-annual-report.pdf">연차보고서 A·2025</a></td></tr>
+<tr><td>캐나다</td><td>Richardson Oilseed Holdings</td><td>착유·정제</td><td>Yorkton 종자 처리능력 연 250만 톤(2024년 증설 완료)</td><td>식약처 제조사명 일치 5건</td><td><a href="https://www.richardson.ca/richardsons-investment-in-yorkton-signals-confidence-in-the-future-of-canadian-canola/">기업 발표 B·2025</a></td></tr>
+<tr><td>캐나다</td><td>Cargill Limited</td><td>착유·정제·무역</td><td>그룹 Regina 공장 카놀라 종자 처리능력 연 100만 톤(2026년 발표·잠정)</td><td>식약처 제조사명 일치 4건</td><td><a href="https://www.cargill.com/about/2026-annual-report">기업 연차보고 B·2026</a></td></tr>
+<tr><td>캐나다</td><td>ADM Agri-Industries</td><td>착유·무역</td><td>ADM의 캐나다 사업장 21곳(2025); 전 품목 기준</td><td>식약처 제조사명 일치 3건</td><td><a href="https://www.adm.com/globalassets/standalone-pages/stories-page/adm-in-canada-2025.pdf">기업 현황 B·2025</a></td></tr>
+<tr><td>호주</td><td>GrainCorp Oilseeds</td><td>착유·정제·무역</td><td><strong>카놀라 종자 착유 55.7만 톤</strong>(2025 회계연도)</td><td>식약처 GrainCorp Oilseeds 29건·계열 GrainCorp Nutrition and Energy 3건</td><td><a href="https://www.graincorp.com.au/wp-content/uploads/2025/11/GrainCorp-Annual-Report-2025.pdf">연차보고서 A·2025</a></td></tr>
+<tr><td>호주</td><td>Cargill Australia</td><td>착유·정제·무역</td><td>호주 착유시설 투자 5,000만 미국 달러 발표(2023)</td><td>식약처 Cargill Australia 21건·계열 Cargill Processing 12건</td><td><a href="https://www.cargill.com.au/en/2023/cargill-expands-crush-capacity-for-australian-canola-cottonseed">기업 발표 B·2023</a>, <a href="https://www.cargill.com.au/en/doc/1432179736358/cargill-modern-slavery-human-trafficking-statement.pdf">계열 현황 B·2024</a></td></tr>
+<tr><td>호주</td><td>MSM Milling</td><td>착유·정제·포장</td><td>종자 공급 농가 1,000곳 이상(2026년 확인)</td><td>식약처 제조사명 일치 4건</td><td><a href="https://msmmilling.com.au/about/">기업 현황 B·2026년 확인</a></td></tr>
+<tr><td>호주</td><td>Alba Edible Oils</td><td>착유·정제·포장</td><td>카놀라유 하루 6만 L 이상 생산(2012년 당시 사례)</td><td>식약처 제조사명 일치 6건</td><td><a href="https://www.foodprocessing.com.au/content/packaging-labelling-coding/article/returnable-packaging-and-fit-for-purpose-heat-pads-help-alba-edible-oils-to-grow-697532730">협력사 기고·업계지 C·2012</a>, <a href="https://www.wa.gov.au/organisation/department-of-energy-and-economic-diversification/wa-export-awards-2026-regional-exporter-finalists">호주 정부 A·2026</a></td></tr>
+<tr><td>체코</td><td>Bunge Czech</td><td>착유·정제·무역</td><td>그룹 연질유지종자 부문 매출 112.52억 달러(2025); 체코 법인 규모는 별도 미공시</td><td>식약처 제조사명 일치 1건</td><td><a href="https://investors.bunge.com/~/media/Files/B/Bunge-IR/documents/financial-information/annual-reports/bunge-2025-annual-report.pdf">연차보고서 A·2025</a>, <a href="https://www.bunge.com/en/czech">체코 사업장 B·2026년 확인</a></td></tr>
+<tr><td>체코</td><td>PREOL</td><td>착유·정제</td><td>유채 종자 처리능력 연 46만 톤(2026년 확인)</td><td>확인된 공개 자료 없음</td><td><a href="https://preol.cz/en/about-us/">기업 현황 B·2026년 확인</a></td></tr>
+<tr><td>체코</td><td>Fabio Produkt</td><td>착유·정제·포장</td><td>농산물 저장능력 8,000톤(2026년 확인); 기름 생산능력 아님</td><td>확인된 공개 자료 없음</td><td><a href="https://www.fabioprodukt.com/company/">기업 현황 B·2026년 확인</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 공시·기업 자료와 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회 A</a>, 2025년 10월~2026년 9월 <strong>신고 건수 기준</strong>. 제조사명 표기 변형을 합쳤다. 신고 건수는 수입 중량·금액이나 수출 점유율이 아니다.</p>
+<p>기업별 카놀라유 수출량으로 세계 1위를 확정하는 공개 순위는 확인되지 않는다. 주요 세계 사업자인 Bunge는 2025년 Viterra와 결합했으며, 연질유지종자 부문에 카놀라 외의 종자와 기름도 포함한다. 출처: <a href="https://investors.bunge.com/~/media/Files/B/Bunge-IR/documents/financial-information/annual-reports/bunge-2025-annual-report.pdf">Bunge 연차보고서 A·2025</a>.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처 집계 기간은 <strong>2025년 10월~2026년 9월</strong>이며 2026년분은 잠정이다. 카놀라유와 정제 전 유채유 원료의 신고 198건 중 상위 10개 수입업소를 적었다. 신고 한 건의 중량은 서로 같지 않다.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 카놀라유 관련 식약처 신고 상위 수입업소</caption>
+<thead><tr><th>수입업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>(주)농심</td><td class="num">23</td><td>호주 23</td><td>정제 전 원료</td></tr>
+<tr><td>(주)오뚜기</td><td class="num">19</td><td>캐나다 16·호주 3</td><td>정제 전 원료</td></tr>
+<tr><td>대상(주)</td><td class="num">15</td><td>호주 13·캐나다 2</td><td>정제 전 원료</td></tr>
+<tr><td>(주)이마트</td><td class="num">14</td><td>스페인 8·이탈리아 6</td><td>채종유</td></tr>
+<tr><td>(주)코스트코코리아</td><td class="num">14</td><td>미국 14</td><td>채종유</td></tr>
+<tr><td>삼양사</td><td class="num">12</td><td>호주 12</td><td>정제 전 원료</td></tr>
+<tr><td>롯데상사(주)</td><td class="num">9</td><td>호주 6·캐나다 2</td><td>정제 전 원료</td></tr>
+<tr><td>(주)사조대림 칠서공장</td><td class="num">9</td><td>호주 5·캐나다 2</td><td>정제 전 원료</td></tr>
+<tr><td>주식회사 라니에리코리아</td><td class="num">8</td><td>이탈리아 8</td><td>채종유</td></tr>
+<tr><td>농업회사법인 주식회사 네니아</td><td class="num">8</td><td>호주 8</td><td>채종유</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회 A</a>, 2025년 10월~2026년 9월. «주요 제조국»은 업소별 신고서상 제조국 상위 두 곳이다. <strong>신고 건수 기준이며 수입 물량 점유율이 아니다.</strong></p>
+<p>상장사의 사업보고서는 원재료·제품군과 매출 구성을 보여 주지만 카놀라유 단독 매출·점유율을 일관되게 분리하지 않는다. 아래 규모는 각 행에 표시한 <strong>회사 전체 또는 복수 품목 사업부문</strong>의 값이다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 신고 명부에 있는 국내 주요 기업의 공시 규모</caption>
+<thead><tr><th>기업</th><th>산업 내 역할</th><th>확인된 규모 지표</th><th>카놀라유와의 연결</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>CJ제일제당</td><td>식용유 제조·판매</td><td>식품사업 매출 11조 5,221억원(2025)</td><td>식약처 5건; 백설 카놀라유 회사 자료</td><td><a href="https://kind.krx.co.kr/external/2026/03/16/001719/20260316005125/11011.htm">사업보고서 A·2025</a>, <a href="https://m.cj.co.kr/kr/newsroom/pressreleases/news-detail/1749">회사 실적 B·2026</a>, <a href="https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/658">제품 발표 B·2013</a></td></tr>
+<tr><td>사조대림</td><td>식용유 제조·판매</td><td>대두유·채종유 등 식용유 생산 139,972톤(2025)</td><td>칠서공장 식약처 9건</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">사업보고서 A·2025</a></td></tr>
+<tr><td>오뚜기</td><td>유지류 제조·판매</td><td>유지류 매출 4,405억원(2025)</td><td>식약처 19건</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/000725/20260318003615/11011.htm">사업보고서 A·2025</a></td></tr>
+<tr><td>대상</td><td>식품 제조·판매</td><td>연결 매출 4조 4,013억원(2025)</td><td>식약처 15건</td><td><a href="https://kind.krx.co.kr/external/2026/03/27/001263/20260327002982/11011.htm">사업보고서 A·2025</a></td></tr>
+<tr><td>농심</td><td>식품 제조·원료 사용</td><td>연결 매출 3조 5,143억원(2025)</td><td>식약처 23건</td><td><a href="https://kind.krx.co.kr/external/2026/03/11/001230/20260311003051/11011.htm">사업보고서 A·2025</a></td></tr>
+<tr><td>삼양사</td><td>유지·식품소재 제조</td><td>식품부문 매출 1조 5,153억원(2025); 유지 외 품목 포함</td><td>식약처 12건</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/002283/20260318010651/11011.htm">사업보고서 A·2025</a></td></tr>
+<tr><td>이마트</td><td>소매·수입</td><td>연결 순매출 28조 9,704억원(2025)</td><td>식약처 14건</td><td><a href="https://company.emart.com/ko/investor/finance.do">회사 재무정보 B·2025</a>, <a href="https://company.emart.com/ko/investor/irfinance_list.do">공시 목록 A</a></td></tr>
+<tr><td>코스트코코리아</td><td>소매·수입</td><td>한국 매장 20곳(2025 회계연도)</td><td>식약처 14건</td><td><a href="https://s201.q4cdn.com/287523651/files/doc_financials/2025/ar/COST-Annual-Report-2025.pdf">Costco 연차보고서 A·2025</a></td></tr>
+<tr><td>롯데상사</td><td>원료 무역·수입</td><td>연결 매출 8,851억원(2025)</td><td>식약처 9건</td><td><a href="https://m.kisrating.com/fileDown.do?fileName=rs20260623-44.pdf&amp;gubun=2&amp;menuCd=R8">신용평가 보고서 B·2026</a></td></tr>
+<tr><td>디에스단석</td><td>바이오에너지 원료 수입</td><td>바이오에너지 제품 매출 5,061억원(2025); 카놀라유 단독 아님</td><td>식약처 정제 전 원료 3건</td><td><a href="https://dsdansuk.com/include/app/data/editor/260323/%EC%A0%9C42%EA%B8%B0%20%EC%82%AC%EC%97%85%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf">사업보고서 A·2025</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 공시·회사 자료와 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회 A</a>, 2025년 10월~2026년 9월 신고 건수. 사조대림 생산량과 오뚜기 유지류 매출에는 다른 식용유도 포함된다.</p>
+<p>사조대림 사업보고서가 인용한 AC닐슨의 2025년 <strong>식용유 전체 판매량 기준</strong> 수치는 CJ 23,586톤·29.3%, 사조대림 21,012톤·26.1%다. 이를 카놀라유 점유율로 옮길 수 없다. 출처: <a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">사조대림 사업보고서 A·2025</a>.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 유채 종자에서 한국 소비까지의 단계</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산(유채 재배)</td><td>캐나다·호주 농가와 집하업체</td><td>수입 원유에 투입된 종자의 산지별 물량 미확보</td><td>산지 매입·종자 선물·품질 계약</td><td>작황·유분율·연료용 수요</td></tr>
+<tr><td>1차 가공</td><td>해외 착유·정제업체</td><td>한국향 종자 투입·착유량 미확보</td><td>종자 매입과 기름·유채박 판매 계약</td><td>착유 수율·유채박 가격</td></tr>
+<tr><td>수출·국제 무역</td><td>Bunge, GrainCorp, Cargill 등</td><td>2025년 한국 원유 HS6 상대국 캐나다 77.9%·호주 15.8%</td><td>수출 계약·운임·환율</td><td>선적 지연·무역 조치</td></tr>
+<tr><td>수입·통관·검사</td><td>국내 수입업소·관세청·식약처</td><td>2025년 핵심 두 세번 원유 153,699톤·정제유 6,548톤</td><td>계약가격·통관 신고가격</td><td>세번·원산지 분류, 식품검사</td></tr>
+<tr><td>국내 가공</td><td>정제·혼합·포장업체, 식품제조업체</td><td>2024년 원유 품목 생산액 613억 2,600만원; 식품제조업 원료 사용 32,352톤</td><td>정제·포장·납품 계약</td><td>원유 투입과 최종 용도의 연결 공백</td></tr>
+<tr><td>도매·유통</td><td>원료상·식자재 도매·유통사</td><td>카놀라유 단독 도매 물량 미확보</td><td>기업 간 납품 계약</td><td>재고·가격 전가</td></tr>
+<tr><td>소매·외식</td><td>마트·온라인·급식·외식업체</td><td>2025년 채종유 국내판매액 2,021.2억원; 가정용 소매만의 값 아님</td><td>브랜드·판매 경로별 가격</td><td>판촉·대체 식용유 경쟁</td></tr>
+<tr><td>소비</td><td>가정·식품제조업·외식업</td><td>USDA MY2025(2025/26) 한국 유채유 국내 소비 추정 15.5만 톤; 광의 분류</td><td>최종 제품가격</td><td>유종 선택·표시 신뢰</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://tradedata.go.kr/cts/index.do?menuId=ETS_MNU_00000177">관세청 A</a>, <a href="https://comtradeplus.un.org/">UN Comtrade A</a>, <a href="https://kosis.kr/statisticsList/statisticsListIndex.do?outLink=Y&amp;publicationYN=Y&amp;statId=2008041">KOSIS 판매·제조·원료 통계 A</a>, <a href="https://apps.fas.usda.gov/PSDOnline/app/index.html">USDA PSD A</a>. 연도·품목·거래단계가 다른 값은 합산하지 않았다.</p>
+<p>부가가치는 착유에서 기름과 유채박을 나누고, 정제·포장과 유통 서비스를 더하는 단계에서 생긴다. 2025년 한국 통관 평균 단가는 원유 1.129달러/kg, 정제유 1.461달러/kg이지만 그 차이 0.332달러/kg은 제품 구성·상대국·계약 조건이 달라 정제 마진이 아니다. 2024년 원유 품목 생산액 613억 2,600만원과 2025년 채종유 국내판매액 2,021.2억원도 범위와 연도가 달라 차액을 국내 부가가치로 계산할 수 없다. 2024년 식품제조업 원료 사용 32,352톤은 한 가공 경로의 크기만 보여 준다. 출처: <a href="https://tradedata.go.kr/cts/index.do?menuId=ETS_MNU_00000177">관세청 A</a>, <a href="https://kosis.kr/statisticsList/statisticsListIndex.do?outLink=Y&amp;publicationYN=Y&amp;statId=2008041">KOSIS A</a>.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 카놀라유 산업의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>관세청, 식품의약품안전처</td><td>수입 세번·통관 통계, 수입식품 신고·검사</td><td>분류와 식품안전 판단이 거래 가능 범위에 영향</td></tr>
+<tr><td>해외 정부</td><td>캐나다 농업식품부, 호주 농림수산부, 중국 국무원 관세세칙위원회</td><td>작황 전망·수출 여건·관세 조치</td><td>공급 가능량과 제3국 무역 흐름에 영향</td></tr>
+<tr><td>생산자·단체</td><td>캐나다카놀라협회, 호주유지종자연맹</td><td>농가·착유·수출 업계의 시장 접근과 기준 대변</td><td>농가 수취가격·품질 규격에 관심</td></tr>
+<tr><td>수출·가공기업</td><td>Bunge, GrainCorp, Cargill, Richardson</td><td>집하·착유·정제·국제 판매</td><td>설비·물류·판매 계약을 통해 공급에 영향</td></tr>
+<tr><td>수입·유통기업</td><td>CJ제일제당, 사조대림, 오뚜기, 삼양사, 이마트 등</td><td>원료 조달·가공·도소매</td><td>조달 원가·품질·판매가격에 관심</td></tr>
+<tr><td>소비자·시민사회</td><td>국내 소비자, 한국소비자원</td><td>가격·표시·안전정보 확인과 소비자정보 제공</td><td>제품 선택과 표시 신뢰에 영향</td></tr>
+<tr><td>국제기구·인증</td><td>UN Comtrade, ISCC</td><td>무역 통계 제공·지속가능성 인증</td><td>통계 비교와 인증 원료의 추적성에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://tradedata.go.kr/cts/index.do?menuId=ETS_MNU_00000177">관세청 A</a>, <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 A</a>, <a href="https://agriculture.canada.ca/en/sector/crops/reports-statistics/canada-outlook-principal-field-crops-2026-09-25">캐나다 농업식품부 A·2026</a>, <a href="https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/australian-crop-report/september-2026">호주 농림수산부 A·2026</a>, <a href="https://gss.mof.gov.cn/gzdt/zhengcefabu/202503/t20250307_3959523.htm">중국 관세세칙위원회 A·2025</a>, <a href="https://www.canolacouncil.org/about-us/">캐나다카놀라협회 B</a>, <a href="https://australianoilseeds.com/about-us/">호주유지종자연맹 B</a>, <a href="https://www.kca.go.kr/home/main.do?no=411">한국소비자원 A</a>, <a href="https://iscc-system.org/certification/certification-schemes/">ISCC B</a>.</p>
+<p>식용유와 바이오연료 생산자는 유채유 원료를 두고 경쟁할 수 있다. 해외 생산자의 수취가격 상승은 국내 수입·가공업체의 원가 안정 요구와 엇갈린다. 소비자의 가격·표시 투명성 요구는 종자 산지, 제조국, 수출국을 구별해 설명해야 하는 기업의 부담과 맞닿는다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황</h2>
+<p class="lead">품목 키는 <code>canola_oil</code>, registry의 HS6는 <code>151411·151419·151491·151499</code>다. FAOSTAT 매핑 품목은 <code>Oil of rapeseed</code>이며, KAMIS 품목은 지정돼 있지 않다. 수집기 현황은 2026년 10월 7일 <code>rawbulk.report_delta.coverage("canola_oil")</code>로 읽었다. 수집기 «최신»은 해당 파일에 든 가장 늦은 기간이며 모든 국가·세번의 완료를 뜻하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 카놀라유 정기 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일·주의</th></tr></thead>
+<tbody>
+<tr><td>품목별 원자료</td><td>census_exports_hs10</td><td class="num">151</td><td>2026-07</td><td>2026-10-07·미국 한 달</td></tr>
+<tr><td>품목별 원자료</td><td>census_imports_hs10</td><td class="num">133</td><td>2026-07</td><td>2026-10-07·미국 한 달</td></tr>
+<tr><td>품목별 원자료</td><td>comexstat_exp</td><td class="num">64</td><td>2026</td><td>2026-10-06·브라질 일부 월</td></tr>
+<tr><td>품목별 원자료</td><td>comexstat_imp</td><td class="num">50</td><td>2026</td><td>2026-10-06·브라질 일부 월</td></tr>
+<tr><td>품목별 원자료</td><td>customs_item_trade_monthly</td><td class="num">151</td><td>2026.08</td><td>2026-10-07·한국 HS10, 2024.11부터</td></tr>
+<tr><td>품목별 원자료</td><td>eurostat_comext_m1</td><td class="num">656</td><td>202607</td><td>2026-10-06·EU 한 달</td></tr>
+<tr><td>품목별 원자료</td><td>eurostat_comext_m2</td><td class="num">1,729</td><td>202606</td><td>2026-10-06·EU 한 달</td></tr>
+<tr><td>품목별 원자료</td><td>usda_psd_all</td><td class="num">85,026</td><td>MY2026(2026/27 시장연도) 포함</td><td>2026-10-07·전망과 추정 혼재</td></tr>
+<tr><td>월간 가공</td><td>comtrade</td><td class="num">3,676</td><td>2025</td><td>2026-10-01·합계 행 필터 필수</td></tr>
+<tr><td>월간 가공</td><td>customs_kr</td><td class="num">142</td><td>2026.08</td><td>2026-10-01·국가별 2026.03~08만</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>에서 실행한 <code>rawbulk.report_delta.coverage("canola_oil")</code> 결과와 CSV 기간 열 확인; E17.</p>
+<p>공통 원자료에서는 KOSIS 식용유지류 국내판매액, KOSIS 제조업 품목, KOSIS 특용작물 유채, KOSIS 식품제조업 채종유 원료 사용량, ECOS 소비자물가지수, 세계은행 Pink Sheet 유채유 열과 IMF PCPS <code>PROIL</code>을 확인했다. 품목 아카이브에서는 FAOSTAT 한국 유채 종자 생산자가격지수·생산가치, 2024년 유채 원유 수입 상대국, USDA FAS EU 보고서 색인 초록을 이번 판에 더했다(E19~E25). 위 표의 품목별 수집기 행 수는 공통 원자료와 공개 API preview의 포함 여부를 뜻하지 않는다. UN Comtrade 공개 preview에는 2024·2025년 한국 수입 상대국 행이 있다(E23).</p>
+<h3>자료 검토 범위</h3>
+<p>로컬 캐시의 물리 파일은 97개이며 <code>01_아카이브_원장.csv</code>는 49행이다. 원장은 캐시 전 파일의 일대일 목록이 아니다. 기존 원장에서 «반영필요»였던 7행은 로컬 캐시의 각 파일을 직접 열어 대조했다. 그중 4행은 본문에 반영했고, 3행은 같은 종류의 더 최근 연도 값이 본문에 있어 «불필요(최신본 반영)»으로 바꿨다. 기존 42행의 판정은 이번 작업에서 재판정하지 않았다. EU 보고서의 캐시 <code>.pdf</code>는 PDF 본문이 아닌 원본 경로 문자열이므로, EU 전망은 <code>manifest.csv</code>의 초록에 적힌 범위만 인용했다(E18·E19).</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 원장 판정 요약</caption>
+<thead><tr><th>판정</th><th class="num">파일 수</th><th>의미</th></tr></thead>
+<tbody>
+<tr><td>반영</td><td class="num">5</td><td>기존 반영 1행과 이번 본문 반영 4행</td></tr>
+<tr><td>불필요</td><td class="num">41</td><td>기존 원장의 불필요 판정 유지</td></tr>
+<tr><td>불필요(최신본 반영)</td><td class="num">3</td><td>이번에 더 최근 연도 본문 값과 대조해 판정 변경</td></tr>
+<tr><td>반영필요</td><td class="num">0</td><td>이번 작업 후 남은 행 없음</td></tr>
+<tr class="tot"><td>합계</td><td class="num">49</td><td>원장에 등록된 행</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>01_아카이브_원장.csv</code> 49행과 로컬 캐시의 «반영필요» 7개 파일 대조; E18~E22.</p>
+<p>원장의 판정이 모두 채워졌다는 사실과 캐시의 97개 물리 파일 전체를 열었다는 주장은 다르다. 숫자대조 결과는 <code>update_2026-10-07/20_숫자대조.txt</code>를 따른다. 조판된 PDF와 독립 감사 문서는 존재하지만, 이 부록의 자료 판정은 각 원자료의 범위와 판본을 기준으로 읽는다(E18).</p>
+</section>
+
+<div class="wrap">
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 카놀라유 산업 해부: 수입 원유와 국내 식용유 시장</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(검토중)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · 관세청·KOSIS·USDA PSD·UN Comtrade·FAOSTAT·ECOS·IMF 원자료, 세계은행 보유본, USDA FAS 보고서 색인 초록, 은행 원문과 출처 등급을 표시한 조사 노트</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>30_근거_수치.md에 파일·필터·계산식을 기록했다. 결과는 update_2026-10-07/20_숫자대조.txt.</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>한국 수입의 중심은 저에루크산 유채 원유 HS 1514110000과 정제유 HS 1514191000. USDA·KOSIS·FAOSTAT의 더 넓거나 다른 유채유·종자 범위는 구별해 표기했다.</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>2025년 HS6 원유 상대국은 UN Comtrade 공개 preview에서 확인했다. 완료연도 국가별 HS10 원유·정제유 분리 원장, 카놀라유 기업별 물량·소매가격, 한국 세율·식품공전 별표는 미확보다. 아카이브 원장 49행과 캐시 물리 파일 97개의 모수는 다르다. EU 전망은 PDF 본문이 아닌 USDA FAS 색인 초록에 근거한다.</span></div>
+</footer>
+</div>
+

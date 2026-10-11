@@ -1,0 +1,145 @@
+.hub {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  word-break: keep-all;
+}
+
+.title {
+  font-size: var(--dsc-title-size, 1.6rem);
+  font-weight: var(--dsc-title-weight, 700);
+  color: var(--dsc-ink);
+  margin: 0;
+}
+
+.intro {
+  color: var(--dsc-ink-muted);
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.search {
+  flex: 1 1 220px;
+  min-width: 0;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: 8px;
+  background: var(--dsc-surface);
+  color: var(--dsc-ink);
+  font-size: 0.9rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.filter {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--dsc-ink-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.filter[aria-pressed='true'] {
+  border-color: var(--dsc-ink);
+  color: var(--dsc-ink);
+  font-weight: 700;
+}
+
+.count {
+  color: var(--dsc-ink-muted);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.75rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--dsc-surface-border);
+  border-radius: var(--dsc-card-radius, 10px);
+  background: var(--dsc-surface);
+  color: var(--dsc-ink);
+  text-decoration: none;
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: var(--dsc-ink-muted);
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.name {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.category {
+  font-size: 0.72rem;
+  color: var(--dsc-ink-muted);
+  white-space: nowrap;
+}
+
+.facts {
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.fact dt {
+  font-size: 0.72rem;
+  color: var(--dsc-ink-muted);
+}
+
+.fact dd {
+  margin: 0;
+  font-family: var(--dsc-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 1rem;
+}
+
+.fact dd span {
+  display: block;
+  font-family: inherit;
+  font-size: 0.7rem;
+  color: var(--dsc-ink-muted);
+}
+
+.edition {
+  margin-top: auto;
+  font-size: 0.72rem;
+  color: var(--dsc-ink-muted);
+}
+
+.empty {
+  color: var(--dsc-ink-muted);
+}

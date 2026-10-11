@@ -1,0 +1,714 @@
+<title>한국 들깨 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 들깨<br>
+        세계 수급 · 국내 생산 · 수입 · 가격 · 유통 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">국산 재배와 수입 원료가 만나는 유지종자 · 리포트 2026</p>
+      <h1><span class="scr">Perilla</span> <span class="lt">한국 들깨 산업 해부</span></h1>
+      <p class="cover-sub">한국은 들깨를 재배하면서 원료 종자도 수입한다. 2024년 국내 생산량은 4만 3,889톤이고, 2025년 들깨 세번의 수입량은 1만 9,000톤이다. 두 수치는 연도가 달라 자급률로 나눌 수 없으며, 국제통계의 ‘기타 유지종자’도 들깨만의 세계 시장으로 읽을 수 없다. 이 보고서는 확인되는 물량과 확인되지 않는 경계를 함께 추적한다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">국내 들깨 생산</div><div class="v">43,889</div>
+        <div class="n">톤 · 2024년 · KOSIS</div></div>
+      <div class="cf"><div class="k">국내 재배면적</div><div class="v">38,390</div>
+        <div class="n">ha · 2024년 · 반올림</div></div>
+      <div class="cf"><div class="k">전국 단수</div><div class="v">114</div>
+        <div class="n">kg/10a · 2024년 · KOSIS 공표값</div></div>
+      <div class="cf"><div class="k">들깨 종자 수입</div><div class="v">19,000</div>
+        <div class="n">톤 · 2025년 · HSK 1207991000 반올림</div></div>
+      <div class="cf"><div class="k">들깨 수입액</div><div class="v">4,484만</div>
+        <div class="n">달러 · 2025년 · HSK 1207991000</div></div>
+      <div class="cf"><div class="k">수입 단가</div><div class="v">2.36</div>
+        <div class="n">달러/kg · 2025년 · 수입액÷수입중량</div></div>
+      <div class="cf"><div class="k">수입 물량 증감</div><div class="v up">+18.4%</div>
+        <div class="n">2026년 1~8월 · 전년 같은 기간 대비</div></div>
+      <div class="cf"><div class="k">최대 생산 시도</div><div class="v">20.5%</div>
+        <div class="n">충청남도 · 2024년 전국 생산량 중 비중</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">국내 생산과 수입은 확인되지만 세계 통계의 품목 경계는 넓다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">지역 생산 사례와 세계 들깨 총량은 구별해야 한다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">생산은 확인되지만 가공·소비 연결은 부족하다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">들깨 HSK와 넓은 HS6를 분리한다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">통관 단가와 국내 소매가격은 다른 지표다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">중국이 1위인 하한은 확인되며 나머지 순위는 미확보다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">수입 들기름 물량은 확인되지만 업체 점유율은 미확보다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">협정별 관세와 제품별 규제를 구분한다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트</span><span class="t">들깨 관련 자료의 주장 범위를 나눠 읽는다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표</span><span class="t">최근 수입 반전과 품목 경계를 함께 본다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">중국산 종자와 국내 착유·유통의 연결</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 자료 범위와 근거 표기</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>국내 생산과 수입은 확인되지만 세계 통계의 품목 경계는 넓다</h2>
+<p class="lead">한국 들깨 산업은 재배, 원료 종자 수입, 분쇄·착유, 들기름과 가루의 유통으로 이어진다. KOSIS는 국내 생산을 ‘들깨’로 집계하고, 관세청 HSK 1207991000은 들깨 종자를 가리킨다. UN Comtrade의 HS6 120799와 FAOSTAT의 ‘Other oil seeds, n.e.c.’는 더 넓은 품목이다. 이 숫자들을 그대로 합쳐 산업 규모나 세계 들깨 점유율을 만들 수 없다(E01·E03·E04·E08).</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>국내 생산.</strong> 2024년 생산량은 43,889톤으로 전년보다 8.1% 적었다. 재배면적은 38,389.5567ha(표지 반올림값 38,390ha)로 6.5% 줄었다. KOSIS의 2025년 들깨 면적·단수·생산량은 모두 <code>-</code>다(E01).</li>
+<li><strong>국내 산지.</strong> 2024년 충청남도 생산량은 8,989톤으로 전국의 20.5%였다. 강원도 6,569톤, 충청북도 6,508톤, 경상북도 5,348톤, 경기도 5,316톤이 뒤따른다. 이는 생산량 순위다(E02).</li>
+<li><strong>원료 수입.</strong> 관세청 HSK 1207991000의 2025년 수입은 18,999,899kg·44,839,968달러, 평균 통관 단가는 2.36달러/kg이었다. 2026년 1~8월 중량은 10,961,217kg으로 전년 같은 기간보다 18.4% 많았다. 그러나 1~6월은 42.6% 증가한 반면 7~8월은 76.0% 감소했다(E03).</li>
+<li><strong>공급국.</strong> 2025년 UN Comtrade 공개 preview의 한국 HS6 120799 수입에서 중국산은 24,349,829.313kg이다. 이 HS6에 포함된 HSK ‘기타’ 8,413,728kg을 전부 중국산으로 가정해 빼도, 중국산은 들깨 수입 18,999,899kg의 <strong>최소 83.9%</strong>다. 따라서 중국이 1위 공급국이라는 하한 판단은 가능하다. 다른 공급국의 들깨 전용 순위와 정확한 점유율은 HS6만으로 판정하지 않는다(E04·E05). <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=120799&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2025년 HS6 120799 수입 공개 preview</a>.</li>
+<li><strong>세계 수급.</strong> 보유한 FAOSTAT·USDA PSD 자료로는 들깨 전용 세계 생산량·소비량·재고를 산출할 수 없다. 중국 화난현 정부가 소개한 연 8,000~10,000톤은 지역 생산 설명이다(E08·E09). <a href="https://huanan.gov.cn/hnx/c101343/202510/c04_130704.shtml">화난현 정부, 「生态农业」, 2025-10-11</a>.</li>
+<li><strong>가격과 제품.</strong> KAMIS 아카이브 파일의 품목명은 ‘미나리’ 또는 빈값이므로 들깨 가격으로 쓰지 않는다. 식약처 품목별 수입 통계의 2025년 <strong>들기름 수입신고중량은 1,661,745kg</strong>이다. 이는 제품 수입량이지 국내 들기름 판매량이 아니다(E06·E10).</li>
+<li><strong>제도.</strong> 한·중 FTA 상세설명자료는 당시 들깨 관세 40%를 5년에 걸쳐 10% 부분 감축한다고 적었다. 계산상 중국산 협정세율은 36%다. 2026년 7월 1일 시행 할당관세 규정의 별표에는 1207호가 없다. 개별 수입신고에서 협정세율을 적용받았는지는 별도 확인이 필요하다(E11). <a href="https://www.fta.go.kr/webmodule/_PSD_FTA/cn/doc/1_description.pdf">관계부처 합동, 『한·중 FTA 상세설명자료』, 2015-06</a>. <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=287543&amp;viewCls=lsRvsDocInfoR">국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」, 2026-06-30 개정</a>.</li>
+</ul>
+<h3>판단과 반증 조건</h3>
+<p><strong>수입 물량.</strong> 2026년 연간 수입이 2025년의 18,999,899kg을 넘으려면 9~12월에 최소 8,038,683kg이 더 들어와야 한다. 이는 2025년 같은 기간 9,738,613kg의 82.5%다. 1~8월 누계 증가만으로 연간 초과를 예상하기에는 최근 두 달의 감소폭이 크다. <strong>반증 조건:</strong> 연간 HSK 1207991000 수입중량이 18,999,899kg을 넘는지 확인한다(E03).</p>
+<p><strong>수입 단가.</strong> 2026년 1~8월 평균 통관 단가 2.4271달러/kg은 전년 같은 기간의 2.2391달러/kg보다 8.4% 높다. 연간 단가가 2025년의 2.3600달러/kg보다 높게 끝날 가능성은 남아 있다. 이는 국내 농가 판매가격이나 들기름 소매가격 전망이 아니다. <strong>반증 조건:</strong> 2026년 연간 수입액÷수입중량이 2.3600달러/kg 이하로 마감되는 것이다(E03).</p>
+<p>2025년 국내 생산 확정값과 국내 들기름 제조·판매량이 연결되지 않아 자급률이나 전체 산업 규모는 산출하지 않는다. 범위는 식용 들깨 종자와 하류 제품인 들기름이다. 깻잎 물량을 섞거나 들기름 중량을 임의로 종자 중량으로 환산하지 않는다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>지역 생산 사례와 세계 들깨 총량은 구별해야 한다</h2>
+<p class="lead">FAOSTAT QCL·SCL의 <code>Other oil seeds, n.e.c.</code>는 국가에 따라 여러 유지종자를 포괄한다. USDA PSD의 보유 유지종자 목록에도 들깨가 별도 상품으로 없다. 이 자료로 세계 들깨 생산 1위 국가, 소비량, 기말재고를 계산하지 않는다(E08).</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 수급 자료의 적용 범위</caption>
+<thead><tr><th>원천</th><th>확인한 항목</th><th>들깨에 적용할 수 있는 내용</th></tr></thead>
+<tbody>
+<tr><td>FAOSTAT QCL</td><td>Other oil seeds, n.e.c.</td><td>국가별 분류 범위를 확인해야 하며 세계 들깨 총량으로 합산할 수 없음</td></tr>
+<tr><td>FAOSTAT SCL·FBS</td><td>기타 유지종자·유지작물 합계</td><td>들깨 소비·재고를 분리할 수 없음</td></tr>
+<tr><td>USDA PSD</td><td>유지종자 8종</td><td>들깨 항목 없음</td></tr>
+<tr><td>UN Comtrade HS6 120799</td><td>기타 채유용 종자 무역</td><td>한국 HSK 들깨와 품목 범위가 다름</td></tr>
+<tr><td>중국 화난현 정부</td><td>화난현 지역 산업 설명</td><td>지역 사례로만 사용</td></tr>
+</tbody></table>
+</div>
+<p>화난현 정부는 들깨 재배면적을 약 10만 무, 연간 종자 생산량을 8,000~10,000톤, 가공능력을 5,000톤으로 소개하고 한국 등을 판매시장에 포함했다. ‘전국 동종 생산의 3분의 1’도 같은 지방정부의 설명이며 독립된 중국 전국 통계가 아니다. <a href="https://huanan.gov.cn/hnx/c101343/202510/c04_130704.shtml">화난현 정부, 「生态农业」, 2025-10-11</a>.</p>
+<p>헤이룽장성 정부에 게재된 현지 보도는 통베이 임업회사의 2025년 재배면적 2.7만 무와 <strong>예상</strong> 생산량 1,600톤 초과를 전했다. 화난현과 조사 대상·시점이 달라 두 수치를 더하지 않는다. 지린성 현지 보도의 품종 인정 사실도 전국 생산량이나 수출 규칙으로 해석하지 않는다(E09). <a href="https://www.hlj.gov.cn/hlj/c107859/202509/c00_31873311.shtml">헤이룽장성 정부 게재 보도, 2025-09-14</a>. <a href="https://www.agri.cn/zx/xxlb/jl/202509/t20250915_8767682.htm">중국 농업농촌정보망 게재 보도, 2025-09-15</a>.</p>
+<p>한국의 FAOSTAT QCL <code>Other oil seeds, n.e.c.</code> 생산량은 <strong>2020~2023년 KOSIS 들깨 생산량과 톤 단위까지 같다</strong>. 이 기간 FAOSTAT 행의 <code>Flag=A</code>다. 2024년 FAOSTAT 값은 46,872.83톤(<code>Flag=I</code>, FAO 대체추정)으로 KOSIS 들깨 43,889톤과 다르다. 따라서 한국의 2024년 차이를 ‘다른 품목이 포함됐기 때문’이라고 설명할 근거는 없다. 다만 다른 나라의 같은 FAOSTAT 항목까지 들깨 전용으로 간주할 수는 없다(E01·E08).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>생산은 확인되지만 가공·소비 연결은 부족하다</h2>
+<p class="lead">국내 생산의 기준은 KOSIS ‘특용작물생산량’의 전국·시도별 ‘들깨:면적’, ‘들깨:10a당 생산량’, ‘들깨:생산량’이다. 2025년 행의 값은 세 항목 모두 <code>-</code>이며 0을 뜻하지 않는다(E01).</p>
+<div class="tw">
+<table>
+<caption>표 2. 한국 들깨 생산</caption>
+<thead><tr><th class="num">연도</th><th class="num">재배면적(ha)</th><th class="num">단수(kg/10a)</th><th class="num">생산량(톤)</th></tr></thead>
+<tbody>
+<tr><td class="num">2020</td><td class="num">36,111.4967</td><td class="num">107</td><td class="num">38,784</td></tr>
+<tr><td class="num">2021</td><td class="num">37,406.4817</td><td class="num">114</td><td class="num">42,493</td></tr>
+<tr><td class="num">2022</td><td class="num">40,415.2079</td><td class="num">118</td><td class="num">47,579</td></tr>
+<tr><td class="num">2023</td><td class="num">41,070.3720</td><td class="num">116</td><td class="num">47,772</td></tr>
+<tr><td class="num">2024</td><td class="num">38,389.5567</td><td class="num">114</td><td class="num">43,889</td></tr>
+<tr><td class="num">2025</td><td class="num">미공표(<code>-</code>)</td><td class="num">미공표(<code>-</code>)</td><td class="num">미공표(<code>-</code>)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS <code>kosis_crops_special_perilla.csv</code>, <code>C1_NM=계</code>, <code>ITM_NM=들깨:면적/들깨:10a당 생산량/들깨:생산량</code>, <code>PRD_DE=2020~2025</code>(E01).</p>
+<p>2024년 생산량은 전년보다 3,883톤(8.1%), 면적은 2,680.8153ha(6.5%) 감소했다. 공표 단수도 116kg/10a에서 114kg/10a로 낮아졌다. 이 동반 하락만으로 날씨·품종·작목 전환 가운데 어느 원인이 얼마를 설명하는지는 판정할 수 없다.</p>
+<div class="tw wide">
+<table>
+<caption>표 3. 2024년 생산 상위 시도</caption>
+<thead><tr><th class="num">순위</th><th>시도</th><th class="num">생산량(톤)</th><th class="num">전국 비중</th><th class="num">면적(ha)</th><th class="num">단수(kg/10a)</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>충청남도</td><td class="num">8,989</td><td class="num">20.5%</td><td class="num">6,614.5411</td><td class="num">135.9</td></tr>
+<tr><td class="num">2</td><td>강원도</td><td class="num">6,569</td><td class="num">15.0%</td><td class="num">5,424.5015</td><td class="num">121.1</td></tr>
+<tr><td class="num">3</td><td>충청북도</td><td class="num">6,508</td><td class="num">14.8%</td><td class="num">4,896.5831</td><td class="num">132.9</td></tr>
+<tr><td class="num">4</td><td>경상북도</td><td class="num">5,348</td><td class="num">12.2%</td><td class="num">4,490.6872</td><td class="num">119.1</td></tr>
+<tr><td class="num">5</td><td>경기도</td><td class="num">5,316</td><td class="num">12.1%</td><td class="num">6,670.4918</td><td class="num">79.7</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 같은 KOSIS 파일의 <code>PRD_DE=2024</code>, 시도별 세 항목. 비중은 각 시도 생산량÷전국 43,889톤(E02). 경기도는 면적이 가장 넓지만 생산량은 5위다. 한 해의 단수 차이를 장기적인 생산성 격차로 단정하지 않는다.</p>
+<p>2025년 들깨 종자 수입 18,999.899톤은 확인되지만 같은 해 국내 생산값은 미공표다. 다른 연도의 생산량과 수입량을 더해 2025년 공급량이나 자급률을 만들지 않는다. 원물, 가루, 들기름의 재고 이동과 제조 투입도 연결돼 있지 않다. 국립식량과학원이 발표한 ‘지안’의 착유율 33.3%는 품종 시험값이므로 전국 원료에 적용하지 않는다(E12). <a href="https://www.nics.go.kr/bbs/view.do?bbsId=news&amp;bbsSn=944527&amp;m=100000020">국립식량과학원, ‘지안’ 보도자료, 2026-09-21</a>.</p>
+<p>들깨 전용 국내 소비량과 1인당 소비량은 생산·무역·가공 자료만으로 재현할 수 없다. 들기름 수입신고중량은 제품 수입이라는 별도 지표로 07절에 제시한다(E06).</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>들깨 HSK와 넓은 HS6를 분리한다</h2>
+<p class="lead">한국 HSK 1207991000은 ‘들깨’, 1207999000은 ‘기타’다. 국제 공통 HS6 120799는 두 범위를 함께 포함한다. 다음 종자 수입·수출값에는 HSK 1207991000만 사용했다(E03·E04).</p>
+<div class="tw">
+<table>
+<caption>표 4. 한국 들깨 종자 수입</caption>
+<thead><tr><th>기간</th><th class="num">수입중량(kg)</th><th class="num">수입액(달러)</th><th class="num">달러/kg</th></tr></thead>
+<tbody>
+<tr><td>2025년 1~8월</td><td class="num">9,261,286</td><td class="num">20,736,853</td><td class="num">2.24</td></tr>
+<tr><td>2025년 연간</td><td class="num">18,999,899</td><td class="num">44,839,968</td><td class="num">2.36</td></tr>
+<tr><td>2026년 1~8월</td><td class="num">10,961,217</td><td class="num">26,604,291</td><td class="num">2.43</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>customs_item_trade_monthly_perilla.csv</code>, <code>hsCode=1207991000</code>, <code>impWgt</code>·<code>impDlr</code>; 단가=금액÷중량(E03).</p>
+<p>2026년 1~6월 수입은 10,507,528kg으로 전년 같은 기간 7,370,727kg보다 42.6% 많았다. 반대로 7~8월은 453,689kg으로 전년 1,890,559kg보다 76.0% 적었다. 연간 수입이 2025년 18,999,899kg을 넘으려면 9~12월에 최소 8,038,683kg이 필요하다. 2025년 같은 네 달은 9,738,613kg이었다(E03).</p>
+<p>2025년 들깨 수출은 44,063kg·412,748달러였고, 중량 기준 순수입은 18,955,836kg이었다. 이것은 국내 최종 소비량이 아니다. 같은 해 HSK ‘기타’ 수입 8,413,728kg을 들깨에 더하지 않는다. 두 HSK의 합계 27,413,627kg은 Comtrade 한국 HS6 120799 합계 27,413,643.248kg과 16.248kg 차이가 난다(E03·E04).</p>
+<div class="tw">
+<table>
+<caption>표 5. 2026년 국가별 HS6와 들깨 HSK의 범위 차이</caption>
+<thead><tr><th>월</th><th class="num">HS6 전체(kg)</th><th class="num">중국산 HS6(kg)</th><th class="num">들깨 HSK 전체(kg)</th><th class="num">중국산 들깨의 보수적 하한</th></tr></thead>
+<tbody>
+<tr><td>3월</td><td class="num">3,571,618</td><td class="num">3,404,329</td><td class="num">2,692,228</td><td class="num">93.8%</td></tr>
+<tr><td>4월</td><td class="num">3,122,016</td><td class="num">2,921,367</td><td class="num">2,159,300</td><td class="num">88.5%</td></tr>
+<tr><td>5월</td><td class="num">2,628,646</td><td class="num">2,530,367</td><td class="num">1,855,538</td><td class="num">94.7%</td></tr>
+<tr><td>6월</td><td class="num">2,033,999</td><td class="num">1,859,979</td><td class="num">1,133,072</td><td class="num">84.6%</td></tr>
+<tr><td>7월</td><td class="num">1,443,578</td><td class="num">1,233,016</td><td class="num">301,638</td><td class="num">30.2%</td></tr>
+<tr><td>8월</td><td class="num">1,093,963</td><td class="num">985,562</td><td class="num">152,051</td><td class="num">28.7%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>processed_data/customs_kr/perilla_customs_kr_monthly.csv</code>, <code>hsCd=120799</code>, <code>period=202603~202608</code>, <code>statCdCntnKor1=중국</code>; 들깨·기타 중량은 관세청 HSK 월별 파일(E05). 하한은 <code>(중국산 HS6−같은 달 HSK 기타 전체)÷들깨 HSK 전체</code>다. 이는 해당 월의 보수적 계산이며 2026년 연간 점유율이 아니다.</p>
+<p>완료연도인 2025년에는 Comtrade 공개 preview의 중국산 HS6 24,349,829.313kg에서 한국 HSK ‘기타’ 전체 8,413,728kg을 빼도 15,936,101.313kg이 남는다. 들깨 HSK 수입 18,999,899kg의 <strong>83.9% 이상</strong>이므로 중국은 1위 공급국이다. 모든 ‘기타’를 중국산으로 돌린 극단적 가정이어서 정확한 중국 비중은 더 높을 수 있다. 나머지 국가의 들깨 전용 순위는 이 방식으로 정할 수 없다(E05). <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=120799&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2025년 HS6 120799 수입 공개 preview</a>.</p>
+<p>들기름은 종자와 별개 제품이다. Comtrade HS6 151590도 여러 식물성유지를 묶으므로 들기름 수입량으로 전용하지 않는다. 식약처의 품목명별 수입신고중량은 07절에 별도로 제시한다(E06).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>통관 단가와 국내 소매가격은 다른 지표다</h2>
+<p class="lead">기간별로 재계산 가능한 들깨 전용 가격은 HSK 1207991000 수입액을 중량으로 나눈 통관 단가다. 2025년 연간 2.3600달러/kg, 2025년 1~8월 2.2391달러/kg, 2026년 1~8월 2.4271달러/kg이다. 환율·등급·계약조건을 통제한 동일 상품 가격은 아니다(E03).</p>
+<div class="tw">
+<table>
+<caption>표 6. 가격 자료의 범위</caption>
+<thead><tr><th>자료</th><th>확인값</th><th>사용 범위</th></tr></thead>
+<tbody>
+<tr><td>한국 들깨 종자 통관</td><td>2025년 연간 2.36달러/kg</td><td>수입액÷수입중량</td></tr>
+<tr><td>한국 들깨 종자 통관</td><td>2026년 1~8월 2.43달러/kg</td><td>진행연도 동기간 비교</td></tr>
+<tr><td>아카이브 KAMIS CSV</td><td>품목명 ‘미나리’ 또는 빈값</td><td>들깨 가격으로 사용하지 않음</td></tr>
+<tr><td>FAOSTAT PP</td><td>한국 2025년 지수 135.72</td><td>들깨 단독 가격으로 확정하지 않음</td></tr>
+<tr><td>중국 지린성 현지 보도</td><td>당시 16위안/kg</td><td>지역·시점 사례</td></tr>
+<tr><td>KAMIS 들기름 화면</td><td>품목별 재현 시계열 미확인</td><td>소매가격 산출하지 않음</td></tr>
+</tbody></table>
+</div>
+<p>아카이브 <code>perilla_kamis_price.csv</code> 910행의 <code>itemname</code>은 ‘미나리’ 650행, 빈 배열 표기 <code>[]</code> 260행이다. 파일명과 달리 들깨로 식별되는 행이 없다. KAMIS 농산물·가공식품 화면에서도 들깨와 들기름의 재현 가능한 소매값은 확인되지 않았다. 따라서 이 파일의 숫자를 들깨 가격표에 옮기지 않는다(E10). <a href="https://www.kamis.or.kr/mobile/app/price/retail/period.do">KAMIS 농산물 소매 기간별 화면</a>. <a href="https://www.kamis.or.kr/customer/price/process/period.do">KAMIS 가공식품 기간별 화면</a>.</p>
+<p>FAOSTAT PP의 한국 ‘Other oil seeds, n.e.c.’ 생산자가격지수는 2023년 129.33, 2024년 133.58, 2025년 135.72다. 한국 생산량 계열은 2020~2023년 KOSIS 들깨와 일치하므로 이 지수도 들깨와 관련될 가능성이 있다. 그러나 PP 품목의 국내 대응과 가격 조사대상을 별도로 확인하지 않아 들깨 농가가격으로 확정하거나 원화/kg으로 환산하지 않는다(E08·E10).</p>
+<p>중국 지린성 현지 보도의 16위안/kg은 특정 지역·시점의 시장가격이다. 한국 통관 단가와 원료 상태, 거래조건, 품질이 같다는 근거가 없어 환산 비교하지 않는다(E09). <a href="https://www.agri.cn/zx/xxlb/jl/202509/t20250915_8767682.htm">중국 농업농촌정보망 게재 지린성 보도, 2025-09-15</a>.</p>
+<p>2026년 1~8월 통관 단가는 전년 같은 기간보다 8.4% 높다. 중국 산지 가격, 운임, 환율, 품질 구성 가운데 어느 요인이 얼마를 설명하는지는 분리할 수 없다. 이 상승을 국내 소매가격 상승으로 해석하지 않는다.</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>중국이 1위인 하한은 확인되며 나머지 순위는 미확보다</h2>
+<p class="lead">국내에서는 2024년 충청남도·강원도·충청북도·경상북도·경기도가 들깨 생산량 상위 시도다(E02). 해외 공급국은 종자 전용 HSK 국가별 자료가 없더라도 완료연도 HS6와 HSK의 범위를 함께 사용해 보수적 하한을 계산할 수 있다.</p>
+<p>2025년 Comtrade 공개 preview의 한국 HS6 120799 수입에서 중국산은 24,349,829.313kg이다. 같은 해 한국 HSK ‘기타’ 수입 8,413,728kg을 전부 중국산이라고 가정해 제외하면 들깨는 최소 15,936,101.313kg이다. 이는 한국 들깨 HSK 수입 18,999,899kg의 83.9% 이상이다. 중국이 1위라는 결론은 이 극단적 가정에서도 바뀌지 않는다. 정확한 중국 비중과 2위 이하 순위는 들깨 HSK 국가별 자료가 있어야 확정된다(E04·E05). <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=120799&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2025년 HS6 120799 수입 공개 preview</a>.</p>
+<p>중국 화난현 정부는 들깨 재배면적 약 10만 무, 연간 종자 생산 8,000~10,000톤, 가공능력 5,000톤과 한국 등의 판매시장을 소개했다. 이는 지역 산업 설명이며 한국향 종자 수출중량이나 중국 전국 생산량이 아니다(E09). <a href="https://huanan.gov.cn/hnx/c101343/202510/c04_130704.shtml">화난현 정부, 「生态农业」, 2025-10-11</a>.</p>
+<p>헤이룽장성 정부 게재 보도는 통베이 임업회사의 2025년 2.7만 무 재배와 <strong>예상</strong> 생산 1,600톤 초과를 전했다. 지린성 현지 보도는 들깨의 비주요 농작물 품종 인정 사실을 전했다. 서로 다른 지역의 사례를 더해 전국 생산량을 만들거나 무역 규칙으로 읽지 않는다(E09). <a href="https://www.hlj.gov.cn/hlj/c107859/202509/c00_31873311.shtml">헤이룽장성 정부 게재 보도, 2025-09-14</a>. <a href="https://www.agri.cn/zx/xxlb/jl/202509/t20250915_8767682.htm">중국 농업농촌정보망 게재 보도, 2025-09-15</a>.</p>
+<p>국내 생산지에서 착유 공장까지 원료가 이동한 양은 확인되지 않는다. 충남의 들깨 생산 8,989톤을 ‘충남산 들기름 생산량’으로 바꾸지 않는다. 국립식량과학원의 안동·진주·고창 ‘지안’ 시범 재배단지 발표도 계획과 품종 도입 사례이지 전국 산지 순위의 변경 근거는 아니다(E12). <a href="https://www.nics.go.kr/bbs/view.do?bbsId=news&amp;bbsSn=944527&amp;m=100000020">국립식량과학원 보도자료, 2026-09-21</a>.</p>
+<p>OEC 파일명의 <code>3151550</code> 계열은 HS 151550, 즉 <strong>참기름과 그 분획물</strong>에 대응하는 것으로 판단한다. 들깨 종자 공급국을 보여주는 자료로 사용하지 않는다. FAOSTAT 양자무역 <code>TM_perilla.csv</code> 역시 <code>Other oil seeds, n.e.c.</code> 범위다(E16). <a href="https://unstats.un.org/unsd/classifications/Econ/Detail/EN/2089/151550">UN 통계국, HS 151550 분류 설명</a>.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>수입 들기름 물량은 확인되지만 업체 점유율은 미확보다</h2>
+<p class="lead">들깨 산업은 재배, 종자 수입, 선별·볶음·분쇄·착유, 제품 유통으로 나뉜다. KOSIS 생산량과 관세청 종자 수입량은 각각 확인된다. 기업별 원료 투입, 완제품 판매량, 매출을 같은 범위로 연결한 통계는 확인되지 않는다(E01·E03·E13).</p>
+<div class="tw">
+<table>
+<caption>표 7. 들깨 가치사슬의 확인 지표</caption>
+<thead><tr><th>단계</th><th>확인값</th><th>범위</th></tr></thead>
+<tbody>
+<tr><td>원료 재배</td><td>2024년 국내 43,889톤</td><td>KOSIS 들깨 생산</td></tr>
+<tr><td>종자 수입</td><td>2025년 18,999,899kg</td><td>관세청 HSK 1207991000</td></tr>
+<tr><td>들기름 수입</td><td>2025년 1,661,745kg</td><td>식약처 품목명 ‘들기름’ 수입신고중량</td></tr>
+<tr><td>품종 시험</td><td>‘지안’ 142kg/10a·착유율 33.3%</td><td>시험 성능, 전국 제조 실적 아님</td></tr>
+<tr><td>인증 제품</td><td>행주농가·옥천식품 제품 등재</td><td>인증 사례, 시장 순위 아님</td></tr>
+</tbody></table>
+</div>
+<p>식약처 <code>mfds_import_permit_stats/2026-10-06__mfds_import_permit_stats.json.gz</code>의 <code>getImrtsItemStatsList05</code>에서 <code>IFD_YEAR=2025</code>, <code>ITEM_NAME=들기름</code>의 <code>NOTICE_WEIGHT_SUM</code>은 <strong>1,661,745kg(약 1,662톤)</strong>, 신고금액은 4,622,727달러다. 2024년 같은 품목의 신고중량은 1,344,042kg이다. 2025년 <code>추출들깨유</code> 21,000kg은 별도 품목이며 들기름 값에 섞지 않았다. HS6 151590 전체도 이 값으로 대체하지 않는다(E06).</p>
+<p>같은 통계에서 2025년 <code>들깨(씨앗,건조)</code> 수입신고중량은 19,307,805kg, 부적합 중량은 261,945kg이다. 두 값의 비율은 해당 품목 통계 내 신고중량 기준 1.36%다. <code>들기름</code>의 부적합 중량은 16,500kg이다. 식약처 신고 통계와 관세청 HSK 통계는 수집·품목 기준이 달라 차이를 곧바로 누락이나 오류로 해석하지 않는다(E06).</p>
+<p>국립식량과학원은 2026년 ‘지안’의 알파리놀렌산 약 66%, 시험 수량성 142kg/10a, 착유율 33.3%와 시범 재배·제품화 계획을 발표했다. 이는 품종 시험 및 계획 수치다. 전국 들기름 생산량을 역산하는 계수로 쓰지 않는다(E12). <a href="https://www.nics.go.kr/bbs/view.do?bbsId=news&amp;bbsSn=944527&amp;m=100000020">국립식량과학원 보도자료, 2026-09-21</a>.</p>
+<p>농관원 조회에는 고양시니어클럽 행주농가의 국산 들기름 전통식품품질인증과 ㈜옥천식품 제2공장의 들기름·국산 들깨가루 원산지인증이 등재돼 있다. 인증 사실을 두 업체의 매출 순위로 바꾸지 않는다(E13). <a href="https://naqs.go.kr/goodfood/portal/service/service2_dtl.jsp?s_cert_instt_app_no=002&amp;s_cert_no=1442&amp;s_rcv_no=515">농관원 전통식품품질인증 조회</a>. <a href="https://www.naqs.go.kr/goodfood/portal/service/service5.jsp?_pagecnt=24&amp;s_cert_no=&amp;s_entp_nm=&amp;s_item_nm=">농관원 원산지인증 조회</a>.</p>
+<p>식약처 건별 수입신고 자료에는 영업소명과 중량이 있다. 그러나 영업소와 기업집단의 대응, 재수출·가공 투입, 국내 제조·판매 실적을 연결하지 않았으므로 수입·가공·유통 기업의 종합 점유율은 제시하지 않는다(E06·E13).</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>협정별 관세와 제품별 규제를 구분한다</h2>
+<p class="lead">종자 관세는 통관 시점·원산지·협정 적용 여부에 따라 달라진다. 국내 재배 지원은 농지와 신청 요건에 따라 집행되며, 들기름에는 제품 원산지 표시와 식품 안전 규제가 적용된다(E11·E14).</p>
+<div class="tw">
+<table>
+<caption>표 8. 들깨·들기름 제도</caption>
+<thead><tr><th>층</th><th>확인한 원문 내용</th><th>구별할 조건</th></tr></thead>
+<tbody>
+<tr><td>한·싱가포르 FTA 양허표</td><td>들깨 기준세율 ‘40% 또는 410원/kg 중 높은 것, 54% 상한’; 유형 ‘10년’</td><td>싱가포르산 협정 양허표의 과거 기준란</td></tr>
+<tr><td>한·중 FTA 설명자료</td><td>당시 들깨 관세 40%를 5년에 걸쳐 10% 부분 감축 → 계산상 36%; 들기름 양허 제외</td><td>개별 중국산 신고의 협정 적용 여부</td></tr>
+<tr><td>2026년 할당관세 규정</td><td>2026-06-30 개정, 7월 1일 시행 별표에 1207호 없음</td><td>조정관세·개별 신고세율과 별개</td></tr>
+<tr><td>전략작물직불 안내</td><td>하계 깨(참깨·들깨) 100원/㎡</td><td>실제 지급은 농지·신청 요건에 따름</td></tr>
+<tr><td>원산지·식품 안전</td><td>들기름·추출들깨유 표시 대상, 특정 기간 통관검사 대상</td><td>제품별 표시·검사 결과와 별개</td></tr>
+</tbody></table>
+</div>
+<p>관세청의 <code>han_sg_05.pdf</code>는 <strong>한·싱가포르 FTA</strong> 한국 양허표다. HSK 1207991000 행의 ‘40% 또는 410원/kg 중 높은 것, 단 54% 초과 불가’는 그 표의 기준세율이고, 같은 행의 유형은 ‘10년’이다. 이를 모든 원산지의 2026년 일반 실행세율로 읽지 않는다. <a href="https://www.customs.go.kr/download/ftaportalkor/_down/trty/han_sg_05.pdf">관세청, 한·싱가포르 FTA 한국 양허표, HSK 1207991000 행</a>.</p>
+<p>관계부처의 2015년 한·중 FTA 상세설명자료는 당시 들깨 관세를 40%로 적고 기존 관세의 10%를 5년에 걸쳐 부분 감축한다고 설명한다. 40%×(1−10%)는 36%다. 자료는 들기름을 양허 제외로 분류한다. 이는 협정 구조이며 개별 신고에 실제 적용된 세액은 원산지 증명과 신고 조건을 확인해야 한다. <a href="https://www.fta.go.kr/webmodule/_PSD_FTA/cn/doc/1_description.pdf">관계부처 합동, 『한·중 FTA 상세설명자료』, 2015-06</a>.</p>
+<p>2026년 6월 30일 개정된 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」의 적용 별표에는 들깨가 속한 <strong>1207호가 없다</strong>. 따라서 이 별표를 근거로 들깨에 할당관세가 적용된다고 쓸 수 없다. 조정관세와 개별 수입신고의 최종 적용세율은 이 확인만으로 판정하지 않는다. <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=287543&amp;viewCls=lsRvsDocInfoR">국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」, 2026-06-30 개정</a>.</p>
+<p>농식품부의 전략작물직불제 안내는 하계 깨(참깨·들깨) 단가를 100원/㎡로 제시한다. 전체 들깨 재배면적에 곱한 값은 실제 지급액이 아니다. 대상 농지·신청·지급 요건을 따져야 한다(E11). <a href="https://mafra.go.kr/gong/5568/subview.do">농식품부 전략작물직불제 안내</a>.</p>
+<p>농관원은 들기름과 추출들깨유를 원산지 표시 대상 식용유지류에 명시한다. 식약처는 2026년 1월 19~30일 접수분 식물성유지류 가운데 두 품목에 산가·벤조피렌 검사를 지정했다. 이는 특정 기간의 지시이며 연중 동일한 검사율을 뜻하지 않는다(E14). <a href="https://www.naqs.go.kr/popup/originMarkItemPop.do">농관원 원산지 표시 대상 안내</a>. <a href="https://impfood.mfds.go.kr/CFCII02F02/getCntntsDetail?cntntsSn=632749">식약처 설 명절 통관단계 검사 강화, 2026-01-12</a>.</p>
+<p>식약처 목록에는 2026년 9월 22일 「벤조피렌 초과 검출된 ‘들기름’ 회수 조치」가 게시돼 있다. 단일 회수 공지를 전체 들기름의 부적합률로 일반화하지 않는다(E14). <a href="https://impfood.mfds.go.kr/CFBBB02F01">식약처 보도자료 목록</a>.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트</span>들깨 관련 자료의 주장 범위를 나눠 읽는다</h2>
+<p class="lead">보유 은행·기관 리포트 색인 <code>index.csv</code>의 <code>items</code> 열 812행에서 <code>perilla</code> 태그는 0행이다. 이는 색인 태그의 결과이며 모든 은행 보고서 본문을 검색했다는 뜻은 아니다(E15).</p>
+<div class="tw">
+<table>
+<caption>표 9. 기관 자료의 확인 내용</caption>
+<thead><tr><th>기관·문서</th><th>시점</th><th>확인한 내용</th><th>적용 범위</th></tr></thead>
+<tbody>
+<tr><td>KREI, 『농업전망 2026』 제9장</td><td>2026</td><td>건고추 면적 감소의 작목 전환 사례로 참깨·들깨 언급</td><td>들깨 수급 전망치 아님</td></tr>
+<tr><td>농식품부, 2025년도 사업설명자료</td><td>2025-01</td><td>중국산 들깨 작황·도입시기·거래가격 심층조사 업무 명시</td><td>조사 업무의 존재</td></tr>
+<tr><td>aT 작성 『2022 가공식품 세분시장 현황조사(참기름-들기름)』 게시글</td><td>2023-04-25</td><td>보고서 제목·게시 사실</td><td>본문 수치 인용 근거 아님</td></tr>
+<tr><td>국립식량과학원 ‘지안’ 자료</td><td>2026-09-21</td><td>품종 성능·시범 재배 계획</td><td>기술·사업 계획</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">KREI 『농업전망 2026』 제9장</a>의 들깨 언급은 건고추 재배면적 변화의 설명에 놓여 있다. 들깨 전용 생산·가격 전망으로 옮기지 않는다. 농식품부 자료는 중국산 들깨 조사 업무를 적었으며 조사 결과값을 제시한 것으로 읽지 않는다. <a href="https://www.mafra.go.kr/bbs/home/780/584569/download.do">농식품부 2025년도 사업설명자료</a>.</p>
+<p><a href="https://www.kfia.or.kr/kfia/sub.php?menukey=1172&amp;mod=view&amp;no=32705&amp;page=2&amp;scode=99999999">한국식품산업협회 게시글</a>은 aT 보고서의 등록 사실을 보여준다. 이 게시 사실만으로 보고서의 들기름 생산액·기업 순위·소비자 선호값을 인용하지 않는다. <a href="https://www.nics.go.kr/bbs/view.do?bbsId=news&amp;bbsSn=944527&amp;m=100000020">국립식량과학원 보도자료</a>의 ‘지안’ 수치는 품종 시험과 계획의 범위로 사용한다(E12·E15).</p>
+<p>국내 생산, 수입 종자, 제조 원료 사용, 들기름 판매량은 서로 다른 자료에 있다. 업체별 산업 규모나 시장점유율을 산출하려면 동일 연도·동일 제품 범위의 연결 자료가 필요하다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표</span>최근 수입 반전과 품목 경계를 함께 본다</h2>
+<p class="lead">국내 생산, 종자 수입, 통관 단가, 들기름 수입은 각기 다른 범위의 지표다. 한 값을 다른 단계의 판매량이나 가격으로 바꾸지 않고 추적한다.</p>
+<div class="tw">
+<table>
+<caption>표 10. 들깨 산업 관찰 지표</caption>
+<thead><tr><th>주기</th><th>지표</th><th>현재 기준</th><th>다음 확인</th></tr></thead>
+<tbody>
+<tr><td>연간</td><td>KOSIS 면적·단수·생산량</td><td>2024년 38,389.5567ha·114kg/10a·43,889톤</td><td>2025년 결측값의 공표 여부</td></tr>
+<tr><td>월간</td><td>관세청 HSK 1207991000 수입중량</td><td>2025년 18,999,899kg; 2026년 1~8월 10,961,217kg</td><td>9~12월 8,038,683kg 이상 유입 여부</td></tr>
+<tr><td>월간</td><td>같은 HSK의 달러/kg</td><td>2025년 2.3600; 2026년 1~8월 2.4271</td><td>연간 단가</td></tr>
+<tr><td>연간</td><td>공급국 하한</td><td>2025년 중국산 최소 83.9%, 1위</td><td>국가별 들깨 HSK 원장으로 정확한 비중</td></tr>
+<tr><td>연간</td><td>식약처 들기름 수입신고</td><td>2025년 1,661,745kg</td><td>제조·판매량과 구분</td></tr>
+<tr><td>수시</td><td>표시·검사·회수</td><td>제품별 공지</td><td>반복 여부와 제품 범위</td></tr>
+</tbody></table>
+</div>
+<p><strong>생산.</strong> 2024년 생산은 전년보다 8.1%, 면적은 6.5% 감소했다. 2025년 KOSIS <code>-</code>는 결측으로 둔다(E01·E02).</p>
+<p><strong>수입 규모.</strong> 2026년 1~8월 누계는 전년보다 18.4% 많지만 1~6월 +42.6%와 7~8월 −76.0%의 방향이 다르다. 연간 증가에는 남은 네 달 최소 8,038,683kg이 필요하다. 2025년 같은 네 달 실적 9,738,613kg과 비교해 추적한다(E03).</p>
+<p><strong>공급국.</strong> 2025년 중국산 최소 83.9%와 1위는 HS6 중국산에서 HSK ‘기타’를 모두 뺀 보수적 하한이다. 정확한 비중·나머지 공급국 순위를 구하려면 국가별 HSK 1207991000 원장이 필요하다(E05). <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=120799&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2025년 HS6 120799 수입 공개 preview</a>.</p>
+<p><strong>가공품.</strong> 식약처의 들기름 수입신고중량은 국내 제조·판매량과 다르다. 2025년 들깨(씨앗,건조) 부적합 신고중량 261,945kg과 들기름 16,500kg도 각 품목·신고 범위 안에서 해석한다(E06). 식약처의 특정 기간 통관검사 지시와 개별 회수 사건을 전체 제품의 연중 부적합률로 일반화하지 않는다(E14). <a href="https://impfood.mfds.go.kr/CFCII02F02/getCntntsDetail?cntntsSn=632749">식약처 통관검사 공지, 2026-01-12</a>.</p>
+<p><strong>정책.</strong> 한·싱가포르 FTA 기준세율, 한·중 FTA 부분 감축, 2026년 할당관세 별표, 개별 신고세율은 서로 다른 자료다. 원산지·협정 적용 여부 없이 모든 들깨 수입의 세후 원가를 하나로 계산하지 않는다(E11).</p>
+<h3>남은 물음</h3>
+<ul>
+<li>KOSIS의 2025년 들깨 생산·면적·단수가 공표되면 국내 생산 변화의 구성과 자급률 계산에 필요한 나머지 항목을 대조한다.</li>
+<li>관세청 2026년 9~12월 실적으로 연간 수입중량·단가 판단을 검증한다.</li>
+<li>국가별 HSK 1207991000 원장으로 중국의 정확한 비중과 2위 이하 공급국을 확인한다.</li>
+<li>식약처 들기름 수입신고, 국내 제조 원료 사용량, 제품 판매량을 같은 연도·제품 정의로 연결한다.</li>
+<li>개별 수입신고의 원산지 증명·협정 적용과 관련 고시를 확인한다.</li>
+</ul>
+<p>수입량 판단의 가장 가까운 검증값은 <strong>2026년 9~12월 HSK 들깨 수입중량</strong>이다. 들기름 시장 규모와 기업 순위는 제조·판매 통계가 연결될 때 별도로 판단한다.</p>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>중국산 종자와 국내 착유·유통의 연결</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국의 <strong>들깨 종자 HSK 1207991000 수입중량</strong>에서 중국산 비중은 최소 83.9%다. 따라서 같은 연도·분모에서 중국 외 국가 두 곳이 각각 10% 이상을 공급할 수는 없다. 러시아·미얀마 업체는 <strong>2025년 10월~2026년 9월 식약처 신고에서 한국 연결이 확인된 사례</strong>이지, 해당 국가의 수입중량 점유율을 뜻하지 않는다. 신고서의 ‘제조국’ 항목이 원물의 재배국이나 FTA·표시상 원산지와 같은지는 이 자료만으로 확정하지 않으며, ‘수출국’은 별도 항목이다. <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=120799&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade·A, 2025</a>, <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a>.</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 한국 수입신고에서 확인한 해외 제조사</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>중국</td><td>JILIN HONGDA TRADING CO., LTD</td><td>신고상 해외제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 54건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>중국</td><td>HUADIAN JIN MENG AGRICULTURAL DEVELOPMENT CO., LTD.</td><td>신고상 해외제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 43건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>중국</td><td>JILIN FENGYUDA TRADING CO., LTD</td><td>신고상 해외제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 43건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>중국</td><td>JILIN YIYANG INDUSTRY AND TRADE CO., LTD</td><td>신고상 해외제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 43건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>중국</td><td>JILIN SHENGDA AGRICULTURAL PRODUCTS PROCESSING CO., LTD</td><td>종자 선별·포장·수출</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 41건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a>, <a href="https://news.cnjiwang.com/jwyc/202312/3800184.html">현지 보도·C, 2023</a></td></tr>
+<tr><td>러시아</td><td>LIMITED LIABILITY COMPANY LIDER</td><td>신고상 해외제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 3건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>러시아</td><td>GREEN AGRO-FE LIMITED LIABILITY COMPANY</td><td>신고상 해외제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 2건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>러시아</td><td>AGRO RESURS LLC</td><td>신고상 해외제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 1건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>미얀마</td><td>AUNG KYUN THAR CO., LTD</td><td>신고상 해외제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 3건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>미얀마</td><td>NEW GOLDEN GATE (1991) CO., LTD.</td><td>신고상 해외제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 2건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>미얀마</td><td>ARGO MYANMAR INTERNATIONAL CO., LTD</td><td>신고상 해외제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 1건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회·A</a>, 2025년 10월~2026년 9월 제조사명 표기 변형을 합친 <strong>신고 건수 기준</strong>. 중량·금액·업체 점유율이 아니다. 중국 행은 신고 건수 상위 네 업체와 선별·수출 작업이 별도로 확인된 한 업체를 골랐다. 42건인 WENDENG JINGANG FOOD는 표에 넣지 않았다. 수출 작업의 별도 근거는 <a href="https://news.cnjiwang.com/jwyc/202312/3800184.html">중국 현지 보도·C, 2023</a>다.</p>
+<p>중국 화난현 정부가 밝힌 연간 들깨 종자 생산 8,000~10,000톤, 가공능력 5,000톤, 심층가공업체 7곳은 <strong>지역 합계</strong>다. 개별 회사의 규모나 한국향 수출량으로 배분할 수 없다. 들깨 전용 기업별 세계 수출량·매출 순위는 <strong>확인된 공개 자료 없음</strong>으로, 세계 최대 수출기업을 특정하지 않는다. 04절에는 들기름 전용 세번의 국가별 수입액 비중표가 없어 가공품의 10% 이상 공급국도 별도로 판정하지 않는다. <a href="https://huanan.gov.cn/hnx/c101343/202510/c04_130704.shtml">화난현 정부·A, 2025</a>.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>2025년 10월~2026년 9월 식약처 신고 중 <strong>품목명이 ‘들깨(씨앗,건조)’ 또는 ‘들기름’인 신고는 632건, 수입업소는 75곳</strong>이다. 품목명 ‘기타 농산가공품’으로 신고된 들깨가루·볶음들깨 등 454건은 표 11-2에 넣지 않았다. 이를 합치면 1,086건·92곳이며 상위 업소는 현대농업 160건, 바로무역 77건, 은하산업 60건, 카프코 59건, 이조식품 48건 순이다. 이 수치는 모두 <strong>신고 건수 기준</strong>이며 수입중량이나 국내 판매 점유율이 아니다. 2026년 신고는 잠정이다. <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a>.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 식약처 신고 건수 상위 수입업소: 품목명 ‘들깨(씨앗,건조)’·‘들기름’</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>현대농업</td><td class="num">79</td><td>중국 79</td><td>들깨 58건·들기름 21건</td></tr>
+<tr><td>바로무역</td><td class="num">61</td><td>중국 61</td><td>들깨 61건</td></tr>
+<tr><td>카프코</td><td class="num">45</td><td>중국 42·미얀마 3</td><td>들깨 45건</td></tr>
+<tr><td>이조식품</td><td class="num">40</td><td>중국 40</td><td>들기름 40건</td></tr>
+<tr><td>거성무역</td><td class="num">29</td><td>중국 29</td><td>들깨 29건</td></tr>
+<tr><td>농업회사법인 생수</td><td class="num">23</td><td>중국 23</td><td>들깨 23건</td></tr>
+<tr><td>굿월드농산</td><td class="num">20</td><td>중국 20</td><td>들깨 20건</td></tr>
+<tr><td>신대륙농산</td><td class="num">19</td><td>중국 19</td><td>들깨 19건</td></tr>
+<tr><td>신우무역컴퍼니</td><td class="num">17</td><td>중국 17</td><td>들기름 17건</td></tr>
+<tr><td>대아에프앤에스</td><td class="num">17</td><td>중국 15·러시아 2</td><td>들깨 14건·들기름 3건</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회·A</a>, 2025년 10월~2026년 9월. 업소명 표기 변형을 합쳤고, ‘주요 제조국’은 업소별 신고 건수 상위 두 나라를 적었다. ‘들깨’는 표에서 ‘들깨(씨앗,건조)’의 약칭이다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 국내 수입업소와 제품 기업의 확인 가능한 규모</caption>
+<thead><tr><th>기업</th><th>확인된 역할</th><th>규모 지표</th><th>들깨 산업에 적용할 범위</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>카프코</td><td>들깨 수입신고 45건; 곡물·유지작물 도매</td><td>2025년 매출 856.6억 원·영업이익 53.2억 원</td><td>전사 실적; 들깨 매출 미분리</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a>, <a href="https://www.atfis.or.kr/home/company.do?beginYear=0&amp;businessType=distribution&amp;endYear=0&amp;orderField=slsAmt&amp;orderGubun=DESC&amp;orderYear=0&amp;pageIndex=12&amp;pageUnit=15">aT FIS·A, 2025</a></td></tr>
+<tr><td>현대농업</td><td>들깨·들기름 수입신고 79건</td><td>확인된 공개 자료 없음</td><td>유사 상호의 재무자료를 귀속하지 않음</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>이조식품</td><td>들기름 수입신고 40건</td><td>확인된 공개 자료 없음</td><td>신고 건수는 판매량이 아님</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A, 2025~2026</a></td></tr>
+<tr><td>오뚜기</td><td>들기름 제품 판매; 유지류 사업</td><td>2025년 연결 유지류 매출 약 4,405억 원·전체 매출의 12.0%</td><td>참기름·기타 식용유지 포함; 들기름 매출 미분리</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/000725/20260318003615/11011.htm">사업보고서·A, 2026</a>, <a href="https://www.otoki.com/main/">제품 소개·B, 2026</a></td></tr>
+<tr><td>CJ제일제당</td><td>백설 들기름 제품 판매; 식품사업</td><td>2025년 연결 식품사업 매출 약 11.5조 원</td><td>식품사업 전체; 들기름 매출 미분리</td><td><a href="https://kind.krx.co.kr/external/2026/03/16/001719/20260316005125/11011.htm">사업보고서·A, 2026</a>, <a href="https://www.cj.co.kr/kr/brands/beksul?recipeSeq=47">브랜드 소개·B, 2026</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A</a>, <a href="https://www.atfis.or.kr/home/company.do?beginYear=0&amp;businessType=distribution&amp;endYear=0&amp;orderField=slsAmt&amp;orderGubun=DESC&amp;orderYear=0&amp;pageIndex=12&amp;pageUnit=15">aT FIS·A</a>, <a href="https://kind.krx.co.kr/">한국거래소 공시·A</a> 및 기업 제품 페이지·B. 공시의 넓은 사업부문 매출과 수입신고 건수 어느 쪽도 들깨 시장점유율이 아니다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 들깨 종자에서 소비까지의 단계</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>국내 농가·중국 산지 생산자</td><td>2024년 국내 생산 43,889톤</td><td>산지 매입 거래</td><td>작황·품질</td></tr>
+<tr><td>1차 가공</td><td>선별·건조·포장업체</td><td>국내 단계별 처리량 미확인</td><td>가공 계약</td><td>이물·수분</td></tr>
+<tr><td>수출·국제 무역</td><td>해외 제조사·무역상</td><td>2025년 종자 수입중량 중 중국산 최소 83.9%</td><td>수출 계약</td><td>공급국 집중·운송</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·식약처</td><td>2025년 종자 수입 18,999,899kg·44,839,968달러</td><td>계약·통관 신고</td><td>환율·관세·검사</td></tr>
+<tr><td>국내 가공</td><td>방앗간·착유·식품업체</td><td>원료 투입량·들기름 제조량 미확인</td><td>공장 출고 계약</td><td>산패·표시</td></tr>
+<tr><td>도매·유통</td><td>원료 도매상·식품 유통사</td><td>들깨 전용 매출 미확인</td><td>도매 공급 계약</td><td>재고·보관</td></tr>
+<tr><td>소매·외식</td><td>소매점·식품 브랜드·음식점</td><td>들깨 전용 매출 미확인</td><td>판매점·음식점</td><td>원산지 표시</td></tr>
+<tr><td>소비</td><td>가계·외식 소비자</td><td>들깨 전용 소비량 미확인</td><td>최종 구매</td><td>안전·신선도</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://stat.kosis.kr/nsieu/view/tree.do?hOrg=696&amp;id=696_69601_6%2AMT_OTITLE&amp;task=branchView">KOSIS 특용작물 생산량·A</a>, <a href="https://tradedata.go.kr/cts/index.do">관세청 수출입무역통계·A</a>, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=120799&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade·A</a>, <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A</a>. 가격 결정 지점은 거래 단계를 가리키며 단계별 실거래가격은 아니다.</p>
+<p><strong>부가가치가 어디서 생기는가.</strong> 2025년 수입 들깨 종자의 평균 통관 단가는 2.36달러/kg이었다. 선별·볶음·분쇄·착유·소포장·판매는 원료를 다른 제품과 서비스로 바꾸는 단계다. 같은 해 식약처의 <strong>수입 들기름</strong> 신고중량은 1,661,745kg, 신고금액은 4,622,727달러였으나 국내 착유 제품의 생산량은 아니다. 종자 수입액, 수입 들기름 금액, 기업의 넓은 유지류 매출은 제품 범위가 달라 서로 빼서 가공 마진을 계산할 수 없다. <a href="https://tradedata.go.kr/cts/index.do">관세청·A, 2025</a>, <a href="https://impfood.mfds.go.kr/CFDAA01F01">식약처·A, 2025</a>, <a href="https://kind.krx.co.kr/external/2026/03/18/000725/20260318003615/11011.htm">오뚜기 사업보고서·A, 2026</a>.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 들깨 산업의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>농림축산식품부·관세청·식약처·국립농산물품질관리원</td><td>재배 지원·통관·검사·원산지 표시</td><td>지원 요건과 수입·제품 기준 결정</td></tr>
+<tr><td>해외 정부</td><td>중국 화난현 정부</td><td>지역 생산·가공 기반 육성</td><td>산지 투자와 해외 판로에 영향</td></tr>
+<tr><td>생산자·단체</td><td>국내 들깨 재배농가·화난현 들깨산업협회</td><td>원료 생산·지역 품질기준</td><td>산지 가격과 품질 기준에 이해관계</td></tr>
+<tr><td>수출·가공기업</td><td>JILIN SHENGDA AGRICULTURAL PRODUCTS PROCESSING CO., LTD</td><td>종자 선별·포장·수출</td><td>품질·납기와 수출 계약에 영향</td></tr>
+<tr><td>수입·유통기업</td><td>현대농업·카프코·이조식품</td><td>종자·들기름 수입신고</td><td>조달가격·검사·재고 위험 부담</td></tr>
+<tr><td>소비자·시민사회</td><td>국내 소비자·한국소비자원</td><td>구매·소비자 안전 정보</td><td>안전·표시·가격 정보에 이해관계</td></tr>
+<tr><td>국제기구·인증</td><td>UN 통계국·FAO·국립농산물품질관리원</td><td>무역·생산 통계와 국내 인증</td><td>품목 경계·인증 신뢰도에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://mafra.go.kr/gong/5568/subview.do">농식품부·A</a>, <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처·A</a>, <a href="https://www.naqs.go.kr/popup/originMarkItemPop.do">농관원·A</a>, <a href="https://huanan.gov.cn/hnx/c101343/202510/c04_130704.shtml">화난현 정부·A, 2025</a>, <a href="https://news.cnjiwang.com/jwyc/202312/3800184.html">중국 현지 보도·C, 2023</a>, <a href="https://www.kca.go.kr/kca/sub.do?menukey=5355">한국소비자원·A</a>, <a href="http://www.naqs.go.kr/goodfood/portal/service/service5.jsp">농관원 인증조회·A</a>.</p>
+<p>국내 생산자의 산지 판매가격과 수입·가공업체의 원료 조달가격은 가격 변동 시 이해가 엇갈린다. 신속한 통관을 원하는 수입업체와 안전 확인을 맡은 검사기관·소비자는 검사 시간과 비용을 다르게 평가한다. 제조국·선적국·원산지가 서로 다른 제품에서는 표시의 정확성과 확인 비용을 둘러싼 이해가 엇갈린다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 자료 범위와 근거 표기</h2>
+<p class="lead">자료 기준일은 2026년 10월 7일이다. ‘최신 기간’은 파일에 적힌 가장 늦은 기간이며 그 기간의 수치가 공표됐다는 뜻은 아니다. 예를 들어 KOSIS의 2025년 들깨 생산값은 <code>-</code>다.</p>
+<div class="tw wide">
+<table>
+<caption>표 11. 들깨 관련 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th><th>사용 범위</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">86</td><td>2026-07</td><td>2026-10-07</td><td>미국 세번 정의 대조 전 수치 미사용</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">199</td><td>2026-07</td><td>2026-10-07</td><td>미국 세번 정의 대조 전 수치 미사용</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">171</td><td>2026</td><td>2026-10-06</td><td>들깨 전용 미확인</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">67</td><td>2026</td><td>2026-10-06</td><td>들깨 전용 미확인</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">44</td><td>2026.08</td><td>2026-10-07</td><td>HSK 들깨 종자 무역</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">752</td><td>202607</td><td>2026-10-06</td><td>상품 범위 대조 전 수치 미사용</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">1,624</td><td>202606</td><td>2026-10-06</td><td>상품 범위 대조 전 수치 미사용</td></tr>
+<tr><td>원자료 품목 분할</td><td>kosis_crops_special</td><td class="num">540</td><td>2025</td><td>2026-10-07</td><td>2024년까지 공표된 들깨값</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">1,570</td><td>2025</td><td>2026-10-01</td><td>HS6 합계·품목 경계</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">109</td><td>2026.08</td><td>2026-10-01</td><td>2026년 3~8월 HS6 국가별 범위</td></tr>
+<tr><td>월간 수집</td><td>kosis</td><td class="num">21</td><td>기간 열 없음</td><td>2026-07-06</td><td>결측 대조</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>의 <code>rawbulk.report_delta.coverage("perilla")</code>와 각 수집기 파일(E17). 2026년 관세청 국가별 월간 파일은 3~8월을 포함한다. 3~4월만 담은 아카이브 사본과 구별한다(E05).</p>
+<div class="tw">
+<table>
+<caption>표 12. 들깨 아카이브 자료의 품목 적합성</caption>
+<thead><tr><th>구분</th><th class="num">파일 수</th><th>처리</th></tr></thead>
+<tbody>
+<tr><td>들깨 분석에 반영</td><td class="num">9</td><td>종자 무역, FAOSTAT의 한국 계열 및 분류 경계 등</td></tr>
+<tr><td>다른 품목·중복 등으로 제외</td><td class="num">31</td><td>OEC HS 151550 참기름 파일 3개 포함</td></tr>
+<tr class="tot"><td>합계</td><td class="num">40</td><td>원장 상대경로 기준</td></tr>
+</tbody></table>
+</div>
+<p>OEC 파일명 <code>3151550</code> 계열의 세 CSV는 HS 151550 참기름과 그 분획물에 해당해 들깨 수치에서 제외한다(E16). <a href="https://unstats.un.org/unsd/classifications/Econ/Detail/EN/2089/151550">UN 통계국, HS 151550 분류 설명</a>. 원장 밖 캐시에는 원자료 CSV 사본 8개와 PDF 경로를 담은 포인터 3개가 있다. 포인터를 PDF 본문으로 인용하지 않는다.</p>
+<p>아카이브 <code>perilla_kamis_price.csv</code> 910행의 품목명은 ‘미나리’ 650행 또는 빈값 260행이다. 들깨 가격으로 채택하지 않는다(E10). 은행·기관 색인 812행의 <code>items</code> 열에 <code>perilla</code> 태그가 붙은 행은 없다. 이는 태그 검사 결과이며 보고서 본문 전수검색 결과가 아니다(E15).</p>
+<p>본문의 E 번호는 다음 원자료·필터를 가리킨다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>번호</th><th>원자료·핵심 필터</th></tr></thead>
+<tbody>
+<tr><td>E01</td><td>KOSIS 특용작물, 전국 <code>들깨:면적/단수/생산량</code>, 2020~2025</td></tr>
+<tr><td>E02</td><td>같은 KOSIS 파일, 2024년 시도별 들깨 세 항목</td></tr>
+<tr><td>E03</td><td>관세청 HSK 1207991000 월별 중량·금액</td></tr>
+<tr><td>E04</td><td>관세청 HSK 1207991000·1207999000과 Comtrade 한국 HS6 120799 합계</td></tr>
+<tr><td>E05</td><td>관세청 2026년 3~8월 국가별 HS6, 2025년 Comtrade 상대국 preview</td></tr>
+<tr><td>E06</td><td>식약처 수입식품 품목별 통계, 연도·품목명별 신고중량</td></tr>
+<tr><td>E08</td><td>FAOSTAT QCL 등의 <code>Item</code>·<code>Flag</code>, USDA PSD 상품 목록</td></tr>
+<tr><td>E09</td><td>중국 지방정부·현지 보도 원문</td></tr>
+<tr><td>E10</td><td>KAMIS 캐시의 <code>itemname</code>, FAOSTAT PP</td></tr>
+<tr><td>E11</td><td>한·싱가포르 양허표, 한·중 FTA 설명자료, 2026년 할당관세 규정, 직불 안내</td></tr>
+<tr><td>E12</td><td>국립식량과학원 ‘지안’ 보도자료</td></tr>
+<tr><td>E13</td><td>농관원 인증 조회와 기업별 순위의 자료 범위</td></tr>
+<tr><td>E14</td><td>농관원 표시 대상·식약처 검사·회수 공지</td></tr>
+<tr><td>E15</td><td>은행 색인·KREI·농식품부·aT 관련 게시 자료</td></tr>
+<tr><td>E16</td><td>미국·EU·브라질 세번과 OEC HS 151550의 품목 경계</td></tr>
+<tr><td>E17</td><td>수집기별 행수·최신 기간</td></tr>
+<tr><td>E18</td><td>아카이브 원장과 캐시 경로</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 들깨 산업 해부: 국산 재배와 수입 원료의 경계를 읽다</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · KOSIS·관세청·UN Comtrade·FAOSTAT·식약처 원자료와 기관 원문</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>원자료 수치는 KOSIS·관세청·UN Comtrade·FAOSTAT·식약처 원자료에서 파일·필터 단위로 재계산했다.</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>국내 들깨 재배, HSK 1207991000 종자 무역, 들기름 수입과 확인 가능한 제품 제도. 깻잎과 HS6 120799 전체를 들깨 물량에 합치지 않음</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>2025년 국내 생산값은 결측이다. 공급국의 정확한 들깨 전용 점유율, 세계 들깨 수급·재고, 국내 들기름 제조·판매량과 업체별 점유율은 확인되지 않았다</span></div>
+</footer>
+</div>
+

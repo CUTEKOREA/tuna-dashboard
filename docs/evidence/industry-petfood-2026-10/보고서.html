@@ -1,0 +1,716 @@
+<title>한국 펫푸드 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 펫푸드<br>
+        생산 · 소비 · 무역 · 가격 · 공급국 · 기업 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">생산·수입·수출이 함께 있는 시장 · 리포트 2026</p>
+      <h1><span class="scr">Petfood</span> <span class="lt">한국 펫푸드 산업 해부</span></h1>
+      <p class="cover-sub">국내 공장은 반려동물용 사료와 기호식품을 만들고, 한국은 소매용 개·고양이 사료를 수입하는 동시에 수출한다. 생산액, 통관액, 민간 시장규모 추정치는 서로 다른 범위의 값이다. 이 보고서는 그 경계를 지키며 공급국과 가격, 유통, 제도를 살핀다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">국내 사료 생산액</div><div class="v">1.178조</div>
+        <div class="n">원 · 2024 · 종사자 10명 이상 제조업체</div></div>
+      <div class="cf"><div class="k">국내 기호식품 생산액</div><div class="v">1,452억</div>
+        <div class="n">원 · 2024 · 같은 조사, 별도 품목</div></div>
+      <div class="cf"><div class="k">개·고양이 사료 수입</div><div class="v">3.425억</div>
+        <div class="n">달러 · 2025 · HS 2309.10</div></div>
+      <div class="cf"><div class="k">개·고양이 사료 수입량</div><div class="v">6.902만</div>
+        <div class="n">톤 · 2025 · 관세청 연간 합계</div></div>
+      <div class="cf"><div class="k">개·고양이 사료 수출</div><div class="v">1.605억</div>
+        <div class="n">달러 · 2025 · HS 2309.10</div></div>
+      <div class="cf"><div class="k">개·고양이 사료 무역수지</div><div class="v dn">−1.819억</div>
+        <div class="n">달러 · 2025 · 수출액−수입액</div></div>
+      <div class="cf"><div class="k">중국산 수입액 비중</div><div class="v">31.2%</div>
+        <div class="n">2025 · HS 2309.10 · 수입액 기준</div></div>
+      <div class="cf"><div class="k">국내 반려동물 사료 시장(민간 추정)</div><div class="v">17.83억</div>
+        <div class="n">달러 · 2025 민간 추정 · 정부 공식 통계 아님</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">생산·수입·수출이 함께 있지만, 시장 점유율은 아직 재지 못한다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">생산 통계는 지역마다 다르고, 무역은 여러 공업국이 나눈다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">공장 생산액은 확인되지만 소매시장과 같은 값은 아니다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">2025년 수입 3.42억 달러, 수출 1.61억 달러</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">통관 단가와 생산자 지수는 보이지만 소매가격은 미확보다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">한국 수입국과 세계 수출 강국은 일치하지 않는다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">국내 제조와 수입 브랜드가 같은 선반에서 경쟁한다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">성분등록과 검역은 확인됐고, 실효 관세율은 남았다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">전망과 측정치의 범위가 다르다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 관찰 지표·남은 물음</span><span class="t">물량, 단가, 원료와 제도</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">제조국과 브랜드 소유국이 갈리는 펫푸드 공급망</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>생산·수입·수출이 함께 있지만, 시장 점유율은 아직 재지 못한다</h2>
+<p class="lead">한국 펫푸드 산업을 한 숫자로 설명하기는 어렵다. 통계청 제조업 조사는 국내 공장의 생산액을, 관세청은 국경을 넘은 완제품의 신고액을, 민간 시장조사는 국내 반려동물 사료 시장의 규모를 추정한다. 집계 범위와 가격 단계가 같다고 확인되지 않아 생산액과 수입액을 더해 시장규모로 부를 수 없다. 이 보고서는 소매용 개·고양이 사료의 무역에는 HS 2309.10을 쓰고, HS 2309.90의 다른 조제사료는 구별한다.</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>국내 생산.</strong> 통계청 광업·제조업 조사의 2024년 전국·종사자 10명 이상 사업체 기준 «반려동물용 사료» 생산액은 <strong>1.178조 원(1,177,937백만 원)</strong>, «반려동물용 기호식품» 생산액은 <strong>1,452억 원(145,206백만 원)</strong>이다. 별도 품목의 합은 1,323,143백만 원이지만, 소규모 사업체와 수입품의 국내 판매는 빠져 있어 소매시장 규모가 아니다(국가통계포털 원자료, 03절·E01).</li>
+<li><strong>수입과 수출.</strong> 관세청 2025년 HS 2309.10 연간 합계에서 개·고양이 사료 수입액은 <strong>3.425억 달러(342,485,169달러)</strong>, 수입량은 <strong>6.902만 톤(69,020,160kg = 69,020.16톤)</strong>이다. 수출액은 <strong>1.605억 달러(160,537,798달러)</strong>, 수출량은 66,080,926kg이며, 무역수지는 <strong>−1.819억 달러(−181,947,371달러)</strong>다. 수출 물량이 수입 물량에 가깝다는 사실만으로 국내 소비량이나 국내산 점유율을 역산할 수는 없다(관세청, 04절·E02).</li>
+<li><strong>수입국 구성.</strong> 2025년 수입액 기준 중국 31.2%, 미국 16.2%, 태국 12.2%다. 세 나라 합은 59.7%다. 이는 관세청 국가별 통관 구성이지 브랜드 국적이나 원료 원산지의 구성이 아니다(관세청 국가별 원응답, 04절·E04).</li>
+<li><strong>진행연도.</strong> 2026년 1~8월 기준(잠정) 수입액은 225,499,748달러로 전년 같은 기간보다 0.2% 적고, 중량은 46,735,021kg으로 3.2% 많다. 2026년은 미완 연도다. 따라서 국가별 연간 점유율·순위는 2025년으로 판단한다(관세청 월별 원자료, 04절·E03).</li>
+<li><strong>수입 단가.</strong> 2025년 HS 2309.10 수입 신고액을 신고중량으로 나눈 값은 kg당 4.96달러다. 이는 제품 구성과 운임 등이 섞인 통관 단가이며 소비자가 지불하는 매장 가격은 아니다(관세청, 05절·E02).</li>
+<li><strong>세계 교역.</strong> UN Comtrade의 2025년 HS 2309.10 수출 신고국 가운데 금액 상위는 독일·태국·폴란드·미국·프랑스다. 이 파일의 2025년 합계 행 수출 신고국은 92개로 2024년 110개보다 적다. 따라서 이 순서는 <strong>현재 파일에 신고된 국가 사이의 순서</strong>이며 세계 점유율로 바꾸지 않는다(UN Comtrade, 02절·E05).</li>
+<li><strong>시장 규모의 한계.</strong> 농림축산식품부가 소개한 2025년 국내 반려동물 사료 시장 규모는 <strong>17.83억 달러(1,783백만 달러)</strong>로, 민간 추정치다. 농식품부는 이를 정부 공식 시장통계로 취급할 수 없고, 수입액과 나누어 얻은 수입산 점유율의 정확도에도 한계가 있다고 명시했다(<a href="https://www.mafra.go.kr/bbs/home/793/579355/artclView.do">농림축산식품부, 「국내 반려동물 산업 발전을 위한 통계 기반을 구축해 나가겠습니다」, 2026-10-04</a>, A; E09).</li>
+<li><strong>제도.</strong> 수입·제조 사료에는 성분등록·표시와 검역 절차가 적용된다. 동물성 원료가 든 수입 완제품의 위생조건 개정 고시는 2025년 12월 12일자 제2025-124호다. 2026년 현재 HS 2309.10 세부 품목의 국가별 실효 관세율은 확보한 원문만으로 확정하지 못했다(<a href="https://www.mafra.go.kr/bbs/home/879/576172/artclView.do">농식품부 고시</a>, A; 08절).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<p>이 보고서는 한국의 완제품 공급망에서 중국·미국·태국의 역할이 2026년에도 클 것으로 본다. 이는 2025년 완료연도까지의 자료에 근거한 전망이다. 세 나라는 2023~2025년 관세청 국가별 수입액 상위권에 반복해서 나타났고, 2025년 합계가 수입액의 59.7%다. <strong>반증 조건:</strong> 2026년 연간 HS 2309.10 국가별 신고가 완결됐을 때 세 나라 합산 비중이 50% 아래로 내려가는 것이다(E04). 현재 자료로 브랜드의 실제 제조공장이나 원료의 조달국까지 설명하지는 못한다.</p>
+<p>또 이 보고서는 2026년 한국의 kg당 수입 단가가 2025년 연간 4.96달러보다 낮게 마감할 가능성을 관찰 대상으로 둔다. 2026년 1~8월에는 전년 동기 대비 수입액이 거의 같고 중량이 늘어 단가가 4.83달러로 내려갔다. <strong>반증 조건:</strong> 2026년 연간 관세청 신고액÷신고중량이 4.96달러 이상으로 확정되는 것이다(E03). 이는 소비자가격 하락 전망이 아니다.</p>
+<p>생산 확대와 수입산 점유율 하락을 같은 명제로 놓지 않는다. 국내 생산액은 공장 출고 단계의 금액이고 수입액은 통관 단계의 금액이며, 재수출·재고·온라인 판매·제품 구성의 차이가 남는다. 이 차이를 없애는 통계가 확보되기 전까지 시장 점유율을 확정값으로 쓰지 않는다. 본문의 표와 수치 계산은 끝의 <code>30_근거_수치.md</code>에 필터와 식을 적었다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>생산 통계는 지역마다 다르고, 무역은 여러 공업국이 나눈다</h2>
+<p class="lead">펫푸드는 농산물 한 품목이 아니라 곡물·육류·수산물·유지·첨가물을 배합하고 건조하거나 가열·포장한 제조품이다. 이 보고서의 세계 비교 품목은 소매용 개·고양이 사료인 HS 2309.10이다. HS 2309.90은 축산·양식용 등 다른 조제사료가 함께 들어 있어 두 세번을 더해 세계 펫푸드 생산이나 교역으로 부르지 않는다.</p>
+<p>현재 품목 레지스트리의 <code>faostat_items</code>는 빈 목록이다. 보유한 USDA PSD 전체 CSV의 63개 상품명에도 펫푸드 완제품은 없다. 두 경로를 확인한 결과, 이 자료 묶음으로는 <strong>동일한 정의의 세계 펫푸드 생산·소비·기말재고 합계가 미확보</strong>다. 이것이 세계 어디에도 통계가 없다는 뜻은 아니다. FAOSTAT이나 PSD의 원료 곡물·어분 수급을 펫푸드 완제품 수급으로 옮겨 적지도 않는다(E12).</p>
+<h3>완제품 생산은 지역 자료로만 보인다</h3>
+<p>유럽 펫푸드산업연합(FEDIAF)은 2025년 연례보고서의 «European Overview 2023»에서 <strong>2023년 집계</strong>로 유럽 펫푸드 생산량 약 910만 톤과 산업가치 약 293억 유로를 제시한다. 목차에는 «European Overview 2024»라고 적혔지만 방법론 설명은 2025년판에 2023년 자료를 싣는다고 명시한다. 유럽 41개국을 포괄하는 업계협회 자료이며, 한국의 제조업 조사나 세계 전체 생산량과 같은 모집단은 아니다(<a href="https://www.europeanpetfood.org/wp-content/uploads/2025/12/FEDIAF-AR-2025_Online.pdf">FEDIAF, <em>Annual Report 2025</em>, 2025-06-12, 35~36쪽</a>, B; E08). 중국에 관해서는 USDA FAS의 2025년 시장 보고서가 중국 자료를 인용해 2024년 생산량 160만 톤을 제시한다. 이 또한 단일국가의 산업 추정이며 유럽 값과 합산해 세계 총량을 만들 수 없다(USDA FAS, <em>Pet Food Market Update 2025</em>, 2025-05-16, 기초자료 2차 인용 B; E08).</p>
+<p>미국 IFEEDER의 2025년 보고서는 미국 개·고양이 사료 제품 판매량을 약 980만 톤으로 추정하고, 원료 투입량과 비용을 모형으로 계산한다. 제품 <strong>판매량</strong>과 유럽의 <strong>생산량</strong>은 지표가 다르다. 이 연구는 미국 원료 조달의 규모를 설명하는 참고자료이지 세계 생산 총량의 빈칸을 채우는 통계가 아니다(IFEEDER, <em>Pet Food Production and Ingredient Analysis</em>, 2025-03, B; E08).</p>
+<h3>교역은 공업국 생산과 국경 간 재분배가 겹친다</h3>
+<div class="tw">
+<table>
+<caption>표 1. HS 2309.10 수출 신고액 상위국(2025년, 현재 파일의 합계 행)</caption>
+<thead><tr><th class="num">신고액 순서</th><th>신고국</th><th class="num">수출액(백만 달러)</th><th class="num">보고 순중량(천 톤)</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>독일</td><td class="num">3,439.4</td><td class="num">1,114.0</td></tr>
+<tr><td class="num">2</td><td>태국</td><td class="num">2,903.1</td><td class="num">842.1</td></tr>
+<tr><td class="num">3</td><td>폴란드</td><td class="num">2,676.4</td><td class="num">933.6</td></tr>
+<tr><td class="num">4</td><td>미국</td><td class="num">2,455.2</td><td class="num">936.7</td></tr>
+<tr><td class="num">5</td><td>프랑스</td><td class="num">2,440.9</td><td class="num">미보고</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: UN Comtrade <code>petfood_comtrade_annual.csv</code>, <code>refYear=2025</code>, <code>cmdCode=230910</code>, <code>flowCode=X</code>, <code>partnerCode=0</code>, <code>partner2Code=0</code>, <code>customsCode=C00</code>, <code>motCode=0</code>, <code>primaryValue</code> 내림차순(E05). 2025년 해당 조건의 신고국은 92개다. 프랑스 합계 행의 <code>netWgt</code>가 비어 있으므로 중량 순위를 매기지 않았다.</p>
+<p>이 표는 거래의 생산지를 모두 보여주지 않는다. 독일·네덜란드처럼 수입과 수출을 함께 크게 신고하는 곳은 국내 소비용 수입, 역내 공급, 재수출이 함께 나타날 수 있다. 태국은 제조·수출 거점이다. 한국농촌경제연구원은 독일·태국·미국을 펫푸드 교역의 주요 주체로 들고 태국의 다국적 브랜드 위탁생산을 분석했다(<a href="https://repository.krei.re.kr/bitstream/2018.oak/32513/1/R2025-12.pdf">KREI, 「반려동물 연관산업 수출 활성화 방안」, 2025-12</a>, B). 제조지와 브랜드 소유국을 통관자료만으로 일치시키지 않는 이유다.</p>
+<h3>원료 수급은 완제품 통계와 따로 읽는다</h3>
+<p>어분·어유는 일부 제형의 원료가 될 수 있다. FAO GLOBEFISH는 페루의 2025년 두 번째와 2026년 첫 번째 어획 시즌 할당량 합계를 350만 톤, 전년 대비 약 30% 적은 수준으로 설명했다. 이는 어분·어유 상류의 공급 신호이고 펫푸드 전용 원료량은 아니다(<a href="https://www.fao.org/in-action/globefish/news-events/news/news-detail/china-demand-and-lower-quotas-lift-fishmeal-and-fish-oil-prices/en">FAO GLOBEFISH, 2026-07-23</a>, A). 국제곡물이사회가 전망한 2026/27년 곡물 생산 24억 2,000만 톤, 소비 24억 4,400만 톤, 기말재고 6억 800만 톤도 곡물 전체의 전망이지 펫푸드 재고가 아니다(<a href="https://www.igc.int/en/gmr_summary.aspx">IGC, <em>Grain Market Report 580 Summary</em>, 2026-09-17</a>, A).</p>
+<p>건식·습식·간식은 중량·가격이 다르고 국가마다 이를 묶는 방식도 달라, 현재 자료로는 제품 종류별 세계 제조량과 재고를 같은 정의로 비교할 수 없다. 무역액만으로 세계 소비량을 구하거나 FEDIAF의 유럽 생산량을 세계 비율로 바꾸지 않는다.</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>공장 생산액은 확인되지만 소매시장과 같은 값은 아니다</h2>
+<p class="lead">이 절은 한국의 생산 쪽 원자료로 통계청 광업·제조업 조사의 품목별 표를 쓴다. 2024년 전국의 종사자 10명 이상 사업체를 대상으로 «반려동물용 사료»와 «반려동물용 기호식품»을 별도로 집계한다. 반려동물용 사료는 주식 사료 쪽에 가깝고, 기호식품은 간식 성격의 제품이다. 제품 분류가 HS 2309.10과 일대일로 맞지 않으므로 통관 물량과 빼거나 나누지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 2. 국내 반려동물용 사료·기호식품 제조실적(2024년)</caption>
+<thead><tr><th>품목</th><th class="num">사업체수(개)</th><th class="num">생산액(백만원)</th><th class="num">출하액(백만원)</th><th class="num">완제품 연말재고액(백만원)</th></tr></thead>
+<tbody>
+<tr><td>반려동물용 사료</td><td class="num">52</td><td class="num">1,177,937</td><td class="num">1,175,912</td><td class="num">41,320</td></tr>
+<tr><td>반려동물용 기호식품</td><td class="num">23</td><td class="num">145,206</td><td class="num">141,310</td><td class="num">10,770</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 국가통계포털 공통 원자료 <code>kosis_manufacturing_items/2026-10-06__kosis_manufacturing_items.json</code>, 표 <code>DT_1FP1124A</code>, 전국·2024년·각 품목(E01). 사업체가 두 품목을 함께 생산할 수 있어 사업체수 52와 23을 더해 고유 업체수로 보지 않는다.</p>
+<p>두 생산액의 단순합은 1,323,143백만 원이다. 이 합은 <strong>해당 조사에 잡힌 두 품목의 제조 생산액</strong>이라는 뜻으로만 쓴다. 10명 미만 업체가 빠지고 수입 브랜드의 국내 판매액도 포함하지 않으며, 제조와 도매·소매 단계 사이의 마진도 없다. 출하액 1,317,222백만 원 역시 소비자의 최종지출액이 아니다(E01).</p>
+<p>KREI의 2023년 연구는 농식품부의 배합사료 생산실적을 인용해 개·고양이용 펫푸드 생산량이 2016년 약 2만 톤에서 2022년 약 19만 톤으로 늘었다고 설명한다. 2022년에는 그중 반려묘용이 45.2%였다고 적었다. 이 수치는 <strong>배합사료 생산량</strong>이며 위 표의 2024년 <strong>제조업 생산액</strong>과 산출 방식과 연도가 다르다. KREI는 통계 기반의 분류 개선이 필요하다고 평가했다(<a href="https://repository.krei.re.kr/bitstream/2018.oak/30744/1/R978.pdf">KREI R978, 2023-10, 제3장</a>, B; E08).</p>
+<h3>소비는 여러 추정이 있지만 같은 분모가 없다</h3>
+<p>USDA FAS의 한국 보고서는 민간 시장조사를 재인용해 2022년 개·고양이 사료 시장을 1조 6,900억 원으로 소개한다. 원문 각주는 유로모니터 수치를 인용한 언론보도임을 밝힌다. 2025년 값은 농식품부가 소개한 민간 추정 1,783백만 달러다. 서로 연도·통화·조사기관과 시장 정의가 다르므로 두 점을 연결해 성장률을 계산하지 않는다(USDA FAS, <em>South Korea Pet Food Report</em>, 2024-08-20, 2차 인용 B; <a href="https://mafra.go.kr/bbs/home/793/579355/artclView.do">농식품부 설명자료</a>, A가 민간 추정치의 존재와 한계를 설명; E09).</p>
+<p>관세청 2025년 소매용 개·고양이 사료 순수입중량은 수입 69,020,160kg에서 수출 66,080,926kg을 뺀 2,939,234kg이다. 이 수치를 국내 소비량이라고 부르지 않는다. 수출의 원산지와 재수출 여부, 국내 생산의 물량, 기말재고 증감, 비소매 포장 제품의 흐름을 함께 알아야 소비에 가까운 공급량을 계산할 수 있다. 생산액과 무역액을 같은 통화로 환산해 더하는 방식도 국내 소비를 복원하지 못한다(E02).</p>
+<p>보유한 <code>kosis_pet_households</code> 파일은 반려동물 종류별 양육 수에 관한 조사 응답을 담는다. 표본의 사례수를 전국 반려동물 가구수로 옮기지 않았다. 소비자의 구매 빈도와 제형별 지출은 KREI의 설문으로 방향을 볼 수 있지만, 그 조사 표본은 국내 펫푸드 시장 전체의 매출 전수조사가 아니다. 산업의 수요를 설명할 때 <strong>사육 가구</strong>, <strong>사료 구매 가구</strong>, <strong>소비액</strong>, <strong>제조량</strong>을 각각 다른 지표로 유지한다.</p>
+<div class="call warn">
+  <div class="ct">범위</div>
+  <p>HS 2309.10은 소매용으로 한정한 개·고양이 사료다. 국내 통계청의 «반려동물용 사료»에는 개·고양이 외 반려동물용 제품이 들어갈 수 있고, «반려동물용 기호식품»은 다른 HS로 통관될 수도 있다. HS 2309.90의 가축·양식용 조제사료를 펫푸드 실적으로 합산하지 않는다. 이 경계가 명확해질 때까지 정부 생산액과 통관액으로 국내산·수입산 점유율을 산출하지 않는다.</p>
+</div>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>2025년 수입 3.42억 달러, 수출 1.61억 달러</h2>
+<p class="lead">관세청의 연간 합계에서 한국은 소매용 개·고양이 사료(HS 2309.10)를 수입하면서 수출한다. 2025년 수입액은 2024년보다 늘었지만, 증가 폭은 크지 않다. 수출액은 전년과 비슷해 무역적자액이 2024년 1억 7,593만 달러에서 2025년 1억 8,195만 달러로 커졌다. 수출입 양쪽 모두 같은 세번의 신고액이며, 소비자가격·공장 생산액과 비교할 수 없다(E02).</p>
+<div class="tw wide">
+<table>
+<caption>표 3. 한국 HS 2309.10 무역(완료연도와 같은 기간 비교)</caption>
+<thead><tr><th>기간</th><th class="num">수입액(백만 달러)</th><th class="num">수입량(천 톤)</th><th class="num">수출액(백만 달러)</th><th class="num">수출량(천 톤)</th><th class="num">수지(백만 달러)</th></tr></thead>
+<tbody>
+<tr><td>2023</td><td class="num">307.50</td><td class="num">59.39</td><td class="num">149.75</td><td class="num">57.92</td><td class="num">−157.75</td></tr>
+<tr><td>2024</td><td class="num">336.79</td><td class="num">67.14</td><td class="num">160.86</td><td class="num">63.96</td><td class="num">−175.93</td></tr>
+<tr><td>2025</td><td class="num">342.49</td><td class="num">69.02</td><td class="num">160.54</td><td class="num">66.08</td><td class="num">−181.95</td></tr>
+<tr><td>2025.1~8</td><td class="num">225.95</td><td class="num">45.29</td><td class="num">107.91</td><td class="num">41.03</td><td class="num">−118.04</td></tr>
+<tr><td>2026.1~8(잠정)</td><td class="num">225.50</td><td class="num">46.74</td><td class="num">105.68</td><td class="num">40.75</td><td class="num">−119.82</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 2023~2025 연간은 관세청 국가별 원응답 <code>kcs_HS230910_&lt;연도&gt;.xml</code>의 <code>year=총계</code>(E02). 같은 기간 비교는 <code>customs_item_trade_monthly_petfood.csv</code>의 HS 2309101000·2309102000 월별 행 합(E03). 수지는 수출액−수입액이다. 2026년은 미완 연도다.</p>
+<p>2026년 1~8월은 전년 같은 기간보다 수입액 0.2% 감소, 중량 3.2% 증가다. 수입액÷중량은 2025년 1~8월 kg당 4.99달러에서 2026년 1~8월 4.83달러로 낮아졌다. 같은 기간의 평균 통관단가 변화를 보여줄 뿐, 동일 제품 가격이 하락했다고 입증하지는 않는다. 건식·습식·간식의 비율이나 공급국이 바뀌어도 평균은 움직인다(E03).</p>
+<h3>수입 원산지는 중국·미국·태국 순이다</h3>
+<div class="tw">
+<table>
+<caption>표 4. 한국 HS 2309.10 수입 원산지(2025년 완료연도)</caption>
+<thead><tr><th>원산지</th><th class="num">수입액(백만 달러)</th><th class="num">수입량(천 톤)</th><th class="num">수입액 비중</th></tr></thead>
+<tbody>
+<tr><td>중국</td><td class="num">106.98</td><td class="num">19.57</td><td class="num">31.2%</td></tr>
+<tr><td>미국</td><td class="num">55.65</td><td class="num">12.06</td><td class="num">16.2%</td></tr>
+<tr><td>태국</td><td class="num">41.80</td><td class="num">9.81</td><td class="num">12.2%</td></tr>
+<tr><td>캐나다</td><td class="num">28.35</td><td class="num">6.20</td><td class="num">8.3%</td></tr>
+<tr><td>일본</td><td class="num">24.62</td><td class="num">2.50</td><td class="num">7.2%</td></tr>
+<tr><td>프랑스</td><td class="num">21.94</td><td class="num">6.22</td><td class="num">6.4%</td></tr>
+<tr><td>기타</td><td class="num">63.15</td><td class="num">12.66</td><td class="num">18.4%</td></tr>
+<tr class="tot"><td><strong>합계</strong></td><td class="num"><strong>342.49</strong></td><td class="num"><strong>69.02</strong></td><td class="num"><strong>100.0%</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>kcs_HS230910_2025.xml</code>, <code>year</code>가 2025로 시작하고 <code>hsCd</code>가 230910으로 시작하는 국가별 행의 <code>impDlr</code>·<code>impWgt</code> 합(E04). 비중의 분모는 같은 파일의 <code>year=총계</code> 수입액 342,485,169달러다. 중량은 표시 자리에서 반올림했다.</p>
+<p>중국은 2023년에도 1억 20만 달러, 2024년에는 1억 504만 달러로 수입액 1위였다(E04). 2025년 상위 세 나라의 수입액 합은 204,428,849달러, 전체의 59.7%다. 관세청 국가별 신고를 브랜드 소유국이나 원료 산지로 읽으면 공급망을 잘못 그린다. 수입 제품은 국내 수입업자와 창고를 거쳐 온라인·오프라인 소매로 나가고, 일부는 도매상을 거친다(USDA FAS, <em>South Korea Pet Food Report</em>, 2024-08-20, 4쪽, A).</p>
+<p><code>processed_data/customs_kr/petfood_customs_kr_monthly.csv</code>는 2026년 3~8월의 국가별 신고를 담고 있다. 그 기간 국가별 수입액 합 170,759,327달러는 같은 달 HS10 품목별 원자료 합 171,157,542달러의 99.77%다. 이 차이와 국가별 수집기간 때문에 2026년 국가 점유율을 연간 완결값으로 발표하지 않는다(E06). 국가별 추세 판단에는 2025년 완료연도 표를 사용한다.</p>
+<h3>옆 세번과 해외 대조의 한계</h3>
+<p>HS 2309.90은 «기타 조제사료»다. 2025년 한국 세부 HS10 월별 행을 합하면 이 세번의 수입액은 268,547,505달러지만, 양돈·양계·어류·축우용 등의 행이 포함된다. 그 전액을 펫푸드로 더하지 않았다(E03). 간식·비소매 포장의 범위가 HS 2309.10 집계와 어떻게 이어지는지는 이 자료로 확인되지 않았다.</p>
+<p>미국 Census의 품목 분할 파일은 2026년 7월 한 달의 HS10 원자료이고, EU Comext 파일은 2026년 6~7월 신고분이다. 브라질 Comexstat도 2026년 1~8월 원자료다. 시점과 통계 작성방식이 한국의 2025년 연간 원자료와 다르므로, 이 파일들을 섞어 완결연도 국가 순위를 만들지 않는다. 해외 파일은 HS6·기간·총계와 세부 행 처리 방식이 달라 현 상태에서 같은 기준의 순위로 결합할 수 없다(E12).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>통관 단가와 생산자 지수는 보이지만 소매가격은 미확보다</h2>
+<p class="lead">완제품 가격을 한 줄로 제시하지 않는 이유는 가격 단계가 다르기 때문이다. 수입 통관액을 중량으로 나누면 국경 단계의 평균 단가를 얻는다. 한국은행 생산자물가지수는 국내 생산자가 받은 가격의 변화를 지수로 나타낸다. 어분·곡물 가격은 원료시장이고, 소비자의 한 봉지 구매가격은 또 다른 값이다. 이 값들을 같은 그래프의 «펫푸드 가격»으로 이어 붙이지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 5. 확보한 가격 신호와 사용 범위</caption>
+<thead><tr><th>지표</th><th class="num">확인값</th><th>기간·단위</th><th>읽을 때의 경계</th></tr></thead>
+<tbody>
+<tr><td>한국 HS 2309.10 수입 평균단가</td><td class="num">4.96</td><td>2025년, 달러/kg</td><td>신고액÷신고중량. 제품 구성 변화 포함</td></tr>
+<tr><td>한국 HS 2309.10 수입 평균단가</td><td class="num">4.83</td><td>2026년 1~8월, 달러/kg</td><td>미완 연도, 전년 같은 기간과 비교</td></tr>
+<tr><td>한국 «애완동물사료» 생산자물가지수</td><td class="num">129.67 → 131.78</td><td>2025.08 → 2026.08, 2020=100</td><td>국내 생산자 지수. 매장 판매가격 아님</td></tr>
+<tr><td>페루 슈퍼프라임 어분 FOB</td><td class="num">약 1,400 → 2,500</td><td>2025.05 → 2026.05, 달러/톤</td><td>수산 원료를 쓰는 일부 제형의 상류 가격</td></tr>
+<tr><td>국내 펫푸드 도·소매 연속 시계열</td><td class="num">미확보</td><td>참가격·KCA·aT</td><td>동일 제품·포장 단위 연속값 미확보</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 연간·월별 원자료(E02·E03); 한국은행 ECOS 공통 원자료 <code>ecos_producer_price_items</code>의 «애완동물사료»(E07); <a href="https://www.fao.org/in-action/globefish/news-events/news/news-detail/china-demand-and-lower-quotas-lift-fishmeal-and-fish-oil-prices/en">FAO GLOBEFISH, 2026-07-23</a>, A; 가격 공개 경로 조사노트 <code>grok/petfood.note.md</code>. 서로 다른 가격 단계는 평균하지 않았다.</p>
+<p>2025년 연간 수입 단가는 342,485,169달러÷69,020,160kg으로 4.96달러/kg이다. 2026년 1~8월 225,499,748달러÷46,735,021kg은 4.83달러/kg이며, 전년 동기 4.99달러/kg보다 약 3.3% 낮다(E02·E03). 품질이나 프리미엄화의 방향을 이 차이 하나로 추정할 수 없다. 예를 들어 2025년 국가별 평균 단가도 일본산은 9.84달러/kg, 프랑스산은 3.53달러/kg으로 다르지만 제형·포장 크기·계약 조건을 통제하지 않은 값이다(E04). 국가별 단가를 품질 순위로 제시하지 않았다.</p>
+<p>한국은행 ECOS의 수집본은 «애완동물사료» 생산자물가지수(2020=100)를 2025년 8월 129.67, 2026년 8월 131.78로 기록한다. 두 값의 단순 변화율은 1.63%다(E07). 다만 보유한 수집 파일에서 이 항목은 2025년 각 월 값이 모두 129.67, 2026년 1~8월 값이 모두 131.78이다. 수집본만으로 실제 월별 가격 변동이 없었다고 단정할 수 없으며, 원 통계의 갱신 방식과 수집기 매핑은 확인되지 않았다. 본문에서는 두 시점의 <strong>수집값</strong>으로만 쓴다.</p>
+<p>일부 수산 원료 제형에 쓰이는 어분의 국제가격은 상승했다. FAO는 페루산 슈퍼프라임 어분 FOB를 2026년 5월 톤당 2,500달러, 전년 같은 달 약 1,400달러라고 적었다. 이 페이지는 기사형 관측치이며 완제품 단가로 전가된 비율을 제공하지 않는다(<a href="https://www.fao.org/in-action/globefish/news-events/news/news-detail/china-demand-and-lower-quotas-lift-fishmeal-and-fish-oil-prices/en">FAO GLOBEFISH</a>, A). 미국 IFEEDER의 2025년 원료 분석에서는 개·고양이 사료 원료 928만 톤 가운데 어분이 96,693톤, 약 1.0%다. 미국 원료 구성의 추정치이므로 한국 제형의 어분 사용 비중으로 옮기지 않는다(IFEEDER, <em>Pet Food Production and Ingredient Analysis</em>, 2025-03; E08). 국제곡물이사회는 곡물·유지작물 지수와 밀·옥수수·대두 하위지수의 공개 경로를 제공한다. 이 또한 펫푸드 전용 원료 바스켓은 아니다(<a href="https://igc.int/en/public-site/markets/marketinfo-goi.aspx">IGC Grains &amp; Oilseeds Index</a>, A).</p>
+<p>국내 소비자가격의 동일 제품·포장 단위 연속 시계열은 확보한 원자료에서 <strong>미확보</strong>다. 한국소비자원 참가격에는 상품별 비교 경로가 있지만, 여기서는 펫푸드 전체를 대표하는 연속 가격값으로 사용하지 않는다. 품목 자체가 통계에 없다는 뜻은 아니다.</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>한국 수입국과 세계 수출 강국은 일치하지 않는다</h2>
+<p class="lead">완제품 공급망에는 동물성·식물성 원료의 산지, 제형을 제조·포장한 곳, 브랜드를 소유하거나 한국으로 청구서를 발행한 곳이라는 세 층이 있다. 관세청 국가별 수입액은 통관 원산지의 구성이다. 수입액 상위에 있는 나라가 원료까지 모두 생산한다는 뜻은 아니다. KREI가 태국을 다국적 브랜드 위탁생산 거점으로 설명한 이유도 이 분업에 있다(<a href="https://repository.krei.re.kr/bitstream/2018.oak/32513/1/R2025-12.pdf">KREI, 「반려동물 연관산업 수출 활성화 방안」, 2025-12</a>, B).</p>
+<div class="tw">
+<table>
+<caption>표 6. 주요 제조·수출국과 한국 수입의 연결(2025년)</caption>
+<thead><tr><th>국가</th><th class="num">세계 HS 2309.10 수출 신고액(백만 달러)</th><th class="num">한국의 해당국산 수입액(백만 달러)</th><th>해석</th></tr></thead>
+<tbody>
+<tr><td>독일</td><td class="num">3,439.4</td><td class="num">6.56</td><td>세계 수출 규모는 크지만 한국 수입액 상위국은 아님</td></tr>
+<tr><td>태국</td><td class="num">2,903.1</td><td class="num">41.80</td><td>세계 수출 거점이자 한국의 주요 공급국</td></tr>
+<tr><td>폴란드</td><td class="num">2,676.4</td><td class="num">0.03</td><td>유럽 내 공급과 한국 수입의 방향이 다름</td></tr>
+<tr><td>미국</td><td class="num">2,455.2</td><td class="num">55.65</td><td>세계 수출국이자 한국의 주요 공급국</td></tr>
+<tr><td>프랑스</td><td class="num">2,440.9</td><td class="num">21.94</td><td>수출액은 보고, Comtrade 순중량은 미보고</td></tr>
+<tr><td>중국</td><td class="num">1,411.5</td><td class="num">106.98</td><td>위 여섯 나라 중 한국 수입액은 가장 큼</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 세계 수출은 UN Comtrade의 2025년 HS 230910 합계 행(E05), 한국 수입은 관세청 <code>kcs_HS230910_2025.xml</code> 국가별 행(E04). 서로 다른 나라의 <strong>총수출</strong>과 한국의 <strong>해당국산 수입</strong>을 나란히 놓은 것으로, 양자 통계가 일치해야 하는 표가 아니다. 폴란드 수입액은 27,854달러를 백만 달러로 반올림했다. 중국은 2025년 세계 신고액 8위로, 네덜란드와 체코가 중국보다 위에 있다.</p>
+<p>독일과 폴란드는 세계 수출액 상위인데 한국으로 들어온 금액은 상대적으로 작다. 반대로 중국은 2025년 세계 총수출 신고액 8위이지만 한국 시장의 수입 원산지 1위다. 따라서 «세계 상위 공급국에서 조달한다»는 일반론으로 한국 수입 구성을 설명할 수 없다. 국가 간 운송 거리, 브랜드 제조배치, 현지 유통망, 소비자 선호, 검역 승인 범위의 기여도는 현재 원자료에서 분리되지 않는다(E04·E05).</p>
+<h3>원료와 제조의 연결</h3>
+<p>태국의 식품·수산물 가공 기반은 펫푸드 완제품 수출과 연결된다. USDA FAS 태국 보고서는 2024년 태국의 개·고양이 사료 수출액을 약 27억 달러로 설명한다. 같은 해 UN Comtrade 태국 수출 합계 행은 약 26.86억 달러다. 두 출처의 정의와 신고시점이 완전히 같다고 전제하지는 않지만, 태국이 큰 완제품 수출 거점이라는 방향은 일치한다(USDA FAS, <em>Thailand’s Pet Food Market 2025</em>, 2025-12-03, A; UN Comtrade, E05).</p>
+<p>중국에 관해서는 USDA FAS 중국 보고서가 2024년 펫푸드 생산 160만 톤과 HS 2309.10 수입 4억 9,980만 달러를 함께 적는다. 생산국도 해외 제품을 수입한다는 사례다. 중국 수입 총액을 한국의 중국산 수입액과 빼서 순공급량을 계산하지 않는다(USDA FAS, <em>Pet Food Market Update 2025</em>, 2025-05-16, 기초자료 2차 인용 B). 한국으로 들어온 미국·캐나다·프랑스산도 각국이 자국에서 소비하는 물량과 별개의 통관 흐름이다.</p>
+<p>관세청 HS 2309.10 국가별 XML에는 2023년 1월부터 2025년 12월까지 36개월의 수입액이 있다. 각 연도의 월별 수입액 비중은 7.2~9.7%이고, 최고 월은 2023년 3월·2024년 1월·2025년 4월로 해마다 달랐다. 이 세 해의 전체 수입액에서는 반복되는 고점 월이 뚜렷하지 않다(E02·E03). 원료는 어획·작황·질병에 영향을 받을 수 있지만 제조공장의 재고, 계약, 해상운송도 완제품 통관 시점을 바꾼다. 공급국·제형별 계절성은 이 합계만으로 판정할 수 없다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>국내 제조와 수입 브랜드가 같은 선반에서 경쟁한다</h2>
+<p class="lead">한국의 펫푸드 유통은 해외 제조업체, 수입업자, 통관 후 창고, 온라인·오프라인 소매업자로 이어진다. 도매업자가 소규모 소매업자에게 다시 공급하는 경로도 있다. 이는 USDA FAS가 2024년 한국 시장 보고서 4쪽에 기술한 수입 유통 경로다. 모든 국산 제품이 같은 단계를 거치는 것은 아니며, 제조업체가 직접 온라인에서 팔거나 주문자상표 제품을 공급할 수도 있다(USDA FAS, <em>South Korea Pet Food Report</em>, 2024-08-20, B).</p>
+<p>KREI는 펫푸드 제조업체 41곳을 방문 조사했다. 조사 대상 가운데 31.7%는 전량 또는 일부 물량을 위탁생산했다. 이는 <strong>조사에 응한 업체의 비율</strong>이지 국내 전체 생산량의 위탁 비율이 아니다. 자체생산과 위탁을 병행한 업체만 보면 두 방식의 평균 비율이 68.3%와 31.7%였지만, 이를 시장 전체 OEM 물량이나 매출에 곱하지 않는다(<a href="https://repository.krei.re.kr/handle/2018.oak/30744">KREI R978, 2023-10, 제3장</a>, B; E08). 아카이브의 OEM 후보사 매트릭스에 담긴 업체별 사업성 추정은 산업 전체의 시장규모 근거로 채택하지 않았다.</p>
+<h3>과거 기업 표는 현재 순위가 아니다</h3>
+<div class="tw">
+<table>
+<caption>표 7. KREI가 제시한 2022년 매출 상위 7개 기업</caption>
+<thead><tr><th>기업</th><th class="num">KREI 표 3-1의 2022년 매출(억 원)</th><th>KREI 표 3-2의 제조·판매 방식</th></tr></thead>
+<tbody>
+<tr><td>로얄캐닌코리아</td><td class="num">2,492</td><td>국내 제조·수입 병행</td></tr>
+<tr><td>우리와</td><td class="num">2,166</td><td>국내 제조·수입 병행</td></tr>
+<tr><td>마즈코리아</td><td class="num">1,167</td><td>수입전문기업</td></tr>
+<tr><td>대주산업</td><td class="num">938</td><td>국내 제조기업</td></tr>
+<tr><td>내츄럴코어</td><td class="num">852</td><td>표 3-2에 사례 없음</td></tr>
+<tr><td>카길애그리퓨리나</td><td class="num">836</td><td>국내 제조기업</td></tr>
+<tr><td>하림펫푸드</td><td class="num">765</td><td>국내 제조기업</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://repository.krei.re.kr/handle/2018.oak/30744">KREI R978</a>, 표 3-1·3-2, 2023-10(B). KREI는 유로모니터 자료와 회사 홈페이지 등을 조합했다. 표 3-2는 내츄럴코어의 사업 유형을 분류하지 않는다. 행의 매출을 동일 기준으로 검증한 2025~2026년 펫푸드 전용 매출·점유율로 해석하지 않는다.</p>
+<p>현재 공개 재무제표만으로 이 표 전체를 같은 기준으로 갱신할 수 없다. 다만 로얄캐닌코리아의 2025년 회사 전체 매출은 약 4,025억 원으로 보도됐다(<a href="https://www.smarttoday.co.kr/ko-kr/articles/106254">스마트투데이, 2026-04-07</a>, C; 11절). 아카이브에는 대주산업·동원F&amp;B·이글벳의 2024년 DART 재무 원응답이 있지만, 기업 전체 매출을 펫푸드 매출로 떼어내는 공통 세그먼트 표가 아니다. 비상장·외국계 한국법인의 DART 조회가 비어 있는 파일도 있다. 아카이브의 <code>01_Top10_Financial_Analysis.md</code>는 언론·기업정보와 추정이 섞여 있어 2026년 산업 점유율 표로 옮기지 않았다. 정부·공시·협회의 비교 가능한 2025~2026년 기업별 생산·수입·유통 점유율은 <strong>미확보</strong>다. 비교 범위는 DART 공시, KREI 기업 표와 아카이브 재무파일이다(E11).</p>
+<p>소매 플랫폼의 베스트셀러는 산업 점유율과 다르다. 아카이브의 <code>01_Bestseller_Analysis.md</code>는 특정 온라인몰의 상위 상품을 제시하지만 조사 기간과 플랫폼 모집단이 전국 시장과 다르고, 일부 브랜드의 제조국·라이선스 설명도 추가 검증이 필요하다. 그러므로 국산 브랜드가 전국 판매의 몇 퍼센트를 차지한다는 결론은 내리지 않는다. 다만 온라인 판매, 수입 브랜드, 국내 제조 브랜드, 위탁생산 제품이 같은 고객 접점에서 경쟁한다는 유통 구조는 KREI와 USDA FAS의 설명과 맞는다.</p>
+<p>농식품부는 중소기업의 원료·제형 개발과 시제품 생산을 지원할 반려동물사료 산업화센터 1개소 공모를 2026년 2월 발표했다. 사업기간은 2026~2030년, 총사업비는 200억 원이다. 이는 산업 지원계획이지 이미 완공된 제조능력이나 기업별 생산실적은 아니다(<a href="https://www.mafra.go.kr/home/5109/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaG9tZSUyRjc5MiUyRjU3NjgzNSUyRmFydGNsVmlldy5kbyUzRg%3D%3D">농식품부 발표, 2026-02-08</a>, A).</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>성분등록과 검역은 확인됐고, 실효 관세율은 남았다</h2>
+<p class="lead">펫푸드는 소비재로 팔리지만 한국의 기본 법체계에서는 사료다. 확인한 「사료관리법」 제12~14조는 제조·수입 사료의 성분등록, 판매 포장에 등록성분·유통기한 등의 표시, 미등록 또는 미신고 수입 사료의 유통 금지를 규정한다. 제품이 반려동물용이라는 이유만으로 제조·수입·판매 단계의 사료 규율을 벗어나지 않는다(<a href="https://www.law.go.kr/lsLinkProc.do?chrClsCd=010202&amp;datClsCd=010102&amp;gubun=admRul&amp;joNo=001100000%5E001200000%5E001300000%5E001400000&amp;lsId=34756&amp;lsNm=%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95&amp;mode=10">국가법령정보센터, 확인한 시행본 2024-04-25</a>, A). 국내 제조와 수입 완제품에 대한 제품별 의무의 적용 범위는 확인한 원문만으로 확정되지 않았다.</p>
+<div class="tw">
+<table>
+<caption>표 8. 확인한 펫푸드 관련 제도와 검증 경계</caption>
+<thead><tr><th>항목</th><th>확인 내용</th><th>이 보고서에서 남긴 경계</th></tr></thead>
+<tbody>
+<tr><td>사료 성분등록·표시</td><td>「사료관리법」 제12~14조의 등록·표시·유통 규율</td><td>현행 하위 규정의 제품별 등록 항목 미확정</td></tr>
+<tr><td>동물성 원료 수입위생조건</td><td>농식품부 고시 제2025-124호, 2025-12-12</td><td>원료 종류·가공 방식별 적용 범위 구분</td></tr>
+<tr><td>수입 검역방법</td><td>적용 품목별 서류·현물검사, 검역증명서 등 확인</td><td>서류 충족이 곧 통관 완료를 뜻하지 않음</td></tr>
+<tr><td>영양·표시 기준</td><td>개·고양이 사료 별도 기준 발표, 완전사료 표시제는 2028년 9월 시행 예정</td><td>발표와 실제 시행일 구분</td></tr>
+<tr><td>관세·할당</td><td>한·미 FTA 목록의 2309-90 보조사료 확인</td><td>2309.10 실효세율·전용 할당 여부 미확보</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.law.go.kr/lsLinkProc.do?chrClsCd=010202&amp;datClsCd=010102&amp;gubun=admRul&amp;joNo=001100000%5E001200000%5E001300000%5E001400000&amp;lsId=34756&amp;lsNm=%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95&amp;mode=10">국가법령정보센터 사료관리법</a>, <a href="https://www.mafra.go.kr/bbs/home/879/576172/artclView.do">농식품부 수입위생조건 고시</a>, <a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=200201&amp;flNm=%5B%EB%B3%84%ED%91%9C+17%5D+%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC+%EC%82%AC%EB%A3%8C+%EA%B2%80%EC%97%AD%EB%B0%A9%EB%B2%95%28%EC%A0%9C34%EC%A1%B0+%EA%B4%80%EB%A0%A8%29&amp;flSeq=158481539">검역방법 별표 17</a>, <a href="https://www.mafra.go.kr/home/5109/subview.do?enc=Zm5jdDF8QEB8JTJmYmJzJTJmaG9tZSUyZjc5MiUyZjU3NDk4NiUyZmFydGNsVmlldy5kbyUzZmJic0NsU2VxJTNkJTI2cmdzRW5kZGVTdHIlM2QlMjZiYnNPcGVuV3JkU2VxJTNkJTI2cmdzQmduZGVTdHIlM2QlMjZwYXNzd29yZCUzZCUyNnNyY2hDb2x1bW4lM2QlMjZyb3clM2QxMCUyNmlzVmlld01pbmUlM2RmYWxzZSUyNHBhZ2UlM0QxJTI2c3JjaFdyZCUzZCUyNg%3D%3D">농식품부 표시기준 발표</a>, <a href="https://www.customs.go.kr/ftaportalkor/cm/cntnts/cntntsView.do?cntntsId=997&amp;mi=3318">관세청 FTA 포털</a>; 모두 A, 단 적용 범위는 각 원문 조건에 따름(E13).</p>
+<p>동물성 원료가 든 완제품의 수입위생조건과 서류는 제품의 처리방법과 원료종에 따라 달라질 수 있다. 농식품부가 설명한 소 유래 원료 조건은 이미 쇠고기 수입이 허용된 11개국의 30개월령 미만 소에서 특정위험물질을 제거한 식용 부위로 한정된다. 이는 모든 소 유래 펫푸드의 무조건적 수입 허용이 아니다(<a href="https://www.mafra.go.kr/bbs/home/793/573409/artclView.do">농식품부 설명자료, 2025-02-27</a>, A). 수입 검역방법의 별표 17은 적용 품목의 검역증명서·표시사항과 현물의 일치 여부를 확인하도록 한다(<a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=200201&amp;flNm=%5B%EB%B3%84%ED%91%9C+17%5D+%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC+%EC%82%AC%EB%A3%8C+%EA%B2%80%EC%97%AD%EB%B0%A9%EB%B2%95%28%EC%A0%9C34%EC%A1%B0+%EA%B4%80%EB%A0%A8%29&amp;flSeq=158481539">국가법령정보센터 별표 17</a>, A).</p>
+<p>개·고양이 사료의 영양·표시 기준을 구분하는 고시는 2025년 9월 발표됐다. 농관원은 그중 «반려동물 완전사료 표시제» 시행 시점을 2028년 9월로 설명했다. 제도 발표를 이미 모든 제품에 시행된 의무처럼 쓰지 않는다(<a href="https://www.mafra.go.kr/home/5109/subview.do?enc=Zm5jdDF8QEB8JTJmYmJzJTJmaG9tZSUyZjc5MiUyZjU3NDk4NiUyZmFydGNsVmlldy5kbyUzZmJic0NsU2VxJTNkJTI2cmdzRW5kZGVTdHIlM2QlMjZiYnNPcGVuV3JkU2VxJTNkJTI2cmdzQmduZGVTdHIlM2QlZwYXNzd29yZCUzZCUyNnNyY2hDb2x1bW4lM2QlMjZyb3clM2QxMCUyNmlzVmlld01pbmUlM2RmYWxzZSUyNnBhZ2UlM0QxJTI2c3JjaFdyZCUzZCUyNg%3D%3D">농식품부 개정 발표, 2025-09-03</a>, <a href="https://www.mafra.go.kr/home/5109/subview.do%3Bjsessionid%3DMABCP84WT6gFBy-bD7eDkqIq.inst11?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaG9tZSUyRjc5MiUyRjU3ODI0MyUyRmFydGNsVmlldy5kbyUzRg%3D%3D">농관원 시행시점 설명, 2026-06-24</a>, A).</p>
+<p><strong>관세는 미확보다.</strong> 조사노트가 관세청·법령 원문에서 HS 2309.10·2309.90의 한국 세부세율과 미국·캐나다·EU 원산지별 실효세율을 확정하려 했지만 끝내 원문을 확보하지 못했다. 관세청 한·미 FTA «관세율 할당품목» 페이지에 2309-90 <strong>보조사료</strong>가 나타난 사실은 2309.10 소매용 개·고양이 사료의 할당관세 근거가 아니다(<a href="https://www.customs.go.kr/ftaportalkor/cm/cntnts/cntntsView.do?cntntsId=997&amp;mi=3318">관세청 FTA 포털</a>, A). 펫푸드 전용 비축·할당관세 대책도 확인 경로에서는 미확보로 남긴다. 완제품 제조국 표시, 원료 원산지 표시, 이력 표시의 정확한 의무 범위 역시 조문별 대조 결과가 없어 단정하지 않는다(E13).</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>전망과 측정치의 범위가 다르다</h2>
+<p class="lead">은행·기관 리포트는 생산·무역 원자료를 대체하지 않지만 산업의 해석과 정책 변화를 알려준다. 2026년 10월 7일 기준 은행·기관 색인 <code>index.csv</code>는 812행이며, <code>items=petfood</code>로 표시된 행은 태국 TMBThanachart Bank의 ttb analytics 보고서 1건이다. 같은 색인에는 펫푸드 태그가 비어 있는 Krungsri Research의 태국 펫 경제 보고서도 있다. ttb 보고서는 태국 수출 전망이므로 한국 시장 성장률로 옮기지 않는다(E10).</p>
+<div class="tw">
+<table>
+<caption>표 9. 펫푸드 관련 은행·기관 자료의 주장과 범위</caption>
+<thead><tr><th>기관·문서</th><th>발표일</th><th>확인한 주장</th><th>자료 성격</th></tr></thead>
+<tbody>
+<tr><td>KREI R978, 「농식품산업 신성장동력 창출을 위한 펫푸드 산업 육성 과제」</td><td>2023-10</td><td>제조업체 조사와 생산·소비·정책 기반의 차이를 분석</td><td>연구·설문, B</td></tr>
+<tr><td>USDA FAS, <em>South Korea Pet Food Report</em></td><td>2024-08-20</td><td>2023년 한국 HS 2309.10 수입 약 3.07억 달러, 수입 유통 경로 기술</td><td>정부 분석, A</td></tr>
+<tr><td>KREI, 「반려동물 연관산업 수출 활성화 방안」</td><td>2025-12</td><td>국가별 규제·인증, 물류·유통, 바이어 확보를 수출 애로로 분석</td><td>정책연구, B</td></tr>
+<tr><td>FEDIAF, <em>Annual Report 2025</em></td><td>2025</td><td>유럽 2023년 펫푸드 생산 약 910만 톤·가치 약 293억 유로</td><td>업계협회 집계, B</td></tr>
+<tr><td>ttb analytics, 태국 펫푸드 수출 전망</td><td>2026-02-20</td><td>태국의 2026년 수출 약 30억 달러, 증가율 5~6% <strong>전망</strong></td><td>은행 전망, B</td></tr>
+<tr><td>Krungsri Research, <em>The Pet Economy: When Love Comes with Unexpected Costs</em></td><td>2026-08-26</td><td>태국의 프리미엄 펫푸드 수요와 반려동물 의료비 부담을 함께 분석</td><td>은행 분석, B</td></tr>
+<tr><td>농식품부, 국내 산업 통계 설명자료</td><td>2026-10-04</td><td>2025년 국내 시장 1,783백만 달러는 민간 추정이며 공식 점유율 산출에 한계</td><td>정부의 통계 성격 설명, A</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://repository.krei.re.kr/bitstream/2018.oak/30744/1/R978.pdf">KREI R978</a>, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=South+Korea+Pet+Food+Report_Seoul+ATO_Korea+-+Republic+of_KS2024-0001.pdf">USDA FAS 한국 보고서</a>, <a href="https://repository.krei.re.kr/bitstream/2018.oak/32513/1/R2025-12.pdf">KREI 수출 연구</a>, <a href="https://www.europeanpetfood.org/wp-content/uploads/2025/12/FEDIAF-AR-2025_Online.pdf">FEDIAF, <em>Annual Report 2025</em>, 2025-06-12</a>, <a href="https://www.ttbbank.com/th/analytics/business-industry/argo-business-food-beverages/20260220-ttb-analytics-Pet-food-export">ttb analytics 원문</a>, <a href="https://www.krungsri.com/en/research/research-intelligence/pet-economy-2026">Krungsri Research, <em>The Pet Economy: When Love Comes with Unexpected Costs</em>, 2026-08-26</a>, <a href="https://mafra.go.kr/bbs/home/793/579355/artclView.do">농식품부 설명자료</a>. 등급은 자료의 성격과 조사노트 표기를 따랐다(E08~E10).</p>
+<p>ttb analytics는 2025년 태국 펫푸드 수출을 약 29억 달러로 설명하고, 2026년에는 미국 시장의 전년 높은 비교 기준 때문에 증가 속도가 둔화하되 유럽과 아시아 수요가 받쳐 약 30억 달러에 이를 것으로 전망한다. 은행의 전망치이므로 UN Comtrade의 2025년 태국 수출 신고액 2,903.1백만 달러와 같은 확정값으로 취급하지 않는다(<a href="https://www.ttbbank.com/th/analytics/business-industry/argo-business-food-beverages/20260220-ttb-analytics-Pet-food-export">ttb analytics, 2026-02-20</a>, B; E05·E10).</p>
+<p>Krungsri Research는 태국에서 프리미엄 펫푸드와 예방적 건강관리 수요가 커지는 흐름을 설명하면서, 예상치 못한 진료비에 대비한 보험·금융상품을 분석한다. 이는 태국의 펫 경제 해석이며 한국 펫푸드 시장규모의 측정치가 아니다(<a href="https://www.krungsri.com/en/research/research-intelligence/pet-economy-2026">Krungsri Research, <em>The Pet Economy: When Love Comes with Unexpected Costs</em>, 2026-08-26</a>, B; E10).</p>
+<p>KREI의 2025년 K-Food+ 연구는 펫푸드를 포함한 여러 산업의 수출 확대 로드맵을 다루고, 별도 비관세장벽 연구의 제5장을 펫푸드 국가별·품목별 장벽에 배정한다. 두 문서는 연구범위를 설명하는 자료로 제시하며, 특정 국가의 세율·검역 허용 근거로 사용하지 않는다(<a href="https://repository.krei.re.kr/handle/2018.oak/32652">KREI, 「K-푸드 플러스 수출 확대 방안(2/2차년도)」, 2025-12-31</a>, <a href="https://repository.krei.re.kr/handle/2018.oak/32711">KREI, 「K-푸드 플러스 수출 분야의 비관세장벽 현황」, 2025-12-31</a>, B).</p>
+<p>KB경영연구소의 「2025 한국 반려동물 보고서」 공개 페이지에서는 영양 관리·양육비·비만 관리가 목차에 있음을 확인했다. 보고서의 펫푸드 산업별 매출 분석 여부는 원문에서 검증하지 못해 표의 시장규모 근거로 쓰지 않았다(<a href="https://kbfg.com/kbresearch/report/reportView.do?reportId=2000531">KB경영연구소 보고서 페이지, 2025-06-29</a>, B). 아카이브의 Bank of America 보고서는 미국 카드 사용과 2025년 4월 미국 펫푸드 물가 둔화를 다룬다. 한국 가격지수의 근거로 사용하지 않는다(BoA Institute, <em>Best in show: US pet ownership</em>, 2025-05-27, B).</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 관찰 지표·남은 물음</span>물량, 단가, 원료와 제도</h2>
+<p class="lead">이 절이 먼저 짚는 것은 분석상의 위험, 곧 숫자의 범위를 잘못 섞는 일이다. 소매용 개·고양이 사료의 무역액, 국내 제조업 생산액, 민간 시장규모 추정치를 한 분모에 넣으면 수입산 점유율과 산업 성장률이 모두 흔들린다. 실제 운영 위험은 완제품 공급국의 집중, 원료 가격·질병, 수입 검역과 표시제도 변화, 판매 제형의 교체로 나뉜다. 아래에는 각 위험의 관찰 지표와 남은 확인 작업을 모았다.</p>
+<p><strong>공급국 집중.</strong> 2025년 한국 HS 2309.10 수입액의 중국·미국·태국 합은 59.7%다. 한 나라의 제조 중단이나 검역 제한이 생겨도 나머지 공급국이 대체할 수 있는지는 제품별 승인과 설비를 보아야 한다. 2026년 진행 중 국가별 파일로 연간 순위를 앞당겨 발표하지 않는다(04절·E04).</p>
+<p><strong>동물 질병과 원료 처리.</strong> USDA APHIS는 2024년 말 칠면조, 생식 펫푸드에서 검출된 바이러스, 감염된 반려묘 사이의 유전적 연관성을 확인한 뒤 2025년 1월 영향 지역 칠면조의 도축 전 감시를 강화했다. 이 미국 사례는 생식 원료의 위험과 처리방법이 중요함을 보인다. 한국에 동일한 수입금지가 시행됐다는 주장은 아니다(<a href="https://www.aphis.usda.gov/news/agency-announcements/aphis-updates-policy-enhance-surveillance-turkey-flocks-highly-pathogenic">USDA APHIS, 2025-01-17</a>, A). 캐나다 CFIA의 국가별 제한 목록도 생식 제품과 열처리 건조·통조림 제품을 구별한다. 이 목록은 <strong>캐나다산 제품에 대한 외국의 제한</strong>이지 한국의 현행 수입규칙을 정리한 표가 아니다(<a href="https://inspection.canada.ca/en/animal-health/terrestrial-animals/diseases/reportable/avian-influenza/latest-bird-flu-situation/restrictions-poultry-exports">CFIA 제한 목록</a>, A).</p>
+<p><strong>원료 가격과 완제품 가격.</strong> FAO가 관측한 2026년 어분 가격 상승은 수산 원료를 쓰는 일부 제형에 관련된 신호다(<a href="https://www.fao.org/in-action/globefish/news-events/news/news-detail/china-demand-and-lower-quotas-lift-fishmeal-and-fish-oil-prices/en">FAO GLOBEFISH, <em>China demand and lower quotas lift fishmeal and fish oil prices</em>, 2026-07-23</a>; E08). 미국 IFEEDER의 2025년 원료 분석에서는 어분이 개·고양이 사료 원료 중량의 약 1.0%였다(IFEEDER, <em>Pet Food Production and Ingredient Analysis</em>, 2025-03; E08). 그러나 국내 수입 단가는 2026년 1~8월 전년 동기보다 낮다. 제형별 원료 사용량, 환율, 재고, 계약기간을 모르면 어분 가격이 한국의 소매가격에 얼마만큼 전가됐는지 말할 수 없다(05절). 한국은행 «애완동물사료» 생산자지수의 반복된 연중 값도 원 통계 재확인 전에는 월별 변동의 증거로 쓰지 않는다(E07).</p>
+<div class="tw">
+<table>
+<caption>표 10. 산업 관찰 지표와 확인 경로</caption>
+<thead><tr><th>지표</th><th>확인 경로·주기</th><th>기준값 또는 현재 상태</th><th>판단할 변화</th></tr></thead>
+<tbody>
+<tr><td>국내 제조 생산액·출하액</td><td>KOSIS <code>kosis_manufacturing_items</code>, 연</td><td>2024년 사료 생산액 1,177,937백만원</td><td>사료와 기호식품을 분리한 다음 연도 값</td></tr>
+<tr><td>소매용 사료 수입·수출·평균단가</td><td>관세청 <code>customs_item_trade_monthly</code>, 월</td><td>2026.1~8 수입 225.50백만 달러·46.74천 톤</td><td>전년 같은 달·같은 누계 비교</td></tr>
+<tr><td>수입 원산지 구성</td><td>관세청 국가별 HS 2309.10, 월·연</td><td>2025년 중국 수입액 비중 31.2%</td><td>완료연도의 상위국 변동</td></tr>
+<tr><td>국내 생산자 가격</td><td>ECOS <code>ecos_producer_price_items</code>, 월</td><td>2026.08 수집값 131.78(2020=100)</td><td>원 통계와 반복값 대조</td></tr>
+<tr><td>세계 완제품 교역</td><td>UN Comtrade, 연</td><td>2025년 수출 신고국 92개</td><td>신고국 완결 여부와 합계 행 필터</td></tr>
+<tr><td>동물성 원료·검역</td><td>농식품부 고시·검역방법·APHIS/CFIA 공지, 수시</td><td>한국 수입위생조건 제2025-124호</td><td>원료종·처리방법별 허용 조건</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS(E01), 관세청(E02~E04), ECOS(E07), UN Comtrade(E05), <a href="https://www.mafra.go.kr/bbs/home/879/576172/artclView.do">농식품부 고시</a>, <a href="https://www.aphis.usda.gov/news/agency-announcements/aphis-updates-policy-enhance-surveillance-turkey-flocks-highly-pathogenic">USDA APHIS</a>. 2026년 값은 모두 진행기간 또는 최근 수집 시점이다.</p>
+<h3>남은 물음</h3>
+<ul>
+<li>국내 연간 판매 중량·매출: 제품 유형별 국내 출하량, 수입 완제품의 국내 판매, 재수출, 재고를 같은 정의로 연결할 수 있는가(03절)?</li>
+<li>세계 제조량·재고: 제품 유형을 통일한 국가별 공식 조사와 협회 원자료를 대조하면 같은 정의의 합계를 얻을 수 있는가(02절)?</li>
+<li>HS 경계: 간식·비소매 포장의 제품 정의가 HS 2309.10 집계와 어디에서 갈리는가(04절)?</li>
+<li>해외 비교: 같은 HS6·기간을 적용하고 총계와 세부 행의 중복을 제거하면 국가 간 비교값이 어떻게 달라지는가(04절)?</li>
+<li>제형별 통관 패턴: 2023~2025년 전체 수입액에서는 고점 월이 해마다 달랐다. 공급국·제형별로도 그런가(06절)?</li>
+<li>도·소매가격: 참가격·KCA·aT 원문에서 같은 제품·포장 단위의 연속 시계열을 확인할 수 있는가(05절)?</li>
+<li>생산자지수: ECOS 원 통계의 갱신 방식과 수집기 매핑이 반복된 월별 값을 설명하는가(05절)?</li>
+<li>기업 현황: 2025~2026년 기업별 펫푸드 전용 매출과 제조량 순위는 무엇인가; KREI 기업 표는 2022년 실적이고 DART의 2024년 파일은 일부 법인의 전체 재무다(07절).</li>
+<li>원산지 연결: 수입 제품의 원료 원산지와 브랜드 소유국은 통관 원산지와 어떻게 다른가; 국가별 HS 통계만으로는 연결할 수 없다(06절).</li>
+<li>제품별 의무: 현행 사료관리법 하위 규정과 수입위생조건 고시의 별표는 품목·원료·처리방법별로 어디까지 적용되는가(08절)?</li>
+<li>관세·표시: 현행 세율표와 관련 조문에서 HS 2309.10의 실효세율 및 제조국·원료 원산지·이력 표시 범위를 확인할 수 있는가(08절)?</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>제조국과 브랜드 소유국이 갈리는 펫푸드 공급망</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국의 소매용 개·고양이 사료(HS 2309.10) 수입액 3.425억 달러 가운데 수입액 비중이 10% 이상인 원산지는 중국 31.2%, 미국 16.2%, 태국 12.2%다. 분모는 같은 해 HS 2309.10 수입액 342,485,169달러이며, 세 나라 합은 59.7%다. 아래 기업의 매출은 각사의 공시 범위이고, 국가별 한국 수입액을 기업별 수출액으로 배분한 값이 아니다. 기업이 한국에서 판매되더라도 해당 제품이 표의 국가에 있는 공장에서 제조됐다는 뜻은 아니다(<a href="https://www.tradedata.go.kr/cts/index.do">관세청 수출입무역통계</a>, 2025, A; 04절).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 한국의 주요 완제품 공급국과 제조·가공기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표(연도·범위)</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>중국</td><td>Gambol Pet Group</td><td>제조·ODM·브랜드</td><td>2024년 매출 52.45억 위안, 해외 매출 16.93억 위안</td><td>회사가 한국을 판매국으로 명시. 중국 공장산의 한국 납품액은 미확인</td><td><a href="https://static.cninfo.com.cn/finalpage/2025-04-22/1223187547.PDF">2024년 연차보고서</a> A; <a href="https://www.gambolpet.com/our-story/">회사 소개</a> B</td></tr>
+<tr><td>중국</td><td>Yantai China Pet Foods</td><td>제조·OEM·브랜드</td><td>2024년 매출 44.65억 위안</td><td>확인된 공개 자료 없음</td><td><a href="https://static.cninfo.com.cn/finalpage/2025-04-24/1223233452.PDF">2024년 연차보고서 요약</a> A</td></tr>
+<tr><td>중국</td><td>Petpal Pet Nutrition</td><td>제조·ODM</td><td>2024년 매출 16.59억 위안, 해외 매출 13.71억 위안</td><td>확인된 공개 자료 없음</td><td><a href="https://static.cninfo.com.cn/finalpage/2025-04-19/1223145456.PDF">2024년 연차보고서</a> A</td></tr>
+<tr><td>미국</td><td>Mars Petcare·Royal Canin</td><td>제조·브랜드</td><td>2025년 오하이오 신공장: 연 400만 마리 급여 규모라는 회사 설명</td><td>Mars 한국 사이트가 위스카스·시저·쉬바 등을 안내. 로얄캐닌 한국법인은 표 11-3 참조. 미국 공장 물량의 한국 납품은 미확인</td><td><a href="https://www.mars.com/news-and-stories/press-releases-statements/mars-opening-new-royal-canin-facility-ohio">Mars 공장 발표</a> B; <a href="https://www.mars.com/ko-kr/our-brands/petcare">한국 브랜드</a> B</td></tr>
+<tr><td>미국</td><td>Nestlé Purina PetCare</td><td>제조·브랜드</td><td>2025년 Nestlé 세계 PetCare 매출 184.06억 스위스프랑</td><td>롯데네슬레코리아가 국내 퓨리나펫케어 사이트를 운영. 미국산 제품별 납품은 미확인</td><td><a href="https://www.nestle.com/media/pressreleases/allpressreleases/full-year-results-2025">Nestlé 2025년 실적</a> B; <a href="https://www.purina.com/articles/dog/health/nutrition/is-purina-dog-food-made-in-the-usa">퓨리나 미국 제조 설명</a> B; <a href="https://www.purinapetcare.co.kr/data/files/29acb07b7cd0ae834d7a97123a9c1054.pdf">한국 사이트 운영사</a> B</td></tr>
+<tr><td>미국</td><td>Hill’s Pet Nutrition</td><td>제조·브랜드</td><td>2025년 세계 사업 순매출 46.13억 달러</td><td>한국어 공식 제품 사이트 확인. 미국 공장산의 한국 납품은 미확인</td><td><a href="https://www.sec.gov/Archives/edgar/data/21665/000002166526000006/cl-20251231.htm">2025년 SEC 10-K</a> A; <a href="https://www.hillspet.com/about-us/press-releases/hills-pet-nutrition-opens-new-smart-factory-in-tonganoxie">미국 공장 발표</a> B; <a href="https://www.hillspet.co.kr/">한국 사이트</a> B</td></tr>
+<tr><td>태국</td><td>i-Tail Corporation</td><td>습식사료 제조·OEM</td><td>2025년 총수익 187.37억 바트</td><td>확인된 공개 자료 없음</td><td><a href="https://lssmedia.setlink.set.or.th/2025/YE/ITC-YE68-ListedCompanySnapshot-EN.html">태국 거래소 2025년 기업자료</a> A</td></tr>
+<tr><td>태국</td><td>Asian Alliance International</td><td>제조·OEM·브랜드</td><td>2025년 판매수익 약 70억 바트, 펫푸드 약 88%</td><td>확인된 공개 자료 없음</td><td><a href="https://lssmedia.setlink.set.or.th/2025/YE/AAI-YE68-ListedCompanySnapshot-EN.html">태국 거래소 2025년 기업자료</a> A</td></tr>
+<tr><td>태국</td><td>Tropical Canning</td><td>습식사료 가공·수출</td><td>2025년 펫푸드 제품 매출 27.62억 바트</td><td>확인된 공개 자료 없음</td><td><a href="https://tropical.co.th/files/investor/investor_pdf_162.pdf">2025년 회사 실적공시</a> A</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 기업 공시(A)와 기업 발표(B). 태국 세 기업은 <a href="https://thaipetfood.org/home/en/our-members-2/">태국 펫푸드무역협회 회원 명단</a>(2026년 확인, B)에서도 확인된다.</p>
+<p>기업별로 정의가 같은 세계 펫푸드 <strong>수출액 순위</strong>는 확인되지 않는다. 세계 사업 규모가 큰 Nestlé PetCare와 Hill’s의 위 매출은 수출액이 아니며, Mars는 같은 범위의 펫푸드 매출을 공개하지 않는다. 따라서 어느 회사를 세계 최대 <em>수출기업</em>이라고 확정할 수 없다. 04절의 HS 2309.90은 다른 동물용 조제사료가 섞여 있어, 그 수입액을 펫푸드 가공품의 별도 공급국·기업 순위로 전환하지 않는다.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>반려동물 사료에는 사료관리법의 성분등록·표시와 수입 검역 규율이 적용된다(08절). 2025년 10월~2026년 9월 식약처 수입식품 신고 확인 자료에서는 이 품목으로 식별된 행이 0건이다. 따라서 식약처 <strong>신고 건수 기준</strong> 수입업소 순위와 업소별 주요 제조국 상위 2를 만들 수 없다. 신고 건수는 중량·금액이 아니며, 이 결과가 HS 2309.10 수입 부재를 뜻하지도 않는다(<a href="https://www.data.go.kr/data/15073922/openapi.do">식약처 수입식품 신고자료 공개 경로</a>, A).</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 식약처 신고 건수 기준 수입업소 순위 산출 상태</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>식별된 업소 없음</td><td class="num">산출 불가</td><td>산출 불가</td><td>사료관리법 대상 품목을 식약처 수입식품 신고자료로 순위화할 수 없음</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.data.go.kr/data/15073922/openapi.do">식약처 수입식품 신고자료 공개 경로</a>(A), 조회기간 2025.10~2026.09; <a href="https://www.mafra.go.kr/bbs/home/879/576172/artclView.do">농식품부 수입위생조건</a>(2025, A).</p>
+<p>국내 기업은 연구보고서와 공시로 역할과 규모를 확인할 수 있다. 아래의 회사 전체 매출, 반려동물사업 부문 매출, KREI의 과거 기업표 값은 범위와 연도가 달라 펫푸드 판매 점유율이나 현재 기업 순위로 비교할 수 없다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 국내 주요 제조·수입·유통기업의 확인 가능한 규모</caption>
+<thead><tr><th>기업</th><th>확인된 역할</th><th>규모 지표(연도·범위)</th><th>해석 경계</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>로얄캐닌코리아</td><td>김제 제조·수입 병행</td><td>2025년 회사 전체 매출 약 4,025억 원(보도); KREI의 2022년 기업표 2,492억 원</td><td>2025년 금액은 공시 원문 미대조; 국내 판매 점유율 아님</td><td><a href="https://www.smarttoday.co.kr/ko-kr/articles/106254">2026년 보도</a> C; <a href="https://www.royalcanin.com/kr/about-us/our-history">로얄캐닌 김제공장</a> B; <a href="https://repository.krei.re.kr/handle/2018.oak/30744">KREI R978</a> B</td></tr>
+<tr><td>우리와</td><td>제조·브랜드·유통</td><td>2025년 반려동물사업 부문 매출 858.67억 원</td><td>우리와와 미국 관계법인 실적 포함</td><td><a href="https://kind.krx.co.kr/external/2026/03/19/001941/20260319008058/11011.htm">대한제분 2025년 사업보고서</a> A</td></tr>
+<tr><td>마즈코리아</td><td>수입 브랜드 유통</td><td>KREI의 2022년 기업표 1,167억 원</td><td>현재 수입액·점유율 아님</td><td><a href="https://repository.krei.re.kr/handle/2018.oak/30744">KREI R978</a> B</td></tr>
+<tr><td>대주산업</td><td>국내 제조</td><td>2025년 연결 매출 1,009.83억 원; 배합사료 매출 1,003.71억 원</td><td>공시상 배합사료 구성은 펫사료 7 : 양축사료 3; 펫푸드 매출액 별도 공시는 없음</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001531/20260318007086/11011.htm">2025년 사업보고서</a> A</td></tr>
+<tr><td>내츄럴코어</td><td>KREI 기업표 등재</td><td>KREI의 2022년 기업표 852억 원</td><td>KREI의 제조·판매 유형 표에는 사례 없음</td><td><a href="https://repository.krei.re.kr/handle/2018.oak/30744">KREI R978</a> B</td></tr>
+<tr><td>카길애그리퓨리나</td><td>국내 사료 제조</td><td>KREI의 2022년 기업표 836억 원</td><td>최근 펫푸드 전용 매출 아님</td><td><a href="https://repository.krei.re.kr/handle/2018.oak/30744">KREI R978</a> B</td></tr>
+<tr><td>하림펫푸드</td><td>국내 제조·브랜드</td><td>KREI의 2022년 기업표 765억 원</td><td>최근 감사보고서 매출과 정의를 대조하지 않은 과거 값</td><td><a href="https://repository.krei.re.kr/handle/2018.oak/30744">KREI R978</a> B</td></tr>
+<tr><td>롯데네슬레코리아</td><td>퓨리나 브랜드 판매</td><td>KREI의 2022년 기업표 500억 원</td><td>최근 펫푸드 단독 매출 아님</td><td><a href="https://repository.krei.re.kr/handle/2018.oak/30744">KREI R978</a> B; <a href="https://www.purinapetcare.co.kr/data/files/29acb07b7cd0ae834d7a97123a9c1054.pdf">퓨리나펫케어 운영사</a> B</td></tr>
+<tr><td>동원F&amp;B</td><td>뉴트리플랜 제조·판매</td><td>2025년 동원F&amp;B와 종속기업 연결 매출 4.87773조 원</td><td>일반식품·유통·사료 포함; 뉴트리플랜 단독 매출 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001675/20260318007758/11011.htm">동원산업 2025년 사업보고서</a> A; <a href="https://www.dongwonfnb.com/services/Brand/Brand_View?brandno=44">뉴트리플랜 브랜드</a> B</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 법정 공시(A), 기업 공개자료·<a href="https://repository.krei.re.kr/handle/2018.oak/30744">KREI R978</a>(B), 보도(C). KREI의 2022년 기업표와 2025년 공시를 연결해 성장률이나 점유율을 계산하지 않았다.</p>
+<p>상장사 공시의 원재료·매출 구성에도 범위 차이가 있다. 대주산업은 2025년 전체 배합사료 부문에서 옥수수 등 국외구입 원재료 236.21억 원을 공시했으며, 배합사료 매출 구성은 펫사료 7 : 양축사료 3이라고 밝혔다. 원재료 매입액을 펫사료에 따로 배분한 금액은 없다(<a href="https://kind.krx.co.kr/external/2026/03/18/001531/20260318007086/11011.htm">대주산업 사업보고서</a>, 2025, A). 동원F&amp;B와 종속기업의 매출 구성은 일반식품·조미유통·사료 등으로 제시되지만 뉴트리플랜 매출은 분리되지 않는다(<a href="https://kind.krx.co.kr/external/2026/03/18/001675/20260318007758/11011.htm">동원산업 사업보고서</a>, 2025, A).</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 펫푸드 완제품의 단계별 주체와 가격 형성</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산·어획</td><td>곡물·육류 생산자, 어업인</td><td>펫푸드 전용 원료 투입액 미확보</td><td>산지 거래·원료 공급계약</td><td>작황·질병·어획 제한</td></tr>
+<tr><td>1차 가공</td><td>도축·제분·수산가공 업체</td><td>펫푸드 전용 가공액 미확보</td><td>원료 규격·가공계약</td><td>안전성·추적성</td></tr>
+<tr><td>수출·국제 무역</td><td>중국·미국·태국 제조사와 무역상</td><td>2025년 세 나라의 한국 수입액 비중 합 59.7%</td><td>완제품 수출계약·운임</td><td>공급국 집중·환율</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업자, 관세청, 농림축산검역본부</td><td>2025년 HS 2309.10 수입 3.425억 달러·6.902만 톤</td><td>해외 공급계약·운임·환율; 통관 평균단가 4.96달러/kg</td><td>위생조건·서류·검역 지연</td></tr>
+<tr><td>국내 가공</td><td>제조사·위탁생산업체</td><td>2024년 사료 생산액 1,177,937백만 원; 기호식품 145,206백만 원</td><td>원료·제형·제조계약</td><td>원료비·설비·표시 적합성</td></tr>
+<tr><td>도매·유통</td><td>수입사, 창고·도매업자</td><td>전국 펫푸드 전용 도매액 미확보</td><td>납품계약·물류비</td><td>재고·유통기한</td></tr>
+<tr><td>소매·외식</td><td>온라인몰, 펫숍, 마트, 동물병원 등</td><td>채널별 전국 매출 미확보</td><td>채널별 판매가격·판촉</td><td>수수료·반품·가격 경쟁</td></tr>
+<tr><td>소비</td><td>반려동물 양육 가구</td><td>2025년 국내 사료 시장 17.83억 달러는 민간 추정</td><td>최종 구매 선택</td><td>안전성·영양·표시 신뢰</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 국내 생산은 <a href="https://kosis.kr/">국가통계포털 광업·제조업조사</a>(2024, A; 03절), 무역은 <a href="https://www.tradedata.go.kr/cts/index.do">관세청 수출입무역통계</a>(2025, A; 04·05절), 유통경로는 <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=South+Korea+Pet+Food+Report_Seoul+ATO_Korea+-+Republic+of_KS2024-0001.pdf">USDA FAS 한국 GAIN 보고서</a>(2024, B), 시장 추정치의 성격은 <a href="https://www.mafra.go.kr/bbs/home/793/579355/artclView.do">농식품부 설명자료</a>(2026, A). 생산액·통관액·시장 추정액은 범위와 가격 단계가 달라 합산하지 않는다.</p>
+<p>부가가치는 원료의 규격화, 영양 제형, 제조·포장, 브랜드, 유통 과정에서 생긴다. 태국 AAI의 2025년 판매수익 약 70억 바트 중 펫푸드가 약 88%라는 공시는 완제품 제조가 독립적인 사업 규모를 형성함을 보여준다(<a href="https://lssmedia.setlink.set.or.th/2025/YE/AAI-YE68-ListedCompanySnapshot-EN.html">태국 거래소</a>, A). 국내의 2024년 사료 제조 생산액 1,177,937백만 원과 2025년 완제품 수입액 3.425억 달러는 서로 다른 단계의 규모다. 두 금액의 차이를 유통마진이나 수입산 점유율로 계산할 수 없으며, 국내 단계별 부가가치 배분도 미확보다.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 펫푸드 공급망의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>농림축산식품부·농림축산검역본부·관세청</td><td>사료 기준·수입위생조건, 검역, 통관통계</td><td>안전 기준과 수입 가능 범위에 영향</td></tr>
+<tr><td>해외 정부</td><td>미국 USDA APHIS·태국 축산개발국</td><td>동물성 제품 수출증명·제조시설 관리</td><td>수출 가능 제품과 증명 요건에 영향</td></tr>
+<tr><td>생산자·단체</td><td>태국 펫푸드무역협회</td><td>제조·수출 기업의 업계 활동</td><td>원료 조달·품질·수출 여건에 관심</td></tr>
+<tr><td>수출·가공기업</td><td>Gambol·i-Tail·Asian Alliance International</td><td>제형 개발·제조·위탁생산·수출</td><td>설비 가동과 해외 주문 확보에 영향</td></tr>
+<tr><td>수입·유통기업</td><td>로얄캐닌코리아·우리와·롯데네슬레코리아</td><td>국내 제조·브랜드 운영·판매</td><td>제품 구성·판매경로·재고에 영향</td></tr>
+<tr><td>소비자·시민사회</td><td>반려동물 보호자·한국소비자원</td><td>구매 선택, 표시·유통 실태 조사</td><td>원료·영양·안전 정보의 명확성에 관심</td></tr>
+<tr><td>국제기구·인증</td><td>세계동물보건기구(WOAH)·국제표준화기구(ISO)</td><td>동물위생 기준과 사료 안전관리 표준</td><td>국가 규정과 기업 품질관리의 참고 기준</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.mafra.go.kr/bbs/home/879/576172/artclView.do">농식품부 수입위생조건</a>(2025, A), <a href="https://www.aphis.usda.gov/animal-product-export/international-animal-product-export-regulations">미국 USDA APHIS 수출요건 안내</a>(2026년 확인, A), <a href="https://certify.dld.go.th/index.php?lang=th">태국 축산개발국</a>(2026년 확인, A), <a href="https://thaipetfood.org/home/en/our-members-2/">태국 펫푸드무역협회</a>(2026년 확인, B), <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=South+Korea+Pet+Food+Report_Seoul+ATO_Korea+-+Republic+of_KS2024-0001.pdf">USDA FAS 한국 GAIN 보고서</a>(2024, B), <a href="https://www.woah.org/en/what-we-do/standards/standard-setting-process/terrestrial-animal-health-standards-commission/">WOAH</a>(2026년 확인, A), <a href="https://www.iso.org/standard/83544.html">ISO 22002-6:2025</a>(2025, A).</p>
+<p>수입업자는 안정적인 공급을 원하고 검역당국은 동물성 원료의 위해 차단을 중시한다. 제조사·유통사는 제형과 브랜드를 구분하려 하지만 보호자는 원료와 제조국을 이해하기 쉬운 표시를 요구한다. 원료비 변동을 계약가격에 반영하려는 생산·제조 단계와 소비자가격·판촉 경쟁을 고려하는 소매 단계의 이해도 엇갈린다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황</h2>
+<p class="lead">품목 키는 <code>petfood</code>, 레지스트리 분류는 <code>11_인프라(Infra)</code>, HS6는 <code>230910</code>·<code>230990</code>이다. 다음 표는 2026년 10월 7일 <code>rawbulk.report_delta.coverage("petfood")</code>가 돌려준 9개 수집기다. «최신»은 파일이 포함한 가장 늦은 기간이지 그 기간의 연간 통계가 완결됐다는 뜻이 아니다. 특히 브라질·미국·EU의 2026년 자료는 진행연도다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 펫푸드 수집기 현황(2026-10-07)</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">730</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">479</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">2,432</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">827</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">392</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">7,874</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">15,054</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">3,785</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">549</td><td>2026.08</td><td>2026-10-01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>의 <code>rawbulk.report_delta.coverage("petfood")</code> 출력(E12). Comtrade·customs_kr는 각각 해당 품목의 연간·월간 CSV 한 파일을 읽는다. 행 수는 상품·국가·기간 등 세부 행을 포함하므로 통계의 합계값이 아니다.</p>
+<p>정기 수집기 외의 근거에는 공통 원자료 <code>kosis_manufacturing_items</code>·<code>kosis_pet_households</code>·<code>ecos_producer_price_items</code>·<code>kosis_compound_feed</code>, USDA PSD 상품목록, 관세청 국가별 XML, 은행 리포트 색인, 아카이브 PDF·HTML, 공식 법령·고시와 조사노트를 썼다. KOSIS 배합사료 파일의 가축용 행을 펫푸드로 전용하지 않았다. KOSIS 반려동물 조사 파일의 표본 사례수를 전국 가구수로 확대하지 않았다. 원장 속 환율·미국 PPI 파일은 맥락을 확인했지만 한국 펫푸드 소매가격의 대용치로 쓰지 않았다.</p>
+<h3>자료 검토 범위</h3>
+<p>아카이브 목록은 <code>archive_inventory/petfood.csv</code>, 사전 판정 원장은 <code>01_조사노트/01_아카이브_원장.csv</code>, 반영 후보 원문은 <code>archive_cache/petfood/</code>를 기준으로 확인했다. 본문에는 개별 기업의 진입전략·손익 시나리오를 옮기지 않았다. 반영 후보 가운데도 2차 추정치가 원자료와 충돌하거나 산업 전체로 일반화할 수 없는 수치는 채택하지 않았다.</p>
+<div class="tw">
+<table>
+<caption>표 12. 펫푸드 아카이브 원장 요약</caption>
+<thead><tr><th>판정</th><th class="num">건수</th><th>주요 사유·처리</th></tr></thead>
+<tbody>
+<tr><td>반영필요</td><td class="num">37</td><td>관세청 원응답, Comtrade, KREI·USDA·FEDIAF 등 원문, 일부 배경자료</td></tr>
+<tr><td>불필요</td><td class="num">93</td><td>중복 사본, 빈·오류 응답, 가축용 사료, HS 2309.90 혼합자료, 개별 기업의 사업 계획·무관 품목</td></tr>
+<tr><td>미검토</td><td class="num">1</td><td>텍스트 추출이 안 되는 KPMG 스캔 PDF 1건</td></tr>
+<tr class="tot"><td><strong>전체</strong></td><td class="num"><strong>131</strong></td><td>원장 판정 합계</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 보고서 폴더 <code>01_조사노트/01_아카이브_원장.csv</code>의 판정과 <code>archive_cache/petfood/intelligence_reports/</code>의 문서 변환본(E11). Google 문서 3건의 DOCX 변환본은 사업계획·자료목록으로 분류했다. KPMG PDF는 스캔 47쪽으로 첫 두 쪽의 텍스트 추출 결과가 비어 있어 미검토로 남는다.</p>
+<p>반영 후보를 자료의 최종 신뢰등급과 혼동하지 않는다. KREI·USDA의 조사표와 관세청 원응답은 직접 근거로 썼지만, 아카이브의 <code>PHASE1</code>·<code>PHASE2</code>·<code>PHASE3</code> 보고서에서 제시한 시장 규모, 기업 점유율, 손익 전망은 원자료와 정의를 다시 맞춘 부분만 본문에 반영했다. 특히 HS 2309.90의 원자료는 산업 경계를 설명하는 데만 쓰고 펫푸드 무역 규모에 더하지 않았다. 국내 도·소매가격 연속 시계열, 2025~2026년 기업별 점유율, 현행 세부 관세율은 미확보 상태다.</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 펫푸드 산업 해부: 생산·수입·수출이 함께 있는 시장</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · 관세청·KOSIS·ECOS·UN Comtrade 원자료와 기관 원문. 민간 추정·업계협회·연구 재인용은 본문에서 성격을 표시했다</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>30_근거_수치.md에 파일·필터·계산식을 기록했다</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>무역 핵심 범위는 HS 2309.10 소매용 개·고양이 사료. HS 2309.90의 다른 조제사료는 구분했다. 국내 제조업 생산액과 민간 시장규모 추정치는 별도 지표로 다뤘다</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>세계 완제품 생산·소비·재고의 같은 정의를 가진 합계, 국내 소매가격 연속 시계열, 현행 기업별 점유율, 세부 실효관세율은 미확보다. 아카이브 원장 1건은 미검토로 남았다</span></div>
+</footer>
+</div>
+

@@ -1,0 +1,751 @@
+<title>한국 코코아 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 코코아<br>
+        세계 수급 · 국내 원료 · 무역 · 가격 · 기업 · 제도<br>
+        자료 기준 2026년 10월 7일
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">원두에서 초콜릿까지 · 리포트 2026</p>
+      <h1><span class="scr">Cocoa</span> <span class="lt">한국 코코아 산업 해부</span></h1>
+      <p class="cover-sub">한국은 코코아 원두와 매스·버터·분말을 서로 다른 공급국에서 들여온다.
+        원두 산지의 수확, 가공국의 생산, 국내 제과 수요가 같은 가격표로 움직이지는 않는다.
+        생산·수급·수입·국내 제조·제도를 원자료의 기간과 단위에 맞춰 살핀다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2024 세계 원두 생산</div><div class="v">523만</div>
+        <div class="n">톤 · FAOSTAT 역년 · 코트디부아르 36.1%</div></div>
+      <div class="cf"><div class="k">2024/25 세계 분쇄량</div><div class="v">464.9만</div>
+        <div class="n">톤 · ICCO 2026년 8월 수정치</div></div>
+      <div class="cf"><div class="k">2024/25 세계 수급</div><div class="v">+3.7만</div>
+        <div class="n">톤 잉여 · ICCO · 순생산 기준</div></div>
+      <div class="cf"><div class="k">2025 한국 원료 수입</div><div class="v">20,120</div>
+        <div class="n">톤 · HS 1801~1805 여섯 코드 합계</div></div>
+      <div class="cf"><div class="k">2025 한국 원료 수입액</div><div class="v">2.21억</div>
+        <div class="n">달러 · HS 1801~1805 · 초콜릿 조제품 제외</div></div>
+      <div class="cf"><div class="k">2025 분말 수입</div><div class="v">10,929</div>
+        <div class="n">톤 · HS 180500 · 무가당 코코아분말</div></div>
+      <div class="cf"><div class="k">2024 국내 분말 원료 사용</div><div class="v">9,464</div>
+        <div class="n">톤 · 식품제조업 원료 사용 통계</div></div>
+      <div class="cf"><div class="k">2024 국내 초콜릿류 생산액</div><div class="v">1.16조</div>
+        <div class="n">원 · 종사자 10명 이상 사업체 · KOSIS</div></div>
+    </div>
+
+  </div>
+</header>
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">원두 산지와 가공품 공급국을 나눠야 한국 시장이 보인다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">서아프리카 원두와 세계 분쇄량은 서로 다른 시계로 움직인다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">국산 원료와 국내 제조를 혼동하면 규모가 뒤틀린다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">원두·매스·버터·분말의 수입량과 단가가 서로 다르다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">국제 원두 시세와 한국 수입·초콜릿 가격은 다른 거래다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">한국의 원두 공급선과 가공품 공급선을 따로 본다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">국내 제조 규모는 보이지만 수입업체별 물량·점유율은 비어 있다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">할당관세는 발표 기간을 지키고 식품·원산지·산림 규정을 따로 본다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">가격 하락을 말하지만 지역과 기간은 제각각이다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 관찰 지표·남은 물음</span><span class="t">수확, 분쇄, 통관, 제품값을 다른 주기로 본다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">원두 산지와 가공품 제조국이 갈라지는 공급망</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 검토 범위</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>원두 산지와 가공품 공급국을 나눠야 한국 시장이 보인다</h2>
+<p class="lead">한국 코코아 산업을 한 개의 «코코아 수입량»으로 설명할 수 없다. 원두(HS 180100), 껍질·부산물(180200), 탈지 여부가 다른 페이스트(180310·180320), 버터(180400), 무가당 분말(180500)은 쓰임과 단가가 다르다. 초콜릿 등 당을 넣은 조제품은 HS 1806에 걸쳐 있어 이 보고서의 무역 합계에서 뺐다. 여섯 코드의 무게를 더한 값은 원두 환산량이나 최종 초콜릿 소비량이 아니다. 분쇄 과정에서 원두가 매스·버터·분말로 갈라지고, 같은 산업 안에서 원료가 다시 거래될 수 있기 때문이다(관세청 품목별 월간 원자료; registry <code>cocoa</code>).</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>세계 생산과 가공은 기간부터 다르다.</strong> FAOSTAT의 2024년 역년 원두 생산량은 약 523만 톤(원값 5,233,245.33톤)이다. 코트디부아르 1,890,442톤(36.1%), 인도네시아 632,702톤(12.1%), 가나 530,000톤(10.1%) 순이다. 가나 값은 FAOSTAT의 <code>X</code> 표기이므로 신고 실측과 같은 등급으로 읽지 않는다. ICCO의 2024/25 코코아 연도(10월~다음 해 9월) 세계 총생산 수정치는 473.3만 톤, 분쇄량은 464.9만 톤, 수급 잉여는 3.7만 톤이다. 기간과 산식이 달라 두 생산량을 증감률로 맞대지 않는다(FAOSTAT QCL; <a href="https://www.icco.org/august-2026-quarterly-bulletin-of-cocoa-statistics/">ICCO 2026년 8월 통계 공표</a>).</li>
+<li><strong>한국은 원두보다 분말을 더 무겁게 들여왔다.</strong> 2025년 HS 1801~1805 수입 합계는 20,120.0톤·약 2.21억 달러(원값 220,556,136달러)다. 그중 무가당 분말이 10,929.0톤, 원두가 5,305.5톤, 탈지하지 않은 페이스트가 3,119.0톤, 버터가 766.5톤이다. 180200·180320도 합계에 포함했다(관세청 월간 HS10 합산; Comtrade 한국 신고 합계 행 교차 확인, 04절).</li>
+<li><strong>원두와 분말의 공급선은 다르다.</strong> 2025년 한국 신고 원두(HS 180100) 수입은 가나 4,241.83톤(80.0%), 에콰도르 852.56톤(16.1%)에 집중됐다. 같은 해 무가당 분말(180500)의 주요 신고 상대국은 네덜란드 3,530.90톤(32.3%), 싱가포르 2,878.44톤(26.3%), 말레이시아 2,079.17톤(19.0%)이었다. 2024년 원두 수입에서는 가나 54.7%, 코트디부아르 13.3%였으나, 2025년 원두 상대국 표에는 코트디부아르 행이 없다(UN Comtrade, 한국 신고 HS 180100·180500 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">원두</a>·<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180500&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">분말</a>; 04·06절).</li>
+<li><strong>국내 원료 통계는 국내 제조와 원산지를 구별한다.</strong> KOSIS의 2024년 식품제조업 원료 사용량은 코코아원두 3,472톤, 매스 3,747톤, 버터 1,153톤, 분말 9,464톤이다. 네 항목의 <code>국산사용량</code>은 모두 0톤이다. 그러나 분말 9,464톤 중 <code>제조지기준-국내</code>는 3,925톤이다. 수입 원료를 국내에서 가공한 물량이 있을 수 있으므로 «국산 원료 0»은 «국내 가공 0»을 뜻하지 않는다(KOSIS 식품제조업 농축수산물 사용량, 03절).</li>
+<li><strong>초콜릿류 제조 규모는 원료 수입액과 별개의 값이다.</strong> KOSIS 2024년 종사자 10명 이상 사업체 기준 초콜릿류는 68개 사업체, 생산액 약 1.16조 원(원값 1,163,387백만원)이다. 코코아 분말은 10개 사업체, 생산액 52,573백만원이다. 두 생산액은 완제품·중간재 제조 단계의 원화 값이며 관세청 원료 수입액(달러)으로 국내 시장 점유율을 계산할 수 없다(03·07절).</li>
+<li><strong>국제 원료값과 국내 제품값의 측정 대상이 다르다.</strong> ICCO 월평균 일일가격은 2025년 9월 톤당 7,004.16달러, 2026년 9월 5,898.14달러다. 한국은행 ECOS의 전국 초콜릿 소비자물가지수는 각각 163.74와 162.81(2020=100)이다. 이 두 시계열만으로 가격 전가율이나 시차를 추정하지 않았다(ICCO 가격 수집 ZIP; ECOS 소비자물가지수, 05절).</li>
+<li><strong>2025/26 세계 수급은 아직 확정 숫자가 아니다.</strong> ICCO는 2026년 8월 공표에서 해당 시즌 생산·분쇄 수치를 일시적으로 내지 않았다. 세계은행의 2026년 전망과 한 기관의 시즌 추정치를 확정 실적으로 합치지 않는다(<a href="https://www.icco.org/august-2026-quarterly-bulletin-of-cocoa-statistics/">ICCO 2026년 8월 공표</a>; <a href="https://thedocs.worldbank.org/en/doc/f3138644a1e8e2bb631399ae11d6c408-0050012026/related/CMO-April-2026-Forecasts.pdf">세계은행 2026년 4월 전망표</a>).</li>
+<li><strong>한국 제도의 적용 범위는 세번과 기간별로 다르다.</strong> 2026년 볶지 않은 코코아두(180100)는 0%·수입 전량의 연중 할당 대상이다. 탈지하지 않은 페이스트(180310)·버터(180400)·무가당 분말(180500)는 7월 1일~12월 31일에도 0%·수입 전량이다. 180200·180320은 해당 하반기 별표의 코코아 행에 없다(국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」 별표 3·5, 2026-06-30, <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=287543">법령</a>·<a href="https://www.law.go.kr/flDownload.do?bylClsCd=110201&amp;flSeq=166193793&amp;gubun=">별표 5</a>; 08절).</li>
+<li><strong>가나의 수매·가공 정책은 별도 관찰 대상이다.</strong> 가나 재무부는 2026년 2월 12일 2025/26 시즌 잔여 원두의 국내 가공 배정과 2026/27 시즌부터 원두 최소 50%의 국내 가공을 지시했다고 발표했다. 같은 날 잔여 시즌 생산자가격을 톤당 GHS 41,392로 조정했다. 발표된 지시와 수매가는 한국의 실제 수입 감소나 가나의 달성 가공률을 보여 주지 않는다(가나 재무부, <em>Press Release on Cocoa Sector Reforms for Financial Viability and Long-Term Sustainability</em>, 2026-02-12, <a href="https://mofep.gov.gh/sites/default/files/news/Press-Briefing-on-Cocoa.pdf">원문</a>).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li>이 보고서는 <strong>완료연도 기준 한국의 원두 공급 집중과 분말의 신고 상대국 분산을 서로 다른 공급망 위험</strong>으로 본다. 2025년 원두는 가나 80.0%·에콰도르 16.1%에 집중됐고 분말의 주요 상대국은 네덜란드·싱가포르·말레이시아로 갈렸다. 반증 조건은 이후 완료연도에 두 품목의 국가별 수입 구조가 같은 순서·비중으로 수렴하거나, 원산지와 제조국을 연결한 공개 원장이 이 구분을 뒤집는 경우다(UN Comtrade, 한국 신고 HS 180100·180500 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">원두</a>·<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180500&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">분말</a>; 04·06절).</li>
+<li>이 보고서는 <strong>2026년 연간 한국 원두 수입 단가가 2025년의 kg당 11.07달러보다 낮게 마감할 가능성이 크다</strong>고 본다. 2026년 1~8월 기준(잠정) 누계는 kg당 7.62달러이며, 완료연도 값은 아니다. 반증 조건: 2026년 12개월 관세청 합계의 <code>impDlr ÷ impWgt</code>가 11.07달러 이상이 되는 경우다. 월별 국가 구성 변화는 이 전망에 반영되지 않았다(04·10절).</li>
+</ul>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>서아프리카 원두와 세계 분쇄량은 서로 다른 시계로 움직인다</h2>
+<p class="lead">코코아 원두는 농장에서 생산되고, 분쇄 공장에서 매스·버터·분말로 바뀐다. 생산량, 분쇄량, 무역량의 분모가 서로 달라 같은 해 숫자를 더해 «시장 규모»라고 할 수 없다. 생산국의 역년 통계에는 FAOSTAT, 코코아 연도 수급에는 국제코코아기구(ICCO)를 썼다. FAOSTAT의 2024년 세계 원두 생산 5,233,245.33톤은 역년 값이고, ICCO의 2024/25 시즌 생산 473.3만 톤은 2024년 10월~2025년 9월의 수정 추정치다. 단순 차액을 결손으로 해석하지 않는다(FAOSTAT QCL; ICCO 2026-08).</p>
+<div class="tw">
+<table>
+<caption>표 1. 2024년 세계 코코아 원두 생산(역년)</caption>
+<thead><tr><th>국가·지역</th><th class="num">생산량(톤)</th><th class="num">세계 생산 대비</th><th>자료 표기</th></tr></thead>
+<tbody>
+<tr><td>코트디부아르</td><td class="num">1,890,442</td><td class="num">36.1%</td><td>A</td></tr>
+<tr><td>인도네시아</td><td class="num">632,702</td><td class="num">12.1%</td><td>A</td></tr>
+<tr><td>가나</td><td class="num">530,000</td><td class="num">10.1%</td><td>X</td></tr>
+<tr><td>에콰도르</td><td class="num">403,699</td><td class="num">7.7%</td><td>A</td></tr>
+<tr><td>나이지리아</td><td class="num">350,000</td><td class="num">6.7%</td><td>X</td></tr>
+<tr><td>카메룬</td><td class="num">320,000</td><td class="num">6.1%</td><td>X</td></tr>
+<tr><td>브라질</td><td class="num">297,509</td><td class="num">5.7%</td><td>A</td></tr>
+<tr><td>아프리카 지역 합계</td><td class="num">3,424,758</td><td class="num">65.4%</td><td>E</td></tr>
+<tr class="tot"><td><strong>세계</strong></td><td class="num"><strong>5,233,245</strong></td><td class="num"><strong>100%</strong></td><td>A</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>data/_raw/_items/cocoa/faostat_production_cocoa.csv</code>, <code>Year=2024</code>, <code>Item=Cocoa beans</code>, <code>Element=Production</code>. 지역 합계는 국가 행에 다시 더하지 않았다. 원자료의 A·X·E 표기를 그대로 옮겼고 톤은 소수 첫째 자리에서 반올림했다.</p>
+<p>코트디부아르는 세계 생산의 36.1%를 차지한다. 가나는 10.1%다. 두 나라를 묶은 46.3%는 FAOSTAT 2024년 역년의 결과이며, 세계은행 블로그가 쓴 «약 60%»라는 다른 시점의 개괄과 섞지 않는다. 인도네시아·에콰도르 등도 생산 규모가 커서 서아프리카 두 나라만으로 공급 전체를 설명할 수 없다. 표의 나이지리아·카메룬·가나에는 <code>X</code>가 있어 국가별 순위를 실측 확정 서열로 과장하지 않는다(FAOSTAT QCL; <a href="https://blogs.worldbank.org/en/opendata/beverage-prices-retreat-as-supplies-recover">세계은행 음료가격 해설</a>).</p>
+<p>ICCO의 2026년 5월 호는 2024/25 세계 총생산 472.3만 톤, 분쇄 462.8만 톤, 수급 잉여 4.8만 톤, 기말재고 132.0만 톤, 재고/분쇄 비율 28.5%를 제시했다. 2026년 8월 호는 같은 시즌을 생산 473.3만 톤, 분쇄 464.9만 톤, 잉여 3.7만 톤, 기말재고 130.9만 톤, 재고/분쇄 비율 28.2%로 다시 고쳤다. 이 보고서는 늦은 판본을 본문 기준으로 삼고, 앞선 수치의 존재를 기록해 개정 이력을 보이게 했다. 2023/24 시즌은 5월 호에서 생산 436.2만 톤, 분쇄 481.0만 톤, 수급 적자 49.2만 톤으로 제시됐다. «생산−분쇄»와 ICCO의 수급 잉여·적자는 같지 않다. ICCO는 생산의 무게 감모를 반영한 순생산에서 분쇄를 빼기 때문이다(<a href="https://www.icco.org/may-2026-quarterly-bulletin-of-cocoa-statistics/">ICCO 2026년 5월 공표</a>; <a href="https://www.icco.org/august-2026-quarterly-bulletin-of-cocoa-statistics/">ICCO 2026년 8월 공표</a>).</p>
+<p>수요 측정에는 두 종류가 있다. ICCO의 분쇄량은 원두가 가공 단계에 들어간 물량이고, 가계가 먹은 초콜릿 무게가 아니다. FAOSTAT 식품수급표의 <code>Cocoa Beans and products</code>는 원두와 제품을 묶어 식품 공급량으로 배분한 계정이다. 세계 값은 2023년 <code>Food</code> 535.7만 톤이지만 ICCO의 다른 시즌 분쇄량과 직접 비교하지 않는다. 한국 값도 03절에서 같은 이유로 별도 표시한다(FAOSTAT FBS 2023).</p>
+<p>아카이브의 ICCO 2025년 10월 보고서는 코트디부아르의 주수확기 출범이 10월인 반면 가나는 2025년 시즌을 8월 시작으로 운용했다고 적었다. 같은 보고서에 2025년 3분기 유럽 분쇄량 337,353톤(전년 동기 대비 −4.8%), 아시아 183,413톤(−17.1%)이 실려 있다. 북미는 신고 공장 수가 늘어 표면상 증가율이 수요 회복을 뜻하지 않을 수 있다고 ICCO가 주의를 붙였다. 이는 당시 분기의 관측이며, 2026년 연간 수요 전망에 그대로 연장하지 않는다(ICCO, <em>Cocoa Market Report</em>, 2025-10, 아카이브 PDF).</p>
+<p>2025/26 시즌의 생산·분쇄량은 집필 기준일에 ICCO가 일시 미공표했다. 2026년 1~3월 원두·반제품 수출은 원두 환산 209만 톤으로 전 시즌 동기보다 2.8% 적었다는 ICCO의 공개 요약만 쓸 수 있다. 세계은행의 2026년 가격 전망과 민간 전망에 생산 회복 서사가 있더라도, ICCO의 미공표 칸을 그 값으로 메우지 않는다(<a href="https://www.icco.org/august-2026-quarterly-bulletin-of-cocoa-statistics/">ICCO 2026년 8월 공표</a>).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>국산 원료와 국내 제조를 혼동하면 규모가 뒤틀린다</h2>
+<p class="lead">이번에 확인한 FAOSTAT <code>Cocoa beans</code> 생산표의 2024년 국가 행에는 <code>Republic of Korea</code>가 없고, KOSIS 식품제조업 원료 통계의 코코아원두 <code>국산사용량</code>은 0톤이다. 이는 확보한 원장에서 국산 원두 공급을 확인하지 못했다는 뜻이다. 전국에서 한 알도 생산하지 않는다는 포괄적 부재 주장으로 넓히지 않는다(FAOSTAT QCL 2024 국가 행 조회; KOSIS <code>kosis_food_raw_material</code>, 2024).</p>
+<p>국내 제조업은 원두뿐 아니라 매스, 버터, 분말을 각각 원료로 산다. 같은 코코아라도 국내 공장에서 원두를 분쇄해 만든 분말과 수입 완제품 분말은 산업 단계가 다르다. KOSIS 원료 사용 통계는 원료의 국산·수입산 구분과 원료 제조지 구분을 함께 제공한다. 이를 한 열로 합치면 «국산 사용량 0인데 국내 제조 분말 3,925톤»이라는 정상적인 기록을 모순으로 오해한다.</p>
+<div class="tw">
+<table>
+<caption>표 2. 국내 제조업의 코코아 원료와 생산(2024년)</caption>
+<thead><tr><th>지표</th><th class="num">원자료 값</th><th>범위·뜻</th></tr></thead>
+<tbody>
+<tr><td>코코아원두 원료 사용</td><td class="num">3,472톤</td><td>식품제조업 농축수산물 원료</td></tr>
+<tr><td>코코아매스 원료 사용</td><td class="num">3,747톤</td><td>같은 통계의 별도 원료</td></tr>
+<tr><td>코코아버터 원료 사용</td><td class="num">1,153톤</td><td>같은 통계의 별도 원료</td></tr>
+<tr><td>코코아분말 원료 사용</td><td class="num">9,464톤</td><td>그중 제조지기준 국내 3,925톤·해외 5,539톤</td></tr>
+<tr><td>초콜릿류 사업체·생산액</td><td class="num">68개·1,163,387백만원</td><td>종사자 10명 이상 제조업 사업체</td></tr>
+<tr><td>코코아 분말 사업체·생산액</td><td class="num">10개·52,573백만원</td><td>종사자 10명 이상 제조업 사업체</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS 원자료 <code>kosis_food_raw_material/2026-10-06__kosis_food_raw_material.json</code>에서 <code>PRD_DE=2024</code>, <code>C1_NM=코코아원두/코코아매스/코코아버터/코코아분말</code>; <code>kosis_manufacturing_items/2026-10-06__kosis_manufacturing_items.json</code>에서 <code>PRD_DE=2024</code>, <code>C2_NM=초콜릿류/코코아 분말</code>. 생산액은 수입액·판매액과 다른 제조업 통계다.</p>
+<p>원료 사용량을 더해 «코코아 소비 17,836톤»이라고 쓰지 않는다. 원두와 그 원두에서 가공된 매스·버터·분말이 통계 안팎에서 다시 잡힐 수 있고, 네 품목은 물리적 수율도 다르다. 초콜릿류 생산액 1,163,387백만원 역시 국내 초콜릿 소매시장 매출이 아니다. 조사 대상은 종사자 10명 이상 사업체이고, 유통 마진·수입 완제품·소규모 사업체를 같은 값에 넣지 않았다(KOSIS 두 원자료).</p>
+<p>FAOSTAT 식품수급표는 한국의 2023년 <code>Cocoa Beans and products</code> 식품 공급량을 4만 6천 톤, 1인당 연 0.88kg으로 적는다. 같은 계정의 수입량은 5만 8천 톤, 수출량은 1만 3천 톤이다. 이 수치는 원두·제품을 포함한 식품수급 계정의 천 톤 단위 값이다. HS 1801~1805에 한정한 2025년 관세청 물량 2만 120톤과 범위·연도·환산 방식이 달라 서로 빼거나 «누락분»이라고 해석하지 않는다(FAOSTAT FBS <code>Area=Republic of Korea</code>, <code>Item=Cocoa Beans and products</code>, <code>Year=2023</code>).</p>
+<p>국내 최종 수요를 보는 또 하나의 창은 초콜릿 가격과 제조 규모다. ECOS에는 전국 초콜릿 소비자물가지수가 별도 품목으로 있다. 2026년 9월 지수는 162.81(2020=100)이고, 같은 달 <code>커피, 차 및 코코아</code>라는 큰 지출목적 묶음 지수는 137.82다. 후자에는 커피·차가 함께 들어 있으므로 코코아 단독 가격으로 쓰지 않는다. KOSIS 소비자물가 원자료에도 초콜릿 품목 행이 확인됐다. 웹 조사 노트의 «국내 코코아·초콜릿 도소매 시계열 미확인»은 KAMIS 도소매 가격에 관한 범위에서만 유지하고, 소비자물가지수의 부재 주장으로 옮기지 않는다(ECOS CPI 원자료; KOSIS CPI 원자료; 05절).</p>
+<p>국내 식품 응용 연구는 제조 선택지를 보여 주지만 산업 생산량의 증거는 아니다. 카카오닙의 로스팅·콘칭 조건에 따라 실험실의 항산화 관련 성분이 달라졌다는 연구가 있다(아카이브 <code>2016_카카오닙과 커버춰의 가공 조건에 따른 기능성 분석pdf.md</code>, 한국식품영양과학회지, 2016). 카카오 빈을 넣은 쌀 압출성형물에서는 첨가량에 따라 팽화도와 물성이 달라졌다(아카이브 <code>2017_카카오 빈 함량에 따른 쌀 압출성형물의 이화학적 특성 및 항산화 활성pdf.md</code>, 한국식품영양과학회지, 2017). 카카오닙 첨가 발효유 연구는 대조구와 다른 발효 특성을 관찰했으나, 이 세 실험으로 한국의 제품별 판매량을 추정할 수는 없다(아카이브 <code>2022_Fermentation properties of fermented milk with added cacao nibs Theobroma cacao Lpdf.md</code>, Korean Journal of Agricultural Science, 2022-09).</p>
+<p>아카이브의 『2024 식품산업 원료소비 실태조사』는 원두·매스·버터·분말을 서로 다른 원료 항목으로 다루고 소비 흐름을 구분한다. 이 보고서의 최근 숫자는 같은 항목을 가진 KOSIS 2024년 원자료에서 다시 읽었다. 소비자 조사의 초콜릿 구입량이나 품목별 가계 지출을 확보하지 못했으므로, 국내 최종 초콜릿 소비 톤수는 미확보로 둔다(시도: FAOSTAT FBS, KOSIS 원료 사용·제조업·소비자물가, 아카이브 식품산업 원료소비 보고서).</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>원두·매스·버터·분말의 수입량과 단가가 서로 다르다</h2>
+<p class="lead">이 절의 한국 연간 수입은 관세청 HS10 품목별 월간 원장을 2025년 1~12월에 대해 합산했다. UN Comtrade 합계 대조에는 한국 신고의 상대국 <code>World</code>, <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>인 행만 사용했다. 운송수단·관세절차 세부 행을 합계 행과 함께 더하지 않았다. 2025년 관세청 원장 합계 20,120,020kg·220,556,136달러와 Comtrade 합계 행의 반올림 전 물량 20,120,018.398kg·같은 수입액은 거의 일치한다. 원장 간 소수 단위 차이를 다시 배분하지 않았다(관세청 <code>customs_item_trade_monthly_cocoa.csv</code>; Comtrade <code>cocoa_comtrade_annual.csv</code>).</p>
+<div class="tw">
+<table>
+<caption>표 3. 한국 HS 1801~1805 수입(완료연도)</caption>
+<thead><tr><th>HS6·형태</th><th class="num">2024 물량(톤)</th><th class="num">2025 물량(톤)</th><th class="num">2025 수입액(백만 달러)</th><th class="num">2025 단가($/kg)</th></tr></thead>
+<tbody>
+<tr><td>180100 원두</td><td class="num">5,258.7</td><td class="num">5,305.5</td><td class="num">58.73</td><td class="num">11.07</td></tr>
+<tr><td>180200 껍질·부산물</td><td class="num">672.1</td><td class="num">0.05</td><td class="num">0.002</td><td class="num">38.37*</td></tr>
+<tr><td>180310 탈지하지 않은 페이스트</td><td class="num">4,183.2</td><td class="num">3,119.0</td><td class="num">52.49</td><td class="num">16.83</td></tr>
+<tr><td>180320 탈지한 페이스트</td><td class="num">0.14</td><td class="num">0.02</td><td class="num">0.0002</td><td class="num">9.32*</td></tr>
+<tr><td>180400 버터·지방·기름</td><td class="num">981.3</td><td class="num">766.5</td><td class="num">18.57</td><td class="num">24.23</td></tr>
+<tr><td>180500 무가당 분말</td><td class="num">10,639.5</td><td class="num">10,929.0</td><td class="num">90.76</td><td class="num">8.30</td></tr>
+<tr class="tot"><td><strong>합계</strong></td><td class="num"><strong>21,735.0</strong></td><td class="num"><strong>20,120.0</strong></td><td class="num"><strong>220.56</strong></td><td class="num"><strong>합산 단가 미사용</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>processed_data/comtrade/cocoa_comtrade_annual.csv</code>, <code>reporterISO=KOR</code>, <code>flowCode=M</code>, <code>partnerCode=0</code>, <code>partner2Code=0</code>, <code>customsCode=C00</code>, <code>motCode=0</code>, <code>refYear=2024/2025</code>. 2025년 수입액은 관세청 월간 합과 일치한다. <code>*</code>는 물량이 매우 작은 세번으로 단가를 대표 시세처럼 사용하지 않는다.</p>
+<p>무게로 가장 큰 세번은 2025년 분말(10,929.0톤)이고, 수입액도 분말(9,076만 달러)이 가장 크다. 원두는 5,305.5톤이지만 kg당 단가 11.07달러로, 2024년 같은 세번 7.67달러보다 높다. 버터는 물량 766.5톤, kg당 24.23달러다. 버터와 분말 단가의 차이는 서로 다른 가공품·품질·공급 계약의 차이를 함께 담으므로, 원두 가격 상승분만 분해해 낼 수 없다. 2025년 여섯 코드 합계 물량은 2024년보다 7.4% 적고 수입액은 44.4% 많다. 2024년 180200 물량 672.1톤이 2025년에 거의 사라진 구성 변화도 있어, 이 증감률을 같은 제품의 구매량·가격 변화라고 부르지 않는다(표 3, E06·E07).</p>
+<p>국가별 점유율은 완료연도인 2025년 한국 신고 상대국 행으로 계산했다. 원두의 World 합계는 5,305.49톤으로 품목별 합계와 소수 단위에서 일치한다. 상대국 행의 합도 World 행과 같다. 2024년 WITS 한국 신고 자료와 FAOSTAT TM은 전년 비교에만 사용한다(UN Comtrade, 한국 신고 HS 180100 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">원문</a>; WITS 한국 신고 2024년 보관본).</p>
+<div class="tw">
+<table>
+<caption>표 4. 2025년 한국 코코아 원두(HS 180100) 수입국</caption>
+<thead><tr><th>신고 상대국</th><th class="num">물량(톤)</th><th class="num">전체 5,305.49톤 대비</th></tr></thead>
+<tbody>
+<tr><td>가나</td><td class="num">4,241.83</td><td class="num">80.0%</td></tr>
+<tr><td>에콰도르</td><td class="num">852.56</td><td class="num">16.1%</td></tr>
+<tr><td>베네수엘라</td><td class="num">150.99</td><td class="num">2.8%</td></tr>
+<tr><td>페루</td><td class="num">53.74</td><td class="num">1.0%</td></tr>
+<tr><td>그 밖의 상대국</td><td class="num">6.37</td><td class="num">0.1%</td></tr>
+<tr class="tot"><td><strong>세계 합계</strong></td><td class="num"><strong>5,305.49</strong></td><td class="num"><strong>100%</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: UN Comtrade, 한국 신고 HS 180100 연간 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">원문</a>. 필터는 <code>reporterCode=410</code>, <code>flowCode=M</code>, <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>; «그 밖»은 World에서 표기한 네 나라를 뺀 값이다. 반올림으로 열 합계가 달라질 수 있다.</p>
+<p>전년인 2024년 원두 수입은 가나 2,874.16톤(54.7%), 에콰도르 1,406.35톤(26.7%), 코트디부아르 697.67톤(13.3%)이었다. 2025년에는 가나 비중이 80.0%로 커졌고, 코트디부아르는 상대국 행에 없다. 따라서 코트디부아르의 세계 생산 비중을 한국 직접 조달 비중으로 옮길 수 없다(WITS 한국 신고 HS 180100, 2024년 보관본; UN Comtrade, 한국 신고 HS 180100 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">원문</a>).</p>
+<p>가나산 원두가 한국 원두 수입의 80.0%라고 해서 한국 전체 코코아 원료의 80.0%가 가나산이라는 뜻은 아니다. 2025년 분말(180500)은 네덜란드 3,530.90톤(32.3%)·싱가포르 2,878.44톤(26.3%)·말레이시아 2,079.17톤(19.0%)이 주요 신고국이다. 페이스트(180310)는 가나 1,987.16톤(63.7%)·네덜란드 342.50톤(11.0%)·스페인 272.75톤(8.7%)으로, 가나는 원두 산지이면서 페이스트 최대 직접 공급국이다. 버터(180400)는 싱가포르 376.50톤(49.1%)·말레이시아 221.01톤(28.8%)·인도네시아 80.03톤(10.4%) 순이다. 가공품 신고국은 제품에 든 원두의 농장 국적을 뜻하지 않는다(UN Comtrade, 한국 신고 HS 180500·180310·180400 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180500&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">분말</a>·<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180310&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">페이스트</a>·<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180400&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">버터</a>).</p>
+<p>2024년 페이스트 수입에서 FAOSTAT TM의 말레이시아 1,507.06톤은 <code>I</code>(대체추정) 표기다. 한국 신고 Comtrade 원본의 말레이시아 값은 659.39톤으로, 가나 1,308.43톤과 네덜란드 1,185.70톤 다음이다. FAOSTAT 대체추정치를 한국 신고 순위에 사용하지 않는다(UN Comtrade, 한국 신고 HS 180310 연간 상대국 원본, 2024년, 아카이브 <code>raw_data/cocoa_trade_comtrade.csv</code>; FAOSTAT TM 2024).</p>
+<p>2026년 국가별 관세청 월간 파일은 3~8월만 있다. 그 기간 원두 신고에는 가나 2,104,794kg, 에콰도르 505,449kg, 파푸아뉴기니 120,000kg이 있고, 분말에는 싱가포르 1,728,809kg, 말레이시아 1,642,686kg, 네덜란드 1,252,201kg이 기록됐다. 연초 두 달이 빠졌으므로 이 값으로 2026년 연간 국가 점유율이나 순위를 만들지 않았다. 총수입의 2026년 1~8월 값은 별도 품목별 월간 원장에 원두 3,231,666kg·분말 7,326,632kg으로 있지만, 두 파일의 월 범위를 합쳐 국가별 분모를 만들지 않았다(관세청 <code>cocoa_customs_kr_monthly.csv</code> 및 <code>customs_item_trade_monthly_cocoa.csv</code>).</p>
+<p>미국 Census HS10 원자료는 2026년 7월 한 달, Eurostat Comext 원자료는 2026년 6~7월의 유럽 신고분, 브라질 Comex Stat은 2026년 일부 월만 모아져 있다. 미국·EU·브라질 자료는 경쟁 시장의 단면을 볼 수 있지만, 기간과 신고국의 범위가 한국의 2025년 연간 표와 달라 세계 점유율의 분모로 사용하지 않았다. 2025년 국가별 주요 세번은 UN Comtrade 한국 신고 상대국 행으로 확인했다. 품목별 관세청 월간 원장은 상대국 열이 없고, 별도의 관세청 국가별 파일은 2026년 3~8월까지만 있다(UN Comtrade, 한국 신고 HS 180100·180310·180400·180500 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">원두</a>).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>국제 원두 시세와 한국 수입·초콜릿 가격은 다른 거래다</h2>
+<p class="lead">ICCO의 일일가격은 런던·뉴욕 코코아 선물의 최근 활성월 가격을 이용해 계산한 국제 지표다. 세계은행 Pink Sheet는 상품가격의 월평균·연평균을 제공한다. 한국 관세청 수입 단가는 신고 수입액을 신고 무게로 나눈 국경 단계 평균이고, ECOS 초콜릿 소비자물가지수는 완제품 소비자 가격의 지수다. 네 값은 계약 시점, 통화, 가공 단계, 포장·유통비의 범위가 다르다. 따라서 국제 시세와 한국 소매 지수의 동월 차이를 «마진»으로 부르지 않는다(<a href="https://www.icco.org/statistics/">ICCO 가격 방법 설명</a>; 원자료 각 파일).</p>
+<div class="tw">
+<table>
+<caption>표 5. 코코아 가격을 읽는 네 개의 창</caption>
+<thead><tr><th>지표</th><th class="num">앞선 관측</th><th class="num">최근 관측</th><th>단위·범위</th></tr></thead>
+<tbody>
+<tr><td>ICCO 월평균 일일가격</td><td class="num">2025-01: 10,709.30</td><td class="num">2026-03: 3,241.49; 2026-09: 5,898.14</td><td>달러/원두 톤, 국제 지표</td></tr>
+<tr><td>세계은행 Pink Sheet 연평균</td><td class="num">2024: 7.33</td><td class="num">2025: 7.80</td><td>달러/원두 kg</td></tr>
+<tr><td>한국 원두 수입 단가</td><td class="num">2025: 11.07</td><td class="num">2026.1~8: 7.62</td><td>달러/kg, 수입액÷수입 무게</td></tr>
+<tr><td>한국 초콜릿 소비자물가지수</td><td class="num">2025-09: 163.74</td><td class="num">2026-09: 162.81</td><td>2020=100, 전국</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>icco_cocoa_prices/2026-10-06_2__icco_cocoa_prices.zip</code>의 <code>icco_table_6.json</code>; 아카이브 <code>PinkSheet_Cocoa.csv</code>의 월간 12개 평균; 관세청 <code>customs_item_trade_monthly_cocoa.csv</code>; <code>ecos_cpi_items/2026-10-06__ecos_cpi_items.json</code>. ICCO 2026년 9월은 완료된 월이고 2026년 수입 단가는 완료되지 않은 연도 누계다.</p>
+<p>ICCO 월평균은 2025년 1월 10,709.30달러/톤에서 2026년 3월 3,241.49달러/톤까지 69.7% 내려갔다. 4월 3,397.07달러로 반등을 시작했고, 8월 5,990.50달러까지 저점 대비 84.8% 올랐다. 9월에는 5,898.14달러로 소폭 내려 2025년 9월 7,004.16달러보다 15.8% 낮았다. 2026년 10월 5일 일일가격은 5,942.50달러/톤이다. 월평균과 하루 관측을 합쳐 전월 대비를 계산하지 않는다(ICCO, 일일가격 통계, 2026-10-06 수집 ZIP <code>icco_table_6.json</code>·<code>icco_table_26.json</code>, <a href="https://www.icco.org/statistics/">통계 설명</a>).</p>
+<p>세계은행 2026년 4월 전망표는 2026년 연평균 코코아 가격을 kg당 3.80달러, 2027년을 4.20달러로 제시했다. 이는 작성 시점의 전망이며 2026년 확정 연평균이 아니다. 2026년 9월의 ICCO 월평균 5.90달러/kg과도 다른 시간 집계다. 세계은행 7월 블로그는 공급 회복을 중심으로 가격 하락을 설명하면서 예상보다 강한 엘니뇨를 위험으로 적었다. 여기서는 전망치와 실측 월가격을 나란히 기록할 뿐, 어느 쪽이 «틀렸다»고 연간 판정을 내리지 않는다(<a href="https://thedocs.worldbank.org/en/doc/f3138644a1e8e2bb631399ae11d6c408-0050012026/related/CMO-April-2026-Forecasts.pdf">세계은행 2026년 4월 전망표</a>; <a href="https://blogs.worldbank.org/en/opendata/beverage-prices-retreat-as-supplies-recover">세계은행 2026년 7월 해설</a>).</p>
+<p>한국의 2025년 세번별 수입 단가는 원두 11.07달러/kg, 탈지하지 않은 페이스트 16.83달러/kg, 버터 24.23달러/kg, 무가당 분말 8.30달러/kg이다. 원두와 버터의 가격을 빼서 국내 분쇄 수익을 계산하지 않는다. 해당 버터가 수입 가공품이며 원두 1kg에서 버터 1kg이 나오는 것도 아니다. CIF 성격의 수입 신고액, 제품 혼합, 품질, 계약 시점도 다르다. 수입 단가 자체는 총액/총량이므로 특정 등급의 실거래 호가가 아니다(Comtrade 한국 신고 합계 행; 관세청 월간 원장).</p>
+<p>국내 소비자 쪽에는 <strong>초콜릿</strong> 물가지수가 실제로 있다. ECOS의 전국 초콜릿 지수는 2025년 9월 163.74, 2026년 9월 162.81(2020=100)이다. 2026년 9월 세계 코코아 원두 가격은 전년 동월보다 낮고 초콜릿 지수도 소폭 낮지만, 이 두 점만으로 원재료값의 소매 전가 정도를 증명하지 않는다. 제과품 가격에는 설탕·유지·포장·임금·운송·환율과 제품 구성도 들어간다. 원가 계약과 실제 판매량은 확보한 공개 자료에 없다(ECOS <code>STAT_CODE=901Y009</code>, <code>ITEM_NAME1=초콜릿</code>; 관세청·ICCO).</p>
+<p>KAMIS 가격을 억지로 만들지 않았다. registry의 <code>cocoa</code> 항목은 <code>kamis: null</code>이고 품목별 <code>processed_data</code>에 KAMIS 코코아 시계열이 없다. 웹 조사 노트가 확인한 KAMIS 가공식품 소매 데이터셋 설명의 품목 목록에도 코코아·초콜릿은 없었다. 이는 이번에 조사한 <strong>KAMIS 경로의 미확보</strong>이지 국내의 모든 소매가격 통계가 없다는 말이 아니다. ECOS·KOSIS의 초콜릿 물가지수는 위에서 따로 확인했다(레지스트리; <code>processed_data</code> 목록; <a href="https://www.data.go.kr/data/15098486/fileData.do">공공데이터포털 KAMIS 가공식품 설명</a>).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>한국의 원두 공급선과 가공품 공급선을 따로 본다</h2>
+<p class="lead">산지의 수확량이 한국 원료 수입에 닿는 경로는 둘이다. 한국이 원두를 직접 들여오거나, 다른 나라가 원두를 분쇄해 매스·버터·분말을 한국에 판다. 2025년 가나는 한국 원두의 80.0%를 공급했고 페이스트에서도 63.7%로 최대 직접 공급국이었다. 네덜란드·싱가포르·말레이시아는 분말의 주요 신고국이다. 가공품에 든 원두의 농장 국적까지 보여 주는 연결 원장은 확인되지 않는다(UN Comtrade, 한국 신고 HS 180100·180310·180500 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">원두</a>·<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180310&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">페이스트</a>·<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180500&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">분말</a>).</p>
+<div class="tw">
+<table>
+<caption>표 6. 생산국과 가공·교역국의 역할</caption>
+<thead><tr><th>국가</th><th>확인한 세계·지역 역할</th><th>한국과 확인된 연결</th><th>자료의 기간·한계</th></tr></thead>
+<tbody>
+<tr><td>코트디부아르</td><td>2024 원두 1,890,442톤</td><td>2024 한국 원두 697.67톤</td><td>FAOSTAT 역년; 2024/25 시즌 USDA 추정과 별개</td></tr>
+<tr><td>가나</td><td>2024 원두 530,000톤(<code>X</code>)</td><td>2024 한국 원두 2,874.16톤</td><td>FAOSTAT 역년; 2025/26 USDA 전망은 실적 아님</td></tr>
+<tr><td>에콰도르</td><td>2024 원두 403,699톤</td><td>2024 한국 원두 1,406.35톤</td><td>FAOSTAT·WITS</td></tr>
+<tr><td>인도네시아</td><td>2024 원두 632,702톤</td><td>2024 한국 버터 140.02톤</td><td>버터 신고국을 원두 농장으로 환원하지 않음</td></tr>
+<tr><td>네덜란드</td><td>분말·매스 교역·가공 경로</td><td>2024 한국 분말·케이크 4,085.05톤</td><td>FAOSTAT TM; 재수출 여부는 이 표에서 판별 불가</td></tr>
+<tr><td>싱가포르</td><td>분말·버터 교역·가공 경로</td><td>2024 한국 분말·케이크 2,541.97톤</td><td>FAOSTAT TM; 원두 산지 미연결</td></tr>
+<tr><td>말레이시아</td><td>매스·분말·버터 가공품 경로</td><td>2024 한국 분말·케이크 1,870.99톤</td><td>FAOSTAT TM; 제품 형태별 물량을 합산하지 않음</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT <code>faostat_production_cocoa.csv</code>(<code>Year=2024</code>, <code>Production</code>)와 아카이브 <code>TM_cocoa.csv</code>(<code>Year=2024</code>, 한국 수입 상대국별 <code>Import quantity</code>), WITS 한국 원두 수입 보관본. 서로 다른 품목의 톤수를 국가별로 더하지 않았다.</p>
+<p>코트디부아르의 FAOSTAT 2024년 생산량은 189.0만 톤이다. USDA FAS의 2026년 1월 보고서는 <strong>MY 2024/25</strong> 생산을 175만 톤으로 추정하고, 해당 미드크롭 50만 톤이 10년 평균 55만 톤보다 적으며 늦은 비가 수분·곰팡이와 발효 품질에 영향을 줬다고 설명한다. 역년 공식표와 마케팅연도 추정이므로 하나를 다른 하나의 수정치로 취급하지 않는다. 수확량뿐 아니라 품질이 버터·분말 수율과 가공 부담을 바꿀 수 있다는 점은 이 보고서의 해석이다(<a href="https://www.fas.usda.gov/data/gain/2026/01/cote-divoire-cote-divoire-cocoa-beans-and-cocoa-products-semi-annual-mid-crop-my-2024-2025">USDA FAS 코트디부아르 보고서, 2026-01-07</a>).</p>
+<p>가나에 관해서는 USDA FAS 아카이브 원문이 MY 2023/24 53.1만 톤, MY 2024/25 60만 톤 추정, MY 2025/26 75만 톤 전망을 구분한다. 마지막 값은 2025년 12월 당시의 전망으로, 2026년 10월 현재 생산 실적으로 쓰지 않는다. 보고서는 가나코코아위원회(COCOBOD)가 MY 2024/25 시즌을 2025년 7월 말 조기 종료해 그 뒤 반입 물량을 다음 시즌에 넣는다고 적었다. 이 회계 시점 변화만으로도 다른 기관의 시즌간 증감과 차이가 날 수 있다(아카이브 USDA FAS <code>GH2025-0048</code>, 2025-12-03).</p>
+<p>두 산지의 농가 수매가는 국제 선물가격과 다르다. <strong>2025/26</strong> 시즌에 가나의 2025년 10월 생산자가격은 GHS 58,000/톤(64kg 포대당 GHS 3,625), 코트디부아르는 XOF 2,800/kg이었다. 가나 정부는 2026년 2월 잔여 시즌 가격을 GHS 41,392/톤으로 내려 같은 통화 기준 28.6% 인하했다(USDA FAS, <em>Ghana Cocoa Beans and Cocoa Products Semi-Annual</em>, 2025-12-03, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Ghana+Cocoa+Beans+and+Cocoa+Products+Semi-Annual+-+The+Mid-Crop+MY+2024-2025+Update+_Accra_Ghana_GH2025-0048.pdf">GAIN GH2025-0048</a>; 가나 재무부, <em>Press Release on Cocoa Sector Reforms</em>, 2026-02-12, <a href="https://mofep.gov.gh/sites/default/files/news/Press-Briefing-on-Cocoa.pdf">원문</a>). <strong>2026/27</strong> 시즌 발표값은 가나 GHS 42,400/톤(64kg 포대당 GHS 2,650), 코트디부아르 1,200 CFA프랑/kg이다. 뒤의 두 값은 보도(C등급)로 표시하고, 각국 통화를 환산해 수익성을 비교하지 않는다(Graphic Online, <em>2026/2027 Cocoa season opens</em>, 2026-09-25, <a href="https://www.graphic.com.gh/business/business-news/cocoa-season-opens-producer-price-rises-to-ghc42-400-per-tonne.html">원문</a>; AIP, <em>JNCC 2026: le prix bord champ du cacao fixé à 1.200 FCFA/kg</em>, 2026-09-01, <a href="https://www.aip.ci/cote-divoire-aip-jncc-2026-le-prix-bord-champ-du-cacao-fixe-a-1-200-fcfa-kg-et-celui-du-cafe-a-1-300-fcfa-kg-pour-la-campagne-2026-2027/?amp=1">원문</a>).</p>
+<p>그 뒤 가나 정부가 발표한 수매·가공 조정은 생산 전망과 다른 정책 발표다. 가나 재무부는 2026년 2월 12일 2025/26 시즌 잔여 기간 생산자가격을 톤당 GHS 41,392(64kg 포대당 GHS 2,587)로 정하고, 같은 시즌 잔여 원두를 국내 가공에 배정하며 2026/27부터 원두의 최소 50%를 국내에서 가공하도록 지시했다고 발표했다(가나 재무부, <em>Press Release on Cocoa Sector Reforms for Financial Viability and Long-Term Sustainability</em>, 2026-02-12, 문단 21~22·29~32, <a href="https://mofep.gov.gh/sites/default/files/news/Press-Briefing-on-Cocoa.pdf">원문</a>). 이 발표는 2025년 12월 USDA의 생산 전망을 확정 실적으로 만들지 않으며, 실제 가공률이나 한국 조달 물량의 변화도 입증하지 않는다(같은 가나 재무부 발표, 2026-02-12; USDA FAS <code>GH2025-0048</code>, 2025-12-03).</p>
+<p>산지 생산의 계절성과 한국 수입의 계절성을 동일시하지 않는다. 아카이브 ICCO 2025년 10월 보고서에는 코트디부아르 주수확기 출범과 가나의 해당 시즌 운용 차이가 나온다. 한국 통관은 산지의 수확 뒤 발효·건조·선적·가공·재고 인출을 거쳐 늦게 나타날 수 있다. 공개 자료에는 농장 로트에서 한국 통관까지 이어지는 날짜가 없어 «몇 개월 시차»를 숫자로 고정할 수 없다. 산지 입항량·품질, 한국 원두·가공품 수입 단가, ICCO 분쇄량을 연결한 월별 비교 자료도 없다(ICCO 2025-10 PDF; 04·05·10절).</p>
+<p>페루 중앙은행 BCRP의 산마르틴 지역 보고서도 은행 색인에 걸렸다. 2026년 6월 호는 이 지역 카카오 생산의 전년 동월 감소를 다루지만, 산마르틴의 지역 생산을 페루 전체 또는 세계 공급의 수치로 확대하지 않는다. 에콰도르·페루 공급 여력은 FAOSTAT 완료연도 생산과 한국의 양자 수입으로만 설명했다(BCRP San Martín 2026-06; FAOSTAT QCL·TM).</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>국내 제조 규모는 보이지만 수입업체별 물량·점유율은 비어 있다</h2>
+<p class="lead">공개 자료로 확인되는 국내 연결은 수입 원료, 원료 가공, 초콜릿류 제조, 소매 가격이다. 관세청 HS 통계는 물량·금액·국가를 보여 주지만 업체명은 주지 않는다. KOSIS 제조업 통계는 사업체 수와 생산액을 보여 주지만 각 회사별 코코아 원두 매입량을 주지 않는다. 둘을 이어 «상위 수입업체 점유율»을 만들어 낼 수 없다(관세청 HS 원장; KOSIS 제조업 품목분류 통계).</p>
+<div class="tw">
+<table>
+<caption>표 7. 국내 가치사슬에서 확인한 값과 빈칸</caption>
+<thead><tr><th>단계</th><th>확인된 공개 자료</th><th>이번 보고서가 계산하지 않은 것</th></tr></thead>
+<tbody>
+<tr><td>원두·가공품 수입</td><td>2025년 HS 1801~1805 수입 20,120.0톤·2억 2,055만 6,136달러</td><td>업체별 수입액·점유율</td></tr>
+<tr><td>식품제조업 원료 사용</td><td>2024년 원두 3,472톤·매스 3,747톤·버터 1,153톤·분말 9,464톤</td><td>같은 원두의 단계간 중복을 제거한 순소비</td></tr>
+<tr><td>코코아 분말 제조</td><td>2024년 종사자 10명 이상 10개 사업체·생산액 52,573백만원</td><td>회사별 분쇄능력·원두 투입량</td></tr>
+<tr><td>초콜릿류 제조</td><td>2024년 종사자 10명 이상 68개 사업체·생산액 1,163,387백만원</td><td>코코아 함량별 제품량·전체 소매 매출</td></tr>
+<tr><td>완제품 가격</td><td>ECOS 전국 초콜릿 물가지수 2026-09 162.81(2020=100)</td><td>제품별 소매가격·원가 전가율</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 품목별 월간 원장, KOSIS <code>kosis_food_raw_material</code>·<code>kosis_manufacturing_items</code>, ECOS <code>ecos_cpi_items</code>. 연도와 거래 단계가 다른 숫자를 서로 나누지 않았다.</p>
+<p>2024년 KIND 공시 외부보기에는 롯데웰푸드·오리온·해태제과식품·크라운제과의 비스킷·스낵·초콜릿 브랜드가 열거돼 있다. 2022년 해태제과 공시에는 과자 시장의 주요 업체를 언급하는 문장도 있다. 그러나 그 문장들만으로 코코아 원료 매입 순위, 초콜릿 매출 순위 또는 이 네 회사의 코코아 사용량을 산정할 수 없다. 회사명은 국내 제과 제품군을 설명하는 예시로만 기록한다(<a href="https://kind.krx.co.kr/external/2024/02/16/000393/20240216001269/10002.htm">KIND 2024년 외부보기</a>; <a href="https://kind.krx.co.kr/external/2022/05/26/000385/20220526001100/10002.htm">KIND 2022년 외부보기</a>, 아카이브 웹 조사 노트 B등급).</p>
+<p>뉴스트리의 2025년 4월 보도는 롯데웰푸드가 원두 가공부터 초콜릿 완제품까지 잇는 빈투바 생산체계를 갖췄다고 전한다. 이는 국내 분쇄업체의 사례를 보여 주지만 업체 전체 명부나 시장 점유율은 확인해 주지 않는다(뉴스트리, 「가나초콜릿에 '지속가능한 카카오' 사용한다」, 2025-04-17, <a href="https://www.newstree.kr/newsView/ntr202504170007">원문</a>, 보도 C등급).</p>
+<p>식약처 수입신고 공공데이터로 업소별 신고 건수는 셀 수 있으나(11.2절), 업소별 중량·금액이나 DART 회사 공시와 묶은 원장은 공개 자료에 없다. 아카이브에는 한국 수입 구조에 관한 분석 문서가 있으나, 회사별 신고 물량을 증명하는 1차 원장은 확인하지 못했다. 제과회사 전체 매출에 코코아 원료 비율을 임의 적용하면 산업의 규모와 기업 순위가 동시에 왜곡된다. 국내 원두 분쇄업체의 완전한 명부와 상위 수입업체 점유율은 <strong>미확보</strong>다(시도: 아카이브 기업·무역 분석 보고서, KIND 공시 외부보기, KOSIS 제조업 품목표, 관세청 HS 원장, 웹 조사 노트의 DART·KIND 조사 결과).</p>
+<p>유통 구조에 관한 확정된 진술은 더 좁다. 수입 원료의 가장 무거운 품목은 무가당 코코아분말이고, 국내에는 분말과 초콜릿류 제조업체가 통계상 잡힌다. 따라서 원두 수입이 모두 국내에서 분쇄된다는 추정도, 분말 수입이 모두 소매용이라는 추정도 지지되지 않는다. 원두, 매스, 버터, 분말이 각각 중간 투입재가 될 수 있고, 초콜릿류에는 수입 완제품도 섞인다. 확인한 자료에는 회사별 원료 매입 공시 또는 식약처 신고·생산실적을 동일 기준으로 연결한 자료가 없어 산업 내 기업별 비중을 산정하지 않았다(표 7).</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>할당관세는 발표 기간을 지키고 식품·원산지·산림 규정을 따로 본다</h2>
+<p class="lead">HS 1801~1805는 형태와 신고일에 따라 할당관세 적용 범위가 다르다. 2026년 정기 계획은 볶지 않은 코코아두의 기본 2%를 할당 0%로, 가루·페이스트·버터의 기본 5%를 상반기 할당 0%로 제시했다. 시행령 별표는 볶지 않은 코코아두(180100)를 연중 0%·수입 전량으로, 하반기 별표 5는 탈지하지 않은 페이스트(180310)·버터(180400)·무가당 분말(180500)을 2026년 7월 1일~12월 31일 0%·수입 전량으로 정한다(기획재정부, 「민생 안정과 산업 경쟁력 강화를 뒷받침하는 내년도 할당관세 추진」, 2025-12-02, <a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156732529">원문</a>; 국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」 별표 3·5, 2026-06-30, <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=287543">법령</a>·<a href="https://www.law.go.kr/flDownload.do?bylClsCd=110201&amp;flSeq=166193793&amp;gubun=">별표 5</a>).</p>
+<div class="tw">
+<table>
+<caption>표 8. 코코아 관련 제도: 적용 기간과 범위</caption>
+<thead><tr><th>대상</th><th>확인한 내용</th><th>증거의 경계</th></tr></thead>
+<tbody>
+<tr><td>볶지 않은 코코아두(180100)</td><td>2026년 1~12월 할당 0%, 수입 전량</td><td>볶은 원두까지 포함하지 않음</td></tr>
+<tr><td>탈지하지 않은 페이스트(180310)·버터(180400)·무가당 분말(180500)</td><td>2026년 7월 1일~12월 31일 할당 0%, 수입 전량</td><td>시행령 별표 5의 명시 세번</td></tr>
+<tr><td>껍질·부산물(180200)·탈지한 페이스트(180320)</td><td>위 하반기 별표 5의 코코아 행에 없음</td><td>다른 관세제도 적용 여부와 별개</td></tr>
+<tr><td>커피·코코아 수입 부가가치세</td><td>10% 면제 기간 2022년 6월 28일~2026년 12월 31일</td><td>정부 발표의 품목 표현; 세번별 신고 적용은 별도 확인</td></tr>
+<tr><td>식품 안전</td><td>식약처가 코코아가공품류·초콜릿류 카드뮴 기준 신설을 개정 이유에 명시</td><td>기준의 mg/kg 값은 해당 고시 이유문만으로 확인 불가</td></tr>
+<tr><td>원산지 표시</td><td>농관원 안내에 코코아가공품류·초콜릿류의 세부 유형 열거</td><td>품목·유통 형태별 적용 조문은 별도 확인</td></tr>
+<tr><td>EU 산림전용방지규정</td><td>코코아는 대상 원자재; 대·중형 최초 출시자와 하류 사업자·거래자 2026-12-30, 자연인·초소형·소기업은 조건별로 2027-06-30</td><td>EU 시장 출시·수출에 적용; 한국 수입 전체에 직접 부과되는 규칙이 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」 별표 3·5, 2026-06-30, <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=287543">법령</a>·<a href="https://www.law.go.kr/flDownload.do?bylClsCd=110201&amp;flSeq=166193793&amp;gubun=">별표 5</a>; 농림축산식품부, 「정부는 외식물가 안정을 위해 업계와 소통·협력하고 다양한 지원을 추진하겠습니다」, 2025-12-26, <a href="https://www.mafra.go.kr/bbs/home/793/576299/artclView.do">원문</a>; <a href="https://www.mfds.go.kr/law/board/boardDetail.do?menuKey=28&amp;brdId=data0008&amp;seq=15091">식약처 고시 제2025-56호 개정 이유</a>; <a href="https://www.naqs.go.kr/popup/originMarkItemPop.do">농관원 원산지 표시 안내</a>; EU 집행위원회, <em>Delay until December 2026</em>, 2026-01-28, <a href="https://trade.ec.europa.eu/access-to-markets/en/news/delay-until-december-2026-and-other-developments-implementation-eudr-regulation">원문</a>.</p>
+<p>2026년 하반기 가공품 0% 할당은 별표 5의 세번과 신고 기간에 한정한다. 180200과 180320은 그 별표의 코코아 행에 없어 같은 0%를 적용한다고 적을 수 없다. 관세청 품목별 수입액에서 세율별 납부세액을 역산하지 않는다(국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」 별표 5, 2026-06-30, <a href="https://www.law.go.kr/flDownload.do?bylClsCd=110201&amp;flSeq=166193793&amp;gubun=">원문</a>).</p>
+<p>농식품부는 2025년 3월 코코아파우더·매스·버터를 4월 1일부터 할당관세 품목으로 확대한다고 발표했고, 같은 자료에 커피·코코아 수입 부가가치세 10% 면제를 2025년 말까지로 적었다. 2025년 12월 발표는 면제 종료일을 2026년 12월 31일로 표시한다(농림축산식품부, 「식품·외식물가 안정을 위해 할당관세 품목 확대 및 세제·금융지원 지속 추진」, 2025-03-07, <a href="https://www.mafra.go.kr/bbs/home/793/573499/artclView.do">원문</a>; 농림축산식품부, 「정부는 외식물가 안정을 위해 업계와 소통·협력하고 다양한 지원을 추진하겠습니다」, 2025-12-26, <a href="https://www.mafra.go.kr/bbs/home/793/576299/artclView.do">원문</a>).</p>
+<p>식품 기준에서는 코코아가공품류 또는 초콜릿류의 카드뮴 기준을 신설했다는 식약처 고시 이유가 확인됐다. 그러나 그 고시 이유문에는 mg/kg 수치가 없다. 아카이브에 보도 매체가 인용한 수치가 있더라도 식품공전 본문·별표와 대조하지 않은 규격값을 이 보고서에 적지 않는다. 2026년 4월 시행 자가품질 검사항목 개정은 별도 고시 제2025-94호의 범위다. 원산지 표시 안내는 코코아매스·버터·분말과 여러 초콜릿 유형을 열거하지만, 이번 자료에는 실제 상품의 표시 주체·원료 원산지 산정을 판정할 제품별 조문이 없다(<a href="https://www.mfds.go.kr/law/board/boardDetail.do?menuKey=28&amp;brdId=data0008&amp;seq=15091">식약처 고시 제2025-56호</a>; <a href="https://law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000271696">제2025-94호</a>; 농관원 안내).</p>
+<p>EU 산림전용방지규정(EUDR)은 코코아와 코코아 제품의 EU 시장 접근에 영향을 준다. EU 집행위원회는 2025년 개정으로 대·중형 최초 출시자와 하류 사업자·거래자는 2026년 12월 30일부터, 자연인·초소형·소기업은 해당 범위에 따라 2027년 6월 30일부터 적용된다고 밝혔다. 최초 출시자와 하류 사업자의 의무가 같지 않다. 한국 기업이라도 EU에 해당 제품을 출시하거나 그 공급망에 들어가는 경우 계약·거래 단계별 추적 자료가 중요할 수 있지만, 한국에 수입하는 모든 원두에 EU 규제가 자동 적용된다는 뜻은 아니다(<a href="https://trade.ec.europa.eu/access-to-markets/en/news/delay-until-december-2026-and-other-developments-implementation-eudr-regulation">EU 집행위원회 Access2Markets</a>; <a href="https://www.consilium.europa.eu/en/press/press-releases/2025/12/18/deforestation-council-signs-off-targeted-revision-to-simplify-and-postpone-the-regulation/pdf">EU 이사회 2025-12-18 공표</a>).</p>
+<p>가나의 추적체계는 등록과 실제 로트 추적을 나눠 읽어야 한다. 유럽산림연구소의 2025년 3월 점검에는 가나 정부 시스템에 농가 792,954명, 농장 1,239,169개, 면적 1,373,756ha가 등록됐다고 적혀 있다. 같은 문서는 당시 시험 운영과 민간 매입체계 연동이 진행 중이라고 설명하므로 등록 면적을 EU 반입 적합 원두의 확정 물량으로 쓰지 않는다(아카이브 <code>Cocoa Insight - Preparedness check of Ghana for the EU Deforestation Regulation  March 2025 -  European Forest Institute.md</code>, 유럽산림연구소, 2025-03, 1.1절).</p>
+<p>아카이브의 2023년 EU 가나 팩트시트와 2025년 유럽산림연구소 가나 자료는 농장 위치·분리 보관·거래 기록이 왜 필요한지를 보여 준다. 다만 적용일은 그 자료 발행 뒤 바뀌었으므로 최신 EU 개정 안내를 기준으로 썼다. 코코아 정부 비축·방출 프로그램의 존재 여부는 확보한 정부 고시에서 확인하지 못했다(시도: 농식품부·기획재정부 보도자료, 아카이브 제도 문서). «정부 비축이 없다»고 단정하지 않는다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>가격 하락을 말하지만 지역과 기간은 제각각이다</h2>
+<p class="lead">은행·기관 색인 <code>data/_raw/_banks/index.csv</code>에서 <code>items</code>에 <code>cocoa</code>가 든 행은 26건이다. 색인은 제목에 코코아가 있다는 보증이 아니다. 태국 크룽스리 팜유 리포트는 코코아버터 대체 유지의 용도를 언급하고, 에콰도르 CFN의 바나나 보고서는 카카오를 다른 작물과 묶으며, 페루 BCRP 보고서는 특정 주의 월간 생산을 다룬다. 이들을 모두 세계 코코아 전망 26건으로 세지 않았다(은행 색인 및 각 보관 원문 열람).</p>
+<div class="tw">
+<table>
+<caption>표 9. 이번 보고서에 직접 쓴 은행·기관 문서</caption>
+<thead><tr><th>기관</th><th>문서·날짜</th><th>확인한 주장</th><th>이 보고서에서의 사용 범위</th></tr></thead>
+<tbody>
+<tr><td>ICCO</td><td><em>August 2026 Quarterly Bulletin</em>, 게시 2026-08-31</td><td>2024/25 생산 473.3만 톤·분쇄 464.9만 톤·잉여 3.7만 톤; 2025/26 수치 일시 미공표</td><td>최신 공개 시즌 수급 기준</td></tr>
+<tr><td>세계은행</td><td><em>Commodity Markets Outlook</em>, 2026-04</td><td>코코아 연평균 가격 전망 2026년 $3.80/kg·2027년 $4.20/kg</td><td>발표 시점의 전망, 실측 아님</td></tr>
+<tr><td>CoBank</td><td><em>Chocolate lovers shift to premium brands as cocoa prices swing</em>, 2026-03-26</td><td>선물가격 하락이 소매 초콜릿값 하락을 보장하지 않으며 미국 고급 초콜릿 수요가 상대적으로 견조하다는 분석</td><td>미국 소비 시장 해설, 한국 수요로 전이하지 않음</td></tr>
+<tr><td>Wells Fargo Agri-Food Institute</td><td><em>Q4 2025 Industry Update</em></td><td>서아프리카 작황 개선 기대와 2025년 10월까지의 선물가격 하락, 미국 핼러윈 초콜릿 판매 구성 변화</td><td>2025년 당시 미국 시장 해설</td></tr>
+<tr><td>Afreximbank</td><td><em>AACI 2026-H1</em></td><td>상반기 코코아 가격 조정과 서아프리카 노령목·병해·기상 위험 병존</td><td>산지 위험의 정성 자료</td></tr>
+<tr><td>USDA FAS</td><td><em>Ghana Cocoa Beans and Cocoa Products Semi-Annual</em>, 2025-12-03</td><td>가나 MY 2025/26 생산 75만 톤 전망과 시즌 변경 설명</td><td>발표 당시 전망과 통계 경계</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>data/_raw/_banks/index.csv</code> 및 각 <code>bank_id</code> 폴더 원문; 아카이브 USDA FAS <code>GH2025-0048</code>; <a href="https://www.icco.org/august-2026-quarterly-bulletin-of-cocoa-statistics/">ICCO 공표</a>; <a href="https://thedocs.worldbank.org/en/doc/f3138644a1e8e2bb631399ae11d6c408-0050012026/related/CMO-April-2026-Forecasts.pdf">세계은행 전망표</a>. CoBank·Wells Fargo의 미국 소비 해설은 한국의 실측 수치로 사용하지 않았다.</p>
+<p>CoBank의 2026년 3월 원문은 선물가격이 연초 대비 크게 내려도 소매 초콜릿 가격은 그대로 높을 수 있다고 설명한다. 제조사가 이전 계약, 제품 배합, 가격 전략을 달리하기 때문이다. 이는 미국 사례를 설명하는 분석이지 한국 가격 전가율에 관한 통계가 아니다. 한국 ECOS 초콜릿 소비자물가지수와 관세청 원료 수입 단가는 측정 대상과 기간이 다른 별도 시계열이다(<a href="https://www.cobank.com/knowledge-exchange/chocolate-lovers-shift-to-premium-brands-as-cocoa-prices-swing">CoBank 원문</a>; 05절).</p>
+<p>Wells Fargo의 2025년 4분기 보고서는 당시 ICCO 전망의 잉여 수치와 미국 핼러윈 판매 변화를 인용한다. 이후 ICCO는 2024/25 수급치를 여러 번 수정했으므로, Wells Fargo 문서에 적힌 과거 전망을 최신 세계 수급으로 다시 인용하지 않는다. Afreximbank의 2026년 상반기 지수 보고서는 가격 조정의 배경과 동시에 노령목, swollen shoot virus, 흑협병, 기후 위험을 짚는다. 두 주장은 양립한다. 단기 가격 조정이 장기 산지 위험의 소멸을 뜻하지 않기 때문이다(Wells Fargo <code>Q4_2025_PDF_e24c8459.md</code>; Afreximbank <code>The_Afreximbank_African_Commodity_Index_AACI_2026-H1_00767ad8.md</code>).</p>
+<p>Rabobank의 2026년 9월 월간 상품 보고서는 색인에 있으나 열람 가능한 페이지가 제목·소개 수준이고 본문은 구독 범위다. 구독되지 않은 분석의 결론을 붙이지 않았다. Kina Bank의 월간 보고서는 파푸아뉴기니 시장을 중심으로 가격 방향을 다룬다. BCRP 산마르틴·툼베스의 카카오 생산은 지역값이다. 이들은 국가 또는 세계 수급을 대체하지 않는 보조 자료로 남겼다(은행 색인·각 보관 원문).</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 관찰 지표·남은 물음</span>수확, 분쇄, 통관, 제품값을 다른 주기로 본다</h2>
+<p class="lead">이 보고서가 확인한 위험은 한 숫자로 합산되지 않는다. 코트디부아르·가나의 작황과 병해는 원두 공급을 바꾸고, ICCO 분쇄량은 중간재 수요를 보여 주며, 한국 HS 수입은 이미 계약·가공·운송을 지난 국경 거래다. 초콜릿 물가지수는 완제품 가격이다. 이 순서를 건너뛰어 선물가격의 월별 변화가 다음 달 소매가격을 몇 % 움직인다고 주장할 근거는 없다(02~05절).</p>
+<p><strong>산지 집중.</strong> 2024년 FAOSTAT 역년 생산에서 코트디부아르 몫은 36.1%다. 한국의 2025년 원두 직접 수입은 가나 80.0%, 에콰도르 16.1%에 집중됐고 코트디부아르는 상대국 행에 없다. 2024년 한국 수입의 가나 54.7%·코트디부아르 13.3%와도 구성이 달라졌다. 가나 생산·수매가·통관 변화가 한국 원두 수입에 곧바로 어느 정도 영향을 미치는지는 계약과 재고 자료가 없어 숫자로 적지 않는다(FAOSTAT QCL 2024; WITS 한국 신고 2024년 보관본; UN Comtrade, 한국 신고 HS 180100 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">원문</a>).</p>
+<p><strong>국제 가격의 방향 전환.</strong> ICCO 월평균은 2025년 1월 10,709.30달러/톤에서 2026년 3월 3,241.49달러/톤으로 내려갔고, 4월부터 올라 8월 5,990.50달러/톤에 이르렀다. 9월은 5,898.14달러/톤이었다. 한국 원두 수입 단가의 2026년 1~8월 잠정 누계는 kg당 7.62달러로 2025년 연간 11.07달러보다 낮다. 기간이 같지 않아 연간 판정에는 2026년 12개월 합계를 쓴다(ICCO, 월평균 일일가격 <code>icco_table_6.json</code>, 2026-10-06 수집, <a href="https://www.icco.org/statistics/">통계 설명</a>; 관세청 월간).</p>
+<p><strong>수요와 배합.</strong> ICCO 2024/25 분쇄량은 464.9만 톤이고 2025/26 실적은 미공표다. 국내에는 초콜릿류 제조 생산액과 소비자물가지수가 있지만 코코아 함량별 판매량은 없다. 가격 상승기에 제조사가 코코아 함량·대체 유지·제품 크기를 바꾸면 같은 «초콜릿» 판매액도 코코아 원두 수요를 다르게 뜻할 수 있다. 이 가능성은 은행 분석에서 제기되지만 한국 제품별 배합 자료로 확인되지 않았다(ICCO; CoBank·Afreximbank, 09절).</p>
+<p><strong>제도와 추적.</strong> 2026년 볶지 않은 코코아두는 연중, 탈지하지 않은 페이스트·버터·무가당 분말은 하반기에도 0%·수입 전량 할당 대상이다. EU EUDR은 코코아의 EU 공급망에서 농장 위치와 거래 기록의 중요성을 높인다. 한국 수입품이 EU로 들어가는 경우와 국내 소비로 끝나는 경우의 법적 경로는 다르다(국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」 별표 3·5, 2026-06-30, <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=287543">법령</a>·<a href="https://www.law.go.kr/flDownload.do?bylClsCd=110201&amp;flSeq=166193793&amp;gubun=">별표 5</a>; 08절).</p>
+<p><strong>병해와 농가 소득.</strong> 가나의 swollen shoot virus는 코코아 수확에 손실을 주는 병해이며, 공동감염의 확산과 방제는 모형·현장자료를 함께 봐야 한다. 한 모형 연구의 손실 범위를 한국 수입 감소율로 대입하지 않는다(아카이브 <code>Cacao sustainability The case of cacao swollen-shoot virus co-infection  PLOS One.md</code>, PLOS ONE, 2024-03-07). VOICE의 2025년 보고서 『Cocoa Barometer』는 농가 소득, 아동노동, 산림 훼손, 공급망 추적을 연결된 과제로 다룬다. 이 정성적 위험을 한국 기업의 위반 건수나 특정 상품의 인증률로 바꾸지 않는다(아카이브 <code>Cocoa Barometer 2025 - Voice Network.md</code>, VOICE Network, 2025).</p>
+<div class="tw">
+<table>
+<caption>표 10. 관찰할 지표와 다음 확인 작업</caption>
+<thead><tr><th>지표</th><th>원천·수집기</th><th>주기</th><th>집필 시 확인값</th><th>다음 확인</th></tr></thead>
+<tbody>
+<tr><td>세계 원두 생산·국가별 비중</td><td>FAOSTAT <code>faostat_production</code></td><td>연</td><td>2024 세계 5,233,245톤</td><td>2025년분 공표·<code>X</code> 행 갱신</td></tr>
+<tr><td>세계 수급·분쇄·재고</td><td>ICCO 분기 공표</td><td>분기·시즌</td><td>2024/25 분쇄 464.9만 톤·잉여 3.7만 톤</td><td>보류된 2025/26 수치와 개정 이력</td></tr>
+<tr><td>국제 원두 가격</td><td><code>icco_cocoa_prices</code>, FRED·Pink Sheet</td><td>일·월</td><td>ICCO 2026-09 5,898.14달러/톤</td><td>월평균·일일값 구분</td></tr>
+<tr><td>한국 품목별 수입</td><td>관세청 <code>customs_item_trade_monthly</code></td><td>월</td><td>2025 여섯 코드 20,120.0톤</td><td>2026 완료연도와 HS별 단가</td></tr>
+<tr><td>한국 국가별 원두·분말</td><td>UN Comtrade·관세청 국가별</td><td>연·월</td><td>2025 원두 가나 80.0%·분말 네덜란드 32.3%</td><td>2026 완료연도 구성</td></tr>
+<tr><td>국내 원료 투입·제조</td><td>KOSIS 원료 사용·제조업</td><td>연</td><td>2024 분말 원료 9,464톤</td><td>원료 원산지와 제조지 분리</td></tr>
+<tr><td>국내 초콜릿 제품값</td><td>ECOS·KOSIS CPI</td><td>월</td><td>2026-09 지수 162.81</td><td>원료값과 독립 시계열로 기록</td></tr>
+<tr><td>관세·식품·EUDR</td><td>대통령령 별표·식약처·EU</td><td>개정 시</td><td>2026 하반기 180310·180400·180500 0%·수입 전량</td><td>식품공전 카드뮴 정량 기준</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 부록 A의 수집기 현황, 02~08절 원자료·기관 원문. 관측값의 연도·월·시즌을 한 표 안에서도 각각 표시했다.</p>
+<h3>남은 물음</h3>
+<ul>
+<li>한국의 원두 분쇄 상위 업체와 가동 규모는 어느 정도인가. KOSIS에 사업체 수·생산액은 있지만 회사별 투입량은 없다. 시도: KOSIS 제조업 품목표, 아카이브 기업 문서, KIND 외부보기, 웹 조사 노트의 DART 조사.</li>
+<li>2025/26 세계 원두 생산·분쇄·재고는 얼마로 확정되는가. ICCO 2026년 8월 공개 공표는 생산·분쇄를 일시 미공표했다. 시도: ICCO 분기 공표와 아카이브 월간 시황.</li>
+<li>식품공전의 코코아가공품류·초콜릿류 카드뮴 정량 기준은 얼마인가. 식약처 고시 전문과 적용 품목별 표를 대조한다.</li>
+<li>수입 원료가 국내 제품에 몇 톤 들어가는가. FAOSTAT 식품수급 계정, KOSIS 원료 사용, 관세청 HS와 초콜릿 제조 통계의 범위가 다르다. 동일 로트의 중복·재수출을 제거할 연결 원장이 필요하다.</li>
+<li>국내 코코아 원두의 실제 농장 생산 여부와 규모는 무엇인가. FAOSTAT 2024년 한국 생산 행 부재와 KOSIS 국산사용량 0톤 밖의 작물 생산 원장을 확인한다.</li>
+<li>2026년 완료연도 원두 수입 단가와 월별 국가 구성은 어떻게 마감되는가. 관세청 12개월 신고액·신고 무게 및 같은 기간 국가별 원장을 대조한다.</li>
+<li>가나의 국내 가공 지시가 실제 가공률과 한국 조달 물량에 어떻게 나타났는가. 정책 발표 이후 가공 실적과 한국 통관 자료를 분리해 확인한다.</li>
+<li>산지 입항량·품질, 한국 원두·가공품 수입 단가, ICCO 분쇄량의 월별 변화와 시차는 어떠한가. 농장 로트에서 한국 통관까지 이어지는 날짜 자료를 확인한다.</li>
+<li>한국 초콜릿 물가지수와 원료 수입 단가의 각각의 경로는 어떠한가. ECOS와 관세청 시계열을 독립적으로 갱신한다.</li>
+<li>코코아 제품별 원산지 표시 주체·원료 원산지 산정과 180200·180320의 일반·협정관세 적용은 어떻게 다른가. 제품별 표시 규정과 신고 조건별 관세표를 대조한다.</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>원두 산지와 가공품 제조국이 갈라지는 공급망</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국 신고 수입에서 원두(HS 180100)는 가나 80.0%·에콰도르 16.1%였다. HS 1801~1805 수입액 중 10% 이상을 차지한 가공품은 무가당 분말(180500, 9,076만 달러·41.1%)과 탈지하지 않은 페이스트(180310, 5,249만 달러·23.8%)다. 분말의 주요 공급국은 네덜란드 32.3%·싱가포르 26.3%·말레이시아 19.0%, 페이스트는 가나 63.7%·네덜란드 11.0%다. 국가 비중의 분모는 <strong>각 세번의 2025년 한국 신고 수입 중량</strong>이다. 가공품의 신고 상대국이나 식약처 제조국은 그 제품에 쓰인 원두의 농장 산지를 뜻하지 않는다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 원두</a>·<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180310&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">페이스트</a>·<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180500&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">분말</a>, A, 2025; 관세청 2025년 HS10 월간 합계, A).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 원두·가공품 공급국의 기업과 한국 연결</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표·연도</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>가나</td><td>Cocoa Marketing Company</td><td>원두 수출·무역</td><td>2020/21 해외 원두 선적 512,488톤</td><td>식약처 신고 제조사명 일치</td><td><a href="https://cocobod.gh/resource_files/52nd-annual-report-and-financial-statements-2020-2021.pdf">COCOBOD 연차보고서</a> (A, 2021)</td></tr>
+<tr><td>가나</td><td>Niche Cocoa Industries</td><td>가공·수출</td><td>2020/21 원두 가공 약 5.6만 톤(도표 판독)</td><td>식약처 신고 제조사명 일치</td><td><a href="https://cocobod.gh/resource_files/52nd-annual-report-and-financial-statements-2020-2021.pdf">COCOBOD 연차보고서</a> (A, 2021)</td></tr>
+<tr><td>가나</td><td>Cocoa Touton Processing Company</td><td>가공·무역</td><td>2020/21 원두 가공 약 2.5만 톤(도표 판독)</td><td>식약처 신고 제조사명 일치</td><td><a href="https://cocobod.gh/resource_files/52nd-annual-report-and-financial-statements-2020-2021.pdf">COCOBOD 연차보고서</a> (A, 2021)</td></tr>
+<tr><td>에콰도르</td><td>Cargill del Ecuador</td><td>원산지 조달·무역</td><td>2025 Cargill 그룹 매출 1,540억 달러; 에콰도르·코코아 매출 아님</td><td>식약처 현지 제조사명 일치</td><td><a href="https://www.cargill.com/food-bev/emea/cocoa-chocolate/chocolate">원산지 사업</a> (B, 2026 열람)·<a href="https://www.cargill.com/doc/1432279934974/2025-cargill-annual-report.pdf">그룹 연차보고서</a> (B, 2025)</td></tr>
+<tr><td>에콰도르</td><td>Olam 에콰도르 사업</td><td>원두 조달·무역</td><td>2025 ofi 매출 284억 9,560만 싱가포르달러; 5개 원료군 합계</td><td>그룹의 네덜란드·싱가포르 제조사명 일치; 현지 법인 직접 신고는 확인된 공개 자료 없음</td><td><a href="https://anecacao.com/socios/nuestros-socios/">ANECACAO 회원명부</a> (B, 2026 열람)·<a href="https://www.olamgroup.com/news/all-news/PressReleaseFinancial/olam-group-reports-patmi-of-s-dollor-444-million-for-2025.html">Olam 실적</a> (B, 2026)</td></tr>
+<tr><td>에콰도르</td><td>Eco-Kakao</td><td>원두·반제품 수출</td><td>확인된 공개 자료 없음</td><td>확인된 공개 자료 없음</td><td><a href="https://anecacao.com/socios/nuestros-socios/">ANECACAO 회원명부</a> (B, 2026 열람)</td></tr>
+<tr><td>네덜란드</td><td>Olam Cocoa B.V.</td><td>코코아 가공·무역</td><td>2025 ofi 매출 284억 9,560만 싱가포르달러; 현지 법인 매출 아님</td><td>식약처 신고 제조사명 일치</td><td><a href="https://www.ofi.com/en-us/news-and-events/press-release/olam-food-ingredients-turns-cocoa-shells-into-power-to-fuel-factory">네덜란드 공장</a> (B, 2023)·<a href="https://www.olamgroup.com/news/all-news/PressReleaseFinancial/olam-group-reports-patmi-of-s-dollor-444-million-for-2025.html">Olam 실적</a> (B, 2026)</td></tr>
+<tr><td>네덜란드</td><td>Cargill B.V. Cocoa &amp; Chocolate</td><td>코코아 가공·무역</td><td>법인별 처리량 공개 자료 확인 안 됨</td><td>식약처 신고 제조사명 일치</td><td><a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처 수입식품 신고확인 공공데이터</a> (A, 202510~202609)</td></tr>
+<tr><td>네덜란드</td><td>Crown of Holland</td><td>유기농 코코아 가공</td><td>2014 회계연도 SunOpta 10-K(2015 제출) 기재 설비능력 약 9,000톤/년; 현 능력 아님</td><td>식약처 신고 제조사명 일치</td><td><a href="https://www.sec.gov/Archives/edgar/data/351834/000106299315001123/form10k.htm">SEC 공시</a> (A, 2015)·<a href="https://www.crownofholland.com/about-us">현 회사 소개</a> (B, 2026 열람)</td></tr>
+<tr><td>싱가포르</td><td>Olam Cocoa Pte Ltd</td><td>코코아 가공·무역</td><td>2025 ofi 매출 284억 9,560만 싱가포르달러; 현지 법인 매출 아님</td><td>식약처 신고 제조사명 일치</td><td><a href="https://www.olamgroup.com/news/all-news/PressReleaseFinancial/olam-group-reports-patmi-of-s-dollor-444-million-for-2025.html">Olam 실적</a> (B, 2026)</td></tr>
+<tr><td>싱가포르</td><td>Barry Callebaut Chocolate Asia Pacific</td><td>초콜릿 가공</td><td>2024/25 그룹 Global Cocoa 판매 402,639톤; 현지 공장 값 아님</td><td>식약처 신고 제조사명 일치</td><td><a href="https://www.barry-callebaut.com/system/files/2025-11/Full-Year-Results-Fiscal-Year%202024-25-EN-Barry-Callebaut-Group.pdf">그룹 실적</a> (B, 2025)·<a href="https://www.barry-callebaut.com/en-US/about-us/media/news-stories/its-1234-singapores-1-chocolate-factory-23-years-just-got-bigger-its-4th">싱가포르 공장</a> (B, 2020)</td></tr>
+<tr><td>싱가포르</td><td>GCB Cocoa Singapore</td><td>코코아 무역</td><td>2025 Guan Chong 그룹 매출 약 149.23억 링깃; 미감사 연간 누계·현지 법인 값 아님</td><td>그룹의 말레이시아 제조사명 일치; 싱가포르 법인 직접 신고는 확인된 공개 자료 없음</td><td><a href="https://www.cocoafederation.com/the-fcc/fcc-members/gcb-cocoa-singapore-pte-ltd">코코아무역연맹 명부</a> (B, 2026 열람)·<a href="https://www.klsescreener.com/v2/announcements/view/11181199">발행사 실적 공시 재게시</a> (B, 2026)</td></tr>
+<tr><td>말레이시아</td><td>Guan Chong Cocoa Manufacturer</td><td>코코아 가공·수출</td><td>2025 Guan Chong 그룹 매출 약 149.23억 링깃; 미감사 연간 누계</td><td>식약처 신고 제조사명 일치</td><td><a href="https://www.klsescreener.com/v2/announcements/view/11181199">발행사 실적 공시 재게시</a> (B, 2026)</td></tr>
+<tr><td>말레이시아</td><td>Barry Callebaut Manufacturing Malaysia</td><td>코코아 가공</td><td>2024/25 그룹 Global Cocoa 판매 402,639톤; 현지 법인 값 아님</td><td>식약처 신고 제조사명 일치</td><td><a href="https://www.barry-callebaut.com/system/files/2025-11/Full-Year-Results-Fiscal-Year%202024-25-EN-Barry-Callebaut-Group.pdf">그룹 실적</a> (B, 2025)</td></tr>
+<tr><td>말레이시아</td><td>JB Cocoa</td><td>코코아 가공·수출</td><td>2025 회계기간 15개월 JB Foods 매출 16억 5,750만 달러; 그룹 값</td><td>식약처 신고 제조사명 일치</td><td><a href="https://links.sgx.com/1.0.0/corporate-announcements/AO6IJKU8I80HYVBI/">SGX 연차보고서</a> (A, 2025)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처 수입식품 신고확인 공공데이터</a>(A, 202510~202609 <strong>신고 건수 기준</strong>, 2026년 포함 잠정 집계)와 각 행의 기관·기업 원문. 제조사명은 표기 변형을 합쳤다. 그룹 규모를 현지 법인 매출이나 한국 매출로 환산하지 않았다. Crown of Holland는 현재 <a href="https://www.crownofholland.com/about-us">Tradin Organic 소속</a>(B, 2026 열람)으로 소개되므로 과거 SunOpta 공시의 능력을 현재치로 읽지 않는다.</p>
+<p>세계 주요 플레이어의 규모도 사업 범위를 구분해 읽어야 한다. Barry Callebaut의 2024/25 그룹 판매량은 2,125,420톤·매출은 147억 8,860만 스위스프랑이고, 그중 Global Cocoa 판매량은 402,639톤이다(<a href="https://www.barry-callebaut.com/system/files/2025-11/Full-Year-Results-Fiscal-Year%202024-25-EN-Barry-Callebaut-Group.pdf">그룹 실적</a>, B, 2025). ofi와 Cargill도 산지 조달·가공망을 운영하지만, 공개된 그룹 매출은 코코아 단독 수출액이 아니다(<a href="https://www.olamgroup.com/news/all-news/PressReleaseFinancial/olam-group-reports-patmi-of-s-dollor-444-million-for-2025.html">Olam 실적</a>, B, 2026; <a href="https://www.cargill.com/doc/1432279934974/2025-cargill-annual-report.pdf">Cargill 연차보고서</a>, B, 2025). 동일한 분모의 기업별 세계 원두 수출량이 없어 이 수치로 세계 수출기업 순위를 확정할 수 없다.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처 수입식품 신고확인 자료에서 202510~202609 품목명에 «코코아» 또는 «카카오»가 든 행은 1,661건이다. 아래 순위는 <strong>신고 건수 기준</strong>이며 중량·금액·시장 점유율이 아니다. 식약처 신고 원자료에서 제조국과 수출국은 별도 항목이다. 이 집계에는 HS 1801~1805 합계 밖의 기타 코코아가공품·색소·추출복합물도 포함된다(<a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처 공공데이터</a>, A, 202510~202609·2026년 포함 잠정 집계).</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 코코아·카카오 품목명 신고 건수 상위 수입업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>미립물산(주)</td><td class="num">175</td><td>싱가포르 105·네덜란드 59</td><td>분말 중심</td></tr>
+<tr><td>롯데웰푸드(주)</td><td class="num">76</td><td>싱가포르 25·가나 14</td><td>분말·건조 카카오원두</td></tr>
+<tr><td>미성패밀리주식회사</td><td class="num">67</td><td>미국 46·말레이지아 21</td><td>기타 가공품 중심</td></tr>
+<tr><td>(주)오리온</td><td class="num">64</td><td>가나 35·말레이지아 17</td><td>분말·매스</td></tr>
+<tr><td>(주)제원인터내쇼날</td><td class="num">64</td><td>프랑스 47·벨기에 11</td><td>기타 가공품·분말</td></tr>
+<tr><td>(주)삼경프라자</td><td class="num">62</td><td>미국 62</td><td>기타 가공품·분말</td></tr>
+<tr><td>동암식품주식회사</td><td class="num">52</td><td>인도네시아 26·네덜란드 26</td><td>분말 중심</td></tr>
+<tr><td>(주)베이크플러스</td><td class="num">47</td><td>프랑스 39·네덜란드 8</td><td>분말·기타 가공품</td></tr>
+<tr><td>(주)삼광식품</td><td class="num">36</td><td>싱가포르 11·말레이지아 10</td><td>분말·기타 가공품</td></tr>
+<tr><td>(주)선인</td><td class="num">35</td><td>스페인 24·네덜란드 5</td><td>분말·버터</td></tr>
+<tr><td>(주)퓨라토스코리아</td><td class="num">34</td><td>벨기에 16·태국 11</td><td>기타 가공품·버터</td></tr>
+<tr><td>신광무역</td><td class="num">34</td><td>미국 34</td><td>기타 가공품</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처 수입식품 신고확인 공공데이터</a>(A, 202510~202609 <strong>신고 건수 기준</strong>, 2026년 포함 잠정 집계). «주요 제조국»은 업소별 제조국 상위 2개를 집계 표기대로 옮겼다. 업소명의 띄어쓰기·법인 표기 변형을 합쳤다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 상위 신고업소 중 규모가 확인되는 국내 제조·유통기업</caption>
+<thead><tr><th>기업</th><th>산업 내 역할</th><th>규모 지표·연도</th><th class="num">식약처 신고</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>미립물산</td><td>원료 수입·도매</td><td>2025 회사 매출 약 591억 원</td><td class="num">175건</td><td><a href="https://www.incruit.com/company/1683580837/">NICE디앤비 제공 재무정보</a> (B, 2026 열람)</td></tr>
+<tr><td>롯데웰푸드</td><td>제과·초콜릿 제조</td><td>2025 연결 매출 약 4조 2,160억 원; 지배회사 비스킷·초콜릿 제품군 6,647억 원</td><td class="num">76건</td><td><a href="https://kind.krx.co.kr/external/2026/03/12/001417/20260312003414/11011.htm">KIND 사업보고서</a> (A, 2026)</td></tr>
+<tr><td>미성패밀리</td><td>식자재 수입·유통</td><td>2023 회사 매출 6,140만 달러</td><td class="num">67건</td><td><a href="https://www.gov.br/agricultura/pt-br/assuntos/relacoes-internacionais/adidos-agricolas/coreia-do-sul/2024._Lista_de_importadores._PA_es__bolos__massas_alimentA_cias_e_biscoitos.pdf">브라질 농업부 수입업체 조사</a> (B, 2024)</td></tr>
+<tr><td>오리온</td><td>제과 제조</td><td>2025 연결 매출 3조 3,324억 원; 본사 파이 제품군 2,559억 원</td><td class="num">64건</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001895/20260318008667/11011.htm">KIND 사업보고서</a> (A, 2026)</td></tr>
+<tr><td>제원인터내쇼날</td><td>식자재 수입·유통</td><td>2023 회사 매출 6,140만 달러</td><td class="num">64건</td><td><a href="https://www.gov.br/agricultura/pt-br/assuntos/relacoes-internacionais/adidos-agricolas/coreia-do-sul/2024._Lista_de_importadores._PA_es__bolos__massas_alimentA_cias_e_biscoitos.pdf">브라질 농업부 수입업체 조사</a> (B, 2024)</td></tr>
+<tr><td>선인</td><td>제과 원료·식자재</td><td>2023 회사 매출 1억 6,970만 달러</td><td class="num">35건</td><td><a href="https://www.gov.br/agricultura/pt-br/assuntos/relacoes-internacionais/adidos-agricolas/coreia-do-sul/2024._Lista_de_importadores._PA_es__bolos__massas_alimentA_cias_e_biscoitos.pdf">브라질 농업부 수입업체 조사</a> (B, 2024)</td></tr>
+<tr><td>해태제과식품</td><td>제과 제조</td><td>2025 연결 매출 약 6,414억 원</td><td class="num">29건</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001376/20260318006387/11011.htm">KIND 사업보고서</a> (A, 2026)</td></tr>
+<tr><td>이마트</td><td>대형 유통</td><td>2025 연결 매출 약 28조 9,704억 원</td><td class="num">28건</td><td><a href="https://kind.krx.co.kr/external/2026/05/29/001437/20260529002304/99667.htm">KIND 지배구조보고서</a> (A, 2026)</td></tr>
+<tr><td>동서식품</td><td>식품·음료 제조</td><td>2025 공동기업 요약매출 약 1조 8,105억 원</td><td class="num">22건</td><td><a href="https://kind.krx.co.kr/external/2026/03/12/000232/20260312000747/11011.htm">동서 KIND 사업보고서</a> (A, 2026)</td></tr>
+<tr><td>코스트코코리아</td><td>창고형 유통</td><td>2025 회계연도(2024.9~2025.8) 매출 약 7조 3,220억 원</td><td class="num">19건</td><td><a href="https://www.donga.com/news/amp/all/20251120/132805820/1">감사보고서 인용 보도</a> (C, 2025)</td></tr>
+<tr><td>농심켈로그</td><td>시리얼 제조</td><td>2023 회사 매출 1억 5,280만 달러</td><td class="num">18건</td><td><a href="https://www.gov.br/agricultura/pt-br/assuntos/relacoes-internacionais/adidos-agricolas/coreia-do-sul/2024._Lista_de_importadores._PA_es__bolos__massas_alimentA_cias_e_biscoitos.pdf">브라질 농업부 수입업체 조사</a> (B, 2024)</td></tr>
+<tr><td>빙그레</td><td>유가공·빙과 제조</td><td>2025 연결 매출 약 1조 4,896억 원</td><td class="num">15건</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/002178/20260318010158/11011.htm">KIND 사업보고서</a> (A, 2026)</td></tr>
+<tr><td>파리크라상</td><td>제과·외식·프랜차이즈</td><td>2024 개별 매출 1조 9,307억 원</td><td class="num">15건</td><td><a href="https://m.kisrating.com/fileDown.do?fileName=rs20250418-24.pdf&amp;gubun=2&amp;menuCd=R8">한국신용평가 보고서</a> (B, 2025)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처 수입식품 신고확인 공공데이터</a>(A, 202510~202609 <strong>신고 건수 기준</strong>, 2026년 포함 잠정 집계)와 각 행의 공시·정부·평가기관·보도. 선정 범위는 신고 상위 30 업소 중 공개 매출을 확인한 제조·식자재·유통기업이다. 브라질 농업부 자료의 매출은 회사 전체의 <strong>2023년</strong> 값이며 코코아 수입액이 아니다. 다른 행의 회사·제품군 매출도 코코아 시장 점유율을 뜻하지 않는다.</p>
+<p>롯데웰푸드의 2025년 사업보고서는 원재료 «코코아류»에 원두·분말을 적고 공급업체로 OLAM·BC·CARGILL 등을 열거한다. 같은 공시의 6,647억 원은 <strong>비스킷·초콜릿을 묶은</strong> 제품군 매출이다(<a href="https://kind.krx.co.kr/external/2026/03/12/001417/20260312003414/11011.htm">KIND 사업보고서</a>, A, 2026). 오리온의 2,559억 원도 초코파이와 카스타드 등이 함께 든 본사 <strong>파이 제품군</strong> 매출이다(<a href="https://kind.krx.co.kr/external/2026/03/18/001895/20260318008667/11011.htm">KIND 사업보고서</a>, A, 2026). 식약처 신고 순위와 이 제품군 매출을 결합해 업체별 원두 구매량이나 코코아 점유율을 계산할 수 없다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 코코아 밸류체인의 가격 형성 지점과 위험</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산·수확</td><td>가나·에콰도르 농가, 생산자 단체</td><td>2025 원두 직접 수입 중 가나 80.0%·에콰도르 16.1%</td><td>산지 수매제도·농가 거래</td><td>작황·병해·농가 소득</td></tr>
+<tr><td>1차 가공</td><td>발효·건조업자, 원두 분쇄업자</td><td>2024 국내 제조업 원두 사용 3,472톤</td><td>원두 품질 등급·가공 계약</td><td>수율·품질·로트 추적</td></tr>
+<tr><td>수출·국제 무역</td><td>CMC, 산지 수출사, 글로벌 가공·무역사</td><td>2025 원두 5,305.5톤·페이스트 3,119.0톤 수입</td><td>국제 선물 지표·산지 차등가격·수출 계약</td><td>가격·환율·물류</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소, 관세청, 식약처</td><td>2025 HS 1801~1805 수입 20,120.0톤·2억 2,055만 6,136달러</td><td>구매 계약·국경 신고가격</td><td>식품 안전·관세·서류</td></tr>
+<tr><td>국내 가공</td><td>분쇄·분말·초콜릿 제조업</td><td>2024 분말 원료 사용 9,464톤; 초콜릿류 생산액 1,163,387백만원</td><td>원료 계약·제조원가·납품가격</td><td>원료값·배합·설비</td></tr>
+<tr><td>도매·유통</td><td>식자재 도매, 제조사 판매망, 대형 유통</td><td>회사별 코코아 취급액 미공개</td><td>제조사·유통사 납품 계약</td><td>재고·보관·협상력</td></tr>
+<tr><td>소매·외식</td><td>마트, 편의점, 제과점, 카페</td><td>초콜릿류 제조 생산액은 소매 매출이 아님</td><td>소매 판매가격·메뉴가격</td><td>판매량·판촉비·가격 민감도</td></tr>
+<tr><td>소비</td><td>가계·외식 소비자</td><td>2026년 9월 초콜릿 물가지수 162.81(2020=100, 잠정)</td><td>소비자 구매 선택</td><td>실질구매력·제품 구성</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 한국 원두 수입</a>(A, 2025), <a href="https://kosis.kr/statisticsList/statisticsListIndex.do?outLink=Y&amp;publicationYN=Y&amp;statId=2008041">KOSIS 식품산업 원료소비 통계</a>(A, 2024), <a href="https://kosis.kr/statisticsList/mass/mass_list.jsp?list_id=G11_50&amp;org_id=101&amp;process=statHtml&amp;tbl_id=DT_1KI1530&amp;vw_cd=MT_ZTITLE">KOSIS 광업·제조업조사</a>(A, 2024), <a href="https://www.icco.org/statistics/">ICCO 가격 통계</a>(A), <a href="https://ecos.bok.or.kr/">한국은행 ECOS</a>(A, 2026년 9월 잠정).</p>
+<p><strong>부가가치가 생기는 곳.</strong> 원두의 발효·건조와 분쇄는 품질과 수율을 바꾸고, 국내 제조 단계에서는 배합·가공·포장·브랜드가 더해진다. 2024년 종사자 10명 이상 사업체의 코코아 분말 생산액은 52,573백만원, 초콜릿류 생산액은 1,163,387백만원으로 서로 다른 제조 단계의 산출을 보여 준다(<a href="https://kosis.kr/statisticsList/mass/mass_list.jsp?list_id=G11_50&amp;org_id=101&amp;process=statHtml&amp;tbl_id=DT_1KI1530&amp;vw_cd=MT_ZTITLE">KOSIS 광업·제조업조사</a>, A, 2024). 그러나 원료 수입액은 달러 표시 국경 거래이고 생산액은 원화 표시 제조 산출이므로 둘의 차액을 국내 부가가치나 기업 이익으로 계산할 수 없다. 2025년 수입 단가도 원두 11.07달러/kg, 페이스트 16.83달러/kg, 버터 24.23달러/kg, 분말 8.30달러/kg으로 제품과 수율이 달라 단가 차이가 가공 마진은 아니다(관세청 2025년 HS10 월간 합계, A).</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 코코아 공급망의 주요 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>관세청·식품의약품안전처·국립농산물품질관리원</td><td>통관·수입검사·식품 기준·원산지 표시</td><td>국내 판매 가능 조건과 준수 비용에 영향</td></tr>
+<tr><td>해외 정부</td><td>Ghana Cocoa Board·가나 재무부·EU 집행위원회</td><td>수매·수출과 현지 가공 정책·EU 산림 규정</td><td>산지 공급 배분과 EU 시장 접근에 영향</td></tr>
+<tr><td>생산자·단체</td><td>가나 코코아 농가·에콰도르 ANECACAO</td><td>재배·발효·건조, 수출업계 조직</td><td>수매가격·품질 보상·소득 안정에 관심</td></tr>
+<tr><td>수출·가공기업</td><td>CMC·Niche·ofi·Cargill·Barry Callebaut</td><td>원두 집하·수출, 분쇄·중간재 공급</td><td>원료 확보·공장 가동률·계약가격에 영향</td></tr>
+<tr><td>수입·유통기업</td><td>미립물산·롯데웰푸드·오리온·이마트</td><td>원료 수입·제품 제조·판매</td><td>안정 조달·원가·판매가격에 관심</td></tr>
+<tr><td>소비자·시민사회</td><td>소비자·VOICE Network</td><td>구매 선택, 농가 소득·아동노동·산림 문제 감시</td><td>가격과 공급망 투명성에 영향</td></tr>
+<tr><td>국제기구·인증</td><td>ICCO·Fairtrade·Rainforest Alliance</td><td>수급 통계, 인증·추적 체계</td><td>통계 기준·인증 비용·구매 조건에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://cocobod.gh/subsidiaries-and-divisions/cocoa-marketing-company">COCOBOD의 CMC 설명</a>(A, 2026 열람), <a href="https://cocobod.gh/news/press-release-on-cocoa-sector-reforms-for-financial-viability-and-long-term-sustainability">COCOBOD 정책 발표</a>(A, 2026), <a href="https://trade.ec.europa.eu/access-to-markets/en/news/delay-until-december-2026-and-other-developments-implementation-eudr-regulation">EU 집행위원회</a>(A, 2026), <a href="https://anecacao.com/socios/nuestros-socios/">ANECACAO</a>(B, 2026 열람), <a href="https://www.icco.org/who-we-are/membership/">ICCO</a>(A), <a href="https://www.fairtrade.net/us-en/for-media/fairtrade-boosts-support-for-cocoa-farmers-amid-continuing-marke.html">Fairtrade</a>(B, 2025), <a href="https://voicenetwork.cc/resources/2025-cocoa-barometer/">VOICE Cocoa Barometer</a>(B, 2025), <a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처 공공데이터</a>(A, 202510~202609).</p>
+<p>가나 정부의 2026/27 시즌부터 원두 최소 50% 국내 가공 지시는 산지의 가공 확대와 원두 수출 구매자의 조달 선택이 맞닿는 지점이다(<a href="https://cocobod.gh/news/press-release-on-cocoa-sector-reforms-for-financial-viability-and-long-term-sustainability">COCOBOD 정책 발표</a>, A, 2026). 추적·인증 비용과 농가 보상 수준은 생산자·가공사·구매자 사이의 배분 쟁점이다(<a href="https://voicenetwork.cc/resources/2025-cocoa-barometer/">VOICE</a>, B, 2025). 원두 가격 변동은 농가 수입, 제조 원가, 소비자 가격에 서로 다른 시점과 크기로 작용한다(<a href="https://www.icco.org/statistics/">ICCO 가격 통계</a>, A; <a href="https://www.fairtrade.net/us-en/for-media/fairtrade-boosts-support-for-cocoa-farmers-amid-continuing-marke.html">Fairtrade</a>, B, 2025).</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 검토 범위</h2>
+<p class="lead">수집기 현황의 기준일은 2026년 10월 7일이다. «최신»은 파일에 들어 있는 가장 늦은 기간이지 모든 신고국의 완료를 뜻하지 않는다. 한국 국가별 2026년 원장은 3~8월만 있어, 품목별 1~8월 합계와 범위를 구별했다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 코코아 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">195</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">361</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">805</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">301</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">128</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">1,799</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">3,058</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">4,577</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">15,194</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">43,823</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>품목 전용 원자료</td><td>icco_cocoa_prices</td><td class="num">—</td><td>수집 ZIP 확인</td><td>2026-10-06</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">6,893</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">288</td><td>2026.08</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>fred</td><td class="num">43</td><td>2026-07-01</td><td>2026-10-01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>의 <code>rawbulk.report_delta.coverage("cocoa")</code> 반환값. ICCO 수집은 coverage에 <code>행</code> 공란·<code>최신=new</code>로 나오며, 실제 ZIP의 일일·월간 JSON을 열어 가격을 확인했다. 이 표의 «—»는 행 수를 확인하지 않았다는 뜻이다.</p>
+<p>공통 원자료에는 국내 원료·제조·소비자물가 시계열이 있다. <code>kosis_food_raw_material</code>에는 2024년 코코아원두·매스·버터·분말 사용량이 있고, <code>kosis_manufacturing_items</code>에는 코코아 분말·초콜릿류 사업체와 생산액이 있다. <code>ecos_cpi_items</code>와 <code>kosis_cpi_items</code>에는 초콜릿 소비자물가지수가 있다. 반면 품목별 분할 폴더에 코코아 전용 USDA PSD 파일은 없었다. 이는 <strong>분할 파일의 부재</strong>이지 USDA의 모든 코코아 자료가 없다는 뜻이 아니다. USDA FAS의 코트디부아르·가나 GAIN 원문은 별도 출처로 연결된다.</p>
+<p>아카이브 원장은 자료 443건을 분류한다. 출처·연도·품목 범위에 맞는 대표 원천은 반영 21건, 중복·범위 밖 자료는 불필요 415건, 내용 확인이 남은 자료는 미검토 7건이다. 대용량 Comtrade CSV에는 2024년 한국 신고 상대국 행이 있어 페이스트 수입값을 대조할 수 있다. 2025년 주요 세번의 상대국은 UN Comtrade 공개 미리보기에서 확인된다(아카이브 <code>raw_data/cocoa_trade_comtrade.csv</code>; UN Comtrade, 한국 신고 HS 180100·180310·180400·180500 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">원두</a>).</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 원장 최종 판정</caption>
+<thead><tr><th>레인</th><th class="num">전체 파일</th><th class="num">반영</th><th class="num">불필요</th><th class="num">미검토</th></tr></thead>
+<tbody>
+<tr><td>루트</td><td class="num">36</td><td class="num">4</td><td class="num">32</td><td class="num">0</td></tr>
+<tr><td>intelligence_reports</td><td class="num">221</td><td class="num">14</td><td class="num">201</td><td class="num">6</td></tr>
+<tr><td>raw_data</td><td class="num">169</td><td class="num">1</td><td class="num">167</td><td class="num">1</td></tr>
+<tr><td>processed_data</td><td class="num">10</td><td class="num">2</td><td class="num">8</td><td class="num">0</td></tr>
+<tr><td>scripts</td><td class="num">7</td><td class="num">0</td><td class="num">7</td><td class="num">0</td></tr>
+<tr class="tot"><td><strong>합계</strong></td><td class="num"><strong>443</strong></td><td class="num"><strong>21</strong></td><td class="num"><strong>415</strong></td><td class="num"><strong>7</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>01_아카이브_원장.csv</code>와 원자료. 반영은 본문에 직접 사용한 대표 원천의 수이며, 자료의 신뢰도 순위나 인용 문장 수가 아니다.</p>
+<p>대표 원천은 FAOSTAT QCL·FBS·TM, UN Comtrade 한국 신고 원본·공개 미리보기, 세계은행 Pink Sheet, 한국 원료소비 조사, ICCO 원문, WITS 한국 신고 표, USDA FAS 가나 보고서, 가나 재무부 발표, 유럽산림연구소 점검, 기획재정부·농림축산식품부 제도 자료, 국내 식품 응용 논문, PLOS ONE 병해 연구, VOICE 2025년 보고서와 국내 빈투바 생산 보도다. 수치와 적용 범위는 해당 절과 <code>30_근거_수치.md</code>에 연결했다. 구판의 시즌 전망은 ICCO 최신 공개 시즌 실적을 대신하지 않는다.</p>
+<p>2024년 한국 원두·페이스트의 국가별 수입 구성은 WITS 한국 신고 표와 Comtrade CSV 원본에서 확인된다. 2025년 주요 네 세번의 상대국 구성은 UN Comtrade 공개 미리보기에 있다. 회사별 원료 투입량과 식품공전 카드뮴 정량 기준은 확보한 자료에 없다. 원장에 남은 대용량 Comtrade MD 사본은 CSV 원본과 별개다(UN Comtrade, 한국 신고 HS 180100·180310·180400·180500 수입 미리보기, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=180100&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">원두</a>).</p>
+</section>
+
+<div class="wrap">
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 코코아 산업 해부: 원두에서 초콜릿까지</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(검토중)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · FAOSTAT·ICCO·관세청·KOSIS·ECOS 원자료, 정부·기관 원문, 등급이 표시된 웹 조사 노트</span></div>
+  <div class="cl-row"><span class="k">근거</span><span>수치의 파일·필터·계산식은 30_근거_수치.md, 숫자대조 결과는 update_2026-10-07/20_숫자대조.txt에 있다.</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>HS 180100·180200·180310·180320·180400·180500. 당을 넣은 코코아 조제품·초콜릿(주로 HS 1806)은 원료 무역 합계에서 제외했다.</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>ICCO 2025/26 세계 생산·분쇄는 일시 미공표다. 업체별 원료 매입 순위와 식품공전 카드뮴 정량 기준은 미확보다. 2025년 주요 세번의 국가별 수입과 2026년 하반기 할당관세는 04·08절에 있다.</span></div>
+</footer>
+</div>
+

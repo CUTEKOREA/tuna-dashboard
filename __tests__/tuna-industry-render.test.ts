@@ -15,7 +15,6 @@ import {
   SKJ_HUBS,
 } from '../lib/data/tuna-industry';
 import { ALL_NARRATIVES, CHAIN_NARRATIVES, CROSS_NARRATIVES } from '../lib/tuna-industry-content';
-import TunaAnatomyDashboard from '@/components/market-understanding/TunaAnatomyDashboard';
 
 describe('시장 이해 > 참치 - 데이터 인테이크', () => {
   it('FishStat 집계가 주요 상업어종 7종을 담고 합계가 어종 합과 맞는다', () => {
@@ -350,27 +349,23 @@ describe('시장 이해 > 참치 - 데이터 인테이크', () => {
     }
   });
 
-  it('한국 산업 축은 참치 해부가 맡고 이 페이지에는 없다 (2026-09-10 역할 분리)', () => {
-    // 참치 산업 D~K(x04~x11)는 참치 해부의 04·06~14절과 중복돼 오류를 두 번 고쳐야 했다.
-    // 수치 42개를 해부로 옮긴 뒤(Codex 검증 P0 0) 이 페이지에서 걷어냈다. 되살아나면 여기서 잡는다.
+  it('참치 해부를 합쳤다 — 원문 15단계 위에 옛 「참치」 근거 차트가 붙는다 (2026-10-12)', () => {
     const markup = renderToStaticMarkup(React.createElement(TunaIndustryDashboard));
-    for (const title of [
-      '한국 원양 - 선망과 연승',
-      '환적과 판매처 - 배는 한국에 오지 않는다',
-      '캔 공장 - 밖과 안',
-      '재무 - 원양 선사와 캔 회사',
-      '명부 - 원양 선사·선단·해외 법인',
-    ]) {
-      expect(markup, `${title} 절이 남아 있다`).not.toContain(title);
+    // 해부보고서 원문 단계 제목(손 작성 제목은 TUNA_ANATOMY_NARRATIVES 그대로)
+    for (const title of ['먼저 알아야 할 여덟 가지', '한국 원양 - 선망과 연승', '재무 - 원양 선사와 캔 회사', '남은 물음']) {
+      expect(markup, `${title} 단계가 없다`).toContain(title);
     }
-    expect(markup).toContain('참치 해부 페이지가 보고서 절 순서대로 다룬다');
-
-    // 옮긴 핵심 수치는 참치 해부에 있어야 한다. 2026-10-11 참치 해부 서술이 해부보고서 10월판 원문으로
-    // 바뀌어 대조값도 원문 값이다(옛 손 작성의 9,056·금액 점유율 11.83%·34,834,425는 원문에 없다).
-    const anatomy = renderToStaticMarkup(React.createElement(TunaAnatomyDashboard));
+    // 원문 값
     for (const value of ['211,513', '2,100', '118,014', '캔·조제품 5,962', '144,435.4', '65,091.4']) {
-      expect(anatomy, `참치 해부에 ${value} 가 없다`).toContain(value);
+      expect(markup, `참치에 ${value} 가 없다`).toContain(value);
     }
+    // 옛 「참치」 손 작성 차트·위젯은 근거로 옮겨 왔다
+    for (const title of ['어종 카드 - 무엇이 어떻게 쓰이는가', '관할 기구별 어획량', '국가별 참치캔 브랜드와 점유율', '참치선망 입어료 - 2024년 국가별']) {
+      expect(markup, `${title} 근거가 없다`).toContain(title);
+    }
+    // 옛 7단계 서술은 화면에서 뺐다
+    expect(markup).not.toContain('참치가 사는 바다는 누구의 관할인가');
+    const anatomy = markup;
     // 2026-09-10 Codex 지적: 주어·단위·등식 오류가 어느 페이지에도 남으면 안 된다
     for (const html of [markup, anatomy]) {
       expect(html).not.toContain('보고서 이식 횡단축');
@@ -408,25 +403,17 @@ describe('시장 이해 > 참치 - 렌더', () => {
     expect(markup).toContain('참치 산업 해부');
     expect(markup).toContain('data-now="true"');
     expect(markup).toContain('30초 브리핑');
-    expect(markup).toContain('참치 밸류체인 분기도');
     expect(markup).toContain('출처와 한계');
-
-    // 분기도의 두 경로가 모두 그려져야 한다 — 이 페이지의 핵심 주장이다.
-    expect(markup).toContain('통조림 경로');
-    expect(markup).toContain('사시미 경로');
     expect(markup).toContain('선망');
     expect(markup).toContain('연승');
-
-    // 기본 활성 단계는 01 자원과 해역이다.
-    expect(markup).toContain('자원과 해역');
-    expect(markup).toContain('참치가 사는 바다는 누구의 관할인가');
+    // 2026-10-12 참치 해부 통합: 옛 밸류체인 척추(분기도)는 원문 15단계와 키가 맞지 않아 뺐다.
+    expect(markup).not.toContain('참치 밸류체인 분기도');
+    expect(markup).toContain('먼저 알아야 할 여덟 가지');
+    expect(markup).toContain('용어 사전');
     // 2026-08-17 사용자 지시: 본문 위 근거 레일 폐지 — 차트는 전부 사실표 아래 근거 블록
     expect(markup).toContain('stageMore');
     expect(markup).not.toContain('evidenceRail');
     expect(markup).toContain('tuna-industry-tab');
-    expect(markup).toContain('가격은 어떻게 정해지는가');
-    expect(markup).toContain('규제와 지속가능성');
-    expect(markup).toContain('한국과 신라의 자리');
     expect(markup).toContain('관할 기구별 어획량');
     expect(markup).toContain('해역별 어획량 상위 8곳');
   });
@@ -448,7 +435,8 @@ describe('시장 이해 > 참치 - 렌더', () => {
       React.createElement(TunaIndustryDashboard, { heroOnly: true }),
     );
 
-    expect(markup).toContain('(톤)');
-    expect(markup).toContain('세계 주요 상업 참치 어획량');
+    expect(markup).toContain('(톤');
+    // 2026-10-12 참치 해부 통합: 히어로는 해부보고서 원문 값이다
+    expect(markup).toContain('2024 한국 참치 어획 (FAO 7종)');
   });
 });

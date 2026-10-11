@@ -53,15 +53,13 @@ describe('고등어 최신 주간 수급 신호', () => {
     expect(text).not.toContain('냉장 도매 6,172');
   });
 
-  it('상단 스트립과 출처 메타에서도 최신 기준을 노출한다', () => {
+  it('출처 주의에서 최신 기준을 노출하고 낡은 주차를 되살리지 않는다', () => {
+    // 2026-10-12: 히어로 띠는 해부보고서 표지 값으로 바뀌었다(주간 수급 띠는 손 작성이라 뺐다).
     const html = renderToStaticMarkup(
       React.createElement(MackerelIndustryDashboard),
     );
     const notes = MACKEREL_SOURCE_NOTES.join('\n');
 
-    expect(html).toContain('노르웨이 39주 누계');
-    expect(html).toContain('55,820톤 · 49.27 NOK/kg');
-    expect(html).toContain('NSC 2026-W39');
     expect(html).not.toContain('노르웨이 36주 누계');
     expect(html).not.toContain('노르웨이 37주 누계');
     expect(html).toContain('KMI Vol.262');
@@ -91,12 +89,12 @@ describe('고등어 적대 리뷰 지적 (2026-09-10)', () => {
     expect(text).toContain('같은 물량 경합으로 읽지 않는다');
   });
 
-  it('P1 KPI·스트립에 2026년 1~7월 금액 라벨이 있다', () => {
+  it('P1 히어로 KPI·띠는 원문 표지 값이고 기간을 라벨에 단다', () => {
     const html = renderToStaticMarkup(
       React.createElement(MackerelIndustryDashboard),
     );
-    expect(html).toContain('노르웨이 수입 비중(2026년 1~7월 금액)');
-    expect(html).toContain('노르웨이 비중 · 1~7월 누계 금액');
+    expect(html).toContain('노르웨이 의존 (2026.1~8)');
+    expect(html).toContain('2026 수출 (1~8월)');
   });
 
   it('P0 6.4배는 소매 이윤의 배수이지 간접비의 배수가 아니다', () => {

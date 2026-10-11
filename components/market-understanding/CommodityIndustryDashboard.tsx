@@ -293,7 +293,8 @@ function StageSection({
           >
             {narrative.title}
           </h2>
-          <p className={styles.stageQuestion}>{narrative.question}</p>
+          {/* 공통 품목 라우트는 질문을 손으로 쓰지 않는다(빈 문자열). 빈 단락을 남기지 않는다. */}
+          {narrative.question && <p className={styles.stageQuestion}>{narrative.question}</p>}
           {narrative.badge && <p className={styles.stageBadge}>{narrative.badge}</p>}
         </div>
       </header>

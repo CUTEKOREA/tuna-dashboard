@@ -1,0 +1,733 @@
+<title>한국 코코넛 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 코코넛<br>
+        세계 생산 · 한국 수입 · 가격 · 공급국 · 기업 · 제도<br>
+        2023~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">다섯 식품 HS에서 과실보다 기름의 수입량이 큰 시장 · 리포트 2026</p>
+      <h1><span class="scr">Coconut</span> <span class="lt">한국 코코넛 산업 해부</span></h1>
+      <p class="cover-sub">이 보고서가 집계한 다섯 식품 HS에서 한국 수입은 과실·건조품과 코코넛유로 갈라진다. 2025년에는 코코넛유를 약 4.8만 톤, 과실·건조품을 약 6,300톤 들여왔다. 다섯 HS 밖의 사료 원료인 코프라박은 FAOSTAT 양자무역 기준 2024년 약 20.1만 톤이 수입돼, 코코넛 유래 수입 전체를 논할 때 빠뜨릴 수 없다. 세계 원물 생산은 인도네시아·인도·필리핀에 집중되고, 한국의 코코넛유 공급은 필리핀과 인도네시아에 크게 걸쳐 있다. 서로 다른 품목·연도·단위를 분리해 산업의 규모와 위험을 읽는다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">세계 원물 생산</div><div class="v">6,554만</div><div class="n">톤 · 2024 · FAOSTAT 세계 합계·추정(E)</div></div>
+      <div class="cf"><div class="k">인도네시아 원물 몫</div><div class="v">27.4%</div><div class="n">2024 · FAOSTAT 생산량 기준·추정(I)</div></div>
+      <div class="cf"><div class="k">세계 코코넛유 생산</div><div class="v">312만</div><div class="n">톤 · 2023 · FAOSTAT 최신 확인 연도</div></div>
+      <div class="cf"><div class="k">한국 코코넛유 수입</div><div class="v">47,753</div><div class="n">톤 · 2025 · HS 1513.11+1513.19</div></div>
+      <div class="cf"><div class="k">한국 과실·건조품 수입</div><div class="v">6,295</div><div class="n">톤 · 2025 · HS 0801.11+12+19</div></div>
+      <div class="cf"><div class="k">HS 1513.19 수입액</div><div class="v">1.12억</div><div class="n">달러 · 2025 · 정제유·기타 포함</div></div>
+      <div class="cf"><div class="k">정제유 인도네시아산 몫</div><div class="v">51.4%</div><div class="n">2026년 3~8월 국가별 확인분·잠정</div></div>
+      <div class="cf"><div class="k">코코넛유 국제가격</div><div class="v">1,853</div><div class="n">달러/톤 · 2026년 8월 · 세계은행 CFR 북서유럽</div></div>
+    </div>
+
+  </div>
+</header>
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">다섯 식품 HS에서는 코코넛 과실보다 코코넛유의 물량이 크다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">원물 3대 생산국과 코코넛유 생산국을 따로 본다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">수입량과 국내공급량을 소비량으로 바꾸지 않는다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">다섯 식품 HS의 수입 중심은 1513.19이며 공급국은 품목마다 다르다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">국제 코코넛유 지표와 한국 통관 단가는 다른 가격이다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">필리핀·인도네시아는 기름, 베트남은 과실형 수입에서 중요하다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">수입 신고와 공시 사례만으로 상위 업체를 정할 수 없다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">제품 형태에 따라 신고·검역·표시의 판단이 갈린다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">품목 전용 전망과 주변 품목 보고서를 구분한다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표·남은 물음</span><span class="t">공급국 구성과 국제가격을 같은 기간에 본다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">과실형·건조품·코코넛유의 기업 지도가 다르다</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>다섯 식품 HS에서는 코코넛 과실보다 코코넛유의 물량이 크다</h2>
+<p class="lead">코코넛을 한 품목으로 합쳐 말하면 한국 시장의 구조가 흐려진다. 건조 코코넛은 HS 0801.11, 내과피가 있는 코코넛은 0801.12, 그 밖의 신선·건조 코코넛은 0801.19다. 코코넛유는 원유 1513.11과 그 밖의 코코넛유 1513.19로 갈린다. 이 보고서의 식품 수입 물량 비교는 이 다섯 HS와 같은 기간의 값으로 한정한다. 코프라박(사료 원료, HS 2306.50), 코프라(1203.00), 코이어와 활성탄은 다섯 HS 밖이다. 코코넛밀크·코코넛워터·조제식품도 이 다섯 HS에 모두 담기지 않는다. 따라서 본문 다섯 HS의 수입량은 코코넛 유래 모든 제품의 수입량이나 소비자 시장 규모가 아니다(품목 레지스트리; 03·04절).</p>
+<h3>원자료에서 확인된 값</h3>
+<ul>
+<li><strong>세계 원물.</strong> FAOSTAT의 2024년 세계 코코넛 원물 생산은 약 6,554만 톤(65,543,721톤)이다. 인도네시아 17,985,386톤, 인도 14,707,567톤, 필리핀 14,500,416톤이다. 세계 합계에는 추정 표기(E), 인도네시아에는 추정 표기(I)가 붙는다. 이 세 나라의 세계 합계 대비 계산상 몫은 각각 27.4%, 22.4%, 22.1%다. 필리핀 값은 겉껍질을 포함하는 PSA 생산량과 일치하지만 FAO의 원물 정의는 겉껍질을 제외하므로, 국가 간 무게 기준과 이 점유율의 비교에는 주의가 필요하다(FAOSTAT 생산 원자료; 02절).</li>
+<li><strong>세계 기름.</strong> 같은 FAOSTAT 원자료에서 코코넛유 생산의 최신 확인 연도는 2023년이다. 세계 합계는 약 312만 톤(3,122,675.43톤)이며 필리핀 1,212,900톤, 인도네시아 646,000톤, 인도 549,000톤이 기록됐다. 원물의 2024년 순위와 코코넛유의 2023년 수치는 서로 다른 연도의 값이다(FAOSTAT 생산 원자료; 02절).</li>
+<li><strong>한국의 다섯 식품 HS 수입.</strong> 관세청 월별 HS 원자료에서 2025년 코코넛유 두 코드의 수입 중량 합계는 약 47,753톤(47,753.213톤)·1억 1,316만 9,783달러다. 과실·건조품 세 코드의 중량 합계는 약 6,295톤(6,294.694톤)·685만 7,221달러다. 그중 HS 1513.19의 수입액은 약 1.12억 달러(112,175,314달러)다. 이 HS6에는 정제유 10단위 세번과 기타 세번이 함께 들어 있다. 코코넛유 중량은 과실·건조품 중량의 7.6배다. 제품의 물리적 형태가 다르므로 이 배수는 소비량 비율이나 과실의 기름 전환율이 아니다(관세청 월별 원자료; 04절).</li>
+<li><strong>다섯 HS 밖의 사료 원료.</strong> FAOSTAT 양자무역 원자료에서 한국의 2024년 코프라박 수입국 행 합계는 200,763.79톤이다. 필리핀 145,217.50톤(72.3%), 인도네시아 55,421.29톤(27.6%)이며, 같은 자료·연도의 코코넛유 수입 53,924.44톤의 약 3.7배다. FAOSTAT 품목 정의와 관세청 HS 집계는 직접 합산하지 않는다. 이 비교는 코코넛 유래 수입을 다섯 식품 HS만으로 대표할 수 없음을 보여 준다(FAOSTAT TM; 03·04절).</li>
+<li><strong>국내 야자유 판매액.</strong> KOSIS의 식용유지류 품목별 국내판매액 표에서 2025년 ‘야자유’는 31,180,632천 원, 약 311.8억 원으로 식용유지류 합계의 0.93%다. 이는 해당 품목의 국내판매액이며 소비량·수입량·코코넛 유래 제품 전체 매출이 아니다(KOSIS <code>TX_14503_A055</code>; 03·07절).</li>
+<li><strong>공급국.</strong> FAOSTAT 양자무역 원자료의 2024년 한국 코코넛유 수입은 필리핀산 29,731.69톤, 인도네시아산 23,552.46톤이다. 해당 양자무역 행의 수입국 합계 53,924.44톤을 분모로 하면 각각 55.1%, 43.7%다. 2026년 3~8월 기준(잠정) 관세청 국가별 정제유 자료에서는 인도네시아산이 51.4%, 필리핀산이 47.2%다. 뒤의 수치는 연간 점유율이 아니다(FAOSTAT TM; 관세청 국가별 월별; 04·06절).</li>
+<li><strong>국제가격.</strong> 세계은행 Pink Sheet의 코코넛유 가격은 2025년 연평균 2,480달러/톤, 2026년 8월 1,853달러/톤이다. CFR 북서유럽 가격이므로 한국의 통관 단가나 소매가격으로 읽지 않는다. 국내 코코넛 전용 도소매 가격 시계열은 이번 조사에서 확보하지 못했다(세계은행, A; 05절).</li>
+<li><strong>수급과 제도.</strong> USDA FAS 마닐라 사무소는 2026/27 유통연도에 코프라 분쇄와 코코넛유 생산이 늘 것으로 전망했다. 2026년 3월 현재 필리핀의 코코넛 유래 바이오디젤 혼합률은 3%이고 4%·5% 인상은 연기됐다. 인도네시아에서는 통코코넛 수출과 제유용 코프라 확보가 경쟁한다. 두 사실은 생산국 내수와 수출 여력의 관계를 설명한다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Manila_Philippines_RP2026-0011.pdf">USDA FAS 필리핀</a>, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Jakarta_Indonesia_ID2026-0013">인도네시아</a>, A; 06·08절).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li><strong>다섯 HS의 수입 구조.</strong> 한국의 코코넛유 수입 물량이 과실·건조품보다 큰 구조는 당분간 이어질 가능성이 있다. 이는 2025년의 확인된 격차와 FAO 식량수급표의 코코넛유 국내공급 기록을 함께 본 판단이다. <strong>반증 조건:</strong> 같은 다섯 HS를 같은 연도로 집계했을 때 과실·건조품 세 코드의 연간 중량 합계가 코코넛유 두 코드 합계를 넘는 것. 코프라박은 이 판단의 범위 밖이며 별도로 관찰한다.</li>
+<li><strong>공급 집중.</strong> 코코넛유의 필리핀·인도네시아 집중은 한국 수입의 핵심 관찰 지표다. 2024년 FAO 양자무역과 2026년 3~8월 기준(잠정) 관세청 국가별 자료가 모두 두 나라를 주요 공급국으로 가리킨다. <strong>반증 조건:</strong> 완료된 연간 국가별 자료에서 두 나라 이외 공급국의 합계가 HS 1513.19 수입 중량의 절반을 넘는 것. 서로 다른 통계의 점유율을 이어 붙여 추세선으로 만들지는 않는다.</li>
+<li><strong>가격 전달.</strong> 국제 코코넛유 지표가 움직여도 한국 HS 1513.19 통관 단가는 같은 폭과 시점에 움직인다고 단정할 수 없다. 세계은행 지표는 CFR 북서유럽이고 관세청 단가는 한국 수입금액을 수입중량으로 나눈 값이기 때문이다. <strong>반증 조건:</strong> 동일한 품목 정의와 충분한 월별 관측치를 갖춘 자료에서 두 가격의 시차와 환율을 조정한 전달률이 안정적으로 확인되는 것.</li>
+</ul>
+<p>이 보고서의 수치는 원자료 행 또는 계산식이 있는 <code>30_근거_수치.md</code>에 묶었다. <strong>국내 기업별 수입 물량·매출 순위</strong>, 세율, KAMIS 코코넛 실측 가격처럼 원문이 확인되지 않은 항목은 숫자로 채우지 않았다. 웹 조사 노트의 사실은 원래의 A·B 등급을 유지했다. 산업 전체에 대한 결론을 내리는 데 한 회사의 공시 사례를 시장점유율처럼 확대하지 않았다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>원물 3대 생산국과 코코넛유 생산국을 따로 본다</h2>
+<p class="lead">코코넛 원물은 사람이 바로 먹는 과실과 코프라·기름으로 가공될 원료를 함께 포함한다. 어느 나라에서 열매가 많이 생산되는지와 어느 나라가 코코넛유를 많이 생산·수출하는지는 같은 질문이 아니다. 원물은 FAOSTAT 2024년 자료로, 코코넛유의 세계 생산은 이 파일에서 최신으로 확인되는 2023년 자료로 읽는다. USDA PSD의 코프라·코코넛유 수급표는 유통연도를 사용하므로 이 두 연도별 FAOSTAT 계열과 직접 합산하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 1. 코코넛 원물 생산 상위국(2024년, 톤)</caption>
+<thead><tr><th class="num">순위</th><th>국가</th><th class="num">생산량</th><th class="num">세계 합계 대비</th><th>FAOSTAT 표기</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>인도네시아</td><td class="num">17,985,386</td><td class="num">27.4%</td><td>I</td></tr>
+<tr><td class="num">2</td><td>인도</td><td class="num">14,707,567</td><td class="num">22.4%</td><td>A</td></tr>
+<tr><td class="num">3</td><td>필리핀</td><td class="num">14,500,416</td><td class="num">22.1%</td><td>A</td></tr>
+<tr><td class="num">4</td><td>브라질</td><td class="num">3,158,018</td><td class="num">4.8%</td><td>A</td></tr>
+<tr><td class="num">5</td><td>베트남</td><td class="num">2,280,323</td><td class="num">3.5%</td><td>A</td></tr>
+<tr><td class="num">6</td><td>스리랑카</td><td class="num">1,814,800</td><td class="num">2.8%</td><td>A</td></tr>
+<tr class="tot"><td class="num"><strong>세계</strong></td><td></td><td class="num"><strong>65,543,721</strong></td><td class="num"><strong>100%</strong></td><td><strong>E</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_coconut.csv</code>, <code>Item=Coconuts, in shell</code>·<code>Element=Production</code>·<code>Year=2024</code>·<code>Unit=t</code>. 세계는 <code>Area=World</code> 행이다. 국가는 국가 행만 골랐고, 점유율은 각 국가 생산량÷세계 행으로 계산했다. I·E는 원자료 표기를 그대로 남겼다.</p>
+<p>필리핀 FAOSTAT 원값 14,500,416.25톤은 필리핀 통계청(PSA)의 2024년 <code>Coconut (w/ husk)</code> 생산량과 소수점까지 같다. PSA 품목명은 바깥 섬유질 껍질을 포함하지만 FAO는 코코넛 원물 정의에서 이를 제외하며, 성숙한 열매 전체 무게의 약 3분의 1이라고 설명한다. 따라서 표 1의 국가별 점유율과 필리핀·인도의 근소한 차이는 무게 기준이 완전히 통일된 비교로 해석하지 않는다. 일치하는 수치만으로 FAOSTAT의 전송·환산 과정을 확정할 수 없으므로 필리핀 값을 임의로 3분의 1 감산하지 않았다(FAO, <em>Food Balance Sheets – A Handbook</em>, Annex II, 발행일 미표기, <a href="https://www.fao.org/4/x9892e/X9892e06.htm">원문</a>; Philippine Statistics Authority, <em>Crops Production Survey, 0142E4EVCP1</em>, 발행일 미표기·2026-10-08 조회, <a href="https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__CS/0142E4EVCP1.px/table/tableViewLayout2/">원표</a>).</p>
+<p>상위 세 나라의 세계 합계 대비 계산상 몫은 72.0%다. 인도네시아가 1위지만 그 값은 추정(I)이므로 수십만 톤 차이만으로 확정적 순위 변화를 예고할 수 없다. 세계 합계 역시 추정(E)이다. 브라질과 베트남은 원물 생산에서 의미 있는 규모를 보이지만 상위 세 나라와 격차가 있다. 세계 합계와 국가별 합계를 대조할 때 지역·소득집단 집계 행을 국가처럼 더하면 중복된다. 이 보고서는 FAOSTAT의 <code>World</code> 행을 분모로 쓰고, 순위에는 국가 행만 썼다.</p>
+<p>코코넛유로 옮기면 구도가 달라진다. FAOSTAT 2023년 <code>Coconut oil</code> 생산의 세계 행은 3,122,675.43톤이다. 필리핀은 1,212,900톤, 인도네시아는 646,000톤, 인도는 549,000톤이다. 세계 행 대비 각각 38.8%, 20.7%, 17.6%다. 필리핀 값의 Flag는 X이므로 자국의 당해 확정 실측치처럼 쓰지 않는다. 특히 2024년 원물 생산 순위와 2023년 기름 생산 순위를 한 표에 묶어 “같은 해 가공률”을 계산하는 것은 허용되지 않는다(FAOSTAT 생산 원자료).</p>
+<p>USDA PSD는 세계 행보다 국가별 코프라·코코넛유의 생산, 국내 소비, 수출, 기말재고를 읽는 데 유용하다. 파일의 <code>Oil, Coconut</code>·<code>Market_Year=2025</code>에서 필리핀 생산은 164만 톤, 국내 소비는 52.5만 톤, 수출은 120만 톤, 기말재고는 8.8만 톤으로 기록됐다. 인도네시아는 생산 103.3만 톤, 국내 소비 44만 톤, 수출 63만 톤, 기말재고 23.3만 톤이다. 단위는 모두 원자료의 <code>(1000 MT)</code>를 톤으로 환산했다. 이 값은 자료 갱신 시점에 따른 USDA 수급표의 값이며 FAOSTAT의 달력연도 생산량과 맞춰 하나의 항등식으로 쓰지 않는다.</p>
+<p>USDA PSD의 <code>Market_Year=2026</code>은 전망 성격이 강하다. 필리핀 코코넛유 생산 177.5만 톤, 국내 소비 65.5만 톤, 수출 120만 톤으로, 인도네시아 생산 104만 톤, 국내 소비 45만 톤, 수출 68만 톤으로 들어 있다. 이 값은 진행 유통연도 수치이며 국가 점유율·순위의 근거로 사용하지 않았다. 기말재고도 이후 개정될 수 있어 생산 증가가 실제 수출 증가로 이어졌는지는 확정되지 않았다(USDA PSD 원자료).</p>
+<p><a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Manila_Philippines_RP2026-0011.pdf">USDA FAS 마닐라 연례보고서</a>는 2026/27 코프라 분쇄 증가의 근거를 원료 가용성 회복으로 제시한다(A, 2026-04-16). 다만 “분쇄 증가 전망”은 생산국의 계획·예상이지 확정 생산량이 아니다. 코코넛은 생과실, 코프라, 식용유, 산업용유 사이에서 원료가 배분되므로 열매 생산이 늘어도 코코넛유 수출이 같은 비율로 늘지 않을 수 있다. 이 분배가 세계 수급의 실제 연결고리다.</p>
+<p>2024년 FAOSTAT 무역 원자료에서 코코넛유 수출량은 필리핀 1,671,778.15톤, 인도네시아 677,378.03톤이다. 이는 각각의 신고·집계 수출량이며 위 2023년 생산량과 나눠 수출률을 구하지 않는다. 두 연도와 자료 범위가 다르고 재고·가공·재수출이 개입한다. 유럽의 네덜란드도 같은 파일에서 큰 코코넛유 수출 행을 갖지만, 이 사실만으로 네덜란드가 코코넛 원물의 큰 생산국이라는 뜻은 아니다(FAOSTAT 무역·생산 원자료).</p>
+<p>세계 소비의 단일 완료연도 총량은 이번 품목 분할 원자료에서 직접 확정하지 않았다. USDA PSD에는 국가별 <code>Domestic Consumption</code>이 있지만 제공된 파일에 별도 세계 합계 행이 없고, FAOSTAT 생산의 최신 연도와도 달리 묶인다. 합산 범위와 유통연도가 달라 이 보고서는 세계 소비량 또는 재고율을 제시하지 않는다. 현재 확인되는 국가별 지표는 필리핀·인도네시아의 생산, 국내 소비, 수출, 기말재고다.</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>수입량과 국내공급량을 소비량으로 바꾸지 않는다</h2>
+<p class="lead">한국의 코코넛 산업을 국내 재배 중심으로 설명할 자료는 확보하지 못했다. 그렇다고 통계상 생산이 “0”이라고 단정하는 것도 맞지 않는다. FAOSTAT <code>Coconut oil</code> 생산 원자료에는 한국의 2023년 50.57톤이 있으며 Flag가 I다. 같은 시기의 FAOSTAT 식량수급표는 코코넛유 생산을 천 톤 단위로 반올림해 0으로 기록한다. USDA PSD의 한국 <code>Oil, Coconut</code> 생산도 0으로 기입됐다. 작은 추정 생산 행과 수급표의 0은 지표·반올림·추정 방법이 다른 값이며, 국내 생산의 실물 규모를 확정해 주는 증거가 아니다.</p>
+<p>한국 시장에서 비교적 직접 확인되는 것은 HS별 수입 신고 중량이다. 2025년 코코넛유 두 HS의 수입은 47,753.213톤이다. 이 가운데 47,632.259톤이 <code>1513.19</code>로 들어왔다. 원유 <code>1513.11</code>은 120.954톤이다. 따라서 이 다섯 식품 HS 안에서 한국의 물량 중심은 정제유를 포함한 <code>1513.19</code>다. 다섯 HS 밖의 코프라박은 별도의 큰 사료 원료 수입이며, HS 1513.19는 용도별 매출이나 식품·화장품·공업용 배분을 알려주지 않는다. 수입량을 곧장 식용 소비량이라고 부르지 않는다(관세청 월별 원자료; FAOSTAT TM).</p>
+<div class="tw">
+<table>
+<caption>표 2. 한국 코코넛 관련 공급·사용을 읽을 수 있는 서로 다른 통계</caption>
+<thead><tr><th>지표</th><th>기간</th><th class="num">원자료 값</th><th>단위·성격</th></tr></thead>
+<tbody>
+<tr><td>코코넛유 국내공급</td><td>2023</td><td class="num">51</td><td>천 톤 · FAOSTAT FBS, 추정(I)</td></tr>
+<tr><td>코코넛유 식용 사용</td><td>2023</td><td class="num">34</td><td>천 톤 · FAOSTAT FBS, 추정(I)</td></tr>
+<tr><td>코코넛유 식용 공급</td><td>2023</td><td class="num">33,803.5</td><td>톤 · FAOSTAT SCL, 추정(E)</td></tr>
+<tr><td>코코넛유 비식용 사용</td><td>2023</td><td class="num">20</td><td>천 톤 · FAOSTAT FBS, 추정(I)</td></tr>
+<tr><td>코코넛유 비식용 사용</td><td>2023</td><td class="num">20,000</td><td>톤 · FAOSTAT SCL, 외부기관 수치(X)</td></tr>
+<tr><td>코코넛유 잔차</td><td>2023</td><td class="num">−2,466</td><td>톤 · FAOSTAT SCL, 추정(I)</td></tr>
+<tr><td>코코넛·코프라 포함 국내공급</td><td>2023</td><td class="num">16</td><td>천 톤 · FAOSTAT FBS, 추정(I)</td></tr>
+<tr><td>코프라박 사료 사용</td><td>2023</td><td class="num">246,124.7</td><td>톤 · FAOSTAT SCL, 추정(E)</td></tr>
+<tr><td>코프라박 수입국 행 합계</td><td>2024</td><td class="num">200,763.79</td><td>톤 · FAOSTAT TM</td></tr>
+<tr><td>코코넛유 국내 소비</td><td>MY 2025</td><td class="num">50</td><td>천 톤 · USDA PSD 수급표</td></tr>
+<tr><td>코프라박 수입·국내 소비</td><td>MY 2025</td><td class="num">각각 180</td><td>천 톤 · USDA PSD 수급표·사료 사용</td></tr>
+<tr><td>코코넛유 수입 신고 중량</td><td>2025</td><td class="num">47.753</td><td>천 톤 · 관세청 HS 1513.11+19</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 <code>raw_data/FBS_coconut.csv</code>와 <code>raw_data/SCL_coconut.csv</code>의 <code>Area=Republic of Korea</code>·<code>Year=2023</code>; 아카이브 <code>raw_data/TM_coconut.csv</code>의 <code>Reporter Countries=Republic of Korea</code>·<code>Item=Cake of copra</code>·<code>Element=Import quantity</code>·<code>Year=2024</code>; <code>usda_psd_all_coconut.csv</code>의 <code>Country_Name=Korea, South</code>·<code>Commodity_Description=Oil, Coconut</code> 또는 <code>Meal, Copra</code>·<code>Market_Year=2025</code>; <code>customs_item_trade_monthly_coconut.csv</code>의 2025년 HS 합계. 각 계열은 기간과 작성 방식이 달라 가로로 더하거나 차감하지 않는다.</p>
+<p>FAOSTAT FBS의 2023년 코코넛유 국내공급 5.1만 톤과 식용 3.4만 톤은 식량수급표의 추정치다. 품목별 공급·사용 계정인 SCL은 같은 해 코코넛유 식용 공급을 33,803.5톤, 비식용 사용을 20,000톤, 잔차를 −2,466톤으로 더 세밀하게 적는다. FBS의 반올림값을 더해 공급·사용 항등식을 재계산하지 않는다. 식용 사용은 소비자 가계가 병에 담긴 코코넛유를 구입한 양이라는 뜻도 아니다. 식품 제조 원료로 들어간 양과 최종 소비가 섞여 있다(FAOSTAT FBS·SCL).</p>
+<p>코프라박은 식용 다섯 HS의 비교에서 빠지지만 한국 코코넛 산업의 사료 원료 흐름에서는 크다. FAOSTAT SCL의 한국 2023년 사료 사용량은 246,124.7톤(E)이다. FAOSTAT TM의 2024년 수입국 행 합계는 200,763.79톤으로, 같은 자료의 코코넛유 수입 53,924.44톤의 약 3.7배다. USDA PSD의 <code>Meal, Copra</code>는 MY 2025 한국 수입과 국내 소비를 각각 18만 톤으로 적고, 국내 소비를 사료·폐기 사용으로 분류한다. 이 세 수치는 같은 연도의 동일 조사값이 아니므로 감소율로 이어 붙이지 않는다(FAOSTAT SCL·TM; USDA PSD).</p>
+<p>USDA PSD는 MY 2025 한국 코코넛유 수입과 국내 소비를 각각 5만 톤으로 기록하고, 식용 3만 톤·산업용 2만 톤으로 나눈다. 이 표의 <code>Market_Year=2026</code>에는 국내 소비 5.5만 톤, 식용 3.5만 톤, 산업용 2만 톤이 들어 있지만 진행 유통연도 전망치다. FAOSTAT FBS 2023, PSD MY 2025, 관세청 달력연도 2025는 서로의 검산용 보조 자료일 뿐 하나를 다른 하나의 “오차”로 해석하지 않는다(USDA PSD; FAOSTAT FBS).</p>
+<p>과실·건조품의 소비 경로는 더 좁게 보인다. 2025년 관세청 자료에는 건조 코코넛 1,637.689톤, 내과피가 있는 코코넛 1,761.507톤, 그 밖의 코코넛 2,895.498톤이 잡혔다. 품목 분류만으로 각 물량이 베이킹 원료, 음료용 생과실, 직접 소매 중 어디로 갔는지 알 수 없다. FAOSTAT FBS의 <code>Coconuts - Incl Copra</code> 국내공급 2023년 1.6만 톤과 HS 세 코드 2025년 약 6,295톤의 차이를 다른 코코넛 제품의 누락량으로 계산하지 않는다. 품목 범위와 작성 연도가 모두 다르다.</p>
+<p>KOSIS의 식약처 식용유지류 품목별 국내판매액 표에는 ‘야자유’ 행이 있다. 2025년 값은 31,180,632천 원(약 311.8억 원), 식용유지류 합계 대비 점유율은 0.93%다. 2024년은 17,276,319천 원으로, 같은 판매액 지표끼리 비교하면 2025년이 80.5% 늘었다. ‘코코넛’ 문자열만 찾으면 이 행을 놓친다. 이 통계는 품목별 국내판매액이며 소비 중량·수입량·개별 회사 매출이나 코코넛 유래 전체 시장의 판매액이 아니다(식품의약품안전처·KOSIS, <em>식용유지류 품목별 국내판매액 변동현황</em>, <code>TX_14503_A055</code>, 자료연도 2024·2025·2026-10-08 조회, <a href="https://kosis.kr/statHtml/statHtml.do?orgId=145&amp;tblId=TX_14503_A055">원표</a>).</p>
+<p>국내 소비의 최신 완료연도 단일 총량은 미확보다. 확인한 경로는 FAOSTAT FBS·SCL 한국 행, USDA PSD 한국 코코넛유·코프라박 수급표, KOSIS ‘코코넛’과 ‘야자유’ 항목, ECOS 검색, 관세청의 다섯 식품 HS 수입이다. KOSIS 야자유 국내판매액은 확인했지만 이 값으로 이번 범위 전체의 소비 실측 중량을 대체할 수 없다. 원자료 확인 없이 “국내 소비 통계가 없다”라고 일반화하지 않는다. 따라서 이 보고서의 식품 수입 규모는 <strong>정의한 다섯 HS의 수입 규모</strong>로만 제시한다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>다섯 식품 HS의 수입 중심은 1513.19이며 공급국은 품목마다 다르다</h2>
+<p class="lead">관세청 월별 품목 자료는 수입 중량과 달러 금액을 같은 HS·기간으로 모아 볼 수 있다. 제공된 파일은 2024년 11월부터 2026년 8월까지이므로 여기서 2024년 열을 연간 수치로 만들지 않는다. 2025년은 완료된 한 해이며 2026년 1~8월은 진행 연도의 누적이다. 월별 원자료에서 중량은 kg, 금액은 달러다. 표의 달러/kg은 같은 행 묶음의 수입금액 합계÷중량 합계이며, 운송·보험·통관 구성 차이가 섞인 신고 단가다.</p>
+<div class="tw">
+<table>
+<caption>표 3. 한국의 코코넛 관련 다섯 식품 HS별 수입(2025년 완료연도)</caption>
+<thead><tr><th>HS6</th><th>범위</th><th class="num">중량(톤)</th><th class="num">금액(백만 달러)</th><th class="num">신고 단가(달러/kg)</th></tr></thead>
+<tbody>
+<tr><td>0801.11</td><td>건조 코코넛</td><td class="num">1,637.689</td><td class="num">3.587</td><td class="num">2.19</td></tr>
+<tr><td>0801.12</td><td>내과피가 있는 코코넛</td><td class="num">1,761.507</td><td class="num">1.493</td><td class="num">0.85</td></tr>
+<tr><td>0801.19</td><td>그 밖의 코코넛</td><td class="num">2,895.498</td><td class="num">1.777</td><td class="num">0.61</td></tr>
+<tr><td>1513.11</td><td>코코넛유 원유</td><td class="num">120.954</td><td class="num">0.994</td><td class="num">8.22</td></tr>
+<tr><td>1513.19</td><td>그 밖의 코코넛유</td><td class="num">47,632.259</td><td class="num">112.175</td><td class="num">2.36</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>customs_item_trade_monthly_coconut.csv</code>, <code>year=2025.01~2025.12</code>, <code>hsCode</code> 앞 여섯 자리별 <code>impWgt</code>·<code>impDlr</code> 합계. 단가=합계 달러÷합계 kg. <code>1513.11</code>은 물량이 작고 단가가 다른 범위이므로 <code>1513.19</code>와 가격을 평균하지 않는다. <code>1513.19</code>에는 10단위 <code>1513191000</code> 정제유와 <code>1513199000</code> 기타가 함께 있다.</p>
+<p>2025년 코코넛유 두 코드의 합계는 47,753.213톤이고, 과실·건조품 세 코드의 합계는 6,294.694톤이다. 코코넛유가 중량에서 7.6배 크다. 무역금액 기준으로도 기름 두 코드가 1억 1,316만 9,783달러, 과실·건조품 세 코드가 685만 7,221달러다. 이 차이는 정해 둔 다섯 식품 HS 범위의 차이를 보여 준다. 코코넛워터·밀크·가공식품의 매출, 제조업 부가가치 또는 전체 코코넛 산업의 소비자 매출로 확대하면 안 된다.</p>
+<p>이 다섯 HS 밖에는 더 큰 중량의 코코넛 유래 사료 원료가 있다. FAOSTAT 양자무역의 <code>Cake of copra</code>에서 2024년 한국 수입국 행 합계는 200,763.79톤이다. 필리핀 145,217.50톤(72.3%), 인도네시아 55,421.29톤(27.6%), 베트남 125톤이다. 같은 파일·연도의 <code>Coconut oil</code> 수입국 행 합계 53,924.44톤과 비교하면 코프라박이 약 3.7배다. 코프라박(HS 2306.50)은 표 3의 다섯 식품 HS에 포함되지 않으며, FAOSTAT 품목별 중량을 관세청 HS 금액과 직접 합산하지 않는다(FAOSTAT <code>raw_data/TM_coconut.csv</code>; 30_근거_수치.md).</p>
+<p>2026년 1~8월 누적에서는 코코넛유가 34,374.755톤, 과실·건조품이 5,333.828톤이다. 같은 1~8월끼리 비교하면 2025년 코코넛유는 31,465.751톤, 과실·건조품은 4,036.571톤이었다. 코코넛유 중량의 증가율은 9.2%, 과실·건조품 중량은 32.1%다. 진행연도의 남은 달이 없으므로 이 증가율을 2026년 연간 증가율로 쓰지 않는다. HS <code>1513.19</code>만 보면 2025년 1~8월 31,411.006톤에서 2026년 같은 기간 34,333.231톤으로 늘었다. 신고 단가는 같은 기간 각각 2.20달러/kg과 2.23달러/kg이다(관세청 월별 원자료).</p>
+<p>UN Comtrade의 한국 수입 세계 합계 행은 2025년 다섯 HS의 금액이 관세청 월별 합계와 정확히 맞는다. 예를 들어 <code>151319</code>의 <code>primaryValue</code>는 112,175,314달러, <code>080111</code>은 3,586,772달러다. <code>netWgt</code>는 각기 47,632,268.3kg과 1,637,688.957kg으로 관세청 월별 정수 kg 합계와 미세한 반올림 차이가 있다. Comtrade에서는 <code>customsCode=C00</code>·<code>motCode=0</code>·<code>partner2Code=0</code>을 만족하는 합계 행만 썼고, 세계 합계는 <code>partnerCode=0</code>으로 골랐다. 제공된 한국 Comtrade 파일에는 이 조건의 국가별 상대국 행이 없으므로 국가별 비중은 관세청 국가별 또는 FAOSTAT 양자무역 자료에서 구했다. 합계와 세부 관세절차·운송수단 행을 더하지 않았다(UN Comtrade 처리 원자료).</p>
+<p>국가별 자료는 시점이 서로 다르다. FAOSTAT 양자무역 원장의 2024년 한국 코코넛유 수입국 행 합계는 53,924.44톤이며 필리핀 29,731.69톤(55.1%), 인도네시아 23,552.46톤(43.7%)이다. 건조 코코넛의 2024년 수입국 행 합계 3,228.42톤에서는 인도네시아 1,680.25톤(52.0%), 필리핀 1,454.49톤(45.1%)이다. 과실 <code>Coconuts, in shell</code>의 2024년 한국 수입국 행 합계 5,351.69톤에서는 베트남 5,322.13톤(99.4%)이다. FAOSTAT의 제품 분류가 HS6별 제품 분류와 완전히 일치한다는 전제로 두 수치를 합치지 않는다(FAOSTAT TM 원자료).</p>
+<div class="tw">
+<table>
+<caption>표 4. 관세청 국가별 파일에서 확인되는 2026년 3~8월 기준 주요 공급국(잠정)</caption>
+<thead><tr><th>HS6</th><th class="num">기간 중 중량(톤)</th><th>1위 공급국·중량</th><th class="num">그 품목 내 몫</th><th>2위 공급국·중량</th></tr></thead>
+<tbody>
+<tr><td>0801.11</td><td class="num">943.409</td><td>필리핀 515.422톤</td><td class="num">54.6%</td><td>인도네시아 338.629톤</td></tr>
+<tr><td>0801.12</td><td class="num">1,191.677</td><td>베트남 1,178.103톤</td><td class="num">98.9%</td><td>인도네시아 11.751톤</td></tr>
+<tr><td>0801.19</td><td class="num">2,326.688</td><td>베트남 2,258.911톤</td><td class="num">97.1%</td><td>태국 66.588톤</td></tr>
+<tr><td>1513.11</td><td class="num">30.763</td><td>태국 12.229톤</td><td class="num">39.8%</td><td>베트남 10.799톤</td></tr>
+<tr><td>1513.19</td><td class="num">26,683.036</td><td>인도네시아 13,726.305톤</td><td class="num">51.4%</td><td>필리핀 12,593.712톤</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>/Users/idong-geon/my-project/agri_pipeline/data/06_견과류(Nuts)/coconut/processed_data/customs_kr/coconut_customs_kr_monthly.csv</code>의 201행, <code>year=2026.03~2026.08</code>, <code>hsCd</code>·<code>statCd</code>별 <code>impWgt</code> 합계. 아카이브의 동명 캐시 파일은 71행이며 2026년 3~4월만 담으므로 표 4의 3~8월 값의 출처가 아니다. 파일이 담은 기간만 분모로 썼다. 2026년 전체 또는 완료연도 국가별 점유율이 아니다.</p>
+<p>2026년 3~8월 기준(잠정) 과실형 코코넛은 베트남 비중이 매우 크고, 건조품과 HS 1513.19는 필리핀·인도네시아가 중심이다. 이것은 같은 “코코넛”이라는 말 아래에도 공급망이 여러 갈래임을 보여 준다. 2026년 국가별 관세청 파일은 1~2월 국가별 행이 없으므로 표 4의 분모를 2026년 1~8월 전체 물량으로 바꾸지 않았다. 공급국 순위도 잠정 관측으로만 쓴다.</p>
+<p>미국 Census 수입·수출 품목 파일은 2026년 7월 한 달, EU Comext의 제공 파일은 각각 2026년 7월과 6월의 다른 파일이다. 브라질 Comexstat는 2026년 1~8월 행을 담는다. 이 자료는 주요 소비·수출 시장을 추적할 경로지만 현재 파일만으로 완료연도 상대국 순위를 한국과 같은 조건으로 맞출 수 없다. 미국 HS10에는 상위 집계 코드와 세부 코드가 함께 있어 그대로 합산하면 중복될 수 있고, EU 역내·역외 구분도 필요하다. 일본의 월별 코코넛유 수입 자료는 이번 품목 분할 입력에는 없지만 파이프라인 <code>_raw/estat_japan_trade/2026-10-06_145823__estat_japan_trade.zip</code>의 2026년 1~8월 HS9 <code>151311000</code>·<code>151319000</code> 국가별 표에 있다. 이 일본 표는 이번 점유율 비교에 반영하지 않았다. 따라서 미국·EU·브라질·일본의 시장점유율을 추정하지 않았다(품목별 Census·Comext·Comexstat 파일; 일본 e-Stat 파이프라인 원자료).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>국제 코코넛유 지표와 한국 통관 단가는 다른 가격이다</h2>
+<p class="lead">가격을 한 줄로 말하기 어려운 이유는 거래 단계가 다르기 때문이다. 세계은행의 <code>Coconut oil</code>은 국제 상품가격이며 인도조건이 CFR 북서유럽이다. FAOSTAT <code>Producer Prices</code>는 생산지 농가 가격이고, 한국 관세청의 달러/kg은 수입 신고금액을 중량으로 나눈 값이다. KAMIS의 국내 소매·도매 시계열이 확보되지 않은 상태에서 이 셋을 “국제가격→도매가격→소매가격”의 연속 시계열처럼 연결할 수 없다.</p>
+<div class="tw">
+<table>
+<caption>표 5. 확인한 코코넛 관련 가격 지표</caption>
+<thead><tr><th>지표</th><th>기간</th><th class="num">값</th><th>단위·해석</th></tr></thead>
+<tbody>
+<tr><td>세계은행 코코넛유 연평균</td><td>2023</td><td class="num">1,075</td><td>달러/톤 · CFR 북서유럽</td></tr>
+<tr><td>세계은행 코코넛유 연평균</td><td>2024</td><td class="num">1,519</td><td>달러/톤 · CFR 북서유럽</td></tr>
+<tr><td>세계은행 코코넛유 연평균</td><td>2025</td><td class="num">2,480</td><td>달러/톤 · CFR 북서유럽</td></tr>
+<tr><td>세계은행 코코넛유 월별</td><td>2026년 3월</td><td class="num">2,360.34</td><td>달러/톤 · 저장 CSV 원값</td></tr>
+<tr><td>세계은행 코코넛유 월별</td><td>2026년 8월</td><td class="num">1,853</td><td>달러/톤 · 2026년 9월 공개 원문</td></tr>
+<tr><td>한국 HS 1513.19 신고 단가</td><td>2025</td><td class="num">2.36</td><td>달러/kg · 정제유·기타 포함</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 <code>PinkSheet_Coconut_oil.csv</code>의 2023~2025 월별 평균과 <code>2026M03</code> 행; <a href="https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-September-2026.pdf">세계은행 2026년 9월 Pink Sheet</a>의 연평균·2026년 8월 값(A); <code>customs_item_trade_monthly_coconut.csv</code>의 2025년 HS 151319 금액÷중량. 달러/톤과 달러/kg은 숫자만 비교하지 않는다.</p>
+<p>저장된 세계은행 월별 CSV는 2026년 3월까지다. 8월 1,853달러/톤은 웹 조사 노트가 연결한 2026년 9월 Pink Sheet 원문에서 확인했다. 2025년 연평균 2,480달러/톤은 저장 월별 값 12개의 단순평균 2,480.22달러/톤을 정수로 표시한 공개 원문과 일치한다. 2026년 8월 한 달 가격이 2025년 연평균보다 낮다는 사실은 확인되지만, 서로 다른 집계 기간의 두 점만으로 연간 한국 수입가격 하락률을 만들지 않는다. 세계은행의 가격 정의와 인도조건도 별도의 가격 정의 문서에 적혀 있다(<a href="https://thedocs.worldbank.org/en/doc/18675f1d1639c7a34d463f59263ba0a2-0050012025/related/CMO-Pink-Sheet-December-2025.pdf">세계은행 가격 정의</a>, A).</p>
+<p>한국 수입 신고 단가는 제품별로 차이가 크다. 2025년 건조 코코넛 <code>0801.11</code>은 2.19달러/kg, 그 밖의 코코넛 <code>0801.19</code>는 0.61달러/kg이다. 코코넛유 원유 <code>1513.11</code>은 8.22달러/kg이지만 수입 중량이 120.954톤으로 작아 HS 1513.19의 47,632.259톤·2.36달러/kg과 단순 평균하면 품목 구성을 잃는다. 신고 품목의 품질·포장·계약·소량 고가 수입이 섞일 수 있다. 원유 단가가 HS 1513.19 단가보다 높다는 행만으로 통계 오류나 원유의 일반 시장가격을 주장하지 않는다(관세청 월별 원자료).</p>
+<p>산지 가격의 또 다른 축은 생산자 가격이다. 아카이브 FAOSTAT <code>PP_coconut.csv</code>의 필리핀 코코넛 원물 생산자 가격은 2024년 1월 9,648페소/톤, 2025년 1월 11,835.9페소/톤이다. 같은 달끼리 비교하면 22.7% 상승했다. 2024년 연간 값은 11,225페소/톤으로, 2025년 1월과 비교해 연간 증가율을 만들지 않는다. 원자료에는 2024년 연간 달러 가격 195.9달러/톤도 있으나 2025년 1월 페소 가격을 같은 기간 달러 가격으로 바꾸거나 한국 통관가격과 비교하려면 해당 기간 환율과 가격 정의가 필요하다(FAOSTAT 생산자 가격 원자료).</p>
+<p>국내 코코넛 도소매 실측 가격은 미확보다. 웹 조사 노트는 KAMIS 품목별 소매가격·월간 소매가격 경로와 검색을 시도했지만 직접 열린 코코넛 시계열을 확인하지 못했다고 적는다. 품목 레지스트리의 <code>kamis</code>도 <code>null</code>이다. 이는 KAMIS 전체에 영원히 코코넛 가격이 없다는 확정 주장이 아니다. KAMIS의 <code>countyname=평년</code>은 최근 5년 중 최고·최저를 뺀 3년 평균이며 서울·평균 등 실측 행과 구분된다(KAMIS 조사 경로·품목 레지스트리; 발주서 가격 규칙).</p>
+<p>지금 바로 관찰할 수 있는 가격 관계는 두 가지다. 국제 코코넛유 지표의 월별 변화와 한국 <code>1513.19</code>의 월별 신고 단가 변화, 그리고 과실형 HS 사이의 단가·원산지 구성 변화다. 자료가 없는 상태에서 국제가격의 특정 변동이 국내 소매가격을 얼마 올렸다고 계산하지 않는다.</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>필리핀·인도네시아는 기름, 베트남은 과실형 수입에서 중요하다</h2>
+<p class="lead">원물 생산 상위국과 한국의 수입 공급국은 겹치지만 동일하지 않다. 인도는 세계 원물 생산 2위여도 한국 정제유 수입의 주력 공급국이라는 뜻은 아니다. 필리핀은 원물 생산과 코프라 제유·코코넛유 수출이 연결된다. 인도네시아는 원물 생산 1위이며 통코코넛 수출과 자국 제유공장의 원료 확보가 경쟁한다. 베트남은 한국의 내과피가 있는 코코넛과 그 밖의 코코넛 수입에서 높은 비중을 차지한다. 따라서 생산국별 위험이 전해지는 제품은 서로 다르다.</p>
+<div class="tw">
+<table>
+<caption>표 6. 주요 공급국의 역할과 한국 연결</caption>
+<thead><tr><th>국가</th><th>생산·수출에서 확인된 역할</th><th>한국 연결</th><th>읽을 때의 한계</th></tr></thead>
+<tbody>
+<tr><td>필리핀</td><td>FAOSTAT 2024 원물 1,450만 톤; 2024 코코넛유 수출 167.2만 톤</td><td>2024 FAOSTAT 한국 코코넛유 수입의 55.1%</td><td>생산·무역 연도가 같아도 물량을 기름 전환율로 계산하지 않음</td></tr>
+<tr><td>인도네시아</td><td>FAOSTAT 2024 원물 1,798.5만 톤</td><td>2024 한국 코코넛유 수입의 43.7%; 2026년 3~8월 기준(잠정) 정제유 51.4%</td><td>뒤의 비중은 완료연도 수치가 아님</td></tr>
+<tr><td>베트남</td><td>FAOSTAT 2024 원물 228.0만 톤</td><td>2026년 3~8월 기준(잠정) HS 0801.12의 98.9%, 0801.19의 97.1%</td><td>과실형 코코넛의 수입 비중을 코코넛유에 적용하지 않음</td></tr>
+<tr><td>인도</td><td>FAOSTAT 2024 원물 1,470.8만 톤</td><td>이번 국가별 한국 파일에서 주력 공급으로 나타나지 않음</td><td>자국 생산량이 한국 수출 가능 물량은 아님</td></tr>
+<tr><td>브라질</td><td>FAOSTAT 2024 원물 315.8만 톤</td><td>한국 주력 공급국 판단 근거는 미확보</td><td>Comexstat 파일은 2026년 진행연도 기록</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_coconut.csv</code>의 2024년 원물 국가 행; <code>faostat_trade_coconut.csv</code>의 2024년 코코넛유 필리핀 수출 행; 아카이브 <code>TM_coconut.csv</code>의 2024년 한국 수입국 행; 관세청 국가별 <code>coconut_customs_kr_monthly.csv</code>의 2026년 3~8월 HS별 <code>impWgt</code> 합계.</p>
+<p>필리핀 공급망의 출발점은 코코넛 열매에서 코프라를 확보하고 이를 분쇄해 기름과 부산물을 만드는 과정이다. USDA FAS 마닐라 사무소는 2026/27 코프라 분쇄량이 늘어 코코넛유 생산도 늘 것으로 전망했다. 그 근거로 코프라 가용성 회복과 재식재·생산성 프로그램을 들었다. 동시에 국내 식용·산업용 수요, 특히 코코넛 유래 바이오디젤 혼합이 수출 가능한 기름의 양에 영향을 준다. “필리핀 작황 호전”만을 한국 수입가격 하락과 직결시키지 않는 이유다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Manila_Philippines_RP2026-0011.pdf">USDA FAS 필리핀 연례보고서</a>, A).</p>
+<p>필리핀 정부는 2028년까지 코코넛 나무 1억 그루의 식재·재식재를 목표로 한다. 이 수치는 목표이지 이미 생산하는 나무의 추가 수량이 아니다. 보고서는 노령목과 비료·병해충 관리의 생산성 문제를 함께 다룬다. 현장 교육에서도 병해충과 노령목의 시비 부족이 지적됐다. 새 나무가 당해 수확을 바로 늘리는 것은 아니며 재식재 계획과 단기 수출 전망은 서로 다른 시점의 정보다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Manila_Philippines_RP2026-0011.pdf">USDA FAS 필리핀</a>, <a href="https://ati2.da.gov.ph/ati-7/content/article/doris-isabel-j-racho/boosting-coconut-productivity-ati-7-and-pca-hold-techno-forum-siquijor">필리핀 농업부 ATI</a>, A).</p>
+<p>인도네시아에서는 원물의 사용처 간 경쟁이 중요하다. USDA FAS 자카르타 사무소에 따르면 2025년에는 높은 수출가격 때문에 농가가 코프라 가공보다 통코코넛 수출을 택하는 사례가 늘어 제유공장이 원료 확보에 어려움을 겪었다. 2026년 재식재 계획은 5,000~10,000ha로 제시됐다. 이 면적은 정책 계획이며 실제 식재·수확 면적의 실적은 이 자료에서 확인되지 않는다. 한국이 인도네시아산 정제유와 필리핀산 정제유를 모두 수입한다는 사실은 한 나라의 원물 가용성과 다른 나라의 수출 여력이 동시에 한국 시장에 작용할 수 있음을 뜻한다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Jakarta_Indonesia_ID2026-0013">USDA FAS 인도네시아 연례보고서</a>, A).</p>
+<p>베트남의 한국 연결은 과실형 수입에서 특히 선명하다. 2026년 3~8월 기준(잠정) 관세청 국가별 자료의 <code>0801.12</code>와 <code>0801.19</code>에서는 각각 베트남산이 거의 전부다. 이 자료로 베트남의 세계 수출 능력이나 한국 시장의 연간 점유율을 확정하지 않는다. 이 기간의 과실형 품목 집중은 원산지 신고 중량을 기준으로 하며 과실의 형태별로 구분된다. 건조 코코넛 <code>0801.11</code>의 같은 기간 1위는 필리핀이므로 “베트남이 한국 코코넛 전체의 1위”라는 문장은 범위를 잘못 잡는다(관세청 국가별 월별 원자료).</p>
+<p>계절성은 현재 자료만으로 정량화하지 않았다. 필리핀과 인도네시아의 월별 수확 달력·지역별 강우, 코프라 분쇄와 수출 선적 간 시차를 동일 정의로 연결한 원문을 확보하지 못했다. 월별 한국 수입의 봉우리만 보고 생산지 수확철이라고 이름 붙이면 계약·재고·선적 지연을 수확 효과로 오인할 수 있다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>수입 신고와 공시 사례만으로 상위 업체를 정할 수 없다</h2>
+<p class="lead">한국에서 코코넛은 과실, 건조 원료, 기름, 이들 원료를 사용한 가공식품으로 유통된다. 각 단계의 기업집단이 같다고 볼 근거는 없다. 과실형을 수입하는 기업이 코코넛유도 대량 수입한다는 뜻도 아니며, 코코넛유 통관 규모가 곧 소매 브랜드 매출은 아니다. 이 보고서의 회사 분석은 산업 내 역할이 확인된 사례를 보여 주되 기업별 물량·매출·점유율을 만들어 내지 않는 범위에 그친다.</p>
+<div class="tw">
+<table>
+<caption>표 7. 국내 유통 단계별 확인 가능 자료와 공백</caption>
+<thead><tr><th>단계</th><th>현재 확인 가능한 자료</th><th>이 자료로 말할 수 있는 것</th><th>아직 말할 수 없는 것</th></tr></thead>
+<tbody>
+<tr><td>수입</td><td>관세청 HS별 월별 중량·금액, 일부 국가별 월별</td><td>제품군의 수입 규모·상대국 구성</td><td>기업별 수입량·실제 구매처</td></tr>
+<tr><td>수입식품 신고</td><td>식약처 수입식품 신고 확인</td><td>업체별 신고 건수·제조국·해외 제조사</td><td>완결된 업체별 점유율·물량</td></tr>
+<tr><td>가공·도매</td><td>KOSIS 야자유 품목별 국내판매액, 기업 공시·업계 공개자료</td><td>야자유 품목 판매액과 특정 기업의 취급 품목</td><td>업체별 코코넛 전용 매출·가공량</td></tr>
+<tr><td>소매·외식</td><td>기업 공시의 유통 경로 설명</td><td>온라인몰·외식업체·소매점 등 경로의 존재</td><td>채널별 판매량·소비자 시장 규모</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 품목·국가별 원자료; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(2025.10~2026.09 신고 건수, A); 식품의약품안전처·KOSIS <em>식용유지류 품목별 국내판매액 변동현황</em>(<code>TX_14503_A055</code>, 자료연도 2025·2026-10-08 조회, <a href="https://kosis.kr/statHtml/statHtml.do?orgId=145&amp;tblId=TX_14503_A055">원표</a>); 웹 조사 노트의 식약처·KRX·aT/FIS 조사 경로; 보라티알 2026년 1분기 공시(A). “미확보”는 이번 조사에서 비교 가능한 원문을 확보하지 못했다는 뜻이다.</p>
+<p>KOSIS의 2025년 야자유 국내판매액은 31,180,632천 원(약 311.8억 원), 식용유지류 전체의 0.93%다. 품목 단위 판매액이므로 코코넛유 수입량·소비 중량으로 바꿀 수 없고, 기업별 점유율도 산출할 수 없다(식품의약품안전처·KOSIS, <em>식용유지류 품목별 국내판매액 변동현황</em>, 자료연도 2025·2026-10-08 조회, <a href="https://kosis.kr/statHtml/statHtml.do?orgId=145&amp;tblId=TX_14503_A055">원표</a>).</p>
+<p>구체적인 공개 사례는 보라티알 공시다. 회사는 2026년 1분기 분기보고서에서 수입·유통 상품 목록에 코코넛오일과 코코넛칩스를 열거한다. 유통 경로에는 온라인몰, 외식업체, 소매점, 식자재 업체가 나온다. 이 사실은 한국에서 코코넛 제품이 여러 채널로 유통된다는 사례다. 공시는 코코넛만의 매출·수입량·원산지 구성은 분리하지 않는다. 따라서 해당 회사가 코코넛 수입 1위 또는 주요 시장지배 기업이라는 증거는 아니다(<a href="https://kind.krx.co.kr/external/2026/05/15/001267/20260515002766/11013.htm">보라티알·한국거래소 2026년 1분기 분기보고서</a>, A).</p>
+<p><strong>물량·매출 기준</strong> 상위 수입·가공·유통 기업의 순위와 점유율은 미확보다. 식약처 공개 신고에서는 업체별 신고 건수 순서를 확인할 수 있다. 그러나 신고 횟수는 중량이나 매출이 아니고, 공개 시점에 남아 있는 신고의 범위와 중복 여부도 확인되지 않았다. 원자료 없이 특정 업체의 물량 순위를 쓰거나 한 공시 사례를 업계 평균으로 삼지 않는다.</p>
+<p>이번 조사에서 다섯 HS에 코코넛워터·밀크·조제식품을 포함할지의 시장 범위, 법인별 수입·가공·브랜드 연결과 수입대행·자체 판매 구분, 기업별 코코넛 전용 매출·물량을 같은 기준으로 갖춘 비교표는 만들 수 없었다. 산업 전체의 수입 규모를 다섯 식품 HS만으로 대표하지 않으며, 해당 HS 수입은 04절에 제시한다. 기업의 역할은 식약처 신고명과 확인된 개별 공시 수준에서만 적는다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>제품 형태에 따라 신고·검역·표시의 판단이 갈린다</h2>
+<p class="lead">코코넛 관련 제도는 과실, 건조품, 기름에 동일하게 적용된다고 볼 수 없다. 제품별 적용 판단은 HS 분류, 식품 여부, 가공 정도, 포장 형태, 원산지, 수입 목적에 따라 달라진다. 아래에는 원문으로 확인한 법·검역의 범위와 아직 확인하지 못한 세율을 구분했다. 특정 제품의 관세율이나 면제 여부를 검색 결과의 숫자로 옮기지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 8. 한국 수입 단계에서 확인할 제도</caption>
+<thead><tr><th>항목</th><th>확인된 원문 내용</th><th>적용을 판단할 때 필요한 구분</th></tr></thead>
+<tbody>
+<tr><td>수입식품 신고</td><td>신고서와 한글표시 포장지 또는 표시 내용을 제출한다</td><td>식품 해당 여부와 추가 서류 요건</td></tr>
+<tr><td>식물검역</td><td>시행규칙의 생과실·열매채소 수입금지 항목은 코코넛을 명시적으로 제외한다</td><td>수입금지 제외와 개별 검역 면제는 다르다</td></tr>
+<tr><td>고도 가공 식물</td><td>열풍·동결 건조 뒤 밀봉한 건코코넛은 병해충이 서식할 수 없을 정도로 가공한 예시다</td><td>실제 가공·밀봉 상태</td></tr>
+<tr><td>원산지 표시</td><td>시행령은 공동 고시 품목과 대외무역법상 공고 품목을 대상으로 한다</td><td>개별 코코넛 제품의 품목·가공 형태</td></tr>
+<tr><td>세율·할당관세</td><td>다섯 HS의 현행 적용 원문 미확보</td><td>원산지·협정·신고일·세번</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1028662315">수입식품안전관리 특별법 시행규칙 제27조</a>(A), <a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&amp;flSeq=145298297&amp;gubun=">식물방역법 시행규칙 별표 1</a>(A), <a href="https://ebook.qia.go.kr/src/viewer/main.php?category=1&amp;host=main&amp;page=330&amp;search=AI&amp;site=20260107_101021">농림축산검역본부 2026 현장검역용 식물검역규정집</a>(A), <a href="https://www.law.go.kr/lumLsLinkPop.do?chrClsCd=010202&amp;lspttninfSeq=71795">농수산물 원산지 표시 시행령 제3조</a>(A); 세율 미확보 경로는 웹 조사 노트.</p>
+<p>식품 수입신고의 기본 요건은 관할 지방식약청에 신고서와 한글표시 포장지 또는 표시 내용을 내는 것이다. 정밀검사 성적서와 같은 서류는 해당 요건이 걸릴 때 추가된다. 이 원문을 근거로 “모든 코코넛 수입에 정밀검사 성적서가 필수”라고 쓰지 않는다. 원료용 코코넛유, 과실, 소매용 포장제품은 표시 내용과 검사 범위가 달라질 수 있다(<a href="https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1028662315">수입식품안전관리 특별법 시행규칙 제27조</a>, A).</p>
+<p>식물방역법 시행규칙 별표 1의 생과실·열매채소 수입금지 항목은 코코넛을 명시적으로 제외한다. 제외 문구는 그 금지항목에 대한 것이며 코코넛의 모든 형태가 검사·증명서·수입조건에서 벗어난다는 뜻은 아니다. 농림축산검역본부 규정집의 건코코넛 예시도 열풍 또는 동결 건조 후 밀봉 포장이라는 가공 조건을 포함한다. 이 자료에는 개별 수입품의 실제 가공·밀봉 상태가 없어 해당 예시의 적용 여부는 확인되지 않았다(<a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&amp;flSeq=145298297&amp;gubun=">식물방역법 시행규칙 별표 1</a>, <a href="https://ebook.qia.go.kr/src/viewer/main.php?category=1&amp;host=main&amp;page=330&amp;search=AI&amp;site=20260107_101021">검역본부 규정집</a>, A).</p>
+<p>원산지 표시도 “코코넛이면 모두 동일”이라는 방식으로 쓸 수 없다. 시행령은 고시·공고 대상의 범위를 정하고, 개별 제품이 어디에 해당하는지는 품목과 가공 형태별 확인이 필요하다. 원산지 신고가 무역통계에 남는 것과 소매 포장에 어떤 표시를 해야 하는지도 다른 문제다. 이 보고서는 수입 원산지 통계를 사용하지만 소비자 표시의 위반·준수 여부를 판단하지 않는다(<a href="https://www.law.go.kr/lumLsLinkPop.do?chrClsCd=010202&amp;lspttninfSeq=71795">농수산물 원산지 표시 시행령 제3조</a>, A).</p>
+<p>한국의 기본세율, 한·아세안 FTA, RCEP 세율 및 2026년 코코넛에 적용된 할당관세·조정관세의 원문 표는 이번 조사에서 확보하지 못했다. 시도 경로는 HS <code>0801.11/12/19</code>·<code>1513.11/19</code>, 관세청·국가법령정보센터·FTA 포털, 농식품부 세율표 및 RCEP 양허표 검색이다. 검색 결과에 숫자가 나타났어도 표 원문을 열어 해당 HS와 적용일을 확인할 수 없어 옮기지 않았다. 유통이력 관리 대상 여부도 관련 법령·농식품부 경로에서 품목 지정 원문을 확보하지 못했다. “할당관세가 없다” 또는 “유통이력 대상이 아니다”라고 확정하지 않는다(웹 조사 노트의 미확보 목록).</p>
+<p>생산국 정책은 한국 수입 가격에 간접 영향을 준다. 필리핀은 2026년 3월 현재 코코넛 유래 바이오디젤 3% 혼합을 시행했고 4%·5% 인상은 연기했다. 이 정책은 국내 코코넛유 수요의 한 축이다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Manila_Philippines_RP2026-0011.pdf">USDA FAS 필리핀</a>, A). 인도네시아에서는 코코넛이 2024년 BPDP 지원 대상에 포함됐지만 USDA FAS 보고서 작성 시점에 코코넛 수출부과금 규정은 발령되지 않았다고 기록된다. 이를 2026년 10월 현재에도 규정이 영원히 없다는 주장으로 늘리지 않는다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Jakarta_Indonesia_ID2026-0013">USDA FAS 인도네시아</a>, A).</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>품목 전용 전망과 주변 품목 보고서를 구분한다</h2>
+<p class="lead">은행·기관 색인에서 <code>items</code>에 <code>coconut</code>이 들어간 행을 모두 검토했다. 이 문자열만으로 보고서가 코코넛 산업 전망이라는 결론을 내릴 수 없다. Krungsri Research의 색인 행은 팜유 산업 전망이고, ING의 두 색인 행은 희토류 공급망 기사다. 반면 USDA FAS의 필리핀·인도네시아 연례 보고서는 코프라와 코코넛유 수급을 직접 다룬다. 필리핀 Land Bank의 문서는 농가 융자 프로그램 안내이지 가격 전망이 아니다. 아래 표는 문서의 실제 범위를 먼저 적었다.</p>
+<div class="tw">
+<table>
+<caption>표 9. 확인한 은행·기관 자료의 코코넛 관련성</caption>
+<thead><tr><th>기관·문서</th><th>발행일·등급</th><th>이 보고서에 반영한 내용</th><th>범위 판단</th></tr></thead>
+<tbody>
+<tr><td>USDA FAS 마닐라, <em>Oilseeds and Products Annual</em></td><td>2026-04-16 · A</td><td>코프라 분쇄·코코넛유 생산 증가 전망, 바이오디젤 3%, 재식재 목표</td><td>필리핀 코코넛 직접 분석</td></tr>
+<tr><td>USDA FAS 자카르타, <em>Oilseeds and Products Annual</em></td><td>2026-04-15 · A</td><td>통코코넛 수출과 코프라 가공의 원료 경쟁, 재식재 계획</td><td>인도네시아 코코넛 직접 분석</td></tr>
+<tr><td>Land Bank of the Philippines, CFID 융자 FAQ</td><td>2025-10 수정 · A</td><td>코코넛 농가·협동조합 대상 융자 프로그램</td><td>금융 지원 안내; 수급 전망 아님</td></tr>
+<tr><td>Krungsri Research, <em>Palm Oil Industry Outlook 2026–2028</em></td><td>2026-05-05 · B</td><td>팜유를 다른 식물유와 비교하면서 코코넛유를 언급</td><td>팜유 보고서; 코코넛 전용 전망 아님</td></tr>
+<tr><td>ING THINK, 색인상 <code>coconut</code> 두 행</td><td>2026-10 색인 · 제외</td><td>본문에서 코코넛 논의를 확인하지 못함</td><td>희토류 기사; 색인 오탐</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>data/_raw/_banks/index.csv</code>의 <code>items</code>에 <code>coconut</code>이 포함된 행과 해당 은행 파일의 본문; <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Manila_Philippines_RP2026-0011.pdf">USDA FAS 필리핀</a>·<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Jakarta_Indonesia_ID2026-0013">인도네시아</a>, <a href="https://www.landbank.com/storage/uploads/files/library/cfid-english-faq-as-of-october-2025docx/cfid-english-faq-as-of-october-2025docx-2025-10-15-906e591d.pdf">Land Bank FAQ</a>, <a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/palm-oil/io/plam-oil-2026">Krungsri 보고서</a>.</p>
+<p>USDA FAS 마닐라 보고서의 핵심은 생산 증가가 이미 확정됐다는 선언이 아니라 2026/27 유통연도 전망이다. 코프라 공급 회복으로 분쇄량과 코코넛유 생산이 늘 것으로 보고, 식용과 바이오디젤을 포함한 산업용 수요를 함께 제시한다. 이 보고서의 재식재 목표는 중기 생산성 문제를 설명하지만 바로 다음 달 수출량을 예측하는 계수는 아니다. 필리핀 내 바이오디젤 정책이 바뀌면 생산 증가분의 내수·수출 배분도 바뀔 수 있다(A, 02·06·08절).</p>
+<p>USDA FAS 자카르타 보고서는 공급량보다 <strong>원료의 행선지</strong>에 주목하게 한다. 통코코넛 수출가격이 높으면 농가의 판매 선택이 바뀌고 코프라 제유공장의 원료 확보가 어려워진다는 기록이다. 2026년 재식재 5,000~10,000ha 계획 역시 장기 공급능력에 대한 정보이지 이미 달성된 면적이 아니다. 한국의 인도네시아산 코코넛유 수입을 볼 때 통코코넛 수출과 코코넛유 수출을 별개의 시장으로만 놓지 말아야 하는 이유다(A, 06절).</p>
+<p>Land Bank의 CFID 융자 FAQ는 코코넛 농가·조직에 자금지원 제도가 있음을 보여 준다. 지원 대상과 프로그램의 존재를 산지 구조 설명에만 썼다. 이 문서로 세계 가격, 농가 생산성 개선 성과, 필리핀 수출량을 예측하지 않는다(A, 웹 조사 노트). Krungsri 보고서는 팜유 산업을 중심으로 코코넛유를 비교 대상에 넣는다. 색인에는 코코넛이 포함되지만 보고서의 전망치를 코코넛 전용 전망으로 옮길 수 없다(B, 은행 파일 본문).</p>
+<p>최근의 코코넛 전용 Rabobank·KREI·KMI·aT 시장전망은 이번 조사에서 미확보다. 웹 조사 노트는 각 기관의 <code>coconut</code>·<code>coconut oil</code>·<code>코코넛</code> 검색을 시도했고, 확인한 KREI 「농업전망 2026」 공개 목차에는 코코넛 장이 없다고 적는다(<a href="https://repository.krei.re.kr/handle/2018.oak/32556">KREI 목차</a>, A). 이는 기관 전체에 관련 자료가 존재하지 않는다는 뜻이 아니다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표·남은 물음</span>공급국 구성과 국제가격을 같은 기간에 본다</h2>
+<p class="lead">이 산업의 첫 위험은 한 품목명이 서로 다른 공급망을 가리는 것이다. <code>0801.12</code>·<code>0801.19</code>의 베트남산 집중을 코코넛유의 원산지 집중이라고 옮기면 판단이 틀어진다. 반대로 정제 코코넛유에서 필리핀·인도네시아의 큰 비중을 코코넛 과실 수입에 적용해도 틀린다. 관찰 표의 첫 열은 반드시 HS와 제품 형태여야 한다. 수입금액은 중량과 함께 읽고, 단가를 산출할 때는 같은 HS·기간의 합계 금액을 합계 중량으로 나눈다(04절).</p>
+<p>둘째 위험은 산지의 원료 배분이다. 필리핀에서는 코프라가 식용유·산업용유·바이오디젤 원료를 이룬다. 바이오디젤 혼합률이나 국내 수요가 달라지면 같은 생산량에서도 수출 가능한 코코넛유가 달라진다. 인도네시아에서는 통코코넛 수출과 코프라 제유가 원물을 두고 경쟁한다. 산지의 원물 생산 수치 하나만으로 한국 도착 물량을 예측하기보다 산지 수출·분쇄·재고를 함께 보아야 한다(USDA FAS 필리핀·인도네시아, A).</p>
+<p>셋째 위험은 가격 지표의 혼동이다. 세계은행의 코코넛유 가격은 CFR 북서유럽이며 한국의 신고 단가가 아니다. 2025년 연평균 2,480달러/톤과 2026년 8월 1,853달러/톤을 확인했지만 이 둘만으로 한국 소매가격을 설명할 수 없다. 국내 코코넛 전용 KAMIS 실측 시계열이 확보되기 전에는 소매가격 전가율을 말하지 않는다. 확보 후에도 평년 참고값은 실측과 구분한다(05절).</p>
+<p>넷째 위험은 정책·통계의 갱신 시점이다. 한국의 개별 HS 적용 세율과 2026년 할당관세 원문은 미확보다. 필리핀 바이오디젤 정책과 인도네시아의 코코넛 지원·수출부과금 규정도 보고서 작성일 이후 바뀔 수 있다. 생산량·수출량의 수정, FAOSTAT Flag, 진행연도 국가별 신고국 수를 함께 기록해야 지난달과 이번 달 수치를 같은 확정치로 잘못 비교하지 않는다(02·04·08절).</p>
+<div class="tw">
+<table>
+<caption>표 10. 정기 관찰 지표와 검증 질문</caption>
+<thead><tr><th>지표</th><th>자료·주기</th><th>현재 확인 기준</th><th>매번 확인할 질문</th></tr></thead>
+<tbody>
+<tr><td>다섯 HS의 수입 중량·금액·단가</td><td>관세청 월별</td><td>2025 완료연도, 2026년 1~8월 진행치</td><td>같은 HS와 같은 누적월인가</td></tr>
+<tr><td>품목별 공급국 중량</td><td>관세청 국가별 월별</td><td>2026년 3~8월 확인분</td><td>빠진 월·0kg 유상 신고가 있는가</td></tr>
+<tr><td>세계 원물 생산·Flag</td><td>FAOSTAT 생산·연</td><td>2024 세계 6,554만 톤(E)</td><td>국가 추정치가 개정됐는가</td></tr>
+<tr><td>코코넛유 생산·국내 소비·재고</td><td>USDA PSD·갱신 시</td><td>MY 2025 필리핀·인도네시아 값</td><td>유통연도와 파일 갱신월이 같은가</td></tr>
+<tr><td>코코넛유 국제가격</td><td>세계은행 Pink Sheet·월</td><td>2026년 8월 1,853달러/톤</td><td>CFR 북서유럽 기준과 월을 유지했는가</td></tr>
+<tr><td>한국 정제유 신고 단가</td><td>관세청 HS 1513.19·월</td><td>2025년 2.36달러/kg</td><td>원산지·제품 구성이 달라졌는가</td></tr>
+<tr><td>산지 수출·바이오디젤 정책</td><td>USDA FAS·정부 원문·수시</td><td>필리핀 2026년 3월 혼합률 3%</td><td>계획이 시행됐는가</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_coconut.csv</code>, <code>usda_psd_all_coconut.csv</code>, <code>customs_item_trade_monthly_coconut.csv</code>, <code>coconut_customs_kr_monthly.csv</code>, 세계은행 Pink Sheet, USDA FAS 필리핀·인도네시아 보고서. 최신값의 파일·필터·계산식은 <code>30_근거_수치.md</code>에 적었다.</p>
+<p>월별 운영에서는 수입 중량과 금액을 먼저 완결시키고, 국가별 파일의 수집 범위를 확인한 뒤 공급국 비율을 만든다. 국가별 파일이 빠진 달이 있으면 그달의 HS 전체 수입량을 분모에 넣지 않는다. Comtrade를 쓰는 연간 비교에서는 <code>C00</code>·운송수단 전체·2차 상대국 전체 행으로만 세계 합계를 만들고, <code>netWgt</code>가 비어 있으면 물량 순위를 만들지 않는다. FAOSTAT에서 세계 행과 지역 행을 동시에 합산하지 않는 것과 같은 중복 방지 원칙이다.</p>
+<h3>남은 물음과 확인 작업</h3>
+<ul>
+<li>다섯 HS의 비교 기간·집계 범위를 고정하고, 코코넛밀크·워터·조제식품을 시장 범위에 넣을지 정의한다.</li>
+<li>한국의 식용·비식용 코코넛유 실제 사용량, 국내 가공품 생산량과 재수출량을 확인한다.</li>
+<li>세계 소비량·재고율을 제시할 수 있는 동일 품목 범위와 유통연도의 원자료를 확인한다.</li>
+<li>2026년 국가별 관세청 파일의 빠진 월과 0kg 유상 신고 여부를 확인한다.</li>
+<li>국내 코코넛 도소매 실측 가격의 품목 코드·거래단위를 확인하고 <code>countyname=평년</code> 참고값과 구분한다.</li>
+<li>국제 코코넛유 가격과 한국 HS 1513.19 신고 단가를 같은 월별 기간에서 환율·운송비·제품 종류·원산지 구성과 함께 대조한다.</li>
+<li>필리핀 재식재 목표의 이행 실적과 단기 코코넛유 수출 전망을 별도 계열로 확인한다.</li>
+<li>인도네시아의 2026년 5,000~10,000ha 재식재 계획에 대응하는 실제 식재·수확 면적을 확인한다.</li>
+<li>산지 수확·코프라 분쇄·수출 선적 자료와 한국 월별 수입을 같은 기간으로 연결해 계절성을 검증한다.</li>
+<li>식약처 공개 신고의 범위·중복을 확인하고, 같은 법인의 수입·가공·브랜드 역할과 수입대행·자체 판매를 구분한다.</li>
+<li>기업별 코코넛 전용 수입량·매출·가공량을 비교할 공개 원문이 있는지 확인한다.</li>
+<li>개별 제품의 HS·식품 해당 여부·가공·포장·원산지·수입 목적과 건코코넛 검역 예시 적용 여부를 확인한다.</li>
+<li>다섯 HS의 현행 기본·협정 세율, 할당관세·조정관세 및 유통이력 관리 대상 여부를 고시 원문으로 확인한다.</li>
+<li>새 기관 보고서가 확보되면 제목·발행일·품목 범위와 전망·실적 구분을 확인한다.</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>과실형·건조품·코코넛유의 기업 지도가 다르다</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">한국의 주요 공급국은 제품 범위별로 다르다. 2024년 FAOSTAT 양자무역의 한국 수입국 행 중량 합계를 각각 분모로 하면 코코넛유는 필리핀 55.1%·인도네시아 43.7%, 건조 코코넛은 인도네시아 52.0%·필리핀 45.1%, 과실형 코코넛은 베트남 99.4%다. 분모는 차례로 53,924.44톤, 3,228.42톤, 5,351.69톤이며 서로 합산하지 않는다(<a href="https://www.fao.org/faostat/en/">FAOSTAT</a>, A·2024; 04절).</p>
+<p>2025년 완료연도 다섯 식품 HS 수입액 120,027,004달러 중 가공품 HS 1513.19는 112,175,314달러, 93.5%다. 이 세번에는 정제유와 기타 코코넛유가 함께 들어 있다. 04절의 2026년 3~8월 관세청 국가별 중량 자료에서는 인도네시아 51.4%·필리핀 47.2%이며 <strong>진행연도 잠정치</strong>다. 건조품 HS 0801.11의 같은 기간 1위는 필리핀 54.6%다. 아래 기업은 국가별 수출액 순위가 아니라 가공·수출 역할과 한국 신고 연결을 확인한 사례다(<a href="https://www.data.go.kr/data/15100475/openapi.do">관세청 품목별 국가별 수출입실적</a>, A·2025~2026; 04절).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 공급국의 코코넛 수출·가공기업과 한국 연결</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표(연도)</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>필리핀</td><td>Axelum Resources</td><td>건조 코코넛·코코넛 식품 가공·수출</td><td>2025년 그룹 총매출 약 101.9억 페소; 코코넛 품목별 매출 아님</td><td>식약처 과·채가공품 중 코코넛 제품명 해외 제조사 일치 24건, 수입업소 오리온 16건</td><td><a href="https://edge.pse.com.ph/downloadHtml.do?file_id=1895691">PSE 연차 공시</a> A·2025; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>필리핀</td><td>Primex Coco Products</td><td>건조 코코넛·코코넛유 가공</td><td>회사 소개의 건조 코코넛 연간 생산능력 5만 톤; 수치 기준연도 미표기</td><td>식약처 과·채가공품 중 코코넛 제품명 해외 제조사 일치 38건</td><td><a href="https://primexcoco.com/temp/pages/about.html">회사 소개</a> B·2026 조회; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>필리핀</td><td>Pacific Royal Basic Foods</td><td>건조 코코넛 가공·수출</td><td>기업별 생산량·매출은 확인된 공개 자료 없음</td><td>식약처 과·채가공품 중 코코넛 제품명 해외 제조사 일치 34건</td><td><a href="https://www.pca.gov.ph/pdf/tradeDirectory/2017/DesiccatorsTD.pdf">필리핀 코코넛청 수출가공업체 명부</a> A·2017; <a href="https://www.pacificroyalbasicfoods.com/copy-of-home-2">회사 소개</a> B·2026 조회; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>필리핀</td><td>Oleo-Fats</td><td>식품용 유지 가공</td><td>모회사 D&amp;L Industries의 2025년 전체 매출 약 553.9억 페소; Oleo-Fats·코코넛 매출 아님</td><td>식약처 해외 제조사명 일치 5건</td><td><a href="https://edge.pse.com.ph/companyInformation/form.do?cmpy_id=639">PSE 자회사 명부</a>·<a href="https://edge.pse.com.ph/downloadHtml.do?file_id=1900098">연차 공시</a> A·2025; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>필리핀</td><td>Wilmar Edible Oils Philippines</td><td>코프라 분쇄·정제</td><td>Wilmar가 필리핀·인도네시아 전체에 코프라 분쇄시설 5곳·정제시설 7곳을 운영한다고 밝힘; 해당 법인 규모 아님</td><td>식약처 해외 제조사명 일치 1건</td><td><a href="https://www.wilmar-international.com/sustainability/policies/coconut-responsible-sourcing-policy">Wilmar 코코넛 공급망</a> B·2026 조회; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>인도네시아</td><td>PT Multi Nabati Sulawesi</td><td>코프라 분쇄·정제</td><td>Wilmar 공급망에 Bitung·Luwuk·Maleo 분쇄시설 등재; 법인별 수출량 미공개</td><td>식약처 해외 제조사명 일치 22건</td><td><a href="https://www.wilmar-international.com/sustainability/policies/coconut-responsible-sourcing-policy">Wilmar 코코넛 공급망</a> B·2026 조회; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>인도네시아</td><td>PT Mundial Rasa Indonesia</td><td>건조 코코넛·코코넛유 가공</td><td>기업별 매출·수출량은 확인된 공개 자료 없음</td><td>식약처 해외 제조사명 일치 2건</td><td><a href="https://apiservice.star-k.org/api/Loc/LoadLoc/URKP8RTE">제품 인증서</a> B·2026; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>인도네시아</td><td>PT Agro Makmur Raya</td><td>코코넛유 원유 수출·유지 가공</td><td>인도네시아 통계청 2012년 코코넛유 원유 수출업체 명부 등재; 현재 코코넛 전용 규모 미공개</td><td>식약처 해외 제조사명 일치 1건</td><td><a href="https://media.neliti.com/media/publications/49130-ID-direktori-eksportir-2012.pdf">인도네시아 통계청 수출업체 명부 보존본</a> A·2012; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>베트남</td><td>Minh Quang Vietnam Trade &amp; Services</td><td>식약처 신고상 해외 제조사·무역업소</td><td>공시 매출·수출량은 확인된 공개 자료 없음</td><td>식약처 해외 제조사명 일치 94건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>베트남</td><td>Van Binh An</td><td>식약처 신고상 해외 제조사</td><td>공시 매출·수출량은 확인된 공개 자료 없음</td><td>식약처 해외 제조사명 일치 61건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>베트남</td><td>Luong Quoi Coconut</td><td>코코넛유·건조품·음료 가공</td><td>회사 연혁의 2017년 이후 항목에 공장 능력 하루 열매 60만 개 기재; 해당 항목의 연도 표기는 없음</td><td>식약처 해외 제조사명 일치 25건</td><td><a href="https://www.luongquoi.vn/en-US/development-history">회사 연혁</a> B·2026 조회; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>베트남</td><td>Betrimex</td><td>코코넛 제품 가공·수출</td><td>회사 발표 기준 2025년 판매국 70곳 이상; 품목별 수출량 아님</td><td>식약처 해외 제조사명 일치 3건</td><td><a href="https://www.betrimex.com.vn/en/csr/betrimex-sustainable-imprint-at-agris-agro-day-2025.html">회사 발표</a> B·2025; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 표의 기업별 공시·정부 명부·기업 자료와 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A, 2025.10~2026.09 <strong>신고 건수 기준</strong>). 식약처의 ‘제조국’은 신고서의 제조국 칸이다. 이 칸이 과실의 재배국이나 원물 산지, FTA·표시상 원산지와 같은지는 이 자료만으로 확정하지 않는다. 선적국인 ‘수출국’은 별도 칸이다. 제조사명 표기 변형은 합쳤다. <strong>신고 건수는 중량·금액·시장점유율이 아니다.</strong></p>
+<p>세계 최대 <strong>단일</strong> 코코넛 수출기업을 판정할 비교 가능한 기업별 품목 수출량은 확인된 공개 자료가 없다. 주요 국제 플레이어인 Wilmar는 필리핀·인도네시아의 코프라 분쇄·정제시설을 연결한다. 2025년 그룹 전체 매출은 약 704.2억 달러이지만 코코넛 전용 매출이나 한국 수출액은 아니다(<a href="https://www.wilmar-international.com/sustainability/policies/coconut-responsible-sourcing-policy">Wilmar 공급망</a>, B·2026 조회; <a href="https://ir-media.wilmar-international.com/financial-highlights">2025년 재무정보</a>, A·2025).</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처 수입식품 신고 확인에서 <strong>2025년 10월~2026년 9월</strong>, 품목명 ‘코코넛(열매,신선)’·‘야자유’와 정제 전 코코넛유 원료의 <strong>신고 건수는 545건</strong>이다. 건조 코코넛은 ‘과·채가공품’으로도 신고돼 이 집계에 들어 있지 않다. 제품명으로 별도 집계한 건조 코코넛 관련 과·채가공품은 151건이며 제조국은 필리핀 85건·스리랑카 25건·베트남 23건 순이다. 이 별도 검색 결과를 HS 0801.11의 수입물량으로 해석하지 않는다(<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>, A·2025.10~2026.09).</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 식약처 신고 건수 상위 수입업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>정민무역</td><td class="num">80</td><td>베트남 80</td><td>신선 열매</td></tr>
+<tr><td>주식회사 월드마켓</td><td class="num">45</td><td>베트남 45</td><td>신선 열매</td></tr>
+<tr><td>동민푸드</td><td class="num">30</td><td>베트남 30</td><td>신선 열매</td></tr>
+<tr><td>주식회사 호아마이</td><td class="num">26</td><td>베트남 26</td><td>신선 열매</td></tr>
+<tr><td>(주)수일통상</td><td class="num">26</td><td>베트남 26</td><td>신선 열매</td></tr>
+<tr><td>영배네</td><td class="num">26</td><td>베트남 26</td><td>신선 열매</td></tr>
+<tr><td>주식회사 디앤에이치푸드벳</td><td class="num">24</td><td>베트남 24</td><td>신선 열매</td></tr>
+<tr><td>(주)동서</td><td class="num">20</td><td>인도네시아 14·필리핀 6</td><td>정제 전 식품원료</td></tr>
+<tr><td>주식회사 엠엔엘무역</td><td class="num">18</td><td>베트남 18</td><td>신선 열매</td></tr>
+<tr><td>안안푸드</td><td class="num">18</td><td>베트남 18</td><td>신선 열매</td></tr>
+<tr><td>주식회사 어니스트컴퍼니</td><td class="num">16</td><td>태국 16</td><td>야자유</td></tr>
+<tr><td>(주)진원무역</td><td class="num">16</td><td>베트남 16</td><td>신선 열매</td></tr>
+<tr><td>(주)이마트</td><td class="num">15</td><td>베트남 15</td><td>신선 열매</td></tr>
+<tr><td>현우무역</td><td class="num">14</td><td>베트남 14</td><td>신선 열매</td></tr>
+<tr><td>더윈드</td><td class="num">14</td><td>베트남 14</td><td>신선 열매</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A, 2025.10~2026.09). 업소명 표기 변형을 합친 <strong>신고 건수 기준</strong>이다. ‘주요 제조국’은 업소별 제조국 상위 2개를 원집계대로 적었다. 건조 코코넛 관련 과·채가공품 151건은 이 표에 포함하지 않았다. 수입중량·수입액 순위가 아니다.</p>
+<p>공시 매출은 회사 <strong>전체 사업</strong>의 규모를 나타낸다. 코코넛 전용 매출이나 수입 점유율로 읽을 수 없다. 건조 코코넛 관련 과·채가공품 신고에서는 오리온이 Axelum 제품의 수입업소로 16건 확인된다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 공시로 확인되는 국내 가공·수입·유통기업</caption>
+<thead><tr><th>기업</th><th>코코넛 관련 역할·근거</th><th>전체 규모(2025년)</th><th>코코넛 전용 구분</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>(주)동서</td><td>식약처 20건; 사업보고서에 야자유 수입·판매와 원재료 명시</td><td>연결 매출 약 5,328.8억 원; 식품사업부문 약 2,996.4억 원</td><td>야자유 매출·매입액 미분리</td><td><a href="https://kind.krx.co.kr/external/2026/03/12/000232/20260312000747/11011.htm">사업보고서</a> A·2025; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>(주)이마트</td><td>식약처 신선 열매 15건; 대형마트·온라인 소매</td><td>연결 매출 약 28조 9,704억 원</td><td>코코넛 매출 미분리</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001378/20260318006410/11011.htm">사업보고서</a>·<a href="https://kind.krx.co.kr/external/2026/05/14/000800/20260514001764/11013.htm">재무 비교표</a> A·2025; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>롯데상사(주)</td><td>식약처 정제 전 식품원료 5건; 농축수산물 무역·판매</td><td>한국신용평가의 2025년 연결 매출 8,851억 원</td><td>코코넛 매출 미분리</td><td><a href="https://m.kisrating.com/fileDown.do?fileName=rs20260623-44.pdf&amp;gubun=2&amp;menuCd=R8">한국신용평가 원문</a> B·2026; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>(주)오리온</td><td>건조 코코넛 관련 과·채가공품 중 Axelum 제품 수입업소 16건; 제과 제조</td><td>연결 매출 약 3조 3,324.4억 원</td><td>코코넛 원료 사용량·매출 미분리</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001895/20260318008667/11011.htm">사업보고서</a> A·2025; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>(주)보라티알</td><td>공시에 코코넛오일·코코넛칩스 열거; 수입 식자재 유통</td><td>연결 매출 약 1,023.0억 원; 식용유지류 매출 약 233.3억 원</td><td>식용유지류에는 다른 기름도 포함</td><td><a href="https://kind.krx.co.kr/external/2026/03/27/002060/20260327004288/11011.htm">사업보고서</a>·<a href="https://kind.krx.co.kr/external/2026/05/15/001267/20260515002766/11013.htm">제품 공시</a> A·2025~2026</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 표의 법정 공시(A), 한국신용평가 원문(B), <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A, 2025.10~2026.09 <strong>신고 건수 기준</strong>). 회사 전체 매출과 신고 횟수로 코코넛 물량 점유율을 계산할 수 없다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 코코넛의 단계별 밸류체인</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산·재배</td><td>필리핀·인도네시아·베트남 농가·협동조합</td><td>한국 수입에 투입된 원물량은 별도 확정 불가</td><td>산지 열매·코프라 매입 거래</td><td>노령목·기상·농가 소득</td></tr>
+<tr><td>1차 가공</td><td>코프라 건조·분쇄업체, 열매 선별업체</td><td>2024년 한국 코프라박 수입 200,763.79톤은 다섯 식품 HS 밖</td><td>산지 원료 매입가·가공 계약</td><td>통코코넛 수출과 분쇄용 원료 경쟁</td></tr>
+<tr><td>수출·국제 무역</td><td>필리핀·인도네시아 제유업체, 베트남 과실 수출업체</td><td>2024년 한국 코코넛유 수입국 행 중 필리핀 55.1%·인도네시아 43.7%</td><td>수출 계약·선적 조건</td><td>산지 내수·바이오디젤 수요·운송</td></tr>
+<tr><td>수입·통관·검역</td><td>한국 수입업소, 관세청·식약처·검역기관</td><td>2025년 HS 1513.19 수입 47,632.259톤·112,175,314달러</td><td>수입 계약·통관 신고가격</td><td>품목 분류·식품 신고·제품별 검역</td></tr>
+<tr><td>국내 가공</td><td>유지·제과·음료·사료 제조업체</td><td>2025년 ‘야자유’ 국내판매액 약 311.8억 원; 코프라박 사료 경로는 별개</td><td>원료 계약·가공품 출고가격</td><td>용도별 원료 규격·원가 전가</td></tr>
+<tr><td>도매·유통</td><td>식자재 도매상·대형 유통업체</td><td>기업별 코코넛 전용 도매액 미분리</td><td>도매 계약·납품가격</td><td>재고·환율·품질</td></tr>
+<tr><td>소매·외식</td><td>대형마트·온라인몰·외식업체</td><td>채널별 코코넛 판매액 미확보</td><td>매장·온라인·외식 판매가격</td><td>신선도·표시·소비자 신뢰</td></tr>
+<tr><td>소비</td><td>가계·식품·비식품 최종 사용자</td><td>FAOSTAT 2023년 코코넛유 식용 사용 3.4만 톤은 추정치(I)</td><td>최종 구매가격</td><td>식용·비식용 용도 혼동</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.fao.org/faostat/en/">FAOSTAT</a>(A·2023~2024; 03·04절), <a href="https://www.data.go.kr/data/15100475/openapi.do">관세청</a>(A·2025), <a href="https://kosis.kr/statHtml/statHtml.do?orgId=145&amp;tblId=TX_14503_A055">KOSIS 야자유 국내판매액</a>(A·2025), <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Manila_Philippines_RP2026-0011.pdf">USDA FAS 필리핀</a>·<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Jakarta_Indonesia_ID2026-0013">인도네시아</a>(GAIN, B·2026). 서로 다른 기간·품목 범위의 값을 단계 간에 더하거나 빼지 않았다.</p>
+<p>부가가치는 열매를 건조품·기름·식품원료로 가공하고 규격·포장·유통 경로를 맞추는 단계에서 생긴다. 2025년 다섯 식품 HS 수입액에서 HS 1513.19가 93.5%인 것은 <strong>해당 범위의 수입금액 중심</strong>을 보여 줄 뿐 가공업체 이익률은 아니다. 2025년 야자유 국내판매액 약 311.8억 원도 품목 판매 지표이므로 달러 표시 수입액에서 차감해 국내 부가가치를 계산할 수 없다. 기업별 가공마진과 채널별 마진은 확인된 공개 자료가 없다(<a href="https://www.data.go.kr/data/15100475/openapi.do">관세청</a>·<a href="https://kosis.kr/statHtml/statHtml.do?orgId=145&amp;tblId=TX_14503_A055">KOSIS</a>, A·2025).</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 코코넛 밸류체인의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>식품의약품안전처·관세청·농림축산검역본부</td><td>수입식품 신고, 통관·HS 통계, 식물검역</td><td>제품의 식품·가공 상태에 따라 검사·표시·통관 경로가 달라짐</td></tr>
+<tr><td>해외 정부</td><td>필리핀 코코넛청(PCA)·인도네시아 정부</td><td>재식재·산업 지원, 국내 원료·수출 정책</td><td>농가 소득과 자국 가공 원료 확보가 수출 여력에 영향</td></tr>
+<tr><td>생산자·단체</td><td>필리핀 Tical Tribal Multipurpose Cooperative·United Coconut Association of the Philippines</td><td>열매·코프라 공급, 생산자 조직·업계 정보</td><td>산지 매입가격·안정적 판로·생산성에 이해관계</td></tr>
+<tr><td>수출·가공기업</td><td>Axelum Resources·PT Multi Nabati Sulawesi·Luong Quoi Coconut</td><td>건조·분쇄·정제·제품 가공과 선적</td><td>원료 확보·설비 가동률·수출 계약가격에 영향</td></tr>
+<tr><td>수입·유통기업</td><td>(주)동서·(주)이마트·롯데상사(주)·(주)오리온</td><td>원료 수입·조달, 가공·도매·소매</td><td>가격·품질·재고·공급 안정성에 이해관계</td></tr>
+<tr><td>소비자·시민사회</td><td>Fairtrade Network of Asia and Pacific Producers(NAPP)</td><td>코코넛 농가의 소득·노동·거래 투명성 논의</td><td>인증 조건과 산지 거래 관행에 영향</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·International Coconut Community·Sustainable Coconut Partnership</td><td>통계·산업 협력·추적성 기준</td><td>데이터 정의와 지속가능성 검증 방식에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a>·<a href="https://www.data.go.kr/data/15100475/openapi.do">관세청</a>(A·2025~2026), <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Manila_Philippines_RP2026-0011.pdf">USDA FAS 필리핀</a>·<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Jakarta_Indonesia_ID2026-0013">인도네시아</a>(GAIN, B·2026), <a href="https://www.fairtrade.net/napp-en/get-involved/news/Unlocking_the_Potential_of_Coconut_Farmers_in_the_Philippines_through_a_Value_Chain_Study_involving_Fairtrade_Cooperatives%2C_Tical_Tribal%2C_and_SCOFFA.html">Fairtrade NAPP의 코코넛 가치사슬 연구</a>·<a href="https://www.coconutpartnership.org/the-coconut-charter">SCP 헌장</a>(B·2024~2026), <a href="https://iccweb.coconutcommunity.org/page-content/brief-overview">ICC 소개</a>(A·2026 조회), 표 11-1·11-3의 기업 출처.</p>
+<p>필리핀의 바이오디젤용 코코넛유 내수 확대는 국내 판로와 수출용 물량의 배분을 둘러싼 이해관계를 만든다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Manila_Philippines_RP2026-0011.pdf">USDA FAS</a>, GAIN·B·2026). 인도네시아에서 통코코넛 수출가격이 오르면 열매 판매 농가와 코프라 분쇄공장의 원료 확보 이해관계가 엇갈린다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Jakarta_Indonesia_ID2026-0013">USDA FAS</a>, GAIN·B·2026). 추적성을 요구하는 구매자와 이를 이행하는 소농·집하업자 사이에는 검증 비용을 누가 부담할지의 문제가 있다(<a href="https://www.coconutpartnership.org/the-coconut-charter">SCP 헌장</a>, B·2026 조회).</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황</h2>
+<p class="lead">품목 레지스트리의 coconut은 원물·건조 코코넛과 코코넛유를 포함한다. FAOSTAT 대상 품목은 <code>Coconuts, in shell</code>, <code>Coconut oil</code>, <code>Coconuts, desiccated</code>, <code>Copra</code>, <code>Cake of copra</code>다. <code>kamis</code> 설정은 <code>null</code>이다. 아래 표는 2026년 10월 7일 <code>rawbulk.report_delta.coverage("coconut")</code>를 읽기 전용으로 실행한 결과다. «최신»은 각 파일에서 찾은 가장 늦은 기간이고, USDA PSD처럼 수집기가 기간 열을 자동 인식하지 못한 경우 원자료의 <code>Market_Year</code>는 본문에서 따로 확인했다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 코코넛 수집기 전체 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">185</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">237</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">1,534</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">157</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">132</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">1,384</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">3,499</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">6,378</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">27,684</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">195,311</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>usda_psd_all</td><td class="num">72,899</td><td>기간 열 없음</td><td>2026-10-07</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">6,041</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">201</td><td>2026.08</td><td>2026-10-01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline/rawbulk/report_delta.py</code>의 <code>coverage("coconut")</code> 실행 결과와 품목별 CSV 파일. 행은 헤더를 제외한 수다. <code>usda_psd_all</code>은 수집기 표시가 «기간 열 없음»일 뿐 파일 자체에는 <code>Market_Year</code>·<code>Calendar_Year</code>가 있다.</p>
+<p>정기 수집기 밖에서 확인한 자료는 FAOSTAT FBS·SCL·TM·PP의 기존 아카이브, USDA FAS 필리핀·인도네시아 연례 보고서, 세계은행의 2026년 9월 Pink Sheet, 국가법령·검역 원문, 한국거래소 공시, KOSIS 야자유 국내판매액, PSA 필리핀 코코넛 생산표, 파이프라인의 일본 e-Stat 무역 자료다. 은행 색인은 <code>data/_raw/_banks/index.csv</code>에서 <code>items</code>에 <code>coconut</code>이 있는 행을 확인했다. 색인 일치만으로 보고서의 품목 관련성을 인정하지 않고 본문을 열어 확인했다.</p>
+<p><strong>자료 검토 범위</strong></p>
+<p>아카이브 입력 목록의 65개 파일을 로컬 캐시에서 열어 형식과 관련성을 확인했다. 이 보고서에 직접 반영한 자료는 SCL을 포함해 12개다. 나머지 53개는 중복 표현본, 일반 농업 지표, 수집 메타데이터, 구 HS 범위의 오래된 OEC 자료 또는 이번 본문의 수치에 채택하지 않은 보조 자료다. PDF로 확장된 별도 GAIN 캐시 파일은 입력 원장 밖에 있으며 로컬 캐시에서 유효한 PDF가 아니었다. 해당 보고서의 사실은 웹 조사 노트와 연결된 USDA FAS 원문에서 확인했다.</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 원장 판정 요약</caption>
+<thead><tr><th>구분</th><th class="num">파일 수</th><th>처리</th></tr></thead>
+<tbody>
+<tr><td>입력 목록 전체</td><td class="num">65</td><td>상대경로·크기·수정일 보존</td></tr>
+<tr><td>반영</td><td class="num">12</td><td>본문 또는 부록의 출처로 사용</td></tr>
+<tr><td>불필요</td><td class="num">53</td><td>중복·범위 밖·메타데이터·미채택 사유 기록</td></tr>
+<tr><td>미검토</td><td class="num">0</td><td>목록 파일은 모두 로컬 캐시에서 열림</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/coconut.csv</code>의 65개 행과 로컬 캐시 파일 열기 결과; 행별 판정은 <code>01_아카이브_원장.csv</code>에 있다. 중복 표현본을 별도 통계 관측치로 더하지 않았다.</p>
+</section>
+
+<div class="wrap">
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 코코넛 산업 해부: 다섯 식품 HS에서 과실보다 기름 수입이 큰 시장</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · FAOSTAT·USDA PSD·관세청·UN Comtrade 원자료와 기관·법령 원문. 웹 조사 노트의 A·B 등급을 유지했다.</span></div>
+  <div class="cl-row"><span class="k">수치 근거</span><span>원자료 파일·필터·계산식은 30_근거_수치.md에 기록했다. 진행연도 비중은 관측 기간을 함께 표시했다. 숫자대조 결과는 update_2026-10-07/20_숫자대조.txt에 둔다.</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>식품 수입 비교는 HS 0801.11·0801.12·0801.19·1513.11·1513.19. 코프라박·코프라·코이어·활성탄, 코코넛밀크·코코넛워터·조제식품 전체 시장은 포함하지 않는다.</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>한국 기업별 코코넛 점유율, 코코넛 전용 국내 도소매 실측 시계열, 다섯 HS의 확인된 현행 적용세율과 2026년 할당관세 원문은 미확보다. FAOSTAT 원물 2024년 세계 합계는 추정(E)이며 코코넛유 세계 생산은 2023년이 최신 확인 연도다. 필리핀 원물의 FAOSTAT 값은 PSA의 겉껍질 포함 값과 같아 국가 간 중량 비교에 주의가 필요하다.</span></div>
+</footer>
+</div>
+

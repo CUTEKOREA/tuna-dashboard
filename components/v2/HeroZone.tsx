@@ -26,6 +26,11 @@ export interface HeroKpi {
   decimals?: number;
   accent?: string;          // 발광 색 (기본 cyan)
   live?: boolean;           // 실제 LIVE 값일 때만 tick 모션 허용
+  /**
+   * 원문 표지 값을 글자 그대로 낸다(「353.9만」「1억 2,831만」). 있으면 value 는 쓰지 않고
+   * 카운트업도 하지 않는다. 공통 품목 라우트가 표지 cover-facts 타일을 옮길 때 쓴다.
+   */
+  text?: string;
 }
 
 export interface HeroWarning {
@@ -65,6 +70,34 @@ function KpiNumber({ kpi, primary }: { kpi: HeroKpi; primary?: boolean }) {
     maximumFractionDigits: decimals,
   });
   const glow = kpi.accent ?? 'var(--accent-primary)';
+
+  if (kpi.text !== undefined) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }} data-kpi-text="true">
+        <span style={{ fontSize: '0.8rem', color: 'var(--dsc-ink-muted)', fontWeight: 400 }}>
+          {kpi.label}
+        </span>
+        <span
+          data-kpi-number="true"
+          style={{
+            fontSize: primary ? 'var(--dsc-kpi-size)' : '1.6rem',
+            fontWeight: 'var(--dsc-kpi-weight)' as React.CSSProperties['fontWeight'],
+            color: 'var(--dsc-ink)',
+            lineHeight: 1.05,
+            fontFamily: 'var(--dsc-font-mono)',
+            fontVariantNumeric: 'tabular-nums',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {kpi.text}
+        </span>
+        {/* 원문 타일의 설명 줄은 길다. 숫자와 한 줄에 묶으면 넘치므로 아래로 내려 접는다. */}
+        <span data-kpi-unit="true" style={{ fontSize: '0.75rem', color: 'var(--dsc-ink-muted)', lineHeight: 1.4 }}>
+          {kpi.unit}
+        </span>
+      </div>
+    );
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>

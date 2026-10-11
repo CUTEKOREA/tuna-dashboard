@@ -9,7 +9,7 @@
 
 <!-- BEGIN GENERATED — scripts/feature_map.mjs. 손으로 고치지 마라 -->
 
-_생성: `node scripts/feature_map.mjs --write` · 메뉴 25개 · 정적 라우트 11개 · API 161개_
+_생성: `node scripts/feature_map.mjs --write` · 메뉴 25개 · 정적 라우트 12개 · API 161개_
 
 ## 화면 — 어떻게 도달하나
 
@@ -42,16 +42,16 @@ _생성: `node scripts/feature_map.mjs --write` · 메뉴 25개 · 정적 라우
 | `/octopus-industry` | 문어 | 시장 이해 | 로그인 |
 | `/surimi-industry` | 연육 | 시장 이해 | 로그인 |
 | `/tunafarm-industry` | 참치 양식 | 시장 이해 | 로그인 |
-| `/tuna-anatomy` | 참치 해부 | 시장 이해 | 로그인 |
+| `/industry` | 전체 품목 | 시장 이해 | 로그인 |
 | `/company-anatomy` | 기업 해부 | 전략 | 로그인 |
 | `/kamis` | KAMIS 가격 사다리 | 전략 | 로그인 |
-| `/pork` | 돼지고기 | 축산 | 로그인 · 숨김 |
+| `/pork` | 돼지고기 | 시장 이해 | 로그인 · 숨김 |
 | `/cross-intelligence` | 통합 인텔리전스 | 전략 | 로그인 |
 | `/purse-seiner-db` | 선단 DB | 전략 | 로그인 |
 
 ## 정적 라우트 (카테고리 키와 별개)
 
-`/bni-global` · `/design-lab` · `/falkland` · `/ffa-report` · `/financial-risk` · `/mail` · `/management` · `/manual` · `/omo-preview` · `/squid` · `/squid-v5`
+`/bni-global` · `/design-lab` · `/falkland` · `/ffa-report` · `/financial-risk` · `/industry` · `/mail` · `/management` · `/manual` · `/omo-preview` · `/squid` · `/squid-v5`
 
 
 ### 은퇴한 주소 — 열면 404 (18개)

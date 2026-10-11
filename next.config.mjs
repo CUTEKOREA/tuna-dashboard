@@ -11,6 +11,13 @@ const nextConfig = {
     '/api/atuna-daily': ['./data/atuna_daily/**/*'],
     '/api/cron/weekly-briefing': ['./data/atuna_prices.json', './public/data/unloading/local_db.json'],
   },
+  // 「참치 해부」는 2026-10-12 「참치」(/tuna-industry)로 합쳤다. 옛 링크가 깨지지 않게 보낸다.
+  // 영구(308)로 두면 브라우저가 캐시해 되돌리기 어렵다 — 임시(307)로 둔다.
+  async redirects() {
+    return [
+      { source: '/tuna-anatomy', destination: '/tuna-industry', permanent: false },
+    ]
+  },
   async rewrites() {
     return [
       {

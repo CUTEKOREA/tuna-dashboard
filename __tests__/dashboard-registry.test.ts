@@ -124,7 +124,7 @@ describe('dashboard registry', () => {
   it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
-    const rewriteSource = configSource.match(/source:\s*'([^']+)'/)?.[1];
+    const rewriteSource = configSource.slice(configSource.indexOf('rewrites()')).match(/source:\s*'([^']+)'/)?.[1];
 
     expect(rewriteSource).toBeDefined();
     expect(rewriteSource).not.toContain('market');
@@ -409,7 +409,8 @@ describe('dashboard registry', () => {
     expect(tunaColors).toContain('RFMO_ID.WCPFC');
     expect(tunaCatch).not.toContain('#0e7490');
     expect(tunaCatch).not.toContain('#e11d48');
-    expect(tunaDash).toContain('TUNA_ACCENT');
+    // 2026-10-12 참치 해부 통합: 강조색은 해부보고서 스펙(TUNA_ANATOMY_ACCENT)에서 온다
+    expect(tunaDash).toContain('TUNA_ANATOMY_SPEC');
     expect(tunaDash).not.toContain('#0e7490');
     const squidDash = readFileSync(join(process.cwd(), 'components/market-understanding/SquidIndustryDashboard.tsx'), 'utf8');
     const squidColors = readFileSync(join(process.cwd(), 'lib/squid-chart-colors.ts'), 'utf8');
@@ -561,7 +562,7 @@ describe('dashboard registry', () => {
     const sitemapRoutes = sitemap().map((entry) => new URL(entry.url).pathname);
     const appSource = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
-    const rewriteSource = configSource.match(/source:\s*'([^']+)'/)?.[1];
+    const rewriteSource = configSource.slice(configSource.indexOf('rewrites()')).match(/source:\s*'([^']+)'/)?.[1];
 
     expect(gmts).toMatchObject({
       key: 'gmts',
@@ -754,7 +755,8 @@ describe('dashboard registry', () => {
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics', 'panofi', 'cosmo', 'bangkok-office', 'gmts'],
-      ['tuna-industry', 'squid-industry', 'mackerel-industry', 'whelk-industry', 'shrimp-industry', 'pollock-industry', 'octopus-industry', 'surimi-industry', 'tunafarm-industry', 'tuna-anatomy'],
+      // 2026-10-12: 주력 5개(★)만 고정. 나머지는 분류 접기 그룹(components/IndustrySidebarNav.tsx)
+      ['tuna-industry', 'squid-industry', 'pollock-industry', 'surimi-industry', 'shrimp-industry'],
       // 2026-08-17 사용자 요청: 선단 DB 노출. cross-intelligence 는 종전대로 팔레트 전용
       ['purse-seiner-db', 'company-anatomy', 'kamis'],
     ]);
@@ -795,7 +797,7 @@ describe('dashboard registry', () => {
       'octopus-industry',
       'surimi-industry',
       'tunafarm-industry',
-      'tuna-anatomy',
+      'industry',
       'company-anatomy',
       'kamis',
     ]);

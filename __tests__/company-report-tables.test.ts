@@ -103,6 +103,71 @@ describe('연육 최종 해부보고서 표 추출', () => {
   });
 });
 
+describe.each([
+  // [키, 본문 표 수, 표가 붙는 단계(골뱅이 요지 단계는 표가 없다)]
+  ['mackerel', 49, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 'x01']],
+  ['tunafarm', 45, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09']],
+  ['whelk', 17, ['s02', 's03', 's04']],
+] as const)('%s 원문 표 추출', (key, count, stages) => {
+  const tables = reportTables(key);
+
+  it('본문 표를 전부 싣고 부록·별첨 표는 없다', () => {
+    expect(REPORT_TABLE_COMPANIES).toContain(key);
+    expect(tables).toHaveLength(count);
+    expect(tables.every((table) => /^s\d\d$/.test(table.sid))).toBe(true);
+    expect(tables.every((table) => table.rows.length > 0)).toBe(true);
+  });
+
+  it('원문 단계에만 배치한다', () => {
+    const used = stagesUsed(key);
+    expect(used).toEqual([...stages]);
+    const total = used.reduce((sum, stage) => sum + tablesForStage(key, stage).length, 0);
+    expect(total).toBe(tables.length);
+  });
+
+  it('모든 행·숫자 표시가 헤더 열 수와 맞는다', () => {
+    for (const table of tables) {
+      expect(table.num.length, `${table.sid} ${table.title}`).toBe(table.head.length);
+      for (const row of table.rows) {
+        expect(row.length, `${table.sid} ${table.title}`).toBe(table.head.length);
+      }
+    }
+  });
+});
+
+describe('표 값 — 원문 첫 행 대조', () => {
+  it('골뱅이 Ⅰ-1 두 줄 머리글: 연도 아래 톤·$/kg 이 열 이름에 붙고 첫 행은 냉동 바스켓 세번이다', () => {
+    const t = reportTables('whelk').find((table) => table.title === 'Ⅰ-1. 세번별 물량과 단가');
+    expect(t).toBeDefined();
+    expect(t!.head.slice(0, 3)).toEqual(['세번', '2021 · 톤', '2021 · $/kg']);
+    expect(t!.head.at(-1)).toBe('2026.1~8 · $/kg');
+    expect(t!.rows).toHaveLength(5);
+    expect(t!.rows[0].slice(0, 3)).toEqual(['냉동 기타 연체동물 (0307.92-9000 · 골뱅이 바스켓)', '1,929', '9.77']);
+    expect(t!.rows[0].at(-1)).toBe('8.03');
+  });
+
+  it('골뱅이 Ⅰ-2 두 줄 머리글: 첫 행은 영국이다', () => {
+    const t = reportTables('whelk').find((table) => table.title.startsWith('Ⅰ-2. 원산지별 물량과 단가'));
+    expect(t).toBeDefined();
+    expect(t!.head[1]).toBe('2021 · 톤');
+    expect(t!.rows).toHaveLength(8);
+    expect(t!.rows[0].slice(0, 3)).toEqual(['영국', '3,887', '11.94']);
+  });
+
+  it('참치 양식 어종 표: 첫 행 대서양참다랑어 36,855 t', () => {
+    const t = reportTables('tunafarm').find((table) => table.head.includes('2024 양식 t'));
+    expect(t).toBeDefined();
+    expect(t!.rows[0]).toEqual(['대서양참다랑어', 'Thunnus thynnus', 'BFT', 'R · C', '36,855', '지중해 축양의 본체']);
+  });
+
+  it('고등어 02절 시점 표: 첫 행 9월 말~10월 초 ICES 권고', () => {
+    const t = reportTables('mackerel').find((table) => table.sid === 's02');
+    expect(t).toBeDefined();
+    expect(t!.head).toEqual(['시점', '무엇이 나오는가', '공급·가격에 주는 신호']);
+    expect(t!.rows[0]).toEqual(['9월 말~10월 초', 'ICES 이듬해 권고', '방향과 폭. 다만 실제 물량이 아니다']);
+  });
+});
+
 describe('오징어 두 줄 머리글 표', () => {
   it('둘째 머리글 줄이 열 이름에 붙고 데이터 행은 연도로 시작한다', () => {
     const t = reportTables('squid').find((table) =>
@@ -175,9 +240,9 @@ describe('새우 최종 해부보고서 표 추출', () => {
 describe('오징어 최종 해부보고서 표 추출', () => {
   const tables = reportTables('squid');
 
-  it('본문 표 68개를 전부 싣고 부록 표는 제외한다', () => {
+  it('본문 표 71개를 전부 싣고 부록 표는 제외한다', () => {
     expect(REPORT_TABLE_COMPANIES).toContain('squid');
-    expect(tables).toHaveLength(68);
+    expect(tables).toHaveLength(71);
     expect(tables.some((table) => /^s[A-Z]$/.test(table.sid))).toBe(false);
     expect(tables.every((table) => table.rows.length > 0)).toBe(true);
   });

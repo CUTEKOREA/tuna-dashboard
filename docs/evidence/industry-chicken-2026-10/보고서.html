@@ -1,0 +1,759 @@
+<title>한국 닭고기 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 닭고기<br>
+        세계 수급 · 국내 도계 · 수입 · 가격 · 기업 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">국내 도계와 수입 부분육이 함께 만드는 시장 · 리포트 2026</p>
+      <h1><span class="scr">Chicken</span> <span class="lt">한국 닭고기 산업 해부</span></h1>
+      <p class="cover-sub">한국은 닭을 대량 도계하면서도 냉동 절단육과 조제 닭고기를 수입한다.
+        생산·소비를 설명하는 축은 국내 사육과 계열화이고, 수입의 위험을 설명하는 축은
+        부위별 교역과 조류인플루엔자에 따른 검역 조치다.
+        서로 다른 통계의 범위를 맞춰 산업의 크기와 공급 경로를 살핀다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">세계 닭고기 생산</div><div class="v">1억 2,831만</div>
+        <div class="n">톤 · 2024년 FAOSTAT</div></div>
+      <div class="cf"><div class="k">한국 닭 도축</div><div class="v">10.22억</div>
+        <div class="n">수 · 2024년 KOSIS «닭»</div></div>
+      <div class="cf"><div class="k">한국 닭고기 생산</div><div class="v">92.7만</div>
+        <div class="n">톤 · 2025년 USDA PSD(2026-04 추정)</div></div>
+      <div class="cf"><div class="k">한국 국내 소비</div><div class="v">111.1만</div>
+        <div class="n">톤 · 2025년 USDA PSD(2026-04 추정)</div></div>
+      <div class="cf"><div class="k">냉동 절단육 수입</div><div class="v">21.55만</div>
+        <div class="n">톤 · 2025년 HS 0207.14</div></div>
+      <div class="cf"><div class="k">조제 닭고기 수입</div><div class="v">2.92만</div>
+        <div class="n">톤 · 2025년 HS 1602.32</div></div>
+      <div class="cf"><div class="k">브라질 닭고기 수출</div><div class="v">497만</div>
+        <div class="n">톤 · 2025년 USDA PSD(2026-04 추정)</div></div>
+      <div class="cf"><div class="k">국내 육계 소매가격</div><div class="v">5,647</div>
+        <div class="n">원/kg · 2026년 9월 월평균 · 축산물품질평가원</div></div>
+    </div>
+
+  </div>
+</header>
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">국내 대량 생산과 수입 부분육이 한 시장을 이룬다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">생산국과 수출국의 순서는 다르다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">도축 수와 닭고기 톤수를 나눠 본다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">냉동 절단육과 조제품의 수입 단가가 다르다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">국내 유통단계와 통관 단가는 다른 지표다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">브라질의 수출 규모와 태국의 조제품</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">계열화가 도계를 묶지만 수입업 순위는 별개다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">검역과 원산지 규정은 확인됐고 관세표는 미확보다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">수출 성장 전망과 가공 전환을 구분한다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표</span><span class="t">질병, 부위, 가격을 같은 달에 대조한다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">국내 계열화 생산과 수입 절단육·조제품의 접점</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황 — 원장에 있는 자료와 없는 자료를 구분한다</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>국내 대량 생산과 수입 부분육이 한 시장을 이룬다</h2>
+<p class="lead">한국 닭고기 산업은 국내에서 기른 닭을 도계해 파는 흐름과 외국에서 냉동 절단육·조제품을 들여오는 흐름이 겹친 시장이다. 닭 도축 수와 닭고기 생산 톤수는 같은 지표가 아니며, 냉동 절단육과 조제품도 같은 가격의 상품으로 합칠 수 없다. 이 보고서는 그 구분을 유지한 채 확인된 사실과 검증 가능한 판단을 나눠 적는다.</p>
+<h3>자료에서 확인한 수치</h3>
+<ul>
+<li><strong>국내 도계.</strong> KOSIS의 2024년 «닭» 도축 수는 약 10.22억 수(원값 1,022,348,744수)다. 2023년 1,011,490,077수보다 1.1% 많다. 이 계열은 닭 전체 도축 수로 제시되어 육계·삼계·토종닭 등 세부 유형의 물량을 따로 떼어 낼 수 없다(03절, E03).</li>
+<li><strong>생산과 소비.</strong> USDA PSD 2026년 4월 판의 2025년 추정에서 한국 닭고기 생산은 92.7만 톤, 국내 소비는 111.1만 톤, 수입은 24.5만 톤, 수출은 6.1만 톤이다. 같은 표 안에서는 생산+수입−수출=국내 소비가 맞는다. 생산÷소비는 83.4%다. 이 비율을 별도의 정부 «자급률» 공표치로 부르지 않는다(03절, E02).</li>
+<li><strong>수입의 형태.</strong> 관세청 품목별 월간 원자료의 2025년 HS 0207.14 냉동 절단육·설육 수입은 215,514톤·4억 8,809만 달러다. HS 1602.32 조제·저장 닭고기는 약 2.92만 톤(원값 29,188,743kg; 톤 단위 반올림 29,189톤)·1억 3,354만 달러다. 두 품목의 kg당 수입 단가는 각각 2.26달러와 4.57달러다(04절, E04).</li>
+<li><strong>진행연도.</strong> 2026년 1~8월 HS 0207.14 수입은 170,236톤으로 2025년 같은 기간보다 23.2% 많다. 2026년은 미완 연도이며 원자료에 공식 잠정 상태 표시는 없으므로 이를 확정 연간 증가율로 읽지 않는다(04절, E04).</li>
+<li><strong>세계 생산.</strong> FAOSTAT의 2024년 세계 닭고기 생산은 약 1억 2,831만 톤(원값 128,307,229.46톤; 톤 단위 반올림 128,307,229톤)이다. 미국·중국 본토·브라질이 큰 생산국이다. USDA PSD의 2026년 세계 전망치 1억 1,070만 톤은 조사 대상과 환산 기준이 달라 FAOSTAT 실적과 직접 증감 비교하지 않는다(02절, E01·E11).</li>
+<li><strong>공급국의 크기.</strong> USDA PSD 2026년 4월 판의 2025년 추정 수출량은 브라질 497만 톤, 미국 304.7만 톤, EU 174.4만 톤, 태국 124.9만 톤이다. 한국 신고 UN Comtrade의 2025년 HS 0207.14 수입 중 브라질은 75.9%, 태국은 18.9%이고, HS 1602.32에서는 태국 73.8%, 중국 24.3%다. 수출량과 한국의 품목별 수입 점유율은 분모가 다르다(02·04·06절, E02·E06).</li>
+<li><strong>가격.</strong> 축산물품질평가원의 2026년 9월 육계 월평균 가격은 생계유통 1,665원/kg, 도매 전체 3,257원/kg, 소매 5,647원/kg이다. 단계마다 거래 대상과 집계 기준이 달라 세 숫자의 차이를 유통 마진으로 계산하지 않는다(05절, E09).</li>
+<li><strong>제도와 질병.</strong> 국내산 닭고기는 축산물 이력관리 법률의 정의에 들어가며, 닭고기를 조리·제공하는 음식점과 급식소에는 원산지 표시 규정이 적용된다. 검역상 수입금지지역 지정은 원료육 수입 가능성을 바꾼다. 2025년 브라질 상업 농장의 고병원성 조류인플루엔자 발생과 뒤따른 수입 제한은 그 경로가 실제로 작동한 사례다(08·10절, E13).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li><strong>수입 냉동 절단육의 중요성이 이어진다.</strong> 국내 생산이 소비의 대부분을 채우더라도 HS 0207.14는 2025년 21.55만 톤의 별도 공급 경로였다. 반증 조건은 완료연도 관세청 HS 0207.14 수입량이 뚜렷하게 줄고, 같은 범위의 국내 생산·소비 통계에서 국내 공급 증가가 확인되는 경우다(E02·E04).</li>
+<li><strong>검역 변화는 공급국 구성보다 먼저 월별 물량에 나타날 수 있다.</strong> 브라질의 2025년 발생 사례처럼 제한의 시점은 선적 흐름을 바꿀 수 있다. 반증 조건은 제한이 발표된 뒤 같은 품목의 월간 통계와 대체 공급국 기록에 변화가 나타나지 않는 경우다(E04·E05·E13).</li>
+<li><strong>원료육과 조제품의 수입 단가는 서로 다른 제품 구성을 반영한다.</strong> 2025년 HS 1602.32의 평균 수입 단가는 HS 0207.14의 약 두 배지만 가공 정도와 제품 구성이 다르다. 반증 조건은 여러 완료연도에 걸쳐 두 품목의 단가와 물량이 같은 방향·폭으로 움직이고 제품 구성이 같다는 증거가 확인되는 경우다(E04).</li>
+</ul>
+<p>이 판단은 가격·검역·수입 상대국의 다음 관측으로 반증할 수 있게 적었다. <strong>현재 적용되는 HS별 관세·할당관세 수치는 확보하지 못했다.</strong> 관세·할당관세 별표 원문은 조사 노트에서도 열지 못했다(08절). 2025년 국가별 수입 점유율은 UN Comtrade 한국 신고 상대국 자료로 확인했으며, 별도의 관세청 국가별 파일은 2026년 3~8월만 있다(04절). 과거의 닭고기 대시보드에는 산업 실적과 별개인 기업 전략·가상 수치가 섞여 있어 정본의 산업 수치로 옮기지 않았다(부록 A, E17).</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>생산국과 수출국의 순서는 다르다</h2>
+<p class="lead">닭고기는 큰 생산국이 반드시 큰 수출국인 시장이 아니다. 미국과 중국은 생산·소비가 모두 크고, 브라질은 자국 소비를 넘는 생산을 해외에 판다. FAOSTAT의 넓은 생산 통계와 USDA PSD의 닭고기 수급표는 조사 품목, 환산 방식, 수록 국가가 달라 한 연속 시계열이 아니다.</p>
+<p>FAOSTAT 생산 계열의 2024년 세계 값은 128,307,229톤이다. 2023년 124,659,231톤보다 2.9% 많다. 아래 순위는 국가가 아닌 대륙·권역 행을 빼고, 중국 전체 집계와 중국 본토를 중복 계산하지 않도록 중국 본토 행을 썼다. FAOSTAT 원자료의 품목 표기는 «Meat of chickens, fresh or chilled»이다(E01).</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 닭고기 생산의 주요국(2024년)</caption>
+<thead><tr><th class="num">순위</th><th>국가</th><th class="num">생산량(톤)</th><th class="num">세계 값 대비</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>미국</td><td class="num">20,176,637</td><td class="num">15.7%</td></tr>
+<tr><td class="num">2</td><td>중국 본토</td><td class="num">15,350,000</td><td class="num">12.0%</td></tr>
+<tr><td class="num">3</td><td>브라질</td><td class="num">13,714,702</td><td class="num">10.7%</td></tr>
+<tr><td class="num">4</td><td>러시아</td><td class="num">5,457,330</td><td class="num">4.3%</td></tr>
+<tr><td class="num">5</td><td>인도</td><td class="num">5,019,410</td><td class="num">3.9%</td></tr>
+<tr><td class="num">—</td><td>세계</td><td class="num">128,307,229</td><td class="num">100.0%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT 생산 원자료 <code>faostat_production_chicken.csv</code>, 2024년·Production·톤, E01. 세계 행에는 국가별 값을 다시 더하지 않았다. 중국 본토 값의 원자료 표시는 X, 러시아 값은 I다.</p>
+<p>세계 생산량과 교역량은 서로 다른 지표다. FAOSTAT 무역 원자료의 2024년 세계 수출량은 15,451,500톤, 수입량은 14,801,917톤이다. 양쪽이 같지 않은 것은 신고 범위·시점·계량 차이가 있을 수 있음을 보여 준다. 두 숫자의 차이를 재고 변화로 처리하지 않는다. 같은 파일에서 2024년 브라질 수출은 4,880,745톤으로 세계 수출 행의 31.6%에 해당한다. 미국은 3,150,355톤이다(E07).</p>
+<p>USDA PSD 2026년 4월 판은 2025년 브라질 수출을 497만 톤, 미국 304.7만 톤, EU 174.4만 톤, 태국 124.9만 톤, 중국 108.5만 톤으로 추정한다. 2026년 값은 브라질 515만 톤, 미국 301.5만 톤, EU 175만 톤, 중국 140만 톤, 태국 127.5만 톤으로 제시한다. 2026년은 전망이므로 순위와 점유율의 기준연도로 쓰지 않는다(E02). USDA FAS의 2026년 4월 세계시장 보고서는 그해 생산을 약 1억 1,070만 톤, 수출을 1,480만 톤으로 전망했다. 질병과 무역 조치는 보고서 작성 당시의 상태가 이어진다고 가정한 값이다(E11).</p>
+<h3>소비는 큰 내수 시장에 묶인다</h3>
+<p>같은 USDA PSD 판의 2025년 국내 소비 추정은 미국 1,878.1만 톤, 중국 1,571.2만 톤, EU 1,108.9만 톤, 브라질 1,048.5만 톤이다. 브라질은 생산 1,545만 톤과 소비 1,048.5만 톤 사이의 큰 간격을 수출로 연결하지만, 생산에서 소비를 뺀 값이 통관 수출량과 항상 같지는 않다. 수입·재고·통계 조정이 있기 때문이다. 태국은 생산 353.5만 톤, 소비 228.8만 톤, 수출 124.9만 톤으로 수출 비중이 높은 편이다(E02).</p>
+<p>재고 수치도 조심해서 읽어야 한다. USDA PSD의 2025년 기말재고 추정은 미국 36.2만 톤, 일본 14.8만 톤, 캐나다 6만 톤, 필리핀 5.7만 톤, 태국 5만 톤이다. 한국 행은 0이다. 이를 한국에 물리적 냉동창고 재고가 없다는 뜻으로 해석하지 않는다. PSD 수급표에 반영된 재고 항목이 0이라는 뜻에 한정한다(E02).</p>
+<p>FAO의 『Meat Market Review』는 2025년 전체 가금육 생산을 1억 5,600만 톤으로 적는다. <strong>가금육은 닭고기보다 넓은 범위</strong>이므로 앞의 FAOSTAT 닭고기 값과 같은 지표가 아니다. 같은 보고서는 2025년 가금육 교역을 1,670만 톤으로 적고, 브라질의 조류인플루엔자 관련 수입금지 해제와 중국의 수출 증가를 교역 변화의 배경으로 설명한다(E12).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>도축 수와 닭고기 톤수를 나눠 본다</h2>
+<p class="lead">국내의 물리적 생산을 가까이에서 보여 주는 지표는 닭 도축 수다. KOSIS의 «닭» 계열은 2018년 1,004,823,878수, 2020년 1,070,408,057수, 2023년 1,011,490,077수, 2024년 1,022,348,744수다. 2024년은 전년보다 10,858,667수, 1.1% 늘었다(E03). 다만 이 파일의 축종 표기는 «닭»이다. 육계·삼계·토종닭 등 세부 유형의 도축량을 분리하는 열이 없으므로 육계 전용 수치로 바꿔 쓰지 않는다.</p>
+<p>KOSIS의 «육용계» 사육 마리수는 2023년 94,115,386마리에서 2024년 88,975,007마리로 5.5% 줄었다. 사육 마리수는 특정 시점의 재고에 가까운 지표이고, 도축 수는 연간 흐름이므로 서로 빼서 생산량을 만들 수 없다. 사육 기간, 입식 회전, 도축 시점이 다르다(E03).</p>
+<p>닭고기 톤수로 수급을 볼 때에는 USDA PSD의 한국 행을 사용했다. 2026년 4월 판의 2025년 추정치는 생산 92.7만 톤, 수입 24.5만 톤, 수출 6.1만 톤, 국내 소비 111.1만 톤이다. 생산÷소비는 83.4%, 수입÷소비는 22.1%다. 둘의 합이 100%를 넘는 까닭은 수출을 고려하지 않았기 때문이다. 2025년 표의 수급식은 92.7+24.5−6.1=111.1만 톤이다(E02).</p>
+<div class="tw wide">
+<table>
+<caption>표 2. USDA PSD 한국 닭고기 수급(만 톤)</caption>
+<thead><tr><th>연도</th><th class="num">생산</th><th class="num">수입</th><th class="num">수출</th><th class="num">국내 소비</th><th class="num">기말재고</th></tr></thead>
+<tbody>
+<tr><td>2024</td><td class="num">93.5</td><td class="num">25.0</td><td class="num">6.1</td><td class="num">112.4</td><td class="num">0.0</td></tr>
+<tr><td>2025 추정(2026-04)</td><td class="num">92.7</td><td class="num">24.5</td><td class="num">6.1</td><td class="num">111.1</td><td class="num">0.0</td></tr>
+<tr><td>2026 전망</td><td class="num">92.0</td><td class="num">26.0</td><td class="num">6.0</td><td class="num">112.0</td><td class="num">0.0</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: USDA PSD <code>usda_psd_all_chicken.csv</code>, Country_Name=Korea, South·Commodity_Description=Meat, Chicken·Market_Year·Attribute_Description, E02. 단위는 원자료의 1,000 MT를 만 톤으로 바꿨다.</p>
+<p>FAOSTAT은 2024년 한국 닭고기 생산을 935,000톤으로 싣는다. 같은 연도 USDA PSD의 93.5만 톤과 숫자는 같다. FAOSTAT의 한국 생산 행에는 X 표지가 붙어 있으므로 독립적인 국내 실측 자료 두 개가 일치했다는 식으로 해석하지 않는다. FAOSTAT의 한국 도축 동물 수는 2024년 1,083,748천 수이며 I 표지다. KOSIS의 «닭» 도축 1,022,349천 수와 다르다. 품목·포괄 범위와 추정 방식이 맞는지 확인하지 못했으므로 국내 도축의 기준값은 KOSIS 원자료로 둔다(E01·E03).</p>
+<h3>소비가 뜻하는 것</h3>
+<p>USDA PSD의 국내 소비는 가계가 집에서 산 생닭 무게가 아니다. 외식·급식·가공으로 들어간 물량을 포함한 수급표의 사용량이다. USDA FAS의 2026년 4월 세계시장 보고서는 닭고기 교역 코드에 HS 0207.11~0207.14와 1602.32를 포함한다. 관세청의 2025년 수입 확인 3코드(0207.12·0207.14·1602.32) 합계 245,075,970kg은 톤 단위로 반올림하면 245,076톤으로, PSD 한국 수입 245천 톤과 표시 자릿수에서 일치한다. 다만 코드 범위와 반올림 결과의 일치만으로 PSD 수입 항목의 정확한 세부 구성이나 통관 중량과 PSD 환산량의 동일성을 확정하지 않는다(E02·E04·E11).</p>
+<p>이 자료로는 한국인의 1인당 닭고기 섭취량이나 육계·삼계·토종닭 등 세부 유형별 생산량을 확정할 수 없다. 시도한 경로는 KOSIS 사육·도축 분할 파일, FAOSTAT 한국 생산 행, USDA PSD 한국 수급 행이다. 세 파일에 인구 분모 또는 육계·삼계·토종닭 구분 열이 없어 해당 값을 만들지 않았다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>냉동 절단육과 조제품의 수입 단가가 다르다</h2>
+<p class="lead">이 보고서의 통관 범위는 HS6 0207.11·0207.12·0207.13·0207.14와 1602.32다. 앞의 네 코드는 닭의 신선·냉장·냉동 육과 절단육·설육이고, 1602.32는 조제·저장한 닭고기다. 관세청 월간 품목 파일에서 2025년 수입 물량이 확인되는 코드는 0207.12, 0207.14, 1602.32다. 0207.11은 이 파일에 행 자체가 없고, 0207.13은 2025년 행의 수입 중량 합계가 0이다. 이를 모든 통관 자료에서 두 품목의 거래가 전혀 없었다는 일반 명제로 확대하지 않는다(E04).</p>
+<p>2025년 가장 큰 수입 코드는 HS 0207.14다. 215,514,374kg·488,087,864달러로 kg당 2.26달러다. HS 1602.32는 29,188,743kg·133,535,783달러로 kg당 4.57달러다. HS 0207.12의 372,853kg을 포함한 세 코드 합은 245,075,970kg·622,377,296달러다. 세 코드를 합한 평균 단가는 제품 구성이 섞이므로 부위별 가격을 설명하지 못한다. 다만 같은 관세청 파일의 HS10 행으로 2025년 HS 0207.14 내부 구성을 나눌 수 있다(E04).</p>
+<p>2025년 HS 0207.14 중량의 89.5%는 HS 0207.14.1010 다리(192,840,604kg), 6.4%는 1030 날개(13,837,022kg), 3.2%는 2090 설육 기타(6,980,061kg), 0.6%는 1020 가슴(1,272,516kg)이다. 해당 HS10별 수입 단가는 차례로 2.25·2.99·1.32·2.45달러/kg이다. 나머지 기타·간 행도 합계에는 포함했다. 이 단면으로 2024년과의 부위 구성 변화까지 알 수는 없다(E04).</p>
+<div class="tw wide">
+<table>
+<caption>표 3. 한국 닭고기 주요 HS6 수입의 완료연도 비교</caption>
+<thead><tr><th>HS6</th><th>품목</th><th class="num">2024년 물량(톤)</th><th class="num">2025년 물량(톤)</th><th class="num">2025년 금액(백만 달러)</th><th class="num">2025년 $/kg</th></tr></thead>
+<tbody>
+<tr><td>0207.12</td><td>절단하지 않은 냉동육</td><td class="num">240</td><td class="num">373</td><td class="num">0.75</td><td class="num">2.02</td></tr>
+<tr><td>0207.14</td><td>냉동 절단육·설육</td><td class="num">217,887</td><td class="num">215,514</td><td class="num">488.09</td><td class="num">2.26</td></tr>
+<tr><td>1602.32</td><td>조제·저장 닭고기</td><td class="num">31,624</td><td class="num">29,189</td><td class="num">133.54</td><td class="num">4.57</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: UN Comtrade 한국 신고·상대국 World 연간 합계 행, E06. 2025년 금액·단가는 관세청 월간 품목 파일과 대조했다(E04). 2024년 관세청 분할 파일은 11~12월만 있어 연간 비교에 쓰지 않았다.</p>
+<p>Comtrade 원자료에는 같은 품목·연도에 관세 절차, 운송 수단, 2차 상대국에 따른 세부 행이 함께 들어 있다. 표 3은 <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, <code>partnerCode=0</code>인 합계 행만 썼다. 한국 2025년 HS 0207.14의 합계 행 <code>netWgt</code>는 215,514,374.162kg이다. 관세청 월간 합계 215,514,374kg과 표시 자리수 차이만 있다. 세부 행을 합계 행에 더하지 않았다(E04·E06).</p>
+<h3>미완 연도의 월간 변화</h3>
+<p>2026년 1~8월 관세청 월간 원자료의 HS 0207.14 수입은 170,236,109kg·419,782,024달러다. 같은 2025년 1~8월은 138,163,666kg·297,362,139달러였다. 물량은 23.2% 늘었으며, 1~4월은 전년 같은 기간 대비 13.9%, 5~8월은 34.0% 늘었다. 후반기의 높은 증감에는 2025년 5~8월의 낮은 비교 기준이 작용했을 수 있다. 2025년 5월의 브라질 수입 제한 기간과 겹치지만 원인으로 단정하지 않는다(E04·E13). kg당 단가는 2.15달러에서 2.47달러로 14.6% 올랐다. HS 1602.32는 같은 기간 18,799,640kg에서 19,848,601kg으로 5.6% 늘었고, kg당 단가는 4.63달러에서 4.54달러로 낮아졌다(E04). 2026년 수치는 미완 연도의 1~8월 집계다. 원자료에는 공식 잠정 상태 표기가 없으며, 연말 수치와 혼동하지 않도록 같은 월끼리만 비교했다.</p>
+<div class="tw">
+<table>
+<caption>표 4. 진행연도 수입의 전년 같은 기간 비교</caption>
+<thead><tr><th>HS6</th><th>기간</th><th class="num">수입(톤)</th><th class="num">수입액(백만 달러)</th><th class="num">$/kg</th></tr></thead>
+<tbody>
+<tr><td>0207.14</td><td>2025년 1~8월</td><td class="num">138,164</td><td class="num">297.36</td><td class="num">2.15</td></tr>
+<tr><td>0207.14</td><td>2026년 1~8월</td><td class="num">170,236</td><td class="num">419.78</td><td class="num">2.47</td></tr>
+<tr><td>1602.32</td><td>2025년 1~8월</td><td class="num">18,800</td><td class="num">87.01</td><td class="num">4.63</td></tr>
+<tr><td>1602.32</td><td>2026년 1~8월</td><td class="num">19,849</td><td class="num">90.02</td><td class="num">4.54</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>customs_item_trade_monthly_chicken.csv</code>, <code>_key=YYYYMM</code>·<code>hsCode</code> 앞 6자리별 <code>impWgt</code>·<code>impDlr</code> 합, E04. 각 행의 단가는 달러 합계÷kg 합계다.</p>
+<h3>2025년 한국 신고 상대국 구성</h3>
+<p>관세청 국가별 분할 파일은 2026년 3~8월만 담지만, UN Comtrade 공개 API의 한국 신고 수입에는 2025년 상대국별 행이 있다. HS6·연도별로 <code>reporterCode=410</code>, <code>flowCode=M</code>, <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>을 고정하고, 상대국 World(<code>partnerCode=0</code>)를 점유율의 분모로 썼다. 합계 행을 국가 행에 다시 더하지 않았다(E05·E06).</p>
+<div class="tw">
+<table>
+<caption>표 4-1. 한국 신고 2025년 주요 수입 상대국(UN Comtrade, 중량 기준)</caption>
+<thead><tr><th>HS6</th><th>상대국</th><th class="num">순위</th><th class="num">수입(톤)</th><th class="num">World 대비</th></tr></thead>
+<tbody>
+<tr><td>0207.14</td><td>브라질</td><td class="num">1</td><td class="num">163,572</td><td class="num">75.9%</td></tr>
+<tr><td>0207.14</td><td>태국</td><td class="num">2</td><td class="num">40,688</td><td class="num">18.9%</td></tr>
+<tr><td>0207.14</td><td>덴마크</td><td class="num">3</td><td class="num">4,483</td><td class="num">2.1%</td></tr>
+<tr><td>0207.14</td><td>스웨덴</td><td class="num">4</td><td class="num">2,972</td><td class="num">1.4%</td></tr>
+<tr><td>0207.14</td><td>미국</td><td class="num">5</td><td class="num">2,449</td><td class="num">1.1%</td></tr>
+<tr><td>0207.14</td><td>World</td><td class="num">—</td><td class="num">215,514</td><td class="num">100.0%</td></tr>
+<tr><td>1602.32</td><td>태국</td><td class="num">1</td><td class="num">21,538</td><td class="num">73.8%</td></tr>
+<tr><td>1602.32</td><td>중국</td><td class="num">2</td><td class="num">7,080</td><td class="num">24.3%</td></tr>
+<tr><td>1602.32</td><td>덴마크</td><td class="num">3</td><td class="num">549</td><td class="num">1.9%</td></tr>
+<tr><td>1602.32</td><td>World</td><td class="num">—</td><td class="num">29,189</td><td class="num">100.0%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=020714,160232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 한국 신고 수입 공개 API</a>, E06. 표시는 kg 원값을 톤으로 반올림했다. 상대국 행의 합은 각 HS6의 World 행과 일치한다. 보유한 <code>comtrade_mirror/chicken_comtrade_mirror.csv</code>에는 한국 신고 상대국 행이 있지만 Drive판에는 CHN·THA·VNM·RUS, 현행판에는 이들과 IDN의 한국 신고 행만 있어 브라질 행이 없다. 브라질을 포함한 완료연도 구성은 공개 API 응답으로 확인했다. 2024년 거울통계 부분집합과 Comtrade World 행을 대조하면 HS 0207.14의 태국 비중은 13.3%, HS 1602.32의 태국·중국 비중은 각각 74.4%·24.2%다. 부분집합만으로 2024년 전체 순위를 확정하지 않았다(E06·E17).</p>
+<p>2026년 3~8월 관세청 국가별 부분 자료의 순서는 2025년 완료연도 순위나 2026년 확정 점유율을 뜻하지 않는다(E05). 아카이브 대시보드의 브라질·태국 점유율과 향후 전망은 집계 모수가 섞인 과거 정적 카드 및 시나리오여서 원자료 대용으로 사용하지 않았다(E17).</p>
+<p>공급국의 대외 수출과 한국의 실제 수입도 구분한다. 브라질 ComexStat의 2026년 1~8월 HS 0207.14 수출은 293.7만 톤·56.19억 달러지만 이는 <strong>브라질의 전 세계 상대 수출</strong>이다. 이를 한국행 물량으로 읽지 않는다(E16). 미국 Census HS10 파일은 2026년 7월 한 달, EU Comext 파일은 2026년 6~7월만 담고 있어 한국의 연간 상대국 구성표를 대신하지 못한다(E15).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>국내 유통단계와 통관 단가는 다른 지표다</h2>
+<p class="lead">국내 육계 가격에는 산닭, 계열업체 납품, 도계장 도매, 소비자 판매가가 각각 있다. 축산물품질평가원의 「육계 유통단계별 가격」은 이를 따로 게시한다. 2026년 9월 월평균은 생계유통 1,665원/kg, 위탁생계 1,770원/kg, 도매 전체 3,257원/kg, 소매 5,647원/kg이다. 생계유통은 비계열 농가의 산닭 거래가격, 위탁생계는 계열 농가의 납품가격이다. 도매는 도계장에서 대리점 등으로 유통하는 가격이다(E09).</p>
+<div class="tw">
+<table>
+<caption>표 5. 2026년 육계 유통단계별 월평균(원/kg)</caption>
+<thead><tr><th>월</th><th class="num">생계유통</th><th class="num">위탁생계</th><th class="num">도매 전체</th><th class="num">소매</th></tr></thead>
+<tbody>
+<tr><td>1월</td><td class="num">1,791</td><td class="num">1,723</td><td class="num">3,528</td><td class="num">5,926</td></tr>
+<tr><td>4월</td><td class="num">2,677</td><td class="num">1,821</td><td class="num">4,370</td><td class="num">6,582</td></tr>
+<tr><td>7월</td><td class="num">1,841</td><td class="num">1,760</td><td class="num">3,597</td><td class="num">6,189</td></tr>
+<tr><td>9월</td><td class="num">1,665</td><td class="num">1,770</td><td class="num">3,257</td><td class="num">5,647</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 축산물품질평가원 「육계 유통단계별 가격」 2026년 월평균 화면, 2026-10-07 조회, Grok 조사 노트 A등급, E09. 링크: https://www.ekapepia.com/v3/price/livestock/chicken/distrPrice.do</p>
+<p>이 가격의 차이는 유통업자의 이익률이 아니다. 생계·도매·소매는 제품의 상태와 거래 조건이 다르고, 도계·포장·운송·손실이 끼어 있다. 축산물품질평가원 화면은 2020년 5월부터 도매가격 기준이 10호에서 규격 전체 평균으로 바뀌었다고 고지한다. 이 기준 변경 전후의 도매가격은 동일한 규격의 연속 시계열이 아니다(E09).</p>
+<p>관세청의 수입 단가는 다른 축이다. HS 0207.14의 2025년 평균은 2.26달러/kg, HS 1602.32는 4.57달러/kg이다. 통관 신고 금액을 통관 중량으로 나눈 값이며, 국내 소매가격과 같은 세금·유통·제품 구성이 아니다. 두 상품의 가격 차이를 곧바로 «태국과 브라질의 가격 차이»로 바꿀 수는 없다. UN Comtrade 한국 신고 2025년 HS 0207.14에서 태국은 40,688,291kg·118,359,591달러로 2.91달러/kg, 브라질은 163,572,266kg·348,985,064달러로 2.13달러/kg이다. 이는 같은 HS6 안의 국가별 평균이며 세부 부위·규격·운송 조건 차이를 통제한 가격 비교는 아니다(E06).</p>
+<p>KAMIS 수집 파일도 확인했다. 현재 <code>processed_data/kamis/chicken_kamis_price.csv</code>에는 2026년 3월 8일~9월 30일에 해당하는 «평균» 207행과 «서울» 207행이 있고, <strong>«평년» 행은 빠져 있다</strong>. 반면 Drive 아카이브의 오래된 KAMIS 파일에는 «평년» 95행이 포함되어 있다. 평년은 5개년 평균 참고값이므로 실측 날짜별 가격과 합쳐 평균하지 않는다. 현재 파일의 «평균» 행은 품목명·종류명이 <code>[]</code>로 비어 있어 본문의 대표 육계 소매가격은 품목과 단계가 명확한 축산물품질평가원 화면을 사용했다(E08·E17).</p>
+<p>국제 비교 지표 역시 범위가 다르다. FAO 『Meat Market Review』에 따르면 2025년 가금육 시세는 2024년보다 1.4% 낮았다. 닭고기 한 부위의 거래가격이 아니라 국제 가금육 범주의 가격 판단이다. 같은 보고서의 2025년 육류가격지수 평균은 123.3포인트로 전년보다 5.2% 올랐다. 가금육과 전체 육류가 반대 방향으로 움직일 수 있다는 점을 보여 줄 뿐, 한국 소매가격의 원인을 그 지수 하나로 설명하지 않는다(E12).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>브라질의 수출 규모와 태국의 조제품</h2>
+<p class="lead">한국 수입의 2025년 상대국별 점유율은 UN Comtrade 한국 신고 자료로 HS6별 확인했다. 아래 표는 별도로 USDA PSD 2026년 4월 판의 2025년 추정 «Meat, Chicken» 생산·소비·수출 규모를 비교한다. 한국의 특정 HS 코드에 어느 나라 제품이 얼마나 들어왔는지는 PSD 표에서 추정하지 않고 04절의 상대국 자료를 사용한다(E02·E06).</p>
+<div class="tw">
+<table>
+<caption>표 6. 주요 생산·수출국의 닭고기 수급(2025년 추정, 만 톤)</caption>
+<thead><tr><th>국가·권역</th><th class="num">생산</th><th class="num">국내 소비</th><th class="num">수출</th><th class="num">수입</th></tr></thead>
+<tbody>
+<tr><td>브라질</td><td class="num">1,545.0</td><td class="num">1,048.5</td><td class="num">497.0</td><td class="num">0.5</td></tr>
+<tr><td>미국</td><td class="num">2,177.3</td><td class="num">1,878.1</td><td class="num">304.7</td><td class="num">7.0</td></tr>
+<tr><td>중국</td><td class="num">1,650.0</td><td class="num">1,571.2</td><td class="num">108.5</td><td class="num">29.7</td></tr>
+<tr><td>태국</td><td class="num">353.5</td><td class="num">228.8</td><td class="num">124.9</td><td class="num">0.2</td></tr>
+<tr><td>한국</td><td class="num">92.7</td><td class="num">111.1</td><td class="num">6.1</td><td class="num">24.5</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: USDA PSD <code>usda_psd_all_chicken.csv</code>, 2025년 국가별 <code>Production</code>·<code>Domestic Consumption</code>·<code>Exports</code>·<code>Imports</code>, E02. EU 권역은 국가 행과 성격이 달라 표에서 뺐다.</p>
+<p>브라질은 세계 수출의 큰 공급원이다. FAOSTAT의 2024년 브라질 닭고기 수출은 488.1만 톤, USDA PSD의 2025년 값은 497만 톤이다. 브라질 ComexStat의 2026년 1~8월 HS 0207.14 수출은 293.7만 톤으로, 절단육만의 진행연도 실적이다. 세 숫자는 출처·품목·기간이 달라 하나의 증가율을 만들지 않는다(E07·E02·E16).</p>
+<p>브라질의 공급 능력과 실제 수입 가능성 사이에는 검역이 있다. USDA FAS GAIN 보고서에 따르면 브라질 농무부는 2025년 5월 16일 히우그란지두술주 상업 농장 고병원성 조류인플루엔자 발생을 발표했다. 5월 22일 당시 한국·중국·EU 등이 국가 단위 제한 대상에 들어갔다. 이번 자료에는 질병 발생일·제한 적용일·선적 지연을 한국의 월간 통관 변화와 연결한 분석이 없다. 월간 물량 변화만으로 어느 조치의 효과였는지 단정할 수 없다(E13).</p>
+<p>태국은 원료육과 조제품을 함께 생산·수출하는 국가다. Krungsri Research는 2026~2028년 태국 닭고기 생산을 연평균 2.6~3.6% 늘어난 358만~383만 톤으로 <strong>전망</strong>했다. 이 숫자는 은행의 전망이며 USDA PSD의 2025년 생산 추정 353.5만 톤과 같은 발표 체계가 아니다. Krungsri는 냉장육, 냉동육, 가공육을 서로 다른 생산·유통 상품으로 설명한다(E02·E14). 한국의 HS 1602.32 조제품과 HS 0207.14 냉동 절단육도 서로 다른 상품이다.</p>
+<p>미국은 2025년 생산 2,177.3만 톤 중 국내 소비가 1,878.1만 톤으로 크다. CoBank는 미국 생산업체의 투자가 신규 도계장보다 추가 가공과 자동화에 흐른다고 분석했다. 이것은 미국 시장에 대한 은행의 해석이다. 곧바로 한국 수입품의 가공 수준이나 수입업체의 사업 전략을 설명하는 사실로 옮기지 않는다(E02·E14).</p>
+<p>중국은 소비 규모가 크면서 수출도 증가한 사례다. USDA PSD의 2025년 중국 수출은 108.5만 톤이고 2026년 전망은 140만 톤이다. USDA FAS는 원종계 재고, 계열사 증설, 가공능력, 정책 지원을 배경으로 들었다. 2026년은 전망이므로 완료연도 수출 순위를 대체하지 않는다(E02·E11).</p>
+<h3>계절성과 물량의 해석</h3>
+<p>관세청의 2025년 HS 0207.14 월간 한국 수입은 8월 12,535톤, 11월 21,051톤이었다. 이 한 해의 최고·최저 월만으로 반복되는 계절성을 증명할 수 없다. 휴가·외식 수요, 도계 일정, 검역, 항만 선적과 재고가 겹칠 수 있다. 이 문단의 비교는 2025년 두 달에 한정되며, 여러 해의 동일 HS·월·상대국 비교 결과는 포함하지 않았다(E04). 국내 사육·도계의 계절성과 수입의 계절성을 동일한 흐름으로 간주하지 않는다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>계열화가 도계를 묶지만 수입업 순위는 별개다</h2>
+<p class="lead">닭고기가 소비자에게 가기까지 종계·부화, 사육, 도계, 절단·가공, 냉장·냉동 보관, 도매·외식·소매 단계를 지난다. 한 업체가 여러 단계를 맡는 계열화가 중요한 구조지만, 계열화 업체의 도계 수가 곧 수입 닭고기 점유율은 아니다. 두 시장의 사업자 명부와 분모가 다르다.</p>
+<p>국내 도계 업체별 실적을 한눈에 볼 수 있는 확보 자료는 동우팜투테이블의 2025년 사업보고서다. 보고서는 업체별 물량의 원자료를 「도계검사 실적」으로 표시한다. 여기 인용한 값은 법정 사업보고서의 전재 자료이므로 A등급이다. 사업보고서 표의 합계는 1,018.8백만 수인데 같은 보고서 개요부에는 1,018.9백만 수라고 적혀 있다. 아래 표는 업체별 표와 합산이 맞는 1,018.8백만 수를 분모로 둔다(E10).</p>
+<div class="tw">
+<table>
+<caption>표 7. 사업보고서가 전재한 국내 업체별 도계(2025년)</caption>
+<thead><tr><th>업체·묶음</th><th class="num">도계(백만 수)</th><th class="num">보고서 표의 비중</th></tr></thead>
+<tbody>
+<tr><td>하림</td><td class="num">202.4</td><td class="num">19.9%</td></tr>
+<tr><td>마니커</td><td class="num">87.2</td><td class="num">8.6%</td></tr>
+<tr><td>올품</td><td class="num">86.8</td><td class="num">8.5%</td></tr>
+<tr><td>참프레</td><td class="num">80.7</td><td class="num">7.9%</td></tr>
+<tr><td>동우팜투테이블</td><td class="num">76.6</td><td class="num">7.5%</td></tr>
+<tr><td>체리부로</td><td class="num">75.1</td><td class="num">7.4%</td></tr>
+<tr><td>사조</td><td class="num">62.6</td><td class="num">6.1%</td></tr>
+<tr><td>기타 약 30개 업체</td><td class="num">347.4</td><td class="num">34.1%</td></tr>
+<tr class="tot"><td>합계</td><td class="num">1,018.8</td><td class="num">100.0%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 동우팜투테이블 2025년 사업보고서(2026-03-19 제출), 업체별 도계 표, A등급, E10. 원문: https://kind.krx.co.kr/external/2026/03/19/000786/20260319003474/11011.htm</p>
+<p>이 표에서 단일 업체로는 하림의 도계량이 가장 크다. 동우팜투테이블 보고서가 계열사로 적은 참프레와 동우를 묶으면 157.3백만 수, 표 분모의 15.4%다. 하림과 올품도 하림그룹 계열로 묶으면 202.4+86.8=289.2백만 수, 28.4%다. 표에 별도 행이 없는 계열사는 기타에 포함돼 그룹 전체 비중은 이보다 클 수 있다. 올품의 계열 관계는 하림의 <a href="https://www.harim.com/main/?menu=51&amp;mode=view&amp;no=3021&amp;pno=4">뉴스룸 설명</a>을 확인했다. 두 묶음은 같은 기준의 도계량 합산 관찰치이며 법률상 시장획정이나 공정거래 점유율 판정이 아니다(E10). 업체별 수치와 KOSIS 2024년 도축 수는 연도·출처가 달라 직접 차감하지 않는다(E03·E10).</p>
+<p>공시가 보여 주는 것은 도계 설비를 통과한 닭의 수다. 도계 수만으로는 생계 사육 계약, 절단육 생산, 가공식품 매출, 수입 신고 업체의 실적이 드러나지 않는다. 이번에 확보한 관세청 국가별 파일에는 수입업체 열이 없고, 은행·기관 리포트 색인에도 한국 수입업체별 통관량 원표가 없다. <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품 신고 조회</a>에서는 2025년 10월~2026년 9월 ‘닭고기’ 품목의 <strong>신고 건수 기준</strong> 수입업소 순위를 확인할 수 있다(11절). 신고 건수는 물량·금액이 아니며, 이 품목명 범위는 HS 1602.32 조제품 전체를 포괄하지 않는다. 따라서 국내 냉동 절단육과 조제육 수입업체의 <strong>물량 순위·점유율은 미확보</strong>다. 대시보드의 업체 대상 제안·마진 시나리오는 공개 산업 실적으로 쓰지 않았다(E05·E17).</p>
+<p>축산계열화사업법은 계열화사업자가 축산물 판매가격을 농식품부장관에게 보고하고, 장관이 영업비밀을 침해하지 않는 범위에서 공개할 수 있도록 한다. 이 조문만으로는 업체별 가격 비교에 필요한 실제 공개 범위와 자료 접근 경로가 확인되지 않는다(E13). 이 보고서에는 도계 검사 원표, 공시 재무, 식약처 수입 신고의 물량·품목 정의를 일치시킨 업체별 비교가 없다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>검역과 원산지 규정은 확인됐고 관세표는 미확보다</h2>
+<p class="lead">닭고기 교역에는 관세율 외에도 질병별 수입금지지역, 수입위험분석, 원산지 표시, 국내산 이력관리 규정이 적용된다. 검역이 원료육의 수입 가능 여부를 바꿀 수 있으므로 세율만으로 공급 조건을 설명할 수 없다. 아래 내용은 웹 조사 노트에서 법령 원문을 열어 확인한 조항에 한정한다(E13).</p>
+<div class="tw">
+<table>
+<caption>표 8. 확인한 닭고기 관련 국내 제도</caption>
+<thead><tr><th>제도</th><th>확인한 내용</th><th>관련 범위</th></tr></thead>
+<tbody>
+<tr><td>원산지 표시</td><td>식품접객업·집단급식소의 조리·판매·제공 닭고기와 식육가공품이 표시 대상이며 배달도 포함</td><td>원료육·가공품의 표시 방식</td></tr>
+<tr><td>축산물 이력관리</td><td>닭은 이력관리대상가축이고 국내산 닭 지육·정육·포장육이 정의에 포함</td><td>국내산 제품의 농장식별·도축 연결</td></tr>
+<tr><td>축산계열화사업</td><td>계열화사업자의 판매가격 보고 및 영업비밀 보호 범위 안의 공개 근거</td><td>업체별 가격 공개 범위</td></tr>
+<tr><td>가축전염병 예방</td><td>지정 수입금지지역에서 생산·발송되거나 경유한 지정검역물의 수입 제한; 해제에는 수출국 정부 요청에 따른 수입위험분석</td><td>질병 발생 뒤 금지·해제 시점</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 국가법령정보센터 원문을 확인한 Grok 조사 노트 A등급, E13. 조항은 「농수산물의 원산지 표시 등에 관한 법률 시행령」 제3조제5항제3호, 「가축 및 축산물 이력관리에 관한 법률」 제2조, 「축산계열화사업에 관한 법률」 제32조의2, 「가축전염병 예방법」 제32조다.</p>
+<p>이력관리 조문은 국내산과 수입산의 열거 범위가 다르다. 조사 노트가 확인한 정의에서는 국내산 닭고기가 국내산 이력축산물에 포함되지만, 수입산 이력축산물의 열거 대상은 수입 쇠고기·돼지고기다. 따라서 해당 <strong>조문에 수입 닭고기가 열거되어 있지 않다</strong>고만 말할 수 있다. 수입 닭고기에 다른 추적·검역 기록 의무가 전혀 없다고 주장하는 근거는 아니다(E13).</p>
+<p>브라질의 2025년 고병원성 조류인플루엔자 발생은 제도의 작동 사례다. USDA FAS GAIN은 2025년 5월 16일 브라질 상업 농장 발생과 5월 22일 당시 한국 등이 국가 단위 제한 대상이었다고 적는다. 수입 재개 시점, 제한 대상 지역, 제품별 예외는 이 보고서에 원문을 확보하지 못했다. 과거 발생 사실을 현재도 같은 제한이 유지된다는 뜻으로 쓰지 않는다(E13).</p>
+<p><strong>기본세율, FTA 양허세율, WTO 시장접근물량, 2026년 할당관세의 세율·물량·적용기간은 미확보다.</strong> 시도한 경로는 국가법령정보센터의 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」과 별표, 관세청·FTA 포털 및 조사 노트의 검색이다. 규정 페이지에서 별표 본문을 열지 못했으므로 HS 0207.11~0207.14·1602.32에 적용되는 숫자를 적지 않는다(E13). 할당관세가 시행됐다는 기사 제목만으로 세율이나 물량을 확정하지 않았다.</p>
+<p>법령 공포일, 실제 시행일, 통관 신고일은 서로 다른 날짜다. 검역에는 발생일, 수입금지 공고일, 해제일과 선적일도 있다. 이 날짜를 연결하지 않은 월별 통계만으로 무역량이나 가격 변화를 특정 조치에 귀속시킬 수 없다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>수출 성장 전망과 가공 전환을 구분한다</h2>
+<p class="lead">은행·기관 리포트는 원자료의 대체물이 아니라 시장을 해석한 문서다. <code>data/_raw/_banks/index.csv</code>에서 <code>items</code>에 <code>chicken</code>이 있는 자료를 확인하고, 본문을 연 자료의 주장만 여기에 옮겼다. 태국 은행의 생산 전망, 미국 협동조합은행의 가공 투자 분석, 브라질 은행의 현지 가격, RaboResearch의 세계 성장 전망은 서로 다른 지역·지표를 말한다(E14).</p>
+<div class="tw">
+<table>
+<caption>표 9. 닭고기 관련 은행·기관 자료의 확인된 요지</caption>
+<thead><tr><th>기관·자료·날짜</th><th>확인된 주장</th><th>읽을 때의 한계</th></tr></thead>
+<tbody>
+<tr><td>Krungsri Research, <em>Industry Outlook 2026–2028: Chilled, Frozen and Processed Chicken Industry</em>, 2025-10-31</td><td>태국 닭고기 생산이 2026~2028년 연 2.6~3.6% 증가해 358만~383만 톤에 이를 것으로 전망</td><td>태국 전망이며 한국 수입 전망은 아님</td></tr>
+<tr><td>CoBank, <em>U.S. chicken doubles down on value-add to meet demand</em>, 2026-01-16</td><td>미국에서 신규 1차 도계 설비보다 추가 가공·자동화 투자가 두드러진다고 분석</td><td>미국 산업 해석이며 한국 업체 실적은 아님</td></tr>
+<tr><td>Banco Bradesco, <em>Monitor Agro</em>, 2026-10-05</td><td>2026-10-02 상파울루 도계 닭 가격을 7.96헤알/kg으로 제시</td><td>브라질 현지 가격이며 한국 통관·소매가격과 다름</td></tr>
+<tr><td>RaboResearch, <em>Global poultry quarterly Q4 2026</em>, 2026-09-29</td><td>2026년 세계 가금 시장 성장 전망을 3.5%로 올림</td><td>웹 색인은 요약 공개, 세부 보고서 주장은 조사 노트 B등급</td></tr>
+<tr><td>USDA FAS, <em>Livestock and Poultry: World Markets and Trade</em>, 2026-04-09</td><td>2026년 세계 닭고기 생산 1억 1,070만 톤·수출 1,480만 톤 전망</td><td>RTC 기준 전망; FAOSTAT 생산 실적과 범위가 다름</td></tr>
+<tr><td>FAO, <em>Meat Market Review</em>, 2026-04</td><td>2025년 가금육 생산 1억 5,600만 톤, 교역 1,670만 톤으로 설명</td><td>가금육은 닭고기보다 넓은 범위</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>_banks/index.csv</code>와 각 은행의 저장된 원문·텍스트 변환본, Grok <code>chicken.note.md</code>의 USDA·FAO 원문 조사 A등급 및 Rabobank 조사 B등급, E11·E12·E14.</p>
+<p>Krungsri Research의 전망은 태국 생산·수출이 늘어날 수 있다는 방향을 제시한다. 같은 보고서는 냉장육·냉동육·조제품을 별도의 제품군으로 설명한다. 한국 산업에 적용할 때에는 태국 전체 수출 성장률이 한국행 HS 1602.32 수입 증가율이 되는 것으로 읽지 않는다. 2025년 한국 HS 1602.32의 태국 비중은 73.8%(2024년 74.4%)로 확인했지만, 한두 해 단면으로 태국 전체 수출 증가율과 한국행 수입 증가율의 대응을 판정하지 않는다(E04·E05·E14).</p>
+<p>CoBank의 논점은 가공 단계의 변화다. 미국의 큰 닭이 더 많은 가슴육을 내지만 부화율·생산설비와 관련된 제약도 있고, 투자가 추가 가공과 기술로 간다는 분석이다. 이 해석은 국내 생산업체의 설비 투자 방향을 질문하게 하지만, 한국에서 같은 현상이 일어났다는 근거는 아니다(E14).</p>
+<p>Banco Bradesco의 가격은 브라질 내 공급비용을 살피는 보조 신호다. 2026년 10월 2일 상파울루 도계 닭 7.96헤알/kg은 브라질 통화·현지 거래조건의 가격이다. 원/달러 환율과 운임을 반영하지 않은 현지 가격과 국내 소매가격의 차액은 같은 거래 단계의 가격 차이가 아니다(E14).</p>
+<p>RaboResearch의 세계 가금시장 성장 전망은 수요·공급의 방향에 대한 은행 판단이다. 이 보고서의 색인 HTML은 요약만 공개하고 상세 본문에는 로그인 안내가 있다. 세부 수치 가운데 Grok이 PDF 원문을 열어 기록한 것은 B등급으로 유지하며, 이 보고서에서는 세계 성장 전망만 제시했다(E14). 앞 절의 FAOSTAT·USDA PSD 실적과 전망을 이 은행 전망으로 대체하지 않는다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표</span>질병, 부위, 가격을 같은 달에 대조한다</h2>
+<p class="lead">닭고기 산업에서 공급 위험은 하나의 숫자로 나타나지 않는다. 국내 사육·도계는 생물학적 생산 과정이고, 수입은 품목별 통관과 검역의 결과다. 가격은 농가·도매·소매에서 다른 시점에 형성된다. 월별 관찰은 각 지표의 날짜와 제품 범위를 맞춰야 의미가 있다.</p>
+<p>첫째 위험은 <strong>조류인플루엔자와 검역 조치</strong>다. 브라질 2025년 상업 농장 발생은 수출국의 질병 정보가 한국의 수입 가능 여부와 연결되는 사례였다(E13). 국내 발생 건수·이동제한을 다룬 농식품부 보도자료 원문은 이번 조사에서 확보하지 못했다. 발생이 없었다는 뜻이 아니다. 시도 경로는 농식품부 보도자료 검색과 조사 노트다.</p>
+<p>둘째는 <strong>원료육과 조제품의 구성 변화</strong>다. 2026년 1~8월 HS 0207.14의 한국 수입량은 전년 같은 기간보다 23.2% 늘었고 HS 1602.32는 5.6% 늘었다. 0207.14는 1~4월 +13.9%, 5~8월 +34.0%로 비교 기준에 따라 증가 폭이 달라진다(E04). 두 품목이 다른 속도로 움직이면 총수입 중량만으로 외식·가공의 원료 선택을 판단하기 어렵다.</p>
+<p>셋째는 <strong>가격 단계의 불일치</strong>다. 2026년 9월 축산물품질평가원 가격은 도매 전체 3,257원/kg, 소매 5,647원/kg이었다(E09). 두 가격은 거래 단계와 대상이 달라 차액이 이윤을 뜻하지 않는다. 수입 단가는 달러/kg이고 국내 가격은 원/kg이며, 환율·운임·관세·제품 구성도 차이에 영향을 준다.</p>
+<p>넷째는 <strong>남은 자료 공백</strong>이다. 2025년 한국 신고 상대국별 수입은 HS6 수준에서 확인했지만, 이후 완료연도와 HS10별 상대국 변화, 현재 세율·할당관세 별표는 확보하지 못했다(E04·E05·E06·E13). 따라서 공급국 편중의 변화와 정책 효과를 한 해의 점유율만으로 판정하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 10. 정기 관찰 지표와 확인 순서</caption>
+<thead><tr><th>관찰 질문</th><th>자료·지표</th><th>주기</th><th>해석 조건</th></tr></thead>
+<tbody>
+<tr><td>국내 출하가 변하는가</td><td>KOSIS 닭 도축 수·육용계 사육 수</td><td>발표 시</td><td>도축 흐름과 사육 재고를 구분</td></tr>
+<tr><td>원료육 수입이 변하는가</td><td>관세청 HS 0207.11~14 월별 중량·금액 및 0207.14의 HS10별 구성</td><td>월</td><td>같은 달끼리 비교</td></tr>
+<tr><td>조제품 수입이 변하는가</td><td>관세청 HS 1602.32 월별 중량·금액</td><td>월</td><td>원료육과 별도 표시</td></tr>
+<tr><td>공급국이 바뀌는가</td><td>UN Comtrade 한국 신고 상대국별 동일 HS6·완료연도 원표</td><td>연</td><td>부분연도 순위를 연간 순위로 쓰지 않음</td></tr>
+<tr><td>국내 가격이 바뀌는가</td><td>축산물품질평가원 생계·도매·소매 가격</td><td>일·월</td><td>규격·발표 기준을 맞춤</td></tr>
+<tr><td>검역으로 수입 가능성이 바뀌는가</td><td>수출국 발생 발표·한국 수입금지·해제 공고</td><td>수시</td><td>발생일·공고일·통관일 분리</td></tr>
+<tr><td>세계 공급 방향은 어떤가</td><td>USDA PSD 전망·FAOSTAT 완료연도 생산·무역</td><td>발표 시</td><td>전망과 실적, 품목 범위 구분</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS·관세청·USDA PSD·FAOSTAT·축산물품질평가원 원자료와 Grok 조사 노트의 법령·질병 원문, E01~E06·E09·E13.</p>
+<h3>남은 물음</h3>
+<ul>
+<li>2025년과 이후 완료연도의 HS 0207.14·1602.32 공급국별 물량·점유율은 어떻게 달라졌는가?</li>
+<li>2025년 HS10 단면을 기준으로 원료육과 조제품의 완료연도별 단가·물량·제품 구성은 어떻게 변했는가?</li>
+<li>브라질 질병 발생일·한국의 수입금지 적용일·해제일·선적일을 대조하면 월간 통관 변화는 어떻게 설명되는가?</li>
+<li>법령 공포일·시행일·통관 신고일을 연결하면 관세·검역 조치의 적용 기간은 어떻게 달라지는가?</li>
+<li>현재 HS별 기본세율·FTA 양허세율·WTO 시장접근물량·2026년 할당관세 세율·물량·기간은 원문 별표상 얼마인가?</li>
+<li>축산물품질평가원 도매가격의 2020년 5월 기준 변경을 반영하면 장기 비교가 어떻게 달라지는가?</li>
+<li>같은 규격·기간의 실거래 자료와 환율·운임·관세·제품 구성 자료를 연결하면 국내 단계별 가격과 수입 단가의 차이는 어떻게 설명되는가?</li>
+<li>여러 해의 동일 HS·월·상대국 원표에서 냉동 절단육의 반복 계절성이 확인되는가?</li>
+<li>식품수급표와 육계·삼계 전용 도계 원표에서 1인당 섭취량과 육계·삼계·토종닭 등 세부 유형별 생산량을 확인할 수 있는가?</li>
+<li>도계 검사 원표·공시 재무·식약처 수입 신고 자료에서 업체별 가격·물량·품목 정의를 맞춰 수입업체 순위를 확인할 수 있는가?</li>
+<li>태국 전체 수출 전망과 한국행 HS 1602.32 수입의 관계는 2025년 상대국 자료와 이후 연도의 제품 구성 자료에서 확인되는가?</li>
+</ul>
+<p>2025년 단면은 확인했지만 연도 간 변화와 원인 판단은 남아 있다. 위 물음은 다음 자료 수집의 순서로 둔다.</p>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>국내 계열화 생산과 수입 절단육·조제품의 접점</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국 신고 수입의 중량 기준 공급국 비중은 HS 0207.14 냉동 절단육·설육에서 브라질 75.9%, 태국 18.9%, HS 1602.32 조제·저장 닭고기에서 태국 73.8%, 중국 24.3%다. HS 1602.32의 수입액은 1억 3,354만 달러로, 04절의 세 수입 코드 합계 6억 2,238만 달러 중 약 21.5%다. 아래 기업 규모는 회사 전체 또는 해당 사업의 실적이며 한국행 닭고기 점유율이 아니다. 국가별 비중의 분모는 각 HS6의 2025년 한국 수입 World 행이다.</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 공급국의 닭고기 수출·가공기업과 한국 연결</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>브라질</td><td>JBS·Seara Alimentos</td><td>생산·도계·가공</td><td>2025년 Seara 부문 순매출 91.7억 달러; 닭·돼지·가공품 포함</td><td>식약처 신고 제조사 SEARA ALIMENTOS LTDA 일치; JBS의 미국 사업 Pilgrim’s Pride 명의 신고도 103건</td><td><a href="https://www.sec.gov/Archives/edgar/data/1791942/000121390026034213/ea0282342-20f_jbsnv.htm">JBS 2025년 20-F·A</a></td></tr>
+<tr><td>브라질</td><td>BRF·MBRF</td><td>생산·도계·가공</td><td>2025년 MBRF의 BRF 사업 순매출 약 650억 헤알; 닭·돼지·가공품 포함</td><td>식약처 신고 제조사 BRF S.A.와 BRF 표기 확인</td><td><a href="https://www.mbrf.com/en/noticia/mbrf-reports-record-net-revenue-of-r-164-bilion-and-8-2-million-tons-in-2025/">MBRF 2025년 실적 발표·B</a></td></tr>
+<tr><td>브라질</td><td>Aurora Coop</td><td>협동조합·도계·수출</td><td>2025년 가금육 수출 매출 48억 헤알</td><td>식약처 신고 제조사 COOPERATIVA CENTRAL AURORA ALIMENTOS 일치; 회사가 한국을 수출 목적지로 명시</td><td><a href="https://auroracoop.com.br/aurora-coop-anuncia-efeitos-economicos-e-sociais-do-seu-desempenho-em-2025/">Aurora 2025년 실적 발표·B</a></td></tr>
+<tr><td>브라질</td><td>Lar Cooperativa</td><td>협동조합·가공·수출</td><td>2025년 협동조합 전체 순매출 232억 헤알 이상; 곡물·육류 등 포함</td><td>식약처 신고 제조사 LAR COOPERATIVA AGROINDUSTRIAL 일치</td><td><a href="https://www.lar.ind.br/lar-cooperativa-supera-r-232-bilhoes-em-receita-liquida-apos-crescer-144-em-2025/">Lar 2025년 결산 발표·B</a></td></tr>
+<tr><td>브라질</td><td>C.Vale</td><td>협동조합·도계·수출</td><td>2025년 닭고기 판매 37.05만 톤, 그중 61.22% 해외 판매</td><td>식약처 신고 제조사 C.VALE COOPERATIVA AGROINDUSTRIAL 일치</td><td><a href="https://www.cvale.com.br/demonstracoes/2025/web-files/pdf/Relato%CC%81rio%20Anual%202025%20-%20Final%20web.pdf">C.Vale 2025년 연차보고서·B</a></td></tr>
+<tr><td>태국</td><td>CPF·CPF Thailand</td><td>사료·사육·가공</td><td>2025년 CPF 전체 매출 5,711억 바트; 여러 국가·축종 포함</td><td>식약처 원육 신고 제조사 CPF(THAILAND) PUBLIC CO., LTD. 일치; 조제품 신고에도 CPF Thailand 제조사명 확인</td><td><a href="https://www.cpfworldwide.com/storage/annual_review/pdf_en_CPF-AR2025-EN-20260326_1774592670.pdf">CPF 2025년 연차보고서·B</a></td></tr>
+<tr><td>태국</td><td>GFPT</td><td>사육·도계·조리</td><td>2025년 연결 매출 188.4억 바트</td><td>식약처 신고 제조사 GFPT PUBLIC COMPANY LIMITED 일치</td><td><a href="https://www.gfpt.co.th/gfpt/files/ir.recent.publications/AnnualReport2025EN.pdf">GFPT 2025년 연차보고서·A</a></td></tr>
+<tr><td>태국</td><td>Thaifoods Group</td><td>사육·도계·가공</td><td>2025년 가금 사업 매출 199.7억 바트</td><td>식약처 신고 제조사 THAIFOODS GROUP PUBLIC CO., LTD. 일치</td><td><a href="https://market.sec.or.th/public/idisc/Download?FILEID=dat%2Fnews%2F202602%2F1202NWS180220262218103450E.pdf">태국 증권당국 2025년 실적공시·A</a></td></tr>
+<tr><td>중국</td><td>Shandong Fengxiang</td><td>사육·도계·가공</td><td>2024년 수출사업 매출 16.8억 위안; 최신 확인 연차보고서</td><td>연차보고서가 한국을 수출시장으로 명시; 식약처 양념육 신고에 제2·제3공장 제조사명 53건 확인</td><td><a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0424/2025042403203_c.pdf">홍콩거래소 2024년 연차보고서·A</a></td></tr>
+<tr><td>중국</td><td>Sunner Development·圣农发展</td><td>사육·도계·심가공</td><td>2025년 심가공 육제품 판매 44.76만 톤</td><td>사업보고서가 한국을 판매 지역으로 명시; 식약처 양념육 신고에 푸젠성 공장 제조사명 102건 확인</td><td><a href="https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-13/e9b4de33-9e36-4da2-a7b1-10ae9537bbc9.PDF">선전거래소 2025년 사업보고서·A</a></td></tr>
+<tr><td>중국</td><td>Chunxue Food·春雪食品</td><td>도계·조리품 가공</td><td>2025년 조리품 수출 2.68만 톤</td><td>확인된 공개 자료 없음</td><td><a href="https://static.cninfo.com.cn/finalpage/2026-04-23/1225150383.PDF">2025년 사업보고서·A</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 2024~2025년 기업 공시·발표와 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품 조회·A</a>, 2025년 10월~2026년 9월 신고 제조사명 대조. 식약처 ‘닭고기’ 품목 신고 건수는 Lar 870건, C.Vale 782건이다. 품목명 밖의 양념육 신고에서는 태국 Food For The World 제조사명 926건과 Sunner·Fengxiang 공장명이 확인됐다. <a href="https://www.maff.go.jp/aqs/tetuzuki/facility/pdf/heatlist-th-chicken.pdf">일본 농림수산성의 2026년 태국 가금육 열처리시설 목록·A</a>에도 Food For The World가 가공시설로 실려 있으나 공개 매출·수출량은 확인되지 않았다. Chunxue는 같은 기간 확인한 신고 제조사명에 없다.</p>
+<p>세계 기업별 수출량을 같은 기준으로 비교한 공개 원표는 확인되지 않았다. BRF는 2025년 <a href="https://www.brf-global.com/wp-content/uploads/2025/05/Product_Catalogue_KSA_01-05-2025_EN.pdf">자사 제품 목록·B</a>에서 스스로를 ‘세계 최대 가금육 수출기업’으로 소개했다. 이는 자체 설명이지 이 절의 기업 순위 판정은 아니다. BRF 주식의 Marfrig 편입은 2025년 9월 완료됐으며, 위 표에는 <a href="https://www.mbrf.com/en/noticia/mbrf-reports-record-net-revenue-of-r-164-bilion-and-8-2-million-tons-in-2025/">MBRF가 공표한 2025년 BRF 사업 실적·B</a>을 사용했다. JBS의 Seara와 Pilgrim’s Pride 역시 국제 주요 사업이지만 각 부문 매출을 한국행 닭고기 물량으로 환산할 수 없다.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처의 2025년 10월~2026년 9월 ‘닭고기’로 시작하는 품목명 신고는 11,277건, 수입업소 145곳이다. 표 11-2는 <strong>냉동 원육 신고 건수 기준</strong>이며 중량·금액·수입시장 점유율이 아니다. 식약처 신고 원자료에서 제조국과 수출국은 별도 항목이다. 같은 기간 ‘양념육’ 등 조제품 품목에서 제품명에 닭·치킨이 든 신고는 약 2,500건(태국 약 1,670건·중국 약 770건)이다. 이 범위의 최다 신고 업소는 (주)사세의 지점 합계 약 1,220건이며, 냉동 원육과 합치면 사세 신고는 2,082건이다. 두 제품 범위를 합치면 업소 순위가 달라진다. 2026년을 포함한 조회분은 진행연도 집계다.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 식약처 냉동 원육 신고 건수 상위 수입업소</caption>
+<thead><tr><th>수입업소</th><th class="num">신고 건수</th><th>주요 제조국 상위 2</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>(주)하이랜드푸드</td><td class="num">1,760</td><td>브라질 1,690·미국 38</td><td>냉동 다리 신고 최다</td></tr>
+<tr><td>(주)사세 부산지점</td><td class="num">864</td><td>브라질 747·태국 60</td><td>냉동 다리 신고 최다</td></tr>
+<tr><td>(주)엘에스티씨</td><td class="num">581</td><td>브라질 581</td><td>냉동 다리 신고 최다</td></tr>
+<tr><td>현대코퍼레이션홀딩스(주) 경기지사</td><td class="num">526</td><td>브라질 526</td><td>냉동 다리 신고</td></tr>
+<tr><td>(주)동해식품</td><td class="num">486</td><td>브라질 449·태국 37</td><td>냉동 다리 신고 최다</td></tr>
+<tr><td>대상(주) 유통씨아이씨</td><td class="num">390</td><td>브라질 382·태국 8</td><td>냉동 다리 신고 최다</td></tr>
+<tr><td>주식회사참트레이딩</td><td class="num">389</td><td>브라질 279·태국 108</td><td>냉동 다리 신고 최다</td></tr>
+<tr><td>(주)이마트</td><td class="num">359</td><td>브라질 331·태국 28</td><td>냉동 다리 신고 최다</td></tr>
+<tr><td>(주)더맛있는하루</td><td class="num">343</td><td>브라질 138·덴마크 87</td><td>다리·날개 신고</td></tr>
+<tr><td>대한제당(주)서울사무소</td><td class="num">323</td><td>브라질 323</td><td>냉동 다리 신고</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품 조회·A</a>, 2025년 10월~2026년 9월, 업소명 표기 변형을 합친 신고 건수. 주요 제조국은 각 업소의 신고 건수 상위 두 국가를 그대로 표시했다.</p>
+<p>국내 도계와 수입 신고는 분모가 다른 사업 지표다. 2025년 업체별 도계 표에서 하림은 2.024억 수(19.9%), 마니커는 0.872억 수(8.6%), 동우팜투테이블은 0.766억 수(7.5%)였다. 아래 매출 역시 각 공시의 회사·사업부문 범위이므로 닭고기 수입 점유율로 읽지 않는다. 공개 규모를 확인하지 못한 신고 상위 업소의 매출은 추정하지 않았다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 국내 도계·수입·가공·유통기업의 공개 규모</caption>
+<thead><tr><th>기업·역할</th><th>2025년 규모 지표</th><th>범위·해석</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>하림·도계·가공</td><td>연결 매출 약 1조 4,400억 원; 육가공 약 2,297억 원</td><td>육가공은 회사 공시 부문</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001161/20260318005408/11011.htm">사업보고서·A</a></td></tr>
+<tr><td>마니커·도계·가공</td><td>연결 매출 약 3,689억 원</td><td>매출 구성: 부분육 42.5%, 통닭 34.5%, 염장육 16.0%</td><td><a href="https://kind.krx.co.kr/external/2026/03/13/001899/20260313004671/11011.htm">사업보고서·A</a></td></tr>
+<tr><td>동우팜투테이블·도계·가공</td><td>연결 매출 약 3,255억 원</td><td>회사 전체</td><td><a href="https://kind.krx.co.kr/external/2026/03/19/000786/20260319003474/11011.htm">사업보고서·A</a></td></tr>
+<tr><td>하이랜드푸드·수입·도매</td><td>그룹사 매출 1조 2,810억 원</td><td>신고 법인 단독 매출이 아니며 우육·돈육 등 포함</td><td><a href="https://highlandfood.co.kr/default/highlandfoods/highlandfoods.php">회사 공개자료·B</a></td></tr>
+<tr><td>사세·수입·가공</td><td>매출 약 3,275억 원</td><td>회사 전체; NICE 재무정보 재게시</td><td><a href="https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/czdRQ3VaMTVFclpDSkN6c2UybUNwUT09/company_nm/%28%EC%A3%BC%29%EC%82%AC%EC%84%B8">재무정보 재게시·C</a></td></tr>
+<tr><td>현대코퍼레이션홀딩스·수입·유통</td><td>연결 매출 2,502억 원</td><td>농축산물 외 사업 포함</td><td><a href="https://www.hyundaicorpholdings.com/ir/">회사 경영정보·B</a></td></tr>
+<tr><td>대상·식품 제조·유통</td><td>별도 매출 약 3조 5,289억 원</td><td>육가공 품목 매출 약 2,322억 원도 닭고기 전용은 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/000923/20260318004497/11011.htm">사업보고서·A</a></td></tr>
+<tr><td>이마트·소매·유통</td><td>연결 매출 28조 9,704억 원</td><td>유통사업 전체</td><td><a href="https://company.emart.com/ko/investor/finance.do">회사 재무정보·B</a></td></tr>
+<tr><td>대한제당·수입·축산유통</td><td>연결 매출 약 1조 3,563억 원</td><td>축산유통 약 3,741억 원은 수입육·수산물 등 포함</td><td><a href="https://kind.krx.co.kr/external/2026/03/19/000700/20260319003138/11011.htm">사업보고서·A</a></td></tr>
+<tr><td>동원홈푸드·식자재·축육유통</td><td>매출 약 2조 6,433억 원</td><td>축육 부문 약 9,733억 원은 닭고기 전용이 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001675/20260318007758/11011.htm">동원산업 사업보고서·A</a></td></tr>
+<tr><td>아워홈·급식·식자재</td><td>별도 매출 2조 2,071억 원</td><td>급식·식자재 사업 전체</td><td><a href="https://kind.krx.co.kr/external/2026/05/14/001476/20260514003206/10085.htm">한화갤러리아 분할 증권신고서·A</a></td></tr>
+<tr><td>삼성웰스토리·급식·식자재</td><td>연결 매출 3조 3,281억 원</td><td>급식·식자재 사업 전체</td><td><a href="https://www.samsungwelstory.com/story/aboutUs.do">회사 공개자료·B</a></td></tr>
+<tr><td>혜성프로비젼·축육유통</td><td>매출 약 5,086억 원</td><td>회사 전체; 냉동 원육 신고 124건</td><td><a href="https://kind.krx.co.kr/external/2026/03/27/002306/20260327004783/11011.htm">대상홀딩스 사업보고서·A</a></td></tr>
+<tr><td>맘스터치앤컴퍼니·외식</td><td>연결 매출 4,790억 원</td><td>프랜차이즈 사업 전체; 냉동 원육 신고 162건</td><td><a href="https://localsegye.co.kr/amp/1065569149535046">회사 발표를 인용한 보도·C</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 2025년 공시·회사 자료·보도 및 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품 조회·A</a>. 매출과 신고 건수는 기간·단위·제품 범위가 달라 서로 나누어 점유율을 계산하지 않았다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 닭고기의 생산부터 소비까지</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>종계·사육</td><td>농가·계열화사업자</td><td>2025년 국내 생산 92.7만 톤 추정</td><td>사육 계약·생계 거래</td><td>질병·사료비·사육 성적</td></tr>
+<tr><td>1차 가공·도계</td><td>도계장·절단업체</td><td>2024년 닭 도축 약 10.22억 수; 2025년 하림 도계 2.024억 수</td><td>도계장 납품·출고 계약</td><td>방역·도계 수율·냉장</td></tr>
+<tr><td>수출·국제무역</td><td>브라질·태국 원육 및 태국·중국 조제품 공급자</td><td>2025년 HS 0207.14 수입 21.55만 톤</td><td>수출 계약·선적 조건</td><td>수출국 질병·환율·운임</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·검역당국·식약처</td><td>2025년 USDA PSD 수입 24.5만 톤 추정</td><td>수입 계약·통관 비용</td><td>금지지역 지정·검사 지연</td></tr>
+<tr><td>국내 가공</td><td>절단·염지·조리 업체</td><td>하림 2025년 육가공 매출 약 2,297억 원</td><td>가공품 납품 계약</td><td>원료 규격·식품안전·가동률</td></tr>
+<tr><td>도매·유통</td><td>식자재업체·냉장냉동 물류·대리점</td><td>2026년 9월 도매 월평균 3,257원/kg</td><td>도계장·도매 거래</td><td>냉동 보관비·재고 손실</td></tr>
+<tr><td>소매·외식</td><td>대형마트·식당·급식·프랜차이즈</td><td>2026년 9월 소매 월평균 5,647원/kg</td><td>매장 판매가·외식 메뉴가</td><td>원산지 표시·수요 변화</td></tr>
+<tr><td>소비</td><td>가계·외식·급식 이용자</td><td>2025년 국내 소비 111.1만 톤 추정</td><td>최종 구매</td><td>가격 부담·안전 신뢰</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://apps.fas.usda.gov/psdonline/circulars/livestock_poultry.pdf">USDA 2026년 4월 수급표·A</a>, <a href="https://kind.krx.co.kr/external/2026/03/19/000786/20260319003474/11011.htm">동우팜투테이블 2025년 사업보고서·A</a>, <a href="https://kind.krx.co.kr/external/2026/03/18/001161/20260318005408/11011.htm">하림 2025년 사업보고서·A</a>, <a href="https://www.ekapepia.com/v3/price/livestock/chicken/distrPrice.do">축산물품질평가원 가격·A</a>, 03~05절의 동일 지표·단위. 2026년 가격은 9월 월평균이며 연간 확정값이 아니다.</p>
+<p>도계 후 부위 분할·염지·조리와 냉장냉동 유통·소매 서비스에서 제품 가치가 더해진다. 2025년 HS 1602.32는 세 수입 코드 합계에서 금액 약 21.5%, 중량 약 11.9%를 차지했고, 평균 통관 단가는 4.57달러/kg으로 HS 0207.14의 2.26달러/kg보다 높았다. 이 차이는 제품 구성이 다른 두 세번의 평균 차이지 가공업자의 이익이나 동일 원료의 가공 마진이 아니다. 하림의 육가공 부문 매출은 국내 가공 사업의 한 규모 지표지만 산업 전체 부가가치는 아니다. 생계·도매·소매 가격의 차액도 규격과 비용이 달라 유통 이윤으로 계산하지 않는다.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 닭고기 산업의 주요 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>농림축산식품부·농림축산검역본부·식약처·관세청·국립농산물품질관리원</td><td>가축방역, 수입검역·식품검사, 통관, 원산지 표시 관리</td><td>수입 가능 범위와 비용·표시 정보를 좌우</td></tr>
+<tr><td>해외 정부</td><td>브라질 농업축산부(MAPA)·태국 축산개발청(DLD)</td><td>질병 방역, 수출 작업장·증명 관리</td><td>작업장 승인과 교역 지속성에 영향</td></tr>
+<tr><td>생산자·단체</td><td>대한양계협회·한국육계협회·계약사육 농가</td><td>생산자·계열화사업자 의견 수렴과 사육</td><td>사육 보수·방역비·계약 조건에 관심</td></tr>
+<tr><td>수출·가공기업</td><td>JBS·Seara, MBRF·BRF, Aurora, CPF, GFPT, 중국 가공업체</td><td>도계·절단·조리·수출</td><td>시장 접근과 검역 승인에 관심</td></tr>
+<tr><td>수입·유통기업</td><td>하이랜드푸드·사세·이마트·식자재업체</td><td>수입 계약, 냉동 보관, 가공·판매</td><td>조달 가격과 공급 연속성에 관심</td></tr>
+<tr><td>소비자·시민사회</td><td>소비자·한국소비자원</td><td>가격·안전·원산지 정보 확인</td><td>구매 선택과 표시·안전 감시에 영향</td></tr>
+<tr><td>국제기구·인증</td><td>세계동물보건기구(WOAH)</td><td>조류인플루엔자 통보·동물보건 국제기준</td><td>국가별 방역·무역 조치의 판단 근거 제공</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.naqs.go.kr/hp/contents/contentsTab.do?menuId=MN30559">농관원 원산지 표시 안내·A</a>, <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품정보마루·A</a>, <a href="https://www.gov.br/agricultura/pt-br/assuntos/sanidade-animal-e-vegetal/saude-animal/exportacao">브라질 MAPA 수출 안내·A</a>, <a href="https://www.chicken.or.kr/ch_tem/sub10.php">한국육계협회 소개·B</a>, <a href="https://www.poultry.or.kr/">대한양계협회·B</a>, <a href="https://www.kca.go.kr/kca/sub.do?cate=00000365&amp;menukey=6105&amp;mode=list">한국소비자원·A</a>, <a href="https://www.woah.org/en/disease/avian-influenza/">WOAH 조류인플루엔자 안내·A</a>, 기업별 근거는 표 11-1~11-3.</p>
+<p>국내 사육농가는 계약의 안정성과 방역 부담 배분에, 수입·외식업체는 원료육의 가격과 조달 선택 폭에 이해관계가 있다. 수출국의 질병 발생 지역별 교역 허용 요구와 한국 방역당국의 위험 차단 판단은 제한 범위를 놓고 엇갈릴 수 있다. 판매자의 가공·편의성 가격 설정과 소비자의 가격·원산지·안전 정보 요구는 최종 판매 단계에서 만난다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황 — 원장에 있는 자료와 없는 자료를 구분한다</h2>
+<p class="lead">수집기 현황은 <code>rawbulk.report_delta.coverage("chicken")</code>의 출력을 읽기 전용으로 확인했다. 행 수는 각 수집 파일의 행 수이지 통계상 국가 수나 연간 관측 수가 아니다. USDA PSD 분할 파일은 자동 현황 함수가 기간 열을 찾지 못했지만 원자료의 <code>Market_Year</code>를 직접 확인하면 2026년까지 있다. 2026년 값은 전망이다(E15).</p>
+<div class="tw">
+<table>
+<caption>표 11. 닭고기 수집기 현황(2026-10-07 확인)</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간·상태</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">945</td><td>2026-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">104</td><td>2026-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">28,691</td><td>2026년</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">60</td><td>2026년</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">211</td><td>2026.08</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">4,160</td><td>202607</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">10,552</td><td>202606</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">9,806</td><td>2025년</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">41,920</td><td>2024년</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">52,686</td><td>2024년</td></tr>
+<tr><td>원자료 품목 분할</td><td>usda_psd_all</td><td class="num">34,817</td><td>자동 현황: 기간 열 없음; 직접 확인: Market_Year 2026</td></tr>
+<tr><td>품목 전용 원자료</td><td>cepea_frango</td><td class="num">—</td><td>manifest 상태 <code>new</code></td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">5,726</td><td>2025년</td></tr>
+<tr><td>월간 수집</td><td>comtrade_mirror</td><td class="num">1,266</td><td>2025년</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">215</td><td>2026.08</td></tr>
+<tr><td>월간 수집</td><td>kamis</td><td class="num">414</td><td>2026-09-30</td></tr>
+<tr><td>월간 수집</td><td>kosis</td><td class="num">최신 파일 11</td><td>2024년; CSV 2개</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline/rawbulk/report_delta.py</code>의 <code>coverage("chicken")</code> 출력 및 USDA PSD 원자료의 <code>Market_Year</code> 직접 확인, E15. <code>cepea_frango</code>의 <code>new</code>는 원장의 상태 문자열이지 가격 관측치가 확보됐다는 뜻이 아니다.</p>
+<h3>자료 검토 범위</h3>
+<p>품목 Drive 폴더의 입력 목록 5행을 각각 열어 판정했다. 2025년 Comtrade 아카이브는 한국 신고·세계 상대 합계 행을 관세청 및 현행 분할 파일과 맞대어 04절에 반영했다. 거울통계 파일에도 한국 신고 상대국 행이 있어 2025년 태국·중국 등 선택 상대국을 대조하는 데 반영했다. 다만 브라질 행이 없어 전체 공급국 구성은 UN Comtrade 공개 API로 확인했다. 나머지 파일은 산업 실적으로 검증되지 않은 기업 전략·시나리오가 섞인 대시보드, 더 오래된 부분 수집본, 평년 행이 섞인 KAMIS 예전 파일이다. 온라인 전용으로 열지 못한 행은 없었다(E17).</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 검토 원장 요약</caption>
+<thead><tr><th>판정·사유</th><th class="num">파일 수</th><th>처리</th></tr></thead>
+<tbody>
+<tr><td>반영: Comtrade 완료연도 한국 합계 대조</td><td class="num">1</td><td>04절</td></tr>
+<tr><td>불필요: 기업 전략·시나리오가 섞인 대시보드</td><td class="num">1</td><td>산업 실적으로 전재하지 않음</td></tr>
+<tr><td>반영: 선택 상대국의 한국 신고 수입 대조(브라질 행 없음)</td><td class="num">1</td><td>04절·부록 A</td></tr>
+<tr><td>불필요: 더 오래된 3~4월 관세청 부분 수집본</td><td class="num">1</td><td>현행 3~8월 파일 확인</td></tr>
+<tr><td>불필요: «평년»이 포함된 예전 KAMIS 파일</td><td class="num">1</td><td>현행 평년 제외 파일 확인</td></tr>
+<tr><td>미검토</td><td class="num">0</td><td>없음</td></tr>
+<tr class="tot"><td>합계</td><td class="num">5</td><td>원장 전 행 판정</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/chicken.csv</code>의 입력 행과 Drive 상대경로의 실제 파일 5개 직접 열람, E17. 상세 판정은 <code>01_아카이브_원장.csv</code>에 적었다.</p>
+<p>이 검토 범위는 <strong>제공된 입력 목록 5행</strong>이다. 별도 은행·기관 리포트 색인에는 <code>items=chicken</code>인 자료가 더 있으며, 그중 본문을 확인하고 사용한 자료는 09절에 따로 표시했다. 아카이브 대시보드와 은행 리포트가 품목 Drive 원장의 5행에 없다는 이유로 존재하지 않는다고 주장하지 않는다.</p>
+</section>
+
+<div class="wrap">
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 닭고기 산업 해부: 국내 도계와 수입 부분육이 만드는 시장</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판 검토용)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · FAOSTAT, USDA PSD, KOSIS, 관세청, UN Comtrade 원자료와 출처 등급을 표시한 웹 조사 노트</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>주요 계산의 파일·필터·식은 30_근거_수치.md에 적었다. 자동 숫자대조의 unsupported 건수는 이 읽기 전용 세션에서 확인하지 않았다.</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>국내 닭 도축·닭고기 생산·소비, HS 0207.11~0207.14 원료육과 HS 1602.32 조제·저장 닭고기. KOSIS «닭» 도축 계열에서 육계·삼계·토종닭 등 세부 유형은 분리하지 않는다.</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>2025년 이후의 공급국·HS10 구성 변화, 육계·삼계·토종닭 등 세부 유형별 도계·생산, 수입업체별 물량, 현행 HS별 관세·할당관세 별표, 국내 AI 발생 원문은 확보하지 못했다. 2026년 무역·수급 수치는 부분연도 또는 전망이다.</span></div>
+</footer>
+</div>
+

@@ -25,7 +25,8 @@ import {
   octopusPreparedTradeRows,
 } from '@/components/market-understanding/OctopusCharts';
 import { getOctopusIndustryData } from '@/lib/data/octopus-industry';
-import { isActiveMenu, getDashboardTitle, SIDEBAR_SECTIONS } from '@/lib/dashboard-registry';
+import { isActiveMenu, getDashboardTitle } from '@/lib/dashboard-registry';
+import { industryItem } from '@/lib/data/industry-registry';
 import {
   OCTOPUS_BRIEFING_POINTS,
   OCTOPUS_NARRATIVES,
@@ -102,8 +103,8 @@ describe('문어 산업 페이지 - 구조', () => {
     expect(isActiveMenu('octopus-industry')).toBe(true);
     expect(isActiveMenu('octopus')).toBe(false);
     expect(getDashboardTitle('octopus-industry')).toBe('문어');
-    const understanding = SIDEBAR_SECTIONS.find((s) => s.section === 'understanding')?.items.map((i) => i.key) ?? [];
-    expect(understanding.indexOf('octopus-industry')).toBe(understanding.indexOf('pollock-industry') + 1);
+    // 2026-10-12: 메뉴는 주력 5 고정 + 분류 접기. 문어는 「수산」 그룹에서 전용 경로로 간다.
+    expect(industryItem('octopus')).toMatchObject({ category: '수산', href: '/octopus-industry' });
     const page = readFileSync(join(process.cwd(), 'app/page.tsx'), 'utf8');
     expect(page).toContain("'octopus-industry': <OctopusIndustryDashboard />");
     // 옛 라우트는 404 그대로

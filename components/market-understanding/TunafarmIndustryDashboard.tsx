@@ -1,198 +1,97 @@
 /**
  * 「시장 이해 > 참치 양식」.
  *
- * 골격은 `CommodityIndustryDashboard` 가 갖고 있다. 여기는 히어로 수치와
- * **발행본에서 옮긴 표·콜아웃 배치**를 정한다.
+ * 연육처럼 손으로 만든 위젯·차트가 없다. 서술·표는 전부 세계 참치 양식 조사 제1보 원문
+ * (`docs/evidence/industry-tunafarm-2026-10/보고서.html`)에서 추출한 것이고, 여기서 손으로
+ * 정하는 것은 단계 제목·질문과 히어로 수치(원문 표지 리터럴)뿐이다.
  *
- * 표는 손으로 옮기지 않는다. 발행본 HTML 에서 추출한 JSON(`lib/data/tunafarm-industry.ts`)을
- * 장 단위로 읽어 그대로 낸다 — 표 46개·콜아웃 19개다. 처음엔 서술만 옮겼는데
- * 사용자가 「보고서와 차이가 크다」고 지적했다. 옳은 지적이었다.
- *
- * ⚠ 히어로 주수치는 **FAO 2024 세계 양식 생산량**이다. 다만 이것은 세계 전수가 아니라
- *   **보고한 나라들의 합**이다 — 2024년 결측이 10항목이고 2015년 5개에서 늘었다.
+ * ⚠ 히어로 주수치는 **FAO 2024 세계 양식 생산량**이다. 세계 전수가 아니라 **보고한 나라들의 합**이다.
  * ⚠ 인가 입식 상한(75,199.84 t)과 동부 총허용어획량(48,403 t)은 **층이 다르다**.
- * ⚠ 표의 숫자를 다시 계산하지 않는다. 발행본이 정본이고, 그 값들은 적대 검증
- *   세 축의 P0 아홉을 반영한 뒤의 값이다.
  */
 'use client';
 
 import React from 'react';
 
-import {
-  getTunafarmChapter,
-  type TunafarmCallout,
-  type TunafarmTable,
-} from '@/lib/data/tunafarm-industry';
-import {
-  TUNAFARM_BRIEFING_POINTS,
-  TUNAFARM_CHAPTER_BY_STAGE,
-  TUNAFARM_NARRATIVES,
-  TUNAFARM_SOURCE_NOTES,
-} from '@/lib/tunafarm-industry-content';
-import styles from './TunaIndustryDashboard.module.css';
-import CommodityIndustryDashboard, {
-  type ChartSlot,
-  type CommoditySpec,
-} from './CommodityIndustryDashboard';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+import type { HeroKpi } from '../v2/HeroZone';
+import { dropEmptyLabel, industryInlineReport, ReportTableView } from './IndustryReportFlow';
+import CommodityIndustryDashboard, { type CommoditySpec } from './CommodityIndustryDashboard';
 
 /** 축양 페이지 강조색. 지중해 가두리의 남색 계열. */
 const TUNAFARM_ACCENT = '#2f6f8f';
 
 const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '세계 참치 양식 조사 제1보 2026-09-13' };
 
-/** 숫자·단위만 든 칸은 오른쪽으로 붙인다. 한글이 섞이면 왼쪽. */
-const NUMERIC = /^[\d,.\s%+\-~·()t€$/]*$/;
-
-function ReportTable({ table, label }: { table: TunafarmTable; label: string }) {
-  return (
-    <div className={`${styles.factWrap} ${styles.factWrapScroll}`} tabIndex={0} role="region" aria-label={label}>
-      <table className={styles.factTable}>
-        <thead>
-          <tr>
-            {table.cols.map((c, i) => (
-              <th key={`${c}-${i}`} scope="col">
-                {c}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {table.rows.map((row, i) => (
-            <tr key={i} style={row.emph ? { fontWeight: 500 } : undefined}>
-              {row.cells.map((cell, j) => (
-                <td key={j} className={j > 0 && NUMERIC.test(cell) ? styles.factNum : undefined}>
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function ReportCallout({ callout }: { callout: TunafarmCallout }) {
-  // 색은 테마별 토큰(--mu-callout-*) — 라이트 값을 다크에 그대로 쓰면 2.0~3.8:1 이었다
-  const border =
-    callout.kind === 'warn'
-      ? 'var(--mu-callout-warn)'
-      : callout.kind === 'good'
-        ? 'var(--mu-callout-good)'
-        : 'var(--mu-callout-info)';
-  return (
-    <div
-      style={{
-        borderLeft: `3px solid ${border}`,
-        background: 'rgba(80,158,227,0.05)',
-        padding: '0.85rem 1.1rem',
-        margin: '0 0 0.9rem',
-        borderRadius: '0 4px 4px 0',
-      }}
-    >
-      <div
-        style={{
-          fontSize: '0.72rem',
-          letterSpacing: '0.08em',
-          color: border,
-          fontWeight: 600,
-          marginBottom: '0.35rem',
-        }}
-      >
-        {callout.head}
-      </div>
-      <div style={{ fontSize: '0.86rem', lineHeight: 1.75, color: 'var(--mu-callout-body)' }}>{callout.body}</div>
-    </div>
-  );
-}
+/** 히어로 수치는 원문 표지 타일 네 개 그대로다. 렌더 테스트가 원문 텍스트와 대조한다. */
+export const TUNAFARM_HERO_KPIS: HeroKpi[] = [
+  { label: '2024 세계 양식 생산 (보고한 나라 합)', value: 68443, unit: '(톤)', accent: TUNAFARM_ACCENT },
+  { label: '2024 산지 출하 단가', value: 13.52, unit: '(달러/kg)', decimals: 2 },
+  { label: '일본 인공종묘 유래 출하 2024', value: 405, unit: '(톤)' },
+  { label: '모로코 축양 증육률', value: 69, unit: '(%)' },
+];
 
 /**
- * 단계별 표·콜아웃 슬롯.
- *
- * 발행본의 장 하나가 단계 하나에 대응한다. 표는 발행본 순서를 지키고,
- * 그 장의 콜아웃은 표 뒤에 한 덩어리로 붙인다 — 발행본에서는 표 사이에
- * 섞여 있지만 골격이 그 자리를 주지 않으므로 장 끝에 모은다.
+ * 단계 순서·제목·질문(손 작성). 서술·표는 전부 원문에서 온다.
+ * 절 → 단계 매핑은 `scripts/build_report_tables.py` SPECS.tunafarm 에 있다(요지는 Ⅰ장과 한 단계).
  */
-const CHART_SLOTS: Record<string, ChartSlot[]> = (() => {
-  const out: Record<string, ChartSlot[]> = {};
-  for (const n of TUNAFARM_NARRATIVES) {
-    const chapterName = TUNAFARM_CHAPTER_BY_STAGE[n.key];
-    if (!chapterName) continue;
-    const chapter = getTunafarmChapter(chapterName);
-    const slots: ChartSlot[] = chapter.tables.map((t, i) => {
-      const title = `${chapterName} 표 ${i + 1} — ${t.title}`;
-      return {
-        title,
-        caption: t.caption,
-        telemetry: REPORT_SYNC,
-        span: 'full' as const,
-        render: () => <ReportTable table={t} label={title} />,
-      };
-    });
-    if (chapter.callouts.length > 0) {
-      slots.push({
-        title: `${chapterName} — 읽는 법`,
-        caption:
-          '발행본의 경고·확정 상자를 장 끝에 모았다. 어느 숫자를 어떻게 읽으면 안 되는지가 여기 있다.',
-        telemetry: REPORT_SYNC,
-        span: 'full' as const,
-        render: () => (
-          <div>
-            {chapter.callouts.map((c, i) => (
-              <ReportCallout key={i} callout={c} />
-            ))}
-          </div>
-        ),
-      });
-    }
-    if (slots.length > 0) out[n.key] = slots;
-  }
-  return out;
-})();
+export const TUNAFARM_STAGES: Array<{ key: string; title: string; question: string }> = [
+  { key: 's01', title: '경계 - 「참치 양식」에 네 가지가 들어 있다', question: '기른 것인가, 잡아서 살찌운 것인가' },
+  { key: 's02', title: '층 - 네 숫자가 서로 다른 것을 센다', question: '어느 숫자를 생산량이라 부를 수 있는가' },
+  { key: 's03', title: '명부 - 인가된 가두리는 어디에 있나', question: '누가 기를 수 있도록 허가받았는가' },
+  { key: 's04', title: '통계 - 0이 아니라 결측이다', question: '왜 어떤 나라는 생산량이 0으로 보이는가' },
+  { key: 's05', title: '값 - 물량은 버티는데 단가가 무너졌다', question: '2022년 이후 산지 단가는 왜 떨어졌는가' },
+  { key: 's06', title: '원가 - 사료가 아니라 종묘다', question: '축양의 돈은 어디로 가는가' },
+  { key: 's07', title: '기업 - 기르는 회사와 사는 회사', question: '누가 소유하고 누가 사 가는가' },
+  { key: 's08', title: '한국 - 지중해를 일본을 지나 산다', question: '한국은 무엇을 어디서 사는가' },
+  { key: 's09', title: '축양사 - 누가 기르고 한국은 누구에게서 사나', question: '어느 농장이 어느 한국 회사에 파는가' },
+];
+
+const REPORT_STAGES = new Map(proseStages('tunafarm').map((stage) => [stage.key, stage]));
+
+export const TUNAFARM_REPORT_NARRATIVES = TUNAFARM_STAGES.map(({ key, title, question }, index) => {
+  const stage = REPORT_STAGES.get(key);
+  if (!stage) throw new Error(`참치 양식 보고서에 ${key} 단계 서술이 없다`);
+  return industryInlineReport('tunafarm', {
+    ...stage,
+    numeral: String(index + 1).padStart(2, '0'),
+    title,
+    question,
+    paragraphs: stage.paragraphs.map(dropEmptyLabel),
+    flow: stage.flow?.map((item) => item.kind === 'head' ? { ...item, text: dropEmptyLabel(item.text) } : item),
+  }, {
+    telemetry: REPORT_SYNC,
+    source: '세계 참치 양식 조사',
+    renderTable: (table) => <ReportTableView table={table} />,
+  });
+});
+
+/** 리드(p.lead)가 없는 장(요지·Ⅲ·Ⅴ·Ⅷ)은 첫 문단·목록 줄을 리드로 쓴다. */
+export const TUNAFARM_REPORT_BRIEFING = proseBriefing('tunafarm', { firstBlock: true });
 
 const SPEC: CommoditySpec = {
   // 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(2026-09-10 사용자 지시).
   continuous: true,
   key: 'tunafarm',
+  reportHref: '/reports/industry/tunafarm-2026-10.html',
   title: '참치 양식',
   subtitle:
     '세계 참치 축양 해부 · 넣은 무게와 판 무게를 다른 기관이 센다 - 경계·층·명부·통계·값·원가·기업·한국·축양사',
   accent: TUNAFARM_ACCENT,
-  primaryKpi: {
-    label: '2024 세계 양식 생산 (보고한 나라 합)',
-    value: 68443,
-    unit: '(톤)',
-    accent: TUNAFARM_ACCENT,
-  },
-  secondaryKpis: [
-    { label: '2024 산지 출하 단가', value: 13.52, unit: '(달러/kg)', decimals: 2 },
-    { label: '일본 인공종묘 유래 출하 2024', value: 405, unit: '(톤)' },
-    { label: '2025 한국 참다랑어 수입', value: 7168.3, unit: '(톤)', decimals: 1 },
-  ],
+  primaryKpi: TUNAFARM_HERO_KPIS[0],
+  secondaryKpis: TUNAFARM_HERO_KPIS.slice(1),
   stripItems: [
-    { eyebrow: '기준', title: '거의 전부가 축양이다', body: '야생 개체를 잡아 가두리에서 살찌운다' },
-    { eyebrow: '명부', title: '인가 양식장', body: '대서양 74곳 · 남방 농장 8곳(허가 10건)' },
-    { eyebrow: '상한', title: '연간 야생 입식 상한', body: '75,199.84 t — 총허용어획량과 다른 층' },
-    { eyebrow: '원가', title: '종묘 대 사료', body: '1.85배 — 사료가 아니라 종묘다' },
-    { eyebrow: '한국', title: '일본 경유 대서양참다랑어', body: '987 / 1,207건 (81.8%)' },
-    { now: true, eyebrow: '지금', title: '명부 조회가 고장나 있다', body: '결과 페이지 HTTP 500 (2026-09-13)' },
+    // 히어로 띠도 원문 표지 값이다.
+    { now: true, eyebrow: '상한', title: '입식 상한', body: '75,199.84 t (인가 명부 74곳 합계)' },
+    { eyebrow: '쿼터', title: '동부 TAC', body: '48,403 t (2026~2028년)' },
+    { eyebrow: '원가', title: '종묘 대 사료', body: '1.85 배 (2022년 EU 축양)' },
+    { eyebrow: '자료', title: '본문·표', body: '세계 참치 양식 조사 제1보 2026-09-13' },
   ],
-  briefing: TUNAFARM_BRIEFING_POINTS,
-  narratives: TUNAFARM_NARRATIVES,
-  chartSlots: CHART_SLOTS,
-  sourceNotes: TUNAFARM_SOURCE_NOTES,
-  sourceMeta: [
-    '세계 참치 양식 조사 제1보 2026-09-13',
-    'FAO FishStat 2026.1.0',
-    'ICCAT 명부 2023-09-22 보존본',
-    'CCSBT 명부 2026-09-13',
-    '일본 수산청 2026-02',
-    '식약처 원장 2026-09-11',
-    '관세청 2026-09',
-  ].join(' · '),
+  briefing: TUNAFARM_REPORT_BRIEFING,
+  narratives: TUNAFARM_REPORT_NARRATIVES,
+  chartSlots: {},
+  sourceNotes: [],
+  sourceMeta: '본문·표 · 세계 참치 양식 조사 제1보 2026-09-13',
 };
-
-export const TUNAFARM_CHART_SLOTS = CHART_SLOTS;
 
 export interface TunafarmIndustryDashboardProps {
   heroOnly?: boolean;

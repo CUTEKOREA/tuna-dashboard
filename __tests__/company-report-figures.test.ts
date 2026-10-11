@@ -21,7 +21,7 @@ import { REPORT_TABLE_COMPANIES } from '@/lib/data/company-report-tables';
 
 const 그림있는회사 = ['frinsa', 'thaiunion', 'albacora', 'fcf', 'itochu', 'bolton', 'jealsa', 'jais'];
 // 품목 해부보고서. 그림 틀이 회사 편과 달라 원문 마크업 조각(kind=html)으로 싣는다.
-const 품목 = ['pollock', 'octopus', 'shrimp', 'squid', 'tuna', 'surimi'];
+const 품목 = ['pollock', 'octopus', 'shrimp', 'squid', 'tuna', 'surimi', 'mackerel', 'tunafarm', 'whelk'];
 
 describe('인테이크 구성', () => {
   it('표 인테이크를 전부 덮는다(품목 다섯 편 포함)', () => {
@@ -168,7 +168,8 @@ describe('품목 해부보고서 그림', () => {
     expect(inFigs(/<img /g)).toBe(count(/<img /g));
   });
 
-  it.each(['pollock', 'octopus', 'shrimp', 'tuna'])('%s - 원문에 그림이 없어 0개다', (key) => {
+  // 고등어·참치 양식·골뱅이 조달: 표지(header) 밖 본문에 figure·지표 타일·막대가 없다.
+  it.each(['pollock', 'octopus', 'shrimp', 'tuna', 'mackerel', 'tunafarm', 'whelk'])('%s - 원문에 그림이 없어 0개다', (key) => {
     const doc = html(key);
     expect(doc).not.toMatch(/<figure[\s>]|class="(metrics|bars)"/);
     expect(reportFigures(key)).toEqual([]);

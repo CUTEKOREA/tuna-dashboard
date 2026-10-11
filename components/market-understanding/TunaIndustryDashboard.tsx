@@ -1,17 +1,11 @@
 /**
- * 「시장 이해 > 참치」 — 참치 산업 해부
+ * 「시장 이해 > 참치」 — 해부보고서 「한국 참치 산업 해부」 원문 + 옛 「참치」 근거 차트.
  *
- * 「실시간 운영」이 지금 얼마인지를 감시한다면, 이 페이지는 **왜 이런 구조인지**를 설명한다.
- * 그래서 본체가 차트가 아니라 서술이고, 차트는 서술의 근거로 붙는다.
+ * 2026-10-12 「참치 해부」(tuna-anatomy)를 이 페이지로 합쳤다. 서술·표·단계·히어로는
+ * `TUNA_ANATOMY_SPEC`(원문 추출 파이프라인)을 그대로 쓰고, 이 파일에서 손으로 만든 차트·위젯은
+ * 주제가 맞는 단계 끝 「근거」로 옮긴다(`TUNA_LEGACY_STAGE_MAP`·`TUNA_LEGACY_SLOT_OVERRIDES`).
  *
- * 구성
- *  - 히어로: 산업의 크기 세 숫자
- *  - 30초 브리핑: 스크롤하지 않을 사람을 위한 출구
- *  - 분기도: 어법에서 갈린 두 경로가 소비까지 이어지는 그림
- *  - 사슬 7단계 + 횡단 11축: 각 단계는 서술 → 검증 수치 → 차트 순
- *  - 출처와 한계: 무엇을 확인했고 무엇을 확인 못 했는지
- *
- * 모든 수치의 근거는 `docs/2026-08-16_tuna_valuechain_sources.md`.
+ * 옛 차트 수치의 근거는 `docs/2026-08-16_tuna_valuechain_sources.md`.
  */
 'use client';
 
@@ -39,14 +33,7 @@ import {
   getKofaInsights,
   getKofaSeries,
 } from '@/lib/data/valuechain-companies';
-import {
-  BRIEFING_POINTS,
-  getNarrative,
-  SOURCE_NOTES,
-} from '@/lib/tuna-industry-content';
-import { TUNA_ROLE } from '@/lib/tuna-chart-colors';
 
-const TUNA_ACCENT = TUNA_ROLE.volume;
 import {
   AreaRankChart,
   BluefinSourceChart,
@@ -96,8 +83,8 @@ import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
 } from './CommodityIndustryDashboard';
-import ValueChainSpine from './ValueChainSpine';
 import styles from './TunaIndustryDashboard.module.css';
+import { TUNA_ANATOMY_SPEC } from './TunaAnatomyDashboard';
 
 const CATCH = getTunaCatchData();
 const PRICES = getSkjPriceTimeline();
@@ -588,69 +575,73 @@ function GlossarySection() {
   );
 }
 
+/**
+ * 2026-10-12 「참치」와 「참치 해부」를 하나로 합쳤다(사용자 확정). 이 페이지가 해부보고서
+ * 「한국 참치 산업 해부」 원문(서술·표, `TUNA_ANATOMY_SPEC`)을 싣고, 옛 「참치」의 손 작성
+ * 차트·위젯은 주제가 맞는 단계 끝 「근거」로 옮긴다. 옛 7단계 서술·브리핑·밸류체인 척추는
+ * 원문 15단계와 키가 맞지 않아 화면에서 뺐다(파일은 남겼다).
+ *
+ * 옛 단계 → 원문 단계. 단계 기본값을 두고 주제가 다른 슬롯만 제목으로 따로 보낸다.
+ */
+export const TUNA_LEGACY_STAGE_MAP: Record<string, string> = {
+  s01: 's03', // 자원과 해역 → 세계 - 다섯 어종, 세 바다, 두 산업
+  s02: 's04', // 어획 → 한국 원양 - 선망과 연승
+  s03: 's06', // 환적과 운반 → 환적과 양륙
+  s04: 's08', // 1차 가공 로인 → 해외 가공
+  s05: 's08', // 최종 가공 → 해외 가공
+  s06: 's07', // 교역과 통관 → 누구에게 파나
+  s07: 's09', // 소비 → 국내 가공 - 캔 세 회사
+  x01: 's13', // 가격 → 값
+  x02: 's14', // 규제와 지속가능성 → 제도
+  x03: 's04', // 한국과 신라의 자리 → 한국 원양
+};
+
+export const TUNA_LEGACY_SLOT_OVERRIDES: Record<string, string> = {
+  '어종별 어획량 (톤)': 's03',
+  '어종별 어획량 20년 추이 (톤)': 's03',
+  '국가별 어획량 상위 12 (톤)': 's03',
+  '선적국별 선망선과 어창용적 (척·㎥)': 's03',
+  '참다랑어 자연산과 축양 (톤)': 's03',
+  '에콰도르 어획량 증가 추이': 's03',
+  '해역별 허가 선망선과 실제 조업 (척)': 's05',
+  '한국 선사의 해역별 인가 선박 (척)': 's05',
+  '서·중부태평양 인가 선박 상위 선사 (척)': 's05',
+  '동부태평양 인가 선박 상위 선사 (척)': 's05',
+  '인도양 인가 선박 상위 선사 (척)': 's05',
+  '대서양 인가 선박 상위 선사 (척)': 's05',
+  '남방참다랑어 인가 선박 상위 선사 (척)': 's05',
+  '참치선망 입어료 - 2024년 국가별 (달러)': 's05',
+  '캐닝용 원어 트레이더 (빅3와 한국의 자리)': 's07',
+  '한국 냉동 원어와 통조림의 단가 차이': 's13',
+  '회사별 수출실적 - 2024년 (톤)': 's07',
+  '한국 원양업계 회사별 수출실적 (천달러)': 's07',
+  '한국 참치류 수출입과 무역수지 (백만 달러)': 's07',
+  '한국 수출단가와 세계 평균 (달러/톤)': 's13',
+  '한국 어획량과 세계 점유율 20년': 's02',
+};
+
+/** 해부보고서 단계의 근거(원문에 없는 집계 차트) 뒤에 옛 「참치」 슬롯을 붙인다. */
+export const TUNA_MERGED_CHART_SLOTS: Record<string, ChartSlot[]> = (() => {
+  const out: Record<string, ChartSlot[]> = Object.fromEntries(
+    Object.entries(TUNA_ANATOMY_SPEC.chartSlots).map(([k, v]) => [k, [...v]]),
+  );
+  for (const [oldKey, slots] of Object.entries(CATCH_CHART_SLOTS)) {
+    for (const slot of slots) {
+      const dest = TUNA_LEGACY_SLOT_OVERRIDES[slot.title] ?? TUNA_LEGACY_STAGE_MAP[oldKey];
+      if (!dest) throw new Error(`참치 옛 단계 ${oldKey} 의 행선지가 없다`);
+      (out[dest] ??= []).push(slot);
+    }
+  }
+  return out;
+})();
+
 const SPEC: CommoditySpec = {
-  // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
-  continuous: true,
+  ...TUNA_ANATOMY_SPEC,
   key: 'tuna',
   title: '참치',
-  subtitle: '참치 산업 해부 · 바다에서 식탁까지 - 밸류체인 7단계와 가격·규제·한국의 자리 3개 축',
-  accent: TUNA_ACCENT,
-  primaryKpi: {
-    label: '세계 주요 상업 참치 어획량',
-    value: CATCH.요약.세계어획량,
-    unit: '(톤)',
-    accent: TUNA_ACCENT,
-  },
-  secondaryKpis: [
-    { label: '서·중부태평양 비중', value: CATCH.요약.최대해역비중 ?? 0, unit: '(%)', decimals: 2 },
-    { label: '한국 어획량', value: CATCH.요약.한국어획량 ?? 0, unit: '(톤)' },
-    { label: '주요 상업어종', value: CATCH.요약.어종수, unit: '(종)' },
-  ],
-  stripItems: [
-    {
-      now: true,
-      eyebrow: '지금',
-      title: '방콕 가다랑어 계약가',
-      body: '2,100 달러/톤 (2026-08, 인도 약 1개월)',
-    },
-    {
-      eyebrow: '한국',
-      title: '2026 상반기 어획',
-      body: '118,014 톤 (6개월 누계)',
-    },
-    {
-      eyebrow: '해역',
-      title: '서·중부태평양',
-      body: `${(CATCH.요약.최대해역비중 ?? 0).toLocaleString('ko-KR', { maximumFractionDigits: 2 })} (%)`,
-    },
-  ],
-  // 참치 브리핑은 «결론 + 부연» 두 층이다. headline 이 굵은 앞줄을 그대로 살린다.
-  briefing: BRIEFING_POINTS.map((point) => ({
-    stage: point.stage,
-    headline: point.headline,
-    text: point.detail,
-  })),
-  narratives: ALL_STAGES.map(
-    (stage) =>
-      getNarrative(stage.key) ?? {
-        key: stage.key,
-        numeral: '',
-        title: stage.label,
-        question: '',
-        lede: '',
-        paragraphs: [],
-        facts: [],
-        terms: [],
-      },
-  ),
-  chartSlots: CATCH_CHART_SLOTS,
-  sourceNotes: SOURCE_NOTES,
-  sourceMeta: [
-    `어획 집계 · ${CATCH._meta.출처} · 기준 ${CATCH._meta.기준연도}년 · 갱신 ${CATCH._meta.생성일}`,
-    `위젯 ${WIDGETS_META.선별} (${WIDGETS_META.원본})`,
-  ].join(' · '),
+  chartSlots: TUNA_MERGED_CHART_SLOTS,
+  sourceMeta: `${TUNA_ANATOMY_SPEC.sourceMeta} · 옛 「참치」 근거 차트 · 어획 집계 ${CATCH._meta.출처} 기준 ${CATCH._meta.기준연도}년 · 위젯 ${WIDGETS_META.선별} (${WIDGETS_META.원본})`,
   insets: {
-    AfterTabs: ({ activeKey, go }) => <ValueChainSpine activeKey={activeKey} onSelect={go} />,
     AfterStage: GlossarySection,
   },
 };
