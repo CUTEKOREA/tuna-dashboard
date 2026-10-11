@@ -1,3 +1,9 @@
+> 🟢 **2026-10-11 KST — `npm run verify` 가 처음으로 rc=0** [CC]:
+> - 막고 있던 둘 다 이번 변경과 무관한 기존 실패였다(`origin/main` 에서도 같이 깨졌다).
+> - **typecheck 3건** — `__tests__/mail-company-smtp-nodemailer-render.test.ts` 49·67·99. 뿌리는 헬퍼가 옵션을 `Parameters<typeof createTransport>[0]` 로 받은 것: 그러면 **마지막 오버로드**(`Transport<T> | TransportOptions`)로 좁혀져 `streamTransport`·`jsonTransport` 가 없는 타입이 되고, 반환 `SentMessageInfo` 에도 `message` 가 없어 캐스팅으로 메워야 했다. 고친 방식 = **호출부가 자기 오버로드를 직접 고르게** 썽크(`() => createTransport({ streamTransport: true, … })`)로 넘기고, 헬퍼는 `Transporter<T, D>` 를 제네릭으로 받는다. 캐스팅 0개. 테스트 2건 그대로 통과(기준 RFC822 원문 단언 유지).
+> - **bundle budget** — `/design-lab` 1.31MB > 1.30MB(초과 7,457B). `components/design-lab/variants.tsx` 가 채택본 5종(HeroMarketCommand·NewsFrontPage·FleetHeroCommand·UnloadingVoyageGantt·FilterBar)과 정적 원장을 **정적 import** 해서, 실페이지 위젯 전부가 URL 직접접근 전용 내부 갤러리의 first-load 에 얹혔다. `next/dynamic`(`ssr: false`)으로 옮기고 `UnloadingGanttMerged` 는 파일을 분리했다(정적 원장까지 밖으로). 예산 초과 0건, `/design-lab` 이 상위 5위 밖으로 빠졌다. 시안을 실제 컴포넌트로 평가한다는 원칙은 그대로다 — 지연 로드일 뿐 더미가 아니다.
+> - 예산 게이트(`scripts/check_route_bundle_budget.mjs`)는 커밋 `fa2986d2` 이후 한 번도 손대지 않았다. 예산을 올리지 않고 실제 바이트를 줄였다.
+
 > 🔧 **2026-10-11 KST — 「오늘의 수치」를 다이제스트 제목 정규식 → 기사 figs 로 교체** [CC]:
 > - 왜: 위젯이 제목에서 수치를 긁어 **제목에 수치가 없는 날은 배포가 막혔다**. 10/05~10/09 5회 연속 제목을 손질했고, 10/05 에는 EU 전체 평균가를 생산국 제목에 붙였다가 귀속 오류로 P1 기각. 게시판 기사에는 값·캡션이 이미 분리된 핵심수치 스트립(figs)이 있다.
 > - 선택 규칙: **리드 기사(articles[0])의 figs 3개**를 순서대로, `value`·`caption` 가공 없이. 라벨 잘림(「Alimentos Prosalud, 2029년까지 매출」)이 사라진다.
