@@ -37,6 +37,7 @@ import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
 import { proseStages } from '@/lib/company-prose-stages';
 import { tablesForStage } from '@/lib/data/company-report-tables';
 import { figuresForStage, reportFigures } from '@/lib/data/company-report-figures';
+import { chapterHead } from '@/components/market-understanding/IndustryReportFlow';
 import {
   proseForStage,
   proseStagesUsed,
@@ -500,7 +501,7 @@ describe('참치 최종 해부보고서 서술 추출 (참치 해부 화면)', (
   });
 });
 
-describe('품목 해부보고서 그림 자리', () => {
+describe('품목 해부보고서 장 제목·그림 자리', () => {
   const cases = [
     ['pollock', POLLOCK_REPORT_NARRATIVES, new Set<string>()],
     ['octopus', OCTOPUS_REPORT_NARRATIVES, OCTOPUS_HANDWRITTEN_STAGES],
@@ -508,6 +509,26 @@ describe('품목 해부보고서 그림 자리', () => {
     ['squid', SQUID_REPORT_NARRATIVES, SQUID_HANDWRITTEN_STAGES],
     ['tuna', TUNA_ANATOMY_REPORT_NARRATIVES, TUNA_ANATOMY_HANDWRITTEN_STAGES],
   ] as const;
+
+  it.each(cases)('%s - 원문 본문 절의 장 제목(라벨 + 부제)이 하나도 빠지지 않고 화면 머리글에 있다', (key, narratives, hand) => {
+    const fromReport = narratives.filter((stage) => !hand.has(stage.key));
+    const heads = new Set(fromReport.flatMap((stage) => [
+      stage.title,
+      ...(stage.flow ?? []).flatMap((item) => (item.kind === 'head' ? [item.text] : [])),
+    ]));
+    const secs = reportProse(key);
+    expect(secs.length).toBeGreaterThan(10);
+    const missing = secs.map(chapterHead).filter((head) => !heads.has(head));
+    expect(missing, `${key} 화면에 없는 장 제목`).toEqual([]);
+    // 장 제목은 그 절의 서술보다 앞에 선다
+    for (const stage of fromReport) {
+      const flow = stage.flow ?? [];
+      const firstHead = flow.findIndex((item) => item.kind === 'head');
+      if (proseForStage(key, stage.key)[0] && chapterHead(proseForStage(key, stage.key)[0]) !== stage.title) {
+        expect(firstHead, `${key} ${stage.key}`).toBe(0);
+      }
+    }
+  });
 
   it.each(cases)('%s - 원문 표와 그림이 전부 서술 흐름 안에 자리 잡는다', (key, narratives, hand) => {
     const fromReport = narratives.filter((stage) => !hand.has(stage.key));

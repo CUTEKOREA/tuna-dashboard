@@ -1,7 +1,10 @@
 /**
  * 품목 해부보고서(명태·문어·새우·오징어·참치 해부)의 원문 흐름 — 다섯 화면이 함께 쓴다.
  *
- * 서술(`proseStages`)에 표·그림을 **원문에 있던 자리**로 끼운다.
+ * 서술(`proseStages`)에 표·그림을 **원문에 있던 자리**로 끼우고, 단계에 붙은 절마다
+ * 장 제목(h2 의 라벨 + 부제)을 소제목으로 세운다. 공용 `proseStages` 는 한 단계의 첫 절
+ * 제목을 단계 머리로 쓰는데 품목 화면은 단계 제목을 손 작성 값으로 바꾸므로 그 첫 절
+ * 제목이 화면에서 사라졌다. 여기서 되살린다.
  *
  * 한 단계에 절이 여럿 붙으므로 절별 오프셋 구간을 따로 둔다(절 순번 × 1,000,000).
  * 그렇지 않으면 뒤 절의 표가 첫 절 문장 사이에 섞인다.
@@ -10,7 +13,7 @@ import type React from 'react';
 
 import type { FlowItem, StageNarrative } from './CommodityIndustryDashboard';
 import { figuresForStage, type ReportFigure } from '@/lib/data/company-report-figures';
-import { proseForStage } from '@/lib/data/company-report-prose';
+import { proseForStage, type ProseSection } from '@/lib/data/company-report-prose';
 import { tablesForStage, type ReportTable } from '@/lib/data/company-report-tables';
 import styles from './TunaIndustryDashboard.module.css';
 
@@ -18,6 +21,9 @@ const SHIFT = 1_000_000;
 
 /** 절 번호(kicker)가 비면 공용 proseStages 가 「: 부제」 머리를 만든다. 그 「: 」를 걷는다. */
 export const dropEmptyLabel = (text: string) => text.replace(/^(\*\*)?: /, '$1');
+
+/** 원문 장 제목을 화면 소제목으로. 라벨이 없는 절은 부제만 남는다. */
+export const chapterHead = (sec: ProseSection) => dropEmptyLabel(`${sec.label}: ${sec.subtitle}`);
 
 /** 그림 캡션의 첫 조각(「그림 N. …」)이 제목, 나머지(자료·주)가 설명이다. */
 function splitCaption(caption: string): [string, string] {
@@ -94,7 +100,9 @@ export function industryInlineReport(key: string, n: StageNarrative, opts: Inlin
     }),
   ];
 
-  const merged = [...n.flow, ...extras].sort((a, b) => a.ord - b.ord);
+  // 장 제목은 아래서 절마다 다시 세운다. 공용 proseStages 가 둘째 절부터 넣어 둔 머리(절 순번 × SHIFT − 1)는 뺀다.
+  const isChapter = (item: FlowItem) => item.kind === 'head' && (item.ord + 1) % SHIFT === 0;
+  const merged = [...n.flow.filter((item) => !isChapter(item)), ...extras].sort((a, b) => a.ord - b.ord);
 
   // 소제목이 바로 뒤 표의 제목과 같으면 지운다. 추출기가 표 제목을 그 소제목에서 가져온다.
   const deduped = merged.filter((item, i) => {
@@ -103,5 +111,10 @@ export function industryInlineReport(key: string, n: StageNarrative, opts: Inlin
     return !(next?.kind === 'slot' && next.slot.title === item.text);
   });
   if (deduped[0]?.kind === 'head' && deduped[0].text === n.question) deduped.shift();
-  return { ...n, flow: deduped };
+
+  // 단계 제목이 곧 그 장 제목이면 한 번만 보인다.
+  const chapters: FlowItem[] = secs
+    .map((sec, i): FlowItem => ({ kind: 'head', ord: i * SHIFT - 1, text: chapterHead(sec) }))
+    .filter((head) => head.kind === 'head' && head.text !== n.title);
+  return { ...n, flow: [...chapters, ...deduped].sort((a, b) => a.ord - b.ord) };
 }
