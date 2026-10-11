@@ -161,7 +161,18 @@ def parse(doc: str) -> list[Table]:
                 for k in range(cs):
                     head.append(_cell(raw) if k == 0 else "")
                     num.append(isnum)
-            rows = [r for r in _grid(trs[1:], len(head)) if any(c for c in r)]
+            # 머리글이 두 줄 이상이면(thead 안의 tr) 둘째 줄부터를 데이터로 읽지 말고 열 이름에 붙인다.
+            # 「명태 연육 0304.94-1000」 아래 「물량·금액·단가」 → 「명태 연육 0304.94-1000 · 물량」.
+            th = re.search(r"<thead[^>]*>(.*?)</thead>", block, re.S)
+            nh = max(1, len(re.findall(r"<tr[^>]*>", th.group(1)))) if th else 1
+            if nh > 1:
+                grid = _grid(trs[:nh], len(head))
+                for i in range(len(head)):
+                    parent = next((grid[0][j] for j in range(i, -1, -1) if grid[0][j]), "")
+                    subs = [r[i] for r in grid[1:] if r[i] and r[i] != parent]
+                    head[i] = " · ".join([parent] + subs) if subs else head[i]
+                    num[i] = num[i] or bool(re.search(r'class="[^"]*num', trs[nh - 1])) and bool(subs)
+            rows = [r for r in _grid(trs[nh:], len(head)) if any(c for c in r)]
             cap = re.search(r"<caption[^>]*>(.*?)</caption>", block, re.S)
             out.append(Table(head=head, rows=rows, num=num, sid=sid, section=title,
                              heading=heading, note=note, ord=t.start(),

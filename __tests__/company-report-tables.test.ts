@@ -69,6 +69,49 @@ describe('명태 최종 해부보고서 표 추출', () => {
   });
 });
 
+describe('연육 최종 해부보고서 표 추출', () => {
+  const tables = reportTables('surimi');
+
+  it('본문 표 22개를 전부 싣고 부록 sA 표는 제외한다', () => {
+    expect(REPORT_TABLE_COMPANIES).toContain('surimi');
+    expect(tables).toHaveLength(22);
+    expect(tables.some((table) => table.sid === 'sA')).toBe(false);
+    expect(tables.every((table) => table.rows.length > 0)).toBe(true);
+  });
+
+  it('여덟 단계에만 배치한다', () => {
+    expect(stagesUsed('surimi')).toEqual(['s01', 's02', 's03', 's04', 's05', 's06', 's07', 'x01']);
+    const total = stagesUsed('surimi')
+      .reduce((sum, stage) => sum + tablesForStage('surimi', stage).length, 0);
+    expect(total).toBe(tables.length);
+  });
+
+  it('모든 행·숫자 표시가 헤더 열 수와 맞는다', () => {
+    for (const table of tables) {
+      expect(table.num.length, `${table.sid} ${table.title}`).toBe(table.head.length);
+      for (const row of table.rows) {
+        expect(row.length, `${table.sid} ${table.title}`).toBe(table.head.length);
+      }
+    }
+  });
+
+  it('두 줄 머리글의 둘째 줄을 데이터 행으로 읽지 않는다', () => {
+    const t = tables.find((table) => table.head.includes('명태 연육 0304.94-1000 · 물량'));
+    expect(t).toBeDefined();
+    expect(t!.rows).toHaveLength(5);
+    expect(t!.rows[0][0]).toBe('2021');
+  });
+});
+
+describe('오징어 두 줄 머리글 표', () => {
+  it('둘째 머리글 줄이 열 이름에 붙고 데이터 행은 연도로 시작한다', () => {
+    const t = reportTables('squid').find((table) =>
+      table.head.includes('생물 살오징어 · 국내 위판 경로 · 산지 위판 · 원/kg'));
+    expect(t).toBeDefined();
+    expect(t!.rows[0][0]).toBe('2023');
+  });
+});
+
 describe('문어 최종 해부보고서 표 추출', () => {
   const tables = reportTables('octopus');
 
