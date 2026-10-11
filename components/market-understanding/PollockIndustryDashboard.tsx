@@ -19,6 +19,7 @@ import {
   tablesForStage,
 } from '@/lib/data/company-report-tables';
 import { POLLOCK_NARRATIVES, POLLOCK_SOURCE_NOTES } from '@/lib/pollock-industry-content';
+import type { HeroKpi } from '../v2/HeroZone';
 import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
@@ -43,85 +44,6 @@ import {
 import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
 
 const RESEARCH = getPollockCompanyResearch();
-
-function RosterTable({
-  caption,
-  rows,
-  sizeLabel,
-}: {
-  caption: string;
-  rows: Array<{ 회사: string; 위치: string; 규모: string; 내용: string; 성격: string; 출처: string }>;
-  sizeLabel: string;
-}) {
-  return (
-    <div className={styles.factWrap}>
-      <table className={styles.factTable}>
-        <caption className={styles.factCaption}>{caption}</caption>
-        <thead>
-          <tr>
-            <th>회사</th>
-            <th>위치</th>
-            <th>{sizeLabel}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.회사}>
-              <td>
-                {r.회사}
-                <span className={styles.factNote}>{r.내용}</span>
-              </td>
-              <td>{r.위치}</td>
-              <td>
-                {r.규모}
-                <span className={styles.factNote}>
-                  {r.성격} · {r.출처}
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function ProcessorTable({
-  caption,
-  rows,
-}: {
-  caption: string;
-  rows: Array<{ 국가: string; 공장: string; 기업: string; 출처: string; 등급: string }>;
-}) {
-  return (
-    <div className={styles.factWrap}>
-      <table className={styles.factTable}>
-        <caption className={styles.factCaption}>{caption}</caption>
-        <thead>
-          <tr>
-            <th>국가</th>
-            <th>공장 (기준)</th>
-            <th>기업</th>
-            <th>등급</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.국가}>
-              <td>{r.국가}</td>
-              <td>
-                {r.공장}
-                <span className={styles.factNote}>{r.출처}</span>
-              </td>
-              <td>{r.기업}</td>
-              <td>{r.등급}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
 
 function BrandTable({
   caption,
@@ -178,12 +100,24 @@ const IMPORT_SYNC = { status: 'STATIC' as const, syncDate: String(DATA.수입세
 const MFDS_SYNC = { status: 'STATIC' as const, syncDate: `${DATA.가공품목._meta.기준연도}년분` };
 const STOCK_SYNC = { status: 'STATIC' as const, syncDate: String(DATA.재고._meta.구간 ?? '월보') };
 const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026년 10월판' };
-const MFDS_NAME_SYNC = { status: 'STATIC' as const, syncDate: '식약처 2025년 단년' };
 
-const latestImport = DATA.수입세번.rows.find((r) => r.연도 === 2025) ?? DATA.수입세번.rows[0];
-const russia = DATA.수입원산지.rows[0];
-const quota2026 = DATA.원양할당.rows.find((r) => r.연도 === 2026);
-const lastStock = DATA.재고.rows[DATA.재고.rows.length - 1];
+/**
+ * 차트는 해부보고서 표가 아니라 화면용 집계를 그린다. 캡션 끝에 출처·기준을 붙여
+ * 보고서 본문 수치와 다른 집계임을 밝힌다(2026-10-11 사용자 결정 7).
+ */
+const chartSource = (source: unknown, asOf: string) =>
+  ` 출처 ${String(source)} · 기준 ${asOf}. 보고서 표와 별도 집계다.`;
+
+/**
+ * 히어로 수치는 해부보고서 원문 값이다(01절 요약 · 13절 재고). 렌더 테스트가
+ * 원문 HTML 텍스트에 그대로 있는지 대조한다. 화면용 집계 JSON 에서 계산하지 않는다.
+ */
+export const POLLOCK_HERO_KPIS: HeroKpi[] = [
+  { label: '2025 명태 전용 세번 수입액', value: 426.9, unit: '(백만 달러)', decimals: 1, accent: POLLOCK_ACCENT },
+  { label: '2025 러시아 비중', value: 79.8, unit: '(%)', decimals: 1 },
+  { label: '2026년 한·러 1차 배정', value: 26200, unit: '(톤)' },
+  { label: '2026년 7월 말 냉동 재고', value: 46393, unit: '(톤)' },
+];
 
 /** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
 function ReportTable({ table }: { table: IntakeReportTable }) {
@@ -282,7 +216,8 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '세계 명태 어획 1986~2024 (톤)',
       caption:
-        '1986년 6,758,944톤이 정점이고 2000년 2,929,654톤이 바닥이다. 러시아와 미국 두 줄이 세계의 93.8%이고 한국 선은 바닥에 붙어 있다.',
+        '1986년 6,758,944톤이 정점이고 2000년 2,929,654톤이 바닥이다. 러시아와 미국 두 줄이 세계의 93.8%이고 한국 선은 바닥에 붙어 있다.' +
+        chartSource(DATA.세계어획._meta.출처, `${DATA.세계어획._meta.기준연도}년 확정`),
       telemetry: FAO_SYNC,
       span: 'full',
       render: () => <PollockWorldChart data={DATA} />,
@@ -292,28 +227,16 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '한·러 명태 할당과 어획 2020~2026 (톤·달러/톤)',
       caption:
-        '옅은 막대가 할당, 짙은 막대가 어획이다. 2022년을 빼면 붙어 있다. 2026년 막대는 1~6월 누계라 짧다. 선은 입어료다.',
+        '옅은 막대가 할당, 짙은 막대가 어획이다. 2022년을 빼면 붙어 있다. 2026년 막대는 1~6월 누계라 짧다. 선은 입어료다.' +
+        chartSource('한·러 어업위원회 결과·러시아 연방수산청 이행명령·원양어업통계', '2026년 1월 제35차'),
       telemetry: QUOTA_SYNC,
       render: () => <PollockQuotaChart data={DATA} />,
-    },
-    {
-      title: '공급 기업 - 누가 잡고 누가 파는가',
-      caption: RESEARCH.공급.요지,
-      telemetry: REPORT_SYNC,
-      span: 'full',
-      render: () => (
-        <RosterTable
-          caption="국적선·수입상·해외 매입처. 신고 건수는 물량이 아니다. 러시아 선사 법인명은 공표 없음이다."
-          rows={RESEARCH.공급.rows}
-          sizeLabel="규모 (성격)"
-        />
-      ),
     },
   ],
   s03: [
     {
       title: '명태 월별 수출입과 무역수지 (백만 달러)',
-      caption: tradeCaption('명태'),
+      caption: tradeCaption('명태') + chartSource(tradeMeta.출처, String(tradeMeta.기간)),
       telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
       render: () => <TradeBalanceChart keyword="명태" />,
       sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
@@ -321,99 +244,37 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '전용 세번별 수입 물량 2023~2026 (톤)',
       caption:
-        '동태(주황)가 줄고 연육(청록)이 는다. 2026년은 1~7월 누계라 막대가 짧다.',
+        '동태(주황)가 줄고 연육(청록)이 는다. 2026년은 1~7월 누계라 막대가 짧다.' +
+        chartSource(DATA.수입세번._meta.출처, String(DATA.수입세번._meta.구간)),
       telemetry: IMPORT_SYNC,
       render: () => <PollockImportMixChart data={DATA} />,
     },
     {
       title: '수입 원산지 구성 2025 (%)',
-      caption: '주황이 러시아다. 미국을 더하면 95.1%이고 나머지를 다 합쳐도 5%가 안 된다.',
+      caption:
+        '주황이 러시아다. 미국을 더하면 95.1%이고 나머지를 다 합쳐도 5%가 안 된다.' +
+        chartSource(DATA.수입원산지._meta.출처, '2025년 통관'),
       telemetry: { status: 'STATIC' as const, syncDate: '2025년 통관' },
       render: () => <PollockOriginChart data={DATA} />,
-    },
-  ],
-  s06: [
-    {
-      title: '수입 신고 명의 상위',
-      caption: RESEARCH.수입명의.요지,
-      telemetry: MFDS_NAME_SYNC,
-      span: 'full',
-      render: () => (
-        <RosterTable
-          caption="식약처 수입식품정보마루 2025년 처리일자. 건수는 물량이 아니다. 3개년 비율을 내지 않는다."
-          rows={RESEARCH.수입명의.rows}
-          sizeLabel="신고 건 (성격)"
-        />
-      ),
     },
   ],
   s04: [
     {
       title: '가공 품목별 생산량 2023~2025 (톤)',
       caption:
-        '명란젓 2024년 막대가 튀는 것은 한 업체의 8,869톤 신고다. 연육 막대가 작은 것은 국내 생산이 아니라 수입이 공급의 97.4%라서다.',
+        '명란젓 2024년 막대가 튀는 것은 한 업체의 8,869톤 신고다. 연육 막대가 작은 것은 국내 생산이 아니라 수입이 공급의 97.4%라서다.' +
+        chartSource(DATA.가공품목._meta.출처, `${DATA.가공품목._meta.기준연도}년분`),
       telemetry: MFDS_SYNC,
       render: () => <PollockProcessingChart data={DATA} />,
-    },
-    {
-      title: '국가별 가공 거점과 기업',
-      caption: RESEARCH.가공.요지,
-      telemetry: MFDS_SYNC,
-      span: 'full',
-      render: () => (
-        <ProcessorTable
-          caption="식품안전나라 I0300 사업장 단위와 해외 가공 줄. 등급 A는 기관, B는 집계·매체, C는 공시 사명 추정이다."
-          rows={RESEARCH.가공.rows}
-        />
-      ),
-    },
-  ],
-  s07: [
-    {
-      title: '2025 가공 생산 상위',
-      caption: RESEARCH.국내가공상위.요지,
-      telemetry: MFDS_SYNC,
-      span: 'full',
-      render: () => (
-        <RosterTable
-          caption="식품안전나라 생산실적 I0300 2025년분. 사업장 단위. 삼양씨푸드 2공장은 합산하지 않는다."
-          rows={RESEARCH.국내가공상위.rows}
-          sizeLabel="생산량 (성격)"
-        />
-      ),
-    },
-    {
-      title: '수입과 가공이 겹치는 42곳',
-      caption: RESEARCH.연결42.요지,
-      telemetry: REPORT_SYNC,
-      span: 'full',
-      render: () => (
-        <RosterTable
-          caption="2025년 수입 신고 상호 × 가공 생산실적 상호. 경대물산·금호통상은 가공 0톤이다."
-          rows={RESEARCH.연결42.rows}
-          sizeLabel="건수·톤"
-        />
-      ),
     },
   ],
   s08: [
     {
-      title: '상장사 여섯의 전사 매출',
-      caption: RESEARCH.상장사.요지,
-      telemetry: { status: 'STATIC' as const, syncDate: 'DART 2025년' },
-      span: 'full',
-      render: () => (
-        <RosterTable
-          caption="연결 우선, 한성기업·사조오양 별도. 명태 부문 분리 공시는 없다."
-          rows={RESEARCH.상장사.rows}
-          sizeLabel="매출·영업이익"
-        />
-      ),
-    },
-    {
       title: '브랜드와 점유율 (성격 구분)',
-      caption: RESEARCH.브랜드.요지,
-      telemetry: REPORT_SYNC,
+      caption:
+        RESEARCH.브랜드.요지 + chartSource('명태 산업 해부 2판 §12·전자공시 큐레이션', '2026-09-10 정리'),
+      // 원문(10월판)에 브랜드 표가 없어 옛 2판 조사 표를 남긴다. 기준일을 원문 표와 구분한다.
+      telemetry: { status: 'STATIC' as const, syncDate: '보고서 2판 2026-08-23' },
       span: 'full',
       render: () => (
         <BrandTable
@@ -427,7 +288,8 @@ export const POLLOCK_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '월말 재고와 월 수입 2022-12~2026-07 (톤)',
       caption:
-        '선이 월말 재고, 막대가 월 수입이다. 2026년 6~7월에 둘이 함께 꺼진다. 재고와 도매가의 동시 상관은 0.12다.',
+        '선이 월말 재고, 막대가 월 수입이다. 2026년 6~7월에 둘이 함께 꺼진다. 재고와 도매가의 동시 상관은 0.12다.' +
+        chartSource(DATA.재고._meta.출처, String(DATA.재고._meta.구간)),
       telemetry: STOCK_SYNC,
       span: 'full',
       render: () => <PollockStockChart data={DATA} />,
@@ -443,23 +305,14 @@ const SPEC: CommoditySpec = {
   subtitle:
     '명태 산업 해부 · 잡지 않고 먹는 생선 - 자원·원양·수입·명의·가공·명부·재무·값과 재고, 세 장부의 문제',
   accent: POLLOCK_ACCENT,
-  primaryKpi: {
-    label: '명태 전용 세번 수입액',
-    value: Number(latestImport?.합계금액 ?? 0),
-    unit: '(백만 달러)',
-    decimals: 1,
-    accent: POLLOCK_ACCENT,
-  },
-  secondaryKpis: [
-    { label: '러시아 비중', value: Number(russia?.비중 ?? 0), unit: '(%)', decimals: 1 },
-    { label: '2026년 한·러 할당', value: Number(quota2026?.할당 ?? 0), unit: '(톤)' },
-    { label: '7월 말 재고', value: Number(lastStock?.재고 ?? 0), unit: '(톤)' },
-  ],
+  primaryKpi: POLLOCK_HERO_KPIS[0],
+  secondaryKpis: POLLOCK_HERO_KPIS.slice(1),
   stripItems: [
-    { now: true, eyebrow: '기준', title: '2025 수입 물량', body: `${Number(latestImport?.합계물량 ?? 0).toLocaleString('ko-KR')} (톤)` },
-    { eyebrow: '원양', title: '2026 한·러 할당', body: `${Number(quota2026?.할당 ?? 0).toLocaleString('ko-KR')} (톤)` },
-    { eyebrow: '가공', title: '2025 생산', body: `${Number((DATA.가공품목._meta.합계 as Record<string, number>)['2025'] ?? 0).toLocaleString('ko-KR')} (톤)` },
-    { eyebrow: '자료', title: '관세청', body: 'API 2026-06까지 · 웹 통계 2026-07까지 · 2026-08분 이후 이 화면 미반영' },
+    // 히어로 띠도 원문 01절 값이다.
+    { now: true, eyebrow: '기준', title: '2025 수입 물량', body: '195,963 (톤)' },
+    { eyebrow: '원양', title: '2026 한·러 1차 배정', body: '26,200 (톤)' },
+    { eyebrow: '가공', title: '2025 생산', body: '30,879 (톤)' },
+    { eyebrow: '자료', title: '차트', body: '관세청 API 2026-06까지 · 웹 통계 2026-07까지 · 본문·표는 해부보고서 2026년 10월판' },
   ],
   briefing: POLLOCK_REPORT_BRIEFING,
   narratives: POLLOCK_REPORT_NARRATIVES,

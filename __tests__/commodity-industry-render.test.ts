@@ -29,10 +29,12 @@ import WhelkIndustryDashboard, {
 } from '../components/market-understanding/WhelkIndustryDashboard';
 import PollockIndustryDashboard, {
   POLLOCK_CHART_SLOTS,
+  POLLOCK_HERO_KPIS,
   POLLOCK_REPORT_BRIEFING,
   POLLOCK_REPORT_NARRATIVES,
 } from '../components/market-understanding/PollockIndustryDashboard';
 import TunaAnatomyDashboard, { TUNA_ANATOMY_CHART_SLOTS } from '../components/market-understanding/TunaAnatomyDashboard';
+import type { HeroKpi } from '../components/v2/HeroZone';
 import type {
   BriefingPoint,
   ChartSlot,
@@ -61,6 +63,21 @@ import {
   TUNA_ANATOMY_NARRATIVES,
   TUNA_ANATOMY_SOURCE_NOTES,
 } from '../lib/tuna-anatomy-content';
+
+/** 해부보고서 원문 HTML 의 본문 텍스트(태그를 걷은 것). 히어로 KPI 대조용. */
+function reportText(key: string): string {
+  return readFileSync(join(process.cwd(), `docs/evidence/industry-${key}-2026-10/보고서.html`), 'utf8')
+    .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/g, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&');
+}
+
+/** 히어로가 화면에 내는 숫자 표기(천 단위 쉼표, 소수 자릿수 고정). */
+function kpiText(kpi: HeroKpi): string {
+  const d = kpi.decimals ?? 0;
+  return kpi.value.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+}
 
 interface Page {
   이름: string;
@@ -506,6 +523,14 @@ describe('명태 - 집계와 본문 대조', () => {
     expect(text).toContain(meta.어묵['2025'].toLocaleString('en-US'));
     const sum = data.가공품목.rows.reduce((s, r) => s + Number(r['2025']), 0);
     expect(Math.abs(sum - meta.합계['2025'])).toBeLessThanOrEqual(2);
+  });
+
+  it('히어로 KPI 값이 원문 HTML 텍스트에 있다', () => {
+    const html = reportText('pollock');
+    expect(POLLOCK_HERO_KPIS).toHaveLength(4);
+    for (const kpi of POLLOCK_HERO_KPIS) {
+      expect(html, `${kpi.label} ${kpiText(kpi)}`).toContain(kpiText(kpi));
+    }
   });
 
   it('재고 마지막 달이 본문의 7월 값과 맞는다', () => {

@@ -1,5 +1,3 @@
-import React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import { POLLOCK_CHART_SLOTS } from '@/components/market-understanding/PollockIndustryDashboard';
@@ -34,8 +32,9 @@ describe('명태 산업 페이지 - 보고서 2판 이식', () => {
     for (const key of ['s01', 's02', 's03', 's06', 's04', 's07', 's08', 's05', 'x01']) {
       expect(POLLOCK_BRIEFING_POINTS.some((b) => b.stage === key)).toBe(true);
     }
-    expect(POLLOCK_CHART_SLOTS.s06?.length).toBeGreaterThan(0);
-    expect(POLLOCK_CHART_SLOTS.s07?.length).toBeGreaterThan(0);
+    // 2026-10-11 사용자 결정 7: 명의·명부 표는 원문 표(06·10·11절)와 주제가 같아 위젯을 내렸다.
+    expect(POLLOCK_CHART_SLOTS.s06).toBeUndefined();
+    expect(POLLOCK_CHART_SLOTS.s07).toBeUndefined();
     expect(POLLOCK_CHART_SLOTS.s08?.length).toBeGreaterThan(0);
   });
 
@@ -94,12 +93,17 @@ describe('명태 산업 페이지 - 보고서 2판 이식', () => {
     expect(TEXT).not.toMatch(/대표이사|사장\s/);
   });
 
-  it('s06·s07·s08 표가 법인명을 그린다', () => {
-    const html = [...(POLLOCK_CHART_SLOTS.s06 ?? []), ...(POLLOCK_CHART_SLOTS.s07 ?? []), ...(POLLOCK_CHART_SLOTS.s08 ?? [])]
-      .map((s) => renderToStaticMarkup(React.createElement(React.Fragment, null, s.render())))
-      .join('');
-    for (const probe of ['에이에스엘교역', '조은수산', '해성식품', '경대물산', '한성기업', '동원산업', '한성기업 김해공장', '7위']) {
-      expect(html, `마크업에 없음: ${probe}`).toContain(probe);
+  it('원문 표와 겹치는 옛 위젯 표는 내렸다', () => {
+    const titles = Object.values(POLLOCK_CHART_SLOTS).flat().map((slot) => slot.title);
+    for (const dropped of [
+      '공급 기업 - 누가 잡고 누가 파는가',
+      '수입 신고 명의 상위',
+      '국가별 가공 거점과 기업',
+      '2025 가공 생산 상위',
+      '수입과 가공이 겹치는 42곳',
+      '상장사 여섯의 전사 매출',
+    ]) {
+      expect(titles, dropped).not.toContain(dropped);
     }
   });
 
@@ -142,20 +146,10 @@ describe('명태 산업 페이지 - 보고서 2판 이식', () => {
     expect(TEXT).toContain('2026 1~7월(7개월 누계) 2.81');
   });
 
-  it('공급·가공·브랜드 표가 해당 단계에 연결된다', () => {
-    expect(POLLOCK_CHART_SLOTS.s02?.some((s) => s.title === '공급 기업 - 누가 잡고 누가 파는가')).toBe(true);
-    expect(POLLOCK_CHART_SLOTS.s04?.some((s) => s.title === '국가별 가공 거점과 기업')).toBe(true);
-    expect(POLLOCK_CHART_SLOTS.s08?.some((s) => s.title === '브랜드와 점유율 (성격 구분)')).toBe(true);
-    const html = [
-      ...(POLLOCK_CHART_SLOTS.s02 ?? []),
-      ...(POLLOCK_CHART_SLOTS.s04 ?? []),
-      ...(POLLOCK_CHART_SLOTS.s08 ?? []),
-    ]
-      .map((s) => renderToStaticMarkup(React.createElement(React.Fragment, null, s.render())))
-      .join('');
-    expect(html).toContain('에이에스엘교역');
-    expect(html).toContain('전체 82건 중 연육 81건');
-    expect(html).toContain('황태 생산 신고 업체 685곳');
-    expect(html).toContain('등급');
+  it('원문에 없는 브랜드 표는 남기고 기준일을 원문 표와 가른다', () => {
+    const brand = POLLOCK_CHART_SLOTS.s08?.find((s) => s.title === '브랜드와 점유율 (성격 구분)');
+    expect(brand).toBeDefined();
+    expect(brand!.telemetry.syncDate).toContain('2판');
+    expect(brand!.caption).toContain('별도 집계');
   });
 });
