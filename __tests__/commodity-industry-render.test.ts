@@ -21,6 +21,7 @@ import MackerelIndustryDashboard, {
 import ShrimpIndustryDashboard, {
   SHRIMP_CHART_SLOTS,
   SHRIMP_HANDWRITTEN_STAGES,
+  SHRIMP_HERO_KPIS,
   SHRIMP_REPORT_BRIEFING,
   SHRIMP_REPORT_NARRATIVES,
 } from '../components/market-understanding/ShrimpIndustryDashboard';
@@ -51,7 +52,7 @@ import {
   MACKEREL_NARRATIVES,
   MACKEREL_SOURCE_NOTES,
 } from '../lib/mackerel-industry-content';
-import { SHRIMP_NARRATIVES, SHRIMP_SOURCE_NOTES } from '../lib/shrimp-industry-content';
+import { SHRIMP_SOURCE_NOTES } from '../lib/shrimp-industry-content';
 import {
   WHELK_BRIEFING_POINTS,
   WHELK_NARRATIVES,
@@ -413,38 +414,54 @@ describe('골뱅이 - 집계와 본문 대조', () => {
 
 describe('새우 - 집계와 본문 대조', () => {
   const data = getShrimpIndustryData();
-  // 2026-10-11 화면 서술은 최종 해부보고서 원문으로 바뀌었다(SHRIMP_REPORT_NARRATIVES).
-  // 원문은 FAO 집계를 「881만 톤·73.8%·64.1%」(담수 갑각류 제외)로 적어 이 JSON 의
-  // 9,501,198톤·60.01%·2010년 같은 값이 화면 본문에 없다. 이 블록은 집계 JSON 과
-  // 손 작성 본문(lib/shrimp-industry-content.ts)의 대조로 남긴다.
-  const text = SHRIMP_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
-  const facts = SHRIMP_NARRATIVES.flatMap((s) => s.facts);
+  // 2026-10-11 사용자 결정 7: 대조 기준은 해부보고서 원문이다. 원문은 FAO 를 담수 갑각류를 빼고
+  // 「1,195만 톤·73.8%·64.1%」로 적는다. 집계 JSON(12,768,242톤·74.4%·60.01%)은 차트에만 쓰고
+  // 차트 캡션이 별도 집계임을 밝힌다.
+  const html = reportText('shrimp');
+  const text = SHRIMP_REPORT_NARRATIVES.filter((s) => !SHRIMP_HANDWRITTEN_STAGES.has(s.key))
+    .flatMap((s) => [s.lede, ...s.paragraphs])
+    .join('\n');
 
   it('원본이 낡으면 알 수 있게 기준연도가 2024년 이상이다', () => {
     expect(data.요약.기준연도).toBeGreaterThanOrEqual(2024);
   });
 
-  it('어획과 양식의 합이 세계 생산과 맞는다', () => {
-    // 셋 다 각자 반올림한 값이라 1톤 오차가 난다
-    expect(Math.abs(data.요약.양식 + data.요약.자연산 - data.요약.세계생산)).toBeLessThanOrEqual(2);
-    // 본문은 어획·양식을 따로 적고, 합계는 근거표가 싣는다
-    expect(text).toContain(data.요약.양식.toLocaleString('en-US'));
-    expect(text).toContain(data.요약.자연산.toLocaleString('en-US'));
-    expect(
-      facts.some((fact) => fact.value.includes(data.요약.세계생산.toLocaleString('en-US'))),
-    ).toBe(true);
-    expect(text).toContain(String(data.요약.양식비중));
+  it('세계 생산·양식 비중·흰다리 비중이 원문과 화면 본문에 같은 값으로 있다', () => {
+    for (const probe of ['1,195만 톤', '881만 톤', '73.8%', '766만 톤', '64.1%', '11,946,690톤']) {
+      expect(html, `원문에 없음: ${probe}`).toContain(probe);
+    }
+    for (const probe of ['1,195만 톤', '73.8%', '64.1%']) {
+      expect(text, `화면 본문에 없음: ${probe}`).toContain(probe);
+    }
   });
 
-  it('양식 비중이 자연산을 넘어선 지점이 시계열에 있다', () => {
-    const rows = data.양식자연산추이;
-    expect(rows.length).toBeGreaterThan(10);
-    expect(rows[0].양식비중).toBeLessThan(5);
-    expect(rows[rows.length - 1].양식비중).toBeGreaterThan(50);
+  it('히어로 KPI 값이 원문 HTML 텍스트에 있다', () => {
+    expect(SHRIMP_HERO_KPIS).toHaveLength(4);
+    for (const kpi of SHRIMP_HERO_KPIS) {
+      expect(html, `${kpi.label} ${kpiText(kpi)}`).toContain(kpiText(kpi));
+    }
+    // 옛 히어로의 화면용 집계 값은 원문에 없다 — 히어로에 다시 들이지 않는다
+    const heroValues = SHRIMP_HERO_KPIS.map((kpi) => kpi.value);
+    for (const old of [data.요약.세계생산, data.요약.양식비중, data.요약.최대종비중]) {
+      expect(heroValues).not.toContain(old);
+    }
+  });
 
-    const crossed = rows.find((row) => row.양식비중 >= 50);
-    expect(crossed).toBeDefined();
-    expect(text).toContain(crossed!.연도);
+  it('차트용 FAO 집계는 원문과 다르고 캡션이 별도 집계임을 밝힌다', () => {
+    expect(data.요약.세계생산).not.toBe(11946690);
+    for (const slot of [...SHRIMP_CHART_SLOTS.s01, ...SHRIMP_CHART_SLOTS.s02]) {
+      expect(slot.caption, slot.title).toContain('별도 집계');
+      expect(slot.caption, slot.title).toContain('담수 갑각류 포함');
+    }
+  });
+
+  it('집계 JSON 안에서는 어획·양식·환경 합이 맞는다', () => {
+    // 셋 다 각자 반올림한 값이라 1톤 오차가 난다
+    expect(Math.abs(data.요약.양식 + data.요약.자연산 - data.요약.세계생산)).toBeLessThanOrEqual(2);
+    const sum = data.양식환경.reduce((total, row) => total + row.생산량, 0);
+    expect(Math.abs(sum - data.요약.양식)).toBeLessThanOrEqual(2);
+    const rows = data.양식자연산추이;
+    expect(rows[rows.length - 1].양식비중).toBeGreaterThan(50);
   });
 
   it('종 코드가 한글로 매핑돼 있다', () => {
@@ -453,25 +470,36 @@ describe('새우 - 집계와 본문 대조', () => {
       expect(row.종).not.toMatch(/기타 새우\(/);
       expect(row.종).toMatch(/[가-힣]/);
     }
-    expect(text).toContain(String(data.요약.최대종비중));
   });
 
-  it('양식 환경이 갈려 있고 담수 몫이 본문과 맞는다', () => {
-    const envs = Object.fromEntries(data.양식환경.map((row) => [row.환경, row]));
-    expect(envs['기수']).toBeDefined();
-    expect(envs['담수']).toBeDefined();
-
-    const sum = data.양식환경.reduce((total, row) => total + row.생산량, 0);
-    expect(Math.abs(sum - data.요약.양식)).toBeLessThanOrEqual(2);
-    expect(text).toContain(String(data.요약.담수양식비중));
-    expect(text).toContain(data.요약.담수양식.toLocaleString('en-US'));
-  });
-
-  it('한국은 세계와 반대로 자연산이 많다', () => {
-    expect(data.요약.한국양식비중).not.toBeNull();
+  it('한국은 세계와 반대로 자연산이 많고 양식 22.7%는 원문 값이다', () => {
     expect(data.요약.한국양식비중!).toBeLessThan(data.요약.양식비중);
     expect(data.한국종구성[0].종).toBe('젓새우');
-    expect(text).toContain(String(data.요약.한국양식비중));
+    expect(html).toContain('양식이 22.7%다');
+  });
+
+  it('보고서 밖 손 작성 단계에만 사내 분석 표시가 붙는다', () => {
+    for (const stage of SHRIMP_REPORT_NARRATIVES) {
+      expect(stage.badge, stage.key).toBe(SHRIMP_HANDWRITTEN_STAGES.has(stage.key) ? '보고서 밖 사내 분석' : undefined);
+    }
+    expect(renderToStaticMarkup(React.createElement(ShrimpIndustryDashboard))).toContain('보고서 밖 사내 분석');
+  });
+
+  it('원문 표와 겹치는 옛 위젯 표는 내렸다', () => {
+    const titles = Object.values(SHRIMP_CHART_SLOTS).flat().map((slot) => slot.title);
+    for (const dropped of [
+      '공급 기업 - 누가 잡고 누가 파는가',
+      '국가별 가공 거점과 기업',
+      '조달선 상위 8국 (금액)',
+      '수입 명의 상위 10곳 (건수)',
+      '국내 생산과 위판',
+      '가공 생산량 상위 5곳',
+      '수입 상위 감사보고서 매출',
+      'CIF에서 도매까지',
+      '세번 상위 5행',
+    ]) {
+      expect(titles, dropped).not.toContain(dropped);
+    }
   });
 });
 
