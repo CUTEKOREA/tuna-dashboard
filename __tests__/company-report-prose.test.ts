@@ -422,7 +422,7 @@ describe('오징어 최종 해부보고서 서술 추출', () => {
       for (const cell of [...table.head, ...table.rows.flat()]) visible.push(...lines('표 셀', cell));
     }
 
-    expect(tables).toHaveLength(68);
+    expect(tables).toHaveLength(71);
     expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(40);
     const missing = visible
       .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
