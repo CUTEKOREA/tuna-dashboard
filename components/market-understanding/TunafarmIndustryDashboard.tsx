@@ -45,7 +45,7 @@ const NUMERIC = /^[\d,.\s%+\-~·()t€$/]*$/;
 
 function ReportTable({ table, label }: { table: TunafarmTable; label: string }) {
   return (
-    <div className={styles.factWrap} tabIndex={0} role="region" aria-label={label}>
+    <div className={`${styles.factWrap} ${styles.factWrapScroll}`} tabIndex={0} role="region" aria-label={label}>
       <table className={styles.factTable}>
         <thead>
           <tr>

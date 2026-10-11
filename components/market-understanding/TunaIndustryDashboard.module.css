@@ -1354,6 +1354,11 @@
     display: none;
   }
 
+  /* 모바일 목록본(.factList)이 없는 표(축양)는 숨기지 않고 가로 스크롤로 둔다 */
+  .factWrap.factWrapScroll {
+    display: block;
+  }
+
   .factList {
     display: flex;
     flex-direction: column;
