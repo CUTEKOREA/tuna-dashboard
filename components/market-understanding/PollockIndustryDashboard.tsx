@@ -274,6 +274,7 @@ const SPEC: CommoditySpec = {
   // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
   continuous: true,
   key: 'pollock',
+  reportHref: '/reports/industry/pollock-2026-10.html',
   title: '명태',
   subtitle:
     '명태 산업 해부 · 잡지 않고 먹는 생선 - 자원·원양·수입·명의·가공·명부·재무·값과 재고, 세 장부의 문제',

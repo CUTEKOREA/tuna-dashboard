@@ -444,6 +444,7 @@ const SPEC: CommoditySpec = {
   // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
   continuous: true,
   key: 'shrimp',
+  reportHref: '/reports/industry/shrimp-2026-10.html',
   title: '새우',
   subtitle:
     '새우 산업 해부 · 양식이 이긴 유일한 주요 수산 품목 - 조달선·가공 명부·값 사슬·검역 창까지',

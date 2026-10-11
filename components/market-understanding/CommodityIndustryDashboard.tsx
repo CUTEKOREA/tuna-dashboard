@@ -142,6 +142,11 @@ export interface CommoditySpec {
   sourceNotes: string[];
   sourceMeta: string;
   /**
+   * 해부보고서 원문 HTML 의 경로(`public/reports/industry/…`). 있으면 히어로 바로 아래에
+   * 「보고서 원문 보기」 링크(새 탭)와 인쇄 안내를 단다. 원문에 인쇄 스타일이 있어 브라우저 인쇄로 PDF 가 된다.
+   */
+  reportHref?: string;
+  /**
    * 품목 고유 구역을 끼우는 자리. 참치는 탭 아래에 밸류체인 척추를, 단계 아래에
    * 약어 사전을 둔다.
    *
@@ -516,6 +521,15 @@ export default function CommodityIndustryDashboard({
       data-commodity={spec.key}
     >
       {hero}
+
+      {spec.reportHref && (
+        <p className={styles.reportLink}>
+          <a href={spec.reportHref} target="_blank" rel="noopener noreferrer">
+            보고서 원문 보기
+          </a>
+          <span>새 탭에서 열린 원문을 브라우저 인쇄(Ctrl+P · ⌘P)로 PDF 저장할 수 있다.</span>
+        </p>
+      )}
 
       <section className={styles.briefing} aria-labelledby={`${spec.key}-briefing-heading`}>
         <h2 id={`${spec.key}-briefing-heading`} className={styles.briefingHeading}>

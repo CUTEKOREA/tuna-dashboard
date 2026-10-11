@@ -347,6 +347,7 @@ const SPEC: CommoditySpec = {
   // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
   continuous: true,
   key: 'tuna-anatomy',
+  reportHref: '/reports/industry/tuna-2026-10.html',
   title: '참치 해부',
   subtitle:
     '한국 참치 산업 해부 · 잡아서 남에게 파는 생선 - 원양 선단·환적·판매 상대·해외 가공·국내 캔·수입·명부·값·제도 15단계',

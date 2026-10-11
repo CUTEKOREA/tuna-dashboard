@@ -440,6 +440,7 @@ const SPEC: CommoditySpec = {
   // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다.
   continuous: true,
   key: 'octopus',
+  reportHref: '/reports/industry/octopus-2026-10.html',
   title: '문어',
   subtitle:
     '문어 산업 해부 · 문어라는 이름의 세 칸 - 종·세계·국내·교역·달력·가공·명의·매대와 내부 검토',
