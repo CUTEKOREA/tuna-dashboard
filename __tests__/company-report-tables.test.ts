@@ -106,6 +106,7 @@ describe('연육 최종 해부보고서 표 추출', () => {
 describe.each([
   // [키, 본문 표 수, 표가 붙는 단계(골뱅이 요지 단계는 표가 없다)]
   ['mackerel', 49, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 'x01']],
+  ['tunafarm', 45, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09']],
 ] as const)('%s 원문 표 추출', (key, count, stages) => {
   const tables = reportTables(key);
 
@@ -134,6 +135,12 @@ describe.each([
 });
 
 describe('표 값 — 원문 첫 행 대조', () => {
+  it('참치 양식 어종 표: 첫 행 대서양참다랑어 36,855 t', () => {
+    const t = reportTables('tunafarm').find((table) => table.head.includes('2024 양식 t'));
+    expect(t).toBeDefined();
+    expect(t!.rows[0]).toEqual(['대서양참다랑어', 'Thunnus thynnus', 'BFT', 'R · C', '36,855', '지중해 축양의 본체']);
+  });
+
   it('고등어 02절 시점 표: 첫 행 9월 말~10월 초 ICES 권고', () => {
     const t = reportTables('mackerel').find((table) => table.sid === 's02');
     expect(t).toBeDefined();

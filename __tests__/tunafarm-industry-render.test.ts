@@ -13,7 +13,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import TunafarmIndustryDashboard, {
-  TUNAFARM_CHART_SLOTS,
+  TUNAFARM_REPORT_NARRATIVES,
 } from '@/components/market-understanding/TunafarmIndustryDashboard';
 import { getTunafarmCounts, getTunafarmChapterNames } from '@/lib/data/tunafarm-industry';
 import { isActiveMenu, getDashboardTitle, SIDEBAR_SECTIONS } from '@/lib/dashboard-registry';
@@ -65,7 +65,9 @@ describe('참치 양식 - 구성', () => {
   });
 
   it('아홉 단계가 한 페이지에 이어서 나온다', () => {
-    for (const n of TUNAFARM_NARRATIVES) {
+    // 2026-10-12: 화면 서술은 원문 추출(TUNAFARM_REPORT_NARRATIVES)이다. 단계 제목만 손 작성이다.
+    expect(TUNAFARM_REPORT_NARRATIVES).toHaveLength(9);
+    for (const n of TUNAFARM_REPORT_NARRATIVES) {
       expect(text).toContain(n.title);
     }
   });
@@ -78,10 +80,10 @@ describe('참치 양식 - 발행본 표가 실린다', () => {
     expect(c.callouts).toBe(19);
   });
 
-  it('아홉 단계가 모두 표 슬롯을 갖는다', () => {
-    for (const n of TUNAFARM_NARRATIVES) {
-      expect(TUNAFARM_CHART_SLOTS[n.key], `${n.key} 슬롯`).toBeDefined();
-      expect(TUNAFARM_CHART_SLOTS[n.key].length).toBeGreaterThan(0);
+  it('아홉 단계가 모두 원문 표를 서술 흐름 안에 갖는다', () => {
+    for (const n of TUNAFARM_REPORT_NARRATIVES) {
+      const slots = (n.flow ?? []).filter((item) => item.kind === 'slot');
+      expect(slots.length, `${n.key} 원문 표`).toBeGreaterThan(0);
     }
   });
 

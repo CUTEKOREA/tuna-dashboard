@@ -17,11 +17,13 @@ import ShrimpIndustryDashboard from '../components/market-understanding/ShrimpIn
 import SquidIndustryDashboard from '../components/market-understanding/SquidIndustryDashboard';
 import TunaAnatomyDashboard from '../components/market-understanding/TunaAnatomyDashboard';
 import SurimiIndustryDashboard from '../components/market-understanding/SurimiIndustryDashboard';
+import TunafarmIndustryDashboard from '../components/market-understanding/TunafarmIndustryDashboard';
 import TunaIndustryDashboard from '../components/market-understanding/TunaIndustryDashboard';
 import { chapterHead } from '../components/market-understanding/IndustryReportFlow';
 import { reportFigures } from '../lib/data/company-report-figures';
 import { reportProse } from '../lib/data/company-report-prose';
 import { MACKEREL_NARRATIVES } from '../lib/mackerel-industry-content';
+import { TUNAFARM_NARRATIVES } from '../lib/tunafarm-industry-content';
 
 const PAGES = [
   ['pollock', PollockIndustryDashboard],
@@ -31,6 +33,7 @@ const PAGES = [
   ['tuna', TunaAnatomyDashboard],
   ['surimi', SurimiIndustryDashboard],
   ['mackerel', MackerelIndustryDashboard],
+  ['tunafarm', TunafarmIndustryDashboard],
 ] as const;
 
 const root = process.cwd();
@@ -70,6 +73,7 @@ describe('화면 렌더', () => {
 
   it.each([
     ['mackerel', MACKEREL_NARRATIVES],
+    ['tunafarm', TUNAFARM_NARRATIVES],
   ] as const)('%s - 손 작성 리드·문단·사실표가 화면에 남지 않는다', (key, hand) => {
     const html = (markup.get(key) ?? '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#x27;/g, "'").replace(/&quot;/g, '"');
     const probe = (text: string) => text.replace(/\*\*/g, '').slice(0, 40);

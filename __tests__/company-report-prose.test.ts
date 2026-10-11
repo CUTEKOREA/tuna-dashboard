@@ -45,6 +45,12 @@ import {
   MACKEREL_REPORT_NARRATIVES,
   MACKEREL_STAGES,
 } from '@/components/market-understanding/MackerelIndustryDashboard';
+import {
+  TUNAFARM_HERO_KPIS,
+  TUNAFARM_REPORT_BRIEFING,
+  TUNAFARM_REPORT_NARRATIVES,
+  TUNAFARM_STAGES,
+} from '@/components/market-understanding/TunafarmIndustryDashboard';
 import type { HeroKpi } from '@/components/v2/HeroZone';
 import type { BriefingPoint, StageNarrative } from '@/components/market-understanding/CommodityIndustryDashboard';
 import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
@@ -604,6 +610,12 @@ const THREE: Array<{
     groups: { s01: ['s01', 's02'], s07: ['s08', 's09'], s09: ['s11', 's14', 's15'], x01: ['s12', 's13'] },
     narratives: MACKEREL_REPORT_NARRATIVES, hand: MACKEREL_STAGES, brief: MACKEREL_REPORT_BRIEFING, hero: MACKEREL_HERO_KPIS,
   },
+  {
+    key: 'tunafarm', 이름: '참치 양식', sections: 10, tables: 45, briefing: 10,
+    stages: ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09'],
+    groups: { s01: ['s01', 's02'], s09: ['s10'] },
+    narratives: TUNAFARM_REPORT_NARRATIVES, hand: TUNAFARM_STAGES, brief: TUNAFARM_REPORT_BRIEFING, hero: TUNAFARM_HERO_KPIS,
+  },
 ];
 
 describe.each(THREE)('$key 원문 서술 추출 (손 작성 서술 대체)', (c) => {
@@ -678,6 +690,15 @@ describe.each(THREE)('$key 원문 서술 추출 (손 작성 서술 대체)', (c)
   });
 });
 
+it('참치 양식 - 장 표지(Ⅰ · 경계)가 번호·라벨로, 콜아웃 제목(span.h)이 제목으로 올라온다', () => {
+  const secs = reportProse('tunafarm');
+  expect(secs.map((section) => `${section.numeral}/${section.label}`)).toEqual([
+    '0/요지', 'Ⅰ/경계', 'Ⅱ/축', 'Ⅲ/명부', 'Ⅳ/통계', 'Ⅴ/값', 'Ⅵ/원가', 'Ⅶ/기업', 'Ⅷ/한국', 'Ⅸ/축양사',
+  ]);
+  const calls = secs.flatMap((section) => section.blocks.filter((block) => block.kind === 'call'));
+  expect(calls.find((block) => block.title === '합산 금지')?.tone).toBe('warn');
+});
+
 describe('품목 해부보고서 장 제목·그림 자리', () => {
   const cases = [
     ['pollock', POLLOCK_REPORT_NARRATIVES, new Set<string>()],
@@ -687,7 +708,10 @@ describe('품목 해부보고서 장 제목·그림 자리', () => {
     ['tuna', TUNA_ANATOMY_REPORT_NARRATIVES, TUNA_ANATOMY_HANDWRITTEN_STAGES],
     ['surimi', SURIMI_REPORT_NARRATIVES, new Set<string>()],
     ['mackerel', MACKEREL_REPORT_NARRATIVES, new Set<string>()],
+    ['tunafarm', TUNAFARM_REPORT_NARRATIVES, new Set<string>()],
   ] as const;
+  // 참치 양식(10장)·골뱅이 조달(5장)은 해부보고서보다 장이 적다.
+  const MIN_SECTIONS: Record<string, number> = { tunafarm: 10, whelk: 5 };
 
   it.each(cases)('%s - 원문 본문 절의 장 제목(라벨 + 부제)이 하나도 빠지지 않고 화면 머리글에 있다', (key, narratives, hand) => {
     const fromReport = narratives.filter((stage) => !hand.has(stage.key));
@@ -696,7 +720,7 @@ describe('품목 해부보고서 장 제목·그림 자리', () => {
       ...(stage.flow ?? []).flatMap((item) => (item.kind === 'head' ? [item.text] : [])),
     ]));
     const secs = reportProse(key);
-    expect(secs.length).toBeGreaterThan(10);
+    expect(secs.length).toBeGreaterThanOrEqual(MIN_SECTIONS[key] ?? 11);
     const missing = secs.map(chapterHead).filter((head) => !heads.has(head));
     expect(missing, `${key} 화면에 없는 장 제목`).toEqual([]);
     // 장 제목은 그 절의 서술보다 앞에 선다
@@ -718,7 +742,7 @@ describe('품목 해부보고서 장 제목·그림 자리', () => {
 
   it('오징어 그림 14개가 화면 흐름에 오른다(다른 넷과 고등어·참치 양식·골뱅이는 원문에 그림이 없다)', () => {
     expect(reportFigures('squid')).toHaveLength(14);
-    for (const key of ['pollock', 'octopus', 'shrimp', 'tuna', 'mackerel']) expect(reportFigures(key)).toEqual([]);
+    for (const key of ['pollock', 'octopus', 'shrimp', 'tuna', 'mackerel', 'tunafarm']) expect(reportFigures(key)).toEqual([]);
   });
 });
 

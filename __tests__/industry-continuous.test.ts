@@ -14,6 +14,7 @@ import PollockIndustryDashboard from '../components/market-understanding/Pollock
 import TunaAnatomyDashboard from '../components/market-understanding/TunaAnatomyDashboard';
 import OctopusIndustryDashboard from '../components/market-understanding/OctopusIndustryDashboard';
 import SurimiIndustryDashboard from '../components/market-understanding/SurimiIndustryDashboard';
+import TunafarmIndustryDashboard from '../components/market-understanding/TunafarmIndustryDashboard';
 
 const PAGES: Array<[string, string, React.ComponentType<never>]> = [
   ['참치', 'tuna', TunaIndustryDashboard as never],
@@ -25,6 +26,7 @@ const PAGES: Array<[string, string, React.ComponentType<never>]> = [
   ['참치 해부', 'tuna-anatomy', TunaAnatomyDashboard as never],
   ['문어', 'octopus', OctopusIndustryDashboard as never],
   ['연육', 'surimi', SurimiIndustryDashboard as never],
+  ['참치 양식', 'tunafarm', TunafarmIndustryDashboard as never],
 ];
 
 describe('품목 산업 페이지 — 한 페이지 연속 출력', () => {
