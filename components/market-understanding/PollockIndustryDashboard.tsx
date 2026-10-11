@@ -13,10 +13,9 @@ import { getPollockIndustryData } from '@/lib/data/commodity-industry';
 import { getPollockCompanyResearch } from '@/lib/data/pollock-company-research';
 import { POLLOCK_ACCENT } from '@/lib/pollock-chart-colors';
 import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
-import { proseForStage } from '@/lib/data/company-report-prose';
+import { dropEmptyLabel, industryInlineReport } from './IndustryReportFlow';
 import {
   type ReportTable as IntakeReportTable,
-  tablesForStage,
 } from '@/lib/data/company-report-tables';
 import { POLLOCK_NARRATIVES, POLLOCK_SOURCE_NOTES } from '@/lib/pollock-industry-content';
 import type { HeroKpi } from '../v2/HeroZone';
@@ -24,7 +23,6 @@ import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
-  type FlowItem,
   type StageNarrative,
 } from './CommodityIndustryDashboard';
 import {
@@ -157,39 +155,14 @@ function ReportTable({ table }: { table: IntakeReportTable }) {
  * 각 단계 끝 「근거」에서 그대로 렌더된다.
  */
 function inlineReport(narratives: StageNarrative[]): StageNarrative[] {
-  return narratives.map((n) => {
-    if (!n.flow) return n;
-
-    const sectionIndex = new Map(
-      proseForStage('pollock', n.key).map((section, index) => [section.sid, index]),
-    );
-    const extras: FlowItem[] = tablesForStage('pollock', n.key).map((table) => ({
-      kind: 'slot',
-      ord: (sectionIndex.get(table.sid) ?? 0) * 1_000_000 + table.ord,
-      slot: {
-        title: table.title,
-        caption: table.note ?? table.caption ?? '',
-        telemetry: REPORT_SYNC,
-        render: () => <ReportTable table={table} />,
-        span: 'full',
-        sourceLine: `한국 명태 산업 해부 ${table.section}`,
-      },
-    }));
-    const merged = [...n.flow, ...extras].sort((a, b) => a.ord - b.ord);
-    const deduped = merged.filter((item, index) => {
-      if (item.kind !== 'head') return true;
-      const next = merged[index + 1];
-      return !(next?.kind === 'slot' && next.slot.title === item.text);
-    });
-    if (deduped[0]?.kind === 'head' && deduped[0].text === n.question) deduped.shift();
-    return { ...n, flow: deduped };
-  });
+  return narratives.map((n) => industryInlineReport('pollock', n, {
+    telemetry: REPORT_SYNC,
+    source: '한국 명태 산업 해부',
+    renderTable: (table) => <ReportTable table={table} />,
+  }));
 }
 
 const REPORT_STAGES = new Map(proseStages('pollock').map((stage) => [stage.key, stage]));
-
-/** 명태 보고서는 절 번호(kicker)가 없는 절이 많아 「: 부제」로 시작하는 머리가 생긴다. */
-const dropEmptyLabel = (text: string) => text.replace(/^(\*\*)?: /, '$1');
 
 /**
  * 단계 순서·제목·질문은 기존 화면 값을 쓰고(발주서 허용), 서술은 전부 원문에서 온다.
