@@ -70,11 +70,15 @@ class Table:
 # 등급 칩은 셀 안에서 「A」「B」 한 글자로 남아 숫자와 붙어 읽힌다. 텍스트로 풀지 않고 뗀다.
 _CHIP = re.compile(r'<span class="chip[^"]*"[^>]*>.*?</span>', re.S)
 _SUP = re.compile(r"<sup[^>]*>.*?</sup>", re.S)
+# 거듭제곱(「10<sup>8</sup>」)은 각주 표시가 아니다. 지우면 「10으로 나눠」처럼 값이 바뀌므로 위 첨자로 남긴다.
+_POW = re.compile(r"(\d)<sup[^>]*>(\d+)</sup>")
+_SUPERSCRIPT = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
 _BR = re.compile(r"<br\s*/?>", re.I)
 
 
 def _cell(raw: str) -> str:
     s = _CHIP.sub(" ", raw)
+    s = _POW.sub(lambda m: m.group(1) + m.group(2).translate(_SUPERSCRIPT), s)
     s = _SUP.sub("", s)
     s = _BR.sub(" · ", s)
     s = re.sub(r"<[^>]+>", "", s)
@@ -127,7 +131,7 @@ def _grid(trs: list[str], ncols: int) -> list[list[str]]:
 def parse(doc: str) -> list[Table]:
     """문서의 모든 표를 절 단위 표시와 함께 뽑는다."""
     out: list[Table] = []
-    for sec in re.finditer(r'<section id="(s[0-9a-z]+)">(.*?)</section>', doc, re.S):
+    for sec in re.finditer(r'<section id="(s[0-9a-z]+)"[^>]*>(.*?)</section>', doc, re.S):
         sid, body = sec.groups()
         h2 = re.search(r"<h2[^>]*>(.*?)</h2>", body, re.S)
         title = _cell(h2.group(1)) if h2 else ""

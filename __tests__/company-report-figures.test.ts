@@ -17,10 +17,12 @@ import {
 import { REPORT_TABLE_COMPANIES } from '@/lib/data/company-report-tables';
 
 const 그림있는회사 = ['frinsa', 'thaiunion', 'albacora', 'fcf', 'itochu', 'bolton', 'jealsa', 'jais'];
+const 그림파이프라인제외 = new Set(['pollock', 'octopus', 'shrimp', 'squid', 'tuna']);
 
 describe('인테이크 구성', () => {
-  it('표 인테이크와 같은 아홉 편을 덮는다', () => {
-    expect(REPORT_FIGURE_COMPANIES.sort()).toEqual([...REPORT_TABLE_COMPANIES].sort());
+  it('표 인테이크 가운데 그림 파이프라인 대상 편을 전부 덮는다', () => {
+    const expected = REPORT_TABLE_COMPANIES.filter((key) => !그림파이프라인제외.has(key));
+    expect(REPORT_FIGURE_COMPANIES.sort()).toEqual(expected.sort());
   });
 
   it('그림 88장을 밑돌지 않는다', () => {

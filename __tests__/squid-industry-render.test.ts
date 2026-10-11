@@ -6,6 +6,10 @@ import { describe, expect, it } from 'vitest';
 
 import SquidIndustryDashboard, {
   SQUID_CHART_SLOTS,
+  SQUID_DROPPED_WIDGETS,
+  SQUID_HANDWRITTEN_STAGES,
+  SQUID_HERO_KPIS,
+  SQUID_REPORT_NARRATIVES,
 } from '../components/market-understanding/SquidIndustryDashboard';
 import SquidWidgetView from '../components/market-understanding/SquidWidgetView';
 import {
@@ -21,6 +25,13 @@ import {
   SQUID_CHAIN_NARRATIVES,
   SQUID_CROSS_NARRATIVES,
 } from '../lib/squid-industry-content';
+
+/** 해부보고서 원문 HTML 의 본문 텍스트(태그를 걷은 것). 히어로·본문 수치 대조용. */
+const REPORT = readFileSync(join(process.cwd(), 'docs/evidence/industry-squid-2026-10/보고서.html'), 'utf8')
+  .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/g, '')
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/&nbsp;/g, ' ')
+  .replace(/&amp;/g, '&');
 
 describe('시장 이해 > 오징어 - 데이터 인테이크', () => {
   it('어종 합계가 세계 합계와 맞고 바스켓이 셋으로 갈려 있다', () => {
@@ -353,20 +364,15 @@ describe('시장 이해 > 오징어 - 위젯 큐레이션', () => {
 });
 
 describe('시장 이해 > 오징어 - 서술', () => {
-  it('서술이 「」로 지목한 위젯·차트가 그 단계에 실제로 있다', () => {
+  it('화면에 나가는 손 작성 서술이 「」로 지목한 위젯·차트가 그 단계에 실제로 있다', () => {
     // 큐레이션에서 위젯을 옮기거나 제목을 바꾸면 지목이 허공을 가리키는데,
     // 화면에서는 조용히 사라져 눈에 띄지 않는다. 여기서 잡는다.
-    const stages = getSquidStages();
+    // 원문 단계의 낫표는 보고서 인용이다(원문 대조는 company-report-prose.test.ts). 화면에 나가는
+    // 손 작성 서술은 「보고서 밖 사내 분석」 단계뿐이라 그 단계만, 화면에 남은 슬롯 제목과 대조한다.
     const quoted = /「([^」]+)」/g;
 
-    for (const narrative of SQUID_ALL_NARRATIVES) {
-      // 큐레이션 위젯이 없는 단계도 있다(08 선박별 — 사내 자료 차트만 붙는다).
-      // 그 경우 차트 슬롯만으로 지목을 확인한다.
-      const stage = stages.find((entry) => entry.key === narrative.key);
-      const titles = new Set([
-        ...(stage?.widgets ?? []).map((widget) => widget.title),
-        ...(SQUID_CHART_SLOTS[narrative.key] ?? []).map((slot) => slot.title),
-      ]);
+    for (const narrative of SQUID_ALL_NARRATIVES.filter((n) => SQUID_HANDWRITTEN_STAGES.has(n.key))) {
+      const titles = new Set((SQUID_CHART_SLOTS[narrative.key] ?? []).map((slot) => slot.title));
       const text = [...narrative.paragraphs, narrative.lede].join('\n');
 
       for (const match of text.matchAll(quoted)) {
@@ -378,35 +384,6 @@ describe('시장 이해 > 오징어 - 서술', () => {
     }
   });
 
-  it('본문이 인용한 집계 수치가 집계 결과와 글자 그대로 같다', () => {
-    // 서술은 사람이 쓰고 집계는 스크립트가 만든다. 집계를 다시 돌렸을 때
-    // 본문만 옛 숫자로 남는 것이 이 페이지의 가장 위험한 회귀다.
-    const data = getSquidCatchData();
-    const trade = getSquidTradeData();
-    const quoted = SQUID_ALL_NARRATIVES.flatMap((entry) => [
-      ...entry.paragraphs,
-      entry.lede,
-      ...entry.facts.map((fact) => `${fact.label} ${fact.value} ${fact.note ?? ''}`),
-    ]).join('\n');
-
-    const num = (value: number) => value.toLocaleString('en-US');
-
-    expect(quoted).toContain(num(data.요약.세계어획량));
-    expect(quoted).toContain(num(data.요약.한국어획량));
-    expect(quoted).toContain(num(data.요약.살오징어세계정점));
-    expect(quoted).toContain(num(data.요약.살오징어세계최신));
-    expect(quoted).toContain(num(data.요약.살오징어한국정점));
-    expect(quoted).toContain(num(data.요약.살오징어한국최신));
-    expect(quoted).toContain(num(trade.요약.수입량));
-
-    // 품목 단계별 단가 — 이 페이지가 가르치려는 핵심 숫자다
-    for (const stage of trade.품목단계) {
-      expect(quoted.includes(num(stage.단가)), `${stage.구분} 단가 ${num(stage.단가)} 가 본문에 없다`).toBe(
-        true,
-      );
-    }
-  });
-
   it('모든 사실에 출처와 등급이 붙는다', () => {
     for (const narrative of SQUID_ALL_NARRATIVES) {
       for (const fact of narrative.facts) {
@@ -415,6 +392,87 @@ describe('시장 이해 > 오징어 - 서술', () => {
         expect(fact.asOf.length, `${narrative.key} 기준시점 없음`).toBeGreaterThan(0);
       }
     }
+  });
+});
+
+describe('오징어 - 집계와 본문 대조', () => {
+  // 2026-10-11 사용자 결정 7: 대조 기준은 해부보고서 원문이다. 원문은 수입을 HSK 10자리에서
+  // 오징어만 골라 「164,676톤·6.73억 USD·4.08 USD/kg」로 적는다. 화면용 통관 집계(HS 소호 바스켓,
+  // 갑오징어 포함 172,449톤)와 FAO 어획 집계는 차트에만 쓰고 캡션이 별도 집계임을 밝힌다.
+  const text = SQUID_REPORT_NARRATIVES.filter((s) => !SQUID_HANDWRITTEN_STAGES.has(s.key))
+    .flatMap((s) => [s.lede, ...s.paragraphs])
+    .join('\n');
+  const html = renderToStaticMarkup(React.createElement(SquidIndustryDashboard));
+
+  it('수입·단가·기국 어획이 원문과 화면 본문에 같은 값으로 있다', () => {
+    for (const probe of ['164,676톤', '6.73억', '4.08 USD/kg', '96,084톤', '76.4%', '52,122톤', '13,546톤']) {
+      expect(REPORT, `원문에 없음: ${probe}`).toContain(probe);
+      expect(text, `화면 본문에 없음: ${probe}`).toContain(probe);
+    }
+  });
+
+  it('히어로 KPI 값이 원문 HTML 텍스트에 있다', () => {
+    expect(SQUID_HERO_KPIS).toHaveLength(4);
+    for (const kpi of SQUID_HERO_KPIS) {
+      const d = kpi.decimals ?? 0;
+      const value = kpi.value.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+      expect(REPORT, `${kpi.label} ${value}`).toContain(value);
+    }
+    // 옛 히어로의 화면용 집계 값(세계 어획량·통관 바스켓 수입량)은 히어로에 다시 들이지 않는다.
+    // 한국 어획량은 FAO 집계와 원문(02절 표 1 합계)이 96,084톤으로 같다.
+    const catchData = getSquidCatchData();
+    const trade = getSquidTradeData();
+    const heroValues = SQUID_HERO_KPIS.map((kpi) => kpi.value);
+    for (const old of [catchData.요약.세계어획량, trade.요약.수입량]) {
+      expect(heroValues).not.toContain(old);
+    }
+    expect(catchData.요약.한국어획량).toBe(96084);
+  });
+
+  it('히어로 띠의 수치가 원문에 있다', () => {
+    for (const probe of ['5,348원/마리', '13,700원/kg', '10,400원/kg', '72.6734%', '98.48%']) {
+      expect(REPORT, `원문에 없음: ${probe}`).toContain(probe);
+    }
+    for (const probe of ['5,348', '13,700', '10,400', '72.6734%', '98.48%']) {
+      expect(html, `화면에 없음: ${probe}`).toContain(probe);
+    }
+    // 옛 띠의 9월 스냅숏 값은 10월판 원문에 없다
+    for (const gone of ['5,077', '13,300', '69.6367']) {
+      expect(REPORT).not.toContain(gone);
+    }
+  });
+
+  it('차트용 통관·어획 집계는 원문과 다르고 캡션이 별도 집계임을 밝힌다', () => {
+    expect(getSquidTradeData().요약.수입량).not.toBe(164676);
+    for (const [key, slots] of Object.entries(SQUID_CHART_SLOTS)) {
+      for (const slot of slots) {
+        expect(slot.caption, `${key}/${slot.title}`).toContain('보고서 표와 별도 집계다');
+      }
+    }
+  });
+
+  it('보고서 밖 손 작성 단계에만 사내 분석 표시가 붙는다', () => {
+    for (const stage of SQUID_REPORT_NARRATIVES) {
+      expect(stage.badge, stage.key).toBe(SQUID_HANDWRITTEN_STAGES.has(stage.key) ? '보고서 밖 사내 분석' : undefined);
+    }
+    expect(html).toContain('보고서 밖 사내 분석');
+  });
+
+  it('원문 표와 겹치는 옛 위젯 표는 내렸다', () => {
+    const titles = Object.values(SQUID_CHART_SLOTS).flat().map((slot) => slot.title);
+    for (const dropped of ['공급 기업 - 누가 잡고 누가 파는가', '국가별 가공 거점과 기업']) {
+      expect(titles, dropped).not.toContain(dropped);
+    }
+    const droppedTitles = getSquidStages()
+      .flatMap((stage) => stage.widgets)
+      .filter((widget) => SQUID_DROPPED_WIDGETS.has(widget.id))
+      .map((widget) => widget.title);
+    expect(new Set(droppedTitles).size).toBe(SQUID_DROPPED_WIDGETS.size);
+    for (const dropped of droppedTitles) {
+      expect(titles, dropped).not.toContain(dropped);
+    }
+    // 9월 발행본 보고서 표 슬롯(「보고서 표 N — …」)도 원문 10월판 표로 바뀌었다
+    expect(titles.some((title) => title.startsWith('보고서 표 '))).toBe(false);
   });
 });
 

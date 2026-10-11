@@ -712,6 +712,17 @@
   color: var(--mu-ink-muted);
 }
 
+.stageBadge {
+  display: inline-block;
+  margin: 0.375rem 0 0;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  border: 1px dashed var(--mu-line);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--mu-ink-muted);
+}
+
 .lede {
   margin: 0;
   padding-left: 0.875rem;

@@ -17,15 +17,20 @@ import {
   type OctopusRosterRow,
 } from '@/lib/data/octopus-industry';
 import { OCTOPUS_ACCENT } from '@/lib/octopus-chart-colors';
+import { proseBriefing, proseStages } from '@/lib/company-prose-stages';
+import { proseForStage } from '@/lib/data/company-report-prose';
 import {
-  OCTOPUS_BRIEFING_POINTS,
-  OCTOPUS_NARRATIVES,
-  OCTOPUS_SOURCE_NOTES,
-} from '@/lib/octopus-industry-content';
+  type ReportTable as IntakeReportTable,
+  tablesForStage,
+} from '@/lib/data/company-report-tables';
+import { OCTOPUS_NARRATIVES, OCTOPUS_SOURCE_NOTES } from '@/lib/octopus-industry-content';
+import type { HeroKpi } from '../v2/HeroZone';
 import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
+  type FlowItem,
+  type StageNarrative,
 } from './CommodityIndustryDashboard';
 import {
   OctopusAuctionChart,
@@ -41,10 +46,6 @@ import {
   tradeCaption,
 } from './MofLiveCharts';
 import { auctionMeta, tradeMeta } from '@/lib/data/mof-live';
-import {
-  getOctopusTables,
-  type OctopusReportTable,
-} from '@/lib/data/octopus-industry-tables';
 
 const DATA = getOctopusIndustryData();
 const RESEARCH = getOctopusCompanyResearch();
@@ -55,9 +56,29 @@ const FIPS_SYNC = { status: 'STATIC' as const, syncDate: '수협 계통판매 20
 const KCS_SYNC = { status: 'STATIC' as const, syncDate: '관세청 2025년 확정' };
 const MFDS_SYNC = { status: 'STATIC' as const, syncDate: '식약처 2026-09-02 전수' };
 const IMP_SYNC = { status: 'STATIC' as const, syncDate: '수입신고 2025-09~2026-09' };
-const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 제2판 2026-09-03' };
+const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026년 10월판' };
+/** 손 작성 위젯(원료 달력·s09 내부 검토)은 옛 OEM 제안계획 보고서 제2판 값이다. */
+const OLD_REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 제2판 2026-09-03' };
 
 const fmt = (value: number) => value.toLocaleString('ko-KR');
+
+/**
+ * 차트는 해부보고서 표가 아니라 화면용 집계를 그린다. 캡션 끝에 출처·기준을 붙여
+ * 보고서 본문 수치와 다른 집계임을 밝힌다(2026-10-11 사용자 결정 7).
+ */
+const chartSource = (source: string, asOf: string) =>
+  ` 출처 ${source} · 기준 ${asOf}. 보고서 표와 별도 집계다.`;
+
+/**
+ * 히어로 수치는 해부보고서 원문 값이다(표지 지표·01절 요약). 렌더 테스트가 원문 HTML
+ * 텍스트에 그대로 있는지 대조한다(4,502톤·9.48달러·23,557원은 01절, 1,955건은 07절).
+ */
+export const OCTOPUS_HERO_KPIS: HeroKpi[] = [
+  { label: '2025 냉동 문어 수입 (HSK 0307521000)', value: 4502, unit: '(톤)', accent: OCTOPUS_ACCENT },
+  { label: '냉동 문어 수입 단가 2025', value: 9.48, unit: '(달러/kg)', decimals: 2 },
+  { label: '위판 단가 2025', value: 23557, unit: '(원/kg)' },
+  { label: '문어 원료 국내 제조 제품', value: 1955, unit: '(건)' },
+];
 
 function Table({ caption, head, rows }: { caption?: string; head: string[]; rows: React.ReactNode[][] }) {
   return (
@@ -131,11 +152,10 @@ const SPECIES_CODES = [
   ['주꾸미', 'Amphioctopus fangsiao · OFY', '140415 주꾸미', '0307523000', '대조·범위 밖'],
 ];
 
-const trade2025 = DATA.수입.연도별.find((r) => r.연도 === '2025');
 const auction2025 = DATA.위판.연도별.find((r) => r.연도 === '2025');
 
 /** 발행본 표를 그대로 그린다. 숫자는 문자열 그대로이고 재계산하지 않는다. */
-function ExtractedReportTable({ table }: { table: OctopusReportTable }) {
+function ExtractedReportTable({ table }: { table: IntakeReportTable }) {
   return (
     <div className={styles.dataTableWrap} tabIndex={0} role="region" aria-label="표 (가로 스크롤)">
       <table className={styles.dataTable}>
@@ -164,16 +184,73 @@ function ExtractedReportTable({ table }: { table: OctopusReportTable }) {
   );
 }
 
-/** 보고서 시장 절 표 가운데 대시보드에 아직 없는 것. 사내 검토 절은 싣지 않는다. */
-function reportSlots(stage: string): ChartSlot[] {
-  return getOctopusTables(stage).map((t, i) => ({
-    title: `보고서 표 ${i + 1} — ${t.title}`,
-    caption: t.caption ?? t.note ?? `보고서 ${t.section.slice(0, 2)}장. 발행본 표를 그대로 옮겼다.`,
-    telemetry: REPORT_SYNC,
-    span: 'full' as const,
-    render: () => <ExtractedReportTable table={t} />,
+/**
+ * 최종 해부보고서 표를 설명 문장 옆의 원래 자리로 되돌린다.
+ *
+ * 한 단계에 절이 여럿 붙으므로 절별 오프셋 구간을 따로 둔다. 그렇지 않으면 뒤 절의
+ * 표가 첫 절 문장 사이에 섞인다. 손으로 만든 인터랙티브 차트는 chartSlots에 남아
+ * 각 단계 끝 「근거」에서 그대로 렌더된다.
+ */
+function inlineReport(n: StageNarrative): StageNarrative {
+  if (!n.flow) return n;
+
+  const sectionIndex = new Map(
+    proseForStage('octopus', n.key).map((section, index) => [section.sid, index]),
+  );
+  const extras: FlowItem[] = tablesForStage('octopus', n.key).map((table) => ({
+    kind: 'slot',
+    ord: (sectionIndex.get(table.sid) ?? 0) * 1_000_000 + table.ord,
+    slot: {
+      title: table.title,
+      caption: table.note ?? table.caption ?? '',
+      telemetry: REPORT_SYNC,
+      render: () => <ExtractedReportTable table={table} />,
+      span: 'full',
+      sourceLine: `한국 문어 산업 해부 ${table.section}`,
+    },
   }));
+  const merged = [...n.flow, ...extras].sort((a, b) => a.ord - b.ord);
+  const deduped = merged.filter((item, index) => {
+    if (item.kind !== 'head') return true;
+    const next = merged[index + 1];
+    return !(next?.kind === 'slot' && next.slot.title === item.text);
+  });
+  if (deduped[0]?.kind === 'head' && deduped[0].text === n.question) deduped.shift();
+  return { ...n, flow: deduped };
 }
+
+const REPORT_STAGES = new Map(proseStages('octopus').map((stage) => [stage.key, stage]));
+
+/** 절 번호(kicker)가 비면 공용 proseStages 가 「: 부제」 머리를 만든다. 명태와 같게 걷는다. */
+const dropEmptyLabel = (text: string) => text.replace(/^(\*\*)?: /, '$1');
+
+/**
+ * 해부보고서 원문에 대응 절이 없는 단계. s09(신라에스지 내부 검토)는 객관 시점의
+ * 최종 보고서에서 빠졌으므로 기존 손 작성 서술을 그대로 두고, 단계 머리에 「보고서 밖 사내 분석」을
+ * 단다(2026-10-11 사용자 결정 6).
+ */
+export const OCTOPUS_HANDWRITTEN_STAGES = new Set(['s09']);
+
+/**
+ * 단계 순서·제목·질문은 기존 화면 값을 쓰고(발주서 허용), 서술은 전부 원문에서 온다.
+ */
+export const OCTOPUS_REPORT_NARRATIVES: StageNarrative[] = OCTOPUS_NARRATIVES.map(
+  (hand, index) => {
+    if (OCTOPUS_HANDWRITTEN_STAGES.has(hand.key)) return { ...hand, badge: '보고서 밖 사내 분석' };
+    const stage = REPORT_STAGES.get(hand.key);
+    if (!stage) throw new Error(`문어 보고서에 ${hand.key} 단계 서술이 없다`);
+    return inlineReport({
+      ...stage,
+      numeral: String(index + 1).padStart(2, '0'),
+      title: hand.title,
+      question: hand.question,
+      paragraphs: stage.paragraphs.map(dropEmptyLabel),
+      flow: stage.flow?.map((item) => item.kind === 'head' ? { ...item, text: dropEmptyLabel(item.text) } : item),
+    });
+  },
+);
+
+export const OCTOPUS_REPORT_BRIEFING = proseBriefing('octopus');
 
 export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s01: [
@@ -189,78 +266,38 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
           rows={SPECIES_CODES}
         />
       ),
-      sourceLine: 'ASFIS 2026.1 · KOSIS DT_1EW0004 · 관세청 HSK10 · 보고서 §04',
+      sourceLine: 'ASFIS 2026.1 · KOSIS DT_1EW0004 · 관세청 HSK10 · 보고서 제2판 §04',
     },
   ],
   s02: [
     {
       title: '세계 문어류 어획 2015~2024 (톤)',
       caption:
-        '굵은 파랑 선이 세계 합계, 주황이 중국, 청록이 모로코다. 한국은 FAO 신고가 3종 합이라 그리지 않았다.',
+        '굵은 파랑 선이 세계 합계, 주황이 중국, 청록이 모로코다. 한국은 FAO 신고가 3종 합이라 그리지 않았다.' +
+        chartSource('FAO FishStat 2026.1.0', '2024년 확정'),
       telemetry: FAO_SYNC,
       render: () => <OctopusWorldChart data={DATA} />,
-    },
-    {
-      title: '2024 생산 상위 10개국 (톤)',
-      caption: '해역 행을 더해 집계한 FAO 값이다. 한국 줄은 문어류·낙지·주꾸미 3종 합이라 순위 비교에 쓰지 않는다.',
-      telemetry: FAO_SYNC,
-      span: 'full',
-      render: () => (
-        <Table
-          head={['국가', '어획량 (톤)']}
-          rows={DATA.세계어획.국가2024.map((r) => [
-            <>
-              {r.국가}
-              {r.주석 && <Note>{r.주석}</Note>}
-            </>,
-            fmt(r.어획량),
-          ])}
-        />
-      ),
-    },
-    {
-      title: '2024 주요 수입 시장 비교',
-      caption: 'HS6 문어류 바스켓이라 낙지·주꾸미가 들어 있다. 한국 단가가 낮은 이유가 여기에 있다. 공급국 비중은 표마다 기준 연도가 다르다.',
-      telemetry: { status: 'STATIC' as const, syncDate: 'UN Comtrade 2024 총계행' },
-      span: 'full',
-      render: () => (
-        <Table
-          head={['시장', '수입액 (백만 달러)', '물량 (톤)', '단가 (달러/kg)', '공급국·특징']}
-          rows={DATA.시장비교.rows.map((r) => [r.시장, r.수입액.toFixed(1), fmt(r.물량), r.단가.toFixed(2), r.특징])}
-        />
-      ),
-      sourceLine: 'UN Comtrade 총계행(motCode 0 · partner2 World · customsCode C00) · FAO GLOBEFISH · EUMOFA · 보고서 §02 표',
-    },
-    {
-      title: '한국 문어류 HS6 바스켓 수입 2021~2024',
-      caption: '물량은 4년 내내 세계 1위, 금액은 2위다. 바스켓이라 문어 단독 순위가 아니다.',
-      telemetry: { status: 'STATIC' as const, syncDate: 'UN Comtrade 한국 신고' },
-      span: 'full',
-      render: () => (
-        <Table
-          head={['연도', '수입액 (백만 달러)', '금액 순위', '물량 (톤)', '물량 순위', '단가 (달러/kg)']}
-          rows={DATA.시장비교.한국연도별.map((r) => [r.연도, r.수입액.toFixed(1), r.금액순위, fmt(r.물량), r.물량순위, r.단가.toFixed(2)])}
-        />
-      ),
     },
   ],
   s03: [
     {
       title: '국내 위판 일별 단가 (원/kg)',
-      caption: auctionCaption('문어'),
+      caption: auctionCaption('문어') + chartSource(auctionMeta.출처, String(auctionMeta.기간)),
       telemetry: { status: 'SYNCED' as const, syncDate: String(auctionMeta.기간) },
       render: () => <AuctionPriceChart keyword="문어" />,
       sourceLine: `출처: ${auctionMeta.출처} · 조회 ${auctionMeta.조회일} · scripts/sync_mof_auction.py`,
     },
     {
       title: '연근해 생산 2010~2025 (톤)',
-      caption: '실선이 문어류(참문어+대문어), 점선이 낙지류와 주꾸미다. 품종이 달라 합계 선을 그리지 않는다.',
+      caption:
+        '실선이 문어류(참문어+대문어), 점선이 낙지류와 주꾸미다. 품종이 달라 합계 선을 그리지 않는다.' +
+        chartSource('KOSIS 어업생산동향 DT_1EW0004', '2025년 연간'),
       telemetry: KOSIS_SYNC,
       render: () => <OctopusKoreaChart data={DATA} />,
     },
     {
       title: '위판 물량과 단가 2010~2026 (톤·원/kg)',
-      caption: `막대가 위판 물량, 선이 단가다. 2025년 ${fmt(auction2025?.물량 ?? 0)}톤·${fmt(auction2025?.단가 ?? 0)}원/kg. 마지막 막대는 2026년 1~6월 누계라 짧다.`,
+      caption: `막대가 위판 물량, 선이 단가다. 2025년 ${fmt(auction2025?.물량 ?? 0)}톤·${fmt(auction2025?.단가 ?? 0)}원/kg. 마지막 막대는 2026년 1~6월 누계라 짧다.${chartSource('수협 계통판매', '2026년 6월')}`,
       telemetry: FIPS_SYNC,
       render: () => <OctopusAuctionChart data={DATA} />,
     },
@@ -268,7 +305,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s04: [
     {
       title: '문어 월별 수출입과 무역수지 (백만 달러)',
-      caption: tradeCaption('문어'),
+      caption: tradeCaption('문어') + chartSource(tradeMeta.출처, String(tradeMeta.기간)),
       telemetry: { status: 'SYNCED' as const, syncDate: String(tradeMeta.기간) },
       render: () => <TradeBalanceChart keyword="문어" />,
       sourceLine: `출처: ${tradeMeta.출처} · 조회 ${tradeMeta.조회일} · scripts/sync_mof_trade.py`,
@@ -276,50 +313,19 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '냉동 문어 수입 2019~2025 (톤)',
       caption:
-        '문어 전용 세번 0307521000. 2025년 수입액은 보고서 4,270만 달러, 원장 4,268만 달러(반올림 차)다. 조제 문어류와 한 축에 두지 않는다.',
+        '문어 전용 세번 0307521000. 2025년 수입액은 보고서 4,270만 달러, 원장 4,268만 달러(반올림 차)다. 조제 문어류와 한 축에 두지 않는다.' +
+        chartSource('관세청 HSK10 0307521000', '2025년 확정'),
       telemetry: KCS_SYNC,
       render: () => <OctopusFrozenTradeChart data={DATA} />,
     },
     {
       title: '조제 문어류 수입 2022~2025 (톤)',
       caption:
-        '종 분리 없는 세번 1605550000. 2022년에 생겨 그 전 칸이 없다. 2024년은 원장 6,305,473 kg(6,305 t)이고 보고서는 6,306 t로 적었다(차이 원인 미확인). 냉동 문어와 한 축에 두지 않는다.',
+        '종 분리 없는 세번 1605550000. 2022년에 생겨 그 전 칸이 없다. 2024년은 원장 6,305,473 kg(6,305 t)이고 보고서는 6,306 t로 적었다(차이 원인 미확인). 냉동 문어와 한 축에 두지 않는다.' +
+        chartSource('관세청 HSK10 1605550000', '2025년 확정'),
       telemetry: KCS_SYNC,
       render: () => <OctopusPreparedTradeChart data={DATA} />,
     },
-    {
-      title: '2025 원산지별 수입 (달러·톤·달러/kg)',
-      caption: `냉동 문어 ${fmt(trade2025?.냉동문어_톤 ?? 0)}톤과 조제 문어류 ${fmt(trade2025?.조제문어류_톤 ?? 0)}톤을 세번별로 따로 적었다. 두 칸을 더하지 않는다.`,
-      telemetry: KCS_SYNC,
-      span: 'full',
-      render: () => (
-        <Table
-          head={['세번', '원산지', '수입액 (달러)', '물량 (톤)', '단가 (달러/kg)']}
-          rows={[
-            ...DATA.수입.냉동원산지2025.map((r) => ['냉동 문어 0307521000', r.국가, fmt(r.수입액), fmt(r.수입량톤), r.단가.toFixed(2)]),
-            ...DATA.수입.조제원산지2025.map((r) => ['조제 문어류 1605550000', r.국가, fmt(r.수입액), fmt(r.수입량톤), r.단가.toFixed(2)]),
-          ]}
-        />
-      ),
-      sourceLine: '관세청 nitemtrade HSK10 월별×국가 합산. 필리핀은 자숙 완제품, 모리타니는 생 원물이다.',
-    },
-  ],
-  s05: [
-    {
-      title: '12개월 원료 달력',
-      caption:
-        '위판 물량·위판가·냉동 수입은 2023~2025 평균 지수(연평균 100)다. 모로코·모리타니 어기는 GLOBEFISH와 현지 언론이 인용한 정부 결정이다.',
-      telemetry: REPORT_SYNC,
-      span: 'full',
-      render: () => (
-        <Table
-          head={['월', '국내 금어기', '위판 물량', '위판가', '모로코', '모리타니', '냉동 수입']}
-          rows={DATA.원료달력.rows.map((r) => [r.월, r.금어기, r.위판물량, r.위판가, r.모로코, r.모리타니, r.냉동수입])}
-        />
-      ),
-      sourceLine: '수협 계통판매 월별 · 관세청 0307521000 월별 중량 · 보고서 §04 표',
-    },
-    ...reportSlots('s05'),
   ],
   s06: [
     {
@@ -381,20 +387,6 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
   s07: [
     {
-      title: '국내 가공 상위 15곳',
-      caption: RESEARCH.국내가공.요지,
-      telemetry: MFDS_SYNC,
-      span: 'full',
-      render: () => (
-        <RosterTable
-          caption="식약처 생산실적 2025. 원문 단위 미표기. 수입 직접은 수입식품정보마루 신고 건수다."
-          rows={RESEARCH.국내가공.rows}
-          placeLabel="소재지"
-          sizeLabel="생산 (성격)"
-        />
-      ),
-    },
-    {
       title: '등록 제품 수 상위',
       caption: RESEARCH.등록상위.요지,
       telemetry: MFDS_SYNC,
@@ -408,35 +400,6 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
         />
       ),
     },
-    {
-      title: '수입 신고 명의 상위 10곳',
-      caption: RESEARCH.수입명의.요지,
-      telemetry: IMP_SYNC,
-      span: 'full',
-      render: () => (
-        <RosterTable
-          caption="수입식품정보마루 처리일 2025-09-01~2026-09-02. 건수는 물량이 아니다."
-          rows={RESEARCH.수입명의.rows}
-          placeLabel="제조국 (건)"
-          sizeLabel="건수 (성격)"
-        />
-      ),
-    },
-    {
-      title: '해외 제조업소 상위 10곳',
-      caption: RESEARCH.해외가공.요지,
-      telemetry: IMP_SYNC,
-      span: 'full',
-      render: () => (
-        <RosterTable
-          caption="해외제조업소별 신고 건수와 주 품목유형. 건수는 물량이 아니다."
-          rows={RESEARCH.해외가공.rows}
-          placeLabel="제조국"
-          sizeLabel="건수 (성격)"
-        />
-      ),
-    },
-    ...reportSlots('s07'),
   ],
   s08: [
     {
@@ -458,7 +421,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: 'OEM 제품 후보 13개 (내부 검토)',
       caption: '우선순위 A는 즉시 제안, B는 2차, C는 보류다. 시장 규모·성장·경쟁 공백·원료 경제성 네 기준의 정성 판단이며 매출 추정은 없다.',
-      telemetry: REPORT_SYNC,
+      telemetry: OLD_REPORT_SYNC,
       span: 'full',
       render: () => (
         <Table
@@ -471,7 +434,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '문어 제품 형태별 설비 적합성 (내부 검토)',
       caption: '신라에스지 부산공장 기준 판정이다. 문어 생산 실적이 아니며, 가능 판정도 시험 전 단계다.',
-      telemetry: REPORT_SYNC,
+      telemetry: OLD_REPORT_SYNC,
       span: 'full',
       render: () => (
         <Table
@@ -484,7 +447,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '신라에스지 공시 요약 (내부 검토)',
       caption: RESEARCH.내부검토.요지,
-      telemetry: REPORT_SYNC,
+      telemetry: OLD_REPORT_SYNC,
       span: 'full',
       render: () => (
         <RosterTable
@@ -506,31 +469,23 @@ const SPEC: CommoditySpec = {
   subtitle:
     '문어 산업 해부 · 문어라는 이름의 세 칸 - 종·세계·국내·교역·달력·가공·명의·매대와 내부 검토',
   accent: OCTOPUS_ACCENT,
-  primaryKpi: {
-    label: '2025 냉동 문어 수입 (HSK 0307521000)',
-    value: trade2025?.냉동문어_톤 ?? 0,
-    unit: '(톤)',
-    accent: OCTOPUS_ACCENT,
-  },
-  secondaryKpis: [
-    { label: '냉동 문어 수입 단가 2025', value: trade2025?.냉동문어_단가 ?? 0, unit: '(달러/kg)', decimals: 2 },
-    { label: '위판 단가 2025', value: auction2025?.단가 ?? 0, unit: '(원/kg)' },
-    { label: '국내 제조 문어 가공식품', value: DATA.제품전수.합계.제품, unit: '(제품)' },
-  ],
+  primaryKpi: OCTOPUS_HERO_KPIS[0],
+  secondaryKpis: OCTOPUS_HERO_KPIS.slice(1),
+  // 히어로 띠도 원문 01절·03~06절 값이다(옛 띠의 2026년 1~5월·7월·1~6월 값은 원문에 없다).
   stripItems: [
     { eyebrow: '기준', title: '문어 전용 세번', body: '0307521000 냉동 문어' },
-    { eyebrow: '2026', title: '냉동 문어 1~5월 누계', body: '1,888 t · 10.48 USD/kg' },
-    { eyebrow: '2026', title: '냉동 문어 7월', body: '585 t' },
-    { eyebrow: '2026', title: '위판 1~6월', body: '1,664 t · 27,153 원/kg' },
-    { eyebrow: '휴어', title: '모리타니 입항 5월→7월', body: '285 t → 124 t' },
-    { now: true, eyebrow: '지금', title: '연근해 문어류 2026.07 잠정', body: '1,569 t' },
+    { eyebrow: '2026', title: '냉동 문어 1~8월', body: '3,123 t (+18.3%) · 10.47 USD/kg' },
+    { eyebrow: '2026', title: '위판 단가 1~7월 평균', body: '24,360 원/kg' },
+    { eyebrow: '조제', title: '2025 조제 문어 수입', body: '5,995 t · 중국 90.1%' },
+    { eyebrow: '자원', title: '모리타니 2025 어획', body: '42,013 t · TAC 30,700 t의 137%' },
+    { now: true, eyebrow: '지금', title: '연근해 문어류 2026년 1~8월', body: '5,041.0 t (+5.4%)' },
   ],
-  briefing: OCTOPUS_BRIEFING_POINTS,
-  narratives: OCTOPUS_NARRATIVES,
+  briefing: OCTOPUS_REPORT_BRIEFING,
+  narratives: OCTOPUS_REPORT_NARRATIVES,
   chartSlots: OCTOPUS_CHART_SLOTS,
   sourceNotes: OCTOPUS_SOURCE_NOTES,
   sourceMeta: [
-    '보고서 제2판 2026-09-03 · 자료 기준 2026-09-02',
+    '본문·표 해부보고서 2026년 10월판 · 손 작성 단계·위젯 보고서 제2판 2026-09-03(자료 기준 2026-09-02)',
     'FAO FishStat 2026.1.0',
     'KOSIS 2026-07 잠정',
     '수협 계통판매 2026-06',

@@ -48,6 +48,11 @@ export interface StageNarrative {
   numeral: string;
   title: string;
   question: string;
+  /**
+   * 단계 머리의 작은 표시. 원문 보고서에 대응 절이 없는 손 작성 단계를
+   * 「보고서 밖 사내 분석」으로 구분할 때 쓴다(2026-10-11 사용자 결정 6).
+   */
+  badge?: string;
   lede: string;
   paragraphs: string[];
   facts: FactRow[];
@@ -284,6 +289,7 @@ function StageSection({
             {narrative.title}
           </h2>
           <p className={styles.stageQuestion}>{narrative.question}</p>
+          {narrative.badge && <p className={styles.stageBadge}>{narrative.badge}</p>}
         </div>
       </header>
 

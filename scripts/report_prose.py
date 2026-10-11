@@ -21,6 +21,9 @@ from dataclasses import dataclass, field
 # 텍스트로 풀지 않고 근거 표시로 따로 담는다.
 _CHIP = re.compile(r'<span class="chip[^"]*"[^>]*>(.*?)</span>', re.S)
 _TAG = re.compile(r"<[^>]+>")
+# 거듭제곱(「10<sup>8</sup>」)은 태그만 걷으면 「108」이 된다. 위 첨자로 남긴다(report_tables 와 같다).
+_POW = re.compile(r"(\d)<sup[^>]*>(\d+)</sup>")
+_SUPERSCRIPT = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
 
 
 def _text(raw: str) -> tuple[str, list[str]]:
@@ -28,6 +31,7 @@ def _text(raw: str) -> tuple[str, list[str]]:
     chips = [H.unescape(_TAG.sub("", c)).strip() for c in _CHIP.findall(raw)]
     s = _CHIP.sub(" ", raw)
     s = re.sub(r"<br\s*/?>", " ", s, flags=re.I)
+    s = _POW.sub(lambda m: m.group(1) + m.group(2).translate(_SUPERSCRIPT), s)
     s = _TAG.sub("", s)
     return " ".join(H.unescape(s).split()), [c for c in chips if c]
 
@@ -114,7 +118,7 @@ class Section:
 
 def parse(doc: str) -> list[Section]:
     out: list[Section] = []
-    for m in re.finditer(r'<section id="(s[0-9a-z]+)">(.*?)</section>', doc, re.S):
+    for m in re.finditer(r'<section id="(s[0-9a-z]+)"[^>]*>(.*?)</section>', doc, re.S):
         sid, body = m.groups()
         h2 = re.search(r"<h2[^>]*>(.*?)</h2>", body, re.S)
         numeral = label = subtitle = ""

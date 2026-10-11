@@ -16,6 +16,9 @@ import { describe, expect, it } from 'vitest';
 
 import OctopusIndustryDashboard, {
   OCTOPUS_CHART_SLOTS,
+  OCTOPUS_HANDWRITTEN_STAGES,
+  OCTOPUS_HERO_KPIS,
+  OCTOPUS_REPORT_NARRATIVES,
 } from '@/components/market-understanding/OctopusIndustryDashboard';
 import {
   octopusFrozenTradeRows,
@@ -32,6 +35,11 @@ import {
 const KEYS = ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 'x01'];
 const html = renderToStaticMarkup(React.createElement(OctopusIndustryDashboard));
 const PROSE = OCTOPUS_NARRATIVES.flatMap((s) => [s.title, s.question, s.lede, ...s.paragraphs]).join('\n');
+const REPORT = readFileSync(join(process.cwd(), 'docs/evidence/industry-octopus-2026-10/보고서.html'), 'utf8')
+  .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/g, '')
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/&nbsp;/g, ' ')
+  .replace(/&amp;/g, '&');
 const TEXT = [
   PROSE,
   ...OCTOPUS_NARRATIVES.flatMap((s) => s.facts.map((f) => `${f.label} ${f.value} ${f.note ?? ''}`)),
@@ -81,7 +89,9 @@ describe('문어 산업 페이지 - 구조', () => {
 
   it('본문 낫표는 실제 차트 제목만 가리킨다', () => {
     const titles = new Set(Object.values(OCTOPUS_CHART_SLOTS).flat().map((s) => s.title));
-    for (const n of OCTOPUS_NARRATIVES) {
+    // 원문 단계의 낫표는 보고서 인용이다(원문 대조는 company-report-prose.test.ts). 화면에 나가는
+    // 손 작성 서술은 사내 분석 단계뿐이라 그 단계만 검사한다.
+    for (const n of OCTOPUS_NARRATIVES.filter((x) => OCTOPUS_HANDWRITTEN_STAGES.has(x.key))) {
       for (const m of [n.lede, ...n.paragraphs].join('\n').matchAll(/「([^」]+)」/g)) {
         expect(titles.has(m[1]), `${n.key}: 「${m[1]}」 차트가 없다`).toBe(true);
       }
@@ -102,7 +112,8 @@ describe('문어 산업 페이지 - 구조', () => {
 });
 
 describe('문어 산업 페이지 - 수치와 경계', () => {
-  it('보고서 핵심 수치가 화면에 있다', () => {
+  it('원문 핵심 수치가 화면에 있고 원문 HTML 에도 있다', () => {
+    // 2026-10-11 사용자 결정 7: 대조 기준은 해부보고서 원문이다.
     for (const probe of [
       '4,502', // 히어로·04단계: 2025 냉동 문어
       '9.48',
@@ -116,47 +127,78 @@ describe('문어 산업 페이지 - 수치와 경계', () => {
       '20.6%',
       '23,557',
       '16,443',
-      '27,153',
       '1,573',
       '5,995',
       '6.06',
-      '2,408만 달러',
-      '1,134만 달러',
-      '83%',
-      '78%',
-      '1,888',
-      '10.48',
+      '3,123',
+      '10.47',
+      '24,360',
+      '42,013',
+      '5,041.0',
       '416',
-      '285톤에서 7월 124톤',
       '623,079',
       '1,955',
       '687',
       '127',
-      '2,093,904',
-      '4,794,422',
-      '1,618,876',
-      '133곳',
-      '12곳',
-      '187건',
       '91곳',
       '211',
-      '72%',
-      '9,525',
-      '40.5%',
-      'KORP-249',
-      '1,195천 캔',
       '9,219',
-      '62.6%',
     ]) {
       expect(html, `화면에 없음: ${probe}`).toContain(probe);
+      expect(REPORT, `원문에 없음: ${probe}`).toContain(probe);
     }
+    // 원문 밖 값은 사내 분석 단계(s09)와 남긴 위젯 표에만 있다.
+    for (const probe of ['4,794,422', '40.5%', 'KORP-249', '1,195천 캔']) {
+      expect(html, `화면에 없음: ${probe}`).toContain(probe);
+      expect(REPORT).not.toContain(probe);
+    }
+    // 옛 히어로 띠의 2026년 1~5월·1~6월 값은 원문에 없어 내렸다.
+    for (const gone of ['1,888', '27,153']) {
+      expect(REPORT).not.toContain(gone);
+    }
+    // 2026-10-11 서술을 최종 해부보고서 원문으로 바꾸며 손 작성 서술에만 있던
+    // 2,408만·1,134만 달러, 83%, 78%, 285톤에서 7월 124톤, 72%, 62.6% 는 화면에서 빠졌다.
+    // 손 작성 본문(lib/octopus-industry-content.ts)에는 남아 있다.
+    for (const probe of ['2,408만 달러', '1,134만 달러', '83%', '285톤에서 7월 124톤', '72%', '62.6%']) {
+      expect(TEXT, `손 작성 본문에 없음: ${probe}`).toContain(probe);
+    }
+  });
+
+  it('히어로 KPI 값이 원문 HTML 텍스트에 있다', () => {
+    expect(OCTOPUS_HERO_KPIS).toHaveLength(4);
+    for (const kpi of OCTOPUS_HERO_KPIS) {
+      const d = kpi.decimals ?? 0;
+      const text = kpi.value.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+      expect(REPORT, `${kpi.label} ${text}`).toContain(text);
+    }
+  });
+
+  it('원문 표와 겹치는 옛 위젯 표는 내리고 사내 분석 단계에 표시를 단다', () => {
+    const titles = Object.values(OCTOPUS_CHART_SLOTS).flat().map((slot) => slot.title);
+    for (const dropped of [
+      '2024 생산 상위 10개국 (톤)',
+      '2024 주요 수입 시장 비교',
+      '한국 문어류 HS6 바스켓 수입 2021~2024',
+      '2025 원산지별 수입 (달러·톤·달러/kg)',
+      '12개월 원료 달력',
+      '국내 가공 상위 15곳',
+      '수입 신고 명의 상위 10곳',
+      '해외 제조업소 상위 10곳',
+    ]) {
+      expect(titles, dropped).not.toContain(dropped);
+    }
+    for (const n of OCTOPUS_REPORT_NARRATIVES) {
+      expect(n.badge, n.key).toBe(OCTOPUS_HANDWRITTEN_STAGES.has(n.key) ? '보고서 밖 사내 분석' : undefined);
+    }
+    expect(html).toContain('보고서 밖 사내 분석');
   });
 
   it('세번 경계 문구가 화면에 있다', () => {
     expect(html).toContain('문어 전용');
     expect(html).toContain('0307521000');
     expect(html).toContain('1605550000');
-    expect(html).toContain('종 분리 없음');
+    // 「종 분리 없음」은 손 작성 서술 문구였다. 원문은 「문어속 전체를 묶는다」로 적는다.
+    expect(html).toContain('문어속 전체를 묶는다');
     expect(html).toContain('3종 합');
     expect(TEXT).toContain('한 차트에 두지 않는다');
     expect(TEXT).toMatch(/더하지 않는다/);

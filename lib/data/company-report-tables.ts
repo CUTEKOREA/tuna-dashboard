@@ -59,6 +59,11 @@ import inepacaRaw from '@/public/data/companies/inepaca_tables_v1.json';
 import kflRaw from '@/public/data/companies/kfl_tables_v1.json';
 import sapmerRaw from '@/public/data/companies/sapmer_tables_v1.json';
 import patayaRaw from '@/public/data/companies/pataya_tables_v1.json';
+import pollockRaw from '@/public/data/companies/pollock_tables_v1.json';
+import octopusRaw from '@/public/data/companies/octopus_tables_v1.json';
+import shrimpRaw from '@/public/data/companies/shrimp_tables_v1.json';
+import squidRaw from '@/public/data/companies/squid_tables_v1.json';
+import tunaRaw from '@/public/data/companies/tuna_tables_v1.json';
 
 /**
  * 조사보고서 표 전량 인테이크.
@@ -160,6 +165,11 @@ const INTAKES: Record<string, Intake> = {
   kfl: kflRaw as unknown as Intake,
   sapmer: sapmerRaw as unknown as Intake,
   pataya: patayaRaw as unknown as Intake,
+  pollock: pollockRaw as unknown as Intake,
+  octopus: octopusRaw as unknown as Intake,
+  shrimp: shrimpRaw as unknown as Intake,
+  squid: squidRaw as unknown as Intake,
+  tuna: tunaRaw as unknown as Intake,
 };
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);

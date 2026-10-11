@@ -20,14 +20,29 @@ import MackerelIndustryDashboard, {
 } from '../components/market-understanding/MackerelIndustryDashboard';
 import ShrimpIndustryDashboard, {
   SHRIMP_CHART_SLOTS,
+  SHRIMP_HANDWRITTEN_STAGES,
+  SHRIMP_HERO_KPIS,
+  SHRIMP_REPORT_BRIEFING,
+  SHRIMP_REPORT_NARRATIVES,
 } from '../components/market-understanding/ShrimpIndustryDashboard';
 import WhelkIndustryDashboard, {
   WHELK_CHART_SLOTS,
 } from '../components/market-understanding/WhelkIndustryDashboard';
 import PollockIndustryDashboard, {
   POLLOCK_CHART_SLOTS,
+  POLLOCK_HERO_KPIS,
+  POLLOCK_REPORT_BRIEFING,
+  POLLOCK_REPORT_NARRATIVES,
 } from '../components/market-understanding/PollockIndustryDashboard';
-import TunaAnatomyDashboard, { TUNA_ANATOMY_CHART_SLOTS } from '../components/market-understanding/TunaAnatomyDashboard';
+import TunaAnatomyDashboard, {
+  TUNA_ANATOMY_CHART_SLOTS,
+  TUNA_ANATOMY_DROPPED_WIDGETS,
+  TUNA_ANATOMY_HERO_KPIS,
+  TUNA_ANATOMY_REPORT_BRIEFING,
+  TUNA_ANATOMY_REPORT_NARRATIVES,
+  TUNA_ANATOMY_REPORT_SOURCE_NOTES,
+} from '../components/market-understanding/TunaAnatomyDashboard';
+import type { HeroKpi } from '../components/v2/HeroZone';
 import type {
   BriefingPoint,
   ChartSlot,
@@ -44,26 +59,28 @@ import {
   MACKEREL_NARRATIVES,
   MACKEREL_SOURCE_NOTES,
 } from '../lib/mackerel-industry-content';
-import {
-  SHRIMP_BRIEFING_POINTS,
-  SHRIMP_NARRATIVES,
-  SHRIMP_SOURCE_NOTES,
-} from '../lib/shrimp-industry-content';
+import { SHRIMP_SOURCE_NOTES } from '../lib/shrimp-industry-content';
 import {
   WHELK_BRIEFING_POINTS,
   WHELK_NARRATIVES,
   WHELK_SOURCE_NOTES,
 } from '../lib/whelk-industry-content';
-import {
-  POLLOCK_BRIEFING_POINTS,
-  POLLOCK_NARRATIVES,
-  POLLOCK_SOURCE_NOTES,
-} from '../lib/pollock-industry-content';
-import {
-  TUNA_ANATOMY_BRIEFING_POINTS,
-  TUNA_ANATOMY_NARRATIVES,
-  TUNA_ANATOMY_SOURCE_NOTES,
-} from '../lib/tuna-anatomy-content';
+import { POLLOCK_SOURCE_NOTES } from '../lib/pollock-industry-content';
+
+/** 해부보고서 원문 HTML 의 본문 텍스트(태그를 걷은 것). 히어로 KPI 대조용. */
+function reportText(key: string): string {
+  return readFileSync(join(process.cwd(), `docs/evidence/industry-${key}-2026-10/보고서.html`), 'utf8')
+    .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/g, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&');
+}
+
+/** 히어로가 화면에 내는 숫자 표기(천 단위 쉼표, 소수 자릿수 고정). */
+function kpiText(kpi: HeroKpi): string {
+  const d = kpi.decimals ?? 0;
+  return kpi.value.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+}
 
 interface Page {
   이름: string;
@@ -73,6 +90,14 @@ interface Page {
   notes: string[];
   render: () => React.ReactElement;
 }
+
+/** 서술이 원문 보고서에서 그대로 오는 단계인가(손 사실표·낫표 차트 지목 규약 밖). */
+const fromReport = (page: Page, stage: StageNarrative) =>
+  page.이름 === '명태' || page.이름 === '참치 해부' ||
+  (page.이름 === '새우' && !SHRIMP_HANDWRITTEN_STAGES.has(stage.key));
+
+/** 원문 절에 표가 없는 단계(요약·남은 물음 절). */
+const NO_REPORT_TABLE: Record<string, string[]> = { 새우: ['s01'], '참치 해부': ['s01', 's15'] };
 
 const PAGES: Page[] = [
   {
@@ -93,26 +118,26 @@ const PAGES: Page[] = [
   },
   {
     이름: '새우',
-    narratives: SHRIMP_NARRATIVES,
+    narratives: SHRIMP_REPORT_NARRATIVES,
     slots: SHRIMP_CHART_SLOTS,
-    briefing: SHRIMP_BRIEFING_POINTS,
+    briefing: SHRIMP_REPORT_BRIEFING,
     notes: SHRIMP_SOURCE_NOTES,
     render: () => React.createElement(ShrimpIndustryDashboard),
   },
   {
     이름: '명태',
-    narratives: POLLOCK_NARRATIVES,
+    narratives: POLLOCK_REPORT_NARRATIVES,
     slots: POLLOCK_CHART_SLOTS,
-    briefing: POLLOCK_BRIEFING_POINTS,
+    briefing: POLLOCK_REPORT_BRIEFING,
     notes: POLLOCK_SOURCE_NOTES,
     render: () => React.createElement(PollockIndustryDashboard),
   },
   {
     이름: '참치 해부',
-    narratives: TUNA_ANATOMY_NARRATIVES,
+    narratives: TUNA_ANATOMY_REPORT_NARRATIVES,
     slots: TUNA_ANATOMY_CHART_SLOTS,
-    briefing: TUNA_ANATOMY_BRIEFING_POINTS,
-    notes: TUNA_ANATOMY_SOURCE_NOTES,
+    briefing: TUNA_ANATOMY_REPORT_BRIEFING,
+    notes: TUNA_ANATOMY_REPORT_SOURCE_NOTES,
     render: () => React.createElement(TunaAnatomyDashboard),
   },
 ];
@@ -127,6 +152,15 @@ describe('시장 이해 3품목 - 서술 골격', () => {
       expect(stage.question).not.toBe('');
       expect(stage.lede.length).toBeGreaterThan(20);
       expect(stage.paragraphs.length).toBeGreaterThanOrEqual(3);
+      if (fromReport(page, stage)) {
+        // 명태·새우·참치 해부 서술은 원문 보고서에서 그대로 오고 손 사실표가 없다(facts = []).
+        // 근거는 단계 흐름에 붙는 원문 표다. 요약·남은 물음 절만 원문에 표가 없다.
+        const tables = (stage.flow ?? []).filter((item) => item.kind === 'slot');
+        if (!(NO_REPORT_TABLE[page.이름] ?? []).includes(stage.key)) {
+          expect(tables.length, `${page.이름} ${stage.key} 원문 표`).toBeGreaterThanOrEqual(1);
+        }
+        continue;
+      }
       // 근거 없는 서술을 막는다. 참치·오징어와 같은 기준이다
       expect(stage.facts.length).toBeGreaterThanOrEqual(3);
       for (const fact of stage.facts) {
@@ -160,12 +194,14 @@ describe('시장 이해 3품목 - 서술 골격', () => {
 });
 
 describe('시장 이해 3품목 - 차트 참조 무결성', () => {
-  it.each(PAGES)('$이름 - 본문이 지목한 낫표 이름이 실제 차트 제목이다', (page) => {
+  // 명태·새우 원문 단계는 보고서 문장이라 낫표가 차트 지목이 아니라 인용이다.
+  // 원문 대조는 company-report-prose.test.ts 가 맡는다. 새우 손 작성 단계는 그대로 검사한다.
+  it.each(PAGES.filter((page) => page.이름 !== '명태'))('$이름 - 본문이 지목한 낫표 이름이 실제 차트 제목이다', (page) => {
     const titles = new Set(
       Object.values(page.slots).flatMap((slots) => slots.map((slot) => slot.title)),
     );
 
-    for (const stage of page.narratives) {
+    for (const stage of page.narratives.filter((st) => !fromReport(page, st))) {
       const text = [stage.lede, ...stage.paragraphs].join('\n');
       for (const match of text.matchAll(/「([^」]+)」/g)) {
         expect(
@@ -384,34 +420,54 @@ describe('골뱅이 - 집계와 본문 대조', () => {
 
 describe('새우 - 집계와 본문 대조', () => {
   const data = getShrimpIndustryData();
-  const text = SHRIMP_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
-  const facts = SHRIMP_NARRATIVES.flatMap((s) => s.facts);
+  // 2026-10-11 사용자 결정 7: 대조 기준은 해부보고서 원문이다. 원문은 FAO 를 담수 갑각류를 빼고
+  // 「1,195만 톤·73.8%·64.1%」로 적는다. 집계 JSON(12,768,242톤·74.4%·60.01%)은 차트에만 쓰고
+  // 차트 캡션이 별도 집계임을 밝힌다.
+  const html = reportText('shrimp');
+  const text = SHRIMP_REPORT_NARRATIVES.filter((s) => !SHRIMP_HANDWRITTEN_STAGES.has(s.key))
+    .flatMap((s) => [s.lede, ...s.paragraphs])
+    .join('\n');
 
   it('원본이 낡으면 알 수 있게 기준연도가 2024년 이상이다', () => {
     expect(data.요약.기준연도).toBeGreaterThanOrEqual(2024);
   });
 
-  it('어획과 양식의 합이 세계 생산과 맞는다', () => {
-    // 셋 다 각자 반올림한 값이라 1톤 오차가 난다
-    expect(Math.abs(data.요약.양식 + data.요약.자연산 - data.요약.세계생산)).toBeLessThanOrEqual(2);
-    // 본문은 어획·양식을 따로 적고, 합계는 근거표가 싣는다
-    expect(text).toContain(data.요약.양식.toLocaleString('en-US'));
-    expect(text).toContain(data.요약.자연산.toLocaleString('en-US'));
-    expect(
-      facts.some((fact) => fact.value.includes(data.요약.세계생산.toLocaleString('en-US'))),
-    ).toBe(true);
-    expect(text).toContain(String(data.요약.양식비중));
+  it('세계 생산·양식 비중·흰다리 비중이 원문과 화면 본문에 같은 값으로 있다', () => {
+    for (const probe of ['1,195만 톤', '881만 톤', '73.8%', '766만 톤', '64.1%', '11,946,690톤']) {
+      expect(html, `원문에 없음: ${probe}`).toContain(probe);
+    }
+    for (const probe of ['1,195만 톤', '73.8%', '64.1%']) {
+      expect(text, `화면 본문에 없음: ${probe}`).toContain(probe);
+    }
   });
 
-  it('양식 비중이 자연산을 넘어선 지점이 시계열에 있다', () => {
-    const rows = data.양식자연산추이;
-    expect(rows.length).toBeGreaterThan(10);
-    expect(rows[0].양식비중).toBeLessThan(5);
-    expect(rows[rows.length - 1].양식비중).toBeGreaterThan(50);
+  it('히어로 KPI 값이 원문 HTML 텍스트에 있다', () => {
+    expect(SHRIMP_HERO_KPIS).toHaveLength(4);
+    for (const kpi of SHRIMP_HERO_KPIS) {
+      expect(html, `${kpi.label} ${kpiText(kpi)}`).toContain(kpiText(kpi));
+    }
+    // 옛 히어로의 화면용 집계 값은 원문에 없다 — 히어로에 다시 들이지 않는다
+    const heroValues = SHRIMP_HERO_KPIS.map((kpi) => kpi.value);
+    for (const old of [data.요약.세계생산, data.요약.양식비중, data.요약.최대종비중]) {
+      expect(heroValues).not.toContain(old);
+    }
+  });
 
-    const crossed = rows.find((row) => row.양식비중 >= 50);
-    expect(crossed).toBeDefined();
-    expect(text).toContain(crossed!.연도);
+  it('차트용 FAO 집계는 원문과 다르고 캡션이 별도 집계임을 밝힌다', () => {
+    expect(data.요약.세계생산).not.toBe(11946690);
+    for (const slot of [...SHRIMP_CHART_SLOTS.s01, ...SHRIMP_CHART_SLOTS.s02]) {
+      expect(slot.caption, slot.title).toContain('별도 집계');
+      expect(slot.caption, slot.title).toContain('담수 갑각류 포함');
+    }
+  });
+
+  it('집계 JSON 안에서는 어획·양식·환경 합이 맞는다', () => {
+    // 셋 다 각자 반올림한 값이라 1톤 오차가 난다
+    expect(Math.abs(data.요약.양식 + data.요약.자연산 - data.요약.세계생산)).toBeLessThanOrEqual(2);
+    const sum = data.양식환경.reduce((total, row) => total + row.생산량, 0);
+    expect(Math.abs(sum - data.요약.양식)).toBeLessThanOrEqual(2);
+    const rows = data.양식자연산추이;
+    expect(rows[rows.length - 1].양식비중).toBeGreaterThan(50);
   });
 
   it('종 코드가 한글로 매핑돼 있다', () => {
@@ -420,32 +476,43 @@ describe('새우 - 집계와 본문 대조', () => {
       expect(row.종).not.toMatch(/기타 새우\(/);
       expect(row.종).toMatch(/[가-힣]/);
     }
-    expect(text).toContain(String(data.요약.최대종비중));
   });
 
-  it('양식 환경이 갈려 있고 담수 몫이 본문과 맞는다', () => {
-    const envs = Object.fromEntries(data.양식환경.map((row) => [row.환경, row]));
-    expect(envs['기수']).toBeDefined();
-    expect(envs['담수']).toBeDefined();
-
-    const sum = data.양식환경.reduce((total, row) => total + row.생산량, 0);
-    expect(Math.abs(sum - data.요약.양식)).toBeLessThanOrEqual(2);
-    expect(text).toContain(String(data.요약.담수양식비중));
-    expect(text).toContain(data.요약.담수양식.toLocaleString('en-US'));
-  });
-
-  it('한국은 세계와 반대로 자연산이 많다', () => {
-    expect(data.요약.한국양식비중).not.toBeNull();
+  it('한국은 세계와 반대로 자연산이 많고 양식 22.7%는 원문 값이다', () => {
     expect(data.요약.한국양식비중!).toBeLessThan(data.요약.양식비중);
     expect(data.한국종구성[0].종).toBe('젓새우');
-    expect(text).toContain(String(data.요약.한국양식비중));
+    expect(html).toContain('양식이 22.7%다');
+  });
+
+  it('보고서 밖 손 작성 단계에만 사내 분석 표시가 붙는다', () => {
+    for (const stage of SHRIMP_REPORT_NARRATIVES) {
+      expect(stage.badge, stage.key).toBe(SHRIMP_HANDWRITTEN_STAGES.has(stage.key) ? '보고서 밖 사내 분석' : undefined);
+    }
+    expect(renderToStaticMarkup(React.createElement(ShrimpIndustryDashboard))).toContain('보고서 밖 사내 분석');
+  });
+
+  it('원문 표와 겹치는 옛 위젯 표는 내렸다', () => {
+    const titles = Object.values(SHRIMP_CHART_SLOTS).flat().map((slot) => slot.title);
+    for (const dropped of [
+      '공급 기업 - 누가 잡고 누가 파는가',
+      '국가별 가공 거점과 기업',
+      '조달선 상위 8국 (금액)',
+      '수입 명의 상위 10곳 (건수)',
+      '국내 생산과 위판',
+      '가공 생산량 상위 5곳',
+      '수입 상위 감사보고서 매출',
+      'CIF에서 도매까지',
+      '세번 상위 5행',
+    ]) {
+      expect(titles, dropped).not.toContain(dropped);
+    }
   });
 });
 
 describe('명태 - 집계와 본문 대조', () => {
   const data = getPollockIndustryData();
-  const text = POLLOCK_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
-  const facts = POLLOCK_NARRATIVES.flatMap((s) => s.facts);
+  // 원문 보고서 서술이라 사실표(facts)가 없다. 값 대조는 본문으로 한다.
+  const text = POLLOCK_REPORT_NARRATIVES.flatMap((s) => [s.lede, ...s.paragraphs]).join('\n');
 
   it('원본이 낡으면 알 수 있게 기준연도가 2024년 이상이다', () => {
     expect(Number(data.세계어획._meta.기준연도)).toBeGreaterThanOrEqual(2024);
@@ -460,7 +527,7 @@ describe('명태 - 집계와 본문 대조', () => {
     expect(text).toContain(String(data.세계어획._meta.러미비중));
     expect(data.세계어획.국가[0].국가).toBe('러시아');
     expect(data.세계어획.국가.findIndex((r) => r.국가 === '한국')).toBe(4);
-    expect(facts.some((f) => f.value.includes(String(data.세계어획._meta.한국비중)))).toBe(true);
+    expect(text).toContain(String(data.세계어획._meta.한국비중));
   });
 
   it('할당과 어획이 붙어 있고 2026년 할당이 처음 줄었다', () => {
@@ -481,7 +548,6 @@ describe('명태 - 집계와 본문 대조', () => {
     const russia = data.수입원산지.rows[0];
     expect(russia.원산지).toBe('러시아');
     expect(text).toContain(String(russia.비중));
-    expect(facts.some((f) => f.value.includes(String(russia.비중)))).toBe(true);
   });
 
   it('가공 합계와 업체 수, 어묵이 따로 세어져 있다', () => {
@@ -493,9 +559,57 @@ describe('명태 - 집계와 본문 대조', () => {
     expect(Math.abs(sum - meta.합계['2025'])).toBeLessThanOrEqual(2);
   });
 
+  it('히어로 KPI 값이 원문 HTML 텍스트에 있다', () => {
+    const html = reportText('pollock');
+    expect(POLLOCK_HERO_KPIS).toHaveLength(4);
+    for (const kpi of POLLOCK_HERO_KPIS) {
+      expect(html, `${kpi.label} ${kpiText(kpi)}`).toContain(kpiText(kpi));
+    }
+  });
+
   it('재고 마지막 달이 본문의 7월 값과 맞는다', () => {
     const last = data.재고.rows[data.재고.rows.length - 1];
     expect(last.월).toBe('2026-07');
     expect(text).toContain(last.재고.toLocaleString('en-US'));
+  });
+});
+
+describe('참치 해부 - 집계와 본문 대조', () => {
+  // 2026-10-11 사용자 결정 7: 대조 기준은 해부보고서 원문(2026년 10월판)이다.
+  const html = reportText('tuna');
+
+  it('히어로 KPI 값이 원문 HTML 텍스트에 있다', () => {
+    expect(TUNA_ANATOMY_HERO_KPIS).toHaveLength(4);
+    for (const kpi of TUNA_ANATOMY_HERO_KPIS) {
+      expect(html, `${kpi.label} ${kpiText(kpi)}`).toContain(kpiText(kpi));
+    }
+  });
+
+  it('원문 표와 겹치는 옛 위젯은 내렸고, 남긴 차트는 별도 집계임을 밝힌다', () => {
+    const slots = Object.values(TUNA_ANATOMY_CHART_SLOTS).flat();
+    const titles = slots.map((slot) => slot.title);
+    expect(TUNA_ANATOMY_DROPPED_WIDGETS).toHaveLength(10);
+    for (const dropped of TUNA_ANATOMY_DROPPED_WIDGETS) expect(titles, dropped).not.toContain(dropped);
+    expect(slots).toHaveLength(11);
+    for (const slot of slots) {
+      expect(slot.caption, slot.title).toContain('보고서 표와 별도 집계다');
+      expect(slot.caption, slot.title).toMatch(/출처 .+ · 기준 .+/);
+    }
+  });
+
+  it('원문 서술에 옛 손 작성 값(초판·보도 9%)이 남지 않는다', () => {
+    const text = TUNA_ANATOMY_REPORT_NARRATIVES.flatMap((stage) => [
+      stage.lede,
+      ...(stage.flow ?? []).flatMap((item) => (item.kind === 'slot' ? [] : [item.text])),
+    ]).join('\n');
+    // 10월판 원문 값
+    for (const probe of ['332,602톤', '211,513톤', '144,435.4톤', '65,091.4톤', '2,100달러']) {
+      expect(text, probe).toContain(probe);
+    }
+    // 손 작성 브리핑에만 있던 값(원문에 없음)
+    for (const gone of ['동원F&B 참치캔류 평균', '34,834,425']) {
+      expect(html, gone).not.toContain(gone);
+      expect(text, gone).not.toContain(gone);
+    }
   });
 });

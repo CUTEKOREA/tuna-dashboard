@@ -1,3 +1,50 @@
+> ✅ **2026-10-11 KST — `/tuna-anatomy`(참치 해부) 서술을 최종 해부보고서 원문 인테이크로 교체 + 결정 6·7 적용** [CC]:
+> - 대상 화면은 해부보고서를 싣는 `tuna-anatomy`(`TunaAnatomyDashboard`·`lib/tuna-anatomy-content.ts`)다. 원문 `docs/evidence/industry-tuna-2026-10/보고서.html`(10-11 정정본) 본문 17절을 15단계에 매핑했다: s01~s15→같은 키(요약 s01 맨 앞) · s16(기관 리포트)→s07 · s17(기업 지도·밸류체인·이해당사자)→s11. 부록 sA·sB 제외.
+> - 공용 인테이크에 `tuna` 등록: 서술 17절·44,880자, 표 39개(`drop` 없음, 절별 `expect` 고정). 그림 파이프라인 대상에서는 다른 품목처럼 제외. 다른 편 JSON 바이트 변화 없음.
+> - 추출기 수정 1건: 12절 표 주석의 `10<sup>8</sup>`(억원 환산)을 표 추출기가 각주로 보고 지워 「10으로 나눠」가 됐다(서술 쪽은 「108」). `report_tables.py`·`report_prose.py` 가 숫자 뒤 숫자 `<sup>` 만 위 첨자(10⁸)로 남긴다. 이 패턴은 참치 원문에만 있어 다른 편 출력은 그대로다. 공용 테스트 `sourceText` 도 같게 바꿨다.
+> - 화면은 `proseStages('tuna')`·`proseBriefing('tuna')` + inlineReport(절 순번 오프셋), 단계 번호·제목·질문은 기존 손 작성 값.
+> - **결정 6**: 15단계 모두 원문 01~15절과 주제가 같아 「보고서 밖 사내 분석」 표시 대상 단계 없음(손 작성 서술이 화면에 남지 않으므로 신라교역 시점 손 서술도 없다).
+> - **결정 7**: 히어로 KPI 를 원문 리터럴로(01절 332,602톤·5.63%·199,711톤, 09절 80,374톤 — 값은 옛 집계와 같고 출처만 원문으로). 히어로 띠는 01절·13절 값(방콕 2,100달러, 2026년 1~8월 원양 다랑어류 144,435.4톤, 사조 출고가 10%·동원 인상 검토 보도, 선망 점유 세 회사). 옛 띠의 「동원F&B 평균 9%(9/1)」는 원문에 없어 뺐다. 원문 표와 겹친 옛 위젯 10개(상위 12개국·선망 회사별·원양선사 명부·PNA 월별 환적·수출 상대국·해외 캐너리 명부·캔 브랜드별·국내 캔 명부·수입 명의 명부·공시 10사 재무)를 내리고, 남긴 차트·명부 11개 캡션에 출처·기준·「별도 집계」를 붙였다.
+> - `tuna-industry`(세계 밸류체인)는 서술이 손 작성 세계 축이라 손대지 않았다. 다만 옛 해부보고서 통합본(2026-08-23)에서 옮긴 「보고서 표 N」 31개가 붙어 있어, 10월판 원문 표와 두 벌이 되지 않게 `reportSlots` 만 걷었다(`lib/data/tuna-industry-tables.ts`·`tuna-tables.json` 파일은 남김).
+> - 테스트: 원문 HTML 대조(서술·머리글·브리핑·표 39개), `commodity-industry-render` 참치 해부 항목을 새 서술로 + 히어로·내린 위젯·캡션 대조, `tuna-anatomy-stages` 명부 검사와 `tuna-industry-render` 의 해부 대조값을 원문 값으로.
+> - 남은 것: `lib/tuna-anatomy-content.ts` 손 작성 서술·브리핑은 화면에서 빠졌지만 파일과 `tuna-anatomy-stages` 의 손 작성 수치 검사는 남겼다. s07 손 제목 「방콕·가나·FCF」는 원문 부제(「방콕·트레이더·계열사」)와 다르다(발주서대로 손 제목 유지 — 정리 여부는 다음 결정). push·배포하지 않았다.
+
+> ✅ **2026-10-11 KST — `/squid-industry` 서술을 최종 해부보고서 원문 인테이크로 교체 + 결정 6·7 적용** [CC]:
+> - 원문 `docs/evidence/industry-squid-2026-10/보고서.html`(10-11 정정본, 제51판) 본문 21절을 화면 단계에 매핑했다: s01→s01(요약 맨 앞) · s21→s02 · s03→s06 · s18→s07 · s17→s08 · s05→s09 · s04·s06→s10 · s07·s16→s11 · s08·s09·s10→s12 · s11·s12→s13 · s13→s14 · s14·s15→s15 · s02→x01 · s19·s20→x03. 부록 `sA`~`sF` 제외.
+> - 공용 인테이크에 `squid` 등록: 서술 21절·72,610자, 표 68개(`drop` 없음, 절별 `expect` 고정). 그림 파이프라인 대상에서는 명태·문어·새우처럼 제외. 다른 편 JSON 바이트 변화 없음.
+> - 화면은 `proseStages('squid')`·`proseBriefing('squid')` + inlineReport(절 순번 오프셋), 단계 번호·제목·질문은 기존 손 작성 값. 옛 9월 발행본 `reportSlots`(`lib/data/squid-industry-tables.ts`)는 걷었다(파일은 남김).
+> - **결정 6**: s03(어법)·s04(쿼터)·s05(가공과 제품)·x02(지속가능성)·x04(인수 이후 — 사내 검토)는 원문에 대응 절이 없어 손 작성 서술 유지 + 「보고서 밖 사내 분석」 표시. 16절 「재편」은 거래 판단을 묻지 않는 원양 업종 구조라 x04 가 아니라 s11 에 붙였다.
+> - **결정 7**: 히어로 KPI 를 원문 값으로(2025 수입 164,676톤 · 단가 4.08 USD/kg · 2024 기국 어획 96,084톤 · 남서대서양 76.4%), 히어로 띠는 19절 표 51 주석 값(소비자가 5,348원 10/1, 서울 도매 13,700·10,400원 10/5, 칠레 72.6734% 9/29, 페루 98.48% 10/5). 원문 표와 겹치는 옛 위젯 20개 + 손 표 2개(공급 기업·국가별 가공 거점)를 화면에서 내림(위젯 JSON 은 그대로). 남긴 차트·위젯 캡션 전부에 출처·기준 + 「보고서 표와 별도 집계다」.
+> - 테스트: 원문 HTML 대조(서술·머리글·브리핑·표 68개, `<br>` 줄은 줄마다), `squid-industry-render` 의 집계 대조를 원문 기준으로 재작성(히어로·띠·캡션·내린 위젯·표시).
+> - 남은 것: `lib/squid-industry-content.ts` 손 작성 사실표 테스트(`squid-report25-sync` 등)는 화면에 안 나가는 서술을 계속 지킨다. push·배포하지 않았다.
+
+> ✅ **2026-10-11 KST — `/shrimp-industry` 서술을 최종 해부보고서 원문 인테이크로 교체** [CC]:
+> - 원문 `docs/evidence/industry-shrimp-2026-10/보고서.html`(10-11 정정본) 본문 17절(`s16` id 없음 — 「16 남은 물음」이 `s15`, 「15 제도」는 `s14` 안)을 화면 단계에 매핑했다: s01→s01(요약 맨 앞) · s02→s02 · s18→s03 · s05→s04 · s03·s04·s06→s07 · s07→s08 · s08·s09·s10→s09 · s11·s12→s10 · s13→s11 · s14→s12 · s15·s17→s13. 부록 `sA`·`sB`·`sC` 제외.
+> - 공용 인테이크에 `shrimp` 등록: 서술 17절·33,563자, 표 41개(`drop` 없음, 절별 `expect` 고정). 그림 파이프라인 대상에서는 명태·문어처럼 제외.
+> - **파서 수정**: `s18` 이 `<section id="s18" style=…>` 라 `report_tables.py`·`report_prose.py`·`_assert_all_sections_mapped` 의 정규식이 절을 통째로 놓쳤다(누락 가드도 같이 못 봄). `<section id="…"[^>]*>` 로 넓혔고, 다른 편 JSON 은 재생성 후 바이트 변화 없음.
+> - 화면은 `proseStages('shrimp')`·`proseBriefing('shrimp')` + inlineReport(절 순번 오프셋). 단계 번호는 x01=「A」가 사이에 있어 기존 화면 번호를 쓴다. 손 작성 차트·표 위젯은 단계 끝 「근거」에 유지(옛 보고서 표 위젯 telemetry 는 그대로), 옛 `reportSlots`(`shrimp-industry-tables`)는 걷었다.
+> - **⚠ x01(바스켓)·s05(아르헨티나)·s06(수입 창구)은 원문에 대응 절이 없다.** 손 작성 서술을 그대로 남겼다(`SHRIMP_HANDWRITTEN_STAGES`). 유지·삭제는 메인 결정.
+> - ⚠ 히어로 KPI(FAO 자체 집계: 양식 74.4%·흰다리 60.01%·세계 12,768,242톤)와 원문 본문(담수 갑각류 제외: 73.8%·64.1%·1,195만 톤)이 다른 값이다. 고치지 않았다.
+> - 남은 것: `lib/shrimp-industry-content.ts` 의 교체된 11단계 서술·브리핑과 `lib/data/shrimp-industry-tables.ts` 는 화면에서 빠졌지만 파일은 남겼다. render 테스트의 「새우 - 집계와 본문 대조」는 손 작성 본문 대조로 남겼다(원문엔 JSON 정밀값이 없다).
+> - push·배포하지 않았다.
+
+> ✅ **2026-10-11 KST — `/octopus-industry` 서술을 최종 해부보고서 원문 인테이크로 교체** [CC]:
+> - 원문 `docs/evidence/industry-octopus-2026-10/보고서.html`(10-11 정정본) 본문 `s01`~`s11`을 화면 단계에 매핑했다: s01→s01(요약 맨 앞) · s02·s09→s02 · s03→s03 · s04→s04 · s06→s05 · s07→s06 · s11→s07 · s05→s08 · s08·s10→x01. 부록 `sA` 제외.
+> - 공용 인테이크에 `octopus` 등록: 서술 11절·28,071자, 표 18개(`drop` 없음, 절별 `expect` 고정). 그림 파이프라인 대상에서는 명태처럼 제외.
+> - 화면은 `proseStages('octopus')`·`proseBriefing('octopus')` + inlineReport(절 순번 오프셋). 손 작성 차트·표 위젯은 단계 끝 「근거」에 유지, 옛 `reportSlots`(제2판 표)는 걷었다.
+> - **⚠ s09(신라에스지 내부 검토)는 객관 시점의 새 보고서에 대응 절이 없다.** 손 작성 서술을 그대로 남겼다(`OCTOPUS_HANDWRITTEN_STAGES`). 브리핑은 원문 리드라 s09 항목이 없다. 유지·삭제는 메인 결정.
+> - 남은 것: `lib/octopus-industry-content.ts`의 s09 외 손 작성 서술·브리핑과 `lib/data/octopus-industry-tables.ts`(`octopus-tables.json`)는 화면에서 빠졌지만 파일은 남겼다. `__tests__/octopus-industry-render.test.ts`는 손 작성 본문 검사를 유지하고, 화면에서 빠진 수치 7개는 본문 검사로 옮겼다.
+> - push·배포하지 않았다.
+
+> ✅ **2026-10-11 KST — `/pollock-industry` 서술을 최종 해부보고서 원문 인테이크로 교체** [Cursor→CC]:
+> - `docs/evidence/industry-pollock-2026-10/보고서.html` 본문 `s01`~`s17`을 발주서의 아홉 단계에 매핑했다. 부록 `sA`~`sC`는 제외했다.
+> - 공용 보고서 인테이크에 `pollock`을 등록해 서술 17절·44,000자와 표 37개를 생성했다. 표는 `drop` 없이 전량이며 절별 개수를 빌드 게이트에 고정했다.
+> - 화면은 `proseStages('pollock')`·`proseBriefing('pollock')`을 쓰고 표를 원문 오프셋 자리에 끼운다. 기존 인터랙티브 차트·명부 슬롯은 단계 끝 「근거」에 유지했다.
+> - 회귀 검사는 본문 17절/아홉 단계, 표 37개/아홉 단계, 부록 제외, 화면 서술 전건의 원문 HTML 부분 문자열 일치를 확인한다.
+> - 단계 순서·제목·질문은 기존 손 작성 값을 유지했다(발주서 허용). 명태 보고서는 절 번호(kicker) 없는 절이 많아 공용 `proseStages`가 「: 부제」 머리를 만든다 — 명태 화면에서만 앞의 「: 」를 걷었고 공용 코드는 손대지 않았다.
+> - 남은 것: `lib/pollock-industry-content.ts`의 손 작성 `POLLOCK_NARRATIVES`·`POLLOCK_BRIEFING_POINTS`와 `lib/data/pollock-industry-tables.ts`(`pollock-tables.json`)는 화면에서 빠졌지만 파일은 남겼다. `__tests__/pollock-industry-stages.test.ts`·`commodity-industry-render.test.ts`(명태 항목)는 아직 이 손 작성 본문을 검사한다 — 정리 여부는 다음 결정.
+> - 커밋·배포하지 않았다. 다음 단계는 메인이 diff와 완료 명령 결과를 확인한 뒤 커밋하는 것이다.
+
 > 🟢 **2026-10-11 KST — `npm run verify` 가 처음으로 rc=0** [CC]:
 > - 막고 있던 둘 다 이번 변경과 무관한 기존 실패였다(`origin/main` 에서도 같이 깨졌다).
 > - **typecheck 3건** — `__tests__/mail-company-smtp-nodemailer-render.test.ts` 49·67·99. 뿌리는 헬퍼가 옵션을 `Parameters<typeof createTransport>[0]` 로 받은 것: 그러면 **마지막 오버로드**(`Transport<T> | TransportOptions`)로 좁혀져 `streamTransport`·`jsonTransport` 가 없는 타입이 되고, 반환 `SentMessageInfo` 에도 `message` 가 없어 캐스팅으로 메워야 했다. 고친 방식 = **호출부가 자기 오버로드를 직접 고르게** 썽크(`() => createTransport({ streamTransport: true, … })`)로 넘기고, 헬퍼는 `Transporter<T, D>` 를 제네릭으로 받는다. 캐스팅 0개. 테스트 2건 그대로 통과(기준 RFC822 원문 단언 유지).

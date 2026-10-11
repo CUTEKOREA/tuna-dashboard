@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-import { SHRIMP_CHART_SLOTS } from '@/components/market-understanding/ShrimpIndustryDashboard';
+import { tablesForStage } from '@/lib/data/company-report-tables';
 import {
   SHRIMP_BRIEFING_POINTS,
   SHRIMP_NARRATIVES,
@@ -43,7 +43,9 @@ describe('새우 보고서 이식 07~13단계', () => {
     ]);
     for (const key of ['s07', 's08', 's09', 's10', 's11', 's12', 's13']) {
       expect(SHRIMP_BRIEFING_POINTS.some((b) => b.stage === key)).toBe(true);
-      expect(SHRIMP_CHART_SLOTS[key]?.length).toBeGreaterThan(0);
+      // 2026-10-11 사용자 결정 7: 옛 손 작성 표 위젯은 원문 표와 주제가 같아 내렸다.
+      // 근거 표는 원문에서 그 단계로 붙는다.
+      expect(tablesForStage('shrimp', key).length, key).toBeGreaterThan(0);
     }
   });
 
