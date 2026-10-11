@@ -51,6 +51,12 @@ import {
   TUNAFARM_REPORT_NARRATIVES,
   TUNAFARM_STAGES,
 } from '@/components/market-understanding/TunafarmIndustryDashboard';
+import {
+  WHELK_HERO_KPIS,
+  WHELK_REPORT_BRIEFING,
+  WHELK_REPORT_NARRATIVES,
+  WHELK_STAGES,
+} from '@/components/market-understanding/WhelkIndustryDashboard';
 import type { HeroKpi } from '@/components/v2/HeroZone';
 import type { BriefingPoint, StageNarrative } from '@/components/market-understanding/CommodityIndustryDashboard';
 import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
@@ -616,6 +622,12 @@ const THREE: Array<{
     groups: { s01: ['s01', 's02'], s09: ['s10'] },
     narratives: TUNAFARM_REPORT_NARRATIVES, hand: TUNAFARM_STAGES, brief: TUNAFARM_REPORT_BRIEFING, hero: TUNAFARM_HERO_KPIS,
   },
+  {
+    key: 'whelk', 이름: '골뱅이', sections: 5, tables: 17, briefing: 4,
+    stages: ['s01', 's02', 's03', 's04'],
+    groups: { s03: ['s03', 's04'], s04: ['s05'] },
+    narratives: WHELK_REPORT_NARRATIVES, hand: WHELK_STAGES, brief: WHELK_REPORT_BRIEFING, hero: WHELK_HERO_KPIS,
+  },
 ];
 
 describe.each(THREE)('$key 원문 서술 추출 (손 작성 서술 대체)', (c) => {
@@ -709,6 +721,7 @@ describe('품목 해부보고서 장 제목·그림 자리', () => {
     ['surimi', SURIMI_REPORT_NARRATIVES, new Set<string>()],
     ['mackerel', MACKEREL_REPORT_NARRATIVES, new Set<string>()],
     ['tunafarm', TUNAFARM_REPORT_NARRATIVES, new Set<string>()],
+    ['whelk', WHELK_REPORT_NARRATIVES, new Set<string>()],
   ] as const;
   // 참치 양식(10장)·골뱅이 조달(5장)은 해부보고서보다 장이 적다.
   const MIN_SECTIONS: Record<string, number> = { tunafarm: 10, whelk: 5 };
@@ -742,7 +755,7 @@ describe('품목 해부보고서 장 제목·그림 자리', () => {
 
   it('오징어 그림 14개가 화면 흐름에 오른다(다른 넷과 고등어·참치 양식·골뱅이는 원문에 그림이 없다)', () => {
     expect(reportFigures('squid')).toHaveLength(14);
-    for (const key of ['pollock', 'octopus', 'shrimp', 'tuna', 'mackerel', 'tunafarm']) expect(reportFigures(key)).toEqual([]);
+    for (const key of ['pollock', 'octopus', 'shrimp', 'tuna', 'mackerel', 'tunafarm', 'whelk']) expect(reportFigures(key)).toEqual([]);
   });
 });
 
@@ -761,11 +774,15 @@ describe('아홉 편 공통', () => {
   it('실린 편은 모두 서술이 있다', () => {
     // ⚠ 편 수를 리터럴로 적지 마라. 9 로 박아 둔 자리가 Nauterra(Ⅹ) 누락을 못 잡았다.
     expect(REPORT_PROSE_COMPANIES.length).toBeGreaterThanOrEqual(9);
+    // 골뱅이 조달 보고서는 해부보고서가 아니라 본문 장이 다섯(요지·Ⅰ~Ⅳ)인 짧은 조사 보고서다.
+    // 네 단계뿐이고 Ⅳ장은 문단이 하나(리드)뿐이라 본문 하한을 따로 둔다. 리드는 모든 단계에 있어야 한다.
+    const SHORT: Record<string, number> = { whelk: 4 };
     for (const c of REPORT_PROSE_COMPANIES) {
       const stages = proseStages(c);
-      expect(stages.length, `${c} 단계 수`).toBeGreaterThanOrEqual(6);
+      expect(stages.length, `${c} 단계 수`).toBeGreaterThanOrEqual(SHORT[c] ?? 6);
       for (const st of stages) {
         expect(st.lede.length, `${c} ${st.key} 리드`).toBeGreaterThan(0);
+        if (c === 'whelk' && st.key === 's04') continue;
         expect(st.paragraphs.length, `${c} ${st.key} 본문`).toBeGreaterThan(0);
       }
     }

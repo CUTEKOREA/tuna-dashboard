@@ -1,5 +1,5 @@
 /**
- * 시장 이해 여섯 품목 화면의 「보고서 원문 보기」와 원문 그림·장 제목 렌더.
+ * 시장 이해 아홉 품목 화면의 「보고서 원문 보기」와 원문 그림·장 제목 렌더.
  *
  * 원문 HTML 은 `scripts/sync_industry_report_html.py` 가 docs/evidence 에서 public 으로
  * **바이트 그대로** 복사한다. 원문을 고치면 다시 돌려야 하고, 잊으면 여기서 죽는다.
@@ -18,12 +18,14 @@ import SquidIndustryDashboard from '../components/market-understanding/SquidIndu
 import TunaAnatomyDashboard from '../components/market-understanding/TunaAnatomyDashboard';
 import SurimiIndustryDashboard from '../components/market-understanding/SurimiIndustryDashboard';
 import TunafarmIndustryDashboard from '../components/market-understanding/TunafarmIndustryDashboard';
+import WhelkIndustryDashboard from '../components/market-understanding/WhelkIndustryDashboard';
 import TunaIndustryDashboard from '../components/market-understanding/TunaIndustryDashboard';
 import { chapterHead } from '../components/market-understanding/IndustryReportFlow';
 import { reportFigures } from '../lib/data/company-report-figures';
 import { reportProse } from '../lib/data/company-report-prose';
 import { MACKEREL_NARRATIVES } from '../lib/mackerel-industry-content';
 import { TUNAFARM_NARRATIVES } from '../lib/tunafarm-industry-content';
+import { WHELK_NARRATIVES } from '../lib/whelk-industry-content';
 
 const PAGES = [
   ['pollock', PollockIndustryDashboard],
@@ -34,6 +36,7 @@ const PAGES = [
   ['surimi', SurimiIndustryDashboard],
   ['mackerel', MackerelIndustryDashboard],
   ['tunafarm', TunafarmIndustryDashboard],
+  ['whelk', WhelkIndustryDashboard],
 ] as const;
 
 const root = process.cwd();
@@ -74,6 +77,7 @@ describe('화면 렌더', () => {
   it.each([
     ['mackerel', MACKEREL_NARRATIVES],
     ['tunafarm', TUNAFARM_NARRATIVES],
+    ['whelk', WHELK_NARRATIVES],
   ] as const)('%s - 손 작성 리드·문단·사실표가 화면에 남지 않는다', (key, hand) => {
     const html = (markup.get(key) ?? '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#x27;/g, "'").replace(/&quot;/g, '"');
     const probe = (text: string) => text.replace(/\*\*/g, '').slice(0, 40);

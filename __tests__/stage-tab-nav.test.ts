@@ -26,7 +26,8 @@ const DASHBOARDS = [
   ['참치', TunaIndustryDashboard, 10],
   ['새우', ShrimpIndustryDashboard, 14],
   ['고등어', MackerelIndustryDashboard, 10],
-  ['골뱅이', WhelkIndustryDashboard, 10],
+  // 조달 보고서 원문(요지·Ⅰ~Ⅳ장)을 네 단계에 싣는다.
+  ['골뱅이', WhelkIndustryDashboard, 4],
 ] as const;
 
 function tabLabels(html: string): string[] {

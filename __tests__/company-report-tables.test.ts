@@ -107,6 +107,7 @@ describe.each([
   // [키, 본문 표 수, 표가 붙는 단계(골뱅이 요지 단계는 표가 없다)]
   ['mackerel', 49, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 'x01']],
   ['tunafarm', 45, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09']],
+  ['whelk', 17, ['s02', 's03', 's04']],
 ] as const)('%s 원문 표 추출', (key, count, stages) => {
   const tables = reportTables(key);
 
@@ -135,6 +136,24 @@ describe.each([
 });
 
 describe('표 값 — 원문 첫 행 대조', () => {
+  it('골뱅이 Ⅰ-1 두 줄 머리글: 연도 아래 톤·$/kg 이 열 이름에 붙고 첫 행은 냉동 바스켓 세번이다', () => {
+    const t = reportTables('whelk').find((table) => table.title === 'Ⅰ-1. 세번별 물량과 단가');
+    expect(t).toBeDefined();
+    expect(t!.head.slice(0, 3)).toEqual(['세번', '2021 · 톤', '2021 · $/kg']);
+    expect(t!.head.at(-1)).toBe('2026.1~8 · $/kg');
+    expect(t!.rows).toHaveLength(5);
+    expect(t!.rows[0].slice(0, 3)).toEqual(['냉동 기타 연체동물 (0307.92-9000 · 골뱅이 바스켓)', '1,929', '9.77']);
+    expect(t!.rows[0].at(-1)).toBe('8.03');
+  });
+
+  it('골뱅이 Ⅰ-2 두 줄 머리글: 첫 행은 영국이다', () => {
+    const t = reportTables('whelk').find((table) => table.title.startsWith('Ⅰ-2. 원산지별 물량과 단가'));
+    expect(t).toBeDefined();
+    expect(t!.head[1]).toBe('2021 · 톤');
+    expect(t!.rows).toHaveLength(8);
+    expect(t!.rows[0].slice(0, 3)).toEqual(['영국', '3,887', '11.94']);
+  });
+
   it('참치 양식 어종 표: 첫 행 대서양참다랑어 36,855 t', () => {
     const t = reportTables('tunafarm').find((table) => table.head.includes('2024 양식 t'));
     expect(t).toBeDefined();

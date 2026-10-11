@@ -115,8 +115,9 @@ describe('골뱅이 05단계 - 수입 창구', () => {
     expect(text).toContain(SERIES_KR_PREP_TONNES.toLocaleString('en-US'));
   });
 
-  it('s05 슬롯이 사람이 읽을 수치를 실제로 그려낸다', () => {
-    const slots = WHELK_CHART_SLOTS.s05;
+  // 화면 서술이 조달 보고서 원문으로 바뀌며 수입 창구 차트는 Ⅰ장(수입현황)이 붙은 02단계 근거로 옮겼다.
+  it('수입 단계 근거 슬롯이 사람이 읽을 수치를 실제로 그려낸다', () => {
+    const slots = WHELK_CHART_SLOTS.s02;
     expect(slots).toBeTruthy();
     expect(slots.length).toBeGreaterThanOrEqual(3);
 
@@ -138,7 +139,7 @@ describe('골뱅이 05단계 - 수입 창구', () => {
   });
 
   it('슬롯 캡션이 제품중량·세번 경계를 밝힌다', () => {
-    const caps = WHELK_CHART_SLOTS.s05.map((s) => s.caption).join(' ');
+    const caps = WHELK_CHART_SLOTS.s02.map((s) => s.caption).join(' ');
     expect(caps).toMatch(/제품중량|세번/);
     expect(caps).toMatch(/더할 수 없다|만들지 않는다/);
   });
@@ -209,15 +210,17 @@ describe('골뱅이 06·07단계 - 명의·위판 (보고서 제4판)', () => {
     expect(tX).toContain('Bolinus brandaris');
     expect(tX).not.toContain('보고서가 집계한 7건의 사유는 카드뮴·납이다');
     expect(tX).not.toContain('유럽연합 통보는 모두 카드뮴과 납');
-    const s08Html = (WHELK_CHART_SLOTS.s08 ?? [])
+    // 생산 명부는 조달 보고서 Ⅱ·Ⅲ장이 붙은 03단계 근거로 옮겼다.
+    const s08Html = (WHELK_CHART_SLOTS.s03 ?? []).filter((s) => s.title === '2025 생산 상위 20곳')
       .map((s) => `${s.caption}\n${renderToStaticMarkup(React.createElement(React.Fragment, null, s.render()))}`)
       .join('\n');
     expect(s08Html).toContain('2024·2025 생산량(kg)');
     expect(s08Html).not.toContain('전년비는 보고서 원문');
   });
 
-  it('s06·s07 표가 법인명을 그린다', () => {
-    const html = [...(WHELK_CHART_SLOTS.s06 ?? []), ...(WHELK_CHART_SLOTS.s07 ?? [])]
+  it('명의·위판 표가 법인명을 그린다', () => {
+    // 명의·위판 표는 03(산지와 제조소)·04(수입자) 단계 근거로 옮겼다.
+    const html = [...(WHELK_CHART_SLOTS.s03 ?? []), ...(WHELK_CHART_SLOTS.s04 ?? [])]
       .map((s) => renderToStaticMarkup(React.createElement(React.Fragment, null, s.render())))
       .join('');
     for (const probe of [
