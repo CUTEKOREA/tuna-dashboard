@@ -1,0 +1,721 @@
+<title>한국 타피오카 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 타피오카<br>
+        카사바 산지 · 전분 · 펄 · 수입 · 가격 · 제도<br>
+        2021~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">같은 뿌리에서 갈라지는 전분과 식품 · 리포트 2026</p>
+      <h1><span class="scr">Tapioca</span> <span class="lt">한국 타피오카 산업 해부</span></h1>
+      <p class="cover-sub">한국의 타피오카는 한 가지 시장이 아니다. 카사바 칩·펠릿은 주정과 사료로, 천연전분은 식품과 산업 원료로, 펄 등 형태제품은 별도 식품시장으로 들어온다. 세계 산지에서 한국의 원료 사용과 수입까지 각 단계의 통계를 구분해 읽는다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">세계 카사바 생산</div><div class="v">3.419억</div>
+        <div class="n">톤 · 2024 · 생근 · FAOSTAT 추정 세계 합계</div></div>
+      <div class="cf"><div class="k">세계 카사바전분 수출</div><div class="v">548.7만</div>
+        <div class="n">톤 · 2024 · FAOSTAT 국가무역</div></div>
+      <div class="cf"><div class="k">한국 식품제조 원료 사용</div><div class="v">71,143</div>
+        <div class="n">톤 · 2024 · KOSIS ‘타피오카’ · HS 수입과 모집단 다름</div></div>
+      <div class="cf"><div class="k">한국 천연전분 수입</div><div class="v">29,374.7</div>
+        <div class="n">톤 · 2025 · HS 1108.14</div></div>
+      <div class="cf"><div class="k">한국 형태제품 수입</div><div class="v">4,252.1</div>
+        <div class="n">톤 · 2025 · HS 1903 · 대체품 포함</div></div>
+      <div class="cf"><div class="k">전분의 태국산 비중</div><div class="v">86.1%</div>
+        <div class="n">한국 수입 물량 · 2025 완료연도 · 2024년 87.1%</div></div>
+      <div class="cf"><div class="k">형태제품의 대만산 비중</div><div class="v">52.4%</div>
+        <div class="n">한국 수입 물량 · 2025 완료연도 · 2024년 80.7%</div></div>
+      <div class="cf"><div class="k">태국 전분 수출 호가</div><div class="v">695</div>
+        <div class="n">USD/톤 · FOB Bangkok · 2026-10-06</div></div>
+    </div>
+
+  </div>
+</header>
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">한국의 타피오카는 원료·전분·펄을 나눠 봐야 한다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">뿌리는 여러 대륙에서 나고 전분 수출은 동남아에 모인다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">식품제조 원료는 집계되지만 완제품 소비는 분리되지 않는다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">전분의 공급국과 형태제품의 공급국이 다르다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">태국 FOB 호가와 한국 수입단가는 서로 다른 가격이다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">태국은 전분 최대 공급국, 대만은 형태제품 최대 상대국이다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 국내 유통·기업</span><span class="t">수입국 집중과 업소별 신고 건수는 확인된다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">칩·펠릿의 용도별 할당관세는 전분·펄의 세율이 아니다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트</span><span class="t">태국 공급 전망은 작성 시점과 상품 범위를 붙여 읽는다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표·남은 물음</span><span class="t">제품별 물량과 가격을 같은 기간에 맞춰 본다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">전분과 펄은 공급기업망이 다르다</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 검토 범위</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>한국의 타피오카는 원료·전분·펄을 나눠 봐야 한다</h2>
+<p class="lead">카사바 뿌리에서 칩과 펠릿, 천연전분, 타피오카 펄이 차례로 나온다. 이들은 같은 농산물에 기대지만 통관 코드와 용도, 공급국, 단가가 다르다. 한국에서 2025년에 들어온 HS 0714.10은 9만 2,076.2톤이고 그 대부분은 칩·펠릿이다. HS 1108.14 천연 카사바전분은 29,374.7톤(29,374,660kg), HS 1903 타피오카와 전분 대체 형태제품은 4,252.1톤이다. 세 물량을 한데 더한 수치는 식품 소비량이 아니다. 앞 단계 원료가 다음 단계 제품으로 가공될 수 있고, HS 1903에는 타피오카의 대체품도 들어간다(관세청 품목별 월간 원자료, 30_근거_수치 C01~C03).</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>한국의 원료 사용.</strong> KOSIS ‘식품제조업 농축수산물 사용량(비식품류 제외)’의 타피오카 항목은 2024년 7만 1,143톤이다. 같은 표의 수입산 사용량도 7만 1,143톤, 국산 사용량은 0톤이다. 이는 식품제조업의 원료 출처 통계다. 같은 해 FAOSTAT의 한국 카사바전분·형태제품 수입 합계 3만 274톤과 모집단이 달라 차액을 특정 수입 원료에 배분할 수 없다. 한국에서 전분이나 펄을 전혀 가공하지 않는다는 뜻으로도 읽지 않는다(<a href="https://kosis.kr/statHtml/statHtml.do?orgId=114&amp;tblId=DT_114010_A001">KOSIS 통계표</a>, 03절).</li>
+<li><strong>수입 단계.</strong> 2025년 HS 1108.14 수입은 29,374.7톤(29,374,660kg)·1,327만 6,708달러다. 이 중 관세청 세번상 식품용은 6,264.6톤으로 21.3%다. HS 1903은 4,252.1톤·966만 3,569달러다. HS 1903 전체를 순수 카사바 펄로 부르지 않는다(관세청 품목별 월간 원자료, 04절).</li>
+<li><strong>산지 분리.</strong> 한국의 2025년 수입 물량에서 태국산은 천연전분의 86.1%, 대만산은 HS 1903의 52.4%, 브라질산은 HS 1903의 34.7%였다. 2024년 대만산 비중은 80.7%였다. FAOSTAT의 2024년 한국 ‘Tapioca of cassava’ 합계는 같은 해 Comtrade HS 1903 합계와 반올림 범위에서 일치하지만, 이 일치만으로 세부 상품 구성이 같다고 단정하지 않는다. 한 국가의 비중을 ‘타피오카 전체’의 비중으로 쓰면 제품 차이가 지워진다(FAOSTAT TM·TCL; UN Comtrade, 한국 수입 상대국 공개 preview, 자료연도 2025·2026-10-08 조회, https://comtradeapi.un.org/public/v1/preview/C/A/HS?period=2025&amp;reporterCode=410&amp;cmdCode=110814,190300&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0).</li>
+<li><strong>세계 생산과 교역.</strong> FAOSTAT의 2024년 세계 카사바 생근 생산 추정 합계는 약 3.419억 톤(341,905,934.31톤)이다. 나이지리아·콩고민주공화국·태국 순이다. 같은 해 세계 카사바전분 수출 추정 합계는 약 548.7만 톤(5,486,616.21톤)이며 태국과 베트남의 합계가 88.4%다. 베트남 수출 행은 FAOSTAT 외부기관 수치(X)이므로 이 점유율도 그 조건 아래 읽는다(FAOSTAT QCL·TCL, 02절).</li>
+<li><strong>진행연도.</strong> 2026년 1~8월 한국 천연전분 수입은 1만 4,028.2톤으로 2025년 같은 기간보다 33.3% 적다. HS 1903은 2,692.1톤으로 같은 기간보다 0.2% 많다. 이 부분기간 값은 연간 순위의 근거가 아니다(관세청 품목별 월간 원자료, 04절).</li>
+<li><strong>가격 층위.</strong> 태국전분협회가 고시한 슈퍼프리미엄 천연전분 FOB Bangkok 호가는 2026년 1월 6일 톤당 480달러에서 10월 6일 695달러가 됐다. 한국의 연간 수입단가와는 품질·인도조건·제품 구성이 달라 직접 가격차로 해석하지 않는다(<a href="https://thaitapiocastarch.org/en/information/statistics/weekly_tapioca_starch_price">태국전분협회 주간표</a>, 05절).</li>
+<li><strong>제도.</strong> 확인된 2026년 연중 할당관세에는 카사바 건조 칩 주정용 10%·6만 톤, 펠릿 사료용 0%·10만 톤이 있다. 이 조건을 천연전분이나 펄에 옮겨 적용할 수 없다(<a href="https://www.law.go.kr/LSW/flDownload.do?flSeq=166193701&amp;bylClsCd=200201">국가법령정보센터, 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」(대통령령 제36450호, 2026-06-30 개정·2026-07-01 시행) 별표 3, 2026-10-08 확인</a>, 08절).</li>
+<li><strong>자료의 빈칸.</strong> 식약처 신고에서는 2025년 10월~2026년 9월 제품명 기준 업소별 <strong>신고 건수</strong> 순위가 확인된다(11절). 기업별 수입 중량·금액과 국내 가공업체별 타피오카 매출·점유율, HS별 기본·협정 세율을 확정할 양허표는 미확보다. KAMIS의 2020~2026년 전 품목 일별 수집본에는 타피오카·카사바 명칭의 행이 없었다. 이는 해당 수집본에서 가격열을 확보하지 못했다는 뜻이다(07·08·05·11절).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li>이 보고서는 <strong>2026년 연간 천연 카사바전분 수입 물량이 2025년보다 적을 것</strong>으로 본다. 1~8월 같은 기간 물량이 33.3% 감소한 관측에 기댄 판단이다. 반증 조건은 2026년 연간 HS 1108.14 수입이 2025년 29,374.7톤 이상으로 집계되는 것이다. 남은 달에 대량 입항하면 판단은 뒤집힌다.</li>
+<li>이 보고서는 <strong>한국의 전분과 형태제품이 서로 다른 공급국에 계속 집중될 것</strong>으로 본다. 반증 조건은 2026년 연간 집계가 완료됐을 때 천연전분의 태국산 비중 또는 HS 1903의 대만산 비중이 각각 50% 아래로 내려가는 것이다. 2025년 대만산 비중은 이미 52.4%로 이 선보다 2.4%포인트 높다. 2026년 3~8월 국가별 자료는 부분기간 잠정치이며 연간 점유율이 아니다.</li>
+</ul>
+<p>자료의 위계도 밝힌다. 관세청·KOSIS·FAOSTAT·UN Comtrade의 관측·추정치와 국가법령 원문은 사실 구간에, 태국전분협회 자체 조사와 은행 전망은 그 출처를 드러내는 보조 구간에 놓았다. 위의 전망 두 문장은 이 보고서의 판단이다. 자동 숫자대조 결과는 <code>update_2026-10-07/20_숫자대조.txt</code>에 있다(빌드할 때마다 다시 돌린다). 이 기계 대조가 모든 해석을 검증했다는 뜻은 아니다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>뿌리는 여러 대륙에서 나고 전분 수출은 동남아에 모인다</h2>
+<p class="lead">카사바 생근의 세계 생산량과 타피오카전분의 세계 교역량은 다른 단계의 통계다. 뿌리 수확물에는 현지 식용·사료·전분·에탄올 등 여러 용도가 있다. 전분 수출만으로 전체 카사바 생산이나 식품용 타피오카 소비를 추정할 수 없다. FAOSTAT의 가장 늦은 완료 생산연도는 2024년이며 세계 생근 생산은 3억 4,190만 5,934.31톤이다. 세계 합계의 플래그 E는 추정값을 뜻한다(FAOSTAT QCL, 30_근거_수치 F01).</p>
+<div class="tw">
+<table>
+<caption>표 1. 카사바 생근 생산 상위국(2024년)</caption>
+<thead><tr><th class="num">순위</th><th>국가</th><th class="num">생산량(톤)</th><th class="num">세계 합계 대비</th><th>FAOSTAT 플래그</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>나이지리아</td><td class="num">62,624,946</td><td class="num">18.3%</td><td>E</td></tr>
+<tr><td class="num">2</td><td>콩고민주공화국</td><td class="num">46,558,022</td><td class="num">13.6%</td><td>A</td></tr>
+<tr><td class="num">3</td><td>태국</td><td class="num">28,624,312</td><td class="num">8.4%</td><td>A</td></tr>
+<tr><td class="num">4</td><td>가나</td><td class="num">27,917,781</td><td class="num">8.2%</td><td>I</td></tr>
+<tr><td class="num">5</td><td>브라질</td><td class="num">19,066,096</td><td class="num">5.6%</td><td>A</td></tr>
+<tr><td class="num">세계</td><td>전체</td><td class="num">341,905,934</td><td class="num">100%</td><td>E</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT QCL <code>Cassava, fresh</code>·<code>Production</code>·2024, <code>QCL_tapioca.csv</code> 및 <code>faostat_production_tapioca.csv</code>; 비중은 각국 생산량 ÷ 세계 합계. A는 공식값, E는 추정값, I는 기관 보간값이다.</p>
+<p>아프리카의 생근 생산 규모가 큰 것은 세계 식량체계에서 카사바가 중요한 작물이라는 뜻이다. 그러나 나이지리아가 한국 전분의 최대 공급국이라는 뜻은 아니다. 한국이 수입하는 전분은 수출용 건조·가공 설비와 항만망을 거친다. 이 가공·수출 고리에서 태국과 베트남의 역할이 커진다. 원물 생산 순위와 가공제품 수출 순위를 따로 제시하는 이유다.</p>
+<p>FAOSTAT 공급이용계정(SCL)의 최신연도는 2023년이다. 여기서 세계 카사바전분 생산 704만 1,803톤, 전분의 비식품 기타용도 656만 2,344톤은 E로 표시된 추정 계정값이다. 같은 계정의 ‘Tapioca of cassava’ 생산 121만 595톤과 식품공급 116만 9,782톤도 추정 계정이다. 수확량이나 통관 실측과 한 표에 합산하지 않는다. SCL의 ‘식품공급’은 공급이용표의 배분값이지 계산대에서 집계한 판매량이 아니다(FAOSTAT SCL, 30_근거_수치 F02).</p>
+<div class="tw">
+<table>
+<caption>표 2. 세계 카사바전분 수출 구조(2024년)</caption>
+<thead><tr><th>구분</th><th class="num">수출량(톤)</th><th class="num">세계 수출량 대비</th><th>자료 플래그</th></tr></thead>
+<tbody>
+<tr><td>태국</td><td class="num">3,158,747</td><td class="num">57.6%</td><td>A</td></tr>
+<tr><td>베트남</td><td class="num">1,689,202</td><td class="num">30.8%</td><td>X</td></tr>
+<tr><td>두 나라 합계</td><td class="num">4,847,949</td><td class="num">88.4%</td><td>계산</td></tr>
+<tr><td>세계 수출</td><td class="num">5,486,616</td><td class="num">100%</td><td>E</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT TCL <code>Starch of cassava</code>·<code>Export quantity</code>·2024, <code>TCL_tapioca.csv</code> 및 <code>faostat_trade_tapioca.csv</code>; 비중은 각 행 ÷ 세계 수출량. X는 외부기관에서 얻은 수치다.</p>
+<p>세계 수입 쪽에서는 FAOSTAT 2024년 카사바전분 수입 548만 1,183톤 가운데 중국 본토(<code>China, mainland</code>, Area Code 41)가 382만 8,413톤, 약 69.8%를 차지한다. 중국 합계(<code>China</code>, Area Code 351)와 구분한 값이다. 수출국 두 나라가 모두 중국 본토의 수요 변화에 민감한 구조다. <a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/cassava/io/cassava-2025-2027">Krungsri Research의 2025년 전망</a>은 중국의 칩 수요가 옥수수 가격과 재고 정책에 따라 바뀔 수 있다고 설명한다. 은행의 전망을 수출 실적으로 옮기지 않되, 한국의 전분 공급을 읽을 때 중국의 구매 변화가 상류 가공국에 영향을 줄 수 있다는 경로는 남긴다.</p>
+<p><a href="https://openknowledge.fao.org/server/api/core/bitstreams/d4a81a28-4246-429d-847d-6fef53dde9ff/content">OECD-FAO Agricultural Outlook 2025–2034</a>는 이 보고서가 인용한 2025–2034 판이다. 별도로 수집된 2026–2035 전망 데이터는 이 문단의 수치 근거로 사용하지 않았다. 2025–2034 판은 카사바를 감자·얌·고구마 등과 함께 뿌리·괴경 묶음에서 분석한다. 그 보고서의 건물 기준 뿌리·괴경 생산과 FAOSTAT 생근 카사바 생산은 수분 기준과 품목 범위가 달라 직접 증감률을 만들 수 없다. OECD-FAO는 태국 카사바 수출단가를 가격 지표로 쓰고 중국을 주요 교역 목적지로 본다. 이 보고서는 개별 카사바·전분 숫자가 있는 FAOSTAT를 양적 기준으로 택했다.</p>
+<p>USDA PSD가 이 품목의 세계 수급표를 제공하지 않는다는 판정은 아카이브의 <code>raw_data/NOT_AVAILABLE.txt</code>에서 확인했다. 그래서 ‘세계 재고가 없다’고 쓰지 않는다. PSD의 해당 품목 수급표를 확보하지 못했고, FAOSTAT SCL에는 품목별 개시재고와 재고변동 행이 있다. 다만 그 계정의 세계 합계를 전분 식품시장 재고로 재해석하지 않는다.</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>식품제조 원료는 집계되지만 완제품 소비는 분리되지 않는다</h2>
+<p class="lead">국내 수요를 수입량 하나로 대신하면 두 문제가 생긴다. 첫째, 관세청 수입은 국경을 지난 원료와 제품이고 국내에서 어느 용도로 쓰였는지는 알리지 않는다. 둘째, 식품제조업의 원료 사용은 외식·가정 구매를 모두 포함하지 않는다. 따라서 관세청 HS 1108.14, HS 1903과 KOSIS ‘타피오카’는 각자의 모집단 안에서 읽어야 한다.</p>
+<p>KOSIS가 수록한 ‘식품제조업 농축수산물 사용량(비식품류 제외)’은 품목 ‘타피오카’의 제조 원료 사용량을 따로 보인다. 2024년 7만 1,143톤은 2023년 8만 6,619톤보다 17.9% 적다. 같은 해 FAOSTAT의 한국 카사바전분 수입 2만 6,838.96톤과 ‘Tapioca of cassava’ 수입 3,435.31톤을 합하면 3만 274.27톤이다. KOSIS 사용량은 그 약 2.35배다. 두 통계의 범위가 같지 않다는 점을 드러내는 비교이지, 4만 톤 넘는 차액이 변성전분·칩 등 특정 세번에서 왔다는 증거는 아니다. 조사 품목 정의, 재고와 가공 단계가 연결된 원자료가 없어 차액을 배분하지 않는다(<a href="https://kosis.kr/statHtml/statHtml.do?orgId=114&amp;tblId=DT_114010_A001">KOSIS 통계표</a>, FAOSTAT TCL, 30_근거_수치 K01).</p>
+<div class="tw">
+<table>
+<caption>표 3. 한국 식품제조업의 ‘타피오카’ 원료 사용</caption>
+<thead><tr><th class="num">연도</th><th class="num">총사용량(톤)</th><th class="num">수입산 사용량(톤)</th><th class="num">국산 사용량(톤)</th></tr></thead>
+<tbody>
+<tr><td class="num">2021</td><td class="num">98,177</td><td class="num">98,177</td><td class="num">미제공</td></tr>
+<tr><td class="num">2022</td><td class="num">91,673</td><td class="num">91,673</td><td class="num">미제공</td></tr>
+<tr><td class="num">2023</td><td class="num">86,619</td><td class="num">86,619</td><td class="num">0</td></tr>
+<tr><td class="num">2024</td><td class="num">71,143</td><td class="num">71,143</td><td class="num">0</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS <code>DT_114010_A001</code>, 로컬 <code>data/_raw/kosis_food_raw_material/2026-10-06__kosis_food_raw_material.json</code>; <code>C1_NM=타피오카</code>, <code>ITM_NM=총량·수입산사용량·국산사용량</code>. 미제공 칸은 0으로 대체하지 않았다.</p>
+<p>2024년 국산 사용량 0톤은 ‘식품제조업이 쓴 타피오카 원료의 국내산 출처’에 관한 값이다. 한국에서 수입전분을 사용해 펄이나 가공식품을 만드는 공장의 생산량이 0이라는 증거가 아니다. 국내 재배·전분 제조·펄 가공은 서로 다른 생산 단계이며, 이 세 단계의 생산량을 연속해서 관찰할 수 있는 품목별 KOSIS·업체 생산 원장은 이번 입력에 없다. 시도 경로는 KOSIS 작물 생산·식품제조업 원료 사용·제조업 품목 수집본이다. 작물 생산과 제조업 품목 수집본에서 ‘타피오카’ 또는 ‘카사바’ 명칭의 직접 행은 확인하지 못했다. 그러므로 국내 전체 생산량은 <strong>미확보</strong>로 둔다.</p>
+<p>FAOSTAT SCL은 다른 각도에서 식품 공급을 제시한다. 한국 ‘Tapioca of cassava’의 2023년 <code>Food supply quantity (tonnes)</code>는 4,028.89톤(E)이다. 같은 계정에서 수입 4,060.50톤(X), 수출 31.61톤(X)이다. 이는 공급이용계정이 수입과 수출을 반영해 추정한 식품 공급량으로 읽을 수 있지만, 실제 소비자 구매량이나 버블티 매출이 아니다. 천연전분의 2023년 수입 30,251.85톤(X)은 같은 계정에서 비식품 기타용도로 배분돼 있다. 이 배분이 모든 전분의 최종 용도를 실측했다는 뜻은 아니다. 관세청 2025년 세번에는 ‘식품용 전분’ 수입이 별도로 잡히므로 연도·분류 체계를 건너뛰어 한쪽으로 다른 쪽을 부정하지 않는다(FAOSTAT SCL, 30_근거_수치 K02).</p>
+<p>2025년 관세청의 식품용 천연 카사바전분은 6,264.6톤이고 기타 전분은 2만 3,110.1톤이다. ‘기타’는 식품 이외의 최종 용도를 뜻하는 확정치가 아니라 세번 명칭이다. 식품제조, 음료, 제지, 섬유 등 사용처는 <a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/cassava/io/cassava-2025-2027">Krungsri Research</a>가 설명하는 태국 측 천연전분의 일반 용도다. 한국의 사용처별 비중은 이 자료로 계산하지 않는다. 식품제조업의 타피오카 원료 사용과 HS별 수입을 같은 모집단으로 연결한 조사표가 이번 입력에 없어 국내 총소비는 확정되지 않는다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>전분의 공급국과 형태제품의 공급국이 다르다</h2>
+<p class="lead">한국 수입은 HS6 세 개를 고정해 읽되, HS10으로 내려가 세부 용도를 확인한다. HS 0714.10은 매니옥 생근·냉동품·건조 칩·펠릿을 포함한다. 이 보고서의 식품 중심 범위에서는 상류 원료와 정책 경계로만 취급한다. HS 1108.14는 천연 카사바전분이고, 변성전분 HS 3505는 제외한다. HS 1903은 타피오카와 전분으로 만든 대체품의 펄·플레이크 등 형태제품이므로 전량을 카사바 펄이라고 부르지 않는다. 세번 명칭 자체가 시장 경계다(관세청 품목별 월간 원자료, registry <code>tapioca</code>).</p>
+<div class="tw">
+<table>
+<caption>표 4. 한국의 단계별 수입(2025년 완료연도)</caption>
+<thead><tr><th>HS10 묶음</th><th>통관 명칭</th><th class="num">수입량(톤)</th><th class="num">수입액(달러)</th></tr></thead>
+<tbody>
+<tr><td>0714.10-2010</td><td>건조 칩</td><td class="num">18,070.8</td><td class="num">5,251,443</td></tr>
+<tr><td>0714.10-2020</td><td>펠릿</td><td class="num">73,910.9</td><td class="num">12,391,707</td></tr>
+<tr><td>0714.10 기타</td><td>냉동품 등</td><td class="num">94.5</td><td class="num">120,491</td></tr>
+<tr><td>1108.14-1000</td><td>천연전분 식품용</td><td class="num">6,264.6</td><td class="num">3,043,421</td></tr>
+<tr><td>1108.14-9000</td><td>천연전분 기타</td><td class="num">23,110.1</td><td class="num">10,233,287</td></tr>
+<tr><td>1903.00-1000</td><td>타피오카</td><td class="num">1,666.8</td><td class="num">4,010,857</td></tr>
+<tr><td>1903.00-9000</td><td>기타 형태제품</td><td class="num">2,585.4</td><td class="num">5,652,712</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>customs_item_trade_monthly_tapioca.csv</code>, <code>year=2025.01~2025.12</code>, HS10별 <code>impWgt</code>·<code>impDlr</code> 합계; 톤은 kg ÷ 1,000, 소수 첫째 자리 반올림. 0714.10 기타는 <code>2090·3000·4000</code>의 합이다. 2025년 완결 월 12개를 확인했다.</p>
+<p>천연전분 HS 1108.14의 2025년 합계는 29,374.7톤(29,374,660kg)·1,327만 6,708달러, kg당 0.452달러다. 형태제품 HS 1903은 4,252.1톤·966만 3,569달러, kg당 2.273달러다. 이 단가 차이를 가공마진이라고 부르지 않는다. 한쪽은 원료성 전분, 다른 쪽은 조제 형태제품과 대체품이며, 품질·포장·운임 구성도 다를 수 있다. 상류 HS 0714.10의 평균 수입단가 0.193달러/kg 역시 식품용 펄의 원가가 아니다(관세청 품목별 월간 원자료, 30_근거_수치 C01~C03).</p>
+<p>제공된 UN Comtrade 처리 파일에는 한국의 세계 합계 행만 있고 상대국 상세 행이 없다. 그러나 공개 preview API에서 한국 신고 상대국의 2025년 연간 행을 조회할 수 있다. 따라서 2025년 완료연도 한국 공급국 구조는 공개 API로 보완하고, 2024년 FAOSTAT 양자무역행렬(TM)은 비교 연도로 남긴다. 2026년 관세청 국가별 수집본은 3~8월만 있으므로 이를 2026년 연간 점유율로 바꾸지 않는다(FAOSTAT TM; UN Comtrade, 한국 수입 상대국 공개 preview, 자료연도 2025·2026-10-08 조회, https://comtradeapi.un.org/public/v1/preview/C/A/HS?period=2025&amp;reporterCode=410&amp;cmdCode=110814,190300&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0).</p>
+<div class="tw wide">
+<table>
+<caption>표 5. 한국 수입의 제품별 주요 공급국(2025년과 2024년)</caption>
+<thead><tr><th>연도·원천</th><th>품목</th><th>주요 공급국</th><th class="num">해당국 물량(톤)</th><th class="num">한국의 품목 총수입(톤)</th><th class="num">해당국 비중</th></tr></thead>
+<tbody>
+<tr><td>2025 Comtrade</td><td>카사바전분 HS 1108.14</td><td>태국</td><td class="num">25,289.26</td><td class="num">29,374.66</td><td class="num">86.1%</td></tr>
+<tr><td>2025 Comtrade</td><td>카사바전분 HS 1108.14</td><td>베트남</td><td class="num">3,199.92</td><td class="num">29,374.66</td><td class="num">10.9%</td></tr>
+<tr><td>2025 Comtrade</td><td>형태제품 HS 1903</td><td>대만*</td><td class="num">2,226.49</td><td class="num">4,252.14</td><td class="num">52.4%</td></tr>
+<tr><td>2025 Comtrade</td><td>형태제품 HS 1903</td><td>브라질</td><td class="num">1,475.23</td><td class="num">4,252.14</td><td class="num">34.7%</td></tr>
+<tr><td>2025 Comtrade</td><td>형태제품 HS 1903</td><td>태국</td><td class="num">335.41</td><td class="num">4,252.14</td><td class="num">7.9%</td></tr>
+<tr><td>2024 FAOSTAT</td><td>건조 카사바</td><td>태국</td><td class="num">47,672.54</td><td class="num">89,824.81</td><td class="num">53.1%</td></tr>
+<tr><td>2024 FAOSTAT</td><td>건조 카사바</td><td>베트남</td><td class="num">42,132.14</td><td class="num">89,824.81</td><td class="num">46.9%</td></tr>
+<tr><td>2024 FAOSTAT</td><td>카사바전분</td><td>태국</td><td class="num">23,368.20</td><td class="num">26,838.96</td><td class="num">87.1%</td></tr>
+<tr><td>2024 FAOSTAT</td><td>카사바전분</td><td>베트남</td><td class="num">3,434.98</td><td class="num">26,838.96</td><td class="num">12.8%</td></tr>
+<tr><td>2024 FAOSTAT</td><td>타피오카 형태제품</td><td>대만</td><td class="num">2,771.59</td><td class="num">3,435.31</td><td class="num">80.7%</td></tr>
+<tr><td>2024 FAOSTAT</td><td>타피오카 형태제품</td><td>태국</td><td class="num">472.34</td><td class="num">3,435.31</td><td class="num">13.7%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 2025년은 UN Comtrade 한국 신고 수입 <code>reporterCode=410</code>·<code>flowCode=M</code>·<code>customsCode=C00</code>·<code>motCode=0</code>·<code>partner2Code=0</code>의 상대국별 <code>netWgt</code>; 2024년은 FAOSTAT TM <code>Reporter Countries=Republic of Korea</code>·<code>Element=Import quantity</code>, 분모는 같은 해 TCL 한국 수입 합계. *Comtrade 상대국 코드 490은 <code>Other Asia, nes</code>로 표시되며 여기서는 대만으로 읽었다. FAOSTAT ‘Tapioca of cassava’의 2024년 한국 합계 3,435.31톤은 Comtrade HS 1903 합계 3,435.312톤과 반올림 범위에서 같다. 합계 일치만으로 세부 상품 경계의 완전한 일치를 입증하지는 않는다(UN Comtrade, 한국 수입 상대국 공개 preview, 자료연도 2025·2026-10-08 조회, https://comtradeapi.un.org/public/v1/preview/C/A/HS?period=2025&amp;reporterCode=410&amp;cmdCode=110814,190300&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0).</p>
+<p>2025년에도 전분은 태국 중심이고 형태제품의 최대 상대국은 대만이다. 다만 형태제품에서 대만산 비중은 2024년 80.7%에서 2025년 52.4%로 낮아졌고, 브라질산이 34.7%를 차지했다. 2026년 3~8월 기준(잠정) 관세청 국가별 자료에서 HS 1108.14 수입의 태국산은 971만 6,878kg으로 해당 기간 총량 1,194만 4,364kg의 81.4%였다. HS 1903의 대만산은 123만 187kg으로 같은 기간 총량 202만 6,698kg의 60.7%, 브라질산은 29만 5,811kg으로 14.6%였다. 이들은 <strong>6개월 부분 관측</strong>이며 연간 수치와 같은 계절 구성이 아니므로 추세의 확정 근거로 쓰지 않는다. 관세청 HS10 월간 집계와 국가별 HS6 집계 사이에는 같은 기간 전분 2kg, 형태제품 1kg의 중량 차이가 있어, 비중에는 국가별 자료 자체의 합계를 분모로 썼다(30_근거_수치 C05).</p>
+<div class="tw wide">
+<table>
+<caption>표 6. 한국 수입의 동일 기간 비교(각 연도 1~8월)</caption>
+<thead><tr><th>HS6</th><th class="num">2025년 수입(톤)</th><th class="num">2026년 수입(톤)</th><th class="num">물량 변화</th><th class="num">2025년 단가(USD/kg)</th><th class="num">2026년 단가(USD/kg)</th></tr></thead>
+<tbody>
+<tr><td>0714.10</td><td class="num">56,242.5</td><td class="num">51,841.6</td><td class="num">−7.8%</td><td class="num">0.183</td><td class="num">0.264</td></tr>
+<tr><td>1108.14</td><td class="num">21,045.9</td><td class="num">14,028.2</td><td class="num">−33.3%</td><td class="num">0.455</td><td class="num">0.496</td></tr>
+<tr><td>1903</td><td class="num">2,685.5</td><td class="num">2,692.1</td><td class="num">+0.2%</td><td class="num">2.461</td><td class="num">2.652</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>customs_item_trade_monthly_tapioca.csv</code>, 월 <code>01~08</code>·해당 HS6 접두어; 물량 변화는 2026년 물량 ÷ 2025년 물량 − 1, 단가는 같은 기간 <code>ΣimpDlr ÷ ΣimpWgt</code>.</p>
+<p>천연전분은 물량이 줄면서 평균 통관단가가 올랐다. 다만 단가 상승은 같은 규격의 계약가격 상승만을 뜻하지 않는다. 공급국·식품용과 기타 용도·제품 규격의 구성 변화도 평균에 영향을 줄 수 있다. 형태제품은 물량이 거의 같아 보여도 완결 연도 결과가 아니다. 식약처 신고에서 수입업소는 식별되지만 중량·계약·항로가 연결되지 않아 특정 거래의 원인을 추정하지 않는다(11절).</p>
+<p>제공된 UN Comtrade 처리 파일은 <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>만 남기고 세계 합계에는 <code>partnerCode=0</code>을 추가해 읽었다. 3,194개 원행 중 세 합계 조건을 통과한 행은 1,061개다. 관세절차·운송수단·2차 상대국별 하위 행을 합계와 다시 더하지 않았다. 이 필터에서 한국의 2025년 전분 수입 순중량은 29,374,660.384kg, 형태제품은 4,252,135.780kg으로 관세청 월간 합계와 kg 단위 반올림 차이만 있다. 제공 파일의 한국 상대국 상세 누락은 공개 API의 상대국 행으로 보완했다(30_근거_수치 T02~T04).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>태국 FOB 호가와 한국 수입단가는 서로 다른 가격이다</h2>
+<p class="lead">타피오카 가격을 하나의 곡선으로 그리기 어렵다. 생근 농가가격, 태국의 천연전분 FOB 호가, 한국의 전분 통관단가, 펄 등 형태제품 통관단가는 거래 단계가 다르다. 같은 달·같은 규격·같은 인도조건이 맞지 않으면 차이를 유통마진으로 계산할 수 없다. 표 7에는 각 지표가 가리키는 물건과 거래조건을 표시했다.</p>
+<div class="tw">
+<table>
+<caption>표 7. 확인 가능한 가격 지표</caption>
+<thead><tr><th>지표</th><th>시점</th><th class="num">가격</th><th>단위·조건</th><th>해석 범위</th></tr></thead>
+<tbody>
+<tr><td>태국 카사바 생근 생산자가격</td><td>2024 연평균</td><td class="num">2,914</td><td>THB/톤</td><td>FAOSTAT 농가 단계</td></tr>
+<tr><td>태국 슈퍼프리미엄 전분 국내 호가</td><td>2026-01-06</td><td class="num">14.10</td><td>THB/kg</td><td>태국전분협회 국내 가격</td></tr>
+<tr><td>태국 슈퍼프리미엄 전분 수출 호가</td><td>2026-01-06</td><td class="num">480</td><td>USD/톤·FOB Bangkok</td><td>태국전분협회</td></tr>
+<tr><td>태국 슈퍼프리미엄 전분 수출 호가</td><td>2026-05-26</td><td class="num">650</td><td>USD/톤·FOB Bangkok</td><td>태국전분협회</td></tr>
+<tr><td>태국 슈퍼프리미엄 전분 수출 호가</td><td>2026-08-04</td><td class="num">705</td><td>USD/톤·FOB Bangkok</td><td>태국전분협회</td></tr>
+<tr><td>태국 슈퍼프리미엄 전분 수출 호가</td><td>2026-10-06</td><td class="num">695</td><td>USD/톤·FOB Bangkok</td><td>태국전분협회</td></tr>
+<tr><td>한국 HS 1108.14 평균 수입단가</td><td>2025 연간</td><td class="num">0.452</td><td>USD/kg·통관액/순중량</td><td>전체 규격 혼합</td></tr>
+<tr><td>한국 HS 1903 평균 수입단가</td><td>2025 연간</td><td class="num">2.273</td><td>USD/kg·통관액/순중량</td><td>타피오카 대체품 포함</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT PP <code>Cassava, fresh</code>·태국·<code>Producer Price (LCU/tonne)</code>·2024; <a href="https://thaitapiocastarch.org/en/information/statistics/weekly_tapioca_starch_price">태국전분협회 주간표</a>(B등급 협회 고시); 관세청 <code>customs_item_trade_monthly_tapioca.csv</code> 2025년 <code>ΣimpDlr ÷ ΣimpWgt</code>.</p>
+<p>태국 협회가 설명하는 국내 호가는 방콕항까지의 운임을 포함하고 포장·부가세를 제외한다. 수출 호가는 방콕항 FOB와 50kg 포대를 기준으로 한다. 2026년 1월 6일 480달러/톤에서 10월 6일 695달러/톤으로 44.8% 올랐다는 계산은 <strong>같은 협회 호가 시계열 안에서만</strong> 성립한다. 한국 평균 수입단가는 2026년 1~8월 0.496달러/kg으로 전년 같은 기간 0.455달러/kg보다 높다. 그러나 태국 FOB 호가를 달러/kg으로 환산해 이 수입단가와 빼더라도 품질, 계약시점, 운임, 국가·용도 혼합이 남는다. 그것은 실제 운임이나 마진의 계산식이 아니다(태국전분협회, 관세청, 30_근거_수치 P01~P03).</p>
+<p>FAOSTAT PP의 2024년 태국 카사바 생근 2,914 THB/톤은 전분이 아닌 뿌리의 농가가격이다. 2023년 같은 항목은 2,826 THB/톤이다. 뿌리에서 전분으로의 회수율과 공장 비용을 이 자료가 주지 않으므로, 생산자가격을 원료원가로 단순 변환하지 않는다. Krungsri의 2025년 보고서는 태국 천연전분의 2024년 평균 수출단가를 512달러/톤, 2025년 첫 5개월 평균을 397달러/톤으로 적었다. 이는 은행이 재인용한 태국 산업 통계(B등급)이고, 2026년 협회 주간 호가와 표본·기간이 다르다(<a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/cassava/io/cassava-2025-2027">Krungsri Research, 2025-07-21</a>).</p>
+<p>국내 공개 도소매 실측 시계열은 <strong>미확보</strong>다. 로컬 KAMIS 전 품목 일별 수집본 <code>kamis_daily_2020.csv</code>~<code>kamis_daily_2026.csv</code>를 검색했으나 타피오카·카사바 명칭의 행은 0건이었다. 이 수집본의 품목 부재를 KAMIS 전체 서비스나 시장의 가격 부재로 확대하지 않는다. 레지스트리 <code>kamis: null</code>과 아카이브 <code>pinksheet_NOT_AVAILABLE.txt</code>도 해당 수집기·Pink Sheet의 대상 여부를 기록한 것이지 시장가격 부재의 증거가 아니다. KAMIS ‘평년’은 금년을 제외한 최근 5년의 해당일 값에서 최고·최저를 뺀 3년 평균이며 실측 서울·평균 행과 다른 종류의 값이다(한국농수산식품유통공사 KAMIS, 「농산물 소매가격」 평년 산식, 2026-10-08 확인, https://www.kamis.or.kr/mobile/web/program/price.do?action=retailHigh).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>태국은 전분 최대 공급국, 대만은 형태제품 최대 상대국이다</h2>
+<p class="lead">여기서 ‘원산지’는 공급망의 어느 단계를 가리키는지에 따라 뜻이 다르다. 태국은 카사바 생근 생산국이자 천연전분 가공·수출국이다. 베트남은 카사바 생산과 전분 수출 양쪽에 있으며 FAOSTAT의 전분 수출 물량에는 외부기관 수치(X)가 쓰였다. 대만은 2025년 한국의 HS 1903 형태제품 최대 상대국이지만, 같은 해 브라질도 34.7%를 공급했다. 대만으로 들어온 제품만으로 카사바 뿌리의 재배국을 대만이라고 판단할 수 없다. 브라질은 세계 카사바 생근 생산 상위국이자 한국의 2025년 HS 1903 주요 상대국이지만, 한국의 전분 주요 공급국과는 다르다(FAOSTAT QCL·TCL·TM; UN Comtrade, 한국 수입 상대국 공개 preview, 자료연도 2025·2026-10-08 조회, https://comtradeapi.un.org/public/v1/preview/C/A/HS?period=2025&amp;reporterCode=410&amp;cmdCode=190300&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0).</p>
+<p>태국의 생산 수치조차 발표기관과 기간에 따라 다르다. FAOSTAT은 2024년 달력연도 생근 생산을 2,862만 4,312톤(A)으로 기록한다. 태국전분협회(TTSA)의 작황연도 조사는 2024/25년 2,498만 3,311톤과 2025/26년 1,858만 2,329톤을 적는다. 일본 농축산업진흥기구(ALIC)가 옮긴 태국 공식 전망은 2024/25년 2,706만 4,000톤이다. 달력연도 실적, 협회 작황 조사, 정부 전망의 표본과 기준일이 달라 이 셋의 단순 평균을 만들지 않는다(<a href="https://thaitapiocastarch.org/en/information/statistics/tapioca_production">TTSA 생산 통계</a>, <a href="https://www.alic.go.jp/joho-s/joho07_003423.html">ALIC 태국 카사바 조사</a>, FAOSTAT QCL).</p>
+<div class="tw">
+<table>
+<caption>표 8. 태국 생산에 관한 네 자료의 기준 차이</caption>
+<thead><tr><th>자료</th><th>범위·기준</th><th class="num">물량(톤)</th><th>판정</th></tr></thead>
+<tbody>
+<tr><td>FAOSTAT QCL</td><td>태국 생근·2024 달력연도</td><td class="num">28,624,312</td><td>공식값 A</td></tr>
+<tr><td>ALIC가 옮긴 OAE 전망</td><td>태국 생근·2024/25 작황연도</td><td class="num">27,064,000</td><td>당시 전망 A</td></tr>
+<tr><td>TTSA 조사</td><td>태국 생근·2024/25 작황연도</td><td class="num">24,983,311</td><td>협회 조사 B</td></tr>
+<tr><td>TTSA 조사</td><td>태국 생근·2025/26 작황연도</td><td class="num">18,582,329</td><td>협회 조사 B</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT QCL <code>Thailand</code>·<code>Cassava, fresh</code>·<code>Production</code>; <a href="https://www.alic.go.jp/joho-s/joho07_003423.html">ALIC</a>의 OAE 인용; <a href="https://thaitapiocastarch.org/en/information/statistics/tapioca_production">태국전분협회 생산 통계</a>. 서로 다른 연도·작성 방식을 비교 증감률로 쓰지 않았다.</p>
+<p>아카이브에 있는 태국 타피오카개발연구소의 <code>Results of Survey on Tapioca Production and Trade, Crop Year 2025/2026</code> PDF는 Zone 2의 부리람·차이야품·나콘랏차시마 세 주만 다룬다. 이 구역의 생근 생산은 앞 작황연도 611만 9,460톤에서 574만 3,740톤으로 6.14% 감소했다고 원문이 적었다. 해당 구역 조사 결과를 태국 전국 생산의 감소율로 확대하지 않는다(아카이브 <code>intelligence_reports/Thai_Tapioca_Development_Insti__Results_of_Survey_on_Tapioca_Cassava_Production_and_Trade_Crop_Year_20.pdf</code>, 30_근거_수치 S01).</p>
+<p>산지 위험은 수확량뿐 아니라 전분 함량에도 있다. ALIC는 태국 농업확장국 자료를 인용해 2025년 8월 카사바모자이크병(CMD) 피해를 38개 주·15만 9,695ha로 적었다. ALIC의 서술에 따르면 특히 생육 초기 감염의 영향이 커 수량은 평균 30~40% 감소하고, 감염되지 않은 카사바와 비교한 전분 함량은 평균 3~4% 감소한다. 원문은 <code>%</code>라고 표기해 퍼센트포인트 하락으로 바꾸지 않는다. 이 수치는 한국 수입전분의 실제 품질 변화치가 아니다. 태국이 저항성 품종을 보급하는 이유와 상류 원료 위험을 설명하는 데 쓴다(일본 농축산업진흥기구 ALIC, 「タイのキャッサバをめぐる情勢～生産量維持に向けた取り組みと課題～（前編）」, 2025-10-10, https://www.alic.go.jp/joho-s/joho07_003423.html).</p>
+<p>베트남의 2024년 카사바 생근 생산은 FAOSTAT 1,053만 3,957톤(A), 같은 해 카사바전분 수출은 168만 9,202톤(X)이다. 두 수치를 나눠 ‘전분 수율’을 구할 수 없다. 수출전분은 전년 재고나 수입 원료로 생산됐을 수 있고, 생산량은 생근 전체 용도를 포함한다. 캄보디아의 2024년 생근 생산은 FAOSTAT 1,426만 1,306톤(I)으로 보간값이다. 한국의 2024년 전분 수입에서 캄보디아는 17톤으로 작지만, 태국·베트남의 원료 조달과 직접 수출 경쟁에는 별도의 역할이 있을 수 있다. 그 경로의 정량 연결은 이번 자료로 확정하지 않는다(FAOSTAT QCL·TCL·TM).</p>
+<p>계절성은 태국의 주 수확과 가공 일정에서 온다. Krungsri는 태국 전분 가공이 주 수확 뒤인 연말에서 이듬해 초에 늘어난다고 설명한다. 이를 한국 월간 수입의 기계적인 계절 패턴으로 복사하지 않는다. 한국 월간 시계열은 계약·재고·운송 영향도 받는다. 태국의 작황과 전분 함량, 협회 가격, 한국의 월별 전분 물량이 같은 방향으로 움직이는지는 이번 자료에서 확인되지 않았다(<a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/cassava/io/cassava-2025-2027">Krungsri Research, 2025-07-21</a>, B등급).</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 국내 유통·기업</span>수입국 집중과 업소별 신고 건수는 확인된다</h2>
+<p class="lead">한국 유통은 세 제품의 흐름을 따로 그릴 수 있다. 칩·펠릿은 주정과 사료의 원료 경로가 관세 별표에도 명시돼 있다. 천연전분은 식품용과 기타로 세번이 갈리고, 전분 자체가 다음 단계의 펄·식품 또는 산업 원료가 될 수 있다. HS 1903 형태제품은 가공이 끝난 제품으로 수입된 뒤 식품제조·외식·소매 등으로 갈 수 있다. 마지막 용도별 물량은 관세청 세번만으로 정해지지 않는다(관세청 HS10, 08절 법령 별표, <a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/cassava/io/cassava-2025-2027">Krungsri Research</a>).</p>
+<p>이 절에서 기업을 임의로 ‘상위’라고 부르지 않는다. 제공된 관세청 월간 자료에는 수입자명이 없고, FAOSTAT TM과 UN Comtrade는 국가 간 흐름을 보여줄 뿐 회사 식별자를 주지 않는다. 식약처 수입신고에서는 제품명 기준으로 업소·해외 제조사별 <strong>신고 건수</strong> 순위를 만들 수 있다(11.2절). 그러나 이 신고 자료에는 중량·금액이 없어 기업별 수입 물량 순위와 시장점유율은 미확보다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">수입식품정보마루</a>, 2025년 10월~2026년 9월 신고 건수 기준).</p>
+<p>공급국 집중은 기업 집중과 다른 지표다. 2025년 전분의 태국산 비중 86.1%는 국가별 물량 집중이다. 태국의 한 공장이나 한국의 한 수입자가 같은 비중을 차지한다는 뜻은 아니다. 2025년 형태제품의 대만산 비중 52.4%, 브라질산 비중 34.7%도 국가별 통관 물량에 관한 값이다. 2024년 대만산 비중은 80.7%였으므로 한 해의 수치를 고정된 기업 구도로 읽을 수 없다. 수입자·제조자와 물량이 연결된 별도 원장이 없어 기업별 경쟁 구도는 확인되지 않는다. 이번 보고서는 그 원장을 얻기 전까지 특정 회사의 지배력이나 우위를 주장하지 않는다(UN Comtrade, 한국 수입 상대국 공개 preview, 자료연도 2025·2026-10-08 조회, https://comtradeapi.un.org/public/v1/preview/C/A/HS?period=2025&amp;reporterCode=410&amp;cmdCode=110814,190300&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0).</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>칩·펠릿의 용도별 할당관세는 전분·펄의 세율이 아니다</h2>
+<p class="lead">한국의 제도는 상품 이름만이 아니라 세번과 용도를 함께 묶는다. 2026년 연중 할당관세 원문에서 카사바 건조 칩은 주정용, 펠릿은 사료용으로 구분된다. 칩은 인하세율 10%와 한계수량 6만 톤, 펠릿은 0%와 한계수량 10만 톤이다. 추천기관과 대상자 조건도 붙는다. 이 별표는 HS 0714.10의 특정 세부 품목에 대한 한시적 인하 조건이지, 모든 카사바·타피오카 제품의 일반 관세율표가 아니다(<a href="https://www.law.go.kr/LSW/flDownload.do?flSeq=166193701&amp;bylClsCd=200201">국가법령정보센터 2026년 별표 원문</a>).</p>
+<div class="tw">
+<table>
+<caption>표 9. 확인한 2026년 할당관세 범위</caption>
+<thead><tr><th>HS·품목</th><th>용도 조건</th><th class="num">인하세율</th><th class="num">한계수량</th><th>이 보고서의 판정</th></tr></thead>
+<tbody>
+<tr><td>0714.10 건조 칩</td><td>주정용</td><td class="num">10%</td><td class="num">60,000톤</td><td>해당 별표에 명시</td></tr>
+<tr><td>0714.10 펠릿</td><td>사료용</td><td class="num">0%</td><td class="num">100,000톤</td><td>해당 별표에 명시</td></tr>
+<tr><td>1108.14 천연 카사바전분</td><td>해당 별표의 품목으로 확인되지 않음</td><td class="num">미확보</td><td class="num">미확보</td><td>기본·협정세율 미대조</td></tr>
+<tr><td>1903 형태제품</td><td>해당 별표의 품목으로 확인되지 않음</td><td class="num">미확보</td><td class="num">미확보</td><td>기본·협정세율 미대조</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.law.go.kr/LSW/flDownload.do?flSeq=166193701&amp;bylClsCd=200201">국가법령정보센터 할당관세 별표 원문</a>, 2026-10-07 확인; 웹 조사노트의 2026년 연중 별표 확인 결과. ‘미확보’는 관세가 없다는 뜻이 아니다.</p>
+<p>2025년 칩 수입 1만 8,070.8톤과 펠릿 수입 7만 3,910.9톤은 위 한계수량보다 각각 작다. 그러나 해당 연도의 전체 통관량을 2026년 할당량에 나누어 ‘할당관세 사용률’을 계산하지 않는다. 연도가 다르고, 모든 입항분이 추천과 용도 요건을 충족하는지도 알 수 없다. 추천 대상자와 사후 용도관리의 실제 적용은 신고 건별 자료가 필요하다(관세청 HS10, 국가법령 별표).</p>
+<p>웹 조사노트가 확인한 2026년 조정관세 별표에는 HS 0714·1108·1903이 열거되지 않았다. 이 문장은 조사한 <strong>해당 별표</strong>의 범위에만 한정한다. 기본세율, WTO 양허, 한·아세안 또는 한·베트남 협정세율, RCEP 세율, 협정관세율할당은 다른 규정과 원산지 요건에 따라 정해진다. 이번 입력에서는 이 세번의 적용연도별 양허표와 품목별 세율을 모두 대조하지 못했다. 그러므로 특정 공급국의 실효세율을 본문에 적지 않는다(시도: 국가법령 할당·조정 별표, 관세청 품목별 관세율표, FTA 양허표; 마지막 두 원문은 미열람).</p>
+<p>식품 규격과 검역도 제품 단계에 따라 갈린다. 생근·칩의 식물검역 문제와 전분·펄의 수입식품 검사 문제를 하나의 규정으로 설명하지 않는다. 식품공전의 전분 규격 조문, 식물검역 대상 확인, 수입식품 검사와 원산지 표시의 타피오카 적용 조항은 조사노트에서 원문을 확보하지 못했다. 이번 보고서의 제도 확정치는 위 할당관세 항목에 한정한다. ‘적용 규정이 없다’고 쓰지 않는 이유다. 식품 제조와 수입의 실제 준수 여부는 이번 자료만으로 판정할 수 없다. 적용 판단에 필요한 HS10·식품유형·원산지·용도별 법령 원문과 신고 요건은 대조되지 않았다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트</span>태국 공급 전망은 작성 시점과 상품 범위를 붙여 읽는다</h2>
+<p class="lead">은행 리포트 색인 <code>data/_raw/_banks/index.csv</code>에서 <code>items</code>에 <code>tapioca</code>가 든 행은 Krungsri Research의 두 판이다. 2021년 9월 1일의 <em>Industry Outlook 2022–2024: Cassava Industry</em>와 2025년 7월 21일의 <em>Industry Outlook 2025–2027: Cassava Industry</em>다. 둘 다 카사바 산업 전체의 전망으로, 이 보고서의 천연전분·펄 식품 범위보다 넓다. 칩·펠릿·변성전분에 관한 전망은 타피오카 펄 전망을 뜻하지 않는다(은행 색인 원장 및 각 보고서 MD, B등급).</p>
+<p>2021년 판은 당시 중국의 사료·에탄올 수요 회복과 옥수수 가격 상승을 근거로 태국 카사바 제품 수출의 개선을 전망했다. 이는 2021년의 사전 판단이며 현재의 생산 실적이나 2026년 시장 전망으로 재사용하지 않는다(<a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/cassava/io/io-cassava-21">Krungsri 2021년 판</a>, B등급). 보고서의 용도 구분과 태국 공급망 설명은 현재 통계에 적용할 질문을 만드는 데 유용하지만, 그때의 전망값은 최신 FAOSTAT와 관세청 관측값보다 앞세우지 않는다.</p>
+<p>2025년 판은 태국 생근 공급이 날씨와 병해의 영향을 받고, 식품·에탄올 등 하류 수요가 완만하게 늘며, 중국 구매와 아세안의 가공 설비 경쟁이 태국 수출에 영향을 줄 것으로 전망했다. 이 보고서는 태국의 2024년 천연전분 수출을 약 320만 톤, 평균 수출단가를 512달러/톤으로 적는다. 태국전분협회가 Thai Customs 출처로 게시한 천연전분 수출량은 2024년 320만 5,584톤, 2025년 289만 825톤으로 전년보다 9.8% 적다. FAOSTAT의 2024년 태국 카사바전분 수출은 315만 8,747톤이다. 집계 정의가 달라 세 자료의 차액을 오류로 단정하지 않는다. Krungsri가 제시한 2025~2027년 생산 전망은 사후 실적으로 바꾸지 않는다(태국전분협회, 「Export Tapioca Products」, 2026-10-08 확인, https://www.thaitapiocastarch.org/en/information/statistics/export_tapioca_products; <a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/cassava/io/cassava-2025-2027">Krungsri 2025년 판</a>, B등급; FAOSTAT TCL).</p>
+<p>기관 자료는 각각 다른 질문에 답한다. <a href="https://openknowledge.fao.org/server/api/core/bitstreams/d4a81a28-4246-429d-847d-6fef53dde9ff/content">OECD-FAO Agricultural Outlook 2025–2034</a>는 여기서 인용한 2025–2034 판이다. 별도로 수집된 2026–2035 전망 데이터의 수치를 이 인용에 섞지 않았다. 2025–2034 판은 뿌리·괴경의 장기 수급과 중국 수요를 다루며, 건물 기준의 여러 작물 합계를 HS 1108.14 세계 시장 크기로 쓸 수 없다(A등급). <a href="https://www.alic.go.jp/joho-s/joho07_003423.html">일본 ALIC의 태국 조사</a>는 태국 OAE·DOAE·업계 조사 출처를 구분해 작황·병해·저항성 품종을 설명한다. ALIC 자체 관측과 옮겨 실은 기관·협회 수치를 같은 권위로 뭉치지 않는다(A등급 기관 원문, 일부 수치는 재인용). <a href="https://thaitapiocastarch.org/en/information/statistics/weekly_tapioca_starch_price">태국전분협회 가격·생산 표</a>는 업계가 고시한 시계열로, 공식 통관 실적이 아니다(B등급).</p>
+<p>자료 간 불일치도 정보다. 2024/25년 태국 생산을 ALIC가 옮긴 OAE 전망은 2,706만 4,000톤, TTSA 조사는 2,498만 3,311톤으로 적는다. 이는 곧바로 한쪽의 오류를 뜻하지 않는다. 전망과 조사, 기준일과 지역 포괄이 얼마나 다른지는 이번 자료에서 확인되지 않았다. 이 보고서는 평균값을 만들어 논쟁을 덮지 않고 두 수치를 각 출처의 주장으로 남겼다(06절).</p>
+<p>KREI 농업전망 2026의 저장소 목차에는 카사바·타피오카 독립 장이 보이지 않는다. PDF 본문은 조사노트에서 열지 못했다. 따라서 ‘KREI의 카사바 분석이 없다’는 포괄적 부재 주장을 하지 않는다. USDA GAIN의 카사바 전용 최신호와 Rabobank·KMI·aT/KATI의 해당 품목 원문은 미확보다. 다만 USDA GAIN의 베트남 곡물·사료 분기 보고서는 2025년 상반기 베트남 카사바 수출이 전년 동기보다 63% 늘어난 230만 톤이며 대부분 중국으로 향했다고 적는다. 이는 카사바 제품의 보조 정보이고 한국의 천연전분·펄 수입량이 아니다(USDA FAS GAIN, 「Grain and Feed Quarterly: Vietnam」, 2025-08-06, https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Grain+and+Feed+Quarterly_Ho+Chi+Minh+City_Vietnam_VM2025-0028).</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표·남은 물음</span>제품별 물량과 가격을 같은 기간에 맞춰 본다</h2>
+<p class="lead">이 산업의 위험은 한 국가의 흉작만으로 설명되지 않는다. 카사바 생근의 수확과 전분 함량, 태국·베트남의 가공·수출, 중국의 구매, 한국의 용도별 통관과 형태제품 수입이 차례로 이어진다. 서로 다른 단계의 자료는 같은 달이나 작황연도에 발표되지 않는다. 그래서 월간 판단은 관세청의 완결 월과 태국 협회의 고시일을 먼저 고정하고, 연간 구조 판단은 한국의 2025년 Comtrade 상대국 행과 FAOSTAT·KOSIS의 해당 연도 자료를 각각의 기준연도와 함께 읽는다.</p>
+<p>2026년 1~8월 관세청에서 천연전분 수입량은 전년 같은 기간보다 33.3% 적지만 HS 1903 형태제품은 0.2% 많다. 이것만으로 전분에서 펄로 국내 수요가 이동했다고 말할 수 없다. 전분은 국내에서 여러 용도로 쓰이고 펄 등은 전분을 원료로 이미 해외에서 제조될 수 있다. 두 시계열의 공행 여부, 제품 세부 구분, 업체·재고 정보가 필요하다(04절). 또한 한국의 천연전분 평균 수입단가가 2026년 1~8월 전년보다 높아졌다는 사실을 태국 협회 FOB 상승만으로 설명하지 않는다(05절).</p>
+<div class="tw">
+<table>
+<caption>표 10. 이 보고서가 매달·매년 볼 지표</caption>
+<thead><tr><th>주기</th><th>관찰 지표</th><th>원천·필터</th><th>판단에서 확인할 점</th></tr></thead>
+<tbody>
+<tr><td>월</td><td>한국 천연전분 물량·금액·단가</td><td>관세청 HS10 <code>1108141000·9000</code>, 완결 월</td><td>식품용과 기타의 구성 변화</td></tr>
+<tr><td>월</td><td>한국 형태제품 물량·금액·단가</td><td>관세청 HS10 <code>1903001000·9000</code>, 완결 월</td><td>전분과 다른 방향인지</td></tr>
+<tr><td>월</td><td>칩·펠릿 수입</td><td>관세청 HS10 <code>0714102010·2020</code></td><td>주정·사료 원료 경로의 변화</td></tr>
+<tr><td>월</td><td>국가별 전분·형태제품 물량</td><td>관세청 국가별 HS6, 기간 동일화</td><td>태국·대만·브라질 비중과 분모</td></tr>
+<tr><td>주</td><td>태국 슈퍼프리미엄 전분 FOB</td><td>TTSA 고시일·USD/톤</td><td>호가 변화가 한국 입항에 앞서는지</td></tr>
+<tr><td>연</td><td>카사바 생산·전분 교역</td><td>FAOSTAT QCL·TCL·TM, 완료연도</td><td>생산국과 가공 수출국의 분리</td></tr>
+<tr><td>연</td><td>한국의 제품별 공급국</td><td>UN Comtrade 한국 신고 상대국·총계 필터</td><td>전분과 형태제품의 공급국 변화</td></tr>
+<tr><td>연</td><td>식품제조 원료 사용</td><td>KOSIS <code>DT_114010_A001</code>·타피오카</td><td>수입량과 다른 모집단의 변화</td></tr>
+<tr><td>수시</td><td>세율·검역·식품 규격</td><td>국가법령·관세청·식약처 원문</td><td>세번·용도·적용일 변경</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 품목·국가별 수집본, <a href="https://kosis.kr/statHtml/statHtml.do?orgId=114&amp;tblId=DT_114010_A001">KOSIS 통계표</a>, FAOSTAT QCL·TCL·TM, UN Comtrade 한국 신고 상대국, <a href="https://thaitapiocastarch.org/en/information/statistics/weekly_tapioca_starch_price">태국전분협회 주간표</a>, <a href="https://www.law.go.kr/">국가법령정보센터</a>.</p>
+<p>첫째 위험은 <strong>상류 공급량과 전분 함량의 동시 변동</strong>이다. ALIC가 옮긴 태국 병해 조사에서 CMD는 생산량뿐 아니라 전분 함량도 낮출 수 있다. 특히 생육 초기 감염의 영향이 크다고 원문은 설명한다. 같은 뿌리 중량이라도 전분 산출량이 달라질 가능성이 있다. 다만 한국 입항품의 실제 전분 함량이나 품질 클레임 자료가 없으므로 피해 면적에서 한국 수입량 감소분을 계산하지 않는다(일본 농축산업진흥기구 ALIC, 「タイのキャッサバをめぐる情勢～生産量維持に向けた取り組みと課題～（前編）」, 2025-10-10, https://www.alic.go.jp/joho-s/joho07_003423.html).</p>
+<p>둘째는 <strong>중국의 구매와 대체 원료</strong>다. FAOSTAT에서 중국 본토(<code>China, mainland</code>, 코드 41)는 2024년 세계 카사바전분 수입의 약 69.8%다. 중국의 칩 구매는 옥수수와의 상대가격과 산업 정책에도 영향을 받는다고 Krungsri가 설명한다. USDA GAIN은 2025년 상반기 베트남 카사바 수출 230만 톤의 대부분이 중국으로 향했다고 보고했다. 이 GAIN 수치는 카사바 제품을 포괄하므로 한국의 천연전분 물량과 직접 비교하지 않는다. 중국의 모든 수요 변화를 한국 전분 가격의 직접 원인으로 돌릴 수 없지만, 태국·베트남의 수출 여력이 한국에 전달되는 경로로 관찰할 근거는 있다(USDA FAS GAIN, 「Grain and Feed Quarterly: Vietnam」, 2025-08-06, https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Grain+and+Feed+Quarterly_Ho+Chi+Minh+City_Vietnam_VM2025-0028).</p>
+<p>셋째는 <strong>측정 착오</strong>다. 제공된 Comtrade 처리 파일의 2025년 신고국은 107곳으로 2024년 140곳보다 적다. 이를 세계 신고국의 완결 순위로 읽으면 신고 누락과 실제 변화가 섞인다. 한국의 2025년 국가별 수입은 별도로 공개 API의 한국 신고 상대국 행을 확인했다. Comtrade 세부 관세절차·운송수단 행을 합계에 더하면 물량도 중복된다. 가격에서는 KAMIS ‘평년’을 실측과 섞지 않고, 국내 품목이 확인되기 전에는 ‘국내 공개가격 없음’도 확정하지 않는다.</p>
+<p>넷째는 <strong>제도와 상품 경계</strong>다. 칩·펠릿의 할당관세를 천연전분·펄에 대입하거나 변성전분 HS 3505를 천연전분 HS 1108.14에 더하면 시장 크기가 달라진다. HS 1903의 대체품 범위도 실제 카사바 펄의 시장을 넓게 잡는다. 정책 변화는 관세율만이 아니라 용도 요건과 추천 절차, 식품·검역 기준의 변경으로 나타날 수 있다. 미확보인 법령 적용 범위와 업체별 수입 중량·금액 원장을 채우면, 제품별 공급위험과 국내 유통구조를 한 단계 더 좁힐 수 있다(08·07·11절).</p>
+<h3>남은 물음</h3>
+<ul>
+<li>식품제조업의 타피오카 원료 사용과 HS별 수입을 같은 모집단으로 연결할 수 있는 조사표가 있는지 확인한다.</li>
+<li>한국의 연간 국가별 순위와 공급국 비중은 완료연도 자료의 상대국 행과 총계 필터로 다시 대조한다.</li>
+<li>KAMIS의 타피오카 품목 검색 결과와 국내 도소매 실측 가격열의 존재 여부를 확인한다.</li>
+<li>HS 1903 ‘기타’의 제품별 신고 품목을 확인해 펄과 전분 대체품의 경계를 좁힌다.</li>
+<li>같은 기간·같은 품목 범위의 수입업체별 신고량, 국내 가공제품 생산량, 중복 법인 통합 기준을 확인한다.</li>
+<li>HS10·식품유형·원산지·용도와 적용일에 맞는 관세·식품·검역 법령 원문 및 신고 요건을 대조한다.</li>
+<li>태국 작황·전분 함량·협회 호가와 한국 월별 전분 물량의 시차 및 공행 여부를 확인한다.</li>
+<li>태국전분협회가 Thai Customs 출처로 게시한 2024년 천연전분 수출 320만 5,584톤과 FAOSTAT의 315만 8,747톤 사이에 집계 정의·갱신일 차이가 있는지 확인한다. OAE 전망과 TTSA 조사의 기준일·지역 포괄도 원문으로 대조한다.</li>
+</ul>
+<p>따라서 현재 결론은 제한적이다. 2025년 한국 신고 상대국 자료는 전분의 태국산 비중 86.1%, 형태제품의 대만산 비중 52.4%와 브라질산 비중 34.7%를 보여준다. 형태제품에서 2024년의 대만산 80.7%를 고정 구조로 취급할 수 없다. 진행연도 자료는 전분 물량의 감소와 수입단가 상승을 보여준다. 그 원인을 확정하거나 연말 결과를 단정하는 일은 이후 같은 범위의 자료가 나와야 가능하다.</p>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>전분과 펄은 공급기업망이 다르다</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국 수입 중량에서 HS 1108.14 천연 카사바전분은 태국 86.1%·베트남 10.9%, HS 1903 형태제품은 대만 52.4%·브라질 34.7%였다. 분모는 각각 해당 HS6의 한국 연간 수입 중량이다. HS 1903 수입액 966만 3,569달러는 보고서의 세 HS6 수입액 합계 4,070만 3,918달러의 23.7%이므로 형태제품 기업도 따로 본다. HS 1903에는 카사바 이외 전분의 대체품이 포함된다(04절 표 4·5; <a href="https://comtradeplus.un.org/TradeFlow">UN Comtrade 데이터 화면</a>, A등급, 2025년 한국 신고 수입; <a href="https://www.customs.go.kr/">관세청</a>, A등급, 2025년).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 한국의 주요 공급국별 전분·형태제품 기업 사례</caption>
+<thead><tr><th>국가·품목</th><th>기업</th><th>형태</th><th>규모 지표(연도)</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>태국·전분</td><td>Thai Wah</td><td>전분·식품 가공·수출</td><td>2025년 연결 총수익 9,290백만 바트, 전 사업 합계</td><td>식약처 제조사명 일치 144건, 그중 타피오카·카사바 제품명 28건</td><td><a href="https://www.thaiwah.com/storage/downloads/shareholders-meeting/agm2026/20260320-twpc-agm2026-invitation-en.pdf">주총 소집공고</a>(A, 2026)</td></tr>
+<tr><td>태국·전분</td><td>Sanguan Wongse 그룹</td><td>천연·변성전분 가공</td><td>계열 Sanguan Wongse Starch의 회사 표시 생산능력 하루 1,500톤</td><td>해당 계열사 제조사명 일치 23건, 제품명 기준 21건</td><td><a href="https://www.swi.co.th/about-us/">회사 소개</a>(B, 2026년 조회)</td></tr>
+<tr><td>태국·전분</td><td>Premier Quality Starch</td><td>천연·변성전분 가공</td><td>2025년 수익 1,992.06백만 바트, 전 사업 합계</td><td>식약처 제조사명 일치 6건</td><td><a href="https://lssmedia.setlink.set.or.th/2025/YE/PQS-YE68-ListedCompanySnapshot-EN.html">태국 증권거래소</a>(A, 2025)</td></tr>
+<tr><td>베트남·전분</td><td>Hung Duy Starch</td><td>전분 가공·수출</td><td>회사 표시 6개 공장·연평균 공급량 40만 톤 이상</td><td>제조사명 일치 19건; 회사도 한국을 수출시장으로 표시</td><td><a href="https://hungduystarch.com/en/">회사 소개</a>(B, 2026년 조회)</td></tr>
+<tr><td>베트남·전분</td><td>Abimex Group</td><td>전분 가공·무역</td><td>회사 표시 공장 생산능력 월 1만 8,000톤</td><td>해당 기간 제조사명 일치 미확인; 한국 납품 확인 자료 없음</td><td><a href="https://abimexco.com/about-us/">회사 소개</a>(B, 2026년 조회)</td></tr>
+<tr><td>베트남·전분</td><td>EXPORTVN</td><td>천연·변성전분 가공·수출</td><td>2025년 소개서상 천연전분 연 2만 4,000톤·변성전분 연 9만 1,000톤 생산능력</td><td>해당 기간 제조사명 일치 미확인; 한국 납품 확인 자료 없음</td><td><a href="https://modifiedfoodstarch.com/wp-content/uploads/2025/05/EXPORTVN-Company-Profile-EMS-2025.pdf">회사 소개서</a>(B, 2025)</td></tr>
+<tr><td>대만·형태제품</td><td>Andes Food</td><td>타피오카 펄 가공·수출</td><td>매출·생산량의 확인된 공개 자료 없음</td><td>제조사명 일치 61건, 수입업소 태향</td><td><a href="https://www.andesboba.com.tw/index.php?lang=en">회사 제품 소개</a>(B, 2026년 조회)</td></tr>
+<tr><td>대만·형태제품</td><td>Ditianthai</td><td>타피오카 펄 가공·수출</td><td>회사 표시 하루 생산량 30톤·판매국 25곳</td><td>DITIANTAI ENTERPRISE 제조사명 일치 18건: 공차코리아 16건·우롱티프로젝트코리아 2건</td><td><a href="https://uti.com.tw/en/about-2/">회사 소개</a>(B, 2026년 조회)</td></tr>
+<tr><td>대만·형태제품</td><td>TEN EN Tapioca Foods</td><td>타피오카 펄 가공·수출</td><td>회사 표시 수출국 12곳 이상</td><td>회사가 한국을 판매시장으로 명시; 수입업소·물량 미공개</td><td><a href="https://www.tenen-tapioca.com/en/about-us/">회사 소개</a>(B, 2026년 조회)</td></tr>
+<tr><td>브라질·형태제품</td><td>Cassava S/A</td><td>전분·사구·과립 타피오카 가공</td><td>회사 표시 4개 공장·뿌리 처리능력 합계 하루 900톤</td><td>해당 기간 제품명 기준 제조사명 일치 0건; 한국 공급 확인 자료 없음</td><td><a href="https://cassava.com.br/en/about-us/">회사 소개</a>(B, 2026년 조회)</td></tr>
+<tr><td>브라질·형태제품</td><td>Amafil</td><td>카사바전분·타피오카 식품 가공·수출</td><td>회사 표시 연간 카사바 처리량 85만 8,000톤·수출국 30곳 이상</td><td>해당 기간 제품명 기준 제조사명 일치 0건; 한국 공급 확인 자료 없음</td><td><a href="https://amafil.com.br/institucional/sobre-a-amafil/">회사 소개</a>(B, 2026년 조회)</td></tr>
+<tr><td>브라질·형태제품</td><td>Da Terrinha Alimentos</td><td>타피오카 식품 가공·유통</td><td>확인된 공개 규모 자료 없음</td><td>해당 기간 제품명 기준 제조사명 일치 0건; 한국 공급 확인 자료 없음</td><td><a href="https://www.daterrinhaalimentos.com/pt/sobre-nos">회사 소개</a>(B, 2026년 조회)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 공시·기업 자료와 <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A, 2025년 10월~2026년 9월 <strong>신고 건수 기준</strong>, 제조사명 표기 변형 통합). 기업 수익·설비능력은 한국 납품량이나 품목 점유율이 아니다.</p>
+<p>브라질 세 기업은 카사바 가공기업 사례이지 2025년 한국 HS 1903 브라질 물량의 제조사로 확인된 기업이 아니다. 일부 기간이 겹치는 2025년 10월~2026년 9월 식약처 제품명 신고에는 브라질 제조 타피오카·카사바 제품이 확인되지 않았다. 따라서 HS 1903의 브라질 물량이 카사바 펄인지 대체품인지는 확정할 수 없다. 2024년 세계 카사바전분 수출은 태국과 베트남에 88.4%가 모였지만, 같은 품목·연도의 기업별 세계 수출량 원장은 확인되지 않아 ‘세계 최대 수출기업’은 특정할 수 없다. Thai Wah는 공시 규모와 한국 제조사명 일치로 확인되는 주요 기업이며, 그룹 수익을 세계 수출 점유율로 바꾸지 않는다(<a href="https://www.fao.org/faostat/en/">FAOSTAT 교역통계</a>, A등급, 2024; <a href="https://www.thaiwah.com/storage/downloads/shareholders-meeting/agm2026/20260320-twpc-agm2026-invitation-en.pdf">Thai Wah 공시</a>, A등급, 2025년 실적).</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처의 2025년 10월~2026년 9월 신고에서 제품명에 타피오카·카사바가 든 건은 906건, 수입업소 144곳, 해외 제조사 111곳이다. 이 가운데 식품유형 ‘전분’은 172건, ‘전분가공품·서류가공품’은 248건, 변성전분 유형은 282건, 과자는 118건이다. 제품명 검색과 HS 분류의 범위는 같지 않다. 아래 순위는 <strong>신고 건수 기준</strong>이며 중량·금액·시장점유율이 아니다. 2026년 신고가 포함된 수치는 잠정이다. 식약처 신고 원자료에서 제조국과 수출국은 별도 항목이다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>, A등급).</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 천연전분 및 펄 관련 수입업소의 신고 건수 상위 사례</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>안성식품</td><td class="num">24</td><td>태국·베트남</td><td>식품유형 ‘전분’</td></tr>
+<tr><td>한밭식품</td><td class="num">18</td><td>베트남·태국</td><td>식품유형 ‘전분’</td></tr>
+<tr><td>영흥식품</td><td class="num">11</td><td>태국</td><td>식품유형 ‘전분’</td></tr>
+<tr><td>동아식품</td><td class="num">10</td><td>베트남·태국</td><td>식품유형 ‘전분’</td></tr>
+<tr><td>모아글로벌</td><td class="num">10</td><td>베트남·태국</td><td>식품유형 ‘전분’</td></tr>
+<tr><td>태향</td><td class="num">61</td><td>대만</td><td>전분가공품·서류가공품</td></tr>
+<tr><td>샤론푸드</td><td class="num">14</td><td>태국</td><td>전분가공품·서류가공품</td></tr>
+<tr><td>게이트웨이트레이딩</td><td class="num">11</td><td>대만</td><td>전분가공품·서류가공품</td></tr>
+<tr><td>씨케이서플라이체인코리아</td><td class="num">11</td><td>중국</td><td>전분가공품·서류가공품</td></tr>
+<tr><td>길로무역</td><td class="num">9</td><td>태국</td><td>전분가공품·서류가공품</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A, 2025년 10월~2026년 9월 <strong>신고 건수 기준</strong>). 업소명 표기 변형을 합쳤으며 주요 제조국은 각 업소·묶음의 상위 두 국가다. 전분가공품·서류가공품 전체가 HS 1903은 아니다. 제품명에 ‘타피오카’ 없이 ‘펄’만 적힌 전분가공품 신고 33건은 위 집계 밖이다.</p>
+<p>대형 식품사의 제품명 일치 신고에는 범위 밖인 변성전분 HS 3505가 많다. 신고 건수는 천일식품 홍성공장 40건, 오뚜기라면 36건, CJ제일제당 31건, 삼양사 아산공장 22건, 팔도 21건이다. 공시 매출은 각 회사 전체 또는 사업부문 규모이며 타피오카 매출·매입액이나 국내 점유율을 뜻하지 않는다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>, A등급, 2025년 10월~2026년 9월 신고 건수 기준).</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 국내 수입·가공·외식 기업의 규모와 타피오카 연결</caption>
+<thead><tr><th>기업</th><th>확인된 역할</th><th>규모 지표</th><th>타피오카 연결·한계</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>대상</td><td>식품·전분 소재 가공</td><td>2025년 연결 매출 4조 4,013억원·소재부문 1조 4,605억원</td><td>소재연구소가 타피오카를 전분 원료로 명시; 타피오카 매입액 미공개</td><td><a href="https://kind.krx.co.kr/external/2026/03/27/001263/20260327002982/11011.htm">사업보고서</a>(A, 2025), <a href="https://www.daesang.com/kr/business/raw_material/lab.jsp">연구소</a>(B, 2026년 조회)</td></tr>
+<tr><td>CJ제일제당</td><td>식품 가공</td><td>2025년 회사 발표 매출 27조 3,426억원, 전 사업 합계</td><td>제품명 일치 신고 31건, 주로 변성전분; 타피오카 매출 미분리</td><td><a href="https://cjcj.irplus.co.kr/eng/pc/FinancialHighlights">공식 재무정보</a>(B, 2025)</td></tr>
+<tr><td>삼양사</td><td>식품·전분당 소재 가공</td><td>2025년 연결 매출 2조 5,625억원·식품부문 1조 5,153억원</td><td>아산공장 명의 신고 22건, 변성전분; 공시상 주요 전분당 원료는 옥수수</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/002283/20260318010651/11011.htm">사업보고서</a>(A, 2025)</td></tr>
+<tr><td>팔도</td><td>식품·음료 제조</td><td>2025년 연결 매출 1조 1,811억원</td><td>제품명 일치 신고 21건, 초산전분; 타피오카 매입액 미분리</td><td><a href="https://kind.krx.co.kr/external/2026/05/15/001302/20260515002841/11013.htm">감사보고서 인용 공시</a>(A, 2025)</td></tr>
+<tr><td>오뚜기라면</td><td>면류 제조</td><td>2025년 매출 6,711억원</td><td>제품명 일치 신고 36건, 초산전분; 매출은 회사 전체</td><td><a href="https://www.otoki.com/pds/investment/2603/34f6f527b91b450b9eff2596922237c2.pdf">모회사 사업보고서</a>(A, 2025)</td></tr>
+<tr><td>신송홀딩스</td><td>전분 소재사업·해외 제조</td><td>2025년 연결 매출 1,878억원·‘타피오카전분 외’ 소재제품 19.86억원</td><td>캄보디아 전분 제조 자회사 공시; 소재제품은 타피오카 단독 매출이 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/23/000119/20260323000436/11011.htm">사업보고서</a>(A, 2025)</td></tr>
+<tr><td>천일식품</td><td>식품 제조</td><td>2025년 매출 약 1,120억원, 재무정보 재게시 값</td><td>홍성공장 명의 신고 40건, 변성전분; 원료 물량 미공개</td><td><a href="https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/dzFTcm9sY3crZll1N2xURG5Qc1o3dz09/company_nm/%EC%B2%9C%EC%9D%BC%EC%8B%9D%ED%92%88%28%EC%A3%BC%29">재무정보</a>(C, 2025)</td></tr>
+<tr><td>공차코리아</td><td>펄 음료 외식·가맹</td><td>2024년 연결 매출 2,014억원·국내 매출 1,197억원, 감사보고서 재인용</td><td>공차코리아 명의 펄 신고 20건: 타피오카 제품명 4건·펄 제품명 16건; 펄 수입액 미공개</td><td><a href="https://mobile.newsis.com/view_amp.html?ar_id=NISX20250411_0003136261">감사보고서 인용 보도</a>(C, 2024)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 공시·회사 자료·보도와 <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A, 2025년 10월~2026년 9월 <strong>신고 건수 기준</strong>). 회사 규모는 타피오카 시장 내 순위가 아니다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 타피오카의 단계별 밸류체인</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>태국·베트남·브라질 카사바 농가</td><td>한국 생근 생산량 미확보; 2024년 식품제조업 타피오카 원료 사용 7만 1,143톤은 전량 수입산 출처</td><td>산지 생근 매입</td><td>작황·병해·전분 함량</td></tr>
+<tr><td>1차 가공</td><td>칩·펠릿·전분 공장</td><td>2025년 한국 HS 0714.10 수입 9만 2,076.2톤, 대부분 칩·펠릿</td><td>산지 원료·가공 계약</td><td>수율·상품 용도 혼동</td></tr>
+<tr><td>수출·국제 무역</td><td>태국·베트남 전분업체, 대만 형태제품업체</td><td>2025년 전분의 태국산 86.1%; 형태제품의 대만산 52.4%·브라질산 34.7%</td><td>수출 계약·FOB 호가</td><td>공급국 집중·중국 구매·운송</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·식약처</td><td>2025년 전분 2만 9,374.7톤, HS 1903 4,252.1톤</td><td>계약가격·통관 신고가격</td><td>HS·식품유형·검사 기준</td></tr>
+<tr><td>국내 가공</td><td>전분당·식품 제조업체</td><td>2025년 수입 전분의 식품용 세번 6,264.6톤</td><td>원료 구매·납품 계약</td><td>규격·원료비·재고</td></tr>
+<tr><td>도매·유통</td><td>식품소재 도매·외식 공급망</td><td>업체별 취급 중량·점유율 미확보</td><td>도매 공급계약</td><td>추적성·보관</td></tr>
+<tr><td>소매·외식</td><td>소매점·음료 가맹점</td><td>타피오카 단독 매출 미확보</td><td>매장 판매가격</td><td>식품안전·수요 변동</td></tr>
+<tr><td>소비</td><td>가정·외식 소비자</td><td>2023년 FAOSTAT 형태제품 식품공급 4,028.89톤은 추정 계정값</td><td>최종 구매</td><td>추정 공급량과 실제 구매량 혼동</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://kosis.kr/statisticsList/statisticsListIndex.do?outLink=Y&amp;publicationYN=Y&amp;statId=2008041">KOSIS 식품제조업 원료 사용 통계목록</a>(A, 2024), <a href="https://www.customs.go.kr/">관세청</a>(A, 2025), <a href="https://comtradeplus.un.org/TradeFlow">UN Comtrade</a>(A, 2025), <a href="https://www.fao.org/faostat/en/">FAOSTAT 공급이용계정</a>(A, 2023). 가격 결정 위치는 거래 단계를 구분한 것이며 공개되지 않은 계약가격을 추정하지 않았다.</p>
+<p><strong>부가가치가 생기는 곳.</strong> 생근의 건조·전분 추출, 전분의 규격화와 펄 제조, 국내 조리·판매는 서로 다른 가공·서비스 단계다. 한국의 2025년 평균 통관단가는 천연전분 0.452달러/kg, 대체품을 포함하는 HS 1903이 2.273달러/kg이었다(<a href="https://www.customs.go.kr/">관세청</a>, A등급, 2025). 상품 범위·품질·포장·거래조건이 달라 이 차이를 가공마진으로 계산할 수 없다. 태국전분협회도 2025년 천연전분 수출 289만 825톤과 펄 수출 4만 1,804톤을 별도로 집계한다(<a href="https://www.thaitapiocastarch.org/en/information/statistics/export_tapioca_products">태국전분협회 수출표</a>, B등급, 2025). 한국의 단계별 부가가치액은 제품별 원가·매출 자료가 없어 산출할 수 없다.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 타피오카 공급망의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>관세청·식품의약품안전처</td><td>HS 통관, 수입식품 신고·검사</td><td>세번·용도·제조국 기재가 통관과 통계에 영향</td></tr>
+<tr><td>해외 정부</td><td>태국 농업경제국(OAE)·브라질 농업축산부(MAPA)</td><td>작황 정보·산업 정책</td><td>농가 공급과 가공업 여건에 영향</td></tr>
+<tr><td>생산자·단체</td><td>태국전분협회(TTSA)·브라질 카사바전분생산자협회(ABAM)</td><td>생산·가격 정보, 업계 의견 수렴</td><td>생근 매입·전분 판매 조건에 관심</td></tr>
+<tr><td>수출·가공기업</td><td>Thai Wah·Hung Duy Starch·Andes Food·Cassava S/A</td><td>전분 또는 형태제품 가공·판매</td><td>원료 조달·설비 가동·수출시장 접근에 관심</td></tr>
+<tr><td>수입·유통기업</td><td>안성식품·태향·공차코리아</td><td>수입 신고·식품 공급·외식 판매</td><td>품질·가격·안정 공급에 관심; 물량 점유율 미확보</td></tr>
+<tr><td>소비자·시민사회</td><td>국내 소비자·한국소비자원</td><td>구매, 위해정보 수집·시험검사</td><td>안전성과 정확한 상품 정보에 관심</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·유엔통계처(UNSD)</td><td>생산·교역 통계 제공</td><td>비교 가능한 품목·국가 통계에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.customs.go.kr/">관세청</a>(A), <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a>(A), <a href="https://oae.go.th/">태국 농업경제국</a>(A), <a href="https://www.gov.br/agricultura/pt-br/assuntos/camaras-setoriais-tematicas/relatorio-de-gestao/relatorio-de-gestao-das-camaras">브라질 농업축산부</a>(A), <a href="https://www.thaitapiocastarch.org/en/about">태국전분협회</a>(B), <a href="https://abam.com.br/sobre-a-abam/">ABAM</a>(B), <a href="https://www.kca.go.kr/home/main.do?no=411">한국소비자원</a>(A), <a href="https://www.fao.org/faostat/en/">FAOSTAT</a>(A), <a href="https://uncomtrade.org/docs/un-comtrade-api/">UN Comtrade</a>(A). 기업의 역할은 표 11-1~11-3의 출처를 따른다.</p>
+<p>농가는 높은 생근 매입가격을 원하고 전분 공장은 원료비와 전분 함량을 함께 따진다. 수출업체의 판매가격과 국내 가공·외식업체의 조달비는 계약 시점과 품질 규격에서 엇갈린다. 빠른 통관 요구와 식품 검사·제조국 정보의 정확성 요구는 수입 단계에서 조정된다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 검토 범위</h2>
+<p class="lead">이 보고서는 registry <code>tapioca</code>의 HS6 <code>071410·110814·190300</code>을 출발점으로 삼았다. 전분·펄의 식품시장 해석이 중심이고 카사바 생근·칩·펠릿은 공급과 제도 경계를 설명하는 데 사용했다. 아래 ‘최신’은 각 수집 파일이 담은 가장 늦은 기간이지 완료연도를 뜻하지 않는다. 2026년 월간 자료는 진행 중이다. <code>rawbulk.report_delta.coverage("tapioca")</code>를 2026-10-07에 읽기 전용으로 실행했다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 타피오카 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>품목 분할</td><td>census_exports_hs10</td><td class="num">101</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>census_imports_hs10</td><td class="num">155</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>comexstat_exp</td><td class="num">1,461</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>comexstat_imp</td><td class="num">19</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>customs_item_trade_monthly</td><td class="num">158</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>eurostat_comext_m1</td><td class="num">444</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>eurostat_comext_m2</td><td class="num">1,024</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>faostat_prices</td><td class="num">10,875</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>faostat_production</td><td class="num">23,306</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>faostat_trade</td><td class="num">37,041</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>품목 전용</td><td>ttsa_tapioca</td><td class="num">행 미기록</td><td>신규</td><td>2026-10-06</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">3,194</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">112</td><td>2026.08</td><td>2026-10-01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>, <code>rawbulk.report_delta.coverage("tapioca")</code>의 반환값. ‘행 미기록’은 TTSA 자료의 부재 판정이 아니라 이 원장의 행 수 칸이 비어 있다는 뜻이다. TTSA의 수출표는 별도로 확인했다(태국전분협회, 「Export Tapioca Products」, 2026-10-08 확인, https://www.thaitapiocastarch.org/en/information/statistics/export_tapioca_products).</p>
+<p>수집기를 모두 본문 통계로 사용한 것은 아니다. 미국 Census, EU Comext, 브라질 ComexStat는 각 시장의 교역을 더 조사할 수 있는 보조 원천으로 남겼다. 이 보고서는 한국의 연간 구성과 세계 생산·전분 교역이라는 질문에 맞춰 관세청·KOSIS·FAOSTAT와 한국 신고 상대국의 UN Comtrade 공개 행을 중심에 뒀다. 서로 다른 국가의 신고 자료를 조정하지 않고 더해 세계 합계를 새로 만들지 않았다. USDA PSD의 타피오카/카사바 대상 여부는 아카이브의 <code>NOT_AVAILABLE.txt</code>, 세계은행 Pink Sheet 대상 여부는 <code>pinksheet_NOT_AVAILABLE.txt</code>를 읽어 판정했다. 전용 수급표나 가격열이 없는 것과 모든 공적 자료가 없다는 것은 다른 주장이다.</p>
+<p>아카이브 파일 목록은 제공된 <code>archive_inventory/tapioca.csv</code>의 61행을 기준으로 했다. 파일별로 열람을 시도했고 일시적으로 지연된 Drive 파일은 재시도했다. PDF는 텍스트를 추출해 범위를 확인했다. 품목 숫자의 정본은 루트 FAOSTAT CSV 또는 로컬 품목 분할 CSV를 골랐고, 같은 분야를 Markdown으로 복제한 자료는 중복 인용하지 않았다. 수치 근거는 공개 원자료와 출처를 밝힌 기관·협회 자료에 한정했다.</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 원장 판정 요약</caption>
+<thead><tr><th>레인</th><th class="num">목록 파일</th><th class="num">반영</th><th class="num">불필요</th><th class="num">미검토</th></tr></thead>
+<tbody>
+<tr><td>루트 FAOSTAT CSV</td><td class="num">4</td><td class="num">4</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td>intelligence_reports</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td>processed_data</td><td class="num">2</td><td class="num">2</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td>raw_data</td><td class="num">52</td><td class="num">7</td><td class="num">45</td><td class="num">0</td></tr>
+<tr><td>scripts</td><td class="num">2</td><td class="num">0</td><td class="num">2</td><td class="num">0</td></tr>
+<tr class="tot"><td>합계</td><td class="num">61</td><td class="num">14</td><td class="num">47</td><td class="num">0</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 제공된 <code>archive_inventory/tapioca.csv</code>의 파일 목록과 이 보고서의 <code>01_아카이브_원장.csv</code> 행별 판정. 중복 해시는 입력 <code>dup_of</code> 칸이 비어 있어 임의로 채우지 않았다.</p>
+<p><code>intelligence_reports/</code> 아래에는 위 61행 원장 밖에 PDF 이름의 스텁 9개가 더 있다. 루트 6개, <code>gain_extra/</code> 2개, <code>shared/</code> 1개이며, 확인한 파일은 대상이 없는 0바이트 링크여서 열람 가능한 PDF 9건으로 세지 않는다. USDA GAIN 베트남 보고서 <code>VM2025-0028</code>의 내용은 별도의 USDA FAS 원문에서 확인했다(USDA FAS GAIN, 「Grain and Feed Quarterly: Vietnam」, 2025-08-06, https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Grain+and+Feed+Quarterly_Ho+Chi+Minh+City_Vietnam_VM2025-0028).</p>
+<p>불필요 47건은 폐기 대상이라는 뜻이 아니다. 범례·코드표, 농업 전체 지표, 과거 식량수급표, 동일 분야의 Markdown 재표현, 수집기 코드와 실행 로그를 본문 근거에서 제외했다는 뜻이다. 2025년 은행 리포트는 Drive 품목 폴더의 원장 밖 <code>data/_raw/_banks/</code>에서, KOSIS 사용량은 공통 원자료에서 확인했다. 웹 조사노트의 법령·협회·기관 원문은 자료등급을 보존해 인용했다. 국내 기업별 물량, 일부 관세·식품 규정 및 KAMIS 품목 검색 결과는 원문을 확보하지 못한 범위로 남긴다.</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 타피오카 산업 해부: 원료·전분·펄을 나눠 보는 한국 시장</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판 초안)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · 관세청·KOSIS·FAOSTAT 원자료를 우선하고 법령·기관 원문과 협회·은행 자료의 성격을 구분했다. 2025년 한국 상대국은 UN Comtrade 공개 API로 보완했다</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>30_근거_수치.md에 파일·필터·계산식을 기록했다. 자동 숫자대조 결과는 20_숫자대조.txt에 있다(빌드할 때마다 다시 돌린다). 별도 반증 감사는 31_감사.md에 있다</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>HS 0714.10은 상류 카사바 경계, HS 1108.14는 천연 카사바전분, HS 1903은 타피오카와 전분 대체 형태제품이다. 변성전분 HS 3505는 제외한다</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>2026년 무역은 진행연도다. 국내 기업별 점유율·전체 완제품 소비·일부 세율과 식품 규격은 미확보다. KOSIS 원료 사용과 관세청 수입은 모집단이 다르다</span></div>
+</footer>
+</div>
+

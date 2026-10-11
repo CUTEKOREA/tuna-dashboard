@@ -1,0 +1,758 @@
+<title>한국 갈치 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 갈치<br>
+        세계 어획 · 국내 수급 · 무역 · 가격 · 유통 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">어획과 수입이 함께 만드는 시장 · 리포트 2026</p>
+      <h1><span class="scr">Hairtail</span> <span class="lt">한국 갈치 산업 해부</span></h1>
+      <p class="cover-sub">한국 갈치 시장은 국내 어획, 냉동 수입, 정부 비축이 함께 움직인다.
+        세계 어획은 중국에 집중돼 있지만 한국의 수입 상대국은 오만·세네갈·남아프리카공화국으로도 넓게 걸쳐 있다.
+        어획량과 소비 추정, 신고 무역, 단계별 가격을 각각의 통계 범위 안에서 읽는다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">세계 대형 갈치(LHT) 어획</div><div class="v">112.8만</div>
+        <div class="n">톤 · FishStat LHT · 2024년 국가별 합</div></div>
+      <div class="cf"><div class="k">중국 어획 비중</div><div class="v">81.3%</div>
+        <div class="n">2024년 · FishStat LHT 국가별 합 대비</div></div>
+      <div class="cf"><div class="k">한국 갈치 생산</div><div class="v">4.45만</div>
+        <div class="n">톤 · KOSIS 품종 «갈치» · 2024년</div></div>
+      <div class="cf"><div class="k">한국 국내소비 추정</div><div class="v">6.09만</div>
+        <div class="n">톤 · KMI 수급표 · 2024년</div></div>
+      <div class="cf"><div class="k">한국 자급률 추정</div><div class="v">73.1%</div>
+        <div class="n">2024년 · KMI 수급표</div></div>
+      <div class="cf"><div class="k">한국 갈치 수입</div><div class="v">1.34만</div>
+        <div class="n">톤 · 2025년 · 관세청 갈치 HS10 두 품목</div></div>
+      <div class="cf"><div class="k">수입 상대국 상위 3곳</div><div class="v">70.7%</div>
+        <div class="n">2025년 · 오만·세네갈·남아공 · 물량 기준</div></div>
+      <div class="cf"><div class="k">냉동 수입 비중</div><div class="v">99.5%</div>
+        <div class="n">2025년 · 갈치 HS10 두 품목 물량 기준</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">국내 어획이 중심이고, 부족한 물량은 냉동 수입이 메운다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">대형 갈치 어획은 중국에 집중된다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">2024년 어획 감소가 수급표에 남았다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">냉동 갈치가 수입의 대부분이고, 상대국은 여럿이다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">산지·수입·소매의 단위를 나눠 읽어야 한다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">수입 상대국과 어획국은 겹치지만 같은 개념이 아니다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">선어와 냉동의 경로가 다르고, 업체별 물량 순위는 아직 없다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">포획·표시·비축은 확인됐고, 실행 관세율은 남아 있다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">기관 실태조사는 있고, 은행 품목 색인에는 없다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표</span><span class="t">어획·수입선·가격의 정의를 고정해 추적한다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">국내 어획과 냉동 수입, 갈치 연육의 연결</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황과 아카이브 검토 범위</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>국내 어획이 중심이고, 부족한 물량은 냉동 수입이 메운다</h2>
+<p class="lead">갈치는 한국이 직접 잡으면서 수입도 하는 어종이다. 2024년 국내 생산은 약 4만 4,506톤, 국내소비 추정치는 6만 880톤이다. 2025년 갈치 품명이 붙은 신선·냉장 및 냉동 HS10 수입은 1만 3,391톤이었다. 세 값은 연도와 작성 방식이 다르므로 서로 빼서 2025년 소비나 자급률을 새로 만들지 않는다. 국내 소비와 자급률은 한국해양수산개발원(KMI)의 <strong>2024년 수급표 추정치</strong>로, 2025년 무역은 관세청 신고 실적으로 각각 읽는다(03·04절).</p>
+<p>세계 생산을 볼 때도 품목 경계를 먼저 잡아야 한다. FAO FishStat 생산 원자료에는 대형 갈치인 <code>LHT</code>와 다른 갈치류 코드가 함께 들어 있다. 이 보고서의 세계 어획량과 국가 순위는 <code>SPECIES.ALPHA_3_CODE=LHT</code>만 합했다. 반대로 국제무역의 HS 030289·030389·030489는 각각 여러 «기타 어류»가 함께 들어가는 6단위 세번이다. 한국 갈치 무역의 물량·국가 구성은 «갈치»라고 적힌 10단위 품목 0302892000·0303892000만 사용했다. 갈치 품명이 분리된 염장·염수장 코드 0305693000도 이 두 품목 범위에서 제외했다. 030489의 «기타 피레트»를 갈치 필레로 세지 않았다(02·04절).</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>세계 어획.</strong> FishStat의 2024년 <code>LHT·CAPTURE·Q_tlw</code> 국가·해역 행 합계는 약 112.8만 톤(1,127,844.258톤)이다. 중국 916,530톤(81.3%), 한국 44,506.208톤(3.9%), 앙골라 34,253톤(3.0%) 순이다. 이것은 신고국별 어획 합계이며 세계 소비량이나 재고량이 아니다(02절, E01).</li>
+<li><strong>국내 생산.</strong> KOSIS 품종 «갈치»의 2024년 생산은 약 4.45만 톤(44,506.47353톤)으로 2023년보다 26.6% 적다. 생산금액은 약 3,840억 원으로 19.5% 줄었다. 같은 해 계통 위판 43,145.586톤은 생산량의 96.9%다. KOSIS의 별도 품종 «갈치류»를 보태지 않았다(03절, E02).</li>
+<li><strong>국내 소비.</strong> KMI 수급표가 제시한 2024년 국내소비 추정은 약 6.09만 톤(60,880톤), 자급률은 73.1%다. 생산·수입·재고를 묶은 수급표의 값이지 가계가 직접 신고한 섭취량이 아니다. 원문 표 4-64의 공급 항목을 단순 합하면 공표 공급 합계보다 211톤 많다. 같은 보고서의 표 3-13은 수입을 13,308톤으로 적어 합계와 맞지만, 어느 수입값을 채택해야 하는지는 확인되지 않았다(03절, E03).</li>
+<li><strong>무역 규모와 형태.</strong> 관세청 갈치 HS10 두 품목의 2025년 수입은 약 1.34만 톤(13,391.447톤)·4,860만 1,077달러다. 물량의 99.5%가 냉동 갈치다. 2026년 1~8월 기준(잠정) 수입 7,558.748톤은 전년 같은 기간보다 10.5% 적지만, 수입 신고 단가는 3.64달러/kg에서 3.82달러/kg으로 4.8% 높다(04·05절, E04).</li>
+<li><strong>수입 상대국.</strong> 2025년 국가별 갈치 HS10 수입 물량은 오만 4,152.6톤(31.0%), 세네갈 2,842.6톤(21.2%), 남아프리카공화국 2,468.3톤(18.4%) 순이다. 세 곳 합계는 70.7%다. 이는 해수부 무역 원천의 <strong>신고 상대국</strong>이며 어획지·원산지와 같다고 단정하지 않는다(04·06절, E05).</li>
+<li><strong>가격은 단계가 다르다.</strong> KMI의 2024년 서귀포수협 선어 산지 연평균은 16,782원/kg, 냉동은 10,132원/kg이다. KAMIS 수집본의 2026년 9월 «평균» 행 일별 산술평균은 약 7,224원이고, KOSIS 전국 갈치 소비자물가지수는 같은 달 122.15(2020=100)다. 규격·시점·단위가 달라 산지와 소비자가격 사이의 유통마진으로 계산하지 않는다(05절, E06·E07).</li>
+<li><strong>유통 경로.</strong> KMI가 면담과 자료로 추정한 2024년 선어 계통출하 물량의 대형소매 경로는 32%, 냉동은 38%다. 냉동 경로에는 수출과 정부 비축이 별도로 들어간다. 경로별 비율은 추정치이며 업체별 시장점유율이 아니다(07절, E03).</li>
+<li><strong>제도.</strong> 갈치는 2013년 6월 28일부터 음식점 원산지 표시 대상이다. 북위 33도 이북의 7월 포획금지와 항문장 기준에는 각각 예외 조항이 있다. 2026년 정부 비축·할인 대책에도 갈치가 포함되지만, 조사노트의 영문 보도자료로는 갈치 단독 방출량을 알 수 없다(08절, E08).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li><strong>국내 수급 판단.</strong> 이 보고서는 국내 어획량 변동이 갈치 수급 논의에서 계속 핵심 변수라고 본다. 어획량이 가격을 얼마나 움직이는지는 같은 규격의 산지 위판가격 장기 시계열이 연결되지 않아(10절) 이 판단에 넣지 않는다. 2024년 생산 감소와 KMI의 국내소비 추정·자급률 하락이 그 근거다. 반증 조건은 후속 완결연도 수급표에서 생산 변동이 작아졌는데도 수입·재고 조정만으로 국내 공급 변동의 대부분이 설명되는 것이다. 이 판단은 가격 상승의 원인을 단정하지 않는다.</li>
+<li><strong>수입 구조 판단.</strong> 이 보고서는 냉동 갈치가 신고 수입 물량의 주력 형태로 남는다고 본다. 2025년 냉동 비중이 99.5%였기 때문이다. 반증 조건은 완결연도의 신선·냉장 갈치 HS10 수입 비중이 10% 이상이 되는 것이다. 이 두 품목 범위에는 염장·염수장 갈치 0305693000이 포함되지 않는다. 해수부 국가별 원천의 2025년 해당 코드 수입은 4kg, 수출은 약 22.6톤이다. 종별로 분리되지 않은 필레와 조제품도 범위 밖이다.</li>
+<li><strong>공급선 판단.</strong> 이 보고서는 한국의 신고 수입 상대국을 중국 하나로 설명할 수 없다고 본다. 2025년 오만·세네갈·남아프리카공화국 합계가 70.7%다. 반증 조건은 후속 완결연도에 중국의 갈치 HS10 수입 물량 비중이 50%를 넘고 다른 상대국의 비중이 이에 맞춰 줄어드는 것이다. 상대국의 어획·재수출 구분은 이 판단에 포함하지 않는다.</li>
+</ul>
+<p>수치의 확정성과 판단의 범위를 분리했다. 본문에서 어획·생산·수입·가격에 붙인 숫자는 원자료의 필터와 계산식을 <code>30_근거_수치.md</code>에 적었다. KMI 실태조사는 해수부에 게재됐지만 기관 작성 자료(B)로, 정부·법령 원문은 A로 구분했다. 2026년 1~8월 기준(잠정) 무역값으로 연간 국가 순위나 점유율을 매기지 않았다. KMI 표 4-64와 표 3-13 중 어느 수입값이 맞는지, 갈치 필레 세번, 업체별 취급 물량, 실행 관세율은 추가 확인이 필요하다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>대형 갈치 어획은 중국에 집중된다</h2>
+<p class="lead">FishStat의 <code>LHT</code>는 largehead hairtail, 즉 이 보고서가 세계 생산을 살필 때 채택한 대형 갈치 코드다. 원자료에는 <code>CUT</code>와 <code>TCW</code>도 들어 있지만 같은 종으로 합하지 않았다. FishStat 생산 파일은 국가·해역·연도별 어획량을 담고, 생산 원천은 <code>CAPTURE</code>, 단위는 톤(<code>Q_tlw</code>)이다. 따라서 표의 «세계»는 별도 세계 행을 인용한 값이 아니라 <strong>2024년 LHT 국가·해역 행 50개의 합</strong>이다. 한 국가가 복수 해역에서 잡았다면 그 해역 행을 더해 국가 값을 만들었다(E01).</p>
+<div class="tw">
+<table>
+<caption>표 1. FishStat 대형 갈치(LHT) 어획 상위국(2024년)</caption>
+<thead><tr><th class="num">순위</th><th>국가·지역</th><th class="num">어획량(톤)</th><th class="num">국가별 합 대비</th><th>원자료 상태</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>중국</td><td class="num">916,530</td><td class="num">81.3%</td><td>A</td></tr>
+<tr><td class="num">2</td><td>한국</td><td class="num">44,506</td><td class="num">3.9%</td><td>A</td></tr>
+<tr><td class="num">3</td><td>앙골라</td><td class="num">34,253</td><td class="num">3.0%</td><td>A</td></tr>
+<tr><td class="num">4</td><td>이란</td><td class="num">23,146</td><td class="num">2.1%</td><td>I</td></tr>
+<tr><td class="num">5</td><td>말레이시아</td><td class="num">15,748</td><td class="num">1.4%</td><td>A</td></tr>
+<tr><td class="num">6</td><td>오만</td><td class="num">15,050</td><td class="num">1.3%</td><td>I</td></tr>
+<tr><td class="num">7</td><td>대만</td><td class="num">11,571</td><td class="num">1.0%</td><td>A</td></tr>
+<tr><td class="num">8</td><td>태국</td><td class="num">10,640</td><td class="num">0.9%</td><td>A</td></tr>
+<tr class="tot"><td class="num"><strong>국가·해역 행 합계</strong></td><td></td><td class="num"><strong>1,127,844</strong></td><td class="num"><strong>100%</strong></td><td>혼합</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAO FishStat <code>fishstat_production_hairtail.csv</code>, <code>LHT·CAPTURE·Q_tlw·PERIOD=2024</code> 국가별 합(E01). 표시는 톤 반올림이며 비중은 반올림 전 값으로 계산했다. 상태 <code>I</code>는 해당 원자료에 붙은 추정 표시다.</p>
+<p>2024년 합계는 2023년 1,141,112.365톤보다 1.2% 적다. 중국은 2023년 910,275톤에서 2024년 916,530톤으로 늘었지만 다른 나라의 증감이 섞여 전체 합은 줄었다. 한 나라가 세계 값의 81.3%를 차지하는 구조에서 중국 어획의 변화는 세계 합계에 크게 작용한다. 다만 중국 어획이 곧 한국으로 향하는 수출 가용 물량은 아니다. 내수 사용량·가공 투입·재고·수출은 각각 별도 자료가 필요하다(E01).</p>
+<p>한국의 FishStat 2024년 값 44,506.208톤과 KOSIS 같은 해 «갈치» 생산 44,506.47353톤은 가깝지만 완전히 같지 않다. 자료의 수정 시점과 집계 체계가 다를 수 있으므로 한쪽 값을 다른 쪽 표의 누락분으로 더하지 않았다. FishStat은 세계 비교, KOSIS는 국내 연도 추이에 사용한다. 이란·오만 행에는 FishStat 상태 <code>I</code>가 붙어 있어 순위 자체는 원자료대로 제시하되 정확도를 실측치와 같게 읽지 않는다(E01·E02).</p>
+<h3>세계 소비·재고는 어획 표에서 나오지 않는다</h3>
+<p>FishStat 생산 파일은 물리적 어획을 보여준다. 별도의 FishStat 무역 물량·금액 파일도 확인했지만, 보고국별 교역 행을 합해 세계 소비 또는 재고로 치환할 수 없다. 수입은 국가 간 이동이고 재수출·중복 신고가 생길 수 있으며, 어획과 소비 사이에는 가공 수율·손실·재고 변동이 있다. 이 자료 묶음에서 종별 세계 소비·기말재고를 재현할 수 있는 항목은 확보하지 못했다(시도: <code>fishstat_production</code>, <code>fishstat_quantity</code>, <code>fishstat_value</code>, 품목 레지스트리와 공통 USDA PSD 원장 확인). «소비가 어획량과 같다»는 가정을 두지 않는다.</p>
+<p>국제 HS6 무역량도 대체재가 아니다. 030289는 신선·냉장 기타 어류, 030389는 냉동 기타 어류, 030489는 냉동 기타 어류 필레 범주여서 갈치 외 어종을 포함한다. 실제로 Comtrade 합계 행으로 본 한국의 2025년 030389 수입은 136,390.9톤인데, 관세청 «갈치(냉동)» HS10은 13,327.0톤이다. 약 열 배인 HS6 값을 갈치 세계 무역의 분모로 쓰면 산업 규모가 크게 부풀려진다. Comtrade를 기술할 때는 <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, 세계 합계는 <code>partnerCode=0</code>인 행만 보았다(E04·E09).</p>
+<h3>주요 시장의 계절과 제도</h3>
+<p>중국의 갈치 어획에는 휴어·개어 일정이 걸린다. 신화사 전재 보도는 2026년 남해·황해·동해의 개어 시점이 다르고, 동해 보호 대상 어종에 갈치가 들어 있다고 설명한다. 이 문장은 <strong>C등급의 언론 전재</strong>이며, 농업농촌부 고시 원문과 어종별 쿼터를 이 조사에서 대조하지 못했다. 따라서 개어일을 중국 생산량이나 한국 수입량의 변화 원인으로 단정하지 않는다(<a href="https://difang.gmw.cn/2026-09/18/content_39006854.htm">광명망·신화사 전재, 2026-09-18</a>, C).</p>
+<p>서아프리카도 한국 수입 상대국에 들어가지만 지역 전체를 한 공급국으로 묶을 수 없다. EU·세네갈 지속가능어업동반자협정의 의정서는 2024년 11월 만료돼 EU 선박의 세네갈 수역 조업을 허용하지 않는 상태다. 유럽위원회 페이지는 <strong>갈치 전용 조항이나 세네갈의 갈치 생산·수출 수치</strong>를 제시하지 않는다. 이 제도를 한국의 세네갈산 수입 감소와 직접 연결할 근거는 없다(<a href="https://oceans-and-fisheries.ec.europa.eu/international/sustainable-fisheries-partnership-agreements-sfpas/senegal_en">유럽위원회, Senegal SFPA</a>, A).</p>
+<p>세계 수산물 전체의 교역액과 갈치 교역액을 혼동하지도 않는다. KMI 보고서가 FAO GLOBEFISH를 인용한 2024년 세계 수산물 교역액은 3,349억 달러인데, 이는 <strong>모든 수산물</strong>의 수출입 합계다. 갈치 규모를 나타내는 수치로 표지나 계산에 넣지 않았다(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI, 『2025년 수산물 생산 및 유통산업 실태조사(2024년 기준)』</a>, 기관자료 B).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>2024년 어획 감소가 수급표에 남았다</h2>
+<p class="lead">KOSIS «어업별 품종별 통계»의 품종코드 <code>110009</code>는 «갈치»다. 같은 파일의 <code>310030</code>은 «갈치류»라는 별도 품종이며, 특히 원양어업 행과 겹쳐 읽힐 수 있다. 이 절의 연간 생산량은 <code>어업별=계·품종별=갈치·항목=생산량_톤</code>만 사용한다. 생산금액도 같은 조건에서 금액 항목으로 읽는다. 그러면 2024년 생산량은 44,506.47353톤, 생산금액은 383,996,929.82585천 원이다(E02).</p>
+<div class="tw">
+<table>
+<caption>표 2. 국내 갈치 생산과 계통 위판</caption>
+<thead><tr><th class="num">연도</th><th class="num">생산량(톤)</th><th class="num">생산금액(억 원)</th><th class="num">계통 위판량(톤)</th></tr></thead>
+<tbody>
+<tr><td class="num">2020</td><td class="num">65,719</td><td class="num">4,660</td><td class="num">64,339</td></tr>
+<tr><td class="num">2021</td><td class="num">63,056</td><td class="num">4,537</td><td class="num">61,373</td></tr>
+<tr><td class="num">2022</td><td class="num">54,024</td><td class="num">4,502</td><td class="num">50,913</td></tr>
+<tr><td class="num">2023</td><td class="num">60,671</td><td class="num">4,770</td><td class="num">59,024</td></tr>
+<tr><td class="num">2024</td><td class="num">44,506</td><td class="num">3,840</td><td class="num">43,146</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS 가공 원자료 <code>KOSIS_어업생산_hairtail_2014-2024.csv</code>에서 <code>어업별=계·품종별=갈치</code>; <code>KOSIS_위판_hairtail_2018-2024.csv</code>에서 <code>판매형태=계통_위판·어업별=계·품종별=갈치</code>(E02). 톤·억 원은 표시 단계에서 반올림했다.</p>
+<p>2024년 생산량은 전년 60,671.38085톤보다 26.6%, 생산금액은 477,046,395.69957천 원보다 19.5% 적다. 물량과 금액의 감소율이 달랐다는 사실만으로 단가 상승의 원인을 말할 수는 없다. 연도별 어획 위치, 크기, 선어·냉동 비중과 판매 시점이 달라질 수 있기 때문이다. 별도 KMI 실태조사는 2024년 어황 부진을 수온 상승 등과 연결하지만 이는 그 보고서의 설명이며, 이 보고서가 수온과 어획의 인과관계를 독립적으로 검증한 것은 아니다(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사</a>, 기관자료 B).</p>
+<p>계통 위판 43,145.586톤은 KOSIS 생산 44,506.47353톤의 96.9%다. 같은 통계의 비계통 갈치 1,360.88753톤과 계통 위판을 더하면 생산량과 맞는다. 위판량은 시장으로 나오는 경로를 보여주지만 최종 소비량은 아니다. 유통 과정에서 지역 간 이동과 재판매가 있으므로 산지 위판을 소비지 거래와 다시 합해서 전국 판매량을 만들지 않는다(E02).</p>
+<h3>수급표는 소비 추정의 출발점이다</h3>
+<p>KMI 실태조사에는 2024년 갈치 국내소비 60,880톤, 자급률 73.1%라는 수급표가 있다. 같은 표의 국내생산은 반올림한 44,507톤이며, 44,507÷60,880×100=73.1%다. 수입·수출에는 가공품 환산수율이 적용되고 재고 원천도 생산통계와 다르다. 이 때문에 관세청의 비가공 갈치 HS10 수입액이나 FishStat 교역량으로 KMI 수급표를 다시 계산하지 않는다(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사 표 4-64</a>, 기관자료 B).</p>
+<div class="tw">
+<table>
+<caption>표 3. KMI 갈치 수급표의 2024년 원문값과 검산</caption>
+<thead><tr><th>구분</th><th>항목</th><th class="num">원문값(톤)</th><th>해석</th></tr></thead>
+<tbody>
+<tr><td>공급</td><td>국내생산</td><td class="num">44,507</td><td>수급표의 반올림·잠정치</td></tr>
+<tr><td>공급</td><td>수입</td><td class="num">13,519</td><td>표 4-64의 값; 표 3-13은 13,308</td></tr>
+<tr><td>공급</td><td>이입</td><td class="num">17,382</td><td>기초 재고 성격</td></tr>
+<tr><td>공급</td><td>공표 공급 합계</td><td class="num">75,197</td><td>아래 사용 합계와 같음</td></tr>
+<tr><td>사용</td><td>국내소비</td><td class="num">60,880</td><td>KMI 추정</td></tr>
+<tr><td>사용</td><td>수출</td><td class="num">2,558</td><td>가공품 환산수율 적용</td></tr>
+<tr><td>사용</td><td>이월</td><td class="num">11,759</td><td>기말 재고 성격</td></tr>
+<tr><td>검산</td><td>공급 세부 항목 단순합</td><td class="num">75,408</td><td>공표 공급 합계보다 211톤 큼</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KMI 『2025년 수산물 생산 및 유통산업 실태조사(2024년 기준)』 원문 표 4-64·3-13(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">해수부 게재 PDF</a>, 기관자료 B). 마지막 행은 표 4-64의 44,507+13,519+17,382로 계산했다(E03). 원문 표 4-64 자체에 211톤 불일치가 있다. 같은 보고서 표 3-13의 수입 13,308톤을 대입하면 공표 합계 75,197톤과 맞는다.</p>
+<p>이 불일치는 숨기지 않는다. 사용 측은 60,880+2,558+11,759=75,197톤으로 공표 합계와 맞지만, 표 4-64의 공급 측은 211톤 초과한다. 표 3-13과 표 4-64 중 어느 수입값이 맞는지는 확인되지 않았다. 수급표의 국내소비·자급률을 인용할 때 «KMI 추정»으로 표시하고, 수입값이 확정되기 전에는 이 표에서 새로운 수입 의존도·재고율을 만들지 않는다. KMI의 연간 생산 44,506톤과 월별 합계 44,507톤에도 반올림에 따른 1톤 차이가 기록돼 있다(E03).</p>
+<h3>생산지·어법·시기</h3>
+<p>KMI가 집계한 2024년 양륙지는 제주 20,991톤으로 전체의 47.2%다. 어법별로는 근해연승 13,688톤(30.8%), 근해안강망 6,332톤(14.2%), 연안복합 3,957톤(8.9%), 대형선망 2,500톤(5.6%), 근해채낚기 2,447톤(5.5%)이 제시돼 있다. 열거한 어법이 전부가 아니므로 비중을 합해 100%를 요구하지 않는다. 최근 5년 평균 생산의 75.7%가 6~12월에, 15.0%가 11월에 잡혔다는 조사도 있다(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사 표 4-61 및 지역·월별 표</a>, 기관자료 B).</p>
+<p>선어와 냉동은 조업·유통 시간이 다르다. KMI 조사에서는 여름 어기에 연안 채낚기 선어의 조업 기간을 1~2일, 겨울 근해연승 선어와 30일 이상 조업한 냉동 물량을 다른 흐름으로 설명한다. 이 구분은 07절의 유통 경로를 이해하는 데 필요하다. 국내 생산량을 모두 한 종류의 선어로 읽거나 냉동 수입을 국내 냉동 생산과 곧바로 대체 가능한 동질 물량으로 놓지 않는다(같은 실태조사, 기관자료 B).</p>
+<p>최신 월별 관측은 별도로 표시한다. 품목 분할 KOSIS 원자료의 <code>202608·갈치·어업 계·전국 계·판매형태 계</code> 생산량은 2026년 8월 기준(잠정) 3,852.5778톤이다. 한 달 값으로 2026년 연간 생산을 추정하거나 2024년 연간 순위와 비교하지 않는다(E02). 이 월별 값과 KOSIS 연간 확정값, KMI 소비·재고 추정값은 갱신 시점이 서로 다른 자료다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>냉동 갈치가 수입의 대부분이고, 상대국은 여럿이다</h2>
+<p class="lead">무역 범위는 먼저 품명으로 제한했다. 관세청 품목별 월간 원자료에서 <code>statKor=갈치</code>인 0302892000(신선·냉장)과 0303892000(냉동)만 사용했다. 동일 파일의 방어·아귀·기타 어류를 빼고, 030489의 «기타 피레트»도 갈치 전용 세번으로 취급하지 않았다. 해수부 국가별 원천에는 별도의 갈치 품명 코드 0305693000(염장·염수장)이 있으나, 두 품목 비교 범위에서 제외했다. 해당 코드의 2025년 신고는 수입 4kg, 수출 약 22.6톤이다. 국가별 구성은 해수부 <code>mof_seafood_trade_country_monthly</code> 압축 원천에서 똑같은 신선·냉장 및 냉동 HS10 코드와 <code>mprcExipitmNm</code>에 «갈치»가 있는 수입 행만 읽었다. 두 원천의 2025년 두 품목 수입액 합계는 48,601,077달러로 같고, 물량은 세관 정수 kg와 해수부 소수 kg 표기의 차이만 난다(E04·E05).</p>
+<div class="tw">
+<table>
+<caption>표 4. 한국 갈치 HS10 무역</caption>
+<thead><tr><th>기간·품목</th><th class="num">수입(톤)</th><th class="num">수입액(백만 달러)</th><th class="num">수입 단가(달러/kg)</th><th class="num">수출(톤)</th></tr></thead>
+<tbody>
+<tr><td>2025 신선·냉장 0302892000</td><td class="num">64.4</td><td class="num">0.54</td><td class="num">8.45</td><td class="num">7.6</td></tr>
+<tr><td>2025 냉동 0303892000</td><td class="num">13,327.0</td><td class="num">48.06</td><td class="num">3.61</td><td class="num">2,684.7</td></tr>
+<tr class="tot"><td><strong>2025 두 품목 합계</strong></td><td class="num"><strong>13,391.4</strong></td><td class="num"><strong>48.60</strong></td><td class="num"><strong>3.63</strong></td><td class="num"><strong>2,692.3</strong></td></tr>
+<tr><td>2026년 1~8월 신선·냉장</td><td class="num">135.5</td><td class="num">1.06</td><td class="num">7.86</td><td class="num">383.3</td></tr>
+<tr><td>2026년 1~8월 냉동</td><td class="num">7,423.2</td><td class="num">27.80</td><td class="num">3.74</td><td class="num">1,381.9</td></tr>
+<tr class="tot"><td><strong>2026년 1~8월 합계</strong></td><td class="num"><strong>7,558.7</strong></td><td class="num"><strong>28.86</strong></td><td class="num"><strong>3.82</strong></td><td class="num"><strong>1,765.2</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>customs_item_trade_monthly_hairtail.csv</code>, <code>statKor=갈치</code>, 두 HS10 코드, 해당 월 합(E04). 원자료 중량 kg÷1,000=톤, 달러÷1,000,000=백만 달러, 단가는 달러÷kg. 2026년은 진행 중인 해다.</p>
+<p>2025년 물량의 99.5%가 냉동이었다. 신선·냉장 단가가 냉동보다 높은 것은 관측된 신고값의 차이지만, 크기·품질·포장·운송 방식이 섞인 두 집합의 평균이므로 같은 규격의 가격 차이로 해석하지 않는다. 2025년 수출은 2,692.339톤·638만 2,542달러였다. 국가별 원천에서는 수출 상대국 중국이 약 2,533.0톤으로 2025년 수출 물량의 94.1%다. 수출품이 국내 어획분인지 수입 후 재수출분인지는 이 통계만으로 분리되지 않는다(E04·E05).</p>
+<p>2026년 1~8월 수입 물량은 7,558.748톤으로 2025년 같은 기간 8,445.632톤보다 10.5% 적다. 수입액은 2,886만 172달러로 2025년 같은 기간 3,076만 6,497달러보다 6.2% 적다. 같은 계산에서 평균 신고 단가는 3.64달러/kg에서 3.82달러/kg으로 4.8% 올랐다. 물량 감소를 가격 상승의 원인으로 단정할 자료는 없다. 월별로는 2026년 1~5월의 수입 물량이 각각 전년 같은 달보다 많았다. 다만 5월은 956,134kg 대 954,935kg으로 0.1% 차이에 그쳤고, 6~8월에는 전년 같은 달보다 적었다. 이 변화는 2026년 1~8월 기준(잠정)의 연중 집계이며 연간 국가 순위나 점유율을 뜻하지 않는다(E04).</p>
+<h3>상대국은 원산지와 다르다</h3>
+<p>2025년 수입 상대국은 21곳이 기록돼 있다. 오만·세네갈·남아프리카공화국이 상위 세 곳이고, 모로코·중국이 뒤를 잇는다. 아래 비중의 분모는 국가별 갈치 HS10 두 코드의 <strong>2025년 전체 수입 13,391.446959톤</strong>이다. 국가명은 해수부 원천의 <code>nationNm</code>을 한국어로 풀어 썼다(E05).</p>
+<div class="tw">
+<table>
+<caption>표 5. 한국 갈치 HS10 수입 상대국(2025년, 물량 순)</caption>
+<thead><tr><th>상대국</th><th class="num">수입(톤)</th><th class="num">전체 대비</th><th class="num">신고액(백만 달러)</th><th class="num">신고 단가(달러/kg)</th></tr></thead>
+<tbody>
+<tr><td>오만</td><td class="num">4,152.6</td><td class="num">31.0%</td><td class="num">15.94</td><td class="num">3.84</td></tr>
+<tr><td>세네갈</td><td class="num">2,842.6</td><td class="num">21.2%</td><td class="num">10.85</td><td class="num">3.82</td></tr>
+<tr><td>남아프리카공화국</td><td class="num">2,468.3</td><td class="num">18.4%</td><td class="num">6.18</td><td class="num">2.50</td></tr>
+<tr><td>모로코</td><td class="num">1,185.8</td><td class="num">8.9%</td><td class="num">3.77</td><td class="num">3.18</td></tr>
+<tr><td>중국</td><td class="num">1,013.0</td><td class="num">7.6%</td><td class="num">5.73</td><td class="num">5.66</td></tr>
+<tr><td>그 밖의 16곳</td><td class="num">1,729.1</td><td class="num">12.9%</td><td class="num">—</td><td class="num">—</td></tr>
+<tr class="tot"><td><strong>합계</strong></td><td class="num"><strong>13,391.4</strong></td><td class="num"><strong>100%</strong></td><td class="num"><strong>48.60</strong></td><td class="num"><strong>3.63</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 해수부 <code>2026-10-06__mof_seafood_trade_country_monthly.json.gz</code>, <code>2025년·수입(I)·HS10 0302892000/0303892000·품명 갈치</code> 국가별 합(E05). 마지막 «그 밖» 물량은 전체에서 상위 5곳을 뺀 값이다. 상대국은 어획지·원산지로 단정하지 않는다.</p>
+<p>상위 다섯 상대국 중 오만·세네갈·남아프리카공화국·모로코의 2025년 신고분은 이 원천에서 모두 냉동 코드다. 중국은 신선·냉장 신고가 2.274톤 포함돼 있다. 국별 평균 단가의 차이는 제품 규격·품질·계약 조건·신고 범위가 달라 생길 수 있다. 이 자료에는 규격별 중량과 계약 조건이 없어 2.50달러/kg인 남아프리카공화국산을 같은 품질의 «최저가 공급»이라고 부르지 않는다(E05).</p>
+<h3>Comtrade와 다른 국가 통계의 쓰임</h3>
+<p>UN Comtrade 품목별 연간 파일에는 2024·2025년 030289·030389·030489 행이 있다. 합계 행(<code>customsCode=C00·motCode=0·partner2Code=0</code>)만 남기고 국가별 세계 상대국은 <code>partnerCode=0</code>으로 제한했다. 그러나 이 세 코드의 설명은 모두 갈치보다 넓은 «기타 어류» 범주다. 한국 신고 2025년 030389 전체 수입 중량 136,390,901.251kg을 갈치 수입 13,327,045kg에 더하거나 갈치 시장 규모로 바꾸지 않았다. 세부 관세절차·운송수단 행을 합계에 다시 더하지도 않았다(E09).</p>
+<p>미국 Census HS10, EU Comext, 브라질 ComexStat, 일본 무역 수집본도 품목 매핑이 갈치 전용인지 확인되지 않은 행이 섞일 수 있다. 이 보고서는 그 파일을 갈치 세계 수입 순위의 근거로 사용하지 않았다. 한국 국가별 HS10이 직접 열렸기 때문에 국내 상대국 구성에는 넓은 HS6의 추정치를 끼워 넣을 이유가 없다.</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>산지·수입·소매의 단위를 나눠 읽어야 한다</h2>
+<p class="lead">갈치 가격을 한 줄의 시세로 표시하기 어렵다. 국내 산지 선어와 냉동은 규격·처리 상태가 다르고, 수입 단가는 물품의 신고 달러액을 중량으로 나눈 통관 단계 평균이다. KAMIS는 소매 시장의 한 마리 가격을 기록하고, 소비자물가지수는 기준연도에 대한 상대 변화를 기록한다. 이 절은 그 네 종류를 <strong>같은 표에 놓되 단위와 시점을 분리</strong>한다. 어느 행도 다른 행에서 빼서 유통비용률로 만들지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 6. 갈치 가격 관측값과 비교 범위</caption>
+<thead><tr><th>단계·지표</th><th>기간</th><th class="num">값</th><th>단위·범위</th><th>해석 제한</th></tr></thead>
+<tbody>
+<tr><td>서귀포수협 선어 산지 연평균</td><td>2024년</td><td class="num">16,782</td><td>원/kg</td><td>KMI 인용, 30~33마리 규격</td></tr>
+<tr><td>서귀포수협 냉동 산지 연평균</td><td>2024년</td><td class="num">10,132</td><td>원/kg</td><td>같은 규격, 처리 상태 다름</td></tr>
+<tr><td>냉장 갈치 도매 연평균</td><td>2024년</td><td class="num">14,887</td><td>원/kg</td><td>KMI의 KAMIS 인용</td></tr>
+<tr><td>냉동 갈치 도매 연평균</td><td>2024년</td><td class="num">13,228</td><td>원/kg</td><td>KMI의 KAMIS 인용</td></tr>
+<tr><td>한국 갈치 HS10 평균 수입 단가</td><td>2025년</td><td class="num">3.63</td><td>달러/kg</td><td>신고액÷신고중량</td></tr>
+<tr><td>KAMIS 갈치 «평균» 일별값의 월 산술평균</td><td>2026년 9월</td><td class="num">7,224</td><td>원/1마리</td><td>20개 관측일, 평균 행의 품명 칸은 비어 있음</td></tr>
+<tr><td>전국 갈치 소비자물가지수</td><td>2025년 9월 → 2026년 9월</td><td class="num">108.21 → 122.15</td><td>2020=100</td><td>같은 달 대비 12.9% 상승</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사 가격 표·본문</a>(기관자료 B); 관세청 갈치 HS10(E04); KAMIS <code>hairtail_kamis_price.csv</code>의 <code>countyname=평균</code>(E06); KOSIS <code>kosis_cpi_items</code>의 전국·갈치 지수(E07).</p>
+<p>KMI 조사에 따르면 2024년 서귀포수협 선어 산지 연평균은 전년보다 10.4% 높았다. 냉동 갈치(30~33마리 규격)의 연평균 10,132원/kg도 전년보다 8.7% 높았으나 평년(2019~2023년)보다는 3.0% 낮았다. KMI가 KAMIS에서 가져온 2024년 냉장 도매 14,887원/kg은 전년보다 16.2%, 냉동 도매 13,228원/kg은 12.5% 높았다. 이 네 연평균 가격의 전년 대비 방향은 모두 상승이지만, 산지와 도매의 상승률은 서로 다른 표본과 규격에서 나온 값이다(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사 가격 동향</a>, 기관자료 B).</p>
+<p>KAMIS 품목별 CSV는 2026년 3~9월만 담는다. <code>countyname</code>에는 «평균»과 «서울»만 있으며 <strong>«평년» 행은 없다</strong>. «평년»은 실측 관측일이 아닌 참고 평균이므로 소매 실측과 합하지 않았다. «평균» 행의 <code>itemname</code>·<code>kindname</code> 칸은 <code>[]</code>이나, 같은 날짜의 서울 시장 행에는 «갈치·국산(냉장)(1마리)»가 붙어 있다. 따라서 표의 7,224원은 수집 쿼리와 날짜별 동반 행을 참고한 <strong>평균 행의 관측치</strong>이고, 등급별 전국 소매가격이라고 확대하지 않는다(E06).</p>
+<p>이 KAMIS «평균» 행의 3월 17개 관측일 평균은 8,083원, 9월 20개 관측일 평균은 7,224.25원이다. 9월 30일 단일 행은 7,368원이다. 기간이 짧고 월별 관측일 수도 다르므로 3월과 9월의 차이를 연간 가격 하락으로 부르지 않는다. 서울 개별 시장의 같은 날 가격에도 결측기호 <code>-</code>가 들어 있어, 결측을 영(0)으로 바꿔 평균하지 않았다(E06).</p>
+<p>KOSIS 소비자물가지수는 다른 질문에 답한다. 전국 갈치 지수는 2025년 9월 108.21에서 2026년 9월 122.15로 12.9% 높아졌고, 2026년 8월 123.81과 비교하면 9월은 1.3% 낮다. 지수는 2020년을 100으로 둔 변화율이지 한 마리의 원화 가격이 아니다. 2026년 9월의 KAMIS 평균 7,224원과 CPI 122.15를 나누어 개당 기준가격을 역산하지 않는다(E07).</p>
+<p>국제 갈치 전용 가격지수는 확보하지 못했다. 확인한 자료는 FishStat 생산·무역, Comtrade의 넓은 HS6, 세계은행·IMF의 일반 상품가격 범주, 조사노트의 FAO GLOBEFISH 초록이다. GLOBEFISH의 수산물 전체 가격지수나 세계은행의 다른 수산물 시세를 갈치 지수로 대체하지 않는다. 이 보고서의 공개 자료는 같은 규격의 산지 위판·도매·소매 관측과 환율·운송비를 구분한 계약 자료를 연결하지 못한다(조사노트 «가격 공개 시계열»·«미확보 목록»).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>수입 상대국과 어획국은 겹치지만 같은 개념이 아니다</h2>
+<p class="lead">2025년 한국 갈치 수입의 상위 상대국은 오만·세네갈·남아프리카공화국이다. 세계 어획 1위는 중국이다. 두 순위가 다른 까닭을 중국이 한국에 적게 팔기 때문이라고만 설명할 수는 없다. FishStat 생산은 어획한 나라·해역의 <code>LHT</code> 물량이고, 해수부 국가별 수입은 한국 신고서에 잡힌 10단위 갈치의 무역 상대국이다. 어종 범위, 연도, 신고 주체가 다르다. 특히 남아프리카공화국은 이 파일의 2024년 FishStat LHT 행이 없는데도 2025년 한국 수입 상대국에는 2,468.3톤이 잡힌다. 이 두 관측값만으로는 남아공 어획이나 재수출의 규모가 확인되지 않는다(E01·E05).</p>
+<div class="tw">
+<table>
+<caption>표 7. 주요 상대국의 서로 다른 두 관측값</caption>
+<thead><tr><th>국가·지역</th><th class="num">FishStat LHT 어획(2024년, 톤)</th><th class="num">한국 갈치 HS10 수입 상대국 물량(2025년, 톤)</th><th>읽는 법</th></tr></thead>
+<tbody>
+<tr><td>중국</td><td class="num">916,530</td><td class="num">1,013.0</td><td>세계 어획 1위, 한국 상대국 5위</td></tr>
+<tr><td>오만</td><td class="num">15,050</td><td class="num">4,152.6</td><td>어획값은 FishStat 추정 표시 <code>I</code></td></tr>
+<tr><td>세네갈</td><td class="num">3,365</td><td class="num">2,842.6</td><td>서로 다른 연도의 물량</td></tr>
+<tr><td>남아프리카공화국</td><td class="num">해당 파일에 2024 LHT 행 없음</td><td class="num">2,468.3</td><td>«어획 없음»이라는 뜻이 아님</td></tr>
+<tr><td>모로코</td><td class="num">9,342</td><td class="num">1,185.8</td><td>어획과 한국행 신고는 별도</td></tr>
+<tr><td>앙골라</td><td class="num">34,253</td><td class="num">2025년 갈치 HS10 신고 없음</td><td>생산국이 곧 한국 직접 공급국은 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FishStat <code>fishstat_production_hairtail.csv</code>의 <code>2024·LHT</code> 국가·해역 합(E01), 해수부 국가별 무역 압축 원천의 <code>2025·수입·갈치 HS10</code> 합(E05). 두 열의 비율은 계산하지 않았다.</p>
+<p>표의 세네갈 2024년 FishStat 3,364.69톤과 2025년 한국의 세네갈 상대국 수입 2,842.608톤을 나누어 «세네갈 어획의 대부분이 한국행»이라고 말할 수 없다. 연도가 다르고 수입 상대국은 어획지와 같지 않을 수 있으며, FishStat의 종별 범위와 세관 품명 범위도 다르다. 남아프리카공화국의 경우처럼 한쪽 파일에 종별 행이 없다는 이유로 다른 쪽의 수입 신고를 오류로 지우지도 않는다(E01·E05).</p>
+<p>오만은 2025년 한국 갈치 수입 상대국 1위로 4,152.6톤이다. 해당 물량은 해수부 국가별 원천에서 모두 냉동 갈치 코드다. 세네갈 2,842.6톤, 남아프리카공화국 2,468.3톤, 모로코 1,185.8톤도 표본 기간에 모두 냉동 코드로 잡힌다. 이 상대국들의 신고 형태상 공통점은 냉동 갈치다. 어획 시기·항만·가공 상태·재수출 경로까지 같은지는 이 자료에 없다(E05).</p>
+<p>국내 산지는 수입 상대국과 다른 계절을 가진다. KMI 조사의 최근 5년 평균은 국내 갈치 생산의 75.7%가 6~12월, 11월 한 달이 15.0%라고 제시한다. 수입이 국내 어획의 빈 달을 채우는지는 같은 달의 국내 생산·재고·수입을 연결한 자료에서 확인되지 않았다. 현재 품목별 KOSIS 원자료는 2026년 8월 한 달, 관세청 갈치 월간 원자료는 2024년 11월~2026년 8월을 포함하므로 긴 계절 비교를 완성하기에는 국내 월별 연결 기간이 부족하다(E02·E04).</p>
+<p>중국 휴어·개어 일정도 공급 관찰 지표다. 신화사 전재 기사는 2026년 남해·황해·동해의 개어일과 보호 어종으로 갈치를 언급한다(C등급). 그러나 기사에 인용된 휴어 후기 총자원밀도 배수는 어종 전체 자원 조사이지 갈치만의 어획 증가율이 아니다. 이를 갈치 공급량 전망치로 쓰지 않는다(<a href="https://difang.gmw.cn/2026-09/18/content_39006854.htm">광명망·신화사 전재</a>, C).</p>
+<p>세네갈에 관해서는 유럽위원회의 어업협정 상태를 확인했다. 의정서 만료로 EU 선박의 조업 권한이 제한되지만, 갈치 자체의 어획량·수출량·한국행 허가 조건은 해당 페이지에 없다. 조사노트가 시도한 세네갈 공식 수출 통계는 본문 추출에 실패했다. 파키스탄·인도·오만의 갈치 전용 수출규제·작황 문서도 확보되지 않았다. 이런 빈칸을 감안하면 공급국별 «수출 여력»을 생산량에서 기계적으로 추정하는 것은 적절하지 않다(<a href="https://oceans-and-fisheries.ec.europa.eu/international/sustainable-fisheries-partnership-agreements-sfpas/senegal_en">유럽위원회</a>, A; 조사노트 미확보 목록).</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>선어와 냉동의 경로가 다르고, 업체별 물량 순위는 아직 없다</h2>
+<p class="lead">국내 갈치 유통은 위판 뒤 한 경로로 수렴하지 않는다. KMI는 2024년 선어 계통출하를 29,931톤, 냉동을 14,575톤으로 놓고 각각의 경로를 추정했다. 선어는 대형소매와 산지·소비지 도매를 거쳐 소매상에게 가는 흐름이 크고, 냉동에는 수출·정부 비축이 더해진다. 이 물량은 KMI의 면담·자료 기반 추정으로 오차가 약 5% 내외라고 명시돼 있다. 관세청 수출량이나 KOSIS 위판량과 항목별로 다시 더해 전국 유통 총량을 만들지 않는다(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사 표 4-72·4-73</a>, 기관자료 B).</p>
+<div class="tw">
+<table>
+<caption>표 8. KMI가 추정한 2024년 계통출하 갈치의 경로별 비중</caption>
+<thead><tr><th>경로</th><th class="num">선어 29,931톤 기준</th><th class="num">냉동 14,575톤 기준</th></tr></thead>
+<tbody>
+<tr><td>대형소매</td><td class="num">32%</td><td class="num">38%</td></tr>
+<tr><td>산지도매상→소매상</td><td class="num">25%</td><td class="num">19%</td></tr>
+<tr><td>소비지도매시장→소매상</td><td class="num">18%</td><td class="num">12%</td></tr>
+<tr><td>가공·홈쇼핑 등</td><td class="num">13%</td><td class="num">5%</td></tr>
+<tr><td>지역소비·택배</td><td class="num">10%</td><td class="num">—</td></tr>
+<tr><td>소매상 직접</td><td class="num">2%</td><td class="num">—</td></tr>
+<tr><td>수출</td><td class="num">—</td><td class="num">18%</td></tr>
+<tr><td>정부 비축 수매</td><td class="num">—</td><td class="num">8%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 『2025년 수산물 생산 및 유통산업 실태조사(2024년 기준)』 표 4-72·4-73</a>(기관자료 B). 각 열은 서로 다른 분모를 가진 면담 기반 추정 비중이다.</p>
+<p>선어에서 대형소매 32%와 두 도매 경로 25%·18%를 합하면, KMI 추정 물량의 세 경로가 75%를 차지한다. 이것은 세 사업자가 75%를 가진다는 뜻이 아니다. «대형소매»는 복수 기업을 묶은 채널이고, 도매상과 소매상도 수많은 사업자를 포함한다. 냉동에서는 대형소매 38%가 가장 크고, 수출 18%와 비축 수매 8%가 별도의 출구다. 냉동 제품의 보관 가능 기간과 거래 단위가 선어와 다르다는 산업적 차이가 이 표에 반영돼 있지만, 경로 비중만으로 각 단계의 재고 기간을 알 수는 없다(E03).</p>
+<p>KMI는 산지와 어법에 따라 경로가 다르다고 적었다. 제주에서 위판한 선어는 채낚기·근해연승 비중과 대형소매 연결이 크고, 목포·여수 등 제주 밖의 근해안강망·대형트롤 물량은 전통시장·소매 경로가 상대적으로 크다는 설명이다. 이는 조사된 경로의 특징이지 특정 지역의 모든 갈치가 한 채널로만 간다는 뜻은 아니다(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사 갈치 유통 절</a>, 기관자료 B).</p>
+<p>정부 비축도 민간 유통과 만난다. KMI의 비축 총괄표는 2024년 갈치 수매 1,153톤·121억 3,300만 원, 판매 3,318톤·285억 3,600만 원을 적는다. 냉동 경로 도표에는 수매 1,154톤으로 1톤 차이가 있다. 수매액은 물품대, 판매액은 공급액·가공품을 포함한다고 조사노트가 설명하므로 둘의 차이를 비축 사업 이익으로 해석하지 않는다. 같은 해 수매와 판매의 물량 차이도 기초 재고와 방출 시점이 달라 생길 수 있다(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사 표 2-30·4-73</a>, 기관자료 B).</p>
+<h3>업체별 시장점유율은 이 원천으로 계산할 수 없다</h3>
+<p>은행 리포트 색인, 품목별 아카이브, KMI 조사노트에는 갈치 수입·가공·유통 법인의 <strong>연간 갈치 취급 물량 순위</strong>가 없다. 식약처 일별 수입신고 자료는 2026년 9월 말~10월 초의 잔존 신고이고, 제품 DB는 조회 시점의 스냅샷이다. 두 자료만으로 2025년 연간 업체별 갈치 수입 물량이나 점유율을 만들 수 없다. DART 기업 공시는 갈치만의 매출을 분리한다는 근거가 없어, 전사 매출액을 갈치 시장 규모로 놓지 않았다. 조사노트 역시 공시·협회 명부로 법인 순위를 확인하지 못했다고 적는다.</p>
+<p>공개 자료에서 확인된 주체는 서귀포수협과 다른 산지 위판, 소비지 도매시장, 대형소매·홈쇼핑·가공 채널, 정부 비축을 맡는 수협중앙회와 검사기관이다. 이 명칭은 <strong>유통 기능의 지도</strong>이지 기업 서열이 아니다. 수입상·가공사·판매사의 역할이 한 법인에 겹칠 수도 있다. 식약처 수입식품 신고 조회에서는 2025년 10월~2026년 9월 <strong>품목명</strong>에 «갈치»가 포함된 신고의 수입업소별 신고 건수 순위와 제조국 상위 항목을 확인할 수 있다(11절 표 11-2, <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>, A). 제품명 기준으로 넓히면 갈치 연육 등의 신고가 추가된다. 신고 건수 순위는 물량·금액 순위가 아니며, 품목명 필터는 04절의 두 갈치 HS10 품목과 같지 않다. 업체별 연간 갈치 취급 물량과 시장점유율은 여전히 확인되지 않았다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>포획·표시·비축은 확인됐고, 실행 관세율은 남아 있다</h2>
+<p class="lead">갈치의 국내 제도는 자원관리, 소비자 표시, 수급 조정으로 나뉜다. 어획 제한에는 선박·구역·기간·어종 비중에 따른 예외가 있다. 음식점 원산지 표시는 판매 단계에 적용된다. 정부 비축과 할인은 특정 기간의 가격 안정 수단이다. 세 제도 중 하나를 다른 제도의 근거로 사용하지 않았다.</p>
+<div class="tw">
+<table>
+<caption>표 9. 확인한 갈치 관련 제도와 남은 범위</caption>
+<thead><tr><th>제도</th><th>확인된 내용</th><th>출처·등급</th><th>이 보고서의 한계</th></tr></thead>
+<tbody>
+<tr><td>포획금지 기간</td><td>북위 33도 이북에서 7월 1~31일</td><td>수산자원관리법 시행령 별표 1, A</td><td>근해채낚기·연안복합 및 어획비중 예외를 함께 적용</td></tr>
+<tr><td>포획금지 체장</td><td>항문장 18cm 이하</td><td>같은 시행령 별표 2, A</td><td>해당 체장 어획 비중 20% 미만 예외</td></tr>
+<tr><td>음식점 원산지</td><td>갈치는 2013년 6월 28일부터 표시 대상</td><td>해수부 2013년 보도자료·법령 연혁, A</td><td>현행 20종 목록 적용일과 갈치 개별 시행일 구분</td></tr>
+<tr><td>정부 비축</td><td>수협중앙회 수매·보관·판매, 갈치 대상</td><td>KMI 실태조사 B·관련 법률 A</td><td>연도별 수매와 방출은 별도 계정</td></tr>
+<tr><td>2026년 추석 대책</td><td>갈치 포함 6개 품목 점검·비축 방출</td><td>해양수산부, A</td><td>갈치 단독 방출 톤수 미제시</td></tr>
+<tr><td>조정관세·할당관세</td><td>열람한 2026년 조정관세 별표 및 할당관세 별표 3·8에 갈치 품명 없음</td><td>국가법령정보센터 조사노트, A</td><td>별표 전체와 실제 통관세율은 미확보</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>grok/hairtail.note.md</code>의 국가법령정보센터 별표 확인(A), <a href="https://www.nfqs.go.kr/hpmg/orig/actionRestaurantOriginIndicationForm.do?menuId=M0000209">국립수산물품질관리원 음식점 원산지 안내</a>(A), <a href="https://www.mof.go.kr/doc/ko/selectDoc.do?bbsSeq=10&amp;docSeq=1119&amp;menuSeq=971">해수부 2013년 음식점 원산지 표시 보도자료</a>(A), <a href="https://www.law.go.kr/LSW/nwRvsLsInfoR.do?lsiSeq=131564&amp;print=print">2013년 법령 개정문</a>(A), <a href="https://www.mof.go.kr/doc/en/selectDoc.do?docSeq=68644&amp;bbsSeq=90&amp;menuSeq=485">해양수산부 2026년 추석 대책</a>(A), <a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사</a>(기관자료 B).</p>
+<p>현행 「수산자원관리법 시행령」 별표 1의 갈치 포획금지는 북위 33도 이북에서 7월 1일부터 31일까지다. 조사노트가 열람한 별표에는 근해채낚기어업과 연안복합어업의 예외, 해당 구역·기간에 갈치가 어획량의 10% 미만인 경우의 예외가 있다. 별표 2의 금지체장은 <strong>항문장</strong> 18cm 이하이며, 해당 크기 갈치가 어획량의 20% 미만인 경우의 예외가 있다. 항문장은 주둥이에서 항문까지의 길이이므로 전장과 바꿔 적지 않는다. 시행령의 기준 시점은 조사노트가 확인한 2026년 7월 시행본이다(국가법령정보센터 별표 열람, 조사노트 A).</p>
+<p>원산지 표시는 «국내산·수입산을 구별할 필요»라는 일반론보다 구체적이다. <a href="https://www.nfqs.go.kr/hpmg/orig/actionRestaurantOriginIndicationForm.do?menuId=M0000209">국립수산물품질관리원 음식점 안내</a>의 현행 20종 목록에는 갈치가 들어 있고, 그 목록의 시행경과에는 2023년 7월 1일이 적혀 있다. 갈치의 음식점 표시 의무는 <a href="https://www.mof.go.kr/doc/ko/selectDoc.do?bbsSeq=10&amp;docSeq=1119&amp;menuSeq=971">해수부 2013년 보도자료</a>와 <a href="https://www.law.go.kr/LSW/nwRvsLsInfoR.do?lsiSeq=131564&amp;print=print">당시 시행규칙 개정문</a>에 따라 2013년 6월 28일부터 적용됐다. 유통단계 표시 고시의 현행 별표와 수입물품 유통이력 의무품목 지정 여부는 조사노트에서 열람하지 못했다. 음식점 규정을 근거로 모든 유통 단계의 세부 의무를 동일하게 적지 않는다.</p>
+<p>수급 정책은 갈치를 다른 주요 수산물과 묶어 집행한다. 해양수산부의 2026년 추석 대책은 갈치를 포함한 6개 품목을 매일 점검하고, 전체 비축 방출량을 2만 톤에서 2만 2천 톤으로 늘린다고 설명한다. 할인 예산 440억 원과 기간·한도도 여러 품목을 포괄한다. 이 숫자를 갈치 단독 물량이나 갈치 단독 예산으로 표지에 싣지 않았다(<a href="https://www.mof.go.kr/doc/en/selectDoc.do?docSeq=68644&amp;bbsSeq=90&amp;menuSeq=485">해양수산부 2026-09-15 보도자료</a>, A). 정부 비축의 법적 근거와 수협중앙회의 수매·보관·판매 역할은 KMI 실태조사가 정리한다(기관자료 B).</p>
+<p>수입 관세에는 <strong>확인한 범위의 경계</strong>가 있다. 2026년 조정관세 별표 13개 품목에 갈치 품명은 없고, 냉동 꽁치의 «갈치 조업 미끼용 제외» 문구만 나타난다. 조사노트는 할당관세 별표 3과 별표 8에서도 갈치를 찾지 못했다. 그렇다고 모든 별표·모든 시점에 갈치 할당관세가 «없다»고 단정하지 않는다. 기본·WTO·FTA 실행세율과 갈치 필레의 10단위 세번은 원문 관세율표를 열람하지 못해 미확보다(조사노트 «한국 제도»·«미확보 목록», A 범위 제한).</p>
+<p>2026년 한·중 위생·검역 협상 보도자료는 냉장 병어와 «자연산 수산물»의 절차 확대를 다루지만 갈치를 품명으로 적지 않았다. 따라서 그 발표를 «갈치가 새로 수출 허용됐다»는 근거로 쓰지 않는다. 수출시설 등록과 위생증명서라는 일반 절차는 확인되지만, 갈치에 적용되는 품목별 원문은 이 자료에서 확인되지 않았다(<a href="https://www.mof.go.kr/doc/ko/selectDoc.do?docSeq=64423&amp;menuSeq=971&amp;bbsSeq=10">해양수산부 2026-01-05</a>, A).</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>기관 실태조사는 있고, 은행 품목 색인에는 없다</h2>
+<p class="lead">은행·기관 리포트 색인 <code>data/_raw/_banks/index.csv</code>의 <code>items</code> 열에서 <code>hairtail</code>을 찾은 결과는 0행이다. 이는 <strong>현재 색인에 붙은 품목 태그</strong>의 결과다. 은행이 갈치를 한 번도 언급하지 않았다는 주장이나 모든 은행 발간물을 전수 열람했다는 주장이 아니다. 품목 태그가 없으므로 은행 전망을 본문에 꾸며 넣지 않았다(E10).</p>
+<p>갈치에 직접적인 기관 자료는 KMI가 해양수산부에 제출·게재한 『2025년 수산물 생산 및 유통산업 실태조사(2024년 기준)』다. 표지 시점은 2025년 12월이며, 원문에는 갈치 절과 표 4-55~4-73, 비축 표 2-30이 있다. 이 보고서는 국가데이터처 어업생산 통계를 인용해 2024년 생산 감소를 설명하고, 수급표에서 국내소비 60,880톤·자급률 73.1%를 추정했다. 서귀포수협 가격, 선어·냉동 유통 경로와 정부 비축도 다룬다(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사</a>, 기관자료 B).</p>
+<p>KMI 자료의 장점은 생산·수입·소비·재고와 유통 경로를 한 보고서에서 연결한다는 점이다. 동시에 그 연결을 원자료 실측 하나로 오해해서는 안 된다. 생산에는 어업생산동향조사, 수출입에는 가공품 환산수율, 국내소비에는 KMI 수산업관측센터 추정, 재고에는 국립수산물품질관리원 자료가 들어간다. 표 4-72·4-73의 경로 물량도 면담 기반 추정이다. 그래서 이 보고서는 KMI 값을 산업 구조의 <strong>추정 수급표와 유통 조사</strong>로 인용하고, 관세청 통관 실측·KOSIS 생산 실측과 별도 열에 놓았다(03·07절).</p>
+<p>자료 간 차이는 재검증 항목이다. KMI 보고서의 2024년 연간 생산은 44,506톤, 월별 합계는 44,507톤이다. KOSIS 가공 원자료의 연간 «갈치»는 44,506.47353톤이다. 생산금액은 KMI 보고서 383,934백만 원, KOSIS 파일 383,996.92982585백만 원으로 차이가 있다. 자료 판본·잠정치 여부를 확인하지 않은 채 한 값을 다른 값으로 수정하지 않았다. KMI 수급표 표 4-64의 공급 측 211톤 차이는 원문에도 있으며, 같은 보고서 표 3-13은 수입을 211톤 적은 13,308톤으로 기록한다(E02·E03).</p>
+<p>KREI 『농업전망 2026』은 조사노트에서 저장소 검색 결과와 목차 일부만 확인했으며 PDF 본문은 열람되지 않았다. 이 자료에 수산·갈치 분석이 «없다»고 단정하지 않는다(<a href="https://repository.krei.re.kr/handle/2018.oak/32556">KREI 저장소 서지</a>, 조사노트 미열람). 수협 수산경제연구원의 『2026 수산경제전망』도 서지에서 냉장갈치 소비자가격 그림의 존재만 확인됐고 원문 수치를 확보하지 못했다(<a href="https://dl.nanet.go.kr/detail/MONO12026000000472">국회도서관 서지</a>, 조사노트 미확보). KMI의 FTA 수산물 수입 동향 PDF도 검색 색인에 갈치 문단이 보였으나 본문 미열람이다. 제목이나 검색 조각에서 값을 가져오지 않았다(조사노트 미확보 목록).</p>
+<p>이 절의 결론은 자료 권위의 순서에 관한 것이다. 공개된 국내 갈치 산업의 생산·소비·유통 구조는 KOSIS·관세청·해수부의 품목별 원자료와 KMI의 명시적 추정으로 설명된다. 현재 은행 색인만으로는 갈치가 실제로 다뤄진 본문과 발행일·대상 기간·수치가 확인된 은행 보고서를 지정할 수 없다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표</span>어획·수입선·가격의 정의를 고정해 추적한다</h2>
+<p class="lead">갈치 산업의 위험을 한 지표로 줄일 수는 없다. 국내 어획은 해마다 움직이고, 한국 수입은 냉동 형태와 여러 신고 상대국에 걸쳐 있다. 소비자물가지수의 움직임은 KAMIS 한 규격의 일별 가격과 같지 않다. 관측 단위를 고정해야 변화를 제대로 감지할 수 있다.</p>
+<h3>관찰할 위험</h3>
+<p><strong>국내 어획 변동.</strong> KOSIS의 2024년 갈치 생산은 2023년보다 26.6% 적었다. KMI의 같은 해 국내소비 추정 60,880톤과 자급률 73.1%는 국내 생산 감소가 수급 논의에 중요하다는 근거다. 어획이 줄어든 원인을 기온·수온 하나로 단정하거나, 이후 연간 생산이 반드시 같은 방향으로 간다고 전망하지 않는다. 월별 생산의 지역·어법·선어/냉동 구성은 추가 확인 항목이다(E02·E03).</p>
+<p><strong>수입 물량과 상대국의 변화.</strong> 2025년 갈치 HS10 수입은 13,391.4톤이며 상위 세 상대국이 70.7%를 차지했다. 2026년 1~8월 물량은 전년 같은 기간보다 10.5% 적고, 오만 비중은 <strong>2026년 1~8월 기준(잠정)</strong> 43.6%다. 이 비중은 2025년 완결연도 국가 순위를 대체하지 않는다. 신고 상대국의 이동이 어획지의 이동인지, 중계·재수출인지 추가 원천 없이 판정하지 않는다(E04·E05).</p>
+<p><strong>가격의 시차와 규격.</strong> 2026년 1~8월 수입 단가는 전년 동기보다 4.8% 높고, 전국 갈치 소비자물가지수는 2026년 9월 전년 동월보다 12.9% 높다. 서로 다른 기간·단계이므로 두 상승률의 차이를 유통마진 변화라고 부르지 않는다. 가격 전달 경로를 분석할 산지 위판가격의 규격별 장기 시계열은 이 자료에 연결돼 있지 않다(E04·E07).</p>
+<p><strong>제도와 재고.</strong> 포획금지·금지체장, 원산지 표시, 정부 비축은 각각 다른 시점에 작동한다. 2024년 KMI 수급표의 이월 재고는 11,759톤이지만, 표 4-64와 표 3-13 중 어느 수입값이 맞는지 확인하기 전에는 재고비율을 새로 계산하지 않는다. 2026년 추석 대책의 다품목 방출량도 갈치 단독 방출량으로 바꾸지 않는다(E03·E08).</p>
+<h3>관찰 지표</h3>
+<div class="tw">
+<table>
+<caption>표 10. 갈치 산업의 반복 관측 지표</caption>
+<thead><tr><th>지표</th><th>필터가 있는 원천</th><th>주기</th><th>현재 기준값</th><th>다음 점검</th></tr></thead>
+<tbody>
+<tr><td>국내 생산량·생산금액</td><td>KOSIS <code>품종별=갈치</code>, 어업·지역·형태의 «계» 중복 제거</td><td>월·연</td><td>2024년 44,506.47톤</td><td>2025년 연간 확정, 월별 수정</td></tr>
+<tr class="tot"><td>계통 위판 비율</td><td>KOSIS «갈치» 계통 위판÷같은 해 갈치 생산</td><td>연</td><td>2024년 96.9%</td><td>비계통과의 합</td></tr>
+<tr><td>국내소비·재고·자급률</td><td>KMI 수급표, 환산수율·잠정 표시 확인</td><td>연</td><td>2024년 소비 60,880톤·자급률 73.1%</td><td>표 4-64·3-13의 수입값 확인</td></tr>
+<tr><td>한국 수입 물량·단가</td><td>관세청 <code>statKor=갈치</code>, HS10 두 코드</td><td>월</td><td>2026년 1~8월 7,558.748톤·3.82달러/kg</td><td>전년 같은 월·기간 비교</td></tr>
+<tr><td>수입 상대국</td><td>해수부 국가별 <code>갈치</code> HS10 수입 행</td><td>월·연</td><td>2025년 상위 세 곳 70.7%</td><td>2026년 완료 후 순위 산출</td></tr>
+<tr><td>세계 어획</td><td>FishStat <code>LHT·CAPTURE·Q_tlw</code></td><td>연</td><td>2024년 국가별 합 1,127,844톤</td><td>2025년 완료본·상태 표시</td></tr>
+<tr><td>KAMIS 소매 관측</td><td>갈치 쿼리, <code>countyname=평균</code>, 평년 제외</td><td>관측일</td><td>2026-09-30 7,368원</td><td>품명·규격 메타데이터 확인</td></tr>
+<tr><td>소비자물가지수</td><td>KOSIS <code>전국·갈치·2020=100</code></td><td>월</td><td>2026-09 122.15</td><td>전년 동월 비교</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS·관세청·해수부·FishStat·KAMIS 원자료와 KMI 실태조사(E01~E08). 현재 기준값마다 기간·단위·분모가 다르다.</p>
+<p>위 지표는 자동 수집기의 필터를 검증하는 목록이기도 하다. <code>customs_item_trade_monthly</code>는 파일명에 hairtail이 있어도 방어·아귀·기타 어류 행을 포함한다. <code>mof_seafood_trade_hsk_monthly</code>도 마찬가지다. <code>mof_auction_daily</code>의 <code>mprcStdCodeNm</code>에는 «갈치류»·«먹갈치»·«기타갈치류»·«갈치젓»이 있고 정확히 «갈치»인 행은 이 수집본에서 확인되지 않았다. 이 일별 원장을 KOSIS의 품종 «갈치» 위판량으로 조용히 합치지 않는다(E11).</p>
+<h3>남은 물음</h3>
+<ul>
+<li>KMI에 표 4-64의 수입 13,519톤과 표 3-13의 수입 13,308톤 중 어느 값이 수급표에 맞는지 문의한다.</li>
+<li>필레·조제품의 종별 통계와 국내 10단위 품목, 기본·WTO·FTA 실행 관세율을 원문에서 확인한 뒤 무역 범위를 재검토한다.</li>
+<li>월별 국내 생산의 지역·어법·선어/냉동 구성과 KOSIS 연간 확정값·KMI 소비·재고 추정값의 갱신 시점을 확인한다.</li>
+<li>같은 달의 국내 생산·재고·수입을 연결해 수입이 국내 어획의 계절적 공백을 채우는지 확인한다.</li>
+<li>남아프리카공화국 등 신고 상대국과 실제 어획지·가공지, 중계·재수출 경로를 구분할 원산지 자료를 확인한다.</li>
+<li>업체별 갈치 취급 물량의 연간 전수 자료가 있는지 확인하고, 식약처 신고의 품목 필터·건수와 물량·법인명, 공시의 품목별 분리 가능성을 검증한다.</li>
+<li>같은 규격의 산지·도매·소매 가격과 환율·운송비를 구분한 자료를 연결해 가격 전달과 유통비용을 검토한다.</li>
+<li>KMI 산지·도매 가격 상승률의 표본과 규격을 원문 표에서 대조한다.</li>
+<li>은행 보고서의 본문에 갈치가 실제로 들어 있는지, 발행일·대상 기간·수치를 확인한다.</li>
+<li>갈치에 적용되는 한·중 수출 품목별 위생·검역 원문을 확인한다.</li>
+<li>주요 해외 시장의 갈치 전용 무역량을 확인해 넓은 HS6 «기타 어류» 수치와 구분한다.</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>국내 어획과 냉동 수입, 갈치 연육의 연결</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국의 갈치 HS10 두 품목 수입 물량 <strong>13,391.4톤</strong>을 분모로 하면, 신고 상대국 비중이 10% 이상인 곳은 오만 31.0%, 세네갈 21.2%, 남아프리카공화국 18.4%다. 신고 상대국을 어획지로 단정하지 않는다. 아래 기업의 한국 연결은 <strong>2025년 10월~2026년 9월 식약처 신고에서 해외 제조사명이 일치한다</strong>는 뜻이며, 모두 신고 건수 기준이다. 식약처 신고 원자료에서 제조국과 수출국은 별도 항목이다. 2026년 신고분은 잠정이다. 04절의 두 HS10 품목 표에는 수입액 10% 이상인 별도 가공품 세번이 제시되지 않는다. 염장·염수장 갈치의 2025년 수입은 4kg이며 연육과 종별로 분리되지 않은 필레·조제품은 그 표의 범위 밖이다(<a href="https://www.data.go.kr/data/15056556/openapi.do">해수부 품목별 수출입 자료</a>, A; <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>, A).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 수입 상대국과 한국 신고서에 나타난 해외 기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>오만</td><td>SUNRISE FISHERIES CO., LLC</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 69건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>오만</td><td>REMAL SHATHI AL DAFA TRAD. ASSO</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 26건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://mpeda.gov.in/wp-content/uploads/2025/11/11_2024_Feb_and_March_compressed.pdf">MPEDA 명부</a> A·2024</td></tr>
+<tr><td>오만</td><td>SEA PRIDE LLC.</td><td>가공·무역</td><td>회사 전체가 60개국 이상 판매; 갈치 실적 아님</td><td>제조사명 일치, 15건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://seapridellc.com/suri.html">회사 소개</a> B·확인 2026</td></tr>
+<tr><td>세네갈</td><td>CHOI INTERNATIONAL</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 16건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>세네갈</td><td>GANAAN PECHERIES SURL</td><td>수산물 가공·수출</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 15건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://www.bmn.sn/ceremonie-de-signature-de-convention-bmn-entreprises/">세네갈 BMN</a> B·게재일 미표기</td></tr>
+<tr><td>세네갈</td><td>LA PECHE 153 SA</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 8건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>남아프리카공화국</td><td>BLUE CONTINENT PRODUCTS (PTY) LTD.</td><td>Oceana의 수산 사업 계열</td><td>갈치 단독 공개 수치 없음</td><td>제조사명 일치, 45건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://www.oceana.co.za/about-oceana-group">Oceana 소개</a> B·확인 2026</td></tr>
+<tr><td>남아프리카공화국</td><td>HENDY BROS AGENCIES CC</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 54건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>남아프리카공화국</td><td>HENDY-BROS AGENCIES PTY LTD</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 32건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 식약처 신고 및 보조 자료. 제조사명의 표기 변형은 합쳤다. HENDY의 CC와 PTY는 별도 집계이며 법인 관계는 확인되지 않았다. 두 명칭의 제조국에는 남아공과 나미비아가 함께 나타난다. MPEDA의 REMAL 항목은 오징어·갑오징어·새우·문어 구매 문의로 갈치 수출 이력의 근거가 아니다.</p>
+<p><strong>갈치의 세계 최대 수출기업은 확인된 공개 자료 없음.</strong> FAO FishStat에서 중국은 2024년 대형 갈치(LHT) 어획 916,530톤으로 국가별 합계의 81.3%를 차지하지만, 어획국 순위로 기업의 갈치 수출 순위를 정할 수 없다(<a href="https://www.fao.org/statistics/events/events-detail/global-production.-march-2026-update/en">FAO FishStat 자료 안내</a>, A). 중국은 2025년 한국의 갈치 HS10 원물 수입 상대국으로는 7.6%였고, 아래 갈치 연육 신고에서는 별도 공급 경로로 나타난다.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처에서 <strong>품목명</strong>에 «갈치»가 포함된 2025년 10월~2026년 9월 신고는 743건, 수입업소는 117곳이다. <strong>제품명</strong>으로 범위를 넓히면 갈치 연육 등 570건이 더해져 1,313건·168곳이 된다. 표 11-2는 품목명 기준이며, 주요 제조국에는 업소별 상위 두 곳을 그대로 적었다. 이 순위는 <strong>신고 건수 기준</strong>으로 수입 중량·금액·시장점유율 순위가 아니다. 2026년 신고분은 잠정이다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>, A).</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 갈치 품목명 식약처 신고 건수 상위 수입업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>(주)웰푸드월드</td><td class="num">33</td><td>모로코 33</td><td>냉동 필렛 29건</td></tr>
+<tr><td>(주)우평</td><td class="num">29</td><td>세네갈 15·오만 14</td><td>냉동 갈치 29건</td></tr>
+<tr><td>주식회사 이엘트레이딩</td><td class="num">25</td><td>일본 20·오만 5</td><td>냉장 15건·냉동 10건</td></tr>
+<tr><td>동원산업(주)</td><td class="num">24</td><td>남아프리카 공화국 18·오만 4</td><td>냉동 갈치 24건</td></tr>
+<tr><td>(주)덕신</td><td class="num">22</td><td>일본 21·중국 1</td><td>냉장 16건·냉동 6건</td></tr>
+<tr><td>(주) 파인씨푸드</td><td class="num">21</td><td>오만 21</td><td>냉동 갈치 21건</td></tr>
+<tr><td>(주)태원인터내셔널</td><td class="num">19</td><td>남아프리카 공화국 12·모로코 7</td><td>냉동 갈치·갈치꼬치과</td></tr>
+<tr><td>주식회사 현무무역</td><td class="num">19</td><td>일본 19</td><td>냉장 14건·냉동 5건</td></tr>
+<tr><td>주식회사 해랑</td><td class="num">18</td><td>세네갈 10·오만 8</td><td>냉동 갈치 18건</td></tr>
+<tr><td>미성무역</td><td class="num">18</td><td>오만 16·파키스탄 2</td><td>냉동 갈치 18건</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A, 2025년 10월~2026년 9월 신고 건수 기준). 업소명 표기 변형을 합쳤다.</p>
+<p>품목명은 «연육»이지만 제품명에 «갈치»가 들어간 신고는 같은 기간 553건이다. 제조국은 중국 548건·인도 4건·베트남 1건이며, 해외 제조사는 표기 변형을 합쳐 19곳이다. NINGBO LANYANG AQUATIC FOOD가 119건이다. 연육 신고 업소 상위는 사조대림 안산공장 38건, 비손종합상사·대주통상 각 31건이다. 공시 기업으로는 씨제이씨푸드 17건, 사조오양 양산공장 15건, 동원에프앤비 11건, 동원홈푸드 3건도 나타난다. 한국어육연제품공업협동조합은 23건이다. 이 연육은 04절의 신선·냉장 및 냉동 갈치 HS10 두 코드에 포함되지 않으며, 신고 건수로 연육 물량이나 어묵 원료의 갈치 비율을 추정할 수 없다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>, A).</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 공시로 규모가 확인되는 갈치 또는 갈치 연육 신고 기업</caption>
+<thead><tr><th>기업</th><th class="num">신고 경로·건수</th><th>2025년 법인 규모</th><th>사업 구성과 해석 제한</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>동원산업(주)</td><td class="num">갈치 품목명 24건</td><td>별도 매출 1조 1,062.5억 원; 상품·수산물 매출 5,161.3억 원</td><td>여러 어종 포함, 갈치 매출 미분리</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://kind.krx.co.kr/external/2026/03/18/001675/20260318007758/11011.htm">사업보고서</a> A·2025</td></tr>
+<tr><td>농심태경(주)</td><td class="num">갈치 품목명 14건</td><td>매출 5,404.4억 원; 수산물 원재료 매입 99.9억 원</td><td>수산물 매입은 갈치만의 값이 아님</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://kind.krx.co.kr/external/2026/03/18/001696/20260318007869/11011.htm">농심홀딩스 사업보고서</a> A·2025</td></tr>
+<tr><td>사조대림(주)</td><td class="num">갈치 연육 38건</td><td>매출 3조 4,998.1억 원(사조산업 공시 관계기업 손익항목)</td><td>어묵·맛살 등 다품목 사업, 갈치 매출 미분리</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://kind.krx.co.kr/external/2026/03/18/001332/20260318006177/11011.htm">사조산업 사업보고서</a> A·2025</td></tr>
+<tr><td>(주)사조오양</td><td class="num">갈치 연육 15건</td><td>매출 4,173.6억 원</td><td>수산·식품 사업 전체 매출</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://kind.krx.co.kr/external/2026/03/18/001332/20260318006177/11011.htm">사조산업 사업보고서</a> A·2025</td></tr>
+<tr><td>씨제이씨푸드(주)</td><td class="num">갈치 연육 17건</td><td>연결 매출 1,921.2억 원; 수산부문 1,142.3억 원</td><td>수산부문에 다른 원료·제품 포함</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://kind.krx.co.kr/external/2026/03/23/002092/20260323008738/11011.htm">사업보고서</a> A·2025</td></tr>
+<tr><td>(주)동원에프앤비</td><td class="num">갈치 연육 11건</td><td>매출 2조 1,792.2억 원</td><td>내부거래 제거 전 종속기업 매출, 갈치 미분리</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://kind.krx.co.kr/external/2026/03/18/001675/20260318007758/11011.htm">동원산업 사업보고서</a> A·2025</td></tr>
+<tr><td>(주)동원홈푸드</td><td class="num">갈치 연육 3건</td><td>매출 2조 6,433.3억 원</td><td>내부거래 제거 전 종속기업 매출, 갈치 미분리</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 · <a href="https://kind.krx.co.kr/external/2026/03/18/001675/20260318007758/11011.htm">동원산업 사업보고서</a> A·2025</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 식약처 신고와 법정 공시(A). 사조대림·사조오양 수치는 사조산업의 관계기업 손익항목, 동원 계열사 수치는 동원산업의 내부거래 제거 전 종속기업 정보다. 법인 매출을 합산하거나 갈치 점유율로 환산하지 않는다. 웰푸드월드·우평 등 비상장 상위 수입업소의 매출은 확인된 공개 자료 없음.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 갈치의 생산부터 소비까지</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산·어획</td><td>국내외 어선·어업인</td><td>2024년 국내 생산 44,506톤</td><td>산지 위판·거래</td><td>어황·어기</td></tr>
+<tr><td>1차 가공</td><td>선별·냉동·절단 업체</td><td>단계별 갈치 물량 확인된 공개 자료 없음</td><td>원물 매입·가공 계약</td><td>수율·온도·규격</td></tr>
+<tr><td>수출·국제 무역</td><td>해외 제조·무역·운송업체</td><td>2025년 HS10 수입 상대국 상위 3곳 70.7%</td><td>수출입 계약</td><td>상대국과 산지의 불일치·환율</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·식약처</td><td>2025년 HS10 13,391.4톤·4,860만 달러</td><td>수입 계약·신고가격</td><td>통관·식품안전·원산지</td></tr>
+<tr><td>국내 가공</td><td>절단·포장업체, 연육 사용 어묵 제조사</td><td>업체별 갈치 가공량 확인된 공개 자료 없음</td><td>가공·납품 계약</td><td>원료 확보·품질</td></tr>
+<tr><td>도매·유통</td><td>수협·산지·소비지 도매시장</td><td>2024년 계통 위판 43,146톤</td><td>산지 위판·도매 거래</td><td>재고·저온 유통</td></tr>
+<tr><td>소매·외식</td><td>대형소매·소매상·음식점</td><td>KMI 추정 대형소매 경로: 선어 32%·냉동 38%</td><td>소매 판매가·메뉴가</td><td>규격 차이·원산지 표시</td></tr>
+<tr><td>소비</td><td>가계·외식 소비자</td><td>KMI 2024년 국내소비 추정 60,880톤</td><td>최종 구매</td><td>가격·표시 신뢰</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://tradedata.go.kr/">관세청 무역통계</a>(A), <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a>(A), <a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사</a>(B), 정본 03·04·07절. 연도와 분모가 다른 행은 합산하지 않는다.</p>
+<p>부가가치는 선도·크기별 선별, 냉동·보관, 절단·포장, 가공식품 제조와 최종 판매의 편의에서 생길 수 있다. 2025년 갈치 HS10 신고 수입 물량의 99.5%가 냉동이므로 저온 보관과 규격 관리는 수입 경로의 주요 기능이다. KMI가 추정한 2024년 계통출하의 대형소매 경로는 선어 32%, 냉동 38%다. 다만 2024년 서귀포수협 선어 산지 16,782원/kg·냉동 산지 10,132원/kg과 2025년 수입 신고 단가 3.63달러/kg은 시점·규격·통화가 달라 그 차액을 유통마진으로 계산할 수 없다(<a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사</a>, B; <a href="https://tradedata.go.kr/">관세청</a>, A).</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 갈치 산업의 주요 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>해양수산부·식품의약품안전처·관세청·국립수산물품질관리원</td><td>어업·수급 정책, 수입검사, 무역통계, 원산지 표시</td><td>자원·식품안전과 가격 안정의 기준 설정</td></tr>
+<tr><td>해외 정부</td><td>오만 농업수산수자원부·세네갈 수산해양경제부·남아공 산림수산환경부</td><td>어업자원·조업·수산업 관리</td><td>자국 어업·가공업과 자원 보전</td></tr>
+<tr><td>생산자·단체</td><td>국내 갈치 어업인·서귀포수협·수협중앙회</td><td>어획·위판, 생산자 조직과 비축 사업 참여</td><td>산지 가격·판로·조업 규칙</td></tr>
+<tr><td>수출·가공기업</td><td>SEA PRIDE LLC.·GANAAN PECHERIES SURL·BLUE CONTINENT PRODUCTS (PTY) LTD.·중국 연육 제조사</td><td>수산물 가공·해외 거래, 한국 신고서 제조사명 일치</td><td>규격·가공·해외 판로</td></tr>
+<tr><td>수입·유통기업</td><td>(주)웰푸드월드·동원산업(주)·농심태경(주)·사조대림(주) 등</td><td>수입신고, 보관·가공·판매</td><td>조달 안정·품질·재고 부담</td></tr>
+<tr><td>소비자·시민사회</td><td>갈치 구매 소비자·한국소비자원</td><td>가격·품질·표시 정보 이용, 소비자 피해구제</td><td>합리적 가격과 정확한 표시</td></tr>
+<tr><td>국제기구·인증</td><td>FAO FishStat</td><td>국가별 어획 통계 제공</td><td>비교 가능한 종별 통계의 범위·품질</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.mof.go.kr/jfile/readDownloadFile.do?fileType=MOF_ARTICLE&amp;fileTypeSeq=68769&amp;fileNum=1">KMI 실태조사</a>(B), <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a>(A), <a href="https://www.nfqs.go.kr/hpmg/orig/actionRestaurantOriginIndicationForm.do?menuId=M0000209">국립수산물품질관리원</a>(A), <a href="https://www.suhyup.co.kr/suhyup/1461/subview.do">수협중앙회</a>(B), <a href="https://app.mafwr.gov.om/views/about-ministry/ministry-functions">오만 부처</a>(A), <a href="https://mpem.gouv.sn/passation-de-service-au-ministere-des-peches-et-de-leconomie-maritime/">세네갈 부처</a>(A), <a href="https://www.dffe.gov.za/fisheries-management-0">남아공 어업관리 부서</a>(A), <a href="https://alio.go.kr/upload/disclosure/2025/01/08/2025010802921379/doc.html">한국소비자원 기관 공시</a>(A), <a href="https://www.fao.org/statistics/events/events-detail/global-production.-march-2026-update/en">FAO</a>(A). 기업별 근거는 표 11-1~11-3을 따른다.</p>
+<p>국내 어업인이 원하는 위판가격·판로 안정과 구매자가 원하는 낮은 가격·일정한 규격은 엇갈릴 수 있다. 수입업체의 조달 다변화는 공급 안정과 연결되지만 원산지 확인·식품안전 검사에 드는 비용도 수반한다. 조업·수출 확대와 생산국의 수산자원 보전 목표 사이에도 긴장이 있다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황과 아카이브 검토 범위</h2>
+<p class="lead">2026년 10월 7일 <code>rawbulk.report_delta.coverage("hairtail")</code>를 읽기 전용으로 실행했다. 아래 «행»은 파일의 데이터 행 수이고 «최신»은 수집기의 기간 열 탐지 결과다. <strong>수집기 파일명에 hairtail이 있어도 모든 행이 갈치인 것은 아니다.</strong> 관세청·해수부 HSK는 품명과 HS10으로, FishStat은 <code>LHT</code>로, KOSIS는 품종 «갈치»로 다시 걸렀다. Comtrade와 다른 나라 HS6 수집본은 갈치 전용 수치 산출에 사용하지 않았다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 갈치 수집기 전체 현황(2026-10-07 조회)</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일·주의</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">371</td><td>2026-07</td><td>2026-10-07 · 갈치 전용 매핑 미검증</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">884</td><td>2026-07</td><td>2026-10-07 · 갈치 전용 매핑 미검증</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">3,491</td><td>2026</td><td>2026-10-06 · NCM 범위 확인 필요</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">141</td><td>2026</td><td>2026-10-06 · NCM 범위 확인 필요</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">687</td><td>2026.08</td><td>2026-10-07 · «갈치» HS10만 사용</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">1,721</td><td>202607</td><td>2026-10-06 · 기타 어류 범위</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">4,392</td><td>202606</td><td>2026-10-06 · 기타 어류 범위</td></tr>
+<tr><td>원자료 품목 분할</td><td>fishstat_production</td><td class="num">5,398</td><td>2024</td><td>2026-10-07 · <code>LHT</code>만 사용</td></tr>
+<tr><td>원자료 품목 분할</td><td>fishstat_quantity</td><td class="num">646</td><td>2024</td><td>2026-10-07 · 세계 소비·재고 아님</td></tr>
+<tr><td>원자료 품목 분할</td><td>fishstat_value</td><td class="num">645</td><td>2024</td><td>2026-10-07 · 세계 소비·재고 아님</td></tr>
+<tr><td>원자료 품목 분할</td><td>kosis_fishery_by_species</td><td class="num">136</td><td>202608</td><td>2026-10-07 · 품종 «갈치»</td></tr>
+<tr><td>원자료 품목 분할</td><td>mof_auction_daily</td><td class="num">10,636</td><td>20261005</td><td>2026-10-07 · «갈치류» 등, 정확한 «갈치» 아님</td></tr>
+<tr><td>원자료 품목 분할</td><td>mof_seafood_trade_hsk_monthly</td><td class="num">1,076</td><td>202608</td><td>2026-10-07 · 갈치 HS10 교차확인</td></tr>
+<tr><td>월간 수집</td><td>academic</td><td class="num">30</td><td>2023</td><td>2026-07-06 · OpenAlex 색인</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">3,841</td><td>2025</td><td>2026-10-01 · HS6 기타 어류, 합계 행만 확인</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">498</td><td>2026.08</td><td>2026-10-01 · HS6 국가별 기타 어류</td></tr>
+<tr><td>월간 수집</td><td>kamis</td><td class="num">1,293</td><td>2026-09-30</td><td>2026-10-07 · 평년 행 없음</td></tr>
+<tr><td>월간 수집</td><td>kosis</td><td class="num">66</td><td>기간 열 없음</td><td>2026-07-06 · 두 CSV 중 최근 수정본 기준</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline/rawbulk/report_delta.py</code>의 <code>coverage("hairtail")</code> 출력(E12). <code>kosis</code>의 «기간 열 없음»은 coverage 함수가 한글 <code>연도</code> 열을 탐지하지 못한 결과이며, 파일의 실제 연도 범위는 어업생산 2014~2024년·위판 2018~2024년이다.</p>
+<p>수집기 표 바깥의 <strong>공통 원자료</strong>도 사용했다. 해수부 국가별 월간 압축 원천 <code>mof_seafood_trade_country_monthly/2026-10-06__mof_seafood_trade_country_monthly.json.gz</code>에는 갈치 HS10의 국가별 신고 행이 있고, 2025년 물량 합이 관세청 품목별 합과 맞는다. KOSIS <code>kosis_cpi_items/2026-10-06__kosis_cpi_items.json.gz</code>에는 전국·갈치 소비자물가지수 월별 행이 있다. <code>_banks/index.csv</code>의 품목 태그에서 <code>hairtail</code> 일치는 없었다. 공통 USDA PSD 파일은 갈치 종별 세계 소비·재고 수치의 근거로 사용하지 않았다(E05·E07·E10).</p>
+<p>아카이브 검토는 발주서가 제공한 <code>archive_inventory/hairtail.csv</code> 세 행을 기준으로 했다. 세 경로는 Drive 품목 폴더에서 모두 열렸고, 각 파일의 열과 행을 확인했다. <code>processed_data/comtrade</code>와 <code>processed_data/customs_kr</code>는 각각 HS6 «기타 어류»라 갈치 수치 산출에 불필요로 판정했다. <code>processed_data/kamis</code>는 2026년 관측 가격에 반영했다. 이 판정은 파일의 삭제·변경 지시가 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 원장 판정 요약</caption>
+<thead><tr><th>판정·사유</th><th class="num">파일 수</th><th>처리</th></tr></thead>
+<tbody>
+<tr><td>반영 — KAMIS 갈치 쿼리 가격</td><td class="num">1</td><td>05·10절에 관측 기간·단위 제한과 함께 반영</td></tr>
+<tr><td>불필요 — HS6 기타 어류 범위</td><td class="num">2</td><td>갈치 전용 수치에는 미사용, 04절 범위 설명</td></tr>
+<tr><td>미검토(열기 실패)</td><td class="num">0</td><td>없음</td></tr>
+<tr class="tot"><td><strong>전체</strong></td><td class="num"><strong>3</strong></td><td>제공된 목록 전 행 판정</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/hairtail.csv</code>의 3개 상대경로를 Drive 품목 폴더에서 직접 열어 판정한 <code>01_아카이브_원장.csv</code>(E13).</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 갈치 산업 해부: 어획과 냉동 수입이 함께 만드는 시장</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · FishStat·KOSIS·관세청·해수부·KAMIS 원자료와 KMI 실태조사, 정부·법령 원문 조사노트</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>원자료 필터와 계산식은 30_근거_수치.md에 기록했다. 자동 숫자대조와 독립 감사는 이 읽기 전용 초안에서 실행하지 않았다</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>세계 생산은 FishStat LHT. 국내 생산·위판은 KOSIS 품종 «갈치». 무역 수치는 품명 «갈치» HS10 0302892000·0303892000의 두 품목 합계. 염장·염수장 갈치 0305693000과 HS6 기타 어류·필레·조제품은 이 합계에 넣지 않았다</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>KMI 원문 표 4-64의 공급 항목 합계는 공표 합계보다 211톤 크고, 표 3-13은 수입을 211톤 적게 적는다. 국제 갈치 소비·재고, 업체별 점유율, 갈치 필레 세번·실행 관세율, 수입 상대국과 실제 어획지의 연결은 미확보</span></div>
+</footer>
+</div>
+

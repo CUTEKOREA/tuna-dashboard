@@ -20,8 +20,16 @@ import { describe, expect, it } from 'vitest';
 import { REPORT_FIGURE_COMPANIES } from '@/lib/data/company-report-figures';
 import { REPORT_PROSE_COMPANIES } from '@/lib/data/company-report-prose';
 import { REPORT_TABLE_COMPANIES } from '@/lib/data/company-report-tables';
+import { INDUSTRY_ITEMS, isGenericIndustryItem } from '@/lib/data/industry-registry';
 
 const DIR = join(process.cwd(), 'public/data/companies');
+
+/**
+ * 공통 품목 라우트(/industry/[key]) 품목은 정적 import 하지 않는다 — 39편을 묶으면 번들이 수 MB 붙는다.
+ * 화면이 열릴 때 그 품목 JSON 만 받아 `registerReportIntake` 로 건다. 그 키는 로더 대조에서 빼고,
+ * 대신 디스크에 세 벌이 다 있는지 따로 본다.
+ */
+const GENERIC = new Set(INDUSTRY_ITEMS.filter(isGenericIndustryItem).map((item) => item.key));
 
 function onDisk(kind: 'tables' | 'prose' | 'figures'): string[] {
   return readdirSync(DIR)
@@ -36,7 +44,9 @@ describe('보고서 인테이크가 빠짐없이 로더에 걸려 있다', () =>
     ['prose', () => REPORT_PROSE_COMPANIES],
     ['figures', () => REPORT_FIGURE_COMPANIES],
   ] as const)('%s — 디스크의 JSON 이 전부 로더에 있다', (kind, loaded) => {
-    const disk = onDisk(kind);
+    const all = onDisk(kind);
+    expect(all.filter((k) => GENERIC.has(k)).sort()).toEqual([...GENERIC].sort());
+    const disk = all.filter((k) => !GENERIC.has(k));
     expect(disk.length).toBeGreaterThan(0);
     // 로더에만 있는 키(죽은 import)도, 디스크에만 있는 키(누락)도 없어야 한다
     expect([...loaded()].sort()).toEqual(disk);

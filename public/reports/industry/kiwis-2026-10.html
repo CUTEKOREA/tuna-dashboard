@@ -1,0 +1,711 @@
+<title>한국 키위 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 키위<br>
+        세계 생산 · 국내 수급 · 무역 · 가격 · 유통 · 제도<br>
+        자료 기준 2023~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">국산 생산과 수입 과실이 만나는 시장 · 리포트 2026</p>
+      <h1><span class="scr">Kiwi</span> <span class="lt">한국 키위 산업 해부</span></h1>
+      <p class="cover-sub">한국에는 키위 생산 기반이 있지만 수입 물량이 더 크다. 2024년 FAOSTAT의 한국 생산 귀속치는 약 8천 톤, 수입은 약 5만 톤이었다. 수입 원산지는 뉴질랜드에 집중돼 있고 그리스·이탈리아·칠레산의 비중은 작다. 생산·수입의 계절과 가격을 서로 다른 통계의 범위를 구분해 살펴본다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div><span class="by-k">작성</span><span class="by-v">이동건</span></div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2024 세계 생산</div><div class="v">441.8만</div><div class="n">톤 · FAOSTAT 추정 세계 합계</div></div>
+      <div class="cf"><div class="k">중국 본토 생산 비중</div><div class="v">48.7%</div><div class="n">2024년 · 세계 생산량 대비</div></div>
+      <div class="cf"><div class="k">한국 재배면적</div><div class="v">984</div><div class="n">ha · 2025년 농림어업총조사</div></div>
+      <div class="cf"><div class="k">한국 수입</div><div class="v">48,696</div><div class="n">톤 · 2025년 · HS 0810.50</div></div>
+      <div class="cf"><div class="k">뉴질랜드산 비중</div><div class="v">95.7%</div><div class="n">2025년 한국 수입 물량 기준</div></div>
+      <div class="cf"><div class="k">한국 수입 단가</div><div class="v">3.53</div><div class="n">$/kg · 2025년 수입금액 ÷ 순중량</div></div>
+      <div class="cf"><div class="k">뉴질랜드 수출</div><div class="v">80.9만</div><div class="n">톤 · 2025년 뉴질랜드 신고 합계</div></div>
+      <div class="cf"><div class="k">한국 수입 진행치</div><div class="v">38,388</div><div class="n">톤 · 2026년 1~8월, 연간 미완</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">국내 생산은 이어지지만 수입 물량과 원산지 집중이 시장의 큰 축이다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">생산은 중국 본토가 크고 국제 수출은 뉴질랜드가 이끈다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">생산 기반과 식용 공급 지표의 범위</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">2025년 수입은 4.87만 톤, 뉴질랜드산 비중은 95.7%다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">수입 단가와 소매가격 사이에는 품종·포장·유통 단계가 있다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">뉴질랜드의 수출력과 한국의 원산지 집중을 함께 본다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">수출창구, 국내 생산조직, 수입·소매의 역할을 구분한다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">협정세율과 개별 신고의 적용세율을 구분한다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트</span><span class="t">생산 전망과 품질 위험은 자료의 발행 주체별로 읽는다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 관찰 지표·남은 물음</span><span class="t">원산지와 품질의 변화를 함께 본다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">뉴질랜드 수출창구와 한국의 후숙·유통</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>국내 생산은 이어지지만 수입 물량과 원산지 집중이 시장의 큰 축이다</h2>
+<p class="lead">한국 키위 산업은 국내 재배, 수입 신선과실, 후숙·선별·유통이 함께 움직이는 시장이다. 생산국 순위만으로 한국 시장을 설명하기 어렵다. 중국 본토는 세계 생산의 약 절반을 차지하지만, 한국에 들어오는 신선 키위의 대부분은 뉴질랜드산이다. 칠레는 세계 수출국이면서 한국 수입에서는 작은 비중을 차지한다. 이 차이는 생산량, 수출량, 한국의 원산지별 수입량이라는 서로 다른 지표에 나타난다.</p>
+<h3>확인된 사실</h3>
+<ul>
+<li><strong>세계 생산.</strong> FAOSTAT QCL의 2024년 키위 세계 생산은 약 441.8만 톤(4,417,537.50톤)이다. 중국 본토 2,153,479.87톤, 뉴질랜드 667,791.88톤, 이탈리아 463,910톤 순이다. 중국 전체(코드 351)와 본토(코드 41)의 키위 생산값은 이 연도에 같지만, 세계·중국 값은 FAO 추정치이고 뉴질랜드 값은 FAO 귀속치다(FAOSTAT QCL, 02절, E01).</li>
+<li><strong>한국 생산.</strong> FAOSTAT QCL의 2024년 한국 생산 8,007.88톤은 귀속치(<code>I</code>), 수확면적 521ha는 추정치(<code>E</code>)다. KOSIS 「2025 농림어업총조사」의 참다래(키위) 재배면적은 984ha, 농가는 2,542가구다. 두 면적은 연도와 개념이 달라 차이를 생산량으로 환산할 수 없다(<a href="https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1AG25411">KOSIS, 「2025 농림어업총조사」 DT_1AG25411, 2026-10-08 조회</a>; FAOSTAT QCL, 03절, E02).</li>
+<li><strong>한국 수입.</strong> 2025년 HS 0810.50 신선 키위 수입은 약 48,696톤(48,695.56톤)·1억 7,191.63만 달러다. 수입금액을 순중량으로 나눈 단가는 kg당 3.53달러다. 관세청 월별 합계와 Comtrade 한국 신고 합계가 반올림 차이 안에서 맞는다(관세청·UN Comtrade, 04절, E05·E06).</li>
+<li><strong>원산지.</strong> 2025년 한국 수입 48,695.562424톤 가운데 뉴질랜드산은 46,607.765톤, 95.7%다. 그리스산은 1,895.500톤, 3.9%다. 2024년 뉴질랜드산 비중 97.1%보다 1.4%포인트 낮다. 2025년 구성은 처리본의 World 합계 행이 아니라 별도의 한국 신고 상대국 공개 조회값이다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=081050&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, HS 081050 한국 2025년 수입 상대국 preview, 2026-10-08 조회</a>, 04절, E07·E07b).</li>
+<li><strong>진행연도.</strong> 2026년 1~8월 기준(잠정) 한국 수입은 약 38,388톤(38,387.83톤)으로 2025년 같은 기간보다 1.7% 많다. 한 해가 끝나지 않았으므로 이 수치로 2026년 연간 순위·점유율을 매기지 않는다(관세청 월별, 04절, E05).</li>
+<li><strong>계절.</strong> 관세청의 2025년 월별 자료에서 4~10월 수입량은 연간 수입량의 94.1%다. 뉴질랜드 수확·수출 시기와 맞물리지만, 통관 월을 한국 판매 월이나 소비 월과 동일시할 수 없다(관세청 월별; <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=New+Zealand+Kiwifruit+Sector_Wellington_New+Zealand_NZ2026-0002.pdf">USDA FAS, <em>New Zealand Kiwifruit Sector</em>, 2026-02-05</a>, 06절, E05·N01).</li>
+<li><strong>소비에 가까운 지표.</strong> FAOSTAT SCL의 한국 2023년 식용 공급량은 44,214.76톤이다. 이는 가계 구매량이나 실제 섭취량이 아니라 FAO 공급이용표의 계산 항목이다. 2024·2025년 소비량으로 연장하지 않는다(FAOSTAT SCL, 03절, E03).</li>
+<li><strong>가격.</strong> 2025년 한국의 수입 단가는 kg당 3.53달러다. KAMIS의 2025년 참다래 소매 상품 관측일 평균은 국산 10개 9,527원, 그린 뉴질랜드산 10개 10,251원이다. 품종과 관측일이 달라 두 원산지의 동일 조건 가격차로 해석하지 않는다. 골드키위의 2026년 10월 7일 상품 10개 가격은 14,216원으로 별도 품목이다(KAMIS 공통 일간 원자료·<a href="https://www.kamis.or.kr/customer/price/agricultureRetail/catalogue.do?action=daily">KAMIS 일간가격</a>, 05절, E12·N09).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li><strong>수입 원산지 집중은 산업의 핵심 관찰 대상이다.</strong> 뉴질랜드산 비중은 2024년 97.1%, 2025년 95.7%로 1.4%포인트 낮아졌지만 여전히 매우 높다. 그리스산은 2.5%에서 3.9%로 높아졌다. 한 해의 1.4%포인트 변화를 집중 구조의 뚜렷한 해소로 보지 않는다. 2026년 3~8월 국가별 잠정 신고분의 뉴질랜드산 비중 99.2%는 기간·자료원이 달라 연간 추세선에 잇지 않는다. 반증 조건은 완료연도에서 다른 원산지의 물량 증가와 뉴질랜드산 비중 하락이 반복되는 것이다(E07·E07b·E08).</li>
+<li><strong>국산 키위의 위치는 수입량만으로 평가할 수 없다.</strong> 국산은 가을에 수확하지만 KAMIS 소매가격 관측은 주로 12~5월에 나타난다. 그린 뉴질랜드산의 관측은 주로 5~12월이며 1~2월에도 있다. 이는 가격 관측이 있었던 달이지 판매량이나 재고 수준이 아니다. 반증 조건은 원산지·품종별 주간 판매량과 재고 자료에서 두 흐름의 판매 시기와 가격대가 실질적으로 같게 나타나는 것이다(E12·N08).</li>
+<li><strong>공개 가격은 하나의 ‘세계 키위 시세’로 묶이지 않는다.</strong> 확인한 공개 가격은 한국 소매, 칠레 산지 도매, 미국 도착지 도매처럼 정의가 다르다. 반증 조건은 동일 규격·인도 조건을 유지하는 공개 국제 기준가격 시계열이 확보되고, 그것이 한국 수입 단가의 변동을 안정적으로 설명하는 것이다(E06·N09~N12).</li>
+</ul>
+<p>이 보고서의 숫자는 통계마다 다르게 읽는다. FAOSTAT 생산은 2024년, 공급이용표는 2023년까지다. 한국 수입의 연간 완료치는 2025년, 2026년 자료는 8월까지다. Comtrade 총량은 <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, <code>partnerCode=0</code>인 행을 사용했고, 2025년 원산지 구성은 같은 조건의 공개 상대국 조회를 사용했다. 전망, 협회 발표, 웹 조회값은 해당 문장에서 자료의 성격을 밝혔다. 계산 조건(파일·필터·계산식)은 각 표의 출처 줄에 적었다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>생산은 중국 본토가 크고 국제 수출은 뉴질랜드가 이끈다</h2>
+<p class="lead">세계의 ‘많이 기르는 나라’와 ‘많이 수출하는 나라’는 같지 않다. FAOSTAT 생산표에서는 중국 본토가 2024년 215만 톤으로 세계 생산의 48.7%를 차지한다. 같은 해 FAOSTAT 무역표의 뉴질랜드 수출은 69.38만 톤으로 중국 본토의 수출 3.06만 톤보다 훨씬 크다. FAOSTAT 무역의 중국 전체(코드 351)는 홍콩·마카오·대만을 포함하며, 여기서 본토 수출에는 코드 41을 사용했다. 생산물의 국내 소비, 신선 과실 수출, 재수출은 서로 다른 흐름이다. 세계 생산 합계는 <code>Area=World</code> 행을 사용했다(E01·E04).</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 키위 생산과 주요 생산국(2024년)</caption>
+<thead><tr><th>구분</th><th class="num">생산량(톤)</th><th class="num">세계 합계 대비</th><th>FAOSTAT 표시</th></tr></thead>
+<tbody>
+<tr><td>세계</td><td class="num">4,417,537.50</td><td class="num">100.0%</td><td>E</td></tr>
+<tr><td>중국 본토(41)</td><td class="num">2,153,479.87</td><td class="num">48.7%</td><td>E</td></tr>
+<tr><td>뉴질랜드</td><td class="num">667,791.88</td><td class="num">15.1%</td><td>I</td></tr>
+<tr><td>이탈리아</td><td class="num">463,910.00</td><td class="num">10.5%</td><td>A</td></tr>
+<tr><td>그리스</td><td class="num">342,330.00</td><td class="num">7.7%</td><td>A</td></tr>
+<tr><td>이란</td><td class="num">294,658.93</td><td class="num">6.7%</td><td>E</td></tr>
+<tr><td>칠레</td><td class="num">194,664.22</td><td class="num">4.4%</td><td>I</td></tr>
+<tr><td>한국</td><td class="num">8,007.88</td><td class="num">0.2%</td><td>I</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_kiwis.csv</code>, <code>Item=Kiwi fruit</code>, <code>Element=Production</code>, <code>Year=2024</code>; 점유율은 각 국가 생산량 ÷ World 생산량 × 100(E01·E02). 중국 본토(41)와 중국 전체(351)의 2024년 키위 생산값은 같다. A·E·I는 원자료 Flag다.</p>
+<p>뉴질랜드의 중요성은 생산보다 수출에서 선명하다. FAOSTAT의 2024년 뉴질랜드 수출은 693,812.41톤이다. 같은 자료의 세계 수출 1,684,258.20톤과 비교하면 약 41.2%다. 이탈리아는 217,054.12톤, 그리스는 189,730.76톤, 칠레는 144,880.31톤이다. 벨기에처럼 생산 규모보다 수출 규모가 큰 곳은 물류·재수출 기능이 섞일 수 있으므로 산지 공급 능력의 직접 지표로 쓰지 않는다(FAOSTAT TCL, E04). 2025년 뉴질랜드 자체 신고 Comtrade 세계 수출 합계는 약 80.9만 톤(808,741.55톤; HS 0810.50)이고, 칠레는 146,969.78톤이다. 다만 수집한 2025년 Comtrade 파일은 세계 모든 신고국의 신고가 끝났다는 증거가 아니므로 이 두 나라의 신고량을 세계 점유율의 분모에 얹지 않는다(E06).</p>
+<p>칠레 키위위원회는 2025년 10월 기사에서 시즌 수출량을 146,603톤으로 적었고, 같은 기관의 12월 기사에서는 146,697톤으로 적었다. 2026년 시즌 약 170,000톤은 발표 당시 전망이다. 이 시즌 수치와 Comtrade의 2025년 달력연도 칠레 신고량 146,969.78톤은 정의·집계 시점이 다르다(<a href="https://www.comitedelkiwi.cl/kiwi-chileno-cierra-positiva-temporada-y-fija-la-calidad-como-eje-para-2026/">칠레 키위위원회, <em>Kiwi chileno cierra positiva temporada y fija la calidad como eje para 2026</em>, 2025-10-29</a>; <a href="https://www.comitedelkiwi.cl/calidad-y-guarda-prolongada-marcan-el-nuevo-ciclo-competitivo-del-kiwi-chileno/">칠레 키위위원회, <em>Calidad y guarda prolongada marcan el nuevo ciclo competitivo del kiwi chileno</em>, 2025-12-15</a>; <a href="https://www.comitedelkiwi.cl/comite-del-kiwi-proyecta-alza-en-envios-para-esta-temporada-2026-y-llama-a-reforzar-la-calidad-para-asegurar-la-competitividad-internacional-del-kiwi-chileno/">칠레 키위위원회, 2026년 전망, 2026-02-25</a>, N02).</p>
+<p>공급이용표의 최근 연도는 생산·무역표와 다르다. FAOSTAT SCL의 2023년 세계 식용 공급량은 3,995,524.22톤, 한국은 44,214.76톤이다. 이 표에는 손실과 다른 용도도 따로 있다. 식용 공급량을 생산량과 같다고 보거나 세계 수출량과 더하면 중복이 생긴다. 한국에 대한 2023년 SCL 생산 8,117.09톤은 별도 QCL의 같은 해 8,075.60톤과 41.49톤 다르다. 두 표의 작성·귀속 방식이 다르므로 SCL 내부의 공급 항목은 SCL 값끼리, 생산 계열은 QCL 값끼리 읽었다(E02·E03).</p>
+<p>재고는 별도의 제약이다. 확인한 <code>SCL_kiwis.csv</code>의 키위 항목에는 생산·수입·수출·손실·식용 공급 등은 있지만 독립적인 재고 수준 행은 없다. 따라서 키위의 세계 기말재고, 재고율, 재고에 따른 가격 완충 효과를 수치로 제시하지 않는다. 로컬 아카이브의 USDA PSD 안내문은 키위 미수록으로 기록한다. 이를 모든 기관에 재고 통계가 전혀 없다는 주장으로 넓히지 않는다(E03·A12).</p>
+<p>세계 생산의 기상 위험도 서로 다르다. 뉴질랜드의 2025/26 시장연도(7월~다음 해 6월) 생산 800,000톤은 USDA FAS가 2026년 2월 제시한 전망치다. FAOSTAT의 2024년 달력연도 뉴질랜드 생산값과 직접 증감률을 계산하지 않는다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=New+Zealand+Kiwifruit+Sector_Wellington_New+Zealand_NZ2026-0002.pdf">USDA FAS, <em>New Zealand Kiwifruit Sector</em>, 2026-02-05</a>, N01). 이탈리아 CREA와 라치오주는 키위 고사 현상을 조사·재배 의사결정 지원의 공동 연구 과제로 명시했다. 그 사실은 생산 위험의 존재를 보여 주지만 피해 면적이나 세계 가격 영향을 산정할 수 있는 숫자는 이 자료에 없다(<a href="https://www.crea.gov.it/en/-/accordo-quadro-tra-il-crea-e-la-regione-lazio-per-lo-sviluppo-integrato-delle-aree-rurali-e-delle-filiere-produttive-regionali">CREA, 2025-04-15</a>, N03).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>생산 기반과 식용 공급 지표의 범위</h2>
+<p class="lead">한국의 키위 생산은 수입과 나란히 존재한다. FAOSTAT QCL은 2024년 한국 생산을 8,007.88톤(<code>I</code>), 수확면적을 521ha(<code>E</code>), 단수를 15,370.6kg/ha로 기록한다. 2022년 생산 8,143.32톤, 2023년 8,075.60톤, 2024년 8,007.88톤으로 계열 수치는 감소하지만 세 해 생산량이 모두 귀속치이므로 이를 국내 조사에서 관측된 감소 추세로 해석하지 않는다(E02).</p>
+<div class="tw">
+<table>
+<caption>표 2. 한국 키위 생산과 식용 공급의 확인 가능한 연도</caption>
+<thead><tr><th>지표</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th><th>읽는 방법</th></tr></thead>
+<tbody>
+<tr><td>생산(QCL, 톤)</td><td class="num">8,143.32</td><td class="num">8,075.60</td><td class="num">8,007.88</td><td>FAOSTAT 귀속 계열</td></tr>
+<tr><td>수확면적(QCL, ha)</td><td class="num">530</td><td class="num">527</td><td class="num">521</td><td>2024년 값은 <code>E</code></td></tr>
+<tr><td>식용 공급(SCL, 톤)</td><td class="num">51,213.96</td><td class="num">44,214.76</td><td class="num">미확보</td><td>FAO 공급이용표</td></tr>
+<tr><td>수입(TCL, 톤)</td><td class="num">—</td><td class="num">37,191.82</td><td class="num">49,649.91</td><td>무역 신고 계열</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_kiwis.csv</code>의 QCL 생산·면적, 아카이브 <code>SCL_kiwis.csv</code>의 식용 공급, <code>faostat_trade_kiwis.csv</code>의 한국 수입(E02~E04). ‘—’는 이 표의 비교 범위에서 제시하지 않은 값이며 0을 뜻하지 않는다.</p>
+<p>국내 총조사의 면적은 FAOSTAT 수확면적보다 크다. KOSIS 「2025 농림어업총조사」 DT_1AG25411의 참다래(키위) 재배면적은 전국 984ha, 농가는 2,542가구다. 재배면적은 전남 339ha, 경남 256ha, 제주 284ha로 이 세 지역에 집중된다. FAOSTAT의 2024년 수확면적 521ha는 이듬해 총조사 재배면적의 약 53%지만, 연도와 수확·재배 개념이 달라 나머지 면적을 미수확 면적이라고 단정할 수 없다(<a href="https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1AG25411">KOSIS, 「2025 농림어업총조사」 DT_1AG25411, 2026-10-08 조회</a>, E02).</p>
+<p>농촌진흥청 소득조사의 2024년 ‘키위(참다래) 주산물수량’ 1,532kg/10a는 15.32톤/ha로, FAOSTAT의 같은 해 단수 15.3706톤/ha와 가깝다. 다만 표본·면적 정의가 다를 수 있어 두 수치를 곱해 전국 생산량을 새로 만들지 않는다(<a href="https://kosis.kr/statHtml/statHtml.do?orgId=143&amp;tblId=DT_143002_E004">KOSIS, 농촌진흥청 「농산물소득조사」 DT_143002_E004, 2026-10-08 조회</a>, E02).</p>
+<p>2023년 FAOSTAT SCL의 한국 식용 공급량은 44,214.76톤이다. 같은 SCL 안에는 생산 8,117.09톤, 수입 37,536.83톤, 수출 589.38톤, 손실 849.77톤이 있다. 이 공급표에서 수입·수출은 FAO의 공급이용 계산에 쓰인 값이며, 별도의 TCL 무역표 2023년 한국 수입 37,191.82톤과 다르다. 식용 공급량은 가구 조사로 측정한 구매량도, 매장에서 팔린 양도, 사람이 실제 먹은 양도 아니다. 재고·손실·비식용 처리의 범위와 갱신 시점이 달라질 수 있으므로 서로 다른 출처의 생산·수입을 섞어 ‘소비량’을 역산하지 않았다(E03·E04).</p>
+<p>2024년에는 같은 연도로 맞춘 FAOSTAT 생산과 수입을 비교할 수 있다. QCL 생산 8,007.88톤과 TCL 수입 49,649.91톤의 합은 57,657.79톤이다. 이 단순 투입 합계에서 생산의 몫은 13.9%다. 수출 456.62톤까지 빼면 57,201.17톤이 남는다. 13.9%는 FAO 귀속 생산량에 의존하며, 국내 총조사의 면적 차이를 고려하면 국내 생산의 확정 점유율로 쓸 수 없다. 두 계산은 저장재고 변화, 유통 손실, 폐기, 가공 전환도 반영하지 않는다. 따라서 국내 자급률이나 2024년 실제 소비량이 아니다(E02·E04·E11).</p>
+<p>국산 과실의 시간표도 별도다. 농촌진흥청·경남농업기술원의 안내는 10월 중순~11월 중순을 수확 시기 판단 구간으로 제시한다(<a href="https://www.rda.go.kr/board/board.do?boardId=farmlcltinfo&amp;dataNo=100000791149&amp;mode=updateCnt&amp;prgId=day_farmlcltinfoEntry&amp;searchEDate=&amp;searchSDate=">농촌진흥청·경남농업기술원, 2023-10-24</a>, N08). KAMIS 참다래 소매가격의 국산 관측은 주로 12~5월에 나타난다. 이는 저장·후숙 뒤 판매가 이어질 수 있음을 보여 주지만 관측 건수를 판매량으로 바꿀 수는 없다(E12).</p>
+<p>공통 <code>kosis_crops_fruit</code> 수집본에서는 ‘키위’·‘참다래’ 명칭 행이 확인되지 않았지만, KOSIS의 농림어업총조사와 농촌진흥청 소득조사에는 참다래 행이 있다. 소비에 가까운 연간 식용 공급 지표의 마지막 연도는 FAOSTAT SCL 2023년이다. 원산지·품종별 소매 판매량의 연속 자료는 가격 관측과 구분해 보아야 한다(E03·E12·A12).</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>2025년 수입은 4.87만 톤, 뉴질랜드산 비중은 95.7%다</h2>
+<p class="lead">HS 0810.50은 신선 키위의 국제 비교에 쓰는 6단위 코드다. 한국 월별 관세청 자료에는 HSK 0810.50-0000이 들어 있다. OEC의 HS92 0810.90 파일에는 키위와 다른 신선 과실이 섞여 있어 키위 단독 무역량 계산에서 제외했다(A10).</p>
+<div class="tw">
+<table>
+<caption>표 3. 한국 신선 키위 수입·수출</caption>
+<thead><tr><th>기간</th><th class="num">수입량(톤)</th><th class="num">수입금액(백만 달러)</th><th class="num">수입 단가($/kg)</th><th class="num">수출량(톤)</th></tr></thead>
+<tbody>
+<tr><td>2024년</td><td class="num">49,649.91</td><td class="num">175.13</td><td class="num">3.53</td><td class="num">456.62</td></tr>
+<tr><td>2025년</td><td class="num">48,695.56</td><td class="num">171.92</td><td class="num">3.53</td><td class="num">1,020.42</td></tr>
+<tr><td>2025년 1~8월</td><td class="num">37,752.05</td><td class="num">134.04</td><td class="num">3.55</td><td class="num">—</td></tr>
+<tr><td>2026년 1~8월</td><td class="num">38,387.83</td><td class="num">135.26</td><td class="num">3.52</td><td class="num">674.27</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 2024·2025년은 <code>kiwis_comtrade_annual.csv</code> 한국 신고 World 합계 행, 2025·2026년 월별 비교는 <code>customs_item_trade_monthly_kiwis.csv</code>의 해당 월 합(E05·E06). 연간 수출과 진행연도 수출은 해석 기간이 다르다.</p>
+<p>2025년 수입량은 2024년보다 954.35톤 적다. 연간 수입금액은 3,212,675달러, 약 321만 달러 적고, 연간 달러 표시 수입 단가는 반올림하면 두 해 모두 kg당 3.53달러다. 이 단가에는 품종·규격·포장·운임 조건의 혼합이 반영된다. 값이 같아 보인다고 같은 품종의 구매가격이 안정됐다고 해석하지 않는다. 2026년 1~8월 수입량의 전년 동기 대비 1.7% 증가는 미완 연도의 같은 월끼리 비교한 결과다. 2026년 연말 물량을 예측하거나 전체 연도의 구조 변화를 확정할 근거는 아니다(E05·E06).</p>
+<p>처리된 Comtrade 파일의 한국 연간 총량은 <code>cmdCode=081050</code>, <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, <code>partnerCode=0</code>인 World 행에서 가져왔다. 그 파일에는 상대국 행이 없지만, UN Comtrade 공개 preview는 같은 조건의 한국 2025년 수입 상대국 행을 제공한다. 아래 2025년 합계는 상대국 행을 더한 48,695,562.424kg으로 World 행과 같다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=081050&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, HS 081050 한국 2025년 수입 상대국 preview, 2026-10-08 조회</a>, E06·E07b).</p>
+<div class="tw">
+<table>
+<caption>표 4. 한국 수입 원산지(2024년 FAOSTAT TM, 2025년 UN Comtrade 한국 신고 preview)</caption>
+<thead><tr><th>원산지</th><th class="num">2024 수입량(톤)</th><th class="num">2024 비중</th><th class="num">2025 수입량(톤)</th><th class="num">2025 비중</th></tr></thead>
+<tbody>
+<tr><td>뉴질랜드</td><td class="num">48,205.36</td><td class="num">97.1%</td><td class="num">46,607.765</td><td class="num">95.7%</td></tr>
+<tr><td>그리스</td><td class="num">1,259.78</td><td class="num">2.5%</td><td class="num">1,895.500</td><td class="num">3.9%</td></tr>
+<tr><td>이탈리아</td><td class="num">88.77</td><td class="num">0.2%</td><td class="num">113.096</td><td class="num">0.2%</td></tr>
+<tr><td>칠레</td><td class="num">96.00</td><td class="num">0.2%</td><td class="num">48.000</td><td class="num">0.1%</td></tr>
+<tr><td>기타 아시아(490)</td><td class="num">—</td><td class="num">—</td><td class="num">31.200</td><td class="num">0.1%</td></tr>
+<tr><td>중국</td><td class="num">—</td><td class="num">—</td><td class="num">0.001424</td><td class="num">0.0%</td></tr>
+<tr class="tot"><td><strong>합계</strong></td><td class="num"><strong>49,649.91</strong></td><td class="num"><strong>100.0%</strong></td><td class="num"><strong>48,695.562424</strong></td><td class="num"><strong>100.0%</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 2024년은 아카이브 <code>TM_kiwis.csv</code>의 한국 신고 상대국 행(E07). 2025년은 <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=081050&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, HS 081050 한국 수입 상대국 preview, 2026-10-08 조회</a>(E07b). ‘—’는 2024년 해당 표에 제시된 상대국 행이 없다는 뜻이며 0이라는 뜻이 아니다. 비중은 각 연도 합계를 분모로 반올림했다.</p>
+<p>뉴질랜드산 비중은 2024년 97.1%에서 2025년 95.7%로 1.4%포인트 낮아졌고, 그리스산은 2.5%에서 3.9%로 높아졌다. 그래도 2025년 수입의 95% 이상이 뉴질랜드산이다. 2026년 3~8월 기준(잠정) 국가별 관세청 수집본의 수입량 합계는 37,658.39톤이고 뉴질랜드산은 37,341.44톤, 99.2%다. 이 수집본은 2026년 1~2월을 담지 않으므로 1~8월 전체 수입량 38,387.83톤의 원산지 비율이라고 표현할 수 없다. 완료연도와 부분기간의 비중을 직접 추세선으로 잇지 않는다(E05·E07·E07b·E08).</p>
+<p>칠레는 세계 시장에서 한국보다 훨씬 큰 수출 경로를 가진다. 2025년 칠레 신고 Comtrade 세계 수출은 146,969.78톤인 반면, 한국 신고 수입의 칠레산은 같은 해 48톤이다. 신고 주체와 흐름이 달라 두 숫자를 직접 빼서 칠레의 한국 시장 성과로 해석하지 않는다(E06·E07b).</p>
+<p>다른 시장과의 규모도 비교할 수 있다. 미국 Census의 2026년 7월 HS10 두 코드 <code>0810500010</code>·<code>0810500090</code>의 ‘TOTAL FOR ALL COUNTRIES’ 행을 합하면 미국 한 달 수입은 17,483.11톤·5,663.46만 달러다. 한국의 2025년 한 해 수입 48,695.56톤과 기간이 달라 시장 점유율 계산에는 쓰지 않는다. 이 자료는 한국 시장이 세계 수입 시장의 일부라는 규모 감각을 주는 보조 자료다(E09). Eurostat Comext와 브라질 ComexStat 파일도 수집됐으나, 신고자·상대국 조합을 한국 수입 원산지와 바로 연결할 수 없어 본문 점유율에는 넣지 않았다(A01).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>수입 단가와 소매가격 사이에는 품종·포장·유통 단계가 있다</h2>
+<p class="lead">키위 가격을 한 줄의 국제 시세로 표현하면 서로 다른 거래를 섞기 쉽다. 한국의 통관 단가는 연간 수입금액을 물량으로 나눈 혼합 단가다. KAMIS의 소비자가격은 낱개 묶음이며, 칠레 산지 도매가격은 상자 단위, 미국 도착지 도매가격은 원산지와 규격을 명시한 용기 단위다. 통화만 환산해 서로 빼면 운임·포장·수수료·폐기·품종 구성이 모두 빠진다.</p>
+<div class="tw">
+<table>
+<caption>표 5. 확인한 키위 가격과 서로 다른 측정 범위</caption>
+<thead><tr><th>가격 지표</th><th class="num">확인값</th><th>시점·범위</th><th>해석</th></tr></thead>
+<tbody>
+<tr><td>한국 수입 단가</td><td class="num">3.53달러/kg</td><td>2025년 HS 0810.50 전체</td><td>수입금액 ÷ 순중량</td></tr>
+<tr><td>국산 참다래 소매 상품</td><td class="num">9,527원/10개</td><td>2025년 KAMIS 관측일 평균</td><td>품목 419, 국산</td></tr>
+<tr><td>뉴질랜드 그린 참다래 소매 상품</td><td class="num">10,251원/10개</td><td>2025년 KAMIS 관측일 평균</td><td>품목 419, 그린 뉴질랜드</td></tr>
+<tr><td>한국 골드키위 소매 상품</td><td class="num">14,216원/10개</td><td>2026-10-07 조회</td><td>별도 품목, 원산지 미구분</td></tr>
+<tr><td>한국 골드키위 소매 중품</td><td class="num">10,483원/10개</td><td>2026-10-07 조회</td><td>별도 품목, 원산지 미구분</td></tr>
+<tr><td>칠레 Hayward 도매</td><td class="num">19,000칠레페소/18kg 상자</td><td>2026-06-15, O’Higgins산</td><td>Especial 등급·부가세 포함</td></tr>
+<tr><td>미국 도착지 Hayward 도매</td><td class="num">15~17달러/3.5kg 용기</td><td>2026-03-06, 로스앤젤레스</td><td>그리스산·27과 규격</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 수입 단가는 <code>kiwis_comtrade_annual.csv</code> 한국 2025년 합계(E06). 참다래 연평균은 KAMIS 공통 일별 가격 2025년(품목 코드 419 <code>참다래</code>, 소매·상품) 관측일 산술평균(E12). 나머지는 <a href="https://www.kamis.or.kr/customer/price/agricultureRetail/catalogue.do?action=daily">KAMIS 일간가격</a>, <a href="https://www.odepa.gob.cl/wp-content/uploads/2026/06/Boletin_Diario_de_Frutas_y_Hortalizas_20260615.pdf">칠레 ODEPA 일일 공보</a>, <a href="https://mymarketnews.ams.usda.gov/filerepo/sites/default/files/2306/2026-03-06/1309081/ams_2306_01503.pdf">USDA AMS 로스앤젤레스 공보</a>, N09~N11.</p>
+<p>KAMIS 공통 일간 원자료의 품목코드 419 ‘참다래’에는 2020~2026년 원산지별 소매·도매 가격이 있다. 소매 상품 10개 가격 관측은 국산의 경우 12~5월, 그린 뉴질랜드산의 경우 5~12월과 1~2월에 나타난다. 국산의 관측은 1~4월에 특히 많고, 두 원산지가 함께 관측되는 달은 주로 1~2월·5월·12월이다. 관측 건수는 판매량이 아니며, 두 표시에는 품종 차이도 있을 수 있다(E12).</p>
+<p>아카이브의 <code>processed_data/kamis/kiwis_kamis_price.csv</code>는 이름과 달리 키위 가격 근거로 쓰지 않았다. 780행 중 <code>itemname</code>은 바나나 520행, <code>[]</code> 260행이다. 이 파일의 ‘평년’ 행도 키위 행으로 확인되지 않아 사용하지 않는다. KAMIS에서 ‘평년’은 최근 5년의 해당 기간 값 가운데 최고·최저를 제외한 3년 평균이지 5개년 단순평균이 아니다(<a href="https://www.kamis.or.kr/customer/archive/archive.do?action=detail&amp;archiveNo=158">KAMIS, 식재료 아카이브의 평년 정의</a>, A11).</p>
+<p>FAOSTAT PP에는 생산자가격 자료가 있다. 2024년 뉴질랜드 생산자가격은 톤당 현지통화 3,295와 미화 1,994.2달러, 칠레는 미화 981.2달러/톤이다. 이는 농가 단계의 국가별 평균 계열이다. 한국 수입 단가 3,527달러/톤과 비교해 ‘마진’을 산정할 수 없다. 국가·품종·연도·거래 위치가 다르기 때문이다. 한국의 PP 파일에서는 2025년 생산자가격 <strong>지수</strong> 120.12(2014~2016=100)는 확인되지만, 이를 원/kg 가격으로 환산할 기준 절대가격은 그 행에 없다(E10).</p>
+<p>칠레 ODEPA는 생산자·도매·소매·국제 가격의 시계열 조회 경로를 제공한다. 자료의 강점은 품종·등급·시장·포장 단위별로 반복 관찰할 수 있다는 점이다. 그러나 칠레 거래의 공개 시계열이 곧 세계 공통 가격지수라는 뜻은 아니다(<a href="https://www.odepa.gob.cl/precios/series-de-precios">ODEPA 가격 시계열</a>, <a href="https://datos.odepa.gob.cl/dataset/33f10516-acbe-4446-b633-68244b9b6b26/resource/580beca0-e87e-4dd4-9e8a-0bd92773f4a6?view_id=b3417f8d-13c7-4990-bc99-04d49ed715ff">2026년 도매 자료 설명</a>, N12). 세계은행·IMF의 키위 단독 현물가격 계열은 제시하지 않는다.</p>
+<p>가격 지표마다 비교 기준이 다르다. 월별 한국 수입 단가는 통관 시차와 품종 혼합의 변화를 함께 담는다. KAMIS 참다래 419는 원산지별 연속 관측이 가능하지만, 관측일 구성과 품종이 다른 연평균 두 값을 동일 품종의 원산지 가격차로 해석할 수 없다. 원화 소매가격과 달러 수입가격 사이에는 환율뿐 아니라 물류비·폐기율도 놓여 있다. 이 비용 항목을 분해한 수치는 제시하지 않는다.</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>뉴질랜드의 수출력과 한국의 원산지 집중을 함께 본다</h2>
+<p class="lead">뉴질랜드는 한국의 수입 구조를 설명하는 첫 공급국이다. 2024년 FAOSTAT 생산은 667,791.88톤, 2025년 뉴질랜드 신고 Comtrade 세계 수출은 808,741.55톤이다. 생산은 2024년 달력연도 기준이고 수출은 2025년 달력연도 기준이다. 저장 과실, 재고 이동, 통계 귀속 시점이 다른 두 값을 빼서 초과 생산이나 재고를 계산할 수 없다(E01·E06). USDA FAS는 뉴질랜드 수확을 2~6월, 수출을 대체로 3~11월로 설명하며 수출량은 평균적으로 4~5월에 가장 많다고 적었다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=New+Zealand+Kiwifruit+Sector_Wellington_New+Zealand_NZ2026-0002.pdf">USDA FAS, <em>New Zealand Kiwifruit Sector</em>, 2026-02-05</a>, N01).</p>
+<div class="tw">
+<table>
+<caption>표 6. 주요 생산·수출국과 한국 수입 연결</caption>
+<thead><tr><th>국가</th><th class="num">2024 생산(톤)</th><th class="num">2025 대세계 수출(톤)</th><th class="num">2024 한국 수입 원산지(톤)</th><th>읽는 점</th></tr></thead>
+<tbody>
+<tr><td>뉴질랜드</td><td class="num">667,791.88</td><td class="num">808,741.55</td><td class="num">48,205.36</td><td>한국 수입의 주된 원산지</td></tr>
+<tr><td>칠레</td><td class="num">194,664.22</td><td class="num">146,969.78</td><td class="num">96.00</td><td>세계 수출과 한국 수입의 차이</td></tr>
+<tr><td>이탈리아</td><td class="num">463,910.00</td><td class="num">253,515.30</td><td class="num">88.77</td><td>유럽의 생산·수출국</td></tr>
+<tr><td>그리스</td><td class="num">342,330.00</td><td class="num">224,306.21</td><td class="num">1,259.78</td><td>한국에 보조 원산지로 유입</td></tr>
+<tr><td>중국 본토</td><td class="num">2,153,479.87</td><td class="num">50,049.98</td><td class="num">—</td><td>대규모 생산이 한국 공급과 동일하지 않음</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 생산은 <code>faostat_production_kiwis.csv</code> 2024년 중국 본토 코드 41을 포함한 국가별 행(E01), 수출은 <code>kiwis_comtrade_annual.csv</code>의 각국 2025년 World 수출 합계(E06), 한국 원산지는 <code>TM_kiwis.csv</code> 2024년 양자 수입(E07). ‘—’는 해당 TM 조회의 한국 수입 상대국 행에 제시하지 않은 값이며 0이나 수입 금지를 뜻하지 않는다.</p>
+<p>뉴질랜드의 중앙 마케팅 구조도 물량 해석에 중요하다. USDA FAS는 뉴질랜드산 키위의 수출이 단일 수출창구 체계 아래 운영되며 제스프리가 거의 전량의 중앙 마케팅·수출·해외 유통을 맡는다고 설명한다(N01). 뉴질랜드 생산자단체 NZKGI의 2025년 연례보고서는 생산자단체가 <em>Single Point of Entry</em> 체계를 지지한다고 명시한다(아카이브 NZKGI Annual Report 2025, PDF 인쇄 2쪽, A02). 이는 뉴질랜드 <strong>수출 체계</strong>의 설명이다. 한국 내 도·소매 업체별 점유율이나 한국 소비자 선택의 독점 정도를 뜻하지 않는다.</p>
+<p>칠레는 세계 수출과 한국 수입에서 규모가 다르게 나타나는 공급국이다. 2024년 FAOSTAT 생산 194,664.22톤에는 <code>I</code> 표시가 붙는다. 칠레 키위위원회는 2025년 시즌 수출을 10월에는 146,603톤, 12월에는 146,697톤으로 적었고, 2026년 약 170,000톤을 전망했다. 이는 협회 발표의 시즌 수치이며 Comtrade 달력연도 신고값과 집계 범위가 다르다(<a href="https://www.comitedelkiwi.cl/kiwi-chileno-cierra-positiva-temporada-y-fija-la-calidad-como-eje-para-2026/">칠레 키위위원회, 2025-10-29</a>; <a href="https://www.comitedelkiwi.cl/calidad-y-guarda-prolongada-marcan-el-nuevo-ciclo-competitivo-del-kiwi-chileno/">칠레 키위위원회, 2025-12-15</a>; <a href="https://www.comitedelkiwi.cl/comite-del-kiwi-proyecta-alza-en-envios-para-esta-temporada-2026-y-llama-a-reforzar-la-calidad-para-asegurar-la-competitividad-internacional-del-kiwi-chileno/">칠레 키위위원회, 2026-02-25</a>, N02). 한국의 2025년 칠레산 수입 48톤이 작다는 사실만으로 칠레산이 한국에서 경쟁력이 낮다고 결론 낼 수 없다(E07b). 확인된 대한국 식물검역 요건에는 칠레산 키위의 과수원·선과장 등록번호 포장 표시와 식물검역증명서의 포도애기잎말이나방 미검출 부기가 들어 있다(<a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=200205&amp;flNm=%5B%EB%B6%80%EB%A1%9D%5D+%EB%8C%80%ED%95%9C%EA%B5%AD+%EC%88%98%EC%B6%9C%EC%9A%A9+%EC%B9%A0%EB%A0%88%EC%82%B0+%ED%8F%AC%EB%8F%84%2C+%ED%82%A4%EC%9C%84%2C+%EB%B8%94%EB%A3%A8%EB%B2%A0%EB%A6%AC+%EB%B0%8F+%EC%96%91%EB%B2%9A+%EC%83%9D%EA%B3%BC%EC%8B%A4%EC%9D%98+%EC%8B%9D%EB%AC%BC%EA%B2%80%EC%97%AD%EC%9A%94%EA%B1%B4+%EB%B6%80%EB%A1%9D&amp;flSeq=138315061">칠레산 식물검역요건 부록</a>, N07).</p>
+<p>한국의 국산 과실은 별도 생산 축이다. 가을 수확 뒤 저장·후숙·선별을 거쳐 시장에 들어오므로 수확 통계와 월별 수입 통계를 합친 것만으로 주별 경쟁을 설명할 수 없다. 2025년 한국 수입은 4~10월에 94.1%가 집중된다. KAMIS 국산 참다래 소매가격은 주로 12~5월에, 뉴질랜드 그린 참다래는 주로 5~12월에 관측되지만 실제 매대 점유와 판매량은 이 가격 자료만으로 알 수 없다(E05·E12·N08).</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>수출창구, 국내 생산조직, 수입·소매의 역할을 구분한다</h2>
+<p class="lead">키위가 생산자에서 소비자까지 이동하는 과정에는 재배, 수확, 선과, 저장, 후숙, 수입통관, 도매와 소매가 있다. 기업의 이름을 나열하는 것과 각 단계의 시장 점유율을 확인하는 것은 다르다. 원자료는 국가별 생산·무역과 한국 수입업소별 신고 건수를 보여 주지만 한국 기업별 판매량·수입량은 제시하지 않는다. 따라서 신고 건수 순위는 물량 점유율로 읽지 않고 한 회사의 실적을 한국 전체 산업 지표로 대체하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 7. 확인된 조직과 자료가 말해 주는 범위</caption>
+<thead><tr><th>주체</th><th>확인된 역할</th><th>근거의 범위</th><th>이 보고서의 처리</th></tr></thead>
+<tbody>
+<tr><td>뉴질랜드 키위 생산자·NZKGI</td><td>생산자 이해와 단일 수출창구 체계에 관한 입장</td><td>NZKGI 2025 연례보고서</td><td>뉴질랜드 제도 설명</td></tr>
+<tr><td>제스프리</td><td>뉴질랜드산 키위의 중앙 마케팅·수출·해외 유통</td><td>USDA FAS 2026 보고서</td><td>뉴질랜드 수출 구조 설명</td></tr>
+<tr><td>한라골드영농조합법인</td><td>제주 키위 수출단지 시범사업 대상</td><td>제주도 농업기술원 발표</td><td>국내 생산·선과 사례</td></tr>
+<tr><td>한국키위수출㈜</td><td>같은 발표에 명시된 협력 주체</td><td>제주도 농업기술원 발표</td><td>수출 연계 사례</td></tr>
+<tr><td>한국의 수입·도소매 주체</td><td>업소별 수입 신고 건수 순위 확인, 수입량·판매량 미확보</td><td>식약처 수입식품조회</td><td>점유율 미제시</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 NZKGI <em>Annual Report 2025</em>(A02); <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=New+Zealand+Kiwifruit+Sector_Wellington_New+Zealand_NZ2026-0002.pdf">USDA FAS, 2026-02-05</a>(A); <a href="https://agri.jeju.go.kr/seobu/notice/press.htm?act=download&amp;no=1&amp;page=3&amp;seq=59587">제주특별자치도 농업기술원, 2026-03-17</a>(A, N06); <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A).</p>
+<p>뉴질랜드의 단일 수출창구는 한국 산업 분석에서 두 가지 의미가 있다. 첫째, 한국 수입의 원산지가 뉴질랜드에 집중돼 있다는 통계와 뉴질랜드의 중앙 마케팅 구조가 연결된다. 둘째, 그 구조를 근거로 한국 내 모든 유통 단계가 단일 기업에 집중됐다고 단정해서는 안 된다. 원산지별 통관량은 공급국을 보여 주고, 브랜드별 판매량·수입업체별 신고 건수·도소매 매출은 각각 다른 분모다. 이 보고서는 확보된 첫 지표를 나머지 지표의 대체물로 쓰지 않는다(E07·N01·A02).</p>
+<p>국내 생산 단계에서는 제주도의 수출단지 사례가 확인된다. 제주도 농업기술원은 한라골드영농조합법인을 시범사업 대상으로 선정하고 선과시설 확충을 발표했다. 같은 자료에 한국키위수출㈜가 협력 주체로 나온다. 이 자료는 생산·수출 기반의 <strong>사례</strong>이지 전국 생산자조직의 순위나 2026년 수출 실적 집계가 아니다(N06). FAOSTAT 2024년 한국 수출 456.62톤과 2025년 Comtrade 한국 신고 수출 1,020.42톤은 국가 총량이며, 어느 기업이 얼마를 취급했는지는 알 수 없다(E04·E06).</p>
+<p>후숙과 저장은 산업 구조를 이해하는 데 중요하지만 이번 자료로 시설 용량이나 손실률을 정량화할 수 없다. 수확일, 수입통관일, 소매 판매일이 각각 다른 이유다. 이번 자료에서는 원산지·품종별 도매 거래량과 소매 판매량이 연결되지 않아 한국 소비자의 주별 원산지별 구매량이나 품종별 가격 차이의 발생 단계를 확인할 수 없다. DART·KIND·정부 발표의 키위 기업별 수입량·판매량 순위는 조사 노트에서 시도됐으나 비교 가능한 최근 점유율은 확보되지 않았다(N14). 특정 업체를 ‘국내 1위’로 부르지 않은 이유다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>협정세율과 개별 신고의 적용세율을 구분한다</h2>
+<p class="lead">키위의 시장 접근에는 관세율, 협정 원산지, 식물검역, 식품 안전, 원산지 표시가 함께 작용한다. 협정의 관세 철폐 일정과 개별 수입신고에 실제 적용된 세율은 구분해야 한다. 2024년 한시 할당관세도 해당 시행 기간에 한정한다.</p>
+<div class="tw">
+<table>
+<caption>표 8. 확인한 신선 키위 제도와 적용 범위</caption>
+<thead><tr><th>항목</th><th>확인한 내용</th><th>원문 시점</th><th>적용 범위</th></tr></thead>
+<tbody>
+<tr><td>기본세율·칠레 FTA</td><td>HSK 0810.50-0000 기본 45%, 자료상 칠레산 2014년 FTA 0%</td><td>관세청 2015년 자료</td><td>당시 세율 설명</td></tr>
+<tr><td>뉴질랜드 FTA</td><td>협정상 키위 관세는 발효 6년차인 2020-01-01부터 0%</td><td>MFAT 2015년 가이드·발효일</td><td>원산지 요건 충족 시 협정세율</td></tr>
+<tr><td>할당관세</td><td>2024-04-05~06-30 수입전량, 5%</td><td>2024년 규정 별표</td><td>해당 기간에 한정</td></tr>
+<tr><td>원산지 표시</td><td>표시대상 농수산물의 수입자·출하자·판매자 등의 표시의무</td><td>법 제5조</td><td>대상·방식은 관련 규정 확인</td></tr>
+<tr><td>칠레산 식물검역</td><td>등록번호 포장 표시, EGVM 미검출 부기</td><td>검역요건 부록</td><td>칠레산 수입 요건</td></tr>
+<tr><td>농약 잔류허용</td><td>개별·그룹 기준이 모두 없을 때 0.01mg/kg 이하</td><td>식약처 안내</td><td>잔류허용기준의 보충 규칙</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.customs.go.kr/upload/ftaportalkor/ebook/FTA-report-12.pdf">관세청 FTA Trade Report</a>, <a href="https://www.mfat.govt.nz/assets/Trade-agreements/Korea-NZ-FTA/Guide-to-NZ-Korea-FTA-2014.pdf">뉴질랜드 외교통상부(MFAT), <em>Guide to NZ-Korea FTA</em>, 2015-01</a>, <a href="https://www.treaties.mfat.govt.nz/search/details/t/3829/2070">MFAT 협정 발효일 기록, 2015-12-20</a>, <a href="https://www.law.go.kr/flDownload.do?bylClsCd=110201&amp;flSeq=144982069&amp;gubun=">2024년 할당관세 별표</a>, <a href="https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1029932451">원산지표시법 제5조</a>, <a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=200205&amp;flNm=%5B%EB%B6%80%EB%A1%9D%5D+%EB%8C%80%ED%95%9C%EA%B5%AD+%EC%88%98%EC%B6%9C%EC%9A%A9+%EC%B9%A0%EB%A0%88%EC%82%B0+%ED%8F%AC%EB%8F%84%2C+%ED%82%A4%EC%9C%84%2C+%EB%B8%94%EB%A3%A8%EB%B2%A0%EB%A6%AC+%EB%B0%8F+%EC%96%91%EB%B2%9A+%EC%83%9D%EA%B3%BC%EC%8B%A4%EC%9D%98+%EC%8B%9D%EB%AC%BC%EA%B2%80%EC%97%AD%EC%9A%94%EA%B1%B4+%EB%B6%80%EB%A1%9D&amp;flSeq=138315061">칠레산 검역요건</a>, <a href="https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?bbs_no=pls100104&amp;menu_grp=MENU_NEW02&amp;menu_no=4236&amp;ntctxt_no=1075672">식품안전나라 농약 잔류허용기준</a>, N04·N05·N07.</p>
+<p>MFAT의 가이드는 뉴질랜드산 키위의 한국 시장 관세가 발효 후 6년차에 철폐된다고 명시한다. 한·뉴질랜드 FTA 발효일은 2015년 12월 20일이고, 가이드의 연차 계산에 따르면 6년차는 2020년 1월 1일이다. 따라서 협정상 뉴질랜드산 키위의 세율은 그날부터 0%다. 개별 신고가 이 세율을 적용받았는지는 원산지 요건과 신고 자료로 확인해야 한다(<a href="https://www.mfat.govt.nz/assets/Trade-agreements/Korea-NZ-FTA/Guide-to-NZ-Korea-FTA-2014.pdf">MFAT, <em>Guide to NZ-Korea FTA</em>, 2015-01</a>; <a href="https://www.treaties.mfat.govt.nz/search/details/t/3829/2070">MFAT, 한·뉴질랜드 FTA 발효일 기록</a>, N04).</p>
+<p>2024년의 할당관세는 과일 물가 대응의 한 수단이었다. 농림축산식품부의 2024년 4월 설명은 키위를 포함한 신선과일 11종에 할당관세를 적용하고 aT를 통한 할인 공급을 언급한다. 이는 그 시기의 정책 설명이지 매년 같은 품목·세율·물량이 반복된다는 근거가 아니다(<a href="https://www.mafra.go.kr/bbs/home/793/570127/artclView.do">농림축산식품부, 2024-04-22 발표</a>, N05). 기본세율 45%, 칠레산 FTA 0%, 뉴질랜드산 협정세율 0%, 한시 할당관세 5%는 서로 다른 적용 근거와 날짜를 가진다. 뉴질랜드산에 협정세율이 적용되는 신고에서는 2024년 5% 할당관세의 이점이 없다.</p>
+<p>2026년 개별 신고의 원산지 충족 여부, 조정관세와 품목별 한시 할당관세 적용 여부는 관련 시행일·HSK·신고 근거를 확인해야 한다. 2024년 할당관세 5%를 2026년 세율로 옮기지 않는다. 그리스·이탈리아산에 대한 한·EU FTA 철폐 일정도 이 표에서는 제시하지 않는다(N13).</p>
+<p>식물검역은 원산지별 수입 가능성과 처리 비용에 직접 연결될 수 있다. 칠레산에 대해서는 대한국 수출용 부록의 등록·증명 조건이 확인된다. 칠레와 멕시코가 2025년에 합의한 훈증 대체 <em>Systems Approach</em> 시범 적용은 <strong>멕시코행</strong> 협정이므로 한국행 규칙으로 옮기지 않는다(<a href="https://www.sag.gob.cl/noticias/acuerdo-entre-sag-y-senasica-impulsa-exportaciones-de-kiwi-chileno-mexico">칠레 SAG, 2025-04-09</a>, N15). 뉴질랜드 EPA의 수소시안아미드 재평가도 뉴질랜드 재배 단계의 사용 조건으로서 중요하지만 한국 수입검역 규칙은 아니다(<a href="https://www.epa.govt.nz/public-consultations/completed/hydrogen-cyanamide-reassessment/">뉴질랜드 EPA 결정, 2024-05-23</a>, N16).</p>
+<p>수입 키위의 유통이력 신고 대상 여부는 「수입농산물등 유통이력관리에 관한 고시」 [별표 1]의 시행일과 품목을 기준으로 판단해야 한다(N13).</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트</span>생산 전망과 품질 위험은 자료의 발행 주체별로 읽는다</h2>
+<p class="lead">은행·기관 보고서는 통계표가 놓치는 생산자 수취액, 품질 비용, 시장 전망의 가정을 설명한다. 동시에 전망을 실적으로 바꾸어 읽기 쉽다. 2026년 전망을 2025년 완료 무역량과 나란히 놓되 같은 분모로 합치지 않는다. 아카이브의 뉴질랜드 생산자단체·기업 보고서는 현지 산업을 이해하는 데 유용하지만 한국의 기업별 점유율을 직접 측정하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 9. 확인한 키위 관련 보고서의 주장과 사용 범위</caption>
+<thead><tr><th>발행 주체·자료</th><th>날짜</th><th>확인한 요지</th><th>이 보고서의 사용 범위</th></tr></thead>
+<tbody>
+<tr><td>USDA FAS, <em>New Zealand Kiwifruit Sector</em></td><td>2026-02-05</td><td>2025/26 시장연도(7월~다음 해 6월) 생산 80만 톤 전망; 수확·수출 계절</td><td>전망·계절 설명, A</td></tr>
+<tr><td>NZKGI, <em>Annual Report 2025</em></td><td>2025년판</td><td>단일 수출창구 지지</td><td>뉴질랜드 제도 설명, 아카이브 원문</td></tr>
+<tr><td>NZKGI, <em>Industry Performance Report 2025</em></td><td>2025년판</td><td>2024/25 트레이 판매 증가와 품질 클레임</td><td>현지 품질 위험 설명, 아카이브 원문</td></tr>
+<tr><td>Zespri, <em>Five-Year Outlook 2025/26</em></td><td>2025/26판</td><td>경쟁·비용·규제·기후 위험과 연중 공급 구상</td><td>기업 전망으로 한정</td></tr>
+<tr><td>ANZ Research, <em>Agri Focus: Seeing green</em></td><td>2026-02-24</td><td>그린 NZ$10.00, SunGold NZ$11.70/트레이 생산자 수취액 전망</td><td>가격 전망, B</td></tr>
+<tr><td>Rabobank NZ, 농업전망 발표</td><td>2025-01-31</td><td>SunGold 생산·뉴질랜드 수출 증가 가능성</td><td>방향성 전망, B</td></tr>
+<tr><td>KREI 농업관측, <em>농업관측 과채 2026년 4월호</em></td><td>2026-04-02</td><td>4월 키위 수입량의 전년 동월 대비 감소 전망</td><td>전망 방향과 실적 비교, B</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 NZKGI·Zespri PDF(A02~A04); <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=New+Zealand+Kiwifruit+Sector_Wellington_New+Zealand_NZ2026-0002.pdf">USDA FAS, <em>New Zealand Kiwifruit Sector</em>, 2026-02-05</a>, <a href="https://www.anz.co.nz/content/dam/anzconz/documents/economics-and-market-research/2026/ANZ-AgriFocus-20260224.pdf">ANZ</a>, <a href="https://www.rabobank.co.nz/media-releases/2025/310125-significantly-improved-hand-for-new-zealand-agriculture-in-2025-rabobank-annual-outlook">Rabobank</a>, <a href="https://aglook.krei.re.kr/upload/observeFiles/d1ede3655a214fc99284efedc9743a8b.pdf">한국농촌경제연구원, <em>농업관측 과채 2026년 4월호</em>, 2026-04-02</a>, N01·N17~N19.</p>
+<p>NZKGI의 2025년 산업 성과 보고서는 2024/25 시즌 트레이 판매가 42.3% 늘었다고 적는다. 같은 요약에는 그린 일반 품종 품질 클레임 3.8%와 선별·판매 과정의 과실 손실 문제가 나온다. 이는 뉴질랜드 산업의 판매·품질 지표다. 한국의 수입 키위 손실률이나 소비자 불량률로 치환하지 않는다(아카이브 NZKGI <em>Kiwifruit Industry Performance Report 2025</em>, PDF 인쇄 6쪽, A03). 출하량 증가만으로 품질 상태를 대표할 수 없다는 점이 두 지표에 함께 나타난다.</p>
+<p>뉴질랜드의 중기 공급 전망에는 유럽·중국에서 키위류 경쟁 확대와 비용·규제·기후 위험, 연중 공급 구상이 담겨 있다. 이는 제스프리의 <em>Five-Year Outlook 2025/26</em>에 실린 기업 관점이며 독립적 세계 수급 예측으로 취급하지 않는다(아카이브 Zespri <em>Five-Year Outlook 2025/26</em>, 3~4쪽, A04). ANZ가 제시한 그린·SunGold 트레이당 생산자 수취액 전망도 한국 소매가격과 같은 지표가 아니다. 트레이 규격, 생산자 정산 범위, 통화, 시즌이 한국 소매가격과 다르다(N17).</p>
+<p>한국농촌경제연구원은 2026년 4월 2일 발행한 <em>농업관측 과채 2026년 4월호</em>에서 산지 원가 상승과 국내 소비 부진을 근거로 4월 키위 수입량이 전년 동월보다 감소할 것으로 전망했다. 관세청의 2026년 4월 수입량 6,358,885kg은 2025년 4월 6,413,402kg보다 약 0.85% 적어 전망 방향과 일치했다. 원문에는 키위의 감소폭 전망치가 없어 크기의 적중 여부는 판정할 수 없다(<a href="https://aglook.krei.re.kr/upload/observeFiles/d1ede3655a214fc99284efedc9743a8b.pdf">한국농촌경제연구원, <em>농업관측 과채 2026년 4월호</em>, 2026-04-02</a>; 관세청 월별, E05·N18).</p>
+<p>은행·기관 색인 <code>_raw/_banks/index.csv</code>의 2026-10-07까지 발견된 812행에는 <code>items</code> 열의 ‘kiwi’ 문자열 일치 행이 없었다. 이는 그 날짜의 색인 검색 결과이지 은행들이 키위 보고서를 발행한 적이 없다는 뜻이 아니다. ANZ·Rabobank 자료는 별도 원문 경로에서 다룬다. 아카이브 NZKGI·제스프리 PDF도 색인 밖의 로컬 자료다(A05).</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 관찰 지표·남은 물음</span>원산지와 품질의 변화를 함께 본다</h2>
+<p class="lead">이 산업에서 월별로 먼저 보아야 할 것은 총수입량 하나가 아니다. 뉴질랜드산 비중이 높은 한국 시장에서는 해당 산지의 출하 시기·품질·물류가 수입 월과 연결된다. 그러나 월별 관세청 합계만으로 공급 충격의 원인을 알 수 없다. 품종·원산지·규격·재고가 달라져도 총량이 비슷할 수 있다. 지표를 서로 다른 질문에 배치해야 한다.</p>
+<div class="tw">
+<table>
+<caption>표 10. 관찰할 지표와 해석의 경계</caption>
+<thead><tr><th>질문</th><th>지표·주기</th><th>확인 경로</th><th>판정의 경계</th></tr></thead>
+<tbody>
+<tr><td>수입 흐름이 바뀌었나</td><td>HS 0810.50 월별 kg·달러, 매월</td><td>관세청 월별 수집기</td><td>같은 월·누적 기간 비교</td></tr>
+<tr><td>원산지가 달라졌나</td><td>원산지별 kg·비중, 월·연</td><td>관세청 국가별·UN Comtrade·FAOSTAT TM</td><td>총량과 국가별 기간 일치 확인</td></tr>
+<tr><td>국산 생산이 변했나</td><td>생산 톤·수확면적·재배면적, 연</td><td>FAOSTAT QCL·KOSIS 총조사</td><td>귀속·추정 Flag와 면적 정의 확인</td></tr>
+<tr><td>국내 가용량이 변했나</td><td>식용 공급량, 연</td><td>FAOSTAT SCL</td><td>실제 구매·섭취량과 구분</td></tr>
+<tr><td>가격이 변했나</td><td>수입 $/kg, 원산지별 소매 원/10개</td><td>Comtrade·관세청·KAMIS 419</td><td>환율·품종·관측일·단위 분리</td></tr>
+<tr><td>판매 창이 겹치나</td><td>원산지별 소매가격 관측월, 일간</td><td>KAMIS 419</td><td>관측 건수를 판매량으로 해석하지 않음</td></tr>
+<tr><td>공급국에 위험이 있나</td><td>수확 전망·품질 클레임·수출, 시즌</td><td>USDA FAS·NZKGI·칠레 기관</td><td>전망과 완료 실적 구분</td></tr>
+<tr><td>시장 접근이 변했나</td><td>협정·실행세율·검역·잔류기준, 개정 시</td><td>관세청·법령·검역본부·식약처</td><td>시행일·HSK·원산지 확인</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: E01~E12, A02~A04, N01~N19. 표는 관찰 설계이며 새 통계값이나 확정 정책을 추가하지 않는다.</p>
+<p>첫째, <strong>원산지 집중 위험</strong>은 연간 합계와 부분기간을 구분해 추적해야 한다. 뉴질랜드산 비중은 2024년 97.1%, 2025년 95.7%다. 2025년 그리스산 비중은 3.9%로 전년보다 높다. 2026년 3~8월 기준(잠정) 국가별 관세청 수집본의 뉴질랜드산 비중은 99.2%다. 2026년은 기간과 자료원이 달라 완료연도 두 값의 연장선에 놓을 수 없다(E07·E07b·E08).</p>
+<p>둘째, <strong>품질 위험</strong>은 산지의 생산량 증가와 별개다. NZKGI는 2024/25 트레이 판매 증가와 동시에 품질 클레임을 보고했다. 제스프리 전망도 비용·규제·기후를 위험으로 열거한다. 이를 한국의 수입 피해액으로 환산하지 않고, 출하 시즌의 품질·도착 상태·폐기율 자료를 요청해야 할 질문으로 둔다(A03·A04). 뉴질랜드 EPA의 수소시안아미드 사용 조건과 이탈리아 키위 고사 연구 역시 각 산지의 생산 조건을 바꿀 수 있는 사안이나, 한국 통관량에 미친 효과는 이 자료로 분리할 수 없다(N03·N16).</p>
+<p>셋째, <strong>정책 위험</strong>은 세율의 숫자보다 적용 시점에 있다. 뉴질랜드산의 한·뉴질랜드 FTA 협정세율은 2020년부터 0%지만 개별 신고에는 원산지 충족 확인이 필요하다. 2024년 5% 한시 할당관세를 2026년 세율로 오인하면 가격 분석의 기준이 틀어진다. 개정 시점에 HS 0810.50과 원산지별 협정·실행세율을 대조하고 실제 신고의 적용 근거를 확인해야 한다(N04·N05·N13).</p>
+<p>넷째, <strong>국내 생산과 수입의 관계</strong>는 같은 품종·같은 판매 주간의 자료가 확보될 때 구체화된다. 2024년 FAOSTAT 생산과 수입을 더한 57,657.79톤은 귀속 생산값을 쓴 단순 투입 규모다. 2025년 총조사 재배면적 984ha는 2024년 FAO 수확면적 521ha와 정의가 다르다. KAMIS의 원산지별 가격 관측월은 판매 창의 단서를 주지만, 유통 재고·판매량·손실을 모르면 소비 시장 크기와 경쟁 강도를 확정할 수 없다(E02·E11·E12).</p>
+<p>남은 확인 작업과 물음은 다음과 같다.</p>
+<ul>
+<li>2026년 국가별 잠정치의 기간을 2025년 같은 월과 맞추면 원산지별 물량·비중은 어떻게 달라지는가.</li>
+<li>칠레의 대세계 수출과 한국행 수입을 같은 신고 주체·기간으로 맞추면 각각 어느 규모인가.</li>
+<li>KOSIS 국내 총조사의 참다래 재배면적과 FAOSTAT 한국 수확면적·생산 귀속치는 어떻게 연결되는가.</li>
+<li>국산·수입 키위의 원산지·품종별 주간 판매량, 저장 출고, 후숙 손실률과 유통 시설 용량은 얼마인가.</li>
+<li>동일 품종·등급·포장·원산지·시장에 대한 소매 전년 동월 값과 통관 단가의 환율·물류·폐기 비용 항목은 연결되는가.</li>
+<li>기업별 최근 수입·판매량과 시장 점유율은 같은 분모로 확인되는가.</li>
+<li>2026년 10월 기준 HSK 0810.50의 개별 신고 적용세율·조정관세·할당관세와 키위 유통이력 신고 대상 여부는 시행일·품목 코드가 확인된 원문에서 어떻게 규정되는가.</li>
+<li>NZKGI의 품질 클레임은 한국 도착 상태와 폐기율에 연결되는가.</li>
+</ul>
+<p>이 질문에 필요한 판매량·재고·신고별 적용 자료가 확보되기 전에는 위험을 금액으로 환산하거나 특정 대응책의 수익을 예측할 수 없다.</p>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>뉴질랜드 수출창구와 한국의 후숙·유통</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국 신고 HS 0810.50 신선 키위 수입 <strong>순중량</strong>에서 뉴질랜드산은 95.7%, 그리스산은 3.9%, 이탈리아산은 0.2%다. 10% 이상 공급국은 뉴질랜드 한 곳이며, 나머지 두 나라는 한국 수입 신고 또는 기업 자료에서 연결이 확인되는 보조 공급국이다. 04절에는 별도 가공품 세번의 수입액 비중이 제시되지 않는다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=081050&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 한국 신고 조회</a>, A).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 공급국의 키위 생산·선과·수출기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표(연도)</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>뉴질랜드</td><td>Zespri International</td><td>마케팅·수출</td><td>세계 키위 순매출 NZ$50.31억, 판매 2억 2,090만 트레이(2024/25)</td><td>식약처 해외 제조사명 일치</td><td><a href="https://www.zespri.com/content/dam/zespri/nz/publications/annual-reports/Zespri-Annual-Report-2024-25.pdf">연차보고서</a>(A)</td></tr>
+<tr><td>뉴질랜드</td><td>Seeka</td><td>재배·선과·저장</td><td>뉴질랜드산 1등급 키위 4,710만 트레이 선과·저장, 그룹 매출 NZ$4억 3,960만(2025)</td><td>확인된 공개 자료 없음</td><td><a href="https://www.seeka.co.nz/assets/reports/Seeka_Annual_Report_2025_WS.pdf">연차보고서</a>(A)</td></tr>
+<tr><td>뉴질랜드</td><td>EastPack</td><td>선과·저장</td><td>1등급 키위 5,330만 트레이 선과, 그룹 매출 NZ$3억 2,120만(2025)</td><td>확인된 공개 자료 없음</td><td><a href="https://www.eastpack.co.nz/vdb/document/736134">연차보고서</a>(A)</td></tr>
+<tr><td>뉴질랜드</td><td>Kiwifruit Processing Company (2021)</td><td>퓌레·씨앗 가공</td><td>20여 개국 공급(회사 소개, 2026년 조회); 매출·물량 미공개</td><td>식약처 해외 제조사명 일치</td><td><a href="https://www.kiwifruitz.co.nz/about">회사 소개</a>(B)</td></tr>
+<tr><td>그리스</td><td>A.C. Nestos</td><td>생산자조합·선과</td><td>상근 6명·시즌 인력 70명(조합 전체, 회사 소개, 2026년 조회)</td><td>식약처 해외 제조사명 일치</td><td><a href="https://asnestos.gr/en/">조합 소개</a>(B)·<a href="https://asnestos.gr/en/organwsi/">조직 현황</a>(B)</td></tr>
+<tr><td>그리스</td><td>Kolios Company SA</td><td>재배·선과·수출</td><td>자사 키위 재배지 12ha 초과(회사 소개, 기준연도 미표시)</td><td>식약처 해외 제조사명 일치</td><td><a href="https://www.koliosfruit.gr/our-company/">회사 소개</a>(B)</td></tr>
+<tr><td>그리스</td><td>Elita SA</td><td>선별·포장·수출</td><td>키위 선별설비 처리 가능량 연 900만 kg(2025; 실제 처리량 아님)</td><td>식약처 해외 제조사명 일치</td><td><a href="https://www.linkedin.com/posts/ellips-b.v._kiwi-kiwifruit-gradingtechnology-activity-7307657740846321665-PQrF">설비 공급사 발표</a>(B)</td></tr>
+<tr><td>이탈리아</td><td>Jingold</td><td>품종·생산·판매</td><td>키위 생산 약 3만 톤(2024년 회사 발표)</td><td>식약처 해외 제조사명 일치</td><td><a href="https://www.jingold.it/jingold-bilancio-positivo-per-la-stagione-nellemisfero-nord-al-via-con-buone-prospettive-la-campagna-dellemisfero-sud/">회사 발표</a>(B)</td></tr>
+<tr><td>이탈리아</td><td>Apofruit Italia</td><td>생산자조합·선과</td><td>조합 전체 과일 생산액 2억 9,800만 유로(2024; 키위 단독 아님)</td><td>확인된 공개 자료 없음</td><td><a href="https://www.apofruit.it/news/altedo-ampliamento-impianto/">조합 발표</a>(B)</td></tr>
+<tr><td>이탈리아</td><td>Origine Group</td><td>생산자 연합·수출</td><td>키위 판매 4,000톤 초과(2020년 발표 당시 직전 12개월; 회원사 합계)</td><td>회사가 한국을 판매 시장으로 명시; 식약처 제조사명 일치 미확인</td><td><a href="https://www.origine-group.com/origine-group-mauro-grossi-nuovo-presidente/">판매 발표</a>(B)·<a href="https://www.origine-group.com/brand/?lang=en">판매 시장</a>(B)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 연차보고서·기업 발표와 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A). 해외 제조사명 일치는 <strong>2025년 10월~2026년 9월 키위·참다래 품목명 신고 건수 기준</strong>이며 한국행 수출량이나 국내 판매량을 뜻하지 않는다. 2026년 신고분은 잠정이다.</p>
+<p><a href="https://www.knz.nz/about-us/who-we-are">뉴질랜드 키위 규제기관 KNZ</a>(A)에 따르면 제스프리는 호주를 제외한 시장에서 뉴질랜드산 키위의 단일 수출창구다. 제스프리의 2024/25년 세계 키위 순매출은 NZ$50.31억이다. 제스프리는 한국에서도 라이선스 품종을 조달한다. <a href="https://www.zespri.com/content/dam/zespri/nz/publications/annual-reports/Zespri-Annual-Report-2024-25.pdf">2024/25 연차보고서의 공급 지역 표</a>(A)에서 한국 공급은 142.9만 트레이(세계 공급의 0.6%), 생산 면적은 197ha, 과수원은 350곳이며 품종은 전량 골드다. 이 면적은 2025년 국내 총조사 재배면적 984ha와 기준·시점이 달라 비율로 나누지 않는다.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처의 <strong>2025년 10월~2026년 9월</strong> 수입식품 신고에서 품목명이 ‘키위’ 또는 ‘참다래’인 953건을 업소명 표기 변형을 합쳐 집계했다. 아래 순위는 <strong>신고 건수 기준</strong>이며 중량·금액·시장점유율이 아니다. 식약처 신고 원자료에서 제조국과 수출국은 별도 항목이다. 같은 기간 품목명이 ‘과·채가공품’ 또는 ‘당절임’인 키위 단일 원료 제품 83건은 이 953건에 포함되지 않는다. 이 가운데 뉴질랜드 Kiwifruit Processing Company (2021) 제조분은 31건이다(<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>, A). 2026년 신고분은 잠정이다.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 키위·참다래 품목명 수입 신고 업소(신고 건수 기준)</caption>
+<thead><tr><th>수입업소</th><th class="num">신고 건수</th><th>주요 제조국(업소별 상위 2)</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>제스프리인터내셔날코리아(유)</td><td class="num">926</td><td>뉴질랜드 926</td><td>신선 열매</td></tr>
+<tr><td>아이원후르츠 주식회사</td><td class="num">8</td><td>그리스 8</td><td>신선 열매</td></tr>
+<tr><td>순수유통(주)</td><td class="num">5</td><td>그리스 5</td><td>신선 열매</td></tr>
+<tr><td>(주)우양(청양공장)</td><td class="num">3</td><td>뉴질랜드 3</td><td>냉동 열매</td></tr>
+<tr><td>주식회사 경신글로벌</td><td class="num">3</td><td>뉴질랜드 3</td><td>건조 씨앗</td></tr>
+<tr><td>주식회사 이화프레시</td><td class="num">2</td><td>그리스 2</td><td>신선 열매</td></tr>
+<tr><td>(주)유비코리아</td><td class="num">2</td><td>그리스 2</td><td>신선 열매</td></tr>
+<tr><td>아그라나프루트코리아주식회사</td><td class="num">2</td><td>중국 1·칠레 1</td><td>냉동 열매</td></tr>
+<tr><td>(주)진원무역</td><td class="num">1</td><td>이탈리아 1</td><td>신선 열매</td></tr>
+<tr><td>(주)오뚜기</td><td class="num">1</td><td>중국 1</td><td>냉동 씨앗</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A), 2025년 10월~2026년 9월 ‘키위·참다래’ 품목명 <strong>신고 건수</strong> 집계. 제조국은 업소별 상위 2개를 그대로 적었다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 공개 자료로 확인되는 국내 관련 기업의 규모</caption>
+<thead><tr><th>기업</th><th>확인된 역할</th><th>규모 지표·기준연도</th><th>키위와의 관계·해석</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>제스프리인터내셔날코리아(유)</td><td>신선 키위 수입</td><td>제스프리 <strong>그룹의 한국 외부고객 키위 매출</strong> NZ$3억 6,147만(2024/25); 한국 법인 매출은 미확인</td><td>키위·참다래 품목명 신고 926건. 그룹의 지역별 매출을 법인 매출로 읽지 않음</td><td><a href="https://www.zespri.com/content/dam/zespri/nz/publications/annual-reports/Zespri-Annual-Report-2024-25.pdf">제스프리 연차보고서</a>(A)·<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a>(A)</td></tr>
+<tr><td>(주)우양</td><td>과실 원료 수입·식품 제조</td><td>별도 매출 1,837.76억원·영업이익 46.66억원(2025)</td><td>‘키위’ 품목명 냉동 열매 3건과 별도 ‘과·채가공품’ 키위퓨레 5건. 사업보고서 원재료 표에 키위는 별도 항목으로 공시되지 않음</td><td><a href="https://kind.krx.co.kr/external/2026/03/23/002043/20260323008545/11011.htm">사업보고서</a>(A)·<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a>(A)</td></tr>
+<tr><td>아그라나프루트코리아주식회사</td><td>과일 원료 수입·조제품 제조</td><td>모회사 AGRANA의 세계 Fruit 부문 매출 16억 3,046만 유로(2024/25); 한국 법인 매출은 미확인</td><td>‘키위’ 품목명 냉동 열매 2건. 그룹 부문 매출에는 다른 과일·국가도 포함</td><td><a href="https://reports.agrana.com/fileadmin/inhalte/2025/AGRANA_Annual_Report_2024_25_EN.pdf">AGRANA 연차보고서</a>(A)·<a href="https://www.agrana.com/locations/hangugyi-agrana">한국 사업장</a>(B)·<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a>(A)</td></tr>
+<tr><td>(주)오뚜기</td><td>식품 제조·유통</td><td>연결 매출 3조 6,745.45억원·영업이익 1,772.51억원(2025); 농수산 가공품류 매출 7,139.98억원</td><td>‘키위’ 품목명 냉동 씨앗 1건과 별도 ‘과·채가공품’ 냉동키위퓨레 5건. 농수산 가공품류 매출은 키위 매출이 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/000725/20260318003615/11011.htm">사업보고서</a>(A)·<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a>(A)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 법정 공시·연차보고서·<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A). 우양과 오뚜기의 퓌레 제조사는 식약처 신고상 Kiwifruit Processing Company (2021)다. 전사·부문 매출과 키위 신고 건수는 분모가 달라 업체별 키위 매출·물량 점유율로 비교할 수 없다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 한국 키위 밸류체인의 단계별 주체와 가격 형성</caption>
+<thead><tr><th>단계</th><th>주요 주체(국가·기업 유형)</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산(재배)</td><td>국내 농가·영농조합, 뉴질랜드·유럽 재배자</td><td>한국 생산 8,007.88톤(2024, FAO 귀속치); 재배면적 984ha·농가 2,542가구(2025)</td><td>산지 계약·생산자 정산</td><td>기상·병해·수확량</td></tr>
+<tr><td>1차 가공</td><td>선과장·저장·후숙업체</td><td>국내 키위 선과·저장 처리량 미확보</td><td>등급별 정산·서비스 계약</td><td>품질 저하·저장 손실</td></tr>
+<tr><td>수출·국제 무역</td><td>제스프리, 유럽 수출업체, 선사</td><td>한국 신선 키위 수입 48,695.56톤 중 뉴질랜드산 95.7%(2025)</td><td>수출 판매계약·운임</td><td>산지 집중·운송 지연</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·식약처·식물검역기관</td><td>HS 0810.50 수입액 1억 7,191.63만 달러, 평균 3.53달러/kg(2025)</td><td>수입계약·통관 시점</td><td>검역 부적합·환율</td></tr>
+<tr><td>국내 가공</td><td>냉동과실·과일 조제품 제조업체</td><td>키위 단독 가공량·매출 미공개</td><td>원료 조달·납품계약</td><td>원료 품질·제품 수요</td></tr>
+<tr><td>도매·유통</td><td>도매시장·냉장물류·과일 유통업체</td><td>업체별 키위 물량·점유율 미확보</td><td>도매 거래·납품계약</td><td>후숙 관리·폐기</td></tr>
+<tr><td>소매·외식</td><td>마트·과일점·온라인·외식업체</td><td>KAMIS 소매 상품 관측일 평균: 국산 9,527원/10개, 그린 뉴질랜드산 10,251원/10개(2025)</td><td>매장 판매가·외식 납품가</td><td>품종·관측일 차이</td></tr>
+<tr><td>소비</td><td>가계·외식 소비자</td><td>FAO 식용 공급량 44,214.76톤(2023); 실제 섭취량 아님</td><td>소비자 구매 선택</td><td>가격·품질·안전 정보</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.fao.org/faostat/en/#data/QCL">FAOSTAT 생산통계</a>(A), <a href="https://www.fao.org/faostat/en/#data/SCL">FAOSTAT 공급이용표</a>(A), <a href="https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1AG25411">KOSIS 2025 농림어업총조사</a>(A), <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=081050&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 한국 신고 조회</a>(A), <a href="https://www.kamis.or.kr/customer/price/agricultureRetail/catalogue.do?action=daily">KAMIS 일간가격</a>(A). 수치의 정의는 03~05절과 같다.</p>
+<p>부가가치는 품종·품질 관리, 선과·저장, 수출 마케팅, 국내 후숙·판매에서 생긴다. 제스프리의 2024/25년 세계 키위 순매출 NZ$50.31억과 뉴질랜드산 과실·서비스 대금 NZ$31.05억은 판매와 생산자 보상의 규모를 각각 보여 주지만, 두 금액의 차이를 유통마진으로 계산할 수는 없다(<a href="https://www.zespri.com/content/dam/zespri/nz/publications/annual-reports/Zespri-Annual-Report-2024-25.pdf">제스프리 연차보고서</a>, A). Seeka의 2025년 1등급 키위 4,710만 트레이 선과·저장 실적은 수확 이후 품질 관리가 별도 사업 단계임을 보여 준다(<a href="https://www.seeka.co.nz/assets/reports/Seeka_Annual_Report_2025_WS.pdf">Seeka 연차보고서</a>, A). 한국의 혼합 수입 단가 3.53달러/kg과 10개 묶음 소매가격은 통화·단위·품종·시점이 달라 국내 단계별 이익을 산정할 수 없다.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 키위 밸류체인의 주요 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>농림축산식품부·농림축산검역본부·식약처·관세청</td><td>생산 정책, 식물검역, 수입식품 검사, 통관·원산지 관리</td><td>시장 접근 조건과 안전·표시 비용에 영향</td></tr>
+<tr><td>해외 정부</td><td>뉴질랜드 KNZ·농업부(MPI)</td><td>단일 수출창구 감독, 수출·식물위생 체계</td><td>뉴질랜드산 공급의 제도적 조건에 영향</td></tr>
+<tr><td>생산자·단체</td><td>국내 참다래 농가·제스프리 라이선스 골드 재배 농가(한국 197ha·350곳, 2024/25)·한라골드영농조합법인·NZKGI</td><td>재배·산지 조직, 생산자 이익 대변</td><td>수취가격·품질 기준·노동력에 관심</td></tr>
+<tr><td>수출·가공기업</td><td>제스프리·Seeka·EastPack·Jingold</td><td>선과·저장·마케팅·수출</td><td>물량 배분, 브랜드, 품질 비용에 영향</td></tr>
+<tr><td>수입·유통기업</td><td>제스프리인터내셔날코리아(유)·아이원후르츠·순수유통·우양·아그라나프루트코리아</td><td>수입신고, 원료 조달, 가공·국내 판매</td><td>조달가격·재고·납품 조건에 관심</td></tr>
+<tr><td>소비자·시민사회</td><td>한국 소비자·한국소비자원</td><td>구매 선택과 가격·표시·안전 정보의 이용·감시</td><td>품질 신뢰와 최종 수요에 영향</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·GLOBALG.A.P.</td><td>생산·공급 통계와 농장 관리 인증 기준 제공</td><td>지표 비교와 거래 시 요구되는 기준에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A), <a href="https://www.knz.nz/about-us/who-we-are">KNZ</a>(A), <a href="https://www.nzkgi.org.nz/wp-content/uploads/2025/07/NZKGI_Annual-Report-2025.pdf">NZKGI 2025 연차보고서</a>(B), <a href="https://www.zespri.com/content/dam/zespri/nz/publications/annual-reports/Zespri-Annual-Report-2024-25.pdf">제스프리 2024/25 연차보고서</a>(A), <a href="https://agri.jeju.go.kr/seobu/notice/press.htm?act=download&amp;no=1&amp;page=3&amp;seq=59587">제주특별자치도 농업기술원</a>(A), <a href="https://www.fao.org/faostat/en/">FAOSTAT</a>(A), <a href="https://globalgap.org/what-we-offer/solutions/ifa-fruit-and-vegetables/">GLOBALG.A.P. IFA</a>(B), <a href="https://www.kca.go.kr/">한국소비자원</a>(A). 기업별 역할의 근거와 연도는 표 11-1~11-3과 같다.</p>
+<p>생산자와 수입·소매업체는 품질 관리 비용을 누가 부담할지에서 이해가 엇갈린다. 뉴질랜드의 단일 수출창구는 공동 마케팅과 생산자 환원에 영향을 주는 동시에 한국 수입업체의 조달 선택에도 영향을 준다. 국산과 수입 과실의 판매 시기가 겹칠 수 있지만, 원산지·품종별 주간 판매량이 없어 경쟁 강도를 수치화할 수 없다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황</h2>
+<p class="lead"><code>rawbulk.report_delta.coverage("kiwis")</code>의 2026년 10월 7일 기준 수집기 목록·행수·최신 기간을 아래에 적었다. ‘최신’은 수집 파일 안에서 확인된 가장 늦은 기간이며, 해당 연도의 통계가 세계 모든 신고국에서 완료됐다는 뜻이 아니다. Comtrade 2025년 값은 개별 신고국 합계 비교에 사용하고, 세계 점유율은 FAOSTAT의 완료 연도인 2024년을 사용했다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 키위 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">38</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">32</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">1,057</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">184</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">22</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">258</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">549</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">2,414</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">6,951</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">27,850</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">1,175</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">26</td><td>2026.08</td><td>2026-10-01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 파이프라인 수집기 현황 집계(<code>coverage("kiwis")</code>, 2026-10-07; A01). 행수는 파일별 레코드 수다.</p>
+<p>공통 <code>kosis_crops_fruit</code> 수집본에서는 키위·참다래 명칭 행이 확인되지 않지만, KOSIS 농림어업총조사 DT_1AG25411에는 참다래(키위) 재배면적·농가 행이 있고 농촌진흥청 소득조사 DT_143002_E004에는 단수 행이 있다(<a href="https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1AG25411">KOSIS, 「2025 농림어업총조사」</a>; <a href="https://kosis.kr/statHtml/statHtml.do?orgId=143&amp;tblId=DT_143002_E004">KOSIS, 농촌진흥청 「농산물소득조사」</a>, E02·A12). USDA PSD 로컬 원장에는 키위 미수록 안내가 있다. FAOSTAT SCL은 2023년까지 키위 식용 공급량을 제공한다. 아카이브의 KAMIS 품목 불명 캐시 파일은 제외했지만, 공통 <code>_kamis_all/prices/kamis_daily_*.csv</code>의 품목 419 ‘참다래’는 원산지별 가격 분석에 사용했다(A11·E12).</p>
+<h3>자료 검토 범위</h3>
+<p>보고서 폴더 아카이브 원장 <code>01_조사노트/01_아카이브_원장.csv</code>에는 52행이 있다. 원장의 <code>반영필요</code> 12건은 통계표·뉴질랜드 보고서다. 다른 40건에는 동일 원천의 MD 짝, 혼합 품목 자료, 메타데이터, 품목을 확인할 수 없는 KAMIS 캐시 등이 있다.</p>
+<div class="tw">
+<table>
+<caption>표 12. 키위 아카이브 원장 요약</caption>
+<thead><tr><th>구분</th><th class="num">건수</th><th>처리·사유</th></tr></thead>
+<tbody>
+<tr class="tot"><td>전체 목록</td><td class="num">52</td><td>품목 폴더 기준 상대경로</td></tr>
+<tr><td>반영필요</td><td class="num">12</td><td>FAOSTAT·무역·가격지수·NZKGI·제스프리 원문</td></tr>
+<tr><td>불필요: 같은 원천 대표의 짝</td><td class="num">20</td><td>CSV와 내용이 대응되는 MD 등</td></tr>
+<tr><td>불필요: HS92 0810.90 혼합 과실</td><td class="num">3</td><td>키위를 포함하지만 다른 신선 과실과 분리 불가</td></tr>
+<tr><td>불필요: KAMIS 품목 불명</td><td class="num">1</td><td>바나나 또는 빈 품목명</td></tr>
+<tr><td>불필요: 그 밖의 집계·메타데이터·코드</td><td class="num">16</td><td>키위 단독 산업 지표 아님</td></tr>
+<tr><td>미검토(열기 실패)</td><td class="num">0</td><td>원장 52건 모두 열기 성공</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 보고서 폴더 <code>01_조사노트/01_아카이브_원장.csv</code>(52행; A10~A12). 합계는 12+20+3+1+16+0=52다.</p>
+<p>아카이브에는 사전 원장 52행 밖의 USDA FAS GAIN PDF와 보조 파일도 있다. USDA FAS의 키위 단독 보고서는 기관 자료로 사용했으나 원장 52건의 분류 건수에 추가하지 않았다. 은행 색인 <code>_raw/_banks/index.csv</code>는 2026-10-07까지 발견된 812행에서 <code>items</code>의 ‘kiwi’ 문자열 일치 행이 없었다. 2026-10-08 발견된 키위 관련 색인 행은 이 기준일 집계에 들어 있지 않다(A05).</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 키위 산업 해부: 국내 생산과 뉴질랜드 중심 수입의 구조</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 8일 · FAOSTAT·KOSIS·KAMIS·관세청·UN Comtrade 원자료, 아카이브 원문</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>신선 키위 HS 0810.50, 국산 키위 생산과 한국의 수입·수출. HS92 0810.90 혼합 과실은 키위 단독 집계에서 제외</span></div>
+  <div class="cl-row"><span class="k">시점</span><span>세계 생산은 2024년, 한국 원산지별 연간 수입은 2025년, 한국 2026년 무역은 1~8월까지</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>FAOSTAT 한국 생산은 귀속치이며 국내 총조사 면적과 정의가 다름. 2024년 이후 식용 공급, 국내 기업별 점유율, 개별 신고 적용세율·유통이력 대상은 제시하지 않음</span></div>
+  <div class="cl-row"><span class="k">수치 근거</span><span>원자료 수치는 FAOSTAT·KOSIS·KAMIS·관세청·UN Comtrade의 원자료에서 파일·필터 단위로 재계산했다.</span></div>
+</footer>
+</div>
+

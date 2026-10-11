@@ -1,0 +1,744 @@
+<title>한국 바닐라 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 바닐라<br>
+        세계 생산 · 한국 수입 · 가격 · 공급국 · 유통 · 제도<br>
+        2023~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">작은 원물 시장 · 큰 향료 시장과 구분해 읽는다</p>
+      <h1><span class="scr">Vanilla</span> <span class="lt">한국 바닐라 산업 해부</span></h1>
+      <p class="cover-sub">바닐라 원물의 세계 생산은 마다가스카르와 인도네시아에 집중돼 있다.
+        한국의 원물 수입은 연간 수십 톤 규모지만 바닐라향 식품 전체의 규모를 뜻하지는 않는다.
+        생산·수급·통관·가격·제도의 범위를 나눠 정부 통계 원자료와 기관 문서로 살핀다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2024 세계 원물 생산</div><div class="v">7,114.54</div>
+        <div class="n">톤 · FAOSTAT Vanilla, raw</div></div>
+      <div class="cf"><div class="k">마다가스카르 생산 비중</div><div class="v">43.4%</div>
+        <div class="n">2024년 · 세계 생산량 대비</div></div>
+      <div class="cf"><div class="k">상위 두 생산국 비중</div><div class="v">64.9%</div>
+        <div class="n">2024년 · 마다가스카르·인도네시아</div></div>
+      <div class="cf"><div class="k">한국 원물 수입</div><div class="v">29.209</div>
+        <div class="n">톤 · 2025년 · 관세청 HS 0905.10·0905.20 합계</div></div>
+      <div class="cf"><div class="k">한국 원물 수입액</div><div class="v">262.10만</div>
+        <div class="n">달러 · 2025년 · 관세청</div></div>
+      <div class="cf"><div class="k">한국 평균 수입단가</div><div class="v">89.73</div>
+        <div class="n">달러/kg · 2025년 · 수입액 ÷ 순중량</div></div>
+      <div class="cf"><div class="k">마다가스카르발 비중</div><div class="v">68.3%</div>
+        <div class="n">2025년 한국 수입 상대국 · UN Comtrade preview</div></div>
+      <div class="cf"><div class="k">한국 식용 공급량</div><div class="v">21.41</div>
+        <div class="n">톤 · 2023년 · FAOSTAT 수급표 추정치</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">한국의 바닐라 원물 시장은 작고, 산지와 가격의 변동은 크다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">생산은 두 나라에 집중되고 재고 수치는 추정이다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">수입은 확인되지만 국내 생산과 최종 소비는 따로 잴 수 없다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">2025년 한국 원물 수입은 29.209톤, 최근 완료연도 상대국 자료도 확인된다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">농가·수출시장·한국 통관단가는 서로 다른 가격이다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">마다가스카르가 중심이고 대체 산지의 규모는 다르다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">수입업체 순위보다 거래 단계의 빈칸이 먼저 보인다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">과거 기본세율과 현재 적용세율은 기준이 다르다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">세계은행은 정책 변화를, Fairtrade는 농가 가격을 설명한다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 관찰 지표·남은 물음</span><span class="t">상대국, 가격 단계, 정책 문구를 따로 추적한다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">산지의 건조 바닐라와 한국의 원료 유통</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 검토 범위</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>한국의 바닐라 원물 시장은 작고, 산지와 가격의 변동은 크다</h2>
+<p class="lead">이 보고서의 수량 경계는 바닐라 원물과 그 분쇄품이다. 한국 관세 품목으로는 HS 0905.10과 0905.20, FAOSTAT 생산 품목으로는 <em>Vanilla, raw</em>를 본다. 바닐라 추출물, 바닐린, 혼합향료, 바닐라향 완제품은 이 두 무역 세번의 합계에 들어가지 않는다. 따라서 원물 수입액을 국내 ‘바닐라향 시장’ 매출로 부르지 않는다. 천연 원물과 합성 바닐린의 사용 비율도 확보한 자료로 계산할 수 없다(품목 레지스트리 <code>vanilla</code>; 30_근거_수치 E00).</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>세계 생산.</strong> FAOSTAT의 2024년 <em>Vanilla, raw</em> 세계 생산은 7,114.54톤이다. 마다가스카르 3,089.54톤은 세계의 43.4%다. 인도네시아 1,526.00톤을 합하면 두 나라 생산량은 4,615.54톤, 세계의 64.9%다. 마다가스카르 값에는 FAOSTAT 추정 표지 E가 붙는다(E01).</li>
+<li><strong>수급의 성격.</strong> FAOSTAT 수급계정 SCL은 2023년 세계 식용 공급량을 7,826.64톤, 기초재고를 31,381.15톤으로 적는다. 모두 추정 표지 E가 붙은 수급계정 값이다. 현장 재고조사나 최종 소비자의 구매량으로 해석하지 않는다(E03).</li>
+<li><strong>한국 생산.</strong> 확인한 FAOSTAT 생산 분할 파일에 한국의 생산 행은 없고, 확인한 KOSIS 공통 원자료에서도 바닐라 전용 생산 행을 찾지 못했다. 이는 국내 생산이 수학적으로 0이라는 증거가 아니라 공식 생산량의 <strong>미확보</strong>다(시도: FAOSTAT QCL의 한국 행, KOSIS 작물·특용작물 원자료에서 ‘바닐라’ 검색; E01·E19).</li>
+<li><strong>한국 수입.</strong> 관세청 품목별 월간 파일의 2025년 HS 0905.10·0905.20 수입 합계는 29.209톤(29,209kg)·262.10만 달러(원값 2,620,990달러)다. 수입액을 중량으로 나눈 평균은 89.73달러/kg이다. 미분쇄품 27,865kg이 물량의 95.4%다(E06).</li>
+<li><strong>한국의 식용 공급.</strong> FAOSTAT SCL의 2023년 한국 식용 공급량은 21.41톤이다. 같은 계정의 수입 22.00톤과 수출 0.59톤 등을 사용한 추정치다. 2025년 통관량과 같은 해의 소비량인 것처럼 비교하지 않는다(E03).</li>
+<li><strong>수입 상대국.</strong> FAOSTAT TM의 2024년 한국 수입 상대국 합계 22.63톤 가운데 마다가스카르가 17.27톤, 76.3%였다. 추가 확인한 UN Comtrade 2025년 연간 preview에서는 HS 0905.10·0905.20 상대국 합계 29,208.455kg 가운데 마다가스카르가 19,947.737kg, 68.3%다. 2025년은 완료된 달력연도이지만 preview 자료이므로 후속 개정 가능성을 둔다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=090510,090520&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2025년 HS 0905.10·0905.20 수입 상대국 preview, 2026-10-08 확인</a>; E05·E20).</li>
+<li><strong>가격.</strong> 기관 가격표 Daymon의 마다가스카르 바닐라 연평균은 2022년 €238.16/kg, 2023년 €161.11/kg, 2024년 €49.56/kg이다. B등급 민간 가격표이고 한국 통관단가나 농가 가격과 거래 단계가 다르다(E12).</li>
+<li><strong>정책.</strong> 세계은행은 마다가스카르의 건조 바닐라 수출 최저가 250달러/kg 정책이 2023년 5월 중단됐다고 기록한다. 마다가스카르 상무소비부의 2026년 공고에는 수출업자 인가 접수와 <strong>AVM(Alliance pour la Vanille Malagasy)이 정한 참조가격</strong>이 각각 나온다. 이 참조가격을 현행 법정 수출 최저가로 읽을 근거는 확인되지 않았다(<a href="https://documents1.worldbank.org/curated/en/099022425145522481/pdf/P501380-72e88ef2-bbb6-4323-9795-e716a6ecd57f.pdf">세계은행, <em>Madagascar Economic Update: Bridging the Productivity Divide</em>, 2025-02</a>; <a href="https://mincc.gov.mg/index.php/2026/09/07/fananganan-tsaina-2/">마다가스카르 상무소비부, 「Fananganan-tsaina」, 2026-09-07</a>; <a href="https://mincc.gov.mg/index.php/2026/09/26/campagne-2026-2027/">같은 부처, 「Campagne Vanille 2026-2027」, 2026-09-26</a>; E16·E18).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li>이 보고서는 한국의 <strong>원물 공급국 집중</strong>을 지속 관찰 대상인 구조적 위험으로 본다. 마다가스카르발 비중은 2024년 76.3%, 2025년 Comtrade preview에서 68.3%였고, 마다가스카르는 세계 최대 생산국이다. 반증 조건은 이후 완료연도의 같은 범위 한국 수입에서 마다가스카르 비중이 50% 아래로 내려가고 대체 상대국의 물량이 확인되는 것이다. 2025년 수치는 이 조건을 충족하지 않는다(E01·E05·E20).</li>
+<li>이 보고서는 2026년 한국 HS 0905 수입량이 2025년 연간 물량을 웃돌 <strong>가능성</strong>이 있다고 본다. 2026년 1~8월 관세청 통관량 25,475kg이 전년 같은 기간 18,646kg보다 36.6% 많다. 반증 조건은 2026년 연간 확정 수입량이 29,209kg 이하로 끝나는 것이다. 진행연도 8개월 값을 연간 순위나 점유율로 사용하지 않는다(E06).</li>
+<li>이 보고서는 원물 가격의 하락이 국내 바닐라향 식품 소비자가격 하락으로 곧바로 연결된다고 판단하지 않는다. 원물·추출물·합성 바닐린의 투입 비율과 제조비·유통비가 확인되지 않았기 때문이다. 반증 조건은 이 세 투입물의 사용량과 동일 제품군의 판매가격을 연결한 공개 시계열이 확보되는 것이다(E00·E12·E19).</li>
+</ul>
+<p>본문의 수치는 FAOSTAT·관세청·UN Comtrade 등 원자료에서 계산한 값과, 원문이 특정된 기관·민간 보고서의 인용값을 구분했다. B등급 가격·업계 추정은 정부 확정치로 바꾸어 쓰지 않았다. 원장 73건 가운데 반영 14건, 불필요 59건, 열기 실패에 따른 미검토는 0건이다(부록 A).</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>생산은 두 나라에 집중되고 재고 수치는 추정이다</h2>
+<p class="lead">바닐라의 세계 규모는 물건의 단계에 따라 수치의 뜻이 다르다. FAOSTAT의 <em>Vanilla, raw</em>는 농업 생산·수급계정의 품목이다. HS 0905의 무역량은 통관된 바닐라 원물과 분쇄품이다. 같은 바닐라라도 수확·가공·재고·재수출의 시점과 범위가 다르므로 한 해 생산량에서 같은 해 수출량을 단순히 빼 ‘소비량’을 만들지 않는다(E00·E01·E04).</p>
+<p>FAOSTAT QCL 원자료에서 2024년 세계 생산은 7,114.54톤이다. 2022년 7,110.23톤, 2023년 7,193.55톤과 가까운 수준이다. 2024년 마다가스카르 3,089.54톤과 인도네시아 1,526.00톤이 두 큰 산지이며, 두 나라 합계는 세계의 64.9%다. 마다가스카르·파푸아뉴기니 등 일부 국가는 FAOSTAT의 추정 또는 대체자료 표지를 가진다(E01).</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 바닐라 원물 생산 상위국(2024년)</caption>
+<thead><tr><th class="num">순위</th><th>국가</th><th class="num">생산량(톤)</th><th class="num">세계 비중</th><th>FAOSTAT 표지</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>마다가스카르</td><td class="num">3,089.54</td><td class="num">43.4%</td><td>E</td></tr>
+<tr><td class="num">2</td><td>인도네시아</td><td class="num">1,526.00</td><td class="num">21.4%</td><td>A</td></tr>
+<tr><td class="num">3</td><td>멕시코</td><td class="num">510.34</td><td class="num">7.2%</td><td>A</td></tr>
+<tr><td class="num">4</td><td>파푸아뉴기니</td><td class="num">492.92</td><td class="num">6.9%</td><td>I</td></tr>
+<tr><td class="num">5</td><td>중국 본토</td><td class="num">434.86</td><td class="num">6.1%</td><td>E</td></tr>
+<tr><td class="num">6</td><td>튀르키예</td><td class="num">407.04</td><td class="num">5.7%</td><td>I</td></tr>
+<tr><td class="num">세계</td><td></td><td class="num">7,114.54</td><td class="num">100.0%</td><td>E</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>data/_raw/_items/vanilla/faostat_production_vanilla.csv</code>, <code>Element=Production</code>, <code>Year=2024</code>, <code>Item=Vanilla, raw</code>(E01). 중국 본토에는 <code>Area=China, mainland</code>(코드 41)를 썼다. <code>Area=China</code>(코드 351)는 본토·홍콩·마카오·대만을 포괄하는 집계다. 이 파일의 2024년 두 행은 우연히 같은 434.86톤이므로 중복 합산하지 않았다. 비중은 각국 생산량 ÷ 세계 행이다.</p>
+<p>FAOSTAT의 2024년 세계 원물 수입량은 9,915.92톤, 수출량은 10,362.43톤이다. 무역 상대국의 신고 시점과 추정 방식이 달라 양쪽 합계가 일치할 필요는 없다. 같은 파일에서 미국 수입은 2,599.51톤, 프랑스 수입은 2,212.22톤이다. 마다가스카르 수출 5,544.78톤은 표지 I가 붙은 값으로, 같은 해 생산 3,089.54톤보다 크다. 이를 ‘생산보다 더 팔았다’는 산업 사건으로 단정하지 않는다. 이월재고·집계기간·대체 추정의 영향이 섞일 수 있지만 각각의 기여량은 확보하지 못했다(E04).</p>
+<h3>수급계정이 말하는 것과 말하지 않는 것</h3>
+<p>FAOSTAT SCL에는 바닐라 행이 있다. 2023년 세계 식용 공급량은 7,826.64톤, 기초재고는 31,381.15톤, 재고 변동은 48.19톤이다. 세 수치에 추정 표지 E가 붙는다. 기초재고는 해당 계정의 모형값이지 창고 전수조사 실측치로 검증된 값이 아니다. 2024년까지 있는 생산·무역 계열과 달리, 확보한 SCL의 마지막 연도는 2023년이다. 따라서 2024년 또는 2025년 세계 소비와 재고를 이 계정에서 확정할 수 없다(E03).</p>
+<p>미국 농무부 PSD 원자료의 품목 검색에서는 바닐라 항목이 확인되지 않았고, OECD–FAO <em>Agricultural Outlook 2025–2034</em>의 공개 목차·본문 검색에서도 바닐라 전용 전망을 확인하지 못했다. 이 두 경로의 부재를 전 세계 공공기관의 바닐라 전망 부재로 확대하지 않는다(<code>raw_data/NOT_AVAILABLE.txt</code>; <a href="https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2025-2034_601276cd-en.html">OECD–FAO 공개 보고서</a>, A; E19).</p>
+<h3>최신 업계 추정은 다른 기간의 숫자다</h3>
+<p>Biovanilla는 2025/26년 마다가스카르 생산을 <strong>최소 4,500톤</strong>으로 추정하고 과잉생산·재고 누적을 지적했다. 이는 판매업체의 시즌 추정(B등급)이다. FAOSTAT의 2024년 달력연도 마다가스카르 생산량과 기간·작성주체가 달라 2025년 세계 순위나 점유율을 계산하는 데 넣지 않는다(<a href="https://www.biovanilla.fr/en/actualites/madagascar-vanilla-market-report-04-march-2026">Biovanilla, <em>Madagascar Vanilla Market Report No. 04</em>, 2026-03</a>; E17).</p>
+<p>기존 아카이브 README는 2022년 세계 생산을 7,833톤이라고 적었다. 현재 확인한 FAOSTAT QCL 분할 파일의 같은 필터 결과는 7,110.23톤이다. 본문은 최신 원자료를 택했고, 구판 README 숫자는 역사적 기록으로만 보존했다. 통계 갱신 또는 종전 집계방식의 차이를 입증할 원장은 확보하지 못했으므로 차이의 원인을 특정하지 않는다(E01·E14).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>수입은 확인되지만 국내 생산과 최종 소비는 따로 잴 수 없다</h2>
+<p class="lead">확인한 FAOSTAT QCL 바닐라 생산 파일에는 대한민국 생산 행이 없다. 공통 KOSIS 원자료의 작물·특용작물 파일과 제조 품목 파일에서 ‘바닐라’ 또는 <code>vanilla</code> 전용 행을 검색해도 생산량을 확인하지 못했다. 이 검사는 지정한 파일과 키워드의 범위에 한정된다. 국내에서 바닐라가 재배되지 않는다고 단정하지 않고, <strong>공식 생산량 미확보</strong>로 둔다(E19).</p>
+<p>한국의 수입은 통관자료로 직접 관찰된다. 2025년 관세청 HS 0905.10·0905.20 수입은 29.209톤이다. 이 물량은 원물·분쇄품이 국경을 통과한 양이지 식품기업이 그해 사용한 양이나 소비자가 먹은 양이 아니다. 수출·재고 증감·폐기·추출수율을 확인하지 않고 수입량을 국내 소비량으로 치환할 수 없다(E06).</p>
+<div class="tw">
+<table>
+<caption>표 2. 한국 바닐라 원물의 관측 지표와 해석 범위</caption>
+<thead><tr><th>지표</th><th>기간</th><th class="num">물량(톤)</th><th>뜻</th><th>자료 성격</th></tr></thead>
+<tbody>
+<tr><td>식용 공급량</td><td>2023년</td><td class="num">21.41</td><td>FAOSTAT 수급계정의 식용 공급 추정</td><td>E</td></tr>
+<tr><td>수입량</td><td>2024년</td><td class="num">22.64</td><td>FAOSTAT 국가 무역통계의 수입</td><td>A</td></tr>
+<tr><td>수입량</td><td>2025년</td><td class="num">29.209</td><td>관세청 HS 0905.10·0905.20 통관 중량 합</td><td>행 합계</td></tr>
+<tr><td>수입량</td><td>2026년 1~8월</td><td class="num">25.475</td><td>진행연도 관세청 통관 중량 합</td><td>미완</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT SCL·TCL(<code>raw_data/SCL_vanilla.csv</code>, <code>raw_data/TCL_vanilla.csv</code>)과 관세청 <code>customs_item_trade_monthly_vanilla.csv</code>(E03·E04·E06). 서로 다른 지표·연도이므로 표의 행 사이 차이를 소비 증가율로 계산하지 않았다. 2024년 한국의 수출행도 존재한다. UN Comtrade의 HS 0905.20 수출은 17,648.2kg·49,828달러로 계산 단가가 약 2.82달러/kg이다. 이 행이 어떤 품질·형태의 물건을 나타내는지 확인되지 않아 수입량에서 차감해 소비량을 만들지 않았다(<code>processed_data/comtrade/vanilla_comtrade_annual.csv</code>, E22).</p>
+<p>식약처의 품목별 수입신고 통계에는 2025년 <code>바닐라(열매,건조)</code>의 <code>NOTICE_WEIGHT_SUM=24,683</code>, 적합분 <code>NOTICE_WEIGHT_ACCEPT=24,652</code>가 있다. 관세청의 2025년 HS 0905.10 수입 중량 27,865kg과는 품목 범위·신고 단계가 다르고 식약처 파일에 중량 단위도 명시되지 않아, 두 값을 같은 kg 계열로 합산하거나 차이의 원인을 계산하지 않았다(<code>data/_raw/mfds_import_permit_stats/2026-10-06__mfds_import_permit_stats.json.gz</code>, E06·E21).</p>
+<p>FAOSTAT SCL의 2023년 한국 계정은 수입 22.00톤, 수출 0.59톤, 식용 공급 21.41톤이다. 수급계정의 식용 공급은 특정 식품·외식·향료 제조사가 실제로 구입한 바닐라 양의 합계가 아니다. 같은 계정의 ‘1인 1일 식용 공급량(g)’ 행은 0.00으로 반올림돼 있어 이 값에서 1인당 바닐라 섭취를 역산하지 않는다(E03).</p>
+<h3>천연 원물과 향료 소비의 경계</h3>
+<p>HS 0905는 바닐라 열매와 분쇄품의 무역 경계다. 바닐라 추출물, 바닐린, 혼합향료와 그것을 넣은 아이스크림·제과·음료는 각각 다른 품목 분류와 제조 단계에 놓인다. 따라서 HS 0905의 2025년 수입액 262.10만 달러를 한국 바닐라향 식품 전체의 시장 규모라고 부를 근거는 없다. 천연 바닐라와 합성 바닐린의 대체 관계도 원료별 사용량 자료 없이는 수치화하지 않는다(E00·E06).</p>
+<p>기존 아카이브의 <code>EXTERNAL_SOURCES.md</code>에는 식품용 향의 합성 비중에 관한 수치가 적혀 있지만 출처 원문·분모·조사연도가 붙지 않았다. 이 보고서는 그 비율을 채택하지 않았다. 이 구분은 향료 산업이 중요하지 않다는 뜻이 아니다. 오히려 HS 0905 분석만으로 향료 산업 전체를 설명할 수 없다는 범위 표시다(E14).</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>2025년 한국 원물 수입은 29.209톤, 최근 완료연도 상대국 자료도 확인된다</h2>
+<p class="lead">한국 관세청 품목별 월간 원자료는 2024년 11월부터 2026년 8월까지 22개월을 담고 있다. 2024년 1~10월이 없으므로 이 파일만으로 2024년 연간 합계를 만들지 않는다. 2024년 연간 비교는 같은 세번에 대한 UN Comtrade의 한국 합계 행을 사용한다. 2025년 관세청 월간 12개월 합계와 Comtrade 한국 합계는 각각 kg 단위 정수와 소수 중량이라는 차이까지 표시한다(E06·E08).</p>
+<div class="tw wide">
+<table>
+<caption>표 3. 한국 HS 0905 수입량·수입액·평균 단가</caption>
+<thead><tr><th>기간·원천</th><th class="num">미분쇄 0905.10(kg)</th><th class="num">분쇄 0905.20(kg)</th><th class="num">합계(kg)</th><th class="num">수입액(달러)</th><th class="num">평균(달러/kg)</th></tr></thead>
+<tbody>
+<tr><td>2024년 UN Comtrade 한국 합계</td><td class="num">22,201.502</td><td class="num">436.449</td><td class="num">22,637.951</td><td class="num">2,723,164</td><td class="num">120.29</td></tr>
+<tr><td>2025년 관세청 월간 합계</td><td class="num">27,865</td><td class="num">1,344</td><td class="num">29,209</td><td class="num">2,620,990</td><td class="num">89.73</td></tr>
+<tr><td>2025년 UN Comtrade 한국 합계</td><td class="num">27,865.730</td><td class="num">1,342.725</td><td class="num">29,208.455</td><td class="num">2,620,990</td><td class="num">89.73</td></tr>
+<tr><td>2025년 1~8월 관세청</td><td class="num">17,882</td><td class="num">764</td><td class="num">18,646</td><td class="num">1,748,874</td><td class="num">93.79</td></tr>
+<tr><td>2026년 1~8월 관세청</td><td class="num">24,345</td><td class="num">1,130</td><td class="num">25,475</td><td class="num">2,344,272</td><td class="num">92.02</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>processed_data/comtrade/vanilla_comtrade_annual.csv</code>의 한국·수입·세계 상대국·합계 행과 <code>data/_raw/_items/vanilla/customs_item_trade_monthly_vanilla.csv</code>의 HS10 월간 행(E06·E08). 평균은 수입액 ÷ 합계 중량이다. 2026년은 진행연도다.</p>
+<p>2025년 원물 수입은 관세청 중량 기준으로 2024년 Comtrade 한국 합계 중량보다 약 29.0% 많다. 원천 간 반올림과 수집시점이 다르므로 이는 동일 신고의 완전한 시계열 비교가 아닌 참고 비교다. 같은 Comtrade 원천의 2024년 평균 단가 120.29달러/kg와 2025년 89.73달러/kg를 비교하면 25.4% 낮다. 이 단가는 미분쇄품과 분쇄품을 중량으로 합친 통관 평균이며 품질·등급·계약조건 변화를 제거한 가격지수가 아니다(E06·E08).</p>
+<p>2026년 1~8월 물량 25,475kg은 2025년 같은 기간 18,646kg보다 36.6% 많다. 아직 2026년 나머지 달이 확정되지 않았으므로 연간 증가율·세계 순위·연간 상대국 점유율을 발표하지 않는다(E06).</p>
+<p>식약처 품목별 수입신고 통계에는 2025년 <code>바닐라(열매,건조)</code>의 <code>NOTICE_WEIGHT_SUM=24,683</code>과 적합분 <code>NOTICE_WEIGHT_ACCEPT=24,652</code>가 있다. 같은 해 관세청 HS 0905.10 수입은 27,865kg이다. 식약처 통계의 중량 단위가 원자료에 명시되지 않았고 두 분류의 포괄 범위도 검증되지 않았으므로 차이를 통관 누락이나 신고 부적합 물량으로 해석하지 않는다(<code>data/_raw/mfds_import_permit_stats/2026-10-06__mfds_import_permit_stats.json.gz</code>, E06·E21).</p>
+<h3>수입 상대국은 연도와 원천을 구분해 본다</h3>
+<p>FAOSTAT 상세 무역행렬 TM의 2024년 대한민국 상대국 행 합계는 22.63톤이다. 같은 FAOSTAT 국가 합계 TCL의 한국 수입 22.64톤과 0.01톤 차이가 난다. 2025년은 UN Comtrade 공개 preview의 한국 수입 상대국 행을 사용한다. HS 0905.10·0905.20의 2025년 상대국 합계는 세계 합계 행과 같은 29,208.455kg이다. Comtrade의 <code>partnerCode</code>는 신고 상대국이며 생산지를 자동으로 증명하지 않는다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=090510,090520&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2025년 HS 0905.10·0905.20 수입 상대국 preview, 2026-10-08 확인</a>; E05·E20).</p>
+<div class="tw">
+<table>
+<caption>표 4. 한국 바닐라 원물 수입 상대국: 2024년 FAOSTAT TM과 2025년 UN Comtrade preview</caption>
+<thead><tr><th>상대국</th><th class="num">2024 TM(톤)</th><th class="num">2024 비중</th><th class="num">2025 Comtrade(kg)</th><th class="num">2025 비중</th></tr></thead>
+<tbody>
+<tr><td>마다가스카르</td><td class="num">17.27</td><td class="num">76.3%</td><td class="num">19,947.737</td><td class="num">68.3%</td></tr>
+<tr><td>인도네시아</td><td class="num">1.86</td><td class="num">8.2%</td><td class="num">1,620.433</td><td class="num">5.5%</td></tr>
+<tr><td>파푸아뉴기니</td><td class="num">1.63</td><td class="num">7.2%</td><td class="num">1,540.500</td><td class="num">5.3%</td></tr>
+<tr><td>미국</td><td class="num">1.43</td><td class="num">6.3%</td><td class="num">4,579.625</td><td class="num">15.7%</td></tr>
+<tr><td>우간다</td><td class="num">0.25</td><td class="num">1.1%</td><td class="num">742.003</td><td class="num">2.5%</td></tr>
+<tr><td>프랑스</td><td class="num">0.09</td><td class="num">0.4%</td><td class="num">588.838</td><td class="num">2.0%</td></tr>
+<tr><td>그 밖의 상대국</td><td class="num">0.10</td><td class="num">0.4%</td><td class="num">189.319</td><td class="num">0.6%</td></tr>
+<tr class="tot"><td><strong>합계</strong></td><td class="num"><strong>22.63</strong></td><td class="num"><strong>100.0%</strong></td><td class="num"><strong>29,208.455</strong></td><td class="num"><strong>100.0%</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>raw_data/TM_vanilla.csv</code>의 <code>Reporter Countries=Republic of Korea</code>, <code>Year=2024</code>, <code>Element=Import quantity</code>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=090510,090520&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2025년 HS 0905.10·0905.20 수입 상대국 preview, 2026-10-08 확인</a>(E05·E20). 2024년의 0.00톤 반올림 상대국 행도 합계에 포함했다. 표시 비중의 합은 반올림 때문에 100.0%와 다를 수 있다. 2025년 Comtrade 세계 합계의 <code>isReported</code>는 false이고 0905.10 세계 합계 중량에는 추정 표지가 있으나, 표의 상대국 행은 <code>isReported=true</code>다. preview 값은 후속 개정 가능성이 있다.</p>
+<p>마다가스카르발 몫은 서로 다른 배포 원천의 2024년 76.3%에서 2025년 68.3%로 낮아졌다. 같은 Comtrade 원천으로 비교해도 2024년 76.3%에서 2025년 68.3%로 약 8.0%포인트 하락한다. 같은 원천에서 미국발 물량은 2024년 1,430.607kg에서 2025년 4,579.625kg으로 늘었다. 연간 총량이 수십 톤인 시장의 상대국 비중은 소수의 거래로도 크게 움직일 수 있으며, 이 두 연도만으로 장기 공급선 전환을 단정하지 않는다(E20).</p>
+<p>관세청 국가별 월간 파일에는 2026년 3~8월만 있다. 이를 같은 해 1~8월의 상대국 표로 오인하지 않는다. 예를 들어 2026년 4월 마다가스카르발 미분쇄품은 3,326kg이고 분쇄품은 별도로 100kg이다. 두 값을 섞어 ‘미분쇄품 3,426kg’으로 표기하지 않는다(E07).</p>
+<h3>세계 무역과 보조 원천</h3>
+<p>FAOSTAT TCL의 2024년 원물 수입 상위 신고국은 미국 2,599.51톤과 프랑스 2,212.22톤이다. 마다가스카르 원물 수출은 5,544.78톤이지만 추정·보정 표지 I가 붙어 있다. 통관 물량과 생산 통계를 같은 기간의 완결된 물질수지로 연결하지 않는다(E04).</p>
+<p>OEC의 역사적 HS 090500 계열 파일은 2024년 마다가스카르 수출액 296,813,569달러, 미국 수입액 158,405,179달러를 보여준다. 이는 OEC의 금액 계열로서 FAOSTAT 물량이나 한국 관세청 신고액과 직접 합산하지 않았다. 2022년 OEC 양자무역표에서 마다가스카르→한국 금액은 3,027,243달러다. 최근 상대국 점유율은 이 오래된 금액표가 아니라 표 4의 완료연도 물량으로 계산했다(E10).</p>
+<p>UN Comtrade CSV에는 관세절차·운송수단·제2상대국의 세부 행이 합계 행과 함께 있다. 이 보고서는 <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>만 남기고, 세계 상대국 합계는 <code>partnerCode=0</code>만 썼다. 세부 행을 더해 물량을 부풀리지 않았다. <code>netWgt</code>가 빈 신고국에는 중량 순위를 매기지 않았다(E08·E20).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>농가·수출시장·한국 통관단가는 서로 다른 가격이다</h2>
+<p class="lead">바닐라 가격은 하나의 숫자로 대표하기 어렵다. 녹색 바닐라의 농가 판매가격, 건조 바닐라의 산지 수출가격, 한국의 HS 0905 수입단가가 각각 다른 거래 단계다. 통화·품질·수분율·배송조건도 다르다. 아래 표는 단계와 원천을 같이 보여주며, 서로 다른 행을 연결해 가공마진을 역산하지 않는다(E06·E09·E12·E13).</p>
+<div class="tw">
+<table>
+<caption>표 5. 확보한 바닐라 가격·단가 지표</caption>
+<thead><tr><th>거래 단계·대상</th><th>기간</th><th class="num">값</th><th>단위</th><th>성격</th></tr></thead>
+<tbody>
+<tr><td>마다가스카르 바닐라 기관 가격표</td><td>2022년 평균</td><td class="num">238.16</td><td>유로/kg</td><td>Daymon, B</td></tr>
+<tr><td>같은 가격표</td><td>2023년 평균</td><td class="num">161.11</td><td>유로/kg</td><td>Daymon, B</td></tr>
+<tr><td>같은 가격표</td><td>2024년 평균</td><td class="num">49.56</td><td>유로/kg</td><td>Daymon, B</td></tr>
+<tr><td>마다가스카르 녹색 바닐라 농가 판매가격</td><td>2023년</td><td class="num">2.2</td><td>유로/kg</td><td>Fairtrade 조사, B</td></tr>
+<tr><td>멕시코 원물 생산자가격</td><td>2024년</td><td class="num">6,121.9</td><td>달러/톤</td><td>FAOSTAT PP, A</td></tr>
+<tr><td>한국 HS 0905 평균 수입단가</td><td>2024년</td><td class="num">120.29</td><td>달러/kg</td><td>Comtrade 한국 합계</td></tr>
+<tr><td>한국 HS 0905 평균 수입단가</td><td>2025년</td><td class="num">89.73</td><td>달러/kg</td><td>Comtrade 한국 합계</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: Daymon <em>International Commodity Report</em>(2025-01, B), Fairtrade <em>2024 Living Income Reference Price Update</em>(B), <code>raw_data/PP_vanilla.csv</code>, UN Comtrade 한국 합계 행(E06·E09·E12·E13). 멕시코 생산자가격은 수출시장 가격과 같지 않다.</p>
+<p>Daymon 보고서의 2022~2024년 연평균은 하락을 보인다. 이는 마다가스카르 바닐라에 대한 기관 가격표이지 공인 거래소의 전 세계 체결가격은 아니다. 세계은행은 마다가스카르의 수출 최저가 정책 중단 이후 재고 출하가 늘었고, 2024년 7월 수출량이 1,200톤에 달했으며 당시 시장가격이 약 50달러/kg이었다고 분석한다. 7월의 세계은행 서술과 Daymon의 연평균은 기간과 통화가 다르므로 일치 여부를 숫자 대조처럼 평가하지 않는다(<a href="https://documents1.worldbank.org/curated/en/099022425145522481/pdf/P501380-72e88ef2-bbb6-4323-9795-e716a6ecd57f.pdf">세계은행, <em>Madagascar Economic Update</em>, 2025-02</a>, A; <a href="https://daymonglobalinsights.com/wp-content/uploads/2025/02/GCR_January2025.pdf">Daymon Global Insights, <em>International Commodity Report</em>, 2025-01, 135쪽</a>, B; E12·E16).</p>
+<p>Fairtrade의 SAVA 지역 조사에서는 녹색 바닐라의 평균 농가 판매가격이 2018년 약 €36.0/kg, 2023년 €2.2/kg으로 제시된다. 같은 보고서의 2024년 <strong>€10.2/kg</strong>은 관측 거래가격이 아니라 생산자가 생활소득을 얻는 데 필요하다고 추정한 참조가격이다. 세 수치는 한 가격 시계열의 관측값이 아니다(<a href="https://www.fairtrade.net/content/dam/fairtrade/fairtrade-international/library/2024/living-income-reference-prices-for-vanilla-from-uganda-and-madagascar/Fairtrade-Vanilla-Living-Income-Ref-Price-Madagascar-report-2024.pdf">Fairtrade 보고서</a>, B; E13).</p>
+<p>FAOSTAT PP에는 2024년 멕시코 바닐라 원물 생산자가격 6,121.9달러/톤이 있다. 같은 원자료의 마다가스카르·인도네시아 연속 가격행은 드물다. 멕시코 생산자가격과 마다가스카르 건조 바닐라 수출가격은 대상과 거래 단계가 다르다(E09).</p>
+<p>한국 통관 평균은 2024년 120.29달러/kg에서 2025년 89.73달러/kg으로 낮아졌다. 이 값은 금액을 신고 순중량으로 나눈 단가다. 품질 구성이나 상대국 변화가 반영된 통관 평균이어서 거래가격 자체의 순수 하락률은 분리되지 않는다. 2026년 1~8월 평균은 92.02달러/kg으로, 같은 기간인 2025년 1~8월의 93.79달러/kg과 비교할 수 있다(E06·E08).</p>
+<p>국내 바닐라 원물의 연속 도매·소매가격은 확보하지 못했다. 시도 경로는 KAMIS의 바닐라·바닐라빈 품목 검색, 품목 레지스트리의 <code>kamis: null</code>, <code>processed_data</code>의 KAMIS 파일 유무 확인이다. ‘평년’ 값은 실측 가격과 섞지 않았으며, 바닐라에 해당하는 KAMIS 실측 시계열 자체를 발견하지 못했다. 세계은행 Pink Sheet의 바닐라 전용 계열도 아카이브의 가용성 기록에서 확인되지 않았다(<code>raw_data/_no_pinksheet_vanilla.txt</code>; 웹 조사 노트, E19).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>마다가스카르가 중심이고 대체 산지의 규모는 다르다</h2>
+<p class="lead">생산지와 한국의 통관 상대국은 같은 개념이 아니다. FAOSTAT QCL은 어디서 바닐라 원물이 생산됐는지 보여주고, 무역행렬 TM과 Comtrade는 한국에 어느 나라가 상대국으로 신고됐는지 보여준다. 가공·보관·재수출을 거치면 생산지와 신고 상대국이 달라질 수 있다. 한국 수입에서 마다가스카르발 비중은 2024년 FAOSTAT TM 76.3%, 2025년 Comtrade preview 68.3%다. 2024년 세계 생산 비중 43.4%와는 분모가 다르므로 그 차이를 한국만의 ‘추가 의존도’로 해석하지 않는다(E01·E05·E20).</p>
+<div class="tw">
+<table>
+<caption>표 6. 바닐라 원물 주요 국가의 서로 다른 역할</caption>
+<thead><tr><th>국가</th><th class="num">2024년 FAOSTAT 생산(톤)</th><th class="num">2024년 한국 상대국(톤)</th><th class="num">2025년 한국 상대국(kg)</th><th>읽을 점</th></tr></thead>
+<tbody>
+<tr><td>마다가스카르</td><td class="num">3,089.54</td><td class="num">17.27</td><td class="num">19,947.737</td><td>세계 최대 생산국·한국 최대 신고 상대국</td></tr>
+<tr><td>인도네시아</td><td class="num">1,526.00</td><td class="num">1.86</td><td class="num">1,620.433</td><td>세계 두 번째 생산국</td></tr>
+<tr><td>멕시코</td><td class="num">510.34</td><td class="num">0.02</td><td class="num">상대국 행 없음</td><td>생산국이나 한국 신고 물량은 작음</td></tr>
+<tr><td>파푸아뉴기니</td><td class="num">492.92</td><td class="num">1.63</td><td class="num">1,540.500</td><td>생산·한국 상대국 모두 확인</td></tr>
+<tr><td>중국 본토</td><td class="num">434.86</td><td class="num">0.00</td><td class="num">0.183</td><td>생산은 FAOSTAT 코드 41; 2025년 상대국은 Comtrade의 <code>China</code> 행</td></tr>
+<tr><td>우간다</td><td class="num">183.11</td><td class="num">0.25</td><td class="num">742.003</td><td>동아프리카 생산·수출국</td></tr>
+<tr><td>프랑스</td><td class="num">해당 표에 생산 상위국으로 등장하지 않음</td><td class="num">0.09</td><td class="num">588.838</td><td>큰 수입국이자 수출 신고국</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_vanilla.csv</code>의 2024년 생산, <code>raw_data/TM_vanilla.csv</code>의 2024년 한국 상대국, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=090510,090520&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2025년 HS 0905.10·0905.20 수입 상대국 preview, 2026-10-08 확인</a>(E01·E05·E20). 2024년 0.00은 TM 표시 정밀도에서 반올림된 행이며 무역이 절대 없었다는 뜻이 아니다. 2025년의 <code>상대국 행 없음</code>도 물량 0을 증명하지 않는다.</p>
+<h3>마다가스카르</h3>
+<p>2024년 FAOSTAT 생산량은 3,089.54톤이다. 같은 해 수출량 5,544.78톤에는 추정·보정 표지 I가 있다. 생산과 수출의 큰 차이를 재고 방출만으로 설명할 수는 없다. 재고, 통계 작성기간, 신고·추정 방식별 기여량을 분해할 자료는 확보하지 못했다(E01·E04).</p>
+<p>정책 경로는 확인된다. 세계은행에 따르면 마다가스카르는 건조 바닐라 수출 최저가 250달러/kg 정책을 2023년 5월 중단했다. 상무소비부는 2026년 9월 26일부터 10월 15일까지 2026~27년 수출업자 인가를 디지털 플랫폼으로 접수한다고 공고했다. 별도 공고는 <strong>AVM(Alliance pour la Vanille Malagasy)이 정한 참조가격</strong>보다 바닐라 가격이 개선됐다고 서술하지만 참조가격의 금액이나 법정 최저가 재도입 여부는 밝히지 않는다(<a href="https://documents1.worldbank.org/curated/en/099022425145522481/pdf/P501380-72e88ef2-bbb6-4323-9795-e716a6ecd57f.pdf">세계은행, <em>Madagascar Economic Update: Bridging the Productivity Divide</em>, 2025-02</a>; <a href="https://mincc.gov.mg/index.php/2026/09/26/campagne-2026-2027/">마다가스카르 상무소비부, 「Campagne Vanille 2026-2027」, 2026-09-26</a>; <a href="https://mincc.gov.mg/index.php/2026/09/07/fananganan-tsaina-2/">같은 부처, 「Fananganan-tsaina」, 2026-09-07</a>; E16·E18).</p>
+<p>2025/26년 생산 최소 4,500톤이라는 수치는 Biovanilla의 B등급 업계 추정이다. FAOSTAT의 완료연도 생산 통계와 따로 둔다. 이 추정치에는 같은 기간의 세계 생산 분모가 없어 마다가스카르의 2025/26년 세계 점유율을 계산할 수 없다(E17).</p>
+<h3>다른 산지와 한국으로 들어오는 경로</h3>
+<p>인도네시아는 FAOSTAT 2024년 1,526.00톤으로 세계 두 번째 생산국이다. 한국의 2024년 인도네시아발 신고는 1.86톤, 2025년 Comtrade 상대국 행은 1,620.433kg이다. 파푸아뉴기니의 2024년 생산은 492.92톤이고 한국 신고는 2024년 1.63톤, 2025년 1,540.500kg이다. FAO는 파푸아뉴기니 이스트세픽 지역 사업 사례에서 덩굴 병해, 높은 습도에 따른 보관 문제, 도난이 조기 판매와 품질 저하로 이어졌다고 기록했다. 이 사례를 국가 전체의 생산손실률로 확대하지 않는다(<a href="https://www.fao.org/in-action/eu-streit-png/news/detail/nine-month-wait-building-vanilla-business-papua-new-guinea/en">FAO, 2026-06-10</a>, A; E01·E05·E20).</p>
+<p>프랑스는 2024년 FAOSTAT 수입 2,212.22톤과 수출 504.47톤이 동시에 잡힌다. 생산 상위국 목록에 보이지 않으면서 수입·수출 양쪽에 등장한다는 사실은 가공·재유통 경로의 가능성을 보여주지만, 프랑스 수출분 가운데 얼마가 재수출인지 이 통계만으로 알 수 없다(E04).</p>
+<p>한국의 관세청 국가별 월간 파일은 2026년 3~8월만 담는다. 2026년 4월 마다가스카르발 미분쇄품 3,326kg과 분쇄품 100kg은 월별 관측 사실로 활용할 수 있지만, 이를 연간 상대국 점유율이나 계절성의 증거로 확대하지 않는다. 산지의 수확월·건조기간과 한국의 통관월을 연결한 원자료는 미확보다(E07).</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>수입업체 순위보다 거래 단계의 빈칸이 먼저 보인다</h2>
+<p class="lead">공개 자료는 국가별 원물 수입량을 보여주지만 한국의 개별 수입·추출·향료·식품 제조업체가 얼마의 바닐라를 취급했는지 보여주지 않는다. 관세청 HS 통계에는 업체명이 없고, 확보한 FAOSTAT·UN Comtrade에도 기업별 국내 판매량이 없다. 식약처 일별 수입신고 자료에는 업소명 <code>BSN_OFC_NAME</code>이 있지만 같은 레코드에서 바닐라 원물의 연간 업체별 물량을 재구성할 수 없다. 식약처 바닐라 품목의 업소별 신고 <strong>건수 순위</strong>는 확인되지만, 업체별 원물 물량과 점유율은 확인되지 않는다(식약처 수입식품 신고 확인, 2025년 10월~2026년 9월, 신고 건수 기준; E21).</p>
+<div class="tw">
+<table>
+<caption>표 7. 국내 바닐라 가치사슬에서 확인된 자료와 빈칸</caption>
+<thead><tr><th>단계</th><th>확인 가능한 것</th><th>이번 자료에서 확인되지 않은 것</th><th>필요한 원천</th></tr></thead>
+<tbody>
+<tr><td>원물 수입</td><td>HS 0905 월별 중량·금액·일부 상대국; 식약처 품목별 연간 신고 중량 필드</td><td>수입업체별 연간 원물 물량·점유율</td><td>업체와 품목별 물량을 함께 식별할 수 있는 신고 원자료</td></tr>
+<tr><td>추출·향료 제조</td><td>식품 분류·표시 법령의 적용 틀</td><td>천연 원물 투입량·추출수율·합성 바닐린 대체량</td><td>제조업체별 생산·원료 자료</td></tr>
+<tr><td>식품 제조</td><td>바닐라향 제품이 원물 통계와 다른 단계라는 사실</td><td>품목별 바닐라 사용량과 구매가격</td><td>제품군별 원료 투입 조사</td></tr>
+<tr><td>도매·소매</td><td>일부 민간 가격표의 산지 가격</td><td>한국 바닐라 원물 연속 거래가격</td><td>국내 도매·소매 실거래 시계열</td></tr>
+<tr><td>소비</td><td>FAOSTAT 식용 공급 추정치</td><td>소비자 구매량·천연/합성 선택 비중</td><td>가구·외식·제조 원료 통합 조사</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청·FAOSTAT 원자료, 식약처 수입신고 원자료와 웹 조사 노트의 업체·가격 조사 경로(E03·E06·E19·E21). ‘확인되지 않은 것’은 산업에 그런 활동이 없다는 뜻이 아니라 이번 공개 자료에서 집계할 수 없다는 뜻이다.</p>
+<h3>통관 수입액과 기업 매출의 경계</h3>
+<p>2025년 한국 HS 0905 수입액은 2,620,990달러다. 이 값은 통관 단계의 상품가격 합계이지 수입업체의 국내 매출 합계가 아니다. 통관 이후의 가공·소분·추출·제품 제조 가치가 빠져 있고, 반대로 수입원물이 당해연도에 전량 팔렸는지도 알 수 없다. 이 금액만으로 국내 기업 순위나 유통마진을 계산할 수 없다(E06).</p>
+<p>2025년 물량의 95.4%는 미분쇄품 HS 0905.10이다. 이는 신고 형태의 구성이지 국내 가공업체가 95.4%를 직접 분쇄했다는 뜻이 아니다. 미분쇄품은 그대로 판매되거나 추출·가공 과정에 투입될 수 있으나, 각각의 물량은 확보하지 못했다(E06).</p>
+<h3>기업 순위의 자료 경계</h3>
+<p>같은 연도·제품 경계·거래 단계의 공통 분모가 없어 국내 ‘상위 바닐라 기업’ <strong>물량·매출 순위</strong>는 확인되지 않는다. 원물 수입 kg 순위와 바닐라향 식품 매출 순위를 섞으면 큰 식품회사와 원료 전문회사가 서로 다른 사업을 하는데도 한 목록에서 경쟁하는 것처럼 보인다. 신고 건수도 신고 물량과 같지 않다. 식약처 품목별 연간 통계에는 업체 식별자가 없고, 업소명이 있는 일별 파일에서는 업체별 원물 연간 물량을 확인하지 못했다(E21).</p>
+<p>개별 브랜드의 홍보 문구, 제품 등록, 식품 표시만으로는 수입업체의 전체 취급량이 확인되지 않는다. 식약처 품목별 연간 통계의 2025년 <code>바닐라(열매,건조)</code> 행에는 <code>NOTICE_WEIGHT_SUM=24,683</code>, 적합분 <code>NOTICE_WEIGHT_ACCEPT=24,652</code>가 있다. 원자료에는 이 중량 필드의 단위가 없으므로 관세청의 kg 값으로 곧바로 환산하지 않는다. DART 공시의 회사 전체 매출도 바닐라 매출과 구분된다(<code>data/_raw/mfds_import_permit_stats/2026-10-06__mfds_import_permit_stats.json.gz</code>, E21).</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>과거 기본세율과 현재 적용세율은 기준이 다르다</h2>
+<p class="lead">한국 바닐라 원물의 세번은 현재 품목 레지스트리에서 미분쇄 0905.10과 분쇄 0905.20으로 나뉜다. 보관된 일부 과거 문서는 분리 전 세번 0905.00을 사용한다. 과거 협정표의 8%는 현재 신고의 실효세율을 뜻하지 않는다. 이번 자료에는 현행 세번 전환, 원산지 증명, 협정 적용 시점에 따른 개별 판정이 없다(E00·E15).</p>
+<div class="tw">
+<table>
+<caption>표 8. 이번 조사에서 확인한 바닐라 관련 제도</caption>
+<thead><tr><th>영역</th><th>확인된 내용</th><th>적용 범위·한계</th></tr></thead>
+<tbody>
+<tr><td>관세율표</td><td>2016년 개정본의 0905.10·0905.20 기본세율 각 8%</td><td>2026년 실제 적용세율은 미확보</td></tr>
+<tr><td>한·캐나다 FTA</td><td>협정 당시 0905.00 기준세율 8%, 철폐유형 B</td><td>현행 세번·원산지별 적용 판정과 구분</td></tr>
+<tr><td>할당관세</td><td>2026년 2월 12일~6월 30일 별표 7에 0905 미기재</td><td>해당 별표만 확인; 연간 전체 규정 판정 아님</td></tr>
+<tr><td>식물검역</td><td>식물·포장재 수입 시 원칙적으로 식물검역증명서 요구, 법정 예외 존재</td><td>바닐라 건조·분쇄 상태별 대상 판정 미확보</td></tr>
+<tr><td>수입식품 표시</td><td>신고 시 한글표시 포장지 또는 표시내용 서류 등 제출 원칙</td><td>제품 형태별 세부 표시 판정은 별도</td></tr>
+<tr><td>원산지 표시</td><td>농산물·가공품 표시대상은 시행령 제3조 기준</td><td>식품첨가물은 가공품 원료의 순위 계산에서 제외</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 국가법령정보센터 관세율표·할당관세 별표·식물방역법·수입식품안전관리 특별법 시행규칙·원산지 표시법 시행령, 한·캐나다 FTA 원문(웹 조사 노트, 모두 A; E15). 표의 기간과 세율은 각 원문의 시점에 한정한다.</p>
+<p>국가법령정보센터의 <a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&amp;flSeq=80542201&amp;gubun=">2016년 관세율표 원문</a>은 0905.10과 0905.20의 기본세율을 각각 8%로 싣는다. 이 문서는 현행 2026년 신고 적용세율표가 아니다. 캐나다 정부의 <a href="https://www.international.gc.ca/trade-commerce/trade-agreements-accords-commerciaux/agr-acc/korea-coree/fta-ale/tariff_korea_1.aspx?lang=eng">한국 양허표</a>는 협정 당시 0905.00을 기준세율 8%·철폐유형 B로 적고, <a href="https://www.international.gc.ca/trade-commerce/trade-agreements-accords-commerciaux/agr-acc/korea-coree/fta-ale/02.aspx?lang=eng">협정 제2장</a>은 B 유형이 발효 후 3년 차에 무세가 된다고 정한다. 이 사실로 마다가스카르산 바닐라의 세율을 추론할 수 없다(E15).</p>
+<p>2026년 2월 12일부터 6월 30일까지 적용된 할당관세 <a href="https://www.law.go.kr/flDownload.do?bylClsCd=110201&amp;flSeq=161558255&amp;gubun=">별표 7</a>에는 바닐라 또는 0905가 없다. 다른 기간·다른 별표와 조정관세 전체를 전수 확인한 것은 아니므로 ‘2026년 바닐라 할당관세가 없다’고 단정하지 않는다(E15).</p>
+<p><a href="https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1004240329">식물방역법 제8조</a>는 식물·포장재에 수출국 정부기관 발급 식물검역증명서를 요구하는 원칙과 예외를 둔다. 어떤 형태의 바닐라가 검역 대상인지에 관한 개별 품목 판정은 확보하지 못했다. <a href="https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1028661133">수입식품안전관리 특별법 시행규칙 제27조</a>는 한글표시 관련 제출 서류를 규정한다. <a href="https://www.law.go.kr/LSW/lsSideInfoP.do?chrClsCd=010202&amp;docCls=jo&amp;joBrNo=00&amp;joNo=0003&amp;lsId=&amp;lsiSeq=278005&amp;urlMode=lsScJoRltInfoR">원산지 표시법 시행령 제3조</a>는 가공품 원료 표시대상을 계산할 때 식품첨가물을 배합비율 순위와 표시대상에서 제외한다. 원물 바닐라와 바닐라향 식품첨가물은 표시 판단의 대상과 기준이 다르며, 제품별 최종 판정은 이번 자료에서 확인되지 않았다(E15).</p>
+<p>식약처의 수입식품 부적합 목록에는 2026년 4월 22일과 5월 11일 제조국·수출국이 마다가스카르로 신고된 바닐라빈 분말의 금속성이물 부적합 사례가 각각 한 건씩 있다. 이는 검사 사례이며 제조국이 마다가스카르인 신고 제품 전체의 부적합률이나 한국 전체 수입량을 뜻하지 않는다(<code>data/_raw/mfds_import_permit_stats/2026-10-06__mfds_import_permit_stats.json.gz</code>의 <code>getInspctImproptList05</code>, E21).</p>
+<p>마다가스카르 정책 문서의 시점도 서로 다르다. 세계은행이 확인한 것은 2023년 5월 250달러/kg 수출 최저가 정책 <strong>중단</strong>이다. 2026년 상무소비부의 인가 접수 공고와 <strong>AVM(Alliance pour la Vanille Malagasy)이 정한 참조가격</strong> 언급은 별개다. 현행 수출 최저가격의 법적 숫자·기간은 미확보이며, 새 인가 절차나 참조가격 언급만으로 최저가 재도입을 주장하지 않는다(<a href="https://documents1.worldbank.org/curated/en/099022425145522481/pdf/P501380-72e88ef2-bbb6-4323-9795-e716a6ecd57f.pdf">세계은행, <em>Madagascar Economic Update: Bridging the Productivity Divide</em>, 2025-02</a>; <a href="https://mincc.gov.mg/index.php/2026/09/07/fananganan-tsaina-2/">마다가스카르 상무소비부, 「Fananganan-tsaina」, 2026-09-07</a>; <a href="https://mincc.gov.mg/index.php/2026/09/26/campagne-2026-2027/">같은 부처, 「Campagne Vanille 2026-2027」, 2026-09-26</a>; E16·E18).</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>세계은행은 정책 변화를, Fairtrade는 농가 가격을 설명한다</h2>
+<p class="lead">은행·기관 자료를 품목 색인과 개별 원문으로 나눠 확인했다. 2026년 10월 8일 <code>data/_raw/_banks/index.csv</code>의 모든 열에서 <code>vanilla</code>·<code>바닐라</code>·<code>Madagascar</code>와 일치하는 행은 없었다. 이는 <strong>해당 색인에서의 검색 결과</strong>다. 바닐라를 다룬 은행 보고서가 세계에 없다는 뜻이 아니다. 웹 조사 노트가 확보한 세계은행 마다가스카르 경제보고서는 바닐라 시장을 따로 설명한다(E11·E16).</p>
+<div class="tw">
+<table>
+<caption>표 9. 이번 조사에서 확인한 기관·업계 자료와 주장</caption>
+<thead><tr><th>발행기관</th><th>문서·날짜</th><th>바닐라 관련 핵심 내용</th><th>등급·주의</th></tr></thead>
+<tbody>
+<tr><td>세계은행</td><td><em>Madagascar Economic Update: Bridging the Productivity Divide</em>, 2025년 2월</td><td>2023년 5월 수출 최저가 정책 중단과 이후 재고 출하·가격 하락을 연결</td><td>A · 세계은행의 분석</td></tr>
+<tr><td>Fairtrade International</td><td><em>2024 Living Income Reference Price Update</em>, 2024년</td><td>SAVA 지역 생산자 조사와 2024년 녹색 바닐라 생활소득 참조가격 €10.2/kg</td><td>B · 시장 체결가격 아님</td></tr>
+<tr><td>Daymon Global Insights</td><td><em>International Commodity Report</em>, 2025년 1월</td><td>마다가스카르 바닐라 2022~2024년 가격표</td><td>B · 기관 가격표</td></tr>
+<tr><td>Biovanilla</td><td><em>Madagascar Vanilla Market Report No. 04</em>, 2026년 3월</td><td>2025/26년 마다가스카르 생산 최소 4,500톤 추정</td><td>B · 판매업체 추정</td></tr>
+<tr><td>OECD·FAO</td><td><em>Agricultural Outlook 2025–2034</em>, 2025년 7월</td><td>공개 목차·본문 검색에서 바닐라 전용 전망 미확인</td><td>A · 검색 범위에 한정</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 웹 조사 노트에 기록된 원문 URL·발행일·등급과 은행 리포트 색인(E11~E13·E16~E19).</p>
+<p>세계은행은 수출 최저가 정책의 중단, 재고 출하 증가, 2024년 가격 하락을 하나의 설명으로 제시한다. 이는 정책과 가격 사이의 기관 분석이지, 한국 통관단가 변화의 원인을 계량적으로 분해한 연구가 아니다. 이 보고서는 한국 가격 변화에도 같은 인과 비중이 적용됐다고 주장하지 않는다(<a href="https://documents1.worldbank.org/curated/en/099022425145522481/pdf/P501380-72e88ef2-bbb6-4323-9795-e716a6ecd57f.pdf">세계은행 원문</a>, A; E16).</p>
+<p>Fairtrade는 2023년 11~12월 SAVA 지역 16개 마을의 생산자 480명을 조사해 생활소득 달성에 필요한 2024년 녹색 바닐라 가격을 €10.2/kg으로 추정했다. 이 추정 참조가격은 실제 농가 판매가격과 성격이 다르다. 이 자료는 가격 하락이 농가의 생활소득에 주는 문제를 보여주지만, 세계 전체 바닐라 농가의 평균 소득을 측정한 것은 아니다(<a href="https://www.fairtrade.net/content/dam/fairtrade/fairtrade-international/library/2024/living-income-reference-prices-for-vanilla-from-uganda-and-madagascar/Fairtrade-Vanilla-Living-Income-Ref-Price-Madagascar-report-2024.pdf">Fairtrade 원문</a>, B; E13).</p>
+<p>Biovanilla의 2025/26년 최소 4,500톤은 최신 업계 상황을 읽는 신호로 남긴다. 2024년 FAOSTAT 값과 차이가 있다는 이유만으로 어느 쪽이 잘못됐다고 판정하지 않는다. 시즌과 달력연도, 추정과 통계가 다르다(<a href="https://www.biovanilla.fr/en/actualites/madagascar-vanilla-market-report-04-march-2026">Biovanilla 원문</a>, B; E17).</p>
+<p>Rabobank·KREI 농업전망·KMI·aT의 최근 바닐라 전용 전망 원문은 이번 조사에서 확보하지 못했다. 시도 경로는 각 기관 사이트의 <code>vanilla</code>, <code>Madagascar vanilla</code>, <code>바닐라 보고서</code> 검색과 은행 색인 전 열이다. OECD–FAO 전체 농업전망의 다른 품목 전망치를 바닐라 전망으로 전용하지 않는다(웹 조사 노트, E11·E19).</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 관찰 지표·남은 물음</span>상대국, 가격 단계, 정책 문구를 따로 추적한다</h2>
+<p class="lead">한국의 HS 0905 수입은 세계 생산에 비해 작은 물량이지만, 완료연도 상대국 통계에서 마다가스카르발 집중이 높다. 수급 위험은 산지 생산, 재고·수출정책, 품질, 환율·계약조건, 국내 향료 대체라는 서로 다른 경로로 들어온다. 한 경로의 수치로 다른 경로의 결과를 단정하지 않는 것이 관찰의 출발점이다(E01·E05·E06·E20).</p>
+<p><strong>산지 집중.</strong> FAOSTAT 2024년 세계 원물 생산에서 마다가스카르 비중은 43.4%다. 한국 수입 상대국 물량에서 마다가스카르 비중은 2024년 FAOSTAT TM 76.3%, 2025년 UN Comtrade preview 68.3%다. 미국발 물량은 같은 Comtrade 원천에서 2024년 1,430.607kg, 2025년 4,579.625kg으로 늘었다. 연간 수십 톤 시장에서 상대국 점유율의 한 해 변화를 장기 구조 변화로 단정하지 않는다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=090510,090520&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국의 2025년 HS 0905.10·0905.20 수입 상대국 preview, 2026-10-08 확인</a>; E01·E05·E20).</p>
+<p><strong>재고·정책.</strong> FAOSTAT 2023년 세계 기초재고 31,381.15톤은 추정 수급계정 값이다. 이것만으로 특정 연도 시장에 즉시 풀릴 판매 가능 재고를 구하지 않는다. 마다가스카르의 수출 최저가 정책은 2023년에 중단됐다는 세계은행 원문이 있다. 2026년 정부 공고에는 수출업자 인가와 <strong>AVM(Alliance pour la Vanille Malagasy)이 정한 참조가격</strong>이 언급된다. 참조가격의 금액·법적 강제력·현행 최저가 재도입 여부는 이 공고로 확인되지 않는다(<a href="https://documents1.worldbank.org/curated/en/099022425145522481/pdf/P501380-72e88ef2-bbb6-4323-9795-e716a6ecd57f.pdf">세계은행, <em>Madagascar Economic Update: Bridging the Productivity Divide</em>, 2025-02</a>; <a href="https://mincc.gov.mg/index.php/2026/09/07/fananganan-tsaina-2/">마다가스카르 상무소비부, 「Fananganan-tsaina」, 2026-09-07</a>; <a href="https://mincc.gov.mg/index.php/2026/09/26/campagne-2026-2027/">같은 부처, 「Campagne Vanille 2026-2027」, 2026-09-26</a>; E03·E16·E18).</p>
+<p><strong>가격 전가.</strong> Daymon의 2024년 마다가스카르 가격표, Fairtrade의 농가 가격, 한국의 2025년 수입단가는 서로 다른 단계다. 가격 변동 방향이 같더라도 환율·품질·재고·계약 시점이 다르므로 국내 소비자 가격 전가율을 계산할 수 없다. 국내 바닐라 원물의 연속 도소매 가격과 제조 원료비 자료도 확보되지 않았다(E06·E12·E13·E19).</p>
+<p><strong>형태와 대체.</strong> 2025년 HS 0905 한국 수입 물량의 95.4%는 미분쇄품이다. 그러나 바닐라 추출물과 합성 바닐린은 이 분모 밖이다. 원물 수입량이 늘거나 줄어도 바닐라향 제품 전체의 수요 방향을 같은 방향으로 결론 내릴 수 없다(E00·E06).</p>
+<div class="tw">
+<table>
+<caption>표 10. 정기 관찰 지표와 판정 기준</caption>
+<thead><tr><th>지표</th><th>수집기·원천</th><th>주기</th><th>확인된 최신 기준</th><th>다음에 확인할 것</th></tr></thead>
+<tbody>
+<tr><td>한국 HS 0905 물량·금액·단가</td><td><code>customs_item_trade_monthly</code></td><td>월</td><td>2026년 1~8월 25.475톤·234.43만 달러·92.02달러/kg</td><td>같은 기간 대비와 연간 확정치 분리</td></tr>
+<tr><td>한국 수입 상대국</td><td>UN Comtrade preview, FAOSTAT TM, <code>customs_kr</code></td><td>연·월</td><td>2025년 마다가스카르 68.3%(Comtrade preview)</td><td>후속 개정과 2026년 완료연도 자료</td></tr>
+<tr><td>세계 원물 생산</td><td><code>faostat_production</code></td><td>연</td><td>2024년 7,114.54톤</td><td>추정 표지와 차기 개정값</td></tr>
+<tr><td>세계 무역</td><td><code>faostat_trade</code>, <code>comtrade</code></td><td>연</td><td>FAOSTAT 2024년 수출 10,362.43톤</td><td>신고국 범위·추정 표지·합계행 필터</td></tr>
+<tr><td>한국 식용 공급</td><td>FAOSTAT SCL</td><td>연</td><td>2023년 21.41톤(E)</td><td>다음 연도 계정과 추정 방식</td></tr>
+<tr><td>식약처 품목별 수입신고</td><td><code>mfds_import_permit_stats</code></td><td>연</td><td>2025년 건조 바닐라 열매 <code>NOTICE_WEIGHT_SUM=24,683</code></td><td>중량 단위·관세청 HS 대응 범위·업체별 물량</td></tr>
+<tr><td>마다가스카르 가격</td><td>Daymon 등 원문 가격표</td><td>월·연</td><td>2024년 평균 €49.56/kg(B)</td><td>동일 단계·등급의 후속값</td></tr>
+<tr><td>마다가스카르 수출 제도</td><td>상무소비부 원문·세계은행</td><td>공고별</td><td>2026~27년 수출업자 인가 공고</td><td>현행 법정 최저가 조문·적용기간</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 표 1~9의 원자료와 기관 원문, <code>rawbulk.report_delta.coverage("vanilla")</code>(E01~E21). 표의 ‘최신 기준’은 서로 다른 자료의 마지막 관측기간이며 하나의 동시점 시장판단이 아니다.</p>
+<p>Comtrade CSV에는 세부 관세절차·운송수단·제2상대국 행이 합계 행과 함께 있고, 중량이 비어 있는 행도 있다. KAMIS의 <code>countyname=평년</code>은 당해 연도를 제외한 최근 5년 중 최고·최저를 뺀 3년 평균 참고값이며 실측값과 성격이 다르다(<a href="https://www.kamis.or.kr/customer/archive/archive.do?action=detail&amp;archiveNo=158">KAMIS, 「식재료 아카이브」의 평년 산식 설명, 2026-10-08 확인</a>; E08·E19).</p>
+<h3>남은 물음</h3>
+<ul>
+<li>한국의 바닐라 <strong>국내 생산량</strong>은 얼마인가. 이번에 확인한 FAOSTAT QCL과 KOSIS 공통 작물 원자료에 전용 행이 없어 미확보다. 농업통계의 세부 품목과 지역별 재배 기록을 확인한다(E19).</li>
+<li>한국에서 쓰는 <strong>천연 바닐라 원물·추출물·합성 바닐린</strong>의 물량은 각각 얼마인가. HS 0905 밖의 원료 투입 자료를 확인한다(E00).</li>
+<li><strong>2025년 수입 상대국 구성</strong>은 확인됐으나 preview가 후속 개정되는가. 같은 HS 범위의 후속 Comtrade 자료와 비교하고 생산지·신고 상대국을 구분한다(E20).</li>
+<li>마다가스카르의 <strong>2026년 현행 수출 최저가</strong>가 있는가. 정부 고시 원문에서 숫자·법적 적용기간을 확인하고 AVM 참조가격과 구분한다(E18).</li>
+<li><strong>업체별 취급량과 국내 가격</strong>은 얼마인가. 식약처 일별 업소명 자료와 연간 품목 통계가 연결되는지 확인하고, 국내 도소매 실거래 시계열을 찾는다(E19·E21).</li>
+<li><strong>식약처 품목별 신고 중량의 단위</strong>와 HS 0905.10의 대응 범위는 무엇인가. 원자료의 <code>NOTICE_WEIGHT_SUM</code>을 kg로 추정해 통관량과 직접 비교하지 않는다(E21).</li>
+<li>마다가스카르의 <strong>생산량과 수출량 차이</strong>에서 재고·집계기간·추정방식의 몫은 각각 얼마인가. 항목별 원자료를 확인한다(E01·E04).</li>
+<li>한국 바닐라의 <strong>현행 적용세율</strong>은 얼마인가. 세번 전환·원산지 증명·협정 적용 시점과 다른 기간의 할당·조정관세 규정을 확인한다(E00·E15).</li>
+<li>건조·분쇄 상태별 <strong>식물검역 대상</strong>과 원물·식품첨가물별 <strong>표시 판정</strong>은 무엇인가. 제품 형태별 판정 근거를 확인한다(E15).</li>
+<li><strong>한국 수입단가와 소비자가격</strong>은 어떻게 연결되는가. 같은 기간·품질·상대국의 가격과 제조 원료비 자료를 확인한다(E06·E12·E13·E19).</li>
+<li><strong>Comtrade 후속 집계</strong>에서는 <code>customsCode=C00</code>·<code>motCode=0</code>·<code>partner2Code=0</code> 합계 행, 세계 상대국에는 <code>partnerCode=0</code>을 적용하고 <code>netWgt</code>가 빈 행의 물량 순위를 제외한다(E08·E20).</li>
+<li><strong>KAMIS 후속 가격 자료</strong>에서는 <code>countyname=평년</code>을 최근 5년 중 최고·최저를 뺀 3년 평균 참고값으로 분리하고 서울·평균 등의 실측과 구분한다(<a href="https://www.kamis.or.kr/customer/archive/archive.do?action=detail&amp;archiveNo=158">KAMIS, 「식재료 아카이브」의 평년 산식 설명, 2026-10-08 확인</a>; E19).</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>산지의 건조 바닐라와 한국의 원료 유통</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">한국의 HS 0905.10·0905.20 수입 상대국 <strong>물량</strong>에서 마다가스카르 비중은 2024년 FAOSTAT TM 76.3%, 2025년 UN Comtrade preview 68.3%였다. 미국은 각각 6.3%, 15.7%로, 2025년에 10%를 넘었다. 10% 이상인 상대국은 이 두 나라다. 인도네시아는 2025년 비중이 5.5%지만 2024년 세계 원물 생산 2위여서 세 번째 국가로 살폈다. 통관 상대국은 생산지와 같지 않으며, 국가별 한국행 물량을 개별 기업에 배분할 자료는 없다(<a href="https://www.fao.org/faostat/en/">FAOSTAT, A</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=090510,090520&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 한국 수입 preview, A</a>; 04절).</p>
+<p>2025년 분쇄품 HS 0905.20의 수입액은 112,016달러로 두 세번 합계 2,620,990달러의 4.3%다. 별도 가공품 공급국 표를 요구하는 10% 기준에는 미치지 않는다. 추출물·바닐린·혼합향료는 HS 0905의 분모 밖이다(<a href="https://www.customs.go.kr/kcs/main.do">관세청 수출입무역통계, A</a>; 01·04절).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 상대국의 바닐라 수출·가공·무역 기업과 한국 연결</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표·연도</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>마다가스카르</td><td>Lavany Export</td><td>신고서상 해외 제조사</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 99건</td><td><a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, 2025.10~2026.09, A</a></td></tr>
+<tr><td>마다가스카르</td><td>Premium Spices</td><td>집하·건조·수출</td><td>협력 소농 1,860명·직원 85명, Pronatec 파트너 소개 2026년 8월 수정본·잠정</td><td>식약처 제조사명 일치, 24건</td><td><a href="https://pronatec.com/en/origins/premium-spices/">Pronatec, B</a>·<a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, A</a></td></tr>
+<tr><td>마다가스카르</td><td>Videeko Vanilla</td><td>신고서상 해외 제조사</td><td>Videeko Vanilla ZP가 2022~23년 수출 인가를 발표. SARLU와 ZP의 법인 관계·SARLU의 연간 수출량은 확인된 공개 자료 없음</td><td>식약처 제조사명 VIDEEKO VANILLA SARLU 15건·VIDEEKO VANILLA ZP LLC 1건</td><td><a href="https://videekovanilla.com/madagascar-vanilla-exportation-license-for-2022-2023/">Videeko Vanilla ZP, B</a>·<a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, A</a></td></tr>
+<tr><td>마다가스카르</td><td>Authentic Products</td><td>현지 건조·추출·수출, 프랑스에도 사업장</td><td>바닐라 수출 454톤, 2024년 회사 보고; 회사가 적은 평년 약 200톤과 구분</td><td>식약처 제조사명 일치, 1건</td><td><a href="https://www.vanille.com/wp-content/uploads/2025/05/22-05-2025-Rapport-AP-2024-EN_light.pdf">회사 2024년 보고서, B</a>·<a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, A</a></td></tr>
+<tr><td>마다가스카르</td><td>Origines SARL</td><td>원물 조달·가공</td><td>Symrise 지분 100%, 2024년; 법인별 바닐라 수출량 미공개</td><td>식약처 제조사명은 ‘ORIGNES SARL’ 2건. 신고서 철자 그대로이며 Origines SARL로 추정</td><td><a href="https://www.symrise.com/corporatereport/2024/home/Symrise_GB24_Konzernabschluss_EN_geschuetzt.pdf">Symrise 연결재무제표, 2024, A</a>·<a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, A</a></td></tr>
+<tr><td>미국(수출국)</td><td>Millennium Trading</td><td>신고서상 해외 제조사·무역</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 MILLENNIUM TRADING CORP 5건; 제조국은 마다가스카르·미국, 수출국은 미국</td><td><a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, 2025.10~2026.09, A</a></td></tr>
+<tr><td>미국</td><td>Nielsen-Massey Vanillas</td><td>추출물 제조·유통</td><td>한국 유통 품목 18종 추가, 2025년 쿠팡 발표; 원물 수출량 아님</td><td>쿠팡의 한국 유통 발표. 해당 제품은 HS 0905 원물 수입과 구분</td><td><a href="https://www.aboutcoupang.com/from-bean-to-bottle-to-korea-nielsen-massey-vanillas-thrives-with-coupang/">쿠팡, 2025, B</a></td></tr>
+<tr><td>미국</td><td>McCormick</td><td>추출물·조미료 제조</td><td>회사 전체 순매출 68억 4,030만 달러, 2025년; 바닐라 매출 아님</td><td>HS 0905 원물의 한국 연결은 확인된 공개 자료 없음</td><td><a href="https://www.sec.gov/Archives/edgar/data/63754/000006375426000037/mkc-20251130.htm">미국 SEC 10-K, 2025, A</a>·<a href="https://www.mccormick.com/products/mccormick-culinary-pure-vanilla-extract-16-fl-oz">회사 제품정보, B</a></td></tr>
+<tr><td>인도네시아</td><td>PT Triton Nusantara Tangguh</td><td>신고서상 해외 제조사·무역</td><td>바닐라 연간 수출량 확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 12건</td><td><a href="https://smesta.umkm.go.id/ukm/triton-nusantara-tangguh-pt">인도네시아 중소기업부 기업목록, A</a>·<a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, A</a></td></tr>
+<tr><td>인도네시아</td><td>PT Sinar Niaga Agro</td><td>신고서상 해외 제조사</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 5건</td><td><a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, 2025.10~2026.09, A</a></td></tr>
+<tr><td>인도네시아</td><td>Adikarya Darsa Internusa</td><td>원물 선별·무역</td><td>2026년 한국행 1~3차 선적 회사 발표·잠정; 연간 물량 미공개</td><td>식약처 제조사명 일치, 5건; 회사의 한국행 선적 발표</td><td><a href="https://id.linkedin.com/company/adikarya-darsa-internusa">회사 발표, 2026, B</a>·<a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, A</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.fao.org/faostat/en/">FAOSTAT 무역행렬, A</a>, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=090510,090520&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 한국 수입 preview, A</a>, <a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처 수입식품 공개 API, A</a>, 각 행의 공시·기업 자료. 식약처 기간은 <strong>2025년 10월~2026년 9월</strong>, 수치는 <strong>신고 건수 기준</strong>으로 중량·금액·점유율이 아니다. 2026년 수록분은 잠정이다. 식약처 신고 원자료에서 제조국과 수출국은 별도 항목이다. 제조사명 표기 변형은 합쳤다. 집계는 품목명이 ‘바닐라(열매·씨앗)’인 행만 셌다. 같은 기간 ‘천연향신료’·‘향료’ 등 다른 품목명으로 신고된 바닐라빈·씨앗·분말 약 30건은 들어가지 않았으므로, 표의 건수는 해당 필터에서 확인되는 기업별 신고의 하한이다.</p>
+<p><strong>세계 최대 단일 바닐라 수출기업</strong>을 확정할 동일 연도·동일 품목 범위의 기업별 세계 수출량은 확인된 공개 자료가 없다. <a href="https://documents1.worldbank.org/curated/en/535501571854255186/pdf/Madagascar-Economic-Update-A-New-Start.pdf">세계은행의 2019년 마다가스카르 가치사슬 분석, A</a>는 당시 Somava, Authentic Products, Origines/Symrise, Planifolia 네 업체가 바닐라빈 수출의 약 절반을 차지한다고 적었다. 이는 과거 마다가스카르의 네 회사 묶음 추정이며 현재 세계 기업 순위가 아니다.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처 순위는 신고 빈도를 보여준다. 건별 중량이 같지 않으므로 원물 수입 물량 순위나 시장점유율로 읽지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 식약처 바닐라 품목 신고 상위 수입업소</caption>
+<thead><tr><th>수입업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>디케이아이엔티(DKINT)</td><td class="num">80</td><td>마다가스카르 79·파푸아뉴기니 1</td><td>건조 열매 중심</td></tr>
+<tr><td>(주)베이크플러스</td><td class="num">22</td><td>프랑스 11·마다가스카르 11</td><td>신선 열매; 해외 제조사 22건 모두 Valrhona S.A.S, 수출국 프랑스</td></tr>
+<tr><td>마다인터내셔널</td><td class="num">14</td><td>마다가스카르 14</td><td>건조 열매·씨앗</td></tr>
+<tr><td>몽파소</td><td class="num">12</td><td>마다가스카르 12</td><td>건조 열매·씨앗</td></tr>
+<tr><td>주식회사 한결농장</td><td class="num">12</td><td>마다가스카르 9·파푸아뉴기니 3</td><td>건조 열매 중심</td></tr>
+<tr><td>마다팜(mada farm)</td><td class="num">10</td><td>마다가스카르 10</td><td>건조 열매</td></tr>
+<tr><td>(주)산하</td><td class="num">10</td><td>마다가스카르 10</td><td>건조 열매</td></tr>
+<tr><td>아라무역</td><td class="num">9</td><td>인도네시아 5·파푸아뉴기니 4</td><td>건조 열매</td></tr>
+<tr><td>바닐라베이비</td><td class="num">7</td><td>우간다 3·인도네시아 2</td><td>다른 제조국 신고도 포함</td></tr>
+<tr><td>투오션즈</td><td class="num">6</td><td>마다가스카르 3·인도네시아 2</td><td>다른 제조국 신고도 포함</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처 수입식품 공개 API, A</a>, <strong>2025년 10월~2026년 9월 신고 건수 기준</strong>(2026년 수록분 잠정). ‘주요 제조국’은 업소별 상위 2개 제조국과 그 건수를 옮겼다. 원자료의 ‘마다카스카르’ 표기는 ‘마다가스카르’로 정규화했다. 집계는 품목명이 ‘바닐라(열매·씨앗)’인 행만 셌다. 같은 기간 다른 품목명으로 신고된 바닐라빈·씨앗·분말 약 30건은 들어가지 않았으므로, 표의 건수는 해당 필터에서 확인되는 업소별 신고의 하한이다.</p>
+<p>선인과 베이크플러스는 식약처 집계의 상위 30개 수입업소에 들며, 두 회사의 바닐라빈 판매 품목도 확인된다. 다음 매출은 회사 전체 사업 규모로, 바닐라 매출이나 바닐라 시장점유율이 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 국내 원료 수입·가공·유통기업의 확인 가능한 규모</caption>
+<thead><tr><th>기업</th><th>역할</th><th class="num">바닐라 신고 건수</th><th>2025년 회사 전체 매출</th><th>근거</th></tr></thead>
+<tbody>
+<tr><td>(주)선인</td><td>제과·식품 원료 제조·유통</td><td class="num">4</td><td>2,786억 5,723만 원, NICE 재게시</td><td><a href="https://sib.kr/kr/product?page=1&amp;s1=&amp;s2=&amp;s3=&amp;s5=%EB%B0%94%EB%8B%90%EB%9D%BC%EB%B9%88">회사 제품목록, B</a>·<a href="https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/MmRnTmNWd3NKYTRzOVJlVUZNOG9oQT09/company_nm/%28%EC%A3%BC%29%EC%84%A0%EC%9D%B8">재무정보 재게시, C</a></td></tr>
+<tr><td>(주)베이크플러스</td><td>제과제빵 원료 수입·유통</td><td class="num">22</td><td>1,892억 4,231만 원, NICE 재게시</td><td><a href="https://www.bakeplus.com/media/wysiwyg/bakeplus_catalogue_26.pdf">회사 제품 카탈로그, B</a>·<a href="https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/VmV0bmdXVi9aTWw2TDV5R1p4ZEYxUT09/company_nm/%28%EC%A3%BC%29%EB%B2%A0%EC%9D%B4%ED%81%AC%ED%94%8C%EB%9F%AC%EC%8A%A4">재무정보 재게시, C</a></td></tr>
+<tr><td>디케이아이엔티(DKINT)</td><td>원물 수입</td><td class="num">80</td><td>확인된 공개 자료 없음</td><td><a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, A</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처 수입식품 공개 API, A</a>, 각 행의 기업 제품자료(B)와 NICE평가정보 재게시 재무정보(C). 신고 건수는 2025년 10월~2026년 9월 기준이며 2026년 수록분은 잠정이다. 두 매출은 회사 외부감사보고서 원문이 아니라 NICE평가정보 재게시 값이다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 바닐라 원물에서 최종 소비까지의 가치사슬</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>마다가스카르·인도네시아 소농, 협동조합</td><td>국내 공식 생산량 미확보; 세계 원물 생산 2024년 7,114.54톤</td><td>산지 녹색 열매 거래</td><td>병해·도난·농가소득 변동</td></tr>
+<tr><td>1차 가공</td><td>산지 건조·선별업체</td><td>한국 투입량 미확보</td><td>건조품 등급·수분율별 계약</td><td>건조 실패·품질 편차</td></tr>
+<tr><td>수출·국제 무역</td><td>산지 수출업체, 미국·프랑스 재유통업체</td><td>2025년 한국 상대국 물량: 마다가스카르 68.3%·미국 15.7%</td><td>수출·도매 계약</td><td>공급국 집중·정책 변동</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소, 관세청·식약처</td><td>2025년 HS 0905 수입 29.209톤·262.10만 달러</td><td>수입 계약; 통관단가는 신고액의 평균</td><td>검사 부적합·품목 분류 차이</td></tr>
+<tr><td>국내 가공</td><td>분쇄·추출·식품원료 제조업체</td><td>2025년 수입 물량의 95.4%가 미분쇄품; 국내 가공량 미확보</td><td>원료 구매계약·제조원가</td><td>추출수율·원료 대체</td></tr>
+<tr><td>도매·유통</td><td>제과제빵 원료상·전문 도매상</td><td>업체별 물량·도매가격 미확보</td><td>도매 계약</td><td>재고·소분·품질 유지</td></tr>
+<tr><td>소매·외식</td><td>전문 소매상·제과점·외식업체</td><td>바닐라 원물 매출 미확보</td><td>제품·메뉴 판매가격</td><td>원료 표시·가격 전가</td></tr>
+<tr><td>소비</td><td>가구·외식 이용자</td><td>FAOSTAT 2023년 식용 공급 추정 21.41톤; 최종 구매량 아님</td><td>최종 판매가격</td><td>원물·추출물·합성향료 혼동</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.fao.org/faostat/en/">FAOSTAT 생산·수급계정, A</a>, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=090510,090520&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 한국 수입 preview, A</a>, <a href="https://www.customs.go.kr/kcs/main.do">관세청, A</a>, <a href="https://documents1.worldbank.org/curated/en/535501571854255186/pdf/Madagascar-Economic-Update-A-New-Start.pdf">세계은행 마다가스카르 가치사슬 분석, A</a>; 01·03~05절. 서로 다른 연도·거래 단계의 값은 합산하지 않았다.</p>
+<p><strong>부가가치가 생기는 곳.</strong> 녹색 열매를 건조·선별하면 보관·수출이 가능한 규격품이 되고, 추출·분쇄·소분·식품 제조·유통에서 별도의 가치가 붙는다. Fairtrade가 조사한 2023년 마다가스카르 SAVA 지역의 녹색 열매 농가 판매가격은 약 €2.2/kg이고, Daymon의 2024년 마다가스카르 건조 바닐라 가격표 연평균은 €49.56/kg이다(<a href="https://www.fairtrade.net/content/dam/fairtrade/fairtrade-international/library/2024/living-income-reference-prices-for-vanilla-from-uganda-and-madagascar/Fairtrade-Vanilla-Living-Income-Ref-Price-Madagascar-report-2024.pdf">Fairtrade, B</a>; <a href="https://daymonglobalinsights.com/wp-content/uploads/2025/02/GCR_January2025.pdf">Daymon, B</a>). 상태·연도·거래 단계가 달라 두 가격의 차액은 가공마진이 아니다. 한국의 2025년 통관 평균 89.73달러/kg도 국내 완제품 가격과 직접 연결할 수 없어 단계별 부가가치 배분율은 미확보다.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 바닐라 원물과 향료 경계의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>식품의약품안전처·관세청</td><td>수입식품 신고·검사, HS 통관</td><td>안전·적합성 및 정확한 품목 분류</td></tr>
+<tr><td>해외 정부</td><td>마다가스카르 상무소비부</td><td>바닐라 수출업자 인가 등 산지 유통 제도</td><td>산지 소득·수출 질서·시장 접근</td></tr>
+<tr><td>생산자·단체</td><td>KOMAM·COOPPVM·CPVM 협동조합</td><td>재배·공동 출하·인증 참여</td><td>녹색 열매 가격과 안정적 판로</td></tr>
+<tr><td>수출·가공기업</td><td>Premium Spices·Authentic Products</td><td>집하·건조·품질관리·수출·추출</td><td>규격품 확보와 가공 투자 회수</td></tr>
+<tr><td>수입·유통기업</td><td>선인·베이크플러스·디케이아이엔티</td><td>원료 수입·소분·제과제빵 유통</td><td>공급 안정·품질·판매가격</td></tr>
+<tr><td>소비자·시민사회</td><td>한국 소비자·한국소비자원</td><td>제품 선택과 가격·표시 정보 확인</td><td>천연 원물·추출물·향료의 구별</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·Fairtrade International</td><td>생산·수급 통계, 생활소득 참조가격과 인증</td><td>통계 비교 가능성·농가 소득·추적성</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처, A</a>, <a href="https://www.customs.go.kr/kcs/main.do">관세청, A</a>, <a href="https://mincc.gov.mg/index.php/2026/09/07/fananganan-tsaina-2/">마다가스카르 상무소비부, 2026, A</a>, <a href="https://pronatec.com/wp-content/uploads/2025/05/Partner-Profil_PremiumSpices_KOMAM_VANILLA-AND-CLOVES_05_25.pdf">Pronatec 협동조합 자료, 2025, B</a>, <a href="https://price.go.kr/tprice/portal/main/main.do">한국소비자원, A</a>, <a href="https://www.fao.org/faostat/en/">FAOSTAT, A</a>, <a href="https://www.fairtrade.net/content/dam/fairtrade/fairtrade-international/library/2024/living-income-reference-prices-for-vanilla-from-uganda-and-madagascar/Fairtrade-Vanilla-Living-Income-Ref-Price-Madagascar-report-2024.pdf">Fairtrade, 2024, B</a>, 표 11-1·11-3의 기업 자료.</p>
+<p>농가는 녹색 열매의 안정적 가격을 중시하고, 가공·수입업체는 품질과 국제가격 변동을 함께 고려한다. 산지의 수출 인가·참조가격 운영은 진입과 가격 협상에 영향을 준다. 2026년 공고의 AVM(Alliance pour la Vanille Malagasy) 참조가격 언급은 현행 <strong>법정 수출 최저가</strong>의 증거가 아니다(<a href="https://mincc.gov.mg/index.php/2026/09/07/fananganan-tsaina-2/">마다가스카르 상무소비부, A</a>). 소비자는 원료 출처와 성분을 구별할 정보를 원하지만, HS 0905 통계만으로 추출물·합성 바닐린을 포함한 완제품의 원료 구성을 알 수 없다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 검토 범위</h2>
+<p class="lead"><code>rawbulk.report_delta.coverage("vanilla")</code>를 2026년 10월 7일 읽기 전용으로 실행했다. ‘최신’은 해당 수집 파일에 들어 있는 마지막 기간이다. 행수는 원자료 전체가 아니라 품목 분할 또는 월간 수집 파일의 행수다. 수집기 밖의 FAOSTAT SCL·QI·QV·TM과 기관 보고서는 아래 원장으로 별도 추적했다(E14).</p>
+<div class="tw">
+<table>
+<caption>표 11. 바닐라 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">71</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">77</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">44</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">15</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">44</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">370</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">826</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">499</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">6,028</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">38,797</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">2,213</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">74</td><td>2026.08</td><td>2026-10-01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>의 <code>rawbulk.report_delta.coverage("vanilla")</code> 반환값(2026-10-07, E14). 미국 Census·EU Comext·브라질 Comexstat은 이번 본문의 한국 원산지 비중을 대신하지 않는다.</p>
+<p>기존 Drive 품목 폴더의 목록은 <code>archive_inventory/vanilla.csv</code>의 73행을 기준으로 했다. 원장 73개 경로를 로컬 캐시에서 각각 열어 접근성을 확인했고, 수치에 쓰는 CSV·메모는 내용과 필터를 대조했다. 파일 내용과 별도로 기존 1단계 판정 원장도 검토했다. 목록에 <code>dup_of</code>가 지정된 행은 없었다. 이번 산출의 01_아카이브_원장.csv는 입력 목록의 열을 유지하면서 판정을 <code>반영</code>·<code>불필요</code>·<code>미검토</code>로 기록한다(E14).</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 자료 검토 범위</caption>
+<thead><tr><th>레인</th><th class="num">전체</th><th class="num">반영</th><th class="num">불필요</th><th class="num">미검토</th></tr></thead>
+<tbody>
+<tr><td>intelligence_reports</td><td class="num">3</td><td class="num">2</td><td class="num">1</td><td class="num">0</td></tr>
+<tr><td>processed_data</td><td class="num">2</td><td class="num">2</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td>raw_data</td><td class="num">66</td><td class="num">10</td><td class="num">56</td><td class="num">0</td></tr>
+<tr><td>scripts</td><td class="num">2</td><td class="num">0</td><td class="num">2</td><td class="num">0</td></tr>
+<tr class="tot"><td><strong>합계</strong></td><td class="num"><strong>73</strong></td><td class="num"><strong>14</strong></td><td class="num"><strong>59</strong></td><td class="num"><strong>0</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/vanilla.csv</code>, <code>ledger/vanilla.ledger.csv</code>, 로컬 캐시 파일 접근·내용 확인(E14). <code>불필요</code>에는 코드표·범용 농업 지표·실행 로그·대표 CSV와 내용이 겹치는 MD 사본이 포함된다.</p>
+<p>반영 파일 가운데 <code>intelligence_reports/README.md</code>의 2022년 세계 생산량 7,833톤은 현재 QCL 원자료 7,110.23톤과 다르다. README는 자료 이력과 오류 가능성을 밝히는 데 반영했으며 그 수치를 본문 통계로 채택하지 않았다. <code>EXTERNAL_SOURCES.md</code>의 미검증 합성향료 비율도 사용하지 않았다. OEC의 090500 역사 계열은 보조 무역 원천으로만, 현행 세번의 관세청·Comtrade와 분리해 적었다(E01·E10·E14).</p>
+<p>자료의 빈칸도 범위를 적는다. USDA PSD 수집 가용성 메모는 바닐라 항목을 찾지 못했다고 기록한다. World Bank Pink Sheet 가용성 메모에도 바닐라 계열이 없다. FAOSTAT SCL은 2023년까지 있으므로 세계·한국의 식용 공급과 추정 재고를 ‘없다’고 하지 않았다. 국내 KAMIS 실측 가격과 기업별 취급량은 시도 경로를 본문에 명시하고 미확보로 남겼다(E03·E19).</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 바닐라 산업 해부: 작은 원물 시장과 구분해야 할 향료 시장</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · FAOSTAT·관세청 원자료와 출처·등급이 기록된 기관 문서. UN Comtrade 2025년 상대국 preview 및 식약처 품목 통계는 2026년 10월 8일 추가 확인</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>30_근거_수치.md에 파일·필터·계산식을 기록했다. 발행용 대조 결과는 update_2026-10-07/20_숫자대조.txt에서 확인한다.</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>HS 0905.10·0905.20 및 FAOSTAT Vanilla, raw. 추출물·합성 바닐린·혼합향료·바닐라향 완제품의 시장 규모는 포함하지 않는다.</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>한국 기업별 원물 취급량·국내 원물 도소매 연속가격·식약처 품목 신고 중량의 단위·2026년 현행 적용세율과 마다가스카르 법정 최저가격은 미확보. 2025년 상대국 자료는 Comtrade preview이며 FAOSTAT 수급표의 공급·재고는 추정치다.</span></div>
+</footer>
+</div>
+

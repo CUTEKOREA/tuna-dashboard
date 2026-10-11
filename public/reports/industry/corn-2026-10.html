@@ -1,0 +1,723 @@
+<title>한국 옥수수 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 옥수수<br>
+        세계 수급 · 국내 생산 · 사료 · 가공 · 무역 · 가격 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">국산 밭과 수입 원곡은 다른 규모의 시장 · 리포트 2026</p>
+      <h1><span class="scr">Corn</span> <span class="lt">한국 옥수수 산업 해부</span></h1>
+      <p class="cover-sub">한국의 옥수수 산업은 국내 밭의 생산량만으로 읽을 수 없다.
+        사료와 식품 가공에 쓰는 수입 원곡이 물량을 좌우한다.
+        생산·수요의 통계 범위를 먼저 구분하고, 세계 공급국과 국내 가격·제도를 같은 원자료에서 따라간다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">한국 원곡 수입</div><div class="v">1,130만</div>
+        <div class="n">톤 · 2025년 · 관세청 HS 1005 전체</div></div>
+      <div class="cf"><div class="k">사료용 수입 비중</div><div class="v">82.6%</div>
+        <div class="n">2025년 중량 기준 · HS 1005.90.10</div></div>
+      <div class="cf"><div class="k">한국 옥수수 생산</div><div class="v">93,515</div>
+        <div class="n">톤 · 2024년 · KOSIS 작물생산</div></div>
+      <div class="cf"><div class="k">세계 옥수수 생산</div><div class="v">12.18억</div>
+        <div class="n">톤 · 2024년 · FAOSTAT</div></div>
+      <div class="cf"><div class="k">한국 사료 수요</div><div class="v">925만</div>
+        <div class="n">톤 · 2024/25 USDA PSD, 옥수수 사료·잔여</div></div>
+      <div class="cf"><div class="k">한국 수입 단가</div><div class="v">248.36</div>
+        <div class="n">달러/톤 · 2025년 HS 1005 전체 · 금액÷중량</div></div>
+      <div class="cf"><div class="k">국제 현물 지표</div><div class="v">213.19</div>
+        <div class="n">달러/톤 · 2026년 7월 · IMF/FRED 월간</div></div>
+      <div class="cf"><div class="k">2026 할당관세 물량</div><div class="v">1,290만</div>
+        <div class="n">톤 · 사료용 1,100만 + 가공용 190만</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">한국 옥수수의 물량은 수입 원곡이 결정한다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">생산 대국과 수출 대국의 목록은 같지 않다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">밭의 옥수수와 공장의 원곡은 집계 대상이 다르다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">2025년 수입의 중심은 사료용 HS 1005.90.10이다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">국제 지표, 선물, 통관 단가, 국내 경락가의 거래 단계가 다르다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">생산 규모와 수출 가능한 잉여는 다르다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">원곡은 사료와 가공 경로로 갈라진다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">할당관세는 용도와 물량을 함께 정한다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">전망은 수급표를 읽는 보조 근거다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표</span><span class="t">매달 수입 물량과 가격의 연결을 확인한다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">수입 원곡에서 사료와 전분당으로</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>한국 옥수수의 물량은 수입 원곡이 결정한다</h2>
+<p class="lead">한국의 옥수수를 하나의 시장으로 합쳐 말하면 규모와 가격을 잘못 읽게 된다. 국내 작물생산통계의 옥수수, 사료공장이 쓰는 원곡, 식품제조업의 가공 원료, 소비자가 사는 식용 옥수수는 통계의 대상과 거래 단계가 다르다. 2024년 국내 옥수수 생산량은 93,515톤이다. 이와 별도로 2025년 HS 1005 옥수수 수입은 약 1,130만 톤(원값 11,302,301.413톤)이며, 중량의 82.6%가 관세청 세번상 사료용이었다. 서로 다른 연도와 품목 상태를 단순히 더해 자급률을 만들 수는 없지만, 산업의 대량 수요가 수입 원곡에 있다는 규모 차이는 분명하다(근거 N01·N03).</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>세계 생산.</strong> FAOSTAT의 최근 완료연도인 2024년 세계 옥수수 생산은 약 12.18억 톤(원값 1,218,205,573.82톤)이다. 미국 3억 7,763만 톤, 중국 본토 2억 9,492만 톤, 브라질 1억 1,495만 톤이다. FAOSTAT의 달력연도 생산과 USDA PSD의 국가별 곡물연도 수급은 기간이 다르다(근거 N02).</li>
+<li><strong>국내 생산.</strong> KOSIS 2024년 옥수수 생산량은 93,515톤, 재배면적은 1만 5,566.8488ha다. 같은 KOSIS 원자료의 2023년 생산량은 9만 2,210톤이다. FAOSTAT의 한국 2024년 값은 8만 9,000톤이며 <code>Flag X</code>가 붙어 있다. 국내 생산을 설명할 때는 KOSIS 원자료를 우선한다(근거 N03).</li>
+<li><strong>국내 수요.</strong> USDA PSD의 한국 2024/25 곡물연도 옥수수 소비는 1,145만 톤이며, 사료·잔여 925만 톤과 식품·종자·산업용 220만 톤으로 나뉜다. KOSIS의 2024년 식품제조업 옥수수 원료 사용량 240만 1,239톤과 같은 정의가 아니므로 합산하지 않는다(근거 N04·N05).</li>
+<li><strong>수입 구성.</strong> 관세청 2025년 HS 1005 수입은 사료용 933만 864톤, 기타 196만 2,690톤, 팝콘용 8,407톤, 종자용 340톤이다. ‘기타’를 전부 전분·당화용으로 단정하지 않는다. 통계상 세번 명칭이 기타이기 때문이다(근거 N01).</li>
+<li><strong>수입 가격.</strong> 2025년 HS 1005 전체 수입금액 28억 706만 달러를 수입중량 1,130만 2,301톤으로 나눈 단가는 톤당 248.36달러다. 사료용만 계산하면 톤당 243.96달러다. 이는 통관금액 기준이며 소비자가격이나 국내 공장 인도가격이 아니다(근거 N01).</li>
+<li><strong>진행연도.</strong> 2026년 1~8월 수입은 752만 6,478톤이다. 같은 기간인 2025년 1~8월 740만 1,437톤보다 1.7% 많다. 2026년은 미완 연도이며 연간 공급국 점유율·순위를 만들지 않는다(근거 N01).</li>
+<li><strong>제도.</strong> 2026년 할당관세 별표는 HS 1005.90의 사료용 1,100만 톤과 기타 가공용 190만 톤에 각각 0%를 정한다. 두 행의 한계수량 합계는 1,290만 톤이다. 두 물량은 2025년 실제 수입 실적이 아니며, 세번별 통관량과 법령상 한계수량의 관계도 동일하지 않다(근거 N11). <a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&amp;flSeq=161558151&amp;gubun=">국가법령정보센터 별표</a>.</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<p>첫째, 한국 옥수수의 물량 변동은 당분간 국내 생산보다 수입 원곡의 선적과 사료 수요에서 더 크게 나타날 것으로 판단한다. 근거는 2025년 수입 물량과 2024년 국내 생산 물량의 규모 차이, USDA PSD의 한국 사료 소비 925만 톤이다. 이는 서로 다른 통계를 결합한 인과 추정이 아니라 관찰 우선순위다. <strong>반증 조건</strong>은 같은 정의로 확인된 국내 건조 원곡 생산이 수입 물량에 견줄 규모로 늘거나, 사료·잔여 소비가 장기간 큰 폭으로 감소하는 것이다.</p>
+<p>둘째, 한국의 ‘옥수수 가격’을 하나의 수치로 대표하기 어렵다고 판단한다. 국제 현물 지표, 선물 정산가, 수입 통관 단가, 국내 식용 옥수수 경락가격은 서로 다른 품목 상태와 거래 시점을 가리킨다. <strong>반증 조건</strong>은 사료용·가공용 원곡의 국내 인도가격을 동일 규격으로 연결한 공개 시계열이 확보되고, 이들 가격을 통합해서 설명할 수 있다는 실증이 나오는 것이다.</p>
+<p>셋째, 공급국의 물량과 수출 여력은 생산량만으로 판단할 수 없다고 본다. CONAB의 브라질 2025/26 작황 8월판과 9월판을 비교하면 생산 전망은 105만 4,600톤 늘었지만, 국내소비 전망은 316만 1,600톤 늘고 수출 전망은 258만 3,800톤 줄었다(근거 N09; <a href="https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/safras/safra-de-graos/boletim-da-safra-de-graos/12o-levantamento-safra-2025-26/e-book_boletim-de-safras-12o-levantamento_-2026-3-compactado.pdf">CONAB, 『Acompanhamento da safra brasileira de grãos』, 2026-09, 표 14</a>). 이는 같은 작기의 전망 수정이며 전년 대비 실제 수출 감소를 뜻하지 않는다. <strong>반증 조건</strong>은 국내 사용 증가에도 브라질의 실제 옥수수 수출이 전망보다 지속해서 확대되는 것이다.</p>
+<p>이 보고서에서 ‘확정’은 지정한 원자료의 기간·단위·필터 아래 확인한 값이라는 뜻이다. 2026/27 전망, 2035년 장기 전망, 은행의 시장 해석은 실적과 분리한다. 특히 2025년 한국 수입 상대국별 완결 자료가 현재 수집본에 없으므로 연간 국가별 점유율을 쓰지 않았다. 2026년 3~8월 국가별 파일은 기간 일부만 담는다. 이 자료만으로는 2025년 연간 상대국 순위도 확정되지 않는다(04절).</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>생산 대국과 수출 대국의 목록은 같지 않다</h2>
+<p class="lead">옥수수 세계 생산의 기준점은 FAOSTAT 2024년 완료 통계다. 세계 생산량은 약 12.18억 톤(원값 1,218,205,573.82톤)이고, 미국과 중국 본토의 합계가 약 55.2%다. 그러나 중국 본토의 생산량을 세계 수출 여력으로 읽으면 안 된다. 같은 연도 FAOSTAT의 중국 본토 옥수수 수입은 1,363만 5,894톤이고, 수출은 3,921톤이다. 반면 미국·브라질·아르헨티나·우크라이나는 생산과 함께 대량 수출 통계가 확인된다(근거 N02·N08).</p>
+<div class="tw">
+<table>
+<caption>표 1. 2024년 세계 옥수수 생산과 주요 생산국</caption>
+<thead><tr><th>구분</th><th class="num">생산량(만 톤)</th><th class="num">세계 생산 대비</th><th>해석</th></tr></thead>
+<tbody>
+<tr><td>세계</td><td class="num">121,820.6</td><td class="num">100%</td><td>FAOSTAT <code>Area=World</code></td></tr>
+<tr><td>미국</td><td class="num">37,763.3</td><td class="num">31.0%</td><td>최대 생산국</td></tr>
+<tr><td>중국 본토</td><td class="num">29,492.0</td><td class="num">24.2%</td><td>생산 규모가 크지만 수입도 큼</td></tr>
+<tr><td>브라질</td><td class="num">11,495.3</td><td class="num">9.4%</td><td>생산·수출 양쪽에서 중요</td></tr>
+<tr><td>아르헨티나</td><td class="num">5,749.5</td><td class="num">4.7%</td><td>수출 지향 생산국</td></tr>
+<tr><td>인도</td><td class="num">4,023.1</td><td class="num">3.3%</td><td>국내 수요도 수출 여력에 영향</td></tr>
+<tr><td>우크라이나</td><td class="num">2,686.4</td><td class="num">2.2%</td><td>흑해 물류의 영향을 받음</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_corn.csv</code>, <code>Item=Maize (corn)</code>, <code>Element=Production</code>, <code>Year=2024</code>; 비중은 각국 생산량÷세계 생산량. 중국은 <code>Area=China, mainland</code>(41)만 사용했다. <code>Area=China</code>(351)는 본토·대만·홍콩·마카오의 합계이므로 국가 순위에서 제외했다(근거 N02).</p>
+<p>세계의 소비·재고를 설명할 때는 USDA PSD를 별도 눈금으로 쓴다. 품목 분할 원자료에서 <code>Market_Year=2024</code> 국가·지역 행의 <code>Domestic Consumption</code>을 합하면 12억 5,214만 4,000톤, <code>Ending Stocks</code>를 합하면 2억 9,570만 1,000톤이다. 이 합계는 국가·지역 행을 계산한 값이며, FAOSTAT 달력연도 생산량과 동일한 수급표의 행이 아니다. 생산량을 FAOSTAT 12억 1,820만 톤, 소비를 PSD 12억 5,214만 톤으로 나란히 적어 세계 재고 증감을 산출하지 않는다(근거 N06).</p>
+<p>USDA PSD의 2024/25 국가별 수급에서는 중국(대만 별도) 소비가 3억 1,600만 톤, 미국 소비가 3억 1,124만 톤이다. 미국의 같은 곡물연도 생산은 3억 7,826만 8,000톤, 수출은 7,296만 6,000톤이다. 중국의 생산은 2억 9,491만 7,000톤, 수입은 182만 3,000톤이다. FAOSTAT의 중국 본토 2024년 수입 1,363만 5,894톤과도 차이가 크다. FAOSTAT <code>China</code>(351) 1,859만 5,372톤에는 대만 494만 9,072톤과 홍콩·마카오가 포함돼 PSD <code>China</code>와 영역부터 달랐다. 본토 기준으로 맞춘 뒤에도 달력연도와 곡물연도 및 집계 체계가 다르므로 두 수치를 평균하거나 차이의 원인을 한 가지로 단정하지 않는다(근거 N06·N08).</p>
+<p>최근 전망은 완료 통계와 구분한다. 2026년 9월 11일 발행된 USDA WASDE-675는 미국 2026/27 옥수수 생산을 158억 부셸, 수출을 33억 부셸, 기말재고를 16억 부셸로 전망했다. 세계 옥수수 기말재고 전망은 2억 7,210만 톤으로 한 달 전보다 260만 톤 줄었다. 같은 문단에서 브라질 수출 전망 하향의 이유로 국내 에탄올 수요 증가를 들었다. 이 값들은 2026년 10월 7일 현재의 전망이지 2026/27 확정 실적이 아니다(근거 N13). <a href="https://www.usda.gov/oce/commodity/wasde/wasde0926.pdf">USDA WASDE-675 원문</a>.</p>
+<p>FAO의 2026년 10월 곡물수급브리프는 2026년 세계 <strong>전체 곡물</strong> 생산을 29억 7,900만 톤으로 보았다. 여기에는 옥수수 외 작물이 들어간다. 같은 브리프의 잡곡 생산 전망 16억 1,200만 톤도 옥수수 단독 값이 아니다. FAO는 옥수수 수출 전망을 EU의 공급 감소와 우크라이나의 물류 제약 때문에 낮췄다. 전체 곡물 수치를 옥수수 수치로 표지에 옮기지 않은 이유다(근거 N14). <a href="https://www.fao.org/worldfoodsituation/csdb/en">FAO 곡물수급브리프</a>.</p>
+<p>장기 방향은 OECD·FAO의 전망으로만 읽는다. 『Agricultural Outlook 2026–2035』는 2035년 세계 옥수수 생산을 약 14억 3,000만 톤, 수출을 약 2억 1,800만 톤으로 예상한다. 사료용 사용은 약 7억 4,700만 톤으로 총 소비의 대략 절반이며, 바이오연료용 사용 증가의 상당 부분은 브라질과 인도에서 나온다고 본다. 2035년 명목가격 약 236달러/톤 역시 시나리오의 결과다. 현재의 매입가격이나 확정 성장률로 취급하지 않는다(근거 N15). <a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/06/oecd-fao-agricultural-outlook-2026-2035_5610f218/47874669-en.pdf">OECD·FAO 원문</a>.</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>밭의 옥수수와 공장의 원곡은 집계 대상이 다르다</h2>
+<p class="lead">KOSIS 작물생산 원자료의 가장 최근 완료연도는 2024년이다. 전국 <code>C1=00</code>, <code>ITM_NM=옥수수:생산량</code> 행은 9만 3,515톤, 면적 행은 1만 5,566.8488ha다. 2023년 생산은 9만 2,210톤이므로 2024년 증가량은 1,305톤이다. 생산통계의 옥수수는 국내 재배 활동의 크기를 보여 주지만, 사료용 수입 원곡과 동일한 건조·품질 규격으로 환산한 양을 제공하지 않는다. 국내 생산량과 수입량을 그대로 놓고 정확한 자급률을 계산하지 않는 이유다(근거 N03).</p>
+<div class="tw">
+<table>
+<caption>표 2. 국내 옥수수 수요를 보는 서로 다른 통계</caption>
+<thead><tr><th>통계·기간</th><th class="num">값</th><th>단위와 범위</th><th>합산할 때의 주의</th></tr></thead>
+<tbody>
+<tr><td>KOSIS 작물생산, 2024</td><td class="num">93,515</td><td>톤, 국내 옥수수 생산</td><td>수입 건조 원곡과 품질 상태가 같다고 볼 근거 없음</td></tr>
+<tr><td>USDA PSD, 2024/25</td><td class="num">1,145만</td><td>톤, 한국 옥수수 국내소비</td><td>곡물연도 추정·수급표</td></tr>
+<tr><td>USDA PSD, 2024/25</td><td class="num">925만</td><td>톤, 사료·잔여 소비</td><td>배합사료 생산량과 다름</td></tr>
+<tr><td>USDA PSD, 2024/25</td><td class="num">220만</td><td>톤, 식품·종자·산업용 소비</td><td>식품제조업 조사와 범위가 다름</td></tr>
+<tr><td>KOSIS 식품원료, 2024</td><td class="num">240만 1,239</td><td>톤, 식품제조업 옥수수 원료 사용</td><td>사료를 포함하지 않는 사업체 조사</td></tr>
+<tr><td>KOSIS 배합사료, 2025</td><td class="num">2,135만 1,854</td><td>톤, 모든 원료를 합친 배합사료 생산</td><td>옥수수 투입량이 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>kosis_crops_grains_misc_corn.csv</code>, <code>usda_psd_all_corn.csv</code>, 공통 원자료 <code>kosis_food_raw_material</code>·<code>kosis_compound_feed</code>; 행 조건과 계산은 근거 N03~N07.</p>
+<p>USDA PSD의 한국 2024/25 수급을 같은 표 안에서 읽으면 생산 9만 4,000톤, 수입 1,144만 2,000톤, 국내소비 1,145만 톤, 기말재고 212만 8,000톤이다. KOSIS 생산 9만 3,515톤과 PSD 생산 9만 4,000톤이 가까워 보여도 하나를 다른 하나의 공식 수정치라고 보지 않는다. PSD는 곡물연도 수급 추정이고 KOSIS는 국내 작물생산 원자료다(근거 N04).</p>
+<p>사료 수요에는 서로 다른 두 단계가 있다. PSD의 <code>Feed Dom. Consumption</code>은 옥수수 투입·소비를 나타내는 수급 계정이다. KOSIS <code>축종별 배합사료 생산실적</code>의 합계는 옥수수와 다른 곡물, 대두박, 부산물 등을 넣어 만든 <strong>완제품 사료</strong>의 생산량이다. 2025년 이 월별 합계는 2,135만 1,853.74톤이다. 이를 옥수수 수입 933만 톤에 더하거나, 두 수치의 차이를 다른 곡물 사용량이라고 부를 수 없다. 이번 근거는 원료 배합비·재고·수출입을 연결하지 않는다(근거 N01·N07).</p>
+<p>식품제조업의 2024년 옥수수 원료 사용량은 240만 1,239톤이다. 이 조사에서 수입산 사용량은 239만 8,399톤, 국산 사용량은 2,840톤으로 합계가 맞는다. 원자료에 표시된 국산 비중은 0.1%다. 이는 <strong>식품제조업 조사에서의 옥수수 원료 사용</strong>에 한정된 비중이며 국내 전체 식용 옥수수의 자급률이 아니다. 외식·가정 소비와 사료공장 투입을 포함한다고 해석하지 않는다(근거 N05).</p>
+<p>같은 KOSIS 원자료에는 옥수수전분 2024년 사용량 8만 1,667톤이 별도 품목으로 있다. 원료 옥수수 사용량에 옥수수전분 사용량을 단순 합산하면 원곡과 가공품의 단계가 겹칠 수 있다. 원곡 투입·전분 산출·전분 사용 사이의 변환율과 재고도 이번 근거에서 연결되지 않는다. 이 자료에서는 그 연결표를 확보하지 못했다(근거 N05).</p>
+<p>가정의 식용 수요도 별개다. 공통 원자료 <code>kosis_grain_consumption</code>을 확인했지만 이 조사에서 옥수수만 분리된 행을 찾지 못했다. 이 경로에서 행이 안 보인다는 사실은 한국의 옥수수 가정 소비 통계가 어디에도 없다는 뜻이 아니다. 소비자 식용 옥수수 판매액이나 찰옥수수의 최종 소비량은 이번 근거로 확정하지 않는다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>2025년 수입의 중심은 사료용 HS 1005.90.10이다</h2>
+<p class="lead">옥수수 무역의 첫 경계는 HS 1005다. 원자료에는 종자용 1005.10과 그 밖의 옥수수 1005.90이 있다. 관세청의 국내 10단위 세번은 이 범위 안에서 사료용·팝콘용·기타 등을 더 나눈다. 전분 1108, 옥수수가루 1102, 냉동 스위트콘 0710, 조제 스위트콘 2005, 옥수수유 1515, 옥수수 부산물 2302는 옥수수와 관련되지만 <strong>원곡 수입 총량</strong>에 넣지 않는다. 아카이브 Comtrade 파일에도 하류 품목이 들어 있어 이 보고서의 원곡 합계는 <code>cmdCode</code>로 범위를 제한했다(근거 N01·N08·N16).</p>
+<div class="tw">
+<table>
+<caption>표 3. 한국의 2025년 HS 1005 수입 구성</caption>
+<thead><tr><th>국내 세번·통계명</th><th class="num">중량(톤)</th><th class="num">금액(달러)</th><th class="num">중량 비중</th><th class="num">통관 단가(달러/톤)</th></tr></thead>
+<tbody>
+<tr><td>1005100000 종자용</td><td class="num">340</td><td class="num">5,259,959</td><td class="num">0.003%</td><td class="num">15,458.24</td></tr>
+<tr><td>1005901000 사료용</td><td class="num">9,330,864</td><td class="num">2,276,373,835</td><td class="num">82.557%</td><td class="num">243.96</td></tr>
+<tr><td>1005902000 팝콘용</td><td class="num">8,407</td><td class="num">7,239,500</td><td class="num">0.074%</td><td class="num">861.12</td></tr>
+<tr><td>1005909000 기타</td><td class="num">1,962,690</td><td class="num">518,188,026</td><td class="num">17.365%</td><td class="num">264.02</td></tr>
+<tr class="tot"><td><strong>HS 1005 합계</strong></td><td class="num"><strong>11,302,301</strong></td><td class="num"><strong>2,807,061,320</strong></td><td class="num"><strong>100%</strong></td><td class="num"><strong>248.36</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>customs_item_trade_monthly_corn.csv</code>, <code>year=2025.01~2025.12</code>; 원자료 kg와 달러를 합한 뒤 톤으로 환산했다. 표시 중량은 반올림해 행 표시값의 합과 원자료 합계가 소폭 다를 수 있다(근거 N01).</p>
+<p>‘기타’ 약 196만 톤을 가공용 수요의 크기와 동일시하지 않는다. 통계 세번 이름은 기타이며, 실제 용도·할당관세 추천·공장 사용과 연결한 행이 원자료에 없다. 2026년 법령이 사료용과 <strong>기타 가공용</strong> 할당관세 물량을 별도로 정한다고 해서 2025년 기타 세번 수입 전체가 그 용도였다고 소급할 수 없다(근거 N01·N11).</p>
+<p>관세청 원자료의 월별 흐름은 2024년 11월부터 2026년 8월까지다. 완전한 비교가 가능한 2025년 연간 합계를 기준점으로 두고, 진행 중인 2026년은 같은 달 범위끼리만 비교했다. 2026년 1~8월 수입 752만 6,478톤은 2025년 같은 기간 740만 1,437톤보다 12만 5,041톤, 1.7% 많다. 이 증가가 연말까지 이어진다고 외삽하지 않는다. 수입금액은 각각 19억 875만 9,189달러와 18억 6,092만 4,490달러다(근거 N01).</p>
+<p>UN Comtrade는 합계 행만으로 관세청 값을 교차 확인했다. <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, <code>partnerCode=0</code>, <code>reporterISO=KOR</code>, <code>flowCode=M</code>을 동시에 적용했다. 관세 절차별·운송수단별 세부 행이나 2차 상대국 행을 합계와 더하지 않았다. 아카이브 파일에 하류 품목이 들어 있으므로 <code>cmdCode in {100510,100590}</code>도 필수다(근거 N08·N16).</p>
+<div class="tw">
+<table>
+<caption>표 4. 한국의 2025년 원곡 수입: Comtrade 합계 행 대조</caption>
+<thead><tr><th>HS6</th><th class="num">Comtrade 순중량</th><th class="num">Comtrade 금액</th><th>관세청과의 대조</th></tr></thead>
+<tbody>
+<tr><td>100510 종자용</td><td class="num"><strong>미보고</strong></td><td class="num">5,259,959달러</td><td>관세청 종자용 금액과 같음. 빈 순중량을 0으로 바꾸지 않음</td></tr>
+<tr><td>100590 기타 옥수수</td><td class="num">11,301,961.143톤</td><td class="num">2,801,801,361달러</td><td>관세청 사료용+팝콘용+기타 금액과 같음</td></tr>
+<tr><td>HS 1005 전체</td><td class="num">순중량 합산 불가</td><td class="num">2,807,061,320달러</td><td>100510의 Comtrade 중량 공백 때문에 Comtrade 전체 중량 미제시</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>corn_comtrade_annual.csv</code>, <code>refYear=2025</code>와 위 여섯 합계 행 조건; 관세청 비교는 <code>customs_item_trade_monthly_corn.csv</code>. Comtrade <code>netWgt</code>의 단위 kg을 톤으로 나눴다(근거 N08).</p>
+<p>상대국별로는 현재 자료의 한계를 명시한다. 파이프라인의 <code>customs_kr</code> 파일은 2026년 3~8월만 담고, 아카이브의 같은 이름 파일은 2026년 3~4월과 하류 품목을 포함한다. 두 파일 어느 쪽도 2025년 연간 국가별 HS 1005 구성표가 아니다. 현재 Comtrade 한국 신고도 2025년에는 세계 합계 행만 들어 있다. 따라서 미국·우크라이나·브라질 등 특정국의 <strong>2025년 한국 수입 점유율과 연간 순위는 미확보</strong>다. 시도 경로는 두 <code>customs_kr</code> 파일과 Comtrade의 한국 신고 행이다(근거 N16).</p>
+<p>미국 Census HS10, EU Comext 월간, 브라질 Comexstat 수집기는 부록 A에 현황을 실었다. 그러나 이들의 수출·수입은 각 신고국 통계이며, 한국의 상대국별 통관 확정치와 분모·신고 시점이 다르다. 이 원자료를 한국 수입 국가별 점유율의 빈칸에 그대로 대신 넣지 않았다. 거울통계와 한국 통관 확정치 사이의 국가코드, 재수출, FOB/CIF, 기간은 이번 근거에서 일치시키지 않았다.</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>국제 지표, 선물, 통관 단가, 국내 경락가의 거래 단계가 다르다</h2>
+<p class="lead">‘옥수수 가격이 올랐다’는 문장만으로는 품질·통화·인도조건·측정일을 알 수 없다. 이번에 확인한 가격은 IMF 원천의 국제 월간 지표, KREI의 시카고 선물 정산가, 한국의 수입 통관 단가다. 세 가격은 비교할 수 있지만 같은 현물을 다른 이름으로 관측한 것은 아니다. 국내 식용 옥수수 경락가격은 다시 다른 상품이다(근거 N01·N10·N12).</p>
+<div class="tw">
+<table>
+<caption>표 5. 확인된 옥수수 가격 지표의 위치</caption>
+<thead><tr><th>지표</th><th class="num">확인값</th><th>기간·단위</th><th>무엇을 나타내는가</th></tr></thead>
+<tbody>
+<tr><td>IMF/FRED <code>PMAIZMTUSDM</code></td><td class="num">203.01</td><td>2025년 월간 12개 평균, 달러/톤</td><td>국제 옥수수 상품가격</td></tr>
+<tr><td>IMF/FRED <code>PMAIZMTUSDM</code></td><td class="num">213.19</td><td>2026년 7월, 달러/톤</td><td>확보한 월간 파일의 최신 월</td></tr>
+<tr><td>KREI OASIS CBOT 옥수수</td><td class="num">195.96</td><td>2026년 10월 2일 정산, 달러/톤</td><td>선물 정산가</td></tr>
+<tr><td>한국 HS 1005 통관 단가</td><td class="num">248.36</td><td>2025년, 달러/톤</td><td>전체 수입금액÷전체 수입중량</td></tr>
+<tr><td>한국 사료용 통관 단가</td><td class="num">243.96</td><td>2025년, 달러/톤</td><td>1005901000 금액÷중량</td></tr>
+<tr><td>USDA 미국 농가 수취가격 전망</td><td class="num">4.80</td><td>2026/27, 달러/부셸</td><td>계절평균 전망</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>corn_fred.csv</code>의 월간 <code>PMAIZMTUSDM</code>만 사용; 관세청 <code>customs_item_trade_monthly_corn.csv</code>; <a href="https://oasis.krei.re.kr/gis/trend/priceTrend.do">KREI OASIS</a>; <a href="https://www.usda.gov/oce/commodity/wasde/wasde0926.pdf">USDA WASDE-675</a>. 계산은 근거 N01·N10·N12·N13.</p>
+<p>FRED가 제공하는 <code>PMAIZMTUSDM</code>은 IMF가 원천인 월간 ‘Global price of Corn’이다. 보관된 파일에는 2023년 1월부터 2026년 7월까지 월간 값이 있다. 2023년 평균은 톤당 251.46달러, 2024년 190.46달러, 2025년 203.01달러다. 2026년 1~7월 평균은 209.56달러지만 7개월만의 평균이므로 2025년 연평균과 같은 길이의 연간 변화율이라고 말하지 않는다. 아카이브 FRED 사본에는 월간 외에 분기·연간 시리즈도 들어 있어 한 파일의 모든 행을 평균하면 같은 기간을 중복 계산한다(근거 N10·N16). <a href="https://fred.stlouisfed.org/data/PMAIZMTUSDM">FRED 시리즈 설명</a>.</p>
+<p>KREI OASIS의 2026년 10월 2일 옥수수 선물 정산가는 톤당 195.96달러다. 같은 화면의 10월 1일 값은 197.73달러다. 이 단기 차이를 한국의 2025년 통관 단가와 바로 빼서 운임·보험료를 추정하지 않는다. 계약 시점, 선적 시차, 원산지와 등급, 거래소 선물의 만기가 연결되지 않았기 때문이다(근거 N12). <a href="https://oasis.krei.re.kr/gis/trend/priceTrend.do">KREI 원화면</a>.</p>
+<p>한국 통관 단가는 연간 누적 금액과 누적 중량의 비율이다. 2025년 전체 248.36달러/톤은 사료용 243.96달러/톤, 기타 264.02달러/톤, 팝콘용 861.12달러/톤, 종자용 1만 5,458.24달러/톤이 섞인 결과다. 특히 물량이 작은 종자는 단가가 높으므로, ‘전체 통관 단가’의 움직임은 품목 구성 변화의 영향도 받을 수 있다. 사료용 세번 단가는 전체 단가보다 사료 원곡의 통관가격에 가까운 지표다(근거 N01).</p>
+<p>국내 식용 옥수수의 경락가격을 사료용 수입 원곡 가격으로 대체하지 않았다. aT KAMIS의 기간별 일일도매 경락 화면에는 식량작물 ‘옥수수’ 품목이 있지만, 조사 노트는 이 화면에서 사료용 수입 원곡의 공개 일별 가격표를 확인하지 못했다. 레지스트리의 <code>corn.kamis</code>도 <code>null</code>이다. 이것은 국내 사료 원곡 거래가격이 존재하지 않는다는 뜻이 아니다. <strong>이번 조사에서 공개 시계열을 확보하지 못했다</strong>는 뜻이다. KAMIS의 <code>countyname=평년</code>은 금년을 제외한 직전 5년의 해당일 가격에서 최고·최저를 뺀 3년 평균 참고값으로, 실측 지역·평균 행과 성격이 다르다(근거 N17; <a href="https://www.kamis.or.kr/customer/archive/archive.do?action=detail&amp;archiveNo=23">aT KAMIS, 「식재료 아카이브 이용안내」, 2026-10-08 확인</a>). <a href="https://www.kamis.or.kr/customer/price/auctioning/period.do">KAMIS 경락 화면</a>.</p>
+<p>OECD·FAO가 제시한 2025년 미국 Gulf FOB 월간 가격 범위 183~221달러/톤과 2035년 명목가격 전망 약 236달러/톤은 장기 맥락이다. 한국 도착가격을 예측하는 데 그대로 쓰지 않는다. 환율과 해상운임, 원산지 전환, 품질 조건을 더한 연결 자료가 없기 때문이다(근거 N15).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>생산 규모와 수출 가능한 잉여는 다르다</h2>
+<p class="lead">2025년 한국의 수입 상대국별 연간 완결 자료가 없으므로(2024년 값은 11절 표 11-1) 이 절은 ‘한국 공급국 점유율’ 대신 세계 공급국의 생산과 수출 여력을 본다. 2024년 FAOSTAT 옥수수 수출량은 미국 6,259만 톤, 브라질 3,978만 톤, 아르헨티나 3,206만 톤, 우크라이나 2,962만 톤이다. 네 나라 수출량의 합은 세계 수출 2억 267만 톤의 약 80.9%다. 이는 세계 수출 구조의 비중이지 한국 수입 점유율이 아니다(근거 N08). USDA PSD의 한국 2024/25 무역연도(10~9월) 수입은 1,144만 2,000톤이고, 그중 미국산 추정은 654만 6,000톤으로 57.2%다. 이는 무역연도·미국 한 나라에 한정한 USDA 추정치이므로 2025년 한국 통관의 국가별 점유율이나 전체 공급국 순위로 읽지 않는다(근거 N04; <a href="https://apps.fas.usda.gov/PSDOnline/Circulars/2024/11/Grain.pdf">USDA FAS, 『Grain: World Markets and Trade』, 2024-11, World Corn Trade의 10~9월 정의</a>).</p>
+<div class="tw">
+<table>
+<caption>표 6. 2024년 주요국의 생산과 수출</caption>
+<thead><tr><th>국가</th><th class="num">생산량(만 톤)</th><th class="num">수출량(만 톤)</th><th class="num">세계 수출 대비</th><th>수출 여력에 관련된 변수</th></tr></thead>
+<tbody>
+<tr><td>미국</td><td class="num">37,763</td><td class="num">6,259</td><td class="num">30.9%</td><td>작황·국내 사용·기말재고</td></tr>
+<tr><td>브라질</td><td class="num">11,495</td><td class="num">3,978</td><td class="num">19.6%</td><td>여러 작기와 에탄올 수요</td></tr>
+<tr><td>아르헨티나</td><td class="num">5,750</td><td class="num">3,206</td><td class="num">15.8%</td><td>수출세·수출 전망</td></tr>
+<tr><td>우크라이나</td><td class="num">2,686</td><td class="num">2,962</td><td class="num">14.6%</td><td>흑해 항로·선적</td></tr>
+<tr><td>중국 본토</td><td class="num">29,492</td><td class="num">0.4</td><td class="num">약 0.002%</td><td>국내 소비와 수입</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_corn.csv</code>·<code>faostat_trade_corn.csv</code>, <code>Year=2024</code>, <code>Item=Maize (corn)</code>, 생산 <code>Element=Production</code>, 수출 <code>Element=Export quantity</code>; 중국 본토는 <code>Area=China, mainland</code>(41), 세계 수출 분모는 202,667,873.55톤. 생산과 수출은 같은 달력연도 통계이나 재고·전년 생산분의 영향으로 한 나라에서 수출량이 그해 생산량보다 클 수 있다(근거 N02·N08).</p>
+<p>미국은 최대 생산국이자 2024년 최대 수출국이다. USDA PSD의 2024/25 미국 수급에서 생산은 3억 7,826만 8,000톤, 국내소비는 3억 1,124만 톤, 수출은 7,296만 6,000톤, 기말재고는 3,940만 4,000톤이다. FAOSTAT의 2024년 미국 수출 6,259만 톤과 PSD의 2024/25 수출 7,297만 톤은 달력연도와 곡물연도의 차이가 있다. 어느 하나를 오류로 치우지 않는다(근거 N06·N08).</p>
+<p>브라질의 작기별 생산량과 전체 생산량은 CONAB 표에서 별도 행이다. CONAB의 2025/26 12차 조사에서 전체 옥수수 생산은 1억 4,400만 9,600톤이다. 1차 2,948만 7,800톤, 2차 1억 1,213만 800톤, 3차 239만 900톤이다. 반올림 때문에 이 세 행의 합계와 표의 전체 행에 작은 차이가 있으므로 전체값은 공식 합계 행을 쓴다. 같은 보고서의 국내소비는 9,820만 3,000톤, 수출은 4,391만 6,200톤, 기말재고는 1,565만 4,000톤이다. 같은 2025/26 작기의 8월→9월 판본에서 생산 전망은 105만 4,600톤, 국내소비 전망은 316만 1,600톤 상향됐고 수출 전망은 258만 3,800톤 하향됐다. 다만 9월 수출 전망은 2024/25의 4,163만 1,500톤보다 많다. 생산 전망의 상향이 같은 작기 수출 전망의 상향을 뜻하지 않는 사례다(근거 N09; <a href="https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/safras/safra-de-graos/boletim-da-safra-de-graos/12o-levantamento-safra-2025-26/e-book_boletim-de-safras-12o-levantamento_-2026-3-compactado.pdf">CONAB, 『Acompanhamento da safra brasileira de grãos』, 2026-09, 표 14</a>).</p>
+<p>아르헨티나는 FAOSTAT 2024년 세계 수출의 15.8%를 차지한다. 현지 정책은 판매 시점의 유인을 바꿀 수 있다. 대통령실의 2025년 12월 발표는 옥수수·수수 수출세를 9.5%에서 8.5%로 내렸다고 적는다. 2026년 <code>Decreto 423/2026</code>은 추가 인하 일정에 선적기간 시작일을 연결하지만, 조사 노트에서 별표 이미지의 옥수수 세율 숫자는 읽지 못했다. 따라서 2026년 10월 적용 세율을 8.5%라고 단정하지 않는다(근거 N18). <a href="https://www.argentina.gob.ar/noticias/nueva-reduccion-de-impuestos-las-exportaciones-para-el-campo">아르헨티나 정부 발표</a>, <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/425000-429999/426351/norma.htm">InfoLEG 법령</a>.</p>
+<p>우크라이나의 2024년 수출량은 같은 해 생산량보다 크다. 수출과 생산이 서로 다른 흐름이고 재고가 연결되기 때문이다. 2026년 10월 FAO는 흑해 선박 항로 제약과 대체 운송 능력 부족을 이유로 우크라이나 옥수수 수출 전망을 낮췄다. 산지 생산 추정만으로는 공급 위험을 설명할 수 없고, 항만과 실제 선적도 영향을 준다(근거 N08·N14).</p>
+<p>산지별 계절성을 정량화한 월별 파종·수확·선적 표는 이번 원자료에서 만들지 않았다. 브라질에는 CONAB의 세 작기 구분이 있지만, 이를 한국의 월별 도착 패턴과 연결하는 국가별·월별 수입·선적 계정은 이번 근거에 포함되지 않는다. 한국 국가별 파일이 2026년 일부 월만 담기 때문에 특정 달의 공백을 계절적 공급 부족으로 해석하지 않는다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>원곡은 사료와 가공 경로로 갈라진다</h2>
+<p class="lead">한국의 옥수수 유통은 크게 수입 원곡의 사료 경로와 가공 경로, 국내 재배 식용 옥수수 경로로 나뉜다. 2025년 관세청 사료용 세번은 933만 톤, 기타 세번은 196만 톤이다. 기타 세번 전체를 가공용으로 확정할 자료는 없지만, KOSIS 식품제조업 조사에서 2024년 옥수수 원료 사용량 240만 톤이 별도로 확인된다. 두 숫자는 시점·용도 분류가 달라 직접 일치시킬 수 없다(근거 N01·N05).</p>
+<div class="tw">
+<table>
+<caption>표 7. 확인 가능한 국내 산업 경로와 남은 자료 공백</caption>
+<thead><tr><th>경로</th><th>관찰 가능한 산업 지표</th><th>이번 자료에서 확인되지 않은 연결</th></tr></thead>
+<tbody>
+<tr><td>사료 원곡 → 배합사료</td><td>2025년 사료용 수입 933만 톤; 2025년 배합사료 총생산 2,135만 톤</td><td>업체별 옥수수 투입량·재고·제품별 배합비</td></tr>
+<tr><td>기타 수입 원곡 → 식품·산업 가공</td><td>2025년 기타 세번 수입 196만 톤; 2024년 식품제조업 옥수수 원료 사용 240만 톤</td><td>기타 세번의 실제 용도별 배분</td></tr>
+<tr><td>국내 재배 → 식용 유통</td><td>2024년 KOSIS 국내 생산 9만 3,515톤</td><td>식용 종류·판매 형태별 최종 소비</td></tr>
+<tr><td>전분·당화 등 가공품</td><td>2024년 식품제조업 옥수수전분 사용 8만 1,667톤</td><td>원곡 투입에서 가공품 산출까지의 물량 계정</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청·KOSIS 원자료. 서로 다른 통계의 행을 같은 기업 시장점유율의 분자·분모로 쓰지 않았다(근거 N01·N03·N05·N07).</p>
+<p>한국사료협회 영문 산업 현황은 2023년 2월 기준 공장 128곳, 회사 89곳, 8시간 기준 일산 능력 3만 3,396톤을 제시한다. 같은 페이지의 2022년 배합사료 생산은 2,141만 4,000톤이다. 이 페이지에는 2024~2026년 회사별 생산 순위와 옥수수 구매량이 없다. 협회의 오래된 채널별 표를 최신 기업 점유율로 옮기지 않았다(근거 N19). <a href="http://www.kofeed.org/eng/feedIndustry.do?menuNo=7030000">한국사료협회 산업 현황</a>.</p>
+<p>같은 협회 페이지의 원료 사용 표에는 황색 옥수수 925만 9,000톤과 원료 총계 2,146만 1,000톤이 기재되어 있다. 다만 표 제목은 ‘2023년 원료 사용’인데 표 내부에는 ‘22’ 표기가 있어 기준연도 해석이 흔들린다. 이 보고서는 두 숫자를 최신 확정 옥수수 투입량으로 채택하지 않고, 옥수수가 배합사료의 큰 원료라는 정성적 참고로만 둔다(근거 N19).</p>
+<p>개별 사료 제조사의 동일 기간 옥수수 투입량·재고·제품별 배합비는 공개 자료에서 확인되지 않았다. DART 사업보고서의 매출액을 옥수수 물량 점유율로 바꿀 수도 없다. 매출에는 다른 원료와 여러 제품이 섞인다. 식약처 수입업소 검색 결과 역시 식품용 신고 범위이며 사료용 원곡의 산업 전체 순위를 대표하지 않는다. 다만 전분당 가공 경로에서는 <a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">사조대림 2025년 사업보고서</a>가 인용한 전분당협회의 <strong>옥수수 사용량 기준</strong> 4사 비중이 확인된다. 2025년 대상 35%, 삼양사 26%, 사조씨피케이 25%, CJ제일제당 14%다. 이는 전분당 원료 사용의 구도이며 한국 전체 HS 1005 수입량이나 배합사료 시장의 점유율이 아니다. <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>의 2025년 10월~2026년 9월 신고 건수에서는 대상 전분당공장 68건, 삼양사 울산2공장 56건, CJ제일제당 37건, 사조씨피케이 이천공장 37건이 확인된다(2026년분 잠정). 이 값도 중량·금액 순위가 아니다.</p>
+<p>수입 통관 시점의 원곡이 바로 그달 사료 생산이 되는 것은 아니다. 항만 재고, 사료공장 재고, 용도 전환과 제조 시차가 있다. 이번 자료에는 그 연결 수치가 없으므로 수입량과 생산량 사이의 월별 차이를 재고 증감으로 역산하지 않는다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>할당관세는 용도와 물량을 함께 정한다</h2>
+<p class="lead">2026년 한국 옥수수 수입 제도에서 확인된 핵심은 HS 1005.90의 용도별 할당관세다. 국가법령정보센터의 2025년 12월 30일 개정 별표에는 2026년 사료용 1,100만 톤과 기타 가공용 190만 톤에 각각 0%가 적혀 있다. 기획재정부의 2025년 12월 보도자료는 두 행의 기본/할당 세율을 각각 3%/0%로 제시했다. 법령 별표의 실제 적용 행과 보도자료의 정책 설명을 출처 수준에 맞춰 구분한다(근거 N11). <a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&amp;flSeq=161558151&amp;gubun=">할당관세 별표</a>, <a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156732529">기획재정부 보도자료</a>.</p>
+<div class="tw">
+<table>
+<caption>표 8. 2026년 옥수수 할당관세에서 확인한 범위</caption>
+<thead><tr><th>대상</th><th>HS·용도</th><th class="num">별표상 할당세율</th><th class="num">한계수량</th><th>자료 성격</th></tr></thead>
+<tbody>
+<tr><td>사료용 옥수수</td><td>1005.90 기타 중 사료용</td><td class="num">0%</td><td class="num">11,000,000톤</td><td>공포 별표</td></tr>
+<tr><td>기타 가공용 옥수수</td><td>1005.90 기타 중 가공용</td><td class="num">0%</td><td class="num">1,900,000톤</td><td>공포 별표</td></tr>
+<tr><td>두 행의 합</td><td>같은 HS 하위 용도</td><td class="num">—</td><td class="num">12,900,000톤</td><td>위 두 수량의 산술합</td></tr>
+<tr><td>종자용 옥수수</td><td>1005.10</td><td class="num">이 별표 두 행에 없음</td><td class="num">—</td><td>시장접근 조건은 별도 표의 범위</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 국가법령정보센터 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」 2025-12-30 개정 별표 3, 기획재정부 2025-12-02 보도자료; 합계는 11,000,000+1,900,000톤(근거 N11).</p>
+<p>한계수량 1,290만 톤은 실제 수입 1,290만 톤이 아니다. 또한 사료용 세번의 2025년 수입량 933만 톤과 2026년 사료용 할당관세 물량 1,100만 톤이 비슷한 크기라는 사실만으로 모든 수입이 그 할당을 사용했다고 결론 내릴 수 없다. 통관 날짜, 추천 여부, 적용 세율, 다른 관세 체계가 연결된 자료가 있어야 한다. 가공용 190만 톤과 2025년 기타 세번 약 196만 톤의 비교도 마찬가지다(근거 N01·N11).</p>
+<p>기획재정부 자료에는 WTO 시장접근과 별도 증량분도 나온다. 종자용은 시장접근 247톤에 2026년 증량 160톤을 더해 적용 물량 407톤이라고 적혀 있다. 가공용·버섯용을 포함한 표의 시장접근 수량은 610만 2,100톤에서 증량 후 619만 6,350톤이다. 이 표는 앞의 사료용·가공용 할당관세 한계수량과 개념이 다르다. 물량을 서로 더해 한국의 수입 허용 총량이라고 표시하지 않는다(근거 N11).</p>
+<p>품질과 규제에서는 공백이 있다. 식물검역의 사료용 옥수수 수입 조건, 사료용 GMO 표시 고시, 사료·가공용 원산지 표시 적용 범위를 이번 조사에서 원문 별표로 확정하지 못했다. 조사 노트는 국가법령정보센터 본문 공백, 농식품부 HWP 표 추출의 열 붕괴, 검역본부 검색 결과의 수출요건 편향을 기록했다. ‘요건이 없다’고 쓰지 않는다. 물품의 세번·용도·원산지와 해당일의 법령 별표·소관기관 추천·검역 고시를 묶은 적용 결과는 이번 근거에서 확인되지 않았다(근거 N18).</p>
+<p>수출국 정책도 한국 수입 조건에 영향을 준다. 아르헨티나의 2025년 수출세 인하는 정부 발표로 확인했지만 2026년 추가 일정의 옥수수 숫자는 법령 별표 이미지가 읽히지 않아 미확보다. 우크라이나의 별도 수출 규제도 검색 요약만으로는 확정하지 않았다. 제도 장의 확실한 수치는 한국의 공포 별표와 아르헨티나의 확인된 2025년 정부 발표까지다(근거 N11·N18).</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>전망은 수급표를 읽는 보조 근거다</h2>
+<p class="lead">은행·기관 색인 <code>index.csv</code>에서 <code>items</code>를 세미콜론으로 나눠 <code>corn</code>이 들어가고 <code>found_at</code>이 2026-10-07까지인 행은 79건이다. 2026-10-08 13:38 갱신된 색인 전체에서는 날짜 제한 없이 <code>corn</code> 태그가 140건이므로 79건은 작성 기준일의 고정 표본이다. 이 수는 옥수수를 제목으로 한 독립 보고서의 수가 아니다. 축산·대두·다른 작물 보고서에 옥수수가 함께 태그된 행도 있다. 본문에 직접 관련 문장이 있는 자료와 제목만 관련된 자료를 구분했다. 은행의 의견은 원자료의 생산·수출 실적보다 높은 권위로 쓰지 않는다(근거 N20).</p>
+<div class="tw">
+<table>
+<caption>표 9. 원문을 확인한 주요 기관·은행 자료</caption>
+<thead><tr><th>기관·자료</th><th>시점</th><th>옥수수에 관해 확인한 내용</th><th>이 보고서에서의 사용</th></tr></thead>
+<tbody>
+<tr><td>USDA, WASDE-675</td><td>2026-09-11</td><td>미국 2026/27 생산 158억 부셸, 세계 옥수수 기말재고 2억 7,210만 톤 전망</td><td>최신 전망, 확정 통계와 분리</td></tr>
+<tr><td>CONAB, 2025/26 12차 작황</td><td>2026-09</td><td>브라질 전체 옥수수 생산 1억 4,400만 9,600톤</td><td>작기와 국내소비·수출 연결</td></tr>
+<tr><td>Bradesco, <em>Monitor Agro</em></td><td>2026-10-05</td><td>미국 9월 옥수수 재고 5,320만 톤을 전년보다 35% 많다고 해석</td><td>은행의 단기 시장 해석</td></tr>
+<tr><td>BBVA Research, <em>Situación Agricultura 2026</em></td><td>2026-10-01</td><td>아르헨티나 2025/26 옥수수 수출 4,500만 톤 전망</td><td>전망으로만 인용</td></tr>
+<tr><td>Rabobank, <em>Brazilian G&amp;O Monthly</em></td><td>2026-09</td><td>브라질 농가 옥수수 가격의 8월 전월 대비 8% 상승을 기술</td><td>현지 가격 신호, 한국 가격 아님</td></tr>
+<tr><td>OECD·FAO, <em>Agricultural Outlook 2026–2035</em></td><td>2026</td><td>2035년 생산 약 14억 3,000만 톤·수출 약 2억 1,800만 톤 전망</td><td>장기 시나리오</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: USDA·CONAB·OECD·FAO 원문과 <code>_banks/index.csv</code>가 가리키는 Bradesco·BBVA·Rabobank의 현지 <code>.md</code>·<code>.html</code> 파일. 수치의 원문 위치와 파일명은 근거 N09·N13·N15·N20.</p>
+<p>Bradesco의 10월 5일 회보는 미국 분기 재고 발표를 해석하며 9월 재고 5,320만 톤이 시장 예상보다 많아 시카고 가격에 하방 압력을 주었다고 적는다. 그 수치의 통계 원천은 USDA 재고 발표이고, <strong>가격 영향은 은행의 해석</strong>이다. WASDE의 2026/27 기말재고 전망 16억 부셸과 Bradesco가 인용한 9월 실제 재고는 측정일과 정의가 다르므로 직접 대조하지 않는다(근거 N13·N20). <a href="https://www.economiaemdia.com.br/content/dam/banco-bradesco/economia-em-dia/staticfiles/monitor-agro/Monitor_Agro_20261005.pdf">Bradesco 회보</a>.</p>
+<p>BBVA Research는 아르헨티나 농업 전망에서 2025/26 옥수수 수출을 4,500만 톤으로 제시한다. 이 값은 보고서 작성 시점의 전망이다. FAOSTAT의 2024년 아르헨티나 수출 3,206만 톤은 완료 달력연도 통계이고 기간이 달라 두 숫자의 차이를 곧바로 성장률로 표시하지 않는다(근거 N08·N20). <a href="https://www.bbvaresearch.com/publicaciones/argentina-situacion-agricultura-2026/">BBVA 보고서</a>.</p>
+<p>Rabobank의 2026년 9월 브라질 곡물 월보는 8월 농가 옥수수 가격이 전월보다 8% 올랐다고 적고, 브라질 옥수수 수출의 경쟁력을 논한다. 브라질 농가 가격, CBOT 선물, 한국의 수입 단가는 통화·시장·인도조건이 다르다. Rabobank의 한 달 수치를 한국의 도착가격 상승률로 옮기지 않는다(근거 N20). <a href="https://www.rabobank.com/knowledge/q011332981-brazilian-g-o-monthly-update-september-2026">Rabobank 보고서</a>.</p>
+<p>Wells Fargo의 2026년 3분기 농식품 업데이트도 옥수수와 비료 가격 관계를 다룬다. 그러나 미국 농가의 수익성에 관한 논평은 한국 사료·가공업의 수익성을 직접 말하지 않는다. 이 보고서에는 미국 생산비와 공급 지속성을 살필 배경으로만 두고, 한국 기업의 이익률 수치를 만들지 않았다(근거 N20). <a href="https://www.wellsfargo.com/assets/pdf/commercial/insights/agri-food-intelligence/q3-2026-industry-update.pdf">Wells Fargo 보고서</a>.</p>
+<p>기관 전망 사이에도 기간과 대상이 다르다. FAO 10월 브리프의 2026년 ‘전체 곡물’ 생산, USDA의 2026/27 ‘옥수수’ 수급, CONAB의 브라질 2025/26 작황은 같은 표의 비교 행이 아니다. 세 자료를 함께 읽을 때의 유용한 질문은 하나다. 생산이 늘거나 줄어도 국내 소비, 재고, 정책, 물류를 거친 뒤 <strong>수출 가능 물량이 어떻게 달라지는가</strong>. 은행 보고서는 그 변화의 해석을 보태며, 최종 수치는 다음 공식 발표 전까지 확정되지 않는다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표</span>매달 수입 물량과 가격의 연결을 확인한다</h2>
+<p class="lead">옥수수 산업의 위험을 ‘세계 생산 감소’ 한 줄로 좁힐 수 없다. 한국에는 수입 원곡의 선적량, 사료와 가공 수요의 변화, 국제가격과 환율, 통관·할당관세 조건, 국내 식용 옥수수의 별도 시장이 동시에 있다. 수치가 부족한 영역에서는 방향을 단정하기보다 어느 공개 자료가 변화를 먼저 보여 주는지 정해 두는 편이 정확하다.</p>
+<div class="tw">
+<table>
+<caption>표 10. 반복해서 확인할 옥수수 산업 지표</caption>
+<thead><tr><th>질문</th><th>관찰 지표·수집기</th><th>주기·비교 방법</th><th>해석의 한계</th></tr></thead>
+<tbody>
+<tr><td>한국의 원곡 도착이 줄었는가</td><td>관세청 HS10 사료용·기타·팝콘용 중량</td><td>월간, 전년 같은 달과 누계 비교</td><td>통관과 실제 공장 투입 사이에 시차</td></tr>
+<tr><td>원곡 가격 부담이 달라졌는가</td><td>관세청 세번별 금액÷중량</td><td>월간·누계 달러/톤</td><td>계약·품질·원산지 구성 변화</td></tr>
+<tr><td>세계 공급 여력이 달라졌는가</td><td>USDA PSD 국가별 생산·소비·재고·수출</td><td>WASDE 갱신마다 같은 곡물연도 비교</td><td>전망의 수정과 확정 실적을 구분</td></tr>
+<tr><td>브라질의 수출 잉여가 달라졌는가</td><td>CONAB 작기별 생산·국내소비·수출</td><td>작황 보고서 판본별 비교</td><td>다른 기관의 전망과 기준이 다름</td></tr>
+<tr><td>흑해 운송이 막혔는가</td><td>FAO 브리프·실제 선적 통계</td><td>월간 서술과 물량을 함께 확인</td><td>서술만으로 한국 도착 감소 확정 불가</td></tr>
+<tr><td>국내 사료 수요가 달라졌는가</td><td>KOSIS 월별 배합사료 생산</td><td>같은 달 비교</td><td>완제품 사료이며 옥수수 원료량 아님</td></tr>
+<tr><td>국내 가공 사용이 달라졌는가</td><td>KOSIS 식품제조업 원료 사용</td><td>연간, 품목·국산·수입산 분리</td><td>비식품 가공·사료 제외</td></tr>
+<tr><td>제도 조건이 바뀌었는가</td><td>국가법령정보센터 할당관세 별표</td><td>개정 때마다 용도·수량·기간 확인</td><td>한계수량과 실제 적용량은 다름</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 부록 A 수집기 현황 및 02~09절 원자료. 이 표는 지표 정의와 점검 순서이며 새로운 예측값을 담지 않는다.</p>
+<p>첫 관찰 지점은 한국 통관의 사료용 물량과 단가다. 2025년 사료용 수입 933만 톤은 HS 1005 전체의 82.6%다. 총량만 보면 종자와 팝콘, 기타 세번의 구성 변화가 가격 해석을 흐릴 수 있다. 월별 지표를 만들 때는 <code>사료용 수입금액/사료용 중량</code>, <code>기타 수입금액/기타 중량</code>을 따로 계산한다. 전년 같은 달과 비교하되 한 달의 선적 지연이 다음 달로 넘어갈 수 있음을 함께 본다(근거 N01).</p>
+<p>둘째는 세계 공급의 <strong>수출 가능분</strong>이다. FAOSTAT 2024년 생산은 미국·중국 본토가 크지만, 같은 해 세계 수출은 미국·브라질·아르헨티나·우크라이나 네 나라에 약 80.9%가 모인다. 중국 본토 생산이 늘었다고 한국으로 향하는 상업 물량이 자동으로 늘지 않는다. USDA PSD의 수출·기말재고, CONAB의 브라질 국내 소비, FAO의 물류 서술을 연결해서 본다(근거 N02·N08·N09·N14).</p>
+<p>셋째는 전망의 수정이다. 2026년 9월 WASDE는 미국 생산과 세계 재고 전망을 한 달 전보다 낮췄다. 그 뒤의 실제 작황과 수출 선적이 어떻게 확정되는지는 이 보고서의 자료 기준일 이후 문제다. 2026년 10월 7일 기준 10월 WASDE는 발표 전이며, 노트에 기록된 다음 발표일은 10월 9일이다. 미발표 자료의 수치를 앞당겨 쓰지 않는다(근거 N13).</p>
+<p>넷째는 제도와 가격의 전달 경로다. 2026년 할당관세 별표의 0%와 한계수량은 수입조건을 정하지만, 국제가격의 변화가 한국 사료제품 가격에 언제 얼마나 반영되는지는 별도 자료가 필요하다. KAMIS 식용 옥수수 경락가격을 이 전달률의 대용치로 쓰지 않는다. ECOS 수입물가지수 원자료에서 옥수수 단독 행을 확인하지 못한 것도, 특정 상품의 국내 공장 인도가격을 바로 얻을 수 없다는 조사 범위의 한계다(근거 N17).</p>
+<h3>관찰 지표·남은 물음</h3>
+<ul>
+<li>2025년 완료연도의 한국 수입 국가별 물량·점유율을 관세청 국가별 HS10 원자료로 재구성할 수 있는가. 현재 보관본은 연간 전체를 담지 않는다(04절).</li>
+<li>해외 신고 거울통계의 국가코드·재수출·FOB/CIF·기간을 한국 통관 확정치와 맞춰 대조할 수 있는가(04절).</li>
+<li>기타 세번의 실제 전분·당화·그 밖의 용도별 사용량은 얼마인가. 세번과 공장 사용 사이의 연결 자료가 없다(03·07절).</li>
+<li>원곡 투입·전분 산출·전분 사용의 변환율과 재고, 사료 원료 배합비와 재고를 연결한 물량표를 확보할 수 있는가(03절).</li>
+<li>KOSIS 세부 양곡 분류, 농업관측의 식용 옥수수 조사, 식품산업 원료 사용조사의 세부 표에서 가정의 식용 수요를 확인할 수 있는가(03절).</li>
+<li>사료용 옥수수의 국내 인도·거래가격 공개 시계열이 있는가. KAMIS 경락과 FRED 국제가격만으로는 그 값을 알 수 없다(05절).</li>
+<li>KAMIS 재조회에서 <code>countyname=평년</code>인 직전 5년 중 최고·최저를 뺀 3년 평균 참고값을 실측 지역·평균 행과 분리했는가(05절; <a href="https://www.kamis.or.kr/customer/archive/archive.do?action=detail&amp;archiveNo=23">aT KAMIS, 「식재료 아카이브 이용안내」, 2026-10-08 확인</a>).</li>
+<li>한국사료협회 원료 사용 표의 ‘2023년’ 제목과 내부 ‘22’ 표기 중 어느 연도가 적용되는가. 협회 원표나 새 공시로 확인할 수 있는가(07절).</li>
+<li>물품의 세번·용도·원산지·적용일에 따른 식물검역·GMO·원산지 표시 조건을 법령 별표와 소관기관 고시로 확인할 수 있는가(08절).</li>
+<li>CONAB 작기별 생산과 한국의 월별 도착을 국가별 수입·선적 자료로 연결할 수 있는가. 흑해 항만과 실제 선적량은 FAO의 물류 전망과 일치하는가(06절).</li>
+<li>다음 공식 수급 발표는 USDA·CONAB·FAO의 수출·재고 전망과 은행의 시장 해석을 어떻게 수정하는가(09절).</li>
+</ul>
+<p>이 물음들이 채워지면 한국 수입 원곡의 공급국 위험과 가격 전달을 더 정확히 설명할 수 있다.</p>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>수입 원곡에서 사료와 전분당으로</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">04절의 기준은 2025년 한국 HS 1005 원곡 수입이며, 그해 국가별 연간 점유율은 미확보다. 공급국 선정에는 별도 연도인 <strong>2024년 HS 100590 한국 수입중량 1,134만 1,300톤</strong>을 분모로 썼다. 브라질 29.0%, 아르헨티나 26.1%, 미국 22.1%가 각각 10% 이상이다. 04절에는 가공품 세번별 수입액 표가 없어 가공품의 10% 기준은 판정할 수 없다. <a href="https://wits.worldbank.org/trade/comtrade/en/country/KOR/year/2024/tradeflow/Imports/partner/ALL/product/100590">WITS·UN Comtrade, 2024</a> (A).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 2024년 한국 원곡 주요 공급국의 수출·가공기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표(연도)</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>브라질</td><td>Cargill Agrícola</td><td>조달·가공·무역</td><td>브라질 조달·가공·거래 4,500만 톤(2024, 전 품목)</td><td>식약처 제조사명 일치 6건</td><td><a href="https://www.cargill.com.br/pt_BR/2025/resultadosbrasilabr2025">Cargill Brasil, 2025</a> (B)</td></tr>
+<tr><td>브라질</td><td>Louis Dreyfus Company Brasil</td><td>조달·무역</td><td>그룹 선적 1억 400만 톤(2025, 전 품목)</td><td>브라질 법인 제조사명 일치 4건</td><td><a href="https://www.ldc.com/br/en/who-we-are/business-lines/grains-oilseeds/">브라질 사업</a>·<a href="https://www.ldc.com/who-we-are/financial-information/key-figures/">그룹 실적, 2025</a> (B)</td></tr>
+<tr><td>브라질</td><td>Milhão Ingredients</td><td>옥수수 가공·수출</td><td>연간 옥수수 처리 28만 톤(회사 현황, 2026년 확인·잠정)</td><td>제조사명 일치 5건</td><td><a href="https://milhao.net/en/about-us/">Milhão 회사 소개</a> (B)</td></tr>
+<tr><td>아르헨티나</td><td>ACA(협동조합연합)</td><td>생산자 집하·수출</td><td>옥수수 선적 385만 톤(2020/21)</td><td>연차보고서가 한국을 당시 옥수수 주요 목적지로 명시</td><td><a href="https://www.acacoop.com.ar/images/memoria/MEMORIAGRANDE-2021.pdf">ACA 연차보고서, 2020/21</a> (B)</td></tr>
+<tr><td>아르헨티나</td><td>Cargill Argentina</td><td>조달·무역</td><td>그룹 매출 1,540억 달러(2025 회계연도, 전 사업)</td><td>그룹의 미·브라질 제조사명은 신고에 등재; 아르헨티나 법인 선적은 미확인</td><td><a href="https://www.argentina.gob.ar/sites/default/files/2021/10/informe_de_complejos_exportadores_2022.pdf">아르헨티나 정부 기업 목록, 2022</a> (A)·<a href="https://www.cargill.com/doc/1432279934974/2025-cargill-annual-report.pdf">그룹 연차보고서, 2025</a> (B)</td></tr>
+<tr><td>아르헨티나</td><td>Bunge Argentina</td><td>곡물 무역</td><td>그룹 곡물 무역·제분 6,717만 톤(2025, 여러 곡종)</td><td>그룹의 우크라이나 제조사명은 신고에 등재; 아르헨티나 법인 선적은 미확인</td><td><a href="https://www.argentina.gob.ar/sites/default/files/2021/10/informe_de_complejos_exportadores_2022.pdf">아르헨티나 정부 기업 목록, 2022</a>·<a href="https://investors.bunge.com/~/media/Files/B/Bunge-IR/documents/financial-information/annual-reports/bunge-2025-annual-report.pdf">그룹 연차보고서, 2025</a> (A)</td></tr>
+<tr><td>미국</td><td>Cargill, Inc.</td><td>조달·무역</td><td>그룹 매출 1,540억 달러(2025 회계연도, 전 사업)</td><td>제조사명 일치 5건</td><td><a href="https://www.cargill.com/doc/1432279934974/2025-cargill-annual-report.pdf">Cargill 연차보고서, 2025</a> (B)</td></tr>
+<tr><td>미국</td><td>The Scoular Company</td><td>곡물 집하·무역</td><td>연매출 70억 달러·곡물 거래 15억 부셸(FY26 회사 자료, 전 곡종·잠정)</td><td>제조사명 일치 8건</td><td><a href="https://www.scoular.com/wp-content/uploads/2024/08/Corporate-Profile-FY26.pdf">Scoular 기업자료, FY26</a> (B)</td></tr>
+<tr><td>미국</td><td>EGT LLC</td><td>곡물 수출터미널</td><td>연간 처리능력 약 900만 톤(2023, 전 곡종)</td><td>제조사명 일치 16건; 합작사에 Pan Ocean America 참여</td><td><a href="https://www.bunge.com/press-releases/egt-llc-announces-investment-to-expand-capacity-of-its-export-terminal">EGT·Bunge 발표, 2023</a> (B)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 국가별 중량과 분모는 <a href="https://wits.worldbank.org/trade/comtrade/en/country/KOR/year/2024/tradeflow/Imports/partner/ALL/product/100590">WITS·UN Comtrade, 2024</a> (A). 제조사명 일치는 <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>의 2025.10~2026.09 식품용 신고 집계(A, 2026년분 잠정)이며 사료용 선적의 거래 상대를 보여주지 않는다. 아르헨티나 정부의 2022년 옥수수 주요 수출기업 명단은 ADM Agro·Cargill·Cofco·ACA·Bunge다(A). 그룹의 타국 법인 신고는 아르헨티나 법인의 대한국 선적 증거가 아니다.</p>
+<p>세계 옥수수 거래의 주요 기업으로 Cargill·LDC·Bunge·ADM이 확인된다. LDC는 자사를 밀·옥수수 세계 5대 무역회사 중 하나로 설명하며, ADM은 2025년 옥수수 가공량 1,852만 5,000톤을 공시했다. 다만 <strong>동일 기준의 기업별 세계 옥수수 수출량 1위</strong>는 확인된 공개 자료 없음. 전 사업 매출, 여러 곡종의 취급량, 옥수수 가공량을 섞어 순위를 매길 수 없다. <a href="https://www.ldc.com/br/en/who-we-are/business-lines/grains-oilseeds/">LDC 사업 소개</a> (B), <a href="https://www.sec.gov/Archives/edgar/data/7084/000000708426000011/adm-20251231.htm">ADM 2025 Form 10-K</a> (A).</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처의 <strong>2025년 10월~2026년 9월</strong> 식품용 신고 중 옥수수 계열 품목과 옥수수 관련 정제 전 원료로 분류한 것은 709건이다. 옥수수가루·냉동옥수수·스위트콘 등 곡류가공품과 물엿 등 다른 품목으로 신고된 4,325건은 제외했다. 아래 순위는 <strong>신고 건수 기준</strong>이며 중량·금액·물량 점유율이 아니다. 식약처 신고 원자료에서 제조국과 수출국은 별도 항목이다. 식약처의 식품용 신고는 2025년 HS 1005 수입중량의 82.6%인 사료용 원곡을 포괄하지 않는다. 따라서 신고 제조국의 미국 59.1%·아르헨티나 0건은 표 11-1의 수입중량 비중과 다르다. <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a>·<a href="https://www.tradedata.go.kr/cts/index.do?mi=10103">관세청</a> (A).</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 식약처 식품용 옥수수 수입신고 상위 업소(신고 건수 기준)</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>대상주식회사 전분당공장</td><td class="num">68</td><td>미국 24·우크라이나 23</td><td>벌크 황색·찰옥수수</td></tr>
+<tr><td>(주)삼양사울산2공장</td><td class="num">56</td><td>미국 25·러시아 연방 19</td><td>벌크 황색·찰옥수수</td></tr>
+<tr><td>(주)아하</td><td class="num">46</td><td>미국 46</td><td>팝콘용</td></tr>
+<tr><td>씨제이제일제당(주)</td><td class="num">37</td><td>우크라이나 18·미국 11</td><td>벌크 황색·찰옥수수</td></tr>
+<tr><td>유한회사 사조씨피케이 이천공장</td><td class="num">37</td><td>우크라이나 19·미국 12</td><td>벌크 황색·찰옥수수</td></tr>
+<tr><td>동서식품(주)</td><td class="num">37</td><td>인도 37</td><td>파쇄옥수수(그릿츠)</td></tr>
+<tr><td>동일에프엔지(주)</td><td class="num">31</td><td>호주 18·미국 11</td><td>옥수수·팝콘용·백옥수수</td></tr>
+<tr><td>우영통상</td><td class="num">30</td><td>미국 30</td><td>팝콘용·백옥수수</td></tr>
+<tr><td>(주)제이앤이 아산공장</td><td class="num">30</td><td>미국 30</td><td>팝콘용</td></tr>
+<tr><td>농심켈로그주식회사</td><td class="num">30</td><td>인도 30</td><td>파쇄옥수수(그릿츠)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>, 처리일자 2025.10~2026.09의 해당 품목 신고 건수 재집계(A, 2026년분 잠정). 주요 제조국은 업소별 상위 두 나라를 그대로 적었다. 업소명 표기 변형은 합쳤으나 <strong>신고 사업장 단위</strong> 순위다. 법인으로 합치면 삼양사 72건(울산2공장 56·본사 16), 사조씨피케이 51건(이천 37·부평 14)이다. 식약처 품목명 ‘옥수수(씨앗)’을 관세청 종자용 HS 100510과 동일시하지 않는다.</p>
+<p>사료용 원곡의 구매 주체에는 농협사료(NOFI), 한국사료협회 회원사 구매단(KFA), MFG, FLC가 있다. 공개 자료는 이들의 건별 입찰·구매를 보여주지만 구매단별 연간 옥수수 취급량은 확인된 공개 자료 없음. 포스코인터내셔널도 곡물 조달·국내 반입에 참여하며, 대상의 2025년 사업보고서는 옥수수 매입처로 ‘COFCO, POSCO 외’를 적었다. <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Grain+and+Feed+Annual_Seoul_Korea+-+Republic+of_KS2022-0009.pdf">USDA GAIN, 2022</a> (B), <a href="https://www.admis.com/global-ag-news-for-mar-14-2025/">ADM Investor Services 입찰 동향, 2025</a> (C), <a href="https://kind.krx.co.kr/external/2026/03/27/001263/20260327002982/11011.htm">대상 사업보고서, 2025</a> (A).</p>
+<p>전분당협회의 <strong>2025년 전분당업체 옥수수 사용량 기준</strong> 비중은 대상 35%, 삼양사 26%, 사조씨피케이 25%, CJ제일제당 14%다. 한국 전체 원곡 수입이나 배합사료의 기업별 점유율은 아니다. <a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">사조대림 사업보고서의 협회 인용표, 2025</a> (기초자료 B).</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 국내 주요 수입·가공·유통기업의 공개 규모</caption>
+<thead><tr><th>기업</th><th>산업상 역할</th><th>규모 지표(연도·범위)</th><th class="num">전분당 원료 사용 비중(2025)</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>대상</td><td>전분·전분당 제조</td><td>별도 소재류 매출 9,464억 원·옥수수 매입액 2,571억 원(2025)</td><td class="num">35%</td><td><a href="https://kind.krx.co.kr/external/2026/03/27/001263/20260327002982/11011.htm">사업보고서, 2025</a> (A)</td></tr>
+<tr><td>삼양사</td><td>전분·전분당 제조</td><td>삼양홀딩스 연결 식품부문 매출 1조 5,158억 원(2025, 설탕·제분 포함)</td><td class="num">26%</td><td><a href="https://kind.krx.co.kr/external/2026/03/23/001870/20260323007875/11011.htm">삼양홀딩스 사업보고서, 2025</a> (A)</td></tr>
+<tr><td>사조씨피케이</td><td>전분·당류 제조</td><td>사조대림 연결 전분당류 매출 3,617억 원(2025)</td><td class="num">25%</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">사조대림 사업보고서, 2025</a> (A)</td></tr>
+<tr><td>CJ제일제당</td><td>소재·가공식품 제조</td><td>연결 식품부문 매출 11조 5,223억 원(2025, 옥수수 외 제품 포함)</td><td class="num">14%</td><td><a href="https://kind.krx.co.kr/external/2026/05/15/002157/20260515004789/11013.htm">2026년 1분기보고서의 2025년 비교값</a> (A)</td></tr>
+<tr><td>포스코인터내셔널</td><td>곡물 조달·무역</td><td>식량 국내 반입량 약 163만 톤(도표 판독, 2024, 옥수수·밀·대두 등 합계)</td><td class="num">—</td><td><a href="https://poscointl.com/upload/file/202504/20250428FLnlrjmWsr.pdf">회사 경영실적 자료, 2025</a> (B)</td></tr>
+<tr><td>동서식품</td><td>곡물 가공식품 제조·유통</td><td>매출 1조 8,105억 원(2025, 동서 공시의 공동기업 요약재무·전 제품)</td><td class="num">—</td><td><a href="https://kind.krx.co.kr/external/2026/03/12/000232/20260312000747/11011.htm">동서 사업보고서, 2025</a> (A)</td></tr>
+<tr><td>농심켈로그</td><td>곡물 가공식품 제조</td><td>매출 2,094억 원(2025, NICE평가정보 재게시·전 제품)</td><td class="num">—</td><td><a href="https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/QVZ6N0E5RG5SR0tkYmdBMllMbDVEdz09/company_nm/%EB%86%8D%EC%8B%AC%EC%BC%88%EB%A1%9C%EA%B7%B8%28%EC%A3%BC%29">사람인 재게시 재무정보, 2025</a> (C)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 기업 규모는 각 행의 공시·회사 자료(A·B·C). 전분당 비중은 <a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">사조대림 사업보고서의 전분당협회 인용표</a> (기초자료 B). 기업 매출에는 다른 원료와 제품이 섞이므로 옥수수 물량 점유율로 환산하지 않는다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 한국 옥수수의 단계별 밸류체인</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산·재배</td><td>해외·국내 농가</td><td>국내 생산 9만 3,515톤(2024)</td><td>산지 현물·재배 계약</td><td>작황·품질</td></tr>
+<tr><td>1차 가공</td><td>산지 집하·건조·선별업체</td><td>한국향 단계별 물량 미확보</td><td>산지 곡물가격·품질 조건</td><td>수분·곰팡이독소·재고</td></tr>
+<tr><td>수출·국제 무역</td><td>곡물 상사·항만·해운사</td><td>2024년 HS 100590 한국 수입중량의 브라질 29.0%·아르헨티나 26.1%·미국 22.1%</td><td>선물·수출항 가격·운임 계약</td><td>수출정책·항로·환율</td></tr>
+<tr><td>수입·통관·검역</td><td>사료 구매단·수입사·관세청·검역당국</td><td>HS 1005 수입 약 1,130만 톤, 사료용 82.6%(2025)</td><td>도착 계약가·통관평가</td><td>선적 지연·검역·관세</td></tr>
+<tr><td>국내 가공</td><td>배합사료·전분당·식품 공장</td><td>식품제조업 옥수수 원료 사용 240만 1,239톤(2024, 사료 제외)</td><td>원료 구매·제품 납품계약</td><td>원료비·수율·에너지비</td></tr>
+<tr><td>도매·유통</td><td>원료 도매·식자재 유통사</td><td>옥수수 단독 매출 미확보</td><td>도매·장기 납품계약</td><td>재고·운송비</td></tr>
+<tr><td>소매·외식</td><td>유통점·외식업체</td><td>옥수수 단독 최종 판매액 미확보</td><td>소매·외식 판매시장</td><td>수요·표시·품질</td></tr>
+<tr><td>소비</td><td>축산업·식품 소비자</td><td>배합사료 완제품 2,135만 톤(2025, 모든 원료 포함)</td><td>사료·식품 최종 판매시장</td><td>가격 부담·식품안전</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://kosis.kr/index/index.do">KOSIS</a>의 작물생산·식품원료 사용·배합사료 생산(A), <a href="https://www.tradedata.go.kr/cts/index.do?mi=10103">관세청</a>의 2025년 HS 1005(A), <a href="https://wits.worldbank.org/trade/comtrade/en/country/KOR/year/2024/tradeflow/Imports/partner/ALL/product/100590">WITS·UN Comtrade</a>의 2024년 HS 100590(A). 각 가격 지점은 서로 다른 거래 단계다.</p>
+<p><strong>부가가치가 생기는 곳.</strong> 2025년 HS 1005 통관단가 248.36달러/톤은 원곡의 수입 단계 값이다. 국내에서는 원곡을 사료·전분·당류·식품 소재로 전환하고 보관·규격 관리·운송·판매 서비스를 더한다. 대상의 2025년 옥수수 매입액 2,571억 원과 별도 소재류 매출 9,464억 원, 사조대림 연결 전분당류 매출 3,617억 원은 가공 단계의 규모를 보여준다. 이 매출에는 다른 원료·제품이 섞여 있고 수율·재고·비용이 연결되지 않아 매입액과 매출액의 차이를 옥수수 가공 이익으로 계산할 수 없다. <a href="https://www.tradedata.go.kr/cts/index.do?mi=10103">관세청</a>·<a href="https://kind.krx.co.kr/external/2026/03/27/001263/20260327002982/11011.htm">대상</a>·<a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">사조대림</a> (A).</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 옥수수 밸류체인의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>기획재정부·농림축산식품부·관세청·식품의약품안전처</td><td>할당관세, 농업·사료 정책, 통관, 수입식품 관리</td><td>수입조건과 검사·정보 공개에 영향</td></tr>
+<tr><td>해외 정부</td><td>미국 USDA·브라질 CONAB·아르헨티나 농업당국</td><td>수급·작황 공표, 수출정책</td><td>수출 가능 물량과 계약 판단에 영향</td></tr>
+<tr><td>생산자·단체</td><td>ACA·한국사료협회</td><td>산지 곡물 집하·수출, 사료업계 원료 조달</td><td>산지가격·조달 안정·품질에 관심</td></tr>
+<tr><td>수출·가공기업</td><td>Cargill·LDC·Bunge·Scoular</td><td>집하·가공·저장·국제 거래</td><td>계약 물량·운임·환율 위험 관리</td></tr>
+<tr><td>수입·유통기업</td><td>농협사료·KFA·MFG·FLC 구매단, 포스코인터내셔널, 대상·삼양사·사조씨피케이·CJ제일제당</td><td>사료용 구매, 곡물 무역, 전분당 가공·공급</td><td>원료 조달 안정성과 납품가격에 영향</td></tr>
+<tr><td>소비자·시민사회</td><td>한국소비자원·식품 소비자</td><td>식품 정보·표시에 관한 의견과 구매 선택</td><td>원료 이력·표시·가격의 투명성에 관심</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·Non-GMO Project</td><td>국제 수급 정보·비유전자변형 제품 검증 기준</td><td>정보 비교와 인증·분리 보관 비용에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&amp;flSeq=161558151&amp;gubun=">2026년 할당관세 별표</a>·<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a>·<a href="https://www.tradedata.go.kr/cts/index.do?mi=10103">관세청</a>·<a href="https://www.argentina.gob.ar/sites/default/files/2021/10/informe_de_complejos_exportadores_2022.pdf">아르헨티나 정부 기업 목록, 2022</a>·<a href="https://www.fao.org/worldfoodsituation/csdb/en">FAO 수급 브리프</a>·<a href="https://www.kca.go.kr/kca/sub.do?menukey=5084&amp;mode=view&amp;no=1001499445">한국소비자원, 2014</a> (A); <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Grain+and+Feed+Annual_Seoul_Korea+-+Republic+of_KS2022-0009.pdf">USDA GAIN, 2022</a>·<a href="https://www.nongmoproject.org/the-standard/">Non-GMO Project 기준</a> (B); <a href="https://www.admis.com/global-ag-news-for-mar-14-2025/">ADM Investor Services 입찰 동향, 2025</a> (C). 한국소비자원의 표시 의견은 2014년 당시 입장이다.</p>
+<p>산지 생산자·수출기업의 판매가격과 국내 사료·가공기업의 원료비는 서로 다른 방향으로 움직일 수 있다. 수출국의 국내 공급·세수 정책과 한국 구매단의 안정적 선적 수요는 엇갈릴 수 있다. 소비자의 원료 이력·표시 요구에는 수입·가공 단계의 분리 보관 및 검증 비용이 따른다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황</h2>
+<p class="lead">보고서 작성일의 품목 키는 <code>corn</code>, 레지스트리 범위는 HS 100510·100590, FAOSTAT 품목은 <code>Maize (corn)</code>이다. 아래 원장은 <code>rawbulk.report_delta.coverage("corn")</code>을 읽기 전용으로 실행해 받은 결과다. ‘최신’은 수집기가 식별한 기간 열의 최댓값이다. USDA PSD와 KOSIS 월간 파일의 ‘기간 열 없음’은 자료에 연도가 없다는 뜻이 아니라 <strong>수집기 기간 탐지 규칙이 해당 열을 찾지 못했다</strong>는 뜻이다. 실제 원자료를 따로 확인하면 USDA PSD의 <code>Market_Year</code>는 2026까지, 해당 KOSIS 산출의 <code>연도</code>는 2024까지다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 옥수수 수집기 현황(2026-10-07 확인)</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>자동 표시 최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">452</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">146</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">1,365</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">86</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">88</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">535</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">1,442</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">23,675</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">35,648</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">53,438</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>kosis_crops_grains_misc</td><td class="num">537</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>usda_psd_all</td><td class="num">113,790</td><td>기간 열 없음</td><td>2026-10-07</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">3,005</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">107</td><td>2026.08</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>fred</td><td class="num">43</td><td>2026-07-01</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>kosis</td><td class="num">40</td><td>기간 열 없음</td><td>2026-07-06</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>rawbulk.report_delta.coverage("corn")</code> 표준출력. 행 수는 파일의 자료 행이며 결측 여부나 완결연도 여부를 뜻하지 않는다.</p>
+<p>공통 원자료도 확인했다. <code>kosis_compound_feed</code>는 월별 배합사료 총생산, <code>kosis_food_raw_material</code>은 연간 식품제조업 원료 사용을 제공한다. <code>kosis_grain_consumption</code>에서는 이번 조회에서 옥수수 단독 가정 소비 행을 찾지 못했다. <code>ecos_import_price_items</code>와 <code>ecos_producer_price_items</code>의 이번 원자료에서 옥수수 단독 가격지수 행을 확인하지 못했다. 이 문장은 각 파일을 확인한 결과만 말하며, 모든 공식 통계의 부재를 주장하지 않는다. 레지스트리의 <code>kamis</code> 값은 <code>null</code>이지만 KAMIS 경락 화면의 품목 목록에는 식용 옥수수가 있다. 수집기 부재와 가격 자체의 부재를 구별한다.</p>
+<p>아카이브 목록에는 3개 파일이 있다. 세 파일 모두 직접 열었고, 전체를 끝까지 읽어 행 수와 SHA1 앞 8자를 확인했다. 3개 모두 반영으로 판정하되 범위를 좁혀 썼다. 아카이브의 Comtrade 사본은 11,308행으로 현재 품목 수집본 3,005행보다 넓으며 옥수수전분·가루·유·조제품 등 하류 HS도 포함한다. 아카이브의 <code>customs_kr</code> 사본은 201행이지만 2026년 3~4월과 하류 HS가 포함되고, 현재 수집본은 107행으로 2026년 3~8월 HS 1005 중심이다. 아카이브 FRED는 57행으로 월간·분기·연간 시리즈가 함께 있고 현재 수집본은 월간 43행이다. 큰 파일의 행 수를 더 신뢰해서 합계를 만들지 않았다.</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 자료 검토 범위</caption>
+<thead><tr><th>판정</th><th class="num">파일 수</th><th>이유와 처리</th></tr></thead>
+<tbody>
+<tr><td>반영</td><td class="num">3</td><td>직접 열람·전체 읽기 완료; 범위 필터와 수집본 대조에 사용</td></tr>
+<tr><td>불필요</td><td class="num">0</td><td>목록에 무관 파일 없음</td></tr>
+<tr><td>미검토</td><td class="num">0</td><td>열기 실패 파일 없음</td></tr>
+<tr class="tot"><td>합계</td><td class="num">3</td><td>입력 목록의 모든 행 판정 완료</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/corn.csv</code>의 3개 경로와 Drive 품목 폴더의 해당 파일 직접 열람; 전체 행 수·SHA1은 읽기 전용 계산 결과(근거 N16).</p>
+<p>은행·기관 리포트 색인에서 <code>items</code>에 <code>corn</code>이 붙고 <code>found_at</code>이 2026-10-07까지인 행은 79건이다. 2026-10-08 13:38 갱신된 색인 전체의 <code>corn</code> 태그 행은 140건이다. 태그에는 축산, 대두, 비료, 지역경제 보고서가 섞여 있다. 09절에는 실제 본문을 열어 옥수수 문장을 확인한 Bradesco·BBVA·Rabobank·Wells Fargo 자료와 USDA·CONAB·OECD·FAO 원문만 요약했다. 유료 또는 로그인 필요로 본문이 열리지 않은 Rabobank 일부 HTML의 제목·소개문은 분석 내용처럼 옮기지 않았다.</p>
+<p>자료 기준은 2026년 10월 7일이다. 2026년 관세청 통계는 8월까지, IMF/FRED 월간 가격은 7월까지, FAOSTAT 생산·무역은 2024년까지 확인했다. 자동 숫자대조 결과는 <code>update_2026-10-07/20_숫자대조.txt</code>에 있다(빌드할 때마다 다시 돌린다). 본문의 계산식과 필터는 이어지는 <code>30_근거_수치.md</code>에 적었다.</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 옥수수 산업 해부</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판 검토본)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · 관세청·KOSIS·FAOSTAT·USDA PSD 원자료와 국제기구·정부 원문을 우선했다. 은행·협회 자료는 기관의 해석 또는 범위가 제한된 참고 자료로 표시했다.</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>계산 파일·필터·식은 30_근거_수치.md에 기록했다. 자동 숫자대조 결과는 이 읽기 전용 세션에서 산출하지 않았다.</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>원곡 무역은 HS 1005.10·1005.90. 옥수수전분·가루·유·냉동 및 조제 스위트콘은 원곡 총량에서 제외하고 가공 단계에서만 다룬다.</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>2025년 한국의 수입 상대국별 완결 자료, 업체별 옥수수 취급량, 사료용 국내 인도가격, 원곡에서 전분·당화제품으로 이어지는 물량 계정은 확보하지 못했다. 2026년은 진행연도다.</span></div>
+</footer>
+</div>
+

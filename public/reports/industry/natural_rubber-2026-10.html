@@ -1,0 +1,738 @@
+<title>한국 천연고무 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 천연고무<br>
+        세계 생산 · 한국 수입 · 타이어 수요 · 가격 · 제도<br>
+        2020~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">동남아시아의 나무에서 한국의 공장까지 · 리포트 2026</p>
+      <h1><span class="scr">Rubber</span> <span class="lt">한국 천연고무 산업 해부</span></h1>
+      <p class="cover-sub">한국은 천연고무를 연간 약 30만 톤 수입한다. 기술규격고무가 물량의 대부분이고, 타이어 제조가 주요 수요처다. 태국·인도네시아의 생산과 한국의 원산지 구성, 국제가격과 수입물가, EU 산림전용방지규정이 공급망에 미치는 조건을 원자료와 기관 보고서로 살핀다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">세계 천연고무 생산</div><div class="v">1,482.9만</div><div class="n">톤 · FAOSTAT 2024년</div></div>
+      <div class="cf"><div class="k">태국 생산 비중</div><div class="v">32.3%</div><div class="n">2024년 · 세계 생산량 대비</div></div>
+      <div class="cf"><div class="k">한국 수입 물량</div><div class="v">29.96만</div><div class="n">톤 · HS 4001의 4개 세번 · 2025년</div></div>
+      <div class="cf"><div class="k">한국 수입액</div><div class="v">6.01억</div><div class="n">달러 · 같은 범위 · 2025년</div></div>
+      <div class="cf"><div class="k">기술규격고무 비중</div><div class="v">92.7%</div><div class="n">한국 수입 중량 · HS 4001.22 · 2025년</div></div>
+      <div class="cf"><div class="k">상위 3개 공급국</div><div class="v">78.2%</div><div class="n">태국·인도네시아·코트디부아르 · 2024년</div></div>
+      <div class="cf"><div class="k">한국 수입 단가</div><div class="v">2.01</div><div class="n">달러/kg · 수입액 ÷ 중량 · 2025년</div></div>
+      <div class="cf"><div class="k">천연고무 수입물가지수</div><div class="v">189.67</div><div class="n">원화 기준 · 2020=100 · 2026년 8월</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">한국의 약 30만 톤 수입은 타이어 산업과 동남아 공급망을 잇는다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">생산은 동남아에 집중되고 소비는 타이어에 묶인다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">원료 수입은 보이지만 실제 사용량은 분리되지 않는다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">2025년 한국 수입의 9할 이상이 기술규격고무다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">국제 기준가격과 한국 통관·수입물가는 다른 단계다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">태국·인도네시아가 크고 코트디부아르가 2025년 한국 최대 원산지가 됐다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">원료는 수입되고 타이어 공시가 수요의 일부를 보여 준다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">EUDR의 원료 범위는 확인됐고 한국 세부 적용표는 남았다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">태국 은행은 공급을, 국제기관은 가격과 수요를 본다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 관찰 지표·남은 물음</span><span class="t">물량·단가·원산지·추적 요건을 같은 기간으로 본다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">기술규격고무와 타이어 제조를 잇는 공급망</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 검토 범위</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>한국의 약 30만 톤 수입은 타이어 산업과 동남아 공급망을 잇는다</h2>
+<p class="lead">천연고무는 한국에서 최종 소비재로 바로 쓰이는 품목보다 타이어와 산업용 고무제품의 원료로서 중요하다. 한국의 HS 4001 수입은 기술규격고무(TSNR, HS 4001.22)가 중심이다. 세계 생산의 중심은 태국·인도네시아이고, 한국의 직접 수입에서는 코트디부아르도 주요 공급국으로 올라왔다. 국제 현물·선물가격, 원화 기준 수입물가지수, 실제 통관 단가는 서로 다른 단계의 지표다.</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>세계 생산.</strong> FAOSTAT의 최근 완료연도인 2024년 천연고무 생산은 세계 약 1,482.9만 톤(14,829,085톤, 톤 단위 반올림)이다. 태국 4,789,042톤(32.3%), 인도네시아 2,262,088톤(15.3%), 코트디부아르 1,686,599톤(11.4%), 베트남 1,327,473톤(9.0%) 순이다. 중국 본토·인도·캄보디아의 생산 행에는 외부 기관 제공 수치를 뜻하는 <code>X</code> 표시가 붙어 있다(FAOSTAT QCL, 02절).</li>
+</ul>
+<ul>
+<li><strong>한국 수입.</strong> 관세청 월별 원자료에서 HS 4001.10·21·22·29의 2025년 수입은 약 29.96만 톤(299,562.954톤; 원자료 299,562,954kg), 약 6.01억 달러(601,000,820달러)다. 2024년 같은 4개 세번의 307,692,006kg보다 물량은 2.6% 줄었고, 수입액은 585,091,551달러보다 2.7% 늘었다. 금액을 중량으로 나눈 평균 단가는 1.90달러/kg에서 2.01달러/kg으로 올랐다(관세청, 04절).</li>
+</ul>
+<ul>
+<li><strong>품목 구성.</strong> 2025년 HS 4001.22 수입은 277,618,320kg으로 위 4개 세번 합계의 92.7%다. 라텍스(4001.10), 스모크드 시트(4001.21), 기타 천연고무(4001.29)를 합한 물량보다 훨씬 크다. 이 보고서의 HS 범위에는 4001.30을 넣지 않는다(관세청, 04절).</li>
+</ul>
+<ul>
+<li><strong>공급국 구성.</strong> 아카이브의 관세청 국가별 파일은 2020~2024년 완료연도를 담고 있다. 2024년 4개 세번 수입 중 태국 39.2%, 인도네시아 27.3%, 코트디부아르 11.7%, 베트남 10.3%다. 상위 3개 공급국인 태국·인도네시아·코트디부아르의 중량 비중은 78.2%다(관세청 국가별 원자료, 04절). UN Comtrade 한국 신고 상대국 행으로 본 2025년 4개 세번 수입은 코트디부아르 27.8%·태국 27.1%·인도네시아 22.9%·베트남 10.0%로, 코트디부아르가 1위가 됐다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=400110,400121,400122,400129&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 공개 미리보기</a>, 2025).</li>
+</ul>
+<ul>
+<li><strong>진행연도.</strong> 2026년 1~8월 기준(잠정) 한국 수입은 170,458,484kg이다. 전년 같은 기간의 208,621,430kg보다 18.3% 적다. 이는 연간 전망치가 아니다. 국가별 월간 수집본은 2026년 3~8월 기준(잠정) 자료이므로 연간 원산지 순위로 쓰지 않는다(관세청, 04절).</li>
+</ul>
+<ul>
+<li><strong>수요와 가격.</strong> 세계은행은 타이어 제조가 세계 천연고무 사용량의 약 3분의 2를 차지한다고 분석한다(A등급). 한국은행 ECOS의 천연고무 수입물가지수는 2026년 8월 원화 기준 189.67, 달러 기준 158.85다(2020=100). 이 지수는 국내 도매가격도, 통관액을 중량으로 나눈 단가도 아니다(세계은행 2026년 4월 전망, ECOS, 03·05절).</li>
+</ul>
+<ul>
+<li><strong>제도.</strong> EU 집행위원회는 고무 원료를 산림전용방지규정(EUDR) 대상에 유지하고, 대·중기업 운영자에 대한 적용일을 2026년 12월 30일, 대부분의 소·영세기업 운영자에 대한 적용일을 2027년 6월 30일로 안내했다(A등급). 한국의 HS 4001 세부호별 현행 관세·검역·원산지 표시 의무는 확인한 일반 안내만으로 확정할 수 없다(08절).</li>
+</ul>
+<h3>현재 확인된 변화와 미확인 범위</h3>
+<ul>
+<li><strong>코트디부아르 원산지 비중.</strong> 코트디부아르산 비중은 2020~2023년 0.01% 미만, 2024년 11.7%, 2025년 27.8%(Comtrade 한국 신고)로 2년 연속 올랐다. 2026년 3~8월 잠정 23.2%는 기간이 달라 연간값과 직접 비교하지 않는다(관세청 국가별 원자료, 04·06절).</li>
+</ul>
+<ul>
+<li><strong>서로 다른 가격 지표.</strong> 2025년 통관 평균 단가는 물량 감소에도 올랐고, 2026년 8월 원화 기준 수입물가지수는 전년 같은 달보다 27.0% 높다. 두 지표는 같은 거래를 측정하지 않는다(04·05절).</li>
+</ul>
+<ul>
+<li><strong>EUDR 준비와 준수.</strong> 태국 고무청은 추적 교육을 계획했고 베트남 당국은 공급망 지침을 승인했다. 준비 사실만으로 개별 물량의 준수 여부는 확인되지 않는다(08절, 태국 고무청·베트남 당국 원문 A등급).</li>
+</ul>
+<p>확정 사실의 기간은 2024년 생산·원산지, 2025년 한국 수입, 2026년 월별 지표로 다르다. 기간이 다른 비율을 이어 붙여 하나의 연간 시장점유율처럼 읽지 않았다. 생산량은 FAOSTAT QCL, 통관 물량은 관세청, 수입물가는 ECOS를 우선했고, 은행·기업 자료와 웹 조사 노트의 전망은 발표 주체와 등급을 표시했다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>생산은 동남아에 집중되고 소비는 타이어에 묶인다</h2>
+<p class="lead">천연고무의 세계 생산을 비교할 때는 원료의 범위를 먼저 맞춰야 한다. FAOSTAT의 <code>Natural rubber in primary forms</code> 생산량은 고무나무에서 생산된 천연고무의 국가별 통계다. 관세 HS 4001은 라텍스와 여러 형태의 1차 고무를 나누고, 태국 은행 보고서의 ‘중간재 고무’에는 혼합고무 같은 다른 범위도 들어간다. 이 세 통계는 제목이 비슷해도 합계와 순위를 그대로 맞대지 않는다.</p>
+<p>FAOSTAT 기준 세계 생산은 2023년 14,631,998톤에서 2024년 14,829,085톤으로 1.3% 늘었다. 2024년 동남아시아 지역 합계는 10,337,737톤으로 세계의 69.7%다. 아시아 전체는 12,183,608톤으로 82.2%다. 국가 순위에서는 태국이 큰 간격으로 1위이고, 인도네시아·코트디부아르·베트남이 뒤따른다(FAOSTAT QCL, 30_근거_수치 E01).</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 천연고무 생산(2024년)</caption>
+<thead><tr><th>구분</th><th class="num">생산량(톤)</th><th class="num">세계 비중</th><th>자료 표시</th></tr></thead>
+<tbody>
+<tr><td>태국</td><td class="num">4,789,042</td><td class="num">32.3%</td><td>A</td></tr>
+<tr><td>인도네시아</td><td class="num">2,262,088</td><td class="num">15.3%</td><td>A</td></tr>
+<tr><td>코트디부아르</td><td class="num">1,686,599</td><td class="num">11.4%</td><td>A</td></tr>
+<tr><td>베트남</td><td class="num">1,327,473</td><td class="num">9.0%</td><td>A</td></tr>
+<tr><td>중국 본토(<code>China, mainland</code>, 코드 41)</td><td class="num">877,600</td><td class="num">5.9%</td><td>X</td></tr>
+<tr><td>인도</td><td class="num">876,000</td><td class="num">5.9%</td><td>X</td></tr>
+<tr><td>캄보디아</td><td class="num">527,200</td><td class="num">3.6%</td><td>X</td></tr>
+<tr class="tot"><td><strong>세계</strong></td><td class="num"><strong>14,829,085</strong></td><td class="num"><strong>100%</strong></td><td>A</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT QCL <code>faostat_production_natural_rubber.csv</code>, <code>Element=Production</code>, <code>Year=2024</code>, 각 국가·World 행. 중국은 <code>China, mainland</code>(Area Code 41) 행이다. 비중은 국가 생산량 ÷ World 생산량이다. <code>X</code>는 외부 기관 제공 수치, <code>E</code>는 추정값을 뜻한다.</p>
+<p>인도네시아 생산은 2023년 2,240,826톤, 2024년 2,262,088톤으로 집계됐다. 이 두 숫자만으로 잎떨림병의 생산 영향을 분리할 수 없다. 인도네시아 농업부는 수마트라와 칼리만탄 여러 산지에서 고무나무 잎떨림병이 계속 확인됐다고 보고했다. 따라서 병 발생 사실은 관측이고, 향후 수확 감소는 별도 전망이다(인도네시아 농업부 「2025 Performance Report」, 2026년 3월, A등급).</p>
+<p>코트디부아르는 FAOSTAT의 2024년 3위 생산국이다. 한국의 수입 원산지 표에서도 주요 공급국으로 나타난다는 점이 중요하다. 산지에서 생산했다는 사실과 한국으로 수출된 물량의 가공 단계는 다를 수 있으므로, 생산 통계만으로 한국에 들어온 고무의 등급이나 가공 경로를 확정하지 않는다. 캄보디아 수치에는 자료 출처상 주의가 필요하다. FAOSTAT의 캄보디아 2024년 생산량 527,200톤에는 외부 기관 제공 수치를 뜻하는 <code>X</code>가 붙어 있다. 베트남의 2024년 생산 행은 공식 수치를 뜻하는 <code>A</code>다.</p>
+<p>소비와 재고에는 다른 자료를 쓴다. 세계은행의 2026년 4월 「Commodity Markets Outlook」은 타이어 제조가 천연고무 사용량의 약 3분의 2를 차지한다고 분석했다(A등급). 이 보고서는 2026년 1월까지 12개월의 수급을 설명하면서 경차용 타이어 제조는 대체로 안정적이고 대형차용은 강해졌다고 서술한다. 이는 세계 수요의 용도 구조와 해당 기간의 경기 설명이지 한국의 타이어별 천연고무 사용량 측정치는 아니다(<a href="https://documents1.worldbank.org/curated/en/099842304282633100/pdf/IDU-29bd7eb3-10b9-441a-89be-9732d149e669.pdf">세계은행, 「Commodity Markets Outlook」, 2026년 4월</a>).</p>
+<p>ANRPC는 2026년 천연고무 생산을 15,039,000톤, 소비를 15,356,000톤으로 전망했다. 전망 생산보다 전망 소비가 317,000톤 많다는 계산은 가능하지만, 이를 곧바로 재고 감소나 실제 부족량으로 부를 수는 없다. 재고·무역·통계 범위가 더 필요하다. ANRPC가 제시한 같은 해 생산 증가율 전망은 0.6%, 소비 증가율 전망은 0.4%다. 동남아시아의 불규칙한 강우와 건조한 날씨를 생산 변수로 꼽았다(<a href="https://www.anrpc.org/newsla/anrpc-releases-monthly-nr-statistical-report-august-2026">ANRPC 2026년 8월 월간 보고서 안내</a>, 2026-09-30, A등급).</p>
+<p>아카이브의 <code>usda_psd/NOT_AVAILABLE.txt</code>는 USDA PSD에 천연고무 품목이 수록되지 않았다고 기록한다. 이를 세계 소비·재고가 존재하지 않는다는 주장으로 확대하지 않는다. FAOSTAT의 품목별 FBS·FBSH 파일도 해당 행이 비어 있다. 따라서 이 보고서는 세계 재고의 정량 시계열을 제시하지 않고, 소비는 출처와 정의를 밝힌 ANRPC 전망으로만 다룬다. IRSG는 분기·반기 수급 전망 보고서를 안내하지만 공개 소개 페이지에서 최신 본문 수치를 확인하지 못했다(<a href="https://www.rubberstudy.org/reports">IRSG 보고서 안내</a>, B등급).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>원료 수입은 보이지만 실제 사용량은 분리되지 않는다</h2>
+<p class="lead">한국의 천연고무 산업 규모를 ‘소비량’ 한 숫자로 적기는 어렵다. 원료 수입 중량은 관세청에서 볼 수 있지만, 국내 생산·재고 증감·가공 중량·재수출을 같은 정의와 기간으로 결합한 수급표를 확보하지 못했다. 한국의 타이어 생산액은 원료 수요가 있는 제조 기반을 보여 주지만 천연고무 함량이나 투입 중량을 알려 주지 않는다. 본 절은 서로 다른 단계를 한 시장 규모로 합산하지 않는다.</p>
+<p>FAOSTAT QCL의 천연고무 생산 국가 행에서 한국의 2024년 생산량은 확인되지 않았다. KOSIS 특용작물·임산물 원자료에서도 ‘천연고무’ 또는 ‘고무나무’ 항목을 찾지 못했다. 이는 <strong>확인한 원자료에 국내 천연고무 생산량 행이 없었다</strong>는 뜻이다. 국내 생산이 물리적으로 전혀 없다고 단정하는 근거로 쓰지 않는다(시도: <code>faostat_production_natural_rubber.csv</code>, <code>kosis_crops_special</code>, <code>kosis_forest_products</code>).</p>
+<p>한국이 실제 사용하는 원료의 규모에 가장 가까운 공개 물량은 HS 4001 수입이다. 2025년 4개 세번 수입은 299,562,954kg이고 수출은 16,699,878kg이다. 둘의 차이인 282,863,076kg은 <strong>순수입</strong>이다. 재고 변동, 품목 전환, 국내 생산, 재수출 시차를 반영하지 못하므로 소비량이라고 이름 붙이지 않는다(관세청 월별 원자료, 04절).</p>
+<p>통계청 KOSIS의 2024년 품목별 광업·제조업 조사에서는 승용차타이어 생산액 6,393,344백만원, 버스 및 화물차 타이어 400,244백만원, 배합고무 369,084백만원이 나온다. 이 조사는 종사자 10명 이상 사업체 대상이며 값은 각 <strong>제품의 생산액</strong>이다. 타이어 금액을 천연고무 원료액으로 환산할 비율이 없고, 배합고무에는 원료 범위가 다르므로 세 값을 천연고무 시장액으로 더할 수 없다(KOSIS <code>DT_1FP1124A</code>, 2024년).</p>
+<div class="tw">
+<table>
+<caption>표 2. 한국에서 확인되는 원료·가공 단계 지표</caption>
+<thead><tr><th>지표</th><th>기간</th><th class="num">확인 값</th><th>측정하는 단계</th><th>해석의 한계</th></tr></thead>
+<tbody>
+<tr><td>HS 4001 4개 세번 수입</td><td>2025년</td><td class="num">299,562,954kg</td><td>국경 통과 원료</td><td>사용량·재고 아님</td></tr>
+<tr><td>같은 범위 수출</td><td>2025년</td><td class="num">16,699,878kg</td><td>국경 통과 원료</td><td>수입품 재수출 여부 미분리</td></tr>
+<tr><td>수입 − 수출</td><td>2025년</td><td class="num">282,863,076kg</td><td>순수입</td><td>국내 소비량 아님</td></tr>
+<tr><td>승용차타이어 생산액</td><td>2024년</td><td class="num">6,393,344백만원</td><td>완제품 생산</td><td>고무 투입량 미표시</td></tr>
+<tr><td>버스·화물차 타이어 생산액</td><td>2024년</td><td class="num">400,244백만원</td><td>완제품 생산</td><td>고무 투입량 미표시</td></tr>
+<tr><td>배합고무 생산액</td><td>2024년</td><td class="num">369,084백만원</td><td>중간재 생산</td><td>천연·합성 비율 미표시</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>customs_item_trade_monthly_natural_rubber.csv</code>의 2025년 4개 HS 행; KOSIS <code>kosis_manufacturing_items</code> 원자료의 <code>PRD_DE=2024</code>, <code>C1=00</code>, 각 품목 <code>ITM_NM=생산액</code>. 순수입은 수입 중량 − 수출 중량이다.</p>
+<p>타이어 기업 공시는 천연고무가 실제 생산비에 들어간다는 교차 확인 자료다. 금호타이어는 2025년 천연고무 원재료 투입액 4,616억 9,700만원과 전체 원재료 투입액 대비 27.8%를, 넥센타이어는 연결 기준 매입액 3,329억원과 원재료 매입액 대비 25.6%를 공시했다(각사 2025 사업보고서, B등급; 07절). 이 값은 회사별 회계 범위와 표현이 달라 합산해 산업 전체 투입액으로 만들지 않는다. 한국타이어를 포함한 전체 제조사의 물량 자료도 확보하지 못했다.</p>
+<p>넥센타이어 사업보고서는 한국타이어·금호타이어·넥센타이어가 국내 타이어 <strong>완제품 시장</strong>의 약 90% 이상을 차지한다고 기술한다(B등급). 이는 회사가 서술한 완제품 시장 구조이며 천연고무 원료 수입시장 점유율은 아니다. 천연고무는 타이어 밖에도 산업용 고무제품·장갑 등에 쓰이지만, 본 원자료에서 각 용도의 원료 투입 중량을 분리할 수 없다. 따라서 수요처의 방향은 설명할 수 있어도 용도별 국내 소비 점유율은 제시하지 않는다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>2025년 한국 수입의 9할 이상이 기술규격고무다</h2>
+<p class="lead">무역의 기본 범위는 레지스트리에 들어 있는 HS 4001.10(라텍스), 4001.21(스모크드 시트), 4001.22(기술규격고무), 4001.29(기타 천연고무)다. 아카이브의 과거 관세청 파일에는 4001.30도 있으나 연도 비교에서 빼고 4개 세번으로 통일했다. 월별 원자료는 2024년 11월부터 있으므로 이전 연도는 아카이브의 관세청 연간·국가별 파일을 썼다. 2025년은 월별 12개월을 합했다.</p>
+<p>한국 수입 물량은 2022년 403,840톤에서 2023년 280,826톤으로 줄었다가 2024년 307,692톤, 2025년 299,563톤이었다. 연도별 수입액은 물량과 같은 방향으로만 움직이지 않았다. 2025년은 2024년보다 물량이 2.6% 적고 금액은 2.7% 많았다. 4개 세번을 합친 평균 단가가 1.902달러/kg에서 2.006달러/kg으로 오른 결과다. 품질·세번 구성·원산지 구성의 변화를 분해할 자료는 확보하지 못했다(관세청, E03).</p>
+<div class="tw">
+<table>
+<caption>표 3. 한국 천연고무 수입(HS 4001.10·21·22·29)</caption>
+<thead><tr><th>연도</th><th class="num">수입(톤)</th><th class="num">수입액(백만 달러)</th><th class="num">평균 단가(달러/kg)</th><th class="num">수출(톤)</th></tr></thead>
+<tbody>
+<tr><td>2020</td><td class="num">307,681</td><td class="num">429.93</td><td class="num">1.397</td><td class="num">1,916</td></tr>
+<tr><td>2021</td><td class="num">348,706</td><td class="num">618.47</td><td class="num">1.774</td><td class="num">2,041</td></tr>
+<tr><td>2022</td><td class="num">403,840</td><td class="num">721.89</td><td class="num">1.788</td><td class="num">2,195</td></tr>
+<tr><td>2023</td><td class="num">280,826</td><td class="num">411.06</td><td class="num">1.464</td><td class="num">465</td></tr>
+<tr><td>2024</td><td class="num">307,692</td><td class="num">585.09</td><td class="num">1.902</td><td class="num">8,758</td></tr>
+<tr><td>2025</td><td class="num">299,563</td><td class="num">601.00</td><td class="num">2.006</td><td class="num">16,700</td></tr>
+<tr><td>2026.1~8(잠정)</td><td class="num">170,458</td><td class="num">351.49</td><td class="num">2.062</td><td class="num">2,993</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 2020~2024년은 아카이브 관세청 <code>KCS_HS4001_natural_rubber_2020-2024.csv</code>의 <code>hsCd=-</code>·4개 <code>hsSgn</code> 합계 행, 2025~2026년은 <code>customs_item_trade_monthly_natural_rubber.csv</code>의 해당 월·4개 <code>hsCode</code> 합계. 톤=kg÷1,000, 평균 단가=수입 달러÷수입 kg. 2026년은 8월까지의 미완 연도다.</p>
+<p>품목별로 보면 2025년 HS 4001.22가 277,618톤·5억 6,089만 달러다. 전체 물량의 92.7%, 전체 금액의 93.3%다. 라텍스는 13,669톤, 스모크드 시트는 5,560톤, 기타 천연고무는 2,716톤이다. 따라서 국제 라텍스 가격 하나로 한국 전체의 수입비를 설명하기 어렵고, 기술규격고무 계열 가격과 등급 구성이 더 직접적인 비교 대상이다(관세청, E04).</p>
+<p>2024년 원산지는 태국 120,608톤, 인도네시아 83,969톤, 코트디부아르 36,061톤, 베트남 31,800톤 순이다. 상위 세 나라가 전체의 78.2%, 네 나라가 88.5%다. 같은 HS 범위에서 코트디부아르산은 2023년 20,229kg으로 전체의 0.01% 미만이었다가 2024년 36,061,200kg으로 11.7%를 차지했다. 코트디부아르 수입이 포함된다는 사실은 ‘한국은 동남아산만 수입한다’는 설명이 맞지 않음을 보여 준다. 다만 코트디부아르에서 생산·가공한 등급의 세부 내역까지 이 국가 합계로 알 수는 없다(관세청, E05).</p>
+<div class="tw">
+<table>
+<caption>표 4. 한국 수입 원산지 구성(2024·2025년 완료연도, 4개 HS)</caption>
+<thead><tr><th>국가</th><th class="num">2024년 수입(톤)</th><th class="num">2024년 비중</th><th class="num">2025년 수입(톤)</th><th class="num">2025년 비중</th></tr></thead>
+<tbody>
+<tr><td>태국</td><td class="num">120,608</td><td class="num">39.2%</td><td class="num">81,179</td><td class="num">27.1%</td></tr>
+<tr><td>인도네시아</td><td class="num">83,969</td><td class="num">27.3%</td><td class="num">68,514</td><td class="num">22.9%</td></tr>
+<tr><td>코트디부아르</td><td class="num">36,061</td><td class="num">11.7%</td><td class="num">83,203</td><td class="num">27.8%</td></tr>
+<tr><td>베트남</td><td class="num">31,800</td><td class="num">10.3%</td><td class="num">30,092</td><td class="num">10.0%</td></tr>
+<tr><td>캄보디아</td><td class="num">13,546</td><td class="num">4.4%</td><td class="num">14,223</td><td class="num">4.7%</td></tr>
+<tr><td>말레이시아</td><td class="num">10,308</td><td class="num">3.4%</td><td class="num">8,201</td><td class="num">2.7%</td></tr>
+<tr><td>필리핀</td><td class="num">8,776</td><td class="num">2.9%</td><td class="num">11,749</td><td class="num">3.9%</td></tr>
+<tr><td>기타</td><td class="num">2,623</td><td class="num">0.9%</td><td class="num">2,409</td><td class="num">0.8%</td></tr>
+<tr class="tot"><td><strong>합계</strong></td><td class="num"><strong>307,692</strong></td><td class="num"><strong>100%</strong></td><td class="num"><strong>299,569</strong></td><td class="num"><strong>100%</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 2024년은 아카이브 관세청 <code>KCS_HS4001_natural_rubber_2020-2024.csv</code>, <code>year=2024</code>, <code>hsSgn∈{400110,400121,400122,400129}</code>, <code>hsCd≠-</code> 국가 행을 국가별 합산. 분모는 같은 파일의 <code>hsCd=-</code> 4개 합계 307,692,006kg이다. 국가 행 합계와 총계에는 수 kg 차이가 있다. 기타는 총계에서 7개국을 뺀 값이며, 톤 반올림으로 행 합계와 총계에 1톤 차이가 있다. 2025년은 UN Comtrade 한국 신고 공개 미리보기의 4개 HS 상대국 행 <code>netWgt</code> 합계이며, 상대국 합 299,569,414kg은 World 행과 같다. 톤 반올림으로 행 합계와 총계에 1톤 차이가 있다(E06).</p>
+<p>국가별 월간 파일은 2026년 3~8월 기준(잠정) 수집본이다. 이 6개월의 4개 세번 수입 131,656톤 중 태국이 35.2%, 코트디부아르 23.2%, 인도네시아 17.8%, 베트남 13.3%다. 2023→2024년의 코트디부아르 연간 비중 상승은 같은 관세청 파일로, 2025년 27.8%는 Comtrade 한국 신고로 확인된다. 2026년 3~8월 잠정 23.2%는 기간이 달라 연간값과 직접 비교하지 않는다. 같은 2026년이라도 전체 통관 월별 파일의 1~8월 170,458톤과 국가별 파일의 3~8월 131,656톤은 기간이 다르다.</p>
+<p>UN Comtrade를 사용할 때는 <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>만 남기고, 세계 합계에는 <code>partnerCode=0</code>을 추가했다. 2025년 한국 신고 4개 세번의 세계 상대 수입액은 관세청과 같은 601,000,820달러다. Comtrade의 2024년 한국 신고 합계에는 HS 4001.10과 4001.22의 <code>netWgt</code>가 비어 있다. 따라서 <strong>2024년 Comtrade 중량으로 한국의 세번별 물량이나 원산지 순위를 매기지 않았다</strong>. 2024년 국가별 구성은 관세청 원자료로 구했다. 2025년 Comtrade 수집본에는 한국의 세계 합계 행만 있어, 2025년 원산지 구성은 <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=400110,400121,400122,400129&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 공개 미리보기</a>의 상대국 행으로 구했다. 4개 HS 상대국 합은 World와 같은 299,569,414kg·601,000,820달러다(Comtrade 원자료, E06).</p>
+<p>미국 Census·EU Comext·브라질 ComexStat 파일은 각각 미국·EU·브라질 신고 통계다. 한국 수입 구성의 대체 분모로 쓰지 않는다. 이 자료는 외부 시장의 가격·물량 압력을 보조 관찰하는 데 유용하지만, 2026년 수집본은 월별 일부 기간이므로 연간 세계 순위를 계산하지 않았다. 일본 e-Stat 무역통계 수집본에는 2026년 1~8월 HS <code>400122000</code>의 국가별 수입 행이 있다. 이는 일본 신고 수입이므로 한국의 원산지별 수입을 검증하는 자료로 쓰지 않는다.</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>국제 기준가격과 한국 통관·수입물가는 다른 단계다</h2>
+<p class="lead">천연고무 가격은 한 숫자로 대표하기 어렵다. 라텍스·RSS·TSR은 품질과 인도 조건이 다르고, 선물의 결제가격은 계약월에 따라 달라진다. 한국 통관 평균 단가는 실제 들여온 세번과 원산지의 금액을 중량으로 나눈 결과다. 원화 기준 수입물가지수는 환율의 영향도 받는다. 서로의 움직임을 비교하되 값을 그대로 치환하지 않는다.</p>
+<p>세계은행 Pink Sheet의 아카이브 CSV는 2024년 12월까지를 포함한다. 이 파일에서 TSR20 월평균은 2023년 1.3827달러/kg, 2024년 1.7537달러/kg이며 RSS3는 같은 순서로 1.5767달러/kg, 2.2765달러/kg이다. 2024년 12월 TSR20은 1.9937달러/kg이다. 이 CSV를 2025~2026년 가격의 원자료처럼 쓰지 않았다(세계은행 아카이브 CSV, E07).</p>
+<p>2026년 8월의 세계은행 Pink Sheet 원문을 기록한 웹 조사 노트에는 RSS3 2.73달러/kg, TSR20 2.24달러/kg이라고 적혀 있다(세계은행 「Commodity Markets Price Data」, 2026-09-02, A등급). 같은 보고서의 2026년 4월 전망표는 TSR20 <strong>연평균 전망</strong>을 2026년 1.90달러/kg, 2027년 1.95달러/kg으로 제시했다. 8월 월평균과 4월에 발표한 연평균 전망의 차이는 예측 시점·집계 기간이 달라 생긴 비교다. 8월 값만으로 2026년 연평균이 전망을 넘어섰다고 확정할 수 없다(<a href="https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-September-2026.pdf">2026년 8월 Pink Sheet</a>, <a href="https://thedocs.worldbank.org/en/doc/f3138644a1e8e2bb631399ae11d6c408-0050012026/related/CMO-April-2026-Executive-Summary.pdf">2026년 4월 전망표</a>).</p>
+<p>말레이시아 고무청 월간 보고서에는 SMR20 현물 FOB 가격의 특정 날짜 종가가 나온다. 2025년 10월 31일 731.00sen/kg, 2026년 1월 30일 764.50sen/kg이다. 말레이시아 통계청(DOSM)의 월간 통계에서는 SMR20 FOB 월평균이 2025년 768.28sen/kg, 2026년 7월 잠정치 887.72sen/kg이다. 종가와 월평균은 관측 기간이 다르고, 모두 자국 통화 표시여서 달러/kg인 Pink Sheet 값과 바로 나누거나 평균하지 않는다(아카이브 Malaysian Rubber Board 월간 보고서 2건; <a href="https://www.dosm.gov.my/portal-main/release-content/monthly-rubber-statistics-july-2026">말레이시아 통계청, 「Monthly Rubber Statistics, July 2026」, 2026-09-10</a>).</p>
+<p>공통 IMF PCPS 월별 원자료의 <code>PRUBB</code>는 2025년 8월 98.33, 2026년 8월 124.82 US¢/lb다. 이는 세계은행 TSR20 달러/kg, 말레이시아 SMR20 sen/kg과 단위와 가격 정의가 달라 같은 시계열로 이어 붙이지 않는다(<a href="https://data.imf.org/en/Datasets/PCPS">IMF, 「Primary Commodity Price System」</a>; 30_근거_수치 E07).</p>
+<p>한국은행 ECOS에는 ‘천연고무’ 수입물가지수가 <strong>실제로 있다</strong>. 원화 기준은 2025년 8월 149.35에서 2026년 8월 189.67로 27.0% 높아졌고, 달러 기준은 126.57에서 158.85로 25.5% 높아졌다. 모두 2020=100 지수다. 2026년 6월 원화 기준 209.26 이후 8월에는 189.67로 내려왔다. 이 지수는 통관 달러/kg 단가와 조사 방식이 다르며 소비자가격이나 공장 구매가격을 직접 보여 주지 않는다(ECOS <code>401Y015</code>, E08).</p>
+<div class="tw">
+<table>
+<caption>표 5. 서로 다른 천연고무 가격 지표</caption>
+<thead><tr><th>지표</th><th>관측 기간</th><th class="num">값</th><th>단위·단계</th><th>읽을 때의 구분</th></tr></thead>
+<tbody>
+<tr><td>세계은행 TSR20</td><td>2024년 월평균</td><td class="num">1.7537</td><td>달러/kg · 국제 기준</td><td>12개월 단순평균</td></tr>
+<tr><td>세계은행 RSS3</td><td>2024년 월평균</td><td class="num">2.2765</td><td>달러/kg · 국제 기준</td><td>TSR20과 등급 다름</td></tr>
+<tr><td>세계은행 TSR20</td><td>2026년 8월</td><td class="num">2.24</td><td>달러/kg · 국제 월평균</td><td>웹 조사 노트 A</td></tr>
+<tr><td>말레이시아 SMR20</td><td>2026년 1월 30일</td><td class="num">764.50</td><td>sen/kg · FOB 종가</td><td>특정 날짜·자국 통화</td></tr>
+<tr><td>말레이시아 SMR20</td><td>2026년 7월(잠정)</td><td class="num">887.72</td><td>sen/kg · FOB 월평균</td><td>DOSM 월간 통계</td></tr>
+<tr><td>IMF PCPS <code>PRUBB</code></td><td>2026년 8월</td><td class="num">124.82</td><td>US¢/lb · 국제 월별 지표</td><td>TSR20 달러/kg과 구분</td></tr>
+<tr><td>한국 통관 평균 단가</td><td>2025년</td><td class="num">2.006</td><td>달러/kg · HS 4개 세번</td><td>금액÷중량</td></tr>
+<tr><td>ECOS 천연고무 수입물가</td><td>2026년 8월</td><td class="num">189.67</td><td>지수 · 원화 기준 · 2020=100</td><td>가격 수준 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 <code>WB_PinkSheet_rubber.csv</code>, Malaysian Rubber Board 월간 PDF, DOSM <code>dosm_rubber_monthly</code> 표 11, 공통 IMF <code>imf_pcps</code>의 <code>PRUBB</code>, 관세청 월별 CSV, ECOS <code>ecos_import_price_items</code> 원자료, 세계은행 2026년 8월 Pink Sheet(A등급). 각 계산은 30_근거_수치 E07~E09.</p>
+<p>SGX는 SICOM TSR20·RSS3의 계약월별 일일 결제가격을, JPX는 RSS3·TSR20 선물 보고서를 제공한다. 계약월이 바뀌는 선물 시계열은 연속가격으로 바로 비교할 수 없다. ANRPC는 SMR20·STR20·RSS4·라텍스 일일 현물가격을 <code>US dollar per 100 kg</code> 단위로 안내한다. 계약과 통화를 통일하지 않은 선물·현물값을 이 보고서의 월평균 표에 넣지 않았다(SGX·JPX B등급, ANRPC A등급; 웹 조사 노트).</p>
+<p>레지스트리의 <code>kamis: null</code>과 공통 원자료에는 천연고무 공공 도·소매 표준가격 시계열이 없다. 금호타이어가 공시한 2023~2025년 천연고무 연간 가중평균 투입가격 2,058→2,404→2,953원/kg은 <strong>한 기업의 가격</strong>이다. 국내 전체 도매가격으로 사용하지 않는다(금호타이어 2025 사업보고서, B등급).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>태국·인도네시아가 크고 코트디부아르가 2025년 한국 최대 원산지가 됐다</h2>
+<p class="lead">산지의 생산량과 한국으로의 수출량은 다른 질문에 답한다. 태국은 세계 최대 생산국이면서 한국의 2024년 최대 원산지다. 인도네시아도 두 표에서 모두 크다. 코트디부아르는 FAOSTAT 세계 생산 상위권이고 한국 수입 표에도 11.7%로 나타난다. 베트남은 생산량 외에 동남아 가공·교역의 연결점이라는 측면도 있다. 다만 베트남은 2025년 UN Comtrade에 HS 4001 수출을 신고하지 않아(2026-10-08 조회) 수출 총량을 임의로 채우지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 6. 산지 생산과 한국 원산지의 연결</caption>
+<thead><tr><th>공급국</th><th class="num">FAOSTAT 생산(2024, 톤)</th><th class="num">한국 수입 중량(2024, 톤)</th><th class="num">한국 수입 비중</th><th>확인할 공급 변수</th></tr></thead>
+<tbody>
+<tr><td>태국</td><td class="num">4,789,042</td><td class="num">120,608</td><td class="num">39.2%</td><td>기상·수확, TSR·RSS 가격, 추적 체계</td></tr>
+<tr><td>인도네시아</td><td class="num">2,262,088</td><td class="num">83,969</td><td class="num">27.3%</td><td>잎떨림병·재식재, 수출</td></tr>
+<tr><td>코트디부아르</td><td class="num">1,686,599</td><td class="num">36,061</td><td class="num">11.7%</td><td>생산·가공량, 한국행 등급</td></tr>
+<tr><td>베트남</td><td class="num">1,327,473</td><td class="num">31,800</td><td class="num">10.3%</td><td>가공·역내 조달, EUDR 대응</td></tr>
+<tr><td>캄보디아</td><td class="num">527,200(X)</td><td class="num">13,546</td><td class="num">4.4%</td><td>외부 기관 제공 생산 수치의 갱신</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT QCL <code>Year=2024, Element=Production</code>; 관세청 아카이브 국가별 <code>year=2024</code>·4개 HS 합계. 생산과 한국 수입은 정의가 달라 행끼리 차감하지 않는다. <code>X</code>는 외부 기관 제공 수치를 뜻한다.</p>
+<p>태국 신고 Comtrade의 2025년 세계 상대 수출을 4개 HS 합계 행으로 더하면 2,669,434톤·약 50.13억 달러다. 2024년 같은 범위는 2,816,944톤이었다. 이 수치는 태국이 <strong>신고한 HS 4001</strong>의 수출이지 태국 은행 보고서가 말하는 혼합고무까지 포함한 중간재 전체 수출이 아니다. 크룽스리 리서치는 태국의 2025년 중간재 고무 수출을 460만 톤이라고 분석하는데, 정의가 넓어 Comtrade 4개 세번과 차이가 난다(Comtrade E10, Krungsri Research 「Rubber Industry」 2026-03-24).</p>
+<p>태국 고무청의 2025회계연도 실행계획은 생산자단체·사업자에게 EUDR 공급망 추적 교육을 제공하도록 했다. 이는 정책 준비의 존재를 확인해 주지만, 개별 농장이나 한국행 물량이 이미 추적 요건을 충족한다는 증거는 아니다(<a href="https://www.raot.co.th/download/Action_Pan68.pdf">태국 고무청 계획</a>, A등급). JPX의 2026년 9월 28일~10월 2일 주간 보고서는 당시 태국의 가뭄과 홍수를 선물시장 변수로 기록했다. 특정 주간의 시장 설명을 한 해 수확 손실률로 바꾸지 않는다(<a href="https://www.jpx.co.jp/english/derivatives/products/rubber/RubberFuturesInformation/b5b4pj000003vdq6-att/JPX-The_Weekly_Rubber_Futures_Report_EN_05102026.pdf">JPX 주간 보고서</a>, B등급).</p>
+<p>인도네시아 신고 Comtrade의 2025년 HS 4001 네 세번 수출 합계는 1,565,220톤이다. 인도네시아 농업부는 잎떨림병, 재식재 투자 부족, 다른 작물로의 토지 전환을 생산성 저하 요인으로 분석했다. 질병 발생과 향후 생산 전망은 각각 원문 보고 사실과 기관 판단으로 구분한다(Comtrade E10; 인도네시아 농업부 「Outlook Karet 2025」, A등급). 한국의 2024년 인도네시아산 수입이 83,969톤이라는 값만으로 특정 지역의 질병 영향이 한국의 수입에 얼마 반영됐는지는 측정할 수 없다.</p>
+<p>베트남 농업·환경 당국은 2026년 7월 31일 고무 공급망 EUDR 준수를 위한 임시 지침을 승인하고 생산·가공·EU 수출 참여자에게 전파하도록 했다(<a href="https://snnmt.khanhhoa.gov.vn/noi-dung/id/12573/Trien-khai-thuc-hien-Quyet-dinh-so-348/QD-TTTV-ngay-31/7/2026-cua-Cuc-Trong-trot-va-Bao-ve-thuc-vat">카인호아성 농업·환경국 안내</a>, A등급). KOTRA는 2025년 작성 시점 베트남산 HS 4001.22에 직접적인 수출 할당량·금지가 없다고 현지 조사에서 기술했으나, 베트남 법령 원문을 별도로 확인하지 못했다(<a href="https://dream.kotra.or.kr/dream/cms/news/actionKotraBoardDetail.do?CONTENTS_NO=1&amp;MENU_ID=3550&amp;SITE_NO=2&amp;bbsSn=243&amp;pNttSn=232150">KOTRA 시장 동향</a>, B등급).</p>
+<p>같은 관세청 연간 파일에서 코트디부아르산은 2020년 0kg, 2021년 1,260kg, 2022년 15kg, 2023년 20,229kg, 2024년 36,061,200kg이다. 같은 4개 HS 분모의 비중은 2020~2023년 매년 0.01% 미만에서 2024년 11.7%로 올랐다. 2025년에는 Comtrade 한국 신고 상대국 행에서 83,203.1톤, 27.8%로 1위가 됐다. 2026년 3~8월 기준(잠정) 국가별 수집본에서는 30,603톤으로 같은 기간 수입의 23.2%를 차지한다. 이 잠정 기간값만으로 2024→2026년 연간 비중 변화나 월별 선적 집중의 영향을 확정하지 않는다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>원료는 수입되고 타이어 공시가 수요의 일부를 보여 준다</h2>
+<p class="lead">한국 천연고무의 유통을 하나의 회사 명단으로 설명할 수 있는 공개 통계는 확보하지 못했다. 관세청 자료는 원산지와 세번별 수입액·중량을 제공하지만 수입업체의 전체 물량 순위를 보여 주지 않는다. 확인한 사업보고서는 타이어 제조사의 원료 매입액과 거래 상대 일부를 공개한다. 이 정보는 제조사별 구매 사실을 보여 주며, 국내 천연고무 유통시장 전체의 순위나 점유율을 뜻하지 않는다.</p>
+<p>타이어 제조의 흐름은 원료 수입·중개, 배합, 타이어 제조, 완제품 유통으로 나뉜다. 넥센타이어는 천연고무를 동남아와 아프리카 등 주요 생산지의 공급업체로부터 전량 수입한다고 기재했다. 같은 보고서의 ‘대부분 수입업체로부터 조달’이라는 문장은 타이어 산업 일반의 특성을 설명한다. 이 사례에서 원산지 국가와 계약 상대 회사, 가공 장소는 서로 다른 정보다(<a href="https://kind.krx.co.kr/external/2026/03/18/002055/20260318009548/11011.htm">넥센타이어, 「2025 사업보고서」, 2026-03-18</a>, A등급).</p>
+<div class="tw">
+<table>
+<caption>표 7. 공시에서 확인된 타이어 제조사의 천연고무 정보</caption>
+<thead><tr><th>회사</th><th>공시 범위·연도</th><th>확인된 천연고무 지표</th><th>공시에 적힌 거래 상대 예</th><th>해석 범위</th></tr></thead>
+<tbody>
+<tr><td>금호타이어</td><td>2025 사업보고서</td><td>원재료 투입액 4,616억 9,700만원; 전체 원재료 투입액의 27.8%</td><td>SOUTHLAND·SRITRANG</td><td>해당 회사의 투입액</td></tr>
+<tr><td>넥센타이어</td><td>2025 사업보고서, 연결</td><td>매입액 3,329억원; 원재료 매입액의 25.6%</td><td>PT. KIRANA PERMATA</td><td>해당 회사의 매입액</td></tr>
+<tr><td>한국타이어앤테크놀로지</td><td>삼성증권 2026-06-18 분석</td><td>2025년 매출 대비 천연고무 재료비 비중 8.2%라는 증권사 분석</td><td>이 자료에서 순위 판단 불가</td><td>회사 분석치, 원재료 분모와 다름</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://kind.krx.co.kr/external/2026/03/17/001189/20260317004356/11011.htm">금호타이어 2025 사업보고서</a>, <a href="https://kind.krx.co.kr/external/2026/03/18/002055/20260318009548/11011.htm">넥센타이어 2025 사업보고서</a>, <a href="https://www.samsungpop.com/common.do?cmd=down&amp;contentType=application%2Fpdf&amp;fileName=2010%2F2026061609492351K_02_04.pdf&amp;inlineYn=Y&amp;saveKey=research.pdf">삼성증권 분석</a>. 금호·넥센 사업보고서는 법정 공시(A등급), 삼성증권 분석은 C등급이다. 회사별 분모가 달라 세 비율을 비교·합산하지 않는다.</p>
+<p>기업 공시는 산업 통계의 빈칸을 일부 설명할 뿐이다. 금호타이어는 ‘투입액’, 넥센타이어는 연결 ‘매입액’을 적었다. 원료를 사서 재고로 보유한 기간과 실제 제조에 투입한 기간이 다를 수 있다. 또한 한국타이어 관련 8.2%는 삼성증권의 매출 대비 분석치다. 같은 열에 적더라도 ‘세 회사 평균 천연고무 비중’ 같은 숫자를 만들 수 없다.</p>
+<p>한국 수입업체별 순위를 확보하지 못했다. 시도한 경로는 관세청의 국가별 통계, 품목 폴더 아카이브, 한국고무학회·기업 공시·KOTRA 관련 자료다. 어느 경로도 전체 수입업체별 HS 4001 중량과 같은 기준의 명단을 제공하지 않았다. 상장 타이어 제조사의 규모가 크다는 사실만으로 그 회사를 통관상 최대 수입업체라고 지정하지 않는다. 타이어 완제품 시장에서 한국타이어·금호타이어·넥센타이어의 합계가 약 90% 이상이라는 넥센타이어의 서술도 원료 수입업체 순위로 옮기지 않는다.</p>
+<p>산업 전체의 기업 정보는 서로 다른 두 장부에 나뉘어 있다. 하나는 원산지·세번·중량이 같은 통관 장부이고, 다른 하나는 제조사가 공개한 천연고무 매입·투입액이다. 현재 공개 자료에서는 두 장부를 업체별로 이어 붙일 식별자가 없다. 그래서 이 보고서는 업체별 점유율을 추정하지 않고, 확인 가능한 공시 사실과 그 한계를 함께 적었다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>EUDR의 원료 범위는 확인됐고 한국 세부 적용표는 남았다</h2>
+<p class="lead">한국 수입 단계의 관세·검역·표시 의무와 생산국·EU의 공급망 요건은 판정 대상이 다르다. 전자는 HS 4001의 <strong>세부호와 신고 조건</strong>에 따라 판정되고, 후자는 고무의 생산지·가공·수출 경로에 영향을 준다. 확인한 일반 법률이나 설명 페이지에 세부호가 없으면 실제 적용세율이나 의무 여부를 확정하지 않는다.</p>
+<p>EU 집행위원회는 고무를 산림전용방지규정(EUDR)의 대상 원료에 유지했다. 대·중기업 운영자에 대한 적용은 2026년 12월 30일, 대부분의 소·영세기업 운영자에 대한 적용은 2027년 6월 30일이다. 같은 발표는 재생 타이어와 일부 가황고무 제품 등을 적용 목록에서 제외했다고 설명한다. 천연고무 원료 자체는 대상에 남아 있다(<a href="https://environment.ec.europa.eu/news/commission-updates-product-scope-and-tools-support-eudr-2026-07-13_en">EU 집행위원회 환경총국 발표</a>, 2026-07-13, A등급).</p>
+<p>태국 고무청의 추적 교육 계획과 베트남 당국의 2026년 7월 임시 지침은 공급국이 이 요건에 맞춰 자료 체계를 준비하고 있음을 보여 준다. 그러나 계획·지침의 존재와 개별 물량의 실사 통과는 다르다. 한국에서 수입한 고무가 EU로 직접 이동하지 않더라도, EU 대상 제품의 범위와 거래 경로에 따라 원료 추적 정보가 문제 될 수 있다. 제품별 적용 여부는 최종 규정 목록과 실제 거래 경로에서 판정되며, 이 보고서에는 개별 거래의 적용 여부가 확인되지 않았다.</p>
+<div class="tw">
+<table>
+<caption>표 8. 확인한 제도와 미확정 항목</caption>
+<thead><tr><th>구분</th><th>확인된 내용</th><th>근거 등급</th><th>이 보고서에서 확정하지 않은 내용</th></tr></thead>
+<tbody>
+<tr><td>EU EUDR</td><td>고무 원료 대상 유지; 대·중기업 2026-12-30 적용</td><td>A</td><td>개별 한국행 고무·완제품의 준수 여부</td></tr>
+<tr><td>태국 대응</td><td>고무청의 생산자·사업자 추적 교육 계획</td><td>A</td><td>개별 농장 추적 완성률</td></tr>
+<tr><td>베트남 대응</td><td>고무 공급망 임시 지침 승인·전파</td><td>A</td><td>개별 수출업체 준수 여부</td></tr>
+<tr><td>한국 관세</td><td>관세청이 2026년 품목번호별 관세율표를 공개</td><td>A</td><td>HS 4001 세부호별 실제 신고세율</td></tr>
+<tr><td>한국 식물검역</td><td>「식물방역법」 제2조의 일반 판단 기준</td><td>A</td><td>라텍스·TSNR별 검역 대상 여부</td></tr>
+<tr><td>한국 원산지 표시</td><td>관세청이 별표 8 확인 경로를 안내</td><td>A</td><td>HS 4001 세부호별 표시 대상 여부</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://environment.ec.europa.eu/news/commission-updates-product-scope-and-tools-support-eudr-2026-07-13_en">EU 집행위원회</a>, <a href="https://www.raot.co.th/download/Action_Pan68.pdf">태국 고무청</a>, <a href="https://snnmt.khanhhoa.gov.vn/noi-dung/id/12573/Trien-khai-thuc-hien-Quyet-dinh-so-348/QD-TTTV-ngay-31/7/2026-cua-Cuc-Trong-trot-va-Bao-ve-thuc-vat">베트남 농업·환경 당국 안내</a>, <a href="https://www.data.go.kr/data/15051179/fileData.do">관세청 관세율표 안내</a>, <a href="https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1025860779">식물방역법 제2조</a>, <a href="https://customs.go.kr/kcs/cm/cntnts/cntntsView.do?cntntsId=844&amp;mi=2862">관세청 원산지 표시 안내</a>. 웹 조사 노트에 기록된 A등급 사실만 기재했다.</p>
+<p>KOTRA 호치민무역관은 2025년 보고서에서 베트남산 HS 4001.22에 한·베트남 및 한·아세안 FTA 수입관세 0%가 적용된다고 기술했다. 그러나 같은 페이지의 세율표에는 HS 표기가 <code>3102.10.00</code>으로 어긋난다. 이 보고서는 해당 설명을 <strong>B등급 참고자료</strong>로만 사용하며, 2026년 신고에 적용할 확정 세율로 표지나 수입 원가 계산에 넣지 않는다(<a href="https://dream.kotra.or.kr/dream/cms/news/actionKotraBoardDetail.do?CONTENTS_NO=1&amp;MENU_ID=3550&amp;SITE_NO=2&amp;bbsSn=243&amp;pNttSn=232150">KOTRA 「베트남 천연고무 시장 동향」</a>).</p>
+<p>검역 적용 여부는 라텍스·기술규격고무 등 세부 형태별로 확정되지 않았다. 「식물방역법」은 식물 가공품을 범위에 넣으면서 병해충이 잠복할 수 없도록 가공한 일부 제품을 제외한다. 이 일반 조문만으로 천연고무 라텍스와 기술규격고무의 검역 의무를 똑같이 판정하지 않는다. 원산지의 물리적 표시 대상인지와 FTA 특혜원산지를 충족하는지도 별도의 기준이다. 관세청 안내는 「대외무역관리규정」 별표 8로 표시 대상을 확인하도록 안내할 뿐, 확인한 페이지 자체에는 HS 4001의 판정값이 없다.</p>
+<p>2026년 HS 4001 세부호별 기본·FTA·할당·조정관세의 확정 적용표, 세부품목 검역·원산지 표시 의무, 천연고무를 명시한 현행 한국 정부 비축·수급 고시는 <strong>미확보</strong>다. 시도 경로는 관세청 2026년 관세율표 공개 안내, 국가법령정보센터의 할당·조정관세 규정, 식물방역법, 관세청 원산지 표시 안내, 관련 정부 사이트다. 검색 가능한 원문에서 직접 판정하지 못했으므로 ‘적용된다’와 ‘없다’ 어느 쪽도 단정하지 않는다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>태국 은행은 공급을, 국제기관은 가격과 수요를 본다</h2>
+<p class="lead">은행 리포트 색인에서 <code>items</code>에 <code>natural_rubber</code>가 붙은 항목은 13건이다. 그중 크룽스리 리서치의 고무 산업·가공 전용 보고서가 6건이고, 나머지에는 카사바·기상·비관세장벽 등 여러 품목을 함께 다룬 보고서가 있다. 색인 표식은 보고서가 천연고무와 관련 있음을 뜻할 뿐, 모든 문서가 최신 세계 수급 숫자를 제공한다는 뜻은 아니다(<code>_raw/_banks/index.csv</code>, E11).</p>
+<p>가장 최근 전용 은행 보고서인 Krungsri Research의 2026년 3월 「Industry Outlook 2026–2028: Rubber Industry」는 태국 생산·수요가 2026년에 늘 수 있다고 전망했다. 라니냐에서 중립적 기상으로의 전환과 높은 가격에 따른 수확 유인을 근거로 들고, 2027~2028년에는 엘니뇨 재발에 따른 생산 감소 가능성을 제시했다. 태국 내 타이어·자동차부품·건설 수요를 성장 동인으로 보면서 중국 투자로 늘어나는 인접국 공급과 비관세장벽을 위험으로 꼽았다. 이는 <strong>은행의 전망</strong>이지 2026년 확정 생산량이 아니다(<a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/rubber/io/io-rubber-2026-2028">Krungsri Research 원문</a>, 2026-03-24).</p>
+<p>같은 기관의 2024년 12월 「Industry Outlook 2025–2027: Rubber Industry」는 당시 라니냐의 생산 지원, 인도네시아·말레이시아의 노동 부족과 잎떨림병, 자동차·타이어·의료용 장갑 수요, 인접국 경쟁을 논했다. 뒤에 나온 2026년 보고서와 방향이 이어지는 부분이 있지만, 예측 기간과 발표 당시 정보가 다르다. 이전 전망을 2026년의 관측 결과로 바꾸지 않는다(<a href="https://www.krungsri.com/en/research/industry/industry-outlook/agriculture/rubber/io/rubber-2025-2027">Krungsri Research 원문</a>, 2024-12-16).</p>
+<div class="tw">
+<table>
+<caption>표 9. 채택한 은행·기관 자료의 주장과 범위</caption>
+<thead><tr><th>발행 주체·제목</th><th>날짜</th><th>이 보고서에 반영한 요지</th><th>성격</th></tr></thead>
+<tbody>
+<tr><td>Krungsri Research, 「Rubber Industry 2026–2028」</td><td>2026-03-24</td><td>태국 2026년 생산·수요 확대 가능성, 이후 기상·경쟁 위험</td><td>은행 전망</td></tr>
+<tr><td>Krungsri Research, 「Rubber Industry 2025–2027」</td><td>2024-12-16</td><td>노동·잎떨림병·타이어·장갑 수요의 연결</td><td>당시 은행 전망</td></tr>
+<tr><td>세계은행, 「Commodity Markets Outlook」</td><td>2026-04</td><td>타이어가 세계 천연고무 사용의 약 3분의 2; 가격 상승 전망</td><td>국제기구 분석·전망 A</td></tr>
+<tr><td>ANRPC, 「Monthly NR Statistical Report」</td><td>2026-09-30</td><td>2026년 세계 생산·소비 전망과 기상 변수</td><td>산업기관 전망 A</td></tr>
+<tr><td>인도네시아 농업부, 「Outlook Karet 2025」</td><td>2025</td><td>잎떨림병·재식재·토지 전환을 생산성 변수로 제시</td><td>생산국 정부 분석 A</td></tr>
+<tr><td>삼성증권, 한국타이어 분석</td><td>2026-06-18</td><td>특정 기업의 원가 노출과 비용 반영 시차</td><td>기업 분석 B</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>_raw/_banks/index.csv</code>와 해당 <code>krungsri_io_rubber</code> 보고서 본문, 웹 조사 노트의 <a href="https://documents1.worldbank.org/curated/en/099842304282633100/pdf/IDU-29bd7eb3-10b9-441a-89be-9732d149e669.pdf">세계은행</a>·<a href="https://www.anrpc.org/newsla/anrpc-releases-monthly-nr-statistical-report-august-2026">ANRPC</a>·<a href="https://satudata.pertanian.go.id/assets/docs/publikasi/OUTLOOK_KARET_2025_sign.pdf">인도네시아 농업부</a>·<a href="https://www.samsungpop.com/common.do?cmd=down&amp;contentType=application%2Fpdf&amp;fileName=2010%2F2026061609492351K_02_04.pdf&amp;inlineYn=Y&amp;saveKey=research.pdf">삼성증권</a> 출처.</p>
+<p>세계은행의 2026년 4월 가격 전망은 천연고무 가격이 그해 7% 넘게 상승한다는 것이며, TSR20 연평균 전망은 2026년 1.90달러/kg, 2027년 1.95달러/kg이다. 05절의 2026년 8월 관측 월평균과 발표 시점이 다르다. ANRPC의 2026년 생산 1,503.9만 톤·소비 1,535.6만 톤도 2026년 9월 30일 발표된 전망이며, 다음 완료연도 통계와의 일치 여부는 아직 확인되지 않았다.</p>
+<p>IRSG의 아카이브 파일에는 운영규칙·정관과 2022년 회계감사보고서가 있다. 회계감사보고서는 첫 장을 OCR로 확인했으며 천연고무 수급 전망의 원문으로 사용하지 않았다. IRSG 공개 보고서 소개 페이지에는 분기·반기 전망 보고서의 발행 범위가 안내되지만 최신 보고서 본문의 정량 결론은 확인하지 못했다. 다른 산업기관의 전망치를 IRSG의 숫자로 잘못 붙이지 않았다.</p>
+<p>국내 금융기관에 관해서도 자료의 대상을 구분한다. 삼성증권이 분석한 한국타이어의 천연고무 재료비 비중은 그 회사의 2025년 매출 대비 8.2%다(B등급). 이를 ‘한국 타이어 산업의 천연고무 원가 비중’이라고 일반화하지 않는다. 은행·기관 문서는 원자료의 정의를 설명하거나 전망의 가정을 드러내는 데 사용하고, 한국 통관량과 세계 생산의 확정 수치는 각각 관세청과 FAOSTAT에서 가져왔다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 관찰 지표·남은 물음</span>물량·단가·원산지·추적 요건을 같은 기간으로 본다</h2>
+<p class="lead">한국 천연고무 산업의 위험은 한 가지 가격 전망으로 줄일 수 없다. 공급국의 작황과 질병은 생산량을, 타이어 경기는 원료 수요를, 원화 환율은 수입가격을, EUDR은 특정 거래의 정보 요건을 바꿀 수 있다. 각각을 측정하는 원자료의 주기와 범위도 다르다. 따라서 한 지표가 움직였을 때 다른 지표가 같은 원인으로 움직였다고 바로 결론 내리지 않는다.</p>
+<p>첫째, <strong>공급국 구성</strong>이다. 2024년 한국 수입의 상위 3개 원산지는 태국·인도네시아·코트디부아르로 78.2%를 차지했다. 코트디부아르의 연간 비중은 같은 관세청 HS 범위에서 2023년 0.01% 미만에서 2024년 11.7%로 올랐고, 2025년에는 Comtrade 한국 신고 기준 27.8%로 태국(27.1%)을 앞서 1위가 됐다. 2026년 3~8월 기준(잠정) 비중은 같은 기간 국가별 자료에서 23.2%였지만 2024년 연간값과 직접 비교한 연간 결론은 아니다. 이 수치만으로는 태국 생산 문제가 한국 수입 총량에 미친 영향이나 다른 원산지의 대체 물량을 알 수 없다(04·06절).</p>
+<p>둘째, <strong>가격 단계의 차이</strong>다. 2025년 한국의 통관 평균 단가는 전년보다 5.5% 높았고 물량은 2.6% 적었다. 2026년 8월 ECOS 원화 기준 천연고무 수입물가지수는 전년 같은 달보다 27.0% 높았다. 서로 다른 기간·산식의 결과여서 ‘원가가 27.0% 올랐다’고 단정하지 않는다. 매달 HS 4001.22 단가, ECOS 원화·달러 지수, TSR20 국제 월평균을 나란히 놓으면 통화와 등급 차이를 분리하는 데 도움이 된다(04·05절).</p>
+<p>셋째, <strong>생산과 수요 전망의 오차</strong>다. FAOSTAT의 세계 생산 완료연도는 2024년이고 ANRPC의 2026년 값은 전망이다. 인도네시아 잎떨림병과 태국 기상은 확인된 위험 요인이지만 2026년 실제 세계 생산의 확정 감소량은 아직 산출할 수 없다. 타이어 제조가 세계 수요의 약 3분의 2라는 세계은행 분석에서 자동차·타이어 생산은 관련 지표지만, 한국의 월별 천연고무 용도별 소비 자료는 확보하지 못했다(02·03절).</p>
+<p>넷째, <strong>제도 실행</strong>이다. EUDR 적용일과 고무 원료 포함은 EU 집행위원회 발표에서 확인된다. 한국 HS 4001 세부호별 세율·검역·표시 의무는 확인한 공개 안내만으로 판정되지 않았다. 태국·베트남의 준비 지침만으로 개별 공급망의 준수를 인증할 수 없다. 이 위험은 가격보다 서류·원료 추적 가능성에서 먼저 나타날 수 있다. 개별 거래의 적용 범위와 추적 정보 요구는 확인되지 않았다(08절).</p>
+<div class="tw">
+<table>
+<caption>표 10. 정기 관찰 지표</caption>
+<thead><tr><th>볼 지표</th><th>원자료·수집기</th><th>주기</th><th>현재 확인 값·기준</th><th>판단할 변화</th></tr></thead>
+<tbody>
+<tr><td>한국 HS 4001 수입 중량·금액</td><td>관세청 <code>customs_item_trade_monthly</code></td><td>월</td><td>2025년 299,563톤·6.01억 달러</td><td>같은 기간 물량과 단가</td></tr>
+<tr><td>HS 4001.22 비중</td><td>같은 관세청 파일</td><td>월·연</td><td>2025년 중량 92.7%</td><td>세번 구성 변화</td></tr>
+<tr><td>원산지 구성</td><td>관세청 국가별 <code>customs_kr</code>·UN Comtrade 상대국 행</td><td>월·연</td><td>2024년 태국 39.2%; 2025년 코트디부아르 27.8%(Comtrade); 2026년 3~8월 기준(잠정) 별도</td><td>같은 기간·범위의 재계산</td></tr>
+<tr><td>세계 생산</td><td>FAOSTAT QCL</td><td>연</td><td>2024년 1,482.9만 톤</td><td>외부 기관 수치 표시와 국가별 갱신</td></tr>
+<tr><td>세계 생산·소비 전망</td><td>ANRPC 월간 보고</td><td>월</td><td>2026년 생산 1,503.9만 톤·소비 1,535.6만 톤 전망</td><td>다음 전망의 수정</td></tr>
+<tr><td>국제 등급별 가격</td><td>세계은행 Pink Sheet·ANRPC, SGX·JPX</td><td>월·일</td><td>2026년 8월 TSR20 2.24달러/kg</td><td>등급·계약월 고정 후 비교</td></tr>
+<tr><td>국내 수입물가</td><td>ECOS <code>401Y015</code></td><td>월</td><td>2026년 8월 원화 189.67·달러 158.85</td><td>환율·국제가격과의 간격</td></tr>
+<tr><td>EUDR 적용 범위</td><td>EU 집행위원회·생산국 지침</td><td>고시 시</td><td>고무 원료 대상, 2026-12-30 적용 시작</td><td>규정·제품 목록·추적 요구</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT, 관세청, ECOS 원자료와 웹 조사 노트의 세계은행·ANRPC·EU 집행위원회 A등급 자료. 2026년 수치는 관측 월 또는 전망임을 각 행에 표시했다.</p>
+<p>현재 자료에서는 한국의 실제 소비·용도별 투입 중량, 거래별 제도 적용 여부를 확정하지 않았다. 남은 확인 작업은 다음과 같다.</p>
+<ul>
+<li>국내 수입·수출, 재고·가공·재수출을 같은 기간으로 연결해 실제 소비 중량과 용도별 투입 중량을 확인한다.</li>
+<li>2025년 Comtrade 상대국 행과 관세청 국가별 연간 파일을 대조한다.</li>
+<li>다음 완료연도 통관 평균 단가와 같은 기간 ECOS 원화 기준 수입물가지수를 비교한다.</li>
+<li>ANRPC의 2026년 세계 생산·소비 전망을 다음 완료연도 통계와 대조한다.</li>
+<li>EUDR 최종 제품 목록과 실제 거래 경로에서 거래별 원료 추적·실사 정보 요구를 확인한다.</li>
+<li>라텍스·기술규격고무 등 세부 형태의 검역 대상 여부와 HS 4001 세부호별 물리적 원산지 표시 의무를 원표에서 판정한다.</li>
+<li>2026년 HS 4001 세부호별 기본·FTA·할당·조정관세 적용표와 신고 조건을 확인한다.</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>기술규격고무와 타이어 제조를 잇는 공급망</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2024년 관세청 기준 한국의 HS 4001.10·21·22·29 수입 중량에서 10% 이상을 차지한 공급국은 태국 39.2%, 인도네시아 27.3%, 코트디부아르 11.7%, 베트남 10.3%다. 분모는 네 세번의 수입 합계 307,692톤이다. 별도 자료인 2025년 UN Comtrade 한국 신고 기준 비중은 코트디부아르 27.8%, 태국 27.1%, 인도네시아 22.9%, 베트남 10.0%다. 국가별 수입량을 아래 기업의 대한국 판매량으로 배분할 근거는 없다. (<a href="https://tradedata.go.kr/">관세청 수출입무역통계</a>, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=400110,400121,400122,400129&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 2025년 한국 신고 조회</a>, A등급)</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 공급국의 천연고무 생산·가공·무역기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표·연도</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>태국</td><td>Sri Trang Agro-Industry</td><td>생산·가공·무역</td><td>천연고무 판매 1,415,715톤, 2025</td><td>금호타이어의 2025년 주요 매입처 ‘SRITRANG’</td><td><a href="https://www.sritranggroup.com/index.php/en/news-update/press-releases/1752/sta-reports-2025-revenue-of-thb-1134778-million-declaring-thb-050-dividended-from-retained-earnings-the-2026-outlook-for-2026-is-positive-driven-by-a-rubber-recovery-amid-tight-supply-and-palm-oil-expansion">기업 실적 B</a>·<a href="https://kind.krx.co.kr/external/2026/03/17/001189/20260317004356/11011.htm">금호 공시 A</a></td></tr>
+<tr><td>태국</td><td>Southland Rubber</td><td>가공·무역</td><td>태국 가공시설 17곳, 2024</td><td>금호 공시에 ‘SOUTHLAND’, 넥센 공시에 ‘Southland Global’ 기재</td><td><a href="https://www.southlandholding.com/dist/img/report/2024/Southland_Rubber_SR2024.pdf">기업 보고 B</a>·<a href="https://kind.krx.co.kr/external/2026/03/17/001189/20260317004356/11011.htm">금호 공시 A</a>·<a href="https://kind.krx.co.kr/external/2026/03/18/002055/20260318009548/11011.htm">넥센 공시 A</a></td></tr>
+<tr><td>태국</td><td>Thai Hua Rubber</td><td>가공·무역</td><td>STR 10·20 생산능력 월 50,000톤; 협회 명부의 기준연도 미표시, 2026년 조회</td><td>확인된 공개 자료 없음</td><td><a href="https://thainr.com/en/detail_member/member_dataen.php?IDS=61">태국고무협회 명부 B</a></td></tr>
+<tr><td>인도네시아</td><td>Kirana Megatara</td><td>가공·무역</td><td>순매출 12조 8,272억 루피아, 2025</td><td>회사가 한국타이어·금호·넥센을 고객으로 명시; 넥센 공시에 계열사 PT Kirana Permata 기재</td><td><a href="https://www.kiranamegatara.com/storage/file/20260430103825_Annual---Sustainability-Report-KMTR-2025.pdf">연차보고서 A</a>·<a href="https://www.kiranamegatara.com/corporate/our-history">기업 연혁 B</a>·<a href="https://kind.krx.co.kr/external/2026/03/18/002055/20260318009548/11011.htm">넥센 공시 A</a></td></tr>
+<tr><td>인도네시아</td><td>PT Djambi Waras</td><td>가공·무역</td><td>Jambi·Jujuhan 공장 판매 각각 35,215톤·37,795톤, 2025</td><td>넥센타이어의 2025년 천연고무 주요 매입처</td><td><a href="https://www.kiranamegatara.com/storage/file/20260430103825_Annual---Sustainability-Report-KMTR-2025.pdf">Kirana 연차보고서 A</a>·<a href="https://kind.krx.co.kr/external/2026/03/18/002055/20260318009548/11011.htm">넥센 공시 A</a></td></tr>
+<tr><td>인도네시아</td><td>PT Karini Utama</td><td>가공·무역</td><td>판매 12,902톤, 2025</td><td>넥센타이어의 2025년 천연고무 주요 매입처</td><td><a href="https://www.kiranamegatara.com/storage/file/20260430103825_Annual---Sustainability-Report-KMTR-2025.pdf">Kirana 연차보고서 A</a>·<a href="https://kind.krx.co.kr/external/2026/03/18/002055/20260318009548/11011.htm">넥센 공시 A</a></td></tr>
+<tr><td>코트디부아르</td><td>SAPH</td><td>생산·가공·무역</td><td>천연고무 생산 281,000톤, 2024</td><td>확인된 공개 자료 없음</td><td><a href="https://groupesifca.com/heveaculture-durable-dans-la-region-de-la-me-mission-accomplie-pour-la-saph-la-giz-et-loipr/">SIFCA 발표 B</a></td></tr>
+<tr><td>코트디부아르</td><td>SOGB</td><td>생산·가공·무역</td><td>가공 71,509톤·수출 71,117톤, 2025</td><td>확인된 공개 자료 없음</td><td><a href="https://www.sogbci.com/nos-societes/sogb/hevea">기업 현황 B</a></td></tr>
+<tr><td>코트디부아르</td><td>SCC</td><td>가공·무역</td><td>연간 가공능력 40,000톤, 2024 공개 현황</td><td>확인된 공개 자료 없음</td><td><a href="https://www.sogbci.com/nos-societes/scc/transformation">기업 현황 B</a></td></tr>
+<tr><td>베트남</td><td>Vietnam Rubber Group</td><td>생산·가공·무역</td><td>그룹 고무 판매 535,286톤, 2025; 베트남·라오스·캄보디아 사업 포함</td><td>그룹은 한국을 주요 시장 중 하나로 명시</td><td><a href="https://vrg.vn/wp-content/uploads/2026/04/Annual-Report-2025.pdf?x43976=">연차보고서 A</a>·<a href="https://vrg.vn/en/field-of-operation/planting-caring-exploiting-processing-and-trading-rubber/">그룹 사업 소개 B</a></td></tr>
+<tr><td>베트남</td><td>Phuoc Hoa Rubber</td><td>생산·가공·무역</td><td>고무 판매 28,400톤 초과, 2025</td><td>회사가 한국을 수출시장으로 명시</td><td><a href="https://news.vrg.vn/tin-noi-bat/loi-nhuan-truoc-thue-cao-su-phuoc-hoa-nam-2025-vuot-15-ke-hoach/">그룹 실적 발표 B</a>·<a href="https://phr.vn/gioi-thieu.aspx?pid=1">기업 소개 B</a></td></tr>
+<tr><td>베트남</td><td>Dong Phu Rubber</td><td>생산·가공</td><td>완제품 고무 가공 12,608.3톤, 2024</td><td>확인된 공개 자료 없음</td><td><a href="https://news.vrg.vn/hoat-dong-co-so/cao-su-dong-phu-co-19-nam-lien-nang-suat-vuon-cay-tren-2-tan-ha/">그룹 실적 발표 B</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 링크. <strong>A</strong>는 법정 공시, <strong>B</strong>는 기업·협회 발표다. 생산능력·그룹 실적·공장 판매량은 대한국 수출량이 아니다. Southland의 두 매입처 표기가 동일 법인을 뜻하는지도 공시만으로 확정하지 않는다.</p>
+<p>별도로 볼 가공 세번은 <strong>HS 4001.22 기술규격고무</strong>다. 2025년 한국 수입액은 5억 6,089만 달러로 네 세번 수입액의 93.3%다. 2024년 이 세번의 수입액 5억 4,124만 달러에서 상위 공급국은 태국 2억 80만 달러, 인도네시아 1억 6,160만 달러, 코트디부아르 7,239만 달러, 베트남 4,901만 달러였다. 해당국의 관련 가공기업은 표 11-1의 태국 Sri Trang·Southland·Thai Hua, 인도네시아 Kirana 계열, 코트디부아르 SAPH·SOGB·SCC, 베트남 Vietnam Rubber Group 계열이다. 이 목록은 <strong>세번별 공급국과 기업 지도</strong>이며 개별 한국행 선적의 제조사를 확인한 결과가 아니다. (<a href="https://tradedata.go.kr/">관세청 수출입무역통계</a>, A등급)</p>
+<p>Sri Trang은 스스로를 세계 최대 통합 천연고무 기업으로 소개하며 2025년 천연고무 판매량 1,415,715톤을 발표했다. 이는 그룹 판매량이지 태국산 수출량이나 한국행 물량은 아니다. (<a href="https://www.sritranggroup.com/index.php/en/news-update/press-releases/1752/sta-reports-2025-revenue-of-thb-1134778-million-declaring-thb-050-dividended-from-retained-earnings-the-2026-outlook-for-2026-is-positive-driven-by-a-rubber-recovery-amid-tight-supply-and-palm-oil-expansion">Sri Trang 2025년 실적 발표</a>, B등급)</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처 수입식품 신고 확인 자료의 집계기간은 <strong>2025년 10월~2026년 9월</strong>이다. 천연고무 품목명에 해당하는 신고 행은 없다. 같은 장부에는 식품용 고무장갑 등 기구·용기 ‘고무제’ 신고 15,380건과 껌베이스 신고 34건이 있으나, 이는 HS 4001 원료 고무가 아닌 제품이어서 이 절의 집계에 넣지 않았다. 아래 0건은 <strong>신고 건수 기준</strong>이며 중량·금액이 아니다. HS 4001 수입이 없었다는 뜻도 아니다. 2026년 부분은 잠정 기간으로 읽는다.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 식약처 수입식품 신고 건수 기준 수입업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>집계 가능 업소 없음</td><td class="num">0</td><td>해당 없음</td><td>천연고무 품목명 행이 없어 업소별 순위와 제조국 상위 2개를 산출할 수 없음</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/apiMain.do">식약처 식품안전나라 수입식품 신고 확인 서비스</a>, 2025년 10월~2026년 9월 집계(A등급). 수입식품 신고와 관세청 HS 4001 통관은 조사 범위가 다르다.</p>
+<p>공개 공시로 천연고무 원료 수요와 국내 가공 규모를 확인할 수 있는 주요 기업은 타이어 제조사다. 아래 매출·원료액은 통관상 수입업소 순위나 천연고무 원료시장 점유율이 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 국내 주요 천연고무 수요·가공기업의 공시 규모</caption>
+<thead><tr><th>기업</th><th>역할</th><th>2025년 규모 지표</th><th>천연고무 관련 공시</th><th>해석 범위</th></tr></thead>
+<tbody>
+<tr><td>한국타이어앤테크놀로지</td><td>타이어 제조·판매</td><td>연결 매출 21조 2,023억원; 타이어 등 사업 10조 3,186억원, 타이어 제품 10조 14억원</td><td>천연고무를 타이어 원재료로 기재</td><td>연결 매출에는 타이어 외 사업 포함</td></tr>
+<tr><td>금호타이어</td><td>타이어 제조·판매</td><td>연결 매출 4조 7,013억원</td><td>천연고무 투입액 4,616억 9,700만원, 전체 원재료 투입액의 27.8%; SOUTHLAND·SRITRANG 기재</td><td>회사의 원재료 <strong>투입액</strong></td></tr>
+<tr><td>넥센타이어</td><td>타이어 제조·판매</td><td>연결 매출 3조 1,896억원; 타이어부문 3조 1,818억원</td><td>연결 천연고무 매입액 3,329억원, 원재료 매입액의 25.6%; PT Kirana Permata·PT Djambi Waras·PT Karini Utama·Southland Global 기재</td><td>회사의 원재료 <strong>매입액</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://kind.krx.co.kr/external/2026/03/18/001288/20260318005982/11011.htm">한국타이어앤테크놀로지 2025 사업보고서</a>, <a href="https://kind.krx.co.kr/external/2026/03/17/001189/20260317004356/11011.htm">금호타이어 2025 사업보고서</a>, <a href="https://kind.krx.co.kr/external/2026/03/18/002055/20260318009548/11011.htm">넥센타이어 2025 사업보고서</a>, 모두 <strong>A등급</strong>. 금호의 투입액과 넥센의 매입액은 회계 범위가 달라 합산하지 않는다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 천연고무의 한국 연결 밸류체인</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산·채취</td><td>태국·인도네시아·코트디부아르·베트남 농가와 농장</td><td>국내 천연고무 생산량 행 미확인</td><td>산지 수매·농가 계약</td><td>기상·병해·노동력·토지 추적</td></tr>
+<tr><td>1차 가공</td><td>라텍스·RSS·TSR 가공사</td><td>2025년 수입 중 HS 4001.22의 중량 비중 92.7%</td><td>원료 매입가와 규격·가공비를 반영한 계약</td><td>품질 편차·에너지·추적 비용</td></tr>
+<tr><td>수출·국제 무역</td><td>산지 가공사·상사·선사</td><td>2024년 네 주요 공급국의 한국 수입 중량 비중 88.5%</td><td>등급별 현물·선물 기준가격과 수출계약</td><td>가격·환율·운임 변동</td></tr>
+<tr><td>수입·통관·검역</td><td>한국 수입자·관세청·검역 당국</td><td>2025년 네 세번 수입 299,563톤·6.01억 달러</td><td>계약가격·환율·통관 조건</td><td>세번별 의무 판정·원산지 정보</td></tr>
+<tr><td>국내 가공</td><td>타이어·산업용 고무제품 제조사</td><td>금호의 2025년 천연고무 투입액 4,616억 9,700만원; 넥센 매입액 3,329억원</td><td>원료 구매계약과 완제품 판매계약</td><td>배합 원가·수율·생산 차질</td></tr>
+<tr><td>도매·유통</td><td>타이어 제조사 판매망·대리점</td><td>천연고무 원료만의 유통액 미확보</td><td>완제품 도매계약</td><td>재고·운송·판매 경쟁</td></tr>
+<tr><td>소매·완제품 판매</td><td>타이어 판매점·자동차 관련 판매망</td><td>원료별 소매 매출 미분리</td><td>완제품 소매가격</td><td>수요·제품 안전</td></tr>
+<tr><td>소비</td><td>운전자·운송업체·완성차 수요처</td><td>천연고무의 국내 실제 소비 중량 미확보</td><td>타이어·차량 구매 및 교체시장</td><td>사용량 변화·폐타이어 처리</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://tradedata.go.kr/">관세청 수출입무역통계</a>(A), <a href="https://kind.krx.co.kr/external/2026/03/17/001189/20260317004356/11011.htm">금호</a>·<a href="https://kind.krx.co.kr/external/2026/03/18/002055/20260318009548/11011.htm">넥센</a> 사업보고서(A), <a href="https://www.kiranamegatara.com/storage/file/20260430103825_Annual---Sustainability-Report-KMTR-2025.pdf">Kirana Megatara 2025 연차보고서</a>(A). 한국의 세부호별 관세·검역 의무는 이 표에서 판정하지 않는다.</p>
+<p>부가가치는 산지 고무를 품질별 TSR·RSS로 규격화하는 단계와 이를 배합·설계·가황해 타이어로 만드는 단계에서 생긴다. 한국의 2025년 HS 4001 수입액 가운데 93.3%는 이미 1차 가공 형태인 4001.22에 해당한다. Kirana Megatara는 2025년 자사 매출원가의 약 95%를 원료 고무 구매비로 설명했다. 이는 한 기업의 비용 구조이며 산지 가공업 전체의 부가가치율은 아니다. 국내 타이어 완제품에는 제조·기술·브랜드·유통 가치가 더해지지만, 공개된 원료액과 완제품 매출만으로 단계별 순부가가치를 계산할 수는 없다. (<a href="https://tradedata.go.kr/">관세청 수출입무역통계</a>, <a href="https://www.kiranamegatara.com/storage/file/20260430103825_Annual---Sustainability-Report-KMTR-2025.pdf">Kirana Megatara 2025 연차보고서</a>, A등급)</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 천연고무 공급망의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>관세청</td><td>HS 분류·통관·무역통계</td><td>신고 기준과 원산지·수입 통계의 정확성</td></tr>
+<tr><td>해외 정부</td><td>태국 고무청, 베트남 농업·환경 당국, EU 집행위원회</td><td>산지 추적 교육·지침과 EUDR 대상·적용 기준</td><td>수출 접근성, 추적 비용, 산림전용 방지</td></tr>
+<tr><td>생산자·단체</td><td>코트디부아르 APROMAC</td><td>생산자와 가공업계의 협의·역량 강화</td><td>농가 소득과 가공업 원료 조달의 균형</td></tr>
+<tr><td>수출·가공기업</td><td>Sri Trang, Kirana Megatara, SAPH</td><td>원료 매입·규격 가공·수출</td><td>원료 확보, 가공 마진, 거래 추적</td></tr>
+<tr><td>수입·유통기업</td><td>한국타이어앤테크놀로지, 금호타이어, 넥센타이어</td><td>원료 구매·타이어 제조·판매</td><td>안정적인 품질·가격·납기</td></tr>
+<tr><td>소비자·시민사회</td><td>타이어 최종 구매자, WWF</td><td>제품 구매와 지속가능성 관련 의견 제시</td><td>제품 성능·가격, 산림·인권 관련 정보</td></tr>
+<tr><td>국제기구·인증</td><td>IRSG, FSC, GPSNR</td><td>고무 시장 정보, 인증, 업계 공동 기준</td><td>통계 투명성과 검증 가능한 조달</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://tradedata.go.kr/">관세청</a>·<a href="https://environment.ec.europa.eu/news/commission-updates-product-scope-and-tools-support-eudr-2026-07-13_en">EU 집행위원회</a>·<a href="https://www.raot.co.th/download/Action_Pan68.pdf">태국 고무청 계획</a>·<a href="https://snnmt.khanhhoa.gov.vn/noi-dung/id/12573/Trien-khai-thuc-hien-Quyet-dinh-so-348/QD-TTTV-ngay-31/7/2026-cua-Cuc-Trong-trot-va-Bao-ve-thuc-vat">베트남 당국 안내</a>(A), <a href="https://apromac.ci/lassociation/">APROMAC</a>·<a href="https://sustainablenaturalrubber.org/our-members/">GPSNR 회원 명부</a>·<a href="https://fsc.org/en/businesses/natural-rubber">FSC</a>(B), <a href="https://www.rubberstudy.org/welcome">IRSG</a>(A), 기업 자료는 표 11-1·11-3의 링크. GPSNR의 자발적 공동 기준과 FSC 인증은 서로 다른 체계다.</p>
+<p>농가는 높은 산지 판매가격을 원하고 가공사는 원료비와 품질 편차를 관리해야 하므로 수매가격에서 이해관계가 엇갈린다. 타이어 제조사는 안정적인 원료비·납기를 원하고 산지 가공사는 원료 부족과 규격품 가공비를 판매가격에 반영하려 한다. 산림·이력 기준은 검증 가능성을 높이지만 농가와 가공사에는 위치정보 수집·분리 관리 비용을 더한다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 검토 범위</h2>
+<p class="lead"><code>rawbulk.report_delta.coverage("natural_rubber")</code>의 품목 수집기 현황을 사용했다. ‘최신’은 파일이나 수집 기록에서 확인한 가장 늦은 기간이며, 수집일은 해당 수집 기록의 날짜다. 품목 전용 원자료 중 <code>error</code>로 표시된 수집기는 파일을 새로 받았다는 뜻이 아니다. 본문에 쓴 자료의 범위·행 조건은 30_근거_수치에 적었다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 천연고무 수집기 현황(2026-10-07 확인)</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간·상태</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>품목 분할</td><td>census_exports_hs10</td><td class="num">165</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>census_imports_hs10</td><td class="num">302</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>comexstat_exp</td><td class="num">129</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>comexstat_imp</td><td class="num">457</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>customs_item_trade_monthly</td><td class="num">88</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>eurostat_comext_m1</td><td class="num">539</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>eurostat_comext_m2</td><td class="num">1,189</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>faostat_prices</td><td class="num">2,695</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>faostat_production</td><td class="num">9,306</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>faostat_trade</td><td class="num">37,933</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>품목 전용</td><td>dosm_rubber_monthly</td><td class="num">—</td><td>unchanged</td><td>2026-10-06</td></tr>
+<tr><td>품목 전용</td><td>lgm_rubber_price</td><td class="num">—</td><td>new</td><td>2026-10-06</td></tr>
+<tr><td>품목 전용</td><td>shfe_futures_daily</td><td class="num">—</td><td>error</td><td>2026-10-07</td></tr>
+<tr><td>품목 전용</td><td>sgx_tf_snapshot</td><td class="num">—</td><td>error</td><td>2026-10-07</td></tr>
+<tr><td>품목 전용</td><td>jpx_settlement_rb</td><td class="num">—</td><td>error</td><td>2026-10-07</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">4,173</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">151</td><td>2026.08</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>fred</td><td class="num">43</td><td>2026-07-01</td><td>2026-10-01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>의 <code>rawbulk.report_delta.coverage("natural_rubber")</code> 반환값. 행 수는 수집기별 파일 행 수이며 품목·기간별 분석에 사용한 행 수와 다르다.</p>
+<p>품목 폴더 아카이브의 입력 목록은 187행이다. 관련 파일 10행이 본문 근거이고 177행은 중복·범위 밖·오류 응답 등으로 제외된다. IRSG_18937 PDF의 문서 제목은 2022년 회계연도 재무제표이며, KOTRA 원시 텍스트 3건의 내용은 각각 <code>Unexpected errors</code> 또는 <code>API not found</code>다. 이 네 파일은 본문 자료로 쓰지 않는다. 원장의 ‘반영필요’는 검토 후보를 뜻하고, 아래 ‘본문 반영’은 실제 인용 파일을 뜻한다.</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 검토 요약(187행)</caption>
+<thead><tr><th>판정·사유 묶음</th><th class="num">행</th></tr></thead>
+<tbody>
+<tr><td>본문 반영</td><td class="num">10</td></tr>
+<tr><td>공용 원자료 코드표·수산 자료로 범위 밖</td><td class="num">112</td></tr>
+<tr><td>중복 텍스트·메타데이터</td><td class="num">32</td></tr>
+<tr><td>시점·범위 불일치 또는 중복 원자료</td><td class="num">29</td></tr>
+<tr><td>원문 대신 오류 응답</td><td class="num">3</td></tr>
+<tr><td>시장 자료가 아닌 회계감사보고서</td><td class="num">1</td></tr>
+<tr class="tot"><td><strong>미검토</strong></td><td class="num"><strong>0</strong></td></tr>
+<tr class="tot"><td><strong>합계</strong></td><td class="num"><strong>187</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/natural_rubber.csv</code>, <code>ledger/natural_rubber.ledger.csv</code>, <code>archive_cache/natural_rubber/</code>의 해당 경로를 대조해 분류. 행 수는 파일 수이며 같은 내용의 CSV·MD 쌍도 입력 목록의 별도 행으로 남아 있다.</p>
+<p>정기 수집기 밖의 자료는 아카이브의 관세청 2020~2024년 국가별 CSV, 말레이시아 고무청 월간 PDF 2건, 세계은행 Pink Sheet 아카이브 CSV, 공통 ECOS 천연고무 수입물가지수, 공통 KOSIS 제조업 품목 조사, 은행 리포트 색인과 크룽스리 보고서, 제공된 2026-10-07 웹 조사 노트다. 말레이시아 통계청의 월평균 가격과 공통 IMF PCPS 월별 가격도 05절에 사용했다. 웹 노트의 A·B 등급은 원래 표시를 유지했다. FAOSTAT FBS·FBSH의 천연고무 해당 행은 비어 있고 USDA PSD는 아카이브에 미수록으로 기록돼 있어 소비·재고의 빈칸을 임의로 채우지 않았다.</p>
+<p>원자료의 범위에 관한 주의가 있다. FAOSTAT 생산 QCL은 천연고무 생산을 보여 주지만, 아카이브의 FAOSTAT 무역 item 836은 한국 2024년 라텍스 HS 4001.10 값과 대응하는 좁은 범위다. 이를 HS 4001 전체의 세계 교역량으로 더하지 않았다. Comtrade는 합계 행 필터를 적용하고 <code>netWgt</code>가 비어 있는 행을 물량 계산에서 뺐다. KAMIS ‘평년’ 행은 실측 가격으로 사용하지 않았다.</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 천연고무 산업 해부: 동남아 공급과 한국 타이어 수요</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · FAOSTAT·관세청·ECOS·KOSIS 원자료와 은행·기관 보고서, 제공된 웹 조사 노트를 사용했다</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>결과는 update_2026-10-07/20_숫자대조.txt</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>천연고무 HS 4001.10·4001.21·4001.22·4001.29. 과거 파일에 포함된 4001.30과 합성고무·혼합고무·완제품 타이어의 무역량은 한국 원료 수입 합계에서 제외했다</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>국내 천연고무 실제 소비·재고·용도별 투입 중량, 2026년 HS 세부호별 확정 관세·검역·표시 판정표는 제시하지 않았다. 2026년 수치는 관측 누계 또는 기관 전망으로 표시했다</span></div>
+</footer>
+</div>
+

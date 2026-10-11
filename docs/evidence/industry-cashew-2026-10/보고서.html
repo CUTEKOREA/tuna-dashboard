@@ -1,0 +1,733 @@
+<title>한국 캐슈넛 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 캐슈넛<br>
+        세계 생산 · 가공 이동 · 수입 · 가격 · 기업 · 제도<br>
+        2021~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">기르지도 까지도 않는 견과 · 리포트 2026</p>
+      <h1><span class="scr">Cashew</span> <span class="lt">한국 캐슈넛 산업 해부</span></h1>
+      <p class="cover-sub">한국은 베트남이 아프리카·캄보디아산 원물을 까서 만든 커널을 한 해 5천 톤 안팎 들여온다.
+        세계 원물의 절반쯤은 서아프리카에서 나오고, 산지국은 원물 수출을 막거나 줄여 자국 가공을 늘리고 있다.
+        생산·가공 이동·수입·가격·기업·제도를 정부 통계와 국제기구 원문으로 따라간다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2025 커널 수입</div><div class="v">4,966.5</div>
+        <div class="n">톤 · 3,741만 달러 · 원물 0.1톤</div></div>
+      <div class="cf"><div class="k">베트남산 비중</div><div class="v">99.1%</div>
+        <div class="n">2026년 1~8월 · 2025년 같은 기간 93.7%</div></div>
+      <div class="cf"><div class="k">커널 수입 단가</div><div class="v up">+22.7%</div>
+        <div class="n">2023 6.14 → 2025 7.53 $/kg</div></div>
+      <div class="cf"><div class="k">2024 세계 원물 생산</div><div class="v">424만</div>
+        <div class="n">톤 · FAOSTAT(캄보디아 없음) · 코트디부아르 22.3%</div></div>
+      <div class="cf"><div class="k">RCN 국제가격</div><div class="v dn">1,688</div>
+        <div class="n">$/톤 · 2026-07 · 전년 대비 −5.6%(BCEAO)</div></div>
+      <div class="cf"><div class="k">베트남 커널 수출</div><div class="v">766,585</div>
+        <div class="n">톤 · 2025 · 원물 수입 290만 톤 이상</div></div>
+      <div class="cf"><div class="k">코트디부아르 최저가</div><div class="v">400</div>
+        <div class="n">CFA프랑/kg · 2026 · 2025년 425</div></div>
+      <div class="cf"><div class="k">한국 관세</div><div class="v">0%</div>
+        <div class="n">베트남산 · 기본 8% · 아세안 5%</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">연 5천 톤을 사는 작은 소비국, 판은 아프리카와 베트남이 짠다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">원물은 아프리카·캄보디아, 가공은 베트남·인도</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">생산은 없고, 커널 5천 톤을 들여와 먹는다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">커널 수입의 9할 이상이 베트남산(2023년부터)</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">원물 국제가격은 1년 전보다 낮고, 단계마다 값이 따로 논다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">베트남이 까고, 아프리카·캄보디아가 기른다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">75곳 이상의 수입상과 몇몇 견과 브랜드</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">한국 관세는 낮고, 산지 제도는 해마다 바뀐다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">은행은 다루지 않고, 기관 통계가 판을 그린다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표</span><span class="t">무엇을 매달 볼 것인가</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">베트남 가공망과 한국의 견과 유통</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">수집기 전체 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>연 5천 톤을 사는 작은 소비국, 판은 아프리카와 베트남이 짠다</h2>
+<p class="lead">한국은 캐슈를 기르지도 까지도 않는다. 베트남 공장이 아프리카·캄보디아산 원물을 까서 만든 커널을 연 5천 톤 안팎 들여와 볶고 포장해 먹는다. 세계 원물 생산은 서아프리카가 절반쯤을 내고 가공은 베트남·인도에 몰려 있는데, 산지국은 원물 수출을 막거나 줄여 자국 가공을 늘리고 있다. 이 절은 확정된 사실과 이 보고서의 판단을 나눠 적는다.</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>한국 수입.</strong> 2025년 캐슈 커널 수입은 4,966.5톤·3,741만 달러(kg당 7.53달러)이고 원물은 0.1톤이다. 2026년 1~8월은 3,262.6톤으로 4.8% 많다(관세청, 04절).</li>
+<li><strong>원산지 편중.</strong> 2025년 커널 수입의 94.3%가 베트남산이고, 같은 1~8월끼리 보면 2025년 93.7%에서 2026년 99.1%로 올랐다. 2021년에는 78.9%였고 인도네시아가 15.0%를 냈다. 한-베트남 FTA로 관세가 없다(04·08절).</li>
+<li><strong>단가.</strong> 커널 kg당 수입 단가는 2023년 6.14달러에서 2025년 7.53달러로 22.7% 올랐다(04절).</li>
+<li><strong>세계 생산.</strong> FAOSTAT 기준 2024년 세계 원물 생산은 4,241,104톤이고 코트디부아르 22.3%·인도 18.7%·탄자니아 12.5%·베트남 7.2%다. FAOSTAT에 없는 캄보디아는 2024년 84만 톤을 생산했다(FAOSTAT·GIZ, 02절).</li>
+<li><strong>가공 집중.</strong> 원물은 베트남·인도가 사서 까고, 커널은 베트남이 가장 많이 판다. 베트남 농업환경부 발표로 베트남은 2025년 원물 290만 톤 이상을 들여와 커널 766,585톤을 수출했다(베트남 정부 포털, 02절). FAOSTAT 무역 통계로는 2024년 원물 수입의 97.7%를 베트남·인도가 받고 커널 수출의 63.8%를 베트남이 내는데, FAOSTAT의 베트남 값은 국제기구 수치(Flag X)로 베트남 발표치보다 작아 베트남 몫이 낮게 잡힌 값이다(02절).</li>
+<li><strong>산지 제도.</strong> 베냉은 2024년 4월부터 원물 수출을 막았고, 코트디부아르는 원물 수출세를 7%에서 5%로 내렸다(커널 면세는 정부 대변인 설명이고, 국무회의 공보문은 5%를 커널 수출에 매긴다고 적어 서로 다르다). 2026년 농가 최저가는 코트디부아르 400 CFA프랑/kg이다(06·08절).</li>
+<li><strong>가격.</strong> 세계은행·IMF 상품가격표와 국내 KAMIS·소비자물가에는 캐슈 품목이 없다. 원물 국제가격은 서아프리카중앙은행(BCEAO)이 로이터 자료로 매달 내며, 2026년 7월 톤당 1,688.0달러로 전년 같은 달(1,787.5달러)보다 5.6% 낮다(03·05절).</li>
+<li><strong>국내 유통.</strong> 2025년 캐슈 수입신고는 조회일 현재 API에 남은 것만 281건이고(10~12월 처리분이 54%), 이 잔존분 기준으로 수입업체는 75곳 이상, 상위 10곳이 36.65%다. 견과 전문 가공사 가운데 DART 재무가 있는 곳은 열매마을·바프 등 소수다(07절).</li>
+</ul>
+<h3>이 보고서의 판단</h3>
+<ul>
+<li>이 보고서는 한국 커널 수입의 베트남 편중이 이어진다고 본다. 비베트남 비중은 2021년 21.1%, 2022년 10.8%에서 2023년부터 10% 아래로 내려왔다(04절). 반증 조건: 비베트남 비중이 다시 한 해 10%를 넘는 것.</li>
+<li>이 보고서는 2026년 베트남 커널 평균 수출 단가가 2025년(톤당 6,817달러, 해관 잠정치를 옮긴 부처지의 추정치)보다 높게 마감한다고 본다. 반증 조건: 연간 값이 그 이하로 집계되는 것.</li>
+<li>이 보고서는 서아프리카 현지 가공이 계속 늘어난다고 본다. 반증 조건: 코트디부아르 2026년 국내 가공 물량이 2025년(659,579톤)보다 적은 것.</li>
+</ul>
+<p>수치의 성격도 밝혀 둔다. 본문 숫자는 «숫자대조» 장치로 원자료·원문과 맞췄다(update_2026-10-07/20_숫자대조.txt). 이 장치는 작성자의 근거 노트도 대조 대상으로 쓰므로 별도 감사를 거친다. 업계협회(INC·VINACAS·캄보디아캐슈협회)와 정부 발표를 옮긴 보도(코트디부아르 2025년 생산·가공, 가나 금지 선언, 부르키나파소·토고 제도, W320 가격)는 B등급으로 본문에 표시했다. 전망은 위 판단 세 줄과 APEDA의 2026년 6월 커널 수출 단가 전망치(05절)다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>원물은 아프리카·캄보디아, 가공은 베트남·인도</h2>
+<p class="lead">캐슈는 두 번 거래된다. 껍질째 말린 원물(RCN, raw cashew nut)이 산지에서 가공국으로 가고, 껍질을 벗긴 커널(kernel)이 가공국에서 소비국으로 간다. 한국이 사는 것은 거의 전부 커널이다(04절). 세계 RCN 생산은 FAOSTAT 기준 2024년 4,241,104톤이다. 2015년 3,338,627톤에서 2023년 4,319,281톤까지 늘었다가 2024년에 조금 줄었다(FAOSTAT «Cashew nuts, in shell», 30_근거_수치 E01).</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 RCN 생산 상위국(2024년, 톤)</caption>
+<thead><tr><th class="num">순위</th><th>국가</th><th class="num">생산</th><th class="num">점유</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>코트디부아르</td><td class="num">944,673</td><td class="num">22.3%</td></tr>
+<tr><td class="num">2</td><td>인도</td><td class="num">794,910</td><td class="num">18.7%</td></tr>
+<tr><td class="num">3</td><td>탄자니아</td><td class="num">528,262</td><td class="num">12.5%</td></tr>
+<tr><td class="num">4</td><td>베트남</td><td class="num">306,185</td><td class="num">7.2%</td></tr>
+<tr><td class="num">5</td><td>가나</td><td class="num">218,576</td><td class="num">5.2%</td></tr>
+<tr><td class="num">6</td><td>베냉</td><td class="num">212,624</td><td class="num">5.0%</td></tr>
+<tr><td class="num">7</td><td>브라질</td><td class="num">159,212</td><td class="num">3.8%</td></tr>
+<tr><td class="num">8</td><td>부르키나파소</td><td class="num">147,617</td><td class="num">3.5%</td></tr>
+<tr class="tot"><td class="num"><strong>세계</strong></td><td></td><td class="num"><strong>4,241,104</strong></td><td class="num">100%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT QCL(2026-10-07 수집본), E01. 가나·부르키나파소는 FAO 추정치(I) 표시다. FAOSTAT에는 캄보디아 행이 없다.</p>
+<p>FAOSTAT 표는 한 나라를 빠뜨린다. 캄보디아는 독일국제협력공사 보고서 기준 2024년 RCN 84만 톤을 생산했고, 캄보디아캐슈협회 집계로는 2025년 약 102만 톤이다(GIZ Cambodian Cashew Value Chain Analysis 2024-12; 협회 집계는 비공식, B등급). 업계 통계인 국제견과건과협회(INC) 연감은 2023/24 시즌 세계 생산을 539만 톤(커널 기준 117만 톤)으로, 2024/25 시즌을 481만 톤으로 추정했다. 커널 기준 점유는 서아프리카 55%·인도 16%·캄보디아 12%·동아프리카 7%·베트남 6%다(INC Statistical Yearbook 2024, B등급). FAOSTAT로도 서아프리카 13개국 합은 2024년 1,889,282톤으로 세계의 44.5%다(E01).</p>
+<p>코트디부아르의 2025년 생산은 면화·캐슈위원회(CCA) 발표를 옮긴 보도로 1,549,221톤이다(B등급, 02_출처원본 CCA 파일). FAOSTAT 2024년 값(944,673톤)과 차이가 커서, 2025년 세계 순위는 FAOSTAT 2025년분이 나올 때까지 매기지 않는다.</p>
+<h3>원물은 베트남·인도로 간다</h3>
+<p>FAOSTAT 기준 2024년 RCN 수입은 베트남(52.9%)과 인도(44.8%) 두 나라가 97.7%를 차지한다. RCN 수출은 코트디부아르(29.2%)·캄보디아(17.9%)·탄자니아(17.1%)·가나(6.5%) 순이다(FAOSTAT 무역 TCL, 국가 행 합, E02). 베트남 정부 포털은 농업환경부 발표를 옮겨 베트남이 2025년 RCN 290만 톤 이상을 45억 달러에 들여왔고 커널 766,585톤을 수출했다고 적었다(Chinhphu.vn 2026-01-11, A). 산업무역부 계열지는 해관 잠정치로 RCN 수입을 약 300만 톤으로 적었다(B등급). 베트남 협회 쪽 매체는 국내 가공 공장이 해마다 RCN 300만 톤 이상이 필요한데 국내 공급은 약 10%뿐이라고 적었다(VietnamPlus 2026-01-16, B등급). 다만 FAOSTAT의 베트남 2024년 RCN 수입 1,417,235톤은 국제기구 수치(Flag X)이고, 베트남협회가 해관 집계로 인용한 같은 해 1~7월 수입(178만 톤 이상)보다도 작다(VINACAS 2024-08-24, B등급; E02). 그래서 베트남 물량은 베트남 정부·부처지 발표치를 쓰고, FAOSTAT 점유율은 베트남 몫이 낮게 잡힌 값으로 읽는다.</p>
+<h3>커널은 미국·유럽·중국이 산다</h3>
+<p>FAOSTAT 기준 2024년 커널 수출은 베트남이 63.8%이고 코트디부아르(9.4%)·네덜란드(6.9%, 재수출)·인도(5.4%)가 뒤를 잇는다. 이 베트남 값(489,446톤)도 국제기구 수치(Flag X)다. 베트남 발표치로 역산한 2024년 커널 수출은 약 725,246톤(식: 2025년 766,585톤 ÷ 1.057)으로 FAOSTAT 값보다 크다(E02). 커널 수입은 미국 23.7%·독일 9.3%·네덜란드 8.9%·중국 5.5% 순이고 한국은 5,675톤으로 22위(0.8%)다(FAOSTAT 무역, E02·E03). 베트남의 2025년 커널 수출에서는 처음으로 중국(11억 1,500만 달러)이 미국(9억 7,500만 달러)을 앞섰다(Chinhphu.vn 2026-01-11). INC는 2023년 세계 소비를 커널 환산 1,245,208톤, 1위 인도 460,797톤, 2위 미국 141,219톤으로 추정했다(INC Yearbook 2024, B등급).</p>
+<h3>가공이 아프리카로 옮겨 간다</h3>
+<p>아프리카 산지국은 원물 수출 대신 현지 가공을 늘리고 있다. 세계은행은 코트디부아르의 국내 가공 RCN이 사업 시작 때 44,626톤에서 종료 때 674,207톤이 됐고 가공 설비능력은 2024년 816,000톤이라고 적었다(World Bank ICR00530, 2026-01; 같은 보고서 표에는 626,320톤으로 적혀 있어 원문 안에서도 값이 다르다). 코트디부아르 정부 발표를 옮긴 보도로 2025년 국내 가공 투입은 659,579톤, 가공률은 약 43%다(B등급). 베냉은 2024년 4월부터 RCN 수출을 막았고, 가나·부르키나파소도 수출을 제한했다(08절).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>생산은 없고, 커널 5천 톤을 들여와 먹는다</h2>
+<p class="lead">한국은 캐슈를 생산하지 않는다. FAOSTAT 생산 표에 한국 행이 없고, 국내에서 쓰는 캐슈는 전부 수입이다(E01). 수입 형태도 한쪽으로 몰려 있다. 2025년 껍질을 벗긴 커널(0801.32)이 4,966.5톤이고 껍질 있는 원물(0801.31)은 0.1톤이다(관세청, 30_근거_수치 E03). 국내에 원물을 까는 탈각 산업이 사실상 없다는 뜻이다. 2025년 커널 수출 33.5톤을 빼면 순수입은 4,933.0톤이다(E03).</p>
+<h3>소비 통계는 캐슈를 따로 잡지 않는다</h3>
+<p>캐슈만 따로 잰 국내 소비 통계는 없다. 가장 가까운 것은 한국농촌경제연구원 식품수급표의 «너트류»로, 헤이즐넛과 캐슈너트를 묶은 품목이다. 2024년(잠정) 너트류 수입은 6,655톤, 식품공급량은 6천 톤, 1인 1일 공급량은 0.31g으로 2020년(수입 3,928톤, 0.18g)보다 늘었다(KREI 『2024 식품수급표』, 02_출처원본 KREI 식품수급표 파일). 헤이즐넛이 섞여 있어 관세청 캐슈 커널 수입과 빼거나 나누지 않는다. 농산물유통정보(KAMIS) 품목코드표의 견과류는 땅콩·호두·아몬드뿐이고(aT KAMIS 품목코드표), 소비자물가지수 품목도 땅콩·밤·아몬드만 있다(국가데이터처 소비자물가, 2025년 지수 2020=100 기준 땅콩 121.84·밤 115.28·아몬드 106.14). 국민건강영양조사에는 견과류 단독 항목이 없고 가장 가까운 «종실류» 섭취량은 1세 이상 1인 1일 4.8g(2022~2024년 같은 값), 19세 이상 2024년 5.7g이다(질병관리청 국민건강영양조사).</p>
+<p>견과류 전체의 소비 행태는 조금 보인다. 한국농촌경제연구원 2025년 식품소비행태조사에서 응답 3,237가구 가운데 37.1%는 집에서 견과류를 먹지 않았고, 견과류를 사는 가구의 57.2%는 소포장을 샀다. 수입산 견과류 안전성 평균 점수는 3.12점으로 국내산 3.93점보다 낮았다(KREI 2025 식품소비행태조사). 식약처 생산실적으로 «땅콩 또는 견과류 가공품»의 2025년 국내 판매액은 7,384억 4,281만 원으로 농산가공식품류의 13.57%다(식약처 식품 등의 생산실적). 이 가공품에 캐슈가 얼마나 들어가는지는 통계로 나눌 수 없다.</p>
+<div class="call warn">
+  <div class="ct">범위</div>
+  <p>이 보고서의 캐슈넛은 HS 0801.31(껍질 있는 것, RCN)과 0801.32(껍질 깐 것, 커널)다. 볶음·조미 캐슈 등 조제품은 HS 2008.19 «기타»에 다른 견과와 섞여 있어 캐슈만 나눌 수 없다(관세율표). 캐슈 사과(가종피)와 껍질 기름(CNSL)은 다루지 않는다.</p>
+</div>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>커널 수입의 9할 이상이 베트남산(2023년부터)</h2>
+<p class="lead">한국의 캐슈 커널 수입은 2021~2025년 4,101.6~5,674.9톤 사이를 오갔다. 2025년은 4,966.5톤·3,741만 달러, kg당 7.53달러다. 2026년 1~8월은 3,262.6톤으로 전년 같은 기간보다 4.8% 많고 단가는 kg당 7.36달러다(관세청 수출입무역통계 HS 0801.32 국가별 월별, 30_근거_수치 E03).</p>
+<div class="tw">
+<table>
+<caption>표 2. 캐슈 커널(0801.32) 수입</caption>
+<thead><tr><th>연도</th><th class="num">톤</th><th class="num">백만 달러</th><th class="num">$/kg</th></tr></thead>
+<tbody>
+<tr><td>2021</td><td class="num">4,663.6</td><td class="num">32.82</td><td class="num">7.04</td></tr>
+<tr><td>2022</td><td class="num">4,101.6</td><td class="num">27.86</td><td class="num">6.79</td></tr>
+<tr><td>2023</td><td class="num">5,072.7</td><td class="num">31.14</td><td class="num">6.14</td></tr>
+<tr><td>2024</td><td class="num">5,674.9</td><td class="num">36.32</td><td class="num">6.40</td></tr>
+<tr><td>2025</td><td class="num">4,966.5</td><td class="num">37.41</td><td class="num">7.53</td></tr>
+<tr><td>2026.1~8</td><td class="num">3,262.6</td><td class="num">24.03</td><td class="num">7.36</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 nitemtrade HS 0801 국가별 월별(02_출처원본 KCS JSON), E03. 껍질 있는 원물(0801.31)은 해마다 1톤 미만이다.</p>
+<p>물량은 크게 늘지 않았는데 금액은 늘었다. 커널 kg당 수입 단가는 2023년 6.14달러에서 2025년 7.53달러로 22.7% 올랐다(E03).</p>
+<h3>원산지는 베트남으로 좁혀졌다</h3>
+<p>2025년 커널 수입 4,966.5톤 가운데 베트남산이 4,685.2톤(94.3%)이고 인도네시아 167.9톤(3.4%)·인도 80.5톤(1.6%)이 뒤를 잇는다. 베트남 몫은 2021년 78.9%에서 2022년 89.2%, 2023년 91.3%, 2024년 94.3%로 올랐고, 같은 1~8월끼리 보면 2025년 93.7%에서 2026년 99.1%다(E03). 2021년에는 인도네시아가 699.3톤(15.0%)을 냈고, 비베트남 비중이 10%를 넘은 해는 2021년(21.1%)과 2022년(10.8%)이다. 원산지 표기는 커널을 만든 가공국 기준이라, 베트남산 커널의 원물은 대부분 아프리카·캄보디아산이다(베트남 공장 원료의 약 90%가 아프리카·캄보디아 수입이라는 VINACAS 자료, 02_출처원본 베트남 파일, B등급).</p>
+<div class="tw wide">
+<table>
+<caption>표 3. 캐슈 커널 원산지(톤)</caption>
+<thead><tr><th>기간</th><th class="num">베트남</th><th class="num">베트남 몫</th><th class="num">인도네시아</th><th class="num">인도</th><th class="num">합계</th><th class="num">비베트남 몫</th></tr></thead>
+<tbody>
+<tr><td>2021</td><td class="num">3,680.6</td><td class="num">78.9%</td><td class="num">699.3</td><td class="num">266.2</td><td class="num">4,663.6</td><td class="num">21.1%</td></tr>
+<tr><td>2022</td><td class="num">3,658.7</td><td class="num">89.2%</td><td class="num">297.8</td><td class="num">138.1</td><td class="num">4,101.6</td><td class="num">10.8%</td></tr>
+<tr><td>2023</td><td class="num">4,628.9</td><td class="num">91.3%</td><td class="num">285.0</td><td class="num">150.1</td><td class="num">5,072.7</td><td class="num">8.7%</td></tr>
+<tr><td>2024</td><td class="num">5,351.4</td><td class="num">94.3%</td><td class="num">242.3</td><td class="num">74.8</td><td class="num">5,674.9</td><td class="num">5.7%</td></tr>
+<tr><td>2025</td><td class="num">4,685.2</td><td class="num">94.3%</td><td class="num">167.9</td><td class="num">80.5</td><td class="num">4,966.5</td><td class="num">5.7%</td></tr>
+<tr><td>2025.1~8</td><td class="num">2,917.6</td><td class="num">93.7%</td><td class="num">118.3</td><td class="num">45.4</td><td class="num">3,113.3</td><td class="num">6.3%</td></tr>
+<tr><td>2026.1~8</td><td class="num">3,231.7</td><td class="num">99.1%</td><td class="num">—</td><td class="num">29.5</td><td class="num">3,262.6</td><td class="num">0.9%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 HS 0801.32 국가별(E03). 신고국 수는 2021년 18개, 2022년 15개, 2023년 17개, 2024·2025년 19개, 2026년 1~8월 14개다. «—»는 수입이 없는 칸이다.</p>
+<p>한국은 베트남에 작은 고객이다. 관세청 한국 수입과 베트남 정부·부처지가 발표한 수출을 맞대 보면 베트남 커널 수출에서 한국 몫은 2025년 물량 0.61%·금액 0.67%다(02_출처원본 관세청 베트남 비중 파일, 두 나라 통계를 나란히 놓은 근사치). 베트남 쪽 한국행 수출 통계는 확보하지 못했다(시도: 베트남어 검색 «xuất khẩu hạt điều sang Hàn Quốc năm 2025», UN Comtrade 베트남 신고 preview 0행). FAOSTAT 기준으로도 한국은 2024년 세계 커널 수입 22위(0.8%)다(E02).</p>
+<h3>다른 시장과의 비교</h3>
+<p>2026년 7월 한 달 미국의 캐슈 수입은 12,359톤·8,530만 달러로 한국 1년치의 두 배가 넘는다(미국 센서스국 HS10, E05). EU의 2026년 7월 커널 수입 신고는 베트남산 11,757톤, 코트디부아르산 3,741톤 순이다(Eurostat Comext m1, E05). 유럽은 코트디부아르 현지 가공 커널을 받기 시작했지만 한국에는 아프리카산 커널이 2025년 말리 16.2톤·탄자니아 14.2톤 정도만 들어왔다(E03).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>원물 국제가격은 1년 전보다 낮고, 단계마다 값이 따로 논다</h2>
+<p class="lead">세계은행 상품가격표(Pink Sheet, 2026년 10월판)와 IMF 1차상품가격(PCPS) 품목 목록에는 캐슈가 없다(02_출처원본 World Bank·IMF 확인 파일). 원물(RCN) 국제가격은 서아프리카중앙은행(BCEAO, UEMOA 8개국 공동 중앙은행)이 로이터 자료로 매달 낸다. 이 절은 이 국제가격과 산지 최저가, 가공국 수출 단가, 한국 수입 단가를 각각 본다. 통화가 다르면 환산하지 않는다.</p>
+<h3>국제가격: 서아프리카중앙은행의 원물 시세</h3>
+<p>BCEAO 월간 통계 회보는 UEMOA 주요 수출품 국제가격 표에 RCN 가격을 톤당 달러로 싣는다. 2026년 7월은 1,688.0달러로 전년 같은 달(1,787.5달러)보다 5.6% 낮다. 2026년 1월 1,530.0달러에서 조금씩 올랐지만 1~7월 내내 전년 같은 달보다 낮았다(BCEAO «Bulletin mensuel des statistiques – Juillet 2026» 표 1.1.3.2, 02_출처원본 BCEAO 파일).</p>
+<div class="tw wide">
+<table>
+<caption>표 4. RCN 국제가격(BCEAO, 달러/톤)</caption>
+<thead><tr><th>월</th><th class="num">2025-07</th><th class="num">2026-01</th><th class="num">2026-02</th><th class="num">2026-03</th><th class="num">2026-04</th><th class="num">2026-05</th><th class="num">2026-06</th><th class="num">2026-07</th></tr></thead>
+<tbody>
+<tr><td>가격</td><td class="num">1,787.5</td><td class="num">1,530.0</td><td class="num">1,625.0</td><td class="num">1,625.0</td><td class="num">1,641.7</td><td class="num">1,670.8</td><td class="num">1,642.6</td><td class="num">1,688.0</td></tr>
+<tr><td>전년 같은 달 대비(%)</td><td class="num">12.7</td><td class="num">−14.4</td><td class="num">−9.1</td><td class="num">−9.1</td><td class="num">−8.2</td><td class="num">−6.5</td><td class="num">−8.1</td><td class="num">−5.6</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: BCEAO 월간 통계 2026년 7월호 표 1.1.3.2(원 출처 표기 «Reuters, BCEAO»). 원물 톤당 달러이고 품질·산지 구분이 없다. 회보의 다른 달(2025년 8~12월)은 이 호에 실리지 않았다.</p>
+<h3>산지: 정부가 정하는 농가 최저가</h3>
+<p>서아프리카 정부는 시즌마다 RCN 농가 최저가를 고시한다. 코트디부아르는 kg당 2024년 275, 2025년 425, 2026년 400 CFA프랑이다(코트디부아르 정부·CCA 발표, 02_출처원본). 가나는 kg당 2024년 8.50, 2025년 15.00, 2025/26 시즌 12.00세디(TCDA 고시 2025-12-15), 토고는 2024년 325, 2025년 425, 2026년 350 CFA프랑, 부르키나파소는 2024년 310, 2025·2026년 385 CFA프랑, 기니비사우는 2025·2026년 410 CFA프랑이다(각국 정부 원문 또는 정부 발표 보도, 02_출처원본). 2025년에 크게 올렸다가 2026년에 내린 나라가 많고, 국제가격(표 4)도 2026년에는 전년보다 낮다.</p>
+<p>FAOSTAT 생산자가격으로 보면 2024년 RCN 톤당 생산자가격은 코트디부아르 454달러, 베트남 1,960달러다(FAOSTAT PP, E04). 같은 원물이라도 국가별 가격 체계가 달라 직접 비교하지 않는다.</p>
+<h3>가공국: 원료 값이 커널 값보다 빨리 올랐다</h3>
+<p>해관 잠정치를 옮긴 베트남 산업무역부 계열지에 따르면 2025년 RCN 평균 수입 단가는 톤당 1,525.2달러(+18.2%, 추정)였고 커널 평균 수출 단가는 6,817달러(+13.9%, 추정)였다. 같은 해 RCN 수입액은 39.3%, 커널 수출액은 20.4% 늘었다(02_출처원본 베트남 파일 S2, B등급). 2026년 1~4월 RCN 수입 단가는 1,704달러(+7.6%), 상반기 커널 수출 단가는 7,014.8달러(+3.0%)다(같은 파일, B등급). 인도 농산물수출개발청(APEDA)의 월간 대시보드는 2026년 6월 커널 수출 단가를 베트남 톤당 6,573달러, 인도 7,838달러로 전망했다(APEDA Monthly dashboard Cashew 2026-06). 6월 값은 전망치(«P»)이고 실측은 2026년 4월까지(ITC Trade Map)다.</p>
+<p>대표 등급인 W320의 공개 가격 시계열은 확보하지 못했다(시도: APEDA 대시보드 두 판, BCEAO 회보(원물만 있음), VINACAS 사이트 기사 3건, African Cashew Alliance 공개 기사). 베트남캐슈협회 관계자는 2025년 말 W320을 파운드당 3.1달러에 팔았고 손익분기는 3.2~3.25달러라고 말했다(보도 인용, B등급).</p>
+<h3>한국 수입 단가</h3>
+<p>한국의 커널 kg당 수입 단가는 2021년 7.04달러에서 2023년 6.14달러로 내렸다가 2025년 7.53달러로 올랐다. 2026년 1~8월은 7.36달러다(관세청, E03). 원산지별로 2025년 베트남산 7.50달러, 인도산 9.37달러다(E03).</p>
+<div class="call warn">
+  <div class="ct">비교하지 않은 이유</div>
+  <p>농가 최저가는 원물 kg당 현지 통화이고, 수출·수입 단가는 커널 kg당 달러다. 원물 1톤에서 나오는 커널의 비율(수율)은 품질에 따라 달라, 둘 사이에 고정된 환산 비율이 없다. 세계은행은 코트디부아르 RCN 품질(KOR, 80kg 포대당 커널 파운드)이 사업 기간 내내 평균 47파운드 안팎으로 목표(48~52파운드)에 못 미쳤고, 해마다·달마다 크게 출렁인다고 적었다(예: 2023년 49.2파운드, 2025년 47파운드; World Bank ICR00530).</p>
+</div>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>베트남이 까고, 아프리카·캄보디아가 기른다</h2>
+<p class="lead">한국의 공급국은 사실상 베트남 하나지만, 베트남 커널의 원물은 아프리카와 캄보디아에서 온다. 그래서 한국 수입을 움직이는 변수는 베트남 공장의 원료 사정과 산지국의 수출 제도다.</p>
+<div class="tw">
+<table>
+<caption>표 5. 캐슈 가치사슬의 주요국</caption>
+<thead><tr><th>국가</th><th>역할</th><th>규모</th><th>한국과의 연결</th><th>제도</th></tr></thead>
+<tbody>
+<tr><td>베트남</td><td>가공·커널 수출 1위</td><td>2025년 RCN 수입 290만 톤 이상, 커널 수출 766,585톤</td><td>한국 커널 수입의 94.3%(2025)</td><td>RCN 수입 MFN 5%·FTA 0%</td></tr>
+<tr><td>캄보디아</td><td>RCN 수출</td><td>2025년 생산 약 102만 톤(B)</td><td>베트남 경유</td><td>—</td></tr>
+<tr><td>코트디부아르</td><td>RCN 생산 1위, 현지 가공 확대</td><td>FAO 2024년 944,673톤, 2025년 가공 659,579톤(B)</td><td>한국 직수입 거의 없음</td><td>최저가 400 CFA프랑(2026), RCN 수출세 5%(B)</td></tr>
+<tr><td>인도</td><td>생산·가공·소비</td><td>FAO 2024년 794,910톤, 2025년 RCN 수입 136.9만 톤</td><td>한국 커널 수입 1.6%(2025)</td><td>RCN 수입관세 2.5%, 커널 수입 최저 CIF</td></tr>
+<tr><td>탄자니아</td><td>RCN 생산·경매</td><td>FAO 2024년 528,262톤(FAOSTAT 3위)</td><td>2025년 14.2톤</td><td>수출세 FOB 15% 또는 톤당 160달러</td></tr>
+<tr><td>베냉·가나·부르키나파소·토고</td><td>RCN 생산</td><td>각 FAO 2024년 147,617~218,576톤(토고 제외)</td><td>거의 없음</td><td>수출 금지·허가·국내 가공 배정</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT(E01), 관세청(E03), 베트남·캄보디아·코트디부아르·인도·탄자니아 파일(02_출처원본). 토고는 FAOSTAT 2024년 상위 10위 밖이다.</p>
+<h3>베트남, 원료를 사서 커널을 판다</h3>
+<p>베트남은 2025년 RCN을 290만 톤 넘게 45억 달러에 들여오고 커널 766,585톤을 수출했다(Chinhphu.vn 2026-01-11, 농업환경부 발표). 커널 수출액은 52억 3천만 달러다(산업무역부 계열지, 해관 잠정치 인용, B등급). 원료의 약 90%는 아프리카·캄보디아에서 온다(VINACAS 2024-08-24, B등급). 2025년 11개월 동안 반가공 커널 15만 톤(원물 환산 약 70만 톤)도 들여왔다(산업무역부 계열지, 해관 잠정치 인용, B등급). 2026년에는 7월 15일까지 RCN 181만 톤을 30억 2,400만 달러에 들여왔고 그 가운데 캄보디아산이 98만 700톤이다(VINAGRI News 2026-08, 해관 인용, B등급).</p>
+<h3>캄보디아, 베트남의 옆 창고</h3>
+<p>캄보디아는 FAOSTAT에 생산 행이 없지만 2024년 84만 톤을 생산했다(GIZ 2024). 캄보디아캐슈협회 집계로 2025년 생산은 1,020,757톤이고 RCN 수출은 약 100만 톤·15억 달러, 2026년 상반기 수출은 약 103만 톤·17억 5,100만 달러(+28%)로 사실상 전량 베트남으로 간다(협회 비공식 집계, B등급).</p>
+<h3>코트디부아르, 원물 1위가 가공으로 옮겨 간다</h3>
+<p>코트디부아르는 세계 최대 RCN 생산국이다(FAO 2024년 22.3%). 정부는 RCN 수출세(DUS)를 2024년 11월 20일부터 CAF 기준가의 7%에서 5%로 내렸고 커널 수출은 면세라고 정부 대변인이 설명했다(국영통신 AIP, B등급). 다만 국무회의 공보문(전재본, B등급)은 5%를 «커널(amandes de cajou) 수출»에 매긴다고 적어 대변인 설명과 다르다. 2026년 예산에는 커널 생산 보조금 163억 7천만 CFA프랑을 편성했다(2026년 예산법 원문, A; 02_출처원본 코트디부아르 파일). 국내 가공 투입은 2024년 344,026톤에서 2025년 659,579톤으로 늘었다(정부 발표 인용 보도, B등급). 세계은행 사업이 측정한 RCN 품질(KOR)은 사업 기간 내내 평균 47파운드 안팎으로 목표 범위 48~52파운드에 못 미쳤다(World Bank ICR00530).</p>
+<h3>인도, 큰 내수와 높은 장벽</h3>
+<p>인도는 생산국이자 가공국이며 최대 소비국이다. 인도 정부는 생산을 80만 2천 톤으로 적었고(PIB), 2025년 RCN 수입은 136.9만 톤, 커널 수출은 3.49만 톤이다(UN Comtrade 인도 신고치, 02_출처원본 인도 파일). 커널 수입은 CIF가 kg당 680루피(깨진 것)·720루피(온전한 것)를 넘어야 허용된다(인도 대외무역총국 고시 전재본, B등급, 02_출처원본). INC 추정으로 인도는 2023년 커널 460,797톤을 소비한 세계 1위 소비국이다(B등급).</p>
+<h3>동아프리카</h3>
+<p>탄자니아는 FAOSTAT 기준 2024년 528,262톤으로 세계 3위 생산국이다(FAOSTAT에 없는 캄보디아 84만 톤을 넣으면 4위). RCN 수출세는 FOB의 15% 또는 톤당 160달러 가운데 큰 쪽이다(탄자니아 국세청 세목표). 2025/26 시즌 경매는 진행 중 누계로 RCN 430,961톤이 팔렸고(기사 시점), 캐슈위원회는 시즌 말 판매를 60만 톤으로 전망했다. 2024/25 시즌 판매는 406,362톤이다(캐슈위원회 인용 보도, B등급, 02_출처원본).</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>75곳 이상의 수입상과 몇몇 견과 브랜드</h2>
+<p class="lead">한국 캐슈 유통은 수입상이 베트남산 커널을 들여와 국내 견과 가공업체가 볶고 포장하거나 제과 원료로 넘기는 구조다. 원물을 까는 국내 공장은 통계에 잡히지 않는다(03절).</p>
+<h3>수입: 남은 신고 281건, 업체 75곳 이상</h3>
+<p>식약처 수입식품 확인 목록에서 2025년 처리분 가운데 제품명에 캐슈가 든 신고는 조회일(2026-10-07) 현재 281건이 남아 있다. 이 API는 유통기한이 끝난 신고를 돌려주지 않아 281건은 2025년 전체의 하한이고, 남은 신고의 54.4%(153건)가 10~12월 처리분이다(02_출처원본 수입업체 파일, E07). 아래 업체 수·비중·제조국은 모두 이 잔존분 기준이다.</p>
+<p>수입업체(신고 영업소명 기준)는 75곳 이상이다. 원물 «캐슈(견과, 건조)» 146건, 가공식품 134건, 식품첨가물 1건이다. 원물만 보면 상위 10곳이 55.48%(10위는 5건 2곳 동률, 그중 1곳 포함)이고 제조국은 베트남이 93.8%다. 가공식품을 넣은 전체로는 상위 10곳이 36.65%(10위는 8건 4곳 동률, 4곳을 모두 넣으면 13곳 45.20%)이고 베트남이 84.7%다(식약처 오픈API 원응답, 02_출처원본 raw, E07). 같은 잔존분에서 견과 원물 신고는 아몬드 480건, 호두 327건, 캐슈 146건이지만, 품목마다 유통기한이 달라 잔존 편향이 다를 수 있어 순위로 읽지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 6. 캐슈 원물 수입신고 상위 업체(2025년 처리분 잔존분, 신고 영업소명)</caption>
+<thead><tr><th class="num">원물 순위</th><th>업체</th><th class="num">원물 건수</th><th class="num">전체 건수(가공 포함)</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>웰넛</td><td class="num">12</td><td class="num">12</td></tr>
+<tr><td class="num">2</td><td>남지인터내셔날</td><td class="num">10</td><td class="num">10</td></tr>
+<tr><td class="num">2</td><td>바프</td><td class="num">10</td><td class="num">10</td></tr>
+<tr><td class="num">4</td><td>산과들에</td><td class="num">9</td><td class="num">9</td></tr>
+<tr><td class="num">5</td><td>성우농수산</td><td class="num">8</td><td class="num">8</td></tr>
+<tr><td class="num">5</td><td>열매마을</td><td class="num">8</td><td class="num">10</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 식약처 수입식품 확인 목록 오픈API 원응답(02_출처원본 raw, E07). 건수는 신고 횟수이지 물량이 아니다. 가공식품을 넣은 전체 기준 1위는 쓰리에스무역(15건)인데 모두 중국산 «대추속밀크캐슈넛»(과·채가공품)이라 원물 표에는 없다. 김포에프디(전체 11건)는 10건이 가공품 «껍질캐슈넛»이다.</p>
+<h3>견과 가공 기업</h3>
+<p>전자공시(DART)에서 견과류 사업이 감사보고서에 적힌 회사의 2025년 매출은 열매마을 1,118억 6,635만 원(영업이익 57억 7,682만 원), 바프 1,003억 8,306만 원(영업이익 113억 8,645만 원)이다. 바프는 2023년 1월 길림양행에서 상호를 바꾼 같은 법인이다. 김포에프디는 2024년 매출 176억 4,945만 원이다(DART 감사보고서, 02_출처원본 DART 파일). 상호가 같은 산과들에·성우농수산·대영식품은 같은 회사인지 확정하지 못해 판정 보류로 남겼다(같은 파일). 웰넛·머거본·탐스팜 등은 DART에서 찾지 못했다.</p>
+<p>견과를 원료로 쓰는 제과·식품 대기업(동원F&amp;B·롯데웰푸드·농심·오리온)의 사업보고서에는 «캐슈»가 한 번도 나오지 않고, 주요 원재료 표에도 견과 품목이 없다(같은 파일). 대기업의 캐슈 사용량은 공시로 알 수 없다.</p>
+<h3>시장 크기</h3>
+<p>캐슈만의 국내 시장 크기를 재는 통계는 없다. 견과류 가공품 전체의 2025년 국내 판매액은 7,384억 4,281만 원이고(식약처 생산실적, 03절), 캐슈 커널 수입액은 3,741만 달러다(04절). 두 값은 통화와 단계가 달라 나누지 않는다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>한국 관세는 낮고, 산지 제도는 해마다 바뀐다</h2>
+<h3>한국</h3>
+<p class="lead">캐슈넛의 기본세율은 원물(0801.31)·커널(0801.32) 모두 8%이고 세계무역기구 양허세율은 32.8%다. 협정세율은 한-베트남 FTA 0%, 한-아세안 5%, RCEP 아세안산 4%, 한-캄보디아 1.4%, 한-EU 0%, 최빈개발도상국 특혜 0%다. 한-인도 CEPA는 커널만 5%이고 원물에는 협정세율이 없다(관세청 세율 원자료·관세법 별표, 02_출처원본 관세율 파일). 볶음·조미 캐슈 같은 조제품은 HS 2008.19-9000 «기타»로 기본세율 45%이고 캐슈 전용 세번이 없다(같은 파일). 한국 커널 수입의 94% 이상을 차지하는 베트남산은 관세가 없다.</p>
+<p>할당관세는 없다. 2024년 1월~2026년 7월 시행된 할당관세 규정 19개 버전의 별표 어디에도 0801·2008.19는 들어간 적이 없다(02_출처원본 할당관세 파일).</p>
+<p>식품 기준은 견과류 공통 기준을 따른다. 「식품의 기준 및 규격」에서 캐슈는 견과류로 분류되고 총 아플라톡신 15.0μg/kg 이하(B1 10.0μg/kg 이하), 납 0.1mg/kg·카드뮴 0.3mg/kg 이하가 적용된다. 이 기준은 식약처 고시 「식품의 기준 및 규격」(2026-10-01 시행본)이다. 수입 관능검사 대상 견과(땅콩·아몬드·호두·피스타치오)에는 캐슈가 없다(식약처 고시 「수입식품등 신고 및 검사에 관한 규정」 별표 2, 2025-09-01 시행). 원산지는 유통 단계 표시 대상이고(대외무역관리규정 별표 8, 농수산물 원산지표시 요령 별표 1) 음식점 표시 대상은 아니다(02_출처원본 원산지 파일).</p>
+<h3>생산·수출국</h3>
+<p>산지국은 원물 수출을 줄이고 자국 가공을 늘리려고 제도를 자주 바꾼다.</p>
+<div class="tw">
+<table>
+<caption>표 7. 주요 산지국의 RCN 제도(2024~2026)</caption>
+<thead><tr><th>국가</th><th>제도</th><th>근거</th></tr></thead>
+<tbody>
+<tr><td>베냉</td><td>2024년 4월 1일부터 RCN 수출 금지, 2025~26 캠페인도 유지</td><td>시행령 2022-568호(A)</td></tr>
+<tr><td>가나</td><td>2025년 5월 2일부터 비가공 캐슈 수출에 TCDA 허가, 2026년 2월 대통령이 RCN 수출 중단 선언(발효 법령 미확인)</td><td>TCDA 고시(A)·보도(B)</td></tr>
+<tr><td>코트디부아르</td><td>RCN 수출세 7%→5%(2024-11-20), 커널 면세(정부 대변인 설명), 커널 생산 보조금</td><td>국무회의 공보 전재·국영통신(B), 2026 예산법(A)</td></tr>
+<tr><td>부르키나파소</td><td>2025년 4월 2일 수출 중단(보도상 5월 해제), 2026년 2월 21일~4월 1일 수출 중단</td><td>보도(B·C)</td></tr>
+<tr><td>토고</td><td>수집량의 3분의 1을 국내 가공업체에 배정(2025-12-30 부처 합동 결정)</td><td>보도(B)</td></tr>
+<tr><td>탄자니아</td><td>수출세 FOB 15% 또는 톤당 160달러 중 큰 쪽, 경매 판매</td><td>국세청 세목표(A)</td></tr>
+<tr><td>나이지리아</td><td>수출 금지는 채택하지 않고 정책 프레임워크(2025~2035)로 대체</td><td>장관 발표 인용 보도(B), 프레임워크 원문 미확보</td></tr>
+<tr><td>인도</td><td>RCN 수입관세 2.5%(최빈국산 무관세), 커널 수입은 CIF 680·720루피/kg 이상만</td><td>인도 정부 보도자료(A)·DGFT 고시 전재본(B)</td></tr>
+<tr><td>베트남</td><td>RCN 수입 MFN 5%·FTA 0%, 커널 수입 MFN 25%</td><td>관세청 해외관세율표(B, 법적 효력 없는 참고자료)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 02_출처원본 각국 제도 파일. 코트디부아르 국무회의 공보문은 5%를 «커널(amandes de cajou) 수출»에 매긴다고 적어, «RCN 5%·커널 면세»라는 정부 대변인 설명과 다르다. 말리는 정부 원문을 확보하지 못했다(시도: 웹 검색 «Mali anacarde prix plancher/exportation suspension 2025 2026», 현지 기사 사이트 접속 403).</p>
+<p>EU 산림전용방지규정(EUDR)의 대상 7개 품목(소·카카오·커피·기름야자·고무·대두·목재)에 캐슈는 없다(EU 규정 2023/1115 원문과 2024·2025 개정, 02_출처원본 EUDR 파일).</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>은행은 다루지 않고, 기관 통계가 판을 그린다</h2>
+<p class="lead">수집기 은행 리포트 색인(812건)의 품목 열에 캐슈(cashew)가 붙은 리포트는 0건이다(30_근거_수치 E06). 본문 검색에서 캐슈가 나온 문서는 4건이고, 실질 언급은 서아프리카중앙은행(BCEAO) 월간 통계 하나다. 이 회보는 본문에 2026년 7월 «noix de cajou» 국제가격이 전년 같은 달보다 5.6% 낮다고 적었고, 표 1.1.3.2에 RCN 국제가격 수준(2026년 7월 톤당 1,688.0달러, 원 출처 «Reuters, BCEAO»)을 매달 싣는다(05절 표 4). 나머지는 미국 CoBank 리포트의 가향 캐슈 제품명, 태국 크룽스리 리포트의 사료첨가제 예시(캐슈 껍질 기름)뿐이고, 브라질 은행 리포트의 «caju» 검색 결과는 지명(Maracaju)이었다(02_출처원본 은행 리포트 파일). 그래서 이 절은 국제기구·정부·협회 자료로 채운다.</p>
+<div class="tw">
+<table>
+<caption>표 8. 기관 자료의 캐슈 관련 주장</caption>
+<thead><tr><th>기관</th><th>문서(날짜)</th><th>주장</th></tr></thead>
+<tbody>
+<tr><td>세계은행</td><td>ICR00530 코트디부아르 캐슈 가치사슬 경쟁력 사업(2026-01)</td><td>국내 가공 RCN이 44,626톤에서 674,207톤으로, 가공 설비능력 2024년 816,000톤. RCN 품질(KOR)은 사업 기간 평균 47파운드 안팎으로 목표(48~52) 미달</td></tr>
+<tr><td>세계은행</td><td>Commodity Price Data(Pink Sheet, 2026-10)</td><td>캐슈 가격 항목 없음</td></tr>
+<tr><td>INC(국제견과건과협회)</td><td>Statistical Yearbook 2024(2025-01)</td><td>2023/24 세계 생산 539만 톤(커널 117만 톤), 서아프리카 55%. 2023년 세계 수입의 92%가 베트남·인도(B)</td></tr>
+<tr><td>독일국제협력공사(GIZ)</td><td>Cambodian Cashew Value Chain Analysis(2024-12)</td><td>캄보디아 2024년 생산 84만 톤</td></tr>
+<tr><td>인도 농산물수출개발청(APEDA)</td><td>Monthly dashboard Cashew(2026-06)</td><td>2026년 6월 커널 수출 단가 전망치(P) 베트남 6,573달러·인도 7,838달러/톤(실측은 4월까지)</td></tr>
+<tr><td>베트남 정부 포털</td><td>캐슈 수출 첫 50억 달러 돌파(2026-01-11, 농업환경부 발표)</td><td>2025년 커널 수출 766,585톤, RCN 수입 290만 톤 이상·45억 달러, 중국이 첫 1위 시장</td></tr>
+<tr><td>BCEAO</td><td>월간 통계 2026년 7월호(표 1.1.3.2)</td><td>RCN 국제가격 2026년 7월 톤당 1,688.0달러, 전년 같은 달 대비 −5.6%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 02_출처원본 각 원문. INC는 업계협회(B등급)다.</p>
+<p>기관 자료가 모이는 지점은 둘이다. 원물 생산은 서아프리카·캄보디아로 커지고 있고, 가공은 여전히 베트남에 몰려 있지만 아프리카 산지국의 수출 제한과 현지 가공 장려가 그 구도를 조금씩 바꾼다. 베트남 쪽에서는 원물 값이 커널 값보다 빨리 올라 가공 마진이 좁아졌다(05절).</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표</span>무엇을 매달 볼 것인가</h2>
+<p class="lead">한국 캐슈 시장은 작고(연 5천 톤 안팎) 공급이 한 나라에 몰려 있다. 아래 위험 넷은 주로 공급망 위쪽(산지·가공국)에서 온다. 국내 가공·유통 단계의 원가·재고·판로·대금 회수·표시 신뢰 위험은 표 11-4에 적었다.</p>
+<h3>위험 넷</h3>
+<p><strong>1. 베트남 편중.</strong> 한국 커널 수입의 94.3%(2025년)가 베트남산이고, 같은 1~8월끼리 보면 2025년 93.7%에서 2026년 99.1%로 올랐다(04절). 2021년(비베트남 21.1%)과 2022년(10.8%)에는 인도네시아 등 다른 원산지가 10%를 넘었으니 편중은 최근 몇 해에 굳었다. 이 보고서는 베트남 편중이 이어진다고 본다. 한-베트남 FTA 0% 관세와 베트남의 가공 규모가 그 근거다. 반증 조건: 비베트남 비중이 다시 한 해 10%를 넘는 것.</p>
+<p><strong>2. 원료 값과 가공 마진.</strong> 베트남의 2025년 RCN 수입 단가는 18.2%, 커널 수출 단가는 13.9% 올라 원료가 더 빨리 올랐다(05절). 이 보고서는 2026년 베트남 커널 수출 단가가 2025년(톤당 6,817달러, 부처지 추정치)보다 높게 마감한다고 본다. 반증 조건: 2026년 연간 베트남 커널 평균 수출 단가가 6,817달러 이하로 집계되는 것(2026년 상반기는 7,014.8달러).</p>
+<p><strong>3. 산지 제도 변동.</strong> 베냉 수출 금지, 가나 허가제와 금지 선언, 부르키나파소 수출 중단처럼 RCN 제도가 해마다 바뀐다(08절). 이 보고서는 서아프리카 현지 가공이 계속 늘어난다고 본다. 반증 조건: 코트디부아르 2026년 국내 가공 물량이 2025년(659,579톤)보다 적게 집계되는 것.</p>
+<p><strong>4. 품질과 식품안전.</strong> 코트디부아르 RCN 품질(KOR)은 세계은행 사업 기간 내내 평균 47파운드 안팎으로 목표(48~52파운드)에 못 미쳤고, 해마다 크게 출렁였다(2023년 49.2, 2025년 47파운드, 05절). 수입 단계에서 캐슈는 아플라톡신 기준을 적용받는다(08절). 품질 변동이 수입 커널 값과 부적합에 어떻게 이어지는지는 확보한 자료로 판단하지 못했다.</p>
+<h3>관찰 지표</h3>
+<div class="tw">
+<table>
+<caption>표 9. 매달 볼 지표와 수집기</caption>
+<thead><tr><th>지표</th><th>수집기·원천</th><th>주기</th><th>지금 값</th><th>볼 점</th></tr></thead>
+<tbody>
+<tr><td>커널 수입 물량·단가·원산지</td><td>customs_item_trade_monthly, 관세청 국가별(HS 0801.32)</td><td>월</td><td>2026.1~8 3,262.6톤·7.36$/kg·베트남 99.1%(2025.1~8 93.7%)</td><td>베트남 외 원산지</td></tr>
+<tr><td>세계 RCN 생산</td><td>faostat_production</td><td>연</td><td>2024 4,241,104톤(캄보디아 없음)</td><td>2025년분, 캄보디아 행</td></tr>
+<tr><td>세계 캐슈 무역</td><td>faostat_trade, comtrade</td><td>연</td><td>2024 RCN 수입 베트남 52.9%·인도 44.8%(베트남 값 Flag X)</td><td>베트남 발표치와 차이. Comtrade는 customsCode=C00·motCode=0 합계 행만 쓸 것</td></tr>
+<tr><td>EU·미국 수입</td><td>eurostat_comext_m1·m2, census_imports_hs10</td><td>월</td><td>2026-07 미국 12,359톤</td><td>아프리카산 커널 몫</td></tr>
+<tr><td>베트남 RCN 수입·커널 수출</td><td>수동(베트남 정부 포털·부처지·VINACAS)</td><td>월</td><td>2025 커널 766,585톤</td><td>단가 차</td></tr>
+<tr><td>산지 최저가·수출 제도</td><td>수동(각국 정부·CCA·TCDA)</td><td>시즌</td><td>코트디부아르 400 CFA프랑(2026)</td><td>2027 시즌 고시</td></tr>
+<tr><td>RCN 국제가격</td><td>BCEAO 월간 통계 표 1.1.3.2(수동)</td><td>월</td><td>2026-07 1,688.0$/t(−5.6%)</td><td>방향·산지 최저가와의 차</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 부록 A 수집기 현황, 각 절 근거.</p>
+<h3>남은 물음</h3>
+<ul>
+<li>국내 캐슈만의 소비량은 얼마인가. KREI 식품수급표는 캐슈를 헤이즐넛과 묶은 «너트류»로만 잡고(2024년 공급 6천 톤), 캐슈만 보면 수입 커널 순수입(2025년 4,933.0톤)뿐이다(03절).</li>
+<li>국내 볶음·조미 캐슈 생산량은 얼마인가. 견과류 가공품 생산실적이 캐슈를 나누지 않는다(03·07절).</li>
+<li>2025년 세계 생산은 얼마인가. FAOSTAT 2025년분은 아직 없고, INC 2025년판은 회원 전용이라 입수하지 못했다(시도: 공개 URL 404). APEDA 대시보드가 INC를 인용해 국가별 2025 시즌 추정을 싣는다(02_출처원본 APEDA 생산전망 파일).</li>
+<li>대표 등급 커널(W320)의 공개 가격 시계열이 있는가. 확보하지 못했다(05절, 시도 경로 같은 절).</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>베트남 가공망과 한국의 견과 유통</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국의 캐슈 커널(HS 0801.32) 수입은 4,966.5톤이다. <strong>수입 물량 비중 10% 이상인 공급국은 베트남 한 곳</strong>으로, 4,685.2톤(94.3%)을 공급했다. 인도네시아는 167.9톤(3.4%), 인도는 80.5톤(1.6%)이다. 따라서 같은 연도·분모로는 10% 이상 공급국을 세 나라 제시할 수 없다. 아래에는 베트남 기업 다섯 곳과 두 보조 공급국에서 한국 연결이 확인된 기업을 실었다. 식약처 신고서의 제조국은 커널의 <strong>가공국</strong>, 수출국은 <strong>선적국</strong>이며 원물 산지를 뜻하지 않는다. <a href="https://tradedata.go.kr/cts/index.do">관세청 수출입무역통계</a>(A, 2025년).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 한국 수입신고와 연결이 확인된 해외 캐슈 기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>베트남</td><td>ofi 계열 Olam Vietnam</td><td>조달·가공·수출</td><td>아시아·아프리카 캐슈 가공·포장시설 10곳 초과(회사 공개, 2026년 확인)</td><td>식약처 제조사명 일치: 비엔호아Ⅱ 지점 원물 40건·Olam Vietnam Food Processing Factory 가공품 90건</td><td><a href="https://www.ofi.com/vi-vn/nuts/cashews">ofi 캐슈 사업</a>(B)</td></tr>
+<tr><td>베트남</td><td>Long Son JSC</td><td>가공·수출</td><td>회사 전체 매출 2억 2,000만 달러(2022년)</td><td>식약처 제조사명 일치: 원물 62건·가공품 12건</td><td><a href="https://www.longson.vn/about/detail/about-us">회사 소개</a>(B)</td></tr>
+<tr><td>베트남</td><td>Agrinuts Vietnam Trading</td><td>무역·가공</td><td>가공시설 2곳(회사 소개자료, 2024년)</td><td>식약처 제조사명 일치: 원물 53건</td><td><a href="https://exhibitor-manual-004.s3.ap-south-1.amazonaws.com/Production/exb_doc/2008/11452/Cataloge_Compress.pdf">회사 소개자료</a>(B)</td></tr>
+<tr><td>베트남</td><td>Long Son Inter Foods</td><td>가공·수출</td><td>30개국 이상 수출(회사 소개, 실적연도 미기재)</td><td>식약처 제조사명 일치: 원물 40건</td><td><a href="https://www.longsoninterfoods.vn/about/detail/about-us">회사 소개</a>(B, 2026년 확인)</td></tr>
+<tr><td>베트남</td><td>Hoang Son 1 JSC</td><td>가공·수출</td><td>40개국 이상 수출(회사 소개, 실적연도 미기재)</td><td>식약처 제조사명 일치: 원물 6건</td><td><a href="https://hoangson1.vn/en/home/">회사 소개</a>(B, 2026년 확인)</td></tr>
+<tr><td>인도</td><td>Prasanthi Cashew Company</td><td>가공·수출</td><td>100개국 이상 수출(회사 소개, 2014년 자료)</td><td>식약처 제조사명 일치: 원물 4건</td><td><a href="https://www.prasanthi.com/aboutus.html">회사 소개</a>(B)</td></tr>
+<tr><td>인도네시아</td><td>PT Comextra Majora</td><td>가공·무역</td><td>캐슈 수출기업 명부 등재(2016년); 기업별 수출량 공개자료 없음</td><td>식약처 제조사명 일치: 원물 2건</td><td><a href="https://ditjenpen.kemendag.go.id/storage/publikasi/701-9641514957695.pdf">인도네시아 상무부 수출기업 명부</a>(A)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/api/main.do">식약처 수입식품 신고 확인 자료</a>(A, 2025년 10월~2026년 9월, <strong>신고 건수 기준</strong>, 2026년 포함 잠정)와 각 행의 기업·정부 자료. 제조사명 표기 변형은 합쳤다. 건수는 수출 물량이나 기업 점유율이 아니다.</p>
+<p>ofi는 자사 자료에서 스스로를 ‘세계 1위 캐슈 공급자’라고 소개한다. 베트남·코트디부아르·나이지리아에서 가공시설을 운영하지만, 동시점의 세계 기업별 캐슈 수출액 순위를 확인할 공개자료가 없어 이 표현을 독립적인 순위로 확정하지 않는다. <a href="https://www.ofi.com/vi-vn/nuts/cashews">ofi 캐슈 사업</a>(B, 2026년 확인).</p>
+<p>볶음·조미 캐슈 등이 속할 수 있는 HS 2008.19는 다른 견과를 포함하는 세번이다. 04절에는 <strong>캐슈만의 조제품 수입액 분모</strong>가 없어 이 세번이 캐슈 수입액의 10% 이상인지 금액 기준으로 판정할 수 없다. 별도 식약처 신고에서 제품명에 캐슈가 든 ‘땅콩 또는 견과류가공품’ 314건 가운데 베트남 제조는 272건(86.6%)이다. 이는 신고 건수 기준이며 HS 2008.19 수입액·점유율과 같지 않다. <a href="https://www.data.go.kr/data/15051179/fileData.do">관세청 관세율표</a>·<a href="https://www.foodsafetykorea.go.kr/api/main.do">식약처 데이터활용서비스</a>(A, 2025년 10월~2026년 9월, 2026년 포함 잠정).</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>2025년 10월~2026년 9월 식약처 신고 가운데 품목명이 ‘캐슈(견과,건조)’인 것은 309건, 수입업소는 47곳이다. 아래 순위는 <strong>신고 건수 기준</strong>으로 중량·금액·시장점유율이 아니다. 주요 제조국은 업소별 신고 건수 상위 두 나라를 그대로 적었다. 07절의 2025년 처리분 잔존 신고 281건과는 기간·조회 범위가 달라 합산하거나 순위를 비교하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 캐슈(견과,건조) 수입신고 상위 업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>주식회사 열매마을</td><td class="num">30</td><td>베트남 30</td><td>견과 수입·소분·유통</td></tr>
+<tr><td>(주)대봉식품</td><td class="num">21</td><td>베트남 21</td><td>수입업소</td></tr>
+<tr><td>(주)굿넛</td><td class="num">16</td><td>베트남 16</td><td>수입업소</td></tr>
+<tr><td>(주)이마트</td><td class="num">15</td><td>베트남 15</td><td>대형 유통</td></tr>
+<tr><td>주식회사 웰넛</td><td class="num">13</td><td>베트남 9·인도 4</td><td>수입업소</td></tr>
+<tr><td>(주)더원비앤에프</td><td class="num">13</td><td>베트남 13</td><td>수입업소</td></tr>
+<tr><td>(주)선명농수산</td><td class="num">13</td><td>베트남 13</td><td>수입업소</td></tr>
+<tr><td>주식회사 성우농수산</td><td class="num">12</td><td>베트남 12</td><td>수입업소</td></tr>
+<tr><td>대영식품주식회사</td><td class="num">12</td><td>베트남 11·인도네시아 1</td><td>수입업소</td></tr>
+<tr><td>(주)해맑음푸드</td><td class="num">11</td><td>베트남 11</td><td>수입업소</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/api/main.do">식약처 수입식품 신고 확인 자료</a>(A, 2025년 10월~2026년 9월, 신고 건수 기준, 2026년 포함 잠정). 업소명 표기 변형을 합쳤다.</p>
+<p>같은 기간 제품명에 캐슈가 든 ‘땅콩 또는 견과류가공품’ 신고가 <strong>314건 더</strong> 있다. 원물과 이 가공품을 합치면 상위 업소의 순서가 달라진다. 해외 제조사도 Olam 베트남 두 사업장 합계 130건이 가장 많다. 모두 신고 건수 기준이다.</p>
+<p>표 11-2A. 캐슈 원물·견과류가공품 합산 신고 상위 업소</p>
+<div class="tw">
+<table>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>확인된 구성·비고</th></tr></thead>
+<tbody>
+<tr><td>이마트</td><td class="num">52</td><td>원물 15건·가공품 37건</td></tr>
+<tr><td>코스트코코리아</td><td class="num">40</td><td>전부 가공품; 베트남 제조 38건</td></tr>
+<tr><td>열매마을</td><td class="num">34</td><td>원물 30건·가공품 4건</td></tr>
+<tr><td>웨이메이커스</td><td class="num">28</td><td>원물·가공품 합산</td></tr>
+<tr><td>굿넛</td><td class="num">22</td><td>원물·가공품 합산</td></tr>
+<tr><td>대봉식품</td><td class="num">21</td><td>원물·가공품 합산</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/api/main.do">식약처 수입식품 신고 확인 자료</a>(A, 2025년 10월~2026년 9월, 신고 건수 기준, 2026년 포함 잠정). 합산 대상은 위 두 품목명이며 캐슈가 들어간 모든 식품 유형은 아니다.</p>
+<p>공시 매출은 <strong>회사 전체 또는 사업부</strong> 규모로, 캐슈 매출이 아니다. 열매마을·바프·김포에프디의 감사보고서는 견과 사업을 명시한다. 상장 유통사와 대한제당은 캐슈 매출·매입액을 별도로 공시하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 수입신고와 공시 규모가 확인된 국내 기업</caption>
+<thead><tr><th>기업</th><th>확인된 신고 건수</th><th>공시 규모·사업 구성</th><th>한국 내 역할·출처</th></tr></thead>
+<tbody>
+<tr><td>이마트</td><td>원물 15·가공품 37</td><td>2025년 별도 매출 16조 6,289억 원(할인점·트레이더스 등 포함)</td><td>수입·소매. <a href="https://kind.krx.co.kr/external/2026/03/18/001378/20260318006410/11011.htm">사업보고서</a>(A, 2025년), <a href="https://company.emart.com/ko/m/investor/finance02.do">회사 재무정보</a>(B)</td></tr>
+<tr><td>코스트코코리아</td><td>가공품 40</td><td>2025년 8월 결산 매출 약 7조 3,220억 원</td><td>캐슈 가공품 수입·소매. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251119000106">DART 감사보고서</a>(A, 2025년 8월 결산)</td></tr>
+<tr><td>롯데쇼핑 롯데마트사업본부</td><td>원물 5</td><td>2025년 연결 할인점 부문 매출 5조 4,713억 원(해외 사업 포함)</td><td>수입·마트 유통. <a href="https://kind.krx.co.kr/external/2026/03/16/002590/20260316007284/11011.htm">사업보고서</a>(A, 2025년)</td></tr>
+<tr><td>대한제당</td><td>원물 6</td><td>2025년 연결 매출 1조 3,562억 7,603만 원; 식품부문 51.2%</td><td>수입신고 확인. 주요 원재료 표에 캐슈 별도 항목 없음. <a href="https://kind.krx.co.kr/external/2026/03/19/000700/20260319003138/11011.htm">사업보고서</a>(A, 2025년)</td></tr>
+<tr><td>열매마을</td><td>원물 30·가공품 4</td><td>2025년 회사 매출 1,118억 6,635만 원</td><td>견과 수입·소분·유통. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260402003029">DART 감사보고서</a>(A, 2025년)</td></tr>
+<tr><td>바프</td><td>원물 10</td><td>2025년 회사 매출 1,003억 8,306만 원</td><td>견과 제품 제조·판매. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260401002244">DART 감사보고서</a>(A, 2025년)</td></tr>
+<tr><td>김포에프디</td><td>원물 5·가공품 11</td><td>2024년 회사 매출 176억 4,945만 원</td><td>견과 수입·소분·유통. <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250410001058">DART 감사보고서</a>(A, 2024년)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.foodsafetykorea.go.kr/api/main.do">식약처 수입식품 신고 확인 자료</a>(A, 2025년 10월~2026년 9월, <strong>신고 건수 기준</strong>, 2026년 포함 잠정)와 각 행의 법정 공시·회사 자료. 공시 매출을 캐슈 시장점유율로 환산하지 않았다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 캐슈 생산에서 소비까지</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>코트디부아르·인도·캄보디아 등 산지 농가·협동조합</td><td>국내 생산 없음; 2025년 껍질 있는 원물 수입 0.1톤</td><td>산지 매입 협상·정부 농가 최저가</td><td>작황·품질·농가소득</td></tr>
+<tr><td>1차 가공</td><td>베트남·인도·서아프리카 탈각·선별 공장</td><td>한국이 들여오는 캐슈는 사실상 커널</td><td>원물 조달가·커널 등급별 계약가</td><td>수율·노동·식품안전</td></tr>
+<tr><td>수출·국제 무역</td><td>베트남 가공·무역기업과 국제 구매자</td><td>2025년 한국 커널 수입 물량의 베트남산 94.3%</td><td>수출계약·운임</td><td>산지 수출제도·환율</td></tr>
+<tr><td>수입·통관·검역</td><td>국내 수입업소·관세청·식약처</td><td>2025년 커널 4,966.5톤·3,741만 달러</td><td>수입계약·관세·검사 비용</td><td>공급 집중·아플라톡신·원산지</td></tr>
+<tr><td>국내 가공</td><td>견과 로스팅·소분·포장업체</td><td>캐슈만의 가공량 미공개</td><td>원료 매입·가공·포장 계약</td><td>원가·부적합·재고</td></tr>
+<tr><td>도매·유통</td><td>견과 전문상·식품 원료상</td><td>원물 신고 수입업소 47곳(2025.10~2026.09, 가공품 신고 제외)</td><td>납품계약</td><td>재고·판로·대금 회수</td></tr>
+<tr><td>소매·외식</td><td>대형마트·온라인몰·외식업체</td><td>캐슈만의 소매·외식 매출 미공개</td><td>소매가격·납품계약</td><td>소비 둔화·표시 신뢰</td></tr>
+<tr><td>소비</td><td>가계·식품 제조 수요자</td><td>2025년 커널 순수입 4,933.0톤; 소비량 통계는 아님</td><td>최종 구매가격</td><td>가격 부담·알레르기</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://tradedata.go.kr/cts/index.do">관세청 수출입무역통계</a>(A, 2025년), <a href="https://www.foodsafetykorea.go.kr/api/main.do">식약처 수입식품 신고 확인 자료</a>(A, 2025.10~2026.09·신고 건수), <a href="https://www.gouv.ci/actualite/campagne-2026-de-lanacarde-le-prix-bord-champ-du-kilogramme-de-la-noix-de-cajou-fixe-a-400-fcfa-1858">코트디부아르 정부의 2026년 농가 최저가</a>(A). 국내 생산·소비 통계의 범위는 03·04절과 같다.</p>
+<p><strong>부가가치가 어디서 생기는가.</strong> 첫 전환은 원물을 탈각·선별해 등급별 커널로 만드는 가공 단계다. 베트남은 2025년 원물 290만 톤 이상을 수입해 커널 766,585톤을 수출했고, 한국 커널 수입 물량의 94.3%를 공급했다(<a href="https://baochinhphu.vn/xuat-khau-hat-dieu-lan-dau-tien-vuot-5-ty-usd-102260111090236787.htm">베트남 정부 발표</a>, A, 2025년 실적). 한국에서는 로스팅·소분·포장과 유통에서 가치가 더해지지만 캐슈만의 매출은 분리 공시되지 않는다. 2025년 국내 ‘땅콩 또는 견과류 가공품’ 판매액 7,384억 4,281만 원은 여러 견과의 합계여서 캐슈 몫이나 단계별 마진을 계산할 수 없다(<a href="https://www.foodsafetykorea.go.kr/api/main.do">식약처 생산실적</a>, A, 2025년).</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 캐슈 산업의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>관세청·식품의약품안전처</td><td>수입 통계·통관, 수입식품 신고·검사</td><td>반입 조건·안전 기준 결정</td></tr>
+<tr><td>해외 정부</td><td>코트디부아르 정부·면화캐슈위원회(CCA), 베트남 농업환경부</td><td>산지 최저가·가공 정책, 원물 수입·커널 수출 정책</td><td>산지 판매가·가공국 조달 조건에 영향</td></tr>
+<tr><td>생산자·단체</td><td>코트디부아르 농가·협동조합, 베트남캐슈협회(VINACAS)</td><td>원물 생산·공동 판매, 가공·수출업계 의견 결집</td><td>농가 판매가·원료 확보</td></tr>
+<tr><td>수출·가공기업</td><td>ofi·Long Son JSC</td><td>원물 조달, 탈각·선별, 커널 수출</td><td>품질·등급·납기·수출가격</td></tr>
+<tr><td>수입·유통기업</td><td>열매마을·바프·이마트·코스트코코리아</td><td>수입, 로스팅·소분, 국내 판매</td><td>조달가격·안전성·판매가격</td></tr>
+<tr><td>소비자·시민사회</td><td>국내 소비자·한국소비자원</td><td>제품 선택, 소비자 정보·피해 구제</td><td>가격·안전성·표시 정확성</td></tr>
+<tr><td>국제기구·인증</td><td>세계은행·African Cashew Alliance·Fairtrade International</td><td>가공 역량 지원, 업계 협력, 인증 기준</td><td>산지 부가가치·노동 조건·추적성</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://tradedata.go.kr/cts/index.do">관세청</a>·<a href="https://www.foodsafetykorea.go.kr/api/main.do">식약처</a>·<a href="https://www.gouv.ci/actualite/campagne-2026-de-lanacarde-le-prix-bord-champ-du-kilogramme-de-la-noix-de-cajou-fixe-a-400-fcfa-1858">코트디부아르 정부</a>·<a href="https://baochinhphu.vn/xuat-khau-hat-dieu-lan-dau-tien-vuot-5-ty-usd-102260111090236787.htm">베트남 정부</a>·<a href="https://www.worldbank.org/en/results/2025/04/15/agri-processing-adds-value-in-cote-d-ivoire-s-cashew-industry">세계은행</a>(A, 2025~2026년), <a href="https://vinacas.com.vn/gioi-thieu.htm">VINACAS</a>·<a href="https://africancashewalliance.com/en/about-us">African Cashew Alliance</a>·<a href="https://www.fairtrade.net/content/dam/fairtrade/fairtrade-international/standards/contract-production/nuts/Nuts_SPO_EN.pdf">Fairtrade 견과 기준</a>(B, 2026년 확인), <a href="https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&amp;cciNo=1&amp;cnpClsNo=3&amp;csmSeq=669&amp;popMenu=ov&amp;search_put=">한국소비자원 역할에 관한 정부 법령 안내</a>(A).</p>
+<p>산지국이 원물의 현지 가공을 늘리면 산지 공장의 일감은 늘지만 베트남 공장의 원료 조달 조건은 달라진다. 생산자의 판매가 요구와 수입·유통기업의 조달가 요구는 가격 협상에서 엇갈린다. 안전성·추적성 기준 강화는 소비자의 확인 가능성을 높이는 동시에 생산·가공·수입 주체의 이행비용을 늘린다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>수집기 전체 현황</h2>
+<p class="lead">이 보고서의 숫자가 나온 수집기 전부와 그 상태다. 2026-10-07에 <code>rawbulk.report_delta.coverage("cashew")</code>로 뽑았다. «최신»은 그 파일에 든 가장 늦은 기간이다.</p>
+<div class="tw wide">
+<table>
+<caption>표 10. 캐슈넛(cashew) 수집기 현황(2026-10-07)</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">72</td><td>2026-07</td><td>2026-10-07</td><td></td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">46</td><td>2026-07</td><td>2026-10-07</td><td></td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">701</td><td>2026</td><td>2026-10-06</td><td></td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">40</td><td>2026</td><td>2026-10-06</td><td></td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">44</td><td>2026.08</td><td>2026-10-07</td><td></td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">366</td><td>202607</td><td>2026-10-06</td><td></td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">734</td><td>202606</td><td>2026-10-06</td><td></td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">2506</td><td>2025</td><td>2026-10-07</td><td></td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">9235</td><td>2024</td><td>2026-10-07</td><td></td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">63062</td><td>2024</td><td>2026-10-07</td><td></td></tr>
+<tr><td>월간 수집(agri_refresh)</td><td>comtrade</td><td class="num">2264</td><td>2025</td><td>2026-10-01</td><td>1개 파일 · 최근 cashew_comtrade_annual.csv</td></tr>
+<tr><td>월간 수집(agri_refresh)</td><td>customs_kr</td><td class="num">64</td><td>2026.08</td><td>2026-10-01</td><td>1개 파일 · 최근 cashew_customs_kr_monthly.csv</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code> 수집기 원장. 정기 수집기 밖에서 이번에 받은 원천은 관세청 국가별 월별(HS 0801, 2021-01~2026-08), 식약처 수입식품 확인 목록, DART 재무, 법령·고시 별표, FAO·세계은행·APEDA·INC·GIZ 원문, 베트남·코트디부아르·가나·베냉·탄자니아 등 각국 정부 원문과 정부 발표 인용 보도다(02_출처원본).</p>
+<p>수집기가 없는 칸도 적어 둔다. KAMIS에는 캐슈 품목이 없다(레지스트리 kamis 항목 없음, aT 품목코드표 확인). 베트남 해관·VINACAS, 산지국 최저가 고시는 정기 수집기가 없어 손으로 받았다.</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 캐슈넛 산업 해부: 기르지도 까지도 않는 견과</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · 정부 통계 원자료·법령·국제기구 원문을 썼고 협회 자료·정부 발표 인용 보도는 B등급으로 표시했다</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>본문 숫자는 update_2026-10-07/20_숫자대조.txt 로 원자료·원문과 대조했다</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>HS 0801.31(원물)·0801.32(커널). 조제 캐슈(2008.19)·캐슈 사과·껍질 기름은 제외</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>FAOSTAT 2025년분과 INC 2025년판은 아직 없다. 캄보디아는 FAOSTAT에 행이 없다. 국내 캐슈 소비량·W320 공개 가격 시계열·대기업 캐슈 사용량은 없다. 식약처 신고 건수는 유통기한이 남은 신고만 잡혀 하한이다</span></div>
+</footer>
+</div>
+

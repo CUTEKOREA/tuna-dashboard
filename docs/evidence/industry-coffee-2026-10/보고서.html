@@ -1,0 +1,755 @@
+<title>한국 커피 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 커피<br>
+        세계 수급 · 생두 · 볶은 커피 · 소비 · 가격 · 기업 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">수입 원료가 국내 가공과 외식 시장으로 이어지는 산업 · 리포트 2026</p>
+      <h1><span class="scr">Coffee</span> <span class="lt">한국 커피 산업 해부</span></h1>
+      <p class="cover-sub">한국 커피 산업의 원료는 수입에 의존하지만, 국내에서는 로스팅·가공·음료 제조·외식이 서로 다른 시장을 이룬다.
+        생두 수입량과 커피 판매액은 같은 시장 크기가 아니다. 세계 산지의 작황, 아라비카·로부스타 가격, 국내 제품 가격과 제도를 각각의 원자료로 따라간다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2024 세계 생두 생산</div><div class="v">1,128만</div>
+        <div class="n">톤 · FAOSTAT · 브라질 30.0%</div></div>
+      <div class="cf"><div class="k">2025 한국 생두 수입</div><div class="v">17.57만</div>
+        <div class="n">톤 · 카페인 제거 여부 합산</div></div>
+      <div class="cf"><div class="k">2025 생두 수입액</div><div class="v">12.93억</div>
+        <div class="n">달러 · 관세청 HS 0901.11·0901.12</div></div>
+      <div class="cf"><div class="k">2025 볶은 커피 수입</div><div class="v">1.89만</div>
+        <div class="n">톤 · HS 0901.21·0901.22</div></div>
+      <div class="cf"><div class="k">2024 국내 커피 시장</div><div class="v">3조 7,359억</div>
+        <div class="n">원 · 농식품부·KREI 발표</div></div>
+      <div class="cf"><div class="k">2023 커피전문점</div><div class="v">106,452</div>
+        <div class="n">사업체 · 농식품부·KREI 발표</div></div>
+      <div class="cf"><div class="k">2024 식품제조 커피원두 사용</div><div class="v">99,731</div>
+        <div class="n">톤 · KOSIS · 해당 표의 수입산 사용량</div></div>
+      <div class="cf"><div class="k">2026.09 ICO 종합가격</div><div class="v">262.18</div>
+        <div class="n">미국 센트/파운드 · 월평균</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">수입 원료와 국내 서비스가 맞물리지만, 크기를 재는 잣대는 다르다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">브라질과 베트남이 큰 산지이며, 커피연도 전망은 생산 실적과 구분된다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">식품제조 원료는 수입산으로 잡히고, 소비량은 공급량과 구분된다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">생두와 볶은 커피를 나누면 수입액 상승의 위치가 보인다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">국제 생두 지표, 수입 단가, 국내 물가지수는 서로 다른 값이다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">생산량과 품종·수확 시차가 함께 작용한다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">원료 수입 이후 제조와 외식으로 갈라지는 산업</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">수입식품 규칙은 확인되고, 2026년 생두 적용 세율은 남아 있다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">공급 회복 전망과 현물 긴장을 함께 읽는다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표</span><span class="t">생산 전망보다 통관·가격·재고의 연결을 확인한다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">생두 산지에서 국내 가공·매장까지</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 검토 범위</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>수입 원료와 국내 서비스가 맞물리지만, 크기를 재는 잣대는 다르다</h2>
+<p class="lead">한국의 커피는 생두 수입에서 시작해 로스팅, 인스턴트·음료 제조, 소매와 외식으로 이어진다. 이 단계의 물량·생산액·소비자가격·점포 수를 더해 하나의 시장 크기로 만들 수는 없다. 2025년 생두 수입은 17만 5,698톤이고, 농림축산식품부·한국농촌경제연구원이 발표한 2024년 국내 커피 시장 규모는 3조 7,359억 원이다. 앞의 값은 통관 중량, 뒤의 값은 발표 자료의 시장 금액이다(E06·E12).</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>세계 생산.</strong> FAOSTAT의 2024년 세계 생두 생산은 약 1,128만 톤(원값 11,284,877.41톤)이다. 브라질 338만 7,724톤, 베트남 201만 5,289톤으로 두 나라가 큰 산지다. 세계 합계에 대한 브라질 몫은 30.0%, 베트남 몫은 17.9%다. 이는 달력 연도 생산 통계이며, 뒤에 나오는 USDA 커피연도 전망과 직접 이어 붙인 시계열이 아니다(E01).</li>
+<li><strong>세계 수급 전망.</strong> 국제커피기구(ICO)는 2025/26 커피연도 생산을 1억 8,360만 포대, 수급 흑자를 300만 포대로 추정했다. USDA의 2026/27 전망은 생산 1억 8,970만 포대, 소비 1억 7,970만 포대, 기말재고 2,630만 포대다. 모두 60kg 포대 기준이며, 전망이지 완료된 생산 실적이 아니다(E02).</li>
+<li><strong>한국 원료 수입.</strong> 관세청 월별 원자료를 합하면 2025년 카페인을 제거하지 않은 생두(0901.11) 16만 7,421톤과 제거한 생두(0901.12) 8,277톤을 수입했다. 두 세번 합계는 약 17.57만 톤(원값 175,697.648톤, 톤 반올림 175,698톤)·약 12.93억 달러(원값 1,292,843,763달러)다. 볶은 커피(0901.21·0901.22)는 별도로 약 1.89만 톤(원값 18,942.429톤, 톤 반올림 18,942톤)을 수입했다. 커피 추출물·인스턴트 조제품(주로 HS 2101)은 이 HS 0901 수입량에 들어 있지 않다(E06).</li>
+<li><strong>추출물 무역.</strong> FAOSTAT의 별도 ‘Coffee extracts’ 계정에서 2024년 한국 수출은 36,162.53톤·2억 2,860.9만 달러, 수입은 12,920.18톤·1억 3,404만 달러다. 이 계정은 HS 2101 계열에 해당하며, 2025년 HS 0901 수입량과 연도·제품 범위가 다르다(E04).</li>
+<li><strong>원산지 구성.</strong> FAOSTAT TM의 2024년 한국 신고 생두 수입에서 브라질 5만 9,065톤, 콜롬비아 2만 9,823톤, 베트남 2만 8,792톤, 에티오피아 1만 9,775톤 순이다. 국가별 몫은 같은 해 FAOSTAT 한국 전체 수입량 17만 4,874톤을 분모로 계산했다. 이 보고서의 국가별 점유율은 2024년 기준이다(E07).</li>
+<li><strong>국내 사용과 판매.</strong> KOSIS 식품제조업 원료사용 표에서 2024년 커피원두 사용 총량 99,731톤은 모두 ‘수입산사용량’으로 분류되고 ‘국산사용량’은 0톤이다. 이 표는 식품제조업의 원료 투입량이지 국민 전체의 커피 섭취량이 아니다. 농식품부·KREI 발표의 2024년 커피 시장 3조 7,359억 원, 볶은 커피 시장 1조 3,225억 원도 통관액과 범위가 다르다(E05·E12).</li>
+<li><strong>가격 층위.</strong> ICO의 2026년 9월 종합지표가격 월평균은 262.18 미국 센트/파운드다. 한국은행 ECOS 소비자물가지수의 2026년 9월 ‘커피’는 143.97, ‘커피(외식)’는 111.64다(2020=100). 국제 생두 지표, 국내 상품 물가지수, 외식 물가지수는 조사 대상과 단위가 다르다(E09·E10).</li>
+<li><strong>사업체.</strong> 농식품부·KREI 발표에서 2023년 커피 가공업 사업체는 1,660개, 커피전문점은 106,452개 사업체다. KOSIS의 2024년 ‘원두커피’ 제조업 사업체 87개는 종사자 10명 이상 제조업 조사 범위이므로 앞의 가공업 전체와 비교해 증감을 말할 수 없다(E05·E12).</li>
+<li><strong>제도.</strong> 커피 HS 0901과 커피 추출물·조제품 HS 2101은 원산지 표시대상에 실려 있다. 판매·영업 목적 수입식품에는 수입신고와 통관 전 검사가 적용된다. 생두의 2026년 세번별 현행 적용 세율은 확보한 원문만으로 확정하지 못했다(E16).</li>
+</ul>
+<h3>이 보고서의 판단</h3>
+<ul>
+<li>이 보고서는 <strong>국제 생두가격의 하락만으로 국내 커피 소비자가격의 하락을 예단할 수 없다</strong>고 본다. 통관 단가, 환율, 로스팅·포장·인건비, 외식 가격은 별도 단계다. 반증 조건: 동일한 정의의 국제 원료가격과 국내 상품·외식 가격을 시차별로 대조한 자료에서 안정적이고 빠른 하락 전가가 확인되는 것(E06·E09·E10).</li>
+<li>이 보고서는 <strong>한국의 생두 공급망에 브라질 외 주요 산지도 상당한 물량으로 포함돼 있다</strong>고 본다. 이는 생두 수입에 한정한 판단이다. 완료연도인 2024년 양자무역에는 콜롬비아·베트남·에티오피아도 상당한 물량이 기록돼 있다. 볶은 커피와 디카페인 생두는 원산지 구성이 다르다. 반증 조건: 이후 완료연도 원산지별 생두 수입에서 브라질 외 주요 산지의 합계 비중이 지속적으로 작아지는 것(E07·E20).</li>
+<li>이 보고서는 <strong>수입 원료를 쓰는 국내 가공·외식 산업의 규모가 원료 수입액보다 넓은 경제활동을 나타낸다</strong>고 본다. 다만 양자의 금액 차이를 국내 부가가치로 계산하지 않는다. 반증 조건: 일관된 산업연관·기업 원가 원자료가 확보돼 해당 해석과 다른 범위를 보여 주는 것(E05·E06·E12).</li>
+</ul>
+<p>본문의 전망치는 ‘전망’으로, 위 세 문장은 ‘이 보고서의 판단’으로 표시했다. 생산·무역·원료사용·가격의 수치는 각기 다른 조사 범위를 유지했다. 2026년 1~8월 기준(잠정) 물량은 전년 같은 기간과만 비교했고, 국가별 점유율·순위에는 2024년 FAOSTAT TM 원자료를 썼다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>브라질과 베트남이 큰 산지이며, 커피연도 전망은 생산 실적과 구분된다</h2>
+<p class="lead">커피 생산량은 생두 중량으로 집계할 수도 있고 60kg 포대로 표시할 수도 있다. FAOSTAT의 ‘Coffee, green’은 달력 연도 생산 통계다. ICO와 USDA는 커피연도 단위의 수급 추정·전망을 낸다. 서로 다른 기준년을 같은 연도 막대처럼 나란히 놓으면 수확 증가나 부족분을 잘못 읽게 된다.</p>
+<p>FAOSTAT 2024년 세계 생두 생산은 11,284,877톤이다. 국가 행 가운데 브라질 3,387,724톤이 가장 많고, 베트남 2,015,289톤, 콜롬비아 839,847톤, 인도네시아 807,578톤이 뒤를 잇는다. 표의 점유율은 해당 국가 물량을 FAOSTAT 세계 행으로 나눈 값이다. 국가 행의 보고·추정 상태는 원자료 Flag를 표에 병기했다(E01).</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 생두 생산 상위국(FAOSTAT, 2024년)</caption>
+<thead><tr><th class="num">순위</th><th>국가</th><th class="num">생산량(톤)</th><th class="num">세계 행 대비</th><th>원자료 Flag</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>브라질</td><td class="num">3,387,724</td><td class="num">30.0%</td><td>A</td></tr>
+<tr><td class="num">2</td><td>베트남</td><td class="num">2,015,289</td><td class="num">17.9%</td><td>A</td></tr>
+<tr><td class="num">3</td><td>콜롬비아</td><td class="num">839,847</td><td class="num">7.4%</td><td>A</td></tr>
+<tr><td class="num">4</td><td>인도네시아</td><td class="num">807,578</td><td class="num">7.2%</td><td>A</td></tr>
+<tr><td class="num">5</td><td>에티오피아</td><td class="num">575,696</td><td class="num">5.1%</td><td>I</td></tr>
+<tr><td class="num">6</td><td>우간다</td><td class="num">402,000</td><td class="num">3.6%</td><td>X</td></tr>
+<tr class="tot"><td class="num"><strong>세계</strong></td><td></td><td class="num"><strong>11,284,877</strong></td><td class="num"><strong>100%</strong></td><td>A</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT QCL <code>faostat_production_coffee.csv</code>, Item=<code>Coffee, green</code>, Element=<code>Production</code>, Year=<code>2024</code>; 국가 행을 실제 생산량으로 정렬(E01). 표시는 톤 반올림, 점유율은 원값으로 계산했다.</p>
+<p>브라질 한 나라의 생산 변동이 세계 공급에 큰 영향을 주지만 브라질도 단일 품종 산지가 아니다. 아라비카와 코닐론이라는 현지 로부스타 계열의 수확 조건이 다르다. 베트남은 로부스타의 큰 공급국이고, 콜롬비아와 에티오피아의 공급은 아라비카 시장에서 따로 관찰할 필요가 있다. FAOSTAT의 품목 합계만으로는 두 품종을 분리할 수 없으므로 품종 전망에는 USDA PSD와 각국 기관 발표를 쓴다(E02·E03).</p>
+<p>FAOSTAT의 브라질 2024년 생두 생산액은 경상 달러 기준 128억 4,224만 달러, 생산지수는 2014~2016년=100 기준 119.90이다. 두 값은 각각 가치와 지수이며, 생산량 338만 7,724톤과 합산하지 않는다. FAOSTAT의 금액·지수 행은 추정 Flag E다. 해당 아카이브 자료를 ‘커피 세계시장 매출’로 확대 해석하지 않았다(E19).</p>
+<h3>진행 중인 커피연도 전망</h3>
+<p>ICO는 2025/26 커피연도의 세계 생산을 1억 8,360만 포대, 수급 흑자를 300만 포대로 추정했다(ICO, <em>Coffee Market Report – August 2026</em>, A등급). USDA의 2026/27 PSD 국가별 행을 합산하면 생산 1억 8,966.7만 포대, 소비 1억 7,973.6만 포대, 기말재고 2,628.3만 포대다. USDA가 원문에서 반올림한 수치는 각각 1억 8,970만·1억 7,970만·2,630만 포대다. 생산에서 소비를 단순히 뺀 값을 ICO의 수급 흑자와 동일시하지 않는다. 커피연도와 기관의 수급표 정의가 다르고, 재고·수입·수출이 함께 움직인다(E02).</p>
+<p>브라질 전망만 해도 기관 차이가 있다. 브라질 Conab은 달력 연도 2026년 수확을 6,760만 포대, 그중 아라비카 4,820만·코닐론 1,940만 포대로 추정했다(Conab, 2026-09-24, A등급). USDA PSD의 2026/27 브라질 생산 전망은 7,190만 포대다. 집계 시기와 방법이 다른 두 수치를 평균하지 않는다. 확보한 Conab의 2025년 최종 조사에는 5,650만 포대가 적혀 있지만, 이 수치 역시 USDA의 다른 연도 구분값과 한 줄의 연속 시계열로 연결하지 않는다(E02·E03).</p>
+<p>세계 수급을 읽는 데 필요한 것은 ‘흑자’ 한 단어보다 그 흑자가 실제 재고를 어느 속도로 회복시키는가다. 아프리카수출입은행은 2026년 9월 보고서에서 생산 회복 전망과 현물 재고의 긴장이 동시에 존재할 수 있고, 브라질의 다음 개화기에 기상 위험이 남는다고 분석했다. 이는 기관의 분석이며 완료된 생산 통계가 아니다(아프리카수출입은행, <em>Coffee: From Supply Shock to Surplus</em>, 2026-09, B등급; E17).</p>
+<p>세계 생산 통계에 한국의 생두 생산 행이 없다는 사실만으로 한국에서 커피나무가 전혀 재배되지 않는다고 단정하지 않는다. 국내 산업의 원료 조달과 식품제조업 투입은 03·04절의 KOSIS·통관 원자료로 판단한다.</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>식품제조 원료는 수입산으로 잡히고, 소비량은 공급량과 구분된다</h2>
+<p class="lead">커피의 국내 경제활동은 재배보다 가공·판매에 있다. FAOSTAT 생두 생산 원자료에 한국 행은 없다. KOSIS 작물 생산 수집본에서도 커피 독립 생산 항목을 확인하지 못했다. 이는 ‘국내 재배가 전혀 없다’는 증명이 아니다. 확인 가능한 범위에서 더 직접적인 사실은 KOSIS의 2024년 식품제조업 커피원두 사용 총량 99,731톤 가운데 수입산 사용량이 99,731톤, 국산 사용량이 0톤으로 기재됐다는 것이다. 이 표의 모집단은 식품제조업 원료사용 조사다(E05).</p>
+<p>식품제조 원료 99,731톤을 2024년 생두 수입량 174,874톤에서 빼서 외식·가정용 사용량을 만들 수는 없다. 원료사용 표와 통관 표는 조사 시점과 포괄 범위가 다르며, 재고·가공 손실·완제품 수입·수출도 반영 방식이 다르다. ‘수입된 생두’, ‘식품제조업에서 사용한 커피원두’, ‘국내 식품공급량’은 각각 별도 모집단의 값이다(E04·E05·E06).</p>
+<p>FAOSTAT 식품수급표(FBS)의 2023년 한국 ‘Coffee and products’ 식품공급량은 13만 3,000톤, 1인당 연간 공급량은 2.58kg이다. 이 값은 이용 가능한 식품의 공급량이지 조사 대상자가 실제로 마신 음료의 무게나 카페인 섭취량이 아니다. FBS의 2013년 값은 1.04kg이고, 구형 FBSH 원자료의 같은 해 값은 1.12kg이다. 서로 다른 판본의 값이 다르므로 구형 2013년 수치와 신형 2023년 수치를 묶어 ‘증가 배수’를 계산하지 않았다(E04).</p>
+<p>FAOSTAT 공급활용계정(SCL)의 한국 2023년 ‘Coffee, green’ 수입량은 130,824톤이고 Flag X가 붙어 있다. FAOSTAT 무역계정(TCL)의 같은 해 한국 생두 수입량은 166,475톤이다. 계정 정의와 작성 과정이 다른 두 값을 더하거나 한쪽을 다른 쪽의 오류라고 단정하지 않았다. 본 보고서의 통관 추이에는 관세청과 UN Comtrade 합계 행을 사용한다(E04·E06).</p>
+<h3>가공업의 여러 제품</h3>
+<p>국내 제품 통계는 조사 범위에 따라 값의 의미가 달라진다. KOSIS ‘품목분류별 사업체수, 생산액, 출하 및 연말재고액’은 종사자 10명 이상 사업체의 2024년 조사다. 같은 사업체가 여러 품목을 만들 수 있으므로 품목별 사업체수를 더해 커피 제조기업 총수로 부르지 않는다. 생산액은 제품별 제조 단계 금액이지 소매 판매액이 아니다(E05).</p>
+<div class="tw">
+<table>
+<caption>표 2. 국내 커피 관련 제조 품목(종사자 10명 이상, 2024년)</caption>
+<thead><tr><th>품목</th><th class="num">사업체수</th><th class="num">생산액(백만원)</th><th>조사 범위</th></tr></thead>
+<tbody>
+<tr><td>원두커피</td><td class="num">87</td><td class="num">704,259</td><td>제조 품목</td></tr>
+<tr><td>인스턴트 커피</td><td class="num">23</td><td class="num">654,604</td><td>제조 품목</td></tr>
+<tr><td>커피믹스</td><td class="num">13</td><td class="num">864,801</td><td>제조 품목</td></tr>
+<tr><td>커피 음료</td><td class="num">23</td><td class="num">881,700</td><td>제조 품목</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS <code>kosis_manufacturing_items/2026-10-06__kosis_manufacturing_items.json</code>, 전국·2024년·각 <code>C2_NM</code>, <code>ITM_NM=사업체수/생산액</code>; 원자료 단위 그대로(E05).</p>
+<p>농식품부·KREI가 발표한 2023년 커피 가공업 1,660개 사업체와 커피전문점 106,452개 사업체는 위 표보다 넓거나 다른 분류의 사업체 수다. KOSIS 표의 원두커피 87개와 나누어 ‘대형업체 비율’을 계산하지 않는다. 2024년 커피 시장 3조 7,359억 원도 위 네 제조 품목 생산액의 합계와 동일한 정의가 아니다(E12).</p>
+<p>국내 수요의 깊이를 말하려면 가구별 음용량·업소별 원두 투입량·제품별 제조 출하를 연결할 자료가 필요하다. 지금 확보한 원자료는 커피 ‘공급’과 제조업 ‘투입’에는 답하지만 음료 잔 수나 실제 섭취량에는 직접 답하지 않는다. 따라서 수입 중량을 1인당 음용 잔 수로 바꾸지 않았다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>생두와 볶은 커피를 나누면 수입액 상승의 위치가 보인다</h2>
+<p class="lead">이 보고서의 무역 중심 범위는 HS 0901이다. 0901.11은 카페인을 제거하지 않은 생두, 0901.12는 제거한 생두, 0901.21은 카페인을 제거하지 않은 볶은 커피, 0901.22는 제거한 볶은 커피다. 0901.90은 커피 껍질·커피를 함유한 대용물로 제품 성격이 다르다. 인스턴트커피와 커피 추출물·조제품은 주로 HS 2101에 있으므로 HS 0901 물량을 ‘한국 커피 전체 수입’이라고 부르지 않는다. HS 2101 계열의 무역은 FAOSTAT의 별도 계정으로 아래에 제시한다(E04·E06·E16).</p>
+<p>2025년 한국 생두 두 세번의 수입은 175,698톤·12억 9,284만 달러다. 2024년 UN Comtrade 한국 신고 세계 합계 행은 174,874톤·8억 5,671만 달러였다. 물량은 약 0.5% 늘었지만 달러 표시 금액은 약 50.9% 늘었다. 생두 두 세번의 가중 평균 수입 단가가 약 4.90달러/kg에서 7.36달러/kg으로 오른 계산 결과다. 이는 통관 가치÷통관 중량이며 국제 선물가격, 로스터 구매계약 가격, 소매 원두 가격이 아니다(E06).</p>
+<div class="tw wide">
+<table>
+<caption>표 3. 한국 커피 HS별 수입(완료연도)</caption>
+<thead><tr><th>HS6</th><th>제품</th><th class="num">2024 물량(톤)</th><th class="num">2025 물량(톤)</th><th class="num">2025 금액(백만 달러)</th><th class="num">2025 단가($/kg)</th></tr></thead>
+<tbody>
+<tr><td>090111</td><td>카페인 미제거 생두</td><td class="num">169,343</td><td class="num">167,421</td><td class="num">1,212.44</td><td class="num">7.24</td></tr>
+<tr><td>090112</td><td>카페인 제거 생두</td><td class="num">5,531</td><td class="num">8,277</td><td class="num">80.41</td><td class="num">9.71</td></tr>
+<tr><td>090121</td><td>카페인 미제거 볶은 커피</td><td class="num">18,444</td><td class="num">17,179</td><td class="num">361.17</td><td class="num">21.02</td></tr>
+<tr><td>090122</td><td>카페인 제거 볶은 커피</td><td class="num">1,492</td><td class="num">1,763</td><td class="num">44.25</td><td class="num">25.10</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 2024년은 UN Comtrade <code>coffee_comtrade_annual.csv</code> 한국 신고·수입·세계 합계·HS6·<code>customsCode=C00</code>·<code>motCode=0</code>·<code>partner2Code=0</code>; 2025년은 관세청 <code>customs_item_trade_monthly_coffee.csv</code> 월별 HS10 합(E06). 톤과 금액은 반올림했다.</p>
+<p>FAOSTAT TCL의 2024년 한국 ‘Coffee extracts’ 계정은 수출 36,162.53톤·2억 2,860.9만 달러, 수입 12,920.18톤·1억 3,404만 달러다. 수출량과 수출액 모두 수입보다 크다. 이 계정은 HS 2101 계열에 해당하며 표 3의 HS 0901 수입과 제품 범위가 다르다. 연도도 다르므로 2025년 표 3의 합계에 더하지 않는다(E04).</p>
+<p>Comtrade에서는 ‘World’ 상대국 0, 제2상대국 0, 전체 관세절차 C00, 전체 운송수단 0인 합계 행만 사용했다. 같은 파일의 관세절차별·운송수단별 세부 행을 이 합계에 다시 더하지 않았다. 한국의 2025년 090111 Comtrade 합계 순중량은 167,421,062kg으로, 관세청 월별 합계 167,421,064kg과 반올림 수준의 차이다. 순중량이 빈 신고국의 물량 순위는 만들지 않는다(E06).</p>
+<h3>완료연도의 공급국</h3>
+<p>FAOSTAT 양자무역(TM) 원자료에서 2024년 한국 신고 ‘Coffee, green’ 수입량을 상대국별로 정렬했다. 브라질이 가장 크고, 콜롬비아·베트남·에티오피아가 뒤를 잇는다. 한국이 신고국인 TM 상대국 행의 합계는 174,873.77톤으로, 국가 전체 무역계정(TCL)의 한국 수입 174,873.79톤과 0.02톤 차이다. 표의 비중은 TCL 전체값을 분모로 계산했다(E07).</p>
+<div class="tw">
+<table>
+<caption>표 4. 한국 생두 수입 상대국(FAOSTAT TM, 2024년 완료연도)</caption>
+<thead><tr><th class="num">순위</th><th>상대국</th><th class="num">수입량(톤)</th><th class="num">한국 전체 수입량 대비</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>브라질</td><td class="num">59,065</td><td class="num">33.8%</td></tr>
+<tr><td class="num">2</td><td>콜롬비아</td><td class="num">29,823</td><td class="num">17.1%</td></tr>
+<tr><td class="num">3</td><td>베트남</td><td class="num">28,792</td><td class="num">16.5%</td></tr>
+<tr><td class="num">4</td><td>에티오피아</td><td class="num">19,775</td><td class="num">11.3%</td></tr>
+<tr><td class="num">5</td><td>과테말라</td><td class="num">8,451</td><td class="num">4.8%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT <code>TM_coffee.csv</code>, Reporter=<code>Republic of Korea</code>, Item=<code>Coffee, green</code>, Element=<code>Import quantity</code>, Year=<code>2024</code>; 분모는 <code>TCL_coffee.csv</code> 한국 2024년 Import quantity 174,873.79톤(E07).</p>
+<p>OEC의 2022년 한국행 090111 양자 수입액 원자료에서는 브라질 2억 1,461만 달러, 콜롬비아 1억 7,422만 달러, 에티오피아 1억 773만 달러 순이다. 같은 해 090121 볶은 커피 수입액에서는 미국 1억 4,625만 달러와 스위스 1억 1,260만 달러가 전체 3억 4,542만 달러의 약 75%를 차지했다. 090112 디카페인 생두에서는 캐나다가 1,256만 달러로 전체 3,543만 달러의 35.4%를 차지했다. 제품에 따라 주요 공급국이 다르다. 이 값들은 2022년 수입액이며 2024년 FAOSTAT 생두 물량의 점유율을 대신하지 않는다(E20).</p>
+<h3>진행연도의 신호와 결번</h3>
+<p>관세청 월별 전체 합계로 카페인 미제거 생두의 2026년 1~8월 기준(잠정) 수입량은 100,529톤이다. 전년 같은 1~8월의 118,178톤보다 14.9% 적다. 같은 기간 금액은 6억 9,923만 달러로 전년 8억 5,363만 달러보다 18.1% 적다. 평균 단가는 약 7.22달러/kg에서 6.96달러/kg으로 움직였다. 진행연도 누계이므로 연간 감소율이나 국가별 시장점유율로 읽지 않는다(E06).</p>
+<p>국가별 관세청 가공 파일은 2026년 3~8월만 담고 있다. 예를 들어 4월 브라질산 090111 수입은 4,049.622톤이다. 이 한 달 수치를 연간 공급국 점유율의 근거로 쓰지 않았다(E08). 미국 Census HS10은 2026년 7월, EU Comext M1은 7월·M2는 6월, 브라질 Comex는 2026년 일부 월까지 품목 분할 자료가 있다. 일본 신고 2024·2025년 HS6 수입 세계 합계 행도 Comtrade <code>coffee_comtrade_annual.csv</code>에 있다(E06). 이들 자료는 기간, 생두·볶은 커피 구분, 재수출·역내거래 포함 범위가 같지 않다. 이 보고서의 국가별 연간 점유율은 2024년 FAOSTAT TM으로 제시했다.</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>국제 생두 지표, 수입 단가, 국내 물가지수는 서로 다른 값이다</h2>
+<p class="lead">커피 가격을 한 줄로 쓰면 여러 거래 단계를 섞게 된다. ICO의 종합지표가격(I-CIP)은 국제 생두시장 지표이고, 세계은행 Pink Sheet는 품종별 국제상품가격을 싣는다. 한국의 통관 단가는 수입액을 중량으로 나눈 평균이다. 국내 소비자물가지수는 기준연도에 대한 가격 수준의 지수다. 이 네 층은 관찰 목적이 다르다(E06·E09·E10).</p>
+<p>ICO의 2025년 12월 보고서 원문은 I-CIP 월평균을 304.68 미국 센트/파운드로 기록했다. 아카이브의 2026년 4월 보고서는 266.24센트/파운드다. 2026년 5월 일별표의 256.59센트/파운드는 5월 1~28일 20거래일 평균이며, 29일 칸은 비어 있다. 2026년 9월 ICO 일별표의 월평균은 262.18센트/파운드다. 9월 같은 표의 Brazilian Naturals는 290.19센트/파운드, Robustas는 167.49센트/파운드다. ‘브라질산 자연건조 아라비카’와 ‘로부스타’의 격차를 모든 커피의 가공 마진으로 해석하지 않는다(E09).</p>
+<div class="tw">
+<table>
+<caption>표 5. 커피 가격과 물가의 서로 다른 관측치</caption>
+<thead><tr><th>지표</th><th>기간</th><th class="num">값</th><th>단위·의미</th></tr></thead>
+<tbody>
+<tr><td>ICO I-CIP</td><td>2025.12</td><td class="num">304.68</td><td>미국 센트/파운드 · 국제 종합지표</td></tr>
+<tr><td>ICO I-CIP</td><td>2026.04</td><td class="num">266.24</td><td>미국 센트/파운드 · 국제 종합지표</td></tr>
+<tr><td>ICO I-CIP</td><td>2026.05.01~28</td><td class="num">256.59</td><td>미국 센트/파운드 · ICO 일별표의 20거래일 평균</td></tr>
+<tr><td>ICO I-CIP</td><td>2026.09</td><td class="num">262.18</td><td>미국 센트/파운드 · 국제 종합지표</td></tr>
+<tr><td>ICO Brazilian Naturals / Robustas</td><td>2026.09</td><td class="num">290.19 / 167.49</td><td>미국 센트/파운드 · 커피군별 지표</td></tr>
+<tr><td>세계은행 Arabica / Robusta</td><td>2026.03</td><td class="num">7.37 / 3.90</td><td>달러/kg · Pink Sheet 월값</td></tr>
+<tr><td>한국 ‘커피’ / ‘커피(외식)’ CPI</td><td>2026.09</td><td class="num">143.97 / 111.64</td><td>2020=100 · 각각 다른 소비자 항목</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 ICO 2025.12·2026.04·2026.05 원문, <a href="https://ico.org/documents/prices/I-CIP_09.2026.pdf">ICO 2026.09 일별표</a>, 세계은행 Pink Sheet 아카이브, ECOS 소비자물가지수 원자료(E09·E10). 단위가 다른 행은 서로 빼거나 나누지 않았다.</p>
+<p>세계은행 Pink Sheet 아카이브의 2026년 3월 아라비카 7.3709달러/kg, 로부스타 3.8971달러/kg은 3월 시점 값이다. 월간 수집기 FRED 파일은 2026년 7월까지 이어지며, 로부스타 계열 <code>PCOFFROBUSDM</code>의 7월 값은 185.23이다. FRED의 계열 정의와 표시 단위를 확인하기 전에는 이를 ICO 9월 Robustas 값에 이어 붙이지 않았다(E09).</p>
+<p>FAOSTAT의 브라질 2025년 생두 생산자가격지수는 286.44(2014~2016=100, Flag E)다. 이는 브라질 생산자 가격의 <strong>지수</strong>이지 톤당 현물가격이 아니다. 단가가 필요한 문장에는 쓰지 않았다(E19). 국제 지표의 품종 차, 브라질 생산자 지수, 한국 수입 단가가 같은 방향으로 움직이더라도 그 자체로 원인과 전달 시차가 확정되는 것은 아니다.</p>
+<p>한국의 2025년 카페인 미제거 생두 통관 평균 단가는 7.24달러/kg이다. 2024년 Comtrade 세계 합계의 같은 세번은 약 4.83달러/kg이다. 2025년 생두 두 세번의 가중 평균은 7.36달러/kg이다. 포장·품질·원산지 구성과 계약 시점이 평균에 함께 반영되므로 이 차이를 동일 등급 생두의 순수한 가격 인상률로 부르지 않는다(E06).</p>
+<p>국내 소비자물가지수에서는 상품 ‘커피’가 2025년 9월 142.85에서 2026년 9월 143.97로, ‘커피(외식)’가 같은 기간 111.43에서 111.64로 기록됐다. 품목지수의 움직임은 참고할 수 있지만, 실제 한 잔의 평균 판매가격이나 업소별 마진을 알려 주지는 않는다(E10). 국내 생두 도매·로스터 간 거래가격의 공개 연속 시계열은 확인되지 않았다. 기업 공시에는 대상다이브스의 커피생두 가격이 2024년 6,013원, 2025년 3분기 9,977원으로 기록돼 있다. 이는 한 기업의 두 시점 값이며 국내 도매가격 전체를 대표하지 않는다. 출처: 대상, 「투자설명서」, 2026-01-29, <a href="https://kind.krx.co.kr/external/2026/01/29/000076/20260129000136/10601.htm">원문</a>(E13).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>생산량과 품종·수확 시차가 함께 작용한다</h2>
+<p class="lead">한국의 완료연도 생두 수입 상대국은 브라질·콜롬비아·베트남·에티오피아 순이었다(2024년 FAOSTAT TM, 04절). 세계 생산 순위와 한국 수입 순위가 정확히 같지는 않다. 산지가 생산한 양 가운데 얼마를 수출하고 어떤 품종·품질로 거래하는지, 수확과 선적이 한국 통관에 언제 반영되는지가 다르기 때문이다. 이 절은 공급국을 ‘세계 생산’과 ‘한국 수입’ 두 렌즈로 본다(E01·E07).</p>
+<div class="tw">
+<table>
+<caption>표 6. 주요 산지의 관측치와 진행 중 전망</caption>
+<thead><tr><th>산지</th><th class="num">2024 FAOSTAT 생두 생산</th><th>별도 최신 자료</th><th>읽을 때의 범위</th></tr></thead>
+<tbody>
+<tr><td>브라질</td><td class="num">3,387,724톤</td><td>Conab 2026년 6,760만 포대 추정</td><td>달력 연도 수확, 아라비카·코닐론 구분</td></tr>
+<tr><td>베트남</td><td class="num">2,015,289톤</td><td>USDA 2026/27 3,250만 포대 전망</td><td>커피연도 전망, 로부스타 공급</td></tr>
+<tr><td>콜롬비아</td><td class="num">839,847톤</td><td>USDA 2026/27 1,340만 포대 전망</td><td>커피연도 전망</td></tr>
+<tr><td>에티오피아</td><td class="num">575,696톤</td><td>USDA 2026/27 1,210만 포대 전망</td><td>FAOSTAT 생산 Flag I, 전망 별도</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT QCL 2024년 국가 행(E01), Conab 2026-09-24(A), USDA FAS 2026-07 및 Bogotá 2026-05-20(A), 아카이브 USDA GAIN manifest(E02·E03·E18). 톤과 포대는 서로 다른 시점·작성 방식이다.</p>
+<h3>브라질: 아라비카와 코닐론의 두 작황</h3>
+<p>Conab은 2026년 브라질 커피 수확을 6,760만 포대, 아라비카 4,820만·코닐론 1,940만 포대로 추정했다. 한편 USDA PSD의 2026/27 브라질 전망은 7,190만 포대다. 숫자가 다른 것을 한 기관의 수정치처럼 취급하지 않는다. 브라질의 2025년 Conab 최종 조사값은 5,650만 포대다. Conab의 2025년 값은 최종 조사, 2026년 값은 추정이며 USDA 값은 커피연도와 작성 기관도 다르다(E02·E03).</p>
+<p>아카이브의 Conab 2025년 9월 3차 조사와 12월 4차 조사는 같은 작황을 추적한 판본이다. 이번 보고서에는 12월 최종 조사값을 본문에 두고, 9월판은 추정 수정의 이력을 확인하는 원문으로 반영했다. 브라질이 2024년 세계 생두의 30.0%를 생산했다는 구조적 사실과 2026년 작황 전망은 구분했다(E01·E03). 아프리카수출입은행 2026년 9월 보고서는 브라질의 2027/28 작황에 영향을 줄 수 있는 개화기의 기상 위험을 지적했다(B등급). 이는 다음 시즌에 대한 위험 분석이다(E17).</p>
+<h3>베트남: 생산과 가공 수요의 함께 보기</h3>
+<p>USDA의 2026/27 베트남 생산 전망은 3,250만 포대이고 생두 수출 전망은 2,540만 포대다. 아카이브 USDA GAIN manifest의 베트남 연차보고서 초록에도 생산 3,250만 포대 전망이 들어 있다. 이는 서로 독립된 실측 두 건이 아니라 USDA 계열의 전망을 확인한 것이다(E02·E18). 한국이 신고한 2024년 베트남산 생두 수입은 28,791.61톤이다. 베트남이 신고한 한국행 생두 수출은 2023년 38,472.13톤까지 확인되며 2024년 행은 없다. 한국이 신고한 2023년 베트남산 수입 32,451.41톤과는 신고국·무역 흐름이 달라 값이 일치하지 않는다(E07).</p>
+<p>베트남을 ‘저가 로부스타’라는 한 문장으로 고정할 수 없다. 로부스타 국제가격과 베트남 현지 재고·수출 시기는 별도로 움직이고, 한국이 사는 생두에는 가공용과 개별 원산지 상품용 수요가 함께 존재한다. 다만 그 용도별 물량을 구분할 국내 통관 세번은 없다. 이를 근거 없이 배분하지 않았다.</p>
+<h3>콜롬비아·에티오피아: 수확량과 품질시장</h3>
+<p>USDA FAS Bogotá는 콜롬비아 2026/27 생산을 1,340만 포대로 전망했다(A등급). 콜롬비아 커피생산자연맹은 2026년 1월 커피녹병 발생률 전국 평균을 4.5%로 적었고 2025년 10월 3.9%보다 높다고 설명했다(B등급). 발생률 변화만으로 다음 생산 감소량을 계산하지 않는다. 에티오피아의 USDA 2026/27 생산 전망은 1,210만 포대, 생두 수출 전망은 710만 포대다(A등급). FAOSTAT 2024년 에티오피아 생산은 추정 Flag I다(E01·E18).</p>
+<p>공급국의 생산량 순위만으로 한국에 도착할 물량을 예측할 수는 없다. 브라질에는 품종별 작황, 베트남에는 로부스타 재고와 수출, 콜롬비아·에티오피아에는 기상·병해와 수확 후 품질이 각각 관찰 항목이다. 각 변화가 한국 통관 중량과 평균 단가에 나타나는 시점은 아직 확인되지 않았다(E08).</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>원료 수입 이후 제조와 외식으로 갈라지는 산업</h2>
+<p class="lead">한국의 커피 유통은 한 종류의 기업만으로 설명되지 않는다. 수입 생두를 볶는 제조업체, 인스턴트·믹스·음료 생산업체, 제품 유통업체, 커피전문점이 서로 다른 단계에 있다. 2024년 국내 커피 시장 규모 3조 7,359억 원과 ‘볶은 커피’ 시장 1조 3,225억 원은 농식품부·KREI 발표값이다(A등급). 앞 값에서 뒤 값을 빼 ‘인스턴트·외식 매출’이라고 이름 붙일 수는 없다. 각 범주의 포괄 관계를 확인한 교차표가 없다(E12).</p>
+<p>KOSIS 제조업 조사에서는 2024년 원두커피 생산액 704,259백만 원, 인스턴트 커피 654,604백만 원, 커피믹스 864,801백만 원, 커피 음료 881,700백만 원이다. 조사는 종사자 10명 이상 사업체의 품목별 제조 생산액을 보여 준다. 소규모 로스터와 카페를 모두 세는 표가 아니며, 소매시장 금액과도 동일하지 않다(03절 표 2). 농식품부·KREI의 2023년 커피 가공업 1,660개, 커피전문점 106,452개 사업체는 각 단계가 얼마나 넓게 퍼져 있는지 보여 주지만 매출 집중도를 알려 주지는 않는다(E05·E12).</p>
+<h3>기업 사례를 읽는 기준</h3>
+<p>공개 자료에 등장하는 기업을 기능별 사례로 놓을 수는 있다. 그러나 직접 생두 수입량, 위탁 가공분, 자체 제조량을 같은 기간·같은 기준으로 집계한 명부가 없다. 아래 표는 시장점유율 순위가 아니다. 한 회사의 생산능력을 산업 생산량으로 바꾸지도 않았다(E13).</p>
+<div class="tw">
+<table>
+<caption>표 7. 공개 자료로 확인되는 커피 가치사슬의 기업 사례</caption>
+<thead><tr><th>기업</th><th>공개 자료에서 확인한 역할</th><th>수치·범위의 주의점</th></tr></thead>
+<tbody>
+<tr><td>동서식품</td><td>커피공장과 지역 영업조직 공개</td><td>공장 소재 사실은 생산량·시장점유율이 아님</td></tr>
+<tr><td>이디야커피</td><td>평택 원두 생산시설 운영</td><td>연간 최대 6,000톤은 설비능력, 실제 생산량이 아님</td></tr>
+<tr><td>대상다이브스</td><td>제조용 커피생두 원재료 매입 공시</td><td>매입 기록으로 직접 수입 순위를 만들 수 없음</td></tr>
+<tr><td>한국맥널티</td><td>대형마트·편의점, 기업 간 거래, 온라인 판매 경로 공시</td><td>판매 경로가 물량 점유율을 뜻하지 않음</td></tr>
+<tr><td>매일유업</td><td>커피음료 제품을 주요 제품으로 공시</td><td>음료사업을 생두·원두 시장과 동일시하지 않음</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 동서식품·이디야커피 공개 페이지(B등급), 대상 2026-01-29 공시·한국맥널티 2026년 1분기 보고서·매일유업 2025년 사업보고서(A등급, 법정 공시)(E13).</p>
+<p>커피전문점 10만 6,452개라는 사업체 수는 수입업자 10만 개가 있다는 뜻이 아니다. 한 수입사가 여러 로스터와 업소에 공급할 수 있고, 한 프랜차이즈도 다양한 제조업체·물류망을 이용할 수 있다. 수입 명의와 최종 판매 브랜드를 바로 일치시키지 않았다. 특히 위 표에서 특정 기업의 원재료 매입이나 설비능력을 근거로 업계의 상위 기업을 선언할 수 없다.</p>
+<p>국내 생두 수입업체·로스터의 공신력 있는 통합 순위와 점유율은 미확보다. 조사 노트에서는 aT FIS 기업 현황, 공정거래위원회 가맹사업 자료, 기업공시를 시도했다. 식약처 수입신고는 신고 건수와 물량의 범위가 다를 수 있으며, 회사별 완결 중량 원장은 확보하지 못했다. 상위 기업을 채우기 위해 사업체 수와 신고 횟수를 섞지 않았다(E13).</p>
+<p>산업을 더 자세히 보려면 생산량·출하액과 소매 판매액의 연결이 필요하다. 현재 확보한 통계만으로는 국내 로스팅 원두의 자체 제조와 위탁 제조, 인스턴트용 추출물, 편의점 음료, 매장 음료를 같은 물량 단위로 환산할 수 없다. 이 빈칸은 ‘기업이 없다’는 뜻이 아니라 연결 가능한 산업 원장이 미확보됐다는 뜻이다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>수입식품 규칙은 확인되고, 2026년 생두 적용 세율은 남아 있다</h2>
+<p class="lead">커피의 제도는 세번, 수입식품 안전, 식물검역, 원산지 표시, 수출국의 지속가능성 요구로 나뉜다. 생두와 볶은 커피, 커피 추출물·조제품은 통관 단계의 분류부터 다르다. 세번을 잘못 묶으면 할당관세의 적용 대상이나 원산지 표시 범위도 잘못 옮기게 된다(E16).</p>
+<div class="tw">
+<table>
+<caption>표 8. 확인한 커피 관련 제도와 남은 확인</caption>
+<thead><tr><th>영역</th><th>확인한 내용</th><th>근거 수준·한계</th></tr></thead>
+<tbody>
+<tr><td>수입식품 신고·검사</td><td>판매·영업 목적 수입식품은 신고하고, 통관 전에 필요한 검사를 받음</td><td>「수입식품안전관리 특별법」 제20·21조, A</td></tr>
+<tr><td>식물검역</td><td>검역대상물품 수입자는 원칙적으로 최초 도착 수입항에서 신고·검역</td><td>「식물방역법」 제12조, A; 생두의 개별 제한은 별도 확인 필요</td></tr>
+<tr><td>원산지 표시</td><td>수입 농산물·가공품 목록에 커피 0901과 커피 추출물·조제품 2101 포함</td><td>국립농산물품질관리원 목록, A</td></tr>
+<tr><td>생두 할당관세</td><td>농식품부 2026년 시행계획·8월 설명에 커피생두가 적용 품목으로 명시</td><td>A; 2026년 적용 세율 숫자는 확보한 원문에서 미확인</td></tr>
+<tr><td>EU 산림전용방지규정</td><td>커피가 대상 품목. 집행위 안내의 중·대형 적용일 2026-12-30</td><td>EU 집행위원회 안내, A; 세부 사업자·제품 적용일 구분 필요</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 국가법령정보센터 제20·21조와 식물방역법 제12조, 국립농산물품질관리원 원산지 목록, 농식품부 2026년 시행계획·8월 설명자료, EU 집행위원회 안내(웹 조사 노트 URL·A등급, E16).</p>
+<p>농식품부는 2024년 상반기 커피생두 할당관세를 2%에서 0%로 낮추는 방안을 발표했다. <strong>2024년 상반기 발표를 2026년 현재 세율로 쓰지 않았다.</strong> 2026년 시행계획과 설명자료에서 ‘커피생두 적용’은 확인되지만, 해당 세번·시행일·적용 세율을 함께 확인할 수 있는 원문은 확보하지 못했다. 기본세율, FTA 세율, 할당관세 세율을 추측해 표에 채우지 않았다. 관세청 FTA 조회 화면에는 베트남·콜롬비아 협정 조회 경로가 있으나 0901.11의 2026년 협정세율은 확인하지 못했다(E16).</p>
+<p>수입식품 신고와 검사 의무는 법 조문으로 확인된다. 생두가 식물검역대상물품에 해당하는 구체적 조건, 원산지별 검역 제한, 잔류허용기준의 현행 품목별 세목은 확보한 원문으로 확정하지 못했다. 농식품부·관세청·국가법령정보센터·식약처·검역본부에서 조사 노트가 남긴 검색어는 ‘커피생두 비축’, ‘커피 유통이력’, ‘커피원두 잔류농약’, ‘커피생두 식물검역’이다. 이 검색에서 확인되지 않았다는 사실을 ‘제도가 없다’는 주장으로 바꾸지 않는다(E16).</p>
+<p>EU 집행위원회 안내는 EUDR에 커피를 포함하고, 중·대형 사업자 2026년 12월 30일, 대부분의 영세·소형 사업자 2027년 6월 30일, 새로 추가된 인스턴트커피 제품 2027년 12월 30일을 적용일로 제시한다(A등급). 국가 위험 분류 목록에서는 브라질·콜롬비아·에티오피아가 standard risk, 베트남이 low risk다(A등급). 이는 EU로 향하는 공급망의 문서화 요건을 읽는 자료이며, 그 분류만으로 한국행 커피의 품질이나 적법성을 판정하지 않는다(E16).</p>
+<p>한국 산업에는 원산지 추적과 수입제품 분류가 함께 중요하다. 생두를 볶아 국내 브랜드로 판매하는 단계와 완제품을 수입하는 단계는 원산지·제조지 정보가 다르다. 현재 확보한 자료에서는 HS6 분류만으로 해당 날짜의 한국 세번 상세와 고시 시행일을 연결할 수 없다(E16).</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>공급 회복 전망과 현물 긴장을 함께 읽는다</h2>
+<p class="lead">은행·기관 리포트 색인의 <code>items</code> 열에 <code>coffee</code>가 붙은 행은 51건이다. 색인 전체는 812건이다. 품목 태그는 문서의 주요 주제를 보증하지 않는다. 다른 품목을 함께 다루거나 검색 문구에만 커피가 등장하는 행이 있어, 본문에는 제목·원문·발행일을 확인한 주장만 넣었다. 아래 표의 은행 분석은 통계 원자료가 아니라 해당 기관의 해석이다(E17).</p>
+<div class="tw">
+<table>
+<caption>표 9. 커피에 관한 은행·기관의 확인 가능한 주장</caption>
+<thead><tr><th>기관</th><th>문서·날짜</th><th>이 보고서에 반영한 요지</th></tr></thead>
+<tbody>
+<tr><td>아프리카수출입은행</td><td><em>Coffee: From Supply Shock to Surplus</em>, 2026-09</td><td>생산 회복이 예상돼도 현물 부족·낮은 재고·다음 개화기의 기상 위험은 동시에 남을 수 있다고 분석</td></tr>
+<tr><td>Rabobank RaboResearch</td><td><em>Brazilian coffee monthly update: August 2026</em>, 2026-09-15</td><td>브라질 2026/27 수확 막바지와 다음 시즌 개화·착과를 구분해 설명. 8월 선물가격의 월말 조정도 원문에 기록</td></tr>
+<tr><td>Rabobank RaboResearch</td><td><em>Resilience will shape the next chapter of Europe’s coffee market</em>, 2026-07-16</td><td>유럽 커피 수요가 유지되지만 시장 성장은 판매량보다 판매금액이 주도한다는 분석</td></tr>
+<tr><td>Banco do Nordeste ETENE</td><td><em>CAFÉ</em>, 제446호, 2026-08</td><td>브라질 작황 개선과 함께 엘니뇨·비관개 지역 물 부족·생산비·신용 위험을 지적</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>_banks/index.csv</code>의 <code>items=coffee</code> 색인, 아프리카수출입은행·Rabobank 현지 원문 및 웹 조사 노트의 Rabobank 유럽·Banco do Nordeste 원문 URL(B등급, E17).</p>
+<p>아프리카수출입은행의 제목에 있는 ‘부족에서 흑자로’라는 방향은 ICO·USDA 전망과 맞닿아 있다. 그러나 보고서는 큰 수확이 곧 현물 재고 증가를 뜻하지 않는다고 설명한다. 수확 뒤 건조·가공·금융·선적의 시간이 필요하고, 다음 작황을 정하는 개화기의 위험이 남는다는 논리다. 이를 ‘가격 하락 확정’이라는 투자 판단으로 옮기지 않았다(E17).</p>
+<p>Rabobank의 브라질 2026년 8월 보고서 원문은 월중 고점 뒤 아라비카와 로부스타 선물이 월말에 조정됐다고 설명한다(E17).</p>
+<p>한국농촌경제연구원의 <em>2025년 식품산업 정보분석 전문기관 사업 보고서</em>에는 ‘주요 업종 동향 분석(커피산업)’ 장이 있다는 목록이 확인된다(B등급). 확보한 공개 목록·요약만으로 그 장의 구체적인 결론을 확인할 수 없어 인용하지 않았다. 이는 ‘보고서가 없다’는 뜻이 아니다. 그 장의 국내 가공·외식 통계 정의는 이 보고서의 03·07절과 아직 대조되지 않았다(E17).</p>
+<p>기관 전망을 국내 산업에 옮길 때 확인할 질문은 분명하다. 세계 공급 증가가 한국의 수입 단가에 반영됐는가, 반영됐다면 어떤 시차였는가, 그 뒤 제조품과 외식의 지수는 어떻게 움직였는가. 관측된 시계열을 맞춰 보기 전에는 은행의 세계가격 전망으로 국내 판매가격을 단정하지 않는다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표</span>생산 전망보다 통관·가격·재고의 연결을 확인한다</h2>
+<p class="lead">커피 산업의 위험은 세계 생산량 한 숫자로 끝나지 않는다. 산지의 아라비카·로부스타 작황, 재고, 운송과 환율, 한국의 수입 구성, 제조·외식 가격이 다른 속도로 움직인다. 이 보고서가 제시한 판단을 검증하려면 각 단계에서 같은 품목·기간을 가진 지표를 정기적으로 대조해야 한다.</p>
+<h3>관찰할 위험</h3>
+<p><strong>산지 기상과 수확 수정.</strong> 2024년 FAOSTAT에서 브라질은 세계 생두의 30.0%를 생산했다. 브라질의 다음 시즌 개화, 베트남 로부스타 작황, 콜롬비아 병해 지표에 변화가 생기면 세계 수급 전망이 수정될 수 있다. Conab·USDA·ICO의 전망은 판본 날짜와 수확연도 정의가 다르다. 서로 다른 기관 수치를 평균하거나 2026/27 전망을 확정 생산량으로 표시하지 않는다(E01·E02·E03·E18).</p>
+<p><strong>수입 원산지와 가격.</strong> 2024년 한국 생두 양자 수입의 상위 상대국은 브라질·콜롬비아·베트남·에티오피아였다. 2025년 국가별 값을 같은 기준으로 검증하기 전까지는 2024년 점유율을 ‘현재 점유율’로 부르지 않는다. 전체 090111 수입의 2026년 1~8월 기준(잠정) 감소와 특정 산지의 점유율 변화를 혼동하지 않는다(E06·E07·E08).</p>
+<p><strong>품종별 가격 괴리.</strong> 2026년 9월 ICO 표의 Brazilian Naturals와 Robustas 값은 각각 290.19와 167.49 미국 센트/파운드다. 원료 배합이나 제품 품질을 모르는 상태에서 이 차이를 한국 제조업의 절감액으로 환산할 수 없다. 품종별 가격과 한국의 세번별 통관 단가를 함께 보되 인과관계는 검증 대상으로 둔다(E06·E09).</p>
+<p><strong>국내 가격 전달.</strong> 2026년 9월 ECOS 상품 ‘커피’ 지수 143.97과 ‘커피(외식)’ 지수 111.64는 이미 다른 경로를 보여 준다. 기준연도가 같다고 해도 품목의 가중치·표본·가격 결정이 다르다. 생두값 변동이 얼마 만에 매장 가격에 반영되는지 판단하려면 계약·재고·원가 구조가 추가로 필요하다(E10).</p>
+<p><strong>규제와 통계 범위.</strong> 2026년 생두 적용 세율을 원문으로 확정하지 못한 채 과거 할당관세율을 계속 쓰는 것은 위험하다. EUDR 적용일과 세부 제품 범위도 수출 대상과 사업자 규모에 따라 갈린다. HS 0901과 2101을 혼용하면 제품별 제도 판단이 달라진다(E16).</p>
+<h3>매달 볼 지표</h3>
+<div class="tw">
+<table>
+<caption>표 10. 산업 관찰 지표와 원자료</caption>
+<thead><tr><th>지표</th><th>원천·수집기</th><th>주기</th><th>이번 기준값</th><th>확인할 변화</th></tr></thead>
+<tbody>
+<tr><td>한국 생두 HS별 중량·금액·단가</td><td>관세청 <code>customs_item_trade_monthly</code></td><td>월</td><td>2026.1~8(잠정) 090111 100,529톤·6.96달러/kg</td><td>전년 같은 기간, 090112와 분리</td></tr>
+<tr><td>한국 원산지별 생두</td><td>관세청 <code>customs_kr</code>·FAOSTAT TM</td><td>월·연</td><td>완료연도 2024 브라질 59,065톤</td><td>다음 완료연도 상대국 표와 같은 기준으로 대조</td></tr>
+<tr><td>세계 생두 생산</td><td>FAOSTAT QCL</td><td>연</td><td>2024 1,128만 4,877톤</td><td>새 완료연도·Flag 변화</td></tr>
+<tr><td>세계 수급·재고 전망</td><td>USDA PSD·ICO</td><td>보고서 판본별</td><td>USDA 2026/27 기말재고 2,630만 포대 전망</td><td>생산·소비·재고의 동시 수정</td></tr>
+<tr><td>브라질 품종별 작황</td><td>Conab·USDA GAIN</td><td>수확기</td><td>Conab 2026 아라비카 4,820만·코닐론 1,940만 포대 추정</td><td>판본과 수확연도 구분</td></tr>
+<tr><td>국제 아라비카·로부스타 가격</td><td>ICO I-CIP·Pink Sheet·FRED</td><td>일·월</td><td>ICO 2026.09 종합 262.18센트/파운드</td><td>품종별 격차와 단위</td></tr>
+<tr><td>한국 상품·외식 물가지수</td><td>ECOS <code>ecos_cpi_items</code></td><td>월</td><td>2026.09 커피 143.97·커피(외식) 111.64</td><td>수입 단가와의 시차</td></tr>
+<tr><td>관세·수입식품·EUDR</td><td>관세청·정부 고시·EU 집행위</td><td>개정 시</td><td>2026년 생두 세율 미확보</td><td>세번·시행일·적용 대상</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 02~08절의 원자료와 부록 A 수집기 현황(E01·E02·E03·E06·E07·E09·E10·E16).</p>
+<h3>남은 물음</h3>
+<ul>
+<li><strong>한국의 커피 실제 섭취량은 얼마인가.</strong> FAOSTAT FBS는 2023년 1인당 연간 식품공급량 2.58kg을 주지만 실제 음용량·잔 수가 아니다. KOSIS 식품제조업 원료사용량 99,731톤도 제조업 투입량이다. USDA 서울 ATO 보고서는 2024년 한국의 1인당 연간 소비를 416잔으로 인용한다. 원조사의 모집단과 산식은 해당 보고서에 제시되지 않아 참고값으로만 둔다. 출처: USDA FAS 서울 ATO, <em>Coffee and Tea Market Brief</em>, 2025-09-09, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Coffee+and+Tea+Market+Brief_Seoul+ATO_Korea+-+Republic+of_KS2025-0033.pdf">원문</a>(E04·E05·E18).</li>
+<li><strong>2025년 생두의 국가별 원산지 구성은 어떻게 바뀌었는가.</strong> 이 보고서의 국가별 연간 비교는 2024년 FAOSTAT TM을 기준으로 한다. 연도가 다른 원산지 자료를 같은 표의 점유율로 섞지 않는다(E07·E08).</li>
+<li><strong>수입 명의와 국내 제조·판매 주체는 어떻게 연결되는가.</strong> 공개 기업 사례와 사업체 수만으로 같은 기간의 물량·매출 순위를 만들 수 없다. 공신력 있는 통합 명부와 회사별 물량 원장이 미확보다(E13).</li>
+<li><strong>2026년 생두 세번별 실제 적용 세율은 무엇인가.</strong> 2024년 임시 발표와 2026년 ‘적용 품목’ 문구는 확인했지만, 세번·시행일·세율이 맞물린 현행 원문은 확보하지 못했다(E16).</li>
+<li><strong>국제 원료가격에서 국내 판매가격까지 전달 시차는 얼마인가.</strong> 대상다이브스의 커피생두 가격은 2024년과 2025년 3분기 두 시점에 공개돼 있다. 국내 생두 도매·로스터 거래가격의 연속 시계열은 확인되지 않아 통관 단가와 소비자물가지수 사이의 인과를 측정할 수 없다. 출처: 대상, 「투자설명서」, 2026-01-29, <a href="https://kind.krx.co.kr/external/2026/01/29/000076/20260129000136/10601.htm">원문</a>(E06·E09·E10·E13).</li>
+<li><strong>산지 전망은 어떻게 수정되는가.</strong> Conab·USDA·ICO의 판본 날짜와 수확연도 정의를 기록하고, 브라질의 전년 비교는 같은 기관·같은 정의의 수치로 대조한다(E02·E03).</li>
+<li><strong>산지 변화는 한국 통관에 언제 나타나는가.</strong> 월별 국가별 통관 중량과 평균 단가를 같은 기간으로 대조한다(E08).</li>
+<li><strong>상대 시장과 한국의 무역 범위는 어떻게 다른가.</strong> 일본을 포함한 HS별 원자료의 기간, 생두·볶은 커피 구분, 재수출·역내거래 포함 여부를 맞춰 대조한다(E06·E08).</li>
+<li><strong>국내 통계의 빈 연결은 무엇인가.</strong> 가구별 음용량·업소별 원두 투입량·제품별 제조 출하의 모집단과 연결 가능성을 확인한다(E04·E05).</li>
+<li><strong>제도 원문과 기관 보고서는 무엇을 더 확인해 주는가.</strong> 해당 날짜의 한국 세번 상세·고시 시행일, KREI 커피산업 장의 가공·외식 통계 정의를 각각 확인한다(E16·E17).</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>생두 산지에서 국내 가공·매장까지</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">생두 공급국 비중은 04절 표 4와 같은 <strong>2024년 FAOSTAT TM 한국 신고 수입량</strong> 기준이다. 분모는 한국 전체 174,873.79톤이며, 10% 이상인 국가는 브라질 33.8%, 콜롬비아 17.1%, 베트남 16.5%, 에티오피아 11.3%다. 아래 기업의 규모는 각 기업 또는 명시한 그룹의 실적이다. 한국행 물량이나 한국 시장점유율을 뜻하지 않는다.</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 생두 주요 공급국의 수출·가공 주체</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표(연도)</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>브라질</td><td>Cooxupé</td><td>협동조합·수출</td><td>2025년 직접 수출 481만 5,175포대</td><td>식약처 제조사명 일치</td><td><a href="https://www.cooxupe.com.br/wp-content/uploads/2026/03/relatorio.pdf">연차보고서, 2025</a>(B)</td></tr>
+<tr><td>브라질</td><td>NKG Stockler</td><td>생두 무역</td><td>2026년 NKG 그룹 28개국·40곳 이상 운영(잠정); 현지 법인 수출량 미공개</td><td>식약처 제조사명 일치</td><td><a href="https://www.nkg.net/sustainabilityreport/">NKG 보고서, 2026</a>(B)</td></tr>
+<tr><td>브라질</td><td>Olam Agrícola</td><td>생두 무역·커피 가공</td><td>ofi 그룹은 2025년 세계 3위권 독립 인스턴트커피 제조사라고 발표; 법인 수출량 미공개</td><td>식약처 제조사명 일치; 신고 품목은 생두</td><td><a href="https://www.ofi.com/pt-br/news-and-events/press-release/ofi-opens-soluble-coffee-facility-in-brazil-expanding-its-manufacturing-capacity-with-focus-on-sustainable-innovation">ofi 공장 발표, 2025</a>(B)</td></tr>
+<tr><td>콜롬비아</td><td>Federación Nacional de Cafeteros(FNC)</td><td>생산자단체·수출</td><td>2025년 수출 270만 493포대</td><td>식약처 제조사명 일치</td><td><a href="https://federaciondecafeteros.org/wp-content/uploads/2026/03/Informe-Expos-Diciembre-25.pdf">FNC 수출보고서, 2025</a>(B)</td></tr>
+<tr><td>콜롬비아</td><td>Olam Agro Colombia</td><td>생두 무역</td><td>2025년 수출 약 112만 9,000포대</td><td>식약처 제조사명 일치</td><td><a href="https://www.stonex.com/en-gb/insights/colombia-shipped-12-22-million-bags-of-green-coffee-in-2025-led-by-north-america/">Asoexport 집계 인용, 2026</a>(C)</td></tr>
+<tr><td>콜롬비아</td><td>Sucafina Colombia</td><td>생두 집하·수출</td><td>2025년 수출 87만 3,991포대</td><td>식약처 제조사명 일치</td><td><a href="https://www.sucafina.com/na/origins/colombia">현지 사업</a>(B)·<a href="https://www.stonex.com/en-gb/insights/colombia-shipped-12-22-million-bags-of-green-coffee-in-2025-led-by-north-america/">수출 집계, 2026</a>(C)</td></tr>
+<tr><td>베트남</td><td>Simexco Daklak</td><td>집하·가공·수출</td><td>2022년 커피 수출 12만 6,519톤</td><td>식약처 제조사명 일치</td><td><a href="https://simexcodl.com.vn/en/striving-to-become-a-leading-enterprise-in-vietnams-coffee-industry/">회사 발표, 2023</a>(B)</td></tr>
+<tr><td>베트남</td><td>Nestlé Việt Nam Trị An</td><td>커피 가공·수출</td><td>2024년 발표 당시 공장 제품 수출국 29곳 이상</td><td>식약처 제조사명 일치</td><td><a href="https://www.nestle.com.vn/vi/media/nestle-dau-tu-mo-rong-san-xuat-tai-vn">Nestlé 발표, 2024</a>(B)</td></tr>
+<tr><td>베트남</td><td>Trung Nguyên Instant Coffee</td><td>인스턴트커피 가공·수출</td><td>2025년 회사 발표 기준 그룹 제품 유통국 100곳 이상</td><td>식약처 제조사명 일치</td><td><a href="https://trungnguyenlegend.com/trung-nguyen-e-coffee-dat-giai-thuong-thuong-hieu-manh-asean/">회사 발표, 2025</a>(B)</td></tr>
+<tr><td>에티오피아</td><td>ETBC</td><td>국영 무역·커피사업부</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치</td><td><a href="https://eih.et/trading/">국영기업 소개</a>(A)</td></tr>
+<tr><td>에티오피아</td><td>Oromia Coffee Farmers’ Cooperative Union</td><td>협동조합·수출</td><td>2025년 413개 조합·조합원 55만 7,186명</td><td>식약처 제조사명 일치</td><td><a href="https://www.fairtrade.net/en/co-operatives-help-to-balance-the-imbalance-in-trade-.html">Fairtrade, 2025</a>(B)</td></tr>
+<tr><td>에티오피아</td><td>Sidama Coffee Farmers Cooperative Union</td><td>협동조합·수출</td><td>2022년 보고서 기준 생산자 8만 5,000명 이상</td><td>식약처 제조사명 일치</td><td><a href="https://www.fairtrade.net/content/dam/fairtrade/max-havelaar-france/publications/rapports-annuels/RAPPORT_ANNUEL_MHF_2022.pdf">Fairtrade 보고서, 2022</a>(B)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://data.fao.org/catalog/dataset/955a7b61-ce56-4a04-adf5-61a3012eec84">FAOSTAT 상세무역행렬</a>(A, 2024)과 04절 표 4; 한국 연결은 <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A, 2025년 10월~2026년 9월 신고, 2026년분 잠정). 포대는 60kg 기준이다.</p>
+<p>가공품의 공급 지도는 다르다. 04절 표 3의 <strong>2025년 볶은 커피 두 세번 수입액 4억 542만 달러</strong>는 그 표의 HS 0901 네 세번 수입액 합계에서 23.9%다. 별도 비교가 가능한 2024년 HS 090121 한국 수입액 3억 4,843만 달러에서는 미국 37.2%, 스위스 33.5%, 이탈리아 13.1%가 상위 공급국이다. 이는 볶은 커피의 <strong>금액 비중</strong>이며 앞의 생두 <strong>물량 비중</strong>과 분모가 다르다.</p>
+<div class="tw wide">
+<table>
+<caption>표 11-2. 볶은 커피 상위 공급국의 한국 연결 제조기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표(연도)</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>미국</td><td>Starbucks Carson Valley Roasting Plant</td><td>로스팅·물류</td><td>2025년 모회사 전 세계 매출 371억 8,440만 달러; 해당 공장 매출 아님</td><td>식약처 제조사명 일치</td><td><a href="https://www.sec.gov/Archives/edgar/data/829224/000082922425000114/sbux-20250928.htm">SEC 10-K, 2025</a>(A)</td></tr>
+<tr><td>미국</td><td>Intelligentsia Coffee</td><td>로스팅</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치</td><td><a href="https://www.intelligentsia.com/pages/faqs">회사 로스터리 안내</a>(B)</td></tr>
+<tr><td>스위스</td><td>Nestlé Nespresso Manufacturing</td><td>캡슐커피 제조</td><td>2025년 Nestlé의 전 세계 Nespresso 부문 매출 64억 8,100만 스위스프랑; 제조법인 매출 아님</td><td>식약처 제조사명 일치</td><td><a href="https://www.nestle.com/sites/default/files/2026-02/annual-review-2025-en.pdf">Nestlé 연차검토, 2025</a>(B)</td></tr>
+<tr><td>이탈리아</td><td>illycaffè</td><td>로스팅·제품 제조</td><td>2024년 매출 6억 3,010만 유로</td><td>식약처 제조사명 일치</td><td><a href="https://www.illy.com/content/dam/channels/website/consumer/italy/certificazioni/illy_Annual%20Report_2024_ENG.pdf">연차보고서, 2024</a>(A)</td></tr>
+<tr><td>이탈리아</td><td>Luigi Lavazza</td><td>로스팅·제품 제조</td><td>2025년 그룹 매출 39억 유로; 해당 제조법인 매출 아님</td><td>식약처 제조사명 일치</td><td><a href="https://www.lavazzagroup.com/en/who-we-are/results.html">그룹 실적, 2025</a>(B)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://wits.worldbank.org/trade/comtrade/en/country/KOR/year/2024/tradeflow/Imports/partner/ALL/product/090121">WITS의 UN Comtrade 한국 신고 HS 090121 양자무역</a>(A, 2024, 금액 기준); 제조사 연결은 <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A, 2025년 10월~2026년 9월 신고, 2026년분 잠정). 신고 건수는 수입 물량 순위가 아니다.</p>
+<p>세계 생두 무역에서는 NKG가 주요 사업망을 가진다. 이 회사는 <a href="https://www.nkg.net/beitrag-2/">2019년 발표</a>(B)에서 스스로를 세계 최대 생두 서비스 그룹으로 소개했고, <a href="https://www.nkg.net/sustainabilityreport/">2026년 보고서</a>(B)는 28개국 40곳 이상의 운영회사를 적었다. 이는 회사의 설명과 운영 범위이며, 독립적으로 검증된 세계 수출량 점유율은 아니다.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처 커피 품목 수입신고는 <strong>2025년 10월~2026년 9월, 신고 건수 기준</strong> 1만 6,374건이다(2026년분 잠정). 식약처 신고 원자료에서 제조국과 수출국은 별도 항목이다. 주요 제조국은 업소별 신고 건수 상위 두 나라다. 한 건의 중량과 금액이 일정하지 않으므로 이 표는 물량·금액 점유율이 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 식약처 커피 품목 신고 건수 상위 수입업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>네슬레코리아유한책임회사</td><td class="num">3,957</td><td>스위스 3,154·베트남 471</td><td>볶은커피 3,780건</td></tr>
+<tr><td>(주)큐로홀딩스</td><td class="num">813</td><td>이탈리아 713·프랑스 56</td><td>볶은커피 738건</td></tr>
+<tr><td>동서식품(주)</td><td class="num">785</td><td>네덜란드 287·브라질 159</td><td>생두 470건·볶은커피 303건</td></tr>
+<tr><td>주식회사 에스씨케이컴퍼니</td><td class="num">420</td><td>미국 343·말레이시아 46</td><td>볶은커피 338건</td></tr>
+<tr><td>(주)엠에이치파트너스</td><td class="num">417</td><td>미국 417</td><td>Intelligentsia 제조사 신고 410건</td></tr>
+<tr><td>(주)지피오</td><td class="num">328</td><td>호주 328</td><td>Dukes Coffee Roasters 제조사 신고 328건</td></tr>
+<tr><td>롯데쇼핑(주)</td><td class="num">323</td><td>싱가포르 323</td><td>Bacha Coffee 제조사 신고 323건</td></tr>
+<tr><td>지에스씨인터내셔날(주)</td><td class="num">313</td><td>브라질 86·콜롬비아 65</td><td>생두 312건</td></tr>
+<tr><td>쿠팡 주식회사</td><td class="num">248</td><td>이탈리아 220·독일 26</td><td>볶은커피 225건</td></tr>
+<tr><td>(주)우성엠에프</td><td class="num">184</td><td>브라질 67·콜롬비아 32</td><td>생두 184건</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A), 2025년 10월~2026년 9월 커피 품목의 수입업소·제조국·제조사·품목별 <strong>신고 건수</strong> 집계; 2026년분 잠정.</p>
+<p>공시 매출은 법인 전체 또는 공시된 부문의 금액이다. 수입신고 건수와 결합해 회사별 수입단가나 시장점유율을 만들 수 없다.</p>
+<div class="tw">
+<table>
+<caption>표 11-4. 공개 자료로 확인되는 국내 가공·유통기업의 규모</caption>
+<thead><tr><th>기업</th><th>기능·규모와 범위</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>에스씨케이컴퍼니</td><td>스타벅스 운영 법인. 이마트 종속기업 요약재무상 2025년 매출 3조 2,380억 원. 음료 외 판매 포함</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001378/20260318006410/11011.htm">이마트 사업보고서, 2025</a>(A)</td></tr>
+<tr><td>동서식품</td><td>커피 제품 제조. ㈜동서의 공동기업 요약재무상 2025년 매출 1조 8,105억 원. 커피 외 제품 포함</td><td><a href="https://kind.krx.co.kr/external/2026/03/12/000232/20260312000747/11011.htm">㈜동서 사업보고서, 2025</a>(A)</td></tr>
+<tr><td>엠지씨글로벌</td><td>메가MGC커피 운영 법인. 커피 프랜차이즈·도소매업, 2025년 12월 앤하우스에서 상호 변경. 2025년 매출 6,469억 3,600만 원, 이 중 상품매출 6,081억 9,000만 원; 커피 단독 매출 아님. 식약처 커피 수입신고 86건은 모두 생두(2025년 10월~2026년 9월)</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260410000793">감사보고서, 2025</a>(A)</td></tr>
+<tr><td>한국맥널티</td><td>2025년 커피부문 매출 665억 7,600만 원, 전체 매출의 69.1%. 수입 생두 매입은 제조용 원재료 93억 6,700만 원과 재판매용 상품 221억 500만 원</td><td><a href="https://kind.krx.co.kr/external/2026/03/19/001405/20260319005751/11011.htm">사업보고서, 2025</a>(A)</td></tr>
+<tr><td>매일유업</td><td>커피음료 제조. 2025년 ‘기타’ 부문 매출 비중 40.45%에는 주스·곡물음료 등도 포함; 커피 단독 매출 비중 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/19/001570/20260319006460/11011.htm">사업보고서, 2025</a>(A)</td></tr>
+<tr><td>이디야커피</td><td>원두 제조·매장 유통. 평택 드림팩토리의 원두 생산능력은 연간 최대 6,000톤; 실제 생산량 아님</td><td><a href="https://www.ediya.com/images/main/kor_brochure_2025.pdf">회사 브로슈어, 2025</a>(B)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 법정 공시(A) 및 기업 공개자료(B). 법인 전체 매출, 커피부문 매출, 혼합 사업부문 비중, 설비능력은 같은 크기 지표가 아니다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 커피 밸류체인의 가격 형성 지점과 위험</caption>
+<thead><tr><th>단계</th><th>주요 주체(국가·기업 유형)</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산·수확</td><td>브라질·콜롬비아·베트남·에티오피아 농가</td><td>2024년 한국 생두 수입 비중 각각 33.8%·17.1%·16.5%·11.3%</td><td>농가 출하·산지 매입 계약</td><td>기상·병해·생산비</td></tr>
+<tr><td>1차 가공</td><td>산지 건조·탈곡·선별업체, 협동조합</td><td>한국행 단계별 처리량 미집계</td><td>등급·가공비를 반영한 산지 계약</td><td>품질 손실·추적성</td></tr>
+<tr><td>수출·국제 무역</td><td>산지 수출사·국제 생두상·선사</td><td>2025년 한국 생두 수입 17만 5,698톤</td><td>수출계약; 국제 지표가격 참조</td><td>국제가격·환율·운송</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·식약처·검역기관</td><td>2025년 생두 수입액 약 12억 9,284만 달러</td><td>계약가격과 운임·보험·통관 비용</td><td>서류·검사·환율</td></tr>
+<tr><td>국내 가공</td><td>로스터·인스턴트·커피음료 제조사</td><td>2024년 식품제조업 커피원두 사용 9만 9,731톤, 조사표상 전량 수입산</td><td>원료·가공·포장 원가를 반영한 출하 계약</td><td>원가 전가·재고</td></tr>
+<tr><td>도매·유통</td><td>원두 도매상·식품 유통망·프랜차이즈 본부</td><td>같은 기준의 단계별 물량 미확보</td><td>납품 계약·유통 수수료</td><td>재고·물류비</td></tr>
+<tr><td>소매·외식</td><td>소매점·커피전문점</td><td>2023년 커피전문점 10만 6,452개 사업체</td><td>매장·소매 판매가격</td><td>임차료·인건비·경쟁</td></tr>
+<tr><td>소비</td><td>가정·매장 소비자</td><td>2024년 국내 커피 시장 규모 3조 7,359억 원(2026년 발표)</td><td>최종 판매가격에서 구매 선택</td><td>가격 부담·표시정보</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://data.fao.org/catalog/dataset/955a7b61-ce56-4a04-adf5-61a3012eec84">FAOSTAT 상세무역행렬</a>(A, 2024), <a href="https://tradedata.go.kr/cts/index.do">관세청 수출입무역통계</a>(A, 2025), <a href="https://mafra.go.kr/bbs/home/792/578714/artclView.do">농식품부·KREI 발표</a>(A, 2026 발표), 보고서 03·04절의 KOSIS 원료사용 및 통관 원자료.</p>
+<p><strong>부가가치가 생기는 곳.</strong> 산지의 선별·품질관리 뒤 국내에서는 로스팅, 추출·배합, 포장, 유통과 매장 서비스가 더해진다. <a href="https://mafra.go.kr/bbs/home/792/578714/artclView.do">농식품부·KREI 발표</a>(A)에 따르면 2024년 볶은 커피 시장은 1조 3,225억 원이고, 2023년 커피전문점은 10만 6,452개 사업체다. 이 값은 국내 가공·판매 활동의 규모를 보여 주지만 2025년 생두 통관액 12억 9,284만 달러와 연도·통화·제품 범위가 다르다. 두 금액의 차이를 국내 부가가치나 기업 이익으로 계산할 수는 없다.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-6. 커피 공급망의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체(실명)</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>관세청·식품의약품안전처·국립농산물품질관리원</td><td>통관, 수입식품 신고·검사, 원산지 표시</td><td>시장 접근과 안전·표시 기준 집행</td></tr>
+<tr><td>해외 정부</td><td>브라질 Conab·에티오피아 커피차청(ECTA)</td><td>작황 조사, 커피 거래·품질 규칙</td><td>공급 전망과 수출 절차에 영향</td></tr>
+<tr><td>생산자·단체</td><td>Cooxupé·콜롬비아 FNC·Oromia·Sidama 협동조합연합</td><td>생산자 조직, 집하·선별·수출</td><td>농가 소득과 거래조건</td></tr>
+<tr><td>수출·가공기업</td><td>NKG Stockler·Olam Agrícola·Simexco Daklak·Nestlé Việt Nam</td><td>생두 조달·수출과 커피 가공</td><td>품질 규격·물류·가공 투자</td></tr>
+<tr><td>수입·유통기업</td><td>네슬레코리아·동서식품·에스씨케이컴퍼니·한국맥널티</td><td>수입, 국내 제조, 제품·매장 판매</td><td>조달계약·제품 구성·판매가격</td></tr>
+<tr><td>소비자·시민사회</td><td>국내 소비자·한국소비자원</td><td>구매 선택, 가격·품질·표시정보 확인</td><td>정보 공개와 제품 안전 요구</td></tr>
+<tr><td>국제기구·인증</td><td>국제커피기구(ICO)·Fairtrade International·Rainforest Alliance</td><td>시장 통계·협의, 인증·추적 기준</td><td>산지 지속가능성과 거래요건에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://tradedata.go.kr/cts/index.do">관세청</a>(A), <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a>(A), <a href="https://www.naqs.go.kr/popup/comMarkItemPop2.do">국립농산물품질관리원</a>(A), <a href="https://www.gov.br/conab/pt-br/assuntos/noticias/producao-de-cafe-e-estimada-em-67-6-milhoes-de-sacas-influenciada-por-bienalidade-positiva-em-2026/">Conab</a>(A, 2026), <a href="https://justice.gov.et/en/entity/ethiopian-coffee-and-tea-authority/">에티오피아 법무부 ECTA 자료</a>(A), <a href="https://www.kca.go.kr/kca/sub.do?menukey=5007">한국소비자원</a>(A), <a href="https://ico.org/what-we-do/about-us/">ICO</a>(A), <a href="https://www.fairtrade.net/en/co-operatives-help-to-balance-the-imbalance-in-trade-.html">Fairtrade</a>(B, 2025), <a href="https://www.rainforest-alliance.org/business/certification/coffee-certification-data-report-2025/">Rainforest Alliance</a>(B, 2026), 표 11-1·11-4의 기업 자료.</p>
+<p>산지 농가는 생산비를 감당할 판매가격을 중시하고, 국내 제조·외식업체는 안정적인 조달가격을 중시한다. 추적·인증 강화는 구매자의 확인 가능성을 높이는 동시에 산지의 기록·인증 비용을 늘릴 수 있다. 제품가격과 원산지 표시는 기업의 판매조건인 동시에 소비자의 정보 요구와 국내 규제의 대상이다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 검토 범위</h2>
+<p class="lead"><code>rawbulk.report_delta.coverage("coffee")</code>의 품목 수집기 현황은 2026년 10월 7일 기준이다. ‘최신’은 파일에 들어 있는 가장 늦은 기간이지 모든 나라의 해당 기간 신고가 완료됐다는 뜻이 아니다. 특히 USDA PSD의 커피연도는 파일의 <code>Market_Year</code>와 판본 시점(<code>Calendar_Year</code>·<code>Month</code>)을 같이 읽어야 한다. <code>ico_icip_prices</code>의 coverage 행 수는 비어 있지만 별도 일별 JSON에는 2026년 1월 2일부터 10월 5일까지 I-CIP 값이 있다(E21).</p>
+<div class="tw">
+<table>
+<caption>표 11. 커피 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">406</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">1,073</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">4,837</td><td>2026 일부</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">186</td><td>2026 일부</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">132</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">3,228</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">5,181</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">6,291</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">20,209</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">53,892</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>usda_psd_all</td><td class="num">87,704</td><td>커피연도·판본 열</td><td>2026-10-07</td></tr>
+<tr><td>품목 전용</td><td>ico_icip_prices</td><td class="num">미표시</td><td>등록 상태 <code>new</code></td><td>2026-10-06</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">7,603</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">727</td><td>2026.08</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>fred</td><td class="num">86</td><td>2026-07</td><td>2026-10-01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>의 <code>rawbulk.report_delta.coverage("coffee")</code> 결과(E21). 행 수는 전체 품목 분할 파일의 행 수이며 보고서에서 채택한 행 수가 아니다.</p>
+<p>공통 수집 원자료 가운데 KOSIS 식품제조업 원료사용 표에는 ‘커피원두’가 있고, 제조업 품목 표에는 원두커피·인스턴트 커피·커피믹스·커피 음료가 있다. ECOS 소비자물가 파일에는 ‘커피’와 ‘커피(외식)’이 있다. KOSIS 작물 생산 수집본의 커피 독립 생산 항목은 확인되지 않았다. 국내 생두 거래가격은 대상다이브스의 두 시점 공시값을 참고할 수 있으나, 연속적인 국내 도매가격 계열은 확인되지 않는다(E05·E10·E13).</p>
+<h3>아카이브 원자료의 쓰임</h3>
+<div class="tw">
+<table>
+<caption>표 12. 주요 보관자료와 적용 범위</caption>
+<thead><tr><th>자료</th><th>적용 범위</th></tr></thead>
+<tbody>
+<tr><td><code>faostat/TM_coffee.csv</code></td><td>한국 신고 2024년 생두 수입 상대국 및 베트남 신고 2023년 한국행 수출</td></tr>
+<tr><td><code>raw_data/TM_coffee.md</code></td><td>위 CSV와 같은 양자무역 표의 마크다운 표현</td></tr>
+<tr><td><code>raw_data/oec_coffee_2090111_bilateral_2022.csv</code></td><td>2022년 카페인 미제거 생두 수입액 상대국</td></tr>
+<tr><td><code>raw_data/oec_coffee_2090112_bilateral_2022.csv</code></td><td>2022년 디카페인 생두 수입액 상대국</td></tr>
+<tr><td><code>raw_data/oec_coffee_2090121_bilateral_2022.csv</code></td><td>2022년 카페인 미제거 볶은 커피 수입액 상대국</td></tr>
+<tr><td><code>raw_data/ico_icip_prices/icip.json</code></td><td>2026년 1월 2일~10월 5일 일별 국제가격 참고 계열</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT TM, OEC HS6 양자무역 CSV, ICO 일별 JSON(E07·E09·E20·E21·E22).</p>
+<p>FAOSTAT FBS와 구형 FBSH는 같은 2013년 값도 달라 판본을 혼합하지 않는다. QCL·QI·QV는 생산량·지수·생산액으로 각각 구분하고, PP는 가격 수준이 아닌 생산자가격지수로 읽는다. SCL과 TCL은 계정 정의가 다르다. Conab 2025년 9월·12월 판본, ICO 2025년 12월·2026년 4월·5월 자료, USDA GAIN manifest, Pink Sheet 품종별 CSV도 해당 판본과 품목 범위에 맞춰 사용한다(E03·E04·E09·E18·E19).</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 커피 산업 해부: 수입 원료와 국내 가공·외식의 서로 다른 크기</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · FAOSTAT·USDA PSD·관세청·KOSIS·ECOS 원자료와 ICO·Conab·정부 원문을 사용했다. 기관 원문은 A, 기업 공개자료·은행 분석은 B등급으로 표시했다</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>파일·행 필터·계산식은 30_근거_수치.md에 있다</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>중심 무역 범위는 HS 0901의 생두·볶은 커피다. HS 2101 계열의 2024년 FAOSTAT ‘Coffee extracts’ 수출입은 별도 계정으로 제시하고 HS 0901 수입량에 합산하지 않았다</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>국가별 생두 수입 점유율은 2024년 FAOSTAT TM 기준이다. 회사별 수입 중량·점유율, 국내 생두 도매 거래가격의 연속 시계열, 2026년 생두 세번별 현행 적용 세율은 확인되지 않았다</span></div>
+</footer>
+</div>
+

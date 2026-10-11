@@ -1,0 +1,708 @@
+<title>한국 아몬드 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 아몬드<br>
+        세계 수급 · 한국 수입 · 가격 · 공급국 · 유통 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">캘리포니아 공급과 한국 수입을 잇는 견과 · 리포트 2026</p>
+      <h1><span class="scr">Almond</span> <span class="lt">한국 아몬드 산업 해부</span></h1>
+      <p class="cover-sub">한국은 아몬드를 주로 탈각 형태로 들여온다. 2025년 탈각 아몬드 수입은 2만 6,685.8톤이었다.
+        세계 생산에서는 미국이 가장 큰 산지이고, 미국 안에서도 캘리포니아 작황과 물 공급이 관찰 대상이다.
+        생산·소비·무역·가격·기업·제도를 서로 다른 통계의 범위를 구분해 읽는다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2025 한국 탈각 수입</div><div class="v">26,685.8</div>
+        <div class="n">톤 · 관세청 HS 0802.12</div></div>
+      <div class="cf"><div class="k">2025 탈각 수입액</div><div class="v">1.79억</div>
+        <div class="n">달러 · 정확한 원자료 값 179,362,321달러</div></div>
+      <div class="cf"><div class="k">2025 탈각 수입단가</div><div class="v">6.72</div>
+        <div class="n">달러/kg · 수입액 ÷ 수입중량</div></div>
+      <div class="cf"><div class="k">2025 껍질째 수입</div><div class="v">31.2</div>
+        <div class="n">톤 · HS 0802.11</div></div>
+      <div class="cf"><div class="k">2024 세계 생산</div><div class="v">395.2만</div>
+        <div class="n">톤 · FAOSTAT 껍질째 중량</div></div>
+      <div class="cf"><div class="k">미국 생산 비중</div><div class="v">50.6%</div>
+        <div class="n">2024년 · FAOSTAT 껍질째 생산</div></div>
+      <div class="cf"><div class="k">미국 탈각 수출</div><div class="v">913,618</div>
+        <div class="n">톤 · USDA PSD 2024/25 마케팅연도</div></div>
+      <div class="cf"><div class="k">미국 생산자가격</div><div class="v">4,717.9</div>
+        <div class="n">달러/톤 · 2024년 껍질째, FAOSTAT</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">한국의 수입은 탈각 아몬드에 몰리고, 세계 공급의 중심은 미국이다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">미국은 껍질째 생산의 절반, 탈각 수출에서도 중심이다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">통관량은 확인됐지만 최종 소비량은 이 자료에서 산출되지 않는다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">2025년 탈각 수입 2만 6,686톤, 미국산 중량 비중 99.71%</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">산지·통관·소매값은 서로 다른 물건과 거래 단계다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">미국의 생산·수출 집중과 호주의 확장 가능성을 함께 본다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">수입·소매·식품 제조의 역할은 보이지만 업계 순위는 미확보다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">한·미 협정세율은 확인됐고, 2026년 통관별 실효세율은 남아 있다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">은행 전망은 가격 경로의 시나리오로 읽는다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표</span><span class="t">한국 통관 단가와 캘리포니아 공급을 다른 시계열로 감시한다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">미국산 탈각 원물에서 국내 가공·소매로</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>한국의 수입은 탈각 아몬드에 몰리고, 세계 공급의 중심은 미국이다</h2>
+<p class="lead">아몬드는 껍질째 생산량, 탈각 환산 수급, 한국 통관 중량이 서로 다른 단위의 산업이다. 이 셋을 한 표에 더하면 시장 크기를 잘못 읽는다. 세계 산지의 비중은 FAOSTAT의 껍질째 생산으로, 주요 시장의 소비·재고는 USDA PSD의 탈각 환산으로, 한국 무역은 관세청의 HS별 실제 통관 중량으로 본다. 한국에서 확인되는 구조는 탈각 아몬드 수입 중심이며, 미국, 특히 캘리포니아의 생산 여건이 상류 공급의 관찰 변수다.</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>한국의 수입 규모.</strong> 관세청 월별 원자료의 2025년 HS 0802.12 수입 합계는 26,685.8톤(26,685,779kg)·약 1.79억 달러(179,362,321달러)다. 같은 해 HS 0802.11은 31.2톤(31,212kg)·232,354달러다. 두 HS의 수입중량 합계에서 탈각이 차지하는 비중은 99.88%다. 이 비중은 통관 형태의 비중이지 국내 소비제품 구성비가 아니다(관세청, 04절·E04).</li>
+<li><strong>수입 원산지.</strong> UN Comtrade의 2025년 한국 신고 HS 0802.12 상대국 행을 합산하면 미국산은 수입중량의 99.71%, 수입액의 99.56%다. 2024년에는 각각 99.84%, 99.68%였다. 2025년 세계 상대국 합계 행의 중량은 공란이므로, 점유율의 분모는 상대국 21개 행을 합산해 구했다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080212&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 「Public API Preview: Korea Imports of HS 080212」, 2025년 자료·2026-10-08 확인</a>, 04절·E05).</li>
+<li><strong>수입단가.</strong> 2025년 탈각 수입액을 중량으로 나누면 6.72달러/kg이다. 2026년 1~8월에는 7.15달러/kg이고, 같은 기간끼리 비교한 중량은 2025년 18,919.2톤에서 2026년 16,917.3톤으로 10.6% 줄었다. 2026년은 진행 중이므로 연간 증감으로 읽지 않는다(관세청, 04절·E04).</li>
+<li><strong>세계 생산.</strong> FAOSTAT의 가장 늦은 생산 완료연도인 2024년 세계 껍질째 아몬드 생산은 약 395.2만 톤(3,951,576.08톤)이다. 미국은 2,000,340톤으로 50.6%를 차지했다. 호주 370,000톤, 스페인 369,700톤이 뒤를 이었다. 호주 값에는 FAO 추정 표시가 붙는다(FAOSTAT, 02절·E01).</li>
+<li><strong>세계 탈각 수출.</strong> FAOSTAT 전체 TCL의 2024년 <code>Almonds; shelled</code>(품목코드 231) 수출량은 세계 1,151,206톤, 미국 716,374톤이다. 미국 비중은 62.2%다. 별도 품목인 껍질째 아몬드(221)의 미국 수출 비중은 70.4%다. 한국 수입의 중심인 탈각 아몬드의 세계 수출 집중도를 설명할 때는 62.2%를 사용한다(FAOSTAT TCL, E02).</li>
+<li><strong>탈각 수급.</strong> USDA PSD의 2024/25 마케팅연도 미국 탈각 환산 생산은 1,238,310톤, 수출은 913,618톤, 기말재고는 219,451톤이다. 이 자료의 한국 소비 행은 28,400톤이다. USDA PSD의 소비는 수급표 항목이며 관세청 수입량이나 소매판매량과 같은 값이 아니다(USDA PSD, 02·03절·E03).</li>
+<li><strong>가격의 서로 다른 층.</strong> FAOSTAT의 2024년 미국 껍질째 아몬드 생산자가격은 4,717.9달러/톤이다. 한국의 2025년 탈각 수입단가는 6.72달러/kg이다. 상품 형태, 시점, 거래 단계가 달라 두 값의 차이를 유통마진이라고 부르지 않는다(FAOSTAT·관세청, 05절·E04·E07).</li>
+<li><strong>국내 소비자물가지수.</strong> 한국은행 ECOS 수집본의 아몬드 소비자물가지수는 2025년 9월 108.31, 2026년 9월 112.81이다. 기준은 2020년=100이며 같은 달끼리의 상승률은 4.15%다. 지수는 소매가격의 원화 절대 수준을 뜻하지 않는다(ECOS, 05절·E11).</li>
+<li><strong>소매 현장 가격.</strong> 웹 조사 노트가 직접 열어 확인한 aT KAMIS의 2026년 5월 오프라인 월간 수입 아몬드·중품 평균은 100g당 1,922원이다. 2026년 9월 30일 온라인 일간 가격 3,136원/100g은 조사 채널과 날짜가 다르다. 두 값을 한 시계열의 두 점으로 잇지 않는다(aT KAMIS 공식 화면, 웹 조사 노트 A등급, 05절·E12).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li>이 보고서는 2026년 한국 탈각 아몬드 연간 수입단가가 2025년의 6.72달러/kg보다 높게 마감할 가능성이 크다고 본다. 2026년 1~8월 누적 단가가 7.15달러/kg인 것이 근거다. <strong>반증 조건:</strong> 2026년 12개월 관세청 수입액÷중량이 6.72달러/kg 이하로 확정되는 것.</li>
+<li>이 보고서는 2026년 한국 탈각 아몬드 연간 수입중량이 2025년 26,685.8톤보다 적을 가능성이 크다고 본다. 1~8월 같은 기간 비교에서 10.6% 감소했기 때문이다. <strong>반증 조건:</strong> 2026년 12개월 관세청 HS 0802.12 수입중량 합계가 26,685.8톤 이상이 되는 것.</li>
+</ul>
+<p>위 요약의 관세청·FAOSTAT·USDA PSD·ECOS 계량값은 각 원자료의 값 또는 명시한 계산값이다. KAMIS 소매가격은 웹 조사 노트가 인용한 공식 화면의 관측값이며, Comtrade 원산지 비중은 한국 신고 상대국 행의 합산값이다. 두 전망은 원자료의 값이 아니라 이 보고서의 판단이다.</p>
+<div class="call warn">
+  <div class="ct">범위.</div>
+  <p>HS 0802.11은 신선·건조 껍질째 아몬드, HS 0802.12는 신선·건조 탈각 아몬드다. 볶음·조미 제품 등 HS 2008의 혼합 또는 기타 조제품은 아몬드만 안정적으로 분리할 수 없어 무역량에 더하지 않았다. 2024년 FAOSTAT은 달력연도 품목별 중량, USDA PSD는 마케팅연도·탈각 환산, 관세청은 통관연도·실제 신고 중량이다.</p>
+</div>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>미국은 껍질째 생산의 절반, 탈각 수출에서도 중심이다</h2>
+<p class="lead">세계 생산의 기준점은 FAOSTAT QCL의 2024년 껍질째 아몬드다. 세계 행은 3,951,576.08톤이고 미국 행은 2,000,340톤이다. 미국 몫 50.6%는 같은 통계의 미국÷세계로 계산했다. 호주와 스페인이 각각 약 37만 톤으로 다음 규모지만, 호주 생산은 FAOSTAT에서 추정값(E)으로 표시된다. 미국의 위치를 설명할 때 “세계 아몬드의 절반”이라고 줄여 말하면 형태가 빠진다. 정확한 표현은 “2024년 세계 <strong>껍질째 생산중량</strong>의 50.6%”다.</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 껍질째 아몬드 생산(2024년)</caption>
+<thead><tr><th class="num">순위</th><th>국가</th><th class="num">생산량(톤)</th><th class="num">세계 생산 대비</th><th>FAOSTAT 표시</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>미국</td><td class="num">2,000,340</td><td class="num">50.6%</td><td>A</td></tr>
+<tr><td class="num">2</td><td>호주</td><td class="num">370,000</td><td class="num">9.4%</td><td>E</td></tr>
+<tr><td class="num">3</td><td>스페인</td><td class="num">369,700</td><td class="num">9.4%</td><td>A</td></tr>
+<tr><td class="num">4</td><td>튀르키예</td><td class="num">200,000</td><td class="num">5.1%</td><td>A</td></tr>
+<tr><td class="num">5</td><td>모로코</td><td class="num">163,616</td><td class="num">4.1%</td><td>A</td></tr>
+<tr><td class="num">6</td><td>이란</td><td class="num">132,106</td><td class="num">3.3%</td><td>I</td></tr>
+<tr><td class="num">세계</td><td></td><td class="num">3,951,576</td><td class="num">100%</td><td>A</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT QCL <code>Almonds, in shell</code>, <code>Element=Production</code>, <code>Year=2024</code>; 국가 행만 정렬했다. 점유율은 국가 값÷세계 행이며 반올림했다(E01).</p>
+<p>생산중량만으로 소비와 재고를 설명할 수는 없다. USDA PSD는 아몬드를 <strong>탈각 환산 중량</strong>으로 기록한다. 이 자료의 2024/25 마케팅연도에는 미국 생산 1,238,310톤·수출 913,618톤·기말재고 219,451톤이 들어 있다. 유럽연합의 국내소비 409,753톤은 생산 170,053톤보다 크다. 인도 역시 생산 4,150톤에 비해 국내소비 184,030톤이 커 생산량만으로 국내소비를 설명할 수 없다. 표의 생산·소비·재고는 같은 USDA PSD 안에서 비교한 값이고, FAOSTAT 껍질째 생산과 합산하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 2. USDA PSD 주요 시장 수급(2024/25 마케팅연도, 탈각 환산 톤)</caption>
+<thead><tr><th>국가·지역</th><th class="num">생산</th><th class="num">국내소비</th><th class="num">수출</th><th class="num">기말재고</th></tr></thead>
+<tbody>
+<tr><td>미국</td><td class="num">1,238,310</td><td class="num">339,808</td><td class="num">913,618</td><td class="num">219,451</td></tr>
+<tr><td>유럽연합</td><td class="num">170,053</td><td class="num">409,753</td><td class="num">25,300</td><td class="num">18,000</td></tr>
+<tr><td>호주</td><td class="num">155,000</td><td class="num">32,700</td><td class="num">123,000</td><td class="num">15,800</td></tr>
+<tr><td>인도</td><td class="num">4,150</td><td class="num">184,030</td><td class="num">0</td><td class="num">29,000</td></tr>
+<tr><td>중국</td><td class="num">24,000</td><td class="num">155,200</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td>한국</td><td class="num">0</td><td class="num">28,400</td><td class="num">0</td><td class="num">0</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: USDA PSD 품목별 원자료 <code>Almonds, Shelled Basis</code>, <code>Market_Year=2024</code>, 각 <code>Country_Name</code>·<code>Attribute_Description</code> 행(E03). 이 표의 0은 해당 USDA PSD 행의 0이며 독립 통계의 부재를 뜻하지 않는다.</p>
+<p>FAOSTAT 무역 TCL의 2024년 <strong>껍질째</strong> 수출 세계 행은 451,727.87톤이다. 미국 318,166.93톤은 70.4%, 호주 79,814.14톤은 17.7%다. 이 껍질째 무역은 USDA PSD의 탈각 환산 수출과 다른 범위다. 껍질째 수입은 인도 269,521.82톤이 크게 잡힌다. 중국·중국 본토·역내무역 제외 중국과 같은 집계 행이 함께 있어 이들을 중복 합산해 국가별 세계 수입총량을 재구성하지 않았다(FAOSTAT TCL, E02).</p>
+<p>미국 안에서 관찰할 지점은 캘리포니아 작황이다. 웹 조사 노트가 인용한 USDA NASS의 2026년 5월 1일 기준 전망은 <strong>탈각 기준 27억 파운드</strong>다. 이는 수확 확정치가 아니다(<a href="https://www.nass.usda.gov/Newsroom/Executive_Briefings/2026/05-12-2026.pdf">USDA NASS, 2026-05-12</a>, 노트 A등급). 캘리포니아 아몬드협회는 2026년 전망이 약 500명 재배자 설문에 기초했다고 설명한다(<a href="https://www.almonds.org/about-us/press-room/usda-forecasts-slightly-smaller-almond-crop">Almond Board, 2026-05-12</a>, B등급). 재배자 설문에 기초한 전망은 확정 생산 통계와 산출 단계가 다르다.</p>
+<p>USDA ERS는 2026년 2월 캘리포니아 개화기에 서늘하고 비가 잦은 날씨가 벌의 수분 활동과 농가 작업을 제약했다고 기록했다. 이 서술만으로 최종 수확손실량을 계산하지 않는다(<a href="https://ers.usda.gov/sites/default/files/_laserfiche/outlooks/113982/FTS-384.pdf?v=18162">USDA ERS, 2026-03-26</a>, 노트 A등급). 연방 개간국의 2026년 8월 델타 남부 중앙계곡사업 관개 계약자 배정률 25%→28% 역시 <strong>해당 계약자 집단의 물 공급 지표</strong>다. 모든 아몬드 농가의 물 배정률로 일반화할 수 없다(<a href="https://www.usbr.gov/newsroom/news-release/5386">U.S. Bureau of Reclamation, 2026-08-11</a>, 노트 A등급).</p>
+<p>산지의 금액과 생산량도 구별한다. 아카이브의 FAOSTAT QI는 미국 2024년 껍질째 아몬드 총생산지수를 130.47로 기록한다(2014~2016년=100). QV의 같은 품목·연도·국가 <code>Gross Production Value (current thousand US$)</code>는 9,437,397천 달러다. 이는 FAOSTAT의 총생산가치 계정이며 통관액이나 특정 기업 매출이 아니다(E08).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>통관량은 확인됐지만 최종 소비량은 이 자료에서 산출되지 않는다</h2>
+<p class="lead">한국의 아몬드 시장을 재는 가장 분명한 실측은 통관량이다. 2025년 탈각 아몬드 26,685.8톤, 껍질째 아몬드 31.2톤이 수입됐다(관세청, E04). 탈각 아몬드 수출신고 중량 117.6톤을 단순히 차감하면 <strong>탈각 순수입</strong>은 26,568.2톤이다. 계산은 수입 26,685,779kg−수출 117,575kg이다. 이 순수입은 재고 변동, 국내 가공 중량 변화, 조제품 수출입을 반영하지 않으므로 “한국인이 먹은 아몬드”로 이름을 바꾸지 않는다.</p>
+<p>USDA PSD는 2024/25 마케팅연도 한국의 탈각 환산 생산을 0톤, 수입과 국내소비를 각각 28,400톤으로 놓았다. 같은 원장의 2025/26 행은 수입과 국내소비가 각각 30,000톤이지만 2025년 11월 작성 빈티지의 전망·수급 추정이다. 2025년 관세청 통관 실측 26,685.8톤과 2025/26 USDA PSD 소비 전망 30,000톤의 차이를 조사 오차라고 단정할 수 없다. 마케팅연도, 탈각 환산 방식, 재고·수급 추정, 통관시점이 다르다(USDA PSD·관세청, E03·E04).</p>
+<p>FAOSTAT SCL 아카이브에는 2023년 한국의 <code>Almonds, in shell</code> 식품공급량 393.79톤(E)과 수입량 393.83톤(X)이 있다. 그러나 같은 해 FAOSTAT TCL의 한국 껍질째 수입량은 0.52톤(A)이다. 두 계정의 차이가 커 SCL 수입량을 통관 실측이나 탈각 소비량으로 사용하지 않는다. 식량수급표 FBS·FBSH의 해당 아카이브 분할 파일은 <code>Treenuts</code>와 <code>Nuts and products</code> 합계다. 아몬드만 분리하여 소비량이라고 쓰지 않았다(FAOSTAT SCL·TCL·FBS, E09).</p>
+<p>국내 생산에 관해서는 두 문장을 구분한다. USDA PSD의 한국 생산 행은 0이다. 반면 국내 실제 재배·출하가 “전혀 없다”는 명제를 입증할 독립적인 아몬드 작물 통계는 이번 자료에서 확보하지 못했다. FAOSTAT QCL의 2024년 아몬드 생산 국가 행에는 한국이 없고, 점검한 KOSIS 특용작물·제조업 품목 수집본에는 아몬드 문자열이 없었다. 이 확인 경로를 근거로 “USDA PSD상 생산 0, 국내 독립 생산량 미확보”라고만 기록한다(E01·E03·E16). 가정재배나 소규모 생산까지 0이라고 단정하지 않는다.</p>
+<p>유통 단계의 아몬드 사용은 원물 그대로 판매, 볶음·소포장, 제과·시리얼 원료, 음료 제조 등으로 갈라진다. 노트에는 캘리포니아산 아몬드를 사용한 아몬드 음료의 국내 생산 사례가 있지만, 한 제품 사례에서 전체 가공 투입량을 역산할 수는 없다(07절). KOSIS의 견과류·가공품 합계와 식약처의 <code>아몬드(견과,건조)</code> 수입검사 품목 통계는 범위와 분모가 다르다. 이 수치를 HS 0802.12 수입량과 나눠 가공·소매 시장 점유율을 만들지 않았다(식약처 수입식품 검사통계 수집본, E19).</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>2025년 탈각 수입 2만 6,686톤, 미국산 중량 비중 99.71%</h2>
+<p class="lead">한국 통관의 연간 기준은 관세청 <code>customs_item_trade_monthly_almonds.csv</code>다. HS 0802.11과 HS 0802.12 각각의 월별 수입중량·수입달러를 합산했다. 2025년 탈각 수입액은 179,362,321달러, 수입중량은 26,685,779kg이다. 같은 해 껍질째 수입중량은 31,212kg이다. 따라서 두 HS로 한정한 통관중량 중 탈각 비중은 99.88%다(E04).</p>
+<div class="tw">
+<table>
+<caption>표 3. 한국 아몬드 통관(관세청)</caption>
+<thead><tr><th>기간</th><th>형태·HS</th><th class="num">수입중량(톤)</th><th class="num">수입액(백만 달러)</th><th class="num">수입단가(달러/kg)</th></tr></thead>
+<tbody>
+<tr><td>2025년 전체</td><td>껍질째 0802.11</td><td class="num">31.2</td><td class="num">0.232</td><td class="num">7.44</td></tr>
+<tr><td>2025년 전체</td><td>탈각 0802.12</td><td class="num">26,685.8</td><td class="num">179.362</td><td class="num">6.72</td></tr>
+<tr><td>2025년 1~8월</td><td>탈각 0802.12</td><td class="num">18,919.2</td><td class="num">127.015</td><td class="num">6.71</td></tr>
+<tr><td>2026년 1~8월</td><td>껍질째 0802.11</td><td class="num">40.1</td><td class="num">0.272</td><td class="num">6.79</td></tr>
+<tr><td>2026년 1~8월</td><td>탈각 0802.12</td><td class="num">16,917.3</td><td class="num">120.867</td><td class="num">7.15</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 품목별 월별 원자료 <code>customs_item_trade_monthly_almonds.csv</code>, <code>hsCode=0802110000/0802120000</code>, 해당 <code>year</code> 행. 달러/kg은 <code>ΣimpDlr÷ΣimpWgt</code>이며 표시값을 반올림했다(E04).</p>
+<p>2026년 1~8월 탈각 수입량은 전년 같은 기간보다 10.58% 적고, 누적 단가는 6.42% 높다. 수입액은 4.84% 적다. “물량 감소와 단가 상승이 함께 나타났다”는 사실은 말할 수 있다. 이 두 변화에서 국내 수요 축소와 산지 가격 상승의 기여도를 각각 분리할 자료는 없다. 수입단가는 원산지·품질·상품 구성의 변화에도 움직이기 때문이다.</p>
+<div class="tw">
+<table>
+<caption>표 4. 탈각 아몬드 월별 수입량·단가의 같은 달 비교</caption>
+<thead><tr><th>월</th><th class="num">2025 중량(톤)</th><th class="num">2025 달러/kg</th><th class="num">2026 중량(톤)</th><th class="num">2026 달러/kg</th></tr></thead>
+<tbody>
+<tr><td>1월</td><td class="num">2,328.2</td><td class="num">6.20</td><td class="num">2,792.7</td><td class="num">6.88</td></tr>
+<tr><td>2월</td><td class="num">2,332.4</td><td class="num">6.39</td><td class="num">2,205.8</td><td class="num">7.11</td></tr>
+<tr><td>3월</td><td class="num">2,785.1</td><td class="num">6.54</td><td class="num">2,144.0</td><td class="num">7.27</td></tr>
+<tr><td>4월</td><td class="num">2,853.8</td><td class="num">6.67</td><td class="num">2,112.8</td><td class="num">7.10</td></tr>
+<tr><td>5월</td><td class="num">2,438.6</td><td class="num">6.76</td><td class="num">1,839.7</td><td class="num">7.09</td></tr>
+<tr><td>6월</td><td class="num">2,353.9</td><td class="num">6.97</td><td class="num">1,968.7</td><td class="num">7.21</td></tr>
+<tr><td>7월</td><td class="num">2,368.3</td><td class="num">7.19</td><td class="num">2,564.5</td><td class="num">7.17</td></tr>
+<tr><td>8월</td><td class="num">1,458.9</td><td class="num">7.22</td><td class="num">1,289.2</td><td class="num">7.55</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>customs_item_trade_monthly_almonds.csv</code>, <code>hsCode=0802120000</code>, 표시 월의 <code>impWgt</code>·<code>impDlr</code>; 단가는 각 월 <code>impDlr÷impWgt</code>(E04). 2026년은 미완 연도다.</p>
+<p>UN Comtrade의 로컬 연간 가공본에는 2025년 한국 신고·세계 상대국·HS 0802.12 합계 행의 <code>primaryValue=179,362,321달러</code>가 있고 <code>netWgt</code>는 공란이다. 공개 preview의 같은 조건 <strong>개별 상대국 21개 행</strong>에는 중량이 있다. 이 행들을 합산한 2025년 수입중량은 26,685,779.45kg으로 관세청 합계 26,685,779kg과 반올림 범위에서 일치한다. 미국 행은 26,608,729.725kg·178,576,020달러로 각각 전체의 <strong>99.71%·99.56%</strong>다. 호주 행은 39,931.092kg·277,565달러다. 상대국 합계를 세계 합계 행에 다시 더하지 않았고, <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code> 조건을 유지했다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080212&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 「Public API Preview: Korea Imports of HS 080212」, 2025년 자료·2026-10-08 확인</a>, E05).</p>
+<p>같은 Comtrade 조건에서 2024년 한국의 탈각 아몬드 수입중량은 29,076,459.192kg, 수입액은 143,071,336달러다. 미국 행 29,031,010kg·142,616,178달러의 비중은 중량 99.84%·금액 99.68%다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2024&amp;cmdCode=080212&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 「Public API Preview: Korea Imports of HS 080212」, 2024년 자료·2026-10-08 확인</a>, E05).</p>
+<p>한국의 국가별 관세청 가공본은 2026년 3~8월만 포함한다. 예컨대 2026년 4월 탈각 아몬드의 미국 행은 2,112,620kg이고 같은 월 전체 품목 통관은 2,112,763kg이다. 이것은 <strong>2026년 4월 기준(잠정)</strong> 관측이다. 2025년 연간 원산지 비중은 위 Comtrade 한국 신고 상대국 행으로 계산했다(E05·E06).</p>
+<p>FAOSTAT 전체 TCL에는 껍질째 아몬드(221)와 탈각 아몬드(231)가 모두 있다. 구 수집기의 아몬드 분할 TCL·TM에는 221만 들어 있어 탈각 무역에 사용할 수 없다. 해당 분할 TCL의 2024년 한국 껍질째 수입은 0.37톤이며, TM의 한국 수입 양자 행에서는 미국 0.34톤이 확인된다. 이 껍질째 계정을 탈각 수입 2만 톤대의 원산지 구조로 일반화하지 않았다(E02·E10·E18).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>산지·통관·소매값은 서로 다른 물건과 거래 단계다</h2>
+<p class="lead">가격은 “아몬드 가격”이라는 한 줄로 연결되지 않는다. FAOSTAT PP는 미국 농가의 껍질째 생산자가격, 관세청은 한국에 들어온 탈각 아몬드의 수입액÷중량, KAMIS는 한국 소매 조사 가격, ECOS는 소비자물가지수다. 껍질 제거, 품질, 운송, 환율, 포장, 판매채널의 차이가 남아 있으므로 한 단계의 가격에서 다른 단계의 마진을 직접 빼지 않는다.</p>
+<p>FAOSTAT PP의 미국 껍질째 생산자가격은 2023년 3,792.0달러/톤에서 2024년 4,717.9달러/톤으로 24.4% 상승했다. 이는 달력연도별 생산자 가격이며 캘리포니아 수출계약 단가가 아니다. 은행 보고서가 인용한 특정 시기의 농가 호가나 USDA AMS 뉴욕 터미널시장의 포장상품 호가와도 조사 대상이 다르다(E07).</p>
+<div class="tw">
+<table>
+<caption>표 5. 아몬드 가격·지수의 공개 관측점</caption>
+<thead><tr><th>지표</th><th>기준시점</th><th class="num">값</th><th>정확한 범위</th></tr></thead>
+<tbody>
+<tr><td>미국 생산자가격</td><td>2023년</td><td class="num">3,792.0달러/톤</td><td>FAOSTAT 껍질째</td></tr>
+<tr><td>미국 생산자가격</td><td>2024년</td><td class="num">4,717.9달러/톤</td><td>FAOSTAT 껍질째</td></tr>
+<tr><td>한국 수입단가</td><td>2025년</td><td class="num">6.72달러/kg</td><td>관세청 HS 0802.12 탈각</td></tr>
+<tr><td>한국 수입단가</td><td>2026년 1~8월</td><td class="num">7.15달러/kg</td><td>진행기간 누적, 탈각</td></tr>
+<tr><td>KAMIS 오프라인 소매</td><td>2026년 5월</td><td class="num">1,922원/100g</td><td>수입 아몬드·중품 월간 평균</td></tr>
+<tr><td>KAMIS 온라인 소매</td><td>2026년 9월 30일</td><td class="num">3,136원/100g</td><td>수입 아몬드·중품 일간</td></tr>
+<tr><td>아몬드 소비자물가지수</td><td>2026년 9월</td><td class="num">112.81</td><td>ECOS, 2020년=100</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT PP(E07), 관세청(E04), <a href="https://www.kamis.or.kr/customer/price/agricultureRetail/catalogue.do?action=monthly&amp;countycode=&amp;itemcategorycode=&amp;itemcode=&amp;kindcode=&amp;marketclscode=&amp;mm=05&amp;productrankcode=&amp;yyyy=2026">KAMIS 오프라인 월간표</a>·<a href="https://www.kamis.or.kr/customer/price/online/catalogue.do">온라인 일간표</a>(웹 조사 노트 A등급, E12), ECOS 소비자물가지수(E11). KAMIS의 <code>평년</code> 행은 실측 평균 계산에서 제외한다.</p>
+<p>KAMIS의 오프라인 월간 평균과 온라인 하루 가격은 조사 채널과 날짜가 다르다. 온라인 값이 오프라인보다 높다는 두 관측점만으로 “소매가격이 5월에서 9월 사이 그만큼 상승했다”고 쓰지 않았다. KAMIS <code>평년</code>은 금년을 제외한 최근 5년의 해당 기간 값 중 최고·최저를 빼고 남은 <strong>3년 평균</strong>이다. 이번 표는 노트가 직접 연 화면의 수치만 사용했고, 연간 대표 소매가격은 산출하지 않았다(<a href="https://www.kamis.or.kr/mobile/web/program/price.do?action=retailHigh">aT KAMIS, 「소매가격 조사 안내」, 2026-10-08 확인</a>, E12).</p>
+<p>한국은행 ECOS 수집본의 아몬드 CPI는 2025년 9월 108.31, 2026년 9월 112.81로 같은 달 대비 4.15% 높다. 기준은 2020년=100이다. 이 지수는 소비자에게 판매된 아몬드의 평균 현금가격이 아니며, 관세청의 달러/kg과 통화 변환 없이 나누지 않는다(E11).</p>
+<p>세계은행 월간 Pink Sheet 수집 원본의 XLSX XML에서 <code>almond</code> 항목은 확인되지 않았고, 아카이브에는 품목 미수록 안내 파일이 있다. 따라서 이 보고서에서는 Pink Sheet의 다른 견과 또는 식품 지수를 아몬드 국제가격이라고 대용하지 않는다. IMF PCPS 공통 수집본에서도 아몬드 개별 항목은 확인되지 않아 가격 수준을 제시하지 않는다(E17).</p>
+<p>미국의 다른 가격 관측은 참고만 가능하다. 웹 조사 노트의 USDA AMS 뉴욕 터미널시장 보고서는 2026년 4월 22일 캘리포니아산 Peerless <strong>1파운드 포장 32개들이 상자</strong> 호가를 100달러로 적었다. 뉴욕 도매시장 포장상품 호가이며 캘리포니아 산지 수취가격이 아니다(<a href="https://mymarketnews.ams.usda.gov/filerepo/sites/default/files/2317/2026-04-22/1319442/ams_2317_01522.pdf">USDA AMS 원문</a>, 노트 A등급). USDA ERS는 산지가격을 볼 연간 자료와 월간 무역·가격 자료의 경로를 안내한다(<a href="https://www.ers.usda.gov/data-products/fruit-and-tree-nuts-data/documentation">USDA ERS 자료 안내</a>, 노트 A등급).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>미국의 생산·수출 집중과 호주의 확장 가능성을 함께 본다</h2>
+<p class="lead">한국의 2025년 탈각 아몬드 수입에서 미국산 비중은 중량 99.71%·금액 99.56%다(Comtrade 한국 신고 상대국 행, 04절·E05). 세계적으로 미국은 2024년 FAOSTAT 껍질째 생산의 50.6%, <strong>탈각 수출의 62.2%</strong>를 차지했다. 별도 품목인 껍질째 수출 비중은 70.4%다. USDA PSD의 2024/25 마케팅연도 탈각 환산 수출도 미국 913,618톤으로 호주 123,000톤보다 크다. 캘리포니아의 작황·관개 여건·수출 물류는 한국 아몬드 산업의 상류 공급위험을 설명하는 변수다(E01~E06).</p>
+<div class="tw">
+<table>
+<caption>표 6. 주요 산지의 서로 다른 역할</caption>
+<thead><tr><th>산지</th><th class="num">2024년 FAOSTAT 껍질째 생산(톤)</th><th class="num">USDA PSD 2024/25 탈각 환산 수출(톤)</th><th>확인된 관찰점</th></tr></thead>
+<tbody>
+<tr><td>미국</td><td class="num">2,000,340</td><td class="num">913,618</td><td>캘리포니아 작황·개화기·관개 배정</td></tr>
+<tr><td>호주</td><td class="num">370,000(E)</td><td class="num">123,000</td><td>성목화와 물 공급</td></tr>
+<tr><td>스페인</td><td class="num">369,700</td><td class="num">EU 합계 25,300</td><td>강우·결실·우박·해충</td></tr>
+<tr><td>튀르키예</td><td class="num">200,000</td><td class="num">35,700</td><td>생산과 국내소비 병행</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT QCL(E01), USDA PSD(E03), 웹 조사 노트의 <a href="https://ers.usda.gov/sites/default/files/_laserfiche/outlooks/113982/FTS-384.pdf?v=18162">USDA ERS</a>·<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nut+-+Almond+Annual_Canberra_Australia_AS2025-0015.pdf">USDA FAS 호주</a>·<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nuts+Annual_Madrid_European+Union_E42025-0004.pdf">USDA FAS EU</a>(각 A등급). 스페인의 PSD 칸은 스페인 단독 수출이 아닌 <strong>EU 전체</strong> 수치다.</p>
+<p>미국의 생산량은 통계마다 형태와 시점이 다르다. FAOSTAT의 2024년 2,000,340톤은 껍질째 달력연도 생산이고, USDA PSD의 2024/25 생산 1,238,310톤은 탈각 환산 마케팅연도 생산이다. 두 값의 비율을 고정 탈각률이라고 부를 수 없다. 미국의 2026년 5월 NASS 전망 27억 파운드도 탈각 기준 <strong>전망치</strong>다. NASS의 5월 주관적 전망은 2025년에도 약 500명의 재배자 설문에 기초했다. 캘리포니아 아몬드협회가 2025년 12월 <strong>7월 객관적 표본측정 보고서</strong>의 재원 지원을 중단해, 2026년에는 5월 주관적 전망이 해당 작황연도 NASS의 유일한 아몬드 생산 전망 보고서다(<a href="https://www.almonds.org/about-us/press-room/usda-forecasts-slightly-larger-almond-crop">Almond Board of California, 「USDA Forecasts Slightly Larger Almond Crop」, 2025-05-12</a>; <a href="https://www.almonds.org/about-us/press-room/usda-forecasts-slightly-smaller-almond-crop">Almond Board of California, 「USDA Forecasts Slightly Smaller Almond Crop」, 2026-05-12</a>, E13).</p>
+<p>호주는 두 번째 축이다. USDA 캔버라 사무소의 2025년 7월 보고서는 호주의 <strong>2025/26 마케팅연도(2026년 1~12월)</strong> 탈각 환산 생산 175,000톤·수출 143,000톤을 전망했다. 표 6의 2024/25 행도 확정치가 아니라 <strong>USDA PSD 2025년 11월 빈티지 추정치</strong>다. 같은 PSD 빈티지의 호주 2025/26 행은 생산 170,000톤·수출 138,000톤으로, 앞선 GAIN 전망보다 낮다. 서로 다른 발표 시점의 전망을 하나의 확정 시계열로 연결하지 않는다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nut+-+Almond+Annual_Canberra_Australia_AS2025-0015.pdf">USDA FAS 캔버라, 「Tree Nut - Almond Annual」, 2025-07-02</a>, E03·E13). Rabobank는 호주의 성목화가 생산을 늘릴 여지가 있지만 장기 증식에는 물 부족이 제약이라고 보았다(09절, B등급).</p>
+<p>스페인과 이탈리아는 유럽 작황의 관찰 지점이다. USDA 마드리드 사무소는 스페인의 2025/26 탈각 기준 생산을 128,515톤으로 전망하고 생육기 강우가 토양 수분을 개선하면서도 수분·결실에는 장애가 되었고 우박·해충 피해가 있었다고 적었다. 이탈리아에는 시칠리아 가뭄과 풀리아의 3월 서리 위험을 기록했다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nuts+Annual_Madrid_European+Union_E42025-0004.pdf">USDA FAS GAIN EU, 2025-09-17</a>, 노트 A등급). 지역별 생육 사건을 곧바로 EU 전체 수출 감소량으로 환산하지 않는다.</p>
+<p><strong>계절성을 읽는 방식</strong>도 분리한다. 캘리포니아에 대해서는 2026년 2월 개화기 날씨 기록, 5월 NASS 전망, 8월 관개 배정 변경이 확인된다. 호주 전망은 보고서가 정한 1~12월 마케팅연도다. 이 날짜들은 관찰·전망의 발표시점이지 한국 통관이 특정 달에 반드시 늘거나 줄어야 한다는 계절계수가 아니다. 한국 월별 수입은 별도 통관 시계열로 기록된다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>수입·소매·식품 제조의 역할은 보이지만 업계 순위는 미확보다</h2>
+<p class="lead">한국의 원물 아몬드는 수입 뒤 소매 포장상품, 볶음·가공 견과, 시리얼·음료 등 식품 원료로 갈라진다. HS 0802.12 통관은 산업에 들어온 탈각 아몬드의 입구를 보여 주지만 이후 어느 업체가 얼마를 가공하거나 판매했는지는 보여 주지 않는다. 조제 제품은 HS 2008 안에서 다른 견과와 섞일 수 있다. 따라서 원물 수입액 1억 7,936만 달러를 국내 아몬드 완제품 시장 매출로 부르지 않는다(04절).</p>
+<p>웹 조사 노트에서 원문으로 확인된 기업 사례는 역할별 사례다. 개별 상품의 수입자·제조자 표기와 한 회사의 공시 문장은 법인별 아몬드 사업 규모의 명부가 아니다. 원자료에 없는 업체별 수입 점유율·가공 점유율·판매 순위를 만들지 않았다.</p>
+<div class="tw">
+<table>
+<caption>표 7. 원문에서 역할이 확인된 국내 주체</caption>
+<thead><tr><th>주체</th><th>확인된 역할</th><th>근거의 범위</th><th>등급</th></tr></thead>
+<tbody>
+<tr><td>코스트코 코리아</td><td>미국산 원물 아몬드 상품의 표시 수입자·소매자</td><td>해당 판매 상품</td><td>B</td></tr>
+<tr><td>매일유업 광주공장</td><td>캘리포니아산 아몬드를 원료로 표시한 아몬드 음료 생산자</td><td>해당 음료 제품</td><td>B</td></tr>
+<tr><td>씨알푸드</td><td>그래놀라와 아몬드 직수입을 공시에 기재</td><td>2026년 주주총회 소집공고</td><td>B</td></tr>
+<tr><td>이마트</td><td>캘리포니아 아몬드협회와 판매직원 교육·현장 연수 협업</td><td>2025년 10월 활동 기록</td><td>B</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 웹 조사 노트와 <a href="https://www.costco.co.kr/Foods/Snack/Nuts/Kirkland-Signature-Almonds-136kg/p/995551">코스트코 원물 상품</a>, <a href="https://www.costco.co.kr/Foods/Beverages/Soy-MilkMilk/Blue-Diamond-Almond-Breeze-Original-190ml-x-24/p/654036">코스트코 아몬드 음료 상품</a>, <a href="https://kind.krx.co.kr/external/2026/03/17/000718/20260317002813/00591.htm">씨알푸드 공시</a>, <a href="https://www.kormia.co.kr/data/2026/01/17b8edaef50c983cf68ee468da0098dd.pdf">주한미국주정부대표부협회 자료</a>(E14). 표는 시장 순위가 아니다.</p>
+<p>원물 상품 사례는 수입명의와 소매 창구가 한 유통사에 겹칠 수 있음을 보여 준다. 아몬드 음료 사례는 원물이 다른 제품 범주로 이동함을, 시리얼 제조사의 직수입 공시는 식품 제조사가 원료 조달을 직접 수행할 수 있음을 보여 준다. 판매직원 교육 사례는 소매 현장의 상품 교육 협업을 보여 준다. 네 사례 모두 시장의 가능한 경로를 설명하지만 거래량·점유율은 제공하지 않는다(각 원문, 노트 B등급).</p>
+<p>식약처의 2025년 10월~2026년 9월 ‘아몬드(견과,건조)’ 신고 확인 자료로 수입업소별 <strong>신고 건수 순서</strong>는 확인된다(11절). 다만 아몬드만의 기업별 연간 통관중량과 최종 판매액을 동일 분모로 잇는 명부는 확보되지 않았다. 따라서 신고 건수 상위 업소를 물량 기준 1위 수입사나 시장점유율 상위 업체라고 부르지 않는다. 통관명의·제조명의·브랜드 소유자·소매판매자는 서로 다른 역할이다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>한·미 협정세율은 확인됐고, 2026년 통관별 실효세율은 남아 있다</h2>
+<p class="lead">범위의 출발은 세번이다. HS 0802.11은 껍질을 벗기지 않은 신선·건조 아몬드, 0802.12는 껍질을 벗긴 신선·건조 아몬드다. 아카이브의 구 수집기 스크립트는 FAOSTAT 코드 221과 222를 모두 아몬드로 주석 처리했지만, 실제 품목 열에서 221은 껍질째 아몬드, 222는 껍질째 호두다. FAOSTAT의 탈각 아몬드 코드는 231이다. 세번과 FAOSTAT 품목코드는 서로 다른 분류이며, 이 보고서의 통계 집계에서는 각각의 경계를 구분했다(E01·E02·E18).</p>
+<p>한·미 FTA는 2012년 3월 15일 발효됐다. 관계부처합동 자료는 아몬드에 적용되던 8% 관세가 <strong>발효 즉시 철폐</strong>되는 품목이라고 제시한다. 산업통상자원부 FTA 포털의 별도 한국 관세양허표는 0802.11.0000과 0802.12.0000의 <strong>2022년 MFN 적용세율 기준값</strong>을 각각 8%로 표시한다. 이는 미국산 협정세율 0%와 서로 다른 기준이며, 어느 것도 모든 원산지·통관일의 2026년 실효세율을 자동으로 증명하지 않는다(<a href="https://www.fta.go.kr/webmodule/htsboard/template/read/fta_mobile_infoBoard_01_view.jsp?boardid=170&amp;boardid2=64&amp;seqno=143607&amp;typeID=8">산업통상자원부, 「한·미 FTA 발효 10주년」, 2022-03-14</a>; <a href="https://fta.go.kr/webmodule/_PSD_FTA/us/data/6_a_walk_for_trade.pdf">관계부처합동, 「한·미 FTA, 우리 경제에 큰 힘이 됩니다」, 발행일 미표기</a>; <a href="https://fta.motir.go.kr/webmodule/_PSD_FTA/ucp/kor/2.1.%20KOREA%20SCHEDULE%20OF%20TARIFF%20COMMITMENTS_kor.pdf">산업통상자원부 FTA 포털, 「한국 관세양허표」, 2022년 기준</a>, E13).</p>
+<p>2026년 기본세율·국가별 협정 적용률·할당관세의 연중 개정본 전수 대조는 미확보다. 웹 조사 노트는 관세청 CLIP·FTA 포털에서 <code>0802110000</code>, <code>0802120000</code>, <code>2026</code>, <code>기본세율</code>을 시도했고, 아몬드 전용 할당·조정관세·비축 조치는 국가법령정보센터와 정부 자료를 시도했다고 기록한다. 일부 별표 확인만으로 “2026년 아몬드 할당관세가 없다”고 단정하지 않는다(노트 미확보 목록).</p>
+<p>판매·영업용 수입식품에는 식약처 수입신고 의무가 있고, 해외제조업소 등록 신청 시점은 수입신고 전이다. 식품 기준·규격에 맞지 않는 물품의 수입신고는 금지된다(<a href="https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1031033303">수입식품안전관리 특별법 제20조</a>·<a href="https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1031033511">제5조</a>, 시행 2026-01-01, 노트 A등급). 이 법률상 공통 의무와 아몬드에 적용되는 개별 검사 지시는 구분한다. 웹 조사 노트는 미국산 아몬드 아플라톡신 검사지시 제목을 찾았으나 상세 원문과 현행 수치 기준을 확인하지 못했다. 따라서 특정 검사 기간·시료 기준·허용치를 이 보고서에 적지 않는다.</p>
+<p>식물검역의 수입 가능 여부에는 원산국, 건조·탈각 여부, 식물 상태가 관계한다. <a href="https://www.pqis.go.kr/minwon/imq/imqList.html">검역본부 수입가능여부조회</a>에서 미국산 건조·탈각 아몬드를 조회한 결과는 노트에 확보되지 않았다. 이 상태에서 “검역상 무조건 수입 가능” 또는 “금지”를 단정하지 않는다(노트 A등급·미확보 목록).</p>
+<p>원산지 표시 대상과 방식은 수입 농수산물·가공품 중 표시 대상으로 공고된 상품과 판매 방식에 따라 달라진다. 통신판매는 시행규칙이 제품명·가격 부근 또는 첫 화면에서 위치를 알 수 있는 창 등에 표시하도록 정한다(<a href="https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&amp;lspttninfSeq=71795">원산지 표시법 시행령 제3조</a>·<a href="https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&amp;flSeq=148218193&amp;gubun=">시행규칙 별표 3</a>, 노트 A등급). 껍질째·탈각 원물과 아몬드 음료·시리얼 같은 가공품의 표시 판단을 하나의 문장으로 통일하지 않는다.</p>
+<p>국외 정책도 수급에 영향을 준다. USDA 베이징 사무소는 <strong>2025년 기준</strong> 중국의 HS 0802.11·0802.12 수입관세를 미국산 45%, 호주산 0%로 제시하고, 2025년 4월 아르헨티나산 아몬드 시장 접근 허용을 기록했다. 이 수치를 2026년 현행 중국 세율로 연장하지 않는다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nuts+Annual_Beijing_China+-+People%27s+Republic+of_CH2025-0198">USDA FAS GAIN 중국, 2025-11-21</a>, 노트 A등급). 한국의 수입가격을 설명할 때는 미국·호주 공급량뿐 아니라 이들 산지의 제3국 시장 접근도 관찰 대상이다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>은행 전망은 가격 경로의 시나리오로 읽는다</h2>
+<p class="lead">이 보고서에서 검토한 은행 원문은 Wells Fargo Agri-Food Institute의 2025년 1분기·3분기 자료 두 건이다. 두 PDF의 같은 이름 MD 발췌본에서 아몬드 문단을 확인했다. 은행의 가격 전망·호가는 공식 생산 통계나 한국 수입 실측이 아니다. 발표 당시의 관측·판단으로 날짜를 붙여 읽는다(은행 원문 MD, E15).</p>
+<div class="tw">
+<table>
+<caption>표 8. 은행·기관 자료의 아몬드 관련 주장</caption>
+<thead><tr><th>기관·문서</th><th>날짜</th><th>핵심 내용</th><th>이 보고서의 취급</th></tr></thead>
+<tbody>
+<tr><td>Wells Fargo Agri-Food Institute, Q1 2025</td><td>2025년 1분기</td><td>2024년 작황이 당시 객관적 전망 28억 파운드보다 낮은 약 27억 파운드에 가까울 것으로 봄. 평균 크기 가격 호가 2.38달러/파운드 언급</td><td>당시 은행 전망·호가</td></tr>
+<tr><td>Wells Fargo Agri-Food Institute, Q3 2025</td><td>2025년 3분기</td><td>2025년 7월 USDA 객관적 추정 30억 파운드 발표 뒤 가격이 약 20% 하락했다고 서술</td><td>당시 은행의 시장 해석</td></tr>
+<tr><td>Rabobank, <em>Five-year California almond outlook</em></td><td>2025-12-11</td><td>2026/27·2027/28 재고이월 증가가 가격 상승을 제한하고 이후 노후 나무 면적 이탈이 공급을 조일 수 있다고 전망</td><td>B등급 전망</td></tr>
+<tr><td>Rabobank, <em>Australian tree nut outlook</em></td><td>2024-08-26</td><td>호주 성목화의 공급 확대 여지와 물 부족 제약을 함께 제시</td><td>B등급 전망</td></tr>
+<tr><td>USDA FAS GAIN, <em>Korea Tree Nut Market Brief</em></td><td>2025-05-23</td><td>한국의 제한적인 국내 견과 생산과 수입 의존, 주요 수입 견과로서 아몬드를 설명</td><td>A등급 기관 설명</td></tr>
+<tr><td>KREI, <em>세계 견과류 산업 동향과 시사점</em></td><td>출판 2024-12-30</td><td>세계 견과류 생산·교역과 한국 소비를 다룸</td><td>A등급, 아몬드 단독 전망 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>_raw/_banks/index.csv</code>에서 이 보고서가 검토한 Wells Fargo 두 건과 대응 MD 원문(E15); 웹 조사 노트의 <a href="https://www.rabobank.com/knowledge/q011508641-five-year-california-almond-outlook">Rabobank 캘리포니아</a>·<a href="https://www.rabobank.com/knowledge/q011439391-australian-tree-nut-outlook-opportunities-and-risks-in-almonds-and-macadamias">Rabobank 호주</a>·<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Korea+Tree+Nut+Market+Brief_Seoul+ATO_Korea+-+Republic+of_KS2025-0018.pdf">USDA FAS 한국</a>·<a href="https://repository.krei.re.kr/handle/2018.oak/31552">KREI</a>(E14).</p>
+<p>Wells Fargo 1분기 보고서는 2024년 작황을 당시 28억 파운드 객관적 전망보다 낮게 보았다. “평균 크기”의 2.38달러/파운드는 특정 보고 시점의 시장 호가로 제시됐다. 이를 2024년 확정 농가 평균가격이나 한국 CIF 단가로 옮기지 않았다(<a href="https://www.wellsfargo.com/assets/pdf/commercial/insights/agri-food-intelligence/q1-2025-industry-update_a11y.pdf">Wells Fargo Q1 2025 원문</a>, 은행 색인·MD). 3분기 보고서의 약 20% 가격 하락은 <strong>2025년 7월 USDA 객관적 표본측정 전망 30억 파운드 발표 뒤</strong> 시장 반응에 관한 서술이다. 2026년 5월 NASS 도표가 표시한 2025년 생산은 27.2억 파운드다. 전망과 뒤의 생산 기록을 같은 확정값으로 취급하지 않는다(<a href="https://www.wellsfargo.com/assets/pdf/commercial/insights/agri-food-intelligence/q3-2025-industry-update.pdf">Wells Fargo Q3 2025 원문</a>; <a href="https://www.nass.usda.gov/Statistics_by_State/California/Publications/Specialty_and_Other_Releases/Almond/Objective-Measurement/202507almondOM.pdf">USDA NASS, 「2025 California Almond Objective Measurement Report」, 2025-07-10</a>; <a href="https://www.nass.usda.gov/Newsroom/Executive_Briefings/2026/05-12-2026.pdf">USDA NASS, 「May 2026 Tree Nut Acreage, Yield, and Production」, 2026-05-12</a>, E15).</p>
+<p>Rabobank의 캘리포니아 전망은 가까운 몇 시즌의 수율·수요·재고와 그 뒤 노후 나무의 이탈을 서로 다른 시간축으로 놓는다. 따라서 “공급이 계속 늘어난다”와 “공급이 바로 감소한다” 중 하나만 떼어 한국 시장의 미래값으로 채택하지 않았다(<a href="https://www.rabobank.com/knowledge/q011508641-five-year-california-almond-outlook">Rabobank, 2025-12-11</a>, 웹 조사 노트 B등급). 호주 보고서의 물 부족 제약도 확대 전망과 함께 둔다(<a href="https://www.rabobank.com/knowledge/q011439391-australian-tree-nut-outlook-opportunities-and-risks-in-almonds-and-macadamias">Rabobank, 2024-08-26</a>, B등급).</p>
+<p>USDA FAS의 한국 견과 시장 브리프는 산업의 수입 의존을 설명하지만 이 보고서의 HS별 통관 수치는 관세청 원자료로 다시 계산했다. KREI의 세계 견과류 보고서는 넓은 품목군 분석이므로 아몬드 개별 2026년 생산·수입 전망으로 인용하지 않았다. OECD‑FAO 2026~2035 농업전망에도 아몬드 개별 장이 확인되지 않았다는 웹 조사 노트의 확인 결과를 적용해, 전체 농업 전망을 아몬드 수급 전망으로 치환하지 않는다(<a href="https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report.html">OECD‑FAO 전망</a>, 노트 A등급).</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표</span>한국 통관 단가와 캘리포니아 공급을 다른 시계열로 감시한다</h2>
+<p class="lead">아몬드 공급망의 첫 위험은 <strong>한국 수입의 미국산 집중</strong>이다. UN Comtrade 한국 신고 상대국 행에서 2025년 HS 0802.12 수입중량 중 미국산은 99.71%였다. 세계 공급에서도 미국은 2024년 FAOSTAT 껍질째 생산의 50.6%, <strong>탈각 수출의 62.2%</strong>를 차지했다. 별도 품목인 껍질째 수출 비중은 70.4%다. 이 비율들은 각각 한국 통관, 세계 생산, 세계 수출의 다른 분모를 사용한다(01·02·04절, E01·E02·E05).</p>
+<p>둘째 위험은 <strong>생산 전망과 실제 출하의 차이</strong>다. 2026년 5월 NASS의 27억 파운드는 재배자 설문에 기초한 주관적 전망이다. 2026년에는 7월 객관적 표본측정 전망이 나오지 않는다. 다음 공식 생산 수치와 출하 자료를 확인해야 하며, 개화기 날씨와 관개 배정만으로 한국 소매가격을 예측하지 않는다(<a href="https://www.almonds.org/about-us/press-room/usda-forecasts-slightly-smaller-almond-crop">Almond Board of California, 「USDA Forecasts Slightly Smaller Almond Crop」, 2026-05-12</a>, 02·06절).</p>
+<p>셋째는 <strong>달러 통관단가와 원화 소매가격의 분리</strong>다. 2026년 1~8월 한국 탈각 수입량은 전년 같은 기간보다 10.6% 낮고 누적 달러/kg은 6.42% 높다. ECOS 아몬드 CPI는 2026년 9월 전년 같은 달보다 4.15% 높다. 이 수치들은 통화, 거래 단계, 조사 범위, 시차가 다르다(E04·E11).</p>
+<p>넷째는 <strong>제도와 식품검사 조건의 확인</strong>이다. 한·미 협정의 아몬드 관세 철폐는 확인됐지만 통관별 원산지 요건과 2026년 실효세율은 별도 확인 대상이다. 식약처의 <code>아몬드(견과,건조)</code> 수입검사 수집본에는 부적합 중량이 2025년 19,958kg, 2026년 진행분 39,471kg으로 기록돼 있다. 기간이 달라 이 둘만으로 부적합률의 연간 추세를 단정하지 않는다. 2026년 5월 미국산 아몬드의 피페로닐부톡사이드 부적합 기록도 있다. 아플라톡신 개별 검사지시의 현행 상세 원문과 검역본부 조회 결과는 별도로 확인해야 한다(식약처 수입식품 검사통계 수집본, E19; 08절).</p>
+<div class="tw">
+<table>
+<caption>표 9. 산업 관찰 지표와 확인 주기</caption>
+<thead><tr><th>지표</th><th>원천·수집기</th><th>주기</th><th>현재 기준점</th><th>다음 확인</th></tr></thead>
+<tbody>
+<tr><td>한국 탈각 수입량·달러/kg</td><td>관세청 <code>customs_item_trade_monthly</code></td><td>월</td><td>2025년 26,685.8톤·6.72달러/kg</td><td>2026년 완결 후 전망 반증</td></tr>
+<tr><td>한국 국가별 탈각 수입</td><td>UN Comtrade 한국 신고 상대국 행·관세청 <code>customs_kr</code></td><td>연·월</td><td>2025년 미국산 중량 99.71%·금액 99.56%; 2026년 관세청 3~8월 자료는 잠정</td><td>2026년 완료연도 국가별 구조</td></tr>
+<tr><td>세계 껍질째 생산·탈각 수출</td><td>FAOSTAT QCL·전체 TCL</td><td>연</td><td>2024년 미국 생산 50.6%·탈각 수출 62.2%</td><td>2025년 값·플래그</td></tr>
+<tr><td>주요국 탈각 수급·재고</td><td>USDA PSD</td><td>갱신 시</td><td>2024/25 미국 기말재고 219,451톤</td><td>최신 빈티지와 실제 출하 비교</td></tr>
+<tr><td>캘리포니아 작황·물</td><td>USDA NASS·ERS·개간국</td><td>발표 시</td><td>2026년 5월 NASS 27억 파운드 전망</td><td>2026년 7월 객관적 추정 없음; 다음 공식 생산 수치·출하 확인</td></tr>
+<tr><td>한국 소매가격·물가지수</td><td>KAMIS·ECOS</td><td>월</td><td>2026년 5월 오프라인 1,922원/100g; 9월 CPI 112.81</td><td>KAMIS 평년 제외, 채널별 비교</td></tr>
+<tr><td>관세·검역·식품검사</td><td>관세청·식약처·검역본부</td><td>고시 변경·통계 갱신 시</td><td>한·미 FTA 아몬드 관세 즉시 철폐; 식약처 아몬드 품목 통계 확보</td><td>2026년 실제 적용조건·검사지시 확인</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청(E04·E06), UN Comtrade(E05), FAOSTAT(E01·E02), USDA PSD(E03), 식약처(E19), 웹 조사 노트의 USDA·KAMIS·법령 확인(E12·E14), ECOS(E11). 현재 기준점의 기간과 단위는 각 절에 적었다.</p>
+<h3>남은 물음</h3>
+<ul>
+<li><strong>한국에서 실제로 소비된 아몬드는 얼마인가.</strong> 재고·가공·조제품을 잇는 같은 기간 수급표로 관세청 순수입과 USDA PSD 국내소비를 대조한다.</li>
+<li><strong>2026년 캘리포니아 확정 수확량과 한국 수입단가의 관계는 어떠한가.</strong> 확정 수확, 가공 후 출하, 수출 선적, 한국 통관, 소매가격의 시차를 대조한다.</li>
+<li><strong>달러 통관단가의 변화가 원화 소매가격에 전이됐는가.</strong> 환율·재고·상품구성·소매 조사표를 같은 기간에 놓고 검증한다.</li>
+<li><strong>2026년 실효 관세·검역·아플라톡신 검사조건은 무엇인가.</strong> 해당 통관일의 관세율표·원산지증명, 검역 조회 결과, 식약처 현행 고시 원문을 확인한다.</li>
+<li><strong>기업별 수입·가공·소매 비중은 얼마인가.</strong> 동일 연도·동일 품목·동일 분모의 업체별 원장으로 통관·제조·브랜드·소매 역할을 구분해 확인한다.</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>미국산 탈각 원물에서 국내 가공·소매로</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국의 HS 0802.12 탈각 아몬드 수입중량에서 미국산은 <strong>99.71%</strong>다. 04절과 같은 UN Comtrade 한국 신고 상대국 행을 분모로 하면 수입중량 10% 이상 공급국은 <strong>미국 한 곳</strong>이다. 호주는 39.9톤·0.15%인 소량 공급국이다. 04절은 아몬드만 분리할 수 없는 HS 2008 조제품을 수입액에 합산하지 않았으므로, 가공품 세번별 10% 판정과 공급국 순위는 제시하지 않는다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080212&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 2025년 HS 0802.12</a>, A등급).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 미국 아몬드 수출·가공기업과 한국 연결</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표·연도</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>미국</td><td>Blue Diamond Growers</td><td>생산자 협동조합·가공·수출</td><td>2025 회계연도 순매출·기타수익 15.09억 달러</td><td>식약처 해외 제조사명 일치</td><td><a href="https://media.bluediamond.com/uploads/2025/11/19152752/Blue-Diamond_Annual-Report_2025.pdf">2025 연차보고서</a> A; 식약처 A</td></tr>
+<tr><td>미국</td><td>Stewart &amp; Jasper Marketing</td><td>생산·가공·무역</td><td>회사 소개상 약 5천만 파운드 가공·마케팅, 게시 연도 미표기</td><td>식약처 해외 제조사명 일치</td><td><a href="https://www.stewartandjasper.com/about-us/our-history/">회사 연혁</a> B; 식약처 A</td></tr>
+<tr><td>미국</td><td>Treehouse California Almonds</td><td>생산·가공</td><td>2022년 아몬드 가공량 연 1억 1천만 파운드 초과</td><td>식약처 해외 제조사명 일치</td><td><a href="https://www.treehousealmonds.com/about-us/">회사 연혁</a> B; 식약처 A</td></tr>
+<tr><td>미국</td><td>Supreme Almonds of California</td><td>생산·가공·무역</td><td>아몬드 단독 매출·취급량은 확인된 공개 자료 없음</td><td>식약처 해외 제조사명 일치</td><td><a href="https://www.supremealmonds.com/our-history">회사 연혁</a> B; 식약처 A</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 기업 자료와 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(2025년 10월~2026년 9월 ‘아몬드(견과,건조)’ 신고 확인, A등급). 제조사 연결은 <strong>신고 건수 기준</strong>의 명칭 일치이며 한국행 중량·매출을 뜻하지 않는다. 2026년 포함 기간의 집계는 잠정이다.</p>
+<p>Blue Diamond는 자사 자료에서 세계 최대 아몬드 가공업체라고 설명한다. Wonderful Pistachios &amp; Almonds도 아몬드·피스타치오를 합친 세계 최대 재배·가공업체라고 자사 자료에서 설명하며, 식약처 제조사 목록에도 이름이 있다. 두 주장은 사업 범위가 다르다. <strong>동일 연도·동일 품목의 수출량으로 검증한 세계 1위 수출기업 순위는 확인된 공개 자료 없음</strong>(<a href="https://www.bluediamond.com/growers/about/">Blue Diamond 회사 소개</a>, <a href="https://www.wonderful.com/who-we-are/">Wonderful 회사 소개</a>, 게시 연도 미표기·2026-10-09 확인, B등급; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a>, A등급).</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처의 2025년 10월~2026년 9월 <strong>‘아몬드(견과,건조)’ 품목명</strong> 신고 확인 자료에는 948건·수입업소 64곳이 잡힌다. 아래 순서는 <strong>신고 건수 기준</strong>이며 중량·금액·시장점유율 순위가 아니다. ‘주요 제조국’은 신고서의 제조국 칸에서 업소별 상위 2개국을 읽은 값이다. 이 칸이 재배국이나 FTA 원산지와 같은지는 이 자료만으로 확정하지 않는다. 수출국·선적국은 별도 칸이다. 같은 기간 원물 아몬드는 ‘땅콩 또는 견과류가공품’ 품목명으로도 신고된다. 이 분류에서 제품명이 ‘아몬드’인 신고는 137건이며, 혼합·스프레드를 뺀 미국산 단일 아몬드형 제품은 보조 필터 기준 약 186건이다. 아래 표는 이 신고를 포함하지 않는다. 해당 보조 필터를 합산하면 대한제당이 3위(60건)로 올라오고, 코스트코코리아·웰넛·상우인터내셔날도 각 30건 안팎으로 순위가 오른다. 보조 필터 기준에 따라 건수는 달라진다(<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>, 2025년 10월~2026년 9월, A등급; 2026년 포함 집계 잠정).</p>
+<div class="tw">
+<table>
+<caption>표 11-2. ‘아몬드(견과,건조)’ 품목명 수입신고 상위 업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>주식회사 열매마을</td><td class="num">90</td><td>미국</td><td>이 표의 1위</td></tr>
+<tr><td>(주)굿넛</td><td class="num">56</td><td>미국</td><td>공동 2위</td></tr>
+<tr><td>(주)바프</td><td class="num">56</td><td>미국</td><td>공동 2위</td></tr>
+<tr><td>대영식품주식회사</td><td class="num">55</td><td>미국</td><td>4위</td></tr>
+<tr><td>대한제당(주)</td><td class="num">53</td><td>미국</td><td>표 11-3</td></tr>
+<tr><td>주식회사 성우농수산</td><td class="num">40</td><td>미국</td><td>6위</td></tr>
+<tr><td>(주)에이치앤 인터내셔날</td><td class="num">37</td><td>미국</td><td>7위</td></tr>
+<tr><td>대신농산(주)2공장</td><td class="num">32</td><td>미국</td><td>8위</td></tr>
+<tr><td>(주)선명농수산</td><td class="num">29</td><td>미국</td><td>9위</td></tr>
+<tr><td>동우농산(주)</td><td class="num">27</td><td>미국</td><td>10위</td></tr>
+<tr><td>니드엔너츠</td><td class="num">26</td><td>미국</td><td>11위</td></tr>
+<tr><td>(주)대봉식품</td><td class="num">24</td><td>미국</td><td>공동 12위</td></tr>
+<tr><td>(주)이마트</td><td class="num">24</td><td>미국</td><td>공동 12위·표 11-3</td></tr>
+<tr><td>(주)상우인터내셔날</td><td class="num">22</td><td>미국</td><td>14위</td></tr>
+<tr><td>(주)산과들에</td><td class="num">20</td><td>미국</td><td>공동 15위</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>의 2025년 10월~2026년 9월 ‘아몬드(견과,건조)’ 신고 확인 자료(<strong>‘땅콩 또는 견과류가공품’ 품목명으로 신고된 아몬드 제품 제외</strong>), 업소명 표기 변형 합산, <strong>신고 건수 기준</strong>(A등급). 2026년 포함 기간의 집계는 잠정이다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 국내 가공·유통기업의 확인 가능한 규모</caption>
+<thead><tr><th>기업</th><th>아몬드와의 연결</th><th>규모·매출 구성</th><th>해석 범위</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>이마트</td><td>식약처 원물 신고 24건</td><td>2025년 연결 매출 약 28조 9,704억원; 별도 할인점 사업부 매출 11조 6,494억원</td><td>전 사업·사업부 매출이며 아몬드 매출 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001378/20260318006410/11011.htm">2025 사업보고서</a> A; <a href="https://company.emart.com/ko/m/investor/finance03.do">기업 재무정보</a> B; 식약처 A</td></tr>
+<tr><td>대한제당</td><td>식약처 원물 신고 53건</td><td>2025년 연결 매출 약 1조 3,563억원; 식품부문 약 6,951억원(51.2%)</td><td>주요 원재료 공시는 원당·옥수수 등을 제시하며 아몬드만의 매입액은 분리하지 않음</td><td><a href="https://kind.krx.co.kr/external/2026/03/19/000700/20260319003138/11011.htm">2025 사업보고서</a> A; 식약처 A</td></tr>
+<tr><td>동서식품</td><td>식약처 원물 신고 14건</td><td>2025년 매출 약 1조 8,105억원</td><td>동서 사업보고서의 공동기업 동서식품 요약매출; 아몬드 매출·원재료 투입량 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/12/000232/20260312000747/11011.htm">동서 2025 사업보고서</a> A; 식약처 A</td></tr>
+<tr><td>코스트코코리아</td><td>식약처 원물 신고 17건</td><td>2025년 9월 발표 시점 한국 매장 20곳</td><td>판매망 규모이며 아몬드 판매량 아님</td><td><a href="https://investor.costco.com/news/news-details/2025/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2025-Operating-Results/default.aspx">Costco 실적발표</a> B; 식약처 A</td></tr>
+<tr><td>바프(HBAF)</td><td>식약처 원물 신고 56건</td><td>회사 소개상 25개국 수출, 게시 연도 미표기</td><td>견과 브랜드 전체의 수출국 수이며 아몬드 매출 아님</td><td><a href="https://en.hbaf.com/about">HBAF 영문 회사 소개</a> B; 식약처 A</td></tr>
+<tr><td>농심켈로그</td><td>식약처 원물 신고 13건</td><td>아몬드 단독 매출·투입량은 확인된 공개 자료 없음</td><td>원물 수입업소 연결만 확인</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a> A</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 2025년 사업보고서·기업 발표·회사 소개(게시 연도 미표기는 2026-10-09 확인) 및 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a>의 2025년 10월~2026년 9월 신고 확인 자료. 식약처 수치는 <strong>신고 건수 기준</strong>이며 2026년 포함 집계는 잠정이다. 기업 전체 매출과 판매망 규모를 아몬드 점유율로 환산하지 않는다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 아몬드 밸류체인과 한국 시장의 관측 범위</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>미국 캘리포니아 재배자·협동조합</td><td>2025년 한국 탈각 수입중량의 미국산 99.71%</td><td>산지 계약·농가 판매</td><td>개화기 날씨·관개·수분</td></tr>
+<tr><td>1차 가공</td><td>탈피·탈각·선별·살균 업체</td><td>한국행 업체별 중량 미확보</td><td>산지 가공·수출 계약</td><td>수율·품질·식품안전</td></tr>
+<tr><td>수출·국제 무역</td><td>미국 핸들러·수출업체·운송사</td><td>2025년 한국 탈각 수입 26,685.8톤</td><td>국제 계약·운임</td><td>단일 산지 집중·물류</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·식약처·검역본부</td><td>2025년 탈각 수입액 약 1억 7,936만 달러</td><td>수입계약·통관 신고</td><td>환율·원산지 요건·검사 부적합</td></tr>
+<tr><td>국내 가공</td><td>볶음·조미·포장·시리얼·음료 제조사</td><td>아몬드 단독 투입량 미확보</td><td>원료 매입·제조원가·납품계약</td><td>원료가격·제품별 수율</td></tr>
+<tr><td>도매·유통</td><td>식품 원료상·대형 유통사</td><td>업체별 물량 점유율 미확보</td><td>도매·납품계약</td><td>재고·보관·채널 비용</td></tr>
+<tr><td>소매·외식</td><td>대형마트·온라인·외식업체</td><td>2026년 5월 오프라인 수입 아몬드·중품 평균 1,922원/100g</td><td>채널별 판매가격</td><td>판촉·상품 구성·소비 둔화</td></tr>
+<tr><td>소비</td><td>가정·식품 제조 수요처</td><td>USDA PSD 2024/25 국내소비 28,400톤</td><td>최종 구매 선택</td><td>알레르기·가격 부담</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 04절의 <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080212&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 2025년 상대국 자료</a>·관세청 집계, 02·03절의 <a href="https://apps.fas.usda.gov/psdonline/app/index.html">USDA PSD</a>, 05절의 <a href="https://www.kamis.or.kr/customer/price/agricultureRetail/catalogue.do?action=monthly&amp;countycode=&amp;itemcategorycode=&amp;itemcode=&amp;kindcode=&amp;marketclscode=&amp;mm=05&amp;productrankcode=&amp;yyyy=2026">aT KAMIS</a>(각 A등급). 생산·통관·소비 수치는 상품 형태와 기준기간이 달라 합산하지 않는다.</p>
+<p>부가가치는 산지의 탈각·선별·살균과 국내의 볶음·조미·포장, 브랜드·유통 서비스에서 생긴다. Treehouse가 밝힌 2022년 연 1억 1천만 파운드 초과 가공량은 산지 가공 규모를, 바프가 밝힌 25개국 수출은 국내 가공 브랜드의 판매망을 보여 준다(<a href="https://www.treehousealmonds.com/about-us/">Treehouse</a>, <a href="https://en.hbaf.com/about">HBAF</a>, B등급). 한국의 2025년 탈각 수입단가 6.72달러/kg과 2026년 5월 소매 관측가격 1,922원/100g은 형태·통화·시점·거래 단계가 다르다(04·05절). 따라서 두 가격의 차이를 국내 부가가치액이나 유통마진으로 계산할 수 없으며, 단계별 부가가치 비중도 확인된 공개 자료 없음.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 아몬드 산업의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>관세청·식품의약품안전처·농림축산검역본부</td><td>통관, 수입식품 신고·검사, 식물검역</td><td>수입 흐름과 식품안전 조건에 직접 영향</td></tr>
+<tr><td>해외 정부</td><td>미국 USDA NASS·USDA FAS·연방 개간국</td><td>작황 통계·시장 보고·관개 조건</td><td>공급 전망과 생산 여건에 영향</td></tr>
+<tr><td>생산자·단체</td><td>캘리포니아 아몬드 재배자·Almond Board of California</td><td>재배, 연구·시장 개발</td><td>작황·품질·산지 홍보에 영향</td></tr>
+<tr><td>수출·가공기업</td><td>Blue Diamond Growers·Treehouse California Almonds·Stewart &amp; Jasper</td><td>집하·가공·수출</td><td>품질 규격·계약·선적에 영향</td></tr>
+<tr><td>수입·유통기업</td><td>이마트·대한제당·바프·동서식품·코스트코코리아</td><td>원물 수입, 가공 또는 판매</td><td>구매·재고·국내 상품 구성에 영향</td></tr>
+<tr><td>소비자·시민사회</td><td>국내 소비자·한국소비자원</td><td>구매 선택·상품 시험·가격 정보</td><td>가격·품질·표시 요구를 전달</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·UN Comtrade·BRCGS</td><td>생산·무역 통계, 민간 식품안전 인증 기준</td><td>통계 비교와 거래상 품질 신뢰에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(2025년 10월~2026년 9월), <a href="https://www.nass.usda.gov/">USDA NASS</a>·<a href="https://www.usbr.gov/newsroom/news-release/5386">연방 개간국</a>(2026년), <a href="https://www.almonds.org/about-us/what-we-do">Almond Board의 역할 설명</a>(2026-10-09 확인), <a href="https://www.kca.go.kr/kca/sub.do?menukey=5013">한국소비자원</a>, <a href="https://www.fao.org/faostat/en/">FAOSTAT</a>·<a href="https://comtradeplus.un.org/">UN Comtrade</a>·<a href="https://www.brcgs.com/our-standards/food-safety">BRCGS 식품안전 기준</a>(2026-10-09 확인), 표 11-1·11-3의 기업 자료. 정부·국제기구 A등급, 협회·기업·민간 인증기관 B등급.</p>
+<ul>
+<li>재배자의 수취가격·물 공급 이해와 수입·가공업체의 안정적인 조달가격·품질 요구는 산지 계약에서 엇갈린다.</li>
+<li>수입·유통업체의 신속한 공급 요구와 규제기관·소비자의 검사·안전정보 요구는 통관 단계에서 엇갈린다.</li>
+<li>낮은 판매가격을 원하는 구매자와 가공·유통 비용을 회수하려는 기업의 이해는 소매가격에서 엇갈린다.</li>
+</ul>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황</h2>
+<p class="lead">이 표는 2026년 10월 7일 <code>rawbulk.report_delta.coverage("almonds")</code>의 반환값이다. 행수는 수집기가 기록한 품목 분할 또는 월간 파일의 행수다. “최신”은 자료의 최종 확정 여부가 아니라 해당 수집기에서 보이는 가장 늦은 기간이다. USDA PSD의 반환값에는 기간 열이 없다고 표시되지만, 개별 CSV에는 <code>Market_Year</code>와 작성 빈티지 <code>Calendar_Year</code>·<code>Month</code>가 있다.</p>
+<div class="tw">
+<table>
+<caption>표 10. 아몬드 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">216</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">40</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">684</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">70</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">44</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">530</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">1,160</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">3,526</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">11,911</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">37,260</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>usda_psd_all</td><td class="num">11,352</td><td>반환값에 기간 열 없음</td><td>2026-10-07</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">2,558</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">88</td><td>2026.08</td><td>2026-10-01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>에서 실행한 <code>rawbulk.report_delta.coverage("almonds")</code>의 반환값. <code>customs_kr</code>의 88행은 국가별 진행연도 자료다. 2025년 국가별 비중은 UN Comtrade 한국 신고 상대국 행에서 별도로 계산했다(E05).</p>
+<h3>자료 검토 범위</h3>
+<p>원 목록은 <code>archive_inventory/almonds.csv</code>의 65행이다. 캐시의 아몬드 품목 분할 파일은 221(껍질째) 중심으로 생성됐다. 구 수집기 <code>scripts/agri_collector.py</code>는 222를 탈각 아몬드라고 주석 처리했지만 222는 호두이며, FAOSTAT의 탈각 아몬드 품목코드는 231이다. 전체 TCL의 231 수출행은 별도의 2026-10-06 수집본에서 확인했다. 원장에 적힌 대용량 통합 TCL·DTM·SUA 파일의 231 행은 각각 동일 파일에서 검토한 것으로 기록하지 않는다(E02·E18).</p>
+<div class="tw">
+<table>
+<caption>표 11. 아카이브 원장 판정(2026-10-07 원 목록에 대한 검토 상태)</caption>
+<thead><tr><th>판정</th><th class="num">파일 수</th><th>주된 사유</th></tr></thead>
+<tbody>
+<tr><td>반영</td><td class="num">12</td><td>Comtrade·관세청 월별, FAOSTAT 품목 분할, USDA PSD, 수집기 코드 검증, Pink Sheet 품목 부재 안내</td></tr>
+<tr><td>불필요</td><td class="num">50</td><td>확인된 중복 원본, 견과류 합계·범용 지표, 코드표·로그</td></tr>
+<tr><td>미검토</td><td class="num">3</td><td>통합 TCL·DTM·SUA 원본의 탈각 아몬드 231 행</td></tr>
+<tr class="tot"><td>전체</td><td class="num">65</td><td>원 목록 65행과 일치</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/almonds.csv</code>의 경로별 목록과 이 보고서의 <code>01_아카이브_원장.csv</code>. <code>반영</code>에는 수치의 근거뿐 아니라 잘못된 품목코드를 식별한 수집기 스크립트와 Pink Sheet 품목 부재 안내가 포함된다.</p>
+<p>수집기의 빈칸도 구분한다. 레지스트리의 <code>kamis: null</code>은 <strong>정기 KAMIS 수집기 미설정</strong>을 뜻한다. aT KAMIS 공식 화면에는 수입 아몬드 소매가격 항목이 있어 05절에 웹 조사 노트의 관측값을 실었다. 월별 자동 수집 부재와 공개 가격 부재는 같은 말이 아니다. 은행 자료 중 이 보고서가 원문 문단까지 검토한 Wells Fargo 문서는 2025년 1분기·3분기 두 건이다(E15).</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 아몬드 산업 해부: 탈각 수입과 캘리포니아 공급</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판 초고)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · 관세청·FAOSTAT·USDA PSD·ECOS 원자료, 은행 원문, 등급을 표시한 웹 조사 노트. UN Comtrade 공개 상대국 행과 FAOSTAT 전체 TCL은 별도 대조</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>30_근거_수치.md에 파일·필터·계산식을 기록했다. 결과는 update_2026-10-07/20_숫자대조.txt.</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>HS 0802.11(껍질째)·0802.12(탈각). 조제 아몬드가 다른 견과와 섞이는 HS 2008 범주는 무역 합계에서 제외</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>아몬드 단독 최종소비량, 기업별 동일 분모 점유율, 2026년 통관별 실효세율·검역·아플라톡신 검사 세부 원문은 미확보. 2026년 수입과 작황 수치는 진행기간 또는 전망.</span></div>
+</footer>
+</div>
+

@@ -1,0 +1,715 @@
+<title>한국 고추 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 고추<br>
+        세계 생산 · 국내 수급 · 무역 · 가격 · 유통 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">건고추와 고춧가루를 나눠 읽는 산업 보고서 2026</p>
+      <h1><span class="scr">Pepper</span> <span class="lt">한국 고추 산업 해부</span></h1>
+      <p class="cover-sub">국내 건고추 생산, 건고추와 고춧가루의 직접 수출입, 가공식품 속 고추는 서로 다른 통계 범위에 놓여 있다.
+        세계 생산에서는 인도가 크고, 한국의 직접 수입에서는 중국이 핵심 상대국이다.
+        생산·무역·가격·유통·제도를 원자료의 범위와 단위를 맞춰 따라간다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">국내 건고추 생산</div><div class="v">61,449</div>
+        <div class="n">톤 · 2025년 · KOSIS</div></div>
+      <div class="cf"><div class="k">국내 생산 증감</div><div class="v dn">−9.7%</div>
+        <div class="n">2025년 건고추 · 2024년 고점 대비</div></div>
+      <div class="cf"><div class="k">건고추 직접 수입</div><div class="v">4,022</div>
+        <div class="n">톤 · 2025년 · HS 0904.21</div></div>
+      <div class="cf"><div class="k">고춧가루 직접 수입</div><div class="v">2,634</div>
+        <div class="n">톤 · 2025년 · HS 0904.22</div></div>
+      <div class="cf"><div class="k">두 품목 수입액</div><div class="v">2,137만</div>
+        <div class="n">달러 · 2025년 · 관세청 HS10 합계</div></div>
+      <div class="cf"><div class="k">세계 건고추 생산</div><div class="v">546만</div>
+        <div class="n">톤 · 2024년 · FAOSTAT 추정 포함</div></div>
+      <div class="cf"><div class="k">인도 생산 비중</div><div class="v">53.3%</div>
+        <div class="n">2024년 세계 건고추 생산 대비</div></div>
+      <div class="cf"><div class="k">WTO 시장접근물량</div><div class="v">7,185</div>
+        <div class="n">톤 · 2026년 고추 5개 세번</div></div>
+    </div>
+
+  </div>
+</header>
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">생산·직접 교역·가공품 환산은 서로 다른 산업 규모를 보여 준다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">인도가 건고추 생산의 절반을 넘지만 품목별 국제 장부는 다르다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">건고추 생산은 줄었고 소비 총량은 통계 범위에 좌우된다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">직접 수출입과 가공품 환산 교역은 다른 장부다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">도매 화건·수입 단가·산지가격은 각자의 단위로 읽는다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">인도는 세계 생산의 중심, 한국 직접 수입은 중국 경로가 크다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">원료 형태가 바뀌며 기업 순위의 분모도 달라진다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">WTO 배정표와 실제 신고세율은 범위가 다르다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">KREI의 수급 전망은 있지만 은행 색인의 고추 전망은 오탐이다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 관찰 지표·남은 물음</span><span class="t">같은 분모로 갱신하고 불일치를 설명한다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">중국산 직접 수입, 냉동 원료와 국내 가공의 서로 다른 경로</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황과 아카이브 범위</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>생산·직접 교역·가공품 환산은 서로 다른 산업 규모를 보여 준다</h2>
+<p class="lead">한국 고추 산업의 첫 번째 경계는 품목 형태다. 국내 건고추 생산량, 건고추·고춧가루 직접 수출입량, 냉동고추와 소스·김치에 든 고춧가루를 건고추로 환산한 수출입량은 각각 다른 질문에 답한다. 2025년 국내 건고추 생산은 KOSIS 원표 기준 61,449톤이고, 같은 해 HS 0904.21·0904.22 직접 수입은 합계 6,656톤이다. KREI의 2024년산 건고추 환산 수출 57,293톤과 수입 130,651톤은 가공식품 속 함량과 수율까지 반영한 8월~이듬해 7월 기준 값이다. 서로 다른 연도·품목 범위의 수치를 더하거나 나눠 자급률을 계산하지 않는다(30_근거_수치 E01·E04·E07·E08; <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026년 1월</a>).</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>국내 생산.</strong> KOSIS 「채소생산량(조미채소)」에서 전국 건고추 생산량은 2024년 68,074톤에서 2025년 61,449톤(원값 61,449.2485톤)으로 바뀌었다. 2024년 고점 대비 증감률은 −9.7%(원계산 −9.7322%)다. 재배면적도 26,430ha에서 25,743ha로 줄었다. KREI 「농업전망 2026」의 2025년산 생산 추정치는 60,753톤으로 KOSIS 값과 다르다. 국내 생산 실적에는 KOSIS 값을 쓰고 KREI 수급표는 해당 기관의 연산 기준 추정·전망으로 읽는다(E01·E08).</li>
+<li><strong>세계 생산.</strong> FAOSTAT의 2024년 건고추 원물 생산은 세계 5,456,842톤, 약 546만 톤(원값 5,456,841.55톤)이다. 인도는 2,909,844톤으로 세계 행 대비 53.3%(원계산 53.3247%)다. 세계 합계에는 기관 추정값이 포함된다. <code>green</code> 생산 통계에는 단고추·피멘타가 들어가며, 한국 행은 적어도 2023년 KOSIS의 풋고추와 건고추 합계에 대응한다. 두 품목 생산량을 합산하지 않는다(E02·E09).</li>
+<li><strong>직접 수입.</strong> 2025년 한국은 HS 0904.21 건고추 4,022톤(원값 4,022,244kg)·1,135만 달러, HS 0904.22 분쇄·파쇄 고추 2,634톤(원값 2,633,942kg)·1,002만 달러를 신고했다. 두 코드의 합계는 6,656톤·2,137만 달러(원값 21,369,951달러)다. Comtrade 한국 신고의 같은 두 코드 합계는 2024년 6,846톤에서 2025년 6,656톤으로 2.8% 감소했다. 원형은 22.4% 줄고 분쇄·파쇄는 58.5% 늘었다. 2026년 1~8월 기준(잠정) 합계 4,178톤은 전년 같은 기간보다 4.4% 적다(E04·E05).</li>
+<li><strong>수출.</strong> KREI의 2024년산 건고추 환산 수출은 57,293톤이며, 그중 기타소스 환산분은 40,029톤이다. 이는 직접 통관 건고추만의 중량이 아니다. 달력연도 2025년 관세청 HS 0904.22 수출은 3,684,536kg으로 같은 세번 수입 2,633,942kg보다 많다. KREI의 2025년산 수급표 수출 57천 톤은 추정치다(E04·E07·E08; <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026년 1월</a>).</li>
+<li><strong>중국 연결.</strong> UN Comtrade 한국 신고의 2025년 상대국 자료에서 중국은 HS 0904.21 약 3,933톤, HS 0904.22 약 2,559톤이다. 각각 한국 신고 세계 합계의 97.8%와 97.2%다. 상대국 파일은 일부 국가만 담으므로 그 파일의 상대국 합을 전체 수입량의 분모로 쓰지 않는다(E05).</li>
+<li><strong>가공품 속 수입.</strong> KREI는 2024년산 건고추 환산 수입량을 130,651톤으로 제시한다. 여기에는 냉동고추, 기타소스, 김치, 혼합조미료 등에 포함된 고춧가루를 수율로 환산한 중량이 포함된다. 냉동고추의 환산량은 그중 36,105톤이다. 관세청 HS 0904 직접 수입량과 범위가 다르다(KREI 「농업전망 2026」 표 9-30, E07).</li>
+<li><strong>가격.</strong> KREI가 aT 자료로 제시한 5개 도매시장 건고추 화건 상품 가격은 2026년 3월 600g당 13,110원이다. 같은 표의 전년 3월은 13,470원이다. 보유한 KAMIS <code>pepper</code> 수집본에는 파·토마토 또는 빈 품목명이 들어 있어 고추 가격 시계열로 채택하지 않았다(E06·E15).</li>
+<li><strong>제도.</strong> 농식품부의 2026년 WTO 고추 시장접근물량은 5개 세번에 걸쳐 7,185톤이다. 운영계획의 저율·고율 표기는 50%·270%이고, 배정 경로는 aT 직접 수입·수입권공매·실수요자 배정으로 나뉜다. 이 계획은 개별 수입신고의 실제 적용세율표가 아니다(<a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농림축산식품부, 「2026년 WTO TRQ 운영 계획」, 2025년 9월</a>; E11).</li>
+<li><strong>유통.</strong> KREI의 2025년산 소매 POS 분석에서 구매 형태는 고춧가루 71.6%, 건고추 28.3%였다. 이는 해당 POS 표본의 구성이지 국민 전체 섭취 비율이 아니다. 생산·수입·제분·유통을 같은 분모로 비교한 기업별 취급량 순위는 확보하지 못했다(KREI 「농업전망 2026」 제9장, B; 07절).</li>
+</ul>
+<h3>이 보고서의 판단</h3>
+<p>이 보고서는 장기적인 국내 건고추 생산 감소와 가공품을 포함한 교역 확대가 함께 관찰될 가능성이 있다고 본다. KOSIS의 건고추 생산은 2005년 161,380톤에서 2025년 61,449톤으로 줄었고, KREI는 2016~2025년산 생산의 연평균 감소율을 3.7%로 제시한다. 2024년산 KREI 수급표에는 수입 130,651톤과 수출 57,293톤이 함께 있다. 2024년 대비 2025년 KOSIS 생산 감소율 −9.7%는 2024년 고점의 영향을 받는다. <strong>반증 조건:</strong> 완료연도 생산의 장기 감소가 멈추고, 같은 KREI 환산 기준에서 가공품 교역 비중이 지속해서 낮아지는 것이다. 수입 증가분이 국내 소비로 향하는지 가공·재수출로 향하는지도 함께 확인해야 한다(E01·E07; <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026년 1월</a>).</p>
+<p>이 보고서는 중국산 원료의 날씨·재고 변동이 한국의 직접 수입 가격과 공급 일정을 읽을 때 중요한 관찰 변수라고 본다. 한국 신고 세계 합계 대비 중국 물량이 크고, KREI 중국 모니터가 2025년산 일부 산지의 강우 피해와 북방 재고 증가를 함께 기록했기 때문이다. <strong>반증 조건:</strong> 동일 HS 범위의 완료연도 국가별 자료에서 중국 비중이 뚜렷하게 낮아지고 다른 상대국 물량이 이를 대체하는 것이다. 날씨와 한국 수입단가 사이의 인과관계는 현 자료만으로 확인하지 못했다(E05·E10).</p>
+<p>본문의 생산·무역·가격 숫자는 관측값과 기관 추정·전망을 구분해 표시한다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>인도가 건고추 생산의 절반을 넘지만 품목별 국제 장부는 다르다</h2>
+<p class="lead">세계 고추 통계는 열매의 상태에 따라 갈라진다. FAOSTAT 생산의 <code>Chillies and peppers, dry … raw</code>는 건고추 원물이고, <code>… green</code>은 신선 고추뿐 아니라 단고추·피멘타를 포함한다. 한국의 2023년 <code>green</code> 생산 행은 KOSIS 풋고추와 건고추의 합계에 대응하므로 이를 풋고추만의 물량으로 읽을 수 없다. 건고추와 <code>green</code>의 세계 생산량도 합쳐 «세계 고추 생산»으로 쓰지 않는다. 국제 무역의 HS 0709.60은 신선·냉장 과실, 0904.21은 건조한 원형, 0904.22는 분쇄·파쇄 형태다. 생산 품목과 통관 세번을 일대일로 대응시키지도 않는다(FAOSTAT QCL·UN Comtrade 품목 설명, E02·E05·E09).</p>
+<p>2024년 FAOSTAT 건고추 원물 생산 세계 행은 5,456,842톤으로 2023년 5,301,130톤보다 2.9% 많다. 인도의 보고값이 세계 생산의 절반을 넘는다. 뒤따르는 중국 본토·태국·방글라데시·에티오피아 값 중에는 FAO 추정·보정이 있으므로, 아래 순위는 통계표의 순위이지 각국 현장 조사값의 정확도 순위가 아니다. 중국 본토는 FAOSTAT Area Code 41을 사용하며 중국 합산 행 351을 별도 국가로 중복 계산하지 않는다. 2025년 세계 완료연도 값은 보유 QCL 파일에 없다(E02).</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 건고추 원물 생산 상위국(2024년, 톤)</caption>
+<thead><tr><th class="num">순위</th><th>국가</th><th class="num">생산량</th><th class="num">세계 행 대비</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>인도</td><td class="num">2,909,844</td><td class="num">53.3%</td></tr>
+<tr><td class="num">2</td><td>중국 본토(41)</td><td class="num">326,172</td><td class="num">6.0%</td></tr>
+<tr><td class="num">3</td><td>태국</td><td class="num">324,005</td><td class="num">5.9%</td></tr>
+<tr><td class="num">4</td><td>방글라데시</td><td class="num">301,311</td><td class="num">5.5%</td></tr>
+<tr><td class="num">5</td><td>에티오피아</td><td class="num">298,080</td><td class="num">5.5%</td></tr>
+<tr><td class="num">—</td><td>세계</td><td class="num">5,456,842</td><td class="num">100%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT <code>faostat_production_pepper.csv</code>, <code>Item=Chillies and peppers, dry … raw</code>, <code>Element=Production</code>, <code>Year=2024</code>; 세계 행은 추정 표기 E. 반올림·플래그는 E02.</p>
+<p>같은 파일의 <code>green</code> 세계 생산은 2024년 44,772,072톤이다. 중국 본토(41) 17,307,027톤이 38.7%를 차지한다. 이 항목은 한국의 풋고추만을 뜻하지 않으며, 한국 건고추 수입이나 국내 건고추 생산과 비교하는 세계 분모로 쓸 수 없다. 인도 향신료위원회의 <em>Chilli</em> 생산표에는 2023–24년 2,909,844톤, 2024–25년 2,694,838톤, 2025–26년 선행 추정 2,464,180톤이 나온다. FAOSTAT 인도 건고추의 2024년 값은 위원회의 2023–24년 값과 정확히 같아 같은 통계 계열이 한 해 다른 연도명으로 실린 것으로 읽힌다. 위원회의 2024–25년 값은 직전 시즌보다 7.4% 적지만, 이를 FAOSTAT 2025년 세계 생산의 대체값으로 채우지 않는다(E02·E10; <a href="https://indianspices.com/sites/default/files/Major%20spice%20wise%20area%20production%202024-25%20web.pdf">인도 향신료위원회, 「Major spice wise area and production」, 2026년 5월 자료</a>).</p>
+<p>생산국과 수출국도 같지 않다. FAOSTAT TCL의 2024년 건고추 원물 세계 수출량은 1,231,359톤이다. 인도 537,599톤, 중국 본토(41) 355,985톤이 큰 수출국으로 잡힌다. 세계 수입량은 1,194,622톤이며 중국 본토(41) 207,575톤, 미국 192,760톤, 태국 89,866톤 순이다. 세계 수출과 세계 수입이 정확히 일치하지 않는 것은 신고 시점·국가 범위·추계가 다르기 때문이다. 두 합계의 차이를 재고 증감으로 해석하지 않는다(E03).</p>
+<p>소비와 재고 지표에는 품목 정의상의 한계가 있다. 보유 FAO 식량수급표의 <code>Pepper</code>는 후추류와 혼동될 수 있다. 보유 자료에서 Capsicum 계열과 관련된 FBS 항목은 <code>Pimento</code>이며, SCL은 건고추와 <code>green</code>을 별도 품목명으로 기록한다. FBS의 2023년 세계 <code>Pimento</code> 식용공급은 4,968천 톤, <code>Stock Variation</code>은 441천 톤이다. 이 재고 변동 행은 세계 건고추의 연말 실물 재고가 아니다. 한국의 독립된 FAO 건고추 생산 행은 비어 있지만 <code>green</code> 생산 행에는 국내 건고추가 포함된 연도가 확인된다. 반면 2023년 한국 FBS <code>Pimento</code>는 생산 행 없이 수입 27천 톤에서 수출 3천 톤을 뺀 식용공급 24천 톤을 제시한다. 따라서 이를 KREI의 국내 건고추 소비·자급률과 직접 비교하거나 한국 총소비로 확정하지 않는다(E09).</p>
+<p>USDA PSD의 보유 수집 상태 파일에는 고추·향신료 대응 품목이 <code>NOT_AVAILABLE</code>로 기록돼 있다. 이것은 해당 수집 경로의 품목 범위를 뜻하며 국제적으로 고추 재고 자료가 전혀 없다는 뜻은 아니다.</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>건고추 생산은 줄었고 소비 총량은 통계 범위에 좌우된다</h2>
+<p class="lead">국내 생산의 기준선은 KOSIS 「채소생산량(조미채소)」 전국 행이다. 2025년 건고추 생산량 61,449톤은 2024년보다 6,625톤 적다. 재배면적은 같은 기간 26,430ha에서 25,743ha로 감소했다. KOSIS 원표의 10a당 생산량도 2024년 257.5635kg에서 2025년 238.7002kg으로 내려갔다. 면적과 단수가 함께 움직였지만, 각각의 기여도를 이 두 해만으로 분리해 기상·노동력의 인과효과로 돌릴 수는 없다(E01).</p>
+<div class="tw">
+<table>
+<caption>표 2. 국내 건고추 생산과 재배면적</caption>
+<thead><tr><th class="num">연도</th><th class="num">생산량(톤)</th><th class="num">재배면적(ha)</th><th class="num">KOSIS 10a당 생산량(kg)</th></tr></thead>
+<tbody>
+<tr><td class="num">2023</td><td class="num">61,665</td><td class="num">27,132</td><td class="num">227.2810</td></tr>
+<tr><td class="num">2024</td><td class="num">68,074</td><td class="num">26,430</td><td class="num">257.5635</td></tr>
+<tr><td class="num">2025</td><td class="num">61,449</td><td class="num">25,743</td><td class="num">238.7002</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS <code>kosis_crops_veg_seasoning_pepper.csv</code>, <code>C1_NM=전국</code>, <code>ITM_NM=건고추:생산량·면적·10a당 생산량</code>, 각 <code>PRD_DE</code>; 표시값만 반올림. 원값과 계산은 E01.</p>
+<p>산지는 여러 도에 분포하지만 경상북도의 생산량이 가장 크다. 2025년 경상북도 17,616톤은 전국의 28.7%다. 전라남도·전북특별자치도·충청남도·충청북도가 뒤를 따른다. 아래 수치는 같은 KOSIS 원표의 지역 행을 전국 행으로 나눈 것이다. 산지 비중은 재배면적이나 유통 물량 비중이 아니며, 생산지와 소비지 사이의 유통 경로도 말해 주지 않는다(E01).</p>
+<div class="tw">
+<table>
+<caption>표 3. 국내 건고추 주요 생산지(2025년)</caption>
+<thead><tr><th>지역</th><th class="num">생산량(톤)</th><th class="num">전국 대비</th></tr></thead>
+<tbody>
+<tr><td>경상북도</td><td class="num">17,616</td><td class="num">28.7%</td></tr>
+<tr><td>전라남도</td><td class="num">9,065</td><td class="num">14.8%</td></tr>
+<tr><td>전북특별자치도</td><td class="num">6,607</td><td class="num">10.8%</td></tr>
+<tr><td>충청남도</td><td class="num">6,290</td><td class="num">10.2%</td></tr>
+<tr><td>충청북도</td><td class="num">5,643</td><td class="num">9.2%</td></tr>
+<tr><td>그 밖의 지역</td><td class="num">16,229</td><td class="num">26.4%</td></tr>
+<tr><td>전국</td><td class="num">61,449</td><td class="num">100%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS 같은 원표, <code>PRD_DE=2025</code>, <code>ITM_NM=건고추:생산량</code>; 그 밖의 지역은 전국 원값에서 위 5개 지역 원값을 뺀 16,229.4585톤을 반올림했다. 각 칸을 따로 반올림했으므로 표시값의 합계는 전국 표시값과 1톤 차이 난다(E01).</p>
+<p>KREI 「농업전망 2026」의 생산 장부는 KOSIS와 수치가 다르다. KREI는 2025년산 생산을 60,753톤, 2024년산을 61,272톤으로 놓고 건고추 연산(8월~이듬해 7월)의 공급·재고·자급률을 계산했다. KOSIS는 2025년 61,449톤, 2024년 68,074톤이다. 두 자료의 재배면적은 2024년 26,430ha와 2025년 25,743ha로 반올림 수준에서 같지만, 10a당 생산량은 KREI 232·236kg과 KOSIS 257.5635·238.7002kg으로 다르다. KREI 표는 2021~2025년산 생산·단수에 농업관측센터 조사·추정치를 사용한다고 밝힌다. KOSIS 생산량을 KREI 수입·재고량에 끼워 넣어 새 자급률을 만들지 않는다. KREI의 2025년산 공급량 약 12만 6천 톤과 자급률 48.0%는 수입·수출에 KASMO 추정치를 적용한 연산 기준 결과다(E08; <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026년 1월</a>).</p>
+<p>소비는 형태에 따라 포착 정도가 다르다. KREI가 2025년산 소매 POS 거래를 분석한 구매 형태는 고춧가루 71.6%, 건고추 28.3%다. 이 둘의 합이 반올림으로 100%가 아닌 점까지 원문 그대로 둔다. 같은 보고서의 2025년산 1인당 건고추 소비량 약 2.5kg은 순공급량을 추계인구로 나눈 추정치이며, 수출입에 전망값이 포함된다. 외식업체 조사에서 고춧가루(건고추 포함)의 국내산 사용 비중 49.2%도 해당 조사 대상 외식업체의 구매량을 반영한 비율이다. 이 두 값과 POS 비율은 분모가 달라 국민 전체의 국산 소비 점유율을 하나로 계산하지 못한다(<a href="https://www.mafra.go.kr/bbs/home/798/595246/download.do">농식품부 「2025 외식업체 경영실태 조사」</a>, A; KREI 제9장, B; E08·E12).</p>
+<p>FAOSTAT SCL의 2023년 한국 <code>green</code> 식용공급은 152,208톤이다. 한국 QCL의 같은 해 <code>green</code> 생산 206,413톤은 KOSIS의 풋고추 144,748톤과 건고추 61,665톤의 합계와 반올림 수준에서 같다. 따라서 <code>green</code> 식용공급은 건고추만의 소비량이 아니며 풋고추만의 소비량도 아니다. 2024년 한국 QCL <code>green</code> 생산 210,792.66톤과 KOSIS 고추 전체 211,003.3772톤 사이에는 차이가 있어 연도마다 완전히 동일한 원값이라고 일반화하지 않는다. FAO FBS의 <code>Pimento</code> 2023년 한국 1인당 0.46kg은 국내 생산 행 없이 계산된 값이므로 국내 건고추 총소비 판단의 주 근거에서 제외한다(E09).</p>
+<p>한국 산업의 실물 흐름은 생산·건조·제분·혼합·조리·소매의 여러 단계를 거친다. 직접 수입 HS 0904만으로 김치·소스 속 고추 원료를 다 볼 수 없고, KREI의 건고추 환산 수입량으로 개별 소비자의 구매 중량을 역산할 수도 없다. 국내 시장의 총량을 한 수치로 제시하려면 품목별 수율, 재고, 가공식품 수출입을 동일 연산·동일 범위로 맞춘 수급표가 필요하다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>직접 수출입과 가공품 환산 교역은 다른 장부다</h2>
+<p class="lead">관세청 품목별 월간 원자료에는 2024년 11월부터 2026년 8월까지 네 HS10 코드가 들어 있다. 0709.60.1000은 벨타입 단고추, 0709.60.9000은 그 밖의 신선·냉장 Capsicum·Pimenta 과실이다. 둘 모두 건고추의 직접 수입이 아니다. 건고추 형태는 0904.21.0000, 부수거나 잘게 부순 고추는 0904.22.0000으로 구분한다. 2025년은 12개월이 모두 있어 연간 합계를 낼 수 있지만 2026년은 1~8월 진행분이다(E04).</p>
+<div class="tw wide">
+<table>
+<caption>표 4. 한국의 건고추·분쇄 고추 직접 수입</caption>
+<thead><tr><th>기간</th><th class="num">HS 0904.21 중량(톤)</th><th class="num">수입액(만 달러)</th><th class="num">단가($/kg)</th><th class="num">HS 0904.22 중량(톤)</th><th class="num">수입액(만 달러)</th><th class="num">단가($/kg)</th></tr></thead>
+<tbody>
+<tr><td>2025년</td><td class="num">4,022</td><td class="num">1,135</td><td class="num">2.82</td><td class="num">2,634</td><td class="num">1,002</td><td class="num">3.80</td></tr>
+<tr><td>2025년 1~8월</td><td class="num">2,663</td><td class="num">756</td><td class="num">2.84</td><td class="num">1,709</td><td class="num">649</td><td class="num">3.80</td></tr>
+<tr><td>2026년 1~8월 기준(잠정)</td><td class="num">2,660</td><td class="num">741</td><td class="num">2.79</td><td class="num">1,518</td><td class="num">559</td><td class="num">3.68</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>customs_item_trade_monthly_pepper.csv</code>, <code>hsCode=0904210000·0904220000</code>, 해당 월 <code>impWgt</code>·<code>impDlr</code> 합. 톤=<code>impWgt÷1,000</code>, 단가=<code>impDlr÷impWgt</code>; 표시는 반올림(E04).</p>
+<p>두 형태를 합친 2025년 직접 수입은 6,656,186kg·21,369,951달러다. 분쇄·파쇄 형태의 중량 비중은 39.6%다. 2026년 1~8월 기준(잠정) 합계 4,178,427kg·13,006,130달러는 2025년 같은 기간보다 중량 4.4%, 금액 7.4% 적다. 건고추 원형 중량은 같은 기간 거의 같고, 분쇄·파쇄 중량은 11.1% 감소했다. 다만 2024→2025년 연간에는 분쇄·파쇄 수입이 58.5% 늘었다. 2026년 부분기간 감소를 이 선행 변화를 지운 장기 추세로 읽지 않는다. 수입 단가의 차이는 형태·품질·상대국 구성도 달라 단순한 가공 마진이 아니다(E04·E05).</p>
+<p>Comtrade 한국 신고에서 2024년 HS 0904.21 수입은 5,184.742톤, HS 0904.22 수입은 1,661.286톤이다. 2025년에는 각각 4,022.245톤과 2,633.943톤으로, 원형은 22.4% 감소하고 분쇄·파쇄는 58.5% 증가했다. 두 코드 합계는 6,846.027톤에서 6,656.188톤으로 2.8% 감소했다. 2024년 FAOSTAT TCL 한국 건고추 원물 수입 6,846.03톤은 이 Comtrade 두 코드 합계와 표시 자릿수에서 일치한다. 연간 증감률은 품목 범위를 동일하게 유지한 Comtrade 두 해로 계산했다(E03·E05).</p>
+<p>수출도 국내 고추 교역의 한 축이다. 관세청의 달력연도 2025년 HS 0904.22 수출은 3,684,536kg·21,528,975달러로, 같은 세번 수입 2,633,942kg·10,015,696달러보다 중량이 1,050,594kg 많다. KREI의 2024년산 건고추 환산 수출 57,293톤 중 기타소스는 40,029톤이다. KREI 환산 수출은 소스·김치 등에 포함된 고춧가루를 수율로 되돌린 값이므로 HS 0904.22 통관 중량과 합산하지 않는다(E04·E07; <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026년 1월</a>).</p>
+<p>상대국 구성은 UN Comtrade 한국 신고 자료로 확인했다. <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>인 행을 사용하고, 세계 합계의 상대국은 <code>partnerCode=0</code>이다. 2025년 HS 0904.21의 중국 상대국 3,932.686톤은 한국 신고 세계 합계 4,022.245톤의 97.8%, HS 0904.22의 중국 2,559.184톤은 세계 합계 2,633.943톤의 97.2%다. 상대국별 파일에는 일부 국가만 담겼으므로 그 파일의 상대국 합을 분모로 쓰지 않는다(E05).</p>
+<div class="tw wide">
+<table>
+<caption>표 5. UN Comtrade 한국 신고의 상대국 포착(2025년, 톤)</caption>
+<thead><tr><th>HS6</th><th class="num">한국 신고 세계 합계</th><th class="num">중국 상대국</th><th class="num">세계 합계 대비 중국</th><th class="num">인도 상대국</th><th class="num">상대국 파일 합</th></tr></thead>
+<tbody>
+<tr><td>0904.21</td><td class="num">4,022.245</td><td class="num">3,932.686</td><td class="num">97.8%</td><td class="num">0.018</td><td class="num">3,932.941</td></tr>
+<tr><td>0904.22</td><td class="num">2,633.943</td><td class="num">2,559.184</td><td class="num">97.2%</td><td class="num">53.211</td><td class="num">2,612.584</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>pepper_comtrade_annual.csv</code>의 한국 신고·세계 상대국과 <code>pepper_comtrade_mirror.csv</code>의 한국 신고·상대국 행. 공통 필터는 <code>C00·motCode=0·partner2Code=0·flowCode=M</code>; 원값 kg÷1,000(E05).</p>
+<p>관세청 국가별 원장의 2026년 3~8월 잠정 집계에서는 중국이 HS 0904.21 수입 2,144,756kg 중 2,113,033kg(98.5%), HS 0904.22 수입 1,182,580kg 중 1,140,962kg(96.5%)이다. 1~2월을 포함한 2026년 연간 상대국 점유율은 아니다(<code>pepper_customs_kr_monthly.csv</code>, E05). 보유 FAO 양자 무역 파일의 2023년 한국←중국 본토(FAOSTAT Area Code 41) 건고추 원물 수입 8,662.91톤은 연도·품목 체계가 달라 2025년 HS 값과 단순 추세선으로 잇지 않는다(E13).</p>
+<p>세계 순위도 완료연도를 사용한다. FAOSTAT의 2024년 건고추 원물 수출은 인도·중국 본토(41) 순이다. Comtrade 직수집의 2025년 수출 신고국 수는 HS 0904.21에서 2024년보다 적고, 2024년에 큰 물량을 신고한 국가가 2025년 파일에 빠져 있다. 따라서 2025년 신고국 간 정렬로 세계 최종 순위를 매기지 않는다. Comtrade의 운송수단·통관절차 세부 행을 합계 행에 더하면 중복이 생긴다(E03·E05).</p>
+<p>냉동고추는 산업 범위에 있으나 위 품목별 HS6 수집 목록에는 포함되지 않는다. KREI는 냉동고추를 건고추 상당량으로 환산해 수급표에 넣는다. KREI 2026년 4월호는 냉동고추의 시장 출하가능가격 계산에 관세 27%를 적용한다. 이 수치만으로 개별 신고의 법정 적용세율·냉동 세번·실중량을 확정할 수는 없다(E06·E07; <a href="https://agevent.krei.re.kr/upload/observeFiles/1d0d82811e3b4dde81f6f4e581549190.pdf">한국농촌경제연구원, 「농업관측 양념채소 2026년 4월호」, 2026년 4월</a>).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>도매 화건·수입 단가·산지가격은 각자의 단위로 읽는다</h2>
+<p class="lead">건고추 가격의 국내 공개 기준은 KREI가 한국농수산식품유통공사 자료로 정리한 화건 상품 도매가격이다. 서울·부산·대구·광주·대전 5개 도매시장의 평균이며, 단위는 원/600g이다. 2025년산 8월은 햇고추 가격이다. 2026년 3월 가격은 13,110원/600g으로 전년 같은 월 13,470원보다 낮다. 이것은 농가 수취가격도 소매 고춧가루 가격도 아니다(E06; <a href="https://agevent.krei.re.kr/upload/observeFiles/1d0d82811e3b4dde81f6f4e581549190.pdf">한국농촌경제연구원, 「농업관측 양념채소 2026년 4월호」, 2026년 4월</a>).</p>
+<div class="tw wide">
+<table>
+<caption>표 6. 건고추 화건 상품 도매가격(원/600g)</caption>
+<thead><tr><th>연산</th><th class="num">8월</th><th class="num">9월</th><th class="num">10월</th><th class="num">11월</th><th class="num">12월</th><th class="num">이듬해 3월</th></tr></thead>
+<tbody>
+<tr><td>2024년산</td><td class="num">14,083</td><td class="num">13,444</td><td class="num">13,136</td><td class="num">12,950</td><td class="num">12,994</td><td class="num">13,470</td></tr>
+<tr><td>2025년산</td><td class="num">13,657</td><td class="num">13,328</td><td class="num">13,196</td><td class="num">13,093</td><td class="num">13,169</td><td class="num">13,110</td></tr>
+<tr><td>2026년산</td><td class="num">13,908</td><td class="num">–</td><td class="num">–</td><td class="num">–</td><td class="num">–</td><td class="num">–</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KREI 「농업관측 양념채소 2026년 4월호」 건고추 화건 도매가격 표. 전국 5개 도매시장 평균, 상품, 600g, 각 연산별 해당 월(E06). 2026년산 8월은 KAMIS 전체 품목 수집본 200/241 햇산화건 상품 30kg 값을 600g으로 환산한 11거래일 평균.</p>
+<p>같은 2026년 4월호는 3월 서안동농협 고추공판장의 화건 평균 단가를 8,400원/600g으로 제시한다. 이는 해당 공판장의 거래·품위가 반영된 산지 경매 성격의 값이다. 위 5개 도매시장 상품 평균과의 단순 차액을 유통 마진으로 계산하지 않는다. 4월호의 4월 도매가격 13,000원/600g 내외는 당시의 <strong>전망</strong>이다(E06). 별도 농넷 서안동 공판장 자료에는 2026년 8~9월 일별 경락값이 있으나, 보유 파일의 가격 단위가 확정되지 않아 이 표의 원/600g 값과 이어 붙이지 않는다.</p>
+<p>수입 단가는 또 다른 층이다. 관세청의 2025년 HS 0904.21 수입액을 중량으로 나눈 평균은 2.82달러/kg이고, HS 0904.22는 3.80달러/kg이다. 이는 신고 수입액을 신고 중량으로 나눈 평균값이다. 신고 수입액과 원화 도매가격 사이에는 환율과 관세, 물류·건조·제분, 품질 차이가 있으며 보유 자료가 그 전 과정을 잇지 못한다. 따라서 2.82달러와 13,110원을 직접 비교해 유통 이익을 말하지 않는다(E04·E06).</p>
+<p>품목 폴더의 <code>pepper_kamis_price.csv</code>는 토마토·빈 품목명이어서 쓰지 않았다(E15). 대신 파이프라인 KAMIS 전체 품목 수집본(품목 코드 200/241 건고추)의 화건 상품 도매가격(30kg)을 600g으로 환산하면 2026년 3월 13,110원, 2025년 3월 13,470원으로 KREI 표와 같다. 같은 계열에서 2026년산 햇산화건 8월 평균은 13,908원/600g으로 2025년산 8월 13,657원보다 1.8% 높다(11거래일 평균).</p>
+<p>FAOSTAT <code>PP_pepper.csv</code>의 한국 2025년 생산자가격지수 134.48은 <code>Chillies and peppers, green</code> 항목의 2014~2016년=100 지수다. 생산 자료의 한국 <code>green</code> 행에는 건고추가 합쳐진 연도가 확인되므로 이 가격지수를 풋고추만의 지수로 읽지 않는다. 국내 건고추 600g당 가격으로도 환산하지 않는다. 같은 항목은 2023년 118.14, 2024년 126.31로 표시된다(E09·E14). 세계은행 Pink Sheet에 대해서는 보유 수집 상태 파일에 고추 품목 <code>NOT_AVAILABLE</code>이 적혀 있다. 인도 향신료위원회의 국내 가격 조회는 등급·산지가 다른 참고가격이며 국제 공통 FOB 가격과 동일하지 않다(<a href="https://www.indianspices.com/marketing/price/domestic/current-market-price.html">인도 향신료위원회, 「Current Market Price」</a>).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>인도는 세계 생산의 중심, 한국 직접 수입은 중국 경로가 크다</h2>
+<p class="lead">세계 건고추 생산에서 인도의 규모가 가장 크다. FAOSTAT에서 인도의 2024년 건고추 원물 생산은 2,909,844톤, 세계 행의 53.3%다. 같은 해 건고추 원물 수출도 537,599톤으로 국가별 표의 선두다. 인도 향신료위원회의 2023–24년 <em>Chilli</em> 생산 2,909,844톤은 FAOSTAT 2024년 인도 값과 일치한다. 같은 계열에서 향신료위원회가 제시한 2024–25년 2,694,838톤은 직전 시즌보다 7.4% 적고, 2025–26년 2,464,180톤은 선행 추정치다. 이 값만으로 한국행 공급 감소를 말할 수 없으며, 한국의 HS 0904.21·0904.22 통관 범위와도 구분한다(E02·E03·E10; <a href="https://indianspices.com/sites/default/files/Major%20spice%20wise%20area%20production%202024-25%20web.pdf">인도 향신료위원회, 「Major spice wise area and production」, 2026년 5월 자료</a>).</p>
+<p>인도 정부 산하 보도자료 묶음에는 2023–24 회계연도 인도 향신료 수출에서 <em>chilli</em> 수출액이 15억 894만 달러로 가장 컸다고 적혀 있다. 이는 한국 수입액이 아니라 인도 자료가 정의한 <em>chilli</em> 수출액이다. 산지의 수출 역량을 보여 주는 별도 지표로만 둔다(India PIB 「Spice Economy」, 아카이브 PDF, E10). 인도 향신료위원회가 영국행 HS 0904 고추제품의 검사·증명 요건을 공지한 사례도 있다. 이는 <strong>영국행</strong> 요건이며 한국 수입에 그대로 적용되는 규칙이 아니다(<a href="https://www.indianspices.com/sites/default/files/Inclusion_of_ETO_test_for_chilli_chilli_products_12_12_2024.pdf">인도 향신료위원회, Circular No. 20/2024-25, 2024년 12월</a>).</p>
+<p>한국의 직접 수입에서 더 중요한 상대국은 중국이다. 2025년 Comtrade 한국 신고 상대국 자료의 중국 물량은 HS 0904.21 3,932.686톤, 0904.22 2,559.184톤으로 각각 한국 신고 세계 합계의 97.8%와 97.2%다. 2026년 3~8월 관세청 국가별 잠정 집계에서도 중국 비율은 각각 98.5%, 96.5%다. 2023년 FAOSTAT 양자 무역 자료의 한국←중국 본토(Area Code 41) 건고추 원물 수입 8,662.91톤은 서로 다른 연도·품목 체계이므로 이 값들과 추세선으로 잇지 않는다(E05·E13).</p>
+<p>중국 산지는 한 방향으로 움직이지 않았다. KREI의 현지 모니터 조사에 따르면 2025년산 수확기 강우로 일부 지역 출하가 늦어지고, 내몽골 일부 지역은 집중호우·병충해로 생산 감소가 파악됐다. 반대로 북방 산지의 재고는 전년 같은 때보다 늘어난 것으로 조사됐다. 작황 감소와 재고 증가가 함께 있을 수 있으므로 «중국 공급 부족»이라고 단정하지 않는다. 조사 범위와 시점이 특정 산지에 한정된다는 점도 유지한다(KREI 「농업전망 2026」 제9장, B; E10).</p>
+<p>국내 산지는 경상북도 생산 비중이 2025년 28.7%이고 전남·전북·충남·충북이 뒤따른다. KREI 자료에서는 햇고추 출하가 8~9월에 소매 판매를 늘리는 계절성이 나타난다. 수확기에는 생산량뿐 아니라 건조·품위·재고 출회가 값과 유통 시점을 바꿀 수 있으나, 각 요인의 가격 기여분은 계산할 수 없다. 2026년산 재배의향면적도 조사 시점에 따라 달랐다. 2026년 1월 「농업전망」은 25,014ha, 4월 관측 월보는 25,127ha를 제시한다. 모두 당시 의향 조사 또는 전망이며 완료된 재배면적이 아니다(KREI 두 원문, E08).</p>
+<p>공급국을 비교할 때 생산량만으로 한국 시장 진입 여력을 가늠하지 않는다. 인도의 생산·세계 수출 규모, 중국의 한국 상대국 물량, 국내 산지 생산은 서로 다른 단계의 지표다. 실제 대체 가능성은 같은 규격의 품질, 검역·잔류 기준, 원산지, 관세 적용, 가격과 물류시간에 좌우된다. 그런 조건을 동일 단위로 비교한 공급국별 표는 제시하지 않는다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>원료 형태가 바뀌며 기업 순위의 분모도 달라진다</h2>
+<p class="lead">고추가 국내 식탁에 이르는 경로는 한 가지가 아니다. 국내산은 재배·건조 뒤 원형 건고추로 팔리거나 제분되어 고춧가루가 된다. 수입산은 원형·분쇄 형태로 직접 들어오기도 하고, 냉동고추·소스·김치 같은 식품의 원료나 완제품 형태로 들어온다. 소스·김치·고추장 등은 해외로 수출되기도 한다. 이 경로들은 물량 집계 시점과 중량이 달라 건고추 상당량으로 바꾸는 수율과 중복 제거 없이 기업별 취급량을 하나의 순위로 놓을 수 없다. KREI의 환산 수급표는 수출입을 포함한 산업 전체 형태를 보여 주지만 기업별 명부는 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 7. 고추 산업의 거래 단계와 확인 가능한 원천</caption>
+<thead><tr><th>단계</th><th>확인되는 자료</th><th>읽을 수 있는 범위</th><th>이번 자료의 빈칸</th></tr></thead>
+<tbody>
+<tr><td>국내 생산·산지 출하</td><td>KOSIS 건고추 생산, KREI 관측 월보</td><td>연간 생산·지역, 일부 공판장 가격</td><td>생산자·집하업체별 취급량</td></tr>
+<tr><td>직접 수출입</td><td>관세청 HS10, Comtrade 한국 신고</td><td>형태별 수출입·일부 수입 상대국</td><td>기업별 동일 기준 교역량</td></tr>
+<tr><td>제분·가공·재수출</td><td>KREI 건고추 환산 수급·POS 분석</td><td>가공품 환산 수출입, 소매 구매 형태</td><td>제분·식품기업별 고추 투입량</td></tr>
+<tr><td>유통·최종 수요</td><td>KREI 소매 POS, 외식업체 조사</td><td>조사 표본의 판매·국내산 사용</td><td>전 유통채널의 중복 없는 시장점유율</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS·관세청·UN Comtrade 원자료, KREI 「농업전망 2026」, 농식품부 「2025 외식업체 경영실태 조사」. 범위는 E01·E04·E05·E07·E08·E12.</p>
+<p>KREI의 2024년산 건고추 환산 수출은 57,293톤이며 기타소스가 40,029톤이다. 관세청 달력연도 2025년 HS 0904.22 수출은 3,684,536kg으로 같은 세번 수입보다 1,050,594kg 많다. KREI는 수입산 고추를 활용한 가공·재수출 수요도 수입 증가 요인으로 설명한다. 따라서 원료 수입량만으로 국내 최종소비 증가분을 계산하지 않는다(E04·E07; <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026년 1월</a>).</p>
+<p>KREI의 2025년산 소매 POS 분석에서는 고춧가루 구입 형태가 71.6%, 건고추가 28.3%였다. 이 변화가 제조·제분기업에 더 많은 원료를 집중시키는지, 단순히 가정의 제분을 공장·소매 단계가 대신하는지는 현재 표본만으로 분리할 수 없다. 외식업체 조사에서는 고춧가루(건고추 포함)의 국내산 사용 비중이 49.2%다. 외식업체 구매량을 반영한 이 값은 소매 가구나 전체 식품제조업의 국산 사용 비중을 대표하지 않는다(KREI 제9장, B; <a href="https://www.mafra.go.kr/bbs/home/798/595246/download.do">농식품부 외식업체 조사</a>, A).</p>
+<p>공공 부문의 역할은 문서로 확인된다. 농식품부 2026년 WTO TRQ 계획에서 한국농수산식품유통공사(aT)는 고추의 국영무역 직접 수입 주체이며 수입권공매 등의 추천대행기관이다. 5,000톤 직접 수입 배정은 운영계획상 물량이지 실제 수입 실적이 아니다. 이를 민간 상위 수입업체의 취급량으로 간주하지 않는다(<a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농림축산식품부, 「2026년 WTO TRQ 운영 계획」, 2025년 9월</a>; E11).</p>
+<p>식약처의 2025년 10월~2026년 9월 고추 수입식품 신고에서는 <strong>신고 건수 기준</strong> 수입업소 서열이 확인된다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A; 2026년분 잠정). 다만 생산·수입·제분·유통을 같은 기준으로 비교한 기업별 고추 취급량 또는 점유율 원문은 확보하지 못했다. 보유 은행 리포트 색인에도 그 명부는 없다. 특정 회사 이름을 자료 없이 상위 사업자로 올리거나, 한 회사의 일반 식품 매출을 고추 매출로 바꾸지 않는다. 신고 건수, 수입 중량, 제조 매출은 서로 다른 분모다.</p>
+<p>업계에서는 국내 생산, 중국 중심의 직접 수입, 소스 등 가공품 수출이 함께 관찰된다. 고춧가루·냉동고추·소스·김치는 서로 다른 원료 경로를 만든다. 원산지 표시와 식품안전 검사는 원료가 가공품에 들어간 뒤에도 중요하다. 기업별 지배력이나 제분업 집중도는 위 자료만으로 판단하지 않는다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>WTO 배정표와 실제 신고세율은 범위가 다르다</h2>
+<p class="lead">농식품부의 「2026년 WTO TRQ 운영계획」은 고추 5개 세번의 시장접근물량을 7,185톤으로 제시한다. 계획표에는 저율·고율 관세가 50%·270%로 표시된다. 여기에는 신선 고추 두 세번, 보존 처리된 고추 한 세번, 건고추와 분쇄 고추 각 한 세번이 함께 들어 있다. 이 물량을 HS 0904.21·0904.22의 실제 수입량이나 한시적 할당관세 물량으로 치환하지 않는다. 표의 배정은 계획의 경로이며 실제 반입량을 나타내지 않는다(E11; <a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농림축산식품부, 「2026년 WTO TRQ 운영 계획」, 2025년 9월</a>).</p>
+<div class="tw">
+<table>
+<caption>표 8. 2026년 WTO 고추 시장접근물량 배정</caption>
+<thead><tr><th>배정 방식</th><th class="num">계획 물량(톤)</th><th>문서상 대상·역할</th></tr></thead>
+<tbody>
+<tr><td>지정기관배정</td><td class="num">5,000</td><td>aT 직접 수입·판매</td></tr>
+<tr><td>수입권공매</td><td class="num">1,185</td><td>낙찰자에게 추천</td></tr>
+<tr><td>실수요자배정</td><td class="num">1,000</td><td>수출계약 체결업체, 외화획득용</td></tr>
+<tr class="tot"><td>합계</td><td class="num">7,185</td><td>5개 세번 전체</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 농식품부 「2026년 WTO TRQ 운영 계획」 고추 행. 5,000+1,185+1,000=7,185(E11).</p>
+<p>KREI 「농업관측 양념채소 2026년 4월호」는 냉동고추 시장 출하가능가격을 약 4,800원/600g으로 계산하며 <strong>관세 27% 적용</strong>이라고 명시한다. 이는 KREI 가격 계산에 사용한 가정이다. 위 TRQ 계획의 270%는 명시된 5개 세번의 고율 표기이며 그 목록에 냉동고추 세번은 없다. 두 비율의 차이는 냉동·소스 형태의 수입 비중을 살필 때 고려할 제도적 단서지만, 이 문서만으로 수입 형태 선택의 인과효과나 냉동고추 개별 신고세율을 확정할 수 없다(E06·E11; <a href="https://agevent.krei.re.kr/upload/observeFiles/1d0d82811e3b4dde81f6f4e581549190.pdf">한국농촌경제연구원, 「농업관측 양념채소 2026년 4월호」, 2026년 4월</a>; <a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농림축산식품부, 「2026년 WTO TRQ 운영 계획」, 2025년 9월</a>).</p>
+<p>한·중 FTA 협상결과를 설명한 농식품부 자료는 고추를 양허제외 양념채소로 명시한다. 협상결과 설명자료만으로 모든 2026년 개별 수입신고의 최종 세율을 결정할 수 없다. 개별 신고세율에는 HS10 세번, 수입 형태, 적용일, 증명서 및 수입권 배정 정보가 관여한다. HS 0904.21·0904.22와 냉동 형태의 개별 신고조건은 해당 세율표와 고시의 적용일에 따라 확인해야 한다(<a href="https://www.mafra.go.kr/home/5248/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaG9tZSUyRjc5NSUyRjQ4NTMzNSUyRmFydGNsVmlldy5kbyUzRg%3D%3D">농림축산식품부, 한·중 FTA 협상결과 설명자료</a>).</p>
+<p>원산지 표시는 가공 단계에서 중요해진다. 국립농산물품질관리원은 음식점의 배추김치에 배추와 고춧가루 원산지 표시를 안내한다. 국내 가공 김치류 중 고춧가루를 쓰는 품목은 배합 비율 상위 2개 원료에 고춧가루·소금 원산지를 더해 표시하도록 설명한다. 이는 상품 표시의 기준이지 모든 고춧가루가 국내산이어야 한다는 뜻이 아니다(<a href="https://www.naqs.go.kr/hp/contents/contentsTab.do?menuId=MN30559">국립농산물품질관리원, 원산지 표시 안내</a>). 농관원이 발표한 중국산 고춧가루 10,700kg의 국내산 거짓 표시 적발은 하나의 사례다. 이를 업계 전체 위반율의 분모나 대표 표본으로 확대하지 않는다(<a href="https://www.mafra.go.kr/bbs/home/792/592596/download.do">농림축산식품부, 원산지 단속 발표, 2025년 12월</a>).</p>
+<p>수입 단계에서는 식물검역과 식품위생 검사가 별개로 작동한다. 농림축산검역본부는 건고추를 포함한 건조 농산물의 무검역 수입을 적발했다고 발표했다. 발표문의 1,150톤은 건고추만이 아니라 건대추·생땅콩 등 여러 물품을 합한 적발량이다. 이 전체 물량을 불법 건고추 수입량으로 쓰지 않는다(<a href="https://www.mafra.go.kr/bbs/home/792/576526/artclView.do">농림축산검역본부, 건조 농산물 무검역 수입 적발 발표</a>). 부산지방식약청은 중국산 고춧가루 검사 알림을 게시했다. 게시 사실과 별개로 검사 세부항목·강화기간은 해당 첨부 공고문을 기준으로 판단한다(<a href="https://www.mfds.go.kr/brd/m_767/view.do?seq=33926">부산지방식품의약품안전청, 중국산 고춧가루 검사 알림</a>).</p>
+<p>수급 정책의 범위는 발표·적용 시점에 따라 달라진다. 농식품부는 2024년 수입 건고추 비축물량 공급과 고춧가루 납품단가 2,000원/kg 지원을 당시 조치로 발표했다. 2026년에도 같은 지원이 계속된다는 뜻은 아니다(<a href="https://www.mafra.go.kr/bbs/home/793/577274/download.do">농림축산식품부, 고춧가루 납품단가 지원 발표, 2024년</a>). 이 발표만으로 정책의 수입가격·유통가격 영향을 계산할 수 없다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>KREI의 수급 전망은 있지만 은행 색인의 고추 전망은 오탐이다</h2>
+<p class="lead">은행·기관 리포트 색인에서 <code>items</code>에 <code>pepper</code>가 적힌 CoBank 자료에는 미국 외식 체인 <code>Chili’s</code>가 등장한다. 고추 작물의 생산·교역·가격 전망 자료가 아니므로 품목 근거에 넣지 않는다. 색인의 품목 태그는 내용을 보증하지 않는다(<code>_raw/_banks/index.csv</code>, 해당 CoBank HTML, E16).</p>
+<p>KREI 「농업전망 2026」은 생산·수출입·재고를 건고추 상당량으로 맞춘 수급 체계를 제시한다. 2025년산 공급량 약 12만 6천 톤과 자급률 48.0%에는 당시 수출입 추정치가 포함된다. 2026년산 생산 약 5만 9천 톤, 수입 12만 7천 톤, 자급률 46.1%는 전망이다. 이를 2026년 완료 실적으로 옮기지 않는다(KREI 제9장, E08; <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」, 2026년 1월</a>).</p>
+<div class="tw">
+<table>
+<caption>표 9. 기관 자료의 고추 관련 내용과 사용 범위</caption>
+<thead><tr><th>기관·문서</th><th>문서 시점</th><th>확인한 내용</th><th>사용 범위</th></tr></thead>
+<tbody>
+<tr><td>KREI 「농업전망 2026」 제9장</td><td>2026년 1월</td><td>건고추 연산 기준 생산·수출입·가격, 2026년산 전망</td><td>B · 기관 추정·전망 표시</td></tr>
+<tr><td>KREI 「농업관측 양념채소 2026년 4월호」</td><td>2026년 4월</td><td>3월 화건 도매가격·재고 추정·냉동고추 가격 계산·재배의향면적</td><td>B · 당시 관측·전망</td></tr>
+<tr><td>인도 향신료위원회 생산표</td><td>2026년 5월 자료</td><td>인도 <em>Chilli</em> 시즌 생산 최종치·선행 추정</td><td>A · FAOSTAT 연도 대응 확인</td></tr>
+<tr><td>인도 PIB 「Spice Economy」</td><td>2025년 자료</td><td>인도 <em>chilli</em> 수출액·향신료 단지</td><td>B · 인도 자료의 품목 정의 유지</td></tr>
+<tr><td>CoBank 색인 행</td><td>원문 확인</td><td><code>Chili’s</code> 외식 체인 언급</td><td>고추 품목 근거에서 제외</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원 「농업전망 2026」</a>, <a href="https://agevent.krei.re.kr/upload/observeFiles/1d0d82811e3b4dde81f6f4e581549190.pdf">KREI 「농업관측 양념채소 2026년 4월호」</a>, <a href="https://indianspices.com/sites/default/files/Major%20spice%20wise%20area%20production%202024-25%20web.pdf">인도 향신료위원회 생산표</a>, India PIB PDF와 CoBank HTML. 원문별 숫자와 필터는 E08·E10·E16.</p>
+<p>KREI 「농업관측 양념채소 2026년 4월호」 건고추 면에는 2026년 3월 화건 도매가격, 3월 말 재고 추정, 월별 건고추 환산 수입, 냉동고추 가격 계산과 2026년산 재배의향면적이 함께 있다. 1월 전망의 2026년산 재배의향면적 25,014ha와 4월 월보의 25,127ha는 조사 시점이 다른 값이다(E06·E08; <a href="https://agevent.krei.re.kr/upload/observeFiles/1d0d82811e3b4dde81f6f4e581549190.pdf">한국농촌경제연구원, 「농업관측 양념채소 2026년 4월호」, 2026년 4월</a>).</p>
+<p>KREI의 2024년산 건고추 환산 수입 130,651톤 가운데 기타소스 환산분은 66,163톤, 냉동고추 환산분은 36,105톤, 건고추류는 8,857톤이다. 같은 연산의 환산 수출은 57,293톤이며 기타소스 환산분이 40,029톤이다. 가공품에 포함된 고춧가루는 수율로 되돌린 값이므로 HS 0904 직접 수출입과 같은 범위가 아니다. KREI가 제시한 2025년산 8~12월 수입 53,629톤과 수출 24,178톤은 완결된 연산이 아니다. 2026년산 수입 12만 7천 톤은 전망이다(E07·E08; <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026년 1월</a>).</p>
+<p>은행 색인의 CoBank 행은 고추 품목 전망으로 쓸 수 없다. OECD–FAO 「Agricultural Outlook 2026–2035」의 별도 전망 품목에도 고추는 열거되지 않는다. 다른 향신료 전망을 고추 전망으로 대체하지 않는다(<a href="https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report.html">OECD–FAO, 「Agricultural Outlook 2026–2035」</a>).</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 관찰 지표·남은 물음</span>같은 분모로 갱신하고 불일치를 설명한다</h2>
+<p class="lead">한국 고추 산업을 매달 볼 때 경계할 오류 위험의 하나는 서로 다른 범위의 수치를 한 줄에 놓는 일이다. KOSIS 생산은 국내 건고추 실적, KREI 공급은 건고추 환산 연산, 관세청 HS 0904는 두 형태의 직접 수출입, FAOSTAT 생산은 국제 품목 분류, Comtrade 상대국 파일은 포착된 행이다. 지표마다 품목·기간·단위·분모를 표시해야 한다.</p>
+<p><strong>국내 생산 위험.</strong> 2025년 KOSIS 건고추 생산은 2024년 고점보다 9.7% 적었다. 2005년 161,380톤에서 2025년 61,449톤으로 이어진 장기 감소와 구분해 읽는다. KREI는 2026년산 재배의향면적 감소를 전망했지만, 1월과 4월 조사값부터 다르다. 실제 재배면적·단수·생산량이 발표되기 전에는 2026년산 감소 폭을 확정하지 않는다(E01·E08).</p>
+<p><strong>상대국·형태 위험.</strong> 2025년 Comtrade 한국 신고 세계 합계 대비 중국 수입 비율은 HS 0904.21 97.8%, 0904.22 97.2%다. 같은 해 0904.22 수입은 2024년보다 58.5% 늘었다. 2026년 1~8월 잠정 중량은 전년 동기보다 11.1% 적지만, 앞선 연간 증가를 지운 추세로 읽을 수 없다. 2026년 3~8월 관세청 국가별 자료의 중국 비율은 각각 98.5%, 96.5%이며 1~2월 국가별 행은 이 집계에 없다. 수요가 다른 가공 원료로 옮겼는지, 재고를 썼는지, 계약 시점이 달라졌는지는 월별 재고·가공 수요와 함께 검증해야 한다(E04·E05).</p>
+<p><strong>가격·품질 위험.</strong> KREI 5개 도매시장 화건 상품 가격, 서안동 공판장 단가, 관세청 수입 단가는 서로 다른 거래 단계다. 품위와 수분, 원산지, 환율, 관세, 물류비가 다르다. 가격 간 차이를 마진으로 부르기 전에 동일 규격·동일 기간의 거래를 연결해야 한다(E04·E06).</p>
+<p><strong>제도·표시 위험.</strong> WTO TRQ의 7,185톤은 계획상 물량이고, 50%·270%는 해당 계획표의 저율·고율 표기다. KREI가 냉동고추 가격 계산에 적용한 27%는 별도 범위의 가정이다. 원산지 표시 의무와 식물검역·식품위생 검사는 각각 다른 단계에 적용된다. 정책 발표의 적용일과 정확한 세번을 확인해야 한다(E06·E11; <a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농림축산식품부, 「2026년 WTO TRQ 운영 계획」, 2025년 9월</a>; <a href="https://agevent.krei.re.kr/upload/observeFiles/1d0d82811e3b4dde81f6f4e581549190.pdf">한국농촌경제연구원, 「농업관측 양념채소 2026년 4월호」, 2026년 4월</a>).</p>
+<div class="tw">
+<table>
+<caption>표 10. 고추 산업 월간·연간 관찰 지표</caption>
+<thead><tr><th>지표</th><th>원천·수집기</th><th>갱신 주기</th><th>확인할 범위와 질문</th></tr></thead>
+<tbody>
+<tr><td>건고추 생산·면적·단수</td><td>KOSIS <code>kosis_crops_veg_seasoning</code></td><td>연</td><td>전국·지역 완료연도 값인가</td></tr>
+<tr><td>건고추 환산 공급·수출입·재고</td><td>KREI 관측·전망 원문</td><td>월·연</td><td>실측·추정·전망과 연산 구분이 있는가</td></tr>
+<tr><td>HS 0904.21·22 직접 수출입</td><td>관세청 <code>customs_item_trade_monthly</code></td><td>월</td><td>같은 월 비교인가, kg·달러 단위가 맞는가</td></tr>
+<tr><td>상대국별 수입</td><td>Comtrade <code>comtrade_mirror</code>·관세청 국가별 원장</td><td>연·월</td><td>세계 합계와 상대국 파일 합의 차이는 얼마인가</td></tr>
+<tr><td>세계 생산·수출</td><td>FAOSTAT QCL·TCL</td><td>연</td><td>중국 본토 코드 41과 추정 플래그가 맞는가</td></tr>
+<tr><td>중국 산지·재고</td><td>KREI 중국 모니터</td><td>관측 발표 때</td><td>강우 피해와 재고가 같은 지역·시점인가</td></tr>
+<tr><td>국내 화건 가격</td><td>KREI 5개 도매시장 표</td><td>월</td><td>상품·600g·연산이 같은가</td></tr>
+<tr><td>KAMIS 가격</td><td><code>_kamis_all</code> 200/241</td><td>일</td><td>화건/햇산화건·상품·30kg 구분</td></tr>
+<tr><td>검역·식품안전·원산지</td><td>검역본부·식약처·농관원</td><td>공지 때</td><td>대상 품목·기간·법적 효력이 무엇인가</td></tr>
+<tr><td>TRQ·세율</td><td>농식품부 운영계획·관세청 세율표</td><td>연·변경 때</td><td>계획 물량과 실제 신고 조건을 분리했는가</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청·FAOSTAT·KOSIS 원자료, KREI 원문, 농식품부·농관원 공식 문서(E01~E16).</p>
+<h3>남은 물음과 확인 작업</h3>
+<ul>
+<li>FAO FBS·SCL에서 한국 <code>green</code> 생산과 <code>Pimento</code> 수급의 품목 연결·재고 산식을 확인한다. USDA PSD는 고추 대응 품목의 수집 범위를 따로 확인한다.</li>
+<li>기업별 고추 취급량을 생산·수입·제분·식품가공의 같은 단위로 연결할 수 있는지 수입식품 신고업소·법인 공시·가공 생산실적의 품목별 열을 대조한다.</li>
+<li>냉동고추의 실제 세번·실중량·상대국과 KREI 수율 환산을 같은 기간으로 연결한다. KREI의 27%는 가격 계산 가정으로 구분한다.</li>
+<li>공급국별 동일 규격의 품질·검역·잔류 기준·원산지·관세·가격·물류시간을 대조해 대체 공급 가능성을 검증한다.</li>
+<li>HS 0904.21·0904.22와 냉동 형태의 신고일별 적용세율·관련 고시·증명서·수입권 배정 조건을 확인한다.</li>
+<li>2026년 WTO TRQ 계획 물량의 실제 반입량과 2024년 수급 지원의 실시 기간·적용 물량·집행액을 각각 확인한다.</li>
+<li>같은 규격·기간의 도매·산지·수입 거래와 환율·비용을 연결해 가격 차이의 구성요소를 검증한다.</li>
+<li>2026년 1~2월 국가별 수입 행과 3~8월 잠정 집계를 연결하고, 가공 원료 수요·재고·계약 시점 자료와 대조한다.</li>
+<li>2026년산 실제 재배면적·단수·생산량과 완료연도 무역 자료가 발표되면 잠정치와의 차이를 확인한다.</li>
+</ul>
+<p>이 물음이 풀리기 전에는 단일한 «한국 고추 시장 규모»와 기업별 순위를 확정하지 않는다.</p>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>중국산 직접 수입, 냉동 원료와 국내 가공의 서로 다른 경로</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국 신고 HS 0904.21·0904.22 <strong>직접 수입 중량</strong>에서 비중 10% 이상인 공급국은 중국 한 곳이다. 중국 비중은 각각 97.8%와 97.2%다. 별도 범위인 식약처의 <strong>2025년 10월~2026년 9월, 품목명 ‘고추(열매·씨앗)’ 신고 건수 기준</strong>으로는 중국 1,842건(83.0%), 베트남 338건(15.2%)이다. 이 집계는 냉동 열매·건조 씨앗·건조 열매를 포함하며, 별도 품목명 ‘고춧가루’ 60건(중국 34·인도 16)과 ‘천연향신료’로 신고된 고추씨분 723건은 제외한다. 신고 건수는 중량·금액이 아니다. 신고서의 제조국 항목이 원물의 재배국이나 FTA·표시상 원산지와 같은지는 이 자료만으로 확정하지 않으며, 수출국·선적국은 별도 항목이다. 2026년분 신고는 잠정이다. 아래에는 중국과 베트남, 세계 건고추 생산·수출의 주요 국가인 인도를 구분해 싣는다(<a href="https://comtradeplus.un.org/">UN Comtrade</a> A·2025년 한국 신고, 04절 표 5; <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025.10~2026.09).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 중국·베트남 및 인도의 고추 수출·가공기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표(연도)</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>중국</td><td>JINING MIDUODUO FOOD CO., LTD</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 고추 품목 317건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>중국</td><td>QINGDAO SAITE FOODS CO., LTD</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 고추 품목 130건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>중국</td><td>KAILU HONGFENG AGRICULTURAL PRODUCTS CO., LTD</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 고추 품목 124건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>중국</td><td>QINGDAO RONGFA FOODS CO., LTD</td><td>가공·수출</td><td>고춧가루 생산라인 2개, 각 연 1만 톤 능력(회사 소개, 2026년 확인)</td><td>식약처 제조사명 일치, 고추 품목 53건·다른 표기의 고추씨분 37건; 회사도 한국 판매 명시</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09; <a href="https://en.rongfafoods.com/about/">회사 소개</a>·<a href="https://en.rongfafoods.com/">설비 소개</a> B·2026년 확인</td></tr>
+<tr><td>베트남</td><td>HAEJU FARM COMPANY LIMITED</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 고추 품목 53건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>베트남</td><td>PHAM TAN CHILLI CO., LTD</td><td>신고상 해외 제조</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 고추 품목 20건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>베트남</td><td>DACE COMPANY LIMITED</td><td>생산·가공·수출</td><td>회사 소개상 고추 연간 생산 약 2,200톤(2026년 확인)</td><td>식약처 제조사명 일치, 고추 품목 14건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09; <a href="https://www.dace.vn/vi/daces-products_vi/chili/">회사 제품 소개</a> B·2026년 확인</td></tr>
+<tr><td>인도</td><td>ITC Spices</td><td>산지 연계·가공·수출</td><td>고추를 포함한 여러 향신료 취급량 연 3만 5천 톤 이상(회사 소개, 2026년 확인)</td><td>한국행 고추 거래를 확인한 공개 자료 없음</td><td><a href="https://itcportal.com/itc-businesses/agri-business/itc-spices.html">회사 소개</a> B·2026년 확인</td></tr>
+<tr><td>인도</td><td>Plant Lipids</td><td>고추·향신료 추출물 가공·수출</td><td>여러 품목의 세계 생산시설 14곳(회사 소개, 2026년 확인)</td><td>식약처 제조사명 일치, 올레오레진 캡시컴 77건; 건고추·고춧가루 신고는 확인되지 않음</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09; <a href="https://plantlipids.com/our-journey/">회사 소개</a> B·2026년 확인</td></tr>
+<tr><td>인도</td><td>Synthite</td><td>고추 추출물 가공</td><td>고추 단독 매출·수출량 확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 올레오레진 캡시컴 29건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09; <a href="https://synthite.com/ingredient-solutions/food-and-beverages/">회사 제품 소개</a> B·2026년 확인</td></tr>
+<tr><td>인도</td><td>CLYSICO</td><td>신고상 해외 제조(고추씨)</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 고추씨 1건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>인도</td><td>RAJ INTERNATIONAL</td><td>신고상 해외 제조(고추씨)</td><td>확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 고추씨 1건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 식약처 공개 신고와 기업 자료. 식약처 수치는 모두 <strong>신고 건수 기준</strong>이며 제조사명 표기 변형을 합쳤다. 생산능력·복수 향신료 취급량은 실생산량이나 한국행 고추 수출량이 아니다.</p>
+<p>HS 0904.22 분쇄·파쇄 고추는 2025년 두 건고추 세번의 직접 수입액 2,137만 달러 중 1,002만 달러로 46.9%를 차지했다. 이 세번의 한국 신고 수입 중량은 중국 2,559톤, 인도 53톤 순이었다. Qingdao Rongfa는 고춧가루 제품을, ITC Spices는 고추를 포함한 향신료 가공을 공개하지만, 국가별 통계와 식약처 신고만으로 어느 기업의 한국행 물량이 HS 0904.22였는지는 배분할 수 없다. Plant Lipids와 Synthite의 확인된 한국 연결은 <strong>고추 추출물</strong>이며, 이를 분쇄 고추 수입으로 분류하지 않는다(<a href="https://comtradeplus.un.org/">UN Comtrade</a> A·2025년 한국 신고, 04절 표 5; <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09).</p>
+<p>기업별 고추 수출량을 같은 범위로 비교한 세계 순위는 확인된 공개 자료가 없어 ‘세계 최대 단일 수출기업’을 특정할 수 없다. ITC Spices, Plant Lipids, Synthite는 각각 향신료 원료·고추 추출물 분야에서 활동하는 확인 가능한 기업 사례다. 인도 향신료위원회의 2024–25년 <em>Chilli</em> 생산량 2,694,838톤은 <strong>국가 생산량</strong>이지 이들 기업의 취급량이 아니다(<a href="https://indianspices.com/sites/default/files/Major%20spice%20wise%20area%20production%202024-25%20web.pdf">인도 향신료위원회 생산표</a> A·2026년 자료).</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처에서 품목명이 ‘고추(열매·씨앗)’인 신고는 2025년 10월~2026년 9월 <strong>신고 건수 기준</strong> 2,218건이며, 이 중 냉동 열매가 2,029건이다. ‘고춧가루’·고추씨분 등 별도 품목은 제외했다. 아래 ‘주요 제조국’은 각 업소 신고서의 상위 두 제조국을 그대로 적었다. 2026년분은 잠정이며 신고 횟수를 수입 중량·시장점유율로 해석하지 않는다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A).</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 고추(열매·씨앗) 신고 건수 상위 수입업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>신이화유통</td><td class="num">111</td><td>중국 105·베트남 6</td><td>냉동 열매 111건</td></tr>
+<tr><td>농업회사법인(유)새만금에이피</td><td class="num">58</td><td>중국 37·베트남 21</td><td>냉동 열매 57건·건조 씨앗 1건</td></tr>
+<tr><td>주식회사 백재농산</td><td class="num">55</td><td>중국 55</td><td>냉동 열매 55건</td></tr>
+<tr><td>정예무역(주)</td><td class="num">54</td><td>중국 54</td><td>냉동 열매 54건</td></tr>
+<tr><td>이에스푸드 주식회사</td><td class="num">50</td><td>중국 37·베트남 13</td><td>냉동 열매 50건</td></tr>
+<tr><td>주식회사 성일농산</td><td class="num">48</td><td>중국 48</td><td>냉동 열매 44건·건조 씨앗 4건</td></tr>
+<tr><td>(주)경호</td><td class="num">47</td><td>중국 47</td><td>냉동 열매 47건</td></tr>
+<tr><td>주식회사 티오피트레이딩</td><td class="num">43</td><td>중국 43</td><td>냉동 열매 43건</td></tr>
+<tr><td>주식회사 전진무역</td><td class="num">41</td><td>중국 41</td><td>건조 씨앗 41건</td></tr>
+<tr><td>대림글로벌푸드(주)</td><td class="num">40</td><td>베트남 21·중국 19</td><td>냉동 열매 40건</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a> A·2025.10~2026.09, <strong>신고 건수 기준</strong>. 업소명 표기 변형을 합쳤으며 2026년분은 잠정이다.</p>
+<p>공공 수입 경로에서는 aT가 2026년 WTO 고추 시장접근물량 중 5,000톤의 <strong>계획상 직접 수입</strong> 주체다. 이는 실제 반입 실적이나 위 민간 업소의 취급량이 아니다(<a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농식품부 WTO TRQ 운영계획</a> A·2025). 국내 가공기업의 아래 매출은 각 공시에서 확인되는 <strong>복수 제품군 또는 연결 매출</strong>이다. 고추 매출·고추 시장점유율과 구분한다. 식약처 ‘고춧가루’ 별도 품목에서는 삼양식품의 신고 27건도 확인된다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09, 신고 건수 기준).</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 고추 관련 국내 주요 가공기업의 공개 규모</caption>
+<thead><tr><th>기업</th><th>확인된 역할</th><th>2025년 공개 규모</th><th>범위·출처</th></tr></thead>
+<tbody>
+<tr><td>대상(주)</td><td>고추 원재료 매입, 장류·조미료 제조</td><td>고추 원재료 매입 약 246억 원; 대상(주) 장류·조미료 등 매출 약 2조 5,824억 원</td><td>원재료 매입액과 복수 품목 매출. <a href="https://kind.krx.co.kr/external/2026/03/27/001263/20260327002982/11011.htm">정정 사업보고서</a> A·2025</td></tr>
+<tr><td>CJ제일제당</td><td>해찬들 고추장·김치 등 식품 제조·유통</td><td>식품사업 매출 약 11조 5,223억 원</td><td>고추장 단독 매출 아님. <a href="https://kind.krx.co.kr/external/2026/03/16/001719/20260316005125/11011.htm">사업보고서</a> A·2025; <a href="https://m.cj.co.kr/kr/brands/haechandle">해찬들</a> B·2026년 확인</td></tr>
+<tr><td>삼양식품(주)</td><td>고춧가루 수입, 면·소스·조미소재 제조</td><td>연결 매출 약 2조 3,518억 원</td><td>고추 원료·제품 매출 아님. <a href="https://kind.krx.co.kr/external/2026/03/18/001492/20260318006856/11011.htm">사업보고서</a> A·2025; <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09</td></tr>
+<tr><td>오뚜기</td><td>고추장을 포함한 양념·소스 제조·유통</td><td>양념소스류 매출 약 6,255억 원</td><td>양념소스류 전체. <a href="https://kind.krx.co.kr/external/2026/03/18/000725/20260318003615/11011.htm">사업보고서</a> A·2025; <a href="https://www.otoki.com/pr/news-detail?idx=692">회사 제품 발표</a> B·2024</td></tr>
+<tr><td>신송식품㈜</td><td>고추장을 포함한 장류 제조·유통</td><td>신송홀딩스 식품사업 매출 약 606억 원, 그중 ‘고추장 외’ 제품 약 489억 원</td><td>모두 복수 품목. <a href="https://kind.krx.co.kr/external/2026/03/18/002057/20260318009565/11011.htm">신송홀딩스 사업보고서</a> A·2025</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 법정 공시 A·2025와 식약처 신고 A·2025.10~2026.09, 기업 제품 자료 B. 상위 수입업소의 고추 매출·수입 중량을 특정한 법정 공시는 확인된 공개 자료 없음.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 고추의 생산부터 소비까지</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>국내 고추 농가, 중국·인도·베트남 산지</td><td>국내 건고추 2025년 61,449톤; 경북 28.7%</td><td>산지 출하·수매 거래</td><td>작황·노동력·품위</td></tr>
+<tr><td>1차 가공</td><td>건조·선별·냉동·제분 업체</td><td>단계별 동일 기준 처리량 확인된 공개 자료 없음</td><td>산지 경매·가공 계약</td><td>수분·이물·잔류농약</td></tr>
+<tr><td>수출·국제 무역</td><td>해외 제조·수출기업, 무역상</td><td>2025년 HS 0904.21·22 직접 수입 6,656톤</td><td>수출·선적 계약</td><td>중국 공급 집중·환율</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소, 관세청·검역본부·식약처</td><td>고추(열매·씨앗) 신고 2,218건 중 냉동 열매 2,029건, 신고 건수 기준</td><td>수입 계약·통관 비용</td><td>세번·검역·식품검사</td></tr>
+<tr><td>국내 가공</td><td>제분·장류·김치·소스 업체</td><td>기업별 고추 투입량 미확보; 2024년산 기타소스 환산 수입 66,163톤·수출 40,029톤은 가공품 <strong>교역</strong> 지표</td><td>원료·완제품 납품 계약</td><td>수율·원산지 표시</td></tr>
+<tr><td>도매·유통</td><td>산지 공판장·도매시장·식자재 유통</td><td>2026년 3월 화건 상품 도매 13,110원/600g, 당시 관측값·잠정</td><td>공판장 경매·도매 거래</td><td>재고·규격 차이</td></tr>
+<tr><td>소매·외식</td><td>소매업체·식당</td><td>2025년산 소매 POS 표본의 고춧가루 구매 형태 71.6%</td><td>소매 판매·외식 납품 계약</td><td>표시 신뢰·수요 변화</td></tr>
+<tr><td>소비</td><td>가구·외식 소비자</td><td>건고추만의 확정 총소비량 제시 불가</td><td>최종 판매</td><td>원산지·품질 정보</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://kosis.kr/">KOSIS</a> A·2025년 생산(03절), <a href="https://comtradeplus.un.org/">UN Comtrade</a> A·2025년 직접 수입(04절), <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09 신고 건수, <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">KREI 「농업전망 2026」</a> B·2024년산 환산 수급 및 2025년산 POS, <a href="https://agevent.krei.re.kr/upload/observeFiles/1d0d82811e3b4dde81f6f4e581549190.pdf">KREI 관측 월보</a> B·2026년 3월 가격.</p>
+<p><strong>부가가치가 생기는 곳.</strong> 건조·제분·혼합·발효·포장은 원물의 형태와 판매처를 바꾸고, 브랜드와 유통은 완제품 판매 단계에 참여한다. KREI의 2024년산 건고추 환산 수입 130,651톤 중 기타소스 환산분은 66,163톤이며, 환산 수출 57,293톤 중 기타소스 환산분은 40,029톤이다. 이는 가공품 경로의 규모를 보여 주지만 국내 업체의 가공이익은 아니다. 대상의 2025년 고추 원재료 매입 약 246억 원과 복수 품목 매출의 차이, 또는 HS 0904.21·22 평균 수입단가 2.82·3.80달러/kg의 차이를 고추 가공 마진으로 계산할 수 없다(<a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">KREI</a> B·2024년산; <a href="https://kind.krx.co.kr/external/2026/03/27/001263/20260327002982/11011.htm">대상 사업보고서</a> A·2025; <a href="https://comtradeplus.un.org/">UN Comtrade</a> A·2025년 한국 신고).</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 고추 산업의 주요 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>농림축산식품부·aT·관세청·식약처·국립농산물품질관리원·농림축산검역본부</td><td>TRQ 운영, 통관·식품검사·식물검역, 원산지 표시 관리</td><td>반입 조건과 검사·표시 기준에 영향</td></tr>
+<tr><td>해외 정부</td><td>중국 해관총서·인도 향신료위원회</td><td>중국 식품 수출입 관리, 인도 향신료 수출 촉진·품질 업무</td><td>공급·수출 요건에 영향</td></tr>
+<tr><td>생산자·단체</td><td>국내 고추 농가·(사)한국고추산업연합회</td><td>재배·산지 출하, 생산자 의견 집약</td><td>산지가격·수급 안정에 이해</td></tr>
+<tr><td>수출·가공기업</td><td>Qingdao Rongfa Food·DACE·ITC Spices·Plant Lipids</td><td>원물 확보·가공·해외 판매</td><td>품질 규격과 계약 안정성에 이해</td></tr>
+<tr><td>수입·유통기업</td><td>신이화유통 등 신고 업소, 대상·CJ제일제당·오뚜기 등 식품기업</td><td>원료 조달·가공·판매</td><td>원료가격·검사·표시 의무에 이해</td></tr>
+<tr><td>소비자·시민사회</td><td>가구·외식 소비자·한국소비자단체협의회</td><td>구매, 소비자 상담과 정보 요구</td><td>가격·원산지·품질 정보에 이해</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·국제식물보호협약(IPPC)</td><td>생산·교역 통계와 식물검역 국제표준</td><td>국가 간 비교와 검역 기준에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농식품부 WTO TRQ 운영계획</a> A·2025, <a href="https://www.naqs.go.kr/hp/contents/contentsTab.do?menuId=MN30559">농관원 원산지 표시 안내</a> A·2026년 확인, <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a> A·2025.10~2026.09, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Food+and+Agricultural+Import+Regulations+and+Standards+Export+Certificate+Report_Beijing_China+-+People%27s+Republic+of_CH2022-0043">USDA GAIN 중국 식품 규정 보고서</a> B·2022, <a href="https://www.indianspices.com/box5_programmes_schemes.html">인도 향신료위원회</a> A·2026년 확인, <a href="https://www.mafra.go.kr/bbs/mafra/131/190105/download.do">농식품부 자조금단체 명부</a> A·2017, <a href="https://www.consumer.or.kr/">한국소비자단체협의회</a> B·2026년 확인, <a href="https://www.fao.org/faostat/en/">FAOSTAT</a>·<a href="https://www.ippc.int/en/about/core-activities/standards-setting/">IPPC</a> A·2026년 확인. 기업 역할은 표 11-1·11-3의 출처 범위에 따른다.</p>
+<p>국내 생산자의 산지가격 안정 요구와 수입·가공업체의 안정적인 원료 조달 요구는 수입 운영에서 엇갈릴 수 있다. 검사·원산지 표시에는 업계의 비용과 소비자의 안전·정보 요구가 함께 걸려 있다. 냉동 원료와 가공품 속 고추를 직접 수입 건고추와 같은 물량으로 취급하면 이해당사자별 시장 규모 판단도 달라진다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황과 아카이브 범위</h2>
+<p class="lead"><code>pepper</code> 수집기 현황의 «최신»은 파일 안에서 가장 늦은 기간이지 모든 신고국·품목의 데이터가 완결됐다는 뜻은 아니다. 특히 2026년 연간 무역·생산 순위에는 진행연도 값을 쓰지 않았다. 품목 키의 HS6는 070960·090421·090422이며, 070960에는 단고추가 포함된다. 냉동고추는 KREI 환산 수급의 별도 행으로 다뤘다.</p>
+<div class="tw">
+<table>
+<caption>표 11. <code>pepper</code> 수집기 현황(2026-10-07 기준)</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">192</td><td>2026-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">857</td><td>2026-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">3,016</td><td>2026</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">156</td><td>2026</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">88</td><td>2026.08</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">1,660</td><td>202607</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">3,408</td><td>202606</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">18,644</td><td>2025</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">43,043</td><td>2024</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">88,493</td><td>2024</td></tr>
+<tr><td>원자료 품목 분할</td><td>kosis_crops_veg_seasoning</td><td class="num">1,448</td><td>2026</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">4,519</td><td>2025</td></tr>
+<tr><td>월간 수집</td><td>comtrade_mirror</td><td class="num">2,145</td><td>2025</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">424</td><td>2026.08</td></tr>
+<tr><td>월간 수집</td><td>kamis</td><td class="num">1,497</td><td>2026-09-30</td></tr>
+<tr><td>월간 수집</td><td>kosis</td><td class="num">21</td><td>기간 열 없음</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>rawbulk.report_delta.coverage("pepper")</code>의 2026-10-07 반환값(E17). KAMIS의 최신 행은 고추 가격으로 검증되지 않았다.</p>
+<p><code>faostat_production</code>과 <code>faostat_trade</code>의 원자료는 품목명을 <code>Chillies and peppers, dry … raw</code>와 <code>… green</code>으로 걸러 썼다. Drive 아카이브의 원본 FAOSTAT 분할 파일에는 후추 <code>Pepper (Piper spp.)</code>와 페퍼민트도 섞여 있다. 미국 Census·EU Comext·브라질 Comexstat의 파일 행수는 한국 수출입과 같은 분모의 시장 규모가 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 12. 제공 아카이브 인벤토리 65행의 자료 판정</caption>
+<thead><tr><th>판정</th><th class="num">파일 수</th><th>주요 범위</th></tr></thead>
+<tbody>
+<tr><td>반영 대상</td><td class="num">15</td><td>KOSIS·관세청·FAOSTAT 관련 품목 행, KREI 건고추 원문, 인도 자료, 부재 범위를 기록한 상태 파일</td></tr>
+<tr><td>불필요</td><td class="num">49</td><td>후추 HS 0904.11·12, 일반 농업 지표, 중복 표시본, 품목이 다른 KAMIS</td></tr>
+<tr><td>미검토</td><td class="num">1</td><td><code>raw_data/TM_pepper.md</code>: 제공 인벤토리에는 있으나 로컬 표시본 없음</td></tr>
+<tr class="tot"><td>전체</td><td class="num">65</td><td>제공 인벤토리 기준</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/pepper.csv</code>, <code>01_아카이브_원장.csv</code>, <code>archive_cache/pepper/</code>(E18). <code>TM_pepper.csv</code>의 한국←중국 본토 건고추 2023년 수입 행은 별도로 수치 근거에 포함했다.</p>
+<p>인벤토리 65행은 관련 캐시 파일 전체 목록이 아니다. 별도 캐시에는 <code>raw_data/nongnet_seoan_pepper.json</code>, <code>intelligence_reports/OECD-FAO_Agricultural_Outlook_2024-2033.pdf</code>, <code>intelligence_reports/FAO_Statistical_Yearbook_2024.pdf</code>도 있다. 농넷 파일에는 2026년 8~9월 서안동 공판장 일별 경락값이 있으나 가격 단위가 확정되지 않아 05절의 원/600g 시계열에는 넣지 않았다. 두 국제기구 PDF를 고추 전용 전망·가격 원장으로 취급하지 않는다.</p>
+<p><code>raw_data/FBS_pepper.csv</code>와 <code>raw_data/SCL_pepper.csv</code>는 국내 건고추 총소비의 직접 분모가 아니라 FAO 품목 범위를 설명하는 근거다. <code>raw_data/NOT_AVAILABLE.txt</code>와 <code>raw_data/PinkSheet_NOT_AVAILABLE.txt</code>는 각각 USDA PSD와 Pink Sheet 수집 경로의 품목 부재를 나타내는 근거다. KAMIS <code>pepper</code> 파일은 실제 품목명이 고추가 아니므로 가격 근거에서 제외한다. CoBank 색인 행의 <code>Chili’s</code>는 미국 외식 체인명이다.</p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 고추 산업 해부: 생산·직접 교역·가공품 환산을 나눠 읽다</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(검토본)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · KOSIS·관세청·FAOSTAT·UN Comtrade 원자료, KREI 원문, 정부 문서</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>고추(Capsicum·Pimenta)의 신선·냉장 HS 0709.60, 건고추 HS 0904.21, 분쇄·파쇄 HS 0904.22의 직접 교역과 KREI 건고추 환산 수급. 후추(Piper) 제외</span></div>
+  <div class="cl-row"><span class="k">검증 근거</span><span>원자료 값과 공식 문서(계산식은 30_근거_수치.md)</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>기업별 동일 기준 취급량, 냉동고추 별도 통관 원장, 동일 규격 국제가격 시계열 및 일부 개별 신고세율은 별도 확인 대상</span></div>
+</footer>
+</div>
+

@@ -1,0 +1,726 @@
+<title>한국 호두 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 호두<br>
+        세계 생산 · 국내 임업 · 수입 · 가격 · 유통 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">국산 생산과 수입 커널이 만나는 시장 · 리포트 2026</p>
+      <h1><span class="scr">Walnut</span> <span class="lt">한국 호두 산업 해부</span></h1>
+      <p class="cover-sub">한국은 호두를 생산하면서도 훨씬 많은 탈각 호두를 수입한다.
+        세계 생산에서는 중국 본토가 크고, 한국의 2025년 탈각 수입에서는 미국이 87.4%를 차지한다.
+        미탈각·탈각 중량과 국내 생산·소비 추정의 기준을 구분해 산업을 읽는다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div><span class="by-k">작성</span><span class="by-v">이동건</span></div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2025 탈각 수입</div><div class="v">14,932</div><div class="n">톤 · HS 0802.32 · Comtrade 합계 행</div></div>
+      <div class="cf"><div class="k">2025 탈각 수입액</div><div class="v">1.10억</div><div class="n">달러 · 110,160,470달러</div></div>
+      <div class="cf"><div class="k">2025 탈각 단가</div><div class="v">7.38</div><div class="n">달러/kg · 수입액 ÷ 순중량</div></div>
+      <div class="cf"><div class="k">2025 미탈각 수입</div><div class="v">470</div><div class="n">톤 · HS 0802.31</div></div>
+      <div class="cf"><div class="k">2024 국산 생산</div><div class="v">1,576</div><div class="n">톤 · 산림청 조사 인용 KREI</div></div>
+      <div class="cf"><div class="k">2024 세계 생산</div><div class="v">434.9만</div><div class="n">톤 · 미탈각 · FAOSTAT 추정</div></div>
+      <div class="cf"><div class="k">2024 중국 본토 생산 비중</div><div class="v">34.5%</div><div class="n">FAOSTAT Area 41 · 150만 톤</div></div>
+      <div class="cf"><div class="k">2026 1~9월 탈각 수입</div><div class="v dn">11,114</div><div class="n">톤 · 전년 동기 대비 −7.9% · KREI 인용 TRASS</div></div>
+    </div>
+
+  </div>
+</header>
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">국산 생산이 존재하지만 탈각 수입이 시장의 큰 흐름이다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">생산은 중국 본토가 크고 수출 순위는 가공 형태와 연도가 바꾼다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">국산 작황과 기관 추정 소비량의 기준을 구분한다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">탈각 수입 1만 5천 톤, 통관 단가는 물량과 반대로 움직였다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">산지가격·통관 단가·소비지가격은 서로 다른 상품의 값이다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">미국은 2025년 한국 탈각 수입의 87%, 중국은 2위로 부상했다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">산지 출하 경로는 보이지만 기업별 시장 순위는 검증되지 않았다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">원산지별 실효세율과 검역·표시 의무의 근거는 다르다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">단위 오류와 발표 시점이 해석 범위를 제한한다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 관찰 지표·남은 물음</span><span class="t">생산·수입·가격의 시계를 같은 표에 적는다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">수입 탈각 호두와 국산 피호두의 두 경로</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황과 아카이브 검토 범위</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>국산 생산이 존재하지만 탈각 수입이 시장의 큰 흐름이다</h2>
+<p class="lead">한국 호두 산업에는 산지의 피호두와 수입 탈각 호두가 공존한다. 국산 호두는 임가·산지유통인·농협·직거래 경로로 움직인다. 수입은 HS 0802.31 미탈각과 HS 0802.32 탈각으로 갈라진다. 두 형태의 실중량을 단순 합산하면 소비 가능한 알맹이의 양을 뜻하지 않는다. 농촌경제연구원은 탈각 중량을 미탈각 기준으로 바꿀 때 1.8을 쓴다. 이 계수는 기관마다 달라 USDA ERS 자료의 역산값은 약 2.217, 칠레 USDA FAS 현지사무소 자료는 2.34다. 환산값만으로 재고와 재수출을 뺀 소비 실측치를 만들 수는 없다(<a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI, 「농업전망 2026」 제10장</a>; <a href="https://www.ers.usda.gov/media/29687/fts-386.pdf?v=23396">USDA ERS, 「Fruit and Tree Nuts Outlook: September 2026」, 2026-09-24</a>; <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nuts+Annual_Santiago_Chile_CI2026-0010.pdf">USDA FAS Santiago, 「Tree Nuts Annual」, 2026-09-18</a>).</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>수입 규모.</strong> 2025년 한국의 탈각 호두 수입은 약 14,932톤(원값 14,932.380356톤)·1.10억 달러(원값 110,160,470달러), 미탈각 수입은 약 470톤(원값 469.967103톤)·170.9만 달러다. 이는 UN Comtrade에서 한국 보고국, 세계 상대국, 관세절차·운송수단·제2상대국 합계 행만 남긴 결과다(04절).</li>
+<li><strong>수입 단가.</strong> 2025년 탈각 수입액을 순중량으로 나누면 kg당 7.38달러다. 2024년 같은 방식의 4.73달러보다 55.8% 높다. 여기서 말하는 단가는 통관 금액의 가중평균이며 국내 소비자가격이나 산지 호가가 아니다(04·05절).</li>
+<li><strong>진행연도.</strong> 관세청 품목 월별 원자료에서 2026년 1~8월 탈각 수입은 약 10,185톤(원값 10,184.520톤)으로 전년 동기보다 11.5% 적다. 한 달 더 포함한 KREI의 TRASS 인용 자료에서는 2026년 1~9월 11,114톤으로 전년 동기 12,066톤보다 7.9% 적다. 둘 다 진행연도 값이며, 1~8월 통관 단가와 1~9월 물량 증감률을 같은 기간의 지표로 취급하지 않는다(<a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI, 「2026년 10월 임업관측(호두)」, 2026-10-02, 2쪽</a>; 04절).</li>
+<li><strong>국산 생산.</strong> KREI가 산림청 「2024 임산물생산조사」를 인용한 한국 생산량은 2024년 1,576톤이다. KREI의 2025년 값 1,270톤은 추정이다. KREI의 2026년 연초 전망 약 1,550톤과 10월 관측의 전년 대비 감소 전망은 조사 시점과 방향이 다르다(<a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI, 「농업전망 2026」</a>; <a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI, 「2026년 10월 임업관측(호두)」</a>).</li>
+<li><strong>통계 간 차이.</strong> FAOSTAT의 2024년 한국 호두 생산은 1,146.27톤이며 추정 표식 E가 붙어 있다. 국내 산업의 기준 생산량으로는 산림청 조사 인용값 1,576톤을 쓰고, FAO 값을 같은 실측치처럼 합치지 않는다(FAOSTAT 생산 원자료; 03절).</li>
+<li><strong>세계 생산.</strong> FAOSTAT의 2024년 세계 미탈각 호두 생산은 약 434.9만 톤(원값 4,349,163.36톤)이다. 중국 본토(<code>Area Code=41</code>) 150만 톤(세계 생산의 34.5%), 미국 54.7만 톤, 튀르키예 42.6만 톤, 이란 41.1만 톤 순이다. 세계 합계에는 추정 표식 E, 중국 본토에는 외부출처 표식 X가 붙는다(02절).</li>
+<li><strong>공급 경로.</strong> UN Comtrade의 2025년 한국 탈각 수입 상대국별 순중량에서 미국은 13,057,503kg(87.44%), 중국은 1,659,850kg(11.12%), 칠레는 214,126kg(1.43%)이다. 이는 2025년 완료연도 HS 0802.32 통관 계열의 비중이다. 2026년 3~8월 관세청 국가별 부분자료에서는 중국산이 31,039kg으로 잡혀, 2025년 연간 비중을 2026년에도 적용할 수 없다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 2025년 한국 HS 080232 수입 공개 preview</a>; 관세청 국가별 월별 원자료).</li>
+<li><strong>국내 가격.</strong> 산림조합중앙회 가격조사를 인용한 KREI의 2026년 9월 국산 피호두 소비지가격 잠정치는 상품 29,084원/kg, 중품 25,202원/kg이다. 수입 탈각 호두의 달러/kg 통관 단가와 품질·형태·유통단계가 다르다(<a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI, 「2026년 10월 임업관측(호두)」</a>).</li>
+</ul>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li>이 보고서는 미국산이 한국의 탈각 호두 수입에서 최대 공급원으로 남는다고 본다. 근거는 2025년 Comtrade 상대국별 미국산 비중 87.44%와 2026년 3~8월 관세청 부분자료다. <strong>반증 조건:</strong> 2026년 연간 국가별 확정 물량에서 미국이 최대 공급국이 아니게 되는 경우다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 2025년 한국 HS 080232 수입 공개 preview</a>).</li>
+<li>이 보고서는 국내 생산의 2026년 연초 회복 전망보다 최신 작황 관측에 더 무게를 둔다. 1월 KREI 전망은 약 1,550톤이었으나 10월 관측은 2025년보다 9.1% 적을 것으로 조사했다. <strong>반증 조건:</strong> 2026년 확정 생산조사에서 생산량이 1,550톤 이상으로 집계되는 경우다(<a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 연초 전망</a>; <a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI 10월 관측</a>).</li>
+<li>이 보고서는 2025년의 높은 탈각 통관 단가를 장기 가격 수준으로 고정해 읽지 않는다. 2026년 1~8월 가중평균 단가는 전년 같은 기간보다 낮다. <strong>반증 조건:</strong> 2026년 연간 확정 탈각 수입 단가가 2025년의 7.38달러/kg 이상으로 마감되는 경우다(관세청 품목 월별 원자료).</li>
+</ul>
+<p>표지와 본문의 연도 표기는 서로 다른 시계를 가진다. 세계 생산은 FAOSTAT의 최근 완료연도인 2024년, 한국 수입의 연간 규모와 원산지 비중은 Comtrade의 2025년 자료, 국내 작황은 산림청 조사 인용 2024년과 KREI의 2025년 추정·2026년 관측으로 읽는다. USDA PSD의 마케팅연도 값은 달력연도 FAOSTAT 값과 같은 열에 넣어 합산하지 않는다. 숫자마다 원자료 필터와 계산식을 <code>30_근거_수치.md</code>에 남겼다. 숫자대조 결과는 <code>update_2026-10-07/20_숫자대조.txt</code>에 있다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>생산은 중국 본토가 크고 수출 순위는 가공 형태와 연도가 바꾼다</h2>
+<p class="lead">세계 호두 생산의 기준선은 FAOSTAT의 미탈각 호두다. 2024년 세계 합계는 4,349,163.36톤이며 2023년 4,257,140.11톤보다 많다. 이 합계는 국가별 수치를 독립적으로 다시 더한 값이 아니라 FAOSTAT의 <code>Area=World</code> 행이다. 중국 순위에는 홍콩·마카오·대만을 포괄하는 <code>China</code>(<code>Area Code=351</code>) 대신 <code>China, mainland</code>(<code>Area Code=41</code>)를 사용하고, 지역 합계와 중복 행은 제외했다. 2024년에는 두 중국 행 모두 1,500,000톤으로 값이 같다. FAOSTAT의 품질 표식도 숫자의 성격을 보여준다. 중국 본토·칠레는 X, 이란은 I, 세계 합계는 E이므로 표의 숫자가 모두 동일한 방식의 현장 실측은 아니다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>2024년 미탈각 생산</th><th class="num">톤</th><th class="num">세계 합계 대비</th><th>FAOSTAT 표식</th></tr></thead>
+<tbody>
+<tr><td>중국 본토(Area 41)</td><td class="num">1,500,000</td><td class="num">34.5%</td><td>X</td></tr>
+<tr><td>미국</td><td class="num">547,030</td><td class="num">12.6%</td><td>A</td></tr>
+<tr><td>튀르키예</td><td class="num">426,000</td><td class="num">9.8%</td><td>A</td></tr>
+<tr><td>이란</td><td class="num">411,331</td><td class="num">9.5%</td><td>I</td></tr>
+<tr><td>인도</td><td class="num">317,776</td><td class="num">7.3%</td><td>A</td></tr>
+<tr><td>칠레</td><td class="num">175,000</td><td class="num">4.0%</td><td>X</td></tr>
+<tr class="tot"><td><strong>세계</strong></td><td class="num"><strong>4,349,163</strong></td><td class="num"><strong>100%</strong></td><td><strong>E</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_walnuts.csv</code>, <code>Item=Walnuts, in shell</code>, <code>Element=Production</code>, <code>Year=2024</code>; 점유율은 국가 값 ÷ <code>Area=World</code> 값. 중국 본토는 <code>Area Code=41</code>; 지역 합계와 <code>China</code> 351 중복 행은 순위에서 제외.</p>
+<p>세계 생산 1위인 중국 본토가 곧 모든 시기의 모든 형태에서 수출 1위라는 뜻은 아니다. USDA ERS는 2024/25 마케팅연도에 중국이 미국을 제치고 최대 호두 수출국이 됐으며, 2025년 9월~2026년 7월 부분기간 기준(잠정)에도 중국의 수출량이 미국보다 많았다고 분석한다. ERS는 이 수출 순위의 자료원을 Trade Data Monitor로 밝히지만, 해당 순위의 미탈각 환산 기준은 명시하지 않는다. HS 0802.31만의 국경 통과 물량, HS 0802.32의 실중량, USDA PSD의 미탈각 환산 수출량은 각각 다른 계열이다(<a href="https://www.ers.usda.gov/media/29687/fts-386.pdf?v=23396">USDA ERS, 「Fruit and Tree Nuts Outlook: September 2026」, 2026-09-24, 22쪽</a>).</p>
+<p>USDA PSD의 2025/26 마케팅연도 미탈각 기준 표는 <strong>2025년 11월 판본</strong>이다. 중국 생산 1,550,000톤·내수 1,015,000톤·수출 550,000톤, 미국 생산 644,101톤·내수 235,691톤·수출 400,000톤·기말재고 70,000톤, 칠레 생산 155,000톤·수출 150,000톤이 이 판본의 값이다. 미국 생산 644,101MT는 당시 NASS 초기 예측 710,000 short ton을 환산한 수치다. 이후 USDA ERS는 2025년 미국 생산을 809,000 short ton(약 733,900MT)으로 제시했다. 따라서 PSD 2025년 11월 값을 현재의 미국 생산 추정으로 읽지 않는다(<a href="https://www.ers.usda.gov/media/29687/fts-386.pdf?v=23396">USDA ERS, 「Fruit and Tree Nuts Outlook: September 2026」, 2026-09-24, 21쪽</a>; <code>usda_psd_all_walnuts.csv</code>, <code>Commodity_Description=Walnuts, Inshell Basis</code>, <code>Market_Year=2025</code>, <code>Calendar_Year=2025</code>, <code>Month=11</code>).</p>
+<p>PSD의 수급계정은 생산·수입·기초재고가 공급을, 내수·수출·기말재고가 처분을 이룬다. 이 수치는 FAOSTAT 2024년 생산 순위의 연장선으로 단순 연결할 연간 실측 시계열이 아니다. 마케팅연도, 기관의 환산 방식, 갱신 시점이 달라서다.</p>
+<p>재고 숫자도 세계 재고의 총량처럼 읽기 어렵다. 2025년 11월 PSD 판본에서 미국 기말재고 70,000톤과 유럽연합 40,000톤은 명시되지만, 중국 행은 0으로 입력돼 있다. 0 입력이 모든 민간 재고의 부재를 증명하지 않는다. 따라서 이 보고서는 생산과 주요국 수출·내수의 방향을 읽되, 보고국의 기말재고를 합쳐 전 세계 가용재고라고 부르지 않는다. 한국 수입 단가와 세계 재고 사이의 직접 인과는 동일 시점의 품질·형태·계약 가격 자료가 없어 확인되지 않았다.</p>
+<p>2026/27 전망은 완료연도 순위와 분리한다. USDA FAS의 <strong>현지사무소(Post) 추정</strong>은 칠레 생산 170,000MT·수출 165,000MT, 중국 생산 160만MT다. 칠레 보고서의 2026/27 마케팅연도는 2027년 1월에 시작하며, 해당 값은 표의 <code>New Post</code> 열에 있고 <code>USDA Official</code> 열은 0이다. 칠레 보고서는 면적 감소 속 수확량 개선을 예상하면서 봄 강우·서리와 호두 세균성 마름병 위험도 적었다. 중국 전망은 주요 산지의 생육 여건을 전제로 한다. 양국의 2026/27 수치가 실제 생산으로 확정되기 전에는 2024년 FAOSTAT 순위를 바꾸지 않는다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nuts+Annual_Santiago_Chile_CI2026-0010.pdf">USDA FAS Santiago, 「Tree Nuts Annual」, 2026-09-18</a>; <a href="https://fas-prod.azureedge.us/data/gain/2026/10/china-tree-nuts-annual">USDA FAS China, 「Tree Nuts Annual」, 2026-10-05</a>).</p>
+<p>한국에 중요한 것은 생산국의 이름만이 아니라 수입 가능한 <strong>형태와 계절</strong>이다. 국내 산지의 가을 수확과 해외 산지의 가을·봄 물량, 탈각·선별·저장 기간은 같은 달의 한국 통관 중량에 즉시 반영되지 않는다. 가격 신호는 생산 전망→수확 확인→수출 선적→한국 신고의 순서로 온다. 이 순서를 건너뛰어 한 달의 통관 단가를 그해 작황의 직접 결과로 단정하지 않는다.</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>국산 작황과 기관 추정 소비량의 기준을 구분한다</h2>
+<p class="lead">국산 호두 생산은 산림청 임산물생산조사를 인용한 KREI 자료를 국내 산업 기준으로 쓴다. KREI는 2024년 생산량을 1,576톤, 2023년을 1,544톤으로 제시한다. 2025년 1,270톤은 조사 완료 실측이 아니라 저자 추정치다. 2026년 1월의 약 1,550톤은 전망이며, 같은 해 10월 관측은 2025년보다 9.1% 적을 것으로 조사했다. 따라서 2026년의 한 숫자를 ‘생산량’이라고만 적으면 작성 시점과 통계 상태가 사라진다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>기준</th><th class="num">국내 호두 생산 또는 관측</th><th>성격</th><th>읽는 방법</th></tr></thead>
+<tbody>
+<tr><td>2023년</td><td class="num">1,544톤</td><td>산림청 조사 인용</td><td>완료연도</td></tr>
+<tr><td>2024년</td><td class="num">1,576톤</td><td>산림청 조사 인용</td><td>최신 국내 완료연도</td></tr>
+<tr><td>2025년</td><td class="num">1,270톤</td><td>KREI 저자 추정</td><td>확정 생산과 구분</td></tr>
+<tr><td>2026년 연초</td><td class="num">약 1,550톤</td><td>KREI 전망</td><td>10월 관측과 상이</td></tr>
+<tr><td>2026년 10월 관측</td><td class="num">2025년 대비 −9.1%</td><td>표본 관측 전망</td><td>최종 생산량 미확정</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 「농업전망 2026」 제10장</a>, <a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI 「2026년 10월 임업관측(호두)」</a>. 10월 관측 원문 표지의 연도 표기와 게시 목록·본문의 연도가 어긋난 점은 조사 노트에 기록돼 있다.</p>
+<p>산지 분포는 전국 평균보다 중요한 국내 구조다. KREI가 산림청 2024년 생산조사를 재구성한 지역 비중은 경북 39.8%, 충북 24.2%, 전북 13.9%, 충남 12.2%다. 이 수치는 생산 <strong>지역</strong>의 비중이지 지역별 판매액이나 업체 점유율이 아니다. 생산자가 상품을 말리거나 탈각·선별하는 방식에 따라 산지에서 집계되는 생산 중량과 판매단계의 상품 중량은 다르다. 냉해에 따른 착과 감소가 2025년 추정치를 낮춘 배경이라는 KREI 설명은 산지 작황 해석에 쓸 수 있지만, 그 설명만으로 한국 전체 수입 단가의 변화를 증명하지는 못한다(<a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 「농업전망 2026」 제10장</a>).</p>
+<p>FAOSTAT 원자료에는 한국의 2024년 미탈각 호두 생산 1,146.27톤이 있다(<code>faostat_production_walnuts.csv</code>, <code>Area=Republic of Korea</code>, 표식 E). 산림청 인용 1,576톤과 일치하지 않는다. 원자료의 품목·국가·연도를 확인한 뒤에도 차이가 남으므로 한쪽을 다른 쪽의 반올림치로 처리하지 않았다. 세계 비교에는 FAO 계열을, 한국 산지 규모에는 국내 조사 인용값을 쓰는 이유다. FAOSTAT의 생산지수 97.48과 경상 달러 생산액 413.8만 달러도 각각 지수와 FAO 추정 계열이다. 국내 산림청 조사 생산액과 통화·산식이 달라 매출이나 농가 수취액으로 바꾸어 말하지 않는다(<code>QI_walnuts.csv</code>; <code>QV_walnuts.csv</code>).</p>
+<p>소비 쪽은 측정 대상이 더 복잡하다. FAO 공급활용계정의 2023년 한국 <code>Food supply quantity (tonnes)</code>는 1,539.61톤이며 표식 I가 붙는다(<code>SCL_walnuts.csv</code>). 그 계정은 ‘Walnuts, in shell’ 항목의 공급활용 추정이다. 반면 관세청 HS 0802.32는 이미 탈각된 알맹이의 수입 실중량을 기록한다. FAO 공급량 1,539.61톤과 통관 탈각 수입 1만 톤대는 같은 시장 크기를 두 방식으로 잰 숫자라고 볼 수 없다. 두 값을 합치거나 한쪽으로 다른 쪽을 검증하지 않는다.</p>
+<p>KREI의 소비자 조사에서는 호두 섭취 빈도 ‘주 1회 정도’가 36.2%, 연간 구매량 ‘500g 이상 1kg 미만’이 53.2%로 가장 많은 응답 구간이었다. 이는 조사 응답자의 행동 분포이지 전국 총 소비 중량이 아니다. 별도로 KREI 「농업전망 2026」 표 10-10은 2025년 생산 1,270톤(저자 추정), 수입 27,348톤, 수출 121톤, 소비 28,497톤을 미탈각 환산 기준으로 제시한다. 2026년 수입 28,570톤과 소비 29,990톤은 전망이다. 2025년 수입은 탈각 14,932.38톤×1.8+미탈각 469.97톤≈27,348톤으로 재현된다. 소비 28,497톤은 생산+수입−수출로 맞춘 수급표의 값이며, 재고 증감과 제조 투입·재수출을 별도 실측한 최종 섭취량은 아니다(<a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI, 「농업전망 2026」 제10장, 표 10-10, 2026-01-22</a>).</p>
+<p>환산계수도 기관마다 다르다. KREI의 탈각→미탈각 계수는 1.8, USDA ERS의 미탈각→탈각 계수 0.451의 역수는 약 2.217, 칠레 USDA FAS 현지사무소의 탈각→미탈각 계수는 2.34다. 1.8을 쓰는 KREI 수급표와 다른 계수를 쓰는 시나리오를 섞지 않는다(<a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI, 「농업전망 2026」, 2026-01-22</a>; <a href="https://www.ers.usda.gov/media/29687/fts-386.pdf?v=23396">USDA ERS, 「Fruit and Tree Nuts Outlook: September 2026」, 2026-09-24</a>; <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nuts+Annual_Santiago_Chile_CI2026-0010.pdf">USDA FAS Santiago, 「Tree Nuts Annual」, 2026-09-18</a>).</p>
+<p>KREI 표 10-10의 2026년 수입 전망 28,570톤은 2025년 27,348톤보다 4.5% 많다(KREI 본문은 ‘13.6% 증가’로 적었으나 같은 표의 두 값으로 재계산하면 4.5%다). 이후 발행된 10월 관측은 2026년 1~9월 탈각 수입이 전년 동기보다 7.9% 감소했다고 기록한다. 전자는 연간 미탈각 환산 전망이고 후자는 9월까지의 탈각 실중량이므로 직접 같은 증감률로 대조할 수는 없지만, 최신 부분 실적은 연초 증가 전망과 방향이 다르다(<a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI, 「농업전망 2026」 제10장, 2026-01-22</a>; <a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI, 「2026년 10월 임업관측(호두)」, 2026-10-02, 2쪽</a>).</p>
+<p>공통 KOSIS <code>kosis_forest_products</code> 수집본도 확인했다. 해당 JSON에서 ‘호두’ 명칭 행은 확인되지 않아, 일반 임산물 생산 합계로 호두 생산량을 대체하지 않았다. 이 사실은 한국 공식 호두 통계가 없다는 주장이 아니다. KREI가 인용한 산림청 조사가 이미 있으므로, 이 수집본의 품목 세분성이 이 보고서의 질문에 맞지 않는다는 범위 판정이다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>탈각 수입 1만 5천 톤, 통관 단가는 물량과 반대로 움직였다</h2>
+<p class="lead">호두 무역은 먼저 세번을 나눈다. HS 0802.31은 껍데기를 벗기지 않은 호두, HS 0802.32는 벗긴 호두다. 한국 2025년 통관의 주력은 탈각이다. 물량을 표시할 때는 각 세번의 <strong>실중량</strong>을 유지한다. 상품 형태가 다른 두 중량을 더해 ‘한국이 먹은 호두’라고 부르지 않는다. 환산계수, 기준 연도, 재고 처리 규칙을 갖춘 수급표가 아니므로 이 보고서는 두 형태의 합계를 소비량으로 제시하지 않는다.</p>
+<p>UN Comtrade의 연간 합계에는 <code>reporterCode=410</code>, <code>partnerCode=0(World)</code>, <code>partner2Code=0</code>, <code>customsCode=C00</code>, <code>motCode=0</code>을 적용했다. <code>netWgt</code>는 kg, <code>primaryValue</code>는 달러다. 보관된 연간 CSV에는 한국의 세계 합계 행만 있으므로, 상대국별 분해는 동일 조건의 Comtrade 공개 preview에서 따로 확인했다. 합계 행과 상대국 행을 다시 더하지 않는다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>연도</th><th>형태·HS6</th><th class="num">수입 순중량(톤)</th><th class="num">수입액(백만 달러)</th><th class="num">가중평균 단가(달러/kg)</th></tr></thead>
+<tbody>
+<tr><td>2024</td><td>미탈각 080231</td><td class="num">591.3</td><td class="num">1.63</td><td class="num">2.76</td></tr>
+<tr><td>2024</td><td>탈각 080232</td><td class="num">16,367.9</td><td class="num">77.48</td><td class="num">4.73</td></tr>
+<tr><td>2025</td><td>미탈각 080231</td><td class="num">470.0</td><td class="num">1.71</td><td class="num">3.64</td></tr>
+<tr><td>2025</td><td>탈각 080232</td><td class="num">14,932.4</td><td class="num">110.16</td><td class="num">7.38</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>processed_data/comtrade/walnuts_comtrade_annual.csv</code>, 한국·World·C00·mot 0·partner2 0 합계 행. 단가 = <code>primaryValue/netWgt</code>; 톤 = <code>netWgt/1000</code>.</p>
+<p>탈각 수입 중량은 2024년보다 8.8% 감소했는데 수입액은 42.2% 증가했다. 그 결과 평균 단가는 55.8% 높아졌다. 이는 같은 HS6의 달러 표시 통관 평균이라는 범위에서만 성립한다. 제품의 크기·등급·포장·계약 조건이 바뀌었는지, 환율 변화가 원화 소매가에 얼마나 전가됐는지는 이 표가 말해주지 않는다. KREI의 2026년 보고서 본문에는 2024년 16,368톤에서 2025년 14,932톤으로 변한 것을 ‘12.1% 감소’라고 쓴 대목이 있다. 두 수치로 재계산하면 약 8.8%이므로 이 보고서는 원자료 산식을 따른다(<a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 「농업전망 2026」 제10장</a>).</p>
+<p>같은 HS 0802.32의 2024년과 2025년 상대국별 물량은 다음과 같다. 점유율의 분모는 각 연도 Comtrade <code>partnerCode=0</code> 세계 합계 순중량이다. ‘기타’는 세계 합계에서 미국·중국·칠레를 뺀 값으로, 세 국가 이외의 세부 행을 합계 행에 중복 가산하지 않았다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>연도</th><th>상대국</th><th class="num">탈각 수입 순중량(톤)</th><th class="num">세계 합계 대비</th></tr></thead>
+<tbody>
+<tr><td>2024</td><td>미국</td><td class="num">16,150.0</td><td class="num">98.67%</td></tr>
+<tr><td>2024</td><td>칠레</td><td class="num">176.7</td><td class="num">1.08%</td></tr>
+<tr><td>2024</td><td>중국</td><td class="num">41.0</td><td class="num">0.25%</td></tr>
+<tr><td>2024</td><td>기타</td><td class="num">0.2</td><td class="num">0.00%</td></tr>
+<tr><td>2024</td><td><strong>세계 합계</strong></td><td class="num"><strong>16,367.9</strong></td><td class="num"><strong>100%</strong></td></tr>
+<tr><td>2025</td><td>미국</td><td class="num">13,057.5</td><td class="num">87.44%</td></tr>
+<tr><td>2025</td><td>중국</td><td class="num">1,659.9</td><td class="num">11.12%</td></tr>
+<tr><td>2025</td><td>칠레</td><td class="num">214.1</td><td class="num">1.43%</td></tr>
+<tr><td>2025</td><td>기타</td><td class="num">0.9</td><td class="num">0.01%</td></tr>
+<tr><td>2025</td><td><strong>세계 합계</strong></td><td class="num"><strong>14,932.4</strong></td><td class="num"><strong>100%</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2024&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국 HS 080232 수입 공개 preview, 2024년</a>, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년</a>. <code>partnerCode=842/156/152</code> 및 0, <code>netWgt/1000</code>; 반올림 때문에 표시값의 합계가 0.1톤 수준에서 다를 수 있다.</p>
+<p>2025년 중국산 탈각 수입 1,659.9톤은 2024년 41.0톤의 약 40.5배다. 칠레산 214.1톤의 약 7.8배로, 중국은 2025년 미국 다음의 공급국이다. 이는 완료연도 상대국별 통관값에 관한 판단이며 2026년에도 같은 순위가 유지된다는 뜻은 아니다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국 HS 080232 수입 공개 preview, 2024·2025년</a>).</p>
+<p>2026년 1~8월 기준(잠정) 값은 전년 같은 달과 비교한다. 관세청 품목 월별 자료의 2025년 1~8월과 2026년 1~8월을 각 세번별로 더했다. <code>impWgt</code>와 <code>impDlr</code>는 각각 kg과 달러다. 남은 달의 통관과 연말 계절성이 반영되지 않아 연간 추세는 아직 확인되지 않았다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>같은 기간 비교</th><th>형태</th><th class="num">수입 중량(톤)</th><th class="num">수입액(백만 달러)</th><th class="num">가중평균 단가(달러/kg)</th></tr></thead>
+<tbody>
+<tr><td>2025년 1~8월</td><td>미탈각</td><td class="num">450.0</td><td class="num">1.64</td><td class="num">3.64</td></tr>
+<tr><td>2026년 1~8월(잠정)</td><td>미탈각</td><td class="num">469.2</td><td class="num">1.66</td><td class="num">3.54</td></tr>
+<tr><td>2025년 1~8월</td><td>탈각</td><td class="num">11,505.3</td><td class="num">85.79</td><td class="num">7.46</td></tr>
+<tr><td>2026년 1~8월(잠정)</td><td>탈각</td><td class="num">10,184.5</td><td class="num">61.23</td><td class="num">6.01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>customs_item_trade_monthly_walnuts.csv</code>, <code>_key=202501~202508</code> 및 <code>202601~202608</code>, <code>hsCode=0802310000/0802320000</code>. 합계 뒤 단가 계산; <code>평년</code> 자료 사용 안 함.</p>
+<p>2026년 1~8월 기준(잠정) 탈각 중량은 전년 동기보다 11.5%, 달러 수입액은 28.6%, 가중평균 단가는 19.4% 낮다. 달러 수입액 감소에는 물량 감소와 단가 하락이 함께 반영됐다. 한 달 더 포함한 KREI의 TRASS 인용값은 2026년 1~9월 탈각 11,114톤, 전년 동기 12,066톤으로 감소율이 7.9%다. 9월 2026년 물량 929톤은 전년 같은 달 561톤보다 많아 누적 감소폭이 줄었다. 1~9월 금액은 이 표에서 확인하지 않았으므로 1~8월의 달러 단가·금액 증감률을 9월까지로 확장하지 않는다(<a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI, 「2026년 10월 임업관측(호두)」, 2026-10-02, 2쪽, 자료 TRASS</a>).</p>
+<p>연간 수입액의 감소를 부분기간에서 그대로 예측하거나 2025년 높은 평균 단가의 원인을 수확량 하나로 확정하지 않는다. 관세청 품목 자료와 Comtrade의 2025년 연간 값은 반올림·집계 시점 차이가 작지만, 2026년 자료는 아직 연말 수정 가능성이 있다.</p>
+<p>원산지 검토는 자료 범위에 맞춘다. FAOSTAT 상세무역행렬의 <strong>2024년 미탈각</strong> 한국 수입 591.32톤 중 미국 상대국 행은 591.31톤이다. 이 값은 미탈각에 한정한다(<code>TM_walnuts.csv</code>, <code>Reporter Countries=Republic of Korea</code>, <code>Partner Countries=United States of America</code>, <code>Item=Walnuts, in shell</code>, <code>Element=Import quantity</code>, <code>Year=2024</code>). <strong>탈각</strong>의 2025년 상대국별 수치는 위 Comtrade 공개 preview 표를 사용한다. 2026년 3~8월 기준(잠정) 관세청 탈각 국가별 부분자료는 미국 7,355,533kg, 칠레 72,149kg, 중국 31,039kg을 보인다. 이 자료는 연중 일부 달만 담으므로 진행연도 국가 점유율·연간 순위 표를 만들지 않았다(<code>walnuts_customs_kr_monthly.csv</code>).</p>
+<p>OEC 아카이브에는 2024년 한국 탈각 수입액 77,639,516달러가 있다(<code>oec_walnuts_2080232_import.csv</code>). 같은 해 Comtrade 합계 행의 77,484,064달러와 완전히 일치하지 않는다. 둘을 합산하거나 평균하지 않았다. 이 보고서의 주계열은 세부 필터가 확인되는 Comtrade이며 OEC는 교차 확인 자료로 남긴다.</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>산지가격·통관 단가·소비지가격은 서로 다른 상품의 값이다</h2>
+<p class="lead">국내 피호두의 생산지·소비지가격, 미국 농가의 미탈각 생산자가격, 한국 수입 탈각 커널의 통관 단가는 통화뿐 아니라 상품 형태와 거래 단계가 다르다. 한 가격의 상승률로 다른 가격의 상승 원인을 곧바로 설명하지 않는다. 특히 국산 피호두의 소비지가격을 수입 탈각 호두의 달러/kg 단가와 나누어 국내산 프리미엄이라고 부를 수 없다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>가격 계열</th><th>시점</th><th class="num">값</th><th>상품·단계</th></tr></thead>
+<tbody>
+<tr><td>한국 탈각 수입 가중평균</td><td>2024년</td><td class="num">4.73달러/kg</td><td>HS 0802.32, 통관</td></tr>
+<tr><td>한국 탈각 수입 가중평균</td><td>2025년</td><td class="num">7.38달러/kg</td><td>HS 0802.32, 통관</td></tr>
+<tr><td>한국 탈각 수입 가중평균</td><td>2026년 1~8월</td><td class="num">6.01달러/kg</td><td>HS 0802.32, 통관·잠정</td></tr>
+<tr><td>한국 국산 피호두 소비지 중품</td><td>2025년 평균</td><td class="num">19,159원/kg</td><td>KREI 「농업전망 2026」의 산림조합 조사 인용</td></tr>
+<tr><td>한국 국산 피호두 소비지 중품</td><td>2025년 월별표</td><td class="num">매월 19,667원/kg</td><td>KREI 「2026년 10월 임업관측」; 위 평균과 불일치</td></tr>
+<tr><td>한국 국산 피호두 소비지 상품</td><td>2026년 9월</td><td class="num">29,084원/kg</td><td>산림조합 조사 인용·잠정</td></tr>
+<tr><td>한국 국산 피호두 소비지 중품</td><td>2026년 9월</td><td class="num">25,202원/kg</td><td>산림조합 조사 인용·잠정</td></tr>
+<tr><td>미국 호두 생산자가격</td><td>2024년</td><td class="num">1,896달러/톤</td><td>FAOSTAT, 산지 단계</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: Comtrade 합계 행 및 관세청 월별 원자료의 금액÷중량; <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 「농업전망 2026」, 2026-01-22</a>; <a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI 「2026년 10월 임업관측(호두)」, 2026-10-02, 3쪽</a>; <code>faostat_prices_walnuts.csv</code>, 미국·<code>Producer Price (USD/tonne)</code>·2024년.</p>
+<p>산림조합중앙회 임산물유통정보시스템은 생산지·도매지·소비지와 피호두·깐호두, 지역·등급을 나누어 가격을 조회하는 경로다. 운영기관은 생산자와 유통 매장 조사원 등을 활용한다고 설명한다. 위 표의 국산 가격은 이 시스템의 가격조사를 인용한 KREI 월보·전망의 특정 품질과 단계다. 하루의 조사값을 전국 거래액의 가중평균으로 바꾸지 않는다(<a href="https://www.forestinfo.or.kr/public/html/HtmlPage.do?pg=/info/info_8.jsp">산림조합중앙회 가격조사 방법, 조사 노트 B등급</a>; <a href="https://www.forestinfo.or.kr/public/sifp/selectPrinfoStList.do">가격 조회</a>).</p>
+<p>KREI 「농업전망 2026」은 2025년 국산 피호두 소비지 중품 평균을 19,159원/kg, 2024년을 19,667원/kg으로 적었다. 그러나 같은 기관의 「2026년 10월 임업관측」 월별표는 2025년 1~12월 중품 가격을 매월 19,667원/kg으로 적는다. 두 문서의 2025년 값이 충돌하며 산림조합 원 월별값과 아직 대조되지 않았다. 따라서 2025년 가격이 2024년보다 하락했다고 확정하지 않는다(<a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI, 「농업전망 2026」, 2026-01-22, 550쪽</a>; <a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI, 「2026년 10월 임업관측(호두)」, 2026-10-02, 3쪽</a>).</p>
+<p>2026년 9월 중품 25,202원/kg도 잠정 월값이므로 어느 쪽 2025년 연평균과도 곧바로 연간 상승률을 만들지 않는다. 산지 물량이 적은 달의 등급 구성과 출하처 구성이 변해도 관측 가격이 움직일 수 있다. 월별 동일 등급·동일 조사처의 원자료가 있어야 작황과 가격의 관계를 더 좁힐 수 있다.</p>
+<p>FAOSTAT의 한국 호두 생산자가격 <strong>지수</strong>는 2024년 120.36, 2025년 118.60이며 기준은 2014~2016=100이고 표식 E다(<code>faostat_prices_walnuts.csv</code>). 이 값을 원/kg으로 읽지 않았다. 아카이브의 <code>walnuts_kamis_price.csv</code>도 검토했지만 품목명이 공란이고 다른 품목 가격이 혼입된 행이 있어 호두 가격 계열로 쓰지 않았다. KAMIS의 ‘평년’은 최근 5년 중 최고·최저를 뺀 3년 평균이며 관측 연도 가격과 섞어 평균하지 않는다. 이 보고서에서 확인된 국내 호두 전용 공개 가격 경로는 산림조합중앙회 자료다. KAMIS 호두 전용 시계열의 존재·부재는 조회 시간초과가 있어 확정하지 않는다(아카이브 원장; 조사 노트 미확보 목록).</p>
+<p>국제 지표도 거래 단계가 다르다. USDA ERS의 2025년 9월~2026년 7월 미국 호두 수출 평균 단가는 미탈각 환산 기준 1.33달러/lb로 조사 노트에 기록돼 있다. 이는 수출액을 수출량으로 나눈 결과이지 거래소의 현물 호가가 아니다(<a href="https://www.ers.usda.gov/media/29687/fts-386.pdf?v=23396">USDA ERS, 「Fruit and Tree Nuts Outlook: September 2026」, 2026-09-24</a>). 중량 환산, 품목 형태, 운임·보험, 거래기간이 달라 이 수치와 한국의 탈각 통관 단가는 직접 비교되지 않는다. 값이 서로 다른 까닭을 환율 하나로 단정할 근거도 없다.</p>
+<p>이 보고서의 가격 관찰 계열은 동일 HS의 한국 월별 통관 달러/kg와 수입 중량, 산림조합의 같은 등급·같은 조사 단계 원/kg, USDA ERS 미국 수출 단가 또는 FAOSTAT 산지가격이다. 계열 간 차이를 포장·품질·환율·운임·시차 중 어느 요인이 설명하는지는 현재 자료에서 확인되지 않았다.</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>미국은 2025년 한국 탈각 수입의 87%, 중국은 2위로 부상했다</h2>
+<p class="lead">한국 시장의 공급국을 세계 생산량 순위로만 판단할 수 없다. 중국 본토는 세계 최대 생산지이고 USDA ERS가 최근 중국의 수출 선두를 설명한다. 한국의 2025년 탈각 수입에서는 미국이 87.44%로 1위, 중국이 11.12%로 2위, 칠레가 1.43%로 3위다. 칠레는 2024년 한국 탈각 수입에서 2위였으나, 2025년에는 중국산 물량이 크게 늘었다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2024&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국 HS 080232 수입 공개 preview, 2024년</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년</a>).</p>
+<div class="tw">
+<table>
+<thead><tr><th>국가</th><th>확인된 세계·국내 연결</th><th>최근 관측 또는 전망</th><th>읽을 때의 한계</th></tr></thead>
+<tbody>
+<tr><td>미국</td><td>FAOSTAT 2024년 미탈각 생산 547,030톤; 한국 2025년 탈각 수입 13,057.5톤·87.44%</td><td>USDA PSD 2025년 11월 판본의 2025/26 생산 644,101MT·수출 400,000MT; ERS의 이후 2025년 생산 809,000 short ton</td><td>PSD 초기 판본과 이후 ERS 수치의 시점·단위가 다름</td></tr>
+<tr><td>중국</td><td>FAOSTAT 2024년 중국 본토(Area 41) 미탈각 생산 1,500,000톤; 한국 2025년 탈각 수입 1,659.9톤·11.12%</td><td>USDA FAS 중국 현지사무소의 2026/27 생산 1,600,000MT 전망</td><td>2026/27은 확정 생산 아님; 한국의 2026년 3~8월 중국산은 31.0톤</td></tr>
+<tr><td>칠레</td><td>FAOSTAT 2024년 미탈각 생산 175,000톤; 한국 2025년 탈각 수입 214.1톤·1.43%</td><td>USDA FAS 칠레 현지사무소의 2026/27 생산 170,000MT·수출 165,000MT 전망</td><td>칠레 MY2026/27은 2027년 1월 시작; Post 추정은 USDA 공식치가 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>faostat_production_walnuts.csv</code>; <code>usda_psd_all_walnuts.csv</code>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국 HS 080232 수입 공개 preview, 2025년</a>; <a href="https://www.ers.usda.gov/media/29687/fts-386.pdf?v=23396">USDA ERS, 「Fruit and Tree Nuts Outlook: September 2026」, 2026-09-24</a>; <a href="https://fas-prod.azureedge.us/data/gain/2026/10/china-tree-nuts-annual">USDA FAS China, 「Tree Nuts Annual」, 2026-10-05</a>; <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nuts+Annual_Santiago_Chile_CI2026-0010.pdf">USDA FAS Santiago, 「Tree Nuts Annual」, 2026-09-18</a>.</p>
+<p><strong>미국.</strong> 한국의 2024년 미탈각 수입은 FAOSTAT 상세무역행렬에서 사실상 미국 상대국 행으로 잡힌다. 별도로 2025년 탈각 수입의 미국산 비중은 Comtrade 상대국별 순중량 13,057,503kg÷세계 합계 14,932,380kg=87.44%다. KREI는 미국산 탈각호두에 한·미 FTA 무관세가 적용된다고 적었다. 미국산의 월별 가용량은 작황 외에도 탈각·선별, 수출 선적, 재고 방출에 좌우된다. USDA PSD의 2025년 11월 미국 생산 644,101MT는 초기 판본이고, USDA ERS의 이후 자료는 2025년 생산을 809,000 short ton(약 733,900MT)으로 제시한다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국 HS 080232 수입 공개 preview, 2025년</a>; <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI, 「농업전망 2026」, 2026-01-22</a>; <a href="https://www.ers.usda.gov/media/29687/fts-386.pdf?v=23396">USDA ERS, 「Fruit and Tree Nuts Outlook: September 2026」, 2026-09-24</a>).</p>
+<p><strong>중국.</strong> FAOSTAT의 2024년 중국 본토(<code>Area Code=41</code>) 생산량은 150만 톤으로 세계 합계의 34.5%다. USDA ERS는 중국이 2024/25 마케팅연도에 미국을 제치고 세계 호두 수출량 선두가 됐다고 설명한다. 한국의 2025년 중국산 탈각 수입은 1,659,850kg으로 2024년 40,999.677kg의 약 40.5배였고, 칠레산의 약 7.8배였다. 다만 한국의 2026년 3~8월 관세청 부분자료에서는 중국산이 31,039kg으로 크게 줄었다. 계약조건·관세·검역·품질 조건이 시기별 물량에 영향을 줄 수 있으나, 이 자료만으로 감소 원인을 특정하지 않는다. 중국의 2026/27 생산 160만MT는 USDA FAS 현지사무소의 전망치이며 실제 수확량은 아직 확정되지 않았다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2024&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국 HS 080232 수입 공개 preview, 2024년</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년</a>; <a href="https://www.ers.usda.gov/media/29687/fts-386.pdf?v=23396">USDA ERS, 「Fruit and Tree Nuts Outlook: September 2026」, 2026-09-24</a>; <a href="https://fas-prod.azureedge.us/data/gain/2026/10/china-tree-nuts-annual">USDA FAS China, 「Tree Nuts Annual」, 2026-10-05</a>; <code>walnuts_customs_kr_monthly.csv</code>).</p>
+<p><strong>칠레.</strong> 칠레 USDA FAS 현지사무소(Post)는 MY2026/27(2027년 1월 시작) 생산 17만MT와 수출 16.5만MT를 추정한다. 이는 보고서의 <code>New Post</code> 값이며 USDA 공식 수치는 아니다. 생산면적 감소에도 수확량 개선을 예상하지만 봄철 강우·서리와 세균성 마름병을 위험으로 적었다. 한국의 2025년 칠레산 탈각 수입은 214,126kg으로 3위(1.43%)다. 2026년 7~8월 기준(잠정) 관세청 부분자료에는 각각 42,966kg과 29,183kg이 잡힌다. 연간 2025년 값과 두 달의 2026년 값을 이어 지속성을 단정하지 않는다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nuts+Annual_Santiago_Chile_CI2026-0010.pdf">USDA FAS Santiago, 「Tree Nuts Annual」, 2026-09-18</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국 HS 080232 수입 공개 preview, 2025년</a>; <code>walnuts_customs_kr_monthly.csv</code>).</p>
+<p>국산 산지는 별도의 공급축이다. 생산 지역은 경북·충북 중심이고 2025년 KREI 표본조사는 산지 출하 경로가 여러 갈래임을 보여준다. 국산 피호두와 수입 탈각 커널을 같은 물량의 대체재로 가정하면 산지 생산자, 탈각업체, 식품 제조사, 소매 소비자의 요구를 한데 섞게 된다. <strong>형태별 가공 능력과 규격</strong>의 집중도는 정량화되지 않았다. 한국 업체별 장기계약과 재고도 미확보다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>산지 출하 경로는 보이지만 기업별 시장 순위는 검증되지 않았다</h2>
+<p class="lead">국산 호두의 첫 거래는 생산자가 누구에게 어느 상태로 출하하는지에서 시작한다. KREI의 2025년 표본임가 조사는 소비자 직거래를 가장 큰 응답 경로로 제시한다. 산지유통인을 거치는 물량, 저장하는 물량, 농협 등에 수매되는 물량도 있다. 이 표본의 비율은 임가의 출하 경로에 관한 조사 결과다. 전국 호두 매출의 채널별 점유율이나 개별 업체의 구매 물량을 뜻하지 않는다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>2025년 표본임가 출하 경로</th><th class="num">응답 비율</th><th>산업적으로 확인되는 역할</th></tr></thead>
+<tbody>
+<tr><td>소비자 직거래</td><td class="num">41.9%</td><td>생산자와 소비자 사이 직접 판매</td></tr>
+<tr><td>산지유통인</td><td class="num">15.2%</td><td>산지 집하·재판매</td></tr>
+<tr><td>저장</td><td class="num">13.5%</td><td>판매시점 이연</td></tr>
+<tr><td>농협 등 수매</td><td class="num">12.7%</td><td>조직 수매 경로</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 「농업전망 2026」 제10장, 산림경제연구실 2025년 표본임가 조사</a>. 비율은 원문 그대로이며 합계가 전체 출하처의 전부라고 해석하지 않음.</p>
+<p>수입 호두는 산지 출하와 다른 통로를 가진다. 통관 이후 선별·소분·볶음·혼합견과 제조·제과 제빵 원료·소매 판매 등으로 갈라질 수 있다. 관세청 월별 원자료는 <strong>국가와 세번</strong>을 보여주고, 식약처 수입식품 신고 확인 자료는 <strong>수입업소·해외 제조사명과 신고 건수</strong>를 보여준다. 식약처의 2025년 10월~2026년 9월 ‘호두’ 품목명 집계는 신고 건수 기준으로, 중량·금액이나 최종 용도를 나타내지 않는다. 동일 기간 전체 수입 중량, 기업 식별 기준, 합병·관계사 처리, 가공품 포함 범위를 갖춘 기업별 <strong>호두 취급 물량 원장</strong>은 확보되지 않았다(<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>).</p>
+<p>산림조합중앙회의 공개 가격조사에는 영동군호두연구회·원골농원이 생산지 조사처, 황간농협상촌지점·천안시산림조합 임산물유통센터가 소비지 조사처로 나온다. 이는 가격이 어느 현장에서 수집되는지 설명하는 <strong>조사 참여 주체</strong>다. 출하량·매출·시장점유율의 순위표가 아니다(<a href="https://www.forestinfo.or.kr/public/sifp/selectPrinfoStList.do">산림조합중앙회 임산물유통정보시스템, 조사 노트 B등급</a>). 기업 절에서 검증되지 않은 순위 대신 실제로 확인되는 기능을 기록한 이유다.</p>
+<p>수입식품 영업의 제도적 경계도 유통구조에 영향을 준다. 판매·영업용으로 수입하는 식품은 식약처에 신고해야 하고, 알레르기 유발물질 표시 대상에 호두가 포함된다. 원산지 표시도 국산·수입산에 각각 적용된다. 따라서 소비자에게 보이는 제품은 ‘호두’ 한 단어 아래 있더라도 피호두·깐호두, 원재료·가공식품, 국산·수입산, 소비자 직접판매·식품제조 투입의 규칙이 다르다(08절).</p>
+<p>기업 자료의 결번은 산업구조의 결론을 제한한다. 가격조사 참여 명단만으로 ‘상위 유통기업’을 만드는 것도, 일부 DART 공시기업 매출을 합쳐 호두 시장 전체라고 부르는 것도 하지 않았다. 식약처 신고 자료로 수입업소와 해외 제조사명은 확인되지만, <strong>동일 기간 기업별 호두 취급 중량·금액을 검증할 수 있는 공개 원장</strong>은 미확보다(<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>). 현재 가능한 결론은 국산 산지 경로의 표본 구성, 수입 물량의 세번·국가 구조, 그리고 식약처 신고 건수에 따른 업소 명단까지다. 원물 수입·탈각·제조·브랜드 판매의 기능별 <strong>물량 순위</strong>는 현재 자료로는 비교되지 않는다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>원산지별 실효세율과 검역·표시 의무의 근거는 다르다</h2>
+<p class="lead">관세율을 말할 때 기본세율, 협정세율, 실제 수입신고에 적용된 세율을 구분한다. JETRO의 <strong>2025년 6월 조사</strong> 표에는 한국 호두 기본세율이 미탈각 HS 0802.31 45%, 탈각 HS 0802.32 30%로 적혀 있다. 이 조사표만으로 2026년의 모든 원산지·세번에 적용된 세율을 확정할 수 없다. KREI의 2026년 보고서는 미국산 탈각 호두의 한·미 FTA 무관세 수입을 명시한다. 중국산에 대해서는 한·중 FTA 상세설명자료가 호두를 양허제외 견과류에 넣는다. 양허제외는 협정상 관세 철폐 범위의 설명이지 개별 신고의 최종 세율 표가 아니다(<a href="https://www.jetro.go.jp/world/asia/kr/foods/exportguide/vegetables.html">JETRO, 「青果物の輸入規制、輸入手続き（韓国）」, 관세 조사시점 2025-06</a>; <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI, 「농업전망 2026」, 2026-01-22</a>; <a href="https://fta.go.kr/webmodule/_PSD_FTA/cn/doc/1_description.pdf">산업통상자원부 FTA 포털, 한·중 FTA 상세설명자료</a>).</p>
+<div class="tw">
+<table>
+<thead><tr><th>제도</th><th>확인된 내용</th><th>이 보고서의 적용 범위</th></tr></thead>
+<tbody>
+<tr><td>기본관세</td><td>JETRO 2025년 6월 조사: 미탈각 45%, 탈각 30%</td><td>2026년 현행 신고세율로 단정하지 않음</td></tr>
+<tr><td>한·미 FTA</td><td>KREI 2026년 보고서: 미국산 탈각 호두 무관세</td><td>원산지 증빙·신고별 적용은 제시되지 않음</td></tr>
+<tr><td>한·중 FTA</td><td>호두 양허제외</td><td>중국산 실제 세율의 단독 증거 아님</td></tr>
+<tr><td>식물검역</td><td>대상 식물 수입 시 신고·검역신청과 원칙적으로 수출국 식물검역증명서 제출</td><td>호두 가공상태·산지별 허용 조건은 이번 자료에서 대조되지 않음</td></tr>
+<tr><td>수입식품 신고</td><td>판매·영업용 수입식품의 식약처 신고</td><td>수입 주체와 상품에 적용</td></tr>
+<tr><td>원산지 표시</td><td>국산은 국산·국내산 또는 생산지역, 수입산은 통관 원산지 국가명</td><td>원물·가공품 판매 표시와 음식점 메뉴 의무 구분</td></tr>
+<tr><td>알레르기 표시</td><td>호두는 표시대상 알레르기 유발물질</td><td>가공식품 원재료 사용 시 별도 표시</td></tr>
+<tr><td>농식품 바우처</td><td>2026년 구매 가능 수실류에 국산 호두 포함</td><td>국산 수요 지원의 정책 경로</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.jetro.go.jp/world/asia/kr/foods/exportguide/vegetables.html">JETRO, 「青果物の輸入規制、輸入手続き（韓国）」, 관세 조사시점 2025-06</a>; <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 「농업전망 2026」</a>; <a href="https://fta.go.kr/webmodule/_PSD_FTA/cn/doc/1_description.pdf">한·중 FTA 상세설명자료</a>; <a href="https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1025862387">식물방역법 시행규칙 제14조</a>; <a href="https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1031033303">수입식품안전관리 특별법 제20조</a>; <a href="https://www.naqs.go.kr/hp/contents/contentsTab.do?menuId=MN30559">농관원 원산지 표시 안내</a>; <a href="https://www.law.go.kr/LSW/cgmExpcInfoP.do?cgmExpcDatSeq=2406627&amp;mode=2&amp;ofiClsCd=350123">식약처 법령해석</a>; <a href="https://www.mafra.go.kr/bbs/home/792/592815/download.do">농식품부 바우처 발표</a>. 등급은 조사 노트의 A/B를 유지.</p>
+<p>검역은 ‘견과류’라는 일반명보다 수입품의 가공상태와 수출국 조건에 따라 실제 허용 여부가 달라질 수 있다. 식물방역법 시행규칙 제14조가 수입신고·검역신청과 식물검역증명서의 원칙을 정한다는 사실만으로, 모든 산지의 모든 형태 호두가 같은 조건으로 허용된다고 말하지 않는다. 조사 노트에서는 검역본부 검색을 시도했지만 이를 한 표로 대조한 자료를 확보하지 못했다.</p>
+<p>원산지 표시도 판매 현장과 음식점 메뉴를 나눈다. 농관원 안내에 따르면 농산물 판매에서 국산은 ‘국산·국내산’ 또는 생산지역, 수입 농산물은 통관 시 원산지 국가명으로 표시한다. 안내에 열거된 음식점 메뉴 원산지 표시대상 목록에는 호두가 없다. 이것이 호두 원물·가공품의 판매 표시 의무까지 없다는 뜻은 아니다(<a href="https://www.naqs.go.kr/hp/contents/contentsTab.do?menuId=MN30559">농관원 안내</a>). 식약처 법령해석의 알레르기 표시는 또 다른 의무다. 원산지와 알레르기는 표시 목적도 문구도 다르다(<a href="https://www.law.go.kr/LSW/cgmExpcInfoP.do?cgmExpcDatSeq=2406627&amp;mode=2&amp;ofiClsCd=350123">식약처 법령해석, 2026-03-09</a>).</p>
+<p>2026년 호두에 대한 할당관세·조정관세의 적용 여부와 한계수량, 수입 호두의 유통이력 신고 지정 여부는 <strong>미확보</strong>다. 시도 경로는 2026년 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」 별표, 농식품부 공고, 「수입농산물등 유통이력관리에 관한 고시」 별표와 농관원 시스템이다. 열람 가능한 본문만으로 해당 별표 전체에서 호두가 ‘없다’고 확정하지 않았다(조사 노트 미확보 목록). 칠레산·중국산·미국산의 신고일별 HS10, 원산지 증명, 협정 선택과 세율표가 대조되지 않아 실제 적용세율의 차이는 확정되지 않았다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>단위 오류와 발표 시점이 해석 범위를 제한한다</h2>
+<p class="lead">은행·기관 문서는 원자료가 설명하지 못하는 작황과 정책의 맥락을 준다. 다만 기관의 견해와 공식 통계값을 같은 증거 등급으로 바꾸지 않는다. 은행 리포트 색인에서 <code>items</code>에 <code>walnuts</code>가 포함된 Wells Fargo Agri-Food Institute 자료는 2023·2024·2025년 1분기 자료 3건이다. 2024년판과 2025년판의 호두 문단에는 각각 <code>800m tons</code>, <code>596 million tons</code>라는 비현실적인 생산 단위가 있어 해당 물량을 인용하지 않는다. 2023년판에는 호두 출하와 유기농 견과 문단이 있으며 생산량 단위 문장은 없다. 그 밖의 KREI·USDA·Rabobank 문서는 조사 노트의 URL과 원문 확인 범위에서 인용했다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>기관·문서</th><th>날짜·등급</th><th>호두 관련 요지</th><th>채택 범위</th></tr></thead>
+<tbody>
+<tr><td>Wells Fargo Agri-Food Institute, Q1 2023</td><td>2023년 1분기·은행 원문</td><td>호두 출하·유기농 견과 언급</td><td>이번 수급 물량 근거로 사용 안 함</td></tr>
+<tr><td>Wells Fargo Agri-Food Institute, Q1 2024</td><td>2024년 1분기·은행 원문</td><td>가격 약세와 재배면적 감소 언급</td><td>생산량 문장의 단위 오기로 수치 인용 제외</td></tr>
+<tr><td>Wells Fargo Agri-Food Institute, Q1 2025</td><td>2025년 1분기·은행 원문</td><td>짧은 작황과 가격 상승을 연결</td><td>생산량 문장의 단위 오기로 수치 인용 제외</td></tr>
+<tr><td>KREI, 「농업전망 2026」 제10장</td><td>2026-01-22·B</td><td>국내 생산·출하 경로·가격·수급 전망</td><td>조사·추정·전망 구분</td></tr>
+<tr><td>KREI, 「2026년 10월 임업관측(호두)」</td><td>2026-10-02 게시·B</td><td>2026년 생산 전년 대비 감소 관측, 9월 잠정가격</td><td>연초 전망보다 최신 관측으로 표시</td></tr>
+<tr><td>USDA ERS, 「Fruit and Tree Nuts Outlook」</td><td>2026-09-24·A</td><td>중국의 수출 선두와 미국 작황·가격 맥락</td><td>마케팅연도·환산 단위 유지</td></tr>
+<tr><td>Rabobank RaboResearch, 공개 소개문</td><td>2024-07-26·B</td><td>재배면적 감소에도 세계 생산 안정 가능성 판단</td><td>로그인 제한으로 본문 세부 전망 인용 안 함</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>_raw/_banks/index.csv</code> 및 <code>wellsfargo_agrifood_quarterly/Q1_2023_PDF_315426c6.md</code>, <code>Q1_2024_PDF_dc0fc39a.md</code>, <code>Q1_2025_PDF_171a17a0.md</code>; <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 전망</a>; <a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI 10월 관측</a>; <a href="https://www.ers.usda.gov/media/29687/fts-386.pdf?v=23396">USDA ERS</a>; <a href="https://www.rabobank.com/knowledge/q011436901-global-walnut-market-update-and-regional-outlooks-improving-supply-demand-balance-ahead">Rabobank 공개 소개문</a>. A/B는 제공된 조사 노트 등급.</p>
+<p>Wells Fargo의 2024년판과 2025년판 호두 문단은 각각의 가격 방향을 작황과 연결하지만, 작황 규모를 적은 문장의 단위가 비현실적이다. 이를 다른 자료의 수치와 임의로 맞춰 고치지 않았다. 따라서 이 두 문서는 ‘그 시점 은행이 어떤 방향의 가격 논리를 제시했는가’에만 쓰고 생산 규모 표에는 넣지 않는다. 2023년판까지 포함해 색인에 호두 태그가 있다는 것 자체가 해당 PDF의 모든 단락이 호두에 관한 것이라는 뜻은 아니다.</p>
+<p>KREI 문서에서는 <strong>시점 갱신</strong>이 핵심이다. 2026년 1월 전망의 생산 약 1,550톤은 그때의 회복 시나리오다. 10월 관측은 2025년 대비 9.1% 감소로 조사됐다. 둘이 다르다고 한쪽을 삭제하지 않고, 연초 전망이 이후 조사에 의해 어떻게 달라졌는지 표시한다. 또한 KREI 본문에 실린 2024년·2025년 탈각 수입 물량과 감소율은 산술적으로 맞지 않는 부분이 있어 무역 절에서는 통관 원자료로 다시 계산했다. 기관 보고서를 사용하되 서술의 모든 숫자를 무비판적으로 재인용하지 않은 사례다.</p>
+<p>USDA ERS와 FAS는 서로 역할이 다르다. ERS 전망은 가격·수출 흐름을 해석하고, FAS GAIN은 칠레·중국 현지사무소의 다음 마케팅연도 생산·수출 추정을 담는다. 칠레 GAIN의 <code>New Post</code> 수치는 <code>USDA Official</code> 수치가 아니다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nuts+Annual_Santiago_Chile_CI2026-0010.pdf">USDA FAS Santiago, 「Tree Nuts Annual」, 2026-09-18</a>). FAOSTAT 2024년 생산 표와 나란히 놓을 수는 있지만 한 시계열의 연속된 실측처럼 잇지 않는다. Rabobank의 공개 소개문은 세계 면적과 생산의 방향에 관한 견해만 확인됐다. 로그인 제한 본문에 있을 법한 지역별 수치나 목표치를 상상해 채우지 않았다(<a href="https://www.rabobank.com/knowledge/q011436901-global-walnut-market-update-and-regional-outlooks-improving-supply-demand-balance-ahead">Rabobank 공개 소개문</a>).</p>
+<p>이 절의 빈칸도 남긴다. aT·KMI의 최근 호두 단독 산업 리포트, OECD–FAO 전망의 호두 단독 표는 조사 노트의 검색 경로에서 확보되지 않았다. KMI는 수산물 기관이므로 호두 보고서가 반드시 존재한다고 전제하지 않는다. 기관의 ‘자료 없음’으로 단정하는 대신, 검색 범위와 미확보 상태를 기록한다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 관찰 지표·남은 물음</span>생산·수입·가격의 시계를 같은 표에 적는다</h2>
+<p class="lead">호두 산업에서 먼저 볼 위험은 하나의 숫자가 아니라 <strong>서로 다른 집계 시계의 어긋남</strong>이다. 국산 생산은 연간 산림조사와 KREI 계절 관측으로 확인된다. 수입은 월별 세번·원산지로 빠르게 나타난다. 세계 생산은 FAOSTAT의 늦은 확정연도와 USDA의 앞선 마케팅연도 전망으로 보인다. 따라서 월간 가격이 움직였을 때 전년도 국내 생산이나 아직 확정되지 않은 해외 수확량을 곧바로 원인으로 지정하지 않는다.</p>
+<p>첫째, 국내 작황 위험이다. KREI의 2025년 생산 1,270톤 추정과 2026년 10월의 전년 대비 감소 관측은 냉해·재고·등급 구성의 변화를 점검하게 한다. 관측 표본과 최종 산림청 생산조사의 일치 정도는 아직 확인되지 않았다. 둘째, 수입 경로 위험이다. 2025년 한국 탈각 수입에서 미국산이 87.44%, 중국산이 11.12%, 칠레산이 1.43%였다. 중국산은 2024년 0.25%에서 크게 늘었지만, 2026년 3~8월 관세청 부분자료에서는 31,039kg으로 잡힌다. 원산지 편중은 2025년 완료연도 기준으로 정량화할 수 있고, 2026년 연간 구조는 아직 확정되지 않았다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2024&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국 HS 080232 수입 공개 preview, 2024년</a>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년</a>; <code>walnuts_customs_kr_monthly.csv</code>).</p>
+<p>셋째, 단가와 물량이 반대 방향으로 움직일 수 있다. 2024→2025년 탈각 수입에서는 중량이 줄고 달러 금액이 늘었다. 2026년 1~8월에는 전년 동기보다 중량과 달러 단가가 함께 낮았다. KREI의 2026년 1~9월 물량 감소율은 7.9%로, 1~8월 원자료 감소율 11.5%보다 작다. KREI의 연초 2026년 수입 증가 전망(표 10-10 재계산 +4.5%, 본문 표기 13.6%, 미탈각 환산 연간)과도 방향이 다르지만 기간·중량 기준이 달라 연간 전망의 성패를 아직 판정할 수 없다(<a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI, 「농업전망 2026」, 2026-01-22</a>; <a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI, 「2026년 10월 임업관측(호두)」, 2026-10-02, 2쪽</a>). 가격 위험은 HS 형태, 달러 통관 단가, 원화 산지·소비지 가격, 환율과 등급에 걸쳐 나타난다. 넷째, 제도 위험이다. 한·미 FTA 서술과 중국 양허제외 사실을 알고 있어도 수입신고일의 세율과 검역 허용 조건을 확인하지 않으면 원산지 대체의 비용을 단정할 수 없다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>관찰 지표</th><th>원천·주기</th><th>현재 확인 기준</th><th>다음 확인점</th></tr></thead>
+<tbody>
+<tr><td>국내 생산·주산지</td><td>산림청 조사 인용 KREI·연간</td><td>2024년 1,576톤, 경북 39.8%</td><td>2025 확정치와 2026 관측의 차이</td></tr>
+<tr><td>국내 단기 작황</td><td>KREI 임업관측·계절</td><td>2026년 10월: 전년 대비 −9.1% 관측</td><td>최종 수확 조사</td></tr>
+<tr><td>탈각 수입 중량</td><td>KREI 인용 TRASS·월간</td><td>2026년 1~9월 11,114톤, 전년 동기 대비 −7.9%</td><td>남은 달과 연간 합계</td></tr>
+<tr><td>탈각 수입 단가</td><td>관세청 품목 월별·월간</td><td>2026년 1~8월 기준(잠정) 6.01달러/kg</td><td>9월 이후 금액과 연간 가중평균</td></tr>
+<tr><td>원산지별 탈각 수입</td><td>UN Comtrade·연간; 관세청 국가별·월간</td><td>2025년 미국 87.44%·중국 11.12%·칠레 1.43%; 2026년 3~8월은 부분자료</td><td>2026년 월별 연속성과 연간 원산지 비중</td></tr>
+<tr><td>KREI 수입 전망과 실적</td><td>KREI 연초 전망·10월 관측</td><td>2026년 연간 미탈각 환산 수입 +4.5%(본문 표기 13.6%) 전망; 1~9월 탈각 실중량 −7.9%</td><td>같은 기준의 연말 실적</td></tr>
+<tr><td>세계 미탈각 생산</td><td>FAOSTAT 생산·연간</td><td>2024년 4,349,163톤</td><td>다음 완료연도와 품질 표식</td></tr>
+<tr><td>중국·미국·칠레 수급</td><td>USDA PSD·GAIN·마케팅연도</td><td>PSD 2025년 11월 판본의 2025/26, GAIN 2026/27 Post 전망</td><td>갱신 판본과 실제 수확·수출 차이</td></tr>
+<tr><td>국산 피호두 가격</td><td>산림조합 조사·월간</td><td>2026년 9월 중품 잠정 25,202원/kg; KREI의 2025년 값은 문서 간 불일치</td><td>산림조합 원 월별값과 동일 등급·조사처</td></tr>
+<tr><td>관세·검역</td><td>관세율표·FTA·검역본부·신고일별</td><td>미국산 탈각 무관세는 KREI 확인</td><td>칠레·중국 등 실제 적용세율·허용 조건</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>customs_item_trade_monthly_walnuts.csv</code>; <code>walnuts_customs_kr_monthly.csv</code>; <code>faostat_production_walnuts.csv</code>; <code>usda_psd_all_walnuts.csv</code>; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 한국 HS 080232 수입 공개 preview, 2025년</a>; <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 전망</a>; <a href="https://www.krei.re.kr/attach/observ/2026/10/02/d6876fab-6bab-4343-a91e-ec0d0508d9a4.pdf">KREI 10월 관측</a>.</p>
+<p>월별 확인에는 세 가지 중단 규칙이 필요하다. 원자료에 합계 행과 세부 행이 함께 있으면 합계만 쓴다. 순중량이 비어 있으면 금액으로 물량 순위를 대신 만들지 않는다. 국가별 자료가 일부 달만 있으면 연간 점유율로 발표하지 않는다. 이는 동일 거래가 여러 행으로 반복되거나 미보고 중량이 0으로 취급되는 오류를 막는 조건이다.</p>
+<h3>남은 물음</h3>
+<ul>
+<li>2025·2026년 확정 산림청 생산조사와 KREI 연초 전망·10월 관측의 차이는 얼마인가?</li>
+<li>2026년 탈각 수입의 완결된 국가별 통관 원장에서 미국·중국·칠레 비중은 2025년과 어떻게 달라지는가?</li>
+<li>2026년 남은 달의 통관 중량·금액과 연말 계절성을 반영한 연간 가중평균은 얼마인가?</li>
+<li>KREI의 2025년 미탈각 환산 소비 28,497톤에서 재고 증감, 탈각·가공 수율, 재수출, 제조 투입을 같은 연도로 대조하면 실제 국내 사용량은 얼마인가?</li>
+<li>세계 재고와 한국 수입 단가를 같은 시점·품질·형태·계약 가격으로 대조하면 직접 관계가 확인되는가?</li>
+<li>산림조합의 국산 깐호두 가격 계열과 수입 탈각 통관 단가를 같은 기간·통화·거래 단계·등급으로 맞추면 어떤 차이가 남는가?</li>
+<li>KAMIS의 호두 전용 가격 시계열은 조회 가능한가?</li>
+<li>산림조합의 동일 등급·조사처 월별 원자료로 KREI 두 문서의 2025년 중품 가격 불일치를 해결할 수 있는가?</li>
+<li>수입 경로의 탈각·선별 능력과 상품 규격은 어느 국가·업체에 집중돼 있는가?</li>
+<li>기업별 호두 취급 물량을 원물 수입·탈각·제조·브랜드 판매 기능별로 비교할 수 있는가?</li>
+<li>신고일별 HS10·원산지 증빙·협정 선택·세율표와 산지·상품 상태별 검역 조건을 대조하면 실효세율과 허용 범위는 어떻게 달라지는가?</li>
+<li>확정 생산량과 완결 통관 원장이 나오면 표지의 산업 지표와 공급국 절에서 어느 문장을 갱신해야 하는가?</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>수입 탈각 호두와 국산 피호두의 두 경로</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국의 HS 0802.32 탈각 호두 수입 순중량 14,932.4톤 중 미국은 87.44%, 중국은 11.12%, 칠레는 1.43%였다. <strong>10% 이상 공급국은 미국과 중국 두 곳</strong>이며, 칠레는 세 번째 공급국으로 함께 표시한다. 분모는 UN Comtrade의 2025년 한국 수입 세계 합계 순중량이다. 기업의 한국 연결은 별도 기간인 <strong>2025년 10월~2026년 9월 식약처 신고 건수 기준</strong> 제조사명 일치 여부다. 신고 건수는 중량·금액·점유율이 아니다. 신고서의 제조국 칸이 원물의 재배국이나 FTA·표시상 원산지와 같은지는 이 자료만으로 확정하지 않으며, 제조국은 수출국인 선적국과 구분된다. 2026년이 포함된 신고 집계는 잠정이다.</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 공급국의 호두 수출·가공기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>미국</td><td>Prima Noce Packing</td><td>선별·탈각·포장</td><td>확인된 공개 매출·수출량 없음</td><td>제조사명 일치, 신고 150건</td><td><a href="https://www.premiumwalnuts.com/about/index.html">회사 소개</a> B·게시연도 미표기, 2026년 확인</td></tr>
+<tr><td>미국</td><td>GoldRiver Orchards</td><td>생산 연계·가공</td><td>저장능력 약 700톤 증설 계획을 발표; 완료 여부 미확인</td><td>제조사명 일치, 신고 83건</td><td><a href="https://goldriverorchards.com/goldriver-orchards-to-make-major-upgrades/">회사 발표</a> B·게시연도 미표기, 2026년 확인</td></tr>
+<tr><td>미국</td><td>Turlock Walnut Company</td><td>가공·포장</td><td>회사 설명상 통상 연도 미탈각 가공이 사업의 약 50%; 처리량 아님</td><td>제조사명 일치, 신고 45건</td><td><a href="https://www.turlockwalnut.com/about">회사 소개</a> B·게시연도 미표기, 2026년 확인</td></tr>
+<tr><td>미국</td><td>Diamond Foods</td><td>가공·포장</td><td>확인된 공개 호두 단독 매출·수출량 없음</td><td>Diamond Foods 표기 변형과 제조사명 일치, 신고 43건</td><td><a href="https://walnuts.org/walnut-industry/handler-list/">캘리포니아 호두위원회 명부</a> B·2026년 확인</td></tr>
+<tr><td>중국</td><td>Hebei Luhua Import and Export Trade</td><td>가공·무역</td><td>회사 소개 안의 생산·수출량 수치가 서로 달라 규모 수치 미채택</td><td>제조사명 일치, 신고 4건</td><td><a href="https://www.luhuawalnut.com/aboutus.html">회사 소개</a> B·게시연도 미표기, 2026년 확인</td></tr>
+<tr><td>중국</td><td>Hebei Huadai Agriculture Technology</td><td>가공·무역</td><td>회사 설명상 공장 부지 20만㎡ 초과; 처리량 아님</td><td>제조사명 일치, 신고 2건</td><td><a href="https://www.hebeihuadai.com/aboutus.html">회사 소개</a> B·게시연도 미표기, 2026년 확인</td></tr>
+<tr><td>중국</td><td>Qingdao Prima Farm Foods</td><td>가공·무역</td><td>회사 전체 견과·종실 제품을 40개국 이상에 수출한다고 설명; 호두 수출량 아님</td><td>제조사명 일치, 신고 1건</td><td><a href="https://www.primafarm.cn/wzsy">회사 소개</a> B·게시연도 미표기, 2026년 확인</td></tr>
+<tr><td>칠레</td><td>Exportadora Anakena</td><td>생산 연계·가공·수출</td><td>회사가 Paine·Retiro 가공공장 2곳을 설명</td><td>제조사명 일치, 신고 12건</td><td><a href="https://anakena.cl/?lang=en">회사 소개</a> B·게시연도 미표기, 2026년 확인</td></tr>
+<tr><td>칠레</td><td>Pacific Nut Company Chile</td><td>생산·가공·수출</td><td>Mostazal 호두 공장 처리능력 1만 2,000톤; 수출 실적 아님</td><td>해당 기간 제조사명 일치 자료 미확인</td><td><a href="https://www.pacificnut.com/nueces/">회사 호두 공장 소개</a> B·게시연도 미표기, 2026년 확인</td></tr>
+<tr><td>칠레</td><td>Valbifrut</td><td>생산·가공·수출</td><td>회사 설명상 호두 재배지 700ha 초과·협력 생산자 70곳 초과</td><td>해당 기간 제조사명 일치 자료 미확인</td><td><a href="https://valbifrut.cl/">회사 소개</a> B·게시연도 미표기, 2026년 확인</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade, 2025년 한국 HS 080232 수입 공개 자료</a> A·2025년; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a> A·2025년 10월~2026년 9월 <strong>신고 건수 기준</strong>. 미국 기업의 호두 취급 기능은 <a href="https://walnuts.org/walnut-industry/handler-list/">캘리포니아 호두위원회 명부</a> B·2026년 확인으로 대조했다.</p>
+<p>동일 연도·동일 품목의 기업별 세계 수출량 공개 순위는 확인되지 않아 <strong>세계 최대 호두 수출기업을 특정할 수 없다</strong>. 국가 단위로는 USDA ERS가 2024/25 마케팅연도에 중국이 미국을 제치고 최대 수출국이 됐다고 분석한다. 캘리포니아 호두위원회는 Prima Noce·GoldRiver·Turlock·Diamond Foods를 취급업체 명부에 올리고 있지만, 그 명부는 업체별 세계 순위가 아니다(<a href="https://ers.usda.gov/media/29687/fts-386.pdf?v=59211">USDA ERS, 2026년 9월 전망</a> A·2026년; <a href="https://walnuts.org/walnut-industry/handler-list/">캘리포니아 호두위원회</a> B·2026년 확인). 04절의 HS 표는 미탈각 0802.31과 탈각 0802.32를 구분하며 별도 호두 조제품 세번의 수입액을 제시하지 않는다. 따라서 조제품의 10% 기준이나 상위 공급국을 추정하지 않는다.</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처의 품목명 ‘호두’ 신고 확인 자료에는 <strong>2025년 10월~2026년 9월 709건, 수입업소 54곳</strong>이 잡힌다. 아래 순위는 신고 건수 기준이다. 한 건의 중량이 일정하지 않고 HS 0802.32 통관 통계와 품목·기간도 달라 물량 점유율로 환산할 수 없다. 같은 기간 ‘땅콩 또는 견과류가공품’ 품목명으로 신고된 깐호두·호두분태 7건은 이 집계에 넣지 않았다.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 호두 신고 건수 상위 수입업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>주식회사 열매마을</td><td class="num">95</td><td>미국 94·중국 1</td><td>견과류 수입·유통</td></tr>
+<tr><td>주식회사 웰넛</td><td class="num">48</td><td>미국 48</td><td>견과류 수입·판매</td></tr>
+<tr><td>(주)굿넛</td><td class="num">47</td><td>미국 47</td><td>업소별 호두 물량 미공개</td></tr>
+<tr><td>주식회사 성우농수산</td><td class="num">32</td><td>미국 32</td><td>업소별 호두 물량 미공개</td></tr>
+<tr><td>(주)율성푸드랩</td><td class="num">27</td><td>미국 27</td><td>업소별 호두 물량 미공개</td></tr>
+<tr><td>(주)코스트코코리아</td><td class="num">26</td><td>미국 26</td><td>유통업체 직접 신고</td></tr>
+<tr><td>(주)이마트</td><td class="num">25</td><td>미국 25</td><td>유통업체 직접 신고</td></tr>
+<tr><td>동우농산(주)</td><td class="num">24</td><td>미국 24</td><td>업소별 호두 물량 미공개</td></tr>
+<tr><td>(주)비앤지 트레이딩</td><td class="num">24</td><td>미국 24</td><td>업소별 호두 물량 미공개</td></tr>
+<tr><td>(주)선명농수산</td><td class="num">23</td><td>미국 16·칠레 6</td><td>중국 제조국 신고 1건 별도</td></tr>
+<tr><td>대한제당(주)</td><td class="num">23</td><td>미국 23</td><td>호두 단독 사용량·매출 미공개</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a> A·2025년 10월~2026년 9월, <strong>신고 건수 기준</strong>. ‘주요 제조국’은 업소별 상위 두 제조국을 옮겼다. 업소명 표기 변형은 합산했다. 2026년 포함 집계는 잠정이다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 신고 상위 30개 업소 중 기업 규모를 확인할 수 있는 곳</caption>
+<thead><tr><th>기업</th><th class="num">신고 건수</th><th>확인된 기업 규모</th><th>호두와의 관계·한계</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>열매마을</td><td class="num">95</td><td>2025년 회사 전체 매출 1,118억 6천만원</td><td>견과·건과 수입유통 매출이며 호두 단독 매출 아님</td><td><a href="https://www.jobkorea.co.kr/recruit/co_read/c/yeolmaemaul7">잡코리아·NICE 기업정보</a> C·2025년</td></tr>
+<tr><td>웰넛</td><td class="num">48</td><td>2025년 회사 전체 매출 406억 4,200만원</td><td>견과류 수입·판매 매출이며 호두 단독 매출 아님</td><td><a href="https://www.incruit.com/company/15967419/">인크루트·나이스디앤비 기업정보</a> C·2025년</td></tr>
+<tr><td>코스트코코리아</td><td class="num">26</td><td>2024년 9월~2025년 8월 매출 7조 3,220억원</td><td>소매업 전체 매출이며 호두 매출 아님</td><td><a href="https://www.yna.co.kr/view/AKR20251119114200030">감사보고서 인용 보도</a> C·2025년</td></tr>
+<tr><td>이마트</td><td class="num">25</td><td>2025년 연결 매출 28조 9,704억원; 할인점 사업부 11조 6,494억원</td><td>유통업 전체·사업부 규모이며 호두 매출 아님</td><td><a href="https://company.emart.com/ko/m/investor/finance.do">연결 재무정보</a>·<a href="https://company.emart.com/ko/m/investor/finance03.do">사업부 실적</a> B·2025년</td></tr>
+<tr><td>대한제당</td><td class="num">23</td><td>2025년 연결 매출 1조 3,563억원; 식품부문 6,951억원</td><td>사업보고서의 주요 원재료·매출 구성에 호두 단독 항목 없음</td><td><a href="https://kind.krx.co.kr/external/2026/03/19/000700/20260319003138/11011.htm">2025년 사업보고서</a> A·2025년</td></tr>
+<tr><td>산과들에</td><td class="num">16</td><td>2025년 회사 전체 매출 553억 7,575만원</td><td>견과 가공·판매 매출이며 호두 단독 매출 아님</td><td><a href="https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/VytzWnV0b01wd1B6YTBpT0daUFBKUT09/company_nm/%28%EC%A3%BC%29%EC%82%B0%EA%B3%BC%EB%93%A4%EC%97%90">사람인·NICE 기업정보</a> C·2025년</td></tr>
+<tr><td>바프</td><td class="num">10</td><td>2025년 회사 전체 매출 1,003억 8,306만원</td><td>견과 가공·판매 규모이며 호두 단독 매출 아님</td><td><a href="https://www.saramin.co.kr/zf_user/company-info/view-inner-finance?csn=Z1NZSlVWRlpKVTFwdFdPZFhaQStjZz09">사람인·NICE 기업정보</a> C·2025년; <a href="https://hbaf.co.kr/products">회사 호두 제품</a> B·2026년 확인</td></tr>
+<tr><td>롯데쇼핑 롯데마트사업본부</td><td class="num">7</td><td>2025년 연결 매출 13조 7,384억원; 할인점 부문 5조 4,713억원</td><td>할인점 부문에도 호두 매출은 분리되지 않음</td><td><a href="https://www.lotteshoppingir.com/data/pdf/Lotte_Shopping_Consolidated_2025.PDF">2025년 연결감사보고서</a> A·2025년</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 기업별 링크와 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a> A·2025년 10월~2026년 9월 <strong>신고 건수 기준</strong>. 매출은 회사 전체 또는 표시된 사업부 매출이다. 호두 시장 점유율의 분자로 사용할 수 없다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 한국 호두의 단계별 밸류체인</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>국내 임가; 미국·중국·칠레 재배자</td><td>국내 2024년 생산 1,576톤</td><td>산지 출하 계약·거래</td><td>냉해·병해·등급 편차</td></tr>
+<tr><td>1차 가공</td><td>산지 건조·탈각·선별업체</td><td>기업별 처리량 공개 자료 미확인</td><td>가공 수율·규격별 거래</td><td>파손·이물·저장 손실</td></tr>
+<tr><td>수출·국제 무역</td><td>해외 가공·수출업체, 구매자</td><td>2025년 한국 탈각 수입 상대국: 미국 87.44%·중국 11.12%·칠레 1.43%</td><td>수출 계약·품질 규격</td><td>작황·운임·환율·공급국 집중</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소, 관세청, 식약처, 검역기관</td><td>2025년 탈각 14,932.4톤·1억 1,016만 달러</td><td>계약금액과 운송·통관비</td><td>신고·검역·원산지 증빙</td></tr>
+<tr><td>국내 가공</td><td>소분·볶음·혼합견과·제과 원료업체</td><td>호두 단독 제조 투입량 미공개</td><td>제품 규격·가공 계약</td><td>알레르기 표시·품질관리</td></tr>
+<tr><td>도매·유통</td><td>산지유통인·농협·수입 도매업체</td><td>2025년 표본임가 출하 응답: 산지유통인 15.2%·농협 등 수매 12.7%</td><td>산지 수매·도매 거래</td><td>재고·품질·가격 변동</td></tr>
+<tr><td>소매·외식</td><td>대형마트·온라인몰·제과점·외식업체</td><td>2025년 표본임가의 소비자 직거래 응답 41.9%</td><td>채널별 판매가격</td><td>원산지·알레르기 정보 전달</td></tr>
+<tr><td>소비</td><td>가정·식품 구매자</td><td>KREI 2025년 수급표 소비 28,497톤, 미탈각 환산 추정</td><td>최종 구매가격</td><td>피호두·탈각품 혼동, 알레르기</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 「농업전망 2026」 제10장</a> B·2026년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 2025년 한국 HS 080232</a> A·2025년. 산지 경로는 <strong>표본임가 응답 비율</strong>, 소비는 <strong>미탈각 환산 수급표 추정치</strong>다. 단계가 다른 중량을 합산하지 않았다.</p>
+<p>해외 가공업체는 건조·탈각·선별·포장으로 원물을 한국의 수입 규격에 맞추면서 부가가치를 만든다. Pacific Nut의 호두 공장 처리능력 1만 2,000톤과 한국의 2025년 탈각 수입 14,932.4톤은 각각 설비와 시장의 규모를 보여줄 뿐, 그 회사의 한국 점유율을 뜻하지 않는다. 국내에서는 소분·혼합·판매 채널이 추가되고, KREI 표본의 소비자 직거래 응답 41.9%는 생산자가 최종 판매에도 참여하는 경로를 보여준다. 탈각 통관 평균 7.38달러/kg만으로는 단계별 가공·유통 마진을 계산할 수 없다(<a href="https://www.pacificnut.com/nueces/">Pacific Nut</a> B·2026년 확인; <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI</a> B·2026년; <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=080232&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade</a> A·2025년).</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 호두 산업의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>산림청·식약처·관세청·국립농산물품질관리원</td><td>생산조사, 수입식품 신고·검사, 통관, 원산지 표시</td><td>통계·통관·식품안전 규칙을 정하고 집행</td></tr>
+<tr><td>해외 정부</td><td>미국 USDA·칠레 SAG</td><td>작황·무역 정보, 칠레산 수출 식물검역증명</td><td>수출 가능 조건과 공급 정보에 영향</td></tr>
+<tr><td>생산자·단체</td><td>국내 호두 임가·캘리포니아 호두위원회·ChileNut</td><td>생산, 산지 조직, 품질·시장 정보</td><td>산지가격·시장 접근·생산 안정성에 관심</td></tr>
+<tr><td>수출·가공기업</td><td>Prima Noce·Hebei Huadai·Exportadora Anakena</td><td>탈각·선별·포장·수출</td><td>규격별 판매와 안정적인 구매처에 관심</td></tr>
+<tr><td>수입·유통기업</td><td>열매마을·이마트·코스트코코리아</td><td>수입 신고, 유통·판매</td><td>조달 가격·품질·재고와 판매 수요에 영향</td></tr>
+<tr><td>소비자·시민사회</td><td>국내 소비자·한국소비자원</td><td>제품 선택, 가격·표시 정보 확인과 소비자 피해 대응</td><td>원산지·알레르기·가격 정보의 정확성에 관심</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·BRCGS</td><td>국제 생산통계, 민간 식품안전 인증 기준</td><td>비교 가능한 정보와 납품 규격에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.aglook.kr/upload/eventdata/b7f06f0b97f44c14a8e0b0b59b4426d5.pdf">KREI 「농업전망 2026」</a> B·2026년, <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a> A·2025년 10월~2026년 9월, <a href="https://www.sag.gob.cl/tramites/solicitud-de-emision-o-reemision-de-certificado-fitosanitario-multipuerto">칠레 SAG</a> A·2026년 확인, <a href="https://walnuts.org/walnut-industry/handler-list/">캘리포니아 호두위원회</a> B·2026년 확인, <a href="https://chilenut.cl/nosotros/">ChileNut</a> B·2026년 확인, <a href="https://www.fao.org/faostat/en/">FAOSTAT</a> A·2026년 확인, <a href="https://www.brcgs.com/our-standards/food-safety/">BRCGS</a> B·2026년 확인, <a href="https://price.go.kr/tprice/portal/main/main.do">한국소비자원 참가격</a> A·2026년 확인.</p>
+<p>국산 생산자는 산지가격을 중시하고 수입·소매업체는 규격에 맞는 원료의 안정적인 조달 가격을 중시하므로 가격 변동의 부담을 두고 이해가 엇갈린다. 수출·가공기업은 통관의 예측 가능성을 원하고 규제기관은 검역·식품안전 요건을 충족한 물량만 반입할 책임이 있다. 가공·판매업체의 제품 다양화와 소비자의 알레르기·원산지 정보 요구는 표시의 정확성에서 만난다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황과 아카이브 검토 범위</h2>
+<p class="lead">이 보고서는 <code>rawbulk.report_delta.coverage("walnuts")</code>를 2026-10-07에 읽어 수집기 상태를 확인했다. ‘최신’은 해당 파일 안에서 가장 늦은 기간이며, 그 기간의 모든 국가·모든 세번이 완결됐다는 뜻은 아니다. 특히 2026년 월별 자료는 진행연도다. USDA PSD에는 <code>Market_Year</code>가 있으나 coverage 표시에서는 ‘기간 열 없음’으로 나와 원자료 열을 직접 확인했다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>이 보고서에서의 역할</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">166</td><td>2026-07</td><td>미국 수출 교차확인 경로</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">28</td><td>2026-07</td><td>미국 수입 교차확인 경로</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">399</td><td>2026</td><td>브라질 무역 참고 경로</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">91</td><td>2026</td><td>브라질 무역 참고 경로</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">40</td><td>2026.08</td><td>한국 월별 HS10 주계열</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">420</td><td>202607</td><td>유럽 무역 참고 경로</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">907</td><td>202606</td><td>유럽 무역 참고 경로</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">5,865</td><td>2025</td><td>생산자가격·지수</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">12,412</td><td>2024</td><td>세계 미탈각 생산</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">34,101</td><td>2024</td><td>미탈각 무역</td></tr>
+<tr><td>원자료 품목 분할</td><td>usda_psd_all</td><td class="num">8,600</td><td>Market_Year 2025</td><td>2025년 11월 판본의 2025/26 미탈각 환산 수급</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">2,491</td><td>2025</td><td>한국 연간 HS6 합계</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">72</td><td>2026.08</td><td>한국 국가별 부분 월간</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline/rawbulk/report_delta.py</code>의 <code>coverage("walnuts")</code> 출력과 각 CSV의 기간 열 직접 확인. Comtrade 연간 CSV에서는 C00·mot 0·partner2 0·World 합계만 사용했고, 2024·2025년 탈각 상대국별 분해는 UN Comtrade 공개 preview로 별도 확인했다.</p>
+<p>수집기가 있다고 해서 본문 수치에 모두 쓰지는 않았다. 미국 Census, EU Comext, 브라질 ComexStat는 한국의 수입 규모를 직접 정의하지 않으므로 이번 초판에서는 감시 경로로만 둔다. FAOSTAT <code>faostat_trade</code>에는 2026-10-08부터 <code>Walnuts, shelled</code>가 추가돼(67,967행), 한국 2024년 탈각 수입 16,367.87톤·7,748.4만 달러(표식 A)가 Comtrade 합계와 맞는다. 본문의 탈각 연간 수치는 Comtrade를 주계열로 유지한다. KOSIS 임산물 공통 JSON에서는 호두 명칭 행을 확인하지 못했으나 KREI가 인용한 산림청 조사를 확인했으므로 ‘국내 생산 통계 없음’이라고 쓰지 않았다. ECOS·세계은행 Pink Sheet의 일반 가격 계열도 품목·형태가 맞지 않으면 호두 전용 가격으로 명명하지 않는다.</p>
+<p>아카이브 목록은 <code>archive_inventory/walnuts.csv</code>의 101개 행을 기준으로 했다. 1단계 원장 <code>ledger/walnuts.ledger.csv</code>의 ‘반영필요’ 11건을 실제 사용 여부에 따라 ‘반영’으로 고쳤다. 기존 미검토 11건의 대용량 원본은 직접 열어 헤더를 확인했고, ZIP은 내부 파일 목록을 확인했다. 호두 분할본이 별도로 있는 FAO 원본은 이번 보고서의 독립 인용 대상으로 중복 사용하지 않았다. FBS·FBSH의 품목코드와 분할본에는 호두 단독이 아닌 견과 집계만 있어 제외했다. 같은 파일을 내용 중복 때문에 여러 번 수치 근거로 세지 않았다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>아카이브 판정</th><th class="num">건수</th><th>판정 이유</th></tr></thead>
+<tbody>
+<tr class="tot"><td>전체 목록</td><td class="num">101</td><td>원 목록의 파일 행</td></tr>
+<tr><td>반영</td><td class="num">11</td><td>Comtrade·관세청·FAO 분할본·PSD·OEC 교차확인</td></tr>
+<tr><td>불필요</td><td class="num">90</td><td>범위 밖 집계, 코드·로그, 중복 원본·ZIP, 가격 품목 혼입 등</td></tr>
+<tr><td>미검토</td><td class="num">0</td><td><strong>원 목록 101행에 한정</strong>한 판정</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/walnuts.csv</code> 101행, <code>ledger/walnuts.ledger.csv</code>의 1단계 판정, 대용량 원본 헤더·ZIP 내부 목록과 캐시의 호두 분할본 직접 확인; 아래 <code>01_아카이브_원장.csv</code>.</p>
+<p>‘미검토 0’은 원 목록 밖의 캐시 파일까지 전수 판정했다는 뜻은 아니다. 캐시의 <code>intelligence_reports/gain/</code> PDF와 FAO·OECD–FAO 문서 중 원 목록에 없는 파일은 별도 대조가 남아 있다. 원장의 ‘불필요’는 파일 삭제나 자료 가치의 부정을 뜻하지 않는다. 이 <strong>호두 산업 초판의 수치·서술 근거로 직접 쓰지 않았다</strong>는 의미다. 원본 FAO 대용량 파일은 보존되고, 이번에는 <code>Item=Walnuts, in shell</code>로 분리한 자료를 사용했다. <code>processed_data/kamis/walnuts_kamis_price.csv</code>는 품목명 공란·다른 품목 혼입 때문에 가격 근거에서 제외했다. 외부 조사로 새로 확인된 원문은 KREI 전망·10월 관측, USDA ERS·FAS, 산림조합 가격 설명, 법령·정부 자료다. 숫자대조 결과는 <code>update_2026-10-07/20_숫자대조.txt</code>에 있다.</p>
+</section>
+
+<div class="wrap">
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 호두 산업 해부: 국산 생산과 수입 커널이 만나는 시장</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(초판 집필본)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · FAOSTAT·USDA PSD·관세청·UN Comtrade 원자료와 KREI·정부·기관 문서를 구분해 사용</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>30_근거_수치.md에 파일·필터·산식 기록. 결과는 update_2026-10-07/20_숫자대조.txt</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>HS 0802.31 미탈각 호두·0802.32 탈각 호두 및 국산 호두 생산. 조제 견과 가공품의 시장 규모는 포함하지 않음</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>2026년 확정 국내 생산량과 완결된 연간 국가별 수입 비중, 업체별 점유율, 신고일별 모든 원산지의 실효세율·산지별 검역 조건은 미확보</span></div>
+</footer>
+</div>
+

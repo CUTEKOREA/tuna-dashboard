@@ -1138,6 +1138,22 @@ SPECS: dict[str, dict] = {
 }
 
 
+# ── 공통 품목 라우트(/industry/[key]) ──────────────────────────────────────────
+# 농축산 36품목과 갈치·주꾸미·연어는 모두 12절 표준 틀(s01~s11 본문 + 부록 sA)이다.
+# 품목마다 손으로 적지 않는다 — 레지스트리(lib/industry-items.json)에서 키를 읽고 1절=1단계로 붙인다.
+# 부록 sA 는 id 가 대문자라 파서 대상이 아니다. 절이 늘면 _assert_all_sections_mapped 가 잡는다.
+# 절별 표 개수는 여기 못박지 않고 테스트가 원문 HTML 의 표 수와 대조한다(industry-generic-route.test.ts).
+INDUSTRY_ITEMS = json.loads((ROOT / "lib/industry-items.json").read_text(encoding="utf8"))["items"]
+for _it in INDUSTRY_ITEMS:
+    if "route" in _it:
+        continue
+    SPECS[_it["key"]] = {
+        "src": f"docs/evidence/industry-{_it['key']}-2026-10/보고서.html",
+        "stages": {f"s{i:02d}": f"s{i:02d}" for i in range(1, 12)},
+        "drop": [],
+    }
+
+
 def _assert_all_sections_mapped(key: str, doc: str, spec: dict) -> None:
     """문서의 절 id 가 전부 `stages` 에 있는지 본다.
 

@@ -1,0 +1,743 @@
+<title>한국 대두 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 대두<br>
+        세계 수급 · 국내 생산 · 착유 · 식용 가공 · 무역 · 가격 · 제도<br>
+        2024~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">식탁과 착유 공장을 함께 지탱하는 콩 · 리포트 2026</p>
+      <h1><span class="scr">Soybean</span> <span class="lt">한국 대두 산업 해부</span></h1>
+      <p class="cover-sub">한국은 콩을 생산하면서도 그보다 훨씬 많은 대두를 수입한다. 수입 대두는 착유와 식용 가공으로 갈라지고, 국산 콩은 별도의 수매·비축 정책과 연결된다. 세계 생산·무역, 국내 원료 사용, 가격과 제도를 같은 분모로 구분해 살핀다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div><span class="by-k">작성</span><span class="by-v">이동건</span></div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2025 국내 콩 생산</div><div class="v">156,145</div><div class="n">톤 · 재배면적 74,015ha · KOSIS</div></div>
+      <div class="cf"><div class="k">2025 HS 1201 수입</div><div class="v">112.96만</div><div class="n">톤 · 6억 1,795만 달러 · 관세청</div></div>
+      <div class="cf"><div class="k">착유·탈지대두박용 수입</div><div class="v">76.1%</div><div class="n">2025년 HS10 물량 기준 · 85.92만 톤</div></div>
+      <div class="cf"><div class="k">2024 식품제조업 대두 사용</div><div class="v">115.25만</div><div class="n">톤 · 국산 6.0% · 착유 투입 포함 추정 · KOSIS</div></div>
+      <div class="cf"><div class="k">2024 세계 대두 생산</div><div class="v">3.98억</div><div class="n">톤 · 브라질·미국·아르헨티나 78.3% · FAOSTAT</div></div>
+      <div class="cf"><div class="k">2024 세계 대두 수입</div><div class="v">1.77억</div><div class="n">톤 · 중국 본토 1.05억 톤 · FAOSTAT</div></div>
+      <div class="cf"><div class="k">국제 대두 기준가격</div><div class="v">426.33</div><div class="n">달러/톤 · 2026년 2분기 · IMF/FRED</div></div>
+      <div class="cf"><div class="k">2026 대두 시장접근물량</div><div class="v">195,787</div><div class="n">톤 · 8월 개정 별표 · 콩나물용 증량분 10,000톤</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">국내 생산과 대량 수입이 공존하는 두 갈래 시장</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">생산은 남미·미국, 대량 수입은 중국에 집중된다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">국산 수확량과 제조 원료 사용량의 분모가 다르다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">2025년 수입 113만 톤, 그중 채유·탈지대두박용이 76.1%</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">국제 기준가격, 수입 신고 단가, 농가가격은 서로 다른 거래 단계다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">생산국의 역할과 수요국의 역할이 다르다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">수입 원료가 착유와 식용 제조로 흘러가지만 기업별 물량·점유율은 미확보</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">식용 시장접근물량과 채유용 할당관세는 적용 범위가 다르다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">품목 태그와 원문 검증의 범위</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 리스크·관찰 지표</span><span class="t">수입의 용도, 세계 공급, 국내 정책 집행을 함께 본다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">원물 수입과 착유·식용 가공이 갈라지는 시장</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 검토 범위</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>국내 생산과 대량 수입이 공존하는 두 갈래 시장</h2>
+<p class="lead">대두는 국내에서 기르는 작물이면서 착유·식품 제조에 대량 투입되는 수입 원료다. 두 시장을 하나의 ‘콩 가격’이나 하나의 자급률로 설명하면 용도·등급·거래 단계를 놓친다. 이 보고서는 건조 대두 HS 1201을 중심으로 보고, 대두박·대두유·두부·장류는 대두가 흘러가는 가공 단계로 다룬다.</p>
+<h3>확정된 사실</h3>
+<ul>
+<li><strong>국내 생산.</strong> KOSIS의 2025년 콩 생산량은 156,145톤, 재배면적은 74,015ha다. 생산량은 2024년 154,954톤보다 0.8% 많고 면적은 사실상 같다. 시도별 생산량에서 전라북도는 53,833톤이다(03절, E02).</li>
+<li><strong>수입 규모.</strong> 관세청 HS10 월간 행을 합한 2025년 대두 수입은 약 112.96만 톤(1,129,608톤)·6억 1,795만 달러다. kg당 평균 신고 단가는 0.547달러다. 여기서 단가는 수입신고 금액을 신고 중량으로 나눈 값이며 국내 판매가격이 아니다(04절, E04).</li>
+<li><strong>용도별 수입.</strong> 2025년 HS 1201.90-1000 ‘채유용과 탈지대두박용’이 859,186톤으로 HS 1201 수입 물량의 76.1%다. ‘기타’ 242,265톤, 콩나물용 28,157톤이 뒤를 잇는다. ‘기타’ 전부를 두부·장류용이라고 배정할 근거는 없다(04절, E04).</li>
+<li><strong>연간 수입 원산지.</strong> FAOSTAT 양자 교역표의 한국 신고 2024년 대두 수입은 미국 579,217톤(50.4%), 브라질 486,838톤(42.4%) 순이다. 2026년 3~8월 관세청 부분 기간에는 브라질 물량이 더 많다. 두 기간을 같은 연간 순위로 읽지 않는다(04절, E07).</li>
+<li><strong>제조 원료의 출처.</strong> KOSIS 식품제조업 원료 사용 통계에서 2024년 대두 사용량은 약 115.25만 톤(1,152,518톤)이고 그중 국산은 69,017톤, 수입산은 1,083,501톤이다. 국산 비중은 원자료 표기 6.0%다. 이 총량에는 착유 투입도 포함되는 것으로 보이므로 6.0%를 두부·장류·콩나물 원료만의 국산 비중으로 읽지 않는다(03절, E03).</li>
+<li><strong>식용·사료의 서로 다른 품목.</strong> FAOSTAT 식품수급표의 2023년 한국 대두 <code>Food</code>는 30만 9천 톤이고, 별도 공급이용계정의 대두박 <code>Feed</code>는 2,115,972.24톤이다. 원물과 가공품의 서로 다른 계정이므로 합산하지 않는다(FAOSTAT <code>FBS_soybean.csv</code>·<code>SCL_soybean.csv</code>, 2023년 행; 03절, E15).</li>
+<li><strong>세계 수급.</strong> FAOSTAT의 최근 완료연도인 2024년 세계 생산은 약 3.98억 톤(397,671,689톤)이다. 브라질·미국·아르헨티나의 생산량 합계가 세계의 78.3%다. 같은 해 세계 수입은 약 1.77억 톤(176,516,314톤)이고, 그중 중국 본토(코드 41) 신고량은 105,032,704톤이다(02절, E01).</li>
+<li><strong>가격.</strong> IMF 국제 대두 기준가격의 FRED 분기 계열은 2025년 2분기 383.08달러/톤에서 2026년 2분기 426.33달러/톤으로 11.3% 올랐다. 같은 기간 한국 도착가격의 움직임을 뜻하지는 않는다(05절, E08).</li>
+<li><strong>정책의 분리.</strong> 2026년 8월 개정 시장접근물량 별표는 대두 195,787톤을 적는다. 증량 1만 톤은 콩나물용이다. 별도 할당관세 별표는 채유·탈지대두박용 대두 110만 톤에 0%를 적는다. 두 제도는 대상·세율 적용 방식이 달라 물량을 합산해 ‘총 수입 허용량’으로 읽지 않는다(08절, P01·P02).</li>
+<li><strong>확인 범위.</strong> 은행·기관 색인에는 <code>items</code>에 soybean이 붙은 문서가 39건 있지만, 품목 태그는 본문 검증을 대신하지 않는다. 기업별 대두 수입·착유 점유율은 이번에 연속된 공시 원문으로 확인하지 못했다(07·09절, E11).</li>
+</ul>
+<h3>이 보고서의 판단</h3>
+<p>첫째, 한국 대두 산업의 구조를 읽는 기본 단위는 ‘국산 대 수입산’ 하나가 아니라 <strong>원료 용도와 가공 단계</strong>다. 2025년 채유·탈지대두박용 세번이 수입의 76.1%를 차지한다. KOSIS 식품제조업 통계의 국산 사용 비중 6.0%는 착유 투입과 겹치는 제조 원료 모집단의 값으로 보이지만 용도별 분해가 없다. 두 통계의 물량을 별개 시장처럼 대조하거나 6.0%를 식용 가공만의 비중으로 쓰지 않는다. <strong>반증 조건:</strong> 조사 범위 원문이나 용도별 연결 통계에서 착유 투입이 이 모집단에 없다고 확인되는 경우다(E03·E04).</p>
+<p>둘째, 세계 공급의 집중은 한국 가격에 중요한 배경이다. 2024년 생산 상위 세 나라가 세계 생산의 78.3%를 냈고 중국 본토는 세계 수입량의 59.5%에 해당하는 물량을 신고했다. 다만 국제 선물·기준가격의 변화가 국산 농가가격이나 두부 소매가격으로 몇 달 뒤, 얼마만큼 전달되는지는 이 자료만으로 계산할 수 없다. <strong>반증 조건:</strong> 충분한 기간의 동일 등급·동일 단계 가격과 환율·운임 자료에서 이 관계가 통계적으로 지지되지 않는 경우다.</p>
+<p>셋째, 단기 가격만으로 국산 콩 정책을 판단하기 어렵다. 2025년 정부는 국산 비축콩 공급과 수입권 공매를 함께 썼고, 2026년에는 콩나물용 시장접근물량을 조정했다. 월별 수입량만으로는 수매·비축 재고와 공매 집행량의 변화를 설명할 수 없다. <strong>반증 조건:</strong> 집행 자료를 대조했을 때 이 정책 물량의 변화가 해당 수급 구간에서 실질적이지 않은 것으로 드러나는 경우다.</p>
+<p>이상의 판단은 전망과 사실을 분리한 것이다. <strong>2025년</strong> 수입국별 연간 점유율, 민간 기업별 점유율, 세부 식용 배분율은 확보한 원자료로 계산하지 않았다. 2024년 연간 원산지 점유율은 FAOSTAT 한국 신고 행에서 계산했다. 중국 전망은 USDA FAS 베이징 지부의 공개 PDF 원문과 USDA PSD 원행을 구분했다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>생산은 남미·미국, 대량 수입은 중국에 집중된다</h2>
+<p class="lead">대두 원물, 대두박, 대두유는 서로 다른 상품 계정이다. FAOSTAT의 ‘Soya beans’는 원물 생산·수출을, USDA PSD의 개별 상품 계정은 착유 이후 박과 유의 소비를 다룬다. 박을 원물 수입량에 다시 더하면 같은 콩을 두 번 센다. 이 절의 국가 점유율과 순위는 완료된 2024년 FAOSTAT 수치를 기준으로 한다.</p>
+<div class="tw">
+<table>
+<caption>표 1. 세계 대두 원물 생산과 교역의 기준점(2024년)</caption>
+<thead><tr><th>구분</th><th>국가·권역</th><th class="num">물량</th><th class="num">세계 합계 대비</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>세계</td><td class="num">397,671,689톤</td><td class="num">100%</td></tr>
+<tr><td>생산</td><td>브라질</td><td class="num">144,473,768톤</td><td class="num">36.3%</td></tr>
+<tr><td>생산</td><td>미국</td><td class="num">118,836,440톤</td><td class="num">29.9%</td></tr>
+<tr><td>생산</td><td>아르헨티나</td><td class="num">48,213,207톤</td><td class="num">12.1%</td></tr>
+<tr><td>생산</td><td>중국 본토</td><td class="num">20,650,000톤</td><td class="num">5.2%</td></tr>
+<tr><td>수출</td><td>세계</td><td class="num">178,660,101톤</td><td class="num">100%</td></tr>
+<tr><td>수출</td><td>브라질</td><td class="num">98,812,924톤</td><td class="num">55.3%</td></tr>
+<tr><td>수출</td><td>미국</td><td class="num">52,327,703톤</td><td class="num">29.3%</td></tr>
+<tr><td>수입</td><td>세계</td><td class="num">176,516,314톤</td><td class="num">100%</td></tr>
+<tr><td>수입</td><td>중국 본토</td><td class="num">105,032,704톤</td><td class="num">59.5%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT <code>faostat_production_soybean.csv</code>·<code>faostat_trade_soybean.csv</code>, <code>Item=Soya beans</code>, <code>Year=2024</code>, <code>Element=Production/Export quantity/Import quantity</code>; 세계 행을 분모로 계산(E01). 생산·수입의 중국 본토는 <code>China, mainland</code>(코드 41)다. <code>China</code>(코드 351)는 본토·홍콩·마카오·대만을 포함하는 집계 행으로 별도로 합산하지 않았다.</p>
+<p>세계 생산은 FAOSTAT 기준 2020년 3억 5,735만 톤, 2023년 3억 7,088만 톤, 2024년 3억 9,767만 톤이었다. 연도 간 차이는 수확과 통계 수정의 결과를 함께 반영하므로, 2024년 한 해의 증가만으로 장기 공급 과잉을 단정하지 않는다. 2024년 상위 세 나라 생산량을 더하면 3억 1,152만 톤이다. 수입 쪽은 중국 본토 한 나라의 신고량이 1억 톤을 넘었다. 세계 수입과 세계 수출이 정확히 같지 않은 것은 국가별 신고·집계 시점 및 방식이 다르기 때문이다.</p>
+<p>USDA PSD는 생산연도가 아니라 마케팅연도 기준의 공급·이용 장부다. 2024 마케팅연도 행에서 브라질 생산 1억 7,250만 톤, 미국 1억 1,904만 톤, 중국의 국내 소비 1억 2,740만 톤·착유 1억 350만 톤을 기록한다. FAOSTAT의 달력연도 2024 생산 수치와 이름이 같은 국가라도 수확연도와 개정 시점이 달라 그대로 대조하거나 합산하지 않는다. USDA PSD 파일에는 브라질과 미국 등의 상품별 계정이 있지만 이 품목 분할 파일에 <code>World</code> 행은 없으므로 세계 재고율을 자체 합산해 제시하지 않는다(E06).</p>
+<p>아래 2025/26·2026/27 수치는 발표 당시 <strong>전망</strong>이다. 브라질 CONAB의 2026년 9월 조사·발표는 2025/26 시즌 대두 생산을 1억 8,040만 톤, 수출을 1억 1,620만 톤으로 전망했다. USDA ERS의 2026년 9월 보고서는 미국 2026/27 마케팅연도 생산을 45억 부셸, 수출을 16억 9천만 부셸, 착유를 27억 8천만 부셸, 기말재고를 3억 1천만 부셸로 전망했다. 단위와 시즌, 발표일이 서로 다르다. 이 숫자를 2024년 완료연도 순위표에 끼워 넣지 않는다(<a href="https://www.gov.br/conab/pt-br/assuntos/noticias/conab-estima-producao-de-361-7-milhoes-de-toneladas-de-graos-na-safra-2025-26">CONAB 2026-09-15</a>, <a href="https://www.ers.usda.gov/media/29635/ocs-26i.pdf">USDA ERS 2026-09-15</a>, P03·P04).</p>
+<p>USDA FAS 베이징 지부는 2026년 3월 중국의 2026/27 마케팅연도 대두 수입을 1억 800만 톤으로 전망했다. 이는 지부(Post) 전망이다. 보관된 USDA PSD의 <code>China</code>·<code>Market_Year=2026</code>·<code>Imports</code> 행은 1억 1,500만 톤으로, 두 전망의 발행 주체와 갱신 시점이 다르다. 둘 다 2024년 FAOSTAT 통관 실적이 아니다(USDA FAS 베이징 지부, 「Oilseeds and Products Annual」, 2026-03-19, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Beijing_China+-+People%27s+Republic+of_CH2026-0032.pdf">원문</a>; USDA PSD <code>usda_psd_all_soybean.csv</code>, E06·E15).</p>
+<p>소비의 핵심은 착유다. 중국의 대두 수입과 착유 규모가 큰 것은 대두박을 사료에, 대두유를 식품·산업 용도에 쓰는 연쇄 수요와 연결된다. 그렇다고 원물 수입 전부가 특정 최종 용도로 즉시 전환되지는 않는다. 재고, 손실, 종자, 직접 식용과 수출입 시차가 있다. PSD에서 원물·박·유의 수급은 상품별 <code>Production</code>, <code>Crush</code>, <code>Domestic Consumption</code>, <code>Ending Stocks</code> 계정으로 구분된다.</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>국산 수확량과 제조 원료 사용량의 분모가 다르다</h2>
+<p class="lead">한국은 콩을 재배한다. 따라서 ‘한국에는 대두 생산이 없다’는 설명은 원자료와 어긋난다. KOSIS 시도별 생산표의 전국 합계는 2025년 156,145.2톤이다. 생산 면적은 74,014.9ha로 2024년과 거의 같고, 10a당 생산량은 2024년 209.35kg에서 2025년 210.96kg으로 소폭 높아졌다. 전국 생산량 증가율 0.8%는 면적 증가보다 단수 차이와 연결된다(E02).</p>
+<div class="tw">
+<table>
+<caption>표 2. 국내 콩 생산과 식품제조업 원료 사용</caption>
+<thead><tr><th>지표</th><th>기간</th><th class="num">값</th><th>해석 범위</th></tr></thead>
+<tbody>
+<tr><td>콩 생산량</td><td>2023년</td><td class="num">141,477톤</td><td>농업 생산, KOSIS 전국</td></tr>
+<tr><td>콩 생산량</td><td>2024년</td><td class="num">154,954톤</td><td>농업 생산, KOSIS 전국</td></tr>
+<tr><td>콩 생산량</td><td>2025년</td><td class="num">156,145톤</td><td>농업 생산, KOSIS 전국</td></tr>
+<tr><td>콩 재배면적</td><td>2025년</td><td class="num">74,015ha</td><td>농업 생산, KOSIS 전국</td></tr>
+<tr><td>대두 원료 사용 총량</td><td>2024년</td><td class="num">1,152,518톤</td><td>식품제조업, 비식품류 제외; 착유 포함 추정</td></tr>
+<tr><td>대두 국산 원료 사용</td><td>2024년</td><td class="num">69,017톤</td><td>위 사용 총량의 6.0%</td></tr>
+<tr><td>대두 수입산 원료 사용</td><td>2024년</td><td class="num">1,083,501톤</td><td>위 사용 총량의 94.0%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS <code>kosis_crops_beans_soybean.csv</code>의 <code>C1_NM=계</code>, <code>ITM_NM=콩:생산량/콩:면적</code>; <code>kosis_food_raw_material/2026-10-06__kosis_food_raw_material.json</code>의 <code>C1_NM=대두</code>, <code>PRD_DE=2024</code>, <code>ITM_NM=총량/국산사용량/수입산사용량/국산비중</code>(E02·E03). 반올림 전 값은 30_근거_수치에 적었다.</p>
+<p>생산량과 원료 사용량을 나누어 ‘자급률’을 만들지 않았다. 생산량은 달력연도 농가 수확, 원료 사용량은 식품제조업의 투입이다. 재고 이월, 종자, 자가소비, 사료·비식품 경로, 수입 시차가 다르다. 식품제조업 통계 자체의 국산 사용 비중 6.0%는 그 통계의 모집단 안에서만 유효하다. 수입산 사용량 1,083,501톤은 FAOSTAT 2024년 한국 대두 수입 1,148,399톤의 약 94.3%에 해당한다. 식용유지 제조도 조사하는 식품산업 원료소비 실태조사의 범위와 이 규모를 고려하면 착유 투입이 포함된 것으로 보인다. 이는 모집단 메타데이터를 통한 직접 확인이 아니라 산술과 조사 항목에 근거한 추론이다. 따라서 6.0%를 두부·장류·콩나물 원료만의 국산 비중으로 읽지 않는다(농식품부·aT, 「2025년 식품산업 원료소비 실태조사 잠정치 결과 요약」, 2025-12, <a href="https://atfis.or.kr/home/pdf/file.do?file=%2Fboard%2F202512%2F495e3816-5554-440f-a9ab-47d7f9cee4b1.pdf">원문</a>; E03). 생산된 국산 콩의 69,017톤만 식품에 쓰였다고 단정할 수도 없다.</p>
+<p>USDA PSD는 또 다른 분모를 제공한다. 2024 마케팅연도 한국 대두 계정에는 생산 15만 5천 톤, 수입 112만 8천 톤, 국내 소비 131만 톤, 착유 95만 톤, 직접 식용 소비 31만 5천 톤, 사료·손실 4만 5천 톤, 기말재고 8만 3천 톤이 들어 있다. <code>Crush + Food Use + Feed/Waste = Domestic Consumption</code>이라는 계정 관계가 성립한다. 이는 USDA가 구성한 시즌 수급표로, KOSIS 제조업 조사와 같은 조사표가 아니다(E06).</p>
+<p>FAOSTAT 식품수급표의 한국 2023년 <code>Soyabeans</code>·<code>Food</code> 행은 309천 톤이다. 이는 식품수급표의 원물 식용 계정이며, USDA의 2024 마케팅연도 식용 315천 톤과 기간·작성 체계가 다르다(FAOSTAT <code>FBS_soybean.csv</code>, 2023년 <code>Republic of Korea</code>·<code>Item=Soyabeans</code>·<code>Element=Food</code>; E15).</p>
+<p>FAOSTAT 공급이용계정은 같은 2023년에 <code>Cake of soya beans</code>의 한국 <code>Feed</code>를 2,115,972.24톤으로 기록한다. 대두박 생산 719,100톤과 수입 1,399,159톤도 별도 행에 있다. 생산과 수입을 더한 공급의 수입 비중은 약 66.1%지만, 재고·수출을 반영한 <code>Feed</code> 자체의 수입산 비중은 이 세 행으로 확정할 수 없다. 2025년 UN Comtrade 한국 신고 HS 230400 대두박 수입은 1,733,530톤·6억 7,393만 달러다. 이들은 <strong>대두박</strong> 계정으로, 위 대두 원물의 <code>Food</code> 또는 USDA 대두 원물의 <code>Feed/Waste</code>에 더해 원물 소비량을 만들 수 없다(FAOSTAT <code>SCL_soybean.csv</code>, 2023년 한국 행; UN Comtrade <code>soybean_comtrade_annual.csv</code>, 2025년 한국 세계 합계 행; E15).</p>
+<p>FAOSTAT 양자 교역표에서 2022년 한국 신고 대두박 수입의 82.7%는 브라질산이다. 반면 대두 <strong>원물</strong>의 2024년 한국 신고 수입은 미국이 50.4%로 1위다. 품목과 연도가 달라 같은 시점의 공급국 점유율 비교로 읽지 않는다(FAOSTAT <code>TM_soybean.csv</code>, 2022년 <code>Cake of soya beans</code> 및 2024년 <code>Soya beans</code>; E07·E15).</p>
+<p>FAOSTAT의 별도 지표에서 한국 2024년 대두 1인당 총생산지수는 143.67(2014~2016=100), 불변 2014~2016년 달러 기준 총생산가치는 531,538천 달러다. 두 행 모두 추정치 <code>Flag=E</code>이며, 지수와 가치 금액은 KOSIS의 2025년 생산 중량 또는 농가 판매액을 대체하지 않는다(FAOSTAT <code>QI_soybean.csv</code>·<code>QV_soybean.csv</code>, 2024년 <code>Republic of Korea</code>·<code>Item=Soya beans</code>; E15).</p>
+<p>국내 식용 경로에는 콩나물·두부·장류가 있고, 착유 경로에는 대두유와 대두박이 나온다. 관세청 수입 세번은 콩나물용과 채유·탈지대두박용을 구별하지만, ‘기타’ 세번 안에서 두부용과 장류용을 분리하지 않는다. 그러므로 2025년 ‘기타’ 수입 24만 2천 톤을 전량 두부 시장 규모로 쓰지 않는다. KOSIS의 2024년 두부·간장·된장 제조업 생산액 역시 가공품 매출 단계이며 콩 원물 소비량으로 역산할 수 없다(04·07절).</p>
+<p>지역 분포도 정책 논의에 중요하다. KOSIS 2025년 시도별 생산에서 전라북도는 53,833톤으로 전국 생산의 34.5%에 해당한다. 이것은 생산지 비중이다. 국내 소비지, 수매 장소 또는 가공 시설 비중을 의미하지 않는다(E02). 이번 원자료에는 지역별 수확·수매·방출을 같은 기준으로 연결한 집행 내역이 없다.</p>
+<p>국산 콩의 가격 기준으로 KREI가 인용한 aT 자료에는 2025년산 정부 수매가격 4,800원/kg과 계획량 6만 톤이 적혀 있다. 이는 정부 수매가격으로 소비자 가격이나 2026년산 확정 수매가가 아니다. 농식품부는 2026년 비축 예산도 수매규모 6만 톤에 맞춰 확보했다고 설명했다(한국농촌경제연구원, 「콩 관측 2026년 4월호」, 2026-04, <a href="https://aglook.krei.re.kr/upload/observeFiles/a58e85ea240443dbbc4a8d890d83088c.pdf">원문</a>; 농림축산식품부, 「’25년산 콩 수매 대금 정산이 원활하게 이뤄지도록 최선을 다 하겠습니다」, 2026-02-02, <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148958933">원문</a>; P09).</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>2025년 수입 113만 톤, 그중 채유·탈지대두박용이 76.1%</h2>
+<p class="lead">HS 1201은 ‘대두, 부수었는지와 관계없음’이며 HS6은 종자 120110과 기타 120190으로 갈린다. 한국의 10자리 세번은 채유·탈지대두박용, 사료용, 콩나물용, 기타를 추가로 구분한다. 이 분류는 신고 용도이지 최종 제품의 판매 통계가 아니다. 2025년은 원자료에 1~12월이 모두 있는 완료연도다. 2026년 수치는 1~8월 기준(잠정)의 누계다.</p>
+<div class="tw">
+<table>
+<caption>표 3. 한국 HS 1201 수입의 신고 용도(2025년)</caption>
+<thead><tr><th>HS10</th><th>신고 구분</th><th class="num">중량</th><th class="num">금액</th><th class="num">금액÷중량</th></tr></thead>
+<tbody>
+<tr><td>1201901000</td><td>채유·탈지대두박용</td><td class="num">859,186톤</td><td class="num">4억 181만 달러</td><td class="num">0.468달러/kg</td></tr>
+<tr><td>1201909000</td><td>기타</td><td class="num">242,265톤</td><td class="num">1억 8,546만 달러</td><td class="num">0.766달러/kg</td></tr>
+<tr><td>1201903000</td><td>콩나물용</td><td class="num">28,157톤</td><td class="num">3,068만 달러</td><td class="num">1.090달러/kg</td></tr>
+<tr><td>그 밖의 HS10</td><td>종자·사료용 등</td><td class="num">0.04톤</td><td class="num">344달러</td><td class="num">소량이라 비교 제외</td></tr>
+<tr class="tot"><td><strong>HS 1201 합계</strong></td><td></td><td class="num"><strong>1,129,608톤</strong></td><td class="num"><strong>6억 1,795만 달러</strong></td><td class="num"><strong>0.547달러/kg</strong></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 <code>customs_item_trade_monthly_soybean.csv</code>, <code>year=2025.01~2025.12</code>, <code>hsCode</code>별 <code>impWgt</code>·<code>impDlr</code> 합(E04). 합계·단가는 반올림했다. 표의 소량 행은 세부 세번을 묶은 것으로, 원자료 합계는 1,129,608,269kg·617,948,174달러다.</p>
+<p>가격 차이를 품질 격차로 단정할 수 없다. 콩나물용의 평균 신고 단가가 채유용보다 높은 것은 확인되지만, 품종·규격·운송 조건·계약 시점·상대국 구성이 분리되어 있지 않다. ‘기타’도 단일 식품 등급이 아니다. 동일 세번·기간·원산지 기준의 가격 비교는 이번 자료에서 제시되지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 4. 같은 1~8월끼리 본 한국 대두 수입과 세번별 신고 단가</caption>
+<thead><tr><th>구분</th><th class="num">2025년 1~8월</th><th class="num">2026년 1~8월 기준(잠정)</th><th class="num">전년 같은 기간 대비</th></tr></thead>
+<tbody>
+<tr><td>HS 1201 수입 중량</td><td class="num">800,824톤</td><td class="num">730,470톤</td><td class="num">−8.8%</td></tr>
+<tr><td>HS 1201 수입 금액</td><td class="num">4억 3,765만 달러</td><td class="num">4억 1,083만 달러</td><td class="num">−6.1%</td></tr>
+<tr><td>HS 1201 평균 신고 단가</td><td class="num">0.547달러/kg</td><td class="num">0.562달러/kg</td><td class="num">+2.9%</td></tr>
+<tr><td>채유·탈지대두박용 단가(1201901000)</td><td class="num">0.4640달러/kg</td><td class="num">0.4864달러/kg</td><td class="num">+4.8%</td></tr>
+<tr><td>기타 단가(1201909000)</td><td class="num">0.7645달러/kg</td><td class="num">0.7242달러/kg</td><td class="num">−5.3%</td></tr>
+<tr><td>콩나물용 단가(1201903000)</td><td class="num">1.1611달러/kg</td><td class="num">1.1174달러/kg</td><td class="num">−3.8%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 같은 파일, <code>year=2025.01~08</code>와 <code>2026.01~08</code>, HS 1201 전체 및 세번별 합(E05). 2026년 연간 증가율이나 연간 점유율로 읽지 않는다.</p>
+<p>전체 평균 신고 단가 +2.9%에는 용도별 물량 구성 변화가 크게 작용했다. 2026년 세번별 물량에 2025년 같은 세번의 단가를 적용하면 평균은 약 0.5577달러/kg로, 2025년 실제 평균 0.5465달러/kg보다 약 2.1% 높다. 나머지 약 0.9%포인트는 세번 내부의 단가 변화에 해당한다. 특히 ‘기타’의 물량 비중은 23.0%에서 25.8%로 늘었지만, ‘기타’와 콩나물용 자체의 단가는 각각 하락했다. 전체 평균 +2.9%를 식용 대두 단가의 상승으로 해석하지 않는다(E05).</p>
+<p><strong>연간 원산지(2024년)</strong>는 FAOSTAT 양자 교역표로 확인했다. 한국이 신고한 2024년 <code>Soya beans</code> 수입 합계는 1,148,399.24톤이며, 미국 579,216.54톤(50.4%), 브라질 486,837.81톤(42.4%), 캐나다 36,559.15톤(3.2%), 중국 본토 31,659.29톤(2.8%) 순이다. 이 수치는 한국 신고 수입 원산지별 합계로, 미국이 신고한 대(對)한국 수출량과는 다르다(FAOSTAT <code>TM_soybean.csv</code>, <code>Reporter Countries=Republic of Korea</code>·<code>Element=Import quantity</code>·<code>Year=2024</code>; E07).</p>
+<p>이번 <code>processed_data/customs_kr/soybean_customs_kr_monthly.csv</code>에는 2026년 3~8월 기준(잠정)의 국가별 행만 있다. 그 구간의 120190 신고 중량에는 브라질 364,350톤, 미국 145,518톤, 중국 16,706톤, 캐나다 11,669톤이 보인다. 이는 <strong>부분 기간의 절대량</strong>이며 2025년 연간 원산지 순위나 점유율이 아니다. 브라질 물량이 많은 3~8월은 남미산 공급 시기와 겹친다. USDA FAS 서울 지부는 착유용 대두는 통상 한국의 10~3월 인도분은 미국산, 그 밖의 달은 주로 브라질산이라고 설명한다. 따라서 부분 기간 순위를 2024년 연간 구조와 바로 비교하지 않는다(USDA FAS 서울 지부, 「Oilseeds and Products Annual」, 2026-03-04, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Seoul_Korea+-+Republic+of_KS2026-0006.pdf">원문</a>; E07). <strong>2025년 연간</strong> 원산지 점유율은 확보하지 못했다.</p>
+<p>세계 상대 위치는 완료된 FAOSTAT 2024년으로 확인할 수 있다. 한국의 대두 원물 수입 신고는 1,148,399톤이다. 같은 해 중국 본토는 105,032,704톤을 신고했다. 두 국가는 시장 규모가 다르다. 브라질의 2024년 수출은 98,812,924톤, 미국은 52,327,703톤이었다. FAOSTAT 값은 국가별 연간 무역 통계이며 관세청의 2025년 HS10 월간 값과 시점·분류가 같지 않다(E01).</p>
+<p>세계은행 <code>Net food imports by crop - Soybeans</code> 계열의 한국 2019년 값은 1,263,816이다. 보관 CSV에는 단위와 산식 열이 없으므로 이 숫자에 ‘톤’을 붙이거나 2025년 관세청 HS 1201 총수입량과 증감률을 계산하지 않는다(World Bank <code>CC.NEFO.IMCR.SB.csv</code>, <code>country_id=KOR</code>·<code>year=2019</code>; E15).</p>
+<p>UN Comtrade 연간 파일은 세관 절차와 운송 수단별 중복 행을 포함한다. 따라서 <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, <code>partnerCode=0</code>인 <strong>세계 합계 행만</strong> 채택했다. 이 조건의 한국 2025년 120190 수입 순중량은 1,129,608,250kg이다. 관세청 HS10 합계와 약 19kg 차이가 나지만, Comtrade의 120110 별도 행과 소수점·신고 조정까지 고려하면 같은 규모를 가리킨다. 세부 절차 행을 더한 수치를 무역 규모로 쓰지 않았다. 2024년 Comtrade 한국 120190 합계 행에는 <code>netWgt</code>가 비어 있지만, 대체 물량 필드 <code>altQty</code>에는 1,148,399,199kg(약 1,148,399톤)이 있어 FAOSTAT 한국 수입량과 거의 같다(E07).</p>
+<p>미국 Census HS10·EU Comext·브라질 ComexStat 파일은 최근 한 달 또는 진행연도 자료로 들어 있다. 이들은 세계 공급국의 최근 움직임을 추적하는 보조 지표지만, 서로 다른 신고 관행과 기간 때문에 한국 연간 수입 구조의 분모가 될 수 없다. 아르헨티나와 중국의 거래도 재수출·가공 경로가 섞이므로 국가 간 같은 물량을 더해 ‘세계 교역 총량’을 만들지 않는다.</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>국제 기준가격, 수입 신고 단가, 농가가격은 서로 다른 거래 단계다</h2>
+<p class="lead">대두에는 하나의 가격이 없다. IMF가 제공하고 FRED가 중계하는 국제 대두 기준가격은 달러/톤의 분기 평균이다. 관세청 수입 단가는 신고 금액/중량이며 운임·보험·원산지 구성을 포함한 거래 가격이다. KREI가 인용한 농가판매가격은 국내 생산자가 받는 단계다. 세 숫자의 변화율을 같은 ‘대두 가격 상승률’로 붙이지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 5. 확인 가능한 가격 지표와 기준</caption>
+<thead><tr><th>지표</th><th>기간</th><th class="num">값</th><th>비교할 때의 조건</th></tr></thead>
+<tbody>
+<tr><td>국제 대두 기준가격</td><td>2025년 2분기</td><td class="num">383.08달러/톤</td><td>IMF/FRED 분기 평균</td></tr>
+<tr><td>국제 대두 기준가격</td><td>2025년 4분기</td><td class="num">391.10달러/톤</td><td>같은 계열</td></tr>
+<tr><td>국제 대두 기준가격</td><td>2026년 1분기</td><td class="num">406.44달러/톤</td><td>같은 계열</td></tr>
+<tr><td>국제 대두 기준가격</td><td>2026년 2분기</td><td class="num">426.33달러/톤</td><td>전년 같은 분기 대비 +11.3%</td></tr>
+<tr><td>한국 HS 1201 수입 신고 단가</td><td>2025년 연간</td><td class="num">0.547달러/kg</td><td>신고 금액÷신고 중량</td></tr>
+<tr><td>한국 HS 1201 수입 신고 단가</td><td>2026년 1~8월</td><td class="num">0.562달러/kg</td><td>전년 동기 대비 +2.9%; 구성 효과 포함</td></tr>
+<tr><td>국내 콩 농가판매가격 변화</td><td>2026년 1분기</td><td class="num">전기 대비 +2.8%</td><td>KREI 봄호의 국가데이터처 인용</td></tr>
+<tr><td>ECOS 콩류 원화기준 수입물가지수</td><td>2026년 1월→8월</td><td class="num">133.56→146.65</td><td>2020=100, 대두 단독 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>soybean_fred.csv</code>의 <code>series_id=PSOYBUSDQ</code>와 <a href="https://fred.stlouisfed.org/series/PSOYBUSDQ">FRED 계열 설명</a>; 관세청 HS10 원자료(E04·E05·E08); KREI 『농업·농촌 경제 동향 2026 봄』 인쇄 18~19쪽(E09); ECOS 원자료(E10). FRED 계열은 달러/미터톤·계절조정 없음이다.</p>
+<p>국제 기준가격은 2025년 2분기부터 2026년 2분기까지 43.25달러/톤 높아졌다. 이는 같은 계열끼리 계산한 +11.3%다. 같은 기간의 한국 수입 평균을 직접 견주지는 않았다. 국제가격은 분기, 수입 신고는 월별·용도별이고 선적·계약 시점이 다르기 때문이다. 2026년 1~8월 한국 수입 평균 단가는 전년 같은 기간보다 2.9% 높지만, 약 2.1%포인트는 2026년 물량 구성에 2025년 세번별 단가를 적용했을 때 나타나는 구성 효과다. 같은 기간 ‘기타’ 단가는 5.3%, 콩나물용 단가는 3.8% 내렸다. 국제가격 상승폭이나 전체 평균 단가 상승폭이 곧 국내 식용 원료비 상승폭은 아니다(E05·E08).</p>
+<p>세계은행 Pink Sheet의 2026년 3월 월간 행은 대두 472.5달러/톤, 대두유 1,481.97달러/톤, 대두박 403.75달러/톤이다. 세 값은 각각 다른 상품의 국제 가격이며, 원물과 제품 가격의 단순 차이를 국내 착유 마진으로 읽지 않는다(World Bank <code>PinkSheet_Soybeans.csv</code>·<code>PinkSheet_Soybean_oil.csv</code>·<code>PinkSheet_Soybean_meal.csv</code>, <code>Period=2026M03</code>; 단위는 아카이브 <code>intelligence_reports/README.md</code>, 2026-05-02; E15).</p>
+<p>FAOSTAT의 한국 대두 생산자가격지수는 2025년 114.28(2014~2016=100)이다. 이 행은 <code>Flag=E</code> 추정치이고, 지수에는 원/톤 가격이 없으므로 KREI의 2026년 1분기 농가판매가격 상승률과 이어 붙여 시계열을 만들지 않는다(FAOSTAT <code>PP_soybean.csv</code>, <code>Republic of Korea</code>·<code>Item=Soya beans</code>·<code>Year=2025</code>; E15).</p>
+<p>국산 콩 가격 신호는 별도로 움직인다. KREI 봄호의 2026년 1분기 농가판매가격 설명에서 콩은 전기 대비 2.8% 상승했다고 적었다. 같은 표의 ‘두류/잡곡’ 전체 지수는 112.0이고 전기 대비 14.2% 상승이므로, 14.2%를 콩 단독 상승률로 옮기면 오류다. 또 농가판매가격과 KAMIS 도소매 가격은 거래 단계가 다르다(E09).</p>
+<p>KAMIS는 이번 보고서에서 연속 가격표의 근거로 쓰지 않았다. 아카이브의 <code>soybean_kamis_price.csv</code>에는 <code>commodity=soybean</code>이면서 실제 <code>itemname=미나리</code>인 행과 <code>countyname=평년</code> 행이 함께 있다. KAMIS의 ‘평년’은 금년을 제외한 최근 5년의 해당일 값에서 최고·최저를 뺀 3년 평균으로, 당일 실측 시장가격이 아니다(한국농수산식품유통공사 KAMIS, 「식재료 아카이브」, <a href="https://www.kamis.or.kr/customer/archive/archive.do?action=detail&amp;archiveNo=23">설명</a>). 콩 행이라도 <code>itemname=[]</code>, <code>kindname=[]</code>처럼 품목·규격이 비어 있는 구간은 단위를 특정할 수 없다. 웹 조사 노트에는 국산 흰콩 40kg·500g 등의 화면 가격이 있으나 선택 월의 역월을 확정하지 못했다. 따라서 원자료 재정렬 없이 시계열 평균·전년비를 계산하지 않았다(아카이브 원장 12행, P08).</p>
+<p>ECOS 수입물가지수의 ‘콩류’ 계약통화 기준은 2026년 1월 107.83에서 8월 122.63으로, 원화기준은 133.56에서 146.65로 변했다(2020=100). 따라서 <strong>원화기준 콩류 지수</strong> 자체는 확보돼 있다. 다만 ‘콩류’는 대두만의 지수가 아니고, 이 지수만으로 환율·세번별 구성·운임을 분해한 대두 단독의 원화 수입 부담을 계산할 수 없다(E10).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>생산국의 역할과 수요국의 역할이 다르다</h2>
+<p class="lead">한국 대두의 잠재 공급 조건에서 생산량, 실제 원물 수출, 국내 착유 수요는 서로 다른 지표다. 생산량이 많은 나라가 항상 같은 비율로 수출하지 않는다. 아르헨티나는 원물 생산국이면서 대두박·대두유를 만드는 가공국이다. 중국은 생산도 하지만 대량의 원물을 수입한다.</p>
+<div class="tw">
+<table>
+<caption>표 6. 주요국의 대두 원물 위치(2024년 완료연도)</caption>
+<thead><tr><th>국가</th><th class="num">생산</th><th class="num">원물 수출</th><th class="num">원물 수입</th><th>구조를 읽을 때의 주의</th></tr></thead>
+<tbody>
+<tr><td>브라질</td><td class="num">1억 4,447만 톤</td><td class="num">9,881만 톤</td><td class="num">82만 톤</td><td>세계 원물 수출의 55.3%</td></tr>
+<tr><td>미국</td><td class="num">1억 1,884만 톤</td><td class="num">5,233만 톤</td><td class="num">66만 톤</td><td>국내 착유와 수출이 함께 큼</td></tr>
+<tr><td>아르헨티나</td><td class="num">4,821만 톤</td><td class="num">415만 톤</td><td class="num">758만 톤</td><td>원물 수입·가공·제품 수출을 구분</td></tr>
+<tr><td>파라과이</td><td class="num">1,110만 톤</td><td class="num">799만 톤</td><td class="num">—</td><td>인접 가공국 수요의 영향을 받음</td></tr>
+<tr><td>중국 본토</td><td class="num">2,065만 톤</td><td class="num">7만 톤</td><td class="num">1억 503만 톤</td><td>FAOSTAT 코드 41; 대량 수입·착유국</td></tr>
+<tr><td>한국</td><td class="num">15만 톤</td><td class="num">7톤</td><td class="num">115만 톤</td><td>국내 생산과 수입이 공존</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: FAOSTAT <code>faostat_production_soybean.csv</code>·<code>faostat_trade_soybean.csv</code>, 2024년 <code>Soya beans</code> 국가 행(E01). ‘—’는 이 표에서 확인·표시하지 않은 값이며 0을 뜻하지 않는다. 단위는 반올림했다. 중국 생산·수입은 모두 <code>China, mainland</code>(코드 41) 기준이다.</p>
+<p>브라질의 2024년 원물 수출은 세계 수출의 55.3%였다. 이후 브라질 CONAB의 2026년 9월 발표는 2025/26 시즌 생산 1억 8,040만 톤과 수출 1억 1,620만 톤을 <strong>전망</strong>했다. 이 전망은 FAOSTAT 2024년 실적과 달리 시즌 집계·예측치다. CONAB은 같은 글에서 9~11월 엘니뇨 지속과 지역별 강수 편차를 언급한다. 기상 전망이 곧바로 특정 생산 감소를 확정한다는 문장은 원문에 없다(<a href="https://www.gov.br/conab/pt-br/assuntos/noticias/conab-estima-producao-de-361-7-milhoes-de-toneladas-de-graos-na-safra-2025-26">CONAB 원문</a>, P03).</p>
+<p>OEC의 대두 품목 코드 <code>2120100</code>에서 브라질의 2024년 수출액 행은 44,393,312,139달러다. 이는 수출 <strong>금액</strong>이므로 위 FAOSTAT 수출 <strong>중량</strong>과 합산하거나 같은 비중의 분자로 사용하지 않는다(OEC <code>oec_soybean_2120100_export.csv</code>, <code>Exporter Country=Brazil</code>·<code>Year=2024</code>; E15).</p>
+<p>미국은 국내 착유와 수출이 동시에 중요한 공급국이다. USDA ERS의 2026년 9월 전망에서는 2026/27 착유가 27억 8천만 부셸로 유지되고 수출 전망은 16억 9천만 부셸이다. 같은 보고서의 8월 27일 기준 신규 판매 잔량 5억 9,800만 부셸 중 중국분은 2억 8,500만 부셸이다. 이는 <strong>그 시점의 판매 잔량</strong>이며 연간 실수출이나 중국의 공식 구매 약정으로 바꾸어 쓸 수 없다(<a href="https://www.ers.usda.gov/media/29635/ocs-26i.pdf">USDA ERS OCS-26i</a>, P04).</p>
+<p>FAOSTAT 양자 교역표의 2024년 미국 신고 대(對)한국 대두 원물 수출량은 642,756.24톤이다. 같은 표에서 <strong>한국이 신고한 미국산 수입량은 579,216.54톤</strong>이다. 양쪽 신고의 차이는 거울통계 차이이며 어느 쪽도 다른 쪽의 오기라고 단정할 수 없다. 한국 연간 원산지 점유율에는 한국 신고 수입 행을 썼다(FAOSTAT <code>TM_soybean.csv</code>, <code>Year=2024</code>·<code>Item=Soya beans</code>·<code>Element=Export quantity/Import quantity</code>; E07·E15).</p>
+<p>OEC의 2022년 브라질→한국 대두 교역액 행은 339,183,754달러다. 과거 양자 거래의 금액이며 2024년 미국 신고 수출 중량과 비교해 공급국 점유율을 계산할 수 없다(OEC <code>oec_soybean_2120100_bilateral_2022.csv</code>, <code>Exporter Country=Brazil</code>·<code>Importer Country=South Korea</code>, 2022년 파일; E15).</p>
+<p>아르헨티나는 원물 생산량만 보면 브라질·미국보다 작지만, 가공·재수출 구조 때문에 인접국 대두의 흐름을 바꾼다. 2024년 FAOSTAT에서 원물 수입은 758만 톤, 원물 수출은 415만 톤이다. 아르헨티나 정부의 2025년 12월 발표는 대두 원물 수출세를 26%에서 24%, 대두 부산물은 24.5%에서 22.5%로 낮춘다고 적었다. 이후 개정 일정까지 확인하지 못했으므로 2026년 10월의 모든 거래에 같은 세율이 적용됐다고 단정하지 않는다(<a href="https://www.argentina.gob.ar/noticias/nueva-reduccion-de-impuestos-las-exportaciones-para-el-campo">아르헨티나 정부 발표</a>, P05).</p>
+<p>중국은 2024년 본토(FAOSTAT 코드 41) 기준 생산 2,065만 톤과 수입 1억 503만 톤을 동시에 기록했다. 중국 수요를 ‘수입량 감소 또는 증가’ 한 숫자로만 추적하면 생산·비축·착유·사료 수요 중 무엇이 바뀌었는지 놓친다. 한국은 세계 최대 구매국과 같은 국제 원료시장에서 조달하지만, 국내 수입 신고의 월별 변동을 중국 수요 하나로 설명할 자료는 없다. 미국 판매, 브라질 작황, 한국의 용도별 수입과 공매 집행은 서로 다른 관찰 지표다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>수입 원료가 착유와 식용 제조로 흘러가지만 기업별 물량·점유율은 미확보</h2>
+<p class="lead">국내 대두의 흐름에는 농가와 산지유통, 국산 콩 수매·비축, 수입권 공매와 국영무역, 민간 수입, 착유, 대두박, 두부·장류·콩나물 제조가 있다. 이 단계별 거래 주체가 같지 않다. aT의 TRQ 구매규격 사전공개는 담당 조직을 식량관리처 두류부라고 밝히고, 대상에 대두와 콩나물콩을 적는다. 농식품부는 2025년 수입권 공매에서 수요 단체 12곳 중 6곳이 낙찰받았다고 설명했지만, 해당 설명자료에는 단체 이름이 없다(<a href="https://www.at.or.kr/article/apko363300/view.action?articleId=51439">aT 공고</a>, <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148952541">농식품부 2025-10-20</a>, P06).</p>
+<p>기업별 조달·가공 규모 대신 확인 가능한 산업 단계의 통계를 먼저 제시한다. KOSIS 제조업 품목별 통계는 종사자 10명 이상 사업체의 2024년 생산액을 분류한다. 대두박·대두유는 착유 연쇄의 결과이고, 두부·간장·된장은 식용 가공품이다. 각각의 생산액을 더해 ‘대두 산업 매출’이라고 부르지 않는다. 같은 원료가 여러 제품으로 전환되며, 품목별 생산액에는 대두 이외의 투입과 제조 부가가치도 들어가기 때문이다.</p>
+<div class="tw">
+<table>
+<caption>표 7. 대두 관련 제조 품목의 사업체와 생산액(2024년, 종사자 10명 이상)</caption>
+<thead><tr><th>제조 품목</th><th class="num">사업체</th><th class="num">생산액</th><th>통계상 의미</th></tr></thead>
+<tbody>
+<tr><td>대두박</td><td class="num">3개</td><td class="num">305,344백만 원</td><td>가공품 생산액</td></tr>
+<tr><td>콩기름(대두유)</td><td class="num">17개</td><td class="num">1,363,518백만 원</td><td>가공품 생산액</td></tr>
+<tr><td>두부</td><td class="num">108개</td><td class="num">752,231백만 원</td><td>가공품 생산액</td></tr>
+<tr><td>간장</td><td class="num">38개</td><td class="num">434,813백만 원</td><td>가공품 생산액</td></tr>
+<tr><td>된장</td><td class="num">55개</td><td class="num">296,851백만 원</td><td>가공품 생산액</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: KOSIS <code>kosis_manufacturing_items/2026-10-06__kosis_manufacturing_items.json</code>, <code>PRD_DE=2024</code>, <code>C1=00</code>, <code>C2_NM</code> 각 품목, <code>ITM_NM=사업체수/생산액</code>; 원 표 제목은 ‘품목분류별 사업체수，생산액，출하 및 연말재고액(10명이상 2024년)’이다(E12).</p>
+<p>FAOSTAT의 한국 2023년 대두유 생산 행은 193,200톤이며 <code>Flag=X</code>와 <code>Note=Unofficial figure</code>가 붙어 있다. 이 값을 KOSIS 2024년 대두유 생산액의 중량으로 환산하거나 공식 확정 생산량·기업별 착유능력으로 취급하지 않는다(FAOSTAT <code>QCL_soybean_oil.csv</code>, <code>Republic of Korea</code>·<code>Item=Soya bean oil</code>·<code>Element=Production</code>·<code>Year=2023</code>; E15).</p>
+<p>산업 수준의 착유능력 정보는 USDA FAS 서울 지부 보고서에도 있다. 지부는 2026/27 마케팅연도 한국 착유량을 80만 톤, 전국 연간 착유능력을 110만 톤으로 전망·설명했고, 국내 착유업체 두 곳의 계획을 언급했다. 이 수치는 지부가 작성한 산업 수준의 공개 전망이며 사업체별 실제 가동률이나 기업별 점유율 표가 아니다(USDA FAS 서울 지부, 「Oilseeds and Products Annual」, 2026-03-04, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Seoul_Korea+-+Republic+of_KS2026-0006.pdf">원문</a>; P10).</p>
+<p>같은 보고서에 따르면 국내 대두박 전량을 CJ제일제당·사조대림 2사가 생산하며, 합계 착유능력은 연 110만 톤, 2025/26 마케팅연도 초기 가동률은 능력의 66~75%다(USDA FAS 서울 지부, 「Oilseeds and Products Annual」, 2026-03-04, 12쪽, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Seoul_Korea+-+Republic+of_KS2026-0006.pdf">원문</a>; P10).</p>
+<p>이 표는 산업의 폭을 보여 주지만 기업 순위는 주지 않는다. 3개 사업체로 집계된 대두박과 108개 사업체로 집계된 두부의 시장 구조는 다르다. 그러나 사업체 수가 법인 수와 같다는 보장은 없고, 품목 생산액이 국내 원료 구매액도 아니다. 식용유 판매량 순위를 대두 착유능력 순위로 옮길 수도 없다. 착유 설비는 대두 외 유지종자 처리 여부, 가동률, 위탁생산 때문에 제품 판매 순위와 다를 수 있다.</p>
+<p>민간 대두 수입의 <strong>신고 건수 상위 업소명</strong>은 식약처 수입식품 신고에서 확인된다(<a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>, 2025.10~2026.09; 2026년분 잠정). 그러나 신고 건수는 물량 순위가 아니다. 착유를 포함한 기업별 물량·시장점유율과 두부·장류의 제품 시장점유율은 미확보로 둔다. 상장사 사업보고서는 CJ제일제당의 연결 대두 매입액처럼 개별 기업의 원재료 정보를 주지만, 여러 기업의 대두 투입량을 같은 기간·같은 정의로 비교할 수 있는 공개 표는 없다(11.2절 참조). 기업 이름을 열거하는 것만으로 상위 기업 순위를 만들지 않는다.</p>
+<p>국산 콩과 수입 콩의 접점은 정부 재고와 공매다. 농식품부는 2025년 국영무역 재고와 수입권 공매를 통해 업계 조사 수요 2만 7,700톤을 공급·배정했고, 국산 비축콩 1,283톤을 수매가 대비 약 33% 할인 공급했다고 설명했다. 이는 특정 기업의 이익이나 원가를 나타내지 않는다. 산업 전체에서는 수입 물량의 배정 시점과 국산 비축콩 방출 시점이 가격·재고 판단에 필요한 변수라는 뜻이다(<a href="https://www.korea.kr/news/policyNewsView.do?newsId=148952541">농식품부 설명자료</a>, P06).</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>식용 시장접근물량과 채유용 할당관세는 적용 범위가 다르다</h2>
+<p class="lead">대두 제도는 하나의 관세율표로 끝나지 않는다. 시장접근물량 증량, 용도별 할당관세, 국영무역·수입권 공매, 국산 콩 수매·비축, 원산지 표시와 유전자변형식품 표시가 서로 다른 법적·행정적 경로로 작동한다. 이번에 확인한 자료는 각 제도의 <strong>물량과 일부 세율</strong>을 보여 준다. 세부 기본세율·FTA 적용세율은 원문 대조가 끝나지 않아 수치로 제시하지 않는다.</p>
+<div class="tw">
+<table>
+<caption>표 8. 확인한 대두 관련 정책의 적용 범위</caption>
+<thead><tr><th>제도·자료</th><th>확인된 내용</th><th>시점·범위</th><th>읽을 때의 주의</th></tr></thead>
+<tbody>
+<tr><td>시장접근물량 증량 규칙</td><td>대두 185,787톤 + 콩나물용 증량 10,000톤 = 195,787톤</td><td>2026-08-10 개정, 2026-12-31까지 신고분</td><td>증량분은 콩나물용 17,450→27,450톤</td></tr>
+<tr><td>할당관세 별표</td><td>1201.90 중 채유·탈지대두박용 0%, 한계수량 1,100,000톤</td><td>2026년 연중 별표</td><td>위 시장접근물량과 단순 합산 금지</td></tr>
+<tr><td>국산·수입 콩 공급 설명</td><td>업계 조사 수요 27,700톤 배정, 국산 비축콩 1,283톤 할인 공급</td><td>농식품부 2025-10-20 설명</td><td>집행 설명이며 연간 총소비량 아님</td></tr>
+<tr><td>국산 콩 수매·비축</td><td>2025년산 수매가격 4,800원/kg, 계획량 6만 톤; 2026년 비축 예산도 6만 톤 기준 확보</td><td>수매가와 비축 예산의 기준 시점이 다름</td><td>2026년산 수매가격으로 옮기지 않음</td></tr>
+<tr><td>GM 식품 표시기준 개정</td><td>간장·혼합장과 당류·식용유지류 관련 표시 범위</td><td>2026-07-08 고시</td><td>간장 2026-12-31; 당류·식용유지류는 7월 고시상 2027-12-31, 8월 앞당김 예고의 확정 여부 미확인</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 국가법령정보센터 「시장접근물량 증량에 관한 규칙」 2026-08-10 <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=288749&amp;viewCls=lsRvsDocInfoR">개정문</a>; 농림축산식품부 「콩나물용 콩에 대한 시장접근물량 확대된다」 2026-07-13 <a href="https://www.mafra.go.kr/bbs/home/792/578448/artclView.do">원문</a>; 「관세법 제71조에 따른 할당관세의 적용에 관한 규정」 2026-06-30 별표; <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148952541">농식품부 2025년 공급 설명</a>; <a href="https://aglook.krei.re.kr/upload/observeFiles/a58e85ea240443dbbc4a8d890d83088c.pdf">KREI 2026년 4월 관측</a>; <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148958933">농식품부 2026-02-02 설명</a>; 식약처 제2026-49호 및 제2026-389호(P01·P02·P06·P07·P09).</p>
+<p>2025년 말 정책 발표와 2026년 8월의 법령 개정은 서로 다른 시점이다. 기획재정부는 2025년 12월 발표에서 대두를 2026년 <strong>정기</strong> 시장접근물량 증량 대상에서 제외한다고 설명했다. 그 이유로 당시 국산 콩 재고·생산 증가 추세를 들었다. 이후 콩나물용 원료 부족과 가격 상승 우려에 대응해 콩나물용 TRQ를 1만 톤 늘렸다. 해당 용도의 물량은 17,450톤에서 27,450톤이 됐으며, 전체 대두 별표 물량은 185,787톤에서 195,787톤이 됐다. 농식품부 발표는 이 콩나물용 물량에 5%의 저율관세를 적용하고 쿼터 밖 양허세율을 487%로 설명한다(기획재정부, 「에너지·먹거리 할당관세, 내년에도 적용…서민 물가 안정 도모」, 2025-12-02, <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148955710">정책 발표</a>; 농림축산식품부·재정경제부, 「콩나물용 콩에 대한 시장접근물량 확대된다」, 2026-07-13, <a href="https://www.mafra.go.kr/bbs/home/792/578448/artclView.do">원문</a>; P01).</p>
+<p>2025년 현장 집행에서 수입콩 공급·배정과 국산 비축콩 공급은 출처가 다른 물량이다. 농식품부 설명에 따르면 예정했던 증량 3만 톤을 5월에 운영하지 않기로 한 뒤 업계 수요 2만 7,700톤을 국영무역 재고와 수입권 공매로 공급·배정했다. 같은 자료의 국산 비축콩 1,283톤은 수입콩이 아니다. 공매 낙찰 단체가 6곳이라는 숫자는 기업별 점유율이나 수입 총량을 제공하지 않는다(P06).</p>
+<p>국산 콩 수매가격은 생산연도와 등급을 붙여 읽어야 한다. KREI 관측보의 2025년산 정부 수매가격은 4,800원/kg이고 수매 계획량은 6만 톤이다. 농식품부는 2026년 콩 비축 예산도 6만 톤 규모에 맞춰 확보했다고 설명했다. 계획량과 예산은 실제 수매량이 아니며, 2025년산 가격을 2026년산 가격으로 간주하지 않는다(한국농촌경제연구원, 「콩 관측 2026년 4월호」, 2026-04, <a href="https://aglook.krei.re.kr/upload/observeFiles/a58e85ea240443dbbc4a8d890d83088c.pdf">원문</a>; 농림축산식품부, 「’25년산 콩 수매 대금 정산이 원활하게 이뤄지도록 최선을 다 하겠습니다」, 2026-02-02, <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148958933">원문</a>; P09).</p>
+<p>유전자변형식품 표시기준은 식용 가공의 별도 조건이다. 2026년 7월 8일 고시는 간장·혼합장과 당류·식용유지류를 표시 대상에 포함하고, 간장 관련 규정은 2026년 12월 31일, 당류·식용유지류는 2027년 12월 31일에 시행하도록 나눴다. 식약처는 8월 5일 당류·식용유지류의 시행일을 2026년 12월 31일로 앞당기는 <strong>개정안을 행정예고</strong>했다. 보고서 기준일 현재 그 예고가 최종 고시됐는지는 확인하지 못했다. 따라서 대두유에 2026년 12월 31일 의무가 확정됐다고 적지 않는다(식품의약품안전처, 「유전자변형식품등의 표시기준」 일부개정고시 제2026-49호, 2026-07-08, <a href="https://www.mfds.go.kr/brd/m_207/view.do?seq=15177">고시 원문 게시</a>; 식품의약품안전처, 「유전자변형식품등의 표시기준」 일부개정고시안 행정예고 제2026-389호, 2026-08-05, <a href="https://www.mfds.go.kr/law/board/boardDetail.do?brdId=data0009&amp;menuKey=33&amp;seq=44282">예고 원문</a>; P07).</p>
+<p>원산지 표시 대상도 ‘원산지 표시법 제5조가 있다’는 사실만으로 두부·된장·간장의 개별 지정 여부를 확정할 수 없다. 확보한 시행령 별표는 표시 방법에 관한 것이며 지정 품목 목록이 아니다. 식물검역의 대두 수입금지 지역과 서류검사 요건 역시 원문을 확인하지 못했다. 이 두 항목은 <strong>미확보(시도: 국가법령정보센터 관련 별표·농림축산검역본부 경로)</strong>로 남긴다. 법적 의무의 부재를 뜻하지 않는다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>품목 태그와 원문 검증의 범위</h2>
+<p class="lead">은행·기관 색인 <code>_banks/index.csv</code>에는 <code>items</code>를 세미콜론으로 나눴을 때 soybean이 들어 있는 행이 39건, <code>bank_id</code> 기준 묶음이 18개다. 일부는 닭고기·팜유·바이오연료 자료에 대두가 함께 태그된 문서다. 39건 모두가 한국 대두 산업의 직접 보고서는 아니다. 아래는 원문 또는 제공된 원문 열람 노트에서 실제 주장을 확인한 자료만 추린다.</p>
+<div class="tw">
+<table>
+<caption>표 9. 읽은 은행·기관 자료가 말하는 것</caption>
+<thead><tr><th>발행처</th><th>문서·시점</th><th>확인한 요지</th><th>이 보고서에서의 용도</th></tr></thead>
+<tbody>
+<tr><td>CoBank</td><td>「Soybean processors see record crush margins on surging soyoil prices」, 2026-07-08</td><td>미국의 높은 대두유 가격과 착유 마진, 보고서 시점 누적 착유 전년 대비 +8.0%; 수출 약정(선적+미선적 잔량) −19.3%</td><td>착유와 원물 수출이 다르게 움직인 사례</td></tr>
+<tr><td>Banco Bradesco DEPEC</td><td>「As atenções se voltam ao clima no Brasil…」, 2026-09-08</td><td>브라질 2026/27 파종 개시 구간의 강수·토양 수분과 엘니뇨 관찰 필요</td><td>산지 날씨의 관찰 항목</td></tr>
+<tr><td>KREI</td><td>『농업·농촌 경제 동향 2026 봄』</td><td>2026년 1분기 국내 콩 농가판매가격 전기 대비 +2.8%</td><td>국산 농가가격 단계</td></tr>
+<tr><td>USDA ERS</td><td>『Oil Crops Outlook: September 2026』, 2026-09-15</td><td>미국 2026/27 생산 45억 부셸·수출 16억 9천만 부셸 전망</td><td>진행연도 전망, 순위 근거 아님</td></tr>
+<tr><td>USDA FAS</td><td>『Oilseeds: World Markets and Trade』 2026년 5월호</td><td>당시 2026/27 세계 대두 생산을 4억 4,200만 톤으로 전망</td><td>전망 발표 시점의 예시</td></tr>
+<tr><td>USDA FAS 서울 지부</td><td>「Oilseeds and Products Annual」, 2026-03-04</td><td>한국 착유량은 설비능력과 과거 평균을 밑돌 전망</td><td>산업 수준의 착유 여건</td></tr>
+<tr><td>OECD·FAO</td><td>『Agricultural Outlook 2025–2034』 제3장, 2025년</td><td>세계 식물성유 사용의 약 18%가 바이오매스 기반 디젤 원료</td><td>대두유를 포함한 식물성유 수요의 정책 변수</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>_banks/index.csv</code>와 <a href="https://www.cobank.com/knowledge-exchange/soybean-processors-see-record-crush-margins-on-surging-soyoil-prices">CoBank 원문</a>, Bradesco 보관 원문, 아카이브의 KREI·USDA FAS·OECD/FAO PDF; <a href="https://www.ers.usda.gov/media/29635/ocs-26i.pdf">USDA ERS 원문</a>; <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Seoul_Korea+-+Republic+of_KS2026-0006.pdf">USDA FAS 서울 지부 원문</a>(E09·E11·E15·P04·P10). 은행·기관 전망은 발행 시점의 견해이며 완료연도 통계와 구분했다.</p>
+<p>CoBank 자료가 보여 주는 것은 한 상품의 수요가 단일 방향으로만 움직이지 않는다는 점이다. 미국 착유가 늘 때 원물 <strong>수출 약정</strong>이 약해질 수 있다. CoBank의 <code>export commitments</code>는 선적된 물량과 미선적 계약 잔량을 아우르므로 −19.3%를 미선적 잔량만의 감소율로 쓰지 않는다. 대두유 수요와 박의 사료 수요가 착유 수익을 바꾸고, 원물 수출은 해외 구매의 시점과 경쟁국 작황에 좌우된다. 그러나 CoBank의 미국 마진을 한국 착유 기업의 실제 마진으로 옮길 수는 없다. 국내 사업체별 설비 가동, 원유·박 판매가격과 원료 계약 정보가 없기 때문이다(CoBank, 「Soybean processors see record crush margins on surging soyoil prices」, 2026-07-08, <a href="https://www.cobank.com/knowledge-exchange/soybean-processors-see-record-crush-margins-on-surging-soyoil-prices">원문</a>; E11).</p>
+<p>브라질 은행의 기상 보고서는 CONAB 생산 전망을 대체하지 않는다. 브라질 중서부의 파종 조건과 지역별 강수를 보는 단기 관찰 문서다. CONAB은 작황·생산량 전망의 공식 발표이고, 은행 보고서는 그 전망을 바꿀 수 있는 날씨·시장 변수에 관한 해설이다. 두 자료의 역할은 다르다(P03·E11).</p>
+<p>KREI의 국내 가격 설명은 국제가격과 다른 단계를 잇는 데 필요하다. 다만 2026년 1분기 콩 농가판매가격 +2.8%는 해당 분기의 전기 대비 값이다. 2026년 2분기 IMF 국제 대두 가격 +11.3% 전년 동기 대비와 나란히 놓아 전가율을 구하면 기간과 비교 기준이 모두 다르다. 동월·동품목·동거래 단계의 대응 자료는 이번 원고에서 확보되지 않아 전가율을 제시하지 않는다.</p>
+<p>제공된 조사 노트에는 KREI 『농업전망 2026』의 서지·목차도 있지만 로컬 PDF 본문은 열지 못했다. 콩 자급률·재배의향·가격 전망치를 그 파일에서 옮기지 않았다. OECD·FAO 유지종자 장의 식물성유 18% 문장은 PDF 본문 인쇄 63쪽에서 확인해 10절에 사용했다. 향후 10년 연평균 0.7% 증가 전망은 인쇄 66쪽이다. FAO 월간 유지종자 가격 업데이트는 목록과 설명만 확인됐으며 본문 숫자는 미확보다(OECD·FAO <code>OECD_FAO__OECD-FAO_Agricultural_Outlook_2025-2034_Chapter_3_Oilseeds_and_oilseed.pdf</code>, 2025년, 인쇄 63·66쪽; E15).</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 리스크·관찰 지표</span>수입의 용도, 세계 공급, 국내 정책 집행을 함께 본다</h2>
+<p class="lead">대두 산업의 위험은 한 가격표에서 끝나지 않는다. 세계 작황과 중국 수입, 국제 유종실 가격, 한국의 용도별 수입, 국산 콩 수매·비축, 식용 가공 원료 선택이 서로 다른 속도로 움직인다. 이 절의 관찰 항목은 어떤 지표가 변할 때 어느 해석을 다시 검증해야 하는지 적는다. 임계값이 없는 곳에 임의의 경보선을 만들지 않는다.</p>
+<p><strong>세계 공급의 집중.</strong> 2024년 브라질·미국·아르헨티나는 세계 생산의 78.3%를 냈고 브라질은 원물 세계 수출의 55.3%를 차지했다. 주요 산지의 기상·수출 제도 변화가 국제 원료 가격에 영향을 줄 가능성이 높다는 판단은 타당하지만, 한국의 월별 수입 단가가 어떤 산지 변수에 얼마만큼 반응하는지는 이 자료로 식별하지 못한다. 반증·검증 조건은 2024년처럼 원산지별 한국 연간 수입을 확보한 연도에 동일 등급의 계약가격·운임을 붙였을 때 산지 변화의 영향이 설명되지 않는 경우다(02·04·06절).</p>
+<p><strong>용도별 수입 구조.</strong> 2025년 채유·탈지대두박용이 HS 1201 수입의 76.1%를 차지했다. 국제 대두유·대두박 시장 또는 국내 착유 가동률이 바뀌면 총 수입량도 식용 콩 수요와 다르게 움직일 수 있다. USDA FAS 서울 지부는 2026/27 마케팅연도 착유량을 80만 톤, 전국 능력을 연간 110만 톤으로 전망·설명했다. 산업 수준의 전망이지 개별 기업의 실제 가동률은 아니다. 그래서 HS 1201 전체 증감만으로 두부·장류 수급을 말하지 않는다. 반증 조건은 용도별 HS10 구조가 바뀌어 이 세번이 더는 수입의 주된 흐름이 아니게 되는 경우다(USDA FAS 서울 지부, 「Oilseeds and Products Annual」, 2026-03-04, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Seoul_Korea+-+Republic+of_KS2026-0006.pdf">원문</a>; 04·07절, P10).</p>
+<p><strong>식물성유의 연료 수요.</strong> OECD·FAO는 2025년 전망 보고서에서 세계 식물성유 사용의 약 18%를 바이오매스 기반 디젤 원료로 설명한다. 이 비율은 대두유 단독 비중이나 한국의 바이오디젤 투입률이 아니다. 해당 용도의 세계 수요 증가율은 향후 10년 연평균 0.7%로 전망했다. 정책과 원유가격에 따른 연료용 수요 변화는 대두유 가격을 볼 때 확인할 변수지만, 식물성유 전체 비율만으로 한국 대두 수입량의 영향을 계산하지 않는다(OECD·FAO <code>OECD_FAO__OECD-FAO_Agricultural_Outlook_2025-2034_Chapter_3_Oilseeds_and_oilseed.pdf</code>, 2025년, 인쇄 63·66쪽; E15).</p>
+<p><strong>정책 집행의 시차.</strong> 2025년 수입권 공매와 국산 비축콩 방출, 2026년 콩나물용 시장접근물량 증량은 발표일과 실제 수입·배정·방출일이 다르다. 제도상 한계수량을 실제 거래량으로 취급하면 수급이 과대평가될 수 있다. 각 공고·낙찰·수입신고·재고 방출을 같은 월 기준으로 연결한 장부가 필요하다(08절).</p>
+<p><strong>가격 단계의 혼동.</strong> 국제 기준가격, 한국 수입 신고 단가, 농가판매가격, 도소매가격은 단위·통화·등급과 시점이 다르다. 2026년 1~8월 평균 신고 단가 +2.9%에는 용도별 구성 효과가 포함된다. 아카이브 KAMIS 파일에는 ‘평년’과 다른 품목이 섞여 있어 자동 평균으로 대두 가격을 특정할 수 없다. 자료 정제가 끝나기 전에는 국내 도소매 대두 시계열의 방향을 확정하지 않는다(04·05절).</p>
+<div class="tw">
+<table>
+<caption>표 10. 반복해서 볼 지표와 확인 질문</caption>
+<thead><tr><th>지표</th><th>원천·수집기</th><th>주기</th><th>이 보고서의 기준값</th><th>확인 질문</th></tr></thead>
+<tbody>
+<tr><td>HS10 용도별 수입량·단가</td><td>관세청 <code>customs_item_trade_monthly</code></td><td>월</td><td>2025년 112.96만 톤, 채유·탈지대두박용 76.1%</td><td>총량 변화가 어느 용도와 구성에서 나왔나</td></tr>
+<tr><td>국가별 대두 수입</td><td>FAOSTAT TM·관세청 <code>customs_kr</code></td><td>연·월</td><td>2024년 한국 신고 미국 50.4%·브라질 42.4%; 관세청 부분 파일은 2026년 3~8월</td><td>2025년 연간 원산지 분모를 확보했나</td></tr>
+<tr><td>세계 생산·수출·수입</td><td>FAOSTAT QCL·TCL</td><td>연</td><td>2024년 생산 3.98억 톤</td><td>완료연도 상위국 구성은 바뀌었나</td></tr>
+<tr><td>세계 시즌 수급</td><td>USDA PSD·ERS, CONAB</td><td>월·시즌</td><td>전망은 발표일별 별도 표기</td><td>생산·착유·재고의 수정 방향은 무엇인가</td></tr>
+<tr><td>국제 기준가격</td><td>IMF/FRED <code>PSOYBUSDQ</code></td><td>분기</td><td>2026년 2분기 426.33달러/톤</td><td>국제가격 변화가 지속되는가</td></tr>
+<tr><td>식물성유의 연료 수요</td><td>OECD·FAO 전망</td><td>발간별</td><td>세계 식물성유 사용의 약 18%, 2025년 전망 보고서</td><td>연료 정책과 식물성유 수요 전망이 어떻게 바뀌나</td></tr>
+<tr><td>국내 콩 생산·원료 사용</td><td>KOSIS 작물·식품원료</td><td>연</td><td>2025 생산 15.61만 톤, 2024 제조 원료 국산 6.0%(착유 포함 추정)</td><td>용도별 원료 사용은 어떻게 나뉘나</td></tr>
+<tr><td>공매·비축·관세 집행</td><td>aT·농식품부·법령 별표</td><td>공고별</td><td>2026 시장접근물량 195,787톤, 증량분 콩나물용 1만 톤</td><td>한계수량 중 얼마가 배정·통관됐나</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 원자료와 02~08절 및 OECD·FAO 2025년 유지종자 장(E01~E10·E15·P01~P10). ‘기준값’의 연도·기간이 서로 다르므로 한 시점의 단일 수급표로 합산하지 않는다.</p>
+<h3>남은 물음</h3>
+<ul>
+<li>식용 ‘기타’ 세번을 콩나물·두부·장류 등으로 나눌 근거가 있는가. 현재 HS10과 KOSIS 제조업 총량만으로는 불가능하다.</li>
+<li>같은 세번·기간·원산지의 신고 단가와 품종·규격·운송 조건·계약 시점을 연결하면 용도별 가격 차이를 설명할 수 있는가.</li>
+<li>FAOSTAT로 2024년 연간 점유율은 계산했다. <strong>2025년</strong> 완료연도 국가별 수입 자료를 확보하면 원산지별 점유율 변화도 계산할 수 있는가.</li>
+<li>ECOS의 원화기준 <strong>콩류</strong> 지수는 있다. 환율·세번별 구성·운임을 결합해 <strong>대두 단독</strong>의 원화 수입 부담을 계산할 수 있는가.</li>
+<li>민간 수입·착유·식용 가공 기업의 생산설비, 원료 구매량, 제품 판매량과 연결·별도 재무 범위를 동일 기간·정의로 대조할 수 있는가. 현재 사업체 수와 생산액은 기업별 점유율을 주지 않는다.</li>
+<li>지역별 수확·수매·방출과 수입권 공고·낙찰·통관을 월별로 연결하면 법령상 물량과 실제 공급량의 시차를 확인할 수 있는가.</li>
+<li>동월·동품목·동거래 단계의 가격과 환율·운임을 대조하면 국제가격의 국내 전가율을 계산할 수 있는가.</li>
+<li>미국 판매, 브라질 작황, 한국의 용도별 수입과 공매 집행을 같은 기간에 놓으면 한국의 월별 수입 변동을 설명할 수 있는가.</li>
+<li>원산지 표시 지정 품목과 대두 식물검역의 수입금지 지역·서류검사 요건을 관련 원문에서 확인할 수 있는가.</li>
+<li>식약처의 2026년 8월 당류·식용유지류 표시 시행일 조정 예고가 최종 고시됐는가.</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>원물 수입과 착유·식용 가공이 갈라지는 시장</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2024년 FAOSTAT의 <strong>한국 신고 대두 원물 수입량 1,148,399톤</strong>을 분모로 하면 미국 50.4%, 브라질 42.4%다. 10% 이상 공급국은 두 나라이며, 세 번째로 표시한 캐나다는 3.2%다. 기업의 한국 연결은 2025년 10월~2026년 9월 식약처 수입식품 신고에서 <strong>해외 제조사명</strong>이 일치한 경우다. 아래 건수는 <strong>신고 건수 기준</strong>이며 수출 중량·금액이나 기업 점유율이 아니다. 식약처 신고 원자료에서 제조국과 수출국은 별도 항목이다(<a href="https://www.fao.org/faostat/en/#data/TM">FAOSTAT 양자무역 통계</a>, A, 2024; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>, A, 2025.10~2026.09, 2026년분 잠정).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 원물 공급국의 수출·가공기업과 한국 신고 연결</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>미국 50.4%</td><td>Pure Grain Inc.</td><td>한국 기반 식용 비GM 대두 조달업체(미국 IP 대두 계약 조달)</td><td>매출·수출량의 확인된 공개 자료 없음</td><td>식약처 해외 제조사명 일치, 76건(제조국 미국); 미국 조달 협력사 Pence Group도 제조사명 23건</td><td><a href="https://www.seedtoday.com/article/289282/pence-group-offers-premium-for-non-gmo-soybeans">기업 협력 발표 보도</a>(C, 2022)</td></tr>
+<tr><td>미국 50.4%</td><td>Ag Partners Cooperative Inc.</td><td>생산자 협동조합·집하</td><td>2025년 대두 취급 약 900만 부셸</td><td>식약처 제조사명 일치, 49건; 제조국 표기는 미국·캐나다</td><td><a href="https://www.agpartnerscoop.com/getmedia/6c42018f-ec22-432c-a084-46006ace31f0/January-2026-Newsletter.pdf">협동조합 소식지</a>(B, 2026)</td></tr>
+<tr><td>미국 50.4%</td><td>The DeLong Co., Inc.</td><td>집하·수출·무역</td><td>시설·사무소 39곳, 2026년 열람</td><td>식약처 제조사명 일치, 39건</td><td><a href="https://www.delongcompany.com/company-history/">회사 연혁</a>(B, 2026년 열람)</td></tr>
+<tr><td>미국 50.4%</td><td>The Scoular Company</td><td>곡물 무역·물류</td><td>회사 자료상 FY2026 연간 매출 70억 달러</td><td>식약처 제조사명 일치, 12건</td><td><a href="https://www.scoular.com/wp-content/uploads/2026/09/Corporate-Profile-2608.pdf">회사 개요</a>(B, 2026)</td></tr>
+<tr><td>브라질 42.4%</td><td>CJ International Brasil Comercial Agrícola Ltda.</td><td>대두 무역</td><td>매출·수출량의 확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 브라질 제조사 중 14건</td><td><a href="https://cdn.cade.gov.br/Portal/assuntos/sessoes/sessoes-de-julgamento/2025/255%20SOJ/SEI_CADE%20-%201630292%20-%20Ata%20de%20Sess%C3%A3o%20de%20Julgamento%20255.pdf">브라질 CADE 문서</a>(A, 2025)</td></tr>
+<tr><td>브라질 42.4%</td><td>Bunge Alimentos S.A.</td><td>집하·착유·무역</td><td>2025년 Bunge 그룹 순매출 703억 달러</td><td>식약처 제조사명 일치, 2건</td><td><a href="https://investors.bunge.com/~/media/Files/B/Bunge-IR/documents/financial-information/annual-reports/bunge-2025-annual-report.pdf">Bunge 연차보고서</a>(A, 2025)</td></tr>
+<tr><td>브라질 42.4%</td><td>Cargill Agrícola S.A.</td><td>집하·착유·무역</td><td>FY2025 Cargill 그룹 매출 1,540억 달러</td><td>식약처 제조사명 일치, 2건</td><td><a href="https://www.cargill.com/doc/1432279934974/2025-cargill-annual-report.pdf">Cargill 연차보고서</a>(B, FY2025)</td></tr>
+<tr><td>브라질 42.4%</td><td>Louis Dreyfus Company Brasil S.A.</td><td>집하·무역·가공</td><td>2025년 LDC 그룹 순매출 532억 달러</td><td>식약처 제조사명 일치, 2건</td><td><a href="https://www.ldc.com/who-we-are/financial-information/key-figures/">LDC 주요 지표</a>(B, 2025)</td></tr>
+<tr><td>캐나다 3.2%</td><td>TC Grain Inc.</td><td>식용 대두 계약재배·수출</td><td>매출·수출량의 확인된 공개 자료 없음</td><td>식약처 제조사명 일치, 39건</td><td><a href="https://tcgrain.ca/">회사 소개</a>(B, 2026년 열람)</td></tr>
+<tr><td>캐나다 3.2%</td><td>Semences Prograin Inc.</td><td>종자·식용 대두 선별·수출</td><td>2025년 회사 자료상 수출 대상 16개국</td><td>식약처 제조사명 일치, 19건</td><td><a href="https://prograin.ca/app/uploads/sites/4/2024/08/GuideOuest_2025_ang-spread.pdf">2025 종자 안내서</a>(B, 2025)</td></tr>
+<tr><td>캐나다 3.2%</td><td>Hensall District Co-operative</td><td>생산자 협동조합·선별·수출</td><td>2022년 전사 매출 10억 캐나다달러 초과; 2025년 IP 대두 출하 자체 최대</td><td>식약처 제조사명 일치, 표기 변형 합계 4건</td><td><a href="https://hensallco-op.ca/Our-History.htm">협동조합 연혁</a>(B, 2022·2025)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 공시·기업 자료와 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A, 2025.10~2026.09 신고 원자료의 제조사명 집계; <strong>신고 건수 기준</strong>, 2026년분 잠정). 전사·그룹 규모는 해당 법인의 한국향 대두 수출 규모가 아니다.</p>
+<p>Pure Grain은 식약처 신고상 미국 제조사로 잡히지만 보도상 한국 기반 조달업체이므로, 미국 수출기업 순위로 읽지 않는다(SeedToday, C, 2022).</p>
+<p>Bunge의 2025년 사업보고서는 ADM·Cargill·Louis Dreyfus·Wilmar·COFCO International을 주요 경쟁 기업으로 명시한다. 이는 세계 대두 시장의 주요 사업자를 식별하는 근거이며 한국 수입 점유율 순위는 아니다. ADM do Brasil도 식약처 제조사명에 1건 있다(<a href="https://investors.bunge.com/~/media/Files/B/Bunge-IR/documents/financial-information/annual-reports/bunge-2025-annual-report.pdf">Bunge 연차보고서</a>, A, 2025; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>, A, 2025.10~2026.09). CJ제일제당의 2025년 사업보고서에는 브라질 대두 가공사 CJ Selecta S.A.가 지분 100% 종속기업으로 기재돼 있다. <strong>CJ International Brasil과 CJ Selecta를 같은 계열사로 묶을 근거는 이 공시에 없다</strong>(<a href="https://kind.krx.co.kr/external/2026/03/16/001719/20260316005125/11011.htm">CJ제일제당 사업보고서</a>, A, 2025).</p>
+<p>04절의 HS 표는 대두 <strong>원물 HS 1201</strong>만 집계한다. 따라서 그 표에는 수입액 10% 이상인 가공품 세번이 없다. 식약처의 혼합 품목 신고에서 중국 제조국은 땅콩기름을 제외하면 614건이지만, 이를 2024년 중국산 <strong>원물 수입량 비중 2.8%</strong>와 비교하지 않는다(<a href="https://www.fao.org/faostat/en/#data/TM">FAOSTAT</a>, A, 2024; <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처</a>, A, 2025.10~2026.09).</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처 집계는 2025년 10월~2026년 9월의 건조 대두, 대두유, 정제·가공 전 대두 원료 신고 <strong>1,439건</strong>이다. 품목명 ‘땅콩기름’ 29건은 대두가 아니므로 제외했다. 분리대두단백·탈지대두·대두분처럼 ‘두류가공품’으로 신고된 대두 가공 원료도 이 표의 범위 밖이다. 업소명 표기 변형을 합쳤으며 ‘주요 제조국’은 업소별 상위 두 제조국을 집계 순서대로 적었다.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 식약처 수입식품 신고 건수 상위 수입업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>(주)블루나일트레이딩</td><td class="num">154</td><td>미국 83·캐나다 62</td><td>건조 대두</td></tr>
+<tr><td>씨제이제일제당(주)</td><td class="num">85</td><td>브라질 42·태국 19</td><td>건조 대두·정제 전 원료</td></tr>
+<tr><td>(주)비앤비코리아</td><td class="num">81</td><td>중국 64·태국 14</td><td>대두유</td></tr>
+<tr><td>사단법인 한국콩나물숙주농업인협회</td><td class="num">78</td><td>중국 36·미국 30</td><td>건조 대두</td></tr>
+<tr><td>(주)주피터</td><td class="num">54</td><td>미국 27·캐나다 24</td><td>건조 대두</td></tr>
+<tr><td>(주)대경오앤티</td><td class="num">47</td><td>중국 29·베트남 14</td><td>정제 전 원료·대두유</td></tr>
+<tr><td>롯데상사(주)</td><td class="num">46</td><td>태국 21·베트남 9</td><td>정제 전 원료·대두유</td></tr>
+<tr><td>비씨에프</td><td class="num">44</td><td>중국 26·미국 14</td><td>건조 대두</td></tr>
+<tr><td>한국농수산식품유통공사</td><td class="num">38</td><td>미국 21·중국 17</td><td>건조 대두</td></tr>
+<tr><td>(사)한국콩가공식품협회</td><td class="num">38</td><td>미국 15·중국 10</td><td>건조 대두</td></tr>
+<tr><td>주식회사 황금알에프앤오</td><td class="num">34</td><td>중국 22·베트남 7</td><td>대두유 등</td></tr>
+<tr><td>(주)디에스단석</td><td class="num">34</td><td>중국 34</td><td>정제 전 원료</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A, 2025.10~2026.09 신고 원자료 집계; 2026년분 잠정). <strong>신고 건수 기준</strong>이며 중량·금액·시장점유율이 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 공개 재무자료로 규모를 확인한 국내 가공·무역기업</caption>
+<thead><tr><th>기업</th><th>산업 단계</th><th>2025년 규모·구성</th><th>대두와의 확인된 연결</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>CJ제일제당</td><td>착유·식품 제조</td><td>연결 식품부문 매출 약 11조 5,223억원; 연결 대두 매입액 약 8,055억원</td><td>공시상 대두는 식용유 제조 등에 투입; 식약처 신고 85건</td><td><a href="https://kind.krx.co.kr/external/2026/03/16/001719/20260316005125/11011.htm">KIND 사업보고서</a>(A, 2025)</td></tr>
+<tr><td>사조대림</td><td>착유·식품 유통</td><td>연결 매출 약 3조 4,998억원</td><td>공시상 식용유 제조와 대두박 공급; 식약처 신고 22건</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">KIND 사업보고서</a>(A, 2025)</td></tr>
+<tr><td>대상</td><td>장류 등 식품 제조</td><td>연결 매출 약 4조 4,013억원; 연결조정 전 식품부문 약 3조 8,172억원</td><td>공시상 장류 제조; 식약처 신고 16건</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/000923/20260318004497/11011.htm">KIND 사업보고서</a>(A, 2025)</td></tr>
+<tr><td>샘표식품</td><td>장류 제조·유통</td><td>연결 순매출 약 4,089억원; 할인·반품 차감 전 장류 매출 약 2,333억원</td><td>공시상 장류 제품; 식약처 신고 23건</td><td><a href="https://kind.krx.co.kr/external/2026/05/15/000109/20260515000157/11011.htm">정정 KIND 사업보고서</a>(A, 2025 결산)</td></tr>
+<tr><td>롯데상사</td><td>원료 무역·유통</td><td>연결 매출 8,851억원</td><td>식약처 신고 46건</td><td><a href="https://m.kisrating.com/fileDown.do?fileName=rs20260623-44.pdf&amp;gubun=2&amp;menuCd=R8">한국신용평가 의견서</a>(B, 2026; 2025 결산)</td></tr>
+<tr><td>대경오앤티</td><td>유지 원료 가공·유통</td><td>연결 매출 5,013억원</td><td>식약처 신고 47건; 신고 품목은 정제 전 원료·대두유</td><td><a href="https://www.seoulexchange.kr/stocks/%EB%8C%80%EA%B2%BD%EC%98%A4%EC%95%A4%ED%8B%B0-2855/">NICE 제공 재무정보</a>(B, 2025 결산)</td></tr>
+<tr><td>디에스단석</td><td>유지 원료·바이오에너지</td><td>연결 매출 약 9,549억원</td><td>식약처 정제 전 원료 신고 34건</td><td><a href="https://kind.krx.co.kr/external/2026/06/01/000216/20260601000314/99667.htm">KIND 공시</a>(A, 2025 결산)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 공시·재무자료와 <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A, 2025.10~2026.09 <strong>신고 건수 기준</strong>). 매출은 대두 사업만의 매출이 아니다. CJ제일제당의 대두 매입액은 연결 범위이므로 국내 HS 1201 수입액과 직접 대조하지 않는다.</p>
+<p>사조대림 사업보고서가 인용한 AC닐슨 조사에서 2025년 <strong>식용유 전체</strong> 판매량은 CJ 23,586톤(29.3%), 사조대림 21,012톤(26.1%)이다. 이 조사시장의 비율을 대두유나 대두 원물 점유율로 옮기지 않는다(<a href="https://kind.krx.co.kr/external/2026/03/18/001832/20260318008375/11011.htm">사조대림 사업보고서</a>, A, 2025, AC닐슨 조사 인용).</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 대두의 단계별 주체·가격 결정 지점·위험</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>국내 농가·생산자조직; 미국·브라질·캐나다 농가</td><td>국내 2025년 생산 156,145톤</td><td>산지 거래·정부 수매가격; 해외 산지 현물가격</td><td>작황·품종·수확 품질</td></tr>
+<tr><td>1차 가공</td><td>산지 건조·저장·선별업체, 식용 규격 대두 업체</td><td>용도별 국내 선별 물량 공개치 미확보</td><td>규격·비GM·추적성 계약 조건</td><td>혼입·보관 손실</td></tr>
+<tr><td>수출·국제 무역</td><td>산지 집하업체·국제 곡물상</td><td>2024년 한국 신고 원물 원산지 미국 50.4%·브라질 42.4%</td><td>산지 현물·선물 기준가격, 운임·계약 조건</td><td>기상·환율·항만·수출정책</td></tr>
+<tr><td>수입·통관·검역</td><td>aT·협회·민간 수입업소, 관세청·검역·식약처</td><td>2025년 HS 1201 수입 1,129,608톤</td><td>수입 계약가격·운임·관세</td><td>통관 지연·검역·쿼터 집행</td></tr>
+<tr><td>국내 가공</td><td>CJ제일제당·사조대림 착유; 두부·장류 업체</td><td>2025년 채유·탈지대두박용 수입 859,186톤, 원물 수입의 76.1%; 2024년 식품제조업 대두 원료 사용 1,152,518톤</td><td>원료 계약, 착유 제품·가공식품 판매계약</td><td>착유마진·원료 구성·표시 규정</td></tr>
+<tr><td>도매·유통</td><td>원료 도매상·식품 유통사·급식 공급사</td><td>원료 도매 물량의 공개 계정 미확보</td><td>기업 간 납품계약</td><td>재고·물류비·거래처 집중</td></tr>
+<tr><td>소매·외식</td><td>식품 소매점·외식·급식업체</td><td>두부·장류 판매량의 통일된 공개 계정 미확보</td><td>출고가·도매가·소매가·메뉴가격</td><td>수요 변화·가격 전가</td></tr>
+<tr><td>소비</td><td>가계·외식·급식 소비자</td><td>FAOSTAT 2023년 대두 원물 식용 계정 309,000톤</td><td>소매·외식 거래</td><td>가격·품질·표시 신뢰</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.fao.org/faostat/en/">FAOSTAT</a>(A, 2023·2024), <a href="https://kosis.kr/">KOSIS</a>(A, 2024·2025), <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Seoul_Korea+-+Republic+of_KS2026-0006.pdf">USDA FAS 서울 지부</a>(B, 2026), <a href="https://www.cmegroup.com/markets/agriculture/oilseeds/soybean.html">CME 대두 선물</a>(B, 2026년 열람), 보고서 03·04·07절의 관세청·KOSIS 집계(A, 2024·2025). 단계별 수치는 기간과 모집단이 달라 합산하지 않는다.</p>
+<p><strong>부가가치가 생기는 곳.</strong> 산지 건조·선별은 식용 규격과 추적성을 붙이고, 착유는 원물에서 대두유와 대두박을 함께 만든다. KOSIS의 2024년 종사자 10명 이상 사업체 생산액은 대두유 1조 3,635억원, 대두박 3,053억원, 두부 7,522억원으로 서로 다른 제품 단계의 규모를 보여 준다(보고서 07절; <a href="https://kosis.kr/">KOSIS</a>, A, 2024). 이 생산액에는 대두 이외의 투입과 제조 비용이 포함되므로 2025년 원물 수입 신고 단가 0.547달러/kg에서 빼 가공마진을 계산할 수 없다(보고서 04절, 관세청 A, 2025). CJ제일제당·사조대림의 합계 연간 착유능력 110만 톤과 2026/27 마케팅연도 착유량 80만 톤 <strong>전망</strong>은 설비·가동 규모를 보여 주지만 기업별 이익 배분을 나타내지 않는다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Seoul_Korea+-+Republic+of_KS2026-0006.pdf">USDA FAS 서울 지부</a>, B, 2026 전망).</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 대두 산업 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>농림축산식품부·한국농수산식품유통공사(aT)</td><td>국산 콩 수매·비축, 수입권 공매·시장접근물량 운영</td><td>농가 소득과 용도별 원료 수급·가격 안정</td></tr>
+<tr><td>국내 정부·규제</td><td>관세청·식품의약품안전처</td><td>수입 신고·통관 통계, 수입식품 검사·GM 식품 표시</td><td>통관 시점·비용, 표시·추적 요건</td></tr>
+<tr><td>해외 정부</td><td>미국 USDA·브라질 CONAB</td><td>작황·교역·품질 정보와 수급 전망 발표</td><td>공급 전망과 계약 판단에 영향</td></tr>
+<tr><td>생산자·단체</td><td>국내 콩 농가·한국콩나물숙주농업인협회</td><td>국산 생산과 콩나물 원료 조달</td><td>수매가·원료 접근성</td></tr>
+<tr><td>수출·가공기업</td><td>ADM·Bunge·Cargill·LDC와 식용 규격 대두 업체</td><td>집하·선별·착유·국제 거래</td><td>산지 조달·물류·가공 조건</td></tr>
+<tr><td>수입·유통기업</td><td>CJ제일제당·사조대림·롯데상사·샘표식품·대상</td><td>수입 원료를 착유·식품 제조·유통에 투입</td><td>원료 가격·품질·납기와 제품 판매가격</td></tr>
+<tr><td>소비자·시민사회</td><td>소비자·한국소비자단체협의회</td><td>식품 안전·정보 접근과 소비자 권익에 의견 제시</td><td>가격·표시 정보의 신뢰와 선택권</td></tr>
+<tr><td>국제기구·인증</td><td>FAO·RTRS</td><td>국가 통계와 책임 있는 대두 생산·유통 기준 제공</td><td>비교 가능한 통계·추적성 기준</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148952541">농식품부 수입콩 공급 설명</a>(A, 2025), <a href="https://www.mafra.go.kr/bbs/home/792/578448/artclView.do">농식품부 콩나물용 물량 발표</a>(A, 2026), <a href="https://impfood.mfds.go.kr/CFCCC01F01">식약처 수입식품조회</a>(A, 2025.10~2026.09), <a href="https://www.mfds.go.kr/brd/m_207/view.do?seq=15177">식약처 GM 표시 고시</a>(A, 2026), <a href="https://admin2.korea.kr/briefing/pressReleaseView.do?newsId=156780706&amp;pWiseMinistry=ministryNews&amp;repCode=C00001&amp;repCodeType=%EC%A0%95%EB%B6%80%EB%B6%80%EC%B2%98">공정거래위원회 소비자정책위원회 자료</a>(A, 2026), <a href="https://www.fao.org/faostat/en/">FAOSTAT</a>(A), <a href="https://responsiblesoy.org/documentos/rtrs-standard-for-responsible-soy-production-v4-0?lang=en">RTRS 생산 기준</a>(B). USDA FAS 산업 설명은 B 등급이다.</p>
+<p>국산 콩 수매·비축은 생산자의 판로와 연결되고, 식용 제조업체에는 용도·규격에 맞는 원료의 가격과 공급 시점이 중요하다. 콩나물용 시장접근물량은 수입 원료 접근성과 국산 콩 판매가 만나는 지점이다. GM 원료 표시 범위가 넓어지면 소비자의 정보 접근과 제조·수입업체의 분리·증빙 비용이 함께 변한다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 검토 범위</h2>
+<p class="lead">아래 ‘행’은 <code>rawbulk.report_delta.coverage("soybean")</code>가 2026년 10월 7일 돌려준 행 수다. 행 수는 중복 제거된 경제 규모가 아니라 수집 파일의 레코드 수다. ‘최신’은 해당 파일에 든 가장 늦은 기간이며, <code>기간 열 없음</code>은 값이 없다는 뜻이 아니라 수집기 현황 함수가 기간을 추출하지 못했다는 뜻이다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 대두 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">150</td><td>2026-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">78</td><td>2026-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">1,777</td><td>2026</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">59</td><td>2026</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">94</td><td>2026.08</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">312</td><td>202607</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">730</td><td>202606</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">11,835</td><td>2025</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">22,874</td><td>2024</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">43,838</td><td>2024</td></tr>
+<tr><td>원자료 품목 분할</td><td>kosis_crops_beans</td><td class="num">540</td><td>2025</td></tr>
+<tr><td>원자료 품목 분할</td><td>usda_psd_all</td><td class="num">183,191</td><td>기간 열 없음</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">2,277</td><td>2025</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">84</td><td>2026.08</td></tr>
+<tr><td>월간 수집</td><td>fred</td><td class="num">14</td><td>2026-04-01</td></tr>
+<tr><td>월간 수집</td><td>kosis</td><td class="num">42</td><td>기간 열 없음</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>~/my-project/agri_pipeline</code>에서 읽기 전용으로 실행한 <code>rawbulk.report_delta.coverage("soybean")</code>(E13). 공통 원자료 <code>kosis_food_raw_material</code>, <code>kosis_manufacturing_items</code>, <code>ecos_import_price_items</code>는 이 품목별 현황 함수 밖에서 별도로 읽었다.</p>
+<p>자료의 기간과 범위에는 빈틈이 있다. 관세청 품목별 HS10 월간 분할은 2024년 11월부터, 국가별 월간 파일은 2026년 3월부터다. FAOSTAT 생산·무역의 완료연도는 2024년이고, FAOSTAT TM에는 한국 신고 2024년 원산지별 수입이 있다. Comtrade 2025년 파일은 신고국별 합계 행과 세부 중복 행을 섞어 보관하므로 필터 없이 합산할 수 없다. USDA PSD는 국가·상품·마케팅연도별 계정이며 파일에 세계 합계 행이 없다. 아카이브의 KAMIS 파일은 품목 오염과 ‘평년’ 행을 확인해 가격 계산에서 제외했다.</p>
+<div class="tw">
+<table>
+<caption>표 12. 아카이브 원장 판정</caption>
+<thead><tr><th>판정</th><th class="num">파일 수</th></tr></thead>
+<tbody>
+<tr><td>반영</td><td class="num">25</td></tr>
+<tr><td>불필요</td><td class="num">52</td></tr>
+<tr><td>반영필요</td><td class="num">0</td></tr>
+<tr class="tot"><td>전체</td><td class="num">77</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>01_아카이브_원장.csv</code>(E14·E15).</p>
+<p>로컬 캐시의 GAIN 보고서 PDF 파일은 전문이 아닌 경로 문자열만 담고 있다. USDA FAS가 공개한 중국·한국 GAIN PDF 원문을 웹에서 열어 해당 전망과 산업 수준 착유 설명을 대조했다. 세계은행 <code>CC.NEFO.IMCR.SB.csv</code>에는 단위가 없고, FAOSTAT 대두유 생산 행은 비공식 수치로 표시되어 있다. 자동 숫자대조 결과는 <code>update_2026-10-07/20_숫자대조.txt</code>에 있다(빌드할 때마다 다시 돌린다).</p>
+</section>
+
+<div class="wrap">
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 대두 산업 해부: 국내 생산과 대량 수입이 공존하는 두 갈래 시장</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(검토본)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · FAOSTAT 완료연도 2024, KOSIS 생산 2025, 관세청 완료연도 2025, 진행연도는 2026년 8월까지</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>본문 수치는 원자료 직접 계산과 30_근거_수치에 연결했다. 자동 숫자대조 결과는 <code>update_2026-10-07/20_숫자대조.txt</code>에 있다(빌드할 때마다 다시 돌린다).</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>건조 대두 HS 1201(120110·120190). 대두박·대두유·두부·장류는 관련 가공 단계로만 설명한다.</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>한국의 2025년 연간 원산지별 수입 점유율과 민간 기업별 점유율은 미확보다. 2024년 연간 원산지 점유율은 FAOSTAT 한국 신고 행으로 계산했다. GAIN 중국·한국 보고서는 웹 공개 PDF 원문으로 확인했다. KAMIS 아카이브에는 평년·타품목 행이 섞여 가격 계산에서 제외했다.</span></div>
+</footer>
+</div>
+

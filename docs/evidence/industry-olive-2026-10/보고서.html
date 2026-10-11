@@ -1,0 +1,751 @@
+<title>한국 올리브유 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 올리브유<br>
+        세계 수급 · 한국 소비 · 수입 · 가격 · 기업 · 제도<br>
+        2023~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">지중해 작황이 한국의 수입량과 가격으로 이어지는 식용유 · 리포트 2026</p>
+      <h1><span class="scr">Olive</span> <span class="lt">한국 올리브유 산업 해부</span></h1>
+      <p class="cover-sub">한국의 올리브유 시장은 수입을 통해 공급된다. 2025년 HS 1509 수입은 3만 4천 톤을 넘었고, 한국 수입신고 기준 엑스트라버진이 물량의 대부분을 차지했다. 세계 생산은 스페인을 중심으로 작황에 따라 크게 움직인다. 원자료가 보여 주는 규모와 구조, 아직 확인되지 않은 국내 유통·제도 정보를 구분해 읽는다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2025 한국 수입</div><div class="v">34,384</div><div class="n">톤 · HS 1509 · 관세청 월별 합계</div></div>
+      <div class="cf"><div class="k">2025 수입액</div><div class="v">2.917억</div><div class="n">달러 · HS 1509</div></div>
+      <div class="cf"><div class="k">엑스트라버진 물량</div><div class="v">94.6%</div><div class="n">2025 한국 수입신고 기준 · HS 150920</div></div>
+      <div class="cf"><div class="k">평균 수입 단가</div><div class="v">8.48</div><div class="n">달러/kg · 2025 · 금액÷중량</div></div>
+      <div class="cf"><div class="k">스페인·이탈리아</div><div class="v">92.6%</div><div class="n">2025 한국 통관 상대국 · UN Comtrade</div></div>
+      <div class="cf"><div class="k">세계 생산</div><div class="v">357.2만</div><div class="n">톤 · IOC 2024/25 · 잠정</div></div>
+      <div class="cf"><div class="k">스페인 생산 몫</div><div class="v">39.7%</div><div class="n">IOC 2024/25 · 세계 생산 대비</div></div>
+      <div class="cf"><div class="k">세계 소비</div><div class="v">321.5만</div><div class="n">톤 · IOC 2024/25 · 잠정</div></div>
+    </div>
+
+  </div>
+</header>
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">한국 수입은 엑스트라버진과 지중해 공급망에 집중된다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">스페인의 작황 회복이 세계 생산을 끌어올렸다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">통관은 빠르고 소비 통계는 늦다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">수입량과 한국 신고상 엑스트라버진 비중이 높아졌다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">등급·시장·통화가 다르면 같은 가격이 아니다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">스페인이 축이고 이탈리아는 생산·유통을 함께 맡는다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">품목별 국내판매액은 보이지만 업체별 점유율은 확보되지 않았다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">원산지 표시 대상은 확인했고 현행 세율 숫자는 남아 있다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트 요지</span><span class="t">공식 수급 자료가 중심이고 은행 색인에는 오탐이 있다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 관찰 지표·남은 물음</span><span class="t">작황, 등급별 가격, 한국 수입을 같은 달에 본다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">지중해의 착유·병입과 한국의 수입·유통</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>한국 수입은 엑스트라버진과 지중해 공급망에 집중된다</h2>
+<p class="lead"><strong>올리브 열매와 기름</strong>, <strong>엑스트라버진과 그 밖의 올리브유</strong>, <strong>수입과 실제 소비</strong>는 서로 다른 지표다. 이 보고서의 무역 범위는 HS 1509다. 포마스유 등 HS 1510, 식탁용 올리브 열매, 올리브가 들어간 조제식품은 한국 HS 1509 수입 규모에 더하지 않았다. 다만 한국의 2025년 HS 1510 수입도 3,693.28톤으로, HS 1509 수입량의 10.7%에 해당한다(UN Comtrade 한국 수입신고, 2025년, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=1510&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">HS 1510 공개 원표</a>). 국제올리브이사회(IOC)의 작황 연도는 10월부터 다음 해 9월까지이고 관세청의 연간 수입은 달력연도다. 두 기간의 수치를 같은 시계열처럼 연결하지 않았다.</p>
+<h3>확인된 사실</h3>
+<ul>
+<li><strong>한국의 수입 규모.</strong> 관세청 HS 1509 월별 합계로 2025년 수입은 약 34,384톤(원값 34,383.551톤)·약 2.917억 달러(원값 291,715,667달러)다. 중량으로 나눈 평균 수입 단가는 8.48달러/kg이다. 2024년 Comtrade의 한국 신고 합계 행은 18,848.623톤·2억 656만 6,053달러다. 두 연도의 수입량 증가율은 82.4%다. 서로 다른 원천의 중량을 비교했으므로 이 증가율은 해당 자료 조합의 계산값이다(관세청·UN Comtrade, 04절).</li>
+<li><strong>품목 구성.</strong> 2025년 <strong>한국 수입신고 기준</strong> HS 150920 엑스트라버진 수입은 32,538.32톤으로 HS 1509 전체 중량의 94.6%다. HS 150990은 비버진·기타 올리브유를 뜻하며 1,794.65톤이다. EU의 한국행 수출신고에서는 같은 해 엑스트라버진 몫이 84.5%, 버진 몫이 11.4%로 다르다. 양쪽 신고의 등급 구성은 직접 일치하지 않는다(관세청 HS10·Eurostat Comext, 04절).</li>
+<li><strong>완료연도의 통관 상대국.</strong> UN Comtrade의 2025년 한국 수입신고 HS 1509에서 스페인은 21,129.08톤(61.5%), 이탈리아는 10,717.96톤(31.2%)이다. 두 나라의 원값 합계 31,847.04톤을 전체 34,383.58톤으로 나누면 <strong>92.6%</strong>다. 2024년 FAOSTAT 코드 261의 두 나라 몫은 92.7%였다. 이는 통관 상대국이며 원료 올리브의 재배국과 항상 같지는 않다(UN Comtrade, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=1509&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년 공개 원표</a>; FAOSTAT TM, 04절).</li>
+<li><strong>세계 수급.</strong> IOC의 2024/25 잠정 수지는 세계 생산 357.2만 톤, 소비 321.5만 톤이다. 생산은 앞선 2023/24 최종치 258.9만 톤보다 98.3만 톤 많다. 2024/25 스페인 생산 141.91만 톤은 세계의 39.7%, EU 합계 211만 톤은 59.1%다(IOC 원표, 02절).</li>
+<li><strong>가격의 단위.</strong> 스페인 농림수산식품부의 2026년 3월 9~15일 전국 엑스트라버진 가격은 100kg당 434.25유로다. 유럽위원회 주간 원표에서 2026년 9월 21~27일 하엔 엑스트라버진은 342유로/100kg, 바리는 455유로/100kg이다. 시장·등급·주차가 다른 값이며 한국 소매가격이 아니다(MAPA·유럽위원회, 05절).</li>
+<li><strong>국내 소비 측정.</strong> FAOSTAT 식량수급표의 2023년 한국 <code>Olive Oil</code> 식용 공급 1만 6천 톤은 코드 261 올리브유와 코드 274 올리브 잔여유를 함께 담은 반올림값이다. 분리된 SCL 계정의 코드 261 식용 공급은 12,256.27톤이다. 2025년 수입량을 2025년 실제 소비량이라고 부르지 않는다(FAOSTAT FBS·SCL, 03절).</li>
+<li><strong>제도와 시장 정보.</strong> HS 1509는 2026년 원산지표시 요령의 대상에 들어 있다. 식약처 식용유지류 국내판매액 표에는 올리브유 연간 합계가 있지만, 국내 업체별 올리브유 매출·점유율 원표는 확보하지 못했다. 2026년 현행 세번별 관세율 숫자도 확인하지 못했으므로 세율이나 기업 순위를 추정하지 않는다(03·07·08절).</li>
+</ul>
+<p>2026년 1~8월 기준(진행연도) 관세청 HS 1509 수입은 21,763.943톤으로 전년 같은 기간 19,631.403톤보다 10.9% 많다. <strong>진행연도 수치</strong>이므로 연간 순위·점유율로 쓰지 않는다. 파이프라인의 2026년 국가별 관세청 파일도 3~8월만 담아 연간 상대국 구성을 대체할 수 없다(관세청 원자료, 04절).</p>
+<h3>이 보고서의 판단(반증 조건)</h3>
+<ul>
+<li>이 보고서가 분석한 한국 시장의 단기 공급 노출은 <strong>스페인 작황과 스페인·이탈리아를 거치는 공급망</strong>에 집중된다. 2024년 두 나라의 한국 통관 상대국 몫은 92.7%, 2025년에는 92.6%였고 IOC 2024/25 스페인 세계 생산 몫은 39.7%다. <strong>반증 조건:</strong> 후속 완료연도 한국 HS 1509 국가별 수입에서 두 나라 합계 몫이 지속해서 크게 낮아지고 다른 공급국의 물량이 그만큼 늘어나는 것.</li>
+<li>이 보고서는 가격 위험을 <strong>작황에 따른 변동성</strong>으로 본다. 2022/23·2023/24 극한 기상 뒤 2024/25 생산이 회복했다는 USDA GAIN의 설명, IOC 생산 수지, IMF 국제가격의 상승·하락이 근거다. <strong>반증 조건:</strong> 연속된 여러 작황 연도에서 생산·재고 변동이 작아지는데도 등급별 산지 가격 변동 폭이 같은 수준으로 유지되는 것.</li>
+<li>이 보고서는 국내 유통 구조에 대한 업체별 정량 결론을 보류한다. 품목별 국내판매액과 제품 시험은 확인되지만 업체별 점유율은 아니다. <strong>반증 조건:</strong> 업체별 올리브유 매출, 통관 물량 또는 식약처 신고량을 동일 기간·동일 범위로 묶은 공개 원표가 확보되는 것.</li>
+</ul>
+<p>2025년 국내 수입과 통관 상대국 구성은 원자료를 재집계했다. IOC·FAOSTAT의 세계·소비 숫자는 각 기관의 수지·추정 성격을 붙였다. 2025/26 세계 생산과 2026/27 스페인 작황·튀니지 수출은 전망이므로 확정 순위의 기준으로 사용하지 않았다. 아카이브 원장 115행의 판정은 반영 14건·불필요 101건·미검토 0건이다(<code>01_아카이브_원장.csv</code>; 부록 A).</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>스페인의 작황 회복이 세계 생산을 끌어올렸다</h2>
+<p class="lead">올리브유의 세계 수급은 작황 연도로 읽는다. IOC가 2025년 11월 제122차 회의에서 채택한 수지의 2023/24 수치는 최종, 2024/25 수치는 잠정, 2025/26 수치는 추정이다. 2025/26 시즌이 2026년 9월 말에 끝났어도 이번에 확인한 IOC 원표는 그 시즌을 <strong>추정</strong>으로 표기한다. 따라서 국가별 점유율과 순위는 2024/25 잠정 수지에 두었다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>구분</th><th class="num">2023/24</th><th class="num">2024/25</th><th>2024/25의 해석</th></tr></thead>
+<tbody>
+<tr><td>세계 생산</td><td class="num">2,589.0천 톤</td><td class="num">3,572.0천 톤</td><td>983.0천 톤 증가</td></tr>
+<tr><td>세계 소비</td><td class="num">2,788.5천 톤</td><td class="num">3,215.0천 톤</td><td>생산 반등과 함께 회복</td></tr>
+<tr><td>세계 수입</td><td class="num">1,041.5천 톤</td><td class="num">1,197.5천 톤</td><td>IOC 수지의 수입 항목</td></tr>
+<tr><td>EU 생산</td><td class="num">1,549.0천 톤</td><td class="num">2,110.0천 톤</td><td>2024/25 세계의 59.1%</td></tr>
+<tr><td>스페인 생산</td><td class="num">854.5천 톤</td><td class="num">1,419.1천 톤</td><td>2024/25 세계의 39.7%</td></tr>
+<tr><td>튀르키예 생산</td><td class="num">215.0천 톤</td><td class="num">505.0천 톤</td><td>2024/25 세계 생산국 중 두 번째</td></tr>
+<tr><td>튀니지 생산</td><td class="num">220.0천 톤</td><td class="num">340.0천 톤</td><td>2024/25 세계 생산국 중 세 번째</td></tr>
+<tr><td>그리스·이탈리아·포르투갈</td><td class="num">192.0·328.5·160.9천 톤</td><td class="num">250.0·248.0·177.0천 톤</td><td>한 지역 안에서도 작황 방향이 다름</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 IOC 「KEY-FIGURES ON THE WORLD MARKET FOR OLIVE OILS」 제122차 회의 채택 원표, 2023/24 final·2024/25 provisional. EU와 개별 회원국 행은 중복되므로 세계 합계에 다시 더하지 않았다. 점유율은 해당 국가 또는 EU 생산÷세계 생산×100.</p>
+<p>2024/25 생산은 전 시즌보다 38.0% 많다. 이 숫자는 소비가 그 비율만큼 늘었다는 뜻이 아니다. IOC가 기록한 세계 소비는 같은 비교에서 약 15.3% 증가했다. 생산과 소비의 차이를 곧바로 기말 재고 증가량이라고 해석해서도 안 된다. 수입·수출과 재고, 통계상 조정이 있는 수지이며 이 표에는 세계 재고 행을 싣지 않았다(IOC 원표).</p>
+<p>스페인이 중심인 이유는 생산 규모와 변동 폭이 동시에 크기 때문이다. 2023/24의 스페인 생산은 85.45만 톤, 2024/25에는 141.91만 톤이다. 세계 증가분 98.3만 톤 중 스페인 증가분은 56.46만 톤이다. 이는 같은 IOC 판본에서 계산한 기여량일 뿐, 스페인 날씨만으로 다른 나라 생산이 결정됐다는 뜻은 아니다. 같은 기간 이탈리아 생산은 32.85만 톤에서 24.8만 톤으로 줄었고 튀르키예와 튀니지는 늘었다. 한 국가의 풍작을 지중해 전체에 그대로 적용할 수 없다(IOC 원표).</p>
+<h3>전망은 순위와 분리한다</h3>
+<p>IOC가 2026년 1월 공개한 설명에서는 2025/26 세계 생산을 약 344만 톤, 소비를 324.8만 톤으로 추정했다. 유럽위원회의 2026년 9월 시장상황 자료도 2025/26 생산이 2024/25보다 낮지만 5개년 평균보다 높다는 방향을 제시한다. 두 발표는 기준일·자료 갱신 시점이 다르다. 여기서 2025/26의 국가별 확정 순위를 만들지 않았다(<a href="https://www.internationaloliveoil.org/olive-sector-statistics-december-2025-and-forecasts/">IOC, A</a>; <a href="https://ec.europa.eu/info/sites/default/files/food-farming-fisheries/plants_and_plant_products/documents/market-situation-olive-oil-table-olives_en.pdf">유럽위원회 시장상황, A</a>).</p>
+<p>USDA FAS의 EU Olive Oil Outlook 2025는 2022/23·2023/24의 극한 기상이 수율을 낮춘 뒤 2024/25에 생산이 회복했다고 설명한다. 같은 보고서는 2025/26 스페인 약 137만 톤, 이탈리아 약 28만 톤, 그리스 약 21만 톤, 포르투갈 약 15만 톤을 전망했다. 이는 2026년 1월의 전망이지 사후 확정 실적이 아니다. 특히 이탈리아와 그리스에서는 열파·강수 부족·올리브과실파리 등 지역별 문제가 달랐다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=EU+Olive+Oil+Outlook+2025_Madrid_European+Union_E42025-0035.pdf">USDA FAS, 「EU Olive Oil Outlook 2025」, 2026-01-06</a>).</p>
+<p>자료의 시간 단위도 다르다. 아카이브의 FAOSTAT <code>QCL_olive_oil.csv</code>는 <strong>달력연도</strong> 2023년 세계 올리브유 생산을 2,629,863.24톤으로 기록한다. IOC의 <strong>작황 연도</strong> 2023/24 세계 생산 2,589,000톤과 숫자가 비슷해도 같은 기간의 교차 검증값은 아니다. FAOSTAT 원표에는 세계·EU·지역·국가 행이 함께 있으며, 이 보고서의 국가 합산에는 집계 지역을 넣지 않았다. 최신 세계 수급 본문은 IOC 작황 연도 수지를 기준으로 하고 FAOSTAT 달력연도 값은 자료 성격의 대조에만 썼다.</p>
+<h3>세계 소비와 재고를 한국에 연결하는 방법</h3>
+<p>IOC 2024/25 수지에서 미국 수입은 44.7만 톤, 브라질은 7.7만 톤, 일본은 3.4만 톤이다. 같은 표의 미국 소비는 42.4만 톤이다. 이들은 수지상의 나라별 값으로 한국의 소비량을 추정하는 분모가 아니다. 수입 시장마다 재수출, 현지 생산, 재고 변화가 다르다. 한국도 통관 물량만으로 식탁에 오른 양을 계산할 수 없다(IOC 원표).</p>
+<p>USDA PSD의 2026년 <strong>9월 수록분</strong>은 미국 올리브유 수입을 2025/26 시장연도 425.0천 톤, 2026/27 시장연도 450.0천 톤으로 제시한다. 뒤의 2026/27은 전망이며 완료 실적이 아니다. 위 IOC 2024/25 미국 수입 447.0천 톤과 기관·시즌·판본이 달라 두 숫자만으로 전년 대비 변화를 계산하지 않는다(USDA PSD, <code>_raw/_items/olive/usda_psd_all_olive.csv</code>, <code>Country_Name=United States</code>, <code>Attribute_Description=Imports</code>, <code>Month=09</code>, <code>Unit_Description=(1000 MT)</code>).</p>
+<p>EU의 저장·수출 능력은 생산·수입·수출·식용 소비·기말재고를 함께 담은 수지에서 드러난다. USDA GAIN은 2025/26 EU 생산 205.5만 톤, 수입 20만 톤, 수출 76.5만 톤, 식용 소비 142.5만 톤, 기말재고 33.2만 톤을 당시 전망으로 제시했다. IOC 수지의 2024/25 잠정치와는 시즌도 판본도 다르다. 세계 생산이 회복해도 특정 등급·원산지의 현물 가용량이 같은 비율로 늘 것이라고 단정할 수 없는 이유다(<a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=EU+Olive+Oil+Outlook+2025_Madrid_European+Union_E42025-0035.pdf">USDA FAS, 「EU Olive Oil Outlook 2025」, 2026-01-06</a>).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>통관은 빠르고 소비 통계는 늦다</h2>
+<p class="lead">국내 시장의 가장 빠른 관측치는 수입 신고다. 관세청 월별 HS10은 제품 구분과 중량·금액을 제시하지만, 그 물량이 같은 해 가계와 외식·가공업에서 얼마씩 사용됐는지는 말하지 않는다. 재고가 쌓이거나 이전 재고가 팔릴 수 있고, 일부 물량은 다시 나갈 수 있다. 따라서 이 절은 <strong>수입</strong>, <strong>식량수급표의 식용 공급</strong>, <strong>국내판매액</strong>을 나누어 설명한다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>지표</th><th>기간</th><th class="num">수치</th><th>뜻과 한계</th></tr></thead>
+<tbody>
+<tr><td>FAOSTAT FBS <code>Olive Oil</code> 식용 공급</td><td>2021년</td><td class="num">27천 톤</td><td>코드 261+274, 포마스유 포함·반올림</td></tr>
+<tr><td>FAOSTAT FBS <code>Olive Oil</code> 식용 공급</td><td>2022년</td><td class="num">35천 톤</td><td>같은 품목 범위·단위</td></tr>
+<tr><td>FAOSTAT FBS <code>Olive Oil</code> 식용 공급</td><td>2023년</td><td class="num">16천 톤</td><td>코드 261+274, 수입 실측 아님</td></tr>
+<tr><td>FAOSTAT SCL 코드 261 식용 공급</td><td>2023년</td><td class="num">12,256.27톤</td><td>HS 1509 상당 올리브유의 별도 계정</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 <code>raw_data/FBS_olive.csv</code>, Area=<code>Republic of Korea</code>, Item=<code>Olive Oil</code>, Element=<code>Food</code>, Unit=<code>1000 t</code>; <code>raw_data/SCL_olive.csv</code>의 Item Code=<code>261·274</code>, Element=<code>Food supply quantity (tonnes)</code>; <code>raw_data/SCL_olive_oil.csv</code>의 코드 261. FBS 2023 Flag=<code>I</code>, SCL 2023 Flag=<code>E</code>.</p>
+<p>FAOSTAT의 역사 식량수급표에서 한국 <code>Olive Oil</code>의 <code>Food</code>는 2000년 2천 톤, 2005년 3만 톤, 2006년 1만 8천 톤이다. 원표의 단위는 <code>1000 t</code>이고 세 행 모두 <code>Flag=I</code>다. 2005년 값만으로 계속 늘었다고 해석하거나 현재의 수입 실측으로 바꾸지 않는다(FAOSTAT, <code>raw_data/FBSH_olive.csv</code>, 2000·2005·2006년, <code>Area=Republic of Korea</code>, <code>Item=Olive Oil</code>, <code>Element=Food</code>).</p>
+<p>2023년 SCL의 코드 261 올리브유 식용 공급은 12,256.27톤이고 코드 274 올리브 잔여유 식용 공급은 4,101.82톤이다. 합계 16,358.09톤은 FBS <code>Olive Oil</code>의 반올림값 16천 톤과 대응한다. 2021년에는 22,692.03+4,354.47=27,046.50톤, 2022년에는 29,661.19+5,747.47=35,408.66톤으로 같은 관계다. 이 보고서의 HS 1509 범위에는 코드 274를 더하지 않는다. 계정별 세부 조정까지 같다고 간주하거나 두 값을 평균하지 않았다(FAOSTAT, <code>raw_data/SCL_olive.csv</code>·<code>raw_data/FBS_olive.csv</code>).</p>
+<p>2023년 FAOSTAT FBS가 적은 1인당 공급은 연 0.32kg이다. 이것은 가계 구매량 조사값이 아니라 <strong>포마스유를 포함하는</strong> 수급표가 계산한 인구당 공급 지표다. 소비자 한 사람이 실제로 샐러드나 조리에 쓴 양을 나타내지 않는다. 외식·가공용 사용, 재고, 손실, 집계 범위가 그 질문에 필요하다. <code>_raw/kosis_food_raw_material</code>의 수집본에서도 올리브유 독립 행은 확인되지 않았다. 이번 자료로 가계·외식·식품제조 비중을 산출하지 않았다(FAOSTAT FBS, 2023년; KOSIS 식품제조 원료 사용량 수집본, 2026-10-06 확인).</p>
+<h3>국내판매액과 생산 자료</h3>
+<p>식약처의 KOSIS 「식용유지류 품목별 국내판매액 변동현황」에서 올리브유 국내판매액은 2024년 57,963,482천 원, 2025년 107,259,083천 원이다. 증가율은 <strong>85.0%</strong>이며, 2025년 식용유지류 합계 3,347,301,385천 원의 약 3.2%다. 이는 해당 표의 <strong>금액 지표</strong>이지 국내 올리브유 소비 중량이나 업체별 점유율이 아니다(식품의약품안전처, 「식용유지류 품목별 국내판매액 변동현황」, 2025년 값·2026-10-06 수집, <a href="https://kosis.kr/statHtml/statHtml.do?orgId=145&amp;tblId=TX_14503_A055">KOSIS 표 TX_14503_A055</a>).</p>
+<p>통계청의 10인 이상 제조업 품목표는 2024년 올리브유 사업체 <strong>2곳</strong>을 기록하지만 생산액·출하액은 <code>X</code>로 비공개한다. 아카이브의 FAOSTAT <code>QCL_olive_oil.csv</code>에도 한국 생산 행이 확인되지 않았다. 어느 쪽도 국내 생산량이 0톤임을 뜻하지 않으며, 두 곳이라는 사업체 수를 전체 산업의 사업체 수로 확대하지 않는다(통계청, 「품목분류별 사업체수, 생산액, 출하 및 연말재고액」, 2024년, <a href="https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1FP1124A">KOSIS 표 DT_1FP1124A</a>; FAOSTAT QCL).</p>
+<p>식약처 수입식품 품목별 신고 통계의 「올리브유」 신고 중량 합계는 2024년 13,127,418kg, 2025년 29,672,143kg이다. 2025년 관세청 HS 1509 수입 34,383,551kg과 차이가 있지만, 품목명·신고 범위·집계 단계가 다른 두 표를 곧바로 맞추거나 차액을 재고로 해석하지 않았다(식품의약품안전처, 「수입식품 품목별 통계」 <code>getImrtsItemStatsList05</code>, 2024·2025년, 2026-10-06 수집본; 관세청 HS10 원자료).</p>
+<p>한국의 올리브유 제품은 원액 수입 뒤 병입·혼합·유통하는 단계가 있을 수 있다. 그러나 이번에 확인한 공공 자료는 그 단계의 업체별 물량이나 국내 부가가치를 분리하지 않는다. 통관 상대국만으로는 원료 올리브의 재배지·착유지·병입지와의 일치 여부를 판단할 수 없다(UN Comtrade 통관 상대국 분류; 08절 원산지 표시 규정).</p>
+<p>2025년 국내판매액 증가율 85.0%와 HS 1509 수입량 증가율 82.4%는 같은 방향이다. 그러나 앞의 값은 국내판매 <strong>금액</strong>, 뒤의 값은 통관 <strong>중량</strong>이다. 동일 기간의 통관·재고·재수출·제조 투입량이 연결되지 않아 수입 증가분을 최종 소비 증가, 재고 보충, 구매 시점 이동으로 나눌 수 없다. 2023년 FAOSTAT 식량수급표에서 2025년 소비를 외삽하지도 않았다.</p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>수입량과 한국 신고상 엑스트라버진 비중이 높아졌다</h2>
+<p class="lead">한국의 HS 1509 통계는 네 HS6으로 분리된다. <code>150920</code>은 엑스트라버진, <code>150930</code>은 버진, <code>150940</code>은 그 밖의 버진, <code>150990</code>은 비버진·기타 올리브유다. “정제”라는 판매 문구와 HS <code>150990</code>을 자동으로 1대1 대응시키지 않았다. HS 1510의 올리브 잔여유·포마스유도 <strong>아래 HS 1509 합계에서 제외</strong>했다. 한국의 HS 1510 수입은 2024년 4,262.95톤, 2025년 3,693.28톤으로 각 연도 HS 1509 수입량의 22.6%·10.7%에 해당한다(FAOSTAT TM 코드 274, 2024년; UN Comtrade, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=1510&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">한국 HS 1510 수입신고, 2025년</a>).</p>
+<div class="tw">
+<table>
+<thead><tr><th>기간</th><th class="num">HS 1509 수입량</th><th class="num">수입액</th><th class="num">평균 단가</th><th class="num">엑스트라버진 물량·몫</th></tr></thead>
+<tbody>
+<tr><td>2024년</td><td class="num">18,848.62톤</td><td class="num">2억 656만 6,053달러</td><td class="num">10.96달러/kg</td><td class="num">16,755.65톤·88.9%</td></tr>
+<tr><td>2025년</td><td class="num">34,383.55톤</td><td class="num">2억 9,171만 5,667달러</td><td class="num">8.48달러/kg</td><td class="num">32,538.32톤·94.6%</td></tr>
+<tr><td>2025년 1~8월</td><td class="num">19,631.40톤</td><td class="num">1억 7,162만 2,525달러</td><td class="num">8.74달러/kg</td><td class="num">해당 기간 계산 가능, 연간 점유율에 사용 안 함</td></tr>
+<tr><td>2026년 1~8월 기준(진행연도)</td><td class="num">21,763.94톤</td><td class="num">1억 7,656만 4,112달러</td><td class="num">8.11달러/kg</td><td class="num">진행연도, 연간 점유율에 사용 안 함</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 2024년은 아카이브 <code>processed_data/comtrade/olive_comtrade_annual.csv</code>의 한국 수입·세계 상대국·합계 행 4개 HS6; 2025년과 두 1~8월은 <code>_raw/_items/olive/customs_item_trade_monthly_olive.csv</code>의 HS10 네 코드 합계. 단가=달러÷kg. 2024년 엑스트라버진은 Comtrade <code>150920</code> netWgt.</p>
+<p>2025년 수입량은 2024년보다 82.4% 많고 금액은 41.2% 많다. 같은 계산에서 평균 수입 단가는 22.6% 낮다. 평균 단가는 등급과 산지의 혼합비가 바뀌어도 움직인다. 따라서 이것만으로 동일한 엑스트라버진 제품의 가격이 22.6% 내렸다고 말할 수 없다. <strong>한국 수입신고 기준</strong> 엑스트라버진 물량 몫은 두 완료연도 사이 88.9%에서 94.6%로 높아졌다(관세청·Comtrade 원자료 계산).</p>
+<p>EU의 <strong>2025년 한국행 수출신고</strong>를 별도로 보면 CN 1509 총 35,118.56톤 가운데 <code>15092000</code> 엑스트라버진은 29,681.20톤(84.5%), <code>15093000</code> 버진은 4,006.13톤(11.4%)이다. 같은 해 한국 수입신고의 엑스트라버진은 32,538.32톤, 버진은 48.14톤이다. 신고 방향에 따라 등급 구성이 크게 다르다. 집계표만으로 어느 물량이 재분류됐는지 특정할 수는 없다(Eurostat Comext 2025 연간 EU→한국 수출, CN8·<code>FLOW=2</code>; 관세청 HS10 수입신고, 2025년).</p>
+<p>2026년 1~8월 기준(진행연도) 수입량은 2025년 같은 기간보다 10.9% 많고 금액은 2.9% 많다. 평균 단가는 8.74달러/kg에서 8.11달러/kg으로 7.2% 낮다. 2026년은 아직 진행 중이므로 이 수치를 연간 총량, 연간 성장률 또는 공급국 순위로 읽지 않는다. 또한 한국의 환율·국내 운송비·소매 마진을 합치지 않은 통관 평균값이다(관세청 HS10 월별).</p>
+<h3>완료연도의 국가별 통관 상대국</h3>
+<p>아카이브의 Comtrade 연간 파일은 상대국이 <code>World</code>인 행만 담는다. 별도로 공개된 UN Comtrade <strong>2025년 한국 수입신고</strong> 원표의 HS 1509·<code>partner2Code=0</code>·<code>customsCode=C00</code>·<code>motCode=0</code> 행을 국가별로 읽었다. 세계 합계 행을 국가 행에 다시 더하지 않았다(UN Comtrade, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=1509&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년 공개 원표</a>).</p>
+<div class="tw">
+<table>
+<thead><tr><th>2025년 통관 상대국</th><th class="num">한국 수입량</th><th class="num">HS 1509 전체 대비</th></tr></thead>
+<tbody>
+<tr><td>스페인</td><td class="num">21,129.08톤</td><td class="num">61.5%</td></tr>
+<tr><td>이탈리아</td><td class="num">10,717.96톤</td><td class="num">31.2%</td></tr>
+<tr><td>튀르키예</td><td class="num">611.37톤</td><td class="num">1.8%</td></tr>
+<tr><td>프랑스</td><td class="num">610.48톤</td><td class="num">1.8%</td></tr>
+<tr><td>그리스</td><td class="num">596.43톤</td><td class="num">1.7%</td></tr>
+<tr><td>기타 상대국</td><td class="num">718.26톤</td><td class="num">2.1%</td></tr>
+<tr><td>세계 합계</td><td class="num">34,383.58톤</td><td class="num">100.0%</td></tr>
+</tbody></table>
+</div>
+<p>표시 몫은 각 원값에서 따로 반올림했다. 스페인·이탈리아 <strong>합계 몫은 표시된 61.5%와 31.2%를 더하지 않고</strong> 31,847.039톤÷34,383.580톤으로 계산한 <strong>92.6%</strong>다.</p>
+<p>비교를 위해 남긴 2024년 FAOSTAT 양자무역의 한국 신고 <code>Item Code=261</code>은 다음과 같다. 이 원표의 <code>Item Code=274</code>는 올리브 잔여유이므로 제외했다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>2024년 통관 상대국</th><th class="num">한국 수입량</th><th class="num">코드 261 합계 대비</th></tr></thead>
+<tbody>
+<tr><td>스페인</td><td class="num">11,609.54톤</td><td class="num">61.6%</td></tr>
+<tr><td>이탈리아</td><td class="num">5,861.32톤</td><td class="num">31.1%</td></tr>
+<tr><td>튀르키예</td><td class="num">449.23톤</td><td class="num">2.4%</td></tr>
+<tr><td>프랑스</td><td class="num">326.14톤</td><td class="num">1.7%</td></tr>
+<tr><td>그리스</td><td class="num">251.70톤</td><td class="num">1.3%</td></tr>
+<tr><td>기타 상대국</td><td class="num">350.70톤</td><td class="num">1.9%</td></tr>
+<tr class="tot"><td>합계</td><td class="num">18,848.63톤</td><td class="num">100.0%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 <code>raw_data/TM_olive_oil.csv</code>, <code>Year=2024</code>, <code>Reporter Countries=Republic of Korea</code>, <code>Item Code=261</code>, <code>Element=Import quantity</code>, 국가 행. 기타=전체−표시 5개국 합계. 2024년 스페인·이탈리아 합계 몫은 원값 기준 92.7%다.</p>
+<p>2024년 92.7%에서 2025년 92.6%로, 두 나라에 대한 통관 상대국 집중은 높은 수준을 유지했다. 이는 병입국이나 올리브 재배국의 합계가 아니다. EU→한국 2025년 Comext 수출신고는 스페인 21,069.41톤, 이탈리아 12,360.68톤 등으로 한국 신고와 차이가 있다. 수출·수입 신고 방향, 분류 및 집계 범위를 맞추지 않고 한쪽 값을 다른 쪽의 수정치로 대체하지 않았다(Eurostat Comext 2025 연간; UN Comtrade 2025년 한국 신고).</p>
+<p>파이프라인 국가별 처리 파일은 2026년 3~8월 여섯 달을 담는다. 같은 기간 스페인 신고 11,410.076톤, 이탈리아 3,897.764톤을 확인했다. 1~2월이 빠지고 연도도 미완이므로 완료연도 몫과 직접 비교해 상대국 전환을 판정하지 않는다. 국가별 파일 합계와 전국 HS10 합계에는 41kg 차이가 있으며 원인은 현재 자료에서 확인되지 않았다(<code>agri_pipeline/data/08_식용유(Oils)/olive/processed_data/customs_kr/olive_customs_kr_monthly.csv</code>; 관세청 HS10 원자료). <strong>Drive 아카이브의 동명 파일은 2026년 3~4월만 담으므로 이 3~8월 수치의 출처가 아니다.</strong></p>
+<h3>합계 행과 세부 행을 구별한다</h3>
+<p>2025년 Comtrade에서 한국의 세계 상대국 합계는 HS 네 코드의 netWgt 합계 34,383,580.059kg·primaryValue 합계 291,715,667달러다. 관세청 HS10 합계와 금액이 일치하고 중량은 29.059kg 다르다. 이 차이를 임의로 보정하지 않았다. Comtrade 계산에는 <code>customsCode=C00</code>, <code>motCode=0</code>, <code>partner2Code=0</code>, <code>partnerCode=0</code>인 행만 썼다. 관세절차·운송수단·제2상대국 세부 행을 합계 행에 더하면 중복된다. netWgt가 빈 행은 중량·순위 계산에서 제외한다.</p>
+<p>미국 Census HS10, EU Comext, 브라질 Comexstat의 품목별 파일도 존재한다. 이번 자료에서는 EU의 2025년 한국행 연간 수출신고를 <strong>미러 대조</strong>로 사용했다. 미국·브라질의 분할 수집본은 2026년 일부 신고를 중심으로 하므로 이 단편을 연간 세계 수입국 순위로 확장하지 않았다. 연도·HS 개정판·무역 방향·역내무역 포함 여부를 맞춰야 한다.</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>등급·시장·통화가 다르면 같은 가격이 아니다</h2>
+<p class="lead">올리브유 가격은 올리브 열매 생산자 가격, 산지의 벌크 기름 가격, 국제가격 지표, 한국의 통관 단가, 국내 병입 제품의 소비자가격으로 나뉜다. World Bank Pink Sheet의 이번 아카이브 목록에는 올리브유 시리즈가 없지만, <strong>IMF Primary Commodity Prices의 <code>POLVOIL</code> 월별 시리즈</strong>는 확보돼 있다. 서로 다른 가격을 한 선으로 이어 국내 소매에 그대로 전달됐다고 해석하지 않았다(IMF, 「Primary Commodity Prices」, 2026년 9월 자료, <a href="https://www.imf.org/en/Research/commodity-prices">원자료 안내</a>; <code>_raw/imf_pcps/2026-10-06__imf_pcps.csv.gz</code>).</p>
+<p>FAOSTAT 생산자가격 원표에서 스페인 올리브 열매(<code>Item=Olives</code>)의 2024년 연간 값은 1,446.1달러/t다. 이는 <code>Producer Price (USD/tonne)</code>·<code>Months=Annual value</code>·<code>Flag=A</code> 행이며, 올리브유 산지 가격이나 한국 통관 단가가 아니다(FAOSTAT, <code>raw_data/PP_olive.csv</code>, 2024년).</p>
+<p>스페인 MAPA의 주간표는 등급 차이를 같은 시장·같은 주차에서 볼 수 있는 원천이다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>스페인 전국 산지 가격 구분</th><th class="num">2026년 3월 9~15일</th><th>비교할 때의 의미</th></tr></thead>
+<tbody>
+<tr><td>엑스트라버진</td><td class="num">434.25유로/100kg</td><td>산지 벌크 기준</td></tr>
+<tr><td>버진</td><td class="num">377.68유로/100kg</td><td>엑스트라버진과 다른 등급</td></tr>
+<tr><td>람판테</td><td class="num">339.32유로/100kg</td><td>직접 식용 판매 등급과 구별</td></tr>
+<tr><td>정제</td><td class="num">348.04유로/100kg</td><td>정제 단계의 별도 가격</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.mapa.gob.es/dam/mapa/contenido/agricultura/temas/producciones-agricolas/frutas-y-hortalizas/aceite-de-oliva-y-aceituna-de-mesa/precios/11-2026-bolet-n-semanal-precios-aceite-de-oliva.pdf">스페인 농림수산식품부 MAPA, 「11-2026 주간 올리브유 가격표」, 2026년 3월</a>. 원표 단위는 유로/100kg이다.</p>
+<p>같은 자료에서 엑스트라버진 전국가는 전주 436.11유로/100kg에서 434.25유로/100kg으로 0.43% 낮아졌다. IOC가 공개한 2025년 12월 8~14일 주간 엑스트라버진 가격은 스페인 하엔 433유로/100kg, 이탈리아 바리 665유로/100kg이다. 두 시장의 가격 차이는 나라·시장·품질 구성의 차이를 포함하므로 무조건적인 차익거래 여력이라고 해석할 수 없다(<a href="https://www.internationaloliveoil.org/olive-sector-statistics-december-2025-and-forecasts/">IOC, 2026-01-12</a>).</p>
+<p>유럽위원회 단기전망은 스페인 엑스트라버진 가격을 2025년 10월 427유로/100kg, 12월 457유로/100kg, 2026년 6월 초 397유로/100kg으로 제시했다. 같은 올리브유 절은 풍작 기대가 최근 가격 하락을 설명할 수 있다고 적었다. 기대와 가격의 인과를 확정된 실측으로 바꾸지 않았다(유럽위원회 DG AGRI, 「Short-term outlook for EU agricultural markets in 2026」, 2026-07-03, <a href="https://agriculture.ec.europa.eu/document/download/0614f4db-9af5-463d-9d4b-7cc9a06c366a_en?filename=short-term-outlook-summer-2026_en.pdf">보고서 PDF</a>).</p>
+<p>더 최근의 유럽위원회 주간 원자료에서 <strong>같은 엑스트라버진 등급</strong>의 하엔·바리 가격은 다음과 같다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>주차</th><th class="num">스페인 하엔</th><th class="num">이탈리아 바리</th></tr></thead>
+<tbody>
+<tr><td>2025-12-08~14</td><td class="num">432.50유로/100kg</td><td class="num">665.00유로/100kg</td></tr>
+<tr><td>2026-03-09~15</td><td class="num">441.00유로/100kg</td><td class="num">650.00유로/100kg</td></tr>
+<tr><td>2026-06-01~07</td><td class="num">386.00유로/100kg</td><td class="num">600.00유로/100kg</td></tr>
+<tr><td>2026-09-21~27</td><td class="num">342.00유로/100kg</td><td class="num">455.00유로/100kg</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 유럽위원회 DG AGRI, 「Weekly price developments: olive oil」, 2026-10-02 게시 자료의 해당 주차·시장·등급, <a href="https://agriculture.ec.europa.eu/data-and-analysis/markets/price-data/price-monitoring-sector/olive-oil_en">공식 가격 자료</a>; 수집본 <code>_raw/ec_agrifood_prices/2026-10-06_151933__ec_agrifood_prices.zip</code>의 <code>oliveOil_prices.json.gz</code>. MAPA의 전국 평균과 위 하엔 지역가격은 같은 값이 아니다.</p>
+<p>IMF <code>POLVOIL</code> 월별 달러/t 지표는 2023년 하반기에 급등해 <strong>2024년 1월 10,281달러/t</strong>로 정점을 기록했다. 2024년 10월 8,776달러/t에서 11월 7,635달러/t, 12월 5,809달러/t로 낮아졌다. 연평균은 2024년 8,860달러/t에서 2025년 5,465달러/t로 <strong>38.3% 하락</strong>했다. 같은 기간 한국의 HS 1509 통관 평균 단가는 22.6% 낮아졌다. 두 시리즈는 상품 구성·거래조건·시점이 같지 않아 하락 폭을 곧바로 전가율로 해석하지 않는다(IMF, 「Primary Commodity Prices」 <code>POLVOIL</code>, 2026년 9월 자료, <a href="https://www.imf.org/en/Research/commodity-prices">원자료 안내</a>; 관세청·Comtrade, 04절).</p>
+<p>2025년 1~8월과 2026년 1~8월을 맞추면 IMF 월평균은 5,245→6,156달러/t로 <strong>17.4% 상승</strong>한 반면 한국 통관 평균 단가는 8.742→8.113달러/kg으로 <strong>7.2% 하락</strong>했다. 계약 시차, CIF 신고가격, 등급·원산지·포장 믹스를 분리하지 못했으므로 이 반대 방향의 원인을 확정하지 않는다(IMF, 「Primary Commodity Prices」 <code>POLVOIL</code>, 2026년 9월 자료, <a href="https://www.imf.org/en/Research/commodity-prices">원자료 안내</a>; 관세청 HS10 월별 원자료).</p>
+<p>국내 공개 소매 자료는 시계열 대신 표본 시험이 확인된다. 소비자24가 소개한 시험은 2023년 8월 온라인 500㎖ 제품 가격을 최저 5,230원부터 최고 60,000원까지 제시했다. 비율은 약 11.5배다. 전국 평균 소매가격이나 특정 등급의 시계열이 아니다. KAMIS 가공식품 소매가격 공개 품목 목록에서 올리브유가 확인되지 않았다는 조사 결과도 <strong>확인한 목록의 범위</strong>로 한정한다(<a href="https://www.consumer.go.kr/user/ftc/consumer/cnsmrBBS/80/selectInfoCmprDetail.do?infoId=A1080182">소비자24, 2024-03-14</a>; <a href="https://www.data.go.kr/data/15098486/fileData.do">aT 가공식품 공개 품목</a>).</p>
+<p>Rabobank의 2025년 9월 공개 요약은 기후 변화가 올리브유 생산·가격의 변동성을 키운다고 설명한다. 전문은 구독 범위라 확인하지 못했다. 따라서 요약에 보이는 “3월 가격”의 연도처럼 원문이 명확히 적지 않은 값은 본문 시계열에 넣지 않았다(<a href="https://www.rabobank.com/knowledge/q011497981-climate-change-leads-to-global-volatility-in-olive-oil-production-and-prices">Rabobank RaboResearch, 2025-09-17</a>).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>스페인이 축이고 이탈리아는 생산·유통을 함께 맡는다</h2>
+<p class="lead">한국 수입 상대국과 세계 생산국은 서로 다른 지표다. 이 표의 생산량은 IOC 작황 연도, 한국 수입량은 FAOSTAT·UN Comtrade 달력연도의 <strong>통관 상대국</strong>이다. 이탈리아와 프랑스의 한국행 통관 물량을 그 나라의 열매 생산량으로 환산하지 않았다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>공급국·권역</th><th class="num">IOC 2024/25 생산</th><th class="num">한국행 2024년 신고</th><th class="num">한국행 2025년 신고</th></tr></thead>
+<tbody>
+<tr><td>스페인</td><td class="num">1,419.1천 톤</td><td class="num">11,609.54톤</td><td class="num">21,129.08톤</td></tr>
+<tr><td>이탈리아</td><td class="num">248.0천 톤</td><td class="num">5,861.32톤</td><td class="num">10,717.96톤</td></tr>
+<tr><td>그리스</td><td class="num">250.0천 톤</td><td class="num">251.70톤</td><td class="num">596.43톤</td></tr>
+<tr><td>튀르키예</td><td class="num">505.0천 톤</td><td class="num">449.23톤</td><td class="num">611.37톤</td></tr>
+<tr><td>튀니지</td><td class="num">340.0천 톤</td><td class="num">18.25톤</td><td class="num">143.16톤</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 IOC 올리브유 수지 2024/25 provisional; FAOSTAT <code>raw_data/TM_olive_oil.csv</code>의 2024년 한국 신고·코드 261·수입량; UN Comtrade의 <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=1509&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">2025년 한국 HS 1509 수입신고 원표</a>. 서로 다른 기간·지표를 같은 열에 합산하지 않았다.</p>
+<p>FAOSTAT의 2024년 스페인 올리브유(<code>Item Code=261</code>) 수출량은 779,688.51톤이다. 이는 스페인 전체의 달력연도 수출량으로, 위 한국행 수입 신고나 IOC 2024/25 생산량과 같은 지표가 아니다(FAOSTAT, <code>raw_data/TCL_olive_oil.csv</code>, 2024년, <code>Element=Export quantity</code>, <code>Unit=t</code>).</p>
+<p>스페인 안에서도 안달루시아의 비중이 크다. USDA GAIN은 2025/26 스페인 생산을 당시 약 137만 톤으로 전망하면서 안달루시아가 스페인 생산의 약 80%를 맡는다고 설명했다(USDA FAS, 「EU Olive Oil Outlook 2025」, 2026-01-06, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=EU+Olive+Oil+Outlook+2025_Madrid_European+Union_E42025-0035.pdf">원문 PDF</a>). 2026년 10월 스페인 농림수산식품부의 <strong>2026/27 첫 아포로</strong>는 전국 1,602,596톤, 안달루시아 1,261,200톤을 전망했다. 이는 예측치이며 기상에 따라 바뀔 수 있다(<a href="https://www.mapa.gob.es/dam/mapa/contenido/agricultura/temas/producciones-agricolas/frutas-y-hortalizas/aceite-de-oliva-y-aceituna-de-mesa/balances/aforo-producci-n-aceite-de-oliva-campa-a-2026-2027_v1.pdf">스페인 MAPA, 2026-10-01 아포로</a>).</p>
+<p>이탈리아는 2024/25에 스페인과 반대 방향이었다. IOC의 이탈리아 생산은 2023/24 328.5천 톤에서 2024/25 248.0천 톤으로 낮아졌다. USDA GAIN은 다음 시즌에 대해 지역별 기상과 과실파리 문제를 제시한다. “이탈리아”라는 통관 상대국 표시만으로 그 제품의 올리브가 이탈리아에서 자랐는지, 다른 산지의 원료가 이탈리아에서 병입됐는지를 확정할 수 없다(IOC 원표; USDA FAS, 「EU Olive Oil Outlook 2025」, 2026-01-06, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=EU+Olive+Oil+Outlook+2025_Madrid_European+Union_E42025-0035.pdf">원문 PDF</a>).</p>
+<p>튀니지는 EU 공급망에서 더 크게 보인다. USDA GAIN은 튀니지가 EU 역외 수입의 평균 75% 초과를 공급하며, EU–튀니지 협정의 연간 56,700톤 무관세 물량이 있다고 설명한다. 이 비중은 <strong>EU 역외 수입의 평균</strong>이지 세계 생산 또는 한국 수입의 점유율이 아니다. 한국의 2025년 직접 신고는 143.16톤이므로, 한국 시장에 닿는 튀니지산 원료의 전체 경로를 통관 상대국 하나로 계산할 수 없다(USDA FAS, 「EU Olive Oil Outlook 2025」, 2026-01-06, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=EU+Olive+Oil+Outlook+2025_Madrid_European+Union_E42025-0035.pdf">원문 PDF</a>; UN Comtrade 2025년 한국 신고).</p>
+<p>USDA FAS 튀니스 사무소의 보고서 본문과 표 4는 튀니지 올리브유 수출을 <strong>2025/26 시장연도 40만 톤에서 2026/27 시장연도 24만 톤으로 낮게 전망</strong>하고 해거리 주기를 설명한다. 두 시장연도 값은 당시 보고서의 전망이며 완료 실적이 아니다. 한국 직접 수입량 전망으로도 읽지 않는다(USDA FAS, 「Oilseeds and Products Annual: Tunisia」, 2026-03-04, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Tunis_Tunisia_TS2026-0002.pdf">GAIN TS2026-0002 원문 PDF</a>).</p>
+<p>튀르키예는 생산과 수출 규제가 함께 움직인다. USDA FAS의 2024년 보고서는 당시 벌크·배럴 올리브유 수출 금지를 한시적으로 완화해 2024년 11월 1일까지 5만 톤을 허용한다고 적었다. 이것은 <strong>2024년의 한시 조치</strong>다. 이를 2026년 현재의 상시 수출 규칙으로 반복하지 않는다(<a href="https://www.fas.usda.gov/data/turkiye-turkiye-provides-temporary-relief-olive-oil-export-ban">USDA FAS GAIN TU2024-0026</a>).</p>
+<p>공급국의 수만으로 한국의 공급 경로를 설명할 수 없다. 같은 HS 1509 안에서도 등급, 병입 형태, 원산지 표시가 다르다. 2025년 국가별 통관 상대국은 확인됐지만 로트별 원료 재배지와 연결돼 있지 않다.</p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>품목별 국내판매액은 보이지만 업체별 점유율은 확보되지 않았다</h2>
+<p class="lead">국내 올리브유 유통을 수입상, 국내 병입·가공업체, 자체 브랜드 판매원, 외국 브랜드, 소매 채널로 나누어 볼 수 있다. 그러나 이 역할을 맡는 회사별 올리브유 <strong>물량·매출·점유율</strong>을 같은 기준으로 집계한 공개 원표는 이번 조사에서 확보하지 못했다. 식약처의 품목별 국내판매액을 특정 업체의 매출로 배분하거나 제품 시험의 브랜드 목록을 판매 순위로 바꾸지 않는다.</p>
+<p>소비자24에 실린 한국소비자교육지원센터 시험은 시중 제품 19개의 품질·안전·가격·표시를 비교했다. 제품명에는 청정원, 쉐푸드, 해표, 백설, 프레스코, 폰타나, 노브랜드, 커클랜드 시그니춰와 여러 수입 브랜드가 있다. 이는 <strong>시험을 위해 선택한 제품 목록</strong>이다. 선택된 제품의 제조원·판매원을 확인하는 출발점은 되지만 시장 참여 업체 전부나 판매액 상위 순위는 아니다(<a href="https://www.consumer.go.kr/user/ftc/consumer/cnsmrBBS/80/selectInfoCmprDetail.do?infoId=A1080182">소비자24 제품 시험, 2024-03-14</a>).</p>
+<div class="tw">
+<table>
+<thead><tr><th>확인 항목</th><th>확보한 관측</th><th>산업 해석의 한계</th></tr></thead>
+<tbody>
+<tr><td>소매 제품</td><td>소비자 시험 19개 제품</td><td>시장 전수·판매 순위 아님</td></tr>
+<tr><td>당시 품질 시험</td><td>산가 0.3~1.3, 당시 사용한 기준 2.0 이하</td><td>2026년 현행 고시 수치로 재인용 불가</td></tr>
+<tr><td>당시 온라인 가격</td><td>500㎖당 5,230~60,000원</td><td>2023년 8월 표본, 전국 평균 아님</td></tr>
+<tr><td>식약처 품목별 국내판매액</td><td>2025년 올리브유 107,259,083천 원</td><td>품목 합계, 업체별 점유율·물량 아님</td></tr>
+<tr><td>식약처 수입식품 신고 중량</td><td>2025년 「올리브유」 29,672,143kg</td><td>관세청 HS 1509와 범위가 달라 직접 합산 불가</td></tr>
+<tr><td>업체별 올리브유 매출</td><td>원표 미확보</td><td>브랜드 수나 회사 전체 매출로 추정 불가</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.consumer.go.kr/user/ftc/consumer/cnsmrBBS/80/selectInfoCmprDetail.do?infoId=A1080182">소비자24 제품 시험, 2024-03-14</a>; 식품의약품안전처 「식용유지류 품목별 국내판매액 변동현황」 2025년, 2026-10-06 수집, <a href="https://kosis.kr/statHtml/statHtml.do?orgId=145&amp;tblId=TX_14503_A055">KOSIS 표 TX_14503_A055</a>; 식품의약품안전처 「수입식품 품목별 통계」 <code>getImrtsItemStatsList05</code>, 2025년, 2026-10-06 수집본.</p>
+<p>품질 시험의 산가는 제품의 당시 시험결과다. 소비자24는 당시 식품 고시 제2023-13호의 압착올리브유 산가 기준 2.0 이하를 사용했다. 이번 조사에서 2026년 현행 「식품의 기준 및 규격」 별표를 읽지 못했으므로 같은 숫자를 현행 법적 기준이라고 쓰지 않는다. 시험의 안전 항목도 표본 제품의 결과이지 국내 전체 수입품의 불검출률이 아니다(<a href="https://www.consumer.go.kr/user/ftc/consumer/cnsmrBBS/80/selectInfoCmprDetail.do?infoId=A1080182">소비자24</a>; <a href="https://www.law.go.kr/admRulInfoP.do?admRulSeq=2100000283336">식약처 고시 제2026-55호</a>).</p>
+<p>식약처의 <strong>연간 신고 품목 합계</strong>와 2025년 10월~2026년 9월 품목명 «올리브유» 신고의 <strong>업소명·해외 제조사명·제조국·신고 건수</strong>는 확인됐다(<a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회, A</a>). 이 신고 건수는 업체별 중량이나 판매액이 아니다. 업체별 점유율을 계산하려면 같은 기간·품목 범위의 업체별 중량 또는 매출과 전체 분모가 필요하다.</p>
+<p>산업의 경쟁 축은 등급, 원산지 표시, 포장 형태, 판매 채널, 브랜드로 달라진다. 그러나 어느 축이 전체 시장을 얼마나 나누는지는 현재의 수입 HS 통계, 품목별 국내판매액, 19개 제품 시험만으로 계산할 수 없다. 이 절은 특정 기업을 시장 지배자로 지목하지 않는다.</p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>원산지 표시 대상은 확인했고 현행 세율 숫자는 남아 있다</h2>
+<p class="lead">한국의 올리브유 제도는 통관 품목분류, 관세·FTA 세율, 원산지 표시, 식품 규격과 수입 검사로 나뉜다. HS 1509라는 머리번호만으로 개별 HS10의 모든 현행 세율·표시 의무를 대체할 수 없다. 특히 2026년 기본세율·협정세율 숫자는 이번 조사에서 조회 화면과 별표 원문이 연결되지 않아 표에 넣지 않았다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>제도</th><th>확인된 내용</th><th>확인 수준</th></tr></thead>
+<tbody>
+<tr><td>농수산물 원산지 표시</td><td>HS 1509와 1510이 2026년 원산지표시 요령 별표 대상</td><td>고시 원문 A</td></tr>
+<tr><td>수입 물품 원산지 표시 방법</td><td>국명 표기를 구매자가 읽을 수 있고 지워지지 않게 표시하는 원칙</td><td>대외무역관리규정 제76조 A</td></tr>
+<tr><td>2026년 할당관세</td><td>확인한 공개 문안·개정 이유에 올리브유·1509가 열거되지 않음</td><td>검토한 문안의 범위에 한함 A</td></tr>
+<tr><td>2026년 조정관세</td><td>개정 이유는 만료 물품 13개의 연장 취지를 적지만 별표 대조 미완</td><td>적용·비적용 단정 불가</td></tr>
+<tr><td>현행 1509 세율</td><td>기본·WTO·한-EU 등 세번별 숫자 미확보</td><td>UNI-PASS·별표 원표 미대조</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.law.go.kr/admRulLsInfoP.do?admRulSeq=2100000277788">농수산물 원산지표시 요령 제2026-54호, A</a>; <a href="https://www.law.go.kr/LSW/admRulLinkProc.do?lsClsCd=010201&amp;lsNm=%EB%8C%80%EC%99%B8%EB%AC%B4%EC%97%AD%EA%B4%80%EB%A6%AC%EA%B7%9C%EC%A0%95&amp;chrClsCd=010201&amp;joNo=007600&amp;mode=100&amp;gubun=admRul">대외무역관리규정 제76조, A</a>; <a href="https://m.korea.kr/news/policyNewsView.do?newsId=148955710">2026년 할당관세 정책브리핑, A</a>; <a href="https://www.law.go.kr/법령/관세법제69조에따른조정관세의적용에관한규정">2026년 조정관세 규정, A</a>.</p>
+<p>2026년 원산지표시 요령은 HS 1509를 “올리브유와 그 분획물”로, HS 1510을 그 밖의 올리브 관련 유류로 별도 열거한다. 따라서 포마스유를 1509의 한국 수입량에 합치지 않으면서도, 표시 규정에는 두 머리번호가 함께 등장한다는 사실을 적었다. 제품 원산지의 실제 표시 판단에는 원산지 결정 기준과 포장·가공 이력이 필요하다. 통관 상대국만으로 모든 제품의 표시국을 정할 수 없다(<a href="https://www.law.go.kr/admRulLsInfoP.do?admRulSeq=2100000277788">농수산물 원산지표시 요령, A</a>).</p>
+<p>2026년 정기 할당관세 공개 문안과 2월 개정 이유에는 해바라기씨유 등의 품목명이 보이지만 올리브유는 열거되지 않는다. 이것은 <strong>확인한 문안에서의 비열거</strong>다. 모든 별표와 개정 이력을 조회해 “올리브유 할당관세가 절대로 없다”고 결론 내린 것은 아니다. 조정관세도 대통령령 제35945호의 개정 이유만 읽고 별표의 13개 물품을 확인하지 못했으므로 적용 여부를 비워 둔다(<a href="https://m.korea.kr/news/policyNewsView.do?newsId=148955710">정책브리핑, 2025-12-02, A</a>; <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=283343&amp;viewCls=lsRvsDocInfoR">할당관세 일부개정, 2026-02-11, A</a>; <a href="https://www.law.go.kr/법령/관세법제69조에따른조정관세의적용에관한규정">조정관세 규정, A</a>).</p>
+<p>올리브유의 식품 규격도 판본을 구분한다. 소비자24 시험이 인용한 압착올리브유 산가 2.0 이하는 당시 고시 기준이다. 2026년 시행 고시 제2026-55호의 해당 별표는 이번 노트에서 이미지 상태로 남아 산가·요오드가 수치를 읽지 못했다. 그러므로 엑스트라버진의 현행 법적 산가 기준을 이 보고서가 새로 제시하지 않는다. 이번 자료에는 현행 고시 원문·수입 신고 정보·시험 성적의 같은 시점 대조가 없어 개별 제품의 “엑스트라버진” 적합성을 판정하지 않았다(<a href="https://www.law.go.kr/admRulInfoP.do?admRulSeq=2100000283336">식약처 고시 제2026-55호, A</a>; <a href="https://www.consumer.go.kr/user/ftc/consumer/cnsmrBBS/80/selectInfoCmprDetail.do?infoId=A1080182">소비자24 시험, B</a>).</p>
+<p>EU의 정책은 한국 관세와 별개의 공급국 제도다. USDA GAIN은 EU의 민간저장지원 가능성과 스페인의 2025년 의무 시장격리 발동 조건을 설명한다. 스페인 조치는 가격이 아니라 재고와 생산 전망을 이전 6개 작황 연도 평균의 120%와 비교하는 방식이고, 당시 전망상 2025/26에는 발동되지 않았다. 이를 한국의 비축 정책이나 자동 가격 지지로 옮겨 쓰지 않았다(<a href="https://www.fas.usda.gov/data/gain/2026/01/european-union-eu-olive-oil-outlook-2025">USDA FAS GAIN, E42025-0035, A</a>).</p>
+<p>조회 전 화면이나 과거 FTA 파일의 숫자를 2026년 현행 세율로 재사용하지 않았다.</p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트 요지</span>공식 수급 자료가 중심이고 은행 색인에는 오탐이 있다</h2>
+<p class="lead">은행·기관 리포트를 자료의 성격별로 읽었다. IOC 원표는 세계 수급을 수치화하고, USDA GAIN은 EU·튀니지 산지의 작황과 정책을 설명하며, 유럽위원회는 가격과 다음 시즌 여건을 갱신한다. Rabobank 공개 요약은 변동성이라는 해석을 제공하지만 전문을 확인하지 못했다. 기관마다 기간·품목 범위·확정도가 다르므로 하나의 예측값으로 합치지 않았다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>기관·문서</th><th>발행·자료 시점</th><th>올리브유에 관한 확인된 요지</th><th>확인 수준</th></tr></thead>
+<tbody>
+<tr><td>IOC 세계 올리브유 수지</td><td>제122차 회의, 2025년 11월 채택</td><td>2024/25 세계 생산 357.2만 톤·소비 321.5만 톤, 잠정</td><td>원표</td></tr>
+<tr><td>USDA FAS GAIN EU Olive Oil Outlook 2025</td><td>2026-01-06</td><td>기상 충격 뒤 회복, EU 2025/26 수급·국가별 전망</td><td>PDF 본문</td></tr>
+<tr><td>USDA FAS GAIN TS2026-0002</td><td>2026-03-04</td><td>튀니지 2026/27 수출 24만 톤 전망</td><td>PDF 본문·표 4</td></tr>
+<tr><td>유럽위원회 2026년 여름 단기전망</td><td>2026-07</td><td>2025/26 생산은 회복한 전 시즌보다 낮지만 평균 위</td><td>PDF 본문</td></tr>
+<tr><td>Rabobank RaboResearch 기후·가격 요약</td><td>2025-09-17</td><td>생산·가격 변동성 증가라는 해석</td><td>공개 요약, 전문 미열람</td></tr>
+<tr><td>KREI 농업전망 2026</td><td>2026-01-22</td><td>확인한 목차에 올리브유 독립 장이 없음</td><td>목차 범위</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 IOC 원표; <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=EU+Olive+Oil+Outlook+2025_Madrid_European+Union_E42025-0035.pdf">USDA FAS, 「EU Olive Oil Outlook 2025」, 2026-01-06</a>; <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Tunis_Tunisia_TS2026-0002.pdf">USDA FAS, 「Oilseeds and Products Annual: Tunisia」, 2026-03-04</a>; <a href="https://agriculture.ec.europa.eu/document/download/0614f4db-9af5-463d-9d4b-7cc9a06c366a_en?filename=short-term-outlook-summer-2026_en.pdf">유럽위원회, 「Short-term outlook for EU agricultural markets in 2026」, 2026-07-03</a>; <a href="https://www.rabobank.com/knowledge/q011497981-climate-change-leads-to-global-volatility-in-olive-oil-production-and-prices">Rabobank 공개 요약</a>; <a href="https://repository.krei.re.kr/handle/2018.oak/32556">KREI 목차</a>.</p>
+<p><code>_raw/_banks/index.csv</code>의 <strong>2026-10-07까지 발견된 행</strong>에서 <code>items</code>에 <code>olive</code>가 들어간 것은 Rabobank의 「North American agribusiness quarterly Q3 2026」 한 건이다. 연결된 MD 원문에서 일치어는 외식 체인 <strong>Olive Garden</strong>이었다. 올리브유 생산·무역·가격 분석이 아니다. 2026-10-08 색인에 추가된 행은 이 기준일의 “한 건” 판정에 포함하지 않았다(<code>_raw/_banks/index.csv</code>, <code>found_at≤2026-10-07</code>; <code>rabobank_sugar/Exclusive_North_American_agribusiness_quarterly_Q3_2026_The_Q3_2026_edition_exam_eef5c622.md</code>).</p>
+<p>Rabobank의 별도 올리브유 글은 제공된 웹 조사 노트에서 확인된다. 공개 요약의 주장은 “생산과 가격의 장기 변동성”이다. 숫자나 인과 설명을 전문 검증 없이 확대하지 않았다. 가격을 설명할 때는 IOC·MAPA·유럽위원회 원자료와 구분해 해석으로만 썼다(<a href="https://www.rabobank.com/knowledge/q011497981-climate-change-leads-to-global-volatility-in-olive-oil-production-and-prices">Rabobank RaboResearch, 2025-09-17</a>).</p>
+<p>KREI 농업전망 2026과 KREI FTA이행지원센터의 2026년 2분기 수출입동향은 이번에 읽은 <strong>목차</strong>에서 올리브유 독립 절이 확인되지 않았다. 이것은 기관 전체에 올리브유 자료가 존재하지 않는다는 주장이 아니다. 한국은행·시중은행의 올리브유 전용 원문도 이번 검색에서는 확보하지 못했다(<a href="https://repository.krei.re.kr/handle/2018.oak/32556">KREI 농업전망 2026</a>; <a href="https://repository.krei.re.kr/handle/2018.oak/33192">KREI 수출입동향 2026년 2분기</a>).</p>
+<p>산업 총량은 IOC·관세청·FAOSTAT 같은 원표에서 확인한다. 기후·정책의 다음 작황 영향은 USDA·유럽위원회의 전망을 시점과 함께 읽는다. 제품별 가격이나 국내 업체의 경쟁력은 별도 국내 원자료가 확보될 때까지 정량화하지 않는다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 관찰 지표·남은 물음</span>작황, 등급별 가격, 한국 수입을 같은 달에 본다</h2>
+<p class="lead">한국 올리브유 산업에서 살펴볼 위험의 첫째는 <strong>특정 산지·등급의 공급 차질</strong>이다. 이 절이 적는 네 위험의 순서는 크기 순위가 아니다. 2024/25에는 세계 생산이 회복했지만 이탈리아 생산은 전 시즌보다 적었다. 스페인도 2026/27 첫 생산 전망이 높게 나왔을 뿐 최종 수확은 아직 확인되지 않았다. 생산 전망과 확정 수확을 혼동하면 원가와 재고 판단의 출발점이 달라진다(IOC 원표; 스페인 MAPA 아포로).</p>
+<p>둘째는 가격 전달의 불확실성이다. 2025년 1~8월과 2026년 같은 기간을 비교하면 IMF 올리브유 국제가격 월평균은 17.4% 올랐고 한국 통관 평균 단가는 7.2% 낮아졌다. 계약 시차·거래조건·등급 구성을 분리하지 못했으므로 이 반대 방향의 원인을 단정하지 않는다. 국내 500㎖ 소매 제품 가격도 통관 단가와 별도 지표다(IMF <code>POLVOIL</code>; 관세청 HS10; 소비자24).</p>
+<p>셋째는 통계가 가리는 공급 경로다. 한국 수입신고의 스페인·이탈리아 합계 몫은 2024년 92.7%, 2025년 <strong>92.6%</strong>다. 이는 통관 상대국이며 재배국·착유국·병입국을 모두 표시한 산업 원장이 아니다. EU 수출신고의 2025년 등급 구성도 한국 수입신고와 다르다(FAOSTAT TM 2024년; UN Comtrade 2025년; Eurostat Comext 2025년).</p>
+<p>넷째는 제도와 품질의 판본 차이다. 식품 규격, 관세, 원산지표시 요령은 같은 날짜에 갱신되지 않는다. 이번 자료에서 2026년 세번별 현행 세율과 식품 고시 별표의 올리브유 세부 기준이 비어 있다. 과거 숫자를 현행 기준으로 옮기면 원가나 표시 적합성 판단이 틀릴 수 있다(08절).</p>
+<div class="tw">
+<table>
+<thead><tr><th>관찰 지표</th><th>원천·필터</th><th>주기</th><th>현재 기준값과 읽는 법</th></tr></thead>
+<tbody>
+<tr><td>한국 HS 1509 중량·금액·달러/kg</td><td>관세청 HS10 네 코드 합계</td><td>월</td><td>2025년 34,383.55톤·8.48달러/kg이 완료연도 기준</td></tr>
+<tr><td>엑스트라버진 수입 구성</td><td>관세청 <code>150920</code>÷HS 1509</td><td>월·연</td><td>한국 수입신고 2025년 94.6%</td></tr>
+<tr><td>EU 미러 등급 구성</td><td>Eurostat Comext EU→한국 CN8</td><td>연</td><td>2025년 수출신고 엑스트라버진 84.5%·버진 11.4%; 한국 신고와 직접 일치하지 않음</td></tr>
+<tr><td>국가별 통관 상대국</td><td>UN Comtrade 한국 신고 HS 1509; FAOSTAT TM 코드 261</td><td>연</td><td>2025년 스페인·이탈리아 92.6%, 2024년 92.7%</td></tr>
+<tr><td>세계 생산·소비</td><td>IOC 작황 연도 수지</td><td>발표 때마다</td><td>2024/25 잠정 생산 357.2만 톤·소비 321.5만 톤</td></tr>
+<tr><td>산지 등급별 가격</td><td>MAPA·EC 주간표; IMF <code>POLVOIL</code> 월별</td><td>주·월</td><td>시장·등급·주차·통화를 함께 보존</td></tr>
+<tr><td>국내 식용 공급</td><td>FAOSTAT FBS·SCL</td><td>연</td><td>FBS는 코드 261+274, HS 1509 상당 SCL은 코드 261</td></tr>
+<tr><td>국내판매액</td><td>식약처 KOSIS 식용유지류 품목별</td><td>연</td><td>2025년 올리브유 107,259,083천 원; 업체별 점유율 아님</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 관세청 HS10 원자료, FAOSTAT TM·FBS·SCL, 아카이브 IOC 원표, <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=1509&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 2025년 한국 HS 1509 신고</a>, <a href="https://agriculture.ec.europa.eu/data-and-analysis/markets/price-data/price-monitoring-sector/olive-oil_en">유럽위원회 「Weekly price developments: olive oil」, 2026-10-02</a>, <a href="https://www.imf.org/en/Research/commodity-prices">IMF 「Primary Commodity Prices」, 2026년 9월 자료</a>, <a href="https://kosis.kr/statHtml/statHtml.do?orgId=145&amp;tblId=TX_14503_A055">식품의약품안전처 KOSIS 표 TX_14503_A055</a>.</p>
+<p>IOC가 새 수지를 내면 먼저 <strong>확정·잠정·추정</strong> 표시와 작황 연도를 기록한다. 이어 국가 생산, 재고와 EU 수출을 같은 판본에서 읽는다. 한국에서는 관세청 HS10의 월별 중량·금액을 전년 같은 달까지와 비교한다. 완료연도 상대국 몫은 한국 신고 원표로 갱신하고 EU 수출신고는 미러로 따로 대조한다. 산지 가격은 엑스트라버진과 다른 등급을 섞지 않는다.</p>
+<h3>남은 물음</h3>
+<ul>
+<li>2025년에도 스페인·이탈리아의 한국 통관 상대국 합계 몫은 92.6%로 높았다. 다음 완료연도에는 이 몫과 대체 공급국의 물량이 어떻게 변하는가?</li>
+<li>한국 수입신고와 EU 수출신고의 2025년 엑스트라버진·버진 구성 차이는 거래·로트 수준에서 어떻게 설명되는가?</li>
+<li>국가별 물량을 HS6별로 나누고 제품·로트의 원료 재배지와 통관 상대국이 일치하는지 확인한다.</li>
+<li>KOSIS에서 비공개인 생산액·출하액, 착유·정제 공장별 물량으로 국내 생산 총량을 확인한다.</li>
+<li>동일 기간의 통관·재고·재수출·식품제조 투입량을 연결해 2025년 수입 증가의 소비·재고·구매 시점별 기여를 확인한다.</li>
+<li>품목 믹스와 원산지별 단가를 분해해 동일 상품의 가격 변화와 통관 평균 단가 변화를 구별한다.</li>
+<li>2026년 3~8월 국가별 처리 파일과 전국 HS10 합계 사이 41kg 차이의 원인을 확인한다.</li>
+<li>미국·EU·브라질의 연간 비교에는 연도·HS 개정판·무역 방향·역내무역 포함 범위를 맞춘 원표를 확보한다.</li>
+<li>식약처 신고의 업체별 중량·금액, DART의 업체별 올리브유 별도 매출 여부, 같은 기간·범위의 소매 채널 판매액을 대조한다.</li>
+<li>UNI-PASS에서 HS 150920·150930·150940·150990의 기준일·원산지별 세율과 조정관세 별표를 확인한다.</li>
+<li>2026년 식품 규격 별표 원문을 읽고 개별 제품의 수입 신고·시험 성적과 같은 시점으로 대조한다.</li>
+</ul>
+<p>이 자료가 들어오기 전에는 2026년 일부 월의 수치나 제품 시험 표본을 산업 전체의 확정 구조로 승격하지 않는다.</p>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>지중해의 착유·병입과 한국의 수입·유통</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">2025년 한국 수입신고 HS 1509의 <strong>중량 기준 통관 상대국</strong> 비중은 스페인 61.5%, 이탈리아 31.2%다. 10% 이상인 나라는 두 곳이며, 아래 표에는 비교국인 그리스(1.7%)도 넣었다. 통관 상대국은 올리브 재배국과 같지 않을 수 있다. 기업은 국가별 수출 순위가 아니라 공개 사업 규모와 한국 수입신고의 해외 제조사명 일치를 확인한 사례다. HS 150990의 수입액은 HS 1509 전체의 5.9%로 별도 기업 지도를 만드는 10% 기준에 미치지 않는다.</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 주요 통관 상대국의 올리브유 가공·수출기업</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>스페인</td><td>Acesur·Aceites del Sur-Coosur</td><td>착유·가공·수출</td><td>2024년 그룹 매출 13억 유로 초과; 수출이 사업의 55%</td><td>Aceites del Sur-Coosur 제조사명 일치, 신고 88건</td><td><a href="https://acesur.com/es/acesur-ganadora-de-los-premios-andalucia-trade-2025-en-la-categoria-de-desarrollo-industrial/">기업 발표, 2025년, B</a></td></tr>
+<tr><td>스페인</td><td>Sovena España·Sovena Group</td><td>생산·정제·병입</td><td>2024년 그룹 매출 18.58억 유로; 스페인 법인 단독 매출 아님</td><td>Sovena España 제조사명 일치, 46건</td><td><a href="https://www.sovenagroup.com/media/reports/pdf/sovena_sustainability_report_annexes_2024.pdf">그룹 지속가능성 보고서 부속자료, 2024년, B</a></td></tr>
+<tr><td>스페인</td><td>Borges Agricultural &amp; Industrial Edible Oils·Borges Group</td><td>가공·병입·무역</td><td>2025년 공개 그룹 매출 7.66억 유로; 식용유 외 제품 포함</td><td>식용유 법인 제조사명 일치, 44건</td><td><a href="https://www.borgesinternationalgroup.com/en/our-group/">그룹 현황, 2025년 갱신, B</a></td></tr>
+<tr><td>스페인</td><td>Deoleo Global</td><td>가공·브랜드·수출</td><td>2025년 그룹 조정 매출 8.21억 유로</td><td>Deoleo Global 제조사명 일치, 8건</td><td><a href="https://deoleo.com/en/deoleo-increases-ebitda-by-50-to-e50m-and-achieves-a-net-profit-of-e20m/">기업 실적 발표, 2026년, B</a></td></tr>
+<tr><td>이탈리아</td><td>Monini</td><td>선별·병입·수출</td><td>확인 가능한 공개 규모 지표 없음</td><td>Monini 제조사명 일치, 74건</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품 신고확인</a>(A, 202510~202609)</td></tr>
+<tr><td>이탈리아</td><td>Olitalia</td><td>가공·병입·수출</td><td>2024년 매출 2.94억 유로; 연간 오일 생산 9,600만 리터, 다른 식용유 포함</td><td>Olitalia 제조사명 일치, 68건</td><td><a href="https://www.olitalia.com/downloads/2866/157/157_999705%20REPORT%20SOSTENIBIL_ENG%20molto%20low.pdf">지속가능성 보고서, 2024년, B</a></td></tr>
+<tr><td>이탈리아</td><td>Olearia F.lli De Cecco·De Cecco Group</td><td>올리브유 가공·병입</td><td>2024년 그룹 매출 6.52억 유로 초과; 파스타 등 포함</td><td>Olearia 법인 제조사명 일치, 77건</td><td><a href="https://www.dececco.com/it_it/news/approvato-il-bilancio-2024-anno-record/">그룹 결산 발표, 2025년, B</a></td></tr>
+<tr><td>그리스</td><td>AGRO.VI.M</td><td>가공·병입·수출</td><td>60개국 이상에 제품 판매, 기업 공개 현황</td><td>AGRO.VIM 제조사명 일치, 33건</td><td><a href="https://www.agrovim.gr/about-the-company/">기업 소개, 2026년 확인, B</a></td></tr>
+<tr><td>그리스</td><td>Botzakis</td><td>착유·병입·수출</td><td>확인된 공개 자료 없음</td><td>Botzakis 제조사명 일치, 29건; 수출업자협회가 한국 수출 명시</td><td><a href="https://www.crete-exporters.com/en/portfolio/%CE%BC%CF%80%CE%BF%CF%84%CE%B6%CE%B1%CE%BA%CE%B7%CF%83-%CE%B1%CE%B5/">크레타 수출업자협회 기업 소개, 2026년 확인, B</a></td></tr>
+<tr><td>그리스</td><td>GAEA Products</td><td>병입·브랜드·수출</td><td>30개국 이상에 제품 판매, 기업 공개 현황</td><td>GAEA Products 제조사명 일치, 15건</td><td><a href="https://gaeagreece.eu/blogs/gaea/our-global-presence">기업 소개, 2026년 확인, B</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 기업 규모·형태는 각 행의 자료. 한국 연결과 건수는 <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회, 2025년 10월~2026년 9월, A</a>의 제조사명 표기 변형을 합친 집계다. <strong>신고 건수 기준</strong>이며 수출량·수입량·매출이 아니다. 국가 비중과 HS 150990 금액 비중은 04절의 2025년 한국 신고 HS 1509·<a href="https://comtradeplus.un.org/">UN Comtrade, A</a> 기준이다.</p>
+<p>Deoleo는 유로모니터 2025년 자료를 인용해 자사를 세계 1위 올리브유 기업이라고 소개한다. 이는 기업이 제시한 <strong>시장 지위</strong>이며 세계 수출량 1위나 한국 수입시장 1위라는 뜻은 아니다. 기업별 세계 올리브유 수출량을 같은 기준으로 비교한 공개 원표는 확인되지 않았다. 한국 수입신고에는 Deoleo Global 8건과 이탈리아의 Carapelli Firenze 6건이 각각 확인된다(<a href="https://deoleo.com/en/deoleo-increases-ebitda-by-50-to-e50m-and-achieves-a-net-profit-of-e20m/">Deoleo 실적 발표, 2026년, B</a>; <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처, 2025년 10월~2026년 9월, A</a>).</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>2025년 10월~2026년 9월 식약처 수입식품 신고 중 품목명 «올리브유» 4,253건과 정제 전 원료 중 제품명에 올리브가 들어간 34건을 합한 범위는 <strong>4,287건</strong>이다. 포마스유(품목명 «기타식물성유지» 187건)·향미유(414건)·혼합식용유(44건)로 신고된 올리브 제품은 넣지 않았다. 아래 상위 업소의 신고는 모두 품목명 «올리브유»다. ‘주요 제조국’은 업소별 신고서의 제조국 상위 두 나라를 그대로 적었다. 신고서에서 제조국과 수출국은 별도 항목이다.</p>
+<div class="tw">
+<table>
+<caption>표 11-2. 품목명 «올리브유» 수입식품 신고 건수 상위 업소</caption>
+<thead><tr><th>업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>에스엔씨홀딩스(주)</td><td class="num">123</td><td>스페인 106·이탈리아 14</td><td>수입 신고 업소</td></tr>
+<tr><td>(주)이마트</td><td class="num">117</td><td>스페인 77·이탈리아 36</td><td>소매 유통</td></tr>
+<tr><td>(주)코스트코코리아</td><td class="num">114</td><td>스페인 69·이탈리아 29</td><td>창고형 소매 유통</td></tr>
+<tr><td>(주)쉐프스푸드</td><td class="num">85</td><td>스페인 33·그리스 32</td><td>식품 유통</td></tr>
+<tr><td>(주)보라티알</td><td class="num">84</td><td>이탈리아 74·스페인 10</td><td>수입 식품 유통</td></tr>
+<tr><td>(주)매직랩</td><td class="num">77</td><td>스페인 65·이탈리아 6</td><td>수입 신고 업소</td></tr>
+<tr><td>주식회사 늘푸른</td><td class="num">76</td><td>이탈리아 46·스페인 27</td><td>수입 신고 업소</td></tr>
+<tr><td>티디에프코리아(주)</td><td class="num">72</td><td>이탈리아 72</td><td>수입 신고 업소</td></tr>
+<tr><td>(주)가우스첸토</td><td class="num">72</td><td>이탈리아 58·스페인 14</td><td>수입 신고 업소</td></tr>
+<tr><td>서영이앤티(주)</td><td class="num">70</td><td>이탈리아 70</td><td>식품 유통</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회, 2025년 10월~2026년 9월, A</a>. 업소명 표기 변형을 합쳤다. 모든 수치는 <strong>신고 건수 기준</strong>으로, 중량·금액이나 시장 점유율이 아니다.</p>
+<div class="tw">
+<table>
+<caption>표 11-3. 공개 사업 규모를 확인한 국내 수입·유통기업</caption>
+<thead><tr><th>기업</th><th>산업 내 역할</th><th>공개 규모 지표</th><th>올리브유와의 연결·범위</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>이마트</td><td>직접 수입·소매</td><td>2025년 연결 매출 28조 9,704억 원</td><td>신고 117건; 매출은 전 품목·계열 사업 포함</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001378/20260318006410/11011.htm">사업보고서, 2025년, A</a></td></tr>
+<tr><td>코스트코코리아</td><td>직접 수입·창고형 소매</td><td>2024년 9월~2025년 8월 매출 약 7조 3,220억 원</td><td>신고 114건; 전 품목 매출이며 감사보고서를 인용한 보도 수치</td><td><a href="https://cbiz.chosun.com/svc/bulletin/bulletin_art.html?contid=2025111903148">감사보고서 내용을 전한 보도, 2025년, C</a></td></tr>
+<tr><td>보라티알</td><td>수입 식자재·식품 유통</td><td>2025년 상품매출 1,022.96억 원; 식용유지류 233.29억 원·22.8%</td><td>신고 84건; 식용유지류에는 다른 기름 포함</td><td><a href="https://kind.krx.co.kr/external/2026/03/27/002060/20260327004288/11011.htm">사업보고서, 2025년, A</a></td></tr>
+<tr><td>서영이앤티</td><td>수입 식품 유통</td><td>2025년 연결 매출 2,617억 원으로 보도; 식품 외 사업 포함</td><td>신고 70건; 올리브유 별도 매출 확인된 공개 자료 없음</td><td><a href="https://www.segyebiz.com/newsView/20260408516152">기업 발표를 전한 보도, 2026년, C</a></td></tr>
+<tr><td>CJ제일제당</td><td>식품 제조·브랜드·유통</td><td>2025년 식품부문 매출 11조 5,222.51억 원; 설탕·밀가루·식용유 등 포함</td><td>신고 33건; 식품부문 매출은 올리브유 매출이 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/16/001719/20260316005125/11011.htm">사업보고서, 2025년, A</a></td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 규모와 사업 범위는 각 행의 자료. 올리브유 신고 연결은 <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회, 2025년 10월~2026년 9월, A</a>의 <strong>신고 건수 기준</strong>이다. 업체별 올리브유 매출·수입 중량·판매 점유율은 산출되지 않는다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 올리브유 밸류체인의 단계별 주체와 한국 시장의 관측 지점</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>지중해 올리브 재배농가·협동조합</td><td>2024/25 잠정 스페인 생산 141.91만 톤, 세계의 39.7%; 한국 통계 아님</td><td>열매 거래·재배 계약</td><td>가뭄·해거리·생산비</td></tr>
+<tr><td>1차 가공</td><td>착유소·정제소·품질 검사기관</td><td>한국 수입량에서 착유국별 물량 분리 불가</td><td>등급별 산지 거래</td><td>수율·품질 편차</td></tr>
+<tr><td>수출·국제 무역</td><td>병입기업·벌크 상사·수출업체</td><td>2025년 한국 HS 1509 통관 상대국 스페인·이탈리아 합계 92.6%</td><td>산지 시세·수출 계약·운임</td><td>공급 집중·환율</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·식약처</td><td>2025년 HS 1509 수입 34,383.55톤·2억 9,171만 5,667달러</td><td>수입 계약·통관 원가</td><td>분류·검사·표시 부적합</td></tr>
+<tr><td>국내 가공</td><td>병입·혼합·식품제조업체</td><td>2024년 10인 이상 제조업 올리브유 사업체 2곳; 생산액 비공개</td><td>원료·포장·제조 계약</td><td>원산지·등급 표시</td></tr>
+<tr><td>도매·유통</td><td>식자재 수입상·도매상·플랫폼</td><td>보라티알 2025년 식용유지류 상품매출 233.29억 원; 올리브유 단독 아님</td><td>납품 계약</td><td>재고·물류비</td></tr>
+<tr><td>소매·외식</td><td>대형마트·창고형 매장·음식점</td><td>2025년 식약처 올리브유 국내판매액 1,072.59억 원; 업체별 매출 아님</td><td>매장·온라인·외식 조달가격</td><td>가격 전가·품질 신뢰</td></tr>
+<tr><td>소비</td><td>가계·음식점·식품제조업체</td><td>FAOSTAT 2023년 코드 261 식용 공급 12,256.27톤; 2025년 실제 소비량 아님</td><td>최종 구매가격</td><td>가격 부담·정보 부족</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.internationaloliveoil.org/what-we-do/statistics/">IOC 세계 수급, A</a>; 04절의 2025년 한국 HS 1509 수입·<a href="https://comtradeplus.un.org/">UN Comtrade, A</a>; <a href="https://kosis.kr/statHtml/statHtml.do?orgId=101&amp;tblId=DT_1FP1124A">통계청 제조업 품목표, A</a>; <a href="https://kosis.kr/statHtml/statHtml.do?orgId=145&amp;tblId=TX_14503_A055">식약처 국내판매액, A</a>; <a href="https://kind.krx.co.kr/external/2026/03/27/002060/20260327004288/11011.htm">보라티알 사업보고서, 2025년, A</a>; <a href="https://www.fao.org/faostat/en/">FAOSTAT 식량수급 자료, A</a>. 기간과 품목 범위는 02~04절과 같다.</p>
+<p>부가가치는 착유 뒤의 품질 선별·혼합·병입·브랜드 관리와 국내 수입·유통에서 생기지만, 공개 수치로 단계별 몫을 배분할 수 없다. 보라티알의 2025년 식용유지류 매출 233.29억 원에는 다른 기름이 포함되고, 식약처 국내판매액 1,072.59억 원은 업체별 부가가치가 아니다. 2025년 통관 평균 8.48달러/kg과 국내 소매가격의 차이도 유통 마진으로 계산할 수 없다. 통화, 등급·포장 구성, 재고와 판매 시점이 다르기 때문이다.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 올리브유 공급망의 주요 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>식품의약품안전처·관세청·국립농산물품질관리원</td><td>수입식품 검사, HS 통관, 원산지표시 관리</td><td>안전·표시 신뢰와 통관 절차에 영향</td></tr>
+<tr><td>해외 정부</td><td>유럽위원회</td><td>올리브유 시장 자료와 EU 품질·표시 규칙 운영</td><td>등급·표시 기준과 역내 공급에 영향</td></tr>
+<tr><td>생산자·단체</td><td>스페인 Dcoop 소속 올리브 재배 협동조합</td><td>열매 생산·착유·공동 판매</td><td>산지 가격과 생산비 회수에 이해관계</td></tr>
+<tr><td>수출·가공기업</td><td>Acesur·Deoleo·Monini</td><td>원유 조달, 선별·병입, 브랜드와 수출 계약</td><td>등급별 원료 확보와 가격 변동에 노출</td></tr>
+<tr><td>수입·유통기업</td><td>이마트·코스트코코리아·보라티알·CJ제일제당</td><td>제품 조달, 수입 신고, 도매·소매 판매</td><td>안정 공급·재고·판매가격에 영향</td></tr>
+<tr><td>소비자·시민사회</td><td>한국소비자교육지원센터·소비자</td><td>제품 정보 비교와 구매·소비자교육</td><td>등급·원산지 정보의 정확성에 이해관계</td></tr>
+<tr><td>국제기구·인증</td><td>국제올리브이사회(IOC)·EU 품질 체계</td><td>시장 통계, 등급·시험 방법과 표시 기준</td><td>국제 거래의 비교 가능성과 신뢰에 영향</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회, A</a>; <a href="https://www.law.go.kr/admRulLsInfoP.do?admRulSeq=2100000277788">농수산물 원산지표시 요령, A</a>; <a href="https://agriculture.ec.europa.eu/farming/crops/olive-oil_en">유럽위원회 올리브유 시장·규칙, A</a>; <a href="https://www.dcoop.es/informacion-corporativa/areas-de-actividad/socios/aceites">Dcoop 올리브유 협동조합, B</a>; <a href="https://www.koince.or.kr/doc/sub1_3.php">한국소비자교육지원센터 연혁, B</a>; <a href="https://www.internationaloliveoil.org/who-we-are/">IOC 역할·표준, A</a>. 기업의 역할·규모·한국 연결은 표 11-1·11-3의 해당 연도 출처와 같다.</p>
+<ul>
+<li>산지 가격 상승은 생산자의 수입 확보와 수입·유통기업의 조달비 부담에 서로 다른 영향을 준다.</li>
+<li>수출·병입기업의 원료 혼합 유연성과 소비자의 재배국·등급 정보 요구가 엇갈릴 수 있다.</li>
+<li>빠른 통관과 충분한 수입 검사·원산지 확인 사이에는 처리 시간과 비용의 긴장이 있다.</li>
+</ul>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황</h2>
+<p class="lead">수집기 현황은 2026-10-07에 <code>rawbulk.report_delta.coverage("olive")</code>를 읽기 전용으로 실행한 결과다. ‘최신’은 수집기에 기록된 가장 늦은 기간이며, 전 국가·전 월이 확정됐다는 뜻은 아니다. 보고서 본문에 사용한 아카이브 IOC PDF, FAOSTAT 오일 분할 파일, USDA GAIN 자료는 근거 문서에서 추적할 수 있다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일</th></tr></thead>
+<tbody>
+<tr><td>원자료 품목 분할</td><td>census_exports_hs10</td><td class="num">264</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>census_imports_hs10</td><td class="num">317</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_exp</td><td class="num">1,318</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>comexstat_imp</td><td class="num">803</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>customs_item_trade_monthly</td><td class="num">88</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m1</td><td class="num">1,590</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>eurostat_comext_m2</td><td class="num">2,598</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_prices</td><td class="num">4,370</td><td>2025</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_production</td><td class="num">11,376</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>faostat_trade</td><td class="num">23,616</td><td>2024</td><td>2026-10-07</td></tr>
+<tr><td>원자료 품목 분할</td><td>usda_psd_all</td><td class="num">15,488</td><td>기간 열 없음</td><td>2026-10-07</td></tr>
+<tr><td>품목 전용 원자료</td><td>ioc_olive_stats</td><td class="num">행수 미기록</td><td>new</td><td>2026-10-06</td></tr>
+<tr><td>월간 수집</td><td>comtrade</td><td class="num">5,088</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간 수집</td><td>customs_kr</td><td class="num">420</td><td>2026.08</td><td>2026-10-01</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>/Users/idong-geon/my-project/agri_pipeline/rawbulk/report_delta.py</code>의 <code>coverage("olive")</code> 실행 결과, 2026-10-07. <code>usda_psd_all</code>에는 실제 <code>Market_Year</code> 열이 있으나 coverage 출력은 ‘기간 열 없음’으로 표시하므로 그대로 옮겼다. 위 표는 수집기 범위이며, 본문의 IMF·EC 가격과 KOSIS 표는 별도 공통 원자료에서도 대조했다.</p>
+<p>레지스트리 <code>olive</code>의 HS6은 <code>150920·150930·150940·150990</code>이다. 같은 레지스트리의 FAOSTAT 품목 목록에는 올리브 열매도 들어 있어, 품목별 분할 CSV의 <code>faostat_production_olive.csv</code>와 <code>faostat_trade_olive.csv</code>는 <strong>열매</strong> 행을 담는다. 오일 생산·소비·국가별 수입은 아카이브의 <code>QCL_olive_oil.csv</code>, <code>FBS_olive.csv</code>, <code>SCL_olive_oil.csv</code>, <code>TM_olive_oil.csv</code>를 별도로 확인했다. <code>SCL_olive.csv</code>의 코드 274 행은 FBS의 올리브 잔여유 포함 범위를 밝히는 근거다. KAMIS는 레지스트리에서 <code>null</code>이고, 확인한 공개 가공식품 목록에서도 올리브유 항목을 찾지 못했다.</p>
+<h3>자료 검토 범위</h3>
+<p>아카이브 원장의 기준은 제공된 <code>archive_inventory/olive.csv</code>다. 115개 각 행의 기존 <code>경로·레인·확장자·크기·수정일·dup_of</code>를 유지하고 판정·사유·반영_절을 채웠다. 입력에 SHA 열은 없고 모든 <code>dup_of</code>가 비어 있어 같은 해시를 새로 계산해 묶지는 않았다. 원장 115행에는 모두 판정과 사유를 남겼다. <code>SCL_olive.csv</code>는 코드 274 올리브 잔여유 행이 FBS와 SCL 코드 261의 범위 차이를 설명하므로 반영으로 판정했다. 튀니지 GAIN 전망은 목록 발췌에 더해 <strong>공식 PDF 본문과 표 4</strong>에서 확인했다(USDA FAS, 「Oilseeds and Products Annual: Tunisia」, 2026-03-04, <a href="https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds+and+Products+Annual_Tunis_Tunisia_TS2026-0002.pdf">원문 PDF</a>).</p>
+<div class="tw">
+<table>
+<thead><tr><th>판정</th><th class="num">파일 수</th><th>처리</th></tr></thead>
+<tbody>
+<tr><td>반영</td><td class="num">14</td><td>원표·원문 또는 출처 목록의 범위를 확인해 사용</td></tr>
+<tr><td>불필요</td><td class="num">101</td><td>범위 밖, 중복 변환본, 오래된 보조자료 또는 메타자료</td></tr>
+<tr><td>미검토</td><td class="num">0</td><td>원장상 미검토 행 없음</td></tr>
+<tr class="tot"><td>전체</td><td class="num">115</td><td>제공된 입력 목록 전 행</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <code>archive_inventory/olive.csv</code>의 115행과 <code>01_조사노트/01_아카이브_원장.csv</code>(2026-10-08).</p>
+<p>이번 집필에서 원자료 아카이브에 새 웹 수집 파일을 만들지 않았다. 대신 공개된 2025년 UN Comtrade 한국 신고, 공통 원자료의 IMF·EC 가격 및 KOSIS 표, USDA GAIN PDF를 직접 대조했다. 은행 색인의 2026-10-07까지 <code>olive</code> 일치 한 건은 실제 원문에서 외식 브랜드 Olive Garden을 가리켜 제외했다. 원장상 미검토는 0건이다.</p>
+</section>
+
+<div class="wrap">
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 올리브유 산업 해부: 수입 집중과 지중해 작황</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1(검토본)</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 7일 · 관세청·FAOSTAT·UN Comtrade·IOC 원자료와 IMF·유럽위원회·KOSIS·USDA 자료를 구분해 사용했다</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>수치별 파일·필터·계산식은 30_근거_수치.md에 적었다. 결과는 update_2026-10-07/20_숫자대조.txt</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>HS 1509의 엑스트라버진·버진·기타 올리브유. HS 1510 포마스유와 식탁용 올리브 열매는 HS 1509 수입 합계에서 제외했다</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>2025년 한국 국가별 수입신고는 확보했다. 국내 기업별 올리브유 점유율, 현행 세번별 세율과 식품 규격 별표는 확인하지 못했다. 튀니지 GAIN 전망은 공식 PDF 본문에서 확인했다</span></div>
+</footer>
+</div>
+

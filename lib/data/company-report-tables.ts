@@ -182,6 +182,14 @@ const INTAKES: Record<string, Intake> = {
 
 export const REPORT_TABLE_COMPANIES = Object.keys(INTAKES);
 
+/**
+ * 공통 품목 라우트(/industry/[key])는 품목이 39개라 정적 import 로 묶으면 번들이 수 MB 붙는다.
+ * 화면이 `/data/companies/<key>_*_v1.json` 을 받아 여기 등록한 뒤 같은 함수로 읽는다.
+ */
+export function registerReportIntake(key: string, raw: unknown): void {
+  INTAKES[key] = raw as Intake;
+}
+
 /** 그 회사 보고서에서 옮겨 온 표 전량. */
 export function reportTables(company: string): ReportTable[] {
   return INTAKES[company]?.tables ?? [];

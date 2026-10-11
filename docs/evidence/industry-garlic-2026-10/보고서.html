@@ -1,0 +1,717 @@
+<title>한국 마늘 산업 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Kaushan+Script&family=Noto+Serif+KR:wght@700&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F2; --paper-2:#EAECE6; --card:#FCFCFA;
+  --ink:#14181B; --ink-2:#3F484E; --ink-3:#6B757B;
+  --rule:#D5D9D2; --rule-2:#BFC5BC;
+  --indigo:#1B3A5C; --indigo-soft:#E2E9F0; --abyss:#0E1A24;
+  --brass:#A9762E; --rust:#8C3A1B;
+  --disp:'Gothic A1',-apple-system,sans-serif;
+  --sans:'Noto Sans KR',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --scr:'Kaushan Script',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.78;font-weight:300;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:53rem;margin:0 auto;padding:0 1.6rem 6rem}
+
+/* ── 표지 ─────────────────────────────────────────── */
+.cover{position:relative;background:var(--abyss);color:#EDF1F2;overflow:hidden;
+  min-height:100vh;display:flex;align-items:stretch}
+/* 사진이 들어오면 .cover-bg 에 background-image 를 인라인으로 얹는다.
+   사진이 없어도 아래 그라디언트만으로 표지가 성립하게 둔다 — 이미지 의존을 만들지 않는다. */
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:50% 42%;
+  background-repeat:no-repeat;
+  background-color:var(--abyss)}
+.cover-wash{position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 12%, rgba(169,118,46,.20), transparent 60%),
+    radial-gradient(90% 70% at 12% 88%, rgba(27,58,92,.55), transparent 62%),
+    repeating-linear-gradient(102deg, rgba(255,255,255,.028) 0 1px, transparent 1px 14px)}
+/* 사진이 없을 때는 워시만으로 충분하다. 여기서 짙게 깔면 표지가 탁해진다. */
+.cover-tint{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,36,.28),rgba(14,26,36,.86))}
+/* 사진이 들어오면 비로소 짙은 틴트로 바꿔 표제 가독을 확보한다. */
+.cover.has-photo .cover-wash{opacity:.5}
+.cover.has-photo .cover-tint{
+  background:linear-gradient(180deg,
+    rgba(14,26,36,.86) 0%, rgba(14,26,36,.72) 26%,
+    rgba(14,26,36,.38) 52%, rgba(14,26,36,.62) 78%,
+    rgba(14,26,36,.92) 100%)}
+.cover-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  justify-content:space-between;width:100%;max-width:53rem;margin:0 auto;
+  padding:3.2rem 1.6rem 2.6rem}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.cover-mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(237,241,242,.55)}
+.cover-tag{font-family:var(--mono);font-size:.68rem;line-height:2;
+  color:rgba(237,241,242,.62);text-align:right}
+.cover-mid{padding:3rem 0 2rem}
+.cover-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);margin:0 0 1.5rem}
+.cover h1{font-family:var(--disp);font-weight:800;margin:0 0 1.4rem;
+  font-size:clamp(2.4rem,6.4vw,4rem);line-height:1.16;letter-spacing:-.03em}
+.cover h1 .scr{font-family:var(--scr);font-weight:400;color:var(--brass);
+  letter-spacing:0;font-size:.92em;padding-right:.1em}
+.cover h1 .lt{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.01em;color:rgba(237,241,242,.96)}
+.cover-sub{font-family:var(--sans);font-weight:300;font-size:clamp(1rem,2.2vw,1.3rem);
+  line-height:1.66;color:rgba(237,241,242,.84);max-width:42rem;margin:0}
+.cover-by{display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(237,241,242,.16);padding-top:1.1rem;margin-top:1.6rem}
+.by-k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,241,242,.48);margin-bottom:.2rem}
+.by-v{font-family:var(--disp);font-weight:600;font-size:1.05rem}
+.by-r{font-family:var(--mono);font-size:.76rem;color:rgba(237,241,242,.62)}
+.cover-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.4rem,1fr));
+  gap:1px;background:rgba(237,241,242,.14);border:1px solid rgba(237,241,242,.14);
+  margin-top:1.8rem}
+.cf{background:var(--abyss);padding:.85rem .95rem}
+.cf .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(237,241,242,.52);margin-bottom:.3rem}
+.cf .v{font-family:var(--disp);font-weight:700;font-size:1.35rem;line-height:1.15;
+  letter-spacing:-.02em}
+.cf .v.dn{color:#D98A6A} .cf .v.up{color:#8FB8D6}
+.cf .n{font-family:var(--mono);font-size:.62rem;color:rgba(237,241,242,.5);margin-top:.25rem}
+
+/* ── 절 ──────────────────────────────────────────── */
+section{padding:3.4rem 0 .4rem;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.26;letter-spacing:-.025em;margin:0 0 1rem;color:var(--ink)}
+.h2n{font-family:var(--mono);font-size:.7rem;color:var(--indigo);font-weight:500;
+  letter-spacing:.1em;display:block;margin-bottom:.9rem;text-transform:uppercase}
+h3{font-family:var(--disp);font-weight:700;font-size:1.16rem;line-height:1.4;
+  margin:2.2rem 0 .7rem;color:var(--ink)}
+h4{font-family:var(--disp);font-weight:600;font-size:.98rem;margin:1.5rem 0 .5rem;
+  color:var(--ink-2)}
+p{margin:0 0 1.05rem}
+.lead{font-size:1.1rem;line-height:1.72;color:var(--ink-2);font-weight:300;
+  margin-bottom:1.6rem}
+strong,b{font-weight:600;color:var(--ink)}
+em{font-style:normal;font-weight:500;
+  background:linear-gradient(transparent 58%,rgba(169,118,46,.24) 58%)}
+a{color:var(--indigo);text-decoration:none;border-bottom:1px solid var(--rule-2)}
+
+/* ── 표 ──────────────────────────────────────────── */
+.tw{overflow-x:auto;margin:0 0 1.6rem;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.85rem;
+  background:var(--card)}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.03em;color:var(--ink-3);padding:.7rem .85rem .55rem;
+  background:var(--paper-2);border-bottom:1px solid var(--rule);line-height:1.7}
+th,td{padding:.5rem .85rem;border-bottom:1px solid var(--rule);vertical-align:top;
+  line-height:1.6;font-weight:300}
+thead th{background:var(--paper-2);font-family:var(--disp);font-weight:600;
+  font-size:.76rem;color:var(--ink-2);text-align:left;white-space:nowrap;
+  letter-spacing:.01em}
+td.num,th.num,.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+thead th.num{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tr.tot td{background:var(--indigo-soft);font-weight:600}
+tr.tot td.num{font-weight:600}
+td.num.neg{color:var(--rust)}
+/* 부록 — 100행 표. 본문 표보다 작게 조여 A4 한 폭에 넣는다 */
+table.apx{font-size:.72rem}
+table.apx td,table.apx th{padding:.26rem .4rem;line-height:1.35}
+table.apx td.sm{font-size:.68rem;color:var(--ink-2)}
+table.apx .na{color:var(--ink-3)}
+table.apx tbody tr:nth-child(5n) td{border-bottom:1px solid var(--rule-2)}
+table.apx tr.grp td{background:var(--indigo-soft);border-top:1px solid var(--rule-2)}
+table.apx td.pd{padding-left:1.1rem}
+table.apx th.yb,table.apx td.yb{border-left:1px solid var(--rule-2)}
+table.apx thead tr:first-child th{text-align:center}
+table.apx th .sub{font-weight:400;font-size:.62rem;color:var(--ink-3)}
+/* 누적은 연도 블록과 성격이 다른 값이다 — 음영으로 뗀다 */
+table.apx th.cum,table.apx td.cum{background:var(--indigo-soft);color:var(--ink)}
+table.apx tr.grp td.cum{background:var(--indigo-soft)}
+/* A-1 은 13열이다. A4 세로 인쇄폭(180mm)을 넘으면 오른쪽 열이 잘려 나간다 —
+   실제로 2025 가동률과 누적이 PDF 에서 사라진 적이 있다. 이 표만 더 조인다.
+   Chrome 헤드리스는 named @page 의 landscape 를 무시하므로 눕히는 길은 없다. */
+table.apx.a1{font-size:.60rem}
+table.apx.a1 td,table.apx.a1 th{padding:.2rem .22rem}
+table.apx.a1 td.sm{font-size:.57rem}
+.bg{display:inline-block;font-family:var(--mono);font-size:.58rem;line-height:1.5;
+    padding:0 .28rem;border:1px solid var(--indigo);color:var(--indigo);
+    border-radius:2px;vertical-align:.06rem;white-space:nowrap}
+
+/* ── 콜아웃 ──────────────────────────────────────── */
+.call{border:1px solid var(--rule-2);background:var(--card);padding:1.15rem 1.3rem;
+  margin:0 0 1.6rem;break-inside:avoid}
+.call .ct{font-family:var(--disp);font-weight:700;font-size:.86rem;margin:0 0 .5rem;
+  color:var(--ink)}
+.call p{margin:0 0 .6rem;font-size:.9rem;line-height:1.72}
+.call p:last-child{margin:0}
+.call.warn{border-left:3px solid var(--rust);background:#FBF6F3}
+.call.warn .ct{color:var(--rust)}
+.call.hot{border-left:3px solid var(--brass);background:#FBF8F2}
+.call.hot .ct{color:var(--brass)}
+
+/* ── 지표 그리드 ─────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}
+.metric{background:var(--card);padding:1rem 1.1rem}
+.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink-3);margin-bottom:.35rem}
+.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12;
+  letter-spacing:-.025em;color:var(--ink)}
+.metric .v.dn{color:var(--rust)} .metric .v.up{color:var(--indigo)}
+.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem;
+  line-height:1.6}
+
+/* ── 칩 ──────────────────────────────────────────── */
+.chip{display:inline-block;font-family:var(--mono);font-size:.62rem;padding:.05rem .38rem;
+  border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-3);
+  vertical-align:.08em;white-space:nowrap}
+.chip.c-nd{border-color:#D8C09A;background:#FAF4E9;color:#8A6A2E}
+.chip.c-src{border-color:#B7C7D6;background:#EEF3F8;color:var(--indigo)}
+
+/* ── 인용·막대 ───────────────────────────────────── */
+blockquote{margin:0 0 1.4rem;padding:.9rem 0 .9rem 1.2rem;
+  border-left:2px solid var(--rule-2);color:var(--ink-2);font-size:.94rem;
+  line-height:1.76;font-weight:300}
+blockquote p:last-child{margin:0}
+cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;
+  color:var(--ink-3);margin-top:.5rem}
+figure{margin:0 0 1.8rem;border:1px solid var(--rule);background:var(--card)}
+figure .fi{background:var(--paper-2);padding:1.5rem 1.4rem}
+figcaption{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);
+  padding:.6rem .85rem;border-top:1px solid var(--rule);line-height:1.7}
+.bars{margin:0 0 1.6rem}
+.bar{display:grid;grid-template-columns:6.4rem 1fr 3.6rem;align-items:center;
+  gap:.7rem;margin-bottom:.4rem;font-size:.78rem}
+.bar .nm{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;
+  font-family:var(--sans)}
+.bar .tr{background:var(--rule);height:.95rem;position:relative}
+.bar .fl{display:block;height:100%;background:var(--indigo)}
+.bar .fl.b{background:#5D82A4} .bar .fl.c{background:#A9BDCD}
+.bar .vl{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  color:var(--ink-2)}
+
+ul,ol{margin:0 0 1.2rem;padding-left:1.2rem}
+li{margin-bottom:.45rem;line-height:1.74}
+.src{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+  margin:0 0 1.5rem;line-height:1.8}
+.tw + .src, figure + .src{margin-top:-1rem}
+hr{border:none;border-top:1px solid var(--rule);margin:2.4rem 0}
+.print-toc{break-before:page}
+.print-toc h2{margin-bottom:.8rem}
+
+/* 인쇄 쪽 갈림 — 감사가 실물 PDF 에서 잡은 다섯 자리를 막는다.
+   ① 절 번호줄만 남고 제목이 넘어감 ② 3행짜리 표가 머리행만 남고 갈라짐
+   ③ 소제목만 남고 본문이 넘어감 ④ 막대 차트가 쪽 경계에서 쪼개짐 */
+/* 화면용 차례 — 인쇄에서는 nav 가 숨고 mkpdf 의 목차 쪽이 대신한다 */
+.toc{margin:2.6rem 0 1rem;padding:1.4rem 1.6rem;border:1px solid var(--rule);background:var(--card)}
+.toc .toc-h{font-family:var(--disp);font-weight:700;font-size:1rem;margin:0 0 .8rem;letter-spacing:.02em}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.toc li{break-inside:avoid;padding:.28rem 0;border-bottom:1px solid var(--rule)}
+.toc a{display:flex;gap:.8rem;text-decoration:none;color:var(--ink)}
+.toc .n{font-family:var(--mono);font-size:.68rem;color:var(--indigo);min-width:6.2rem;padding-top:.15rem}
+.toc .t{font-size:.88rem}
+/* 콜로폰 */
+.colophon{margin:3rem 0 0;padding:1.4rem 0 0;border-top:2px solid var(--ink);font-size:.8rem;color:var(--ink-2)}
+.cl-row{display:flex;gap:1rem;padding:.22rem 0}
+.cl-row .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-3);min-width:5.5rem;padding-top:.2rem}
+@media print{
+  /* Chrome 은 기본으로 배경을 안 찍는다. 표의 음영이 정보라서 강제한다 —
+     tr.tot 합계행·td.cum 누적열·.call 콜아웃이 전부 배경으로만 구분된다 */
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+
+  h2, h3, h4{break-after:avoid; break-inside:avoid}
+  .h2n{break-after:avoid}
+  .tw{break-inside:avoid}
+  .tw td,.tw th{overflow-wrap:anywhere}
+  .tw.long{break-inside:auto}
+  .tw.long thead{display:table-header-group}
+  .tw.long tr{break-inside:avoid}
+  .tw.long td, .tw.long th{padding:.11rem .3rem; line-height:1.22}
+  figure, .bars, .metrics{break-inside:avoid}
+  .colophon{break-inside:avoid; break-before:auto}
+  caption{break-after:avoid}
+  thead{break-after:avoid}
+  p{orphans:2; widows:2}
+}
+.tw.wide table{font-size:.84em}.tw.wide td,.tw.wide th{padding:.22rem .36rem}
+</style>
+
+
+<header class="cover">
+  <div class="cover-wash"></div>
+  <div class="cover-tint"></div>
+  <div class="cover-in">
+
+    <div class="cover-top">
+      <div class="cover-mark">산업 구조 분석</div>
+      <div class="cover-tag">
+        대한민국 · 마늘<br>
+        세계 수급 · 국내 생산 · 수입 · 가격 · 유통 · 제도<br>
+        2023~2026
+      </div>
+    </div>
+
+    <div class="cover-mid">
+      <p class="cover-kick">국내 생산과 중국 공급망이 만나는 양념채소 · 리포트 2026</p>
+      <h1><span class="scr">Garlic</span> <span class="lt">한국 마늘 산업 해부</span></h1>
+      <p class="cover-sub">한국은 마늘을 생산하는 동시에 여러 형태의 마늘을 수입한다.
+        신선·냉장 마늘의 통관량만으로 전체 수입 의존도를 계산할 수 없고, 수확량만으로 다음 계절의 공급을 설명할 수도 없다.
+        생산·저장·가공·수입과 관세 제도를 서로 다른 원자료로 확인한다.</p>
+    </div>
+
+    <div class="cover-by">
+      <div>
+        <span class="by-k">작성</span>
+        <span class="by-v">이동건</span>
+      </div>
+      <div class="by-r">2026년 10월</div>
+    </div>
+
+    <div class="cover-facts">
+      <div class="cf"><div class="k">2025 국내 생산</div><div class="v">310,007</div>
+        <div class="n">톤 · KOSIS 통관 비교 기준연도</div></div>
+      <div class="cf"><div class="k">2025 국내 면적</div><div class="v">22,947</div>
+        <div class="n">ha · KOSIS 「마늘:면적」</div></div>
+      <div class="cf"><div class="k">2024 세계 생산</div><div class="v">2,969만</div>
+        <div class="n">톤 · FAOSTAT 「Green garlic」</div></div>
+      <div class="cf"><div class="k">중국 본토 생산 비중</div><div class="v">72.9%</div>
+        <div class="n">2024 · FAOSTAT 「China, mainland」(41)</div></div>
+      <div class="cf"><div class="k">2025 신선·냉장 수입</div><div class="v">1,510.6</div>
+        <div class="n">톤 · 관세청 HS 0703.20-1000·9000</div></div>
+      <div class="cf"><div class="k">2025 건조 마늘 수입</div><div class="v">612.7</div>
+        <div class="n">톤 · 관세청 HS 0712.90-1000</div></div>
+      <div class="cf"><div class="k">2026 WTO TRQ</div><div class="v">14,467</div>
+        <div class="n">톤 · 쿼터 안 50%, 밖 360%</div></div>
+      <div class="cf"><div class="k">가락 깐마늘 대서</div><div class="v">8,200</div>
+        <div class="n">원/kg · 2026-09-30 KAMIS 표시가격</div></div>
+    </div>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+
+<nav class="toc" aria-label="목차">
+  <p class="toc-h">차례</p>
+  <ol>
+    <li><a href="#s01"><span class="n">01 · 요약</span><span class="t">국내 생산이 크고 수입은 가공 형태까지 걸친다</span></a></li>
+    <li><a href="#s02"><span class="n">02 · 세계 수급</span><span class="t">중국이 생산의 중심이고 통계마다 마늘의 형태가 다르다</span></a></li>
+    <li><a href="#s03"><span class="n">03 · 한국 생산·소비</span><span class="t">산지 생산은 커졌고 소비 지표는 수급표 정의에 따라 다르다</span></a></li>
+    <li><a href="#s04"><span class="n">04 · 무역</span><span class="t">전 형태 수입과 신선 마늘 통관량은 서로 다른 숫자다</span></a></li>
+    <li><a href="#s05"><span class="n">05 · 가격</span><span class="t">품종·시장·통화를 지우면 한 개의 마늘 값이 되지 않는다</span></a></li>
+    <li><a href="#s06"><span class="n">06 · 주요 공급국·산지</span><span class="t">생산국과 수출 신고국은 일치하지 않는다</span></a></li>
+    <li><a href="#s07"><span class="n">07 · 유통·기업</span><span class="t">저장과 깐마늘 가공 단계가 가격을 연결한다</span></a></li>
+    <li><a href="#s08"><span class="n">08 · 제도·정책</span><span class="t">관세 쿼터와 유통 이력이 수입 경로를 나눈다</span></a></li>
+    <li><a href="#s09"><span class="n">09 · 은행·기관 리포트</span><span class="t">전망의 범위는 발표 시점과 적용 지역에 따라 다르다</span></a></li>
+    <li><a href="#s10"><span class="n">10 · 관찰 지표·남은 물음</span><span class="t">수확, 재고, 수입 형태와 제도를 함께 본다</span></a></li>
+    <li><a href="#s11"><span class="n">11 · 기업 지도·밸류체인·이해당사자</span><span class="t">중국산 원료와 국내 저장·가공의 접점</span></a></li>
+    <li><a href="#sA"><span class="n">부록 A · 수집기</span><span class="t">부록 A. 수집기·자료 현황</span></a></li>
+  </ol>
+</nav>
+
+<section id="s01">
+<h2><span class="h2n">01 &nbsp;/&nbsp; 요약</span>국내 생산이 크고 수입은 가공 형태까지 걸친다</h2>
+<p class="lead">한국 마늘 산업의 출발점은 국내 생산량이다. 통관·가격과 비교할 기준연도인 2025년 KOSIS 생산량은 310,007.222톤, 면적은 22,947.0074ha다. KOSIS는 2026년 생산량 313,685.4916톤도 2026년 8월 12일 공표했다. 2025년 생산량은 전년보다 8.8% 늘었지만 면적은 1.5% 줄었다. 생산된 마늘은 수확 직후 전량 소비되지 않는다. 저장·선별·깐마늘 가공과 출고 시점이 다음 계절의 공급을 바꾼다(E01·E03).</p>
+<h3>자료에서 확인한 수치</h3>
+<ul>
+<li><strong>생산.</strong> 2025년 국내 생산량은 약 310,007톤(원값 310,007.222톤), 면적은 약 22,947ha(원값 22,947.0074ha), 10a당 생산량은 1,350.9702kg이다. KOSIS 「채소생산량(조미채소)」 전국 행의 값이다. 경남·경북·충남·전남 네 지역 생산량을 합하면 253,309.3904톤으로 전국의 81.7%다(E01).</li>
+<li><strong>세계 공급.</strong> FAOSTAT 「Green garlic」의 2024년 세계 생산량은 29,690,764톤이다. 중국 본토 「China, mainland」(41)는 21,645,771톤으로 세계의 72.9%, 인도는 3,239,000톤으로 10.9%다. FAO 「China」(351)는 대만 등을 포함하는 다른 집계다. 중국 정부의 건마늘 수급표와 직접 합산하지 않는다(E02).</li>
+<li><strong>한국 통관과 전체 수입.</strong> 관세청 HS10의 2025년 신선·냉장 마늘 수입은 1,510.644톤, 건조 마늘 수입은 612.701톤이다. KREI가 제시한 2025년산 6~12월 전 형태 수입량은 통마늘 환산 52,027톤이며, 그중 냉동마늘이 47,342톤(91.0%)이다. 기간과 환산 기준이 달라 두 계열의 물량을 합산하지 않는다(E04·E19). <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026-01-22</a></li>
+<li><strong>원산지.</strong> FAOSTAT TM의 2021~2024년 한국 「Green garlic」 수입에서 중국 본토 비중은 해마다 99.99% 이상이다. 관세청 국가별 파일의 2026년 3~8월 잠정 신선·냉장 수입 1,430,407kg 가운데 중국 신고분은 1,430,402kg, 태국은 5kg이다. 앞의 완료연도 계열과 뒤의 부분기간 계열을 구별한다(E05·E18).</li>
+<li><strong>가격.</strong> KAMIS의 2026년 9월 30일 서울 가락도매 「깐마늘(대서)(1kg)」 표시가격은 8,200원/kg, 「깐마늘(남도)(1kg)」은 8,650원/kg이다. 두 값은 도매 관측값이다. KAMIS의 「평년」은 최근 5년 중 최고·최저를 제외한 3년 평균이므로 실측가격과 섞지 않는다(E07).</li>
+<li><strong>수입 제도.</strong> 2026년 마늘 WTO TRQ 계획은 14,467톤이고 쿼터 안 50%, 밖 360%다. 한·중 FTA 설명자료는 통·깐·건조·일시저장·냉동·조제저장처리 마늘을 양허 제외로 분류한다(E14). <a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농림축산식품부, 「2026년 WTO TRQ 운영계획」, 2025년 9월</a>, <a href="https://www.fta.go.kr/webmodule/_PSD_FTA/cn/3/03_cn_Guide.pdf">FTA 포털, 「한·중 FTA 상세설명자료」, 2015년</a></li>
+<li><strong>저장.</strong> KREI의 2026년 4월 관측은 2025년산 난지형 마늘의 3월 말 저장량을 27,343톤으로 추정했다. 2026년 10월호는 <strong>다음 연산인 2026년산</strong> 난지형 마늘의 9월 말 재고량을 80,058톤으로 추정했다. 서로 다른 연산과 시점의 재고를 증감률로 비교하지 않는다(E12·E20). <a href="https://aglook.krei.re.kr/upload/observeFiles/6dcd8ac031434a1fba37d174aae5991b.pdf">한국농촌경제연구원 농업관측센터, 「양념채소 2026년 10월호」, 2026-10-02</a></li>
+</ul>
+<h3>이 보고서의 판단과 검증 조건</h3>
+<ul>
+<li><strong>수확량과 저장 출고량은 함께 살펴야 한다.</strong> 저장량, 감모율, 가공 수율과 출고 시점이 달라질 수 있다. 여러 연산의 같은 기준 자료에서 저장·출고 지표가 가격 설명력을 높이는지 검증할 수 있다.</li>
+<li><strong>신선·냉장 세번의 통관량은 전체 마늘 수입량을 대표하지 않는다.</strong> KREI의 2025년산 6~12월 통마늘 환산 수입에서 냉동마늘이 91.0%를 차지한다. 세번별 통관량과 환산 수입량은 같은 기간·같은 단위로 맞춘 뒤 비교한다(E04·E19). <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 표 9-18, 2026-01-22</a></li>
+<li><strong>중국 공급 변화는 한국 수입시장에 큰 변수다.</strong> 중국 본토는 FAOSTAT 2024년 세계 생산의 72.9%를 차지하고, 중국은 같은 해 UN Comtrade의 신선·냉장 마늘 신고 수출량에서도 가장 크다. 한국의 2021~2024년 해당 FAOSTAT 수입계열 역시 중국 본토에 집중됐다. 이후 완료연도의 생산·수출·원산지 구성이 어떻게 달라지는지 추적할 수 있다(E02·E06·E18).</li>
+</ul>
+<p>중국 정부와 KREI의 2026년 수급 수치, 협회·업체의 시장 평가는 발표 당시의 추정·전망으로 읽는다.</p>
+</section>
+
+<section id="s02">
+<h2><span class="h2n">02 &nbsp;/&nbsp; 세계 수급</span>중국이 생산의 중심이고 통계마다 마늘의 형태가 다르다</h2>
+<p class="lead">세계 생산의 기준은 FAOSTAT QCL 「Green garlic」다. 최근 완료연도인 2024년 세계 생산량은 29,690,764톤이다. 중국 본토 「China, mainland」(Area Code 41)는 21,645,770.92톤으로 인도 3,239,000톤보다 크다. FAO 「China」(351)는 본토·홍콩·마카오·대만을 포괄하는 집계이므로 본토 행과 더하지 않는다. 세계·대륙·지역 합계 행도 국가별 생산량에 다시 더하지 않는다(E02).</p>
+<div class="tw">
+<table>
+<caption>표 1. FAOSTAT 마늘 생산 비교(2024년, 「Green garlic」)</caption>
+<thead><tr><th>구분</th><th class="num">생산량(톤)</th><th class="num">세계 생산 대비</th><th>원자료 플래그</th></tr></thead>
+<tbody>
+<tr><td>세계</td><td class="num">29,690,764</td><td class="num">100.0%</td><td>E</td></tr>
+<tr><td>중국 본토(41)</td><td class="num">21,645,771</td><td class="num">72.9%</td><td>E</td></tr>
+<tr><td>인도</td><td class="num">3,239,000</td><td class="num">10.9%</td><td>A</td></tr>
+<tr><td>이집트</td><td class="num">558,228</td><td class="num">1.9%</td><td>I</td></tr>
+<tr><td>방글라데시</td><td class="num">527,665</td><td class="num">1.8%</td><td>A</td></tr>
+<tr><td>한국</td><td class="num">284,936</td><td class="num">1.0%</td><td>A</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 QCL_garlic.csv, Item=Green garlic·Element=Production·Year=2024. 중국 본토 원값은 21,645,770.92톤이며, 비중은 각 Value÷World Value×100을 소수 첫째 자리로 반올림했다(E02).</p>
+<p>중국 농업농촌부의 2026년 6월 자료는 그해 <strong>건마늘</strong> 생산을 1,645만 톤, 수출을 353만 톤, 연말 재고를 331만 톤으로 추정한다. 2025년 가을 비로 파종이 20~40일 늦었지만 봄 생육은 예상보다 좋았다는 설명이다. 건마늘 기준의 2026년 전망과 FAOSTAT의 2024년 「Green garlic」 본토 생산량 차이를 생산 감소율로 해석하지 않는다. <a href="https://scs.moa.gov.cn/jcyj/202606/t20260623_6485239.htm">중국 농업농촌부, 마늘 수급 회상자료, 2026-06-22</a></p>
+<p>세계 소비와 재고를 같은 정의로 연결하는 마늘 전용 USDA PSD 표는 수집기 목록에서 확인되지 않는다. FAOSTAT SCL의 국가별 식품공급량은 공급이용계정의 계산 결과다. 중국 정부의 건마늘 소비·재고 추정과 FAOSTAT 「Green garlic」 식품공급량을 하나의 세계 수급표로 이어 붙이지 않는다.</p>
+<p>공급국의 무역상 위치도 생산량과 다르다. 2024년 UN Comtrade의 합계 행에서는 중국이 신선·냉장 마늘 2,353,892톤을 세계 상대국으로 수출했다고 신고했다. 네덜란드·말레이시아 등 수출 신고국에는 재수출이 포함될 수 있어 수출국 순위를 산지 생산 순위처럼 해석하지 않는다(04·06절, E06).</p>
+<p>한국의 2026년산 면적에는 시점이 다른 두 자료가 있다. KREI 2026년 3월 관측의 현장 실측·항공촬영 결과는 22,938ha였다. KOSIS의 2026년 전국 「마늘:면적」 행은 24,231.93ha이며 최종 갱신일은 2026년 8월 12일이다. KOSIS에는 2026년 생산량 313,685.4916톤도 공표돼 있다. 통관·가격의 연간 자료가 완결되지 않았으므로 산업 구조 비교에는 2025년을 기준연도로 쓴다(E03).</p>
+</section>
+
+<section id="s03">
+<h2><span class="h2n">03 &nbsp;/&nbsp; 한국 생산·소비</span>산지 생산은 커졌고 소비 지표는 수급표 정의에 따라 다르다</h2>
+<p class="lead">KOSIS 「채소생산량(조미채소)」의 전국 생산량은 2023년 318,219.5921톤, 2024년 284,936.3681톤, 2025년 310,007.222톤이다. 2025년 면적은 전년보다 1.5% 줄었으나 10a당 생산량은 10.4% 늘었다. 생산량 증가는 단수 상승과 함께 나타났다(E01).</p>
+<div class="tw">
+<table>
+<caption>표 2. 국내 마늘 생산의 세 요소</caption>
+<thead><tr><th>연도</th><th class="num">면적(ha, KOSIS 「마늘:면적」)</th><th class="num">10a당 생산량(kg)</th><th class="num">총생산량(톤)</th></tr></thead>
+<tbody>
+<tr><td>2023</td><td class="num">24,700.3694</td><td class="num">1,288.3192</td><td class="num">318,219.5921</td></tr>
+<tr><td>2024</td><td class="num">23,289.6828</td><td class="num">1,223.4446</td><td class="num">284,936.3681</td></tr>
+<tr><td>2025</td><td class="num">22,947.0074</td><td class="num">1,350.9702</td><td class="num">310,007.2220</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: _raw/_items/garlic/kosis_crops_veg_seasoning_garlic.csv, C1_NM=전국·ITM_NM=마늘:면적/마늘:10a당 생산량/마늘:생산량·PRD_DE=각 연도(E01).</p>
+<p>2025년 산지는 경남 98,087.4914톤, 경북 72,003.5209톤, 충남 48,926.1184톤, 전남 34,292.2597톤 순이다. 네 지역의 합 253,309.3904톤은 전국의 81.7%다. 이것은 시도 생산 집중도이며 도매시장 반입량이나 기업 취급량 순위가 아니다(E01).</p>
+<p>KOSIS는 2026년 전국 생산량 313,685.4916톤과 면적 24,231.93ha를 2026년 8월 12일 갱신했다. 이 보고서는 통관·가격의 비교 기간을 맞추기 위해 2025년을 구조 비교의 기준연도로 쓴다. KREI 「농업전망 2026」의 2025년산 생산 29.2만 톤은 2026년 1월 당시의 농업관측센터 기준치다. 이를 KOSIS 2025년 전국 행과 섞어 증감률을 만들지 않는다(E01·E03). <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」, 2026-01-22</a></p>
+<p>FAOSTAT SCL의 한국 2023년 「Green garlic」 식품공급량은 278,484.8톤, 1인당 하루 공급량은 14.74g이다. 생산 318,220톤에 수입 9,731.43톤을 더하고 수출 273.91톤과 손실 49,192.71톤을 빼면 278,484.81톤으로, 표시 자리에서 식품공급량과 일치한다. Residuals 행은 0이다. 공급이용계정의 추정·계산값이므로 가계가 실제 먹은 무게를 직접 조사한 수치는 아니다(E08).</p>
+<p>KREI의 2025년산 총공급량 약 36.6만 톤과 자급률 80.0%는 2026년 1월 문서의 연산 기준 잠정·모형 수치다. 수입에는 깐마늘·냉동마늘·건조마늘·초산조제마늘의 통마늘 환산량이 포함되고 이월재고는 총공급량 계산에서 제외된다. 관세청 신선·냉장 세번의 2025년 1,510.644톤을 그 수급표의 전체 수입량으로 쓰지 않는다. <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026-01-22</a></p>
+</section>
+
+<section id="s04">
+<h2><span class="h2n">04 &nbsp;/&nbsp; 무역</span>전 형태 수입과 신선 마늘 통관량은 서로 다른 숫자다</h2>
+<p class="lead">직접 집계한 관세청 범위는 신선·냉장 마늘 HS 0703.20-1000(껍질을 깐 것)·9000(기타), 건조 마늘 HS 0712.90-1000이다. HS6 0712.90은 다른 건조 채소와 혼합물까지 들어가는 공유 바구니다. 냉동마늘 0710.80-2000, 일시저장 마늘 0711.90-1000, 조제 마늘은 아래 관세청 집계에 들어 있지 않다(E04).</p>
+<div class="tw">
+<table>
+<caption>표 3. 관세청 신선·냉장 마늘 HS10 수입</caption>
+<thead><tr><th>구분</th><th class="num">수입(톤)</th><th class="num">수입액(백만 달러)</th><th class="num">단가($/kg)</th></tr></thead>
+<tbody>
+<tr><td>2025년 전체</td><td class="num">1,510.644</td><td class="num">1.843</td><td class="num">1.22</td></tr>
+<tr><td>2025년 1~8월</td><td class="num">535.592</td><td class="num">0.861</td><td class="num">1.61</td></tr>
+<tr><td>2026년 1~8월</td><td class="num">1,850.500</td><td class="num">1.781</td><td class="num">0.96</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: _raw/_items/garlic/customs_item_trade_monthly_garlic.csv, hsCode=0703201000·0703209000 또는 0712901000. 톤=kg÷1,000, 백만 달러=달러÷1,000,000, 단가=달러÷kg(E04).</p>
+<div class="tw">
+<table>
+<caption>표 3-1. 관세청 건조 마늘 HS 0712.90-1000 수입</caption>
+<thead><tr><th>구분</th><th class="num">수입(톤)</th><th class="num">수입액(백만 달러)</th></tr></thead>
+<tbody>
+<tr><td>2025년 전체</td><td class="num">612.701</td><td class="num">2.405</td></tr>
+<tr><td>2025년 1~8월</td><td class="num">522.199</td><td class="num">2.057</td></tr>
+<tr><td>2026년 1~8월</td><td class="num">222.829</td><td class="num">0.932</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: _raw/_items/garlic/customs_item_trade_monthly_garlic.csv, hsCode=0703201000·0703209000 또는 0712901000. 톤=kg÷1,000, 백만 달러=달러÷1,000,000, 단가=달러÷kg(E04).</p>
+<p>2026년 1~8월 신선·냉장 수입량은 전년 같은 기간의 535.592톤에서 1,850.500톤으로 245.5% 늘었다. 진행연도의 누적 증가율이다. 건조 마늘은 같은 기간 522.199톤에서 222.829톤으로 줄었다. 형태별 무게를 환산 없이 더해 「총 마늘 수입」이라고 부르지 않는다.</p>
+<p>KREI 「농업전망 2026」 표 9-18의 <strong>2025년산 6~12월</strong> 전 형태 수입량은 통마늘 환산 52,027톤이다. 이 가운데 냉동마늘 47,342톤(91.0%), 초산조제마늘 2,082톤(4.0%), 건조마늘 1,266톤(2.4%), 통마늘 1,032톤(2.0%), 깐마늘 306톤(0.6%)이다. 항목별 표시값은 반올림돼 합계와 1톤 차이가 난다. 이는 2025년 <strong>달력연도</strong>의 표 3과 기간·환산 기준이 다른 계열이다(E19). <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 표 9-18, 2026-01-22</a></p>
+<p>국가별 관세청 수집 파일은 2026년 3~8월을 담는다. 같은 기간 HS 0703.20으로 신고된 신선·냉장 마늘은 거의 전부 중국에서 왔다. 이 부분기간 비중을 2026년 연간 점유율로 표기하지 않는다(E05).</p>
+<div class="tw">
+<table>
+<caption>표 4. 국가별 신선·냉장 마늘 수입(2026년 3~8월, 잠정)</caption>
+<thead><tr><th>신고 원산지</th><th class="num">수입량(kg)</th><th class="num">수입액(달러)</th><th class="num">해당 기간 물량 비중</th></tr></thead>
+<tbody>
+<tr><td>중국</td><td class="num">1,430,402</td><td class="num">1,340,142</td><td class="num">99.9997%</td></tr>
+<tr><td>태국</td><td class="num">5</td><td class="num">27</td><td class="num">0.0003%</td></tr>
+<tr class="tot"><td>합계</td><td class="num">1,430,407</td><td class="num">1,340,169</td><td class="num">100.0000%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: processed_data/customs_kr/garlic_customs_kr_monthly.csv, hsCd=070320·period=202603~202608·impWgt&gt;0, statCdCntnKor1별 합계(E05).</p>
+<p>완료연도 원산지는 FAOSTAT TM의 한국 「Green garlic」 수입 상대국 행으로 확인한다. 상대국 행을 합산한 총량과 「China, mainland」(41)의 물량은 다음과 같다.</p>
+<div class="tw">
+<table>
+<caption>표 4-1. 한국 「Green garlic」 수입의 중국 본토 비중(FAOSTAT TM)</caption>
+<thead><tr><th>연도</th><th class="num">상대국 행 합계(톤)</th><th class="num">중국 본토(톤)</th><th class="num">물량 비중</th></tr></thead>
+<tbody>
+<tr><td>2021</td><td class="num">5,758.57</td><td class="num">5,758.46</td><td class="num">99.9981%</td></tr>
+<tr><td>2022</td><td class="num">21,952.99</td><td class="num">21,952.97</td><td class="num">99.9999%</td></tr>
+<tr><td>2023</td><td class="num">2,980.39</td><td class="num">2,980.35</td><td class="num">99.9987%</td></tr>
+<tr><td>2024</td><td class="num">463.43</td><td class="num">463.41</td><td class="num">99.9957%</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 아카이브 TM_garlic.csv, Reporter Countries=Republic of Korea·Item=Green garlic·Element=Import quantity·Year=각 연도. 상대국 행의 Value 합계로 분모를 계산했다(E18). 2024년 UN Comtrade HS 070320의 한국 신고도 World 463,431.396kg 중 China 463,410.6kg이다(E18).</p>
+<p>2025년 UN Comtrade 한국 신고 HS 070320 수입도 World 1,510,644.837kg 중 중국 1,510,618.597kg(99.998%)이다(<a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=070320&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 공개 미리보기</a>, 2025).</p>
+<p>UN Comtrade 수집 파일의 2025년 한국 HS 070320 World 상대국 수입 합계 행은 1,510,644.837kg·1,842,948달러다. 관세청 HS10 합 1,510,644kg과 물량 차이는 0.837kg이다. Comtrade의 customsCode=C00, motCode=0, partner2Code=0, partnerCode=0 합계 행만 읽었으며, 이 수집 파일의 2025년 한국 행은 World 합계다(E09).</p>
+<p>FAOSTAT TCL의 2024년 한국 「Green garlic」 수입은 463.43톤이다. 관세청 품목 월간 분할 파일의 2024년 행은 11~12월만 담으므로 두 달 합을 2024년 연간 값과 비교하지 않는다(E10).</p>
+</section>
+
+<section id="s05">
+<h2><span class="h2n">05 &nbsp;/&nbsp; 가격</span>품종·시장·통화를 지우면 한 개의 마늘 값이 되지 않는다</h2>
+<p class="lead">국내 공개 일별 가격은 KAMIS의 거래단계·시장·품종을 붙여 읽는다. 아래 표는 2026년 3월 9일과 9월 30일의 같은 표시품목을 비교한다. 가락도매는 도매(productclscode=02), 서울 경동은 소매(productclscode=01)다. KAMIS 「평년」은 최근 5년 중 최고·최저를 뺀 3년 평균이며 일별 실측값이 아니다(E07).</p>
+<div class="tw wide">
+<table>
+<caption>표 5. KAMIS 동일 표시품목의 두 날짜 가격(원/kg)</caption>
+<thead><tr><th>표시품목</th><th>시장</th><th>거래단계</th><th class="num">2026-03-09</th><th class="num">2026-09-30</th><th class="num">차이</th></tr></thead>
+<tbody>
+<tr><td>깐마늘(대서)(1kg)</td><td>서울 가락도매</td><td>도매</td><td class="num">7,700</td><td class="num">8,200</td><td class="num">+500</td></tr>
+<tr><td>깐마늘(남도)(1kg)</td><td>서울 가락도매</td><td>도매</td><td class="num">8,050</td><td class="num">8,650</td><td class="num">+600</td></tr>
+<tr><td>깐마늘(국산)(1kg)</td><td>서울 경동</td><td>소매</td><td class="num">10,000</td><td class="num">10,000</td><td class="num">0</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: processed_data/kamis/garlic_kamis_price.csv, period=표의 두 날짜·countyname=서울·marketname 및 kindname 일치. 거래단계는 productclscode=02(도매)·01(소매), 차이는 9월 30일 값−3월 9일 값이다(E07).</p>
+<p>KREI의 2026년 3월 관측은 2월 깐마늘 상품 도매가격을 8,050원/kg으로 적었다. 4월 관측은 3월 상품 도매가격을 8,020원/kg으로 적고 당시 2025년산 난지형 저장량이 전년보다 많다고 보았다. KREI의 시장 평균과 표 5의 특정 시장·품종 가격을 같은 시계열로 잇지 않는다(E11·E12).</p>
+<p>중국 농업농촌부의 2026년 전국 도매시장 평균은 3월 8.35위안/kg, 4월 7.94위안/kg, 5월 7.48위안/kg이었다. 이 평균은 KAMIS의 한국산 깐마늘 특정 시장 가격과 통화·품질·거래단계가 다르다. <a href="https://scs.moa.gov.cn/jcyj/202606/t20260623_6485239.htm">중국 농업농촌부, 마늘 수급 회상자료, 2026-06-22</a></p>
+<p>FAOSTAT PP에는 국가별 마늘 생산자가격이 있다. 「Green garlic」 생산자가격(USD/tonne)은 중국 본토 2023년 1,252.6달러, 스페인 2024년 1,882.4달러다. 생산자가격은 KAMIS 도매·소매가격이나 관세청 통관단가와 거래단계가 다르며, 모든 나라에 공통으로 적용할 단일 국제 마늘가격도 아니다. World Bank Pink Sheet의 마늘 전용 가격계열은 제시된 원자료 목록에 없다(E21).</p>
+</section>
+
+<section id="s06">
+<h2><span class="h2n">06 &nbsp;/&nbsp; 주요 공급국·산지</span>생산국과 수출 신고국은 일치하지 않는다</h2>
+<p class="lead">FAOSTAT의 2024년 「Green garlic」 생산에서 중국 본토(41)는 세계의 72.9%를 차지한다. UN Comtrade의 같은 해 신선·냉장 마늘 수출 신고에서는 중국 물량이 가장 크다. 아래 표는 2024년 수출 신고국의 World 상대국 합계만 정렬했다. 재수출과 통계상 분류 차이가 있을 수 있어 산지 생산 순위로 읽지 않는다(E02·E06).</p>
+<div class="tw">
+<table>
+<caption>표 6. UN Comtrade 신선·냉장 마늘 수출 신고(2024년, HS 070320)</caption>
+<thead><tr><th>신고국</th><th class="num">World 상대국 순중량(톤)</th><th class="num">신고 수출액(백만 달러)</th></tr></thead>
+<tbody>
+<tr><td>중국</td><td class="num">2,353,892</td><td class="num">3,151.16</td></tr>
+<tr><td>아르헨티나</td><td class="num">152,613</td><td class="num">180.08</td></tr>
+<tr><td>스페인</td><td class="num">141,600</td><td class="num">475.51</td></tr>
+<tr><td>말레이시아</td><td class="num">66,349</td><td class="num">47.76</td></tr>
+<tr><td>네덜란드</td><td class="num">38,318</td><td class="num">144.23</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: processed_data/comtrade/garlic_comtrade_annual.csv, refYear=2024·cmdCode=070320·flowCode=X·partnerCode=0·partner2Code=0·customsCode=C00·motCode=0·netWgt가 있는 행(E06).</p>
+<p>중국 안에서도 산지·저장·가공의 시간차가 있다. KREI 「농업전망 2026」은 산둥·허난·장쑤·허베이를 주산지로 언급하고, 2025년산은 면적과 작황이 전년보다 증가했다고 해외 모니터 결과를 제시했다. Nedspice의 2025년 보고서는 중국 재배면적 약 5% 증가와 생산 약 8% 증가를 당시 업체 추정으로 담는다. 이는 FAOSTAT 2024년 확정 계열을 대신하지 않는다. <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」, 2026-01-22</a></p>
+<p>스페인은 2024년 FAOSTAT 생산 245,700톤과 Comtrade 수출 신고 141,600톤을 기록했다. Fruit Logistica의 「European Statistics Handbook 2025」에도 스페인 채소 생산·교역표의 Garlic 항목이 있다(E22). 스페인 마늘 생산·유통협회(ANPCA)는 2026년 재배면적이 전년과 비슷한 24,000ha를 조금 넘는다고 평가하고, 제3국산 수입 증가를 이유로 EU 차원의 긴급수입제한 조사 신청을 <strong>추진</strong>한다고 발표했다. <a href="https://www.anpca.es/el-sector-espanol-del-ajo-analiza-una-campana-de-excelente-calidad-y-acuerda-impulsar-la-solicitud-de-la-clausula-de-salvaguardia-para-proteger-el-mercado-europeo/">ANPCA, 스페인 마늘 산업 발표, 2026-07-28</a></p>
+<p>인도는 FAOSTAT 2024년 생산 3,239,000톤으로 큰 생산국이지만 표 6의 신선·냉장 수출 신고 상위 다섯 나라에는 들지 않는다. 생산 규모만으로 한국의 대체 수입 가능량을 계산할 수 없다. 아르헨티나도 주요 수출 신고국이지만, 한국의 2021~2024년 FAOSTAT 「Green garlic」 수입은 해마다 99.99% 이상이 중국 본토에서 왔다. 이 계열은 신선·냉장 HS 070320의 상대국별 집계와 정의를 구별한다(E06·E18).</p>
+<p>중국 가공시장에 관한 ofi의 2026년 1분기 보고서는 2025년 마늘 플레이크 생산 약 23만 톤, 연간 수요 약 30만 톤이라고 평가한다. 건조 플레이크 무게를 통마늘 톤수와 그대로 더하지 않는다. <a href="https://shop.ofi.com/media/wysiwyg/ofi_Q1_2026_Spice_Market_Report_Final.pdf">ofi, 「Q1 2026 Spice Market Report」, 2026년 1분기</a></p>
+</section>
+
+<section id="s07">
+<h2><span class="h2n">07 &nbsp;/&nbsp; 유통·기업</span>저장과 깐마늘 가공 단계가 가격을 연결한다</h2>
+<p class="lead">국내 생산 이후의 경로는 재배 농가와 산지조직, 저장·선별·깐마늘 가공업체, 도매시장, 소매·외식·식품제조 수요로 이어진다. KREI의 오래된 「농업관측매뉴얼 품목별 생산·유통 현황」은 품종별 출하시기, 저장, 수입 및 도매시장 반입량을 서로 다른 항목으로 다룬다. 역사적 유통 구조를 이해하는 자료이지 현재 기업별 점유율의 증거는 아니다(아카이브 원장 「농업관측매뉴얼_품목별생산유통현황.md」).</p>
+<p>농식품부는 2025년 5월 깐마늘 시장이 가공·저장업체 중심으로 구성돼 있다고 설명하고, 산지 마늘 전문조합 설립을 지원해 산지의 가격 교섭력을 높이겠다고 밝혔다. 정부가 시장 구조와 정책 목적을 설명한 보도자료다. 이것만으로 특정 업체가 시장을 지배한다거나 정책 효과가 발생했다고 판단하지 않는다. 같은 보도자료는 햇마늘 본격 출하 전 정부 비축마늘을 깐마늘로 가공하여 <strong>5월 19일부터 450톤</strong>을 서울 가락·대전·광주 등 도매시장에 분산 공급한다고 발표했다. 공급 발표량이며 이후 실제 판매량은 이 보도자료만으로 확인되지 않는다. <a href="https://www.mafra.go.kr/bbs/home/792/574289/artclView.do">농식품부, 2025-05-28, A등급 정부 발표</a></p>
+<p>저장량은 유통의 한 구간을 보여준다. KREI 2026년 4월 관측에서 2025년산 난지형 마늘의 3월 말 입고량은 96,015톤, 누적 출고량은 64,088톤, 감모율을 반영한 재고 추정은 27,343톤이다. 입고량에서 출고량만 빼면 31,927톤이 되지만 이것을 저장량이라고 쓰지 않는다. 관측센터는 감모율 14.4%를 적용하고 국내산 정부 비축물량을 포함한다고 명시했다. 같은 자료는 출고 지연과 수요처 발주 감소를 당시 재고 누적의 설명으로 적는다. 이 판단도 2026년 4월 시점의 관측이다(E12).</p>
+<p>생산자 조직은 보인다. 농협경제지주와 마늘연합회는 2025년 수급조절위원회 생산자 측 참여 주체로 제시됐다. 한국마늘연합회의 2025년 사업계획은 2024년 계약재배율 17%와 협력 지역농협 50개를 기준으로 2025년 목표를 각각 20%, 60개로 제시한다. 뒤의 두 값은 목표이지 달성 실적이 아니다. 협회 이사회에 등재된 지역농협 이름도 업계 참여의 사례일 뿐 기업 취급량 순위가 아니다. <a href="https://www.garlic.or.kr/bbs_shop/file_download.php?board_code=post&amp;board_idx=170831&amp;sel_no=">한국마늘연합회 사업계획, B등급</a>, <a href="https://www.mafra.go.kr/bbs/home/792/574387/artclView.do">농식품부 수급관리 지침 발표</a></p>
+<p>검증 가능한 동일 기준의 생산·수입·가공·유통 기업 <strong>취급량 상위 순위는 미확보</strong>다. 식약처의 2025년 10월~2026년 9월 마늘 수입신고 자료에서는 수입업소별 <strong>신고 건수 서열</strong>을 확인할 수 있지만, 이는 중량·금액 순위가 아니다. DART의 법인 전체 매출도 마늘 취급액으로 바꾸지 않았다. 유통단계 설명은 가능하지만 기업 집중도 수치나 시장점유율은 아직 쓸 수 없다. <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회, A등급, 2025.10~2026.09</a></p>
+</section>
+
+<section id="s08">
+<h2><span class="h2n">08 &nbsp;/&nbsp; 제도·정책</span>관세 쿼터와 유통 이력이 수입 경로를 나눈다</h2>
+<p class="lead">마늘의 관세는 세번·TRQ 배정·적용 세율에 따라 달라진다. 농식품부의 2026년 WTO TRQ 운영계획은 마늘 4개 세번을 묶어 14,467톤을 계획했다. aT 직접 수입 7,500톤, 수입권공매 4,967톤, 실수요자 배정 2,000톤의 합이다. 계획 물량을 실제 수입량으로 읽지 않는다(E14). <a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농림축산식품부, 「2026년 WTO TRQ 운영계획」, 2025년 9월</a></p>
+<div class="tw">
+<table>
+<caption>표 7. 2026년 마늘 관련 제도와 확인 범위</caption>
+<thead><tr><th>제도</th><th>원문에서 확인한 내용</th><th>해석 범위</th></tr></thead>
+<tbody>
+<tr><td>WTO TRQ</td><td>14,467톤; 쿼터 안 50%, 밖 360%</td><td>연간 운영계획</td></tr>
+<tr><td>TRQ 배정</td><td>aT 직접 수입 7,500톤, 수입권공매 4,967톤, 실수요자 2,000톤</td><td>합계 14,467톤</td></tr>
+<tr><td>TRQ 대상 세번</td><td>0703.20-1000·9000, 0711.90-1000, 0712.90-1000</td><td>신선·냉장·일시저장·건조</td></tr>
+<tr><td>한·중 FTA</td><td>통·깐·건조·일시저장·냉동·조제저장처리 마늘 양허 제외</td><td>FTA 양허 여부</td></tr>
+<tr><td>KREI의 기본관세 적용값</td><td>통마늘 360%, 냉동마늘 27%</td><td>수입가격 추정에 쓴 세율</td></tr>
+<tr><td>유통이력관리</td><td>냉동 0710.80-2000, 신선·냉장 0703.20-1000·9000</td><td>수입·유통업자 신고 의무</td></tr>
+<tr><td>식물검역</td><td>원칙적으로 수출국 식물검역증명서와 도착 후 검역 신청</td><td>국가·용도별 추가조건은 별도 확인</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농림축산식품부, 「2026년 WTO TRQ 운영계획」, 2025년 9월</a>, <a href="https://www.fta.go.kr/webmodule/_PSD_FTA/cn/3/03_cn_Guide.pdf">FTA 포털, 「한·중 FTA 상세설명자료」, 2015년</a>, <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 표 9-19, 2026-01-22</a>, <a href="https://www.mafra.go.kr/bbs/home/792/596443/download.do">농림축산식품부, 유통이력관리 자료, 2026-04-14</a>, <a href="https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1004240329">식물방역법 제8조</a>.</p>
+<p>한·중 FTA 상세설명자료는 통·깐·건조·일시저장처리 마늘(괄호 세율 360%), 냉동마늘(27%), 조제저장처리 마늘(30%)을 모두 <strong>양허 제외</strong>로 적는다. KREI 「농업전망 2026」은 중국산 통마늘과 냉동마늘의 국내 판매가격을 추정할 때 각각 <strong>기본관세 360%와 27%</strong>를 적용했다. 깐마늘과 통마늘 수입에는 관세 360%가 적용된다고도 설명한다. 개별 수입 건의 최종 적용세율은 해당 세번과 TRQ·할당·조정관세 조건을 함께 확인해야 한다. <a href="https://www.fta.go.kr/webmodule/_PSD_FTA/cn/3/03_cn_Guide.pdf">FTA 포털, 「한·중 FTA 상세설명자료」, 2015년</a>, <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026-01-22</a></p>
+<p>KREI는 2025년 통마늘 수입에 TRQ 도입 실적이 없어 2025년산 6~12월 통마늘 수입량이 1,032톤이었다고 설명한다. 이는 2026년 TRQ 운영계획의 실행량을 뜻하지 않는다. <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026-01-22</a></p>
+<p>2026년 유통이력관리 대상에는 냉동 및 신선·냉장 마늘이 들어 있다. 농식품부 안내는 대상 수입·유통업자가 양도 후 5일 이내 거래내역을 신고한다고 설명한다. <a href="https://www.mafra.go.kr/bbs/home/792/596443/download.do">농림축산식품부, 유통이력관리 자료, 2026-04-14</a></p>
+<p>원산지 표시 의무는 판매 형태에 따라 다르다. 농관원의 음식점 의무 표시 29개 품목 목록에는 마늘 단독 품목이 없다. 이는 농산물·가공품 판매의 일반 원산지 표시까지 면제한다는 뜻이 아니다. <a href="https://www.naqs.go.kr/hp/contents/contentsTab.do?menuId=MN30559">국립농산물품질관리원, 「원산지 표시 관리」</a></p>
+<p>한·미 FTA 특별긴급관세 별표의 2026년 마늘 기준발동물량 2,297미터톤과 특별긴급관세율 360%는 미국산에 관한 별도 규정이다. 중국산 일반 수입에 적용되는 독립 세율로 쓰지 않는다. 중국산 식용 마늘의 세부 검역조건과 농약별 잔류허용기준은 품목·용도별 원문 확인이 필요하다. <a href="https://law.go.kr/LSW/flDownload.do?bylClsCd=110201&amp;flSeq=153473705&amp;gubun=">국가법령정보센터, 한·미 FTA 특별긴급관세 별표 20</a></p>
+</section>
+
+<section id="s09">
+<h2><span class="h2n">09 &nbsp;/&nbsp; 은행·기관 리포트</span>전망의 범위는 발표 시점과 적용 지역에 따라 다르다</h2>
+<p class="lead">KREI의 농업전망은 한국의 연산 기준 수급모형이고, 월간 관측은 발행 당시 가격·저장·작황 판단이다. 은행·기관 색인의 garlic 항목은 페루 중앙은행(BCRP) 아레키파 지점의 지역 경기보고서 다섯 건이다. 페루 지역의 마늘 파종면적을 한국 수입 원산지 비중으로 옮길 수 없다(E15).</p>
+<div class="tw">
+<table>
+<caption>표 8. 기관 문서와 마늘 관련 주장</caption>
+<thead><tr><th>기관</th><th>문서·발행 시점</th><th>확인한 내용</th><th>성격</th></tr></thead>
+<tbody>
+<tr><td>KREI</td><td>「농업전망 2026」, 2026-01-22</td><td>2026년산 생산 29.6만 톤·수입 6.1만 톤, 2035년산 생산 27.8만 톤·수입 6.5만 톤</td><td>연산 6월~익년 5월, 모형 전망</td></tr>
+<tr><td>KREI 농업관측센터</td><td>「양념채소」 2026년 3월호</td><td>2026년산 재배면적 22,938ha</td><td>당시 현장 실측·항공촬영</td></tr>
+<tr><td>KREI 농업관측센터</td><td>「양념채소」 2026년 4월호</td><td>2025년산 난지형 마늘의 3월 말 저장량 27,343톤</td><td>감모율 적용 추정</td></tr>
+<tr><td>KREI 농업관측센터</td><td>「양념채소」 2026년 10월호</td><td>2026년산 난지형 9월 말 재고 80,058톤, 10월 깐마늘 도매가격 8,700원/kg 내외 전망</td><td>새 연산의 재고 추정·가격 전망</td></tr>
+<tr><td>KREI</td><td>「양념채소류 저장량 추정 개선방안 연구」, 2025-12</td><td>저장량 추정오차가 수급 판단·가격 전망·정책 대응에 영향</td><td>측정체계 연구</td></tr>
+<tr><td>BCRP 아레키파 지점</td><td>「Síntesis Arequipa」 2026년 6월호</td><td>지역 2025/26 마늘 누적 파종 4,844ha, 이전 작기 5,112ha 대비 5.2% 감소</td><td>페루 한 지역의 경기 통계</td></tr>
+<tr><td>Nedspice</td><td>2025년 시장 보고서</td><td>중국 2025년산 면적 약 5% 증가·생산 약 8% 증가 당시 추정</td><td>업체 평가</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: _raw/_banks/index.csv, 각 원문, <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」, 2026-01-22</a>, <a href="https://aglook.krei.re.kr/upload/observeFiles/6dcd8ac031434a1fba37d174aae5991b.pdf">한국농촌경제연구원 농업관측센터, 「양념채소 2026년 10월호」, 2026-10-02</a>(E11·E12·E15·E20).</p>
+<p>KREI의 2026년산 생산 29.6만 톤은 2026년 1월 전망이다. 같은 문서의 2025년산 29.2만 톤 역시 당시 기준치이며 KOSIS 2025년 전국 생산 31.0만 톤과 다르다. 2026년 4월 KREI 월보는 당시 생산을 약 29.1만 톤으로 전망했다. 발행일과 기준을 지우고 이를 수확 확정치의 연간 변화로 계산하지 않는다. <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」, 2026-01-22</a>, <a href="https://aglook.krei.re.kr/upload/observeFiles/1d0d82811e3b4dde81f6f4e581549190.pdf">한국농촌경제연구원 농업관측센터, 「양념채소 2026년 4월호」</a></p>
+<p>BCRP 값은 페루 <strong>아레키파 지역</strong>의 파종면적이다. 해당 은행 문서는 2025/26 작기의 6월 말 누적 마늘 파종을 4,844ha, 2024/25 같은 기준을 5,112ha로 적어 268ha 감소를 보고했다. 페루 전국 생산이나 한국행 수출량은 이 표에서 계산할 수 없다(E15).</p>
+<p>KREI 「양념채소 2026년 10월호」는 2026년산 난지형 마늘의 9월 말 입고량 89,017톤, 출고량 5,995톤, 감모율 적용 재고량 80,058톤을 추정한다. 전년 <strong>같은 시점</strong> 재고 86,958톤보다 7.9% 적다. 9월 깐마늘 상품 도매가격은 8,460원/kg, 9월 전 형태 통마늘 환산 수입량은 4,718톤이라고 적었다. 10월 깐마늘 상품 도매가격은 8,700원/kg 내외로 전망했다. 2027년산 재배의향면적은 23,111ha로 전년 조사치보다 0.8% 증가할 것으로 전망했다. 이 수치는 KOSIS의 2026년 면적과 다른 조사계열이다. 같은 쪽은 출고 감소의 이유로 소비 부진과 정부 비축물량(2025년산) 방출을 든다. <a href="https://aglook.krei.re.kr/upload/observeFiles/6dcd8ac031434a1fba37d174aae5991b.pdf">한국농촌경제연구원 농업관측센터, 「양념채소 2026년 10월호」 마늘 6~7쪽, 2026-10-02</a></p>
+<p>ofi의 2026년 1분기 향신료 시장 보고서와 Nedspice 자료는 업체의 시장 평가다. 출처 없는 아카이브 도식 숫자를 기관 통계로 사용하지 않는다.</p>
+</section>
+
+<section id="s10">
+<h2><span class="h2n">10 &nbsp;/&nbsp; 관찰 지표·남은 물음</span>수확, 재고, 수입 형태와 제도를 함께 본다</h2>
+<p class="lead">첫 번째는 <strong>수확량과 저장량의 시차</strong>다. 2025년 KOSIS 생산은 전년보다 8.8% 늘었다. KREI가 추정한 2025년산 난지형 마늘의 2026년 3월 말 재고는 27,343톤이다. 다음 연산인 2026년산의 9월 말 재고 추정은 80,058톤이며, 비교 대상인 2025년산 9월 말 재고는 86,958톤이다. 서로 다른 연산과 저장 시점의 값을 직접 증감률로 계산하지 않는다(E01·E12·E20). <a href="https://aglook.krei.re.kr/upload/observeFiles/6dcd8ac031434a1fba37d174aae5991b.pdf">한국농촌경제연구원 농업관측센터, 「양념채소 2026년 10월호」 마늘 7쪽, 2026-10-02</a></p>
+<p>두 번째는 <strong>수입 범위</strong>다. 2025년 달력연도 신선·냉장 통관량 1,510.644톤은 마늘 전체 수입량이 아니다. KREI의 2025년산 6~12월 전 형태 통마늘 환산 수입량은 52,027톤이고 냉동마늘이 47,342톤(91.0%)이다. 두 수치는 기간과 환산 기준이 다르다(E04·E19). <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 표 9-18, 2026-01-22</a></p>
+<p>세 번째는 <strong>중국 공급 변화</strong>다. FAOSTAT 2024년 중국 본토(41)의 생산 비중은 72.9%이고, Comtrade 2024년 중국의 신선·냉장 수출 신고량은 235만 톤을 넘는다. 한국의 2021~2024년 FAOSTAT 「Green garlic」 수입에서 중국 본토 비중은 해마다 99.99% 이상이다. 2026년 3~8월 관세청 국가별 신선·냉장 수입도 거의 모두 중국 신고분이다. 완료연도 계열과 부분기간 계열의 정의를 구별한다(E02·E05·E06·E18).</p>
+<p>네 번째는 <strong>제도 집행</strong>이다. 2026년 TRQ 14,467톤은 운영계획이다. KREI는 2025년 통마늘 수입에 TRQ 도입 실적이 없었다고 설명한다. 2026년 실제 배정·낙찰·통관량은 계획과 별도로 확인해야 한다. KREI가 가격 추정에 적용한 기본관세는 통마늘 360%, 냉동마늘 27%다. 개별 세번의 법정 세율표와 별도 할당·조정관세 고시도 함께 확인해야 한다(E14·E19). <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">한국농촌경제연구원, 「농업전망 2026」 제9장, 2026-01-22</a></p>
+<div class="tw">
+<table>
+<caption>표 9. 마늘 산업 정기 관찰 지표</caption>
+<thead><tr><th>지표</th><th>원천·수집기</th><th>주기</th><th>비교 기준과 볼 점</th></tr></thead>
+<tbody>
+<tr><td>국내 면적·단수·생산</td><td>KOSIS kosis_crops_veg_seasoning</td><td>연</td><td>「마늘:면적」, 전국 행과 시도 행 구별</td></tr>
+<tr><td>저장 입고·출고·재고 추정</td><td>KREI 양념채소 관측</td><td>월</td><td>연산·기준월·감모율·정부 비축 포함 여부</td></tr>
+<tr><td>신선·냉장·건조 통관</td><td>customs_item_trade_monthly</td><td>월</td><td>HS10 0703201000·9000, 0712901000 분리</td></tr>
+<tr><td>신선마늘 국가별 수입</td><td>FAOSTAT TM·Comtrade·customs_kr</td><td>연·월</td><td>품목 정의와 기간을 붙여 원산지 비중 계산</td></tr>
+<tr><td>같은 품종·시장 가격</td><td>KAMIS kamis</td><td>일</td><td>가락도매는 도매, 경동은 소매; 평년과 실측 분리</td></tr>
+<tr><td>주요국 신고 수출</td><td>Comtrade comtrade</td><td>연</td><td>C00·motCode 0·partner2Code 0·World 합계</td></tr>
+<tr><td>중국 작황·가격·재고</td><td>중국 농업농촌부</td><td>발표 시</td><td>건마늘 정의와 추정 개정 확인</td></tr>
+<tr><td>TRQ·검역·유통이력</td><td>농식품부·법령·검역 공고</td><td>고시 시</td><td>계획과 집행, 적용 세번 구별</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: agri_pipeline 수집기 원자료와 02~08절의 기관 원문(E16).</p>
+<h3>남은 물음·확인 작업</h3>
+<ul>
+<li>시도별 작황·저장 재고·품종·출하시기를 같은 기준으로 연결해 가격 반응을 검증한다.</li>
+<li>KREI 월보의 저장 입고·출고·감모율을 연산과 기준월별로 보존한다.</li>
+<li>관세청 HS10 물량을 형태별로 갱신하고 KREI의 환산 규칙과 대조한다.</li>
+<li>FAOSTAT TM의 완료연도 원산지 비중과 이후 연도의 같은 정의 자료를 비교한다.</li>
+<li>중국 도매 평균, KAMIS 동일 품종·시장 가격, 관세청 동일 세번 수입 단가를 별도 시계열로 본다.</li>
+<li>2026년 TRQ 계획과 실제 배정·낙찰·통관량을 구분해 대조한다.</li>
+<li>HS10 법정 세율표와 별도 할당·조정관세 고시, 식용 마늘의 세부 검역조건을 품목별로 확인한다.</li>
+<li>국내 기업별 마늘 취급량을 같은 품목·회계기간으로 비교할 자료를 확인한다.</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="h2n">11 &nbsp;/&nbsp; 기업 지도·밸류체인·이해당사자</span>중국산 원료와 국내 저장·가공의 접점</h2>
+<h3>11.1 주요 수출국과 수출기업</h3>
+<p class="lead">04절의 2025년 한국 신선·냉장 마늘(HS 070320) 수입량 1,510,644.837kg 중 중국은 1,510,618.597kg으로 99.998%다. 2024년에도 463,431.396kg 중 중국이 463,410.6kg(99.9955%)이었다. <strong>이 세번에서 한국 수입 비중 10% 이상인 공급국은 중국 한 나라</strong>다. 아르헨티나와 스페인은 한국의 주요 공급국이 아니라 06절의 세계 수출시장 비교국이다. 2024년 세계 상대국 대상 신선·냉장 마늘 신고 수출량은 중국 약 235.4만 톤, 아르헨티나 152,613톤, 스페인 141,600톤이다. <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=070320&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 2025년 한국 수입 미리보기</a>(A), <a href="https://wits.worldbank.org/trade/comtrade/en/country/KOR/year/2024/tradeflow/Imports/partner/ALL/product/070320">세계은행 WITS·UN Comtrade 2024년 한국 수입</a>(A), <a href="https://wits.worldbank.org/trade/comtrade/en/country/ALL/year/2024/tradeflow/Exports/partner/WLD/product/070320">2024년 세계 수출</a>(A).</p>
+<p>04절의 2025년 건조 마늘 HS 0712.90-1000 수입액은 240.5만 달러다. 같은 절의 신선·냉장 HS10 수입액 184.3만 달러와 <strong>두 수록 세번만</strong> 합하면 건조 마늘이 금액의 56.6%다. 냉동·조제 마늘이 빠져 있으므로 전체 마늘 수입에서의 비중은 아니다. 이 건조 마늘 세번의 국가별 수입액 상위 공급국과 해당 기업은 <strong>확인된 공개 자료 없음</strong>이다. 식약처 건조 마늘 신고 건수로 수입액 순위를 대신하지 않는다. <a href="https://www.kati.net/statistics/etcMonth.do">aT·한국무역통계진흥원 무역통계 조회</a>(A), <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A).</p>
+<div class="tw wide">
+<table>
+<caption>표 11-1. 중국 공급망과 세계 주요 수출국의 확인 가능한 기업 사례</caption>
+<thead><tr><th>국가</th><th>기업</th><th>형태</th><th>규모 지표(연도)</th><th>한국과의 연결 근거</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>중국</td><td>QINGDAO WINNER FOODS CO., LTD.</td><td>신고상 해외 제조사</td><td>확인된 공개 자료 없음</td><td>마늘 수입신고 제조사명 일치, 190건(2025.10~2026.09)</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a>(A, 2026)</td></tr>
+<tr><td>중국</td><td>QINGDAO DOUYUAN FOODSTUFF CO., LTD.</td><td>신고상 해외 제조사</td><td>마늘 매출·수출량 확인된 공개 자료 없음</td><td>제조사명 일치, 156건(같은 기간)</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a>(A, 2026)</td></tr>
+<tr><td>중국</td><td>LANLING LIFA VEGETABLE &amp; FOODS CO., LTD.</td><td>신고상 해외 제조사</td><td>확인된 공개 자료 없음</td><td>신고 명단의 ‘VEGETALBE’ 표기 변형과 일치, 108건(같은 기간)</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F13/getGalleryDetail?prductCd=202400211883">식약처 제품 조회</a>(A, 2026)</td></tr>
+<tr><td>중국</td><td>LINYI XIANG EN FOOD CO., LTD.</td><td>신고상 해외 제조사</td><td>확인된 공개 자료 없음</td><td>제조사명 일치, 85건(같은 기간)</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a>(A, 2026)</td></tr>
+<tr><td>중국</td><td>LINYI FOUNTAIN FOOD CO., LTD.</td><td>신고상 해외 제조사</td><td>확인된 공개 자료 없음</td><td>‘마늘(뿌리)’ 13건, 별도 ‘천연향신료’ 냉동다진마늘 131건(같은 기간)</td><td><a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처</a>(A, 2026)</td></tr>
+<tr><td>아르헨티나</td><td>AGROINDUSTRIAS MAREX S.A.</td><td>대멕시코 마늘 수출업체 등록</td><td>수출량 확인된 공개 자료 없음</td><td>확인된 공개 자료 없음</td><td><a href="https://www.argentina.gob.ar/sites/default/files/listado_exportadores_ajo_mexico_actualizado_al_14_de_noviembre_2025.pdf">SENASA 등록부</a>(A, 2025)</td></tr>
+<tr><td>아르헨티나</td><td>PRINCIPE AGRICOLA COMERCIAL S.R.L.</td><td>대멕시코 마늘 수출업체 등록</td><td>수출량 확인된 공개 자료 없음</td><td>확인된 공개 자료 없음</td><td><a href="https://www.argentina.gob.ar/sites/default/files/listado_exportadores_ajo_mexico_actualizado_al_14_de_noviembre_2025.pdf">SENASA 등록부</a>(A, 2025)</td></tr>
+<tr><td>아르헨티나</td><td>ESTABLECIMIENTO AGRICOLA EL RANCHO S.A.</td><td>대멕시코 마늘 수출업체 등록</td><td>수출량 확인된 공개 자료 없음</td><td>확인된 공개 자료 없음</td><td><a href="https://www.argentina.gob.ar/sites/default/files/listado_exportadores_ajo_mexico_actualizado_al_14_de_noviembre_2025.pdf">SENASA 등록부</a>(A, 2025)</td></tr>
+<tr><td>스페인</td><td>Ajos La Veguilla, S.L.</td><td>생산·가공·수출</td><td>연간 마늘 3만 톤 이상 생산, 생산량의 68% 수출이라는 회사 설명(기준연도 미기재)</td><td>확인된 공개 자료 없음</td><td><a href="https://www.anpca.es/nuestros-socios/">ANPCA</a>(B)·<a href="https://www.veguilla.com/en/garlic-in-all-its-splendour/">회사 소개</a>(B, 2026 열람)</td></tr>
+<tr><td>스페인</td><td>S.A.T. 9989 Peregrin</td><td>생산·가공·유통</td><td>확인된 공개 자료 없음</td><td>확인된 공개 자료 없음</td><td><a href="https://www.anpca.es/nuestros-socios/">ANPCA 회원 명단</a>(B, 2026 열람)</td></tr>
+<tr><td>스페인</td><td>Business International Garlic, S.L.</td><td>생산·가공·유통</td><td>확인된 공개 자료 없음</td><td>확인된 공개 자료 없음</td><td><a href="https://www.anpca.es/nuestros-socios/">ANPCA 회원 명단</a>(B, 2026 열람)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 각 행의 식약처(A)·SENASA(A)·ANPCA(B)·기업 발표(B). 중국 제조사의 ‘마늘(뿌리)’ 건수는 <strong>신고 건수 기준</strong>이며 중량·금액·수출 점유율이 아니다. SENASA 등록은 멕시코행 자격으로, 한국행 수출 실적을 뜻하지 않는다. 별도 냉동다진마늘 신고에서는 LINYI FOUNTAIN FOOD 131건과 QINGDAO XINZHONGXIN FOOD 109건이 확인되므로 ‘마늘(뿌리)’ 제조사 순위를 모든 마늘 가공품의 순위로 확대하지 않는다.</p>
+<p>2024년 신선·냉장 마늘의 최대 <strong>국가</strong> 수출자는 신고 물량 기준 중국이다. 세계 기업별 수출량을 동일 세번·연도로 비교한 공개 순위는 확인되지 않아 최대 <strong>기업</strong>은 특정할 수 없다. 가공 분야의 주요 참여 사례인 ofi는 자사 보고서에서 2025년 미국산 마늘의 수확·가공과 분말·다진마늘 수요를 설명한다. 이 자료도 ofi의 세계 순위나 한국행 공급량을 제시하지 않는다. <a href="https://wits.worldbank.org/trade/comtrade/en/country/ALL/year/2024/tradeflow/Exports/partner/WLD/product/070320">WITS·UN Comtrade, 2024</a>(A), <a href="https://shop.ofi.com/media/wysiwyg/ofi_Q1_2026_Spice_Market_Report_Final.pdf">ofi 향신료 시장보고서, 2026년 1분기</a>(B).</p>
+<h3>11.2 한국 주요 수입·유통기업</h3>
+<p>식약처의 2025년 10월~2026년 9월 <strong>품목명 ‘마늘(뿌리, …)’</strong> 수입신고는 990건이며, 2026년분은 잠정이다. 아래 순위는 <strong>신고 건수 기준</strong>이다. 제조국은 신고서의 제조국 칸 값이다. 이 칸이 원물의 재배국이나 FTA·표시상 원산지와 같은지는 이 자료만으로 확정하지 않으며, 수출국·선적국과 구별된다. 같은 기간 ‘천연향신료’ 품목명으로 신고된 냉동다진마늘 446건(중국 442건·스페인 4건)과 ‘절임식품’ 품목명의 깐마늘·알마늘 등은 아래 집계에 없다. 냉동다진마늘을 더하면 1위는 에이치비플러스 148건으로 같지만, 2위는 와이비무역 88건, 5위는 케이원무역 52건으로 바뀐다. 어느 순위도 수입 물량·금액 점유율이 아니다. <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A, 2025.10~2026.09).</p>
+<div class="tw">
+<table>
+<caption>표 11-2. ‘마늘(뿌리)’ 품목명 수입신고 상위 10개 업소(2025.10~2026.09)</caption>
+<thead><tr><th>수입업소</th><th class="num">신고 건수</th><th>주요 제조국</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>(주)에이치비플러스</td><td class="num">105</td><td>중국 105</td><td>냉동 105건</td></tr>
+<tr><td>진인터내셔널</td><td class="num">60</td><td>중국 60</td><td>냉동 60건</td></tr>
+<tr><td>(주)청해원</td><td class="num">52</td><td>중국 52</td><td>냉동 52건</td></tr>
+<tr><td>(주)와이비무역</td><td class="num">47</td><td>중국 47</td><td>냉동 47건</td></tr>
+<tr><td>씨제이프레시웨이(주)</td><td class="num">42</td><td>중국 42</td><td>냉동 42건</td></tr>
+<tr><td>희영티엔씨 유한회사</td><td class="num">39</td><td>중국 39</td><td>냉동 39건</td></tr>
+<tr><td>용에프티씨 주식회사</td><td class="num">38</td><td>중국 38</td><td>냉동 38건</td></tr>
+<tr><td>주식회사 디에이치통상</td><td class="num">27</td><td>중국 27</td><td>냉동 27건</td></tr>
+<tr><td>주식회사 호연</td><td class="num">26</td><td>중국 26</td><td>냉동 26건</td></tr>
+<tr><td>주식회사 일류인터내셔널</td><td class="num">23</td><td>중국 23</td><td>냉동 23건</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A, 2025.10~2026.09). 업소명 표기 변형을 합쳤다. ‘주요 제조국’은 업소별 상위 두 나라를 적는 기준이며, 이 10곳은 모두 중국만 해당한다.</p>
+<div class="tw wide">
+<table>
+<caption>표 11-3. 마늘 수입신고가 확인된 국내 대형 가공·유통기업의 법인 규모</caption>
+<thead><tr><th>기업</th><th class="num">신고 건수</th><th>확인된 사업 위치</th><th class="num">2025년 규모 지표</th><th>지표 범위</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td>씨제이프레시웨이(주)</td><td class="num">42</td><td>식자재유통·급식·원재료 전처리</td><td class="num">연결 매출 3조 4,811억 원</td><td>법인 전체, 마늘 매출 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/19/001307/20260319005363/11011.htm">2025 사업보고서</a>(A, 2026)</td></tr>
+<tr><td>주식회사 동원홈푸드</td><td class="num">11</td><td>식재조미·급식외식·축육</td><td class="num">공시 사업부문 매출 합계 2조 6,433억 원</td><td>법인 사업부문 합계, 마늘 매출 아님</td><td><a href="https://kind.krx.co.kr/external/2026/03/18/001675/20260318007758/11011.htm">동원산업 2025 사업보고서</a>(A, 2026)</td></tr>
+<tr><td>(주)아워홈</td><td class="num">10</td><td>급식·식품유통</td><td class="num">연결 매출 2조 4,497억 원</td><td>법인 전체, 마늘 매출 아님</td><td><a href="https://www.newsis.com/view/NISX20260403_0003577367">감사보고서 인용 보도</a>(C, 2026)</td></tr>
+<tr><td>상미식품주식회사</td><td class="num">12</td><td>조미식품 제조</td><td class="num">매출 1,250억 원</td><td>법인 전체, 마늘 매출 아님</td><td><a href="https://www.otoki.com/pds/investment/2603/34f6f527b91b450b9eff2596922237c2.pdf">오뚜기 2025 사업보고서</a>(A, 2026)</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 신고 건수는 <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A, 2025.10~2026.09), 사업·매출은 각 행의 공시(A) 또는 보도(C). CJ프레시웨이 공시의 원재료 전처리 11,715톤은 <strong>모든 원재료</strong> 실적이다. 동원홈푸드 공시 매출 구성은 식재조미 1조 4,106억 원·급식외식 2,594억 원·축육 9,733억 원이며 마늘별 매출은 아니다. 나머지 상위 신고 업소의 비교 가능한 공시 매출 및 기업별 마늘 취급액은 확인된 공개 자료 없음이다.</p>
+<h3>11.3 밸류체인</h3>
+<div class="tw">
+<table>
+<caption>표 11-4. 마늘의 생산에서 소비까지</caption>
+<thead><tr><th>단계</th><th>주요 주체</th><th>한국 쪽 규모·비중</th><th>가격이 정해지는 곳</th><th>주요 위험</th></tr></thead>
+<tbody>
+<tr><td>생산</td><td>국내 재배 농가·지역농협</td><td>2025년 생산 약 310,007톤</td><td>산지 수매·계약재배</td><td>작황·수율</td></tr>
+<tr><td>1차 가공</td><td>저장·선별·깐마늘 업체</td><td>2025년산 난지형의 2026년 3월 말 재고 추정 27,343톤</td><td>산지 매입·저장·가공 계약</td><td>감모·저장비·출고 시차</td></tr>
+<tr><td>수출·국제 무역</td><td>중국 산지·가공업체·수출상</td><td>2025년 신선·냉장 수입량의 중국 비중 99.998%</td><td>수출 계약</td><td>중국 작황·환율·운송</td></tr>
+<tr><td>수입·통관·검역</td><td>수입업소·관세청·식약처·검역본부</td><td>2025년 신선·냉장 HS10 수입 1,510.644톤</td><td>수입 계약·관세·검사비</td><td>검역 부적합·통관 지연</td></tr>
+<tr><td>국내 가공</td><td>냉동 원료 전처리·조미식품 업체</td><td>2025년산 6~12월 전 형태 수입 중 냉동 47,342톤, 통마늘 환산 기준 91.0%</td><td>원료 구매·가공 납품 계약</td><td>규격·가공 수율·냉동비</td></tr>
+<tr><td>도매·유통</td><td>도매시장·농협·식자재 유통사</td><td>2026년 9월 30일 가락도매 깐마늘(대서) 8,200원/kg</td><td>도매시장 거래·납품 계약</td><td>재고·가격 변동</td></tr>
+<tr><td>소매·외식</td><td>소매점·급식·외식업체</td><td>품종·시장별 가격이 다름</td><td>소매 판매가·식재 계약</td><td>원가 전가·수요 변화</td></tr>
+<tr><td>소비</td><td>가계·외식 이용자</td><td>2023년 FAOSTAT 식품공급량 278,484.8톤은 계산값</td><td>최종 구매가격</td><td>가격·원산지·안전성</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://mods.go.kr/board.es?act=view&amp;bid=228&amp;list_no=437674&amp;mid=a10301010000">국가데이터처 농작물생산량조사</a>(A), <a href="https://aglook.krei.re.kr/upload/observeFiles/1d0d82811e3b4dde81f6f4e581549190.pdf">KREI 농업관측 「양념채소」 2026년 4월호</a>(B), <a href="https://aglook.krei.re.kr/upload/eventdata/ef770402ede841c0b0cd1189c1dec448.pdf">KREI 「농업전망 2026」 표 9-18</a>(B), <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=410&amp;period=2025&amp;cmdCode=070320&amp;flowCode=M&amp;customsCode=C00&amp;motCode=0&amp;partner2Code=0">UN Comtrade 2025년 한국 수입 미리보기</a>(A), <a href="https://kamis.or.kr/customer/main/main.do">KAMIS</a>(A), <a href="https://www.fao.org/statistics/en/">FAOSTAT</a>(A). 달력연도 HS10 통관량과 2025년산 6~12월 통마늘 환산량은 기간·단위가 달라 더하지 않는다.</p>
+<p>부가가치는 수확한 원물을 저장·선별해 판매시기를 조절하고, 깐마늘·냉동 원료·조미제품으로 사용 형태를 바꾸는 과정에서 생긴다. 2025년산 6~12월 전 형태 수입의 냉동마늘 비중 91.0%는 가공용 형태의 중요성을 보여준다. 2025년산 난지형의 2026년 3월 말 재고 추정 27,343톤(<a href="https://aglook.krei.re.kr/upload/observeFiles/1d0d82811e3b4dde81f6f4e581549190.pdf">KREI 2026년 4월호</a>, B)과 정부의 2025년 비축마늘 깐마늘 가공·도매시장 공급 발표 450톤(<a href="https://www.mafra.go.kr/bbs/home/792/588093/download.do">농식품부</a>, A)은 저장·가공·출고 시점이 공급에 관여함을 보여준다. 단계별 원가·수율·마늘 매출이 같은 기준으로 공개되지 않아 단계별 이익 크기는 계산할 수 없다.</p>
+<h3>11.4 이해당사자</h3>
+<div class="tw">
+<table>
+<caption>표 11-5. 마늘 산업의 이해당사자</caption>
+<thead><tr><th>구분</th><th>주체</th><th>역할</th><th>이해관계·영향력</th></tr></thead>
+<tbody>
+<tr><td>국내 정부·규제</td><td>농림축산식품부·aT</td><td>수급대책·비축·TRQ 운영</td><td>산지 소득과 소비자 가격에 영향</td></tr>
+<tr><td>국내 정부·규제</td><td>관세청·식약처·농림축산검역본부·국립농산물품질관리원</td><td>통관·수입식품 검사·식물검역·원산지 표시 관리</td><td>수입 비용·통관 속도·식품 신뢰에 영향</td></tr>
+<tr><td>해외 정부</td><td>중국 농업농촌부·아르헨티나 SENASA</td><td>수급 정보 발표·수출업체 등록과 검역</td><td>공급 정보·수출 가능 조건에 영향</td></tr>
+<tr><td>생산자·단체</td><td>한국마늘연합회·농협경제지주·지역농협</td><td>계약재배·수급조절·산지 유통</td><td>수매가격과 출하 교섭력</td></tr>
+<tr><td>수출·가공기업</td><td>Qingdao Douyuan·Ajos La Veguilla</td><td>제조사 신고·마늘 생산·가공·수출</td><td>규격·가공비·판로</td></tr>
+<tr><td>수입·유통기업</td><td>씨제이프레시웨이·동원홈푸드·아워홈</td><td>신고상 마늘 수입·식자재 공급·급식</td><td>원료 조달비·납품 안정성</td></tr>
+<tr><td>소비자·시민사회</td><td>한국소비자원·가계 소비자</td><td>소매가격 정보 제공·구매</td><td>가격·원산지·안전성</td></tr>
+<tr><td>국제기구·인증</td><td>FAO</td><td>생산·식품공급 통계 제공</td><td>국가 간 통계 비교 기준</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: <a href="https://www.mafra.go.kr/bbs/home/795/593608/download.do">농식품부 2026년 WTO TRQ 계획</a>(A), <a href="https://impfood.mfds.go.kr/CFCCC01F01/getList">식약처 수입식품조회</a>(A), <a href="https://scs.moa.gov.cn/jcyj/202606/t20260623_6485239.htm">중국 농업농촌부 2026년 수급자료</a>(A), <a href="https://www.argentina.gob.ar/sites/default/files/listado_exportadores_ajo_mexico_actualizado_al_14_de_noviembre_2025.pdf">아르헨티나 SENASA 등록부</a>(A), <a href="https://www.garlic.or.kr/bbs_shop/file_download.php?board_code=post&amp;board_idx=170831&amp;sel_no=">한국마늘연합회 2025년 사업계획</a>(B), <a href="https://www.price.go.kr/tprice/portal/board/boardInfoDetail.do?actionType=read&amp;boardSeq=36832&amp;boardTypeCode=010703000&amp;menuId=MP050001&amp;topMenuId=MP050000">한국소비자원 참가격</a>(A), <a href="https://www.fao.org/statistics/en/">FAO 통계</a>(A).</p>
+<p>수입 확대는 가공·외식업체의 원료 조달비를 낮출 수 있으나 국내 생산자의 수매가격에는 하락 압력을 줄 수 있다. 비축마늘 방출은 소비자 가격에 영향을 주는 동시에 생산자와 저장업체의 출고 판단에도 영향을 준다. 구매자의 안정적인 가공원료 수요와 소비자의 원산지·검역 정보 요구는 통관·표시 과정에서 맞물린다.</p>
+</section>
+
+<section id="sA">
+<h2><span class="h2n">부록 A</span>부록 A. 수집기·자료 현황</h2>
+<p class="lead">「행」은 수집기 파일 또는 품목 분할의 레코드 수이고, 「최신」은 파일에 기록된 마지막 기간이다. 최신 기간이 당해 연도라는 이유만으로 연간 통계가 완결됐다고 보지 않는다. KOSIS의 2026년 생산량은 2026년 8월 12일 갱신됐으며, 통관·가격의 2026년 연간 자료와는 완료 상태가 다르다(E03).</p>
+<div class="tw">
+<table>
+<caption>표 10. 마늘 수집기 현황</caption>
+<thead><tr><th>묶음</th><th>수집기</th><th class="num">행</th><th>최신 기간</th><th>수집일·상태</th></tr></thead>
+<tbody>
+<tr><td>품목 분할</td><td>census_exports_hs10</td><td class="num">336</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>census_imports_hs10</td><td class="num">541</td><td>2026-07</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>comexstat_exp</td><td class="num">3,088</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>comexstat_imp</td><td class="num">580</td><td>2026</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>customs_item_trade_monthly</td><td class="num">425</td><td>2026.08</td><td>2026-10-07</td></tr>
+<tr><td>품목 분할</td><td>eurostat_comext_m1</td><td class="num">1,401</td><td>202607</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>eurostat_comext_m2</td><td class="num">3,043</td><td>202606</td><td>2026-10-06</td></tr>
+<tr><td>품목 분할</td><td>kosis_crops_veg_seasoning</td><td class="num">543</td><td>2026</td><td>2026-10-07</td></tr>
+<tr><td>품목 전용</td><td>garlic51_daily</td><td class="num">—</td><td>오류</td><td>2026-10-07, URL 연결 실패</td></tr>
+<tr><td>월간</td><td>comtrade</td><td class="num">3,119</td><td>2025</td><td>2026-10-01</td></tr>
+<tr><td>월간</td><td>customs_kr</td><td class="num">241</td><td>2026.08</td><td>2026-10-01</td></tr>
+<tr><td>월간</td><td>kamis</td><td class="num">2,014</td><td>2026-09-30</td><td>2026-10-07</td></tr>
+<tr><td>월간</td><td>kosis</td><td class="num">21</td><td>기간 열 없음</td><td>2026-07-06</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: ~/my-project/agri_pipeline의 rawbulk.report_delta.coverage("garlic") 결과(E16).</p>
+<p>미국 Census·EU Comext·브라질 ComexStat는 수집기가 있으나 품목코드와 신고 단위를 한국의 마늘 전용 세번에 맞춰야 비교할 수 있다. 중국 수급 전망과 KREI 월보, TRQ 고시, 법령은 별도 기관 원문을 근거로 한다.</p>
+<div class="tw">
+<table>
+<caption>표 11. 아카이브 판정 요약(입력 목록 347행 기준)</caption>
+<thead><tr><th>판정</th><th class="num">행 수</th><th>주된 사유 또는 반영처</th></tr></thead>
+<tbody>
+<tr><td>반영필요</td><td class="num">70</td><td>FAOSTAT QCL·SCL·TCL·TM·PP, Comtrade, 관세청·KAMIS, KREI, Fruit Logistica 등</td></tr>
+<tr><td>불필요</td><td class="num">277</td><td>중복 사본·빈 파일·구판 전망·직접 근거 미채택</td></tr>
+<tr><td>미검토</td><td class="num">0</td><td>—</td></tr>
+<tr class="tot"><td>전체</td><td class="num">347</td><td>반영필요+불필요+미검토</td></tr>
+</tbody></table>
+</div>
+<p class="src">출처: 01_조사노트/01_아카이브_원장.csv의 파일별 판정(E17).</p>
+<p>은행·기관 색인 _raw/_banks/index.csv에서 items에 garlic이 든 행은 페루 BCRP 아레키파 지점의 2026년 2~6월호 다섯 건이다. 09절은 그중 6월호의 아레키파 마늘 파종면적을 지역 통계로 소개했다. KREI 2026년 10월호에는 2026년산 난지형 9월 말 재고량 80,058톤과 2027년산 재배의향면적 23,111ha가 실려 있다. 기업별 동일 기준 취급량 순위, 중국산 식용 마늘의 품목·용도별 세부 검역조건, 개별 수입 건의 적용세율은 별도 원문 대조가 필요하다. <a href="https://aglook.krei.re.kr/upload/observeFiles/6dcd8ac031434a1fba37d174aae5991b.pdf">한국농촌경제연구원 농업관측센터, 「양념채소 2026년 10월호」 마늘 7쪽, 2026-10-02</a></p>
+</section>
+
+<footer class="colophon">
+  <div class="cl-row"><span class="k">제목</span><span>한국 마늘 산업 해부: 국내 생산과 중국 공급망이 만나는 양념채소</span></div>
+  <div class="cl-row"><span class="k">작성</span><span>이동건</span></div>
+  <div class="cl-row"><span class="k">판</span><span>2026년 10월 · v1</span></div>
+  <div class="cl-row"><span class="k">자료 기준</span><span>2026년 10월 · KOSIS·FAOSTAT·관세청·UN Comtrade·KAMIS 원자료와 기관 원문</span></div>
+  <div class="cl-row"><span class="k">범위</span><span>국내 생산·수급, 신선·냉장 마늘 HS 0703.20, 건조 마늘 전용 HS 0712.90-1000, 중국 본토 생산·수입 원산지·TRQ</span></div>
+  <div class="cl-row"><span class="k">수치 대조</span><span>결과는 update_2026-10-07/20_숫자대조.txt</span></div>
+  <div class="cl-row"><span class="k">한계</span><span>2026년 통관·가격은 부분기간 자료. 기업별 취급량 순위와 개별 수입 건의 적용세율·검역조건은 별도 확인 필요</span></div>
+</footer>
+</div>
+
