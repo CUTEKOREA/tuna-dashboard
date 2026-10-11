@@ -65,6 +65,7 @@ import octopusRaw from '@/public/data/companies/octopus_figures_v1.json';
 import shrimpRaw from '@/public/data/companies/shrimp_figures_v1.json';
 import squidRaw from '@/public/data/companies/squid_figures_v1.json';
 import tunaRaw from '@/public/data/companies/tuna_figures_v1.json';
+import surimiRaw from '@/public/data/companies/surimi_figures_v1.json';
 
 /**
  * 조사보고서 그림 인테이크 — 팩샷·차트·문서 캡처.
@@ -172,6 +173,7 @@ const INTAKES: Record<string, Intake> = {
   shrimp: shrimpRaw as unknown as Intake,
   squid: squidRaw as unknown as Intake,
   tuna: tunaRaw as unknown as Intake,
+  surimi: surimiRaw as unknown as Intake,
 };
 
 export const REPORT_FIGURE_COMPANIES = Object.keys(INTAKES);

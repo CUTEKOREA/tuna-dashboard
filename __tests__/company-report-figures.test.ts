@@ -21,7 +21,7 @@ import { REPORT_TABLE_COMPANIES } from '@/lib/data/company-report-tables';
 
 const 그림있는회사 = ['frinsa', 'thaiunion', 'albacora', 'fcf', 'itochu', 'bolton', 'jealsa', 'jais'];
 // 품목 해부보고서. 그림 틀이 회사 편과 달라 원문 마크업 조각(kind=html)으로 싣는다.
-const 품목 = ['pollock', 'octopus', 'shrimp', 'squid', 'tuna'];
+const 품목 = ['pollock', 'octopus', 'shrimp', 'squid', 'tuna', 'surimi'];
 
 describe('인테이크 구성', () => {
   it('표 인테이크를 전부 덮는다(품목 다섯 편 포함)', () => {
@@ -172,6 +172,20 @@ describe('품목 해부보고서 그림', () => {
     const doc = html(key);
     expect(doc).not.toMatch(/<figure[\s>]|class="(metrics|bars)"/);
     expect(reportFigures(key)).toEqual([]);
+  });
+
+  it('연육 원문의 지표 묶음 1(타일 3)이 01절 자리에 올라온다', () => {
+    const doc = html('surimi');
+    const figs = reportFigures('surimi');
+    const count = (re: RegExp) => (doc.match(re) ?? []).length;
+    expect(count(/class="metrics"/g)).toBe(1);
+    expect(doc).not.toMatch(/<figure[\s>]|class="bars"/);
+    expect(figs).toHaveLength(1);
+    expect(figs[0]).toMatchObject({ kind: 'html', sid: 's01', stage: 's01' });
+    expect((figs[0].html ?? '').match(/class="metric"/g)).toHaveLength(count(/class="metric"/g));
+    const sec = /<section id="s01"[^>]*>/.exec(doc)!;
+    const at = sec.index + sec[0].length + figs[0].ord;
+    expect(doc.slice(at, at + 30)).toMatch(/^<div class="metrics"/);
   });
 
   it('조각에 base64 가 없고 이미지는 public 아래 정적 URL 이다', () => {
