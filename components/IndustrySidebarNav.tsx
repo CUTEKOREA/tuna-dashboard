@@ -57,7 +57,15 @@ export default function IndustrySidebarNav({
   const withCurrent = (list: string[]) => (
     currentCategory && !list.includes(currentCategory) ? [...list, currentCategory] : list
   );
-  const [open, setOpen] = useState<string[]>(() => withCurrent(typeof window === 'undefined' ? [] : readOpen()));
+  // 첫 렌더는 서버와 같게(저장값 없이) 그리고, 저장된 펼침 상태는 마운트 뒤에 합친다 — 하이드레이션 불일치 방지.
+  const [open, setOpen] = useState<string[]>(() => withCurrent([]));
+  const [restored, setRestored] = useState(false);
+  useEffect(() => {
+    const saved = readOpen();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 브라우저 저장소는 마운트 뒤에만 읽을 수 있다
+    setOpen((prev) => [...new Set([...prev, ...saved])]);
+    setRestored(true);
+  }, []);
 
   // 다른 분류의 페이지로 옮겨 가면 그 분류를 펼친다(렌더 중 조정 — 이펙트에서 setState 하지 않는다).
   const [seenCategory, setSeenCategory] = useState(currentCategory);
@@ -68,8 +76,8 @@ export default function IndustrySidebarNav({
   }
 
   useEffect(() => {
-    writeOpen(open);
-  }, [open]);
+    if (restored) writeOpen(open);
+  }, [open, restored]);
 
   const toggle = (category: string) => {
     setOpen((prev) => (prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category]));

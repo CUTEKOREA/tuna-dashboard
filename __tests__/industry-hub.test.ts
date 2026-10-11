@@ -298,3 +298,16 @@ describe('캡션·출처 주의의 「NN단계」는 그 페이지의 실제 단
     }
   });
 });
+
+describe('/industry/[key] 서버 키 검증', () => {
+  it('레지스트리에 없는 키와 전용 페이지가 있는 키는 404로 끊는다', async () => {
+    const { default: Page } = await import('../app/industry/[key]/page');
+    for (const key of ['no-such-item', '..%2F..%2Fetc', 'tuna']) {
+      await expect(Page({ params: Promise.resolve({ key }) })).rejects.toThrow();
+    }
+  });
+  it('전용 페이지가 없는 품목 키는 통과한다', async () => {
+    const { default: Page } = await import('../app/industry/[key]/page');
+    await expect(Page({ params: Promise.resolve({ key: 'rice' }) })).resolves.toBeTruthy();
+  });
+});
