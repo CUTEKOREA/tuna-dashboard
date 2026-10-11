@@ -129,6 +129,36 @@ describe('새우 최종 해부보고서 표 추출', () => {
   });
 });
 
+describe('오징어 최종 해부보고서 표 추출', () => {
+  const tables = reportTables('squid');
+
+  it('본문 표 68개를 전부 싣고 부록 표는 제외한다', () => {
+    expect(REPORT_TABLE_COMPANIES).toContain('squid');
+    expect(tables).toHaveLength(68);
+    expect(tables.some((table) => /^s[A-Z]$/.test(table.sid))).toBe(false);
+    expect(tables.every((table) => table.rows.length > 0)).toBe(true);
+  });
+
+  it('원문 대응 단계에만 배치한다', () => {
+    // s01(요약 절)에는 원문 표가 없다
+    expect(stagesUsed('squid')).toEqual([
+      's02', 's06', 's07', 's08', 's09', 's10', 's11', 's12', 's13', 's14', 's15', 'x01', 'x03',
+    ]);
+    const total = stagesUsed('squid')
+      .reduce((sum, stage) => sum + tablesForStage('squid', stage).length, 0);
+    expect(total).toBe(tables.length);
+  });
+
+  it('모든 행·숫자 표시가 헤더 열 수와 맞는다', () => {
+    for (const table of tables) {
+      expect(table.num.length, `${table.sid} ${table.title}`).toBe(table.head.length);
+      for (const row of table.rows) {
+        expect(row.length, `${table.sid} ${table.title}`).toBe(table.head.length);
+      }
+    }
+  });
+});
+
 describe('표가 표로 남아 있는가', () => {
   it.each(회사)('%s - 모든 행의 열 수가 헤더와 같다', (c) => {
     for (const t of reportTables(c)) {

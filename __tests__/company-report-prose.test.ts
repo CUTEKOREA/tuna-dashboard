@@ -23,6 +23,11 @@ import {
   SHRIMP_REPORT_BRIEFING,
   SHRIMP_REPORT_NARRATIVES,
 } from '@/components/market-understanding/ShrimpIndustryDashboard';
+import {
+  SQUID_HANDWRITTEN_STAGES,
+  SQUID_REPORT_BRIEFING,
+  SQUID_REPORT_NARRATIVES,
+} from '@/components/market-understanding/SquidIndustryDashboard';
 import { FRABELLE_STAGES } from '@/lib/company-frabelle-content';
 import { proseStages } from '@/lib/company-prose-stages';
 import { tablesForStage } from '@/lib/data/company-report-tables';
@@ -89,6 +94,10 @@ function sourceText(html: string): string {
     .replace(/&#(\d+);/g, (_, decimal: string) => String.fromCodePoint(Number(decimal)))
     .replace(/&nbsp;/g, ' ')
     .replace(/&middot;/g, '·')
+    .replace(/&mdash;/g, '—')
+    .replace(/&hellip;/g, '…')
+    .replace(/&minus;/g, '−')
+    .replace(/&times;/g, '×')
     .replace(/&amp;/g, '&')
     .replace(/&quot;/g, '"')
     .replace(/&#39;|&apos;/g, "'")
@@ -290,6 +299,79 @@ describe('새우 최종 해부보고서 서술 추출', () => {
 
     expect(tables).toHaveLength(41);
     expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
+    const missing = visible
+      .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
+      .map(([kind, text]) => `${kind}: ${normalize(text).slice(0, 80)}`);
+    expect(missing, '원문에 없는 화면 문자열').toEqual([]);
+  });
+
+  it('절 머리가 「: 」로 시작하지 않는다', () => {
+    for (const stage of fromReport) {
+      for (const item of stage.flow ?? []) {
+        if (item.kind === 'head') expect(item.text, stage.key).not.toMatch(/^:/);
+      }
+    }
+  });
+
+  it('손으로 쓴 사실표·용어표는 원문 단계 서술에서 빠진다', () => {
+    for (const stage of fromReport) {
+      expect(stage.facts).toEqual([]);
+      expect(stage.terms).toEqual([]);
+    }
+  });
+});
+
+describe('오징어 최종 해부보고서 서술 추출', () => {
+  const secs = reportProse('squid');
+  const fromReport = SQUID_REPORT_NARRATIVES.filter((stage) => !SQUID_HANDWRITTEN_STAGES.has(stage.key));
+  const BODY = Array.from({ length: 21 }, (_, i) => `s${String(i + 1).padStart(2, '0')}`);
+
+  it('본문 21절이 열네 단계에 전부 붙고 부록은 제외된다', () => {
+    expect(secs.map((section) => section.sid)).toEqual(BODY);
+    expect(proseStagesUsed('squid')).toEqual([
+      's01', 's02', 's06', 's07', 's08', 's09', 's10', 's11', 's12', 's13', 's14', 's15', 'x01', 'x03',
+    ]);
+    expect(secs.some((section) => /^s[A-Z]$/.test(section.sid))).toBe(false);
+    // 요약 절은 첫 단계 맨 앞이다
+    expect(proseForStage('squid', 's01')[0].sid).toBe('s01');
+  });
+
+  it('원문에 대응 절이 없는 단계는 s03·s04·s05·x02·x04 다섯이다', () => {
+    expect([...SQUID_HANDWRITTEN_STAGES]).toEqual(['s03', 's04', 's05', 'x02', 'x04']);
+    expect(fromReport).toHaveLength(14);
+  });
+
+  it('화면 서술·머리글·브리핑·표 전부가 원문 HTML 텍스트에 그대로 있다', () => {
+    const html = readFileSync(
+      join(process.cwd(), 'docs/evidence/industry-squid-2026-10/보고서.html'),
+      'utf8',
+    );
+    const original = sourceText(html);
+    const flow = fromReport.flatMap((stage) => stage.flow ?? []);
+    const visible: [string, string][] = [
+      ...fromReport.map((stage): [string, string] => ['리드', stage.lede]),
+      ...flow.flatMap((item): [string, string][] => {
+        if (item.kind === 'text') return [['본문', item.text]];
+        if (item.kind === 'head') return item.text.split(': ').map((part): [string, string] => ['머리글', part]);
+        return [];
+      }),
+      ...SQUID_REPORT_BRIEFING.flatMap((point): [string, string][] => [
+        ['브리핑 제목', point.headline ?? ''],
+        ['브리핑', point.text],
+      ]),
+    ];
+    const tables = fromReport.flatMap((stage) => tablesForStage('squid', stage.key));
+    // 표 파서는 칸 안의 <br> 줄바꿈을 「 · 」로 잇는다. 줄마다 원문에 있는지 본다.
+    const lines = (kind: string, text: string): [string, string][] =>
+      text.split(' · ').map((part): [string, string] => [kind, part]);
+    for (const table of tables) {
+      if (table.title !== table.head.slice(0, 3).join(' · ')) visible.push(['표 제목', table.title]);
+      visible.push(...lines('표 설명', table.note ?? ''), ...lines('표 캡션', table.caption ?? ''));
+      for (const cell of [...table.head, ...table.rows.flat()]) visible.push(...lines('표 셀', cell));
+    }
+
+    expect(tables).toHaveLength(68);
+    expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(40);
     const missing = visible
       .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
       .map(([kind, text]) => `${kind}: ${normalize(text).slice(0, 80)}`);

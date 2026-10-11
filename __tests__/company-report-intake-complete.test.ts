@@ -22,8 +22,8 @@ import { REPORT_PROSE_COMPANIES } from '@/lib/data/company-report-prose';
 import { REPORT_TABLE_COMPANIES } from '@/lib/data/company-report-tables';
 
 const DIR = join(process.cwd(), 'public/data/companies');
-// 명태·문어·새우 시장 이해는 발주서가 표·서술 파이프라인만 지정했다. 회사 팩샷·차트 추출 대상이 아니다.
-const FIGURE_PIPELINE_EXCLUDED = new Set(['pollock', 'octopus', 'shrimp']);
+// 명태·문어·새우·오징어 시장 이해는 발주서가 표·서술 파이프라인만 지정했다. 회사 팩샷·차트 추출 대상이 아니다.
+const FIGURE_PIPELINE_EXCLUDED = new Set(['pollock', 'octopus', 'shrimp', 'squid']);
 
 function onDisk(kind: 'tables' | 'prose' | 'figures'): string[] {
   return readdirSync(DIR)
