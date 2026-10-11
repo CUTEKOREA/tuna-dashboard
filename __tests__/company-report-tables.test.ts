@@ -94,6 +94,22 @@ describe('연육 최종 해부보고서 표 추출', () => {
       }
     }
   });
+
+  it('두 줄 머리글의 둘째 줄을 데이터 행으로 읽지 않는다', () => {
+    const t = tables.find((table) => table.head.includes('명태 연육 0304.94-1000 · 물량'));
+    expect(t).toBeDefined();
+    expect(t!.rows).toHaveLength(5);
+    expect(t!.rows[0][0]).toBe('2021');
+  });
+});
+
+describe('오징어 두 줄 머리글 표', () => {
+  it('둘째 머리글 줄이 열 이름에 붙고 데이터 행은 연도로 시작한다', () => {
+    const t = reportTables('squid').find((table) =>
+      table.head.includes('생물 살오징어 · 국내 위판 경로 · 산지 위판 · 원/kg'));
+    expect(t).toBeDefined();
+    expect(t!.rows[0][0]).toBe('2023');
+  });
 });
 
 describe('문어 최종 해부보고서 표 추출', () => {
