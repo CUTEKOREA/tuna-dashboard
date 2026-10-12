@@ -269,7 +269,7 @@ describe('문어 최종 해부보고서 서술 추출', () => {
       for (const cell of [...table.head, ...table.rows.flat()]) visible.push(['표 셀', cell]);
     }
 
-    expect(tables).toHaveLength(18);
+    expect(tables).toHaveLength(21);
     expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
     const missing = visible
       .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
@@ -345,7 +345,7 @@ describe('새우 최종 해부보고서 서술 추출', () => {
       for (const cell of [...table.head, ...table.rows.flat()]) visible.push(['표 셀', cell]);
     }
 
-    expect(tables).toHaveLength(41);
+    expect(tables).toHaveLength(44);
     expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
     const missing = visible
       .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
