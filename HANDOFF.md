@@ -1,3 +1,9 @@
+> ✅ **2026-10-12 KST — 왼쪽 메뉴 다듬기(브랜치 `feat/sidebar-polish`, push·배포 전)** [CC]:
+> - 「시장 이해」 주력 5개를 가로 칩으로(분류 목록 안 주력 품목엔 ★), ⌘K 에 품목 48개(전용 페이지 품목은 메뉴 한 줄로 중복 제거 — 화면 검색 버튼은 2026-08-15 지시대로 두지 않음).
+> - 섹션·도구 버튼 사이 구분선, 분류 8색(`components/IndustrySidebarNav.module.css` 의 CSS 변수: 점·세로선·활성 막대), 품목 줄 끝 보고서 연월 신선도 점(`lib/data/edition-freshness.ts`, 90/365일, 마운트 뒤 계산).
+> - Codex 검증 P1 2건 반영(d 라이트 테마 칩 대비, 분류 활성 막대 표시). 남은 P2: ⌘K 결과 항목의 스크린리더 선택 알림, 칩·구분선 테스트가 문자열 검사 위주.
+> - 로컬 화면은 로그인 게이트(configuration_required)로 눈 확인 못 함 — Vercel 미리보기나 로그인한 로컬에서 확인 필요.
+
 > ✅ **2026-10-11 KST — 시장 이해 5품목(명태·문어·새우·오징어·참치 해부)을 해부보고서 원문에 더 가깝게: 그림·장 제목·원문 보기** [CC]:
 > - **그림**: `report_figures.py` 에 품목용 rich 경로(src 가 `docs/evidence/industry-*` 일 때만). 지표 타일(div.metrics)·막대(div.bars)·figure(종 도판·어법 모식도·SVG)를 원문 마크업 조각(kind=html)으로 싣고 이미지는 `public/data/companies/figures/squid/` 정적 파일, 조각이 쓰는 클래스 규칙·변수만 범위 지정. 오징어 원문 지표 묶음 2(타일 6)·막대 묶음 4(막대 16)·figure 8(종 도판 7·SVG 11) → 화면 14슬롯. 다른 넷은 원문에 그림이 없어 0. 회사 편 JSON 무변화(전체 재생성 시 pinsa 1건 ord 차이는 #1247 원문 개정 뒤 미재생성분 — 이번 변경과 무관, 되돌림).
 > - 다섯 화면의 inlineReport 복사본을 `components/market-understanding/IndustryReportFlow.tsx` 하나로 모음(표·그림 자리 + 장 제목).
