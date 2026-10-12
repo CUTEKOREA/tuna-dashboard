@@ -32,6 +32,7 @@ import {
   INDUSTRY_ITEMS,
   INDUSTRY_PINNED,
   industryItemForPath,
+  industryPageTitle,
   isGenericIndustryItem,
 } from '../lib/data/industry-registry';
 import { MACKEREL_SOURCE_NOTES } from '../lib/mackerel-industry-content';
@@ -359,6 +360,24 @@ describe('캡션·출처 주의의 「NN단계」는 그 페이지의 실제 단
     for (const text of texts) {
       for (const n of stageRefs(text)) expect(n, text.slice(0, 60)).toBeLessThanOrEqual(count);
     }
+  });
+});
+
+describe('탭 제목 — /industry/[key] 는 「전체 품목」이 아니라 품목명', () => {
+  it('공통 품목 경로는 품목명, 허브·전용 페이지·다른 메뉴는 메뉴 제목', () => {
+    expect(industryPageTitle('/industry/rice', '전체 품목')).toBe('쌀');
+    expect(industryPageTitle('/industry/pork/', '전체 품목')).toBe('돼지고기');
+    expect(industryPageTitle('/industry', '전체 품목')).toBe('전체 품목');
+    expect(industryPageTitle('/tuna-industry', '참치')).toBe('참치');
+    expect(industryPageTitle('/market', '시장')).toBe('시장');
+    for (const item of GENERIC) expect(industryPageTitle(item.href, '전체 품목')).toBe(item.name);
+  });
+
+  it('셸이 경로를 보고 탭 제목을 정한다(품목 화면이 덮어쓴 값을 셸이 다시 덮지 않게)', () => {
+    const page = read('app/page.tsx');
+    expect(page).toContain('document.title = `${industryPageTitle(pathname, getDashboardTitle(activeMenu))} | 참치왕국`');
+    expect(page).toContain('}, [activeMenu, pathname]);');
+    expect(read('components/market-understanding/IndustryItemDashboard.tsx')).not.toContain('document.title');
   });
 });
 

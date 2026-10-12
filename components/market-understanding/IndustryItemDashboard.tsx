@@ -113,7 +113,6 @@ export default function IndustryItemDashboard({ item }: { item: IndustryItem }) 
       .catch((e: unknown) => {
         if (alive) setState({ key: item.key, error: String(e) });
       });
-    document.title = `${item.name} | 참치왕국`;
     return () => {
       alive = false;
     };

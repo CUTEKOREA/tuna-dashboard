@@ -81,6 +81,15 @@ export function cardFacts(item: IndustryItem): CoverFact[] {
   return item.facts.length > 0 ? item.facts : (BODY_CARD_FACTS[item.key] ?? []);
 }
 
+/**
+ * 탭 제목(document.title)의 앞부분. 공통 품목 라우트(/industry/<key>)는 메뉴 키가 모두 `industry` 라
+ * 메뉴 제목(「전체 품목」)이 아니라 그 품목 이름을 쓴다. 그 밖은 메뉴 제목 그대로.
+ */
+export function industryPageTitle(pathname: string | null | undefined, menuTitle: string): string {
+  const item = industryItemForPath(pathname);
+  return item && isGenericIndustryItem(item) ? item.name : menuTitle;
+}
+
 export function itemsInCategory(category: string): IndustryItem[] {
   return INDUSTRY_ITEMS.filter((item) => item.category === category);
 }
