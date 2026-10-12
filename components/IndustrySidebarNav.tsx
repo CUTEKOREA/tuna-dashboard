@@ -5,13 +5,13 @@
  *  - 분류 8개를 접기 그룹으로 둔다. 기본은 접힘이고 지금 페이지가 속한 분류는 펼친다.
  *  - 펼침 상태는 localStorage 에 둔다(읽기·쓰기 실패는 무시 — 사생활 모드 등).
  *  - 접기 버튼은 네이티브 button 이라 키보드(Enter·Space)로 펼친다. aria-expanded·aria-controls 를 단다.
- *  - 분류마다 장식 색(점·세로 선·활성 막대)을 둔다. 주력 품목은 목록에서 이름 앞에 ★.
+ *  - 분류마다 장식 색(배지·개수 알약·세로 선·활성 줄)과 lucide 아이콘을 둔다. 주력 품목은 목록에서 이름 앞에 ★.
  *  - 품목 줄 끝에 보고서 연월의 신선도 점. 오늘 날짜는 마운트 뒤에 읽는다(첫 렌더는 점 없음).
  */
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ChevronRight, LayoutGrid } from 'lucide-react';
+import { Apple, Beef, Carrot, ChevronRight, Coffee, Droplet, Fish, LayoutGrid, Nut, Wheat, type LucideIcon } from 'lucide-react';
 
 import { editionFreshness } from '@/lib/data/edition-freshness';
 import {
@@ -40,6 +40,18 @@ const CATEGORY_COLOR_VARS: Record<string, string> = {
   '채소·향신': '--industry-cat-veg',
   유지: '--industry-cat-oil',
   '기호·원료': '--industry-cat-luxury',
+};
+
+/** 분류 → 배지 아이콘(장식 — 분류 이름이 바로 옆에 글로 있다) */
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  수산: Fish,
+  축산: Beef,
+  '곡물·서류': Wheat,
+  과일: Apple,
+  '견과·종실': Nut,
+  '채소·향신': Carrot,
+  유지: Droplet,
+  '기호·원료': Coffee,
 };
 
 const PINNED_KEYS = new Set(INDUSTRY_PINNED.map((item) => item.key));
@@ -121,6 +133,7 @@ export default function IndustrySidebarNav({
         const expanded = open.includes(category);
         const listId = `industry-nav-group-${index}`;
         const items = itemsInCategory(category);
+        const Icon = CATEGORY_ICONS[category] ?? LayoutGrid;
         return (
           <div
             key={category}
@@ -137,11 +150,14 @@ export default function IndustrySidebarNav({
               <ChevronRight
                 size={18}
                 aria-hidden="true"
-                style={{ transform: expanded ? 'rotate(90deg)' : undefined, transition: 'transform 0.15s ease' }}
+                className={styles.chevron}
+                style={{ transform: expanded ? 'rotate(90deg)' : undefined }}
               />
-              <span className={styles.catDot} aria-hidden="true" data-category-dot={category} />
+              <span className={styles.badge} aria-hidden="true" data-category-badge={category}>
+                <Icon size={13} />
+              </span>
               <span>{category}</span>
-              <span style={{ marginLeft: 'auto', fontSize: 11, opacity: 0.7 }}>{items.length}</span>
+              <span className={styles.count}>{items.length}</span>
             </button>
             <ul id={listId} hidden={!expanded} className={styles.groupList}>
               {items.map((item) => {

@@ -443,6 +443,29 @@
   color: #8a8a8a;
 }
 
+/* 구역 제목(시안 A, 2026-10-12) — 글자는 하늘→보라 그라디언트, 뒤에 오른쪽으로 사라지는 가는 선.
+ * 다크 바탕(#101524) 대비 #38bdf8 8.5:1 · #818cf8 6.1:1. 라이트는 흰 바탕 2.1~3.0:1 이라 아래 라이트 규칙에서 단색으로 바꾼다. */
+.sidebar .sidebarTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: var(--space-3);
+}
+
+.sidebarTitleText {
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sidebar .sidebarTitle::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(129, 140, 248, 0.45), transparent);
+}
+
 /* ─── 구역 구분 (2026-10-12) — 운영 ↔ 시장 이해 ↔ 전략 ↔ 맨 아래 도구 버튼 ─── */
 .sidebarSectionBreak {
   margin-top: var(--space-4);
@@ -456,8 +479,18 @@
   border-top: 1px solid var(--card-border);
 }
 
-/* ─── 「시장 이해」 주력 5개(★) 칩 — 섹션 제목 아래 가로로 감싼다 ─── */
+/* ─── 「시장 이해」 주력 5개(★) 칩 — 섹션 제목 아래 가로로 감싼다 ───
+ * 시안 B «과감한 화려»(2026-10-12): 칩마다 제 색으로 꽉 채운 그라디언트 + 흰 글자.
+ * 채움 색은 다크·라이트 공통. 흰 글자 대비(밝은 쪽 끝 기준) — 파랑 #2563eb 5.17:1 · 보라 #7c3aed 5.70:1 ·
+ * 초록 #15803d 5.02:1 · 주황 #c2410c 5.18:1. 어두운 쪽 끝(남색 #312e81 45% 섞음)은 7.4:1 이상. */
 .pinnedChips {
+  --pin-tuna: #2563eb;    /* 참치 — 수산 파랑 */
+  --pin-squid: #7c3aed;   /* 오징어 보라 */
+  --pin-pollock: #2563eb; /* 명태 파랑 */
+  --pin-surimi: #15803d;  /* 연육 초록 */
+  --pin-shrimp: #c2410c;  /* 새우 주황 */
+  --pin-default: #475569;
+  --pin-ring: rgba(255, 255, 255, 0.85);
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -470,14 +503,15 @@
   gap: 4px;
   padding: 3px 9px;
   border-radius: 999px;
-  border: 1px solid var(--card-border);
-  background: transparent;
-  color: var(--text-tertiary);
+  border: 0;
+  background: linear-gradient(135deg, var(--chip-color), color-mix(in srgb, var(--chip-color) 55%, #312e81));
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--chip-color) 35%, transparent);
+  color: #fff;
   font-size: var(--font-sm);
-  font-weight: var(--weight-medium);
+  font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.18s ease;
 }
 
 .pinnedChip svg {
@@ -485,21 +519,18 @@
 }
 
 .pinnedChip:hover {
-  background: var(--surface-2);
-  color: var(--text-primary);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* 활성: 흰 고리(라이트는 아래에서 짙은 고리로) */
+.pinnedChipActive {
+  outline: 2px solid var(--pin-ring);
+  outline-offset: 1px;
 }
 
 .pinnedChip:focus-visible {
   outline: 2px solid #38bdf8;
   outline-offset: 2px;
-}
-
-/* 활성: .menuItemActive 와 같은 시안 잉크(#7dd3fc, 다크 바탕 대비 11:1) */
-.pinnedChipActive {
-  color: #7dd3fc;
-  border-color: rgba(56, 189, 248, 0.45);
-  background: rgba(34, 211, 238, 0.12);
-  font-weight: var(--weight-semi);
 }
 
 /* ==========================================================
@@ -696,8 +727,9 @@
   font-weight: var(--weight-semi);
 }
 
+/* d 라이트 테마: 흰 사이드바에서 --text-tertiary(#9ca3af)는 2.54:1 — 보조 글자색(#6B7280, 4.83:1)으로 */
 [data-theme='light'] .menuItem {
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 [data-theme='light'] .menuItem:hover {
@@ -717,10 +749,12 @@
   display: none;
 }
 
-/* light mode: plain section labels (no gradient text) */
-[data-theme='light'] .sidebar .sidebarTitle {
+/* 라이트: 구역 제목 그라디언트는 흰 바탕 대비 미달(2.1~3.0:1) — 단색 브랜드 블루(#1c6bb0, 5.56:1)로. 가는 선은 그대로 */
+[data-theme='light'] .sidebarTitleText,
+[data-v3='light'] .sidebarTitleText {
   background: none;
-  -webkit-text-fill-color: var(--text-dim);
+  -webkit-text-fill-color: #1c6bb0;
+  color: #1c6bb0;
 }
 
 [data-theme='light'] .card,
@@ -1050,7 +1084,8 @@
   .mobileMenuBtn {
     transition: none;
   }
-  .menuItem:hover {
+  .menuItem:hover,
+  .pinnedChip:hover {
     transform: none;
   }
   .insightItem:hover {
@@ -1080,20 +1115,13 @@
   scrollbar-color: rgba(80, 158, 227, 0.35) transparent;
 }
 
-/* 주력 칩 활성 — 라이트는 .menuItemActive 와 같은 브랜드 블루 잉크(#1c6bb0, 흰 바탕 대비 5.6:1) */
-[data-v3='light'] .pinnedChipActive,
-[data-theme='light'] .pinnedChipActive {
-  color: #1c6bb0;
-  border-color: rgba(80, 158, 227, 0.5);
-  background: rgba(80, 158, 227, 0.10);
+/* 주력 칩 — 라이트는 흰 바탕에 흰 고리가 안 보이므로 활성 고리를 짙은 남색으로. 채움·흰 글자는 다크와 같다 */
+[data-v3='light'] .pinnedChips,
+[data-theme='light'] .pinnedChips {
+  --pin-ring: rgba(15, 23, 42, 0.85);
 }
 
 [data-v3='light'] .pinnedChip:focus-visible,
 [data-theme='light'] .pinnedChip:focus-visible {
   outline-color: #1c6bb0;
-}
-
-/* d 단축키 라이트 테마: 비활성 칩 글자 #9CA3AF 는 흰 바탕 2.54:1 — 본문 보조색(#6B7280, 4.83:1)으로 */
-[data-theme='light'] .pinnedChip {
-  color: var(--text-secondary);
 }

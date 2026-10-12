@@ -94,6 +94,21 @@ const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Waves,
 };
 
+// 주력 칩 채움 색 — page.module.css 의 .pinnedChips 에 값이 있다(흰 글자 4.5:1 이상으로 맞춘 진한 색)
+const PINNED_CHIP_COLOR_VARS: Record<string, string> = {
+  'tuna-industry': '--pin-tuna',
+  'squid-industry': '--pin-squid',
+  'pollock-industry': '--pin-pollock',
+  'surimi-industry': '--pin-surimi',
+  'shrimp-industry': '--pin-shrimp',
+};
+
+// 구역 제목 앞 이모지는 그라디언트 글자에서 뺀다(배경 잘라내기에 이모지 색이 지워진다)
+const splitSectionTitle = (title: string) => {
+  const match = /^(\p{Extended_Pictographic}\uFE0F?)\s*(.*)$/u.exec(title);
+  return match ? { emoji: match[1], label: match[2] } : { emoji: '', label: title };
+};
+
 
 export default function Home() {
   const [mgoData, setMgoData] = useState({ price: 0, change: 0, date: '', loading: true });
@@ -277,6 +292,7 @@ export default function Home() {
         type="button"
         className={`${styles.pinnedChip} ${active ? styles.pinnedChipActive : ''}`}
         aria-current={active ? 'page' : undefined}
+        style={{ '--chip-color': `var(${PINNED_CHIP_COLOR_VARS[item.key] ?? '--pin-default'})` } as React.CSSProperties}
         onClick={() => { handleMenuClick(item.key); setIsMobileSidebarOpen(false); }}
       >
         <Icon size={14} aria-hidden="true" />
@@ -384,11 +400,14 @@ export default function Home() {
           </div>
         </Link>
         
-        {SIDEBAR_SECTIONS.map((section, index) => (
+        {SIDEBAR_SECTIONS.map((section, index) => {
+          const title = splitSectionTitle(section.title);
+          return (
           <React.Fragment key={section.section}>
-            {/* 구역 사이는 얇은 구분선 + 여백(첫 구역 제외) */}
+            {/* 구역 사이는 얇은 구분선 + 여백(첫 구역 제외). 제목 글자는 그라디언트, 뒤에 사라지는 가는 선 */}
             <div className={`${styles.sidebarTitle} ${index === 0 ? '' : styles.sidebarSectionBreak}`}>
-              {section.title}
+              {title.emoji && <span>{title.emoji}</span>}
+              <span className={styles.sidebarTitleText}>{title.label}</span>
             </div>
             {section.section === 'understanding' ? (
               <>
@@ -407,7 +426,8 @@ export default function Home() {
               section.items.map((item) => renderSidebarItem(item))
             )}
           </React.Fragment>
-        ))}
+          );
+        })}
 
         <div style={{ flex: 1 }} />
         {/* 맨 아래 도구 버튼 구역과 메뉴 구역을 가른다 */}
