@@ -106,7 +106,7 @@ describe('연육 최종 해부보고서 표 추출', () => {
 describe.each([
   // [키, 본문 표 수, 표가 붙는 단계(골뱅이 요지 단계는 표가 없다)]
   ['mackerel', 49, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 'x01']],
-  ['tunafarm', 45, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09']],
+  ['tunafarm', 15, ['s02', 's03', 's04', 's05', 's06', 's08', 's10', 's12', 's13', 's14']],
   ['whelk', 17, ['s02', 's03', 's04']],
 ] as const)('%s 원문 표 추출', (key, count, stages) => {
   const tables = reportTables(key);
@@ -154,10 +154,17 @@ describe('표 값 — 원문 첫 행 대조', () => {
     expect(t!.rows[0].slice(0, 3)).toEqual(['영국', '3,887', '11.94']);
   });
 
-  it('참치 양식 어종 표: 첫 행 대서양참다랑어 36,855 t', () => {
-    const t = reportTables('tunafarm').find((table) => table.head.includes('2024 양식 t'));
+  it('참치 양식 03절 수입 연도 표: 첫 행 2015년 3,147.3톤', () => {
+    const t = reportTables('tunafarm').find((table) => table.sid === 's03' && table.head.includes('평균 단가(달러/kg)'));
     expect(t).toBeDefined();
-    expect(t!.rows[0]).toEqual(['대서양참다랑어', 'Thunnus thynnus', 'BFT', 'R · C', '36,855', '지중해 축양의 본체']);
+    expect(t!.head).toEqual(['연도', '물량(톤)', '금액(백만 달러)', '평균 단가(달러/kg)']);
+    expect(t!.rows[0]).toEqual(['2015', '3,147.3', '78.2', '24.86']);
+  });
+
+  it('참치 양식 06절 수입 명의 표: 첫 행 동원산업(주) 146건', () => {
+    const t = reportTables('tunafarm').find((table) => table.sid === 's06');
+    expect(t).toBeDefined();
+    expect(t!.rows[0]).toEqual(['1', '동원산업(주)', '146']);
   });
 
   it('고등어 02절 시점 표: 첫 행 9월 말~10월 초 ICES 권고', () => {
@@ -180,9 +187,9 @@ describe('오징어 두 줄 머리글 표', () => {
 describe('문어 최종 해부보고서 표 추출', () => {
   const tables = reportTables('octopus');
 
-  it('본문 표 18개를 전부 싣고 부록 표는 제외한다', () => {
+  it('본문 표 21개를 전부 싣고 부록 표는 제외한다', () => {
     expect(REPORT_TABLE_COMPANIES).toContain('octopus');
-    expect(tables).toHaveLength(18);
+    expect(tables).toHaveLength(21);
     expect(tables.some((table) => table.sid === 'sA')).toBe(false);
     expect(tables.every((table) => table.rows.length > 0)).toBe(true);
   });
@@ -209,9 +216,9 @@ describe('문어 최종 해부보고서 표 추출', () => {
 describe('새우 최종 해부보고서 표 추출', () => {
   const tables = reportTables('shrimp');
 
-  it('본문 표 41개를 전부 싣고 부록 표는 제외한다', () => {
+  it('본문 표 44개를 전부 싣고 부록 표는 제외한다', () => {
     expect(REPORT_TABLE_COMPANIES).toContain('shrimp');
-    expect(tables).toHaveLength(41);
+    expect(tables).toHaveLength(44);
     expect(tables.some((table) => /^s[A-Z]$/.test(table.sid))).toBe(false);
     expect(tables.every((table) => table.rows.length > 0)).toBe(true);
     // s18 은 <section style=…> 이라 파서가 한때 통째로 놓쳤다

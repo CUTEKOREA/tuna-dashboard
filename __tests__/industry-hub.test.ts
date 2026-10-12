@@ -14,6 +14,8 @@ import IndustrySidebarNav from '../components/IndustrySidebarNav';
 import CommodityIndustryDashboard from '../components/market-understanding/CommodityIndustryDashboard';
 import { filterIndustryItems, IndustryHubCards } from '../components/market-understanding/IndustryHub';
 import { buildIndustryItemSpec } from '../components/market-understanding/IndustryItemDashboard';
+import { PORK_CHART_SLOTS, PORK_LEGACY_STAGE_MAP } from '../components/market-understanding/PorkLegacySlots';
+import { PORK_WIDGETS } from '../components/PorkWidgets';
 import { MACKEREL_CHART_SLOTS, MACKEREL_REPORT_NARRATIVES } from '../components/market-understanding/MackerelIndustryDashboard';
 import { TUNA_MERGED_CHART_SLOTS } from '../components/market-understanding/TunaIndustryDashboard';
 import { TUNA_ANATOMY_REPORT_NARRATIVES } from '../components/market-understanding/TunaAnatomyDashboard';
@@ -24,10 +26,13 @@ import { isActiveMenu, SIDEBAR_SECTIONS, VALID_MENUS } from '../lib/dashboard-re
 import { reportProse } from '../lib/data/company-report-prose';
 import { reportTables } from '../lib/data/company-report-tables';
 import {
+  BODY_CARD_FACTS,
+  cardFacts,
   INDUSTRY_CATEGORIES,
   INDUSTRY_ITEMS,
   INDUSTRY_PINNED,
   industryItemForPath,
+  industryPageTitle,
   isGenericIndustryItem,
 } from '../lib/data/industry-registry';
 import { MACKEREL_SOURCE_NOTES } from '../lib/mackerel-industry-content';
@@ -97,7 +102,38 @@ describe('47품목 레지스트리 (실제 48 — 발주서 분류 목록 합)',
     for (const item of INDUSTRY_ITEMS) {
       expect(html).toContain(`href="${item.href}"`);
       expect(text).toContain(`보고서 ${item.edition}`);
-      for (const f of item.facts.slice(0, 2)) expect(text, `${item.key} ${f.k}`).toContain(`${f.k} ${f.v} ${f.n}`);
+      for (const f of cardFacts(item).slice(0, 2)) expect(text, `${item.key} ${f.k}`).toContain(`${f.k} ${f.v} ${f.n}`);
+    }
+  });
+
+  it('참치 양식 카드는 해부보고서 표지 cover-facts 를 쓴다(본문 요지 수치 항목 없음)', () => {
+    const item = INDUSTRY_ITEMS.find((i) => i.key === 'tunafarm')!;
+    expect(item.title).toBe('한국 시장의 양식 참다랑어');
+    expect(item.facts).toHaveLength(8);
+    expect(cardFacts(item)).toBe(item.facts);
+    expect(item.facts.slice(0, 2).map((f) => `${f.k} ${f.v} ${f.n}`)).toEqual([
+      '2025 국내 해면양식 14.276 톤 · 8.5억 원',
+      '2025 참다랑어 수입 7,168.3 톤 · 151.3백만 달러',
+    ]);
+  });
+
+  it('표지 타일이 없는 골뱅이 카드는 원문 요지 첫 단락의 수치 2개를 쓴다', () => {
+    expect(Object.keys(BODY_CARD_FACTS).sort()).toEqual(['whelk']);
+    for (const [key, facts] of Object.entries(BODY_CARD_FACTS)) {
+      const item = INDUSTRY_ITEMS.find((i) => i.key === key)!;
+      expect(item.facts, key).toEqual([]);
+      expect(facts).toHaveLength(2);
+      expect(cardFacts(item)).toBe(facts);
+      const doc = read(`docs/evidence/industry-${key}-2026-10/보고서.html`);
+      // 요지(0장) 첫 단락 = 요지 머리(「0. 요지」 h2 또는 id="s0") 뒤 첫 <li>/<p>
+      const head = /요지<\/h2>|id="s0"[^>]*>[^<]*<\/p>/.exec(doc)!;
+      const rest = doc.slice(head.index + head[0].length);
+      const first = flat(/<(li|p)\b[^>]*>([\s\S]*?)<\/\1>/.exec(rest)![2]);
+      for (const f of facts) {
+        expect(f.quote, `${key} ${f.k}`).toContain(f.v);
+        expect(first, `${key} ${f.quote}`).toContain(f.quote);
+        expect(flat(doc)).toContain(f.quote);
+      }
     }
   });
 
@@ -269,6 +305,45 @@ describe('라우트·보호·리다이렉트', () => {
   });
 });
 
+describe('돼지고기 통합 — 옛 /pork 위젯 11개는 /industry/pork 원문 단계 끝 「근거」로', () => {
+  const item = INDUSTRY_ITEMS.find((i) => i.key === 'pork')!;
+  const data = {
+    tables: JSON.parse(read('public/data/companies/pork_tables_v1.json')),
+    prose: JSON.parse(read('public/data/companies/pork_prose_v1.json')),
+    figures: JSON.parse(read('public/data/companies/pork_figures_v1.json')),
+  };
+
+  it('위젯 11개가 빠짐없이 원문 11단계 안으로 가고, 화면에 제목·출처가 뜬다', () => {
+    const spec = buildIndustryItemSpec(item, data);
+    const keys = new Set(spec.narratives.map((n) => n.key));
+    expect(Object.keys(PORK_WIDGETS).sort()).toEqual(Object.keys(PORK_LEGACY_STAGE_MAP).sort());
+    expect(Object.values(PORK_CHART_SLOTS).flat()).toHaveLength(11);
+    for (const [stage, slots] of Object.entries(spec.chartSlots)) {
+      expect(keys.has(stage), stage).toBe(true);
+      expect(new Set(slots.map((s) => s.title)).size, stage).toBe(slots.length);
+    }
+    const html = renderToStaticMarkup(React.createElement(CommodityIndustryDashboard, { spec }));
+    for (const w of Object.values(PORK_WIDGETS)) {
+      expect(html, w.title).toContain(w.title);
+      expect(html, w.source).toContain(`출처: ${w.source}`);
+    }
+  });
+
+  it('자급률 위젯 캡션이 66%의 기준과 표지 73.0%의 기준을 함께 적는다(값은 원문에 있다)', () => {
+    const slot = PORK_CHART_SLOTS.s03.find((s) => s.title === '한국 단백질 자급률 갭')!;
+    for (const t of ['66%', '2022년', 'FAOSTAT', 'PSD', '73.0%', 'KREI', '66.4%', '도체중량']) expect(slot.caption, t).toContain(t);
+    const doc = plain(read('docs/evidence/industry-pork-2026-10/보고서.html'));
+    expect(doc).toContain('자급률(국내 수급표) 73.0%');
+    expect(doc).toContain('미국 농무부 PSD 공식치(도체중량)로는 2025년 66.4%');
+  });
+
+  it('/pork 는 /industry/pork 로 307, 메뉴·명령 팔레트에 옛 돼지고기가 없다', async () => {
+    const redirects = await (nextConfig as { redirects: () => Promise<Array<{ source: string; destination: string; permanent: boolean }>> }).redirects();
+    expect(redirects).toContainEqual({ source: '/pork', destination: '/industry/pork', permanent: false });
+    expect(SIDEBAR_SECTIONS.flatMap((s) => s.items.map((i) => i.key))).not.toContain('pork');
+  });
+});
+
 describe('참치 통합 — 옛 「참치」 위젯은 원문 단계 끝 「근거」로', () => {
   it('모든 근거 슬롯이 원문 15단계 안에 있고 한 단계에 같은 제목이 두 번 없다', () => {
     const keys = new Set(TUNA_ANATOMY_REPORT_NARRATIVES.map((n) => n.key));
@@ -299,6 +374,24 @@ describe('캡션·출처 주의의 「NN단계」는 그 페이지의 실제 단
   });
 });
 
+describe('탭 제목 — /industry/[key] 는 「전체 품목」이 아니라 품목명', () => {
+  it('공통 품목 경로는 품목명, 허브·전용 페이지·다른 메뉴는 메뉴 제목', () => {
+    expect(industryPageTitle('/industry/rice', '전체 품목')).toBe('쌀');
+    expect(industryPageTitle('/industry/pork/', '전체 품목')).toBe('돼지고기');
+    expect(industryPageTitle('/industry', '전체 품목')).toBe('전체 품목');
+    expect(industryPageTitle('/tuna-industry', '참치')).toBe('참치');
+    expect(industryPageTitle('/market', '시장')).toBe('시장');
+    for (const item of GENERIC) expect(industryPageTitle(item.href, '전체 품목')).toBe(item.name);
+  });
+
+  it('셸이 경로를 보고 탭 제목을 정한다(품목 화면이 덮어쓴 값을 셸이 다시 덮지 않게)', () => {
+    const page = read('app/page.tsx');
+    expect(page).toContain('document.title = `${industryPageTitle(pathname, getDashboardTitle(activeMenu))} | 참치왕국`');
+    expect(page).toContain('}, [activeMenu, pathname]);');
+    expect(read('components/market-understanding/IndustryItemDashboard.tsx')).not.toContain('document.title');
+  });
+});
+
 describe('/industry/[key] 서버 키 검증', () => {
   it('레지스트리에 없는 키와 전용 페이지가 있는 키는 404로 끊는다', async () => {
     const { default: Page } = await import('../app/industry/[key]/page');
@@ -309,5 +402,17 @@ describe('/industry/[key] 서버 키 검증', () => {
   it('전용 페이지가 없는 품목 키는 통과한다', async () => {
     const { default: Page } = await import('../app/industry/[key]/page');
     await expect(Page({ params: Promise.resolve({ key: 'rice' }) })).resolves.toBeTruthy();
+  });
+});
+
+describe('돼지고기 옛 위젯 이동 — 정보 보존', () => {
+  it('옮긴 11개 위젯 캡션에 기둥과 실행 지침이 남는다', async () => {
+    const { PORK_CHART_SLOTS } = await import('../components/market-understanding/PorkLegacySlots');
+    const slots = Object.values(PORK_CHART_SLOTS).flat();
+    expect(slots).toHaveLength(11);
+    for (const s of slots) {
+      expect(s.caption, s.title).toMatch(/^\[S\d\]/);
+      expect(s.caption, s.title).toContain('실행 지침:');
+    }
   });
 });

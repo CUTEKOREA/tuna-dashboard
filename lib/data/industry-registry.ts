@@ -60,6 +60,32 @@ export function industryItemForPath(pathname: string | null | undefined): Indust
   return INDUSTRY_ITEMS.find((item) => item.href === path);
 }
 
+/**
+ * 표지 cover-facts 가 없는 보고서(골뱅이 조달)의 허브 카드 수치.
+ * 원문 0장(요지) 첫 단락에서 골랐다. `quote` 는 원문 평문에 그대로 있는 구절이고 `v` 를 품는다(테스트가 대조).
+ * `hub_v1.json`(표지 전용)에는 넣지 않는다.
+ */
+export const BODY_CARD_FACTS: Record<string, Array<CoverFact & { quote: string }>> = {
+  whelk: [
+    { k: '수입 신고', v: '757', n: '건 · 피뿔고둥 355 · 참골뱅이·물레고둥 172+129', quote: '신고 757건' },
+    { k: '피뿔고둥', v: '355', n: '건 · 원산지 중국 232 · 튀르키예 85', quote: '피뿔고둥(Rapana venosa) 355건' },
+  ],
+};
+
+/** 허브 카드에 쓰는 수치 — 표지 타일, 없으면 본문 요지에서 고른 값. */
+export function cardFacts(item: IndustryItem): CoverFact[] {
+  return item.facts.length > 0 ? item.facts : (BODY_CARD_FACTS[item.key] ?? []);
+}
+
+/**
+ * 탭 제목(document.title)의 앞부분. 공통 품목 라우트(/industry/<key>)는 메뉴 키가 모두 `industry` 라
+ * 메뉴 제목(「전체 품목」)이 아니라 그 품목 이름을 쓴다. 그 밖은 메뉴 제목 그대로.
+ */
+export function industryPageTitle(pathname: string | null | undefined, menuTitle: string): string {
+  const item = industryItemForPath(pathname);
+  return item && isGenericIndustryItem(item) ? item.name : menuTitle;
+}
+
 export function itemsInCategory(category: string): IndustryItem[] {
   return INDUSTRY_ITEMS.filter((item) => item.category === category);
 }

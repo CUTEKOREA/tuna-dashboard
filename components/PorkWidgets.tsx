@@ -37,11 +37,33 @@ const W = ({ title, icon, sub, accent, telemetry, sit, strat, source, pillar, ch
   />
 );
 
-export function W1_ASFCycle({ accent }: any) {
-  return <W title="중국 생산량 및 질병(ASF) 사이클" icon={Globe} accent={accent} pillar="S1" sub="중국 돈육 생산량(천 톤) 및 산지 가격 지수 - 글로벌 1위 생산국 단독 시계열 | FAOSTAT QCL 2015-2024"
-    telemetry="FAOSTAT QCL 2015-2024"
-    sit="2019년 중국 ASF 사태로 중국 생산량 54,992→43,498천톤(-20.9%) 급감. 3~4년 주기 질병 충격이 반복됨."
-    strat="세계동물보건기구(WOAH) ASF 모니터링 + 시카고상업거래소(CME) Lean Hogs 선물을 수산물 가격 전략 선행 지표로 삼아 동적 가격 전략 실행." source="FAOSTAT QCL Item 1035 (중국)">
+/**
+ * 위젯 11개의 메타와 차트 본문. 옛 /pork 는 WidgetCard 로, /industry/pork 는 원문 단계 끝
+ * 「근거」 슬롯(`PorkLegacySlots`)으로 같은 정의를 그린다.
+ */
+export interface PorkWidgetSpec {
+  title: string;
+  icon: React.ComponentType<any>;
+  pillar: string;
+  sub: string;
+  telemetry: string;
+  sit: string;
+  strat: string;
+  source: string;
+  chart: () => React.ReactElement;
+}
+
+export const PORK_WIDGETS: Record<string, PorkWidgetSpec> = {
+  W1: {
+    title: "중국 생산량 및 질병(ASF) 사이클",
+    icon: Globe,
+    pillar: "S1",
+    sub: "중국 돈육 생산량(천 톤) 및 산지 가격 지수 - 글로벌 1위 생산국 단독 시계열 | FAOSTAT QCL 2015-2024",
+    telemetry: "FAOSTAT QCL 2015-2024",
+    sit: "2019년 중국 ASF 사태로 중국 생산량 54,992→43,498천톤(-20.9%) 급감. 3~4년 주기 질병 충격이 반복됨.",
+    strat: "세계동물보건기구(WOAH) ASF 모니터링 + 시카고상업거래소(CME) Lean Hogs 선물을 수산물 가격 전략 선행 지표로 삼아 동적 가격 전략 실행.",
+    source: "FAOSTAT QCL Item 1035 (중국)",
+    chart: () => (
     <ComposedChart data={D.asfCycleData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
@@ -49,14 +71,18 @@ export function W1_ASFCycle({ accent }: any) {
       <Bar yAxisId="left" dataKey="production" name="중국 생산량 (천톤)" fill={SERIES[0]} radius={[4, 4, 0, 0]} fillOpacity={0.8} />
       <Line yAxisId="right" type="monotone" dataKey="price" name="산지 가격 지수" stroke={SERIES[1]} strokeWidth={2.5} dot={true} />
     </ComposedChart>
-  </W>;
-}
-
-export function W2_FeedMargin({ accent }: any) {
-  return <W title="곡물가(사료) 연동 마진 압박 지수" icon={TrendingUp} accent={accent} pillar="S2" sub="사료곡물 가격 지수 대비 가공 마진율(%) 추이 - illustrative | CBOT 옥수수·대두 방향성 참고"
-    telemetry="시카고상품거래소(CBOT) 2022-2023"
-    sit="사료비가 원가의 60% 이상. 2022년 곡물가 피크 당시 가공 마진이 적자(-2%)로 전환(업계추정 방향성)."
-    strat="곡물가 상승 시 고마진 특수 부위(삼겹살/항정살) 직판 비율 확대, 저마진 부위는 B2B 급식 전환." source="시카고상품거래소(CBOT) 옥수수·대두 방향성 참고 - 업계추정">
+    ),
+  },
+  W2: {
+    title: "곡물가(사료) 연동 마진 압박 지수",
+    icon: TrendingUp,
+    pillar: "S2",
+    sub: "사료곡물 가격 지수 대비 가공 마진율(%) 추이 - illustrative | CBOT 옥수수·대두 방향성 참고",
+    telemetry: "시카고상품거래소(CBOT) 2022-2023",
+    sit: "사료비가 원가의 60% 이상. 2022년 곡물가 피크 당시 가공 마진이 적자(-2%)로 전환(업계추정 방향성).",
+    strat: "곡물가 상승 시 고마진 특수 부위(삼겹살/항정살) 직판 비율 확대, 저마진 부위는 B2B 급식 전환.",
+    source: "시카고상품거래소(CBOT) 옥수수·대두 방향성 참고 - 업계추정",
+    chart: () => (
     <ComposedChart data={D.feedCostData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="quarter" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
@@ -64,53 +90,69 @@ export function W2_FeedMargin({ accent }: any) {
       <Line yAxisId="left" type="monotone" dataKey="feedIndex" name="사료 가격 지수" stroke={SERIES[0]} strokeWidth={2.5} />
       <Bar yAxisId="right" dataKey="porkMargin" name="가공 마진율 (%)" fill="var(--w-emerald-500)" radius={[4, 4, 0, 0]}>{D.feedCostData.map((e, i) => <Cell key={i} fill={e.porkMargin < 0 ? 'var(--w-red-500)' : 'var(--w-emerald-500)'} />)}</Bar>
     </ComposedChart>
-  </W>;
-}
-
-export function W3_TradeSpread({ accent }: any) {
-  return <W title="주요 대륙간 무역 단가 스프레드" icon={Globe} accent={accent} pillar="S3" sub="EU·북미·아시아 간 수출입 돈육 평균 단가(달러/톤) - illustrative | OEC 2023 방향성 참고"
-    telemetry="OEC 2023"
-    sit="EU 환경 규제에 따른 생산량 감소로 EU산 단가가 북미산을 추월. 아시아 시장의 높은 소비력(업계추정 방향성)."
-    strat="단가가 안정적인 북미 및 남미(브라질)산 비중을 높여 다변화 전략 시급." source="OEC 무역 데이터 방향성 참고 - 업계추정">
+    ),
+  },
+  W3: {
+    title: "주요 대륙간 무역 단가 스프레드",
+    icon: Globe,
+    pillar: "S3",
+    sub: "EU·북미·아시아 간 수출입 돈육 평균 단가(달러/톤) - illustrative | OEC 2023 방향성 참고",
+    telemetry: "OEC 2023",
+    sit: "EU 환경 규제에 따른 생산량 감소로 EU산 단가가 북미산을 추월. 아시아 시장의 높은 소비력(업계추정 방향성).",
+    strat: "단가가 안정적인 북미 및 남미(브라질)산 비중을 높여 다변화 전략 시급.",
+    source: "OEC 무역 데이터 방향성 참고 - 업계추정",
+    chart: () => (
     <LineChart data={D.tradeSpreadData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="month" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Line type="monotone" dataKey="asiaPrice" name="아시아 도착가" stroke={SERIES[0]} strokeWidth={2.5} /><Line type="monotone" dataKey="euPrice" name="EU 수출가" stroke={SERIES[1]} strokeWidth={2} strokeDasharray="5 5" />
       <Line type="monotone" dataKey="usPrice" name="북미 수출가" stroke={SERIES[2]} strokeWidth={2} strokeDasharray="5 5" />
     </LineChart>
-  </W>;
-}
-
-export function W4_ESG({ accent }: any) {
-  return <W title="육류별 탄소 배출 지수 비교" icon={Shield} accent={accent} pillar="S5" sub="주요 단백질 원천별 1kg 생산 당 CO2e 배출량 | FAOSTAT 2024"
-    telemetry="FAOSTAT 2024"
-    sit="돈육(12.3kg CO2e)은 수산물(2~5kg) 대비 으로 높음. Scope 3 규제 시 과세 대상."
-    strat="ESG 보고서에서 수산물의 낮은 탄소 배출을 강조하여 '그린 프리미엄' 획득." source="FAOSTAT 배출량(Emissions)">
+    ),
+  },
+  W4: {
+    title: "육류별 탄소 배출 지수 비교",
+    icon: Shield,
+    pillar: "S5",
+    sub: "주요 단백질 원천별 1kg 생산 당 CO2e 배출량 | FAOSTAT 2024",
+    telemetry: "FAOSTAT 2024",
+    sit: "돈육(12.3kg CO2e)은 수산물(2~5kg) 대비 으로 높음. Scope 3 규제 시 과세 대상.",
+    strat: "ESG 보고서에서 수산물의 낮은 탄소 배출을 강조하여 '그린 프리미엄' 획득.",
+    source: "FAOSTAT 배출량(Emissions)",
+    chart: () => (
     <BarChart data={D.esgData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
       <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis type="category" dataKey="category" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={80} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar dataKey="carbon" name="CO2e (kg/kg)" radius={[0, 4, 4, 0]}>{D.esgData.map((e, i) => <Cell key={i} fill={e.carbon > 15 ? 'var(--w-red-500)' : e.carbon > 10 ? 'var(--w-amber-500)' : 'var(--w-emerald-500)'} />)}</Bar>
     </BarChart>
-  </W>;
-}
-
-export function W5_Top10({ accent }: any) {
-  return <W title="글로벌 Top 10 생산국 점유율" icon={Target} accent={accent} pillar="S1" sub="국가별 돈육 생산량(천 톤) 및 글로벌 점유율 | FAOSTAT QCL 2022"
-    telemetry="FAOSTAT QCL 2022"
-    sit="중국 단독 44%(56,346천 톤) 독과점. 상위 3국 합산 57.6%로 허핀달-허쉬만 지수(HHI) 2,100+ 고집중도."
-    strat="중국 의존도가 극단적인 시장에서 ASF 재발 시 수산물 수요 폭증 연쇄반응 대비 재고 선확보." source="FAOSTAT QCL Item 1035">
+    ),
+  },
+  W5: {
+    title: "글로벌 Top 10 생산국 점유율",
+    icon: Target,
+    pillar: "S1",
+    sub: "국가별 돈육 생산량(천 톤) 및 글로벌 점유율 | FAOSTAT QCL 2022",
+    telemetry: "FAOSTAT QCL 2022",
+    sit: "중국 단독 44%(56,346천 톤) 독과점. 상위 3국 합산 57.6%로 허핀달-허쉬만 지수(HHI) 2,100+ 고집중도.",
+    strat: "중국 의존도가 극단적인 시장에서 ASF 재발 시 수산물 수요 폭증 연쇄반응 대비 재고 선확보.",
+    source: "FAOSTAT QCL Item 1035",
+    chart: () => (
     <BarChart data={D.top10ProducersData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
       <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><YAxis type="category" dataKey="country" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={55} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar dataKey="production" name="생산량 (천톤)" radius={[0, 4, 4, 0]} fill={CHART_RANK} />
     </BarChart>
-  </W>;
-}
-
-export function W6_Trend({ accent }: any) {
-  return <W title="주요 8개국 생산량 10년 추이" icon={TrendingUp} accent={accent} pillar="S1" sub="주요 생산국 돈육 생산량(천 톤) 시계열 | FAOSTAT QCL 2015-2024"
-    telemetry="FAOSTAT QCL 2015-2024"
-    sit="독일 2018년 5,350→2024년 4,289천톤(-20%). 브라질 +56%, 베트남 +33% 폭발적 성장."
-    strat="역성장 중인 EU국 소싱 축소, 브라질/베트남 저가 원물 직소싱망 구축." source="FAOSTAT QCL">
+    ),
+  },
+  W6: {
+    title: "주요 8개국 생산량 10년 추이",
+    icon: TrendingUp,
+    pillar: "S1",
+    sub: "주요 생산국 돈육 생산량(천 톤) 시계열 | FAOSTAT QCL 2015-2024",
+    telemetry: "FAOSTAT QCL 2015-2024",
+    sit: "독일 2018년 5,350→2024년 4,289천톤(-20%). 브라질 +56%, 베트남 +33% 폭발적 성장.",
+    strat: "역성장 중인 EU국 소싱 축소, 브라질/베트남 저가 원물 직소싱망 구축.",
+    source: "FAOSTAT QCL",
+    chart: () => (
     <LineChart data={D.productionTrendData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Line type="monotone" dataKey="중국" stroke={SERIES[0]} strokeWidth={3} dot={false} /><Line type="monotone" dataKey="미국" stroke={SERIES[1]} strokeWidth={2} dot={false} />
@@ -118,41 +160,53 @@ export function W6_Trend({ accent }: any) {
       <Line type="monotone" dataKey="스페인" stroke={SERIES[4]} strokeWidth={2} dot={false} /><Line type="monotone" dataKey="베트남" stroke={SERIES[5]} strokeWidth={2} dot={false} />
       <Line type="monotone" dataKey="한국" stroke={SERIES[6]} strokeWidth={2} strokeDasharray="5 5" dot={false} />
     </LineChart>
-  </W>;
-}
-
-export function W7_KoreaSupply({ accent }: any) {
-  return <W title="한국 돈육 수급 구조 분석" icon={ShoppingCart} accent={accent} pillar="S4" sub="한국 국내 생산·수입·1인당 소비 시계열 | FAOSTAT 작물가축통계(QCL)·식량수급표(FBS) 2015-2023 · 수입 UN Comtrade 교차검증"
-    telemetry="FAOSTAT QCL·FBS 2015-2023"
-    sit="한국 1인당 돈육 소비 2015~2022년간 35.9→41.4kg(+15%) 증가. 생산 증가율(+18%)과 유사하나 수입 의존도가 지속 확대. UN Comtrade 기준 2024년 수입은 594천톤($22.1억)으로 검증됨."
-    strat="기존 수산물 콜드체인을 돈육까지 확장하는 '단백질 통합 솔루션' 전략으로 시장 주도권 확보." source="FAOSTAT 식량수급표(FBS) · UN Comtrade 2024 수입 교차검증">
+    ),
+  },
+  W7: {
+    title: "한국 돈육 수급 구조 분석",
+    icon: ShoppingCart,
+    pillar: "S4",
+    sub: "한국 국내 생산·수입·1인당 소비 시계열 | FAOSTAT 작물가축통계(QCL)·식량수급표(FBS) 2015-2023 · 수입 UN Comtrade 교차검증",
+    telemetry: "FAOSTAT QCL·FBS 2015-2023",
+    sit: "한국 1인당 돈육 소비 2015~2022년간 35.9→41.4kg(+15%) 증가. 생산 증가율(+18%)과 유사하나 수입 의존도가 지속 확대. UN Comtrade 기준 2024년 수입은 594천톤($22.1억)으로 검증됨.",
+    strat: "기존 수산물 콜드체인을 돈육까지 확장하는 '단백질 통합 솔루션' 전략으로 시장 주도권 확보.",
+    source: "FAOSTAT 식량수급표(FBS) · UN Comtrade 2024 수입 교차검증",
+    chart: () => (
     <ComposedChart data={D.koreaSupplyData}><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} domain={[30, 45]} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar yAxisId="left" dataKey="production" name="국내 생산 (천톤)" fill={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} /><Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} />
       <Line yAxisId="right" type="monotone" dataKey="perCapita" name="1인당 소비 (kg)" stroke={SERIES[0]} strokeWidth={2.5} dot={{ r: 3 }} />
     </ComposedChart>
-  </W>;
-}
-
-export function W8_ImportPartners({ accent }: any) {
-  return <W title="한국 수입 파트너 의존도" icon={Globe} accent={accent} pillar="S3" sub="한국 돈육 수입 파트너 국가별 물량 | 관세청 2026.03-04(2개월) - 미국이 스페인 추월 1위"
-    telemetry="관세청 2026.03-04(2개월)"
-    sit="미국(28.7%) + 스페인(25.6%) 양강 체제가 전체의 54.3% 장악(관세청 2026.03-04, 2개월 누적, 물량 기준). 가공품(HS 1601/1602)은 미국 86% 단일 의존."
-    strat="칠레/브라질/멕시코 등 신흥국과 장기 수매 계약 체결, 미국 가공품 의존도 단계적 저감." source="관세청 수입통계 by 국가 (2026.03-04, 2개월 누적)">
+    ),
+  },
+  W8: {
+    title: "한국 수입 파트너 의존도",
+    icon: Globe,
+    pillar: "S3",
+    sub: "한국 돈육 수입 파트너 국가별 물량 | 관세청 2026.03-04(2개월) - 미국이 스페인 추월 1위",
+    telemetry: "관세청 2026.03-04(2개월)",
+    sit: "미국(28.7%) + 스페인(25.6%) 양강 체제가 전체의 54.3% 장악(관세청 2026.03-04, 2개월 누적, 물량 기준). 가공품(HS 1601/1602)은 미국 86% 단일 의존.",
+    strat: "칠레/브라질/멕시코 등 신흥국과 장기 수매 계약 체결, 미국 가공품 의존도 단계적 저감.",
+    source: "관세청 수입통계 by 국가 (2026.03-04, 2개월 누적)",
+    chart: () => (
     <BarChart data={D.koreaImportPartnersData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
       <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><YAxis type="category" dataKey="country" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={60} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar dataKey="volume" name="수입량 (톤)" radius={[0, 4, 4, 0]} fill={CHART_RANK} />
     </BarChart>
-  </W>;
-}
-
-export function W9_ASFSeafood({ accent }: any) {
-  return <W title="ASF 발병 → 수산물 반사수혜 시뮬레이션" icon={Zap} accent={accent} pillar="S1" sub="중국 돈육 생산량 급감 시 수산물 도매가 지수 반등 - illustrative | FAOSTAT QCL 2017-2023 + 자체추정"
-    telemetry="FAOSTAT QCL 2017-2023"
-    sit="2018-2019 중국 ASF로 돈육 생산 20.9% 붕괴 시, 수산물 도매가 지수가 100→135로 상승(자체추정 지수 기준)."
-    strat="세계동물보건기구(WOAH) ASF 경보 발령 즉시, 자사 핵심 수산물 재고 최대 확보 및 판가 선제적 인상." source="FAOSTAT QCL 중국 생산량 + 수산물 도매가 지수 자체추정">
+    ),
+  },
+  W9: {
+    title: "ASF 발병 → 수산물 반사수혜 시뮬레이션",
+    icon: Zap,
+    pillar: "S1",
+    sub: "중국 돈육 생산량 급감 시 수산물 도매가 지수 반등 - illustrative | FAOSTAT QCL 2017-2023 + 자체추정",
+    telemetry: "FAOSTAT QCL 2017-2023",
+    sit: "2018-2019 중국 ASF로 돈육 생산 20.9% 붕괴 시, 수산물 도매가 지수가 100→135로 상승(자체추정 지수 기준).",
+    strat: "세계동물보건기구(WOAH) ASF 경보 발령 즉시, 자사 핵심 수산물 재고 최대 확보 및 판가 선제적 인상.",
+    source: "FAOSTAT QCL 중국 생산량 + 수산물 도매가 지수 자체추정",
+    chart: () => (
     <ComposedChart data={D.asfSeafoodData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="year" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} /><YAxis yAxisId="left" stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
@@ -160,31 +214,89 @@ export function W9_ASFSeafood({ accent }: any) {
       <Area yAxisId="left" type="monotone" dataKey="chinaProduction" name="중국 생산량 (천톤)" fill={SERIES[0]} stroke={SERIES[0]} fillOpacity={0.15} strokeWidth={2} />
       <Line yAxisId="right" type="monotone" dataKey="seafoodIndex" name="수산물 도매가 지수" stroke={SERIES[1]} strokeWidth={3} dot={{ r: 5, fill: SERIES[1] }} />
     </ComposedChart>
-  </W>;
-}
-
-export function W10_Portfolio({ accent }: any) {
-  return <W title="단백질 포트폴리오 최적 배분 비교" icon={Target} accent={accent} pillar="S4" sub="돈육 vs 수산물 vs 가금류 - 5개 핵심 지표 비교 - illustrative | FAO·USDA 방향성 기반 자체추정"
-    telemetry="FAO/USDA 종합 2024"
-    sit="돈육은 저렴하나 ASF 리스크가 극심하고 탄소 배출이 높음. 수산물은 ESG·마진율에서 우위(자체추정 지수 기준)."
-    strat="'돈육 30% + 수산물 50% + 가금류 20%' 리스크 헤지 포트폴리오 구축." source="FAO · USDA 방향성 참고 - 업계추정 종합지수">
+    ),
+  },
+  W10: {
+    title: "단백질 포트폴리오 최적 배분 비교",
+    icon: Target,
+    pillar: "S4",
+    sub: "돈육 vs 수산물 vs 가금류 - 5개 핵심 지표 비교 - illustrative | FAO·USDA 방향성 기반 자체추정",
+    telemetry: "FAO/USDA 종합 2024",
+    sit: "돈육은 저렴하나 ASF 리스크가 극심하고 탄소 배출이 높음. 수산물은 ESG·마진율에서 우위(자체추정 지수 기준).",
+    strat: "'돈육 30% + 수산물 50% + 가금류 20%' 리스크 헤지 포트폴리오 구축.",
+    source: "FAO · USDA 방향성 참고 - 업계추정 종합지수",
+    chart: () => (
     <BarChart data={D.proteinPortfolioData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="metric" stroke="var(--w-slate-500)" tick={{ fontSize: 8, fill: 'var(--w-slate-500)' }} /><YAxis stroke="var(--w-slate-500)" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar dataKey="pork" name="돼지고기" fill={SERIES[0]} radius={[4, 4, 0, 0]} /><Bar dataKey="seafood" name="수산물" fill={SERIES[1]} radius={[4, 4, 0, 0]} /><Bar dataKey="poultry" name="가금류" fill={SERIES[2]} radius={[4, 4, 0, 0]} />
     </BarChart>
-  </W>;
-}
-
-export function W11_SelfSufficiency({ accent }: any) {
-  return <W title="한국 단백질 자급률 갭" icon={Target} accent={accent} pillar="S4" sub="한국 주요 단백질 품목별 자급률(%) vs 수입 의존도(%) | FAOSTAT 식량수급표(FBS) + USDA 생산공급분배(PSD) 2022"
-    telemetry="FAOSTAT FBS + USDA PSD 2022"
-    sit="한국 핵심 단백질 품목 모두 자급률 70% 미만. 소고기(40%)와 돈육(66%) 수입 갭 매년 확대."
-    strat="자급률 갭이 큰 소고기 > 돈육 > 수산물 순으로 수입 인프라 선점. 콜드체인 확장." source="FAOSTAT 식량수급표(FBS) · USDA 생산공급분배(PSD)">
+    ),
+  },
+  W11: {
+    title: "한국 단백질 자급률 갭",
+    icon: Target,
+    pillar: "S4",
+    sub: "한국 주요 단백질 품목별 자급률(%) vs 수입 의존도(%) | FAOSTAT 식량수급표(FBS) + USDA 생산공급분배(PSD) 2022",
+    telemetry: "FAOSTAT FBS + USDA PSD 2022",
+    sit: "2022년 자급률은 소고기 40%·돼지고기 66%·수산물 65%로 70% 미만이고, 닭고기 78%·계란 99%는 그보다 높다.",
+    strat: "자급률 갭이 큰 소고기 > 돈육 > 수산물 순으로 수입 인프라 선점. 콜드체인 확장.",
+    source: "FAOSTAT 식량수급표(FBS) · USDA 생산공급분배(PSD)",
+    chart: () => (
     <BarChart data={D.selfSufficiencyData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
       <XAxis type="number" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-500)' }} domain={[0, 100]} /><YAxis type="category" dataKey="protein" stroke="var(--w-slate-500)" tick={{ fontSize: 9, fill: 'var(--w-slate-400)' }} width={60} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar dataKey="selfRate" name="자급률 (%)" stackId="a" fill={SERIES[0]} /><Bar dataKey="importRate" name="수입 의존도 (%)" stackId="a" fill={SERIES[1]} radius={[0, 4, 4, 0]} />
     </BarChart>
-  </W>;
+    ),
+  },
+};
+
+function PorkWidget({ id, accent }: { id: string; accent?: string }) {
+  const { chart, ...meta } = PORK_WIDGETS[id];
+  return <W {...meta} accent={accent}>{chart()}</W>;
+}
+
+export function W1_ASFCycle({ accent }: any) {
+  return <PorkWidget id="W1" accent={accent} />;
+}
+
+export function W2_FeedMargin({ accent }: any) {
+  return <PorkWidget id="W2" accent={accent} />;
+}
+
+export function W3_TradeSpread({ accent }: any) {
+  return <PorkWidget id="W3" accent={accent} />;
+}
+
+export function W4_ESG({ accent }: any) {
+  return <PorkWidget id="W4" accent={accent} />;
+}
+
+export function W5_Top10({ accent }: any) {
+  return <PorkWidget id="W5" accent={accent} />;
+}
+
+export function W6_Trend({ accent }: any) {
+  return <PorkWidget id="W6" accent={accent} />;
+}
+
+export function W7_KoreaSupply({ accent }: any) {
+  return <PorkWidget id="W7" accent={accent} />;
+}
+
+export function W8_ImportPartners({ accent }: any) {
+  return <PorkWidget id="W8" accent={accent} />;
+}
+
+export function W9_ASFSeafood({ accent }: any) {
+  return <PorkWidget id="W9" accent={accent} />;
+}
+
+export function W10_Portfolio({ accent }: any) {
+  return <PorkWidget id="W10" accent={accent} />;
+}
+
+export function W11_SelfSufficiency({ accent }: any) {
+  return <PorkWidget id="W11" accent={accent} />;
 }

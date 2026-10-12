@@ -28,6 +28,7 @@ import KeepAlivePanel from '../components/KeepAlivePanel';
 
 import { LongArmOctopusIcon } from '../components/SeafoodSidebarIcons';
 import IndustrySidebarNav from '../components/IndustrySidebarNav';
+import { industryPageTitle } from '../lib/data/industry-registry';
 
 // ─── Dynamic imports (loaded on-demand per page) ───
 const MgoChartModal = dynamic(() => import('../components/MgoChartModal'));
@@ -144,8 +145,8 @@ export default function Home() {
   // Scroll to top and update page title when activeMenu changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    document.title = `${getDashboardTitle(activeMenu)} | 참치왕국`;
-  }, [activeMenu]);
+    document.title = `${industryPageTitle(pathname, getDashboardTitle(activeMenu))} | 참치왕국`;
+  }, [activeMenu, pathname]);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'dark');

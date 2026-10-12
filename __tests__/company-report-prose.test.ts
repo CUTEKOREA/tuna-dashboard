@@ -49,7 +49,6 @@ import {
   TUNAFARM_HERO_KPIS,
   TUNAFARM_REPORT_BRIEFING,
   TUNAFARM_REPORT_NARRATIVES,
-  TUNAFARM_STAGES,
 } from '@/components/market-understanding/TunafarmIndustryDashboard';
 import {
   WHELK_HERO_KPIS,
@@ -269,7 +268,7 @@ describe('문어 최종 해부보고서 서술 추출', () => {
       for (const cell of [...table.head, ...table.rows.flat()]) visible.push(['표 셀', cell]);
     }
 
-    expect(tables).toHaveLength(18);
+    expect(tables).toHaveLength(21);
     expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
     const missing = visible
       .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
@@ -345,7 +344,7 @@ describe('새우 최종 해부보고서 서술 추출', () => {
       for (const cell of [...table.head, ...table.rows.flat()]) visible.push(['표 셀', cell]);
     }
 
-    expect(tables).toHaveLength(41);
+    expect(tables).toHaveLength(44);
     expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
     const missing = visible
       .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
@@ -602,7 +601,8 @@ describe('연육 최종 해부보고서 서술 추출 (위젯 없는 화면)', (
 
 /**
  * 고등어·참치 양식·골뱅이 — 손 작성 서술을 걷고 원문 추출로 바꾼 세 화면(2026-10-12).
- * 참치 양식·골뱅이 조달은 절 id 가 없어 h2 단위로 자른다(report_tables.sections).
+ * 골뱅이 조달은 절 id 가 없어 h2 단위로 자른다(report_tables.sections).
+ * 참치 양식은 해부보고서 「한국 시장의 양식 참다랑어」(표준 틀 15절)로 바뀌어 1절=1단계이고 손 작성 단계가 없다.
  */
 const BODY = (n: number) => Array.from({ length: n }, (_, i) => `s${String(i + 1).padStart(2, '0')}`);
 const THREE: Array<{
@@ -617,10 +617,11 @@ const THREE: Array<{
     narratives: MACKEREL_REPORT_NARRATIVES, hand: MACKEREL_STAGES, brief: MACKEREL_REPORT_BRIEFING, hero: MACKEREL_HERO_KPIS,
   },
   {
-    key: 'tunafarm', 이름: '참치 양식', sections: 10, tables: 45, briefing: 10,
-    stages: ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09'],
-    groups: { s01: ['s01', 's02'], s09: ['s10'] },
-    narratives: TUNAFARM_REPORT_NARRATIVES, hand: TUNAFARM_STAGES, brief: TUNAFARM_REPORT_BRIEFING, hero: TUNAFARM_HERO_KPIS,
+    key: 'tunafarm', 이름: '참치 양식', sections: 15, tables: 15, briefing: 15,
+    stages: BODY(15),
+    groups: Object.fromEntries(BODY(15).map((sid) => [sid, [sid]])),
+    // 손 작성 단계가 없다 — 화면 단계 = 원문 절 순서 그대로
+    narratives: TUNAFARM_REPORT_NARRATIVES, hand: BODY(15).map((key) => ({ key })), brief: TUNAFARM_REPORT_BRIEFING, hero: TUNAFARM_HERO_KPIS,
   },
   {
     key: 'whelk', 이름: '골뱅이', sections: 5, tables: 17, briefing: 4,
@@ -673,9 +674,12 @@ describe.each(THREE)('$key 원문 서술 추출 (손 작성 서술 대체)', (c)
         ['브리핑 제목', point.headline ?? ''],
         ['브리핑', point.text],
       ]),
-      ...c.hero.map((kpi): [string, string] => ['히어로', kpi.value.toLocaleString('en-US', {
-        minimumFractionDigits: kpi.decimals ?? 0, maximumFractionDigits: kpi.decimals ?? 0,
-      })]),
+      // 표지 타일을 글자 그대로 싣는 히어로(text)는 라벨·값·단위 줄을 모두 대조한다
+      ...c.hero.flatMap((kpi): [string, string][] => kpi.text !== undefined
+        ? [['히어로 라벨', kpi.label], ['히어로', kpi.text], ...(kpi.unit ?? '').split(' · ').map((part): [string, string] => ['히어로 단위', part])]
+        : [['히어로', kpi.value.toLocaleString('en-US', {
+          minimumFractionDigits: kpi.decimals ?? 0, maximumFractionDigits: kpi.decimals ?? 0,
+        })]]),
     ];
     const tables = c.narratives.flatMap((stage) => tablesForStage(c.key, stage.key));
     const figures = c.narratives.flatMap((stage) => figuresForStage(c.key, stage.key));
@@ -702,13 +706,15 @@ describe.each(THREE)('$key 원문 서술 추출 (손 작성 서술 대체)', (c)
   });
 });
 
-it('참치 양식 - 장 표지(Ⅰ · 경계)가 번호·라벨로, 콜아웃 제목(span.h)이 제목으로 올라온다', () => {
+it('참치 양식 - h2n 이 번호·라벨로, 단계 제목은 원문 h2 부제이고 질문은 없다', () => {
   const secs = reportProse('tunafarm');
   expect(secs.map((section) => `${section.numeral}/${section.label}`)).toEqual([
-    '0/요지', 'Ⅰ/경계', 'Ⅱ/축', 'Ⅲ/명부', 'Ⅳ/통계', 'Ⅴ/값', 'Ⅵ/원가', 'Ⅶ/기업', 'Ⅷ/한국', 'Ⅸ/축양사',
+    '01/요약', '02/원인', '03/시장', '04/조달선', '05/산지', '06/수입 주체', '07/해외', '08/가공 규모',
+    '09/가공 지역', '10/업체', '11/연결', '12/재무', '13/값', '14/제도', '15/남은 물음',
   ]);
-  const calls = secs.flatMap((section) => section.blocks.filter((block) => block.kind === 'call'));
-  expect(calls.find((block) => block.title === '합산 금지')?.tone).toBe('warn');
+  expect(TUNAFARM_REPORT_NARRATIVES.map((stage) => stage.title)).toEqual(secs.map((section) => section.subtitle));
+  expect(TUNAFARM_REPORT_NARRATIVES[0].title).toBe('한눈에 보는 양식 참다랑어');
+  for (const stage of TUNAFARM_REPORT_NARRATIVES) expect(stage.question).toBe('');
 });
 
 describe('품목 해부보고서 장 제목·그림 자리', () => {
@@ -723,8 +729,8 @@ describe('품목 해부보고서 장 제목·그림 자리', () => {
     ['tunafarm', TUNAFARM_REPORT_NARRATIVES, new Set<string>()],
     ['whelk', WHELK_REPORT_NARRATIVES, new Set<string>()],
   ] as const;
-  // 참치 양식(10장)·골뱅이 조달(5장)은 해부보고서보다 장이 적다.
-  const MIN_SECTIONS: Record<string, number> = { tunafarm: 10, whelk: 5 };
+  // 골뱅이 조달(5장)은 해부보고서보다 장이 적다.
+  const MIN_SECTIONS: Record<string, number> = { whelk: 5 };
 
   it.each(cases)('%s - 원문 본문 절의 장 제목(라벨 + 부제)이 하나도 빠지지 않고 화면 머리글에 있다', (key, narratives, hand) => {
     const fromReport = narratives.filter((stage) => !hand.has(stage.key));

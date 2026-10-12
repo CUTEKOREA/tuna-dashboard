@@ -6,6 +6,7 @@
  *    (`build_report_tables.py`·`build_report_prose.py`·`build_report_figures.py`).
  *  - 단계: 1절=1단계(부록 제외). 제목은 원문 h2 부제 그대로, 질문은 없다.
  *  - 히어로: 원문 표지 cover-facts 타일 그대로(`hub_v1.json`).
+ *  - 예외: 돼지고기는 옛 /pork 위젯 11개를 단계 끝 「근거」로 싣는다(`PorkLegacySlots`).
  *
  * 품목이 39개라 JSON 을 정적 import 하면 번들이 수 MB 붙는다. 화면이 열릴 때 그 품목 것만 받는다.
  */
@@ -21,9 +22,13 @@ import type { IndustryItem } from '@/lib/data/industry-registry';
 import type { HeroKpi } from '../v2/HeroZone';
 import CommodityIndustryDashboard, { type CommoditySpec } from './CommodityIndustryDashboard';
 import { dropEmptyLabel, industryInlineReport, ReportTableView } from './IndustryReportFlow';
+import { PORK_CHART_SLOTS } from './PorkLegacySlots';
 import styles from './TunaIndustryDashboard.module.css';
 
 export const INDUSTRY_ITEM_ACCENT = '#0e7490';
+
+/** 옛 전용 화면의 손 작성 위젯을 원문 단계 끝 「근거」로 옮긴 품목(돼지고기 ← 옛 /pork). */
+const LEGACY_CHART_SLOTS: Record<string, CommoditySpec['chartSlots']> = { pork: PORK_CHART_SLOTS };
 
 export interface IndustryReportData {
   tables: unknown;
@@ -79,9 +84,9 @@ export function buildIndustryItemSpec(item: IndustryItem, data: IndustryReportDa
     ...industryHero(item),
     briefing: proseBriefing(item.key, { firstBlock: true }),
     narratives,
-    chartSlots: {},
+    chartSlots: LEGACY_CHART_SLOTS[item.key] ?? {},
     sourceNotes: [],
-    sourceMeta: `본문·표 · ${item.title} ${item.edition}`,
+    sourceMeta: `본문·표 · ${item.title} ${item.edition}${LEGACY_CHART_SLOTS[item.key] ? ' · 옛 화면 근거 위젯' : ''}`,
   };
 }
 
@@ -108,7 +113,6 @@ export default function IndustryItemDashboard({ item }: { item: IndustryItem }) 
       .catch((e: unknown) => {
         if (alive) setState({ key: item.key, error: String(e) });
       });
-    document.title = `${item.name} | 참치왕국`;
     return () => {
       alive = false;
     };

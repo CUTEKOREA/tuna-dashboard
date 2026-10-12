@@ -146,6 +146,8 @@ export interface CommoditySpec {
    * 「보고서 원문 보기」 링크(새 탭)와 인쇄 안내를 단다. 원문에 인쇄 스타일이 있어 브라우저 인쇄로 PDF 가 된다.
    */
   reportHref?: string;
+  /** 「보고서 원문 보기」 아래 한 줄씩 다는 참고 원문(판이 바뀌어 본문에서 내려온 옛 보고서 등). */
+  relatedReports?: Array<{ label: string; href: string }>;
   /**
    * 품목 고유 구역을 끼우는 자리. 참치는 탭 아래에 밸류체인 척추를, 단계 아래에
    * 약어 사전을 둔다.
@@ -531,6 +533,13 @@ export default function CommodityIndustryDashboard({
           <span>새 탭에서 열린 원문을 브라우저 인쇄(Ctrl+P · ⌘P)로 PDF 저장할 수 있다.</span>
         </p>
       )}
+      {spec.relatedReports?.map((link) => (
+        <p key={link.href} className={styles.reportLink}>
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.label}
+          </a>
+        </p>
+      ))}
 
       <section className={styles.briefing} aria-labelledby={`${spec.key}-briefing-heading`}>
         <h2 id={`${spec.key}-briefing-heading`} className={styles.briefingHeading}>
