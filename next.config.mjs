@@ -16,6 +16,8 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/tuna-anatomy', destination: '/tuna-industry', permanent: false },
+      // 옛 손 작성 「돼지고기」(/pork)는 2026-10-12 해부보고서 원문(/industry/pork) 단계 끝 「근거」로 옮겼다.
+      { source: '/pork', destination: '/industry/pork', permanent: false },
     ]
   },
   async rewrites() {
