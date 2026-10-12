@@ -1,3 +1,7 @@
+> ✅ **2026-10-12 KST — 기업 해부 ⅬⅩⅡ 双日(Sojitz) 수산 카드 추가** [CC]:
+> - 원문 `docs/evidence/company-sojitz-2026-10/`(보고서.html·PDF·통합프로필). 추출 3종(표 27·그림 8·서술 17절 → 8단계), `lib/data/company-sojitz.ts`, COMPANY_CARDS ⅬⅩⅡ(일본), 본사 핀 62곳, prose 테스트에 killed 표현 가드.
+> - 보고서 정본·빌드: `~/tunawork/sojitz/build`(관문 9종, must 180, 산술 16, 한자·일본어 옆 한글 읽기 `ja_ruby.py`). Artifact https://claude.ai/artifact/KagKCWLNoG9vNi8btzBk7J. Drive `…/02_참치_가공·유통·기업/일본/Sojitz/`.
+
 > ✅ **2026-10-12 15:45 KST — `/fleet` VDS 10-11 판 · `/panofi` 대서양 주말 메일 10/11 반영** [CC]:
 > - 원자료: `태평양 선망 VDS 현황_2026.10.11.pdf` SHA-256 `89777c1e6608eab7729db03037cfe0db9b2e239f34ec650a7a2d760afb598bf4`(91,438 B) · `KFC 태평양 선망 VDS 현황_2026.10.11.pdf` SHA-256 `e729ee0f611d169154a011b8a64711a0b4554aff42c81f02203a9de42e2434d6`(73,728 B) · PANOFI 「대서양 상황(10/11)」 메일 캡처(사용자 붙여넣기).
 > - VDS: PDF 표를 스크립트로 옮겼다(국적 63행·키리코레 43행). **배정일은 공해 말고 전 칸 10-05 판 그대로**(재배분 없음). 국적 소진 1,239.1 → 1,257.4 · 주간 20.3, 키리코레 607.8 → 614.2 · 주간 6.4(키리바시만). 키리코레 공해 284 → 294.

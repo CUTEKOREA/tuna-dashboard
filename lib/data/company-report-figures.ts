@@ -59,6 +59,7 @@ import inepacaRaw from '@/public/data/companies/inepaca_figures_v1.json';
 import kflRaw from '@/public/data/companies/kfl_figures_v1.json';
 import sapmerRaw from '@/public/data/companies/sapmer_figures_v1.json';
 import patayaRaw from '@/public/data/companies/pataya_figures_v1.json';
+import sojitzRaw from '@/public/data/companies/sojitz_figures_v1.json';
 // 품목 해부보고서. 그림이 없는 편은 빈 배열이다(오징어만 지표 타일·막대·도판이 있다).
 import pollockRaw from '@/public/data/companies/pollock_figures_v1.json';
 import octopusRaw from '@/public/data/companies/octopus_figures_v1.json';
@@ -171,6 +172,7 @@ const INTAKES: Record<string, Intake> = {
   kfl: kflRaw as unknown as Intake,
   sapmer: sapmerRaw as unknown as Intake,
   pataya: patayaRaw as unknown as Intake,
+  sojitz: sojitzRaw as unknown as Intake,
   pollock: pollockRaw as unknown as Intake,
   octopus: octopusRaw as unknown as Intake,
   shrimp: shrimpRaw as unknown as Intake,
