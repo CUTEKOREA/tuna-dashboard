@@ -3,6 +3,7 @@
  *
  * 주간동향 docx(화요일자)와 같은 주를 다루지만 주말에 한 번 더 온다. MGO 는 직전 주간동향 값을
  * 그대로 옮긴다 — 8/30 메일 = 8/25 판, 9/6 = 9/1 판, 9/13 = 9/8 판, 9/20 = 9/15 판(`weeklyPair`, 테스트가 대조한다).
+ * 10/11 메일은 예외다. 테마 트럭 «$1,660 이상» · 연안 탱커 $1,573 으로 10/6 판(1,678 · 1,535)과 다르다 — 메일이 따로 적은 값이다.
  * 메일에만 있는 값(스카사 어가, 그랑블루 판매가·운임, 코스모 원어 재고, 세네갈 입출항)을 여기 둔다.
  *
  * 발신·수신자, 선장·임원 등 사람 이름은 싣지 않는다. 좌표도 싣지 않는다(해역 이름으로만).
@@ -22,13 +23,13 @@ export interface AtlanticMail {
   date: string;
   /** MGO 가 같은 주간동향 reportDate */
   weeklyPair: string;
-  mgo: { tema: number; tanker: number | null; abidjan: number | null; dakar: number | null };
+  mgo: { tema: number; tanker: number | null; abidjan: number | null; dakar: number | null; note?: string };
   cosmo: {
     priceUsd: number;
     priceMonth: string;
     nextMonthUnderNegotiation: boolean;
     dailyProcessingT: number;
-    stock: { asOf: string; totalT: number; sjT: number; yfT: number | null; mixT: number | null };
+    stock: { asOf: string; totalT: number; sjT: number | null; yfT: number | null; mixT: number | null };
   };
   pfc: { priceUsd: number | null; note: string | null };
   scasa: { priceUsd: number; dailyProcessingT: number };
@@ -37,8 +38,6 @@ export interface AtlanticMail {
   senegalCalls: AtlanticMailCall[];
   notes: string[];
 }
-
-export const ATLANTIC_MAIL_SOURCE = 'PANOFI 「대서양 상황」 주말 메일 4건(8/30·9/6·9/13·9/20) 캡처';
 
 export const atlanticMails: AtlanticMail[] = [
   {
@@ -167,7 +166,42 @@ export const atlanticMails: AtlanticMail[] = [
       '파노피 발전기 기술자 2명이 9/19 귀국했고, TRUST 인수선 JC FAMILIA(구 MARAWA 2)는 9월 말 부산 출항 계획이다',
     ],
   },
+  {
+    date: '2026-10-11',
+    weeklyPair: '2026-10-06',
+    // 테마는 원문 «트럭 $1,660 이상» - 하한값이다. 다카는 «XOF 785 ($1,340 1/KL)».
+    mgo: { tema: 1_660, tanker: 1_573, abidjan: null, dakar: 1_340, note: '테마 트럭 $1,660 이상 · 대양 하이순 $1,500' },
+    cosmo: {
+      // 원문은 «어가 $1,850» 만 적었다. 10/6 주간동향이 「9월 어가 $1,850 확정」이라 9월 값으로 둔다.
+      priceUsd: 1_850, priceMonth: '9월', nextMonthUnderNegotiation: false, dailyProcessingT: 100,
+      // 원문 «원어 : 1,250톤 / 10/11 기준» - 어종 구분이 없다
+      stock: { asOf: '2026-10-11', totalT: 1_250, sjT: null, yfT: null, mixT: null },
+    },
+    pfc: { priceUsd: null, note: '10월 거래 없음(어가 소폭 하락 예상)' },
+    scasa: { priceUsd: 1_950, dailyProcessingT: 120 },
+    grandBleuSales: [],
+    freightUsdPerT: null,
+    // 원문은 약칭(GRA·XIX·ORK·CAP·COK)이다 - 앞선 메일의 선명으로 푼다. 입항일·톤수는 COSMOS KIM 입항일 말고 적지 않았다.
+    senegalCalls: [
+      { vessel: 'GRANADA', tons: null, arrive: '-', depart: '9/27', status: '출항, 모리타니아 조업' },
+      { vessel: 'XIXILI', tons: null, arrive: '-', depart: '10/5', status: '출항, 모리타니아 조업' },
+      { vessel: 'ORIENTAL KIM', tons: null, arrive: '-', depart: '10/3', status: '출항, 모리타니아 조업' },
+      { vessel: 'CAP ATLANTIQUE', tons: null, arrive: '-', depart: '9/30', status: '출항, 빠야오 투척 중' },
+      { vessel: 'COSMOS KIM', tons: null, arrive: '8/22', depart: null, status: '국적 증서 문제로 약 50일 체항 중(회사 지분 문제)' },
+    ],
+    notes: [
+      '서쪽 공해 어장의 잔고기는 거의 빠져나갔고 남쪽 일부 어장에만 남아 있으나 그것도 끝날 것으로 예상',
+      '적도 북쪽 서경 해역으로 한동안 빠야오가 흘러가 어장이 형성될 것으로 보이나 전반적으로 어장 상황은 좋지 않음 — 수온이 조금씩 올라 빠야오 고기가 떨어지면서 기록보다 적게 어획',
+      '조류는 불규칙하나 약간 동류, 10월 중하순 이후 서류가 돼야 빠야오에 고기가 붙을 것으로 예상',
+      '가나 연안 AGNES 1·IRIS J·IRIS QUEEN 금주 실적 양호(SJ R1 위주)',
+      'P/FORE 10/11 신임 선장 승선·인수인계, 전임 선장은 10/13 가나 출발 · 10/14 17:00 인천 도착 예정',
+      '깝센·GB 선박들은 모리타니아 어장 소강으로 남쪽 수역으로 옮겨 조업할 예정',
+      '아비장 SCODI 일간 90톤 가공·원어 약 6,500톤 보유, 벨리즈 국적 JC GLORIA·VICTORIA 의 10/11 오퍼 가격은 1,500유로($1,680)로 하락',
+    ],
+  },
 ];
+
+export const ATLANTIC_MAIL_SOURCE = `PANOFI 「대서양 상황」 주말 메일 ${atlanticMails.length}건(${atlanticMails.map((m) => `${Number(m.date.slice(5, 7))}/${Number(m.date.slice(8, 10))}`).join('·')}) 캡처`;
 
 export const latestAtlanticMail = atlanticMails[atlanticMails.length - 1];
 

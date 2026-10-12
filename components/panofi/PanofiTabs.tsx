@@ -569,7 +569,12 @@ export function PriceTab() {
             const salesLine = sales.length
               ? ` 그랑블루는 ${usd(Math.min(...sales))}~${usd(Math.max(...sales))}에 팔았다${last.freightUsdPerT != null ? `(운임 ${usd(last.freightUsdPerT)})` : ''}. 코스모 어가와의 차이가 운임을 빼고도 남는지가 판매처 협의의 기준이 된다.`
               : '';
-            return `${scasaMove}${salesLine} 경유(MGO) 가격은 메일마다 직전 주간동향 값을 그대로 옮긴다.`;
+            // 메일 MGO 가 같은 주 주간동향 테마 값과 다르면 «그대로 옮긴다»는 문장이 거짓이 된다(10/11 메일 1,660 이상 대 10/6 판 1,678)
+            const own = atlanticMails.filter((m) => weeks.find((w) => w.reportDate === m.weeklyPair)?.fuel.tema !== m.mgo.tema);
+            const mgoLine = own.length
+              ? ` 경유(MGO) 가격은 대개 직전 주간동향 값을 옮기지만 ${own.map((m) => `${mailMonthDay(m.date)} 메일은 테마 ${usd(m.mgo.tema)}(${mailMonthDay(m.weeklyPair)} 주간동향 ${orNA(weeks.find((w) => w.reportDate === m.weeklyPair)?.fuel.tema ?? null, usd)})`).join(', ')}로 따로 적었다.`
+              : ' 경유(MGO) 가격은 메일마다 직전 주간동향 값을 그대로 옮긴다.';
+            return `${scasaMove}${salesLine}${mgoLine}`;
           })()}
           src={ATLANTIC_MAIL_SOURCE}
         >
@@ -613,7 +618,7 @@ export function PriceTab() {
             <tr>
               <td>경유(MGO) 테마 · 해상 급유 · 아비장</td>
               {atlanticMails.map((m) => (
-                <td key={m.date}>{[m.mgo.tema, m.mgo.tanker, m.mgo.abidjan].map((v) => orNA(v, usd)).join(' · ')}</td>
+                <td key={m.date}>{[m.mgo.tema, m.mgo.tanker, m.mgo.abidjan].map((v) => orNA(v, usd)).join(' · ')}{m.mgo.note ? ` (${m.mgo.note})` : ''}</td>
               ))}
             </tr>
           </Table>
