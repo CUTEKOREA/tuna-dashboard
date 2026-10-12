@@ -6995,12 +6995,15 @@ export const COMPANY_CARDS: CompanyCard[] = [
 
 export interface CompanyAnatomyDashboardProps {
   heroOnly?: boolean;
+  /** 처음부터 펼쳐 둘 회사 키. 정적 렌더 테스트용이다. */
+  initialCompany?: string;
 }
 
 export default function CompanyAnatomyDashboard({
   heroOnly = false,
+  initialCompany,
 }: CompanyAnatomyDashboardProps) {
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | null>(initialCompany ?? null);
 
   if (heroOnly) return <CommodityIndustryDashboard spec={SPEC} heroOnly />;
 
@@ -7088,7 +7091,15 @@ export default function CompanyAnatomyDashboard({
       >
         ← 회사 선택
       </button>
-      <CommodityIndustryDashboard spec={{ ...spec, stageNoun: '절' }} />
+      {/* 원문은 scripts/sync_industry_report_html.py 가 docs/evidence 에서 바이트 그대로 복사한다.
+          카드마다 사본이 있는지는 company-report-link.test.ts 가 지킨다. */}
+      <CommodityIndustryDashboard
+        spec={{
+          ...spec,
+          stageNoun: '절',
+          reportHref: `/reports/company/${selected}.html`,
+        }}
+      />
     </div>
   );
 }
