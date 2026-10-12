@@ -4,6 +4,9 @@
 시장 이해 아홉 화면(명태·문어·새우·오징어·참치·연육·고등어·참치 양식·골뱅이)과 공통 품목 라우트의 「보고서 원문 보기」 링크가 가리키는 파일이다.
 원문을 **바이트 그대로** 복사한다 — 고치지 않는다. 원문에 인쇄 스타일이 있어 브라우저 인쇄로 PDF 가 된다.
 로그인 보호는 `proxy.ts` matcher 가 public 경로까지 덮는다.
+
+기업 해부 각 편의 원문(`docs/evidence/company-<key>-<판>/보고서.html`)도 같은 방식으로
+`public/reports/company/<key>.html` 에 복사한다. 바이트가 같아 git 은 같은 blob 하나로 저장한다.
 """
 from __future__ import annotations
 
@@ -20,6 +23,7 @@ KEYS = ("pollock", "octopus", "shrimp", "squid", "tuna", "surimi", "mackerel", "
     if "route" not in it
 )
 OUT = ROOT / "public/reports/industry"
+COMPANY_OUT = ROOT / "public/reports/company"
 # 판이 바뀌어 화면 본문에서 내려온 옛 원문. 지우지 않고 「참고」 링크로만 잇는다.
 ARCHIVED = ("tunafarm-world-2026-09",)
 
@@ -42,6 +46,12 @@ def main() -> int:
         dst = OUT / f"{name}.html"
         shutil.copyfile(src, dst)
         print(f"{name:14s} {dst.stat().st_size // 1024:5,d} KB → {dst.relative_to(ROOT)}")
+    COMPANY_OUT.mkdir(parents=True, exist_ok=True)
+    for src in sorted(ROOT.glob("docs/evidence/company-*/보고서.html")):
+        key = src.parent.name.removeprefix("company-").rsplit("-", 2)[0]
+        dst = COMPANY_OUT / f"{key}.html"
+        shutil.copyfile(src, dst)
+        print(f"{key:14s} {dst.stat().st_size // 1024:5,d} KB → {dst.relative_to(ROOT)}")
     return 0
 
 
