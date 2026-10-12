@@ -34,27 +34,28 @@ const area = (areaName: string, rows: VdsRow[], printedTotals?: VdsTotals, note?
 });
 
 export const nationalVds = {
-  asOf: '2026-10-05',
-  source: '태평양 선망 VDS 현황_2026.10.05.pdf',
+  asOf: '2026-10-11',
+  source: '태평양 선망 VDS 현황_2026.10.11.pdf',
   vessels: ['S/EXP', 'S/PIO', 'S/CHA', 'S/HAR', 'S/JUP', 'S/SPR'],
   areas: [
     area('파푸아뉴기니', [
-      { vessel: 'S/EXP', allocated: 55.17, consumed: 42.4, remaining: 12.77, weekly: 3.4 },
-      { vessel: 'S/PIO', allocated: 55.17, consumed: 32.1, remaining: 23.07, weekly: 2.6 },
-      { vessel: 'S/CHA', allocated: 55.17, consumed: 37.4, remaining: 17.77, weekly: 4.9 },
-      { vessel: 'S/HAR', allocated: 55.17, consumed: 18.5, remaining: 36.67, weekly: 2.3 },
-      { vessel: 'S/JUP', allocated: 55.17, consumed: 26.3, remaining: 28.87, weekly: 3.7 },
+      // 10-11 판: S/CHA 소진이 37.4 → 39.5(+2.1)인데 주간 소모는 3.1 - 1.0일 차이를 맞추지 않고 원문 그대로 둔다(솔로몬 S/HAR 도 같다)
+      { vessel: 'S/EXP', allocated: 55.17, consumed: 45.3, remaining: 9.87, weekly: 2.9 },
+      { vessel: 'S/PIO', allocated: 55.17, consumed: 36.7, remaining: 18.47, weekly: 4.6 },
+      { vessel: 'S/CHA', allocated: 55.17, consumed: 39.5, remaining: 15.67, weekly: 3.1 },
+      { vessel: 'S/HAR', allocated: 55.17, consumed: 18.7, remaining: 36.47, weekly: 0.2 },
+      { vessel: 'S/JUP', allocated: 55.17, consumed: 30.9, remaining: 24.27, weekly: 4.6 },
       { vessel: 'S/SPR', allocated: 55.17, consumed: 19.4, remaining: 35.77, weekly: 0 },
-    ], { allocated: 331, consumed: 176.1, remaining: 154.9, weekly: 16.9 }),
+    ], { allocated: 331, consumed: 190.5, remaining: 140.5, weekly: 15.4 }),
     area('솔로몬제도', [
       // 10-05 판: 척당 배정 7.33 → 11.08일(44 → 66.5). 같은 판 키리코레 솔로몬 양자가 34 → 11.5일로 22.5일 줄어 옮겨 온 몫으로 읽힌다
-      { vessel: 'S/EXP', allocated: 11.08, consumed: 10.5, remaining: 0.58, weekly: 2.7 },
-      { vessel: 'S/PIO', allocated: 11.08, consumed: 3.4, remaining: 7.68, weekly: 1.9 },
-      { vessel: 'S/CHA', allocated: 11.08, consumed: 7.4, remaining: 3.68, weekly: 3 },
-      { vessel: 'S/HAR', allocated: 11.08, consumed: 12.8, remaining: -1.72, weekly: 5.3 },
-      { vessel: 'S/JUP', allocated: 11.08, consumed: 8.8, remaining: 2.28, weekly: 1.5 },
+      { vessel: 'S/EXP', allocated: 11.08, consumed: 10.5, remaining: 0.58, weekly: 0 },
+      { vessel: 'S/PIO', allocated: 11.08, consumed: 3.4, remaining: 7.68, weekly: 0 },
+      { vessel: 'S/CHA', allocated: 11.08, consumed: 9.5, remaining: 1.58, weekly: 2.1 },
+      { vessel: 'S/HAR', allocated: 11.08, consumed: 14.6, remaining: -3.52, weekly: 2.8 },
+      { vessel: 'S/JUP', allocated: 11.08, consumed: 8.8, remaining: 2.28, weekly: 0 },
       { vessel: 'S/SPR', allocated: 11.08, consumed: 4.6, remaining: 6.48, weekly: 0 },
-    ], { allocated: 66.5, consumed: 47.5, remaining: 19, weekly: 14.4 }),
+    ], { allocated: 66.5, consumed: 51.4, remaining: 15.1, weekly: 4.9 }),
     area('미크로네시아', [
       { vessel: 'S/EXP', allocated: 8.17, consumed: 14.4, remaining: -6.23, weekly: 0 },
       { vessel: 'S/PIO', allocated: 8.17, consumed: 2.2, remaining: 5.97, weekly: 0 },
@@ -64,14 +65,14 @@ export const nationalVds = {
       { vessel: 'S/SPR', allocated: 8.17, consumed: 2.7, remaining: 5.47, weekly: 0 },
     ], { allocated: 49, consumed: 24.6, remaining: 24.4, weekly: 0 }),
     area('키리바시', [
-      // 소모 음수 2칸(S/CHA -1.4 · S/HAR -1.0) - 지난 판 추정 소진이 되돌려졌다(원문 각주: VMS 항적 기반 추정)
+      // 10-11 판: 주간 소모 0 - 10-05 판의 음수 2칸(S/CHA -1.4 · S/HAR -1.0, 추정 소진 되돌림)이 그대로 확정됐다
       { vessel: 'S/EXP', allocated: 127.33, consumed: 101.5, remaining: 25.83, weekly: 0 },
       { vessel: 'S/PIO', allocated: 127.33, consumed: 149.1, remaining: -21.77, weekly: 0 },
-      { vessel: 'S/CHA', allocated: 127.33, consumed: 139.2, remaining: -11.87, weekly: -1.4 },
-      { vessel: 'S/HAR', allocated: 127.33, consumed: 115.7, remaining: 11.63, weekly: -1 },
+      { vessel: 'S/CHA', allocated: 127.33, consumed: 139.2, remaining: -11.87, weekly: 0 },
+      { vessel: 'S/HAR', allocated: 127.33, consumed: 115.7, remaining: 11.63, weekly: 0 },
       { vessel: 'S/JUP', allocated: 127.33, consumed: 102.4, remaining: 24.93, weekly: 0 },
       { vessel: 'S/SPR', allocated: 127.33, consumed: 144.6, remaining: -17.27, weekly: 0 },
-    ], { allocated: 764, consumed: 752.6, remaining: 11.5, weekly: -2.4 }),
+    ], { allocated: 764, consumed: 752.6, remaining: 11.5, weekly: 0 }),
     area('투발루', [
       { vessel: 'S/EXP', allocated: 18.67, consumed: 12, remaining: 6.67, weekly: 0 },
       { vessel: 'S/PIO', allocated: 18.67, consumed: 18.7, remaining: -0.03, weekly: 0 },
@@ -105,33 +106,33 @@ export const nationalVds = {
       { vessel: 'S/SPR', allocated: 8.63, consumed: 7, remaining: 1.63, weekly: 0 },
     ], { allocated: 51.75, consumed: 36, remaining: 15.75, weekly: 0 }, '소진일수에서 제외', false),
   ],
-  totals: { allocated: 1_479.5, consumed: 1_239.1, remaining: 240.4, weekly: 28.9 },
+  totals: { allocated: 1_479.5, consumed: 1_257.4, remaining: 222.1, weekly: 20.3 },
 };
 
 export const kiribatiVds = {
-  asOf: '2026-10-05',
-  source: 'KFC 태평양 선망 VDS 현황_2026.10.05.pdf',
+  asOf: '2026-10-11',
+  source: 'KFC 태평양 선망 VDS 현황_2026.10.11.pdf',
   vessels: ['MOAMARI', 'MOAKONA', 'NAOERO SUN', 'NAOERO STAR'],
   areas: [
     area('미크로네시아 협정', [
-      { vessel: 'MOAMARI', allocated: 9.5, consumed: 7.5, remaining: 2, weekly: 2.3 },
+      { vessel: 'MOAMARI', allocated: 9.5, consumed: 7.5, remaining: 2, weekly: 0 },
       { vessel: 'MOAKONA', allocated: 9.5, consumed: 7.6, remaining: 1.9, weekly: 0 },
-    ], { allocated: 19, consumed: 15.1, remaining: 3.9, weekly: 2.3 }),
+    ], { allocated: 19, consumed: 15.1, remaining: 3.9, weekly: 0 }),
     area('키리바시', [
-      /* 10-05 판: 척당 배정 102.75 → 107.75일(411 → 431). 예인 중이던 MOAMARI 의 키리바시 소진이 104.3 → 99.9 로
-       * 4.4일 되돌려져 초과(-1.55)가 풀렸다 - 통과 소진 정정으로 읽힌다. 원문 각주대로 추정치라 그대로 싣는다. */
-      { vessel: 'MOAMARI', allocated: 107.75, consumed: 99.9, remaining: 7.85, weekly: -4.4 },
-      { vessel: 'MOAKONA', allocated: 107.75, consumed: 120.8, remaining: -13.05, weekly: 0.2 },
-      { vessel: 'NAOERO SUN', allocated: 107.75, consumed: 71.7, remaining: 36.05, weekly: -0.3 },
-      { vessel: 'NAOERO STAR', allocated: 107.75, consumed: 114.1, remaining: -6.35, weekly: 2.6 },
-    ], { allocated: 431, consumed: 406.5, remaining: 24.5, weekly: -1.9 }),
+      /* 10-05 판: 척당 배정 102.75 → 107.75일(411 → 431). MOAMARI 키리바시 소진은 10-05 판에서 4.4일 되돌려진 99.9일이
+       * 10-11 판에도 그대로다 - 상가수리(10/4~10/10) 중이라 전 수역 주간 소모가 0 이다. */
+      { vessel: 'MOAMARI', allocated: 107.75, consumed: 99.9, remaining: 7.85, weekly: 0 },
+      { vessel: 'MOAKONA', allocated: 107.75, consumed: 125.7, remaining: -17.95, weekly: 4.9 },
+      { vessel: 'NAOERO SUN', allocated: 107.75, consumed: 72.9, remaining: 34.85, weekly: 1.2 },
+      { vessel: 'NAOERO STAR', allocated: 107.75, consumed: 114.4, remaining: -6.65, weekly: 0.3 },
+    ], { allocated: 431, consumed: 412.9, remaining: 18.1, weekly: 6.4 }),
     area('미크로네시아 양자', [
-      // 주간 소모 8.9 는 09-27 판과 같은 값이고 소진 누계(12.9)도 그대로다 - 원문이 지난 판 값을 이어 적은 것으로 읽힌다
-      { vessel: 'MOAMARI', allocated: 8.75, consumed: 12.9, remaining: -4.15, weekly: 8.9 },
+      // 10-05 판 주간 소모 8.9 는 09-27 판 값을 이어 적은 것이었다 - 10-11 판은 0 이고 소진 누계 12.9 도 그대로다
+      { vessel: 'MOAMARI', allocated: 8.75, consumed: 12.9, remaining: -4.15, weekly: 0 },
       { vessel: 'MOAKONA', allocated: 8.75, consumed: 3.5, remaining: 5.25, weekly: 0 },
       { vessel: 'NAOERO SUN', allocated: 8.75, consumed: 21.1, remaining: -12.35, weekly: 0 },
       { vessel: 'NAOERO STAR', allocated: 8.75, consumed: 6.3, remaining: 2.45, weekly: 0 },
-    ], { allocated: 35, consumed: 43.8, remaining: -8.8, weekly: 8.9 }),
+    ], { allocated: 35, consumed: 43.8, remaining: -8.8, weekly: 0 }),
     area('나우루 양자', [
       { vessel: 'MOAMARI', allocated: 24, consumed: 7.8, remaining: 16.2, weekly: 0 },
       { vessel: 'MOAKONA', allocated: 24, consumed: 10.8, remaining: 13.2, weekly: 0 },
@@ -158,16 +159,17 @@ export const kiribatiVds = {
       { vessel: 'NAOERO STAR', allocated: 21.25, consumed: 24.2, remaining: -2.95, weekly: 0 },
     ], { allocated: 85, consumed: 59.7, remaining: 25.3, weekly: 0 }),
     /* 공해는 원문이 「소진일수에서 제외」라 적었다. 총계 767.5일에 들어가지 않는다.
-     * 09-27 판보다 배정·소진이 함께 늘었다(271 → 284) — 공해 조업이 이어진 만큼 배정도 따라 올린다. */
+     * 판마다 배정·소진이 함께 는다(09-27 271 → 10-05 284 → 10-11 294) — 공해 조업이 이어진 만큼 배정도 따라 올린다.
+     * 10-11 판은 소진 증가(+10)가 주간 소모(12)보다 2일 적다 - MOAKONA +1 대 2 · NAOERO STAR +6 대 7. */
     area('공해', [
       { vessel: 'MOAMARI', allocated: 50, consumed: 50, remaining: 0, weekly: 0 },
-      { vessel: 'MOAKONA', allocated: 58, consumed: 58, remaining: 0, weekly: 4 },
-      { vessel: 'NAOERO SUN', allocated: 104, consumed: 104, remaining: 0, weekly: 5 },
-      { vessel: 'NAOERO STAR', allocated: 72, consumed: 72, remaining: 0, weekly: 4 },
-    ], { allocated: 284, consumed: 284, remaining: 0, weekly: 13 }, '소진일수에서 제외', false),
+      { vessel: 'MOAKONA', allocated: 59, consumed: 59, remaining: 0, weekly: 2 },
+      { vessel: 'NAOERO SUN', allocated: 107, consumed: 107, remaining: 0, weekly: 3 },
+      { vessel: 'NAOERO STAR', allocated: 78, consumed: 78, remaining: 0, weekly: 7 },
+    ], { allocated: 294, consumed: 294, remaining: 0, weekly: 12 }, '소진일수에서 제외', false),
   ],
   // 원문 TOTAL 행. 공해는 「소진일수에서 제외」라 배정 767.5 에 들어가지 않는다.
-  totals: { allocated: 767.5, consumed: 607.8, remaining: 159.7, weekly: 9.3 },
+  totals: { allocated: 767.5, consumed: 614.2, remaining: 153.3, weekly: 6.4 },
 };
 
 const monthlyRows = [

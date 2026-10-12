@@ -10,28 +10,39 @@ import { mailDepartureConflicts, mailProcessingVsWeekly, weeks } from '../lib/da
 import { atlanticMails, latestAtlanticMail } from '../lib/data/panofi-atlantic-mail';
 
 describe('PANOFI 대서양 주말 메일', () => {
-  it('4건을 싣고 MGO 로 짝지은 주간동향과 값이 같다', () => {
-    expect(atlanticMails.map((m) => m.date)).toEqual(['2026-08-30', '2026-09-06', '2026-09-13', '2026-09-20']);
-    for (const mail of atlanticMails) {
+  it('5건을 싣고 9/20 까지는 MGO 로 짝지은 주간동향과 값이 같다', () => {
+    expect(atlanticMails.map((m) => m.date)).toEqual(['2026-08-30', '2026-09-06', '2026-09-13', '2026-09-20', '2026-10-11']);
+    for (const mail of atlanticMails.filter((m) => m.date <= '2026-09-20')) {
       const weekly = weeks.find((w) => w.reportDate === mail.weeklyPair)!;
       expect(weekly, mail.weeklyPair).toBeDefined();
       expect(mail.mgo.tema).toBe(weekly.fuel.tema);
       if (mail.mgo.tanker != null) expect(mail.mgo.tanker).toBe(weekly.fuel.tanker);
       if (mail.mgo.abidjan != null) expect(mail.mgo.abidjan).toBe(weekly.fuel.abidjan);
     }
-    expect(latestAtlanticMail.scasa.priceUsd).toBe(1_950);
-    // 9/20 메일에는 그랑블루 판매·운임·PFC 어가가 없다 - 빈 값을 지난주 값으로 채우지 않는다
-    expect(latestAtlanticMail.grandBleuSales).toEqual([]);
-    expect(latestAtlanticMail.freightUsdPerT).toBeNull();
-    expect(latestAtlanticMail.pfc).toEqual({ priceUsd: null, note: null });
+    // 10/11 메일 MGO 는 10/6 주간동향(테마 1,678 · 탱커 1,535)을 옮기지 않고 따로 적었다(테마는 «$1,660 이상»)
+    const oct11 = latestAtlanticMail;
+    expect(oct11.weeklyPair).toBe('2026-10-06');
+    const oct06 = weeks.find((w) => w.reportDate === '2026-10-06')!;
+    expect([oct06.fuel.tema, oct06.fuel.tanker]).toEqual([1_678, 1_535]);
+    expect(oct11.mgo).toMatchObject({ tema: 1_660, tanker: 1_573, abidjan: null, dakar: 1_340 });
+    expect(oct11.scasa).toEqual({ priceUsd: 1_950, dailyProcessingT: 120 });
+    expect(oct11.cosmo).toMatchObject({ priceUsd: 1_850, priceMonth: '9월', dailyProcessingT: 100 });
+    // 원문 «원어 : 1,250톤» - 어종 구분이 없다
+    expect(oct11.cosmo.stock).toEqual({ asOf: '2026-10-11', totalT: 1_250, sjT: null, yfT: null, mixT: null });
+    expect(oct11.pfc).toEqual({ priceUsd: null, note: '10월 거래 없음(어가 소폭 하락 예상)' });
+    // 그랑블루 판매·운임이 없다 - 빈 값을 지난주 값으로 채우지 않는다
+    expect(oct11.grandBleuSales).toEqual([]);
+    expect(oct11.freightUsdPerT).toBeNull();
+    const sep20 = atlanticMails.find((m) => m.date === '2026-09-20')!;
+    expect(sep20.pfc).toEqual({ priceUsd: null, note: null });
     // 9/13 메일의 재고는 SJ 만 적혔다 - YF·MIX 는 0 이 아니라 미기재
     const sep13 = atlanticMails.find((m) => m.date === '2026-09-13')!;
     expect(sep13.cosmo.stock).toMatchObject({ totalT: 3_725, sjT: 3_725, yfT: null, mixT: null });
     expect(sep13.grandBleuSales.map((g) => g.priceUsd)).toEqual([2_000, 2_050]);
     // 9/20 재고는 3,160톤(SJ 3,130 · YF 30) - 9/11 대비 565톤 줄었다
-    expect(latestAtlanticMail.cosmo.stock).toMatchObject({ asOf: '2026-09-20', totalT: 3_160, sjT: 3_130, yfT: 30, mixT: null });
+    expect(sep20.cosmo.stock).toMatchObject({ asOf: '2026-09-20', totalT: 3_160, sjT: 3_130, yfT: 30, mixT: null });
     // 9월은 거래가 없었다 - 협의 중이 아니라 재고 때문에 10월 중순 이후를 원한다는 뜻
-    expect(latestAtlanticMail.cosmo.nextMonthUnderNegotiation).toBe(false);
+    expect(sep20.cosmo.nextMonthUnderNegotiation).toBe(false);
   });
 
   it('사람 이름·메일 주소·좌표를 싣지 않는다', () => {
@@ -42,10 +53,16 @@ describe('PANOFI 대서양 주말 메일', () => {
     expect(text).not.toMatch(/\([가-힣]{2,3}\s*(선장|기관장)\)/);
     expect(text).not.toMatch(/[가-힣]{3}\s*(사장|법인장|팀장)/);
     expect(text).not.toMatch(/[NS]\d{2,4}\s*[EW]\d{3,5}/);
+    expect(text).not.toMatch(/\b[NSWE]\d{2,3}\b/);
+    // 10/11 원문의 선장 교대·체항 사유에 실명이 있다 - 직함으로만 옮겼는지 본다
+    expect(text).not.toMatch(/[가-힣]{3}\s*선장\s*(승선|인수인계|\))/);
+    expect(text).toContain('신임 선장 승선');
   });
 
   it('주간동향과 어긋나는 가공량·출항을 파생한다', () => {
-    expect(mailProcessingVsWeekly.map((r) => [r.cosmoWeekly, r.cosmoMail])).toEqual([[80, 85], [80, 90], [80, 95], [95, 100]]);
+    expect(mailProcessingVsWeekly.map((r) => [r.cosmoWeekly, r.cosmoMail])).toEqual([[80, 85], [80, 90], [80, 95], [95, 100], [100, 100]]);
+    // 10/11 메일 PFC 메모는 어가(「10월 거래 없음」)라 가공량 대조에 넣지 않는다
+    expect(mailProcessingVsWeekly.map((r) => r.pfcMailNote)).toEqual(['원어 부족(0톤)으로 금주 가공 중단', null, null, null, null]);
     expect(mailProcessingVsWeekly[0]).toMatchObject({ pfcWeekly: 90, pfcMailNote: '원어 부족(0톤)으로 금주 가공 중단' });
     // 8/30 메일은 SEA DEFENDER 하역 중, 9/1 주간동향은 8/29 출항 완료. 같은 날 출항(XIXILI 9/6)은 어긋남이 아니다.
     expect(mailDepartureConflicts).toEqual([
@@ -55,7 +72,10 @@ describe('PANOFI 대서양 주말 메일', () => {
 
   it('/panofi 어가·선단 탭에 메일 값을 렌더한다', () => {
     const price = renderToStaticMarkup(React.createElement(PriceTab));
-    expect(price).toContain('주말 메일 4건 - 주간동향에 없는 값');
+    expect(price).toContain('주말 메일 5건 - 주간동향에 없는 값');
+    expect(price).toContain('10/11 메일은 테마 $1,660(10/6 주간동향 $1,678)로 따로 적었다');
+    expect(price).not.toContain('메일마다 직전 주간동향 값을 그대로 옮긴다');
+    expect(price).not.toContain('10월 거래 없음(어가 소폭 하락 예상)」이다');
     expect(price).toContain('스카사 어가가 $1,800에서 $1,950으로 올라');
     expect(price).toContain('9/1 주간동향 코스모 80톤 대 9/6 메일 90톤');
     expect(price).toContain('9/15 주간동향 코스모 95톤 대 9/20 메일 100톤');
@@ -64,19 +84,19 @@ describe('PANOFI 대서양 주말 메일', () => {
     expect(price).not.toContain('주간동향은 같은 값을 이어 적고 메일만 움직인다.');
     const fleet = renderToStaticMarkup(React.createElement(FleetTab));
     // 선단 탭 세네갈 입출항은 주말 메일과 주간동향 중 더 최신인 쪽을 싣는다.
-    // 10/6 주간동향이 9/20 메일보다 최신이라 주간동향 표(ALBONIGA 450톤 등)가 나와야 한다.
-    expect(fleet).toContain('주간동향 10/6 · 톤');
-    expect(fleet).toContain('ALBONIGA');
-    expect(fleet).toContain('WESTERN KIM');
-    expect(fleet).not.toContain('SEA FRONTIER');
+    // 10/11 메일이 10/6 주간동향보다 최신이라 메일 표(COSMOS KIM 체항 등)가 나와야 한다.
+    expect(fleet).toContain('주말 메일 10/11 · 톤');
+    expect(fleet).toContain('국적 증서 문제로 약 50일 체항 중');
+    expect(fleet).not.toContain('ALBONIGA');
+    expect(fleet).toContain('P/FORE 10/11 신임 선장 승선');
     expect(fleet).toContain('SEA DEFENDER - 8/30 메일은 「하역 중」인데 9/1 주간동향은 8/29 출항 완료로 적었다.');
   });
 });
 
 describe('코스모 원장 대 PANOFI 메일', () => {
   it('주차 말일이 같은 주만 짝짓고 재고 차이를 파생한다', () => {
-    // 38주차 원장이 들어오며 9/20 메일도 짝이 맞았다 - 네 주 모두 짝지어진다
-    expect(cosmoMailRows.map((r) => r.week)).toEqual([35, 36, 37, 38]);
+    // 38주차 원장이 들어오며 9/20 메일도 짝이 맞았다. 10/11 메일(41주차 말일)은 원장이 40주차까지라 짝이 없다
+    expect(cosmoMailRows.map((r) => r.week)).toEqual([35, 36, 37, 38, null]);
     expect(cosmoMailRows[0].ledgerDailyT).toBeCloseTo(85.1, 1);
     expect(cosmoMailRows[1].ledgerDailyT).toBeCloseTo(86.2, 1);
     expect(cosmoMailRows[2].ledgerDailyT).toBeCloseTo(97.1, 1);
@@ -87,7 +107,7 @@ describe('코스모 원장 대 PANOFI 메일', () => {
     // 9/20 메일 대 38주차 원장: 일평균 103.1 MT, 재고 차이 -99.2 MT
     expect(cosmoMailRows[3].ledgerDailyT).toBeCloseTo(103.1, 1);
     expect(cosmoMailRows[3].stockGapT).toBeCloseTo(-99.2, 1);
-    expect(cosmoMailRows.map((r) => r.inflowResidualT)).toEqual([null, 260.66, null, null]);
+    expect(cosmoMailRows.map((r) => r.inflowResidualT)).toEqual([null, 260.66, null, null, null]);
   });
 
   it('원어 입고·구매 물량 검산은 36·39주차에서만 깨진다', () => {

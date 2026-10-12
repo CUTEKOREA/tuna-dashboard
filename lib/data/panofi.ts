@@ -777,7 +777,8 @@ export const mailProcessingVsWeekly = atlanticMails.map((mail) => {
     cosmoWeekly: weekly?.dailyProcessing.COSMO ?? null,
     scasaMail: mail.scasa.dailyProcessingT,
     scasaWeekly: weekly?.dailyProcessing.SCASA ?? null,
-    pfcMailNote: mail.pfc.note,
+    // 가공 상황을 적은 메모만 가공량 대조에 쓴다 - 10/11 메일 「10월 거래 없음」은 어가 이야기다
+    pfcMailNote: mail.pfc.note && /가공/.test(mail.pfc.note) ? mail.pfc.note : null,
     pfcWeekly: weekly?.dailyProcessing.PFC ?? null,
   };
 });
