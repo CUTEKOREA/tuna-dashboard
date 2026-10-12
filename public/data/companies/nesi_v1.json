@@ -1,0 +1,42 @@
+{
+ "_meta": {
+  "회사": "NESI(New England Seafood International) — 영국 냉장 수산 수입·가공사(Companies House 02565953). 지분 94,6 %를 가진 지주 SFIH(12924086)의 주인이 2020년 Sealaska에서 2026-10-01 双日(Sojitz)로 바뀌었다",
+  "국가": "영국",
+  "업종": "냉장 수산 수입·2차 가공(백색어·연어·참치 등), 영국 대형 소매 PB와 자사 브랜드 Leap, 초저온 참치 해동 특허",
+  "종목": "비상장 · Companies House 02565953 · 지주 SFIH 12924086",
+  "출처": "UK Companies House 등기·계정(NESI 02565953·SFIH 12924086)·담보·SH01·PSC · gov.uk UK Seafood Fund · FSA 승인시설 명부·식품 경보 · HMRC Overseas Trade Statistics · UK Trade Tariff · 관세청 수출입무역통계 · UN Comtrade · DART · WCPFC·IATTC·ICCAT·IOTC·CCSBT 선박 등록부 · MSC 어업 인증DB·시장 보고서 · Google Patents · GOV.UK 고용심판 판결 · NESI Modern Slavery Act 성명·책임조달 헌장·누리집 · Ocado·Tesco·Waitrose·Sainsbury's·Asda 판매 화면 · Sealaska·双日 발표 · SeafoodSource·The Grocer·Undercurrent·Grimsby Telegraph · 업계지 Atuna",
+  "조사일": "2026-10"
+ },
+ "card": {
+  "numeral": "ⅬⅩⅢ",
+  "tagline": "영국 대형 소매에 냉장 수산을 대는 수입 가공사와, 그 안에서 특허 해동으로 파는 초저온 참치"
+ },
+ "stats": {
+  "매출_2025": 239.5,
+  "순이익_2025": 7.3,
+  "영국비중": 96.8,
+  "인원": 839,
+  "매출_FY2013": 67.0,
+  "지분": 94.6,
+  "인수대가": 81.6,
+  "무형자산": 14.6,
+  "개발기술": 10.1,
+  "수입액": 42.2,
+  "수입t": 3927.5,
+  "상한": 17.6,
+  "공급국": 14,
+  "선박": 0,
+  "공장": 3,
+  "한도": 36,
+  "담보": 7,
+  "담보_Barclays": 6,
+  "보조금": 3774667.53,
+  "한국kg": 121237,
+  "한국단가": 14.57,
+  "한국_2021t": 1213.0,
+  "한국_2025t": 139.8,
+  "Leap_kg": 40.21,
+  "PB_kg": 43.75
+ },
+ "sourcenotes": []
+}

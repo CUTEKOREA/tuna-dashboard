@@ -317,6 +317,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅩⅡ · 발행본 §02 의 본점 「東京都千代田区内幸町2-1-1」(法人番号 5010401049977) · **좌표는 도쿄 内幸町 근사값** · 참치 직접 축은 静岡 清水 TRY 공장·長崎 鷹島 양식장',
     note: '東証プライム 2768 · 지배주주 없음 · FY2026/3 「水産事業」 실력치 46억 엔(マリンフーズ 24억·トライ産業 13억·그 밖 9억), 목표 50억 · マリンフーズ 취득대가 18.236 백만 엔 · TRY 냉동 참치 2,6만 t(2023 회사 진술) · RFMO 등록부 5종 双日 계열 0척',
     },
+  // ── ⅬⅩⅢ New England Seafood International(NESI) — Chessington 본사 ─────
+  { company: 'nesi', numeral: 'ⅬⅩⅢ', kind: 'hq', label: 'NESI — Chessington(Surrey) 본사·가공장', country: '영국',
+    lat: 51.3633, lng: -0.2967,
+    basis: 'ⅬⅩⅢ · 발행본 §02·§08 의 등기 주소 Chessington, FSA 승인 가공장 KU 006 「48 Cox Lane, KT9 1TW」 · **좌표는 Chessington Cox Lane 근사값** · 다른 가공장은 Grimsby GG 491·Paignton TP 041',
+    note: 'Companies House 02565953 · 지주 SFIH 지분 94,6 %(2020-10-30 Sealaska, 2026-10-01 双日 지배) · 2025 매출 £239,5m(영국 96,8 %) · 개발 기술 £10,1m(해동 특허로 추정) · Barclays 한도 £36m · RFMO 등록부 5종 NESI 명의 0척',
+    },
 ];
 
 /**

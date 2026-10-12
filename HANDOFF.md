@@ -1,3 +1,8 @@
+> ✅ **2026-10-12 KST — 기업 해부 ⅬⅩⅢ New England Seafood International(NESI) 카드 추가** [CC]:
+> - 원문 `docs/evidence/company-nesi-2026-10/`(보고서.html·PDF·통합프로필). 추출 3종(표 25·그림 9(팩샷 6·차트 3)·서술 16절 → 8단계), `lib/data/company-nesi.ts`, COMPANY_CARDS ⅬⅩⅢ(영국, 기존 gb.svg), 본사 핀 63곳(Chessington Cox Lane 근사 좌표), prose 테스트에 `build/killed.py` 기각 표현 전량 가드.
+> - `/sashimi-steak` 수출 파트너 위젯의 NESI 문구 정정: 근거 없는 「M&S·Waitrose·Tesco 납품, 英 최대」 → 「Tesco·Sainsbury's·Waitrose 납품 확인 · 2026-10 双日 인수(지주 SFIH)」, top5 「英 최대 슈퍼프로즌 수입」 → 「초저온 참치 해동 특허 보유 · 「英 최대」는 자칭」(M&S 참치 근거 0, 「영국 최대」는 회사 자칭).
+> - 보고서 정본·빌드: `~/tunawork/nesi/build`. Artifact URL 미정(docs/ARTIFACTS.md 행 보류).
+
 > ✅ **2026-10-12 KST — 기업 해부 ⅬⅩⅡ 双日(Sojitz) 수산 카드 추가** [CC]:
 > - 원문 `docs/evidence/company-sojitz-2026-10/`(보고서.html·PDF·통합프로필). 추출 3종(표 27·그림 8·서술 17절 → 8단계), `lib/data/company-sojitz.ts`, COMPANY_CARDS ⅬⅩⅡ(일본), 본사 핀 62곳, prose 테스트에 killed 표현 가드.
 > - 보고서 정본·빌드: `~/tunawork/sojitz/build`(관문 9종, must 180, 산술 16, 한자·일본어 옆 한글 읽기 `ja_ruby.py`). Artifact https://claude.ai/artifact/KagKCWLNoG9vNi8btzBk7J. Drive `…/02_참치_가공·유통·기업/일본/Sojitz/`.

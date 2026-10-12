@@ -26,9 +26,9 @@ const markets = [
     tariff: 'Korea-UK FTA → MFN 18% 회피 = 동남아 대비 결정적 우위',
     entry: 'IUU Catch Cert + EHC + MSC CoC (권장)',
     topPartner: 'NESI (New England Seafood)',
-    partnerNote: 'M&S·Waitrose·Tesco 납품, 英 최대',
+    partnerNote: "Tesco·Sainsbury's·Waitrose 납품 확인 · 2026-10 双日 인수(지주 SFIH)",
     top5: [
-      { name: 'NESI', note: '英 최대 슈퍼프로즌 수입' },
+      { name: 'NESI', note: '초저온 참치 해동 특허 보유 · 「英 최대」는 자칭' },
       { name: 'Atari-Ya/T&S', note: '빠른 파일럿 가능' },
       { name: 'Direct Seafoods', note: '사시미급 라인 보유' },
       { name: 'Taiko Foods', note: 'YO! Sushi, 대량 황다랑어' },
