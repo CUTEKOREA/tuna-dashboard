@@ -61,7 +61,7 @@ export function industryItemForPath(pathname: string | null | undefined): Indust
 }
 
 /**
- * 표지 cover-facts 가 없는 보고서(골뱅이 조달·Bluefin Ranching)의 허브 카드 수치.
+ * 표지 cover-facts 가 없는 보고서(골뱅이 조달)의 허브 카드 수치.
  * 원문 0장(요지) 첫 단락에서 골랐다. `quote` 는 원문 평문에 그대로 있는 구절이고 `v` 를 품는다(테스트가 대조).
  * `hub_v1.json`(표지 전용)에는 넣지 않는다.
  */
@@ -69,10 +69,6 @@ export const BODY_CARD_FACTS: Record<string, Array<CoverFact & { quote: string }
   whelk: [
     { k: '수입 신고', v: '757', n: '건 · 피뿔고둥 355 · 참골뱅이·물레고둥 172+129', quote: '신고 757건' },
     { k: '피뿔고둥', v: '355', n: '건 · 원산지 중국 232 · 튀르키예 85', quote: '피뿔고둥(Rapana venosa) 355건' },
-  ],
-  tunafarm: [
-    { k: '일본 완전양식 2024', v: '405', n: '톤 · 2020년 2,975톤에서 감소', quote: '2024년 405톤' },
-    { k: '완전양식 비중', v: '2.2%', n: '일본 양식 출하 18,687톤 중 · 2024', quote: '비중 2.2%' },
   ],
 };
 

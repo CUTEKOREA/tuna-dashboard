@@ -106,8 +106,19 @@ describe('47품목 레지스트리 (실제 48 — 발주서 분류 목록 합)',
     }
   });
 
-  it('표지 타일이 없는 골뱅이·참치 양식 카드는 원문 요지 첫 단락의 수치 2개를 쓴다', () => {
-    expect(Object.keys(BODY_CARD_FACTS).sort()).toEqual(['tunafarm', 'whelk']);
+  it('참치 양식 카드는 해부보고서 표지 cover-facts 를 쓴다(본문 요지 수치 항목 없음)', () => {
+    const item = INDUSTRY_ITEMS.find((i) => i.key === 'tunafarm')!;
+    expect(item.title).toBe('한국 시장의 양식 참다랑어');
+    expect(item.facts).toHaveLength(8);
+    expect(cardFacts(item)).toBe(item.facts);
+    expect(item.facts.slice(0, 2).map((f) => `${f.k} ${f.v} ${f.n}`)).toEqual([
+      '2025 국내 해면양식 14.276 톤 · 8.5억 원',
+      '2025 참다랑어 수입 7,168.3 톤 · 151.3백만 달러',
+    ]);
+  });
+
+  it('표지 타일이 없는 골뱅이 카드는 원문 요지 첫 단락의 수치 2개를 쓴다', () => {
+    expect(Object.keys(BODY_CARD_FACTS).sort()).toEqual(['whelk']);
     for (const [key, facts] of Object.entries(BODY_CARD_FACTS)) {
       const item = INDUSTRY_ITEMS.find((i) => i.key === key)!;
       expect(item.facts, key).toEqual([]);

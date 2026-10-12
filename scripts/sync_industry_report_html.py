@@ -20,6 +20,8 @@ KEYS = ("pollock", "octopus", "shrimp", "squid", "tuna", "surimi", "mackerel", "
     if "route" not in it
 )
 OUT = ROOT / "public/reports/industry"
+# 판이 바뀌어 화면 본문에서 내려온 옛 원문. 지우지 않고 「참고」 링크로만 잇는다.
+ARCHIVED = ("tunafarm-world-2026-09",)
 
 
 def main() -> int:
@@ -32,6 +34,14 @@ def main() -> int:
         dst = OUT / f"{key}-{EDITION}.html"
         shutil.copyfile(src, dst)
         print(f"{key:14s} {dst.stat().st_size // 1024:5,d} KB → {dst.relative_to(ROOT)}")
+    for name in ARCHIVED:
+        src = ROOT / f"docs/evidence/industry-{name}/보고서.html"
+        if not src.exists():
+            print(f"원문 없음: {src}", file=sys.stderr)
+            return 1
+        dst = OUT / f"{name}.html"
+        shutil.copyfile(src, dst)
+        print(f"{name:14s} {dst.stat().st_size // 1024:5,d} KB → {dst.relative_to(ROOT)}")
     return 0
 
 

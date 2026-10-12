@@ -49,6 +49,16 @@ describe('보고서 원문 파일', () => {
     expect(readFileSync(copy).equals(original)).toBe(true);
   });
 
+  it('참치 양식 옛 제1보 원문은 지우지 않고 보존하며 원문 보기 사본이 바이트까지 같다', () => {
+    const original = readFileSync(join(root, 'docs/evidence/industry-tunafarm-world-2026-09/보고서.html'));
+    const copy = join(root, 'public/reports/industry/tunafarm-world-2026-09.html');
+    expect(existsSync(copy), copy).toBe(true);
+    expect(readFileSync(copy).equals(original)).toBe(true);
+    // 화면 원문은 새 해부보고서다
+    expect(readFileSync(join(root, 'docs/evidence/industry-tunafarm-2026-10/보고서.html'), 'utf8'))
+      .toContain('<title>한국 시장의 양식 참다랑어</title>');
+  });
+
   it('원문에 인쇄 스타일이 있어 브라우저 인쇄로 PDF 가 된다', () => {
     for (const [key] of PAGES) {
       expect(readFileSync(join(root, `public/reports/industry/${key}-2026-10.html`), 'utf8'), key)
