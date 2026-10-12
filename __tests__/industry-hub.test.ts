@@ -26,6 +26,8 @@ import { isActiveMenu, SIDEBAR_SECTIONS, VALID_MENUS } from '../lib/dashboard-re
 import { reportProse } from '../lib/data/company-report-prose';
 import { reportTables } from '../lib/data/company-report-tables';
 import {
+  BODY_CARD_FACTS,
+  cardFacts,
   INDUSTRY_CATEGORIES,
   INDUSTRY_ITEMS,
   INDUSTRY_PINNED,
@@ -99,7 +101,27 @@ describe('47품목 레지스트리 (실제 48 — 발주서 분류 목록 합)',
     for (const item of INDUSTRY_ITEMS) {
       expect(html).toContain(`href="${item.href}"`);
       expect(text).toContain(`보고서 ${item.edition}`);
-      for (const f of item.facts.slice(0, 2)) expect(text, `${item.key} ${f.k}`).toContain(`${f.k} ${f.v} ${f.n}`);
+      for (const f of cardFacts(item).slice(0, 2)) expect(text, `${item.key} ${f.k}`).toContain(`${f.k} ${f.v} ${f.n}`);
+    }
+  });
+
+  it('표지 타일이 없는 골뱅이·참치 양식 카드는 원문 요지 첫 단락의 수치 2개를 쓴다', () => {
+    expect(Object.keys(BODY_CARD_FACTS).sort()).toEqual(['tunafarm', 'whelk']);
+    for (const [key, facts] of Object.entries(BODY_CARD_FACTS)) {
+      const item = INDUSTRY_ITEMS.find((i) => i.key === key)!;
+      expect(item.facts, key).toEqual([]);
+      expect(facts).toHaveLength(2);
+      expect(cardFacts(item)).toBe(facts);
+      const doc = read(`docs/evidence/industry-${key}-2026-10/보고서.html`);
+      // 요지(0장) 첫 단락 = 요지 머리(「0. 요지」 h2 또는 id="s0") 뒤 첫 <li>/<p>
+      const head = /요지<\/h2>|id="s0"[^>]*>[^<]*<\/p>/.exec(doc)!;
+      const rest = doc.slice(head.index + head[0].length);
+      const first = flat(/<(li|p)\b[^>]*>([\s\S]*?)<\/\1>/.exec(rest)![2]);
+      for (const f of facts) {
+        expect(f.quote, `${key} ${f.k}`).toContain(f.v);
+        expect(first, `${key} ${f.quote}`).toContain(f.quote);
+        expect(flat(doc)).toContain(f.quote);
+      }
     }
   });
 
