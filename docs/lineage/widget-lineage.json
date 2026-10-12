@@ -3664,7 +3664,10 @@
    ]
   },
   "components/market-understanding/TunafarmIndustryDashboard.tsx": {
-   "dataModules": [],
+   "dataModules": [
+    "lib/data/company-report-prose.ts",
+    "lib/data/industry-registry.ts"
+   ],
    "dataFiles": [
     "public/data/companies/albacora_figures_v1.json",
     "public/data/companies/albacora_prose_v1.json",
@@ -3875,7 +3878,8 @@
     "public/data/companies/umios_tables_v1.json",
     "public/data/companies/whelk_figures_v1.json",
     "public/data/companies/whelk_prose_v1.json",
-    "public/data/companies/whelk_tables_v1.json"
+    "public/data/companies/whelk_tables_v1.json",
+    "public/data/industry/hub_v1.json"
    ]
   },
   "components/market-understanding/WhelkIndustryDashboard.tsx": {
@@ -7942,7 +7946,8 @@
   "public/data/industry/hub_v1.json": [
    "components/IndustrySidebarNav.tsx",
    "components/market-understanding/IndustryHub.tsx",
-   "components/market-understanding/IndustryItemDashboard.tsx"
+   "components/market-understanding/IndustryItemDashboard.tsx",
+   "components/market-understanding/TunafarmIndustryDashboard.tsx"
   ],
   "public/data/kofa_fleet_age_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",

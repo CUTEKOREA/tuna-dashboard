@@ -3750,6 +3750,7 @@
 - components/IndustrySidebarNav.tsx
 - components/market-understanding/IndustryHub.tsx
 - components/market-understanding/IndustryItemDashboard.tsx
+- components/market-understanding/TunafarmIndustryDashboard.tsx
 
 ## public/data/kofa_fleet_age_v1.json
 - components/market-understanding/CompanyResearchTables.tsx
