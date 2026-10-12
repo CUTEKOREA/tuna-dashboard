@@ -398,6 +398,10 @@ import {
   registry as ptRegistry, books as ptBooks, trade as ptTrade,
 } from '@/lib/data/company-pataya';
 import {
+  sojitzMeta, sojitzCard, sojitzSourceNotes,
+  money as sjMoney, tuna as sjTuna, trade as sjTrade,
+} from '@/lib/data/company-sojitz';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -5575,6 +5579,86 @@ const PATAYA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const SZ_ACCENT = '#7a2f2f';
+const SZ_M = sjMoney();
+const SZ_T = sjTuna();
+const SZ_K = sjTrade();
+
+const SOJITZ_SPEC: CommoditySpec = {
+  key: 'company-anatomy-sojitz',
+  title: '기업 해부: 双日(Sojitz) 수산',
+  subtitle:
+    `双日(Sojitz)은 東証プライム 2768에 상장된 종합상사이고 지배주주가 없다. 수산은 독립 세그먼트가 아니라 「リテール・コンシューマーサービス」 본부 안의 「水産事業」 한 행이며, 회사가 정한 구성은 マリンフーズ·トライ産業·大連翔祥·双日ツナファーム鷹島·Sushi Avenue 다섯 곳이다. ` +
+    `이 묶음의 회사 관리수치는 FY2024/3 ${SZ_M.FY24}억 엔(個社業績合算)에서 FY2026/3 ${SZ_M.실력치}억 엔(실력치)으로 바뀌었고, 현행 목표는 ${SZ_M.목표}억 엔이다. ` +
+    `참치를 직접 다루는 곳은 냉동 참치를 배 단위로 사들여 静岡에서 가공하는 トライ産業과, 長崎 鷹島에서 참다랑어를 키우는 양식장 둘이다. 조각 사이의 거래 물량을 적은 제3자·법정 문서는 공개돼 있지 않다.`,
+  accent: SZ_ACCENT,
+  primaryKpi: {
+    label: 'FY2026/3 「水産事業」 실력치 (결산설명자료, 회사 관리수치·일회성 제외)',
+    value: SZ_M.실력치,
+    decimals: 0,
+    unit: `(억 엔 · マリンフーズ ${SZ_M.MF}억·トライ産業 ${SZ_M.TRY}억·그 밖 ${SZ_M.기타}억 엔. FY2024/3 ${SZ_M.FY24}억 엔은 IR資料의 個社業績合算, FY2025/3 ${SZ_M.FY25}억 엔. 현행 목표는 中計2026 ${SZ_M.목표}억 엔. 참치만의 이익이 아니다 — マリンフーズ 이익에는 연어·오징어·성게 등이 섞인다)`,
+    accent: SZ_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: '2022-03-31 マリンフーズ 100 % 취득대가 (有価証券報告書)',
+      value: SZ_M.MF대가,
+      decimals: 0,
+      unit: `(백만 엔 · 영업권 ${euNum(SZ_M.MF영업권)}. 2022년 이후 수산 인수 네 건 가운데 법정공시에 대가가 실린 한 건이다. TRY·Sushi Avenue(사업 양수)·SFIH의 대가는 공개되지 않았다)`,
+    },
+    {
+      label: 'トライ産業이 연간 다루는 냉동 참치 (2023년 회사 진술)',
+      value: SZ_T.TRY만t,
+      decimals: 1,
+      unit: `(만 t · 배 단위 매입과 지중해·멕시코·호주 축양어 현지 매입 두 갈래이고, 원어를 실은 배의 국적은 밝히지 않는다. 다섯 RFMO 등록부에서 双日 계열이 소유·운영하는 배는 ${SZ_T.선박}척)`,
+    },
+    {
+      label: '식약처 수입식품 원장에 「TRY INC.」가 해외제조업소로 오른 한국 수입신고 (2025-09-15~2026-09-11)',
+      value: SZ_K.신고,
+      decimals: 0,
+      unit: `(건 · 대서양참다랑어 ${SZ_K.대서양}·참다랑어 ${SZ_K.참다랑어}·눈다랑어 ${SZ_K.눈다랑어}건, 일본 원산 0건. 중량·금액 열은 없다. トライ産業과 같은 회사라는 판정은 B)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '구성',
+      title: '스시 재료 묶음 속의 참치',
+      body: `수산은 「リテール・コンシューマーサービス」 세그먼트 안의 한 행이다. 그 세그먼트 순이익(${euNum(SZ_M.세그먼트순이익)} 백만 엔)이 FY2026/3 그룹 순이익에서 차지하는 몫은 ${euNum(SZ_M.세그먼트몫, 1)} %(계산)이고, 有報에 수산 매출 숫자는 없다. 회사는 「マグロに強みを持ち、寿司ネタ製品取り扱いで世界No.1」을 목표 문구로 쓴다`,
+    },
+    {
+      eyebrow: '인수',
+      title: '네 건의 취득, 대가가 실린 한 건',
+      body: `マリンフーズ(2022-03-31, ${euNum(SZ_M.MF대가)} 백만 엔) · トライ産業(2023) · Sushi Avenue(2024-07 사업 양수) · SFIH(2026-10-01 지배 획득). 大連翔祥(2003)과 鷹島(2008)는 자체 설립이다. SFIH 등기의 £${euNum(SZ_M.SFIH납입, 2)}는 신주 납입이고, 기존 주식의 매매대가와는 별도다`,
+    },
+    {
+      eyebrow: '참치',
+      title: 'トライ産業과 鷹島',
+      body: `トライ産業은 냉동 참치 약 ${euNum(SZ_T.TRY만t, 1)}만 t(2023 회사 진술)을 静岡의 清水·島田·吉田 세 공장에서 가공한다. 鷹島 양식장은 「本まぐろ養殖」 전문이고 수산청 명부의 면허는 ${SZ_T.면허}건, 취급량 가운데 천연어가 ${SZ_T.천연어} % 이상이다(SCSA 2023). 냉동 柵 kg당 赤身 ${euNum(SZ_T.아카미)}·中トロ ${euNum(SZ_T.주토로)}·大トロ ${euNum(SZ_T.오토로)}엔`,
+    },
+    {
+      eyebrow: '인증',
+      title: '인증과 등록부',
+      body: `双日 계열의 MSC CoC 본증서는 ${SZ_T.MSC}건(타사 그룹증서 하위 사이트 ${SZ_T.MSC하위}건 별도)이고, トライ産業의 인증 범위에 참다랑어는 없다. 다섯 RFMO 등록부(2025-02~2026-08)에서 双日 계열이 소유·운영하는 배는 ${SZ_T.선박}척이다. 등록부 밖 국내 연안선은 범위에 들지 않는다`,
+    },
+    {
+      eyebrow: '무역',
+      title: '일본 수입과 한국 신고',
+      body: `일본은 수입자별 무역 통계를 내지 않는다. 냉동 눈다랑어 통물 수입에서 대만 몫은 ${euNum(SZ_K.대만23, 1)} %(2023) → ${euNum(SZ_K.대만25, 1)} %(2025). 한국 식약처 원장의 「TRY INC.」 신고 ${SZ_K.신고}건 중 대서양참다랑어 ${SZ_K.대서양}건. 双日·TRY가 한국산 횟감을 산다는 근거는 FFA 2017 보고서의 업계 전언 한 갈래다`,
+    },
+  ],
+  briefing: proseBriefing('sojitz'),
+  narratives: inlineReport('sojitz', proseStages('sojitz')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: sojitzSourceNotes,
+  sourceMeta: [
+    `${sojitzMeta.회사} · ${sojitzMeta.국가} · ${sojitzMeta.업종}`,
+    `출처 ${sojitzMeta.출처}`,
+    `조사 ${sojitzMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -6793,6 +6877,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '조달과 판로', value: `RFMO 등록부 선박 없음 · MSC 인증 어업 ${euNum(PT_T.MSC비중, 1)} %(2025) · 미국 선하증권 ${euNum(PT_T.선적)}건 중 Bumble Bee ${PT_T.BB}건 · 경영진 말로 2022 그룹 매출의 참치 ${PT_T.참치} % · 식약처 조회 PFI·브랜드 신고 0건` },
     ],
   },
+  {
+    key: 'sojitz',
+    numeral: sojitzCard.numeral,
+    name: '双日(Sojitz) 수산',
+    country: `일본 · 東京 본사 · 静岡 清水 공장 · 長崎 鷹島 양식장(東証プライム 2768, 지배주주 없음)`,
+    tagline: sojitzCard.tagline,
+    ...FLAG.일본,
+    stats: [
+      { label: '이익', value: `46억 엔 — FY2026/3 「水産事業」 실력치(회사 관리수치, 일회성 제외). マリンフーズ ${SZ_M.MF}억·トライ産業 ${SZ_M.TRY}억·그 밖 ${SZ_M.기타}억 엔. 현행 목표는 中計2026 ${SZ_M.목표}억 엔이다` },
+      { label: '참치', value: '2,6만 t — トライ産業이 연간 다루는 냉동 참치(2023년 회사 진술). 배 단위 매입과 지중해·멕시코·호주 축양어 현지 매입 두 갈래이고, 원어를 실은 배의 국적은 밝히지 않는다' },
+      { label: '한국', value: `310건 — 식약처 수입식품 원장에 「TRY INC.」가 해외제조업소로 오른 한국 수입신고(2025-09-15~2026-09-11). 대서양참다랑어 ${SZ_K.대서양}·참다랑어 ${SZ_K.참다랑어}·눈다랑어 ${SZ_K.눈다랑어}건, 일본 원산 0건` },
+    ],
+  },
 
 
 
@@ -6880,6 +6977,7 @@ export default function CompanyAnatomyDashboard({
     kfl: KFL_SPEC,
     sapmer: SAPMER_SPEC,
     pataya: PATAYA_SPEC,
+    sojitz: SOJITZ_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
