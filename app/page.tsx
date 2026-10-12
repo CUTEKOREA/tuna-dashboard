@@ -252,7 +252,7 @@ export default function Home() {
   // Ambient color based on active page
   const ambientAccent = getDashboardAccent(activeMenu);
   const isPanelActive = (menu: ActiveMenu) => activeMenu === menu;
-  const renderSidebarItem = (item: SidebarMenuItem, pinned = false) => {
+  const renderSidebarItem = (item: SidebarMenuItem) => {
     if (item.key === 'mail' && !mailAdminVisible) return null;
     const Icon = SIDEBAR_ICONS[item.icon];
 
@@ -263,9 +263,32 @@ export default function Home() {
         onClick={() => { handleMenuClick(item.key); setIsMobileSidebarOpen(false); }}
       >
         <Icon size={18} />
-        <span>{pinned ? `★ ${item.label}` : item.label}</span>
+        <span>{item.label}</span>
       </button>
     );
+  };
+  // 「시장 이해」 주력 5개(★) — 섹션 제목 바로 아래 가로로 감싸는 칩. 클릭 동작은 renderSidebarItem 과 같다.
+  const renderPinnedChip = (item: SidebarMenuItem) => {
+    const Icon = SIDEBAR_ICONS[item.icon];
+    const active = activeMenu === item.key;
+    return (
+      <button
+        key={item.key}
+        type="button"
+        className={`${styles.pinnedChip} ${active ? styles.pinnedChipActive : ''}`}
+        aria-current={active ? 'page' : undefined}
+        onClick={() => { handleMenuClick(item.key); setIsMobileSidebarOpen(false); }}
+      >
+        <Icon size={14} aria-hidden="true" />
+        <span>{item.label}</span>
+      </button>
+    );
+  };
+  // 품목 경로(/industry/<key>·전용 페이지)로 이동 — 분류 메뉴와 ⌘K 팔레트가 함께 쓴다.
+  const navigateToIndustryHref = (href: string) => {
+    if (href === pathname) window.location.reload();
+    else router.replace(href, { scroll: false });
+    setIsMobileSidebarOpen(false);
   };
   const dashboardPanels: Record<ActiveMenu, React.ReactNode> = {
     market: <MarketDashboard />,
@@ -301,7 +324,10 @@ export default function Home() {
         <AmbientBackground accent={ambientAccent} />
       )}
       {/* SwimmingTuna removed per user request */}
-      <CommandPalette onNavigate={(menu) => navigateToMenu(menu as ActiveMenu)} />
+      <CommandPalette
+        onNavigate={(menu) => handleMenuClick(menu as ActiveMenu)}
+        onNavigateHref={navigateToIndustryHref}
+      />
       
       {/* Mobile Hamburger Button */}
       <button 
@@ -360,20 +386,19 @@ export default function Home() {
         
         {SIDEBAR_SECTIONS.map((section, index) => (
           <React.Fragment key={section.section}>
-            <div className={styles.sidebarTitle} style={index === 0 ? undefined : { marginTop: '1.25rem' }}>
+            {/* 구역 사이는 얇은 구분선 + 여백(첫 구역 제외) */}
+            <div className={`${styles.sidebarTitle} ${index === 0 ? '' : styles.sidebarSectionBreak}`}>
               {section.title}
             </div>
             {section.section === 'understanding' ? (
               <>
-                {/* 주력 5개 고정(★) → 분류 접기 8개 → 전체 품목(허브) */}
-                {section.items.map((item) => renderSidebarItem(item, true))}
+                {/* 주력 5개 칩(★) → 분류 접기 8개 → 전체 품목(허브) */}
+                <div className={styles.pinnedChips} role="group" aria-label="주력 품목">
+                  {section.items.map(renderPinnedChip)}
+                </div>
                 <IndustrySidebarNav
                   pathname={pathname}
-                  onNavigate={(href) => {
-                    if (href === pathname) window.location.reload();
-                    else router.replace(href, { scroll: false });
-                    setIsMobileSidebarOpen(false);
-                  }}
+                  onNavigate={navigateToIndustryHref}
                   itemClassName={styles.menuItem}
                   activeClassName={styles.menuItemActive}
                 />
@@ -385,6 +410,8 @@ export default function Home() {
         ))}
 
         <div style={{ flex: 1 }} />
+        {/* 맨 아래 도구 버튼 구역과 메뉴 구역을 가른다 */}
+        <div className={styles.sidebarToolsBreak} aria-hidden="true" />
 
 
         {/* «⌘ 빠른 검색» 버튼 제거 (2026-08-15 사용자 지시) — Cmd+K 단축키·CommandPalette는 유지 */}

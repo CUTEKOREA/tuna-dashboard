@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ArrowRight, BarChart2, Beef, BookOpen, Fish, Leaf, Target } from 'lucide-react';
 import { DASHBOARD_COMMANDS } from '../lib/dashboard-registry';
 import type { DashboardSection } from '../lib/dashboard-registry';
+import { INDUSTRY_ITEMS } from '../lib/data/industry-registry';
 
 interface CommandItem {
   id: string;
@@ -16,6 +17,41 @@ interface CommandItem {
 
 interface CommandPaletteProps {
   onNavigate: (menu: string) => void;
+  /** 「시장 이해」 품목은 메뉴 키가 아니라 경로(item.href)로 간다 */
+  onNavigateHref: (href: string) => void;
+}
+
+/** 검색 대상 한 줄 — 운영 메뉴(menu)와 시장 이해 품목(href) 두 갈래 */
+export interface PaletteEntry {
+  id: string;
+  label: string;
+  category: string;
+  section: DashboardSection;
+  target: { menu: string } | { href: string };
+}
+
+export const PALETTE_ENTRIES: readonly PaletteEntry[] = [
+  ...DASHBOARD_COMMANDS.map((command) => ({
+    id: command.key,
+    label: command.label,
+    category: command.category,
+    section: command.section,
+    target: { menu: command.key },
+  })),
+  // 품목 48개 — 화면에 검색 버튼은 두지 않는다(2026-08-15 사용자 지시). ⌘K 로만 찾는다.
+  // 전용 페이지가 있는 품목(참치 등)은 위 메뉴 항목과 같은 곳이라 한 줄만 남긴다.
+  ...INDUSTRY_ITEMS.filter((item) => !DASHBOARD_COMMANDS.some((command) => `/${command.key}` === item.href)).map((item) => ({
+    id: `industry/${item.key}`,
+    label: `${item.name} · ${item.category}`,
+    category: '시장 이해',
+    section: 'understanding' as const,
+    target: { href: item.href },
+  })),
+];
+
+export function filterPaletteEntries(entries: readonly PaletteEntry[], query: string): PaletteEntry[] {
+  const q = query.toLowerCase();
+  return entries.filter((entry) => entry.label.toLowerCase().includes(q) || entry.id.includes(q));
 }
 
 const SECTION_ICONS: Record<DashboardSection, React.ReactNode> = {
@@ -27,24 +63,22 @@ const SECTION_ICONS: Record<DashboardSection, React.ReactNode> = {
   livestock: <Beef size={16} />,
 };
 
-export default function CommandPalette({ onNavigate }: CommandPaletteProps) {
+export default function CommandPalette({ onNavigate, onNavigateHref }: CommandPaletteProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const commands: CommandItem[] = DASHBOARD_COMMANDS.map((command) => ({
-    id: command.key,
-    label: command.label,
-    category: command.category,
-    icon: SECTION_ICONS[command.section],
-    action: () => onNavigate(command.key),
-  }));
-
-  const filtered = commands.filter(c =>
-    c.label.toLowerCase().includes(query.toLowerCase()) ||
-    c.id.includes(query.toLowerCase())
-  );
+  const filtered: CommandItem[] = filterPaletteEntries(PALETTE_ENTRIES, query).map((entry) => {
+    const { target } = entry;
+    return {
+      id: entry.id,
+      label: entry.label,
+      category: entry.category,
+      icon: SECTION_ICONS[entry.section],
+      action: 'href' in target ? () => onNavigateHref(target.href) : () => onNavigate(target.menu),
+    };
+  });
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {

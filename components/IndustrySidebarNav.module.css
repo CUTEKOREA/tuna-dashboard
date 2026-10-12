@@ -1,0 +1,79 @@
+/* 「시장 이해」 분류 접기 메뉴의 장식 색 — 분류 점·그룹 세로 선·활성 막대·신선도 점.
+ * 색은 장식에만 쓴다. 글자색은 page.module.css 의 .menuItem 그대로.
+ * 다크 값은 사이드바 바탕(#101524) 대비 6.5:1 이상, 라이트 값은 흰 바탕 대비 4.7:1 이상. */
+.nav {
+  --industry-cat-fishery: #60a5fa;   /* 수산 파랑 */
+  --industry-cat-livestock: #f87171; /* 축산 빨강 */
+  --industry-cat-grain: #d6a756;     /* 곡물·서류 황토 */
+  --industry-cat-fruit: #fb923c;     /* 과일 주황 */
+  --industry-cat-nut: #c4956a;       /* 견과·종실 갈색 */
+  --industry-cat-veg: #4ade80;       /* 채소·향신 초록 */
+  --industry-cat-oil: #facc15;       /* 유지 노랑 */
+  --industry-cat-luxury: #a78bfa;    /* 기호·원료 보라 */
+  --industry-cat-none: #94a3b8;
+  --edition-fresh: #4ade80;
+  --edition-aging: #facc15;
+  --edition-stale: #94a3b8;
+}
+
+/* 라이트 — V3 토글(data-v3)과 단축키 d(data-theme) 둘 다 */
+:global([data-v3='light']) .nav,
+:global([data-theme='light']) .nav {
+  --industry-cat-fishery: #2563eb;
+  --industry-cat-livestock: #dc2626;
+  --industry-cat-grain: #9a6a1c;
+  --industry-cat-fruit: #c2410c;
+  --industry-cat-nut: #7c4a2d;
+  --industry-cat-veg: #15803d;
+  --industry-cat-oil: #a16207;
+  --industry-cat-luxury: #7c3aed;
+  --industry-cat-none: #64748b;
+  --edition-fresh: #15803d;
+  --edition-aging: #a16207;
+  --edition-stale: #64748b;
+}
+
+.catDot {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cat-color);
+}
+
+/* 펼친 그룹 목록 왼쪽의 2px 세로 선 */
+.groupList {
+  list-style: none;
+  margin: 0 0 0 0.75rem;
+  padding: 0 0 0 0.5rem;
+  border-left: 2px solid var(--cat-color);
+}
+
+/* 그 그룹의 활성 항목 왼쪽 막대도 분류 색 (.menuItemActive::before 의 그라디언트를 덮는다) */
+.groupList [aria-current='page']::before {
+  background: var(--cat-color);
+  box-shadow: none;
+}
+
+.pin {
+  flex: 0 0 auto;
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.editionDot {
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  margin-left: auto;
+  border-radius: 50%;
+}
+
+.fresh { background: var(--edition-fresh); }
+.aging { background: var(--edition-aging); }
+.stale { background: var(--edition-stale); }
+
+/* d 단축키 라이트 테마는 기존 규칙이 활성 막대를 숨긴다(page.module.css) — 분류 메뉴만은 분류 색 막대를 다시 보인다 */
+:global([data-theme='light']) .groupList [aria-current='page']::before {
+  display: block;
+}
