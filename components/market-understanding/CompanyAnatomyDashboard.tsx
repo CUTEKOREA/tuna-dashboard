@@ -402,6 +402,10 @@ import {
   money as sjMoney, tuna as sjTuna, trade as sjTrade,
 } from '@/lib/data/company-sojitz';
 import {
+  nesiMeta, nesiCard, nesiSourceNotes,
+  money as neMoney, tuna as neTuna, korea as neKorea,
+} from '@/lib/data/company-nesi';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -5659,6 +5663,86 @@ const SOJITZ_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const NE_ACCENT = '#24506b';
+const NE_M = neMoney();
+const NE_T = neTuna();
+const NE_K = neKorea();
+
+const NESI_SPEC: CommoditySpec = {
+  key: 'company-anatomy-nesi',
+  title: '기업 해부: New England Seafood International(NESI)',
+  subtitle:
+    `NESI(New England Seafood International)는 1990년에 등기된(회사 서술로는 1991년 창업) 영국 수산 수입·가공사다. 어선도 양식장도 갖지 않고 ${NE_T.공급국}개국 공급사에게서 사서 Chessington·Grimsby·Paignton 세 공장에서 2차 가공한 뒤 영국 대형 소매의 PB와 자사 브랜드 Leap로 판다. ` +
+    `2025년 매출은 £${euNum(NE_M.매출, 1)}m이고 ${euNum(NE_M.영국, 1)} %가 영국에서 나왔다. 2020년 Sealaska가 새 지주 SFIH를 세워 지분 ${euNum(NE_M.지분, 1)} %를 샀고, 2026년 10월 双日(Sojitz)이 SFIH를 가졌다. ` +
+    `계정은 품목별 매출을 적지 않는다. 대형 소매 계약과 Grimsby 증설은 대구·해덕 같은 백색어에 무게가 실리고, NESI 명의 특허는 초저온 참치를 푸는 해동 방법이다.`,
+  accent: NE_ACCENT,
+  primaryKpi: {
+    label: '2025 NESI 단독 매출 (Companies House 계정)',
+    value: NE_M.매출,
+    decimals: 1,
+    unit: `(£m · 순이익 £${euNum(NE_M.순이익, 1)}m, 영국 ${euNum(NE_M.영국, 1)} %, 평균 인원 ${NE_M.인원}. FY2013 £${euNum(NE_M.FY13, 1)}m에서 커졌다. 어종별 매출은 어느 해 계정에도 없다)`,
+    accent: NE_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: 'SFIH가 2020-10-30 Sealaska 인수로 가진 NESI 지분',
+      value: NE_M.지분,
+      decimals: 1,
+      unit: `(% · 대가 £${euNum(NE_M.대가, 1)}m. 나머지는 창업자와 관련 법인이 갖고, 双日이 2026-10-01 지배를 얻은 것은 SFIH다)`,
+    },
+    {
+      label: '인수 때 식별한 무형자산 가운데 개발 기술 몫 (SFIH 취득가격 배분)',
+      value: NE_M.기술,
+      decimals: 1,
+      unit: `(£m · 식별 무형자산 £${euNum(NE_M.무형, 1)}m 가운데 가장 크다. NESI 명의 참치 해동 특허 US9510616B2와의 연결은 추정이다)`,
+    },
+    {
+      label: '2025 한국→영국 냉동 참치 필레 수출 (관세청)',
+      value: NE_K.kg,
+      decimals: 0,
+      unit: `(kg · US$${euNum(NE_K.단가, 2)}/kg. 수입자는 통계에 나오지 않는다. 영국 통계의 냉동 필레·로인 한국 발송분은 2021년 ${euNum(NE_K.t21, 1)} t에서 2025년 ${euNum(NE_K.t25, 1)} t으로 줄었다(발송국 기준))`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '구성',
+      title: '배 없는 냉장 수산 가공사',
+      body: `회사 성명은 「We do not own or operate any fishing vessels or farms.」라고 적는다. 다섯 RFMO 등록부에도 NESI·Sealaska 명의 선박은 없다(2026-05~09 등록부 기준). FSA 승인 가공장은 Chessington KU 006 · Grimsby GG 491 · Paignton TP 041 세 곳이다`,
+    },
+    {
+      eyebrow: '소유',
+      title: 'Sealaska에서 双日로',
+      body: `2020-10-30 Sealaska가 새 지주 SFIH를 세워 NESI 지분 ${euNum(NE_M.지분, 1)} %를 샀고(대가 £${euNum(NE_M.대가, 1)}m), 2026-10-01 双日이 SFIH의 지배를 얻었다. 双日이 치른 값은 공개 문서에 없다`,
+    },
+    {
+      eyebrow: '참치',
+      title: '초저온 참치와 해동 특허',
+      body: `소매 참치는 해동한 황다랑어·날개다랑어이고, Leap 참치 포장에는 해동 냉장 표시와 유럽 특허 번호가 붙는다. kg당 £${euNum(NE_T.Leap, 2)}의 Leap 황다랑어 스테이크는 대형 소매 PB 프리미엄 £${euNum(NE_T.PB, 2)}보다 8 % 낮다`,
+    },
+    {
+      eyebrow: '돈',
+      title: '차입과 보조금',
+      body: `Barclays 운전자금 한도는 £${NE_M.한도}m이고 미해제 담보 ${NE_M.담보}건 가운데 ${NE_M.바클레이즈}건이 Barclays다. Grimsby 증설에는 UK Seafood Fund £${euNum(NE_M.보조금, 2)}이 들어갔다`,
+    },
+    {
+      eyebrow: '무역',
+      title: '영국 수입과 한국',
+      body: `2025 영국 세 HS 코드(0302·0303·030487) 참치 수입은 ${euNum(NE_T.수입t, 1)} t·£${euNum(NE_T.수입액, 1)}m이고, NESI 매출에 댄 크기는 ${euNum(NE_T.상한, 1)} %(계산)다 — 원료 수입액 대 가공 후 판매액이라 참치 매출 비중이 아니다. 2025년 첫 인권영향평가는 부산에 들어온 한국 원양 연승선 한 척을 대상으로 했다`,
+    },
+  ],
+  briefing: proseBriefing('nesi'),
+  narratives: inlineReport('nesi', proseStages('nesi')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: nesiSourceNotes,
+  sourceMeta: [
+    `${nesiMeta.회사} · ${nesiMeta.국가} · ${nesiMeta.업종}`,
+    `출처 ${nesiMeta.출처}`,
+    `조사 ${nesiMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -6890,6 +6974,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '한국', value: `310건 — 식약처 수입식품 원장에 「TRY INC.」가 해외제조업소로 오른 한국 수입신고(2025-09-15~2026-09-11). 대서양참다랑어 ${SZ_K.대서양}·참다랑어 ${SZ_K.참다랑어}·눈다랑어 ${SZ_K.눈다랑어}건, 일본 원산 0건` },
     ],
   },
+  {
+    key: 'nesi',
+    numeral: nesiCard.numeral,
+    name: 'New England Seafood International(NESI)',
+    country: `영국 · Chessington 본사 · Grimsby·Paignton 가공장(비상장, 지주 SFIH 지분 ${euNum(NE_M.지분, 1)} % · 2026-10 双日 지배)`,
+    tagline: nesiCard.tagline,
+    ...FLAG.영국,
+    stats: [
+      { label: '매출', value: `£${euNum(NE_M.매출, 1)}m — 2025 NESI 단독 매출(순이익 £${euNum(NE_M.순이익, 1)}m, 영국 ${euNum(NE_M.영국, 1)} %, 평균 인원 ${NE_M.인원}). 어종별 매출은 어느 해 계정에도 없다` },
+      { label: '소유', value: `${euNum(NE_M.지분, 1)} % — SFIH가 2020-10-30 Sealaska 인수로 가진 NESI 지분(대가 £${euNum(NE_M.대가, 1)}m). 双日이 2026-10-01 지배를 얻은 것은 SFIH다` },
+      { label: '한국', value: `${euNum(NE_K.kg)} kg — 2025 한국→영국 냉동 참치 필레 수출(관세청, US$${euNum(NE_K.단가, 2)}/kg). 수입자는 통계에 나오지 않는다` },
+    ],
+  },
 
 
 
@@ -6978,6 +7075,7 @@ export default function CompanyAnatomyDashboard({
     sapmer: SAPMER_SPEC,
     pataya: PATAYA_SPEC,
     sojitz: SOJITZ_SPEC,
+    nesi: NESI_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
