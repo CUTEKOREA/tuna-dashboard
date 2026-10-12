@@ -196,7 +196,8 @@ describe('왼쪽 메뉴 — 주력 5 고정 + 분류 접기 + 전체 품목', ()
     ]);
     expect(INDUSTRY_PINNED.map((i) => i.key)).toEqual(['tuna', 'squid', 'pollock', 'surimi', 'shrimp']);
     const page = read('app/page.tsx');
-    expect(page).toContain('★ ${item.label}');
+    // 2026-10-12: ★ 세로 줄 → 섹션 제목 아래 가로 칩(renderPinnedChip)
+    expect(page).toContain('section.items.map(renderPinnedChip)');
     expect(page).toContain('<IndustrySidebarNav');
   });
 
