@@ -239,7 +239,7 @@ export const PORK_WIDGETS: Record<string, PorkWidgetSpec> = {
     pillar: "S4",
     sub: "한국 주요 단백질 품목별 자급률(%) vs 수입 의존도(%) | FAOSTAT 식량수급표(FBS) + USDA 생산공급분배(PSD) 2022",
     telemetry: "FAOSTAT FBS + USDA PSD 2022",
-    sit: "한국 핵심 단백질 품목 모두 자급률 70% 미만. 소고기(40%)와 돈육(66%) 수입 갭 매년 확대.",
+    sit: "2022년 자급률은 소고기 40%·돼지고기 66%·수산물 65%로 70% 미만이고, 닭고기 78%·계란 99%는 그보다 높다.",
     strat: "자급률 갭이 큰 소고기 > 돈육 > 수산물 순으로 수입 인프라 선점. 콜드체인 확장.",
     source: "FAOSTAT 식량수급표(FBS) · USDA 생산공급분배(PSD)",
     chart: () => (
