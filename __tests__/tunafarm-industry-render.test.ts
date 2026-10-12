@@ -1,12 +1,16 @@
 /**
  * 「시장 이해 > 참치 양식」 가드.
  *
- * 1. 단계 아홉이 한 페이지에 이어서 그려지고 브리핑 수와 단계 수가 같다.
+ * 2026-10-12: 화면 원문이 세계 참치 양식 조사 제1보에서 해부보고서 「한국 시장의 양식 참다랑어」
+ * (표준 틀 15절)로 바뀌었다. 화면 단언은 새 보고서 기준이고, 제1보는 「참고」 링크로만 잇는다.
+ * 옛 손 작성 모듈(`lib/tunafarm-industry-content.ts`·`lib/data/tunafarm-industry.ts`)은 화면에 쓰지 않으며
+ * 그 모듈 자체의 단언(구성·장 매핑·출처 주석)은 그대로 둔다.
+ *
+ * 1. 15단계가 한 페이지에 이어서 그려지고 단계 제목이 원문 h2 부제다.
  * 2. 보고서 원문 핵심 수치가 화면에 있다(재계산 없이 원문 표기 그대로).
- * 3. **층 경계 문구**가 있다 — 입식 상한과 총허용어획량은 다른 층이고, 명부 행 수는 농장 수가 아니다.
- * 4. **검증에서 철회한 주장이 되살아나지 않는다** — 이 편은 세 축 검증에서 P0 아홉을 받았고,
- *    철회된 문장이 다시 들어오는 것이 가장 큰 회귀 위험이다.
- * 5. 개인 이름이 없다(명부 원본에 개인 소유자가 있어 익명화했다).
+ * 3. **층 경계 문구**가 있다 — 국내 통계는 축양·완전양식을 가르지 않고, 원장 건수는 물량이 아니다.
+ * 4. **제1보 검증에서 철회한 주장이 되살아나지 않는다.**
+ * 5. 개인 이름이 없다.
  */
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -14,6 +18,7 @@ import { describe, expect, it } from 'vitest';
 
 import TunafarmIndustryDashboard, {
   TUNAFARM_REPORT_NARRATIVES,
+  TUNAFARM_WORLD_REPORT_HREF,
 } from '@/components/market-understanding/TunafarmIndustryDashboard';
 import { getTunafarmCounts, getTunafarmChapterNames } from '@/lib/data/tunafarm-industry';
 import { isActiveMenu, getDashboardTitle } from '@/lib/dashboard-registry';
@@ -64,12 +69,20 @@ describe('참치 양식 - 구성', () => {
     expect(TUNAFARM_SOURCE_NOTES.join(' ')).toContain('0304.87.1000');
   });
 
-  it('아홉 단계가 한 페이지에 이어서 나온다', () => {
-    // 2026-10-12: 화면 서술은 원문 추출(TUNAFARM_REPORT_NARRATIVES)이다. 단계 제목만 손 작성이다.
-    expect(TUNAFARM_REPORT_NARRATIVES).toHaveLength(9);
+  it('15단계가 한 페이지에 이어서 나오고 제목은 원문 h2 부제다', () => {
+    // 2026-10-12: 해부보고서 15절을 1절=1단계로 싣는다. 손 작성 제목·질문은 없다.
+    expect(TUNAFARM_REPORT_NARRATIVES).toHaveLength(15);
     for (const n of TUNAFARM_REPORT_NARRATIVES) {
       expect(text).toContain(n.title);
     }
+    expect(text).toContain('한눈에 보는 양식 참다랑어');
+    expect(text).toContain('공개 자료로 닫히지 않는 물음');
+  });
+
+  it('보고서 원문 보기와 「참고: 세계 참치 양식 조사 제1보 원문 보기」 한 줄이 있다', () => {
+    expect(html).toContain('href="/reports/industry/tunafarm-2026-10.html"');
+    expect(html).toContain(`href="${TUNAFARM_WORLD_REPORT_HREF}"`);
+    expect(html.match(/참고: 세계 참치 양식 조사 제1보 원문 보기/g)).toHaveLength(1);
   });
 });
 
@@ -80,11 +93,10 @@ describe('참치 양식 - 발행본 표가 실린다', () => {
     expect(c.callouts).toBe(19);
   });
 
-  it('아홉 단계가 모두 원문 표를 서술 흐름 안에 갖는다', () => {
-    for (const n of TUNAFARM_REPORT_NARRATIVES) {
-      const slots = (n.flow ?? []).filter((item) => item.kind === 'slot');
-      expect(slots.length, `${n.key} 원문 표`).toBeGreaterThan(0);
-    }
+  it('원문 표 15개가 그 절의 서술 흐름 안에 있다(표 없는 절: 01·07·09·11·15)', () => {
+    const slots = (n: (typeof TUNAFARM_REPORT_NARRATIVES)[number]) => (n.flow ?? []).filter((item) => item.kind === 'slot').length;
+    expect(TUNAFARM_REPORT_NARRATIVES.reduce((sum, n) => sum + slots(n), 0)).toBe(15);
+    expect(TUNAFARM_REPORT_NARRATIVES.filter((n) => slots(n) === 0).map((n) => n.key)).toEqual(['s01', 's07', 's09', 's11', 's15']);
   });
 
   it('장 이름이 발행본 표기와 맞는다 — 틀리면 표가 안 붙는다', () => {
@@ -97,8 +109,8 @@ describe('참치 양식 - 발행본 표가 실린다', () => {
   });
 
   it('표 본문이 화면에 그려진다', () => {
-    // 발행본 표에만 있는 값들. 서술에는 없다.
-    for (const v of ['ATEU1MLT00004', 'AT001TUR00011', 'ATEU1HRV00012', '2,156', '12,300']) {
+    // 원문 표 칸 값(03절 수입 연도·06절 명의·10절 제조소·13절 값)
+    for (const v of ['3,147.3', '동원산업(주)', 'TRY INC.', '46,978', '욕지도 정치망 치어의 가두리 입식 시작']) {
       expect(text, v).toContain(v);
     }
   });
@@ -106,25 +118,19 @@ describe('참치 양식 - 발행본 표가 실린다', () => {
 
 describe('참치 양식 - 원문 수치', () => {
   const MUST = [
-    '68,443', // FAO 2024 세계 양식 생산(보고한 나라 합)
-    '13.52', // 2024 산지 출하 단가
-    '405', // 일본 인공종묘 유래 출하
-    '75,199.84', // 인가 입식 상한 합계
-    '48,403', // 동부 총허용어획량 2026~2028
-    '8,959', // CCSBT 사이트 중복 제거 입식능력
-    '2,578.52', // 모로코 입식
-    '4,360.90', // 모로코 도살 후
-    '12,971', // 모로코 마리 수 - 코호트 동일성의 증거
-    '69%', // 모로코 증육률
-    '2,577', // 이탈리아 2007년 실물 보고
-    '435.3', // 이탈리아 마지막 보고값
-    '1.85', // 종묘 대 사료 배수
-    '7,168.3', // 2025 한국 수입 물량
-    '81.8%', // 일본 경유 대서양참다랑어
-    '158어장', // 일본 수산청 명부
-    '57.9%', // 이탈리아 정부 부처 소유 비중
-    '67곳', // 일본 양식업자 법인 — 고유값 68에 「個人」이 섞여 한 번 틀렸다
-    '43곳', // 어업권자 46 중 어업협동조합
+    // 표지 cover-facts 여덟 타일 값
+    '14.276', // 2025 국내 해면양식
+    '7,168.3', // 2025 참다랑어 수입
+    '0.20%', // 수입량 대비 국내 양식
+    '48.839', // 국내 양식 정점 2022
+    '81.2%', // 필레 비중
+    '84.6%', // 원장 수출국 일본
+    '1,491건', // 축양 대상 3종 신고
+    '−46.6%', // 2026 1~8월 국내 양식
+    // 본문
+    '65.3%', // 상위 10곳 신고 건수 비중
+    '5.073톤', // 2026 1~8월 출하
+    '151.3백만 달러', // 2025 수입 금액
   ];
   it.each(MUST)('원문 수치 %s 가 화면에 있다', (v) => {
     expect(text).toContain(v);
@@ -132,19 +138,20 @@ describe('참치 양식 - 원문 수치', () => {
 });
 
 describe('참치 양식 - 층 경계', () => {
-  it('입식 상한이 출하 능력이 아니라고 적는다', () => {
-    expect(text).toMatch(/출하 능력이 아니/);
+  it('국내 생산 통계가 축양과 완전양식을 가르지 않는다고 적는다', () => {
+    expect(text).toContain('국내 생산 통계는 두 방식을 구분하지 않는다');
   });
 
-  it('명부 행 수를 농장 수로 읽지 말라고 적는다', () => {
-    expect(text).toMatch(/행 수를 「?농장 수」?로/);
+  it('원장 신고 건수가 물량이 아니라고 적는다', () => {
+    expect(text).toContain('신고 건수 기준이며 물량 비중은 원장에 나오지 않는다');
+    expect(text).toContain('건수는 수입 물량이나 최종 판매량이 아님');
   });
 
-  it('FAO 합계가 세계 전수가 아니라고 적는다', () => {
-    expect(text).toMatch(/보고한 나라들의 합|세계 전수가 아니/);
+  it('양식·어획 비교가 입식 비율이 아니라고 적는다', () => {
+    expect(text).toContain('규모 비교이며 입식 비율이 아니다');
   });
 
-  it('관세청 기준과 원장 기준이 다르다고 적는다', () => {
+  it('관세청 기준과 원장 기준이 다르다고 적는다(옛 출처 주석 모듈)', () => {
     expect(TUNAFARM_SOURCE_NOTES.join(' ')).toMatch(/원산국.*선적국|선적국.*원산국/);
   });
 });
@@ -171,10 +178,6 @@ describe('참치 양식 - 철회된 주장이 되살아나지 않는다', () => 
     expect(unquoted).not.toMatch(re);
   });
 
-  it('교차검증 문단이 두 자료의 기간을 따로 밝힌다(2026-10-06 정정)', () => {
-    expect(text).toContain('원장(2024-04-03~2026-09-11)');
-    expect(text).toMatch(/관세청의 2024~2026년 참다랑어 전용 세번 중량으로는\s*필레·어육 83\.4% · 통마리 16\.6%/);
-  });
 
   it('철회한 주장을 출처 주석이 명시한다', () => {
     const notes = TUNAFARM_SOURCE_NOTES.join(' ');
@@ -189,11 +192,8 @@ describe('참치 양식 - 표기 규약', () => {
     for (const n of names) expect(text.toUpperCase()).not.toContain(n);
   });
 
-  it('불확정을 불확정으로 적는다', () => {
-    expect(text).toMatch(/미확정|확정하지 못했다/);
-  });
-
-  it('검증에서 되돌린 사실을 감추지 않는다', () => {
-    expect(text).toMatch(/되돌렸다|철회|틀렸다/);
+  it('공개 자료로 닫히지 않는 것을 닫힌 것처럼 적지 않는다', () => {
+    expect(text).toContain('KOSIS에서 확인할 수 없다');
+    expect(text).toContain('참다랑어 양식만 떼어 낸 재무는 공시에 없다');
   });
 });

@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import {
+  cardFacts,
   INDUSTRY_CATEGORIES,
   INDUSTRY_HUB_PATH,
   INDUSTRY_ITEMS,
@@ -83,9 +84,9 @@ export function IndustryHubCards() {
                   <span className={styles.name}>{item.name}</span>
                   <span className={styles.category}>{item.category}</span>
                 </span>
-                {item.facts.length > 0 && (
+                {cardFacts(item).length > 0 && (
                   <dl className={styles.facts}>
-                    {item.facts.slice(0, 2).map((f) => (
+                    {cardFacts(item).slice(0, 2).map((f) => (
                       <div key={f.k} className={styles.fact}>
                         <dt>{f.k}</dt>
                         <dd>

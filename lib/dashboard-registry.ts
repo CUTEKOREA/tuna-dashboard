@@ -66,7 +66,8 @@ export const DASHBOARD_MENU_CONFIGS = [
   // KAMIS 도·소매가에 관세청 수입 원가를 이어 붙인 품목별 가격 사다리(가치사슬 관측소). 정적 스냅샷을 iframe 으로 띄운다.
   { key: 'kamis', title: 'KAMIS 가격 사다리', section: 'strategy', accent: 'emerald', sidebar: { icon: 'BarChart2', label: 'KAMIS' } },
   // 2026-10-12: 메뉴의 「돼지고기」는 시장 이해 > 축산 분류의 /industry/pork(해부보고서 원문)로 옮겼다.
-  // 옛 손 작성 위젯 화면(/pork)은 직접 URL 로만 남는다.
+  // 옛 손 작성 위젯 11개도 그 페이지 단계 끝 「근거」로 옮겼고, /pork 는 next.config 가 /industry/pork 로 보낸다(307).
+  // 키는 옛 화면 회귀 테스트(hero-teaser-lock 등)가 쓰므로 남기되 메뉴·명령 팔레트에서는 숨긴다.
   { key: 'pork', title: '돼지고기', section: 'understanding', accent: 'cyan', sidebar: { icon: 'Hexagon', suffix: 'Pork' } },
   { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'purse-seiner-db', title: '선단 DB', section: 'strategy', accent: 'cyan', sidebar: { icon: 'Ship', suffix: 'FleetDb' } },
