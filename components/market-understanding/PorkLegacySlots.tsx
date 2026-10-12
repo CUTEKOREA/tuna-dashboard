@@ -32,7 +32,7 @@ export const PORK_LEGACY_STAGE_MAP: Record<string, string> = {
  * 보고서 03절 표(자급률 KREI 73.0% · USDA 공식치 66.4%, 2025).
  */
 export const PORK_SELF_SUFFICIENCY_BASIS =
-  '돼지고기 66%는 2022년 FAOSTAT 식량수급표·미국 농무부 PSD 종합값이다(원 위젯 표기). 보고서 표지 73.0%는 KREI 『농업전망 2026』 국내 수급표의 2025년 추정치(생산÷소비, 중량 기준 표기 없음)이고, 같은 보고서가 PSD 공식치(도체중량)로 계산한 2025년 값은 66.4%다. 정의가 달라 두 값이 함께 성립한다.';
+  '돼지고기 66%는 옛 위젯 값이고, 위젯 표기상 기준은 2022년 FAOSTAT 식량수급표·미국 농무부 PSD다(산출 근거는 이 보고서에 없다). 보고서 표지 73.0%는 KREI 『농업전망 2026』 국내 수급표의 2025년 추정치(생산÷소비)이고, 같은 보고서가 PSD 공식치(도체중량)로 계산한 2025년 값은 66.4%다. 기준과 연도가 서로 다르다.';
 
 const CAPTION_NOTES: Record<string, string> = { W11: PORK_SELF_SUFFICIENCY_BASIS };
 
@@ -43,7 +43,7 @@ export const PORK_CHART_SLOTS: Record<string, ChartSlot[]> = (() => {
     if (!dest) throw new Error(`돼지고기 옛 위젯 ${id} 의 행선지가 없다`);
     (out[dest] ??= []).push({
       title: spec.title,
-      caption: [spec.sub, spec.sit, CAPTION_NOTES[id]].filter(Boolean).join(' '),
+      caption: [spec.pillar && `[${spec.pillar}]`, spec.sub, spec.sit, spec.strat && `실행 지침: ${spec.strat}`, CAPTION_NOTES[id]].filter(Boolean).join(' '),
       telemetry: { status: 'STATIC', syncDate: spec.telemetry },
       render: () => (
         <SafeResponsiveContainer width="100%" height={340}>

@@ -393,3 +393,15 @@ describe('/industry/[key] 서버 키 검증', () => {
     await expect(Page({ params: Promise.resolve({ key: 'rice' }) })).resolves.toBeTruthy();
   });
 });
+
+describe('돼지고기 옛 위젯 이동 — 정보 보존', () => {
+  it('옮긴 11개 위젯 캡션에 기둥과 실행 지침이 남는다', async () => {
+    const { PORK_CHART_SLOTS } = await import('../components/market-understanding/PorkLegacySlots');
+    const slots = Object.values(PORK_CHART_SLOTS).flat();
+    expect(slots).toHaveLength(11);
+    for (const s of slots) {
+      expect(s.caption, s.title).toMatch(/^\[S\d\]/);
+      expect(s.caption, s.title).toContain('실행 지침:');
+    }
+  });
+});
