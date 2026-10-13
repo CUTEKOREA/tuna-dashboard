@@ -149,14 +149,15 @@ def parse(doc: str) -> list[Section]:
         rest = _strip_tables(rest)
         base = h2.end() if h2 else 0            # rest 오프셋 → 절 본문 오프셋
 
+        # `\b` 필수: 없으면 `<p`·`<li` 가 SVG `<path>`·`<line>` 을 문단·목록으로 읽어 차트 글자가 서술로 샌다(2026-10-13).
         # 문단·소제목·콜아웃만 보던 초판은 목록과 인용을 통째로 흘렸다 —
         # JAIS 26개 `li` + 16개 `dt/dd`, FCF 55 + 24, Jealsa 인용 4개가 화면에 없었다.
         for el in re.finditer(
             r'<div class="call([^"]*)"[^>]*>(.*?)</div>'
             r'|<h3[^>]*>(.*?)</h3>'
-            r'|<p(?![^>]*class="ct")([^>]*)>(.*?)</p>'
+            r'|<p\b(?![^>]*class="ct")([^>]*)>(.*?)</p>'
             r'|<blockquote[^>]*>(.*?)</blockquote>'
-            r'|<li[^>]*>(.*?)</li>'
+            r'|<li\b[^>]*>(.*?)</li>'
             r'|<dt[^>]*>(.*?)</dt>\s*<dd[^>]*>(.*?)</dd>',
             rest, re.S,
         ):

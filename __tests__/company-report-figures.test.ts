@@ -18,6 +18,7 @@ import {
   reportFigures,
 } from '@/lib/data/company-report-figures';
 import { REPORT_TABLE_COMPANIES } from '@/lib/data/company-report-tables';
+import { reportProse } from '@/lib/data/company-report-prose';
 
 const 그림있는회사 = ['frinsa', 'thaiunion', 'albacora', 'fcf', 'itochu', 'bolton', 'jealsa', 'jais'];
 // 품목 해부보고서. 그림 틀이 회사 편과 달라 원문 마크업 조각(kind=html)으로 싣는다.
@@ -235,6 +236,23 @@ describe('품목 해부보고서 그림', () => {
       expect(sec, f.sid).not.toBeNull();
       const at = doc.slice(sec!.index + sec![0].length + f.ord, sec!.index + sec![0].length + f.ord + 30);
       expect(at).toMatch(/^<(figure|div class="(metrics|bars)")/);
+    }
+  });
+});
+
+describe('차트 글자가 서술로 새지 않는다', () => {
+  // report_prose.py 의 `<p` 패턴이 SVG `<path>` 까지 문단으로 읽어, 차트 라벨·캡션이
+  // 뒤 문단에 붙어 화면 서술로 나갔다(atunsa·bumblebee·dongwon·sajo 등, 2026-10-13 `<p\b` 로 수정).
+  // fcf 는 증거 HTML(한자 독음 추가)과 서술 JSON 이 어긋난 채라 재생성을 독음 작업 브랜치에 맡긴다.
+  // 그 브랜치가 prose 를 다시 뽑으면 이 목록에서 뺀다.
+  const 재생성대기 = new Set(['fcf']);
+  it.each(REPORT_FIGURE_COMPANIES.filter((c) => !재생성대기.has(c)))('%s - 그림 캡션이 서술 블록 안에 없다', (c) => {
+    const caps = reportFigures(c)
+      .map((f) => (f as { caption?: string }).caption ?? '')
+      .filter((s) => s.length >= 20);
+    const texts = reportProse(c).flatMap((s) => s.blocks.map((b) => b.text));
+    for (const cap of caps) {
+      expect(texts.some((t) => t.includes(cap) && t !== cap), `${c}: ${cap.slice(0, 30)}`).toBe(false);
     }
   });
 });

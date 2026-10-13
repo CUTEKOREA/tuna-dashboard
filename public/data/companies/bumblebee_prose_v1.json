@@ -394,9 +394,14 @@
      "ord": 87
     },
     {
+     "kind": "quote",
+     "text": "In its proposal dated October 30, 2019, FCF, through its affiliates, offered to acquire substantially all of the Company’s assets at a total implied enterprise value of approximately $925 million (which was subsequently increased to $925.6 million), which may be increased by up to an additional $5 million … including $275 million of cash, up to $638.6 million of new senior secured financing (which will take the form of rolled-over term loan indebtedness), and the assumption of the $17 million outstanding DOJ Fine.",
+     "ord": 4182
+    },
+    {
      "kind": "para",
-     "text": "DOJ 벌금 인수: 현금 아님 · 17,000 · 1.84%0925,600 위는 매매계약 §3.2와 첫날 진술서 ¶66이 적는 구성, 아래는 매체가 적는 값이다. 점선 상자는 길이가 아니라 숫자로 읽어야 한다. 9억 2,800만은 9억 2,560만보다 0.26% 클 뿐이라 막대로는 구별되지 않는다. In its proposal dated October 30, 2019, FCF, through its affiliates, offered to acquire substantially all of the Company’s assets at a total implied enterprise value of approximately $925 million (which was subsequently increased to $925.6 million), which may be increased by up to an additional $5 million … including $275 million of cash, up to $638.6 million of new senior secured financing (which will take the form of rolled-over term loan indebtedness), and the assumption of the $17 million outstanding DOJ Fine. US$ · 검산 275,000,000 + 633,600,000 + 17,000,000 = 925,600,000. 상한은 롤오버가 5,000,000 늘어난 값이다.",
-     "ord": 3141,
+     "text": "US$ · 검산 275,000,000 + 633,600,000 + 17,000,000 = 925,600,000. 상한은 롤오버가 5,000,000 늘어난 값이다.",
+     "ord": 5471,
      "chips": [
       "원본"
      ]
