@@ -157,6 +157,8 @@ export interface CommoditySpec {
    * 뜻을 모르는 덩어리이고, 골격은 위치만 안다.
    */
   insets?: {
+    /** 히어로 바로 아래. 시장 국면 띠 등. */
+    AfterHero?: React.ComponentType<InsetProps>;
     /** 탭 아래. 참치의 밸류체인 척추처럼 단계 상태가 필요한 내비가 여기 온다. */
     AfterTabs?: React.ComponentType<InsetProps>;
     /** 단계와 출처 사이. 참치의 약어 사전. */
@@ -524,6 +526,8 @@ export default function CommodityIndustryDashboard({
       data-commodity={spec.key}
     >
       {hero}
+
+      {spec.insets?.AfterHero && <spec.insets.AfterHero activeKey={shownKey} go={go} />}
 
       {spec.reportHref && (
         <p className={styles.reportLink}>

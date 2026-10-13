@@ -1,0 +1,87 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--mu-line);
+  background: var(--mu-surface);
+  min-width: 0;
+}
+
+.cardPending {
+  opacity: 0.72;
+  background: var(--mu-surface-2);
+}
+
+.label {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--mu-ink-muted);
+  line-height: 1.35;
+}
+
+.value {
+  margin: 0;
+  font-size: clamp(0.95rem, 2vw, 1.12rem);
+  font-weight: 700;
+  color: var(--mu-ink);
+  line-height: 1.25;
+}
+
+.valuePending {
+  color: var(--mu-ink-muted);
+}
+
+.asof {
+  margin: 6px 0 0;
+  font-size: 0.68rem;
+  color: var(--mu-ink-muted);
+}
+
+.baseline {
+  margin: 4px 0 0;
+  font-size: 0.68rem;
+  color: var(--mu-ink-soft);
+  line-height: 1.4;
+}
+
+.pendingTag {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--mu-ink-muted);
+}
+
+.meta {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--mu-ink-muted);
+  line-height: 1.5;
+}
+
+.meta a {
+  color: var(--mu-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sourceList {
+  display: inline;
+}
+
+.sourceList a {
+  margin-right: 0.65rem;
+}

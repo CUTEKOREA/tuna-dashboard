@@ -20,6 +20,7 @@ import {
 import { POLLOCK_NARRATIVES, POLLOCK_SOURCE_NOTES } from '@/lib/pollock-industry-content';
 import type { HeroKpi } from '../v2/HeroZone';
 import styles from './TunaIndustryDashboard.module.css';
+import MarketRegimeBand from './MarketRegimeBand';
 import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
@@ -303,6 +304,9 @@ const SPEC: CommoditySpec = {
     'GLOBEFISH Groundfish 2026-05호 (쿼터 범위는 연방관보와 별도)',
     `갱신 ${DATA._meta.생성일} · 화면 2026-09-10`,
   ].join(' · '),
+  insets: {
+    AfterHero: () => <MarketRegimeBand commodityKey="pollock" />,
+  },
 };
 
 export interface PollockIndustryDashboardProps {
