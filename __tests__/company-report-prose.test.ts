@@ -1206,6 +1206,85 @@ describe('Chancerelle · La Belle-Îloise · Gonidec 보고서 서술 추출 (�
   });
 });
 
+describe('Jadran Tuna 보고서 서술 추출 (ⅬⅩⅧ)', () => {
+  const secs = reportProse('jadran');
+
+  it('보고서 16절이 번호대로 이어지고 두 절씩 8단계에 붙는다', () => {
+    expect(secs).toHaveLength(16);
+    expect(secs.map((s) => s.numeral)).toEqual(
+      secs.map((_, i) => String(i + 1).padStart(2, '0')),
+    );
+    expect(secs.map((s) => s.stage)).toEqual(
+      secs.map((_, i) => `c${String(Math.floor(i / 2) + 1).padStart(2, '0')}`),
+    );
+    for (const s of secs) {
+      expect(proseForStage('jadran', s.stage).length, `${s.stage} 매핑`).toBeGreaterThan(0);
+    }
+  });
+
+  // 정본 /Users/idong-geon/tunawork/jadran/build/killed.py 전량: 2026-10-13 확인값 [].
+  // Chancerelle·PP Group과 같이 반박 인용 「」는 지우고 본다.
+  const KILLED: [string, string][] = [];
+
+  it('반증에서 기각한 주장이 서술과 카드에 없다', () => {
+    const card = COMPANY_CARDS.find((c) => c.key === 'jadran');
+    expect(card).toBeTruthy();
+    expect(KILLED).toHaveLength(0);
+    const texts = [
+      ...secs.flatMap((s) => s.blocks.map((b) => `${b.title ?? ''} ${b.text}`)),
+      card!.tagline,
+      ...card!.stats.map((s) => s.value),
+    ].map((t) => t.replace(/「[^」]*」/g, ''));
+    for (const [src, why] of KILLED) {
+      const re = new RegExp(src);
+      for (const t of texts) {
+        const m = t.match(re);
+        expect(m?.[0], `${why} — ${t.slice(0, 80)}`).toBeUndefined();
+      }
+    }
+  });
+
+  it('카드 tagline·stats 문구는 발행본 표지에서 그대로 가져온다', () => {
+    const card = COMPANY_CARDS.find((c) => c.key === 'jadran')!;
+    const html = readFileSync(join(process.cwd(), 'docs/evidence/company-jadran-2026-10/보고서.html'), 'utf8');
+    const cover = html.match(/<header class="cover">[\s\S]*?<\/header>/)?.[0];
+    expect(cover).toBeTruthy();
+    const txt = cover!.replace(/<[^>]+>/g, '').replace(/&#8239;|\u202f/g, ' ').replace(/&amp;/g, '&');
+    expect(card.numeral).toBe('ⅬⅩⅧ');
+    expect(card.country).toBe('크로아티아 · 달마티아 칼리');
+    expect(card.flagSrc).toBe('/flags/hr.svg');
+    expect(card.tagline).toBe('Gira의 야생 참다랑어 축양과 일본 횟감 시장, 면허 허용량·시장출하 배정·야생 입식 상한');
+    for (const p of [card.tagline, ...card.stats.flatMap((s) => s.value.split(' — '))]) {
+      expect(txt.includes(p), p.slice(0, 60)).toBe(true);
+    }
+    expect(card.stats.map((s) => s.value.split(' — ')[0])).toEqual(['1.500 톤', '1.893,042 톤', '707,969 톤']);
+    expect(card.stats[0].value).toContain('실제 생산량과 구분한다');
+    expect(card.stats[1].value).toContain('현재 재고·실제 출하량이 아니다');
+    expect(card.stats[2].value).toContain('실제 어획량·입식량이 아니다');
+  });
+
+  it('핵심 JSON 수치와 근거 문구가 표지 타일과 일치한다', () => {
+    const data = JSON.parse(readFileSync(join(process.cwd(), 'public/data/companies/jadran_v1.json'), 'utf8'));
+    expect(data.stats).toEqual({
+      면허허용연간양식량_t: 1500,
+      시장출하배정_2026_t: 1893.042,
+      야생입식상한_2026_t: 707.969,
+      후속확대신청목표량_t년: 2000,
+      직접법인사원_개: 4,
+      Gira등록면적합_m2: 200000,
+      순이익_2025_EUR: 65317,
+      근로시간기준인원_2025_명: 112,
+    });
+    const html = readFileSync(join(process.cwd(), 'docs/evidence/company-jadran-2026-10/보고서.html'), 'utf8');
+    const cover = html.match(/<header class="cover">[\s\S]*?<\/header>/)?.[0];
+    expect(cover).toBeTruthy();
+    const txt = cover!.replace(/<[^>]+>/g, '').replace(/&#8239;|\u202f/g, ' ').replace(/&amp;/g, '&');
+    for (const value of ['1.500 톤', '1.893,042 톤', '707,969 톤', '2.000 톤/년', '4개', '200.000 m²', '€65.317', '112명', ...data.sourcenotes]) {
+      expect(txt.includes(value), value).toBe(true);
+    }
+  });
+});
+
  describe('아홉 편 공통', () => {
   it('단계 번호가 화면 순서와 어긋나지 않는다', () => {
     // 한 단계에 절이 여럿 합쳐지면 절 번호와 화면 순서가 갈린다.
