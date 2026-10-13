@@ -23,7 +23,19 @@ import type { HeroKpi } from '../v2/HeroZone';
 import CommodityIndustryDashboard, { type CommoditySpec } from './CommodityIndustryDashboard';
 import { dropEmptyLabel, industryInlineReport, ReportTableView } from './IndustryReportFlow';
 import { PORK_CHART_SLOTS } from './PorkLegacySlots';
+import MarketRegimeBand from './MarketRegimeBand';
 import styles from './TunaIndustryDashboard.module.css';
+
+const MARKET_REGIME_KEYS = new Set(['corn', 'garlic']);
+
+function withMarketRegimeBand(spec: CommoditySpec, commodityKey: string): CommoditySpec {
+  if (!MARKET_REGIME_KEYS.has(commodityKey)) return spec;
+  const AfterHero = () => <MarketRegimeBand commodityKey={commodityKey} />;
+  return {
+    ...spec,
+    insets: { ...spec.insets, AfterHero },
+  };
+}
 
 export const INDUSTRY_ITEM_ACCENT = '#0e7490';
 
@@ -108,7 +120,10 @@ export default function IndustryItemDashboard({ item }: { item: IndustryItem }) 
       fetchJson(`${base}_figures_v1.json`),
     ])
       .then(([tables, prose, figures]) => {
-        if (alive) setState({ key: item.key, spec: buildIndustryItemSpec(item, { tables, prose, figures }) });
+        if (alive) {
+          const spec = buildIndustryItemSpec(item, { tables, prose, figures });
+          setState({ key: item.key, spec: withMarketRegimeBand(spec, item.key) });
+        }
       })
       .catch((e: unknown) => {
         if (alive) setState({ key: item.key, error: String(e) });

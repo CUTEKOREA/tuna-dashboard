@@ -1,9 +1,9 @@
 {
  "_meta": {
   "entry": "app/page.tsx",
-  "files": 307,
-  "widgets": 125,
-  "dataFiles": 384,
+  "files": 309,
+  "widgets": 126,
+  "dataFiles": 385,
   "generator": "scripts/widget_lineage.py"
  },
  "widgetToData": {
@@ -1281,7 +1281,8 @@
     "public/data/companies/whelk_figures_v1.json",
     "public/data/companies/whelk_prose_v1.json",
     "public/data/companies/whelk_tables_v1.json",
-    "public/data/industry/hub_v1.json"
+    "public/data/industry/hub_v1.json",
+    "public/data/market-regime.v1.json"
    ]
   },
   "components/market-understanding/IndustryItemDashboard.tsx": {
@@ -1517,7 +1518,8 @@
     "public/data/companies/whelk_figures_v1.json",
     "public/data/companies/whelk_prose_v1.json",
     "public/data/companies/whelk_tables_v1.json",
-    "public/data/industry/hub_v1.json"
+    "public/data/industry/hub_v1.json",
+    "public/data/market-regime.v1.json"
    ]
   },
   "components/market-understanding/IndustryReportFlow.tsx": {
@@ -2014,6 +2016,14 @@
     "public/data/whelk_industry_v1.json"
    ]
   },
+  "components/market-understanding/MarketRegimeBand.tsx": {
+   "dataModules": [
+    "lib/data/market-regime.ts"
+   ],
+   "dataFiles": [
+    "public/data/market-regime.v1.json"
+   ]
+  },
   "components/market-understanding/MofLiveCharts.tsx": {
    "dataModules": [
     "lib/data/mof-live.ts"
@@ -2508,6 +2518,7 @@
     "public/data/landed_cost_trend_v1.json",
     "public/data/mackerel_country_series_v1.json",
     "public/data/mackerel_industry_v1.json",
+    "public/data/market-regime.v1.json",
     "public/data/mof_auction_daily_v1.json",
     "public/data/mof_trade_monthly_v1.json",
     "public/data/pollock_company_research_v1.json",
@@ -4089,7 +4100,8 @@
     "public/data/companies/whelk_figures_v1.json",
     "public/data/companies/whelk_prose_v1.json",
     "public/data/companies/whelk_tables_v1.json",
-    "public/data/industry/hub_v1.json"
+    "public/data/industry/hub_v1.json",
+    "public/data/market-regime.v1.json"
    ]
   },
   "components/market-understanding/WhelkIndustryDashboard.tsx": {
@@ -8492,6 +8504,13 @@
    "components/market-understanding/TunaAnatomyDashboard.tsx",
    "components/market-understanding/TunaIndustryDashboard.tsx",
    "components/market-understanding/WhelkIndustryDashboard.tsx"
+  ],
+  "public/data/market-regime.v1.json": [
+   "components/market-understanding/IndustryHub.tsx",
+   "components/market-understanding/IndustryItemDashboard.tsx",
+   "components/market-understanding/MarketRegimeBand.tsx",
+   "components/market-understanding/PollockIndustryDashboard.tsx",
+   "components/market-understanding/TunafarmIndustryDashboard.tsx"
   ],
   "public/data/maru_registry_status_v1.json": [
    "components/market-understanding/CompanyResearchTables.tsx",
