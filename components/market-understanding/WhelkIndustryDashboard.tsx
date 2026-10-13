@@ -53,7 +53,7 @@ const KCS_SYNC = {
 };
 const KOSIS_SYNC = { status: 'STATIC' as const, syncDate: '2025년(연간 계열)' };
 const REPORT_SYNC = { status: 'STATIC' as const, syncDate: '보고서 2026-08-25' };
-const PROCUREMENT_SYNC = { status: 'STATIC' as const, syncDate: '조달 보고서 2026-09-12' };
+const PROCUREMENT_SYNC = { status: 'STATIC' as const, syncDate: '해부보고서 제5판 2026-10-13' };
 const MMO_SYNC = { status: 'STATIC' as const, syncDate: 'MMO 2026년 7월 잠정' };
 
 const WHELK_RESEARCH = getWhelkCompanyResearch();
@@ -223,7 +223,7 @@ function SeriesRolesTable() {
  * 생산·가공·위판 → 03 산지와 제조소, 명의·급식 → 04 수입자). 옛 해부보고서 표 슬롯은 뺐다.
  * 이 위젯들의 출처는 「한국 골뱅이 산업 해부」(2026-08)이고 캡션이 그 사실을 밝힌다.
  */
-export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
+const PROCUREMENT_CHART_SLOTS: Record<string, ChartSlot[]> = {
   s02: [
     {
       title: '한국 수입 상대국별 규모와 단가 (백만 달러·달러/톤)',
@@ -470,12 +470,35 @@ export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
   ],
 };
 
-/** 히어로 수치는 조달 보고서 표지 값이다. 렌더 테스트가 원문 HTML 텍스트와 대조한다. */
+/**
+ * 5판(15절·여덟 단계)에 위젯을 다시 놓는다. 위젯 정의는 위 그대로이고 자리만 옮긴다.
+ * 제목으로 집으므로 위젯 이름이 바뀌면 여기서 빠진다 — 테스트가 개수를 대조한다.
+ */
+const SLOT_PLACE: Record<string, string[]> = {
+  s02: ['과(科)별 생산량 (톤)', '공급 기업 - 누가 잡고 누가 파는가', '참골뱅이 어획 상위국 (톤)', '2024 어획 상위 8국', '국가별 가공 거점과 기업'],
+  s03: ['국내 생산 통계 - 코드가 바뀐 자리 (톤)', '산지 위판 상위 조합'],
+  s04: ['수입 신고 명의 상위'],
+  s05: ['국내 가공 상위 업체', '2025 주력 제품', '2025 생산 상위 20곳', '브랜드와 점유율 (성격 구분)'],
+  s07: ['급식 낙찰 명부'],
+};
+const ALL_SLOTS = Object.values(PROCUREMENT_CHART_SLOTS).flat();
+const placed = new Set(Object.values(SLOT_PLACE).flat());
+export const WHELK_CHART_SLOTS: Record<string, ChartSlot[]> = {
+  ...Object.fromEntries(Object.entries(SLOT_PLACE).map(([k, titles]) => [k, ALL_SLOTS.filter((x) => titles.includes(x.title))])),
+  // 옛 수입 단계(s02) 위젯 가운데 위에서 따로 놓지 않은 것은 시장·조달선 단계(s02) 앞에 둔다.
+  s02: [
+    ...PROCUREMENT_CHART_SLOTS.s02.filter((x) => !placed.has(x.title)),
+    ...ALL_SLOTS.filter((x) => SLOT_PLACE.s02.includes(x.title)),
+  ],
+};
+export const WHELK_CHART_SLOT_COUNT = ALL_SLOTS.length;
+
+/** 히어로 수치는 해부보고서 5판 본문 값이다. 렌더 테스트가 원문 HTML 텍스트와 대조한다. */
 export const WHELK_HERO_KPIS: HeroKpi[] = [
-  { label: '골뱅이류 수입신고', value: 757, unit: '(건)', accent: WHELK_ACCENT },
-  { label: '피뿔고둥 몫', value: 47, unit: '(%)' },
-  { label: '영국·아일랜드 신고', value: 268, unit: '(건)' },
-  { label: '수입 명의', value: 93, unit: '(곳)' },
+  { label: '2025 국내 생산', value: 6203, unit: '(톤)', accent: WHELK_ACCENT },
+  { label: '생산 상위 두 곳', value: 59.5, unit: '(%)' },
+  { label: '수입 신고 명의', value: 114, unit: '(곳)' },
+  { label: '2025 냉동 수입', value: 8649, unit: '(만 달러)' },
 ];
 
 /**
@@ -483,17 +506,21 @@ export const WHELK_HERO_KPIS: HeroKpi[] = [
  * 절 → 단계 매핑은 `scripts/build_report_tables.py` SPECS.whelk 에 있다(Ⅱ·Ⅲ장이 한 단계).
  */
 export const WHELK_STAGES: Array<{ key: string; title: string; question: string }> = [
-  { key: 's01', title: '요지 - 골뱅이는 두 축이다', question: '피뿔고둥과 참골뱅이는 어디서 와서 누가 들여오는가' },
-  { key: 's02', title: '수입 - 세번이 종을 가르지 않는다', question: '골뱅이는 어느 세번·원산지로 얼마에 들어오는가' },
-  { key: 's03', title: '산지와 제조소 - 잡는 곳에서 삶는다', question: '원물은 어디서 잡히고 어느 제조소가 가공하는가' },
-  { key: 's04', title: '수입자 - 93곳, 상위 10곳이 65.5%', question: '한국에서는 누가 어느 제조소의 골뱅이를 들여오는가' },
+  { key: 's01', title: '이름 - 골뱅이는 종이 아니라 상품명', question: '골뱅이라는 이름 아래 어떤 종이 함께 팔리는가' },
+  { key: 's02', title: '수입 - 조제에서 냉동으로', question: '골뱅이는 어느 세번·나라로 얼마에 들어오는가' },
+  { key: 's03', title: '산지와 수출 - 잡은 것은 두 이름으로 남는다', question: '한국이 잡는 고둥은 어디로 가고 무엇으로 기록되는가' },
+  { key: 's04', title: '수입 명의 - 114곳, 물량 칸은 없다', question: '누가 이름을 걸고 들여오는가' },
+  { key: 's05', title: '가공 - 두 곳이 생산의 59.5%', question: '국내에서 누가 어디서 얼마나 만드는가' },
+  { key: 's06', title: '재무 - 공시가 골뱅이를 가르지 않는다', question: '회사 재무로 골뱅이 사업을 읽을 수 있는가' },
+  { key: 's07', title: '값 - 산지와 통관 사이', question: '단계별 값은 어디까지 열려 있는가' },
+  { key: 'x01', title: '제도와 남은 물음', question: '칸이 비는 자리는 어디고 무엇이 아직 열리지 않았나' },
 ];
 
 const REPORT_STAGES = new Map(proseStages('whelk').map((stage) => [stage.key, stage]));
 
 export const WHELK_REPORT_NARRATIVES = WHELK_STAGES.map(({ key, title, question }, index) => {
   const stage = REPORT_STAGES.get(key);
-  if (!stage) throw new Error(`골뱅이 조달 보고서에 ${key} 단계 서술이 없다`);
+  if (!stage) throw new Error(`골뱅이 해부보고서에 ${key} 단계 서술이 없다`);
   return industryInlineReport('whelk', {
     ...stage,
     numeral: String(index + 1).padStart(2, '0'),
@@ -503,13 +530,12 @@ export const WHELK_REPORT_NARRATIVES = WHELK_STAGES.map(({ key, title, question 
     flow: stage.flow?.map((item) => item.kind === 'head' ? { ...item, text: dropEmptyLabel(item.text) } : item),
   }, {
     telemetry: PROCUREMENT_SYNC,
-    source: '골뱅이 조달 보고서',
+    source: '한국 골뱅이 산업 해부 제5판',
     renderTable: (table) => <ReportTableView table={table} />,
   });
 });
 
-/** 원문이 p.lead 를 쓰지 않아 장마다 첫 문단·목록 줄을 리드로 쓴다(표만 있는 Ⅲ장은 빠진다). */
-export const WHELK_REPORT_BRIEFING = proseBriefing('whelk', { firstBlock: true });
+export const WHELK_REPORT_BRIEFING = proseBriefing('whelk');
 
 const SPEC: CommoditySpec = {
   // 2026-09-10 사용자 지시: 단계를 탭으로 넘기지 않고 한 페이지에 전부 출력한다(기업 해부와 동일).
@@ -518,23 +544,23 @@ const SPEC: CommoditySpec = {
   reportHref: '/reports/industry/whelk-2026-10.html',
   title: '골뱅이',
   subtitle:
-    '골뱅이 조달 보고서 · 어디서 잡아 어디서 삶아 누가 들여오는가 - 수입현황·산지·가공국별 제조소·한국 수입자',
+    '한국 골뱅이 산업 해부 제5판 · 이름 하나에 다섯 속 - 수입·산지·수입 명의·가공·재무·값·제도',
   accent: WHELK_ACCENT,
   primaryKpi: WHELK_HERO_KPIS[0],
   secondaryKpis: WHELK_HERO_KPIS.slice(1),
   stripItems: [
-    // 히어로 띠도 원문 표지 값이다.
-    { now: true, eyebrow: '기준', title: '피뿔고둥 신고', body: '355건 (품목유형 85코드 중)' },
-    { eyebrow: '명의', title: '수입 명의 상위 10', body: '66% (93곳 중)' },
-    { eyebrow: '기준일', title: '자료 기준', body: '2026-09 (식약처 원장·관세청)' },
-    { eyebrow: '자료', title: '본문·표', body: '골뱅이 조달 보고서 2026-09-12 — 해부보고서가 아니라 조달조사 보고서다' },
+    // 히어로 띠도 원문 본문 값이다.
+    { now: true, eyebrow: '종', title: '원재료 기준 참골뱅이', body: '61.72% (제품명 기준 0)' },
+    { eyebrow: '연결', title: '수입 명의를 겸한 생산 업체', body: '13곳 · 생산의 78.3%' },
+    { eyebrow: '기준일', title: '자료 기준', body: '2026-10 (관세청·식약처·산지위판)' },
+    { eyebrow: '자료', title: '본문·표', body: '한국 골뱅이 산업 해부 제5판 2026-10' },
   ],
   briefing: WHELK_REPORT_BRIEFING,
   narratives: WHELK_REPORT_NARRATIVES,
   chartSlots: WHELK_CHART_SLOTS,
   sourceNotes: WHELK_SOURCE_NOTES,
   sourceMeta: [
-    '본문·표 · 골뱅이 조달 보고서 2026-09-12(조달조사, 해부보고서 아님)',
+    '본문·표 · 한국 골뱅이 산업 해부 제5판 2026-10',
     `차트 · 생산 집계 ${DATA._meta.출처} · 기준 ${DATA._meta.기준연도}년`,
     `통관 집계 · ${DATA.한국수입._meta.출처}`,
     `국내 생산 · ${DATA.한국생산._meta.출처}`,
