@@ -6,6 +6,15 @@
  },
  "figures": [
   {
+   "stage": "c02",
+   "sid": "s2",
+   "kind": "chart",
+   "ord": 2224,
+   "caption": "신용정보 티저에 나온 주주 2명(본문은 Latxaga 가족과 Alonso Escurís 가문으로 본다, 지분율 비공시)과 Albacora가 100% 보유한 Albafrigo Canarias SA(Socio Único)를 그렸다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 216\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"신용정보 티저상 Albacora, S.A.의 주주는 2명으로 Latxaga 가족(AMUI 등)과 Alonso Escurís 가문으로 보이며 지분율은 비공시다. Albacora는 Albafrigo Canarias SA를 100% 보유한다.\"><title>Albacora 지분 구조</title><defs><marker id=\"albacora-a\" markerWidth=\"8\" markerHeight=\"6\" refX=\"7\" refY=\"3\" orient=\"auto\"><polygon points=\"0 0, 8 3, 0 6\" fill=\"#7a828b\"/></marker><marker id=\"albacora-ac\" markerWidth=\"8\" markerHeight=\"6\" refX=\"7\" refY=\"3\" orient=\"auto\"><polygon points=\"0 0, 8 3, 0 6\" fill=\"#B2503A\"/></marker></defs><line x1=\"148\" y1=\"36\" x2=\"262\" y2=\"36\" stroke=\"#7a828b\" stroke-width=\"1.2\" marker-end=\"url(#albacora-a)\"/><text x=\"205\" y=\"28\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#4A7090\">지분율 비공시</text><line x1=\"508\" y1=\"36\" x2=\"418\" y2=\"36\" stroke=\"#B2503A\" stroke-width=\"1.6\" marker-end=\"url(#albacora-ac)\"/><text x=\"463\" y=\"28\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#B2503A\">지분율 비공시</text><line x1=\"340\" y1=\"60\" x2=\"340\" y2=\"92\" stroke=\"#7a828b\" stroke-width=\"1.2\"/><line x1=\"340\" y1=\"92\" x2=\"340\" y2=\"124\" stroke=\"#7a828b\" stroke-width=\"1.2\" marker-end=\"url(#albacora-a)\"/><text x=\"350\" y=\"113\" text-anchor=\"start\" font-size=\"13\" font-weight=\"700\" fill=\"#4A7090\">100%</text><rect x=\"262\" y=\"12\" width=\"156\" height=\"48\" rx=\"6\" fill=\"#F8EEEA\" stroke=\"#B2503A\" stroke-width=\"1.6\"/><text x=\"340\" y=\"41\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"700\" fill=\"#14181D\">Albacora, S.A.</text><rect x=\"24\" y=\"12\" width=\"124\" height=\"48\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#1B3B52\" stroke-width=\"1\"/><text x=\"86\" y=\"41\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"600\" fill=\"#14181D\">Latxaga 가족</text><rect x=\"508\" y=\"12\" width=\"148\" height=\"48\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#1B3B52\" stroke-width=\"1\"/><text x=\"582\" y=\"41\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"600\" fill=\"#14181D\">Alonso Escurís</text><rect x=\"265\" y=\"124\" width=\"150\" height=\"40\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#1B3B52\" stroke-width=\"1\"/><text x=\"340\" y=\"149\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"600\" fill=\"#14181D\">Albafrigo Canarias</text><line x1=\"24\" y1=\"184\" x2=\"656\" y2=\"184\" stroke=\"#d5d7d2\" stroke-width=\"0.8\"/><line x1=\"24\" y1=\"204\" x2=\"56\" y2=\"204\" stroke=\"#7a828b\" stroke-width=\"1.2\"/><text x=\"64\" y=\"208\" text-anchor=\"start\" font-size=\"12\" font-weight=\"400\" fill=\"#7a828b\">보유 지분 (화살표: 주주 → 회사)</text></svg>"
+  },
+  {
    "stage": "c03",
    "sid": "s3",
    "kind": "chart",
