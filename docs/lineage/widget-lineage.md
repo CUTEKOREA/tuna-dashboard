@@ -1,7 +1,7 @@
 # 위젯 리니지 — 데이터 파일별 영향 범위
 
 > `python3 scripts/widget_lineage.py`로 재생성. 손으로 고치지 말 것.
-> 진입점 app/page.tsx · closure 305파일 · 위젯 125개 · 데이터 파일 376개.
+> 진입점 app/page.tsx · closure 306파일 · 위젯 125개 · 데이터 파일 380개.
 > 데이터 파일 필드를 바꾸기 전에 여기서 영향 위젯을 확인한다 (파손 진단 1단계).
 
 ## data/beef_usda_widgets.json
@@ -292,6 +292,57 @@
 - components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/companies/ati_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+
+## public/data/companies/atunsa_figures_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
+- components/market-understanding/IndustryReportFlow.tsx
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+- components/market-understanding/PollockIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/SurimiIndustryDashboard.tsx
+- components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
+- components/market-understanding/TunafarmIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/companies/atunsa_prose_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
+- components/market-understanding/IndustryReportFlow.tsx
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+- components/market-understanding/PollockIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/SurimiIndustryDashboard.tsx
+- components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
+- components/market-understanding/TunafarmIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/companies/atunsa_tables_v1.json
+- components/market-understanding/CompanyAnatomyDashboard.tsx
+- components/market-understanding/IndustryHub.tsx
+- components/market-understanding/IndustryItemDashboard.tsx
+- components/market-understanding/IndustryReportFlow.tsx
+- components/market-understanding/MackerelIndustryDashboard.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
+- components/market-understanding/PollockIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/SurimiIndustryDashboard.tsx
+- components/market-understanding/TunaAnatomyDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
+- components/market-understanding/TunafarmIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
+
+## public/data/companies/atunsa_v1.json
 - components/market-understanding/CompanyAnatomyDashboard.tsx
 
 ## public/data/companies/azores_figures_v1.json
