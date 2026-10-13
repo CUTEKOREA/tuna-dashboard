@@ -100,7 +100,9 @@ export function MarketRegimeIndicatorCard({ indicator, enso = false }: MarketReg
       <p className={`${styles.value} ${pending ? styles.valuePending : ''}`}>
         {pending ? '—' : formatMarketRegimeValue(indicator.value, indicator.unit)}
       </p>
-      <p className={styles.asof}>기준일 {formatAsof(indicator.asof)}</p>
+      <p className={styles.asof}>
+        {indicator.asof == null ? '기준일 없음' : `기준일 ${formatAsof(indicator.asof)}`}
+      </p>
       {baseline && !pending && <p className={styles.baseline}>{baseline}</p>}
       {pending && <span className={styles.pendingTag}>갱신 대기</span>}
     </article>

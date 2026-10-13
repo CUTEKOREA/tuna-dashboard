@@ -2,6 +2,7 @@
 set -euo pipefail
 unsetopt XTRACE VERBOSE
 umask 077
+unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_COMMON_DIR
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
@@ -19,6 +20,31 @@ exec >>"$LOG" 2>&1
 log() {
   printf '%s 단계=%s 결과=%s\n' \
     "$(/bin/date '+%Y-%m-%d %H:%M:%S %z')" "$STEP" "$1"
+}
+
+# 수집 전용 클론이 아닌 다른 git 컨텍스트로 reset 하지 않도록 검사한다.
+assert_runner_git_repo() {
+  local top git_dir common_dir expected_git="$REPO/.git"
+
+  top="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+    log "실패: git 저장소 확인 불가"
+    exit 1
+  }
+  git_dir="$(git rev-parse --absolute-git-dir 2>/dev/null)" || {
+    log "실패: git 저장소 확인 불가"
+    exit 1
+  }
+  common_dir="$(git rev-parse --git-common-dir 2>/dev/null)" || {
+    log "실패: git 저장소 확인 불가"
+    exit 1
+  }
+  if [[ "$common_dir" != /* ]]; then
+    common_dir="$REPO/${common_dir#./}"
+  fi
+  if [[ "$top" != "$REPO" || "$git_dir" != "$expected_git" || "$common_dir" != "$expected_git" ]]; then
+    log "실패: 작업 클론 git 컨텍스트 불일치"
+    exit 1
+  fi
 }
 
 # 오류 메시지나 실행 명령에 키가 포함될 수 있으므로 상세 출력은 버린다.
@@ -69,11 +95,12 @@ if [[ ! -e "$REPO" ]]; then
     "$REPO" >/dev/null 2>&1
 fi
 cd "$REPO"
-[[ "$(git rev-parse --show-toplevel 2>/dev/null)" == "$REPO" ]]
+assert_runner_git_repo
 log "완료"
 
 STEP="main 동기화"
 # 이 클론은 수집 전용이다. 로컬 변경과 미전송 커밋을 버려도 된다.
+assert_runner_git_repo
 git fetch origin main >/dev/null 2>&1
 git reset --hard origin/main >/dev/null 2>&1
 git config --local user.name "cutekorea" >/dev/null 2>&1
@@ -119,6 +146,13 @@ PY
 )"
 eval "$KEY_EXPORTS" >/dev/null 2>&1
 unset KEY_EXPORTS
+for NAME in NASS_API_KEY KAMIS_API_KEY KAMIS_CERT_ID ECOS_API_KEY USDA_FAS_API_KEY; do
+  typeset -gx "${NAME}=${(P)NAME:-}"
+done
+if [[ -z "${NASS_API_KEY}" ]]; then
+  log "실패: NASS_API_KEY 미설정"
+  exit 1
+fi
 log "완료"
 
 STEP="수집"

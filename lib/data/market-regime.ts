@@ -20,7 +20,7 @@ export type MarketRegimeIndicator = {
   label: string;
   value: number | null;
   unit: string;
-  asof: string;
+  asof: string | null;
   baseline: MarketRegimeBaseline | null;
   delta: MarketRegimeDelta | null;
   source_url: string;

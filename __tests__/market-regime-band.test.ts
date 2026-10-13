@@ -36,4 +36,13 @@ describe('MarketRegimeBand', () => {
     );
     expect(html).toContain('갱신 대기');
   });
+
+  it('asof 가 null 이면 기준일 없음을 표시한다', () => {
+    const base = marketRegimeFor('corn')[0];
+    const indicator = { ...base, asof: null };
+    const html = renderToStaticMarkup(
+      React.createElement(MarketRegimeIndicatorCard, { indicator }),
+    );
+    expect(html).toContain('기준일 없음');
+  });
 });
