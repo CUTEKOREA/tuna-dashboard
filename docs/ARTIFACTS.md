@@ -67,6 +67,7 @@
 | ⅬⅩⅠ | Pataya Food Industries (태국 방콕 본점·사뭇사콘 마하차이 공장 · 비상장 DBD 0105522010087 · 2026-09-01 등록자본 2억 8.000만 → 3억 7.383만 밧(증가분 = 증자 뒤 자본의 25,10 %), 국적표 일본 1곳 12,50 % · Umios 09-14 「決定」, 적시공시 없음 · 총수익 10년 연평균 +0,08 %, 2022·2023 순손실 · 미국 선하증권 Bumble Bee 791/1.855건 · RFMO 등록 선박 없음 · 식약처 조회 0건 · 현재 Claude 계정에서 발행) | `pataya` | https://claude.ai/artifact/G2ToZ8neUKBahg5BeMMwgt |
 | ⅬⅩⅡ | 双日(Sojitz) 수산 (일본 東証プライム 2768 · 「水産事業」 실력치 FY26/3 46억 엔(マリンフーズ 24·トライ産業 13·기타 9) · 인수 네 건 중 법정공시 대가는 マリンフーズ 18.236 백만 엔 하나 · 참치 직접 축 トライ産業·鷹島 양식장(+大連翔祥) · 조각 사이 거래 물량 문서 0 · RFMO 5종 선박 0척 · 식약처 TRY INC. 310건) | `sojitz` | https://claude.ai/artifact/KagKCWLNoG9vNi8btzBk7J |
 | ⅬⅩⅢ | New England Seafood International (영국 Chessington · Companies House 02565953 · 2025 매출 £239,5m · SFIH 94,6 %(2020 Sealaska → 2026-10 双日) · 자사 어선 0척 · 인수 때 최대 식별 무형자산 개발 기술 £10,1m(해동 특허와의 연결은 추정) · 관세청 한국→영국 냉동 필레 2025 121.237 kg, 수입자 미상) | `nesi` | https://claude.ai/artifact/SR4GKEFiucG6VsMfwXz878 |
+| ⅬⅩⅣ | Parlevliet & Van der Plas(PP Group) (네덜란드 Katwijk · 연결 정점 PP Groep Katwijk B.V. KvK 28042057 · 2023 연결 매출 €1,54bn(Quote) · 참치 몫 7 · 12 · 14~17 %(계산, 지분법·비례연결·pro-forma 가정) · TOG 지분 2021 50 % → 2026 100 % · CFTO 운영 선망 13척, 등록 소유 확인 8척 · 가문 지분 정리 €452,5m, 재원 차입의 차주 법인 미상 · 한국 상장 참치 6사 공시 26건 중 0) | `ppgroup` | https://claude.ai/artifact/EcuYxZD84U66FYXHy5ATxf |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 

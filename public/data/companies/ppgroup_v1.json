@@ -1,0 +1,48 @@
+{
+ "_meta": {
+  "회사": "Parlevliet & Van der Plas(PP Group) — 네덜란드 부어류·새우·유통 그룹(연결 정점 PP Groep Katwijk B.V., KvK 28042057). 프랑스 선망 선사 CFTO(2016 인수)와 캔 가공 지주 TOG(2021 50 % → 2026 100 %)를 프랑스 지주 PP THON 아래 둔다",
+  "국가": "네덜란드",
+  "업종": "부어류·새우·유통 그룹 안의 참치 한 축 — 프랑스 열대참치 선망(CFTO)·코트디부아르·마다가스카르 캔 가공(TOG: SCODI·PFOI)·프랑스 판매(CCO)",
+  "종목": "비상장 · KvK 28042057(PP Groep Katwijk B.V.)",
+  "출처": "KvK·GLEIF 등기 · INPI 예탁 결산·BODACC·SIRENE · IOTC e-RAV·ICCAT 선박 등록부·IUU 목록 · MSC 어업 인증DB·Friend of the Sea 명부 · Eurostat Comext·TARIC · rechtspraak.nl·CURIA·EU 경쟁사건 DB·AdlC · DART·관세청 수출입무역통계 · Carrefour 판매 화면 · PP CSR 2023·2024 · Sapmer·CFI 발표 · Quote·Le Marin·Mer et Marine·Undercurrent·업계지 Atuna",
+  "조사일": "2026-10"
+ },
+ "card": {
+  "numeral": "ⅬⅩⅣ",
+  "tagline": "부어류·새우·유통 그룹 안의 참치 한 축"
+ },
+ "stats": {
+  "매출_2023": 1.54,
+  "이익_2023": 53,
+  "매출_2024": 1.51,
+  "이익_2024": 57,
+  "이익_2025": 67,
+  "몫_지분법": 7,
+  "몫_비례": 12,
+  "몫_proforma": "14~17",
+  "몫_FTE": 19,
+  "TOG_2021": 50,
+  "TOG_2026": 100,
+  "사모펀드": 13,
+  "신주": 6.7,
+  "가문대가": 452.5,
+  "earnout": 60,
+  "브리지론": 200,
+  "vendor_loan": 112.5,
+  "운영척": 13,
+  "대서양": 4,
+  "인도양": 9,
+  "등록소유": 8,
+  "SCODI": 64.57,
+  "PFOI": 50.51,
+  "TOG연결_2024": 123358663,
+  "TOG연결_2023": 149273465,
+  "EU_CI_2025": 11413,
+  "EU_CI_2019": 20064,
+  "프랑스몫": 79,
+  "제3국관세": 24,
+  "공시": 26,
+  "공시_적중": 0
+ },
+ "sourcenotes": []
+}
