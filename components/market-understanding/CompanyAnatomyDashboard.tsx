@@ -422,6 +422,10 @@ import {
   company as chCompany, scale as chScale,
 } from '@/lib/data/company-chancerelle';
 import {
+  jadranMeta, jadranCard, jadranSourceNotes,
+  limits as jadranLimits,
+} from '@/lib/data/company-jadran';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -2714,6 +2718,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   키리바시: { flagSrc: '/flags/ki.svg', backInk: '#1b2733' },
   프랑스: { flagSrc: '/flags/fr.svg', backInk: '#1b2a3f' },
   네덜란드: { flagSrc: '/flags/nl.svg', backInk: '#1b2a3f' },
+  크로아티아: { flagSrc: '/flags/hr.svg', backInk: '#1b2a3f' },
   코스타리카: { flagSrc: '/flags/cr.svg', backInk: '#1b2a3f' },
 };
 
@@ -5993,6 +5998,50 @@ const CHANCERELLE_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const JADRAN_ACCENT = '#154e77';
+const JT_L = jadranLimits();
+
+// 카드·히어로 문구는 표지 그대로다. 허용량·배정·입식 상한·신청 목표량을 구분한다.
+const JT_LICENSE = '면허상 허용 연간 양식량이다. 실제 생산량과 구분한다(A, 농업부 등록부 2026-08-24).';
+const JT_MARKET = '2026 연간 시장출하 배정이다. 현재 재고·실제 출하량이 아니다(A, NN 9/2026-65).';
+const JT_STOCKING = '2026 야생 입식 상한이다. 실제 어획량·입식량이 아니다(A, NN 9/2026-65).';
+const JT_APPLICATION = '후속 확대 신청의 목표량이다. 최종 환경승인·면허 변경 완료는 공개 자료에 없다(A·신청서 기재, 2026-05-25 제출 요약).';
+
+const JADRAN_SPEC: CommoditySpec = {
+  key: 'company-anatomy-jadran',
+  title: '기업 해부: Jadran Tuna',
+  subtitle: '크로아티아 법인 4개가 사원인 Jadran Tuna는 Gira의 두 현장에서 야생 참다랑어를 축양하고 일본 횟감 시장을 강조한다. 회사를 읽는 핵심은 현장 면허의 허용 연간 양식량 1.500톤, 2026 연간 시장출하 배정 1.893,042톤, 야생 입식 상한 707,969톤을 구분하는 일이다. 가두리 수를 유지하면서 연간 2.000톤으로 늘리려는 후속 신청과 낮아진 순이익은 확인되지만, 실제 생산량·일본 판매 비중·확대 승인·손익 원인은 공개 자료에 없다.',
+  accent: JADRAN_ACCENT,
+  primaryKpi: {
+    label: JT_LICENSE,
+    value: JT_L.허용연간양식량,
+    text: euNum(JT_L.허용연간양식량),
+    unit: '(톤)',
+    accent: JADRAN_ACCENT,
+  },
+  secondaryKpis: [
+    { label: JT_MARKET, value: JT_L.시장출하배정, text: euNum(JT_L.시장출하배정, 3), unit: '(톤)' },
+    { label: JT_STOCKING, value: JT_L.야생입식상한, text: euNum(JT_L.야생입식상한, 3), unit: '(톤)' },
+    { label: JT_APPLICATION, value: JT_L.확대신청목표량, text: euNum(JT_L.확대신청목표량), unit: '(톤/년)' },
+  ],
+  stripItems: [
+    { now: true, eyebrow: '면허 허용량', title: `${euNum(JT_L.허용연간양식량)} 톤`, body: JT_LICENSE },
+    { eyebrow: '시장출하 배정', title: `${euNum(JT_L.시장출하배정, 3)} 톤`, body: JT_MARKET },
+    { eyebrow: '야생 입식 상한', title: `${euNum(JT_L.야생입식상한, 3)} 톤`, body: JT_STOCKING },
+    { eyebrow: '후속 확대 신청', title: `${euNum(JT_L.확대신청목표량)} 톤/년`, body: JT_APPLICATION },
+  ],
+  briefing: proseBriefing('jadran'),
+  narratives: inlineReport('jadran', proseStages('jadran')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: jadranSourceNotes,
+  sourceMeta: [
+    `${jadranMeta.회사} · ${jadranMeta.국가} · ${jadranMeta.업종}`,
+    `출처 ${jadranMeta.출처}`,
+    `조사 ${jadranMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -7289,6 +7338,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '어류 구매', value: `${euNum(CH_S.어류구매량)} t — ${CH_FISH}` },
     ],
   },
+  {
+    key: 'jadran',
+    numeral: jadranCard.numeral,
+    name: 'Jadran Tuna',
+    country: '크로아티아 · 달마티아 칼리',
+    tagline: jadranCard.tagline,
+    ...FLAG.크로아티아,
+    stats: [
+      { label: '면허 허용량', value: `${euNum(JT_L.허용연간양식량)} 톤 — ${JT_LICENSE}` },
+      { label: '시장출하 배정', value: `${euNum(JT_L.시장출하배정, 3)} 톤 — ${JT_MARKET}` },
+      { label: '야생 입식 상한', value: `${euNum(JT_L.야생입식상한, 3)} 톤 — ${JT_STOCKING}` },
+    ],
+  },
 
 
 
@@ -7385,6 +7447,7 @@ export default function CompanyAnatomyDashboard({
     atunsa: ATUNSA_SPEC,
     aps: APS_SPEC,
     chancerelle: CHANCERELLE_SPEC,
+    jadran: JADRAN_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

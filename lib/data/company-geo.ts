@@ -347,6 +347,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅩⅦ · 사용자 지정 Chancerelle 본사 Douarnenez · **좌표는 Douarnenez 근사값이며 등기 주소의 정밀 좌표가 아니다**',
     note: 'Chancerelle·La Belle-Îloise·Gonidec 비교 보고서의 Chancerelle 본사 핀이다. 세 회사의 공동 본사로 읽지 않는다. Chancerelle의 2025년 회사 설명 매출 €183백만은 법정 연결 범위 미확인이고, 어류 구매량 35.599 t는 참치 구매량이 아니다',
     },
+  // ── ⅬⅩⅧ Jadran Tuna — 사용자 지정 Kali, Ugljan 본사 핀 ───────
+  { company: 'jadran', numeral: 'ⅬⅩⅧ', kind: 'hq', label: 'Jadran Tuna — 칼리 본사 핀', country: '크로아티아',
+    lat: 44.07, lng: 15.20,
+    basis: 'ⅬⅩⅧ · 사용자 지정 Kali, Ugljan · **좌표는 Kali 근사값이며 등기 주소의 정밀 좌표가 아니다**',
+    note: '보고서 §02의 등기 본점은 Biograd na Moru다. 이 핀은 사용자 지정 위치다. 면허 허용량·시장출하 배정·야생 입식 상한을 실제 생산·재고·입식량으로 읽지 않는다',
+    },
 ];
 
 /**

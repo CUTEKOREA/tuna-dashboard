@@ -65,6 +65,7 @@ import ppgroupRaw from '@/public/data/companies/ppgroup_figures_v1.json';
 import atunsaRaw from '@/public/data/companies/atunsa_figures_v1.json';
 import apsRaw from '@/public/data/companies/aps_figures_v1.json';
 import chancerelleRaw from '@/public/data/companies/chancerelle_figures_v1.json';
+import jadranRaw from '@/public/data/companies/jadran_figures_v1.json';
 // 품목 해부보고서. 그림이 없는 편은 빈 배열이다(오징어만 지표 타일·막대·도판이 있다).
 import pollockRaw from '@/public/data/companies/pollock_figures_v1.json';
 import octopusRaw from '@/public/data/companies/octopus_figures_v1.json';
@@ -183,6 +184,7 @@ const INTAKES: Record<string, Intake> = {
   atunsa: atunsaRaw as unknown as Intake,
   aps: apsRaw as unknown as Intake,
   chancerelle: chancerelleRaw as unknown as Intake,
+  jadran: jadranRaw as unknown as Intake,
   pollock: pollockRaw as unknown as Intake,
   octopus: octopusRaw as unknown as Intake,
   shrimp: shrimpRaw as unknown as Intake,
