@@ -20,7 +20,7 @@ TOTAL = re.compile(r'합계|합 계|총계|^계$')
 # 「자산총계」·「부채총계」·「자본총계」는 재무 요약표의 **항목 행**이지 그 열의 합이 아니다.
 # 항목을 세로로 놓고 연도를 가로로 놓은 표에서 이 행을 합계행으로 잡으면
 # 매출+영업이익+순이익 = 자산총계 라는 없는 등식을 검산하게 된다(ⅩⅩⅩⅣ 표3 실측 5건).
-ITEM_ROW = re.compile(r'^(자산|부채|자본)\s*총계$')
+ITEM_ROW = re.compile(r'^(자산|부채|자본)\s*(총계|합계)$')  # 「부채 합계」도 항목 행이다(ⅬⅩⅦ 표4: 자산·자본·부채 합계 3행)
 # 합계칸이 **다른 주석에서 가져온 모집단**일 때가 있다. 「매출 합계(주석 19)」처럼 출처를
 # 괄호로 밝힌 행은 위 행들(관계자 거래 매출 = 부분집합)의 합이 아니라 전체 매출이고,
 # 둘이 어긋난다는 것 자체가 본문이 말하려는 바다(ⅩⅬⅢ 표9 실측 2건).
@@ -99,6 +99,13 @@ def main() -> int:
                     continue
                 want = val(trow[c], eu)
                 got = [val(r[c], eu) for r in body]
+                # 합계칸에 단위가 붙어 있으면(「30.701 GT」) 본문 칸에서도 그 단위 앞 숫자를 읽는다.
+                # 「76,6 m · 2.863 GT」의 첫 숫자는 길이라 톤수 합과 비교하면 거짓 지적이 된다(ⅬⅩⅥ 표9).
+                u = re.search(r'[\d.,]\s*([A-Za-z]{1,4})\s*$', trow[c])
+                if u and all(u.group(1) in r[c] for r in body):
+                    unit = re.escape(u.group(1))
+                    got = [val(m.group(1), eu) if (m := re.search(r'([−-]?[\d.,]+)\s*' + unit + r'\b', r[c])) else None
+                           for r in body]
                 if want is None or any(g is None for g in got) or len(got) < 2:
                     continue
                 if abs(sum(got) - want) > max(1.0, abs(want) * 0.005):
