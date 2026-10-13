@@ -70,6 +70,8 @@
 | ⅬⅩⅣ | Parlevliet & Van der Plas(PP Group) (네덜란드 Katwijk · 연결 정점 PP Groep Katwijk B.V. KvK 28042057 · 2023 연결 매출 €1,54bn(Quote) · 참치 몫 7 · 12 · 14~17 %(계산, 지분법·비례연결·pro-forma 가정) · TOG 지분 2021 50 % → 2026 100 % · CFTO 운영 선망 13척, 등록 소유 확인 8척 · 가문 지분 정리 €452,5m, 재원 차입의 차주 법인 미상 · 한국 상장 참치 6사 공시 26건 중 0) | `ppgroup` | https://claude.ai/artifact/EcuYxZD84U66FYXHy5ATxf |
 | ⅬⅩⅤ | Atunsa (스페인 Bermeo · NIF A48064018 · Pevasa 주식 양도 공고·2026-09-30 매각 공증 보도(Faro de Vigo, B) · 인수 전 소속 기준 선망 12척·30.701 GT · 보급선 제외 · 지분율·대가 미공개) | `atunsa` | https://claude.ai/artifact/WYgv5hsssLGXSVLS1QWzXJ |
 
+| ⅬⅩⅥ | APS Alimentos Prosalud (코스타리카 · 푼타레나스 · 참치 캔 가공·브랜드 · 1975-10 참치 가공 개시는 회사 연혁(C) · 2029년 매출 +50 %는 회사 목표 · US$10m은 PET 공장 회사 발표 투자액, 새 공장 설계 예산과 구분) | `aps` | https://claude.ai/artifact/NkE3FouET5NQDaHTF3KPj8 |
+
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 
 ## ⚠️ 조회 API 가 실패할 때가 있다 (2026-09-09 사고)

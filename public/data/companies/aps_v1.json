@@ -1,0 +1,30 @@
+{
+ "_meta": {
+  "회사": "APS Alimentos Prosalud — Sardimar·Tonnino·Tesoro del Mar 포트폴리오를 가진 코스타리카 회사",
+  "국가": "코스타리카",
+  "업종": "참치 캔 가공·브랜드 · 펫푸드",
+  "종목": "APS Alimentos Prosalud(대외 정체성)",
+  "출처": "보고서 표지 · 코스타리카 TRA · PROCOMER · IATTC · FDA · INVIMA · El Financiero · Sardimar 회사 연혁",
+  "조사일": "2026-10"
+ },
+ "card": {
+  "numeral": "ⅬⅩⅥ",
+  "tagline": "푼타레나스의 참치 가공 기반, 펫푸드 진출과 회사의 성장 목표"
+ },
+ "stats": {
+  "참치가공개시": "1975-10",
+  "ElRoble개장": 2002,
+  "매출성장목표_pct": 50,
+  "PET투자_백만USD": 10,
+  "PET발표면적_m2": 2600,
+  "PET발표능력_캔일": 500000
+ },
+ "sourcenotes": [
+  "참치 가공 개시라는 회사 연혁이다. 설립등기 확인값과 구분한다(C, Sardimar).",
+  "El Roble 참치·정어리·어분 공장 개장이라는 회사 설명이다(C, Sardimar).",
+  "2029년까지의 회사 매출 성장 목표다. 기준연도·기준액은 기재가 없다(C, El Financiero가 전달).",
+  "PET 공장 회사 발표 투자액이다. 새 공장 설계 예산과 구분한다(C, PROCOMER가 전달).",
+  "PET 공장 발표 면적: 약 2.600 m². 2025-03-14 개장 행사 보도가 전한 회사 설명이다(C, PROCOMER).",
+  "PET 공장 발표 능력: 500.000 캔/일. 사료 캔 생산능력에 관한 회사 설명이다. 참치 처리능력이 아니다(C, PROCOMER)."
+ ]
+}

@@ -1005,6 +1005,21 @@ SPECS: dict[str, dict] = {
         },
         "drop": [],
     },
+    "aps": {
+        "src": "docs/evidence/company-aps-2026-10/보고서.html",
+        # Atunsa·PP Group과 같이 16절을 두 절씩 8단계에 접는다.
+        "stages": {
+            "s1": "c01", "s2": "c01",
+            "s3": "c02", "s4": "c02",
+            "s5": "c03", "s6": "c03",
+            "s7": "c04", "s8": "c04",
+            "s9": "c05", "s10": "c05",
+            "s11": "c06", "s12": "c06",
+            "s13": "c07", "s14": "c07",
+            "s15": "c08", "s16": "c08",
+        },
+        "drop": [],
+    },
     "pollock": {
         "src": "docs/evidence/industry-pollock-2026-10/보고서.html",
         # 해부보고서 17절을 시장 이해의 아홉 단계에 접는다. 부록 sA·sB·sC는
