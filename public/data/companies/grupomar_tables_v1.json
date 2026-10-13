@@ -183,7 +183,7 @@
    ],
    "sid": "s2",
    "section": "02 / 법인등록부마다 다른 법인 이름, 지주 이름은 상업 DB에 있다",
-   "ord": 1049,
+   "ord": 3821,
    "caption": "Grupomar 관련 법인·사업장과 등록부 기재 역할 (IATTC·EU TRACES·IMPI·DENUE 등)",
    "note": "EU TRACES는 만사니요 가공장의 승인 법인을 Marindustrias로 적는다. INEGI DENUE는 같은 단지의 수산물 통조림 사업장을 Suarcrem Holding이라는 이름으로 올리고, 종사자 규모를 251명 이상 구간에 넣는다.",
    "stage": "c01"
