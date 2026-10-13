@@ -68,37 +68,37 @@
     {
      "kind": "para",
      "text": "Sealaska가 2020년 NESI를 지주 아래 넣을 때의 대가는 SFIH 2021년 그룹계정 표에서 현금 £74.882k, 대출어음 £3.907k, 조건부 대가 £2.779k로 나뉜다. 합계는 £81.568k다. 같은 계정의 본문은 한 차례 「total consideration of £81,491,000」(총 취득 대가 £81.491k)이라고 적어 £77k 차이가 난다. 차이의 원인을 설명한 문서는 없다. 취득가격 배분에는 영업권 £44.979k와 식별 무형자산 £14.609k가 잡혔다. 식별 무형자산은 상표 £4.504k와 개발 기술 £10.105k로 나뉜다.",
-     "ord": 2546
+     "ord": 5654
     },
     {
      "kind": "para",
      "text": "2022-12-06 주주 명부의 보통주 총수는 758.896주다. SFIH가 717.894주를 보유하고, 소수주주 41.002주는 창업자 36.447주와 Hill Farm Holdings 4.555주로 나뉜다. 비율은 차례로 94,6 %, 4,80 %, 0,60 %다. Hill Farm Holdings로의 이전은 등기상 사실이며, 창업 가족 측 지분으로 보는 것은 관계를 토대로 한 해석이다. 이후 제출된 CS01은 「with no updates」(변경 사항 없음)로 기록됐다.",
-     "ord": 2876
+     "ord": 5984
     },
     {
      "kind": "para",
      "text": "SFIH는 NESI와 Normarine의 소수주주에게 장래 매도권(put option)을 부여했고, 2025년 말 관련 부채는 £2.048k로 2024년 £3.343k보다 낮다. 가격식은 「contractual multiple of future year's forecast EBITDA」(다음 해 예상 EBITDA에 계약상 배수를 적용)라고만 적혔다. 이 부채는 지주 그룹의 계약상 의무이고, 공개된 NESI 주주 명부의 지분 구조는 그대로다.",
-     "ord": 3173
+     "ord": 6281
     },
     {
      "kind": "para",
      "text": "2026년 거래에서 주식이 넘어간 법인은 지주 SFIH다. SFIH의 PSC02는 Sojitz Corporation을 새 지배자로 적고, 双日의 발표는 SFIH 「全株式」(전 주식)를 취득했다고 밝혔다. Sealaska도 「Sealaska Corporation's subsidiary, Woocheen, has divested of its interests in European seafood with the sale of Sealaska Foods International Holdings Limited」(사업 단위 Woocheen이 SFIH 매각으로 유럽 수산 지분을 처분)라고 발표했다. 양쪽 발표에는 인수가가 없다. Atuna의 「full ownership of Sealaska Foods International Holdings (SFIH)」(SFIH 전 지분 소유) 역시 취득 대상이 지주임을 드러낸다.",
-     "ord": 3432
+     "ord": 6540
     },
     {
      "kind": "para",
      "text": "双日의 전 주식 취득 발표는 SFIH를 대상으로 한다. NESI의 소수주주 몫은 창업자 4,80 %와 Hill Farm Holdings 0,60 %다.",
-     "ord": 4057
+     "ord": 7165
     },
     {
      "kind": "para",
      "text": "거래일의 SFIH SH01에는 신주 100주에 주당 £623.685,5525, 합계 £62.368.555,25가 현금 납입된 것으로 적혔고, 배정 대상은 기재되지 않았다. Sealaska와 双日의 발표에는 매매대가가 없고, SH01의 금액은 기존 주식의 매매대가가 아닌 신주 납입 기록이다.",
-     "ord": 4173
+     "ord": 7281
     },
     {
      "kind": "para",
      "text": "현재 NESI 등기 이사는 5명이다. 영국 국적 이사 2명이 남았고, 2026-10-01 双日 측 이사 3명이 선임됐다. 같은 날 기존 Sealaska 측 이사 3명이 사임했으며 그 안에는 법인 이사 Sealaska Foods, LLC도 있었다. 지배권 변경과 같은 날 NESI 이사회가 교체됐다.",
-     "ord": 4346
+     "ord": 7454
     }
    ],
    "stage": "c01"
