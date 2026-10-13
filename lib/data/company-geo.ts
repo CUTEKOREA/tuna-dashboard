@@ -341,6 +341,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅩⅥ · 사용자 지정 본사 Barranca, Puntarenas · **좌표는 Barranca 근사값이며 등기 주소의 정밀 좌표가 아니다**',
     note: '참치 캔 가공·브랜드 · Sardimar·Tonnino·Tesoro del Mar · PET 공장 회사 발표 투자액 US$10m · 2029년까지 매출 +50 %는 회사 목표(C), 실적이 아니다',
     },
+  // ── ⅬⅩⅦ Chancerelle — Douarnenez 본사 ───────────────────
+  { company: 'chancerelle', numeral: 'ⅬⅩⅦ', kind: 'hq', label: 'Chancerelle — 두아르느네 본사', country: '프랑스',
+    lat: 48.09, lng: -4.33,
+    basis: 'ⅬⅩⅦ · 사용자 지정 Chancerelle 본사 Douarnenez · **좌표는 Douarnenez 근사값이며 등기 주소의 정밀 좌표가 아니다**',
+    note: 'Chancerelle·La Belle-Îloise·Gonidec 비교 보고서의 Chancerelle 본사 핀이다. 세 회사의 공동 본사로 읽지 않는다. Chancerelle의 2025년 회사 설명 매출 €183백만은 법정 연결 범위 미확인이고, 어류 구매량 35.599 t는 참치 구매량이 아니다',
+    },
 ];
 
 /**

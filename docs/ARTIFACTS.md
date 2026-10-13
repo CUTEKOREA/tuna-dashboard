@@ -71,6 +71,7 @@
 | ⅬⅩⅤ | Atunsa (스페인 Bermeo · NIF A48064018 · Pevasa 주식 양도 공고·2026-09-30 매각 공증 보도(Faro de Vigo, B) · 인수 전 소속 기준 선망 12척·30.701 GT · 보급선 제외 · 지분율·대가 미공개) | `atunsa` | https://claude.ai/artifact/WYgv5hsssLGXSVLS1QWzXJ |
 
 | ⅬⅩⅥ | APS Alimentos Prosalud (코스타리카 · 푼타레나스 · 참치 캔 가공·브랜드 · 1975-10 참치 가공 개시는 회사 연혁(C) · 2029년 매출 +50 %는 회사 목표 · US$10m은 PET 공장 회사 발표 투자액, 새 공장 설계 예산과 구분) | `aps` | https://claude.ai/artifact/NkE3FouET5NQDaHTF3KPj8 |
+| ⅬⅩⅦ | Chancerelle · La Belle-Îloise · Gonidec (프랑스 · 브르타뉴 두아르느네 · 프랑스 제조 기반을 가진 세 통조림사의 사업 구조와 참치 매출의 분모 · Chancerelle의 2025년 회사 설명 매출 €183백만, 법정 연결 범위 미확인 · 어류 구매량 35.599 t, 참치 구매량과 구분) | `chancerelle` | https://claude.ai/artifact/5XMJgx5XAs9iYHaVzgUh2L |
 
 그 밖 — 보고서 직판 랜딩 기획서 https://claude.ai/code/artifact/0f98e5a5-686b-4f47-b661-be5aa852f913
 

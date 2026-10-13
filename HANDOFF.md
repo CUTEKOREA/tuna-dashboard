@@ -1,3 +1,11 @@
+> 📝 **2026-10-13 KST — 기업 해부 ⅬⅩⅦ Chancerelle · La Belle-Îloise · Gonidec 카드 수정안** [Codex]:
+> - 완료된 것: APS 커밋 fbbf6e5a 구조에 맞춘 읽기 전용 수정안. 카드·핵심 JSON 수치는 발행본 표지에서만 채택. 나라 표기 「프랑스 · 브르타뉴 두아르느네」. 기존 fr.svg 사용.
+> - 본사 핀: Chancerelle의 Douarnenez 근사 좌표 48.09, -4.33. 세 회사 공동 본사라는 뜻이 아니다.
+> - 금칙: ~/tunawork/chancerelle/build/killed.py 확인값은 빈 목록([]). PP Group 방식의 prose 테스트에 빈 목록을 그대로 등록하는 안.
+> - 다음 단계: 수정안 적용 → 표·서술·그림·원문 HTML·lineage 생성 → 독립 검증·로컬 QA. 이번 수정안 작성에서는 파일 변경·생성·테스트·빌드·배포 미실행.
+> - Artifact https://claude.ai/artifact/5XMJgx5XAs9iYHaVzgUh2L . 정본 ~/tunawork/chancerelle/build.
+> - 마지막 업데이트: 2026-10-13 KST [Codex]
+
 > 📝 **2026-10-13 KST — 기업 해부 ⅬⅩⅥ APS Alimentos Prosalud 카드 수정안** [Codex]:
 > - 완료된 것: Atunsa 커밋 802541cb 구조에 맞춘 읽기 전용 수정안. 카드 문구·핵심 JSON 수치는 발행본 표지에서만 채택. 나라 표기 「코스타리카 · 푼타레나스」. 금칙 4개 전량을 PP Group 방식의 prose 테스트에 등록하는 안.
 > - 본사 핀: 사용자 지정 Barranca, Puntarenas 근사 좌표 9.99, -84.73. 국기 cr.svg는 미존재 확인 후 직접 작성하는 안.
