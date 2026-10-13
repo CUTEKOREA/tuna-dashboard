@@ -6,6 +6,15 @@
  },
  "figures": [
   {
+   "stage": "c02",
+   "sid": "s2",
+   "kind": "chart",
+   "ord": 240,
+   "caption": "2026년 9월 기준 지분 사슬 표에 따른 PP Frankrijk B.V.·PP THON·TOG·CCO의 소유 관계다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 360\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"PP Frankrijk B.V.가 PP THON의 단독사원이고 PP THON이 TOG의 단독사원이며 TOG가 CCO 지분 99,9989 %를 보유한다. 2026년 9월 기준.\"><title>TOG 지분 사슬</title><defs><marker id=\"tog-a\" markerWidth=\"8\" markerHeight=\"6\" refX=\"7\" refY=\"3\" orient=\"auto\"><polygon points=\"0 0, 8 3, 0 6\" fill=\"#7a828b\"/></marker><marker id=\"tog-ac\" markerWidth=\"8\" markerHeight=\"6\" refX=\"7\" refY=\"3\" orient=\"auto\"><polygon points=\"0 0, 8 3, 0 6\" fill=\"#B2503A\"/></marker></defs><line x1=\"340\" y1=\"52\" x2=\"340\" y2=\"84\" stroke=\"#7a828b\" stroke-width=\"1.2\" marker-end=\"url(#tog-a)\"/><text x=\"350\" y=\"73\" text-anchor=\"start\" font-size=\"13\" font-weight=\"700\" fill=\"#4A7090\">단독사원</text><line x1=\"340\" y1=\"124\" x2=\"340\" y2=\"156\" stroke=\"#B2503A\" stroke-width=\"1.6\" marker-end=\"url(#tog-ac)\"/><text x=\"350\" y=\"145\" text-anchor=\"start\" font-size=\"13\" font-weight=\"700\" fill=\"#B2503A\">단독사원</text><line x1=\"340\" y1=\"204\" x2=\"340\" y2=\"236\" stroke=\"#7a828b\" stroke-width=\"1.2\"/><line x1=\"340\" y1=\"236\" x2=\"340\" y2=\"268\" stroke=\"#7a828b\" stroke-width=\"1.2\" marker-end=\"url(#tog-a)\"/><text x=\"350\" y=\"257\" text-anchor=\"start\" font-size=\"13\" font-weight=\"700\" fill=\"#4A7090\">99,9989 %</text><rect x=\"254\" y=\"12\" width=\"172\" height=\"40\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#1B3B52\" stroke-width=\"1\"/><text x=\"340\" y=\"37\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"600\" fill=\"#14181D\">PP Frankrijk B.V.</text><rect x=\"284\" y=\"84\" width=\"112\" height=\"40\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#1B3B52\" stroke-width=\"1\"/><text x=\"340\" y=\"109\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"600\" fill=\"#14181D\">PP THON</text><rect x=\"264\" y=\"156\" width=\"152\" height=\"48\" rx=\"6\" fill=\"#F8EEEA\" stroke=\"#B2503A\" stroke-width=\"1.6\"/><text x=\"340\" y=\"185\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"700\" fill=\"#14181D\">TOG</text><rect x=\"265\" y=\"268\" width=\"150\" height=\"40\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#1B3B52\" stroke-width=\"1\"/><text x=\"340\" y=\"293\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"600\" fill=\"#14181D\">CCO</text><line x1=\"24\" y1=\"328\" x2=\"656\" y2=\"328\" stroke=\"#d5d7d2\" stroke-width=\"0.8\"/><line x1=\"24\" y1=\"348\" x2=\"56\" y2=\"348\" stroke=\"#7a828b\" stroke-width=\"1.2\"/><text x=\"64\" y=\"352\" text-anchor=\"start\" font-size=\"12\" font-weight=\"400\" fill=\"#7a828b\">보유 지분 (화살표: 주주 → 회사)</text><text x=\"656\" y=\"352\" text-anchor=\"end\" font-size=\"12\" font-weight=\"400\" fill=\"#7a828b\">2026년 9월 기준</text></svg>"
+  },
+  {
    "stage": "c06",
    "sid": "s10",
    "kind": "chart",
