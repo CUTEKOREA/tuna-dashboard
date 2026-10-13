@@ -142,6 +142,8 @@ describe('표 값 — 원문 첫 행 대조', () => {
     expect(t!.head.slice(0, 2)).toEqual(['연도', '활·신선 0307.91 · 전체 물량']);
     expect(t!.rows).toHaveLength(6);
     expect(t!.rows[0].slice(0, 2)).toEqual(['2020', '1,836']);
+    expect(t!.head.at(-1)).toBe('조제 1605.59 · 금액');
+    expect(t!.rows[0].at(-1)).toBe('1,041');
   });
 
   it('골뱅이 08절 두 줄 머리글: 종 판정 두 칸, 첫 행은 참골뱅이다', () => {
@@ -150,6 +152,8 @@ describe('표 값 — 원문 첫 행 대조', () => {
     expect(t!.head[1]).toBe('제품명 기준 · 생산량(kg)');
     expect(t!.rows).toHaveLength(6);
     expect(t!.rows[0].slice(0, 2)).toEqual(['참골뱅이(유럽물레고둥·물레고둥)', '0']);
+    expect(t!.head.at(-1)).toBe('원재료 기준 · 비중(%)');
+    expect(t!.rows[0].at(-1)).toBe('61.72');
   });
 
   it('참치 양식 03절 수입 연도 표: 첫 행 2015년 3,147.3톤', () => {
