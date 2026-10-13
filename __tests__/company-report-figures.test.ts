@@ -168,8 +168,8 @@ describe('품목 해부보고서 그림', () => {
     expect(inFigs(/<img /g)).toBe(count(/<img /g));
   });
 
-  // 고등어·참치 양식·골뱅이 조달: 표지(header) 밖 본문에 figure·지표 타일·막대가 없다.
-  it.each(['pollock', 'octopus', 'shrimp', 'tuna', 'mackerel', 'tunafarm', 'whelk'])('%s - 원문에 그림이 없어 0개다', (key) => {
+  // 고등어·참치 양식: 표지(header) 밖 본문에 figure·지표 타일·막대가 없다.
+  it.each(['pollock', 'octopus', 'shrimp', 'tuna', 'mackerel', 'tunafarm'])('%s - 원문에 그림이 없어 0개다', (key) => {
     const doc = html(key);
     expect(doc).not.toMatch(/<figure[\s>]|class="(metrics|bars)"/);
     expect(reportFigures(key)).toEqual([]);
@@ -187,6 +187,16 @@ describe('품목 해부보고서 그림', () => {
     const sec = /<section id="s01"[^>]*>/.exec(doc)!;
     const at = sec.index + sec[0].length + figs[0].ord;
     expect(doc.slice(at, at + 30)).toMatch(/^<div class="metrics"/);
+  });
+
+  it('골뱅이 5판 원문의 지표 묶음 1(타일 4)이 01절 자리에 올라온다', () => {
+    const doc = html('whelk');
+    const figs = reportFigures('whelk');
+    const count = (re: RegExp) => (doc.match(re) ?? []).length;
+    expect(count(/class="metrics"/g)).toBe(1);
+    expect(figs).toHaveLength(1);
+    expect(figs[0]).toMatchObject({ kind: 'html', sid: 's01', stage: 's01' });
+    expect((figs[0].html ?? '').match(/class="metric"/g)).toHaveLength(count(/class="metric"/g));
   });
 
   it('조각에 base64 가 없고 이미지는 public 아래 정적 URL 이다', () => {

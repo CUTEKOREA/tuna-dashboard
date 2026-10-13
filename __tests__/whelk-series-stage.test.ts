@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { WHELK_CHART_SLOTS } from '@/components/market-understanding/WhelkIndustryDashboard';
+import { WHELK_CHART_SLOTS, WHELK_CHART_SLOT_COUNT } from '@/components/market-understanding/WhelkIndustryDashboard';
 import {
   WHELK_BRIEFING_POINTS,
   WHELK_NARRATIVES,
@@ -211,8 +211,8 @@ describe('골뱅이 06·07단계 - 명의·위판 (보고서 제4판)', () => {
     expect(tX).toContain('Bolinus brandaris');
     expect(tX).not.toContain('보고서가 집계한 7건의 사유는 카드뮴·납이다');
     expect(tX).not.toContain('유럽연합 통보는 모두 카드뮴과 납');
-    // 생산 명부는 조달 보고서 Ⅱ·Ⅲ장이 붙은 03단계 근거로 옮겼다.
-    const s08Html = (WHELK_CHART_SLOTS.s03 ?? []).filter((s) => s.title === '2025 생산 상위 20곳')
+    // 생산 명부는 해부보고서 5판의 가공 단계(05) 근거에 놓인다.
+    const s08Html = (WHELK_CHART_SLOTS.s05 ?? []).filter((s) => s.title === '2025 생산 상위 20곳')
       .map((s) => `${s.caption}\n${renderToStaticMarkup(React.createElement(React.Fragment, null, s.render()))}`)
       .join('\n');
     expect(s08Html).toContain('2024·2025 생산량(kg)');
@@ -220,8 +220,8 @@ describe('골뱅이 06·07단계 - 명의·위판 (보고서 제4판)', () => {
   });
 
   it('명의·위판 표가 법인명을 그린다', () => {
-    // 명의·위판 표는 03(산지와 제조소)·04(수입자) 단계 근거로 옮겼다.
-    const html = [...(WHELK_CHART_SLOTS.s03 ?? []), ...(WHELK_CHART_SLOTS.s04 ?? [])]
+    // 명의·위판·생산 표는 5판의 03(산지와 수출)·04(수입 명의)·05(가공) 단계 근거에 놓인다.
+    const html = [...(WHELK_CHART_SLOTS.s03 ?? []), ...(WHELK_CHART_SLOTS.s04 ?? []), ...(WHELK_CHART_SLOTS.s05 ?? []), ...(WHELK_CHART_SLOTS.s07 ?? [])]
       .map((s) => renderToStaticMarkup(React.createElement(React.Fragment, null, s.render())))
       .join('');
     for (const probe of [
@@ -256,5 +256,13 @@ describe('골뱅이 4판 - 흑해 세번 이동과 반대편 창구', () => {
     expect(t6).toContain('소비기한이 남은 신고만');
     expect(t6).not.toMatch(/신고[^.]{0,20}(급증|폭증)/);
     expect(WHELK_BRIEFING_POINTS.some((b) => b.text.includes('13건'))).toBe(true);
+  });
+});
+
+describe('골뱅이 5판 단계 재배치', () => {
+  it('옛 단계의 위젯이 하나도 빠지거나 겹치지 않고 새 단계에 놓인다', () => {
+    const all = Object.values(WHELK_CHART_SLOTS).flat();
+    expect(all).toHaveLength(WHELK_CHART_SLOT_COUNT);
+    expect(new Set(all.map((s) => s.title)).size).toBe(all.length);
   });
 });

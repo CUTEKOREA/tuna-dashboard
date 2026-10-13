@@ -107,7 +107,7 @@ describe.each([
   // [키, 본문 표 수, 표가 붙는 단계(골뱅이 요지 단계는 표가 없다)]
   ['mackerel', 49, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 'x01']],
   ['tunafarm', 15, ['s02', 's03', 's04', 's05', 's06', 's08', 's10', 's12', 's13', 's14']],
-  ['whelk', 17, ['s02', 's03', 's04']],
+  ['whelk', 25, ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 'x01']],
 ] as const)('%s 원문 표 추출', (key, count, stages) => {
   const tables = reportTables(key);
 
@@ -136,22 +136,24 @@ describe.each([
 });
 
 describe('표 값 — 원문 첫 행 대조', () => {
-  it('골뱅이 Ⅰ-1 두 줄 머리글: 연도 아래 톤·$/kg 이 열 이름에 붙고 첫 행은 냉동 바스켓 세번이다', () => {
-    const t = reportTables('whelk').find((table) => table.title === 'Ⅰ-1. 세번별 물량과 단가');
+  it('골뱅이 07절 두 줄 머리글: 세번 아래 물량·금액이 열 이름에 붙고 첫 행은 2020년이다', () => {
+    const t = reportTables('whelk').find((table) => table.sid === 's07');
     expect(t).toBeDefined();
-    expect(t!.head.slice(0, 3)).toEqual(['세번', '2021 · 톤', '2021 · $/kg']);
-    expect(t!.head.at(-1)).toBe('2026.1~8 · $/kg');
-    expect(t!.rows).toHaveLength(5);
-    expect(t!.rows[0].slice(0, 3)).toEqual(['냉동 기타 연체동물 (0307.92-9000 · 골뱅이 바스켓)', '1,929', '9.77']);
-    expect(t!.rows[0].at(-1)).toBe('8.03');
+    expect(t!.head.slice(0, 2)).toEqual(['연도', '활·신선 0307.91 · 전체 물량']);
+    expect(t!.rows).toHaveLength(6);
+    expect(t!.rows[0].slice(0, 2)).toEqual(['2020', '1,836']);
+    expect(t!.head.at(-1)).toBe('조제 1605.59 · 금액');
+    expect(t!.rows[0].at(-1)).toBe('1,041');
   });
 
-  it('골뱅이 Ⅰ-2 두 줄 머리글: 첫 행은 영국이다', () => {
-    const t = reportTables('whelk').find((table) => table.title.startsWith('Ⅰ-2. 원산지별 물량과 단가'));
+  it('골뱅이 08절 두 줄 머리글: 종 판정 두 칸, 첫 행은 참골뱅이다', () => {
+    const t = reportTables('whelk').find((table) => table.sid === 's08' && table.head[0] === '종 판정');
     expect(t).toBeDefined();
-    expect(t!.head[1]).toBe('2021 · 톤');
-    expect(t!.rows).toHaveLength(8);
-    expect(t!.rows[0].slice(0, 3)).toEqual(['영국', '3,887', '11.94']);
+    expect(t!.head[1]).toBe('제품명 기준 · 생산량(kg)');
+    expect(t!.rows).toHaveLength(6);
+    expect(t!.rows[0].slice(0, 2)).toEqual(['참골뱅이(유럽물레고둥·물레고둥)', '0']);
+    expect(t!.head.at(-1)).toBe('원재료 기준 · 비중(%)');
+    expect(t!.rows[0].at(-1)).toBe('61.72');
   });
 
   it('참치 양식 03절 수입 연도 표: 첫 행 2015년 3,147.3톤', () => {

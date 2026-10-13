@@ -602,7 +602,7 @@ describe('연육 최종 해부보고서 서술 추출 (위젯 없는 화면)', (
 
 /**
  * 고등어·참치 양식·골뱅이 — 손 작성 서술을 걷고 원문 추출로 바꾼 세 화면(2026-10-12).
- * 골뱅이 조달은 절 id 가 없어 h2 단위로 자른다(report_tables.sections).
+ * 골뱅이는 해부보고서 5판(표준 틀 15절)으로 바뀌어 여덟 단계에 접는다(2026-10-13).
  * 참치 양식은 해부보고서 「한국 시장의 양식 참다랑어」(표준 틀 15절)로 바뀌어 1절=1단계이고 손 작성 단계가 없다.
  */
 const BODY = (n: number) => Array.from({ length: n }, (_, i) => `s${String(i + 1).padStart(2, '0')}`);
@@ -625,9 +625,9 @@ const THREE: Array<{
     narratives: TUNAFARM_REPORT_NARRATIVES, hand: BODY(15).map((key) => ({ key })), brief: TUNAFARM_REPORT_BRIEFING, hero: TUNAFARM_HERO_KPIS,
   },
   {
-    key: 'whelk', 이름: '골뱅이', sections: 5, tables: 17, briefing: 4,
-    stages: ['s01', 's02', 's03', 's04'],
-    groups: { s03: ['s03', 's04'], s04: ['s05'] },
+    key: 'whelk', 이름: '골뱅이', sections: 15, tables: 25, briefing: 15,
+    stages: ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 'x01'],
+    groups: { s01: ['s01', 's02'], s03: ['s05', 's07'], s05: ['s08', 's09', 's10', 's11'], x01: ['s14', 's15'] },
     narratives: WHELK_REPORT_NARRATIVES, hand: WHELK_STAGES, brief: WHELK_REPORT_BRIEFING, hero: WHELK_HERO_KPIS,
   },
 ];
@@ -697,7 +697,8 @@ describe.each(THREE)('$key 원문 서술 추출 (손 작성 서술 대체)', (c)
     }
 
     expect(tables).toHaveLength(c.tables);
-    expect(figures).toEqual([]);
+    // 골뱅이 5판은 요약 절에 지표 묶음 1개(타일 4)가 있다.
+    expect(figures).toHaveLength(c.key === 'whelk' ? 1 : 0);
     expect(c.brief).toHaveLength(c.briefing);
     expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThanOrEqual(c.sections);
     const missing = visible
@@ -760,9 +761,10 @@ describe('품목 해부보고서 장 제목·그림 자리', () => {
     expect(slots).toHaveLength(tables.length + reportFigures(key).length);
   });
 
-  it('오징어 그림 14개가 화면 흐름에 오른다(다른 넷과 고등어·참치 양식·골뱅이는 원문에 그림이 없다)', () => {
+  it('오징어 그림 14개가 화면 흐름에 오른다(다른 넷과 고등어·참치 양식은 원문에 그림이 없다, 골뱅이는 지표 묶음 1)', () => {
     expect(reportFigures('squid')).toHaveLength(14);
-    for (const key of ['pollock', 'octopus', 'shrimp', 'tuna', 'mackerel', 'tunafarm', 'whelk']) expect(reportFigures(key)).toEqual([]);
+    for (const key of ['pollock', 'octopus', 'shrimp', 'tuna', 'mackerel', 'tunafarm']) expect(reportFigures(key)).toEqual([]);
+    expect(reportFigures('whelk')).toHaveLength(1);
   });
 });
 

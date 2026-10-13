@@ -117,8 +117,8 @@ describe('47품목 레지스트리 (실제 48 — 발주서 분류 목록 합)',
     ]);
   });
 
-  it('표지 타일이 없는 골뱅이 카드는 원문 요지 첫 단락의 수치 2개를 쓴다', () => {
-    expect(Object.keys(BODY_CARD_FACTS).sort()).toEqual(['whelk']);
+  it('표지 타일이 없는 품목만 원문 요지 첫 단락의 수치를 쓴다(골뱅이는 5판부터 표지 타일)', () => {
+    expect(Object.keys(BODY_CARD_FACTS).sort()).toEqual([]);
     for (const [key, facts] of Object.entries(BODY_CARD_FACTS)) {
       const item = INDUSTRY_ITEMS.find((i) => i.key === key)!;
       expect(item.facts, key).toEqual([]);
