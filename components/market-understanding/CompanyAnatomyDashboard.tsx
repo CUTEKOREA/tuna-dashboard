@@ -414,6 +414,10 @@ import {
   company as atCompany, fleet as atFleet, land as atLand,
 } from '@/lib/data/company-atunsa';
 import {
+  apsMeta, apsCard, apsSourceNotes,
+  company as apsCompany, expansion as apsExpansion,
+} from '@/lib/data/company-aps';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -2706,6 +2710,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   키리바시: { flagSrc: '/flags/ki.svg', backInk: '#1b2733' },
   프랑스: { flagSrc: '/flags/fr.svg', backInk: '#1b2a3f' },
   네덜란드: { flagSrc: '/flags/nl.svg', backInk: '#1b2a3f' },
+  코스타리카: { flagSrc: '/flags/cr.svg', backInk: '#1b2a3f' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -5894,6 +5899,51 @@ const ATUNSA_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const APS_ACCENT = '#154e77';
+const APS_C = apsCompany();
+const APS_E = apsExpansion();
+
+// 카드·히어로 문구는 발행본 표지 그대로다. 회사 설명·목표와 확인 실적을 구분한다.
+const APS_PROCESSING = '참치 가공 개시라는 회사 연혁이다. 설립등기 확인값과 구분한다(C, Sardimar).';
+const APS_ROBLE = 'El Roble 참치·정어리·어분 공장 개장이라는 회사 설명이다(C, Sardimar).';
+const APS_GROWTH = '2029년까지의 회사 매출 성장 목표다. 기준연도·기준액은 기재가 없다(C, El Financiero가 전달).';
+const APS_PET = 'PET 공장 회사 발표 투자액이다. 새 공장 설계 예산과 구분한다(C, PROCOMER가 전달).';
+
+const APS_SPEC: CommoditySpec = {
+  key: 'company-anatomy-aps',
+  title: '기업 해부: APS Alimentos Prosalud',
+  subtitle: '푼타레나스의 참치 가공 기반과 Sardimar·Tonnino·Tesoro del Mar 포트폴리오를 가진 코스타리카 회사가, 펫푸드 진출에 이어 APS라는 새 정체성과 2029년 성장 목표를 제시했다. 확인된 법인·제품·규제 기록과 회사가 말하는 확장 규모 사이의 간격을 해부한다. PET 공장의 가동 설명과 새 공장 설계 구상은 진행 단계가 다르다. 설계 공장의 제품 구성은 해당 보도에 제시되지 않았다.',
+  accent: APS_ACCENT,
+  primaryKpi: {
+    label: APS_GROWTH,
+    value: APS_E.성장목표,
+    text: `+${APS_E.성장목표}`,
+    unit: '(%)',
+    accent: APS_ACCENT,
+  },
+  secondaryKpis: [
+    { label: APS_PET, value: APS_E.PET투자백만달러, text: `US$${APS_E.PET투자백만달러}m`, unit: '(회사 발표 투자액)' },
+    { label: 'PET 공장 발표 면적', value: APS_E.PET면적, text: `약 ${euNum(APS_E.PET면적)}`, unit: '(m² · 회사 설명, C)' },
+    { label: 'PET 공장 발표 능력', value: APS_E.PET캔일, text: euNum(APS_E.PET캔일), unit: '(캔/일 · 사료 캔, 참치 처리능력이 아니다)' },
+  ],
+  stripItems: [
+    { now: true, eyebrow: '참치 가공 개시', title: APS_C.참치가공개시, body: APS_PROCESSING },
+    { eyebrow: 'El Roble 공장 개장', title: String(APS_C.ElRoble개장), body: APS_ROBLE },
+    { eyebrow: '회사 매출 성장 목표', title: `+${APS_E.성장목표} %`, body: APS_GROWTH },
+    { eyebrow: 'PET 공장 발표 투자액', title: `US$${APS_E.PET투자백만달러}m`, body: APS_PET },
+  ],
+  briefing: proseBriefing('aps'),
+  narratives: inlineReport('aps', proseStages('aps')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: apsSourceNotes,
+  sourceMeta: [
+    `${apsMeta.회사} · ${apsMeta.국가} · ${apsMeta.업종}`,
+    `출처 ${apsMeta.출처}`,
+    `조사 ${apsMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -7164,6 +7214,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '선단', value: `${euNum(AT_F.선망GT)} GT — ${AT_FLEET}` },
     ],
   },
+  {
+    key: 'aps',
+    numeral: apsCard.numeral,
+    name: 'APS Alimentos Prosalud',
+    country: '코스타리카 · 푼타레나스',
+    tagline: apsCard.tagline,
+    ...FLAG.코스타리카,
+    stats: [
+      { label: '가공 개시', value: `${APS_C.참치가공개시} — ${APS_PROCESSING}` },
+      { label: '성장 목표', value: `+${APS_E.성장목표} % — ${APS_GROWTH}` },
+      { label: 'PET 투자', value: `US$${APS_E.PET투자백만달러}m — ${APS_PET}` },
+    ],
+  },
 
 
 
@@ -7258,6 +7321,7 @@ export default function CompanyAnatomyDashboard({
     nesi: NESI_SPEC,
     ppgroup: PPGROUP_SPEC,
     atunsa: ATUNSA_SPEC,
+    aps: APS_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

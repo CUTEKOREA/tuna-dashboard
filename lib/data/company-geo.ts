@@ -335,6 +335,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅩⅤ · 발행본 §02·§08 의 법정 주소 Landabaso, parcela 7 nº 3B, Bermeo · **좌표는 Bermeo 근사값**',
     note: '1972년 설립 · NIF A48064018 · Pevasa 주식 양도 공고와 2026-09-30 매각 공증 보도(Faro de Vigo, B) · 지분율·대가 미공개 · 인수 전 소속 기준 선망 12척·30.701 GT(Atunsa 7·Pevasa 5), 보급선 제외',
     },
+  // ── ⅬⅩⅥ APS — Barranca, Puntarenas 본사 ───────────────────
+  { company: 'aps', numeral: 'ⅬⅩⅥ', kind: 'hq', label: 'APS — 푼타레나스 바랑카 본사', country: '코스타리카',
+    lat: 9.99, lng: -84.73,
+    basis: 'ⅬⅩⅥ · 사용자 지정 본사 Barranca, Puntarenas · **좌표는 Barranca 근사값이며 등기 주소의 정밀 좌표가 아니다**',
+    note: '참치 캔 가공·브랜드 · Sardimar·Tonnino·Tesoro del Mar · PET 공장 회사 발표 투자액 US$10m · 2029년까지 매출 +50 %는 회사 목표(C), 실적이 아니다',
+    },
 ];
 
 /**

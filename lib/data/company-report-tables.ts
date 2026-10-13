@@ -63,6 +63,7 @@ import sojitzRaw from '@/public/data/companies/sojitz_tables_v1.json';
 import nesiRaw from '@/public/data/companies/nesi_tables_v1.json';
 import ppgroupRaw from '@/public/data/companies/ppgroup_tables_v1.json';
 import atunsaRaw from '@/public/data/companies/atunsa_tables_v1.json';
+import apsRaw from '@/public/data/companies/aps_tables_v1.json';
 import pollockRaw from '@/public/data/companies/pollock_tables_v1.json';
 import octopusRaw from '@/public/data/companies/octopus_tables_v1.json';
 import shrimpRaw from '@/public/data/companies/shrimp_tables_v1.json';
@@ -177,6 +178,7 @@ const INTAKES: Record<string, Intake> = {
   nesi: nesiRaw as unknown as Intake,
   ppgroup: ppgroupRaw as unknown as Intake,
   atunsa: atunsaRaw as unknown as Intake,
+  aps: apsRaw as unknown as Intake,
   pollock: pollockRaw as unknown as Intake,
   octopus: octopusRaw as unknown as Intake,
   shrimp: shrimpRaw as unknown as Intake,

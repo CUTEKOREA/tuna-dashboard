@@ -1,6 +1,8 @@
 # 기업 해부 국기 이미지
 
 출처: [hampusborgos/country-flags](https://github.com/hampusborgos/country-flags).
+
+예외: `cr.svg` 출처는 「직접 작성」. 코스타리카의 문장 없는 단순 국기로, 파랑·흰색·빨강·흰색·파랑 가로 띠 비율은 1:1:2:1:1이다. 아래 외부 원본 보관 설명과 해시 표는 기존 수집 파일에 적용한다.
 고정 커밋: `c09927e63705529bbf59ca6684cd9b23225dddad`. 수집일: 2026-09-06.
 
 원본 URL 형식: `https://raw.githubusercontent.com/hampusborgos/country-flags/c09927e63705529bbf59ca6684cd9b23225dddad/svg/<국가코드>.svg`.

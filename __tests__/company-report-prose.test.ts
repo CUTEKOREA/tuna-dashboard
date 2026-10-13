@@ -1090,6 +1090,65 @@ describe('Atunsa 보고서 서술 추출 (ⅬⅩⅤ)', () => {
   });
 });
 
+describe('APS Alimentos Prosalud 보고서 서술 추출 (ⅬⅩⅥ)', () => {
+  const secs = reportProse('aps');
+
+  it('보고서 16절이 번호대로 이어지고 두 절씩 8단계에 붙는다', () => {
+    expect(secs).toHaveLength(16);
+    expect(secs.map((s) => s.numeral)).toEqual(
+      secs.map((_, i) => String(i + 1).padStart(2, '0')),
+    );
+    expect(secs.map((s) => s.stage)).toEqual(
+      secs.map((_, i) => `c${String(Math.floor(i / 2) + 1).padStart(2, '0')}`),
+    );
+    for (const s of secs) {
+      expect(proseForStage('aps', s.stage).length, `${s.stage} 매핑`).toBeGreaterThan(0);
+    }
+  });
+
+  // 정본 ~/tunawork/aps/build/killed.py 전량. PP Group과 같이 반박 인용 「」는 지우고 본다.
+  const KILLED: [string, string][] = [
+    ["DRAGON III[^<。.]{0,40}(APS|Prosalud|Sardimar)[^<。.]{0,15}(소유|선박|선단)(?![^<。.]{0,20}(아니|않|없|근거))", "DRAGON III 는 선주 주소 언급뿐(기준선)"],
+    ["(신공장|새 공장)[^<。.]{0,30}(가동|준공|완공)(했|한다|됐|되었)(?![^<。.]{0,15}(않|없|아니|계획))", "신공장은 설계 발표 단계(기준선)"],
+    ["(매출|이익)[^<。.]{0,20}50\\s?(&#8239;)?\\s?%[^<。.]{0,20}(달성했|늘었|증가했)", "+50 % 는 목표(C)"],
+    ["(동태평양|자체 선단)[^<。.]{0,20}(에서 )?(전량|모두)[^<。.]{0,10}(조달|잡)", "조달 구조 미확인(기준선)"],
+  ];
+
+  it('반증에서 기각한 주장이 서술과 카드에 없다', () => {
+    const card = COMPANY_CARDS.find((c) => c.key === 'aps');
+    expect(card).toBeTruthy();
+    const texts = [
+      ...secs.flatMap((s) => s.blocks.map((b) => `${b.title ?? ''} ${b.text}`)),
+      card!.tagline,
+      ...card!.stats.map((s) => s.value),
+    ].map((t) => t.replace(/「[^」]*」/g, ''));
+    for (const [src, why] of KILLED) {
+      const re = new RegExp(src);
+      for (const t of texts) {
+        const m = t.match(re);
+        expect(m?.[0], `${why} — ${t.slice(0, 80)}`).toBeUndefined();
+      }
+    }
+  });
+
+  it('카드 tagline·stats 문구는 발행본 표지에서 그대로 가져온다', () => {
+    const card = COMPANY_CARDS.find((c) => c.key === 'aps')!;
+    const html = readFileSync(join(process.cwd(), 'docs/evidence/company-aps-2026-10/보고서.html'), 'utf8');
+    const cover = html.match(/<header class="cover">[\s\S]*?<\/header>/)?.[0];
+    expect(cover).toBeTruthy();
+    const txt = cover!.replace(/<[^>]+>/g, '').replace(/&#8239;|\u202f/g, ' ').replace(/&amp;/g, '&');
+    expect(card.numeral).toBe('ⅬⅩⅥ');
+    expect(card.country).toBe('코스타리카 · 푼타레나스');
+    expect(card.tagline).toBe('푼타레나스의 참치 가공 기반, 펫푸드 진출과 회사의 성장 목표');
+    for (const p of [card.tagline, ...card.stats.flatMap((s) => s.value.split(' — '))]) {
+      expect(txt.includes(p), p.slice(0, 60)).toBe(true);
+    }
+    expect(card.stats.find((s) => s.label === '가공 개시')!.value).toContain('설립등기 확인값과 구분한다');
+    expect(card.stats.find((s) => s.label === '성장 목표')!.value).toContain('회사 매출 성장 목표');
+    expect(card.stats.find((s) => s.label === 'PET 투자')!.value).toContain('새 공장 설계 예산과 구분한다');
+  });
+});
+
  describe('아홉 편 공통', () => {
   it('단계 번호가 화면 순서와 어긋나지 않는다', () => {
     // 한 단계에 절이 여럿 합쳐지면 절 번호와 화면 순서가 갈린다.
