@@ -948,6 +948,78 @@ describe('New England Seafood International(NESI) 보고서 서술 추출 (Ⅼ�
   });
 });
 
+describe('Parlevliet & Van der Plas(PP Group) 보고서 서술 추출 (ⅬⅩⅣ)', () => {
+  const secs = reportProse('ppgroup');
+
+  it('보고서 절이 하나도 빠지지 않고 번호가 이어진다', () => {
+    expect(secs.length).toBeGreaterThanOrEqual(16);
+    expect(secs.map((s) => s.numeral)).toEqual(
+      secs.map((_, i) => String(i + 1).padStart(2, '0')),
+    );
+    for (const s of secs) {
+      expect(proseForStage('ppgroup', s.stage).length, `${s.stage} 매핑`).toBeGreaterThan(0);
+    }
+  });
+
+  // 정본 ~/tunawork/ppgroup/build/killed.py (기준선 §3 「쓰지 않는 문장」) 를 그대로 옮겼다.
+  // 발행본 검사와 같이 「」 인용은 지우고 본다 — 반박 인용은 통과.
+  const KILLED: [string, string][] = [
+    ["(PP|Parlevliet[^<。.]{0,20}|그룹)(은|는|이|가)[^<。.]{0,15}참치 (회사|기업|그룹)(다|이다|로 (볼|읽))(?![^<。.]{0,15}(아니|않|없|서지))", "「참치 회사」 반증(기준선 §1)"],
+    ["참치(가|는)[^<。.]{0,10}(그룹의 )?(핵심|주력)(이다|사업이다)(?![^<。.]{0,12}(아니|않|없))", "참치 몫 7~17 %(기준선 §1)"],
+    ["(?<![\\d,.])19\\s?\\s?%[^<。.]{0,20}참치|참치[^<。.]{0,25}(15\\s?~\\s?19|최대 19)", "19 %는 CCO 개별 매출 기반, 폐기(렌즈A #1)"],
+    ["CFTO[^<。.]{0,20}(13척|열세 척)[^<。.]{0,10}(을|를)? ?(소유|보유)(한다|했다|하고)", "운영 13 · 등록 소유 확인 8(Codex·렌즈A #9)"],
+    ["(자가|자사) 소유 13척", "운영 13척(Codex)"],
+    ["빚을 (지고|진 뒤|진 직후)[^<。.]{0,30}(택했|골랐|선택했|계열화했)(?![^<。.]{0,20}(않|없|아니|읽지))", "주주간 약정 이행 가능성(렌즈A #5)"],
+    ["(PP|Parlevliet|그룹)(은|는|이|가)[^<。.]{0,30}원료 (안정|확보)(을|를)? (위해|목적으로)[^<。.]{0,15}(샀|인수|매수)(?![^<。.]{0,20}(아니|않|없|해설|Atuna))", "「원료 안정」은 Atuna 해설(렌즈A #3·#4)"],
+    ["(그룹|PP|회사)(이|가|은|는)[^<。.]{0,20}(312[.,]5|€\\s?312)[^<。.]{0,15}(빌렸|차입했|졌다|떠안)", "차주 법인 미상(렌즈A #7)"],
+    ["(결산|연차보고서|jaarrekening)[^<。.]{0,30}25\\s?\\s?%[^<。.]{0,20}(공시|실렸|적었)(?![^<。.]{0,15}(않|없|아니))", "25 % 전망 출처 미기재(렌즈A #6)"],
+    ["2023[^<。.]{0,25}(€\\s?48\\s?m|48m|4800만)", "€48m은 2022 회계연도(기준선 §2)"],
+    ["TOG[^<。.]{0,10}개별[^<。.]{0,20}123[.,]4", "TOG €123,4m은 연결(Codex)"],
+    ["(TOG|공장)[^<。.]{0,20}(3곳|세 곳)[^<。.]{0,10}(가동|운영)(?![^<。.]{0,20}(않|없|아니|가리))", "법인 2곳, 옛 PFCI 가동 미해소(Codex)"],
+    ["C188[^<。.]{0,40}(발효|효력)[^<。.]{0,15}(2015|2019)", "2015·2019는 비준일(Codex)"],
+    ["35[.,]000\\s?(t|톤)", "로인 ATQ 35.000 t 원문 미보존(Codex)"],
+    ["73[.,]011|110[.,]000\\s?(t|톤)", "ICCAT 24-01 수치 원문 미보존(Codex)"],
+    ["(수입식품|해외제조업소)[^<。.]{0,30}(TOG|SCODI|PFOI|PP)[^<。.]{0,20}(없다|0건)(?![^<。.]{0,10}(는|고))", "식약처 부재 근거 미성립(기준선 §2)"],
+    ["(프랑스 캔참치|프랑스 시장)[^<。.]{0,20}(약 )?25\\s?\\s?%(?![^<。.]{0,40}(2011|자칭|C))", "2011 FFA 주장(C)"],
+    ["Annie Hillina[^<。.]{0,40}2025[^<。.]{0,15}(투자|결산)", "투자 시점 미기재(렌즈A #15)"],
+    ["Ton Frissen|Frissen|Pierre-Alain|Carré|Nico Parlevliet|Mohamad Khachab|Adrien de Chomereau", "등기 임원 외 실명 금지(렌즈A #8)"],
+    ["Diek Parlevliet[^<。.]{0,20}등기", "Diek = Diederik 등기 동일성 미확인(렌즈A #13)"],
+  ];
+
+  it('반증에서 기각한 주장이 서술과 카드에 없다', () => {
+    const card = COMPANY_CARDS.find((c) => c.key === 'ppgroup');
+    expect(card).toBeTruthy();
+    const texts = [
+      ...secs.flatMap((s) => s.blocks.map((b) => `${b.title ?? ''} ${b.text}`)),
+      card!.tagline,
+      ...card!.stats.map((s) => s.value),
+    ].map((t) => t.replace(/「[^」]*」/g, ''));
+    for (const [src, why] of KILLED) {
+      const re = new RegExp(src);
+      for (const t of texts) {
+        const m = t.match(re);
+        expect(m?.[0], `${why} — ${t.slice(0, 80)}`).toBeUndefined();
+      }
+    }
+  });
+
+  it('카드의 참치 몫은 가정과 함께, 선단은 「운영」으로 적는다', () => {
+    const card = COMPANY_CARDS.find((c) => c.key === 'ppgroup')!;
+    const share = card.stats.find((s) => s.label === '참치 몫')!.value;
+    for (const k of ['지분법 가정', '비례연결', 'pro-forma', '계산']) expect(share).toContain(k);
+    expect(card.stats.find((s) => s.label === '선단')!.value).toMatch(/^운영 13척/);
+  });
+
+  it('카드 tagline·stats 문구는 발행본 표지 문구 그대로다', () => {
+    const card = COMPANY_CARDS.find((c) => c.key === 'ppgroup')!;
+    const html = readFileSync(join(process.cwd(), 'docs/evidence/company-ppgroup-2026-10/보고서.html'), 'utf8');
+    const txt = html.replace(/<[^>]+>/g, '').replace(/&#8239;|\u202f/g, ' ').replace(/&amp;/g, '&');
+    for (const p of [card.tagline, ...card.stats.flatMap((s) => s.value.split(' — '))]) {
+      expect(txt.includes(p), p.slice(0, 60)).toBe(true);
+    }
+  });
+});
+
 describe('아홉 편 공통', () => {
   it('단계 번호가 화면 순서와 어긋나지 않는다', () => {
     // 한 단계에 절이 여럿 합쳐지면 절 번호와 화면 순서가 갈린다.

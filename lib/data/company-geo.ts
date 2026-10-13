@@ -323,6 +323,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅩⅢ · 발행본 §02·§08 의 등기 주소 Chessington, FSA 승인 가공장 KU 006 「48 Cox Lane, KT9 1TW」 · **좌표는 Chessington Cox Lane 근사값** · 다른 가공장은 Grimsby GG 491·Paignton TP 041',
     note: 'Companies House 02565953 · 지주 SFIH 지분 94,6 %(2020-10-30 Sealaska, 2026-10-01 双日 지배) · 2025 매출 £239,5m(영국 96,8 %) · 개발 기술 £10,1m(해동 특허로 추정) · Barclays 한도 £36m · RFMO 등록부 5종 NESI 명의 0척',
     },
+  // ── ⅬⅩⅣ Parlevliet & Van der Plas(PP Group) — Katwijk 연결 정점 ─────
+  { company: 'ppgroup', numeral: 'ⅬⅩⅣ', kind: 'hq', label: 'PP Group — Katwijk 연결 정점', country: '네덜란드',
+    lat: 52.2035, lng: 4.4130,
+    basis: 'ⅬⅩⅣ · 발행본 §02 의 연결 정점 PP Groep Katwijk B.V.(KvK 28042057) · **좌표는 Katwijk 근사값** · 참치 축은 프랑스 Concarneau 지주 PP THON 아래 CFTO 선단·TOG(SCODI 아비장·PFOI 마다가스카르)',
+    note: '비상장 · 2023 연결 매출 €1,54bn(Quote, KvK 예탁 서류 인용) · 참치 몫 7 · 12 · 14~17 %(계산, 지분법·비례연결·pro-forma 가정) · TOG 지분 2021 50 % → 2026 100 % · CFTO 운영 선망 13척, 등록 소유 확인 8척(인도양)',
+    },
 ];
 
 /**

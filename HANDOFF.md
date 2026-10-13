@@ -2,6 +2,11 @@
 > - 기사 6건, AUDIT_PASS. 주간 탭이 10/12~10/16 주로 넘어감(`tuna_weekly_briefing.json`도 같은 sync 산출물로 함께 반영). PR #1428 squash `88ed3cb8`, Vercel success.
 > - 라이브 육안 확인: 「이번주 참치 뉴스 · 10/12~10/16 · 기사 6건 · 파이프라인 동기」, 리드 「Frinsa, Plisan 확장에 세금 감면 받아」. 섹션 제목이 「오늘의 참치 뉴스」→「이번주 참치 뉴스」로 바뀌어 있어 publisher 정의의 확인 스니펫(h2 텍스트 일치)은 NOT_FOUND 를 낸다 — 정의 갱신 필요.
 
+> ✅ **2026-10-13 KST — 기업 해부 ⅬⅩⅣ Parlevliet & Van der Plas(PP Group) 카드 추가** [CC]:
+> - 원문 `docs/evidence/company-ppgroup-2026-10/`(보고서.html·PDF·통합프로필). 추출 3종(표 26·그림 11(팩샷 7·차트 4)·서술 16절 → 8단계), `lib/data/company-ppgroup.ts`, COMPANY_CARDS ⅬⅩⅣ(네덜란드, `public/flags/nl.svg` 고정 커밋에서 추가), 본사 핀 64곳(Katwijk 근사 좌표), `public/reports/company/ppgroup.html`.
+> - 카드 tagline·stats 3개는 발행본 표지 문구 그대로(테스트로 원문 포함 검사). prose 테스트에 `~/tunawork/ppgroup/build/killed.py` 기각 표현 전량 + 참치 몫 가정 병기·「운영 13척」 가드.
+> - 보고서 정본·빌드: `~/tunawork/ppgroup/build`. Artifact https://claude.ai/artifact/EcuYxZD84U66FYXHy5ATxf.
+
 > ✅ **2026-10-12 KST — 기업 해부 ⅬⅩⅢ New England Seafood International(NESI) 카드 추가** [CC]:
 > - 원문 `docs/evidence/company-nesi-2026-10/`(보고서.html·PDF·통합프로필). 추출 3종(표 25·그림 9(팩샷 6·차트 3)·서술 16절 → 8단계), `lib/data/company-nesi.ts`, COMPANY_CARDS ⅬⅩⅢ(영국, 기존 gb.svg), 본사 핀 63곳(Chessington Cox Lane 근사 좌표), prose 테스트에 `build/killed.py` 기각 표현 전량 가드.
 > - `/sashimi-steak` 수출 파트너 위젯의 NESI 문구 정정: 근거 없는 「M&S·Waitrose·Tesco 납품, 英 최대」 → 「Tesco·Sainsbury's·Waitrose 납품 확인 · 2026-10 双日 인수(지주 SFIH)」, top5 「英 최대 슈퍼프로즌 수입」 → 「초저온 참치 해동 특허 보유 · 「英 최대」는 자칭」(M&S 참치 근거 0, 「영국 최대」는 회사 자칭).

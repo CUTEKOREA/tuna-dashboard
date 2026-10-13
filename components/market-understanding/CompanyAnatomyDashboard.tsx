@@ -406,6 +406,10 @@ import {
   money as neMoney, tuna as neTuna, korea as neKorea,
 } from '@/lib/data/company-nesi';
 import {
+  ppgroupMeta, ppgroupCard, ppgroupSourceNotes,
+  money as pgMoney, tuna as pgTuna, trade as pgTrade,
+} from '@/lib/data/company-ppgroup';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -2697,6 +2701,7 @@ const FLAG: Record<string, Pick<CompanyCard, 'flagSrc' | 'backInk'>> = {
   마셜제도: { flagSrc: '/flags/mh.svg', backInk: '#f4f5f0' },
   키리바시: { flagSrc: '/flags/ki.svg', backInk: '#1b2733' },
   프랑스: { flagSrc: '/flags/fr.svg', backInk: '#1b2a3f' },
+  네덜란드: { flagSrc: '/flags/nl.svg', backInk: '#1b2a3f' },
 };
 
 /** 선택 갤러리 카드 목록. 회사가 늘면 여기에 한 장씩 추가한다. */
@@ -5743,6 +5748,97 @@ const NESI_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const PG_ACCENT = '#a34a10';
+const PG_M = pgMoney();
+const PG_T = pgTuna();
+const PG_X = pgTrade();
+
+/** 카드·표지 문구는 발행본 표지 타일과 목차 제목을 그대로 옮긴다. 숫자만 인테이크에서 끼운다. */
+const PG_SHARE =
+  `PP 연결 매출에서 참치 몫(계산). 2023 TOG 지분법 가정 약 ${PG_T.지분법} %(CFTO 개별 매출만), 비례연결(50 %) 가정 약 ${PG_T.비례} %, ` +
+  `2026 TOG ${PG_T.tog26} %와 옛 Sapmer 3척을 넣은 pro-forma 약 ${PG_T.proforma} %(연도 혼합, 내부거래 미제거). ` +
+  `반대 지표로 인력(FTE) 기준 약 ${PG_T.FTE} %(CSR 2024, 국가 합계, 매출 몫 아님)`;
+const PG_FLEET =
+  `CFTO가 운영하는 선망선(대서양 ${PG_T.대서양}·인도양 ${PG_T.인도양}). 등록부로 CFTO 소유가 확인되는 것은 인도양 프랑스기 ${PG_T.등록소유}척(IOTC e-RAV 2026-10)이고, ` +
+  `대서양 ${PG_T.대서양}척은 2019년 승계 등기로만 소유가 서고 2026년 허가는 공개 명단에 나오지 않으며, Torre Italia는 이탈리아 법인 소유·CFTO 운영이다`;
+const PG_REVENUE =
+  `2023 PP 연결 매출(Quote가 KvK 예탁 서류를 인용, 이익 €${PG_M.이익23}m). 2024 €${euNum(PG_M.매출24, 2)}bn·€${PG_M.이익24}m, 2025 「€1,5bn 초과」·€${PG_M.이익25}m. 「이익」의 종류는 기사에 없다`;
+
+const PPGROUP_SPEC: CommoditySpec = {
+  key: 'company-anatomy-ppgroup',
+  title: '기업 해부: Parlevliet & Van der Plas(PP Group)',
+  subtitle:
+    `Parlevliet & Van der Plas(PP Group)는 1949년 두 가문이 함께 세운 네덜란드의 부어류·새우·유통 그룹이고, 참치는 그 안의 한 축이다. ` +
+    `PP는 2016년에 산 프랑스 선망 선단 CFTO 위에 캔 가공사 TOG를 2021년 ${PG_T.tog21} %, 2026년 ${PG_T.tog26} %로 소유 계열화했고, 그 사이 2025년에는 선단 3척을 오만에 팔고, 2026년에는 다른 3척인 옛 Sapmer 선망선을 샀다. ` +
+    `소유 사슬은 등기로 서지만, 선단에서 공장으로 가는 원어 흐름은 어느 결산에도 숫자가 없다.`,
+  accent: PG_ACCENT,
+  primaryKpi: {
+    label: '2023 PP 연결 매출 (Quote가 KvK 예탁 서류를 인용)',
+    value: PG_M.매출23,
+    decimals: 2,
+    unit: `(€bn · 이익 €${PG_M.이익23}m. 2024 €${euNum(PG_M.매출24, 2)}bn·€${PG_M.이익24}m, 2025 「€1,5bn 초과」·€${PG_M.이익25}m. 「이익」의 종류는 기사에 없다)`,
+    accent: PG_ACCENT,
+  },
+  secondaryKpis: [
+    {
+      label: 'PP 연결 매출에서 참치 몫 (계산 · 가정 세 가지)',
+      value: PG_T.비례,
+      text: `${PG_T.지분법} · ${PG_T.비례} · ${PG_T.proforma}`,
+      unit: `(% · ${PG_SHARE.replace('PP 연결 매출에서 참치 몫(계산). ', '')})`,
+    },
+    {
+      label: 'PP 쪽 TOG 지분',
+      value: PG_T.tog26,
+      text: `${PG_T.tog21} → ${PG_T.tog26}`,
+      unit: `(% · 2021-06 ${PG_T.tog21} %(사모펀드 지분 €${PG_T.사모펀드}m + 신주 €${euNum(PG_T.신주, 1)}m, 결의록), 2026-07-10 창업자 몫 50 % 매수. 매도 측 자문사 CFI는 「under a shareholders' agreement」(주주간 약정에 따라)라고 적었고 대가는 공개되지 않았다)`,
+    },
+    {
+      label: '2025 Van der Plas 가문 지분을 Parlevliet 가문 쪽이 넘겨받은 대가 (Quote)',
+      value: PG_M.대가,
+      decimals: 1,
+      unit: `(€m · earn-out 최대 €${PG_M.earnout}m 별도. 거래 재원은 브리지론 €${PG_M.브리지}m과 매도 가문의 vendor loan €${euNum(PG_M.vendor, 1)}m이고, 두 차입의 차주 법인은 기사에 없다)`,
+    },
+  ],
+  stripItems: [
+    {
+      now: true,
+      eyebrow: '선단',
+      title: `운영 ${PG_T.운영}척, 등록부로 소유가 서는 ${PG_T.등록소유}척`,
+      body: PG_FLEET,
+    },
+    {
+      eyebrow: '생산 법인',
+      title: 'SCODI·PFOI 두 생산 법인과 옛 PFCI의 흔적',
+      body: `TOG의 생산 법인 SCODI(코트디부아르, 2024 매출 €${euNum(PG_T.SCODI, 2)}m)·PFOI(마다가스카르, €${euNum(PG_T.PFOI, 2)}m). TOG 연결 매출 2024 €${euNum(PG_T.연결24)}, 2023 €${euNum(PG_T.연결23)}. 지주인 TOG 개별 매출은 0이다. 아비장 옛 PFCI 부지의 가동 여부는 문서로 가려지지 않는다`,
+    },
+    {
+      eyebrow: '무역',
+      title: `EU가 들여온 코트디부아르산 캔참치, 2025년 ${euNum(PG_X.eu25)} t 가운데 ${PG_X.프랑스} %가 프랑스행`,
+      body: `2025 EU27의 코트디부아르산 캔참치(HS 1604 14) 수입, 나라 합계(Eurostat). 2019년 ${euNum(PG_X.eu19)} t에서 줄었고 2025 물량의 ${PG_X.프랑스} %가 프랑스행이다. EU 관세는 제3국 ${PG_X.관세} %, 코트디부아르·마다가스카르산 0 %`,
+    },
+    {
+      eyebrow: '한국',
+      title: `한국 상장 참치 6사 공시 ${PG_X.공시}건에 PP 사슬의 이름은 나오지 않는다`,
+      body: `한국 상장 참치 6사 공시 ${PG_X.공시}건(2023~2025 사업보고서·2026 반기보고서)에 CFTO·TOG·SCODI·PFOI 이름이 나오지 않는다. 한국은 2019~2026-08 코트디부아르·마다가스카르산 캔참치를 수입 신고하지 않았다(관세청)`,
+    },
+    {
+      eyebrow: '말',
+      title: '공동 보도자료가 내세운 연속성과 고용, PP의 말이 아닌 「원료 안정」',
+      body: `「원어 공급 확보」에 가장 가까운 일차 문장은 TOG의 2024 연결결산 주석에 있다. TOG 경영진은 PP의 참여가 「sécuriser les approvisionnements en poisson」(어류 공급을 확보하는 데) 도움이 된다고 썼다. 매도 측 자문사 CFI는 2026년 TOG 잔여 지분 거래를 설명하면서 PP의 조달 역량과 TOG의 산업·상업 역량 결합을 말했다. Atuna 편집부는 이를 원료 안정과 제삼자 공급 의존 축소로 해석했다(B)`,
+    },
+  ],
+  briefing: proseBriefing('ppgroup'),
+  narratives: inlineReport('ppgroup', proseStages('ppgroup')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: ppgroupSourceNotes,
+  sourceMeta: [
+    `${ppgroupMeta.회사} · ${ppgroupMeta.국가} · ${ppgroupMeta.업종}`,
+    `출처 ${ppgroupMeta.출처}`,
+    `조사 ${ppgroupMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -6987,6 +7083,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '한국', value: `${euNum(NE_K.kg)} kg — 2025 한국→영국 냉동 참치 필레 수출(관세청, US$${euNum(NE_K.단가, 2)}/kg). 수입자는 통계에 나오지 않는다` },
     ],
   },
+  {
+    key: 'ppgroup',
+    numeral: ppgroupCard.numeral,
+    name: 'Parlevliet & Van der Plas(PP Group)',
+    country: '네덜란드 · Katwijk 연결 정점 PP Groep Katwijk B.V. · 프랑스 지주 PP THON(Concarneau) 아래 CFTO 선단·TOG 캔 가공(비상장, KvK 28042057)',
+    tagline: ppgroupCard.tagline,
+    ...FLAG.네덜란드,
+    stats: [
+      { label: '매출', value: `€${euNum(PG_M.매출23, 2)}bn — ${PG_REVENUE}` },
+      { label: '참치 몫', value: `${PG_T.지분법} · ${PG_T.비례} · ${PG_T.proforma} % — ${PG_SHARE}` },
+      { label: '선단', value: `운영 ${PG_T.운영}척 — ${PG_FLEET}` },
+    ],
+  },
 
 
 
@@ -7079,6 +7188,7 @@ export default function CompanyAnatomyDashboard({
     pataya: PATAYA_SPEC,
     sojitz: SOJITZ_SPEC,
     nesi: NESI_SPEC,
+    ppgroup: PPGROUP_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
