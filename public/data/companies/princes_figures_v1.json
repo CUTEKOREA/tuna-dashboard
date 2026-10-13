@@ -6,6 +6,15 @@
  },
  "figures": [
   {
+   "stage": "c01",
+   "sid": "s3",
+   "kind": "chart",
+   "ord": 2514,
+   "caption": "상장 뒤 주주표와 그 각주 기준으로, 모회사 NewPrinces S.p.A.(82.74%)와 계열사(4.71%)가 모두 회장 한 사람의 지배 아래 있는 구조를 그렸다.",
+   "alt": "",
+   "svg": "<svg viewBox=\"0 0 680 284\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"회장이 모회사 NewPrinces S.p.A.와 계열사를 지배하고, 모회사가 Princes Group plc 지분 82.74%를, 계열사가 4.71%를 든다.\"><title>Princes Group plc 지분 구조</title><defs><marker id=\"princes-a\" markerWidth=\"8\" markerHeight=\"6\" refX=\"7\" refY=\"3\" orient=\"auto\"><polygon points=\"0 0, 8 3, 0 6\" fill=\"#7a828b\"/></marker><marker id=\"princes-ac\" markerWidth=\"8\" markerHeight=\"6\" refX=\"7\" refY=\"3\" orient=\"auto\"><polygon points=\"0 0, 8 3, 0 6\" fill=\"#B2503A\"/></marker></defs><line x1=\"340\" y1=\"52\" x2=\"340\" y2=\"84\" stroke=\"#7a828b\" stroke-width=\"1.2\" marker-end=\"url(#princes-a)\"/><text x=\"350\" y=\"73\" text-anchor=\"start\" font-size=\"13\" font-weight=\"700\" fill=\"#4A7090\">지배</text><line x1=\"340\" y1=\"124\" x2=\"340\" y2=\"156\" stroke=\"#B2503A\" stroke-width=\"1.6\" marker-end=\"url(#princes-ac)\"/><text x=\"350\" y=\"145\" text-anchor=\"start\" font-size=\"13\" font-weight=\"700\" fill=\"#B2503A\">82.74%</text><line x1=\"128\" y1=\"180\" x2=\"248\" y2=\"180\" stroke=\"#7a828b\" stroke-width=\"1.2\" marker-end=\"url(#princes-a)\"/><text x=\"188\" y=\"172\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#4A7090\">4.71%</text><text x=\"188\" y=\"225\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"400\" fill=\"#7a828b\">회장 지배</text><rect x=\"284\" y=\"12\" width=\"112\" height=\"40\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#1B3B52\" stroke-width=\"1\"/><text x=\"340\" y=\"37\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"600\" fill=\"#14181D\">회장</text><rect x=\"230\" y=\"84\" width=\"220\" height=\"40\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#1B3B52\" stroke-width=\"1\"/><text x=\"340\" y=\"109\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"600\" fill=\"#14181D\">모회사 NewPrinces S.p.A.</text><rect x=\"248\" y=\"156\" width=\"184\" height=\"48\" rx=\"6\" fill=\"#F8EEEA\" stroke=\"#B2503A\" stroke-width=\"1.6\"/><text x=\"340\" y=\"185\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"700\" fill=\"#14181D\">Princes Group plc</text><rect x=\"24\" y=\"156\" width=\"104\" height=\"48\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#1B3B52\" stroke-width=\"1\"/><text x=\"76\" y=\"185\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"600\" fill=\"#14181D\">계열사</text><line x1=\"24\" y1=\"252\" x2=\"656\" y2=\"252\" stroke=\"#d5d7d2\" stroke-width=\"0.8\"/><line x1=\"24\" y1=\"272\" x2=\"56\" y2=\"272\" stroke=\"#7a828b\" stroke-width=\"1.2\"/><text x=\"64\" y=\"276\" text-anchor=\"start\" font-size=\"12\" font-weight=\"400\" fill=\"#7a828b\">보유 지분 (화살표: 주주 → 회사)</text><text x=\"656\" y=\"276\" text-anchor=\"end\" font-size=\"12\" font-weight=\"400\" fill=\"#7a828b\">상장 후 주주표 기준</text></svg>"
+  },
+  {
    "stage": "c02",
    "sid": "s4",
    "kind": "chart",
