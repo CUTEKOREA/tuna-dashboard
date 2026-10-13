@@ -243,10 +243,7 @@ describe('품목 해부보고서 그림', () => {
 describe('차트 글자가 서술로 새지 않는다', () => {
   // report_prose.py 의 `<p` 패턴이 SVG `<path>` 까지 문단으로 읽어, 차트 라벨·캡션이
   // 뒤 문단에 붙어 화면 서술로 나갔다(atunsa·bumblebee·dongwon·sajo 등, 2026-10-13 `<p\b` 로 수정).
-  // fcf 는 증거 HTML(한자 독음 추가)과 서술 JSON 이 어긋난 채라 재생성을 독음 작업 브랜치에 맡긴다.
-  // 그 브랜치가 prose 를 다시 뽑으면 이 목록에서 뺀다.
-  const 재생성대기 = new Set(['fcf']);
-  it.each(REPORT_FIGURE_COMPANIES.filter((c) => !재생성대기.has(c)))('%s - 그림 캡션이 서술 블록 안에 없다', (c) => {
+  it.each(REPORT_FIGURE_COMPANIES)('%s - 그림 캡션이 서술 블록 안에 없다', (c) => {
     const caps = reportFigures(c)
       .map((f) => (f as { caption?: string }).caption ?? '')
       .filter((s) => s.length >= 20);
