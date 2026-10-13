@@ -418,6 +418,10 @@ import {
   company as apsCompany, expansion as apsExpansion,
 } from '@/lib/data/company-aps';
 import {
+  chancerelleMeta, chancerelleCard, chancerelleSourceNotes,
+  company as chCompany, scale as chScale,
+} from '@/lib/data/company-chancerelle';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -5944,6 +5948,51 @@ const APS_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const CHANCERELLE_ACCENT = '#154e77';
+const CH_C = chCompany();
+const CH_S = chScale();
+
+// 카드·히어로 문구는 발행본 표지 그대로다. 회사 설명과 제조법인 개별 수치를 구분한다.
+const CH_ORIGIN = 'Chancerelle이 설명하는 금속 캔 통조림의 출발 연도다. 현재 운영법인의 생성일과 구분한다(C, 회사 연혁, 접근 2026-10-13).';
+const CH_SALES = 'Chancerelle의 2025년 회사 설명 매출이다. 법정 연결 범위는 현재 자료에서 확인되지 않는다(C, 회사 핵심 수치, 접근 2026-10-13).';
+const CH_FISH = 'Chancerelle의 2025년 어류 구매량에 관한 회사 설명이다. 참치 구매량과 구분한다(C, 회사 핵심 수치, 접근 2026-10-13).';
+const CH_CANS = 'Chancerelle의 2025년 생산 규모에 관한 회사 설명이다. 참치 캔만의 수량과 구분한다(C, 회사 핵심 수치, 접근 2026-10-13).';
+
+const CHANCERELLE_SPEC: CommoditySpec = {
+  key: 'company-anatomy-chancerelle',
+  title: '기업 해부: Chancerelle · La Belle-Îloise · Gonidec',
+  subtitle: '프랑스 제조 기반을 가진 세 통조림사가 참치를 다루는 방식은 다르다. Chancerelle은 국내 제조와 해외 위탁을 함께 쓰고, La Belle-Îloise는 직판망을 갖는다. Gonidec의 참치 취급은 확인되지만 브랜드별 대형유통·고급 채널 구분은 보류한다. 그러나 공개 자료만으로 세 회사 매출 중 참치 몫을 비교할 수는 없다.',
+  accent: CHANCERELLE_ACCENT,
+  primaryKpi: {
+    label: CH_SALES,
+    value: CH_S.매출백만유로,
+    text: `€${CH_S.매출백만유로}백만`,
+    unit: '(회사 설명 매출)',
+    accent: CHANCERELLE_ACCENT,
+  },
+  secondaryKpis: [
+    { label: CH_FISH, value: CH_S.어류구매량, text: euNum(CH_S.어류구매량), unit: '(t)' },
+    { label: CH_CANS, value: CH_S.생산백만캔, text: `${CH_S.생산백만캔}백만`, unit: '(캔)' },
+    { label: 'Chancerelle 직원', value: CH_S.직원, text: `${euNum(CH_S.직원)}명`, unit: '(회사 페이지의 인원 설명)' },
+  ],
+  stripItems: [
+    { now: true, eyebrow: '금속 캔 통조림의 출발', title: String(CH_C.출발연도), body: CH_ORIGIN },
+    { eyebrow: '회사 설명 매출', title: `€${CH_S.매출백만유로}백만`, body: CH_SALES },
+    { eyebrow: '어류 구매량', title: `${euNum(CH_S.어류구매량)} t`, body: CH_FISH },
+    { eyebrow: '생산 규모', title: `${CH_S.생산백만캔}백만 캔`, body: CH_CANS },
+  ],
+  briefing: proseBriefing('chancerelle'),
+  narratives: inlineReport('chancerelle', proseStages('chancerelle')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: chancerelleSourceNotes,
+  sourceMeta: [
+    `${chancerelleMeta.회사} · ${chancerelleMeta.국가} · ${chancerelleMeta.업종}`,
+    `출처 ${chancerelleMeta.출처}`,
+    `조사 ${chancerelleMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -7227,6 +7276,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: 'PET 투자', value: `US$${APS_E.PET투자백만달러}m — ${APS_PET}` },
     ],
   },
+  {
+    key: 'chancerelle',
+    numeral: chancerelleCard.numeral,
+    name: 'Chancerelle · La Belle-Îloise · Gonidec',
+    country: '프랑스 · 브르타뉴 두아르느네',
+    tagline: chancerelleCard.tagline,
+    ...FLAG.프랑스,
+    stats: [
+      { label: '출발 연도', value: `${CH_C.출발연도} — ${CH_ORIGIN}` },
+      { label: '매출', value: `€${CH_S.매출백만유로}백만 — ${CH_SALES}` },
+      { label: '어류 구매', value: `${euNum(CH_S.어류구매량)} t — ${CH_FISH}` },
+    ],
+  },
 
 
 
@@ -7322,6 +7384,7 @@ export default function CompanyAnatomyDashboard({
     ppgroup: PPGROUP_SPEC,
     atunsa: ATUNSA_SPEC,
     aps: APS_SPEC,
+    chancerelle: CHANCERELLE_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 
