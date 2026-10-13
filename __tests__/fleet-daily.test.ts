@@ -77,22 +77,22 @@ describe('fleet daily bounded intake', () => {
   it('exposes only the current public aggregate and quality counts', () => {
     expect(fleetDailyPublic._meta).toEqual({
       schemaVersion: 1,
-      reportCount: 171,
+      reportCount: 172,
       firstReportDate: '2026-01-16',
-      latestReportDate: '2026-10-12',
-      latestAsOf: '2026-10-11',
+      latestReportDate: '2026-10-13',
+      latestAsOf: '2026-10-12',
       detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
       detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
     });
     expect(fleetDailyPublicLatest.pacific).toMatchObject({
-      dailyMt: 395,
-      monthlyMt: 3_263,
-      annualMt: 57_875.8,
+      dailyMt: 220,
+      monthlyMt: 3_483,
+      annualMt: 58_095.8,
     });
     expect(fleetDailyPublicLatest.atlantic).toMatchObject({
-      dailyMt: 95,
-      monthlyMt: 1_205,
-      annualMt: 40_760,
+      dailyMt: 45,
+      monthlyMt: 1_250,
+      annualMt: 40_805,
     });
     expect(fleetDailyPublicLatest.carrier).toEqual({
       // 9/21: 부산 하역을 마친 HIKARI 1 PSS YF 컨테이너(284.83)가 표에서 빠졌다
@@ -100,8 +100,8 @@ describe('fleet daily bounded intake', () => {
       expectedRemainingMt: 2_211,
     });
     expect(fleetDailyPublic.quality.counts).toMatchObject({
-      reconciliationChecks: 684,
-      reconciliationCompleteChecks: 684,
+      reconciliationChecks: 688,
+      reconciliationCompleteChecks: 688,
       reconciliationUnavailableChecks: 0,
       reconciliationUnavailableDocuments: 0,
       reconciliationIssues: 14,
@@ -122,9 +122,9 @@ describe('fleet daily bounded intake', () => {
 
   it('formats signed deltas and reported port names without changing source values', () => {
     expect(fleetDailyPublicDeltas).toEqual({
-      pacificDailyMt: 162,
-      atlanticDailyMt: 15,
-      totalDailyMt: 177,
+      pacificDailyMt: -175,
+      atlanticDailyMt: -50,
+      totalDailyMt: -225,
     });
     expect(formatFleetDailyDelta(20)).toBe('+20');
     expect(formatFleetDailyDelta(-20)).toBe('-20');

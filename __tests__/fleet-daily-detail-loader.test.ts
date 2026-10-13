@@ -50,11 +50,11 @@ afterEach(() => {
 
 describe('fleet daily protected detail loader', () => {
   it('keeps the currently deployed detail digest valid during the schema transition', () => {
-    /* 2026-10-08: 기대값을 8-27 배포 해시 d50fbd4b… 에서 지금 main(10/8 보고) 배포 해시 216ae7aa… 로 갱신.
-     * 그 사이 일일보고가 쌓여 d50fbd4b… 는 더 이상 배포값이 아니다. 로더는 detailSha256 또는
-     * detailSha256Compat(50b886c9…) 에 든 digest 를 받으므로 둘을 합친 집합에서 확인한다. */
+    /* 기대값은 «지금 프로덕션 env 에 들어 있는» 상세 해시다. 일일보고를 넣으면 새 해시가 detailSha256 이 되고
+     * 배포 중인 값은 detailSha256Compat 으로 밀려나야 교체 전 몇 분간 보호 패널이 깨지지 않는다.
+     * 2026-10-13: 10/12 보고 배포 해시 d0d810f9… (그 전 10/8 보고 216ae7aa…). 시크릿을 교체하면 다음 반영 때 이 값을 바꾼다. */
     expect([fleetDailyPublicDetailSha256, ...fleetDailyPublicDetailSha256Compat]).toContain(
-      '216ae7aa78cfde8fbf61290d0d7d1e5439e62b9814644695933dfd69112a8dc0',
+      'd0d810f997cd13745282f3721703cdc81fcf7813f19e4b38a718ff12130f8301',
     );
   });
 
