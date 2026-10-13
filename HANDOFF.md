@@ -1,10 +1,12 @@
-> ✅ **2026-10-13 KST — `/fleet` 해양수산본부 일일업무보고 261013(화) 반영** [CC]:
+> 🚀 **2026-10-13 KST — `/fleet` 해양수산본부 일일업무보고 261013(화) 반영** [CC]:
 > - 원자료: `해양수산본부 일일업무보고-261013 (화).docx` SHA-256 `de73f095bb818cd79f2c8243281217565d0e3cc845ad0c16f9bec78afe55b355`(167,339 B, `unzip -t` 정상). 증분 172건.
 > - 머리글 연속성: 태평양 일 220 · 월 3,263+220=3,483 · 연 57,875.8+220=58,095.8, 대서양 일 45 · 월 1,205+45=1,250 · 연 40,760+45=40,805. 운반선 10,614 / 2,211 그대로. 연속 보고라 라벨 「전일 대비」(-225). 검산 688회 전부 완전.
 > - MOAMARI: 10/13 보고 비고 없음(항해 중) → `asOf` 10-13, 헤드라인·복귀 줄에 반영. 복귀 10/19 전후 유지. 조업손실 환산을 172보고일 / 270달력일 · 19.56 MT 로 다시 계산 — 여전히 약 43보고일 · 약 840 MT. 위치는 공개 서술에 넣지 않았다.
 > - `fleet-daily-detail-loader` 의 «배포 중 해시» 기대값을 216ae7aa…(10/8) → d0d810f9…(10/12 배포) 로 갱신. 새 detailSha256 `9dc5ff3d…`, compat 에 d0d810f9… — 배포 후 시크릿 교체 필요(`--check` 일치).
 > - `npm run verify` 통과: ESLint 0 errors(31 warnings) · Vitest 222 files / 2,157 tests · API cache 161/161 · fleet client leak 통과 · bundle 35 routes. 로컬 production 1440·390: 200, overflow 0, page error 0, 실적 분석 → 일간 추이 새 서술 확인.
-> - 상태: 브랜치 `data/fleet-daily-261013` 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+> - 배포: PR #1434 → squash `3f1c28f3`. 메인 게이트 통과, a11y 기준선 실패 10건은 main `99ce88e7` run 38330831969 와 키가 같다(산업 화면 5종 다크 color-contrast, 새 키 0, /fleet 없음).
+> - 시크릿: `--check` 일치(`9dc5ff3d…`) → 교체·재배포 Ready, alias leedonggun.co.kr. 다음 반영 땐 `fleet-daily-detail-loader` 기대값을 9dc5ff3d… 로 바꾼다.
+> - 라이브(Aside): 불일치 경고 없음 · 「전일 대비 -175 · 월간 3,483」 · 1,250 · 58,095.8 · 일간 추이 「10/13 보고 비고 없음」「172보고일 / 270달력일」.
 
 > ✅ **2026-10-13 KST — `/market` 참치 데일리 브리핑 2026-10-12 회차 배포** [CC auto]:
 > - 기사 6건, AUDIT_PASS. 주간 탭이 10/12~10/16 주로 넘어감(`tuna_weekly_briefing.json`도 같은 sync 산출물로 함께 반영). PR #1428 squash `88ed3cb8`, Vercel success.
