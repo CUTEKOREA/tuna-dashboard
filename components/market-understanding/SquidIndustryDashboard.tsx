@@ -84,6 +84,7 @@ import CommodityIndustryDashboard, {
   type CommoditySpec,
   type StageNarrative,
 } from './CommodityIndustryDashboard';
+import MarketRegimeBand from './MarketRegimeBand';
 import { BrandMarketTable, PeruPlantTable } from './CompanyResearchTables';
 import { peruImports, peruLedger, peruMeta, peruPlants } from '@/lib/data/squid-peru-supply';
 import {
@@ -665,6 +666,9 @@ const SPEC: CommoditySpec = {
     `통관 집계 · ${TRADE._meta.출처}`,
     `위젯 ${String(WIDGETS_META.선별)}개 (${String(WIDGETS_META.원본)})`,
   ].join(' · '),
+  insets: {
+    AfterHero: () => <MarketRegimeBand commodityKey="squid" />,
+  },
 };
 
 export interface SquidIndustryDashboardProps {

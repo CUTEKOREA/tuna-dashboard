@@ -4125,9 +4125,16 @@
 ## public/data/market-regime.v1.json
 - components/market-understanding/IndustryHub.tsx
 - components/market-understanding/IndustryItemDashboard.tsx
+- components/market-understanding/MackerelIndustryDashboard.tsx
 - components/market-understanding/MarketRegimeBand.tsx
+- components/market-understanding/OctopusIndustryDashboard.tsx
 - components/market-understanding/PollockIndustryDashboard.tsx
+- components/market-understanding/ShrimpIndustryDashboard.tsx
+- components/market-understanding/SquidIndustryDashboard.tsx
+- components/market-understanding/SurimiIndustryDashboard.tsx
+- components/market-understanding/TunaIndustryDashboard.tsx
 - components/market-understanding/TunafarmIndustryDashboard.tsx
+- components/market-understanding/WhelkIndustryDashboard.tsx
 
 ## public/data/maru_registry_status_v1.json
 - components/market-understanding/CompanyResearchTables.tsx

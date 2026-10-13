@@ -31,6 +31,7 @@ import CommodityIndustryDashboard, {
   type CommoditySpec,
   type StageNarrative,
 } from './CommodityIndustryDashboard';
+import MarketRegimeBand from './MarketRegimeBand';
 import {
   ShrimpArgentinaCatchChart,
   ShrimpArgentinaKoreaChart,
@@ -485,6 +486,9 @@ const SPEC: CommoditySpec = {
     `단위 ${DATA._meta.단위}`,
     `갱신 ${DATA._meta.생성일}`,
   ].join(' · '),
+  insets: {
+    AfterHero: () => <MarketRegimeBand commodityKey="shrimp" />,
+  },
 };
 
 export interface ShrimpIndustryDashboardProps {

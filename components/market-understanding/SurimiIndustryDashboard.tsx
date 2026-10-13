@@ -15,6 +15,7 @@ import type { HeroKpi } from '../v2/HeroZone';
 import { dropEmptyLabel, industryInlineReport } from './IndustryReportFlow';
 import styles from './TunaIndustryDashboard.module.css';
 import CommodityIndustryDashboard, { type CommoditySpec } from './CommodityIndustryDashboard';
+import MarketRegimeBand from './MarketRegimeBand';
 
 export const SURIMI_ACCENT = '#0e7490';
 
@@ -119,6 +120,9 @@ const SPEC: CommoditySpec = {
   chartSlots: {},
   sourceNotes: [],
   sourceMeta: '본문·표·그림 · 한국 연육 산업 해부 2026년 10월판',
+  insets: {
+    AfterHero: () => <MarketRegimeBand commodityKey="surimi" />,
+  },
 };
 
 export interface SurimiIndustryDashboardProps {

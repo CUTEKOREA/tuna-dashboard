@@ -3,29 +3,48 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import MarketRegimeBand, {
+  formatMarketRegimeValue,
   MarketRegimeIndicatorCard,
 } from '@/components/market-understanding/MarketRegimeBand';
 import PollockIndustryDashboard from '@/components/market-understanding/PollockIndustryDashboard';
-import { marketRegimeFor } from '@/lib/data/market-regime';
+import { marketRegimeCommodityKeys, marketRegimeFor } from '@/lib/data/market-regime';
 
 describe('MarketRegimeBand', () => {
-  it('옥수수·마늘·명태 렌더 시 JSON 수치가 마크업에 포함된다', () => {
-    const corn = renderToStaticMarkup(React.createElement(MarketRegimeBand, { commodityKey: 'corn' }));
-    expect(corn).toContain('23.0%');
+  it('JSON에 ok 지표가 있는 품목은 띠가 렌더되고 첫 ok 수치가 마크업에 있다', () => {
+    for (const key of marketRegimeCommodityKeys()) {
+      const indicators = marketRegimeFor(key);
+      const firstOk = indicators.find((row) => row.status === 'ok');
+      if (!firstOk) continue;
 
-    const garlic = renderToStaticMarkup(React.createElement(MarketRegimeBand, { commodityKey: 'garlic' }));
-    expect(garlic).toContain('10,682');
+      const expected = formatMarketRegimeValue(firstOk.value, firstOk.unit);
+      const html = renderToStaticMarkup(
+        React.createElement(MarketRegimeBand, { commodityKey: key }),
+      );
 
+      expect(html).toContain('market-regime-band');
+      expect(html).toContain(expected);
+    }
+  });
+
+  it('명태 전용 페이지에도 시장 국면 띠가 붙는다', () => {
     const pollockPage = renderToStaticMarkup(
       React.createElement(PollockIndustryDashboard, { heroOnly: false }),
     );
+    expect(pollockPage).toContain('market-regime-band');
     expect(pollockPage).toContain('509,567');
   });
 
-  it('데이터 없는 품목은 띠를 그리지 않는다', () => {
-    const html = renderToStaticMarkup(React.createElement(MarketRegimeBand, { commodityKey: 'almonds' }));
+  it('ok 지표가 없는 품목(olive)은 띠를 그리지 않는다', () => {
+    const html = renderToStaticMarkup(React.createElement(MarketRegimeBand, { commodityKey: 'olive' }));
     expect(html).toBe('');
     expect(html).not.toContain('market-regime-band');
+  });
+
+  it('데이터 키가 없는 품목은 띠를 그리지 않는다', () => {
+    const html = renderToStaticMarkup(
+      React.createElement(MarketRegimeBand, { commodityKey: 'tuna' }),
+    );
+    expect(html).toBe('');
   });
 
   it('status 가 ok 가 아닌 지표는 갱신 대기를 표시한다', () => {

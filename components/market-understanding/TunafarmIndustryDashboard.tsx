@@ -23,6 +23,7 @@ import type { HeroKpi } from '../v2/HeroZone';
 import { dropEmptyLabel, industryInlineReport, ReportTableView } from './IndustryReportFlow';
 import CommodityIndustryDashboard, { type CommoditySpec } from './CommodityIndustryDashboard';
 import { industryHero } from './IndustryItemDashboard';
+import MarketRegimeBand from './MarketRegimeBand';
 
 /** 축양 페이지 강조색. 지중해 가두리의 남색 계열. */
 const TUNAFARM_ACCENT = '#2f6f8f';
@@ -73,6 +74,9 @@ const SPEC: CommoditySpec = {
   chartSlots: {},
   sourceNotes: [],
   sourceMeta: `본문·표 · ${ITEM.title} ${ITEM.edition}`,
+  insets: {
+    AfterHero: () => <MarketRegimeBand commodityKey="tunafarm" />,
+  },
 };
 
 export interface TunafarmIndustryDashboardProps {

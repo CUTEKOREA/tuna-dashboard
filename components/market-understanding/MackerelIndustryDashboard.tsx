@@ -28,6 +28,7 @@ import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
 } from './CommodityIndustryDashboard';
+import MarketRegimeBand from './MarketRegimeBand';
 import {
   MackerelCatchChart,
   MackerelGradeChart,
@@ -328,6 +329,9 @@ const SPEC: CommoditySpec = {
     `위판 집계 · ${DATA.위판등급._meta.출처}`,
     `통관 집계 · ${DATA.수입원산지._meta.출처} · ${DATA.수입원산지._meta.구간}`,
   ].join(' · '),
+  insets: {
+    AfterHero: () => <MarketRegimeBand commodityKey="mackerel" />,
+  },
 };
 
 export interface MackerelIndustryDashboardProps {
