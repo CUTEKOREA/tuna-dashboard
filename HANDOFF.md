@@ -12,6 +12,13 @@
 > - 기사 6건, AUDIT_PASS. 주간 탭이 10/12~10/16 주로 넘어감(`tuna_weekly_briefing.json`도 같은 sync 산출물로 함께 반영). PR #1428 squash `88ed3cb8`, Vercel success.
 > - 라이브 육안 확인: 「이번주 참치 뉴스 · 10/12~10/16 · 기사 6건 · 파이프라인 동기」, 리드 「Frinsa, Plisan 확장에 세금 감면 받아」. 섹션 제목이 「오늘의 참치 뉴스」→「이번주 참치 뉴스」로 바뀌어 있어 publisher 정의의 확인 스니펫(h2 텍스트 일치)은 NOT_FOUND 를 낸다 — 정의 갱신 필요.
 
+> 📝 **2026-10-13 KST — 기업 해부 ⅬⅩⅤ Atunsa 카드 추가 수정안** [Codex]:
+> - 원문 `docs/evidence/company-atunsa-2026-10/`(보고서.html·PDF·통합프로필). 표·그림·서술은 생성기로 추출, 16절 → 8단계. 카드 문구는 표지 그대로, 기존 스페인 국기 사용.
+> - 본사 핀 65곳(Bermeo 43.42, -2.72 근사값). `build/killed.py` 17개 금칙을 prose 테스트에 전량 등록. 선망 12척·30.701 GT는 인수 전 소속 기준이며 보급선 제외. 거래 지분율·대가 미공개.
+> - Artifact https://claude.ai/artifact/WYgv5hsssLGXSVLS1QWzXJ . 정본 `~/tunawork/atunsa/build`.
+> - 다음 단계: 핵심 JSON 생성 → 추출 3종·원문 HTML·lineage 생성 → 독립 검증·로컬 QA. 수정안만 작성했으며 적용·테스트·빌드·배포 미실행.
+> - 마지막 업데이트: 2026-10-13 11:07 KST [Codex]
+
 > ✅ **2026-10-13 KST — 기업 해부 ⅬⅩⅣ Parlevliet & Van der Plas(PP Group) 카드 추가** [CC]:
 > - 원문 `docs/evidence/company-ppgroup-2026-10/`(보고서.html·PDF·통합프로필). 추출 3종(표 26·그림 11(팩샷 7·차트 4)·서술 16절 → 8단계), `lib/data/company-ppgroup.ts`, COMPANY_CARDS ⅬⅩⅣ(네덜란드, `public/flags/nl.svg` 고정 커밋에서 추가), 본사 핀 64곳(Katwijk 근사 좌표), `public/reports/company/ppgroup.html`.
 > - 카드 tagline·stats 3개는 발행본 표지 문구 그대로(테스트로 원문 포함 검사). prose 테스트에 `~/tunawork/ppgroup/build/killed.py` 기각 표현 전량 + 참치 몫 가정 병기·「운영 13척」 가드.

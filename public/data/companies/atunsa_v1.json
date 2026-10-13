@@ -1,0 +1,32 @@
+{
+ "_meta": {
+  "회사": "Atunsa(Atuneros Congeladores y Transportes Frigoríficos, S.A.) — 스페인 바스크 Bermeo의 가족 열대참치 선망 선사(1972 설립, NIF A48064018). 2026-09-30 공증 보도된 주식 매매로 Pevasa(Pesquería Vasco Montañesa, S.A.) 선망 5척이 같은 소유 아래 들어왔다",
+  "국가": "스페인",
+  "업종": "열대참치 선망 선사 — 가공 계열 없음(스페인 EU 승인 목록 기준), 선망 12척·30.701 GT(인도양 8·대서양 4)",
+  "종목": "비상장 · NIF A48064018(Atunsa) · A48031686(Pevasa)",
+  "출처": "BORME·GLEIF 등기 · BDNS·DOUE 보조금 · IOTC e-RAV·ICCAT 선박 등록부·IUU 목록 · MSC 선박 명단·ISSF·EU TRACES · GFW · UN Comtrade·관세청 · DART · Faro de Vigo·Europa Azul·업계지 Atuna",
+  "조사일": "2026-10"
+ },
+ "card": {
+  "numeral": "ⅬⅩⅤ",
+  "tagline": "스페인 승인 목록에 육상 가공·저장 시설이 등재되지 않은 가족 선사의 주식 인수"
+ },
+ "stats": {
+  "설립": 1972,
+  "이사회": 3,
+  "선망척": 12,
+  "선망GT": 30701,
+  "Atunsa척": 7,
+  "AtunsaGT": 18520,
+  "Pevasa척": 5,
+  "PevasaGT": 12181,
+  "인도양": 8,
+  "대서양": 4,
+  "육상시설": 0,
+  "승인섹션": 17,
+  "승인행": 11488,
+  "매매일": "2026-09-30",
+  "열람일": "2026-10-13"
+ },
+ "sourcenotes": []
+}

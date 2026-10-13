@@ -410,6 +410,10 @@ import {
   money as pgMoney, tuna as pgTuna, trade as pgTrade,
 } from '@/lib/data/company-ppgroup';
 import {
+  atunsaMeta, atunsaCard, atunsaSourceNotes,
+  company as atCompany, fleet as atFleet, land as atLand,
+} from '@/lib/data/company-atunsa';
+import {
   bountyMeta, bountyStats, bountySourceNotes,
   registry as bountyRegistry, money as bountyMoney,
   registers as bountyRegisters, context as bountyContext, shelf as bountyShelf,
@@ -5839,6 +5843,57 @@ const PPGROUP_SPEC: CommoditySpec = {
   ].join(' · '),
 };
 
+const AT_ACCENT = '#a34a10';
+const AT_C = atCompany();
+const AT_F = atFleet();
+const AT_L = atLand();
+
+// 카드·히어로 문구는 발행본 표지 그대로다. 선단은 인수 전 소속 기준이며 보급선은 제외한다.
+const AT_FLEET = `선망선 ${AT_F.선망척}척의 총톤수. 보급선은 제외한다.`;
+const AT_SALE = '빌바오 공증에 따른 매매 체결일(Faro de Vigo 보도, B).';
+
+const ATUNSA_SPEC: CommoditySpec = {
+  key: 'company-anatomy-atunsa',
+  title: '기업 해부: Atunsa',
+  subtitle:
+    'Atunsa는 1972년 설립된 바스크 가족 선망 선사로, 스페인 TRACES에는 해당 법인 명의의 육상 가공·저장 시설이 등재돼 있지 않다. ' +
+    'Pevasa 주주들의 주식 양도가 공고에 올랐고, Atunsa에 대한 매각은 2026-09-30 빌바오 공증으로 체결됐다고 Faro de Vigo가 보도했다. ' +
+    '인수 전 소속 기준 두 선사의 선망선은 12척·30.701 GT이며, 이사 교체 주총은 2026-10-14 예정이고 지분율·대가는 공개되지 않았다.',
+  accent: AT_ACCENT,
+  primaryKpi: {
+    label: AT_FLEET,
+    value: AT_F.선망GT,
+    text: euNum(AT_F.선망GT),
+    unit: '(GT)',
+    accent: AT_ACCENT,
+  },
+  secondaryKpis: [
+    { label: 'Atunsa 선망선', value: AT_F.Atunsa척, unit: `(척 · 인수 전 소속 기준 ${euNum(AT_F.AtunsaGT)} GT.)` },
+    { label: 'Pevasa 선망선', value: AT_F.Pevasa척, unit: `(척 · 인수 전 소속 기준 ${euNum(AT_F.PevasaGT)} GT.)` },
+    { label: '대양별 배치', value: AT_F.인도양, text: `${AT_F.인도양}척 · ${AT_F.대서양}척`, unit: `(인도양 ${AT_F.인도양}척·대서양 ${AT_F.대서양}척.)` },
+  ],
+  stripItems: [
+    { now: true, eyebrow: '설립', title: String(AT_C.설립), body: 'Atunsa 설립. 바스크 가족 선망 선사다.' },
+    { eyebrow: '이사회', title: `${AT_C.이사회}인`, body: 'Atunsa 이사회. 2009~2026년 회장·부회장·서기 구성은 같다.' },
+    { eyebrow: '매매일', title: AT_C.매매일, body: AT_SALE },
+    {
+      eyebrow: '스페인 EU 승인 목록의 두 회사 명의 육상 가공',
+      title: `${AT_L.육상시설}곳`,
+      body: `스페인 EU 승인 사업장 목록 ${AT_L.승인섹션}개 섹션의 ${euNum(AT_L.승인행)}행에 두 회사 명의 가공 공장·냉동창고가 등재돼 있지 않다(${AT_L.열람일} 열람).`,
+    },
+  ],
+  briefing: proseBriefing('atunsa'),
+  narratives: inlineReport('atunsa', proseStages('atunsa')),
+  chartSlots: {},
+  continuous: true,
+  sourceNotes: atunsaSourceNotes,
+  sourceMeta: [
+    `${atunsaMeta.회사} · ${atunsaMeta.국가} · ${atunsaMeta.업종}`,
+    `출처 ${atunsaMeta.출처}`,
+    `조사 ${atunsaMeta.조사일}`,
+  ].join(' · '),
+};
+
 const PS_ACCENT = '#8a3b12';
 
 /** 선단·매대·문. 발행본의 확정 수치 정본에서만 값을 가져온다. */
@@ -7096,6 +7151,19 @@ export const COMPANY_CARDS: CompanyCard[] = [
       { label: '선단', value: `운영 ${PG_T.운영}척 — ${PG_FLEET}` },
     ],
   },
+  {
+    key: 'atunsa',
+    numeral: atunsaCard.numeral,
+    name: 'Atunsa',
+    country: '스페인 · 바스크 베르메오(선박 기국 세이셸·벨리즈 포함)',
+    tagline: atunsaCard.tagline,
+    ...FLAG.스페인,
+    stats: [
+      { label: '설립', value: `${AT_C.설립} — Atunsa 설립. 바스크 가족 선망 선사다.` },
+      { label: '매매일', value: `${AT_C.매매일} — ${AT_SALE}` },
+      { label: '선단', value: `${euNum(AT_F.선망GT)} GT — ${AT_FLEET}` },
+    ],
+  },
 
 
 
@@ -7189,6 +7257,7 @@ export default function CompanyAnatomyDashboard({
     sojitz: SOJITZ_SPEC,
     nesi: NESI_SPEC,
     ppgroup: PPGROUP_SPEC,
+    atunsa: ATUNSA_SPEC,
   };
   const spec = SPECS[selected] ?? SPEC;
 

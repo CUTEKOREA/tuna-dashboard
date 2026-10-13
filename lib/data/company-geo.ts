@@ -329,6 +329,12 @@ export const HQ_POINTS: GeoPoint[] = [
     basis: 'ⅬⅩⅣ · 발행본 §02 의 연결 정점 PP Groep Katwijk B.V.(KvK 28042057) · **좌표는 Katwijk 근사값** · 참치 축은 프랑스 Concarneau 지주 PP THON 아래 CFTO 선단·TOG(SCODI 아비장·PFOI 마다가스카르)',
     note: '비상장 · 2023 연결 매출 €1,54bn(Quote, KvK 예탁 서류 인용) · 참치 몫 7 · 12 · 14~17 %(계산, 지분법·비례연결·pro-forma 가정) · TOG 지분 2021 50 % → 2026 100 % · CFTO 운영 선망 13척, 등록 소유 확인 8척(인도양)',
     },
+  // ── ⅬⅩⅤ Atunsa — Bermeo 본사 ───────────────────────────────
+  { company: 'atunsa', numeral: 'ⅬⅩⅤ', kind: 'hq', label: 'Atunsa — Bermeo 본사', country: '스페인',
+    lat: 43.42, lng: -2.72,
+    basis: 'ⅬⅩⅤ · 발행본 §02·§08 의 법정 주소 Landabaso, parcela 7 nº 3B, Bermeo · **좌표는 Bermeo 근사값**',
+    note: '1972년 설립 · NIF A48064018 · Pevasa 주식 양도 공고와 2026-09-30 매각 공증 보도(Faro de Vigo, B) · 지분율·대가 미공개 · 인수 전 소속 기준 선망 12척·30.701 GT(Atunsa 7·Pevasa 5), 보급선 제외',
+    },
 ];
 
 /**

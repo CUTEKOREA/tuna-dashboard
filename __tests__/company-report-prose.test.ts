@@ -1020,7 +1020,77 @@ describe('Parlevliet & Van der Plas(PP Group) 보고서 서술 추출 (ⅬⅩⅣ
   });
 });
 
-describe('아홉 편 공통', () => {
+describe('Atunsa 보고서 서술 추출 (ⅬⅩⅤ)', () => {
+  const secs = reportProse('atunsa');
+
+  it('보고서 16절이 번호대로 이어지고 두 절씩 8단계에 붙는다', () => {
+    expect(secs).toHaveLength(16);
+    expect(secs.map((s) => s.numeral)).toEqual(
+      secs.map((_, i) => String(i + 1).padStart(2, '0')),
+    );
+    expect(secs.map((s) => s.stage)).toEqual(
+      secs.map((_, i) => `c${String(Math.floor(i / 2) + 1).padStart(2, '0')}`),
+    );
+    for (const s of secs) {
+      expect(proseForStage('atunsa', s.stage).length, `${s.stage} 매핑`).toBeGreaterThan(0);
+    }
+  });
+
+  // 정본 ~/tunawork/atunsa/build/killed.py 전량. PP Group과 같이 반박 인용 「」는 지우고 본다.
+  const KILLED: [string, string][] = [
+    ["(채무|부채) 감면[^<。.]{0,20}(이|가)? ?(인수 )?(대가|값)(이다|였다|로 (치렀|지불))(?![^<。.]{0,15}(아니|않|없))", "「감면=대가」 기각(기준선 §1)"],
+    ["(Atunsa|매수인)[^<。.]{0,20}Pevasa[^<。.]{0,10}(의 )?(자산|선박)(을|를) (샀|매입했|인수했)", "주식 인수(BORME)"],
+    ["Draco[^<。.]{0,20}Atunsa[^<。.]{0,10}(소유|선박|선단)(?![^<。.]{0,15}(아니|않|없))", "Draco는 Albacora 계열(렌즈A)"],
+    ["인도양[^<。.]{0,15}선망[^<。.]{0,5}9척", "선망 8척, Altarri는 보급선(Codex)"],
+    ["Bakio[^<。.]{0,30}(1991|2011)\\s?년? ?건조", "ICCAT 건조 1990(Codex)"],
+    ["Artza[^<。.]{0,20}112\\s?m(?![^<。.]{0,40}(보도|Faro|기사))", "IOTC 94,79 m(Codex)"],
+    ["inactive[^<。.]{0,20}(허가 없|무허가|허가가 없)", "정의 없음(기준선 §2)"],
+    ["Beach Fishing(은|는|이|가| Ltd(는|가))[^<。.,]{0,10}벨리즈|Sea Breeze[^<。.,]{0,25}(은|는|이|가) ?세이셸", "관할 뒤바뀜(GLEIF)"],
+    ["Sea Breeze[^<。.]{0,20}Beach Fishing[^<。.]{0,10}(의 )?자회사", "직접 모회사 Pevasa(GLEIF)"],
+    ["133\\s?m|€\\s?133", "두 회사 재무 합산 금지"],
+    ["(합산|합친)[^<。.]{0,15}(손익|이익|손실)[^<。.]{0,10}−?€?\\s?10", "합산 손익 금지(Codex)"],
+    ["주주 승인(을|이)? ?(못|얻지 못|받지 못)", "1차 근거 없음(기준선 §2)"],
+    ["ZVB[^<。.]{0,20}Pevasa[^<。.]{0,10}3척|Pevasa[^<。.]{0,20}ZVB[^<。.]{0,10}3척", "10월 목록 4척(Codex)"],
+    ["507\\s?t|73[.,]000\\s?t|110[.,]000\\s?t", "원문 미보존(Codex)"],
+    ["범주 A|Res(olution)? 26/01", "결의 원문 미확보(렌즈A)"],
+    ["Atunsa[^<。.]{0,20}한국(에|으로|시장에)[^<。.]{0,10}(판다|수출한다|판매한다)(?![^<。.]{0,15}(않|없|아니))", "판매처 미상(렌즈A)"],
+    ["Lekeitio|50세", "Egaluze 선원 식별 정보 금지(렌즈A)"],
+  ];
+
+  it('반증에서 기각한 주장이 서술과 카드에 없다', () => {
+    const card = COMPANY_CARDS.find((c) => c.key === 'atunsa');
+    expect(card).toBeTruthy();
+    const texts = [
+      ...secs.flatMap((s) => s.blocks.map((b) => `${b.title ?? ''} ${b.text}`)),
+      card!.tagline,
+      ...card!.stats.map((s) => s.value),
+    ].map((t) => t.replace(/「[^」]*」/g, ''));
+    for (const [src, why] of KILLED) {
+      const re = new RegExp(src);
+      for (const t of texts) {
+        const m = t.match(re);
+        expect(m?.[0], `${why} — ${t.slice(0, 80)}`).toBeUndefined();
+      }
+    }
+  });
+
+  it('카드 tagline·stats 문구는 본문이 아닌 발행본 표지에서 그대로 가져온다', () => {
+    const card = COMPANY_CARDS.find((c) => c.key === 'atunsa')!;
+    const html = readFileSync(join(process.cwd(), 'docs/evidence/company-atunsa-2026-10/보고서.html'), 'utf8');
+    const cover = html.match(/<header class="cover">[\s\S]*?<\/header>/)?.[0];
+    expect(cover).toBeTruthy();
+    const txt = cover!.replace(/<[^>]+>/g, '').replace(/&#8239;|\u202f/g, ' ').replace(/&amp;/g, '&');
+    expect(card.numeral).toBe('ⅬⅩⅤ');
+    expect(card.tagline).toBe('스페인 승인 목록에 육상 가공·저장 시설이 등재되지 않은 가족 선사의 주식 인수');
+    for (const p of [card.tagline, ...card.stats.flatMap((s) => s.value.split(' — '))]) {
+      expect(txt.includes(p), p.slice(0, 60)).toBe(true);
+    }
+    expect(card.stats.find((s) => s.label === '매매일')!.value).toContain('Faro de Vigo 보도, B');
+    expect(card.stats.find((s) => s.label === '선단')!.value).toBe('30.701 GT — 선망선 12척의 총톤수. 보급선은 제외한다.');
+  });
+});
+
+ describe('아홉 편 공통', () => {
   it('단계 번호가 화면 순서와 어긋나지 않는다', () => {
     // 한 단계에 절이 여럿 합쳐지면 절 번호와 화면 순서가 갈린다.
     // Thai Union 은 05 자리에 08절이 온다 — 번호는 순번이어야 한다.
