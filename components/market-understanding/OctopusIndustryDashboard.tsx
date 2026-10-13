@@ -30,6 +30,7 @@ import CommodityIndustryDashboard, {
   type CommoditySpec,
   type StageNarrative,
 } from './CommodityIndustryDashboard';
+import MarketRegimeBand from './MarketRegimeBand';
 import {
   OctopusAuctionChart,
   OctopusFrozenTradeChart,
@@ -469,6 +470,9 @@ const SPEC: CommoditySpec = {
     '식약처 전수 2026-09-02',
     `갱신 ${String(DATA._meta.생성일 ?? '')}`,
   ].join(' · '),
+  insets: {
+    AfterHero: () => <MarketRegimeBand commodityKey="octopus" />,
+  },
 };
 
 export interface OctopusIndustryDashboardProps {

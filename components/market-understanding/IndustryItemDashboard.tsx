@@ -26,10 +26,7 @@ import { PORK_CHART_SLOTS } from './PorkLegacySlots';
 import MarketRegimeBand from './MarketRegimeBand';
 import styles from './TunaIndustryDashboard.module.css';
 
-const MARKET_REGIME_KEYS = new Set(['corn', 'garlic']);
-
 function withMarketRegimeBand(spec: CommoditySpec, commodityKey: string): CommoditySpec {
-  if (!MARKET_REGIME_KEYS.has(commodityKey)) return spec;
   const AfterHero = () => <MarketRegimeBand commodityKey={commodityKey} />;
   return {
     ...spec,

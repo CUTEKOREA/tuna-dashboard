@@ -83,6 +83,7 @@ import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
 } from './CommodityIndustryDashboard';
+import MarketRegimeBand from './MarketRegimeBand';
 import styles from './TunaIndustryDashboard.module.css';
 import { TUNA_ANATOMY_SPEC } from './TunaAnatomyDashboard';
 
@@ -642,6 +643,7 @@ const SPEC: CommoditySpec = {
   chartSlots: TUNA_MERGED_CHART_SLOTS,
   sourceMeta: `${TUNA_ANATOMY_SPEC.sourceMeta} · 옛 「참치」 근거 차트 · 어획 집계 ${CATCH._meta.출처} 기준 ${CATCH._meta.기준연도}년 · 위젯 ${WIDGETS_META.선별} (${WIDGETS_META.원본})`,
   insets: {
+    AfterHero: () => <MarketRegimeBand commodityKey="tuna" />,
     AfterStage: GlossarySection,
   },
 };

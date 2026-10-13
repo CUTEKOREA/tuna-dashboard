@@ -29,6 +29,7 @@ import CommodityIndustryDashboard, {
   type ChartSlot,
   type CommoditySpec,
 } from './CommodityIndustryDashboard';
+import MarketRegimeBand from './MarketRegimeBand';
 import {
   WhelkBuccinumChart,
   WhelkGroupChart,
@@ -567,6 +568,9 @@ const SPEC: CommoditySpec = {
     `영국 양륙 · ${MMO_SYNC.syncDate}`,
     '차트·명부 출처 보고서 제3판 2026-08-25',
   ].join(' · '),
+  insets: {
+    AfterHero: () => <MarketRegimeBand commodityKey="whelk" />,
+  },
 };
 
 export interface WhelkIndustryDashboardProps {

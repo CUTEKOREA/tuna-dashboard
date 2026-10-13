@@ -19,7 +19,7 @@ export type MarketRegimeIndicator = {
   id: string;
   label: string;
   value: number | null;
-  unit: string;
+  unit: string | null;
   asof: string | null;
   baseline: MarketRegimeBaseline | null;
   delta: MarketRegimeDelta | null;
@@ -35,13 +35,14 @@ type MarketRegimeRoot = {
   common: MarketRegimeIndicator[];
 };
 
-const DATA = raw as MarketRegimeRoot;
+const DATA = raw as unknown as MarketRegimeRoot;
 
-const COMMODITY_KEYS = new Set(['corn', 'garlic', 'pollock']);
+export function marketRegimeCommodityKeys(): string[] {
+  return Object.keys(DATA.commodities);
+}
 
 /** 대시보드 품목 키에 맞는 시장 국면 지표. 없으면 빈 배열. */
 export function marketRegimeFor(commodityKey: string): MarketRegimeIndicator[] {
-  if (!COMMODITY_KEYS.has(commodityKey)) return [];
   return DATA.commodities[commodityKey] ?? [];
 }
 

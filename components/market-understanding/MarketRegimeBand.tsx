@@ -11,30 +11,23 @@ import {
 
 import styles from './MarketRegimeBand.module.css';
 
-const POLLOCK_KEY = 'pollock';
-const MAX_OK_POLLOCK = 4;
-const MAX_COMMODITY_CARDS = 5;
+const MAX_OK_COMMODITY = 4;
 
 function isOk(indicator: MarketRegimeIndicator): boolean {
   return indicator.status === 'ok';
 }
 
-/** 화면·테스트 공용 — 지표 카드 목록을 고른다. */
+/** 화면·테스트 공용 — status ok 지표 앞 4개(ENSO는 띠 컴포넌트가 별도 붙인다). */
 export function selectMarketRegimeIndicators(
-  commodityKey: string,
+  _commodityKey: string,
   all: MarketRegimeIndicator[],
 ): MarketRegimeIndicator[] {
   if (all.length === 0) return [];
-  const ok = all.filter(isOk);
-  if (commodityKey === POLLOCK_KEY && ok.length > MAX_OK_POLLOCK) {
-    return ok.slice(0, MAX_OK_POLLOCK);
-  }
-  if (all.length <= MAX_COMMODITY_CARDS) return all;
-  return all.slice(0, MAX_COMMODITY_CARDS);
+  return all.filter(isOk).slice(0, MAX_OK_COMMODITY);
 }
 
 /** 숫자·단위 표기(천 단위 쉼표, %는 소수 1자리). */
-export function formatMarketRegimeValue(value: number | null, unit: string): string {
+export function formatMarketRegimeValue(value: number | null, unit: string | null): string {
   if (value === null || Number.isNaN(value)) return '—';
   if (unit === '%') {
     return `${value.toLocaleString('ko-KR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`;

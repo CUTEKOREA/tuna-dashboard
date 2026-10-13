@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-13T08:59:44Z",
+  "generated_at": "2026-10-13T11:51:53Z",
   "collection_interval_days": 14,
   "commodities": {
     "corn": [
@@ -24,8 +24,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "US TOTAL",
@@ -34,6 +34,9 @@
           "is_proxy": false,
           "source_adapter": "nass_progress",
           "source_week": 40,
+          "source_year": 2026,
+          "observation_year": 2026,
+          "class_desc": "ALL CLASSES",
           "source_loaded_at": "2026-10-05 16:00:00.000",
           "baseline_missing_years": [
             2025
@@ -60,8 +63,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "US TOTAL",
@@ -77,7 +80,7 @@
       },
       {
         "id": "managed_money_net",
-        "label": "매니지드머니 순포지션",
+        "label": "운용자금 순포지션",
         "value": 329839,
         "unit": "contracts",
         "asof": "2026-10-06",
@@ -95,11 +98,11 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
-          "geography": "CBOT",
+          "geography": null,
           "product_scope": "CORN - CHICAGO BOARD OF TRADE",
           "definition_version": "source",
           "is_proxy": false,
@@ -131,8 +134,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "World Bank quotation",
@@ -141,7 +144,8 @@
           "is_proxy": false,
           "source_adapter": "wb_monthly",
           "source_unit": "($/mt)",
-          "source_updated_at": "2026-10-02"
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
         }
       }
     ],
@@ -166,8 +170,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -202,8 +206,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -238,8 +242,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -274,8 +278,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -310,8 +314,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -346,8 +350,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -382,8 +386,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -418,8 +422,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -454,8 +458,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -490,8 +494,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -526,8 +530,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -562,8 +566,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -598,8 +602,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -634,8 +638,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -670,8 +674,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -706,8 +710,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -742,8 +746,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -778,8 +782,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Bering Sea",
@@ -814,8 +818,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Aleutian Islands",
@@ -850,8 +854,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Aleutian Islands",
@@ -886,8 +890,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": "not_applicable",
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": null,
         "error_code": null,
         "context": {
           "geography": "Aleutian Islands",
@@ -922,8 +926,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Aleutian Islands",
@@ -958,8 +962,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Aleutian Islands",
@@ -994,8 +998,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": "not_applicable",
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": null,
         "error_code": null,
         "context": {
           "geography": "Aleutian Islands",
@@ -1030,8 +1034,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Aleutian Islands",
@@ -1066,8 +1070,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Aleutian Islands",
@@ -1102,8 +1106,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "Aleutian Islands",
@@ -1150,8 +1154,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "대한민국",
@@ -1184,8 +1188,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "대한민국",
@@ -1218,8 +1222,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "대한민국",
@@ -1252,8 +1256,8 @@
         "fetch_state": "ok",
         "freshness": "unknown",
         "missing_reason": null,
-        "last_attempt_at": "2026-10-13T08:59:44Z",
-        "last_success_at": "2026-10-13T08:59:44Z",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
         "error_code": null,
         "context": {
           "geography": "대한민국",
@@ -1266,12 +1270,2878 @@
           "item_code": "258"
         }
       }
+    ],
+    "soybean": [
+      {
+        "id": "us_harvest_progress",
+        "label": "미국 대두 수확",
+        "value": 25,
+        "unit": "%",
+        "asof": "2026-10-04",
+        "published_at": null,
+        "period": {
+          "type": "week_ending",
+          "start": null,
+          "end": "2026-10-04"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://quickstats.nass.usda.gov/api/api_GET/",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "US TOTAL",
+          "product_scope": "SOYBEANS - PROGRESS, MEASURED IN PCT HARVESTED",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "nass_progress",
+          "source_week": 40,
+          "source_year": 2026,
+          "observation_year": 2026,
+          "class_desc": "ALL CLASSES",
+          "source_loaded_at": "2026-10-05 16:00:00.000",
+          "baseline_missing_years": [
+            2025
+          ]
+        }
+      },
+      {
+        "id": "managed_money_net",
+        "label": "운용자금 순포지션",
+        "value": 258066,
+        "unit": "contracts",
+        "asof": "2026-10-06",
+        "published_at": null,
+        "period": {
+          "type": "position_date",
+          "start": "2026-10-06",
+          "end": "2026-10-06"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://publicreporting.cftc.gov/resource/72hh-3qpy.json",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": null,
+          "product_scope": "SOYBEANS - CHICAGO BOARD OF TRADE",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "cftc_disagg",
+          "market_code": "005602",
+          "dataset": "72hh-3qpy",
+          "long": 289942,
+          "short": 31876,
+          "series": "Futures Only"
+        }
+      },
+      {
+        "id": "wb_soybean_price",
+        "label": "세계은행 월간 대두 가격",
+        "value": 524,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Soybeans",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      }
+    ],
+    "wheat": [
+      {
+        "id": "us_planting_progress",
+        "label": "미국 겨울밀 파종",
+        "value": 36,
+        "unit": "%",
+        "asof": "2026-10-04",
+        "published_at": null,
+        "period": {
+          "type": "week_ending",
+          "start": null,
+          "end": "2026-10-04"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://quickstats.nass.usda.gov/api/api_GET/",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "US TOTAL",
+          "product_scope": "WHEAT, WINTER - PROGRESS, MEASURED IN PCT PLANTED",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "nass_progress",
+          "source_week": 40,
+          "source_year": 2027,
+          "observation_year": 2026,
+          "class_desc": "WINTER",
+          "source_loaded_at": "2026-10-05 16:00:00.000",
+          "baseline_missing_years": [
+            2025
+          ]
+        }
+      },
+      {
+        "id": "managed_money_net",
+        "label": "운용자금 순포지션",
+        "value": -28830,
+        "unit": "contracts",
+        "asof": "2026-10-06",
+        "published_at": null,
+        "period": {
+          "type": "position_date",
+          "start": "2026-10-06",
+          "end": "2026-10-06"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://publicreporting.cftc.gov/resource/72hh-3qpy.json",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": null,
+          "product_scope": "WHEAT-SRW - CHICAGO BOARD OF TRADE",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "cftc_disagg",
+          "market_code": "001602",
+          "dataset": "72hh-3qpy",
+          "long": 86954,
+          "short": 115784,
+          "series": "Futures Only"
+        }
+      },
+      {
+        "id": "wb_wheat_srw_price",
+        "label": "세계은행 월간 미국 연질밀 가격",
+        "value": 278.6,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Wheat, US SRW",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      },
+      {
+        "id": "wb_wheat_hrw_price",
+        "label": "세계은행 월간 미국 경질밀 가격",
+        "value": 347,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Wheat, US HRW",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      }
+    ],
+    "soybean_oil": [
+      {
+        "id": "managed_money_net",
+        "label": "운용자금 순포지션",
+        "value": 93518,
+        "unit": "contracts",
+        "asof": "2026-10-06",
+        "published_at": null,
+        "period": {
+          "type": "position_date",
+          "start": "2026-10-06",
+          "end": "2026-10-06"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://publicreporting.cftc.gov/resource/72hh-3qpy.json",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": null,
+          "product_scope": "SOYBEAN OIL - CHICAGO BOARD OF TRADE",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "cftc_disagg",
+          "market_code": "007601",
+          "dataset": "72hh-3qpy",
+          "long": 116042,
+          "short": 22524,
+          "series": "Futures Only"
+        }
+      },
+      {
+        "id": "wb_soyoil_price",
+        "label": "세계은행 월간 대두유 가격",
+        "value": 1615,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Soybean oil",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      }
+    ],
+    "sugar": [
+      {
+        "id": "managed_money_net",
+        "label": "운용자금 순포지션",
+        "value": 252514,
+        "unit": "contracts",
+        "asof": "2026-10-06",
+        "published_at": null,
+        "period": {
+          "type": "position_date",
+          "start": "2026-10-06",
+          "end": "2026-10-06"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://publicreporting.cftc.gov/resource/72hh-3qpy.json",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": null,
+          "product_scope": "SUGAR NO. 11 - ICE FUTURES U.S.",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "cftc_disagg",
+          "market_code": "080732",
+          "dataset": "72hh-3qpy",
+          "long": 345661,
+          "short": 93147,
+          "series": "Futures Only"
+        }
+      },
+      {
+        "id": "wb_sugar_price",
+        "label": "세계은행 월간 세계 설탕 가격",
+        "value": 0.41,
+        "unit": "USD/kg",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Sugar, world",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/kg)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      }
+    ],
+    "canola_oil": [
+      {
+        "id": "managed_money_net",
+        "label": "운용자금 순포지션",
+        "value": 115528,
+        "unit": "contracts",
+        "asof": "2026-10-06",
+        "published_at": null,
+        "period": {
+          "type": "position_date",
+          "start": "2026-10-06",
+          "end": "2026-10-06"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://publicreporting.cftc.gov/resource/72hh-3qpy.json",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": null,
+          "product_scope": "CANOLA - ICE FUTURES U.S.",
+          "definition_version": "source",
+          "is_proxy": true,
+          "source_adapter": "cftc_disagg",
+          "market_code": "135731",
+          "dataset": "72hh-3qpy",
+          "long": 134781,
+          "short": 19253,
+          "series": "Futures Only"
+        }
+      },
+      {
+        "id": "wb_rapeseed_oil_price",
+        "label": "세계은행 월간 유채유 가격",
+        "value": 1440,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Rapeseed oil",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      }
+    ],
+    "palm_oil": [
+      {
+        "id": "wb_palm_oil_price",
+        "label": "세계은행 월간 팜유 가격",
+        "value": 1180,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Palm oil",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": "2026-01 정의 변경. 과거 평균 미계산"
+        }
+      },
+      {
+        "id": "wb_palm_soy_spread",
+        "label": "팜유−대두유 가격차",
+        "value": -435,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": null,
+          "product_scope": "Palm oil - Soybean oil",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_spread",
+          "left": 1180,
+          "right": 1615,
+          "definition_note": "팜유는 2026-01 정의 변경. 과거 평균 미계산"
+        }
+      }
+    ],
+    "sunflower_oil": [
+      {
+        "id": "wb_sunflower_oil_price",
+        "label": "세계은행 월간 해바라기유 가격",
+        "value": 1390,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Sunflower oil",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      }
+    ],
+    "olive": [
+      {
+        "id": "wb_olive_oil_price",
+        "label": "세계은행 월간 올리브유 가격",
+        "value": null,
+        "unit": null,
+        "asof": null,
+        "published_at": null,
+        "period": {
+          "type": "unknown",
+          "start": null,
+          "end": null
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "no_value",
+        "data_state": "missing",
+        "fetch_state": "empty_result",
+        "freshness": "unknown",
+        "missing_reason": "empty_result",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": null,
+        "error_code": "EMPTY_RESULT",
+        "context": {
+          "geography": null,
+          "product_scope": "Olive oil",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "definition_note": null
+        }
+      }
+    ],
+    "coffee": [
+      {
+        "id": "wb_coffee_arabica_price",
+        "label": "세계은행 월간 아라비카 가격",
+        "value": 7.26,
+        "unit": "USD/kg",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Coffee, Arabica",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/kg)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      },
+      {
+        "id": "wb_coffee_robusta_price",
+        "label": "세계은행 월간 로부스타 가격",
+        "value": 3.69,
+        "unit": "USD/kg",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Coffee, Robusta",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/kg)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      }
+    ],
+    "cocoa": [
+      {
+        "id": "wb_cocoa_price",
+        "label": "세계은행 월간 코코아 가격",
+        "value": 5.92,
+        "unit": "USD/kg",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Cocoa",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/kg)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      }
+    ],
+    "natural_rubber": [
+      {
+        "id": "wb_rubber_tsr20_price",
+        "label": "세계은행 월간 천연고무 가공등급 가격",
+        "value": 2.41,
+        "unit": "USD/kg",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Rubber, TSR20 **",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/kg)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": "원문 ** 주석 유지. 과거 평균 미계산"
+        }
+      },
+      {
+        "id": "wb_rubber_rss3_price",
+        "label": "세계은행 월간 천연고무 시트등급 가격",
+        "value": 2.75,
+        "unit": "USD/kg",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Rubber, RSS3",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/kg)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      }
+    ],
+    "bananas": [
+      {
+        "id": "wb_banana_us_price",
+        "label": "세계은행 월간 바나나 미국 수입가격",
+        "value": 1.12,
+        "unit": "USD/kg",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Banana, US",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/kg)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      },
+      {
+        "id": "wb_banana_europe_price",
+        "label": "세계은행 월간 바나나 유럽 수입가격",
+        "value": 1.12,
+        "unit": "USD/kg",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Banana, Europe",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/kg)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      },
+      {
+        "id": "retail_price",
+        "label": "바나나 당일 평균가",
+        "value": 330,
+        "unit": "원/100g",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": {
+          "type": "source_normal",
+          "label": "원문 평년",
+          "value": 327,
+          "unit": "원/100g",
+          "years": null
+        },
+        "delta": {
+          "type": "source_percent_change",
+          "value": 0.9,
+          "unit": "%"
+        },
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "바나나-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "100g",
+          "item_code": "418"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "바나나 평년 평균가",
+        "value": 327,
+        "unit": "원/100g",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "바나나-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "100g",
+          "item_code": "418"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "바나나 평년 대비",
+        "value": 0.9,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "바나나-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "100g",
+          "item_code": "418"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "바나나 전년 대비",
+        "value": -3.5,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "바나나-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "100g",
+          "item_code": "418"
+        }
+      }
+    ],
+    "rice": [
+      {
+        "id": "wb_rice_thai_price",
+        "label": "세계은행 월간 태국 쌀 가격",
+        "value": 482,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Rice, Thai 5%",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      },
+      {
+        "id": "retail_price",
+        "label": "쌀 당일 평균가",
+        "value": 64995,
+        "unit": "원/20kg",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": {
+          "type": "source_normal",
+          "label": "원문 평년",
+          "value": 57951,
+          "unit": "원/20kg",
+          "years": null
+        },
+        "delta": {
+          "type": "source_percent_change",
+          "value": 12.2,
+          "unit": "%"
+        },
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "쌀-20kg(햅쌀)",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "20kg",
+          "item_code": "111"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "쌀 평년 평균가",
+        "value": 57951,
+        "unit": "원/20kg",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "쌀-20kg(햅쌀)",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "20kg",
+          "item_code": "111"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "쌀 평년 대비",
+        "value": 12.2,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "쌀-20kg(햅쌀)",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "20kg",
+          "item_code": "111"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "쌀 전년 대비",
+        "value": -2.6,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "쌀-20kg(햅쌀)",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "20kg",
+          "item_code": "111"
+        }
+      }
+    ],
+    "coconut": [
+      {
+        "id": "wb_coconut_oil_price",
+        "label": "세계은행 월간 코코넛오일 원료 참고가격",
+        "value": 2083,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Coconut oil",
+          "definition_version": "source",
+          "is_proxy": true,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": null
+        }
+      }
+    ],
+    "beef": [
+      {
+        "id": "wb_beef_price",
+        "label": "세계은행 월간 소고기 참고가격",
+        "value": 6.86,
+        "unit": "USD/kg",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Beef **",
+          "definition_version": "source",
+          "is_proxy": true,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/kg)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": "국내 등급판정·도축 지표가 아님. 원문 ** 주석 유지"
+        }
+      }
+    ],
+    "chicken": [
+      {
+        "id": "wb_chicken_price",
+        "label": "세계은행 월간 닭고기 참고가격",
+        "value": 1.81,
+        "unit": "USD/kg",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Chicken **",
+          "definition_version": "source",
+          "is_proxy": true,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/kg)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": "국내 도축 지표가 아님. 원문 ** 주석 유지"
+        }
+      }
+    ],
+    "salmon": [
+      {
+        "id": "salmon_export_tonnes",
+        "label": "노르웨이 신선·냉장 양식연어 주간 수출중량",
+        "value": 30277,
+        "unit": "metric_ton",
+        "asof": "2026-10-04",
+        "published_at": null,
+        "period": {
+          "type": "week",
+          "start": "2026-09-28",
+          "end": "2026-10-04"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://data.ssb.no/api/pxwebapi/v2/tables/03024",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "노르웨이",
+          "product_scope": "Fish-farm bred salmon, fresh or chilled",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "ssb_salmon_weekly",
+          "commodity_code": "01",
+          "source_week": "2026U40",
+          "source_updated_at": "2026-10-07T06:00:00Z",
+          "contents_code": "Vekt",
+          "source_unit": "tonnes"
+        }
+      },
+      {
+        "id": "salmon_export_price",
+        "label": "노르웨이 신선·냉장 양식연어 주간 수출가격",
+        "value": null,
+        "unit": null,
+        "asof": "2026-10-04",
+        "published_at": null,
+        "period": {
+          "type": "week",
+          "start": "2026-09-28",
+          "end": "2026-10-04"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://data.ssb.no/api/pxwebapi/v2/tables/03024",
+        "status": "no_value",
+        "data_state": "missing",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": "field_not_in_source",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": null,
+        "error_code": "NO_VALUE",
+        "context": {
+          "geography": "노르웨이",
+          "product_scope": "Fish-farm bred salmon, fresh or chilled",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "ssb_salmon_weekly",
+          "commodity_code": "01",
+          "source_week": "2026U40",
+          "source_updated_at": "2026-10-07T06:00:00Z",
+          "contents_code": "Pris",
+          "source_unit": null
+        }
+      }
+    ],
+    "squid": [
+      {
+        "id": "illex_monthly_landings",
+        "label": "아르헨티나 일렉스 월중 양륙",
+        "value": 0.6,
+        "unit": "metric_ton",
+        "asof": "2026-10-06",
+        "published_at": null,
+        "period": {
+          "type": "month_to_date",
+          "start": "2026-10-01",
+          "end": "2026-10-06"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://www.magyp.gob.ar/sitio/areas/pesca_maritima/desembarques/lectura.php?imp=1&tabla=especie_mes_2026",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "아르헨티나",
+          "product_scope": "Calamar Illex",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "arg_squid_monthly",
+          "source_unit": "t",
+          "report_through": "2026-10-06"
+        }
+      },
+      {
+        "id": "illex_cumulative_landings",
+        "label": "아르헨티나 일렉스 누적양륙",
+        "value": 188371.1,
+        "unit": "metric_ton",
+        "asof": "2026-10-06",
+        "published_at": null,
+        "period": {
+          "type": "year_to_date",
+          "start": "2026-01-01",
+          "end": "2026-10-06"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://www.magyp.gob.ar/sitio/areas/pesca_maritima/desembarques/lectura.php?imp=1&tabla=especie_mes_2026",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "아르헨티나",
+          "product_scope": "Calamar Illex",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "arg_squid_monthly",
+          "source_unit": "t",
+          "report_through": "2026-10-06"
+        }
+      }
+    ],
+    "surimi": [
+      {
+        "id": "wb_fishmeal_price",
+        "label": "세계은행 월간 어분 원료 참고가격",
+        "value": 2916,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Fish meal",
+          "definition_version": "source",
+          "is_proxy": true,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": "2026-07 정의 변경. 과거 평균 미계산"
+        }
+      }
+    ],
+    "shrimp": [
+      {
+        "id": "wb_fishmeal_price",
+        "label": "세계은행 월간 어분 사료원료 참고가격",
+        "value": 2916,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Fish meal",
+          "definition_version": "source",
+          "is_proxy": true,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": "2026-07 정의 변경. 과거 평균 미계산"
+        }
+      }
+    ],
+    "petfood": [
+      {
+        "id": "wb_fishmeal_price",
+        "label": "세계은행 월간 어분 원료 참고가격",
+        "value": 2916,
+        "unit": "USD/metric_ton",
+        "asof": "2026-09-30",
+        "published_at": null,
+        "period": {
+          "type": "month",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "World Bank quotation",
+          "product_scope": "Fish meal",
+          "definition_version": "source",
+          "is_proxy": true,
+          "source_adapter": "wb_monthly",
+          "source_unit": "($/mt)",
+          "source_updated_at": "2026-10-02",
+          "definition_note": "2026-07 정의 변경. 과거 평균 미계산"
+        }
+      }
+    ],
+    "onions": [
+      {
+        "id": "retail_price",
+        "label": "양파 당일 평균가",
+        "value": 2053,
+        "unit": "원/1kg",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": {
+          "type": "source_normal",
+          "label": "원문 평년",
+          "value": 2227,
+          "unit": "원/1kg",
+          "years": null
+        },
+        "delta": {
+          "type": "source_percent_change",
+          "value": -7.8,
+          "unit": "%"
+        },
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "양파-양파",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1kg",
+          "item_code": "245"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "양파 평년 평균가",
+        "value": 2227,
+        "unit": "원/1kg",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "양파-양파",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1kg",
+          "item_code": "245"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "양파 평년 대비",
+        "value": -7.8,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "양파-양파",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1kg",
+          "item_code": "245"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "양파 전년 대비",
+        "value": -10.9,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "양파-양파",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1kg",
+          "item_code": "245"
+        }
+      }
+    ],
+    "pepper": [
+      {
+        "id": "retail_price",
+        "label": "건고추 당일 평균가",
+        "value": 17718,
+        "unit": "원/600g",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": {
+          "type": "source_normal",
+          "label": "원문 평년",
+          "value": 17010,
+          "unit": "원/600g",
+          "years": null
+        },
+        "delta": {
+          "type": "source_percent_change",
+          "value": 4.2,
+          "unit": "%"
+        },
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "건고추-화건",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "600g",
+          "item_code": "241"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "건고추 평년 평균가",
+        "value": 17010,
+        "unit": "원/600g",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "건고추-화건",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "600g",
+          "item_code": "241"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "건고추 평년 대비",
+        "value": 4.2,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "건고추-화건",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "600g",
+          "item_code": "241"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "건고추 전년 대비",
+        "value": 6.2,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "건고추-화건",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "600g",
+          "item_code": "241"
+        }
+      }
+    ],
+    "carrot": [
+      {
+        "id": "retail_price",
+        "label": "당근 당일 평균가",
+        "value": 4395,
+        "unit": "원/1kg",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": {
+          "type": "source_normal",
+          "label": "원문 평년",
+          "value": 4888,
+          "unit": "원/1kg",
+          "years": null
+        },
+        "delta": {
+          "type": "source_percent_change",
+          "value": -10.1,
+          "unit": "%"
+        },
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "당근-무세척(국산)",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1kg",
+          "item_code": "232"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "당근 평년 평균가",
+        "value": 4888,
+        "unit": "원/1kg",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "당근-무세척(국산)",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1kg",
+          "item_code": "232"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "당근 평년 대비",
+        "value": -10.1,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "당근-무세척(국산)",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1kg",
+          "item_code": "232"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "당근 전년 대비",
+        "value": 16.4,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "당근-무세척(국산)",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1kg",
+          "item_code": "232"
+        }
+      }
+    ],
+    "sesame": [
+      {
+        "id": "retail_price",
+        "label": "참깨 당일 평균가",
+        "value": 4964,
+        "unit": "원/500g",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": {
+          "type": "source_normal",
+          "label": "원문 평년",
+          "value": 5074,
+          "unit": "원/500g",
+          "years": null
+        },
+        "delta": {
+          "type": "source_percent_change",
+          "value": -2.2,
+          "unit": "%"
+        },
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "참깨-중국",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "500g",
+          "item_code": "312"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "참깨 평년 평균가",
+        "value": 5074,
+        "unit": "원/500g",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "참깨-중국",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "500g",
+          "item_code": "312"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "참깨 평년 대비",
+        "value": -2.2,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "참깨-중국",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "500g",
+          "item_code": "312"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "참깨 전년 대비",
+        "value": -1.6,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "참깨-중국",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "500g",
+          "item_code": "312"
+        }
+      }
+    ],
+    "almonds": [
+      {
+        "id": "retail_price",
+        "label": "아몬드 당일 평균가",
+        "value": 2091,
+        "unit": "원/100g",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": {
+          "type": "source_normal",
+          "label": "원문 평년",
+          "value": 1500,
+          "unit": "원/100g",
+          "years": null
+        },
+        "delta": {
+          "type": "source_percent_change",
+          "value": 39.4,
+          "unit": "%"
+        },
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "아몬드-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "100g",
+          "item_code": "319"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "아몬드 평년 평균가",
+        "value": 1500,
+        "unit": "원/100g",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "아몬드-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "100g",
+          "item_code": "319"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "아몬드 평년 대비",
+        "value": 39.4,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "아몬드-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "100g",
+          "item_code": "319"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "아몬드 전년 대비",
+        "value": 7.1,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "아몬드-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "100g",
+          "item_code": "319"
+        }
+      }
+    ],
+    "walnuts": [
+      {
+        "id": "retail_price",
+        "label": "호두 당일 평균가",
+        "value": 2129,
+        "unit": "원/100g",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": {
+          "type": "source_normal",
+          "label": "원문 평년",
+          "value": 1618,
+          "unit": "원/100g",
+          "years": null
+        },
+        "delta": {
+          "type": "source_percent_change",
+          "value": 31.6,
+          "unit": "%"
+        },
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "호두-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "100g",
+          "item_code": "318"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "호두 평년 평균가",
+        "value": 1618,
+        "unit": "원/100g",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "호두-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "100g",
+          "item_code": "318"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "호두 평년 대비",
+        "value": 31.6,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "호두-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "100g",
+          "item_code": "318"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "호두 전년 대비",
+        "value": -0.1,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "호두-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "중품",
+          "source_unit": "100g",
+          "item_code": "318"
+        }
+      }
+    ],
+    "pineapple": [
+      {
+        "id": "retail_price",
+        "label": "파인애플 당일 평균가",
+        "value": 7600,
+        "unit": "원/1개",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": {
+          "type": "source_normal",
+          "label": "원문 평년",
+          "value": 7586,
+          "unit": "원/1개",
+          "years": null
+        },
+        "delta": {
+          "type": "source_percent_change",
+          "value": 0.2,
+          "unit": "%"
+        },
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "파인애플-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1개",
+          "item_code": "420"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "파인애플 평년 평균가",
+        "value": 7586,
+        "unit": "원/1개",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "파인애플-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1개",
+          "item_code": "420"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "파인애플 평년 대비",
+        "value": 0.2,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "파인애플-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1개",
+          "item_code": "420"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "파인애플 전년 대비",
+        "value": -6.7,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "파인애플-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "1개",
+          "item_code": "420"
+        }
+      }
+    ],
+    "cherries": [
+      {
+        "id": "retail_price",
+        "label": "체리 당일 평균가",
+        "value": 2059,
+        "unit": "원/100g",
+        "asof": "2026-09-23",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-09-23",
+          "end": "2026-09-23"
+        },
+        "baseline": {
+          "type": "source_normal",
+          "label": "원문 평년",
+          "value": 2888,
+          "unit": "원/100g",
+          "years": null
+        },
+        "delta": {
+          "type": "source_percent_change",
+          "value": -28.7,
+          "unit": "%"
+        },
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "체리-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "100g",
+          "item_code": "425"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "체리 평년 평균가",
+        "value": 2888,
+        "unit": "원/100g",
+        "asof": "2026-09-23",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-09-23",
+          "end": "2026-09-23"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "체리-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "100g",
+          "item_code": "425"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "체리 평년 대비",
+        "value": -28.7,
+        "unit": "%",
+        "asof": "2026-09-23",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-09-23",
+          "end": "2026-09-23"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "체리-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "100g",
+          "item_code": "425"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "체리 전년 대비",
+        "value": -9.7,
+        "unit": "%",
+        "asof": "2026-09-23",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-09-23",
+          "end": "2026-09-23"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "체리-수입",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "100g",
+          "item_code": "425"
+        }
+      }
+    ],
+    "kiwis": [
+      {
+        "id": "retail_price",
+        "label": "키위 당일 평균가",
+        "value": 15622,
+        "unit": "원/10개",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "ok",
+        "data_state": "present",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": null,
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": "2026-10-13T11:51:53Z",
+        "error_code": null,
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "키위-골드",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "10개",
+          "item_code": "437"
+        }
+      },
+      {
+        "id": "normal_price",
+        "label": "키위 평년 평균가",
+        "value": null,
+        "unit": "원/10개",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "no_value",
+        "data_state": "missing",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": "not_published",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": null,
+        "error_code": "NO_VALUE",
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "키위-골드",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "10개",
+          "item_code": "437"
+        }
+      },
+      {
+        "id": "normal_change_pct",
+        "label": "키위 평년 대비",
+        "value": null,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "no_value",
+        "data_state": "missing",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": "not_published",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": null,
+        "error_code": "NO_VALUE",
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "키위-골드",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "10개",
+          "item_code": "437"
+        }
+      },
+      {
+        "id": "year_change_pct",
+        "label": "키위 전년 대비",
+        "value": null,
+        "unit": "%",
+        "asof": "2026-10-12",
+        "published_at": null,
+        "period": {
+          "type": "day",
+          "start": "2026-10-12",
+          "end": "2026-10-12"
+        },
+        "baseline": null,
+        "delta": null,
+        "source_url": "https://oasis.krei.re.kr/basicInfo/retailale/agriPrice.do",
+        "status": "no_value",
+        "data_state": "missing",
+        "fetch_state": "ok",
+        "freshness": "unknown",
+        "missing_reason": "not_published",
+        "last_attempt_at": "2026-10-13T11:51:53Z",
+        "last_success_at": null,
+        "error_code": "NO_VALUE",
+        "context": {
+          "geography": "대한민국",
+          "product_scope": "키위-골드",
+          "definition_version": "source",
+          "is_proxy": false,
+          "source_adapter": "oasis_retail_csv",
+          "grade": "상품",
+          "source_unit": "10개",
+          "item_code": "437"
+        }
+      }
     ]
   },
   "common": [
     {
       "id": "enso_oni",
-      "label": "ENSO ONI 최근 3개월 편차",
+      "label": "엘니뇨·라니냐 최근 3개월 편차",
       "value": 2.16,
       "unit": "°C",
       "asof": "2026-09-30",
@@ -1289,8 +4159,8 @@
       "fetch_state": "ok",
       "freshness": "unknown",
       "missing_reason": null,
-      "last_attempt_at": "2026-10-13T08:59:44Z",
-      "last_success_at": "2026-10-13T08:59:44Z",
+      "last_attempt_at": "2026-10-13T11:51:53Z",
+      "last_success_at": "2026-10-13T11:51:53Z",
       "error_code": null,
       "context": {
         "geography": "Niño 3.4",
