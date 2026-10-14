@@ -1,3 +1,12 @@
+> ✅ **2026-10-14 KST — `/fleet` 해양수산본부 일일업무보고 261014(수) 반영** [CC]:
+> - 원자료: `해양수산본부 일일업무보고-261014 (수).docx` SHA-256 `d750ec24467cabe675da06923aaf0234f95b5083a98282ae49dbd02c420c75ef`(167,372 B, `unzip -t` 정상). 증분 173건.
+> - 머리글 연속성: 태평양 일 326 · 월 3,483+326=3,809 · 연 58,421.8, 대서양 일 140 · 월 1,250+140=1,390 · 연 40,945. 운반선 10,614 / 2,211 그대로. 「전일 대비」 +201. 검산 692회 전부 완전.
+> - MOAMARI: 10/14 보고도 비고 없음(항해 중) → `asOf` 10-14. 조업손실 환산 173보고일 / 271달력일 · 19.45 MT → 약 43보고일 · 약 840 MT 유지. 위치는 싣지 않았다.
+> - `fleet-daily-detail-loader` 배포 중 해시 기대값 d0d810f9… → 9dc5ff3d…(10/13 배포). 새 detailSha256 `d92c9c76…` — 배포 후 시크릿 교체 필요(`--check` 일치).
+> - `npm run verify`: lint·typecheck·Vitest 223 files / 2,261 tests·API cache·build·fleet leak·bundle 통과. **마지막 `check:report-tables` 만 실패** — `company-jadran-2026-10` 표8 세로합 불일치 2건(278 대 139, 4,054 대 2,027 — 합계행이 세로합에 한 번 더 들어간 모양). main #1448 에서 온 것이고 이 브랜치 무관.
+> - 로컬 production 1440·390: 200, overflow 0, page error 0, 일간 추이 새 서술 확인.
+> - 상태: 브랜치 `data/fleet-daily-261014` 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🐟 **2026-10-14 09:05 KST — `/market` 2026-10-13 참치 브리핑 배포** [CC]:
 > - 감사 `AUDIT_PASS`(윤문본 재감사). 변경분은 `public/data/tuna_daily_briefing.json`·`tuna_weekly_briefing.json` 두 파일뿐. 기준일 `2026-10-13`, 기사 **6건**. 로컬 verify `__tests__/daily-briefing.test.ts` 4/4 통과.
 > - 브랜치 `briefing/2026-10-13` → PR **#1449** squash 병합, `main` 커밋 **`afd63905`**. Vercel status `success`(웹훅 정상 발화, CLI 수동 배포 불필요).
