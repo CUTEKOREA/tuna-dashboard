@@ -34,7 +34,7 @@ describe('logistics decision workspace', () => {
 
     expect(dashboardSource).toContain("useState<LogisticsTab>('operations')");
     expect(markup).toContain('운영 확인 관제판');
-    expect(markup).toContain('SPA 창고 점유율 88%');
+    expect(markup).toContain('SPA 창고 점유율 83%');
     expect(markup).toContain('10월 반입 누계 정정 반영');
     expect(markup).toContain('10월 누계 1척 · 4,840MT · 월별 합계 일치');
     expect(markup).toContain('HUA FU 107');
@@ -65,12 +65,11 @@ describe('logistics decision workspace', () => {
     expect(heroMarkup).toContain('10월 방콕 반입 1척');
     expect(heroMarkup).not.toContain('입항 상태 재확인');
     // 운반선 표는 트레이더 단위 - 원문 입항표와 같은 모양이어야 척수 칸이 뜻을 갖는다
-    // 9/30 판 표는 하역 중인 3척만 적는다 - 월 누계는 각주가 따로 든다
-    expect(carrierMarkup).toContain('CHERRY STAR (3,415 MT)');
-    expect(carrierMarkup).toContain('RYOMA (3,290 MT)');
-    expect(carrierMarkup).toContain('11,545 MT');
+    // 표는 하역 중인 배만 적는다 - 10/14 판은 HUA FU 107 한 척, 월 누계는 각주가 따로 든다
+    expect(carrierMarkup).toContain('HUA FU 107 (4,840 MT)');
+    expect(carrierMarkup).not.toContain('CHERRY STAR');
     expect(carrierMarkup).toContain('누계는 운반선 1척·4,840 MT');
-    expect(carrierMarkup).toContain('하역 중인 배는 3척');
+    expect(carrierMarkup).toContain('하역 중인 배는 1척');
     expect(carrierMarkup).not.toContain('2026-08-05');
   });
 

@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "metadata": {
     "status": "STATIC",
-    "reportCount": 38,
-    "pageCount": 46,
+    "reportCount": 39,
+    "pageCount": 47,
     "firstReportDate": "2026-01-21",
     "coverageStart": "2026-01-21",
-    "coverageEnd": "2026-10-07",
-    "latestReportDate": "2026-10-07"
+    "coverageEnd": "2026-10-14",
+    "latestReportDate": "2026-10-14"
   },
   "weekly": [
     {
@@ -2327,13 +2327,167 @@
         ],
         "total": 79312.0
       }
+    },
+    {
+      "reportDate": "2026-10-14",
+      "operationalAsOf": null,
+      "port": {
+        "active": {
+          "declaredCount": 2,
+          "recordCount": 2
+        },
+        "completed": {
+          "declaredCount": 1,
+          "recordCount": 1
+        },
+        "incoming": {
+          "declaredCount": 4,
+          "recordCount": 4
+        }
+      },
+      "canneryTotal": {
+        "maxDailyProductionMt": 1095.0,
+        "currentDailyProductionMt": 895.0,
+        "productionUtilizationPct": 82.0,
+        "storageCapacityMt": 40600.0,
+        "currentStockMt": 17550.0,
+        "storageUtilizationPct": 43.0,
+        "reportedProcessingDays": 20.0
+      },
+      "prices": {
+        "nonGspNonMsc": {
+          "amount": 2200,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$2,200"
+        },
+        "gspNonMsc": {
+          "amount": 2300,
+          "currencySymbol": "$",
+          "basisUnit": null,
+          "qualifier": "quoted",
+          "rawText": "$2,300"
+        }
+      },
+      "volume2026": {
+        "year": 2026,
+        "months": [
+          4920.0,
+          11968.0,
+          8757.0,
+          8059.0,
+          3307.0,
+          14038.0,
+          12687.0,
+          7684.0,
+          7892.0,
+          null,
+          null,
+          null
+        ],
+        "total": 79312.0
+      }
     }
   ],
   "latest": {
-    "reportDate": "2026-10-07",
+    "reportDate": "2026-10-14",
     "operationalAsOf": null,
     "port": {
       "active": {
+        "declaredCount": 2,
+        "recordCount": 2,
+        "records": [
+          {
+            "sourceIdentifier": "MV SHIN FUJI",
+            "displayName": "SHIN FUJI",
+            "traders": [
+              "TPJ"
+            ],
+            "cargo": 3252.708,
+            "discharged": 2377.15,
+            "short": null,
+            "gensanAllocation": null,
+            "etaOrUnloadingDate": null,
+            "consignees": [
+              "GTC",
+              "TPJ/TS"
+            ],
+            "dates": {
+              "arrived": {
+                "value": "2026-10-05",
+                "rawText": "2026/10/05"
+              },
+              "unloadingStarted": {
+                "value": "2026-10-06",
+                "rawText": "2026/10/06"
+              },
+              "etd": {
+                "value": null,
+                "rawText": null
+              },
+              "etaStart": {
+                "value": null,
+                "rawText": null
+              },
+              "etaEnd": {
+                "value": null,
+                "rawText": null
+              }
+            },
+            "rawFields": {
+              "cargo": "3,252.708 MT",
+              "discharged": "2,377.150 MT"
+            },
+            "rawText": "TPJ | MV SHIN FUJI | Total Cargo | 3,252.708 MT | GTC TPJ/TS\nArrived | 2026/10/05\nWharf Berthed | Wharf 1 Berh 3\nUnloading started | 2026/10/06\nTotal Discharged | 2,377.150 MT\nBalance | 875.558 MT\nETC | 2026/10/14-15"
+          },
+          {
+            "sourceIdentifier": "MV IZAR ARGIA",
+            "displayName": "IZAR ARGIA",
+            "traders": [
+              "KIBU"
+            ],
+            "cargo": 4191.09,
+            "discharged": 1618.72,
+            "short": null,
+            "gensanAllocation": null,
+            "etaOrUnloadingDate": null,
+            "consignees": [
+              "GTC",
+              "CENTURY"
+            ],
+            "dates": {
+              "arrived": {
+                "value": "2026-10-07",
+                "rawText": "2026/10/07"
+              },
+              "unloadingStarted": {
+                "value": "2026-10-08",
+                "rawText": "2026/10/08"
+              },
+              "etd": {
+                "value": null,
+                "rawText": null
+              },
+              "etaStart": {
+                "value": null,
+                "rawText": null
+              },
+              "etaEnd": {
+                "value": null,
+                "rawText": null
+              }
+            },
+            "rawFields": {
+              "cargo": "4,191.090 MT",
+              "discharged": "1,618.720 MT"
+            },
+            "rawText": "KIBU | MV IZAR ARGIA | Total Cargo | 4,191.090 MT | GTC CENTURY\nArrived | 2026/10/07\nWharf Berthed | Wharf 1 Berh 1\nUnloading started | 2026/10/08\nTotal Discharged | 1,618.720 MT\nBalance | 2,572.370 MT\nETC | 2026/10/16-17"
+          }
+        ],
+        "rawText": "A. Unloading Vessels :2"
+      },
+      "completed": {
         "declaredCount": 1,
         "recordCount": 1,
         "records": [
@@ -2343,9 +2497,9 @@
             "traders": [
               "TPJ"
             ],
-            "cargo": 1253.728,
-            "discharged": 97.36,
-            "short": null,
+            "cargo": 1298.9875,
+            "discharged": 1099.45,
+            "short": 199.5375,
             "gensanAllocation": null,
             "etaOrUnloadingDate": null,
             "consignees": [
@@ -2363,8 +2517,8 @@
                 "rawText": "2026/09/30"
               },
               "etd": {
-                "value": null,
-                "rawText": null
+                "value": "2026-10-09",
+                "rawText": "2026/10/09"
               },
               "etaStart": {
                 "value": null,
@@ -2376,23 +2530,18 @@
               }
             },
             "rawFields": {
-              "cargo": "1,253.728 MT",
-              "discharged": "97.360 MT"
+              "cargo": "1,298.9875 MT",
+              "discharged": "1,099.450 MT",
+              "short": "199.5375 MT"
             },
-            "rawText": "TPJ | MV VOLTA VICTORY | Total Cargo | 1,253.728 MT | GTC SEATRADE TPJ/TS\nArrived | 2026/09/30\nWharf Berthed | Wharf 1 Berth 2\nUnloading started | 2026/09/30\nTotal Discharged | 97.360 MT\nBalance | 625.820 MT\nETC | 2026/10/10-11"
+            "rawText": "TPJ | MV VOLTA VICTORY | Total Cargo | 1,298.9875 MT | GTC SEATRADE TPJ/TS\nArrived | 2026/09/30\nUnloading started | 2026/09/30\nTotal Discharged | 1,099.450 MT\nShort | 199.5375 MT\nETD | 2026/10/09"
           }
         ],
-        "rawText": "A. Unloading Vessels :1"
-      },
-      "completed": {
-        "declaredCount": 0,
-        "recordCount": 0,
-        "records": [],
-        "rawText": "A-1. Completed Discharging Vessels:0"
+        "rawText": "A-1. Completed Discharging Vessels:1"
       },
       "incoming": {
-        "declaredCount": 3,
-        "recordCount": 3,
+        "declaredCount": 4,
+        "recordCount": 4,
         "records": [
           {
             "sourceIdentifier": "MV WEBO 307",
@@ -2400,11 +2549,11 @@
             "traders": [
               "FCF"
             ],
-            "cargo": null,
+            "cargo": 6174.0,
             "discharged": null,
             "short": null,
             "gensanAllocation": null,
-            "etaOrUnloadingDate": "2026/10/12",
+            "etaOrUnloadingDate": "(AMEND)2026/10/15",
             "consignees": [
               "GTC",
               "CELEES"
@@ -2423,8 +2572,49 @@
                 "rawText": null
               },
               "etaStart": {
-                "value": "2026-10-12",
-                "rawText": "2026/10/12"
+                "value": "2026-10-15",
+                "rawText": "(AMEND)2026/10/15"
+              },
+              "etaEnd": {
+                "value": null,
+                "rawText": null
+              }
+            },
+            "rawFields": {
+              "cargo": "6,174.000 MT"
+            },
+            "rawText": "FCF | MV WEBO 307 | Total Cargo | 6,174.000 MT | GTC CELEES\nETA | (AMEND)2026/10/15\n"
+          },
+          {
+            "sourceIdentifier": "MV BAO LUCKY",
+            "displayName": "BAO LUCKY",
+            "traders": [
+              "TBA"
+            ],
+            "cargo": null,
+            "discharged": null,
+            "short": null,
+            "gensanAllocation": null,
+            "etaOrUnloadingDate": "TBA",
+            "consignees": [
+              "TBA"
+            ],
+            "dates": {
+              "arrived": {
+                "value": null,
+                "rawText": null
+              },
+              "unloadingStarted": {
+                "value": null,
+                "rawText": null
+              },
+              "etd": {
+                "value": null,
+                "rawText": null
+              },
+              "etaStart": {
+                "value": null,
+                "rawText": "TBA"
               },
               "etaEnd": {
                 "value": null,
@@ -2434,22 +2624,21 @@
             "rawFields": {
               "cargo": "TBA"
             },
-            "rawText": "FCF | MV WEBO 307 | Total Cargo | TBA | GTC CELEES\nETA | 2026/10/12\n"
+            "rawText": "TBA | MV BAO LUCKY | Total Cargo | TBA | TBA\nETA | TBA\n"
           },
           {
-            "sourceIdentifier": "MV IZAR ARGIA",
-            "displayName": "IZAR ARGIA",
+            "sourceIdentifier": "MV AMAGI",
+            "displayName": "AMAGI",
             "traders": [
-              "KIBU"
+              "TBA"
             ],
-            "cargo": 4191.09,
+            "cargo": null,
             "discharged": null,
             "short": null,
             "gensanAllocation": null,
-            "etaOrUnloadingDate": "2026/10/07",
+            "etaOrUnloadingDate": "TBA",
             "consignees": [
-              "GTC",
-              "CENTURY"
+              "TBA"
             ],
             "dates": {
               "arrived": {
@@ -2465,8 +2654,8 @@
                 "rawText": null
               },
               "etaStart": {
-                "value": "2026-10-07",
-                "rawText": "2026/10/07"
+                "value": null,
+                "rawText": "TBA"
               },
               "etaEnd": {
                 "value": null,
@@ -2474,23 +2663,23 @@
               }
             },
             "rawFields": {
-              "cargo": "4,191.090 MT"
+              "cargo": "TBA"
             },
-            "rawText": "KIBU | MV IZAR ARGIA | Total Cargo | 4,191.090 MT | GTC CENTURY\nETA | 2026/10/07\n"
+            "rawText": "TBA | MV AMAGI | Total Cargo | TBA | TBA\nETA | TBA\n"
           },
           {
-            "sourceIdentifier": "MV SHIN FUJI",
-            "displayName": "SHIN FUJI",
+            "sourceIdentifier": "MV KATAH",
+            "displayName": "KATAH",
             "traders": [
-              "TPJ"
+              "TBA"
             ],
-            "cargo": 2252.708,
+            "cargo": null,
             "discharged": null,
             "short": null,
             "gensanAllocation": null,
-            "etaOrUnloadingDate": "2026/10/06",
+            "etaOrUnloadingDate": "TBA",
             "consignees": [
-              "GTC"
+              "TBA"
             ],
             "dates": {
               "arrived": {
@@ -2506,8 +2695,8 @@
                 "rawText": null
               },
               "etaStart": {
-                "value": "2026-10-06",
-                "rawText": "2026/10/06"
+                "value": null,
+                "rawText": "TBA"
               },
               "etaEnd": {
                 "value": null,
@@ -2515,18 +2704,18 @@
               }
             },
             "rawFields": {
-              "cargo": "2,252.708 MT"
+              "cargo": "TBA"
             },
-            "rawText": "TPJ | MV SHIN FUJI | Total Cargo | 2,252.708 MT | GTC\nETA/AMEND | 2026/10/06\n"
+            "rawText": "TBA | MV KATAH | Total Cargo | TBA | TBA\nETA | TBA\n"
           }
         ],
-        "rawText": "B. Incoming Vessel: 3"
+        "rawText": "B. Incoming Vessel: 4"
       }
     },
     "canneries": [
       {
         "name": "Gentuna/Century",
-        "rawText": "Gentuna/Century 800     600     75%    25,000  12,000   48%  20",
+        "rawText": "Gentuna/Century 800    600     75%    25,000  12,000    48%  20",
         "rawValues": {
           "maximumProductionMt": "800",
           "currentProductionMt": "600",
@@ -2546,7 +2735,7 @@
       },
       {
         "name": "Philbest",
-        "rawText": "Philbest 60      50      83%    3,000    800     27%  16",
+        "rawText": "Philbest 60      50     83%     3,000    800     27%  16",
         "rawValues": {
           "maximumProductionMt": "60",
           "currentProductionMt": "50",
@@ -2566,7 +2755,7 @@
       },
       {
         "name": "Alliance",
-        "rawText": "Alliance 80      80     100%    6,500    2,000   31%  25",
+        "rawText": "Alliance 80      80     100%    6,500   2,000    31%  25",
         "rawValues": {
           "maximumProductionMt": "80",
           "currentProductionMt": "80",
@@ -2586,7 +2775,7 @@
       },
       {
         "name": "Celebes",
-        "rawText": "Celebes 40      45     113%    1,600    1,950   122% 43",
+        "rawText": "Celebes 40      45     113%    1,600   1,950   122%  43",
         "rawValues": {
           "maximumProductionMt": "40",
           "currentProductionMt": "45",
@@ -2606,7 +2795,7 @@
       },
       {
         "name": "Foodsphere",
-        "rawText": "Foodsphere 50      55     110%    2,500    200      8%  6",
+        "rawText": "Foodsphere 50      55     110%    2,500    200     8%   6",
         "rawValues": {
           "maximumProductionMt": "50",
           "currentProductionMt": "55",
@@ -2666,7 +2855,7 @@
       },
       {
         "name": "Total",
-        "rawText": "Total 1,095    895     82%    40,600  17,550   43%  20",
+        "rawText": "Total 1,095    895     82%    40,600  17,550    43%  20",
         "rawValues": {
           "maximumProductionMt": "1,095",
           "currentProductionMt": "895",
@@ -2696,24 +2885,24 @@
     },
     "prices": {
       "nonGspNonMsc": {
+        "amount": 2200,
+        "currencySymbol": "$",
+        "basisUnit": null,
+        "qualifier": "quoted",
+        "rawText": "$2,200"
+      },
+      "gspNonMsc": {
         "amount": 2300,
         "currencySymbol": "$",
         "basisUnit": null,
         "qualifier": "quoted",
         "rawText": "$2,300"
-      },
-      "gspNonMsc": {
-        "amount": 2400,
-        "currencySymbol": "$",
-        "basisUnit": null,
-        "qualifier": "quoted",
-        "rawText": "$2,400"
       }
     },
     "source": {
-      "reportDate": "2026-10-07",
-      "fileName": "GMTS Weekly Report 20261007.pdf",
-      "sha256": "576982fd6425066a2a76680a5ac1d7593e82b1ab5bfa3738b569e1be9684d4ff",
+      "reportDate": "2026-10-14",
+      "fileName": "GMTS Weekly Report 20261014.pdf",
+      "sha256": "9f78b621da993b8fdc59bbd12aef83a259b7462e100f36acdd9d2ab89b987548",
       "pages": 1
     }
   },
@@ -3634,6 +3823,26 @@
           ],
           "total": 79312.0
         }
+      },
+      {
+        "reportDate": "2026-10-14",
+        "volume2026": {
+          "months": [
+            4920.0,
+            11968.0,
+            8757.0,
+            8059.0,
+            3307.0,
+            14038.0,
+            12687.0,
+            7684.0,
+            7892.0,
+            null,
+            null,
+            null
+          ],
+          "total": 79312.0
+        }
       }
     ],
     "revisions": [
@@ -3873,6 +4082,12 @@
       "reportDate": "2026-10-07",
       "fileName": "GMTS Weekly Report 20261007.pdf",
       "sha256": "576982fd6425066a2a76680a5ac1d7593e82b1ab5bfa3738b569e1be9684d4ff",
+      "pages": 1
+    },
+    {
+      "reportDate": "2026-10-14",
+      "fileName": "GMTS Weekly Report 20261014.pdf",
+      "sha256": "9f78b621da993b8fdc59bbd12aef83a259b7462e100f36acdd9d2ab89b987548",
       "pages": 1
     }
   ],
@@ -4158,6 +4373,12 @@
     {
       "code": "capacity_exceeded",
       "reportDate": "2026-10-07",
+      "name": "Celebes",
+      "storageUtilizationPercent": 122.0
+    },
+    {
+      "code": "capacity_exceeded",
+      "reportDate": "2026-10-14",
       "name": "Celebes",
       "storageUtilizationPercent": 122.0
     },

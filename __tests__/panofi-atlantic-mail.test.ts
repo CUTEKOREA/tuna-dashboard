@@ -84,10 +84,11 @@ describe('PANOFI 대서양 주말 메일', () => {
     expect(price).not.toContain('주간동향은 같은 값을 이어 적고 메일만 움직인다.');
     const fleet = renderToStaticMarkup(React.createElement(FleetTab));
     // 선단 탭 세네갈 입출항은 주말 메일과 주간동향 중 더 최신인 쪽을 싣는다.
-    // 10/11 메일이 10/6 주간동향보다 최신이라 메일 표(COSMOS KIM 체항 등)가 나와야 한다.
-    expect(fleet).toContain('주말 메일 10/11 · 톤');
-    expect(fleet).toContain('국적 증서 문제로 약 50일 체항 중');
-    expect(fleet).not.toContain('ALBONIGA');
+    // 10/13 주간동향이 10/11 메일보다 최신이라 주간동향 표(EU 3척 전재 등)가 나와야 한다.
+    expect(fleet).toContain('주간동향 10/13 · 톤');
+    expect(fleet).toContain('임시국적 증서 갱신 차 체항 중');
+    expect(fleet).toContain('MONTEFRISA');
+    expect(fleet).not.toContain('주말 메일 10/11 · 톤');
     expect(fleet).toContain('P/FORE 10/11 신임 선장 승선');
     expect(fleet).toContain('SEA DEFENDER - 8/30 메일은 「하역 중」인데 9/1 주간동향은 8/29 출항 완료로 적었다.');
   });

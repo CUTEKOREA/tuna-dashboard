@@ -6,12 +6,12 @@ function sum<T>(items: readonly T[], select: (item: T) => number) {
   return items.reduce((total, item) => total + select(item), 0);
 }
 
-describe('2026-10-07 Bangkok Office weekly logistics report', () => {
+describe('2026-10-14 Bangkok Office weekly logistics report', () => {
   it('정정본 원문을 출처로 못박고 무엇을 고쳤는지 함께 들고 있다', () => {
     expect(logisticsWeeklyReport.source).toMatchObject({
-      file: '20261007 Bangkok Office Weekly Report.docx',
-      reportDate: '2026-10-07',
-      sha256: 'd83616a537eb08be465a6f0c762bfba205e85de2a57d9c3d086dafa325f319a2',
+      file: '20261014 Bangkok Office Weekly Report.docx',
+      reportDate: '2026-10-14',
+      sha256: 'f34cc5e62ce93282d9efc77e69fd8d1b58816f6bf18e60870661f233ccc40aa1',
     });
     // 이번 주 원문도 수정 전 서식 위에 작성돼 지난주 정정분(2023·2025 합계, RYOMA, SHIN FUJI, 절 번호)이 되돌아가 있었다
     expect(logisticsWeeklyReport.source.corrections).toHaveLength(4);
@@ -36,34 +36,34 @@ describe('2026-10-07 Bangkok Office weekly logistics report', () => {
 
   it('캐너리 생산·재고 합계가 정정본 SUM 행과 맞는다', () => {
     const { bangkok, songkhla } = logisticsWeeklyReport.canneries;
-    // 원문 SUM 1,840 · 81,200 은 행 합계와 달라 정정본에서 1,900 · 81,700 으로 고쳤다
-    expect(sum(bangkok, (cannery) => cannery.currentProduction)).toBe(1900);
-    expect(sum(bangkok, (cannery) => cannery.currentStock)).toBe(81700);
+    // 원문 SUM 1,840 에 맞춰 지난주 값이 남은 SEA VALUE 550 → 500 · R.S CANNERY 40 → 30 을 정정본에서 고쳤다
+    expect(sum(bangkok, (cannery) => cannery.currentProduction)).toBe(1840);
+    expect(sum(bangkok, (cannery) => cannery.currentStock)).toBe(76050);
     expect(sum(songkhla, (cannery) => cannery.currentProduction)).toBe(270);
-    expect(sum(songkhla, (cannery) => cannery.currentStock)).toBe(4000);
+    expect(sum(songkhla, (cannery) => cannery.currentStock)).toBe(3400);
     // 처리일수는 재고 ÷ 일 생산을 반올림한 값이다(원문이 지난주 값으로 남던 칸)
     for (const c of [...bangkok, ...songkhla]) expect(c.processingDays).toBe(Math.round(c.currentStock / c.currentProduction));
   });
 
   it('하역 중 운반선 표와 10월 누계를 따로 든다', () => {
     const { vessels, currentTotal, monthToDate, unloadingNow } = logisticsWeeklyReport.unloading;
-    expect(vessels.map((vessel) => vessel.name)).toEqual(['HUA FU 107', 'CHERRY STAR', 'RYOMA']);
-    expect(sum(vessels, (vessel) => vessel.amount)).toBe(11545);
-    expect(currentTotal).toEqual({ vessels: 3, amount: 11545 });
+    expect(vessels.map((vessel) => vessel.name)).toEqual(['HUA FU 107']);
+    expect(sum(vessels, (vessel) => vessel.amount)).toBe(4840);
+    expect(currentTotal).toEqual({ vessels: 1, amount: 4840 });
     expect(monthToDate).toEqual({ vessels: 1, amount: logisticsWeeklyReport.traderReceipts.latestMonth.total });
-    expect(unloadingNow).toEqual({ port: '방콕', vessels: 3 });
-    expect(vessels.find((vessel) => vessel.name === 'RYOMA')?.amount).toBe(3290);
+    expect(unloadingNow).toEqual({ port: '방콕', vessels: 1 });
+    expect(logisticsWeeklyReport.traderReceipts.monthly[8]).toMatchObject({ month: '9월', direct: 11747, total: 29701 });
   });
 
   it('고반려는 원문 인쇄값을 남기고 잔량 차이를 덮지 않는다', () => {
     const rows = logisticsWeeklyReport.highRejections;
-    expect(rows).toHaveLength(4);
-    expect(logisticsWeeklyReport.market).toMatchObject({ rawMaterialPriceUsdPerMt: 2360, reportDate: '2026-10-07' });
+    expect(rows).toHaveLength(5);
+    expect(logisticsWeeklyReport.market).toMatchObject({ rawMaterialPriceUsdPerMt: 2360, reportDate: '2026-10-14' });
 
     const gap = (row: (typeof rows)[number]) =>
       Number((row.quantityMt - sum(row.items, (item) => item.mt) - row.balanceMt).toFixed(3));
     // 넷째 행은 어종별 처리량 없이 「All rejection 1.99 by negotiation」만 적혀 잔량이 지난주 값으로 남았다
-    expect(rows.map((row) => gap(row) || 0)).toEqual([0, 0, 0, 10.682]);
+    expect(rows.map((row) => gap(row) || 0)).toEqual([0, 0, 0, 10.682, 0]);
     expect(rows[3].items).toEqual([]);
     expect(rows[3].note).toContain('1.99');
   });

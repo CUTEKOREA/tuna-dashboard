@@ -19,24 +19,24 @@ describe('GMTS dashboard data intake', () => {
     expect(data.schemaVersion).toBe(1);
     expect(data.metadata).toEqual({
       status: 'STATIC',
-      reportCount: 38,
-      pageCount: 46,
+      reportCount: 39,
+      pageCount: 47,
       firstReportDate: '2026-01-21',
       coverageStart: '2026-01-21',
-      coverageEnd: '2026-10-07',
-      latestReportDate: '2026-10-07',
+      coverageEnd: '2026-10-14',
+      latestReportDate: '2026-10-14',
     });
     expect(data.latest.operationalAsOf).toBeNull();
     expect(data.weekly.every(({ operationalAsOf }) => operationalAsOf === null)).toBe(true);
   });
 
-  it('keeps all 38 Wednesday reports in continuous chronological order', () => {
+  it('keeps all 39 Wednesday reports in continuous chronological order', () => {
     const dates = getGmtsDashboard().weekly.map(({ reportDate }) => reportDate);
 
-    expect(dates).toHaveLength(38);
+    expect(dates).toHaveLength(39);
     expect(dates[0]).toBe('2026-01-21');
-    expect(dates.at(-1)).toBe('2026-10-07');
-    expect(new Set(dates).size).toBe(38);
+    expect(dates.at(-1)).toBe('2026-10-14');
+    expect(new Set(dates).size).toBe(39);
     for (let index = 1; index < dates.length; index += 1) {
       expect(Date.parse(dates[index]) - Date.parse(dates[index - 1])).toBe(ONE_WEEK_MS);
     }
@@ -46,7 +46,7 @@ describe('GMTS dashboard data intake', () => {
     const data = getGmtsDashboard();
 
     expect(data.weekly.every(({ volume2026 }) => volume2026.months.length === 12)).toBe(true);
-    expect(data.volumeHistory.snapshots).toHaveLength(38);
+    expect(data.volumeHistory.snapshots).toHaveLength(39);
     expect(data.volumeHistory.snapshots.every(({ volume2026 }) => volume2026.months.length === 12)).toBe(true);
     expect(data.volumeHistory.annual.map(({ year }) => year)).toEqual([
       2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
@@ -57,13 +57,13 @@ describe('GMTS dashboard data intake', () => {
   it('preserves declared and observed vessel counts without turning a blank into zero', () => {
     const { port } = getGmtsDashboard().latest;
 
-    // 10/7 판은 VOLTA VICTORY 1척이 하역 중이고 종료 레인은 비었다 - 0을 «미보고»로 바꾸지 않는다
-    expect(port.active).toMatchObject({ declaredCount: 1, recordCount: 1 });
-    expect(port.active.records).toHaveLength(1);
-    expect(port.completed).toMatchObject({ declaredCount: 0, recordCount: 0 });
-    expect(port.completed.records).toHaveLength(0);
-    expect(port.incoming).toMatchObject({ declaredCount: 3, recordCount: 3 });
-    expect(port.incoming.records).toHaveLength(3);
+    // 10/14 판은 SHIN FUJI·IZAR ARGIA 2척 하역 중, VOLTA VICTORY 1척 하역 완료, 입항 예정 4척(3척 TBA)
+    expect(port.active).toMatchObject({ declaredCount: 2, recordCount: 2 });
+    expect(port.active.records).toHaveLength(2);
+    expect(port.completed).toMatchObject({ declaredCount: 1, recordCount: 1 });
+    expect(port.completed.records).toHaveLength(1);
+    expect(port.incoming).toMatchObject({ declaredCount: 4, recordCount: 4 });
+    expect(port.incoming.records).toHaveLength(4);
   });
 
   it('preserves the latest port, cannery, price, and volume numerical anchors', () => {
@@ -71,12 +71,14 @@ describe('GMTS dashboard data intake', () => {
     const active = latest.port.active.records;
     const incoming = latest.port.incoming.records;
 
-    // VOLTA VICTORY: 원문 잔량 625.820 MT 는 총화물 − 양하(1,156.368)와 맞지 않는다 - 인쇄값을 그대로 둔다
-    expect(active[0]).toMatchObject({ sourceIdentifier: 'MV VOLTA VICTORY', cargo: 1253.728, discharged: 97.36 });
-    expect(active[0].rawText).toContain('Balance | 625.820 MT');
-    // WEBO 307 은 TBA 라 화물량을 0으로 만들지 않고 공란 유지. SHIN FUJI 는 9/30 3,252.708 → 10/7 2,252.708 MT 로 인쇄됐다
+    // SHIN FUJI 는 10/7 판만 2,252.708 MT 로 인쇄됐고 9/30·10/14 판은 3,252.708 MT 다
+    expect(active.map(({ displayName, cargo, discharged }) => [displayName, cargo, discharged]))
+      .toEqual([['SHIN FUJI', 3252.708, 2377.15], ['IZAR ARGIA', 4191.09, 1618.72]]);
+    // VOLTA VICTORY 는 원문이 소수 4자리(1,298.9875)로 적었고 SHORT 는 총화물 − 양하와 맞는다
+    expect(latest.port.completed.records[0]).toMatchObject({ displayName: 'VOLTA VICTORY', cargo: 1298.9875, discharged: 1099.45, short: 199.5375 });
+    // TBA 3척은 화물량을 0으로 만들지 않고 공란 유지
     expect(incoming.map(({ displayName, cargo }) => [displayName, cargo]))
-      .toEqual([['WEBO 307', null], ['IZAR ARGIA', 4191.09], ['SHIN FUJI', 2252.708]]);
+      .toEqual([['WEBO 307', 6174], ['BAO LUCKY', null], ['AMAGI', null], ['KATAH', null]]);
     expect(latest.canneryTotal).toEqual({
       maxDailyProductionMt: 1095,
       currentDailyProductionMt: 895,
@@ -86,8 +88,8 @@ describe('GMTS dashboard data intake', () => {
       storageUtilizationPct: 43,
       reportedProcessingDays: 20,
     });
-    expect(latest.prices.nonGspNonMsc).toMatchObject({ amount: 2300, basisUnit: null });
-    expect(latest.prices.gspNonMsc).toMatchObject({ amount: 2400, basisUnit: null });
+    expect(latest.prices.nonGspNonMsc).toMatchObject({ amount: 2200, basisUnit: null });
+    expect(latest.prices.gspNonMsc).toMatchObject({ amount: 2300, basisUnit: null });
     expect(weekly.at(-1)?.volume2026).toMatchObject({ year: 2026, total: 79312 });
   });
 
@@ -123,11 +125,11 @@ describe('GMTS dashboard data intake', () => {
   it('preserves the latest source manifest anchor', () => {
     const data = getGmtsDashboard();
 
-    expect(data.sources).toHaveLength(38);
+    expect(data.sources).toHaveLength(39);
     expect(data.sources.at(-1)).toEqual({
-      reportDate: '2026-10-07',
-      fileName: 'GMTS Weekly Report 20261007.pdf',
-      sha256: '576982fd6425066a2a76680a5ac1d7593e82b1ab5bfa3738b569e1be9684d4ff',
+      reportDate: '2026-10-14',
+      fileName: 'GMTS Weekly Report 20261014.pdf',
+      sha256: '9f78b621da993b8fdc59bbd12aef83a259b7462e100f36acdd9d2ab89b987548',
       pages: 1,
     });
     expect(data.latest.source).toEqual(data.sources.at(-1));

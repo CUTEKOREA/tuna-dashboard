@@ -90,6 +90,23 @@ const nextMonthKo = (month: string | null | undefined) => {
   const m = month ? Number(month.replace('월', '')) : NaN;
   return Number.isFinite(m) ? `${(m % 12) + 1}월` : '다음 달';
 };
+/**
+ * 테마 두 채널의 월이 갈린 주 — 앞선 쪽이 확정가, 뒤처진 쪽이 협의 중이다. 9/8~9/22 판은 코스모가,
+ * 10/13 판은 PFC 가 뒤처졌다(「COSMO $1,850(10월), PFC $1,900(9월) → 10월 어가 협의 중」).
+ */
+const temaLagNote = (pfc: number | null, cosmo: number | null) => {
+  const n = (m: string | null) => (m ? Number(m.replace('월', '')) : NaN);
+  const p = n(temaGap.pfcMonth);
+  const c = n(temaGap.cosmoMonth);
+  if (!Number.isFinite(p) || !Number.isFinite(c) || p === c) return '';
+  // 12월 → 1월 경계는 월 숫자가 거꾸로 간다
+  const pfcAhead = (p - c + 12) % 12 < 6;
+  const [ahead, aheadMonth, aheadPrice, behind, behindMonth] = pfcAhead
+    ? ['PFC', temaGap.pfcMonth, pfc, '코스모', temaGap.cosmoMonth]
+    : ['코스모', temaGap.cosmoMonth, cosmo, 'PFC', temaGap.pfcMonth];
+  const set = aheadPrice != null ? `${aheadMonth} 어가를 ${usd(aheadPrice)}${ro(aheadPrice)} 정했고` : `${aheadMonth} 어가를 정했고`;
+  return `다만 ${ahead}는 ${set} ${behind}는 ${behindMonth} 값에서 ${nextMonthKo(behindMonth)} 어가를 협의 중이라 두 채널의 격차는 아직 같은 기준으로 비교할 수 없다. «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 ${behind} ${aheadMonth} 어가가 확정된 뒤 다시 잰다.`;
+};
 const ton = (v: number) => `${v.toLocaleString('en-US')}톤`;
 const pct = (v: number) => `${v}%`;
 const num = (v: number | null | undefined) =>
@@ -510,17 +527,15 @@ export function PriceTab() {
             <Callout kind="warn" label="측정 창 밖의 변화">
               위 판정은 {m.currentPrices.asOf}까지 {priceWindow.weekCount}주 실측이다.
               그 뒤 {latest.reportDate} 주간동향에서 PFC가 {usd(m.currentPrices.PFC)}에서{' '}
-              {usd(latest.prices.pfcTema)}({latest.prices.pfcTemaMonth ?? '월 미상'} 어가)으로 올라
-              {latest.prices.cosmoTema != null && latest.prices.pfcTema > latest.prices.cosmoTema
-                ? ' 코스모를 처음으로 넘어섰다.'
-                : ' 움직였다.'}{' '}
+              {usd(latest.prices.pfcTema)}({latest.prices.pfcTemaMonth ?? '월 미상'} 어가)으로
+              {temaGap.comparable && latest.prices.cosmoTema != null && latest.prices.pfcTema > latest.prices.cosmoTema
+                ? ' 올라 코스모를 처음으로 넘어섰다.'
+                : latest.prices.pfcTema > m.currentPrices.PFC ? ' 올랐다.' : ' 내렸다.'}{' '}
               {/* 같은 달 값이 둘 다 있으면 비교가 먼저다. «협의 중»은 그 다음 달 이야기일 수 있다
                   (10/6 판: 「COSMO $1,850(9월), PFC $1,900(9월) → 10월 어가 협의 중」). */}
               {temaGap.comparable
                 ? `코스모도 ${temaGap.cosmoMonth} 어가를 ${usd(latest.prices.cosmoTema ?? 0)}${ro(latest.prices.cosmoTema ?? 0)} 확정해 격차는 ${usd(temaGap.usdPerT ?? 0)}(${(temaGap.usdPerT ?? 0) > 0 ? 'PFC 우위' : '코스모 우위'})다.${temaGap.underNegotiation ? ` ${nextMonthKo(temaGap.cosmoMonth)} 어가는 두 채널 모두 협의 중이다.` : ''} «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 이 확정가로 다음 측정 창에서 다시 잰다.`
-                : temaGap.underNegotiation
-                  ? `다만 코스모는 ${temaGap.cosmoMonth ?? '지난달'} 값을 그대로 둔 채 협의 중이라 두 채널의 격차는 아직 같은 기준으로 비교할 수 없다. «저가 구매자인데도 물량이 안 빠진다»는 전제가 바뀌는지는 코스모 ${temaGap.pfcMonth ?? '당월'} 어가가 확정된 뒤 다시 잰다.`
-                  : ''}
+                : temaGap.underNegotiation ? temaLagNote(latest.prices.pfcTema, latest.prices.cosmoTema) : ''}
             </Callout>
           )}
         </Panel>
@@ -759,6 +774,19 @@ export function ProfitTab() {
 
 /* ------------------------------------------------------------- 자금·미수금 */
 
+/** 미수금 주간 증감 문장 — CFA 잔액 변동(회수·증가)과 환율 환산 차이를 나눠 쓴다 */
+function receivableWeekNote(r: typeof receivableNow): string {
+  const { weekDeltaKusd: total, weekCfaDeltaKusd: cfa, prevAsOf } = r;
+  if (total == null || total === 0) return '';
+  // CFA 환산과 미화 인쇄값은 반올림이 달라 1천불 차이는 같은 것으로 본다
+  if (cfa == null || Math.abs(total - cfa) <= 1) {
+    return ` 직전 주(${prevAsOf}) 대비로는 ${kusd(Math.abs(total))} ${total < 0 ? '줄었다(회수)' : '늘었다'}.`;
+  }
+  const fx = total - cfa;
+  const cfaPart = cfa === 0 ? 'CFA 잔액은 그대로이고' : `CFA 잔액 기준 ${kusd(Math.abs(cfa))} ${cfa < 0 ? '회수됐고' : '늘었고'}`;
+  return ` 직전 주(${prevAsOf}) 대비 미화 환산액은 ${kusd(Math.abs(total))} ${total < 0 ? '줄었는데' : '늘었는데'}, ${cfaPart} 나머지 ${kusd(Math.abs(fx))}은 환율 변동 몫이다.`;
+}
+
 /** 과부족 증감 서술 — 방향이 달마다 바뀌므로(7/31 «회수했는데 악화» → 8/31 «채권이 늘며 개선») 부호에서 만든다. */
 function liquidityNote(b: NonNullable<typeof liquidityBridge>): string {
   const sign = (v: number | null) => (v === null ? '-' : `${v > 0 ? '+' : ''}${num(v)}`);
@@ -888,7 +916,7 @@ export function CashTab() {
       <Grid>
         <Panel
           span={6} title="아비장 미수금" unit="천 달러"
-          note={`정점 ${kusd(receivableNow.peakKusd)}에서 ${receivableNow.recoveryPeriod} 사이 ${kusd(receivables.abidjanKusd)}까지 줄였다가, ${receivableNow.asOf ?? '최근'} 주간동향에서 ${kusd(receivableNow.currentKusd)}로 다시 늘었다.${receivableNow.weekDeltaKusd != null && receivableNow.weekDeltaKusd !== 0 ? ` 직전 주(${receivableNow.prevAsOf}) 대비로는 ${kusd(Math.abs(receivableNow.weekDeltaKusd))} ${receivableNow.weekDeltaKusd < 0 ? '줄었다(회수)' : '늘었다'}.` : ''}`}
+          note={`정점 ${kusd(receivableNow.peakKusd)}에서 ${receivableNow.recoveryPeriod} 사이 ${kusd(receivables.abidjanKusd)}까지 줄였다가, ${receivableNow.asOf ?? '최근'} 주간동향에서 ${kusd(receivableNow.currentKusd)}로 다시 늘었다.${receivableWeekNote(receivableNow)}`}
           src={SRC.weekly}
         >
           <Chart data={receivableSeries} x="label" height={210} xInterval={4}

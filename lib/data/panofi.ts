@@ -148,8 +148,15 @@ export const receivableNow = (() => {
     asOf: last?.reportDate ?? null,
     currentKusd,
     peakKusd,
-    /** 직전 주간동향 대비 증감(천불, 음수 = 회수). 직전 주가 없으면 null */
+    /** 직전 주간동향 대비 미화 환산액 증감(천불, 음수 = 감소). 직전 주가 없으면 null */
     weekDeltaKusd: prev ? currentKusd - Math.round(prev.receivables.totalUsd! / 1000) : null,
+    /**
+     * 그중 CFA 잔액 변동분(천불, 이번 주 환율 환산, 음수 = 회수). 원문 미화 환산액은 매주 환율로 다시 계산돼
+     * 환율만 바뀌어도 줄어든다(10/13 판: 585 → 600 CFA/$ 로 −117천불). CFA 가 없으면 null
+     */
+    weekCfaDeltaKusd: prev && last.receivables.totalCfa != null && prev.receivables.totalCfa != null && last.fx.cfaPerUsd
+      ? Math.round((last.receivables.totalCfa - prev.receivables.totalCfa) / last.fx.cfaPerUsd / 1000)
+      : null,
     prevAsOf: prev?.reportDate ?? null,
     /** 정점 대비 증감(음수 = 회수) */
     sincePeakKusd: currentKusd - peakKusd,
