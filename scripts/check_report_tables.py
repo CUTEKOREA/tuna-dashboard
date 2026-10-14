@@ -27,6 +27,9 @@ ITEM_ROW = re.compile(r'^(자산|부채|자본)\s*(총계|합계)$')  # 「부�
 # 출처를 적은 합계행은 세로합 대상에서 뺀다 — 안 그러면 부분집합 합 ≠ 전체를 오류로 낸다.
 CITED_TOTAL = re.compile(r'\(\s*(?:주석|주\s*\d|출처|양식)')
 RATE = re.compile(r'률|율|비중|증감|전년비|%|단가|평균')
+# 번호·코드·날짜 열은 더하는 값이 아니다. ⅬⅩⅧ Jadran 표8 합계행이 면허번호 139·만료일 2027-05-02 를
+# 두 현장 공통값으로 다시 적어 세로합 278·4,054 로 거짓 지적이 났다(2026-10-14).
+NOT_SUMMED = re.compile(r'번호|코드|(?:일|일자|날짜)$|(?:일|일자)\s*\(')
 
 
 def cells(row: str) -> list[str]:
@@ -94,6 +97,8 @@ def main() -> int:
             for c in range(1, len(trow)):
                 # 비율 열은 더하는 값이 아니다. 합계칸의 18.9%는 가중평균이지 세로합이 아니다.
                 if c < len(head) and RATE.search(head[c]):
+                    continue
+                if c < len(head) and NOT_SUMMED.search(head[c]):
                     continue
                 if all("%" in r[c] for r in body):
                     continue

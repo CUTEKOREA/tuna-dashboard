@@ -65,24 +65,24 @@ describe('fleet daily public and private DTO boundary', () => {
     expect(fleetDailyPublic).toEqual({
       _meta: {
         schemaVersion: 1,
-        reportCount: 172,
+        reportCount: 173,
         firstReportDate: '2026-01-16',
-        latestReportDate: '2026-10-13',
-        latestAsOf: '2026-10-12',
+        latestReportDate: '2026-10-14',
+        latestAsOf: '2026-10-13',
         detailSha256: expect.stringMatching(/^[a-f0-9]{64}$/),
         detailSha256Compat: [expect.stringMatching(/^[a-f0-9]{64}$/)],
       },
       latest: {
-        reportDate: '2026-10-13',
-        asOf: '2026-10-12',
-        pacific: { asOf: '2026-10-12', dailyMt: 220, monthlyMt: 3_483, annualMt: 58_095.8 },
-        atlantic: { asOf: '2026-10-12', dailyMt: 45, monthlyMt: 1_250, annualMt: 40_805 },
+        reportDate: '2026-10-14',
+        asOf: '2026-10-13',
+        pacific: { asOf: '2026-10-13', dailyMt: 326, monthlyMt: 3_809, annualMt: 58_421.8 },
+        atlantic: { asOf: '2026-10-13', dailyMt: 140, monthlyMt: 1_390, annualMt: 40_945 },
         carrier: { loadedTotalMt: 10_614, expectedRemainingMt: 2_211 },
       },
-      deltas: { pacificDailyMt: -175, atlanticDailyMt: -50, totalDailyMt: -225 },
+      deltas: { pacificDailyMt: 106, atlanticDailyMt: 95, totalDailyMt: 201 },
       reconciliation: {
-        pacificDaily: { reportedMt: 220, rowsMt: 220, matches: true, missingCount: 0 },
-        atlanticDaily: { reportedMt: 45, rowsMt: 45, matches: true, missingCount: 0 },
+        pacificDaily: { reportedMt: 326, rowsMt: 326, matches: true, missingCount: 0 },
+        atlanticDaily: { reportedMt: 140, rowsMt: 140, matches: true, missingCount: 0 },
         // 9/21 보고는 HIKARI 1 컨테이너분(284.83)이 빠져 머리글·행 합이 모두 7,399.3 이다. 9/11 까지는
         // 머리글 소수 1자리로 0.03 반올림 잔차가 남았다 - 허용 폭 판정은 source-contract 테스트가 고정값으로 지킨다
         carrierLoaded: { reportedMt: 10_614, rowsMt: 10_614, matches: true, missingCount: 0 },
@@ -98,8 +98,8 @@ describe('fleet daily public and private DTO boundary', () => {
       },
       quality: {
         counts: {
-          reconciliationChecks: 688,
-          reconciliationCompleteChecks: 688,
+          reconciliationChecks: 692,
+          reconciliationCompleteChecks: 692,
           reconciliationUnavailableChecks: 0,
           reconciliationUnavailableDocuments: 0,
           reconciliationIssues: 14,
