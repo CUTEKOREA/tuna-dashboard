@@ -1,3 +1,10 @@
+> 🐟 **2026-10-14 09:05 KST — `/market` 2026-10-13 참치 브리핑 배포** [CC]:
+> - 감사 `AUDIT_PASS`(윤문본 재감사). 변경분은 `public/data/tuna_daily_briefing.json`·`tuna_weekly_briefing.json` 두 파일뿐. 기준일 `2026-10-13`, 기사 **6건**. 로컬 verify `__tests__/daily-briefing.test.ts` 4/4 통과.
+> - 브랜치 `briefing/2026-10-13` → PR **#1449** squash 병합, `main` 커밋 **`afd63905`**. Vercel status `success`(웹훅 정상 발화, CLI 수동 배포 불필요).
+> - 라이브 확인(Aside 로그인 세션): 메타 「이번주 참치 뉴스 | 10/12~10/16 · 기사 12건 · 파이프라인 동기」, 탭 `월 10/12`·`화 10/13`(선택: 화 10/13), 리드 「사조그룹, 가격 담합 과징금 이후 계열사 지배 강화」, 오늘의 수치 3개(1:0 합병 · 67.98% · KRW 968억).
+> - 워크트리 정리: PR MERGED + JSON `origin/main` 과 동일 확인 후 `sync/2026-10-13`(origin/main) 으로 이동. `briefing/2026-10-13` 로컬·원격 브랜치는 남겨 둠.
+> - 마지막 업데이트: 2026-10-14 KST [CC]
+
 > 📝 **2026-10-13 KST — 기업 해부 ⅬⅩⅦ Chancerelle · La Belle-Îloise · Gonidec 카드 수정안** [Codex]:
 > - 완료된 것: APS 커밋 fbbf6e5a 구조에 맞춘 읽기 전용 수정안. 카드·핵심 JSON 수치는 발행본 표지에서만 채택. 나라 표기 「프랑스 · 브르타뉴 두아르느네」. 기존 fr.svg 사용.
 > - 본사 핀: Chancerelle의 Douarnenez 근사 좌표 48.09, -4.33. 세 회사 공동 본사라는 뜻이 아니다.
