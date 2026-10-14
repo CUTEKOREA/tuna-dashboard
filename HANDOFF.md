@@ -7,6 +7,12 @@
 > - `npm run verify` 통과: ESLint 0 errors(warnings 31) · Vitest **223 files / 2,261** · API cache 161/161 · 정적 119 · fleet leak 151 · bundle · 보고서 표 세로합 0. 로컬 production `/bangkok-office`·`/logistics`·`/gmts`·`/panofi` 1440·390px 200·overflow 0·error 0.
 > - 상태: 브랜치 `data/gmts-panofi-1014`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
 
+> 🐟 **2026-10-15 08:35 KST — `/market` 2026-10-14 참치 브리핑 윤문본 재배포** [CC]:
+> - 08:30 슬롯이 윤문본(재감사 `AUDIT_PASS`)을 채택해 다시 준비. 변경분은 일간·주간 JSON 각 17줄, **쉼표 정리뿐**(수치·제목·figs 변화 없음). 로컬 verify `daily-briefing.test.ts` 4/4 통과. 기사 **5건**.
+> - 브랜치 `briefing/2026-10-14-humanize` → PR **#1455** squash 병합, `main` 커밋 **`3e74f925`**. Vercel status `success`(웹훅 정상 발화, CLI 수동 배포 불필요).
+> - 라이브 확인(Aside): 메타 「이번주 참치 뉴스 | 10/12~10/16 · 기사 17건 · 파이프라인 동기」, 탭 월·화·수(선택: 수 10/14), 리드 「미국 NGO, StarKist 날개다랑어 공급망의 강제노동 의혹 제기」, 오늘의 수치 42% · 92명 · 62명. 윤문 문장 「올해 초 출발이 순탄치 않았다」 노출, 옛 문장 「올해 초부터 순탄치 않은 출발을 했다」 없음.
+> - 워크트리 정리: PR MERGED + JSON `origin/main` 과 동일 확인 후 `sync/*`(origin/main) 으로 이동. `briefing/2026-10-14-humanize*` 브랜치는 남겨 둠.
+
 > 🐟 **2026-10-15 KST — `/market` 2026-10-14 참치 브리핑 배포** [CC]:
 > - 감사 `AUDIT_PASS`. 변경분은 `public/data/tuna_daily_briefing.json`·`tuna_weekly_briefing.json` 두 파일뿐. 기준일 `2026-10-14`, 기사 **5건**.
 > - 브랜치 `briefing/2026-10-14` → PR **#1453** squash 병합, `main` 커밋 **`e70a9b4e`**. Vercel status `success`(웹훅 정상 발화, CLI 수동 배포 불필요).
