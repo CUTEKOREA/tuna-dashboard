@@ -1,3 +1,10 @@
+> ✅ **2026-10-15 KST — `/market` Atuna 어가 변동분 반영(CSV 8종 재대조)** [CC]:
+> - 원자료: 로그인 없이 받은 Atuna CSV(`agri_data/…/05_ATUNA_뉴스·가격/_수치데이터/2026-10-15/`). skjbkk `b6e1b205…` · skjmnt `2889dc06…` · skjabj `1dda8ba6…` · skjvig `7760a6b1…` · skjsey `51f8ec2d…` · yfvig `9d389440…` · yfabj `715771ca…` · yfsey `5f586cd5…`(본문 SHA-256 앞 8자리). `data/atuna_prices.json` 전 계열과 대조 — 기존 값 불일치 0건.
+> - 빠진 **5개 값** 추가: 만타 **10/8 $2,350**(+2.2%), 아비장 SKJ 9/30 $1,600(+3.2%), 비고 SKJ 9/30 $1,900(변동 없음), 아비장 YF 9/30 **$2,500**(−7.4%), 비고 YF 9/30 **$2,600**(−3.7%). 방콕(10/2 $2,300)·세이셸은 그대로라 방콕 해설은 다시 쓰지 않았다. MGO 는 Ship & Bunker 계열(`singapore_mgo.json`)이라 Atuna CSV 로 바꾸지 않았다.
+> - 테스트 `atuna-prices-data` 최신값 5계열 갱신. `npm run verify` 통과: Vitest 224 files / **2,265** · API cache 161/161 · fleet leak 151 · 세로합 0. 로컬 production `/market` 1440·390px overflow 0·error 0, 2,350·2,500 렌더.
+> - **정기 동기화 설정(사용자 지시: 한 달에 2번, 자동 병합·배포 허용)**: `.github/workflows/atuna_prices_sync.yml` — 매달 1일·16일 09:30 KST(+수동 실행). `scripts/sync_atuna_prices_from_csv.py --fetch` 가 CSV 8종을 10초 간격으로 받아 새 날짜만 추가하고 테스트 최신값까지 고친다. 기존 날짜 값이 다르면 쓰지 않고 실패(종료 3), CSV 형식·수집 실패도 실패(종료 4). 변동이 있으면 `npm test` 통과 후 main 에 직접 푸시 → Vercel 배포. 원본 CSV 는 실행 아티팩트(90일). 방콕 값이 바뀐 회차는 실행 요약에 「방콕 해설 갱신 필요」를 띄운다(해설은 기사 기반이라 자동화하지 않음). 자가 점검 `scripts/test_sync_atuna_prices_from_csv.py`. 이 스크립트는 오늘 수작업 반영 5건을 그대로 재현했다(main 기준).
+> - 상태: 브랜치 `data/atuna-prices-1015-b`(origin/main 기준). 워크플로는 main 에 들어가야 켜진다.
+
 > ✅ **2026-10-15 KST — `/cosmo` 견적 마진 표기 정정(사용자 질의: 견적 마진의 의미)** [CC]:
 > - 3% 미만 견적 물량 비중(`quoteStats.below3FclShare`, 45%)을 「손익분기 미달 물량」이라고 부르는 문장이 홈 KPI·판매 탭 2곳에 있었다. 손익분기 비교선은 판관+이자 6.68%라 실제 그 선 아래 물량은 **92%**다 → 홈·판매 분포 카드는 「3% 미만 물량」으로 고치고, 판매 탭 「지금 읽히는 것」은 새 `quoteBelowBreakevenFclShare`(92%)로 바꿔 「견적 원가 기준이라 회계 실적과 기준이 다릅니다」를 붙였다. 시장 탭 「아래쪽 바이어가 손익분기 미달 물량의 실체」(무역통계 단가 밴드와 무관한 단정) → 「재가격 우선 대상」.
 > - 견적 마진 = (판매가 − 제조원가 − 기타비용) ÷ 판매가, 견적 시점 원가 기준. 손익분기 6.68% 는 회계 실적 기준이라 승인선이 아니라 비교선으로만 읽는다(9/30 교훈 재확인).
