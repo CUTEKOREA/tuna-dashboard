@@ -1,3 +1,10 @@
+> ✅ **2026-10-15 KST — 오징어 산업 해부 52판 그림 위치 복구(main 게이트 빨간불 해소)** [CC]:
+> - 원인: `5fac2297`(52판)이 보고서 HTML 과 `squid_prose_v1`·`squid_tables_v1` 만 다시 만들고 `squid_figures_v1.json` 은 두었다. 그림 위치값(`ord`, 절 본문 안 문자 오프셋)이 51판 기준이라 05절 그림이 새 표 72 안(`<td class="num">20.37</td>`)을 가리켜 `company-report-figures` 「그림은 그 절이 붙은 단계에 붙는다」가 main 에서 실패했다(run 38705951986~).
+> - 수정: `python3 scripts/build_report_figures.py squid` 로 재생성. 14개 그림 중 바뀐 것은 위치값 4개뿐 — s05 7,631 → 9,667(표 72 추가분), s13 3개 각 +52(13절 문구 정정분). 그림 메타·HTML 조각은 그대로.
+> - `npm run verify` 통과: Vitest 224 files / **2,265**(보고서 테스트 460 전부 통과) · API cache 161/161 · fleet leak 151 · 세로합 0. 로컬 production `/squid-industry` 1440·390px 200·overflow 0·error 0.
+> - 재발 방지 메모: 품목 해부보고서 HTML 을 고치면 `build_report_prose.py`·`build_report_tables.py`·**`build_report_figures.py`** 셋을 같이 돌린다.
+> - 상태: 브랜치 `fix/squid-report-figure-anchor`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-15 KST — `/logistics` TTA 운반선 주간동향 41주차(10/9~10/15) 반영** [CC]:
 > - 원자료: `Reefer ship movement for week 41th.xlsx` SHA-256 `d310034c22a514ba64cb369ebc7c058ef6c4f9df1985b7c3e2a41b9ff4c4d60a`(12,909 B, `unzip -t` 정상, AJ2=41, A1 「9/10/26 - 15/10/26」). A1 의 일(日)이 처음 한 자리로 와 `sync_reefer_weekly.py` 기간 정규식이 멈췄다 → 일·월 1~2자리를 받게 고쳤다. `data/reefer_week41.json`(git add -f).
 > - **1척 4,840 MT** — HUA FU 107(10/4 접안, 40주와 배분 동일). CHERRY STAR 는 하역을 마쳐 빠졌고 새 입항은 없다. 행 합 = 원문 TOTAL(AI7) 4,840, OTHER(부두 11B) 제외. 송클라 입항 없음. 방콕 주간보고 10/14 정정본 「하역 중 HUA FU 107 한 척」과 같다.
