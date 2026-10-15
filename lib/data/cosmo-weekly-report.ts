@@ -11,15 +11,15 @@
  */
 export const cosmoWeeklyReport = {
   source: {
-    file: '2026.10.07_COSMO 주간보고 (40주차).docx',
-    sha256: 'c63587a802ee7bcf193dbaf1081ff0484a8277aca94ad81dd7542d395865a497',
-    period: '2026-09-28~2026-10-04',
+    file: '2026.10.14_COSMO 주간보고 (41주차).docx',
+    sha256: 'fcbfe5d62a16563649fcdb7b28124d8960f2a7a3c6d8e3fba16a1a6073a6ba17',
+    period: '2026-10-05~2026-10-11',
   },
   market: {
     productionSecuredThrough: '2026년 생산분',
-    summary: '2027년 1분기 물량 오퍼를 준비 중이며 차주부터 본격적으로 오퍼를 낼 예정입니다. 바이어 구매 문의와 수요는 이어지고 있으나, 어가 하락 가능성을 내다보고 구매 결정에는 다소 신중한 분위기입니다.',
+    summary: '2027년 1분기 생산 물량에 대한 오퍼를 시작했습니다. 2026년 생산분은 이미 확보했습니다.',
     rawFishPressure:
-      '에콰도르 캐너리는 원어 어가가 여전히 $2,350/MT 수준인데도 향후 어가 하락을 미리 반영해 지난주부터 제품 오퍼 가격을 내리고 있습니다. '
+      '어가가 하락세로 전환되면서 시장 내 오퍼 가격도 내려가고 있습니다. '
       + '원어구매 비중은 PANOFI 99.8%입니다.',
   },
   litigation: {
@@ -28,25 +28,36 @@ export const cosmoWeeklyReport = {
     status: '재심리 재판 진행 중',
   },
   operations: {
-    qualityFocus: '3분기 결산 업무와 2025년 사업연도 GRA 세무조사가 진행 중입니다.',
+    qualityFocus: '2025년 사업연도 GRA 세무조사가 진행 중입니다.',
     /** 그 주에 심사가 없으면 null. 지난 심사를 이번 주 일처럼 내보내지 않는다. */
     audit: null as null | { name: string; start: string; end: string; result?: string },
     /** 그 주에 하역이 없으면 null. */
-    unloading: null as null | {
+    unloading: {
+      active: null,
+      activeSince: null,
+      next: null,
+      nextDate: null,
+      // 41주차 원문은 YF 를 따로 적었다(SJ + YF + GG = 합계)
+      completed: [
+        { vessel: 'P/FORE', skjMt: 603, yfMt: 73, ggMt: 19, totalMt: 695 },
+        { vessel: 'P/QUEEN', skjMt: 334, yfMt: 44, ggMt: 29, totalMt: 407 },
+      ],
+    } as null | {
       active: string | null;
       activeSince: string | null;
       next: string | null;
       nextDate: string | null;
-      completed: ReadonlyArray<{ vessel: string; skjMt: number; ggMt: number; totalMt: number }>;
+      completed: ReadonlyArray<{ vessel: string; skjMt: number; yfMt?: number; ggMt: number; totalMt: number }>;
     },
     /** 심사·하역이 없는 주에 브리핑 카드를 채우는 그 주의 물류 현황. */
     logistics: {
       headline: '2025년 GRA 세무조사',
-      detail: '40주차 공장 출고 18컨 · CY 선적대기 38컨 · CBU 제품 재고 564만불(공장 321만 + CY 243만) · 원어구매 비중 PANOFI 99.8%',
+      // 원문 「CBU 제품 재고 653만불 (공장 321만불 + CY 243만불)」의 내역은 40주 값 그대로라 합이 564만이다 - 내역은 싣지 않는다
+      detail: '41주차 공장 출고 17컨 · CY 선적대기 50컨 · CBU 제품 재고 653만불 · 원어구매 비중 PANOFI 99.8%',
     },
   },
   nextActions: [
-    '과장급 파리 SIAL 박람회 참석 출장(10/12~10/22, 런던·파리)',
-    '2027년 1분기 물량 오퍼 본격 진행',
+    '과장급 파리 SIAL 박람회 참석 출장 중(10/12~10/22, 런던·파리)',
+    '2027년 1분기 생산 물량 오퍼 진행',
   ],
 } as const;
