@@ -249,9 +249,9 @@ describe('새우 최종 해부보고서 표 추출', () => {
 describe('오징어 최종 해부보고서 표 추출', () => {
   const tables = reportTables('squid');
 
-  it('본문 표 71개를 전부 싣고 부록 표는 제외한다', () => {
+  it('본문 표 72개를 전부 싣고 부록 표는 제외한다', () => {
     expect(REPORT_TABLE_COMPANIES).toContain('squid');
-    expect(tables).toHaveLength(71);
+    expect(tables).toHaveLength(72);
     expect(tables.some((table) => /^s[A-Z]$/.test(table.sid))).toBe(false);
     expect(tables.every((table) => table.rows.length > 0)).toBe(true);
   });
