@@ -249,7 +249,7 @@ export default function Quality() {
             return <>가장 큰 잔차는 <b>{t.name} {usd(t.max, 0)}</b>입니다. </>
           })()}
             이상이 특정 시점에 몰리기보다 연중 흩어져 있어, 한 번의 사고가 아니라
-            <b> 원본 작성 관행에서 반복되는 어긋남</b>으로 읽힙니다. {meta.missingWeeks.join(',')}주차는 원본이 없어 값이 비어 있습니다.</>}
+            <b> 원본 작성 관행에서 반복되는 어긋남</b>으로 읽힙니다.{meta.missingWeeks.length ? ` ${meta.missingWeeks.join(',')}주차는 원본이 없어 값이 비어 있습니다.` : ''}</>}
         >
           <Legend items={usdNames.map((x) => ({ name: x, color: SERIES_COLORS[names.indexOf(x) % SERIES_COLORS.length] }))} />
           <Chart
@@ -460,7 +460,7 @@ export default function Quality() {
         sub="주차별 원본 파일명과 SHA-256 해시 앞 16자. 해시가 같으면 같은 파일에서 읽은 값입니다."
         note={<>모든 수치는 이 파일들에서 <b>읽기 전용으로 추출했으며 원본은 수정하지 않았습니다</b>.
           해시를 함께 남긴 이유는 원본이 나중에 갱신되면 이 대시보드의 수치와 어긋날 수 있기 때문입니다.
-          {meta.missingWeeks.join(',')}주차는 목록에 없습니다 - 파일 자체가 없습니다.
+          {meta.missingWeeks.length ? ` ${meta.missingWeeks.join(',')}주차는 목록에 없습니다 - 파일 자체가 없습니다.` : ' 빠진 주차는 없습니다.'}{' '}
           추출 시각은 {generated}, 원본 위치는 {meta.sourceDir} 입니다.</>}
       >
         <div className="tw">
@@ -498,7 +498,7 @@ export default function Quality() {
           찍힐 수 있으므로, 해당 주차 부근의 일 처리량은 단일 값으로 인용하지 말고 추세로 읽어야 합니다.
           <b> 재고·판매 누적</b>은 주차 간 이월에서 {fails.filter((c) => !isMt(c.name)).length}건이 어긋나므로,
           특정 주차의 누적값 하나를 근거로 결론을 내리지 말고 추세로 읽어야 합니다.
-          {meta.missingWeeks.join(',')}주차는 원본이 없어 그 구간의 주간값은 존재하지 않으며 보간하지 않았습니다.
+          {meta.missingWeeks.length ? ` ${meta.missingWeeks.join(',')}주차는 원본이 없어 그 구간의 주간값은 존재하지 않으며 보간하지 않았습니다.` : ''}
           견적 {meta.quoteCount}건은 사내 계산값이라 별도 검산 대상이 아닙니다.
           이 페이지의 모든 판정은 {generated} 기준 원본 {weeks.length}개 파일에서 나왔습니다.
         </Callout>

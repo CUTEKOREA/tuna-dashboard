@@ -2,27 +2,12 @@
 import { C } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
-import type { Week, ProdUnit } from '@/lib/data/cosmo'
-import { annualUsdSeries, annualProd, pastWeeks, weeks, latest, yoy, musd, num, pct, n } from '@/lib/data/cosmo'
+import { annualUsdSeries, annualProd, latest, yoy, musd, num, pct, n } from '@/lib/data/cosmo'
 
 const m0 = (v: number) => '$' + (v / 1e6).toFixed(0) + 'M'
 const m2 = (v: number) => '$' + (v / 1e6).toFixed(2) + 'M'
 const mtd = (v: number) => num(v, 1) + ' MT/일'
 const mt0 = (v: number) => num(v, 0) + ' MT'
-
-/** 가동이 있었던 주만 평균에 넣는다 — 미가동 주(처리량 0)를 섞으면 평균이 내려앉는다 */
-function cbuWeekAvg(ws: Week[]) {
-  const p = ws
-    .map((w) => w.production?.CBU)
-    .filter((x): x is ProdUnit => !!x && n(x.weekRawMt) > 0)
-  const avg = (f: (u: ProdUnit) => number) => (p.length ? p.reduce((a, u) => a + f(u), 0) / p.length : 0)
-  return {
-    count: p.length,
-    yield: avg((u) => n(u.weekYield)),
-    daily: avg((u) => n(u.weekDaily)),
-    raw: avg((u) => n(u.weekRawMt)),
-  }
-}
 
 const p25n = (v: number) => v.toFixed(1) + ' MT/일'
 
@@ -50,12 +35,12 @@ export default function History() {
   const yLo = Math.floor(Math.min(...yVals) * 200) / 200
   const yHi = Math.ceil(Math.max(...yVals) * 200) / 200
 
-  const p25 = cbuWeekAvg(pastWeeks)
-  const p26 = cbuWeekAvg(weeks)
+  /* 표도 아래 문단과 같은 1~N주 집계(yoy)에서 읽는다. 예전에는 2025년 전체(가동 49주)를 단순 주간 평균해
+   * 제목 「같은 1~41주 구간」과 다른 값(121.1 대 문단 124.7 MT/일)이 나갔다(2026-10-15). */
   const rows: { k: string; a: number; b: number; f: (v: number) => string }[] = [
-    { k: 'CBU 주간 수율', a: p25.yield, b: p26.yield, f: (v) => pct(v, 2) },
-    { k: 'CBU 주간 일처리량', a: p25.daily, b: p26.daily, f: mtd },
-    { k: 'CBU 주간 원어처리량', a: p25.raw, b: p26.raw, f: mt0 },
+    { k: 'CBU 수율(원어량 가중)', a: yoy.yield2025, b: yoy.yield2026, f: (v) => pct(v, 2) },
+    { k: 'CBU 일처리량(Σ원어÷Σ생산일)', a: yoy.daily2025, b: yoy.daily2026, f: mtd },
+    { k: 'CBU 가동주 평균 원어처리량', a: yoy.rawMt2025 / yoy.sampleWeeks2025, b: yoy.rawMt2026 / yoy.sampleWeeks2026, f: mt0 },
   ]
 
   return (
@@ -251,8 +236,8 @@ export default function History() {
               <thead>
                 <tr>
                   <th>지표</th>
-                  <th className="n">2025 ({p25.count}주)</th>
-                  <th className="n">2026 ({p26.count}주)</th>
+                  <th className="n">2025 (1~{yoy.upTo}주 · 가동 {yoy.sampleWeeks2025}주)</th>
+                  <th className="n">2026 (1~{yoy.upTo}주 · 가동 {yoy.sampleWeeks2026}주)</th>
                   <th className="n">차이</th>
                   <th className="n">증감률</th>
                 </tr>

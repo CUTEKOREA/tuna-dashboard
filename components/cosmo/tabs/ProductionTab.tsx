@@ -799,9 +799,9 @@ export default function Production() {
                 ))}
                 <tr>
                   <td>집계에 쓴 가동주 <span className="tag">0일 주 제외</span></td>
-                  <td className="n">{yoy.sampleWeeks2025}주 / {day(yoy.days2025)}</td>
-                  <td className="n">{yoy.sampleWeeks2026}주 / {day(yoy.days2026)}</td>
-                  <td className="n">{q3_2026.count}주 / {day(q3_2026.days)}</td>
+                  <td className="n">가동 {yoy.sampleWeeks2025}주 / {day(yoy.days2025)}</td>
+                  <td className="n">가동 {yoy.sampleWeeks2026}주 / {day(yoy.days2026)}</td>
+                  <td className="n">가동 {q3_2026.count}주 / {day(q3_2026.days)}</td>
                   <td className="n">-</td>
                 </tr>
               </tbody>
