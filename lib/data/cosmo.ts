@@ -539,6 +539,16 @@ export const breakevenMargin = (() => {
   }
 })()
 
+/** 견적 물량 중 손익분기 마진(판관+이자) 미만인 비중. quoteStats.below3FclShare 는 3% 컷이라 이름이 다르다.
+ *  두 마진은 기준이 다르다(견적 원가 대 회계 실적) — 승인 기준이 아니라 비교선으로만 읽는다. */
+export const quoteBelowBreakevenFclShare = (() => {
+  const be = breakevenMargin?.required
+  if (be == null) return null
+  const withQty = quoteStats.sorted.map((q) => ({ m: q.margin, fcl: quoteQtyFcl(q) ?? 0 })).filter((x) => x.fcl > 0)
+  const total = withQty.reduce((a, x) => a + x.fcl, 0)
+  return total ? withQty.filter((x) => x.m < be).reduce((a, x) => a + x.fcl, 0) / total : null
+})()
+
 /** 마진 구간별 건수 — 히스토그램용 */
 export const marginBuckets = (() => {
   const edges = [-0.02, 0, 0.02, 0.04, 0.06, 0.08, 0.1]
