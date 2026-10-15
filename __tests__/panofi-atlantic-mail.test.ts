@@ -96,8 +96,8 @@ describe('PANOFI 대서양 주말 메일', () => {
 
 describe('코스모 원장 대 PANOFI 메일', () => {
   it('주차 말일이 같은 주만 짝짓고 재고 차이를 파생한다', () => {
-    // 38주차 원장이 들어오며 9/20 메일도 짝이 맞았다. 10/11 메일(41주차 말일)은 원장이 40주차까지라 짝이 없다
-    expect(cosmoMailRows.map((r) => r.week)).toEqual([35, 36, 37, 38, null]);
+    // 38주차 원장이 들어오며 9/20 메일도 짝이 맞았다. 41주차 원장이 들어오며 10/11 메일(41주차 말일)도 짝이 맞는다
+    expect(cosmoMailRows.map((r) => r.week)).toEqual([35, 36, 37, 38, 41]);
     expect(cosmoMailRows[0].ledgerDailyT).toBeCloseTo(85.1, 1);
     expect(cosmoMailRows[1].ledgerDailyT).toBeCloseTo(86.2, 1);
     expect(cosmoMailRows[2].ledgerDailyT).toBeCloseTo(97.1, 1);
@@ -108,6 +108,9 @@ describe('코스모 원장 대 PANOFI 메일', () => {
     // 9/20 메일 대 38주차 원장: 일평균 103.1 MT, 재고 차이 -99.2 MT
     expect(cosmoMailRows[3].ledgerDailyT).toBeCloseTo(103.1, 1);
     expect(cosmoMailRows[3].stockGapT).toBeCloseTo(-99.2, 1);
+    // 10/11 메일 대 41주차 원장: 메일 일 100톤 대 원장 일평균 96.4톤, 원어 재고 1,250 대 1,414.7 MT(-164.7)
+    expect(cosmoMailRows[4].ledgerDailyT).toBeCloseTo(96.4, 1);
+    expect(cosmoMailRows[4].stockGapT).toBeCloseTo(-164.7, 1);
     expect(cosmoMailRows.map((r) => r.inflowResidualT)).toEqual([null, 260.66, null, null, null]);
   });
 
