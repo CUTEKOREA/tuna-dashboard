@@ -218,9 +218,9 @@ describe('문어 최종 해부보고서 표 추출', () => {
 describe('새우 최종 해부보고서 표 추출', () => {
   const tables = reportTables('shrimp');
 
-  it('본문 표 44개를 전부 싣고 부록 표는 제외한다', () => {
+  it('본문 표 45개를 전부 싣고 부록 표는 제외한다', () => {
     expect(REPORT_TABLE_COMPANIES).toContain('shrimp');
-    expect(tables).toHaveLength(44);
+    expect(tables).toHaveLength(45);
     expect(tables.some((table) => /^s[A-Z]$/.test(table.sid))).toBe(false);
     expect(tables.every((table) => table.rows.length > 0)).toBe(true);
     // s18 은 <section style=…> 이라 파서가 한때 통째로 놓쳤다
