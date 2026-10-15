@@ -1,0 +1,89 @@
+name: Atuna Price Sync
+
+# 2026-10-15 사용자 지시: 한 달에 두 번 Atuna 시세 변동을 확인해 대시보드(/market)에 반영한다.
+#   · 매달 1일·16일 09:30 KST. CSV 8종은 로그인 없이 받아진다(robots.txt Crawl-delay 10초를 지킨다).
+#   · 변동이 있으면 data/atuna_prices.json 과 테스트 최신값을 고쳐 테스트를 돌린 뒤 main 에 바로 올린다
+#     (사용자가 이 동기화에 한해 자동 병합·배포를 허용했다). Vercel 이 main 푸시로 배포한다.
+#   · 저장소에 이미 있는 날짜의 값이 CSV 와 다르면 아무것도 쓰지 않고 실패한다 — 정정은 사람이 본다.
+#   · 방콕 시세가 바뀌면 /market 방콕 해설(skj-price-context)은 Atuna 기사로 따로 고쳐야 한다. 실행 요약에 표시한다.
+on:
+  schedule:
+    - cron: '30 0 1,16 * *'
+  workflow_dispatch:
+
+concurrency:
+  group: atuna-price-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Fetch Atuna CSVs and merge new rows
+        id: sync
+        run: |
+          set +e
+          python3 scripts/sync_atuna_prices_from_csv.py --fetch --csv-dir atuna-csv | tee sync.log
+          rc=${PIPESTATUS[0]}
+          set -e
+          summary=$(grep '^SUMMARY ' sync.log | tail -1 | sed 's/^SUMMARY //')
+          echo "summary=$summary" >> "$GITHUB_OUTPUT"
+          {
+            echo '### Atuna 시세 동기화'
+            echo '```'
+            grep -v '^SUMMARY ' sync.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if grep -q '^추가 방콕 SKJ' sync.log; then
+            echo '방콕 시세가 바뀌었다 — /market 방콕 해설(lib/data/skj-price-context.ts)을 Atuna 기사로 갱신할 것.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit $rc
+
+      - name: Keep the raw CSVs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atuna-csv-${{ github.run_id }}
+          path: atuna-csv/
+          if-no-files-found: ignore
+          retention-days: 90
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet -- data/atuna_prices.json; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Setup Node
+        if: steps.diff.outputs.changed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Test
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          npm ci --no-audit
+          npm test
+
+      - name: Commit to main
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          SUMMARY: ${{ steps.sync.outputs.summary }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/atuna_prices.json __tests__/atuna-prices-data.test.ts
+          text=$(python3 -c 'import json,os; print(json.loads(os.environ["SUMMARY"]).get("text",""))')
+          git commit -m "data(market): sync Atuna hub prices [GitHub Actions]" -m "$text"
+          git pull --rebase origin main
+          git push origin HEAD:main
