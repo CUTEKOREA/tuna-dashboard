@@ -244,7 +244,7 @@ export default function Market() {
           note={<>평균 {k1(n(totals.usdPerFcl))}/FCL 대비 밴드 폭이 넓습니다
             ({k1(buyerBand[0].usdPerFcl)} ~ {k1(buyerBand[buyerBand.length - 1].usdPerFcl)}).
             같은 공장에서 같은 제품이 나가는데 단가가 이만큼 벌어진다는 건
-            <b> 협상 여지가 바이어마다 다르다</b>는 뜻이고, 아래쪽 바이어가 손익분기 미달 물량의 실체입니다.</>}
+            <b> 협상 여지가 바이어마다 다르다</b>는 뜻이고, 아래쪽 바이어가 재가격 우선 대상입니다.</>}
         >
           <div className="tw">
             <table>

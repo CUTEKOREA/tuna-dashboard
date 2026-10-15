@@ -3,7 +3,7 @@ import { C, SERIES } from '../palette'
 import Chart, { Legend } from '../Chart'
 import { PageHead, Card, Kpi, Callout, SecHead } from '../Ui'
 import {
-  weeks, weeklySeries, latest, meta, quoteStats, marginBuckets, breakevenMargin,
+  weeks, weeklySeries, latest, meta, quoteStats, marginBuckets, breakevenMargin, quoteBelowBreakevenFclShare,
   movingAvg, musd, usd, num, pct, n,
 } from '@/lib/data/cosmo'
 
@@ -327,7 +327,7 @@ export default function Sales() {
               {' '}{pct(breakevenMargin.interestRate, 2)})입니다 - 이 선을 넘어야 영업외비용까지 덮습니다.
               구간 경계상 {pct(riskHi, 0)} 미만까지 칠했습니다. </>}
             건수보다 물량이 실질에 가깝습니다 - <b>물량가중 마진 {pct(quoteStats.weightedMargin, 2)}</b>,
-            손익분기 미달 물량이 {pct(quoteStats.below3FclShare, 0)}로 건수 기준
+            3% 미만 물량이 {pct(quoteStats.below3FclShare, 0)}로 건수 기준
             {' '}{pct(quoteStats.below3 / quoteStats.withMargin, 0)}보다 나쁩니다.
             상한 {pct(quoteStats.max, 2)}는 손익분기를 넘지만 그런 건이 드뭅니다 - 손익분기 이상 견적은 <b>{aboveBe.count}건 / 물량 {pct(aboveBe.share, 1)}</b>뿐이라 고마진 건으로 저마진을 상쇄할 여지가 없습니다.</>}
         >
@@ -352,7 +352,7 @@ export default function Sales() {
           문제는 그 물량의 가격입니다. 주력 {fclItems.length}종이 매출의 {pct(fclShare, 1)}인데 단가는 박스권이고,
           잔량 내재 단가는 {usd(backlogUnit)}/FCL로 지금 팔리는 수준과 크게 다르지 않습니다.
           여기에 신규 견적의 <b>물량가중 마진이 {pct(quoteStats.weightedMargin, 2)}</b>, 최고치도 {pct(quoteStats.max, 2)}에 그칩니다.
-          {breakevenMargin && <>손익분기에 필요한 {pct(breakevenMargin.required, 1)}에 못 미치는 물량이 {pct(quoteStats.below3FclShare, 0)}입니다. </>}
+          {breakevenMargin && quoteBelowBreakevenFclShare != null && <>손익분기 비교선 {pct(breakevenMargin.required, 1)}에 못 미치는 물량이 {pct(quoteBelowBreakevenFclShare, 0)}입니다(견적 원가 기준이라 회계 실적과 기준이 다릅니다). </>}
           수주가 늘면 적자 폭은 줄지만(현 판가도 공헌이익은 양(+)), <b>이 판가 수준으로는 흑자 전환에 이르지 못합니다</b> -
           판가 전가나 단위원가 인하가 함께 가야 합니다.
           이 숫자들은 선적 기준이라 회계 인식(손익 보드)과는 시점 차이가 있습니다.

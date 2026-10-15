@@ -135,7 +135,7 @@ export default function Home() {
         <Card>
           <Kpi k="견적 마진 (물량가중)" v={pct(quoteStats.weightedMargin, 2)}
             tone={breakevenMargin && n(quoteStats.weightedMargin) < breakevenMargin.required ? 'down' : 'flat'}
-            d={`중앙값 ${pct(quoteStats.median, 2)} · 손익분기 미달 물량 ${pct(quoteStats.below3FclShare, 0)}`} />
+            d={`중앙값 ${pct(quoteStats.median, 2)} · 3% 미만 물량 ${pct(quoteStats.below3FclShare, 0)}`} />
         </Card>
         <Card>
           <Kpi k="자재 최단 소진" v={materialBurn.shortest?.weeksLeft?.toFixed(1) ?? '-'} unit=" 주"

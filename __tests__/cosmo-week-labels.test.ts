@@ -36,3 +36,19 @@ describe('코스모 주차 표기', () => {
     }
   });
 });
+
+/* 2026-10-15: 3% 미만 물량 비중(quoteStats.below3FclShare)을 「손익분기 미달 물량」이라고 부르는 문장이 세 곳 있었다.
+ * 손익분기 비교선은 판관+이자(약 6.7%)라 둘은 다른 값이다. */
+describe('견적 마진 표기', () => {
+  it('3% 컷과 손익분기 비교선을 다른 이름·다른 값으로 쓴다', async () => {
+    const { quoteStats, quoteBelowBreakevenFclShare, breakevenMargin } = await import('../lib/data/cosmo');
+    const Sales = (await import('../components/cosmo/tabs/SalesTab')).default;
+    const Home = (await import('../components/cosmo/tabs/HomeTab')).default;
+    expect(breakevenMargin!.required).toBeGreaterThan(0.03);
+    expect(quoteBelowBreakevenFclShare!).toBeGreaterThanOrEqual(quoteStats.below3FclShare!);
+    const text = [Sales, Home].map((C) => renderToStaticMarkup(React.createElement(C)).replace(/<[^>]+>/g, '')).join('\n');
+    expect(text).not.toContain('손익분기 미달 물량');
+    expect(text).toContain('3% 미만 물량');
+    expect(text).toContain('견적 원가 기준이라 회계 실적과 기준이 다릅니다');
+  });
+});
