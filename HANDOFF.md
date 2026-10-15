@@ -1,3 +1,10 @@
+> 🐟 **2026-10-16 KST — `/market` 2026-10-15 참치 브리핑 배포** [CC]:
+> - 감사 `AUDIT_PASS`(`state/audit-2026-10-15.txt`, 10/16 08:35:22 — 같은 회차 실행 08:15~08:35 안에서 기록, 재감사 게이트 덮어쓰기 경고 없음). 감사 대상 게시판 HTML·원문·JSON 리드 「동원, HMM 인수설 반박하고 임원 인사 준비」 일치. 윤문 채택(08:38) 뒤 준비(08:39)라 윤문 반영본.
+> - 변경분은 `public/data/tuna_daily_briefing.json`·`tuna_weekly_briefing.json` 두 파일뿐. 기준일 `2026-10-15`, 기사 **5건**(주간 4일 22건).
+> - 브랜치 `briefing/2026-10-15` → PR **#1470** squash 병합, `main` 커밋 **`114ee3af`**.
+> - 라이브 확인(Aside): 메타 「이번주 참치 뉴스 | 10/12~10/16 · 기사 22건 · 파이프라인 동기」, 탭 월·화·수·목(선택: 목 10/15), 리드 「동원, HMM 인수설 반박하고 임원 인사 준비」, 오늘의 수치 9월 30일 · 2025년 12월 · 5명.
+> - 워크트리 정리: PR MERGED + JSON `origin/main` 과 동일 확인 후 `sync/2026-10-15`(origin/main) 으로 이동. `briefing/2026-10-15` 브랜치는 남겨 둠.
+
 > 🚀 **2026-10-15 KST — `/logistics` TTA 운반선 주간동향 41주차(10/9~10/15) 반영** [CC]:
 > - 원자료: `Reefer ship movement for week 41th.xlsx` SHA-256 `d310034c22a514ba64cb369ebc7c058ef6c4f9df1985b7c3e2a41b9ff4c4d60a`(12,909 B, `unzip -t` 정상, AJ2=41, A1 「9/10/26 - 15/10/26」). A1 의 일(日)이 처음 한 자리로 와 `sync_reefer_weekly.py` 기간 정규식이 멈췄다 → 일·월 1~2자리를 받게 고쳤다. `data/reefer_week41.json`(git add -f).
 > - **1척 4,840 MT** — HUA FU 107(10/4 접안, 40주와 배분 동일). CHERRY STAR 는 하역을 마쳐 빠졌고 새 입항은 없다. 행 합 = 원문 TOTAL(AI7) 4,840, OTHER(부두 11B) 제외. 송클라 입항 없음. 방콕 주간보고 10/14 정정본 「하역 중 HUA FU 107 한 척」과 같다.
