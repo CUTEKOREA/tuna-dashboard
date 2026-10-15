@@ -16,7 +16,8 @@ from openpyxl.utils import column_index_from_string
 
 
 WEEK_RE = re.compile(r'week\s+(\d+)', re.IGNORECASE)
-PERIOD_RE = re.compile(r'(\d{2})/(\d{2})/(\d{2})\s*-\s*(\d{2})/(\d{2})/(\d{2})')
+# 41주차부터 일·월이 한 자리로도 온다(「9/10/26 - 15/10/26」) — 1~2자리를 받는다
+PERIOD_RE = re.compile(r'(\d{1,2})/(\d{1,2})/(\d{2})\s*-\s*(\d{1,2})/(\d{1,2})/(\d{2})')
 ERROR_VALUES = {'#REF!', '#DIV/0!', '#VALUE!', '#N/A', '#NAME?', '#NUM!', '#NULL!'}
 EXPECTED_DESTINATION_HEADERS = {
     'F': 'ASIAN', 'G': 'AEC', 'H': 'AYA', 'I': 'CMC', 'J': 'DIA', 'K': 'GB',

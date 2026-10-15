@@ -1,3 +1,10 @@
+> ✅ **2026-10-15 KST — `/logistics` TTA 운반선 주간동향 41주차(10/9~10/15) 반영** [CC]:
+> - 원자료: `Reefer ship movement for week 41th.xlsx` SHA-256 `d310034c22a514ba64cb369ebc7c058ef6c4f9df1985b7c3e2a41b9ff4c4d60a`(12,909 B, `unzip -t` 정상, AJ2=41, A1 「9/10/26 - 15/10/26」). A1 의 일(日)이 처음 한 자리로 와 `sync_reefer_weekly.py` 기간 정규식이 멈췄다 → 일·월 1~2자리를 받게 고쳤다. `data/reefer_week41.json`(git add -f).
+> - **1척 4,840 MT** — HUA FU 107(10/4 접안, 40주와 배분 동일). CHERRY STAR 는 하역을 마쳐 빠졌고 새 입항은 없다. 행 합 = 원문 TOTAL(AI7) 4,840, OTHER(부두 11B) 제외. 송클라 입항 없음. 방콕 주간보고 10/14 정정본 「하역 중 HUA FU 107 한 척」과 같다.
+> - 월별 반입: 배·접안일로 중복을 걸러 10월은 그대로 1척 4,840 MT, 진행 중 달 기준일 10/8 → **10/15**. 카드 비교는 다 찬 9월로 유지.
+> - 테스트 `reefer-week40-data` → `reefer-week41-data`, `reefer-monthly-intake` 갱신. 계보 문서 `widget_lineage.py` 재생성. `npm run verify` 통과: Vitest 224 files / **2,265** · API cache 161/161 · fleet leak 151 · 세로합 0. 로컬 production `/logistics` 4탭 1440·390px overflow 0·error 0, 「41주차」·「10/15까지」 렌더, CHERRY STAR·40주차 잔존 0.
+> - 상태: 브랜치 `data/reefer-week41`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
+
 > 🚀 **2026-10-15 KST — `/market` Atuna 어가 변동분 반영(CSV 8종 재대조)** [CC]:
 > - 원자료: 로그인 없이 받은 Atuna CSV(`agri_data/…/05_ATUNA_뉴스·가격/_수치데이터/2026-10-15/`). skjbkk `b6e1b205…` · skjmnt `2889dc06…` · skjabj `1dda8ba6…` · skjvig `7760a6b1…` · skjsey `51f8ec2d…` · yfvig `9d389440…` · yfabj `715771ca…` · yfsey `5f586cd5…`(본문 SHA-256 앞 8자리). `data/atuna_prices.json` 전 계열과 대조 — 기존 값 불일치 0건.
 > - 빠진 **5개 값** 추가: 만타 **10/8 $2,350**(+2.2%), 아비장 SKJ 9/30 $1,600(+3.2%), 비고 SKJ 9/30 $1,900(변동 없음), 아비장 YF 9/30 **$2,500**(−7.4%), 비고 YF 9/30 **$2,600**(−3.7%). 방콕(10/2 $2,300)·세이셸은 그대로라 방콕 해설은 다시 쓰지 않았다. MGO 는 Ship & Bunker 계열(`singapore_mgo.json`)이라 Atuna CSV 로 바꾸지 않았다.
