@@ -49,6 +49,7 @@ import {
   falklandMeta,
 } from '@/lib/data/falkland-squid-vessels';
 import { FalklandMonthProvider } from './FalklandMonthFilter';
+import SquidStatusBoard from './SquidStatusBoard';
 
 import {
   deepseaMeta,
@@ -667,7 +668,13 @@ const SPEC: CommoditySpec = {
     `위젯 ${String(WIDGETS_META.선별)}개 (${String(WIDGETS_META.원본)})`,
   ].join(' · '),
   insets: {
-    AfterHero: () => <MarketRegimeBand commodityKey="squid" />,
+    // 2026-10-16 사용자 지시: 해부보고서 현황판을 대시보드 맨 위(히어로 바로 아래)에 둔다.
+    AfterHero: () => (
+      <>
+        <SquidStatusBoard />
+        <MarketRegimeBand commodityKey="squid" />
+      </>
+    ),
   },
 };
 
