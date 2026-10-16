@@ -1,3 +1,8 @@
+> 🐄 **2026-10-17 KST - 현황판 축산 4품목 추가 + 16품목 재감사 + 라벨 겹침 수정** [CC]:
+> 축산 소고기·돼지고기·닭고기·계란(`/industry/<key>`) 현황판 JSON 4개 추가·등록. 16품목 전부 Codex 재감사(근거 표기·한정 조건·과잉 주장·기준일) 235건 → 작성자가 원문 대조 후 반영(숫자 변경 0, HEAD 대비 기계 대조), 최종 Codex 숫자·문구 대조 불일치 0.
+> 공용 컴포넌트: x 라벨은 글자 폭 기준으로 고르고 강조 막대 라벨을 우선, 선 그래프 끝 값 라벨이 겹치면 아래로, 두 칸 줄에 혼자 남는 카드는 줄을 채움. 새우 히어로 「한국 양식 비중 2024」, 문어 조제 캡션의 옛 6,306 문장 정리.
+> 남김: 문어 위판 차트 데이터는 FIPS 2026-09-02 추출본(1~6월)이라 보고서(1~7월)보다 한 달 늦음 — 재추출 필요. 보고서 쪽 표 번호 중복(축산 부록 「표 11」 vs 11-x).
+
 > 🐟 **2026-10-16 KST - 시장 이해 수산 12품목 현황판 (공용 `IndustryStatusBoard`)** [CC]:
 > - 품목 하나 = `data/industry_status_boards/<key>.json` 하나. `CommodityIndustryDashboard` 가 히어로 바로 아래에 `spec.key` 로 찾아 그린다(전용 화면·공통 라우트 모두). 오징어 전용 컴포넌트는 지우고 같은 스펙으로 옮겼다.
 > - 차트 9종(bars·line·hbars·dumbbell·butterfly·waterfall·stairs·closed·table), 고정 viewBox SVG, 넓은 카드는 viewBox 860. 스키마 검사 `__tests__/industry-status-boards.test.ts`.

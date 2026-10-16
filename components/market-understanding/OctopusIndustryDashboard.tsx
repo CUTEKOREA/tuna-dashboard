@@ -297,7 +297,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     {
       title: '조제 문어류 수입 2022~2025 (톤)',
       caption:
-        '종 분리 없는 세번 1605550000. 2022년에 생겨 그 전 칸이 없다. 2024년은 원장 6,305,473 kg(6,305 t)이고 보고서는 6,306 t로 적었다(차이 원인 미확인). 냉동 문어와 한 축에 두지 않는다.' +
+        '종 분리 없는 세번 1605550000. 2022년에 생겨 그 전 칸이 없다. 2024년은 원장 6,305,473 kg(6,305 t)으로 보고서 값과 같다. 냉동 문어와 한 축에 두지 않는다.' +
         chartSource('관세청 HSK10 1605550000', '2025년 확정'),
       telemetry: KCS_SYNC,
       render: () => <OctopusPreparedTradeChart data={DATA} />,
