@@ -1,3 +1,9 @@
+> ✅ **2026-10-16 KST — 홈 라이트 대비 +1 원인 수정(`--delta-flat`)** [CC]:
+> - 원인: PR #1475 a11y 의 `[light] / · desktop/mobile · color-contrast 7 → 8` 은 선단 변경과 무관했다. CI 리포트(PR run 38886532446 · main 전 38887446982 · main 후 38889555722) 노드 대조 결과 늘어난 2노드는 홈 시세 위젯(`SeafoodStockWidget`)의 노르웨이 종목 「kr 206」·「0.00%」 — 보합일 때 쓰는 `--delta-flat` #94a3b8 이 흰 바탕 2.56:1 이다. 시세가 정확히 0% 인 시각에만 그려져 같은 코드가 PR run 8 / 병합 후 main run 6 으로 흔들렸다.
+> - 수정: `app/globals.css` 라이트 블록(`[data-v3='light']`)에 `--delta-flat: #475569`(흰 바탕 7.6:1) 추가. 다크 값·상승/하락색은 그대로. `FleetHeroCommand`·`HeroMarketCommand`·`OfisMonthlyPanel` 의 보합 표기도 같은 토큰이라 함께 진해진다.
+> - `npm run verify` 통과(Vitest 2,265 · fleet leak 151). 로컬 production `/` 라이트에서 `var(--delta-flat)` = `rgb(71, 85, 105)` 확인. a11y 기준선은 CI 측정값이라 손대지 않았다.
+> - 상태: 브랜치 `fix/home-delta-flat-contrast` 로컬 커밋. **프로덕션 미배포.**
+
 > 🚀 **2026-10-16 KST — `/fleet` 해양수산본부 일일업무보고 261016(금) 반영** [CC]:
 > - 원자료: `해양수산본부 일일업무보고-261016 (금).docx` SHA-256 `a12261599741676d45e51e524d0bb0d5bdecbfea69b02e4b85d5cc07ebbac5f8`(167,320 B, `unzip -t` 정상). 증분 175건(폴더 파일 175개와 일치).
 > - 전수 재파싱은 `260116 (금).docx` 에서 「DOCX 본문을 읽을 수 없습니다」로 멈췄다 — Drive 가 로컬 사본을 내려 둔 상태(`Resource deadlock avoided`, 10/15 본도 같음)라 `--latest-report` 증분으로 반영했다. 원본 손상이 아니다.

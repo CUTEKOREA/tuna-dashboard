@@ -1185,6 +1185,8 @@ img, video, canvas, svg {
   --accent-danger: #c93744;
   --delta-up: #c62828;
   --delta-down: #2563eb;
+  /* 보합 #94a3b8 은 흰 바탕 2.56:1 — 홈 시세 카드가 0.00% 인 날만 axe 에 잡혀 기준선이 흔들렸다 (2026-10-16) */
+  --delta-flat: #475569;
   --accent-secondary: #22242b;
 
   /* 레거시 카드·텍스트 계층 (WidgetCard 등) */
