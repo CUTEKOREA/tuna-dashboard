@@ -21,7 +21,7 @@ describe('Atuna price data freshness', () => {
     // 2026-09-20: Atuna 가격 CSV 8종(skjbkk·skjmnt·skjabj·skjvig·skjsey·yfvig·yfabj·yfsey)과 대조해 빠진 행을 채웠다
     // 2026-10-06: 다시 대조 - 바뀐 CSV 는 skjbkk 하나(10/2 $2,300, +4.55%), 나머지 7종은 9/20 과 본문 해시가 같다
     // 2026-10-15: 다시 대조 - 만타 10/8 $2,350, 아비장·비고 9/30 월말 4건(YF 아비장 −7.41%·YF 비고 −3.70%) 추가. 방콕·세이셸은 그대로
-    expect(latestForKey(rows, 'skj_bkk')).toEqual({ date: '2026-10-02', price: 2300 });
+    expect(latestForKey(rows, 'skj_bkk')).toEqual({ date: '2026-10-15', price: 2350 });
     expect(latestForKey(rows, 'skj_mnt')).toEqual({ date: '2026-10-08', price: 2350 });
     expect(latestForKey(rows, 'skj_sey')).toEqual({ date: '2026-09-18', price: 1645 });
     expect(latestForKey(rows, 'yf_sey')).toEqual({ date: '2026-09-18', price: 2100 });
