@@ -72,9 +72,9 @@ describe('명태 최종 해부보고서 표 추출', () => {
 describe('연육 최종 해부보고서 표 추출', () => {
   const tables = reportTables('surimi');
 
-  it('본문 표 22개를 전부 싣고 부록 sA 표는 제외한다', () => {
+  it('본문 표 23개를 전부 싣고 부록 sA 표는 제외한다', () => {
     expect(REPORT_TABLE_COMPANIES).toContain('surimi');
-    expect(tables).toHaveLength(22);
+    expect(tables).toHaveLength(23);
     expect(tables.some((table) => table.sid === 'sA')).toBe(false);
     expect(tables.every((table) => table.rows.length > 0)).toBe(true);
   });

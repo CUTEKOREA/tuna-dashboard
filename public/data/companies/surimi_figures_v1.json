@@ -11,8 +11,8 @@
    "kind": "html",
    "ord": 267,
    "caption": "",
-   "alt": "2025년 연육 수입 · 2025년 국내 연육 생산 · 2025년 어묵 생산",
-   "html": "<div class=\"metrics\">\n<div class=\"metric\"><div class=\"k\">2025년 연육 수입</div><div class=\"v\">136,001톤</div><div class=\"n\">관세청 수출입무역통계</div></div>\n<div class=\"metric\"><div class=\"k\">2025년 국내 연육 생산</div><div class=\"v\">2,304톤</div><div class=\"n\">식약처 식품등 생산실적</div></div>\n<div class=\"metric\"><div class=\"k\">2025년 어묵 생산</div><div class=\"v\">230,280톤</div><div class=\"n\">식약처 공표 생산실적</div></div>\n</div>",
+   "alt": "2025년 연육 수입(명태·기타 연육 두 세번 합계) · 2025년 국내 연육 생산 · 2025년 어묵 생산",
+   "html": "<div class=\"metrics\">\n<div class=\"metric\"><div class=\"k\">2025년 연육 수입(명태·기타 연육 두 세번 합계)</div><div class=\"v\">136,001톤</div><div class=\"n\">관세청 수출입무역통계</div></div>\n<div class=\"metric\"><div class=\"k\">2025년 국내 연육 생산</div><div class=\"v\">2,304톤</div><div class=\"n\">식약처 식품등 생산실적</div></div>\n<div class=\"metric\"><div class=\"k\">2025년 어묵 생산</div><div class=\"v\">230,280톤</div><div class=\"n\">식약처 공표 생산실적</div></div>\n</div>",
    "css": ":scope{--card:#FCFCFA;--disp:'Gothic A1',-apple-system,sans-serif;--ink:#14181B;--ink-3:#6B757B;--mono:'JetBrains Mono',ui-monospace,monospace;--rule:#D5D9D2;color:var(--ink)}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px; background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}.metric{background:var(--card);padding:1rem 1.1rem}.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em; color:var(--ink-3);margin-bottom:.35rem}.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12; letter-spacing:-.025em;color:var(--ink)}.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem; line-height:1.6}"
   }
  ]

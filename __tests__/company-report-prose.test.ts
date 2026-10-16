@@ -590,7 +590,7 @@ describe('연육 최종 해부보고서 서술 추출 (위젯 없는 화면)', (
       for (const cell of [...table.head, ...table.rows.flat()]) visible.push(...lines('표 셀', cell));
     }
 
-    expect(tables).toHaveLength(22);
+    expect(tables).toHaveLength(23);
     expect(figures).toHaveLength(1);
     expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
     const missing = visible
