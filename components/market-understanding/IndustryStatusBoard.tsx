@@ -35,9 +35,16 @@ function ticks(lo: number, hi: number): number[] {
   return out;
 }
 
-/** 눈금 라벨: every 칸마다, 마지막은 앞 라벨과 반 칸 이상 떨어질 때만 */
-const showTick = (i: number, n: number, every: number) =>
-  i % every === 0 || (i === n - 1 && (n - 1) % every >= every / 2);
+/** x 라벨: 강조 칸(must)을 먼저, 나머지는 최신(오른쪽)부터 이미 남긴 라벨과 글자 폭만큼 떨어질 때만 남긴다(11px 글꼴, 한 글자 약 6.4). */
+function pickLabels(pos: number[], labels: string[], must = -1): Set<number> {
+  const w = (s: string) => s.length * 6.4;
+  const keep = new Set<number>();
+  const order = [must, ...pos.map((_, i) => pos.length - 1 - i).filter((i) => i !== must)].filter((i) => i >= 0);
+  for (const i of order) {
+    if ([...keep].every((j) => Math.abs(pos[j] - pos[i]) >= (w(labels[i]) + w(labels[j])) / 2 + 8)) keep.add(i);
+  }
+  return keep;
+}
 
 function Svg({ w, h, label, children }: { w: number; h: number; label: string; children: React.ReactNode }) {
   return (
@@ -59,7 +66,7 @@ function Bars({ c, W: WW = 420 }: { c: Extract<BoardChart, { type: 'bars' }>; W?
         const bw = (W - 12) / s.points.length;
         const color = SERIES[si % SERIES.length];
         const lastFull = s.points.map((p) => !p.partial).lastIndexOf(true);
-        const every = Math.ceil(s.points.length / (W / 44));
+        const shown = pickLabels(s.points.map((_, i) => 6 + i * bw + bw * 0.5), s.points.map((p) => shortX(p.x)), lastFull);
         return (
           <Svg key={s.name} w={W} h={H} label={`${s.name} (${c.unit})`}>
             <text x={4} y={13} className={styles.strong}>{s.name}</text>
@@ -74,7 +81,7 @@ function Bars({ c, W: WW = 420 }: { c: Extract<BoardChart, { type: 'bars' }>; W?
                         stroke={p.partial ? color : 'none'} strokeDasharray={p.partial ? '3 2' : undefined}>
                     <title>{`${s.name} ${p.x}${p.partial ? ' (부분)' : ''}: ${fmt(p.v, s.digits ?? c.digits)} ${c.unit}`}</title>
                   </rect>
-                  {showTick(i, s.points.length, every) && (
+                  {shown.has(i) && (
                     <text x={x + bw * 0.36} y={H - 6} textAnchor="middle">{shortX(p.x)}</text>
                   )}
                   {hl && (
@@ -100,7 +107,14 @@ function Line({ c, W = 420 }: { c: Extract<BoardChart, { type: 'line' }>; W?: nu
   const y = lin(tk[0], tk[tk.length - 1], H - bot, top);
   const step = (W - l - r - 12) / Math.max(1, xs.length - 1);
   const x = (k: string) => l + 6 + xs.indexOf(k) * step;
-    const every = Math.ceil(xs.length / 7);
+  const shown = pickLabels(xs.map(x), xs.map(shortX));
+  // 계열 끝 값 라벨이 같은 자리에서 겹치면 아래쪽 라벨을 점 밑으로 내린다
+  const marks = c.series.map((s) => {
+    const full = s.points.filter((p) => !p.partial);
+    return full.length ? (c.mark === 'peak' ? full.reduce((a, b) => (b.v > a.v ? b : a)) : full[full.length - 1]) : undefined;
+  });
+  const below = marks.map((m, i) => !!m && marks.some((o, j) => j !== i && !!o &&
+    Math.abs(x(o.x) - x(m.x)) < 40 && Math.abs(y(o.v) - y(m.v)) < 14 && (y(m.v) > y(o.v) || (y(m.v) === y(o.v) && i > j))));
   return (
     <Svg w={W} h={H} label={`${c.series.map((s) => s.name).join(', ')} (${c.unit})`}>
       {tk.map((t) => (
@@ -109,15 +123,13 @@ function Line({ c, W = 420 }: { c: Extract<BoardChart, { type: 'line' }>; W?: nu
           <text x={l - 6} y={y(t) + 4} textAnchor="end">{fmt(t)}</text>
         </g>
       ))}
-      {xs.map((k, i) => showTick(i, xs.length, every) && (
+      {xs.map((k, i) => shown.has(i) && (
         <text key={k} x={x(k)} y={H - 8} textAnchor="middle">{shortX(k)}</text>
       ))}
       {c.series.map((s, si) => {
         const color = SERIES[si % SERIES.length];
         const full = s.points.filter((p) => !p.partial);
-        const mark = full.length
-          ? (c.mark === 'peak' ? full.reduce((a, b) => (b.v > a.v ? b : a)) : full[full.length - 1])
-          : undefined;
+        const mark = marks[si];
         return (
           <g key={s.name}>
             <polyline points={full.map((p) => `${x(p.x)},${y(p.v)}`).join(' ')} fill="none" stroke={color}
@@ -127,7 +139,7 @@ function Line({ c, W = 420 }: { c: Extract<BoardChart, { type: 'line' }>; W?: nu
                 <title>{`${s.name} ${p.x}${p.partial ? ' (부분)' : ''}: ${fmt(p.v, s.digits ?? c.digits)} ${c.unit}`}</title>
               </circle>
             ))}
-            {mark && <text x={x(mark.x)} y={y(mark.v) - 9} textAnchor="middle" className={styles.strong}>{fmt(mark.v, s.digits ?? c.digits)}</text>}
+            {mark && <text x={x(mark.x)} y={below[si] ? y(mark.v) + 18 : y(mark.v) - 9} textAnchor="middle" className={styles.strong}>{fmt(mark.v, s.digits ?? c.digits)}</text>}
           </g>
         );
       })}
@@ -355,9 +367,17 @@ function Table({ c, title }: { c: Extract<BoardChart, { type: 'table' }>; title:
   );
 }
 
-function Chart({ card }: { card: BoardCard }) {
+/** 두 칸 줄에서 혼자 남는 좁은 카드(다음이 넓은 카드이거나 끝)는 줄을 채운다 */
+function fillsRow(cards: BoardCard[], i: number): boolean {
+  if (cards.length < 2 || cards[i].wide) return false;
+  let run = 0;
+  for (let j = i; j >= 0 && !cards[j].wide; j--) run++;
+  return run % 2 === 1 && (i === cards.length - 1 || !!cards[i + 1].wide);
+}
+
+function Chart({ card, wide }: { card: BoardCard; wide: boolean }) {
   const c = card.chart;
-  const W = card.wide ? 860 : 420;
+  const W = wide ? 860 : 420;
   switch (c.type) {
     case 'bars': return <Bars c={c} W={W} />;
     case 'line': return <Line c={c} W={W} />;
@@ -399,13 +419,16 @@ export default function IndustryStatusBoard({ commodityKey }: { commodityKey: st
         <React.Fragment key={s.title}>
           <h3 className={styles.sec}>{s.title} {s.sub && <span>{s.sub}</span>}</h3>
           <div className={s.cards.length > 1 ? styles.grid2 : undefined}>
-            {s.cards.map((card) => (
-              <div key={card.title} className={`${styles.card} ${card.wide ? styles.wide : ''}`}>
+            {s.cards.map((card, i) => {
+              const wide = !!card.wide || fillsRow(s.cards, i);
+              return (
+              <div key={card.title} className={`${styles.card} ${wide ? styles.wide : ''}`}>
                 <h4>{card.title}</h4>
                 <p className={styles.note}>{card.note}</p>
-                <Chart card={card} />
+                <Chart card={card} wide={wide} />
               </div>
-            ))}
+              );
+            })}
           </div>
         </React.Fragment>
       ))}

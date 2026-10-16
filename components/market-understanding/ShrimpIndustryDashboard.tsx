@@ -78,7 +78,7 @@ export const SHRIMP_HERO_KPIS: HeroKpi[] = [
   { label: '세계 새우 생산량 2024', value: 1195, unit: '(만 톤)', accent: SHRIMP_ACCENT },
   { label: '양식 비중', value: 73.8, unit: '(%)', decimals: 1 },
   { label: '흰다리새우 비중', value: 64.1, unit: '(%)', decimals: 1 },
-  { label: '한국 양식 비중', value: 22.7, unit: '(%)', decimals: 1 },
+  { label: '한국 양식 비중 2024', value: 22.7, unit: '(%)', decimals: 1 },
 ];
 
 /**

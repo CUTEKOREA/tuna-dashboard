@@ -2,11 +2,15 @@
  * 시장 이해 품목 현황판 - 해부보고서 표를 옮긴 정적 스펙. 품목 하나 = JSON 하나(`data/industry_status_boards/<key>.json`).
  * 그리는 쪽은 components/market-understanding/IndustryStatusBoard. 스키마 검사는 __tests__/industry-status-boards.test.ts.
  */
+import beef from '../../data/industry_status_boards/beef.json';
+import chicken from '../../data/industry_status_boards/chicken.json';
+import eggs from '../../data/industry_status_boards/eggs.json';
 import hairtail from '../../data/industry_status_boards/hairtail.json';
 import jukkumi from '../../data/industry_status_boards/jukkumi.json';
 import mackerel from '../../data/industry_status_boards/mackerel.json';
 import octopus from '../../data/industry_status_boards/octopus.json';
 import pollock from '../../data/industry_status_boards/pollock.json';
+import pork from '../../data/industry_status_boards/pork.json';
 import salmon from '../../data/industry_status_boards/salmon.json';
 import shrimp from '../../data/industry_status_boards/shrimp.json';
 import squid from '../../data/industry_status_boards/squid.json';
@@ -44,7 +48,7 @@ export type IndustryStatusBoardSpec = {
 };
 
 export const INDUSTRY_STATUS_BOARDS: Record<string, IndustryStatusBoardSpec> = {
-  hairtail, jukkumi, mackerel, octopus, pollock, salmon, shrimp, squid, surimi, tuna, tunafarm, whelk,
+  beef, chicken, eggs, hairtail, jukkumi, mackerel, octopus, pollock, pork, salmon, shrimp, squid, surimi, tuna, tunafarm, whelk,
 } as unknown as Record<string, IndustryStatusBoardSpec>;
 
 export function industryStatusBoard(key: string): IndustryStatusBoardSpec | undefined {
