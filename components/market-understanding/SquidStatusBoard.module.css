@@ -1,0 +1,62 @@
+/* 색은 페이지의 --mu-* 토큰을 받는다(다크·라이트 모두 TunaIndustryDashboard.module.css 가 정의). */
+.board { display: grid; gap: 14px; min-width: 0; }
+
+.head h2 { margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--mu-ink); }
+.lede { margin: 6px 0 0; color: var(--mu-ink-soft); font-size: 0.92rem; line-height: 1.7; max-width: 72ch; word-break: keep-all; }
+.lede b { color: var(--mu-ink); }
+.src { margin: 4px 0 0; color: var(--mu-ink-muted); font-size: 0.74rem; word-break: keep-all; }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr)); gap: 10px; }
+.kpi { display: grid; gap: 2px; align-content: start; padding: 12px 14px; border-radius: 12px;
+  border: 1px solid var(--mu-line); background: var(--mu-surface); min-width: 0; }
+.partial { border-style: dashed; }
+.kl { font-size: 0.72rem; color: var(--mu-ink-muted); font-weight: 600; }
+.kv { font-size: 1.4rem; font-weight: 800; color: var(--mu-ink); font-variant-numeric: tabular-nums; line-height: 1.2; }
+.kv small { font-size: 0.72rem; font-weight: 500; color: var(--mu-ink-muted); margin-left: 4px; }
+.kn { font-size: 0.74rem; color: var(--mu-ink-soft); word-break: keep-all; }
+.kb { font-size: 0.68rem; color: var(--mu-ink-muted); }
+
+.sec { margin: 10px 0 0; font-size: 1rem; font-weight: 800; color: var(--mu-ink);
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+.sec span { font-size: 0.74rem; font-weight: 500; color: var(--mu-ink-muted); }
+
+.grid2, .grid3 { display: grid; gap: 12px; }
+.grid2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+.grid3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+
+.card { display: grid; gap: 6px; align-content: start; padding: 14px 16px; border-radius: 12px;
+  border: 1px solid var(--mu-line); background: var(--mu-surface); min-width: 0; }
+.card h4 { margin: 0; font-size: 0.9rem; font-weight: 700; color: var(--mu-ink); word-break: keep-all; }
+.note { margin: 0; font-size: 0.74rem; line-height: 1.6; color: var(--mu-ink-muted); word-break: keep-all; }
+.multi { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+
+.svg { display: block; width: 100%; height: auto; overflow: visible; }
+.svg text { fill: var(--mu-axis); font-size: 11px; }
+.svg text.strong { fill: var(--mu-ink); font-weight: 600; }
+.grid { stroke: var(--mu-grid); }
+
+.flow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 0.76rem; color: var(--mu-ink-muted); }
+.flow b { font-weight: 600; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--mu-line); color: var(--mu-ink-soft); }
+.flow b.shut { border-style: dashed; color: var(--mu-callout-warn); }
+
+.closed { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 10px; }
+.gap { display: grid; gap: 4px; align-content: start; padding: 12px; border-radius: 10px;
+  border: 1px dashed var(--mu-line); position: relative; }
+.gap::before { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0.5;
+  background-image: repeating-linear-gradient(135deg, transparent 0 7px, var(--mu-line) 7px 8px); }
+.gap > span { position: relative; }
+.gst { font-size: 0.68rem; color: var(--mu-ink-muted); letter-spacing: 0.04em; }
+.gsy { font-size: 0.84rem; font-weight: 700; color: var(--mu-ink); }
+.ghw { font-size: 0.74rem; color: var(--mu-ink-soft); word-break: keep-all; }
+.gbs { font-size: 0.7rem; color: var(--mu-callout-warn); word-break: keep-all; }
+
+.tblWrap { overflow-x: auto; }
+.tbl { border-collapse: collapse; width: 100%; font-size: 0.78rem; }
+.tbl th { text-align: left; color: var(--mu-ink-muted); font-weight: 600; padding: 6px 8px;
+  border-bottom: 1px solid var(--mu-line); white-space: nowrap; }
+.tbl td { padding: 8px; border-bottom: 1px solid var(--mu-line); vertical-align: top; color: var(--mu-ink-soft); word-break: keep-all; }
+.tbl td:first-child { white-space: nowrap; }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--mu-line); color: var(--mu-ink); }
+
+@media (max-width: 560px) { .hideSm { display: none; } }
+.multi .svg { max-height: 190px; }
