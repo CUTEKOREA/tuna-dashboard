@@ -1,50 +1,50 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "reportCount": 174,
+    "reportCount": 175,
     "firstReportDate": "2026-01-16",
-    "latestReportDate": "2026-10-15",
-    "latestAsOf": "2026-10-14",
-    "detailSha256": "de2ab2dbf8c9b8325dd0fbb796a8b0dbb2ce209602623641bb75af1c3d0c95ca",
+    "latestReportDate": "2026-10-16",
+    "latestAsOf": "2026-10-15",
+    "detailSha256": "96edcc8a3c8d746b62cef2d48b7e01f7ad76c2187231f97decabbf21f76c674f",
     "detailSha256Compat": [
-      "d92c9c762225c2ffd9b0d32f5628f0c36d04dacf47de96a6e43fa3f08e070741"
+      "de2ab2dbf8c9b8325dd0fbb796a8b0dbb2ce209602623641bb75af1c3d0c95ca"
     ]
   },
   "latest": {
-    "reportDate": "2026-10-15",
-    "asOf": "2026-10-14",
+    "reportDate": "2026-10-16",
+    "asOf": "2026-10-15",
     "pacific": {
-      "asOf": "2026-10-14",
-      "dailyMt": 100,
-      "monthlyMt": 3909,
-      "annualMt": 58521.8
+      "asOf": "2026-10-15",
+      "dailyMt": 220,
+      "monthlyMt": 4129,
+      "annualMt": 58741.8
     },
     "atlantic": {
-      "asOf": "2026-10-14",
-      "dailyMt": 160,
-      "monthlyMt": 1550,
-      "annualMt": 41105
+      "asOf": "2026-10-15",
+      "dailyMt": 170,
+      "monthlyMt": 1720,
+      "annualMt": 41275
     },
     "carrier": {
       "loadedTotalMt": 10614,
-      "expectedRemainingMt": 2211
+      "expectedRemainingMt": 5911
     }
   },
   "deltas": {
-    "pacificDailyMt": -226,
-    "atlanticDailyMt": 20,
-    "totalDailyMt": -206
+    "pacificDailyMt": 120,
+    "atlanticDailyMt": 10,
+    "totalDailyMt": 130
   },
   "reconciliation": {
     "pacificDaily": {
-      "reportedMt": 100,
-      "rowsMt": 100,
+      "reportedMt": 220,
+      "rowsMt": 220,
       "matches": true,
       "missingCount": 0
     },
     "atlanticDaily": {
-      "reportedMt": 160,
-      "rowsMt": 160,
+      "reportedMt": 170,
+      "rowsMt": 170,
       "matches": true,
       "missingCount": 0
     },
@@ -55,8 +55,8 @@
       "missingCount": 0
     },
     "carrierExpectedRemaining": {
-      "reportedMt": 2211,
-      "rowsMt": 2211,
+      "reportedMt": 5911,
+      "rowsMt": 5911,
       "matches": true,
       "missingCount": 0
     },
@@ -239,7 +239,8 @@
       "2026-10-12",
       "2026-10-13",
       "2026-10-14",
-      "2026-10-15"
+      "2026-10-15",
+      "2026-10-16"
     ],
     "pacific": {
       "totalMt": [
@@ -416,7 +417,8 @@
         395,
         220,
         326,
-        100
+        100,
+        220
       ],
       "vessels": {
         "S/EXP": [
@@ -593,7 +595,8 @@
           80,
           85,
           160,
-          45
+          45,
+          10
         ],
         "S/PIO": [
           50,
@@ -769,7 +772,8 @@
           220,
           55,
           40,
-          0
+          0,
+          200
         ],
         "S/CHA": [
           0,
@@ -942,6 +946,7 @@
           20,
           0,
           30,
+          0,
           0,
           0,
           0,
@@ -1121,7 +1126,8 @@
           0,
           0,
           50,
-          20
+          20,
+          0
         ],
         "S/JUP": [
           0,
@@ -1297,6 +1303,7 @@
           0,
           40,
           20,
+          0,
           0
         ],
         "S/SPR": [
@@ -1473,6 +1480,7 @@
           0,
           0,
           0,
+          0,
           0
         ],
         "MOAMARI": [
@@ -1610,6 +1618,7 @@
           0,
           0,
           85,
+          0,
           0,
           0,
           0,
@@ -1825,7 +1834,8 @@
           15,
           25,
           56,
-          20
+          20,
+          10
         ],
         "NAOERO SUN": [
           0,
@@ -2001,7 +2011,8 @@
           80,
           15,
           0,
-          5
+          5,
+          0
         ],
         "NAOERO STAR": [
           0,
@@ -2177,18 +2188,19 @@
           0,
           0,
           0,
-          10
+          10,
+          0
         ]
       },
       "lastLoadIncreaseDates": {
-        "S/EXP": "2026-10-15",
-        "S/PIO": "2026-10-14",
+        "S/EXP": "2026-10-16",
+        "S/PIO": "2026-10-16",
         "S/CHA": "2026-10-12",
         "S/HAR": "2026-10-15",
         "S/JUP": "2026-10-14",
         "S/SPR": "2026-09-21",
         "MOAMARI": "2026-08-18",
-        "MOAKONA": "2026-10-15",
+        "MOAKONA": "2026-10-16",
         "NAOERO SUN": "2026-10-15",
         "NAOERO STAR": "2026-10-15"
       }
@@ -2368,7 +2380,8 @@
         95,
         45,
         140,
-        160
+        160,
+        170
       ],
       "vessels": {
         "P/MAS": [
@@ -2545,7 +2558,8 @@
           25,
           10,
           40,
-          10
+          10,
+          15
         ],
         "P/DIS": [
           15,
@@ -2721,7 +2735,8 @@
           15,
           0,
           60,
-          50
+          50,
+          100
         ],
         "P/FORE": [
           0,
@@ -2894,6 +2909,7 @@
           0,
           10,
           25,
+          0,
           0,
           0,
           0,
@@ -3073,7 +3089,8 @@
           25,
           0,
           25,
-          0
+          0,
+          15
         ],
         "P/COM": [
           0,
@@ -3249,7 +3266,8 @@
           0,
           0,
           15,
-          20
+          20,
+          15
         ],
         "P/QUEEN": [
           0,
@@ -3425,7 +3443,8 @@
           0,
           0,
           0,
-          35
+          35,
+          0
         ],
         "P/GRACE": [
           0,
@@ -3601,24 +3620,25 @@
           30,
           35,
           0,
-          45
+          45,
+          25
         ]
       },
       "lastLoadIncreaseDates": {
-        "P/MAS": "2026-10-15",
-        "P/DIS": "2026-10-15",
+        "P/MAS": "2026-10-16",
+        "P/DIS": "2026-10-16",
         "P/FORE": "2026-10-08",
-        "P/PATH": "2026-10-14",
-        "P/COM": "2026-10-15",
+        "P/PATH": "2026-10-16",
+        "P/COM": "2026-10-16",
         "P/QUEEN": "2026-10-15",
-        "P/GRACE": "2026-10-15"
+        "P/GRACE": "2026-10-16"
       }
     }
   },
   "quality": {
     "counts": {
-      "reconciliationChecks": 696,
-      "reconciliationCompleteChecks": 696,
+      "reconciliationChecks": 700,
+      "reconciliationCompleteChecks": 700,
       "reconciliationUnavailableChecks": 0,
       "reconciliationUnavailableDocuments": 0,
       "reconciliationIssues": 14,

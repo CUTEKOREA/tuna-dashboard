@@ -52,9 +52,9 @@ describe('fleet daily protected detail loader', () => {
   it('keeps the currently deployed detail digest valid during the schema transition', () => {
     /* 기대값은 «지금 프로덕션 env 에 들어 있는» 상세 해시다. 일일보고를 넣으면 새 해시가 detailSha256 이 되고
      * 배포 중인 값은 detailSha256Compat 으로 밀려나야 교체 전 몇 분간 보호 패널이 깨지지 않는다.
-     * 2026-10-15: 10/14 보고 배포 해시 d92c9c76… (그 전 10/13 9dc5ff3d… · 10/12 d0d810f9…). 시크릿을 교체하면 다음 반영 때 이 값을 바꾼다. */
+     * 2026-10-16: 10/15 보고 배포 해시 de2ab2db… (그 전 10/14 d92c9c76… · 10/13 9dc5ff3d…). 시크릿을 교체하면 다음 반영 때 이 값을 바꾼다. */
     expect([fleetDailyPublicDetailSha256, ...fleetDailyPublicDetailSha256Compat]).toContain(
-      'd92c9c762225c2ffd9b0d32f5628f0c36d04dacf47de96a6e43fa3f08e070741',
+      'de2ab2dbf8c9b8325dd0fbb796a8b0dbb2ce209602623641bb75af1c3d0c95ca',
     );
   });
 
