@@ -1,11 +1,13 @@
-> ✅ **2026-10-16 KST — `/fleet` 해양수산본부 일일업무보고 261016(금) 반영** [CC]:
+> 🚀 **2026-10-16 KST — `/fleet` 해양수산본부 일일업무보고 261016(금) 반영** [CC]:
 > - 원자료: `해양수산본부 일일업무보고-261016 (금).docx` SHA-256 `a12261599741676d45e51e524d0bb0d5bdecbfea69b02e4b85d5cc07ebbac5f8`(167,320 B, `unzip -t` 정상). 증분 175건(폴더 파일 175개와 일치).
 > - 전수 재파싱은 `260116 (금).docx` 에서 「DOCX 본문을 읽을 수 없습니다」로 멈췄다 — Drive 가 로컬 사본을 내려 둔 상태(`Resource deadlock avoided`, 10/15 본도 같음)라 `--latest-report` 증분으로 반영했다. 원본 손상이 아니다.
 > - 머리글 연속성: 태평양 일 220 · 월 3,909+220=4,129 · 연 58,741.8, 대서양 일 170 · 월 1,550+170=1,720 · 연 41,275. 운반선 적재 10,614 그대로, 적재 예정 2,211 → **5,911**(HIKARI 1 3,700 신규, 행 합 일치). 「전일 대비」 +130(태평양 +120). 검산 700회 전부 완전, 품질 카운트 변화 없음.
 > - MOAMARI: 10/16 보고도 비고 없음(항해 중) → `asOf` 10-16. 조업손실 환산 175보고일 / 273달력일 · 19.23 MT → 약 43보고일 · 약 **830** MT 유지(826.8). 위치는 싣지 않았다.
 > - `fleet-daily-detail-loader` 배포 중 해시 기대값 d92c9c76… → de2ab2db…(10/15 배포). 새 detailSha256 `96edcc8a…` — 배포 후 시크릿 교체 필요.
 > - `npm run verify` 통과: ESLint 0 errors(warnings 31) · Vitest **2,265** · fleet leak 151(보호 상세 29). 로컬 production `/fleet` 4탭 1440·390px overflow 0·page error 0, 「2026-10-16 보고」·「전체 보고 175건」, 실적 분석 → 일간 추이 MOAMARI 「10/13~10/16」·약 830 MT·19.23(로컬 `/api/fleet/daily`·`/schedule` 503 은 설계상 fail-closed).
-> - 상태: 브랜치 `data/fleet-daily-261016`(origin/main 기준) 로컬 커밋. **프로덕션 미배포.** (오징어 그림 앵커 `fix/squid-report-figure-anchor` 도 미배포 대기.)
+> - 배포: PR #1475 → squash `42e05740`. 메인 게이트 통과. a11y 는 main 최신 run(38887446982) 대비 신규 키 `[light] / · desktop/mobile · color-contrast` +1(7→8) 2건, /fleet 0건 — 사용자 승인으로 `--admin` 병합(원인 미규명, 후속). Vercel success → `swap_fleet_detail_secret.sh`(--check 일치 `96edcc8a…`) 교체·재배포 Ready. 라이브 「2026-10-16 보고」·+130·4,129·「전체 보고 175건」·불일치 경고 없음, 실적 분석 → 일간 추이 MOAMARI 「10/13~10/16」·약 830 MT·19.23. error log 0건.
+> - 오징어 그림 앵커: main `76ad53c9`(새우 보고서 정정)가 같은 `squid_figures_v1.json` 재생성을 이미 넣어 main App Quality Gate 가 녹색이 됐다. PR #1474 는 diff 가 HANDOFF 뿐이라 닫았다.
+> - 다음 반영 때 `fleet-daily-detail-loader` 배포 중 해시 기대값 → `96edcc8a3c8d746b62cef2d48b7e01f7ad76c2187231f97decabbf21f76c674f`.
 
 > 🐟 **2026-10-16 KST — `/market` 2026-10-15 참치 브리핑 재반영(09:15 슬롯)** [CC]:
 > - 09:15 재실행에서 `sync_daily_briefing.py` 가 게시판 HTML을 다시 읽었다. 변경분은 일간·주간 JSON 각 1줄이다. 동원 기술 부문 문장의 편집 주석 「(원문 구문 불완전)」이 빠졌고, 그 밖의 내용은 같다. 준비·verify(vitest 4/4) 통과, 감사 `AUDIT_PASS`(`state/audit-2026-10-15.txt`, 08:35). 이 주석은 감사가 끝난 뒤 게시판 HTML에서 지워졌다.
