@@ -1,4 +1,11 @@
-> 🦑 **2026-10-16 KST - `/squid-industry` 해부보고서 현황판 맨 위 추가 (브랜치 `feat/squid-status-board`, 미배포)** [CC]:
+> 🐟 **2026-10-16 KST - 시장 이해 수산 12품목 현황판 (공용 `IndustryStatusBoard`)** [CC]:
+> - 품목 하나 = `data/industry_status_boards/<key>.json` 하나. `CommodityIndustryDashboard` 가 히어로 바로 아래에 `spec.key` 로 찾아 그린다(전용 화면·공통 라우트 모두). 오징어 전용 컴포넌트는 지우고 같은 스펙으로 옮겼다.
+> - 차트 9종(bars·line·hbars·dumbbell·butterfly·waterfall·stairs·closed·table), 고정 viewBox SVG, 넓은 카드는 viewBox 860. 스키마 검사 `__tests__/industry-status-boards.test.ts`.
+> - 수치는 보고서 표 값 그대로. 작성 11품목은 서브에이전트, 검증은 Codex 원문 대조(read-only): 숫자 불일치 0, 문구·근거표 지적 총 28건 정정. 산출값 3건(연육 일치율 33.3·5.6, 양식 참다랑어 18.800 표기)은 note 에 「산출」.
+> - 규칙(작성 지침에서 굳은 것): 원문에 없는 표 번호를 매기지 않는다(「NN절 표 이름」) · 근거는 값이 실제로 있는 자리 · 제목·lede 도 원문 한정을 빼지 않는다 · 끝 0 은 digits.
+> - 보고서가 정정되면 해당 JSON 도 고친다. 보고서 안 불일치 메모: 명태 2026 베링해 TAC 1,375,000+6,300≠1,389,500, 문어 히어로 밖 차트 캡션 6,306(현 판 6,305)·위판 1~6월(현 판 1~7월), 새우 히어로 「한국 양식 비중 22.7%」는 2024년 값(라벨 연도 없음).
+
+> 🦑 **2026-10-16 KST - `/squid-industry` 해부보고서 현황판 맨 위 추가 (PR #1478 배포, 이후 공용 현황판으로 대체)** [CC]:
 > - 히어로 바로 아래(AfterHero, 시장 국면 띠 앞)에 `SquidStatusBoard`. 값은 `data/squid_status_board.json`(보고서 10월판 표 13개를 옮긴 정적 값) → `lib/data/squid-status-board.ts`.
 > - Codex 원문 대조(read-only): 수치 불일치 0, 축약 문구 12건 원문대로 정정. 보고서가 정정되면 이 JSON도 같이 고친다.
 > - `npm run verify` 통과(Vitest 2,263·ESLint 0 errors), `next build` 통과, 로컬 1440·390px overflow 0·page error 0.

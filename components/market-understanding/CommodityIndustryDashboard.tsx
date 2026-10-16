@@ -14,6 +14,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import IndustryStatusBoard from './IndustryStatusBoard';
 import { ArrowRight, ArrowUp, BookOpen, Waves } from 'lucide-react';
 
 import { TelemetryBadge } from '../TelemetryBadge';
@@ -526,6 +527,8 @@ export default function CommodityIndustryDashboard({
       data-commodity={spec.key}
     >
       {hero}
+
+      <IndustryStatusBoard commodityKey={spec.key} />
 
       {spec.insets?.AfterHero && <spec.insets.AfterHero activeKey={shownKey} go={go} />}
 
