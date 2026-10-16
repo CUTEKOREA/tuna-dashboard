@@ -345,7 +345,7 @@ describe('새우 최종 해부보고서 서술 추출', () => {
       for (const cell of [...table.head, ...table.rows.flat()]) visible.push(['표 셀', cell]);
     }
 
-    expect(tables).toHaveLength(44);
+    expect(tables).toHaveLength(45);
     expect(visible.filter(([kind]) => kind === '머리글').length).toBeGreaterThan(20);
     const missing = visible
       .filter(([, text]) => normalize(text) !== '' && !original.includes(normalize(text)))
@@ -612,7 +612,7 @@ const THREE: Array<{
   narratives: StageNarrative[]; hand: Array<{ key: string }>; brief: BriefingPoint[]; hero: HeroKpi[];
 }> = [
   {
-    key: 'mackerel', 이름: '고등어', sections: 15, tables: 49, briefing: 15,
+    key: 'mackerel', 이름: '고등어', sections: 15, tables: 50, briefing: 15,
     stages: ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 'x01'],
     groups: { s01: ['s01', 's02'], s07: ['s08', 's09'], s09: ['s11', 's14', 's15'], x01: ['s12', 's13'] },
     narratives: MACKEREL_REPORT_NARRATIVES, hand: MACKEREL_STAGES, brief: MACKEREL_REPORT_BRIEFING, hero: MACKEREL_HERO_KPIS,

@@ -5,6 +5,19 @@
 > - 재발 방지 메모: 품목 해부보고서 HTML 을 고치면 `build_report_prose.py`·`build_report_tables.py`·**`build_report_figures.py`** 셋을 같이 돌린다.
 > - 상태: 브랜치 `fix/squid-report-figure-anchor`(origin/main 기준) 로컬 커밋. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
 
+> 🐟 **2026-10-16 KST — `/market` 2026-10-15 참치 브리핑 재반영(09:15 슬롯)** [CC]:
+> - 09:15 재실행에서 `sync_daily_briefing.py` 가 게시판 HTML을 다시 읽었다. 변경분은 일간·주간 JSON 각 1줄이다. 동원 기술 부문 문장의 편집 주석 「(원문 구문 불완전)」이 빠졌고, 그 밖의 내용은 같다. 준비·verify(vitest 4/4) 통과, 감사 `AUDIT_PASS`(`state/audit-2026-10-15.txt`, 08:35). 이 주석은 감사가 끝난 뒤 게시판 HTML에서 지워졌다.
+> - 브랜치 `briefing/2026-10-15-r2`(로컬 커밋 `e6fe4f49`) → PR **#1472** squash 병합, `main` 커밋 **`03e5f308`**. 기사 5건(주간 22건).
+> - 라이브 확인(Aside): 메타 「이번주 참치 뉴스 | 10/12~10/16 · 기사 22건 · 파이프라인 동기」, 탭 월·화·수·목(선택: 목 10/15), 리드 「동원, HMM 인수설 반박하고 임원 인사 준비」, 오늘의 수치 9월 30일 · 2025년 12월 · 5명. 라이브 `/data/tuna_daily_briefing.json` 은 `date: 2026-10-15` 이고, 「장인성」은 있고 「원문 구문 불완전」은 없다.
+> - 워크트리 정리: PR MERGED와 JSON 내용이 `origin/main` 과 같음을 확인하고 `sync/2026-10-16` 으로 옮겼다. `briefing/2026-10-15-r2` 브랜치는 지우지 않았다.
+
+> 🐟 **2026-10-16 KST — `/market` 2026-10-15 참치 브리핑 배포** [CC]:
+> - 감사 `AUDIT_PASS`(`state/audit-2026-10-15.txt`, 10/16 08:35:22 — 같은 회차 실행 08:15~08:35 안에서 기록, 재감사 게이트 덮어쓰기 경고 없음). 감사 대상 게시판 HTML·원문·JSON 리드 「동원, HMM 인수설 반박하고 임원 인사 준비」 일치. 윤문 채택(08:38) 뒤 준비(08:39)라 윤문 반영본.
+> - 변경분은 `public/data/tuna_daily_briefing.json`·`tuna_weekly_briefing.json` 두 파일뿐. 기준일 `2026-10-15`, 기사 **5건**(주간 4일 22건).
+> - 브랜치 `briefing/2026-10-15` → PR **#1470** squash 병합, `main` 커밋 **`114ee3af`**.
+> - 라이브 확인(Aside): 메타 「이번주 참치 뉴스 | 10/12~10/16 · 기사 22건 · 파이프라인 동기」, 탭 월·화·수·목(선택: 목 10/15), 리드 「동원, HMM 인수설 반박하고 임원 인사 준비」, 오늘의 수치 9월 30일 · 2025년 12월 · 5명.
+> - 워크트리 정리: PR MERGED + JSON `origin/main` 과 동일 확인 후 `sync/2026-10-15`(origin/main) 으로 이동. `briefing/2026-10-15` 브랜치는 남겨 둠.
+
 > 🚀 **2026-10-15 KST — `/logistics` TTA 운반선 주간동향 41주차(10/9~10/15) 반영** [CC]:
 > - 원자료: `Reefer ship movement for week 41th.xlsx` SHA-256 `d310034c22a514ba64cb369ebc7c058ef6c4f9df1985b7c3e2a41b9ff4c4d60a`(12,909 B, `unzip -t` 정상, AJ2=41, A1 「9/10/26 - 15/10/26」). A1 의 일(日)이 처음 한 자리로 와 `sync_reefer_weekly.py` 기간 정규식이 멈췄다 → 일·월 1~2자리를 받게 고쳤다. `data/reefer_week41.json`(git add -f).
 > - **1척 4,840 MT** — HUA FU 107(10/4 접안, 40주와 배분 동일). CHERRY STAR 는 하역을 마쳐 빠졌고 새 입항은 없다. 행 합 = 원문 TOTAL(AI7) 4,840, OTHER(부두 11B) 제외. 송클라 입항 없음. 방콕 주간보고 10/14 정정본 「하역 중 HUA FU 107 한 척」과 같다.
