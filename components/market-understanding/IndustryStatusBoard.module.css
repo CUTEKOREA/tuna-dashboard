@@ -20,9 +20,8 @@
   display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
 .sec span { font-size: 0.74rem; font-weight: 500; color: var(--mu-ink-muted); }
 
-.grid2, .grid3 { display: grid; gap: 12px; }
+.grid2 { display: grid; gap: 12px; }
 .grid2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
-.grid3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
 
 .card { display: grid; gap: 6px; align-content: start; padding: 14px 16px; border-radius: 12px;
   border: 1px solid var(--mu-line); background: var(--mu-surface); min-width: 0; }
@@ -60,3 +59,4 @@
 
 @media (max-width: 560px) { .hideSm { display: none; } }
 .multi .svg { max-height: 190px; }
+.wide { grid-column: 1 / -1; }
