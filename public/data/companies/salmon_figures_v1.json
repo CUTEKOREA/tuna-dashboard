@@ -4,5 +4,76 @@
   "생성": "python3 scripts/build_report_figures.py",
   "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
  },
- "figures": []
+ "figures": [
+  {
+   "stage": "s01",
+   "sid": "s01",
+   "kind": "html",
+   "ord": 2292,
+   "caption": "",
+   "alt": "연어 수입 · 신선·냉장 노르웨이산 · 냉동 칠레산 · 국내 생산",
+   "html": "<div class=\"metrics\">\n  <div class=\"metric\"><div class=\"k\">연어 수입</div>\n    <div class=\"v\">43,785톤</div>\n    <div class=\"n\">2025년, 제품중량</div></div>\n  <div class=\"metric\"><div class=\"k\">신선·냉장 노르웨이산</div>\n    <div class=\"v\">97.2%</div>\n    <div class=\"n\">2025년, 신선·냉장 수입 물량</div></div>\n  <div class=\"metric\"><div class=\"k\">냉동 칠레산</div>\n    <div class=\"v\">72.0%</div>\n    <div class=\"n\">2025년, 냉동 수입 물량</div></div>\n  <div class=\"metric\"><div class=\"k\">국내 생산</div>\n    <div class=\"v\">234.0톤</div>\n    <div class=\"n\">2025년, 생중량</div></div>\n</div>",
+   "css": ":scope{--card:#FCFCFA;--disp:'Gothic A1',-apple-system,sans-serif;--ink:#14181B;--ink-3:#6B757B;--mono:'JetBrains Mono',ui-monospace,monospace;--rule:#D5D9D2;color:var(--ink)}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px; background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}.metric{background:var(--card);padding:1rem 1.1rem}.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em; color:var(--ink-3);margin-bottom:.35rem}.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12; letter-spacing:-.025em;color:var(--ink)}.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem; line-height:1.6}"
+  },
+  {
+   "stage": "s01",
+   "sid": "s01",
+   "kind": "html",
+   "ord": 2980,
+   "caption": "그림 1. 연도별 연어 수입량 · 출처: 관세청 HS6 국가별 월별 합, E03",
+   "alt": "그림 1. 연도별 연어 수입량 · 출처: 관세청 HS6 국가별 월별 합, E03",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 250\" width=\"100%\" role=\"img\" aria-label=\"연도별 연어 수입량\">\n<line x1=\"56\" y1=\"210\" x2=\"632\" y2=\"210\" stroke=\"#BFC5BC\" stroke-width=\".8\"/>\n<rect x=\"96.2\" y=\"76.1\" width=\"32.0\" height=\"133.9\" fill=\"#1B3A5C\" fill-opacity=\".8\"/>\n<text x=\"112.2\" y=\"72.1\" text-anchor=\"middle\" font-size=\"8.5\" fill=\"#3F484E\">62,613</text>\n<text x=\"113.2\" y=\"224\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#3F484E\">2021</text>\n<rect x=\"210.6\" y=\"46.5\" width=\"32.0\" height=\"163.5\" fill=\"#1B3A5C\" fill-opacity=\".8\"/>\n<text x=\"226.6\" y=\"42.5\" text-anchor=\"middle\" font-size=\"8.5\" fill=\"#3F484E\">76,450</text>\n<text x=\"227.6\" y=\"224\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#3F484E\">2022</text>\n<rect x=\"325.0\" y=\"117.1\" width=\"32.0\" height=\"92.9\" fill=\"#1B3A5C\" fill-opacity=\".8\"/>\n<text x=\"341.0\" y=\"113.1\" text-anchor=\"middle\" font-size=\"8.5\" fill=\"#3F484E\">43,429</text>\n<text x=\"342.0\" y=\"224\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#3F484E\">2023</text>\n<rect x=\"439.4\" y=\"112.3\" width=\"32.0\" height=\"97.7\" fill=\"#1B3A5C\" fill-opacity=\".8\"/>\n<text x=\"455.4\" y=\"108.3\" text-anchor=\"middle\" font-size=\"8.5\" fill=\"#3F484E\">45,677</text>\n<text x=\"456.4\" y=\"224\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#3F484E\">2024</text>\n<rect x=\"553.8\" y=\"116.4\" width=\"32.0\" height=\"93.6\" fill=\"#1B3A5C\" fill-opacity=\".8\"/>\n<text x=\"569.8\" y=\"112.4\" text-anchor=\"middle\" font-size=\"8.5\" fill=\"#3F484E\">43,785</text>\n<text x=\"570.8\" y=\"224\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#3F484E\">2025</text>\n<rect x=\"56\" y=\"236\" width=\"9\" height=\"9\" fill=\"#1B3A5C\"/><text x=\"69\" y=\"244\" font-size=\"9.5\" fill=\"#3F484E\">연어 수입</text>\n<text x=\"50\" y=\"14\" text-anchor=\"end\" font-size=\"9\" fill=\"#6B757B\">톤, 제품중량</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  },
+  {
+   "stage": "s02",
+   "sid": "s02",
+   "kind": "html",
+   "ord": 2120,
+   "caption": "그림 2. 2024년 주요국의 세계 양식 대서양연어 생산 비중 · 출처: FAO FishStat Global production, 2026-03판, E01",
+   "alt": "그림 2. 2024년 주요국의 세계 양식 대서양연어 생산 비중 · 출처: FAO FishStat Global production, 2026-03판, E01",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 108\" width=\"100%\" role=\"img\" aria-label=\"2024년 주요국의 세계 양식 대서양연어 생산 비중\">\n<text x=\"142\" y=\"20\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">노르웨이</text>\n<rect x=\"150\" y=\"8\" width=\"370.0\" height=\"16\" fill=\"#1B3A5C\" fill-opacity=\".85\"/>\n<text x=\"526.0\" y=\"20\" font-size=\"9.5\" fill=\"#3F484E\">57.4%</text>\n<text x=\"142\" y=\"44\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">칠레</text>\n<rect x=\"150\" y=\"32\" width=\"167.6\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"323.6\" y=\"44\" font-size=\"9.5\" fill=\"#3F484E\">26.0%</text>\n<text x=\"142\" y=\"68\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">영국</text>\n<rect x=\"150\" y=\"56\" width=\"45.8\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"201.8\" y=\"68\" font-size=\"9.5\" fill=\"#3F484E\">7.1%</text>\n<text x=\"142\" y=\"92\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">페로제도</text>\n<rect x=\"150\" y=\"80\" width=\"25.8\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"181.8\" y=\"92\" font-size=\"9.5\" fill=\"#3F484E\">4.0%</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  },
+  {
+   "stage": "s04",
+   "sid": "s04",
+   "kind": "html",
+   "ord": 4734,
+   "caption": "그림 3. 2025년 주요 공급국의 한국 연어 수입 물량 비중 · 출처: 관세청 국가별 합, E03",
+   "alt": "그림 3. 2025년 주요 공급국의 한국 연어 수입 물량 비중 · 출처: 관세청 국가별 합, E03",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 108\" width=\"100%\" role=\"img\" aria-label=\"2025년 주요 공급국의 한국 연어 수입 물량 비중\">\n<text x=\"142\" y=\"20\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">노르웨이</text>\n<rect x=\"150\" y=\"8\" width=\"370.0\" height=\"16\" fill=\"#1B3A5C\" fill-opacity=\".85\"/>\n<text x=\"526.0\" y=\"20\" font-size=\"9.5\" fill=\"#3F484E\">74.5%</text>\n<text x=\"142\" y=\"44\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">칠레</text>\n<rect x=\"150\" y=\"32\" width=\"97.3\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"253.3\" y=\"44\" font-size=\"9.5\" fill=\"#3F484E\">19.6%</text>\n<text x=\"142\" y=\"68\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">러시아</text>\n<rect x=\"150\" y=\"56\" width=\"11.4\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"167.4\" y=\"68\" font-size=\"9.5\" fill=\"#3F484E\">2.3%</text>\n<text x=\"142\" y=\"92\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">미국</text>\n<rect x=\"150\" y=\"80\" width=\"10.9\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"166.9\" y=\"92\" font-size=\"9.5\" fill=\"#3F484E\">2.2%</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  },
+  {
+   "stage": "s05",
+   "sid": "s05",
+   "kind": "html",
+   "ord": 2648,
+   "caption": "그림 4. 2025년 노르웨이산 대서양연어의 신선·냉동 통연어 한국 수입 단가 · 출처: 관세청, E05",
+   "alt": "그림 4. 2025년 노르웨이산 대서양연어의 신선·냉동 통연어 한국 수입 단가 · 출처: 관세청, E05",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 60\" width=\"100%\" role=\"img\" aria-label=\"2025년 노르웨이산 대서양연어의 신선·냉동 통연어 한국 수입 단가\">\n<text x=\"142\" y=\"20\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">신선 대서양 통연어(0302.14)</text>\n<rect x=\"150\" y=\"8\" width=\"370.0\" height=\"16\" fill=\"#1B3A5C\" fill-opacity=\".85\"/>\n<text x=\"526.0\" y=\"20\" font-size=\"9.5\" fill=\"#3F484E\">10.70달러/kg</text>\n<text x=\"142\" y=\"44\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">냉동 통연어(0303.13)</text>\n<rect x=\"150\" y=\"32\" width=\"290.5\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"446.5\" y=\"44\" font-size=\"9.5\" fill=\"#3F484E\">8.40달러/kg</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  },
+  {
+   "stage": "s06",
+   "sid": "s06",
+   "kind": "html",
+   "ord": 3839,
+   "caption": "그림 5. 2026년 1~6월 칠레의 양식 대서양연어·태평양연어 수출량 · 출처: Subpesca, Informe Sectorial de Pesca y Acuicultura, 2026년 8월, 잠정 집계",
+   "alt": "그림 5. 2026년 1~6월 칠레의 양식 대서양연어·태평양연어 수출량 · 출처: Subpesca, Informe Sectorial de Pesca y Acuicultura, 2026년 8월, 잠정 집계",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 60\" width=\"100%\" role=\"img\" aria-label=\"2026년 1~6월 칠레의 양식 대서양연어·태평양연어 수출량\">\n<text x=\"142\" y=\"20\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">대서양연어</text>\n<rect x=\"150\" y=\"8\" width=\"370.0\" height=\"16\" fill=\"#1B3A5C\" fill-opacity=\".85\"/>\n<text x=\"526.0\" y=\"20\" font-size=\"9.5\" fill=\"#3F484E\">273,439톤</text>\n<text x=\"142\" y=\"44\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">태평양연어(Salmón del Pacífico)</text>\n<rect x=\"150\" y=\"32\" width=\"162.7\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"318.7\" y=\"44\" font-size=\"9.5\" fill=\"#3F484E\">120,265톤</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  },
+  {
+   "stage": "s11",
+   "sid": "s11",
+   "kind": "html",
+   "ord": 10513,
+   "caption": "그림 6. 연어 공급망 단계와 주요 주체(일부) · 출처: 표 11-4, 관세청",
+   "alt": "그림 6. 연어 공급망 단계와 주요 주체(일부) · 출처: 표 11-4, 관세청",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 130\" width=\"100%\" role=\"img\" aria-label=\"연어 공급망 단계와 주요 주체(일부)\">\n<defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"4\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#6B757B\"/></marker></defs>\n<rect x=\"10.0\" y=\"20\" width=\"109.6\" height=\"88\" fill=\"#1B3A5C\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"64.8\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#FCFCFA\">생산·어획</text>\n<text x=\"64.8\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">노르웨이·칠레</text>\n<text x=\"64.8\" y=\"88\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">양식업자, 러시아</text>\n<text x=\"64.8\" y=\"100\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">어업자</text>\n<line x1=\"121.6\" y1=\"64\" x2=\"134.6\" y2=\"64\" stroke=\"#6B757B\" stroke-width=\"1.4\" marker-end=\"url(#ah)\"/>\n<rect x=\"137.6\" y=\"20\" width=\"109.6\" height=\"88\" fill=\"#E2E9F0\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"192.4\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#14181B\">수출·국제 무역</text>\n<text x=\"192.4\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#14181B\">생산기업</text>\n<text x=\"192.4\" y=\"88\" text-anchor=\"middle\" font-size=\"9\" fill=\"#14181B\">판매법인·무역상·물류업자</text>\n<line x1=\"249.2\" y1=\"64\" x2=\"262.2\" y2=\"64\" stroke=\"#6B757B\" stroke-width=\"1.4\" marker-end=\"url(#ah)\"/>\n<rect x=\"265.2\" y=\"20\" width=\"109.6\" height=\"88\" fill=\"#1B3A5C\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"320.0\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#FCFCFA\">수입·통관·검역</text>\n<text x=\"320.0\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">수입</text>\n<text x=\"320.0\" y=\"88\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">43,785톤(2025,</text>\n<text x=\"320.0\" y=\"100\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">제품중량)</text>\n<line x1=\"376.8\" y1=\"64\" x2=\"389.8\" y2=\"64\" stroke=\"#6B757B\" stroke-width=\"1.4\" marker-end=\"url(#ah)\"/>\n<rect x=\"392.8\" y=\"20\" width=\"109.6\" height=\"88\" fill=\"#E2E9F0\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"447.6\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#14181B\">국내 가공</text>\n<text x=\"447.6\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#14181B\">국내 가공량 미확인</text>\n<line x1=\"504.4\" y1=\"64\" x2=\"517.4\" y2=\"64\" stroke=\"#6B757B\" stroke-width=\"1.4\" marker-end=\"url(#ah)\"/>\n<rect x=\"520.4\" y=\"20\" width=\"109.6\" height=\"88\" fill=\"#1B3A5C\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"575.2\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#FCFCFA\">소매·외식</text>\n<text x=\"575.2\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">대형마트·온라인몰·음식점</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  }
+ ]
 }
