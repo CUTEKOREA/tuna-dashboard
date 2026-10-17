@@ -273,7 +273,7 @@ export const OCTOPUS_CHART_SLOTS: Record<string, ChartSlot[]> = {
     },
     {
       title: '위판 물량과 단가 2010~2026 (톤·원/kg)',
-      caption: `막대가 위판 물량, 선이 단가다. 2025년 ${fmt(auction2025?.물량 ?? 0)}톤·${fmt(auction2025?.단가 ?? 0)}원/kg. 마지막 막대는 2026년 1~6월 누계라 짧다.${chartSource('수협 계통판매', '2026년 6월')}`,
+      caption: `막대가 위판 물량, 선이 단가다. 2025년 ${fmt(auction2025?.물량 ?? 0)}톤·${fmt(auction2025?.단가 ?? 0)}원/kg. 마지막 막대는 2026년 1~7월 누계라 짧다.${chartSource('수협 계통판매', '2026년 7월')}`,
       telemetry: FIPS_SYNC,
       render: () => <OctopusAuctionChart data={DATA} />,
     },

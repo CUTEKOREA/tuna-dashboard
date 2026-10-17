@@ -37,7 +37,7 @@ IN = {
     'kosis': '11_분석·가공데이터/KOSIS/coastal_octopus_nakji_jukkumi_annual_2026-09-02.csv',
     'kcs': '11_분석·가공데이터/KCS/kcs_annual_hsk10_2019_2025.csv',
     'kcs_country': '11_분석·가공데이터/KCS/kcs_annual_hsk10_by_country_2019_2025.csv',
-    'fips': '10_원본데이터셋/FIPS_gyetong/extract_2026-09-02/fips_gyetong_octopus_annual_1998_2026.csv',
+    'fips': '10_원본데이터셋/FIPS_gyetong/extract_2026-09-23/fips_gyetong_octopus_annual_1998_2026.csv',
     'census': '11_분석·가공데이터/문어_식용제품/문어_식용제품_전수_2026-09-02.csv',
     'impfood': '04_가공·완제품·기업/MFDS_impfood/2026-09-02/impfood_문어_처리일_20250901_20260902.csv',
 }
@@ -230,7 +230,7 @@ def build_korea() -> tuple[dict, dict]:
         y = int(r['year'])
         if y < 2010:
             continue
-        label = f'{y}(1~6월)' if y == 2026 else str(y)
+        label = f'{y}(1~7월)' if y == 2026 else str(y)
         fips.append({'연도': label, '물량': ton(num(r['qty_kg'])), '단가': int(num(r['unit_price_krw_per_kg']))})
     return (
         {
@@ -245,7 +245,7 @@ def build_korea() -> tuple[dict, dict]:
             '_meta': {
                 '출처': '수협 계통판매통계(FIPS) resNo 05 연간 어종별 판매고, 어종 「문어」',
                 '단위': '물량 톤, 단가 원/kg(금액 천원×1000÷kg)',
-                '주의': '2026 은 1~6월 누계. 연환산하지 않는다. 위판 kg 와 수입 순중량을 나누지 않는다.',
+                '주의': '2026 은 1~7월 누계(2026-09-23 추출). 연환산하지 않는다. 위판 kg 와 수입 순중량을 나누지 않는다.',
             },
             '연도별': fips,
         },
@@ -530,7 +530,7 @@ def check(industry: dict, company: dict) -> None:
     assert kosis['2024']['문어류'] == 10111 and kosis['2025']['문어류'] == 8029
     fips = {p['연도']: p for p in industry['위판']['연도별']}
     assert fips['2025'] == {'연도': '2025', '물량': 4457, '단가': 23557}
-    assert fips['2026(1~6월)']['단가'] == 27153 and fips['2021']['단가'] == 16443
+    assert fips['2026(1~7월)'] == {'연도': '2026(1~7월)', '물량': 2360, '단가': 24360} and fips['2021']['단가'] == 16443
     trade = {p['연도']: p for p in industry['수입']['연도별']}
     assert trade['2025']['냉동문어_톤'] == 4502 and trade['2025']['냉동문어_단가'] == 9.48
     assert trade['2025']['조제문어류_톤'] == 5995 and trade['2025']['조제문어류_단가'] == 6.06
