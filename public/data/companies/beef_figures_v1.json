@@ -4,5 +4,76 @@
   "생성": "python3 scripts/build_report_figures.py",
   "설명": "보고서의 팩샷과 차트. 이미지는 public 아래 정적 파일이고 여기에는 URL 만 담는다."
  },
- "figures": []
+ "figures": [
+  {
+   "stage": "s01",
+   "sid": "s01",
+   "kind": "html",
+   "ord": 443,
+   "caption": "",
+   "alt": "국내산 생산 · 수입(KREI 수급표) · 자급률 · 1인당 소비가능량",
+   "html": "<div class=\"metrics\">\n  <div class=\"metric\"><div class=\"k\">국내산 생산</div>\n    <div class=\"v\">313천 톤</div>\n    <div class=\"n\">2025년(p), 정육 기준</div></div>\n  <div class=\"metric\"><div class=\"k\">수입(KREI 수급표)</div>\n    <div class=\"v\">468천 톤</div>\n    <div class=\"n\">2025년(p), 정육 기준, 관세청 제품 중량과 정의가 다름</div></div>\n  <div class=\"metric\"><div class=\"k\">자급률</div>\n    <div class=\"v\">40.1%</div>\n    <div class=\"n\">2025년(p)</div></div>\n  <div class=\"metric\"><div class=\"k\">1인당 소비가능량</div>\n    <div class=\"v\">15.2kg</div>\n    <div class=\"n\">2025년(p)</div></div>\n</div>",
+   "css": ":scope{--card:#FCFCFA;--disp:'Gothic A1',-apple-system,sans-serif;--ink:#14181B;--ink-3:#6B757B;--mono:'JetBrains Mono',ui-monospace,monospace;--rule:#D5D9D2;color:var(--ink)}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px; background:var(--rule);border:1px solid var(--rule);margin:0 0 2rem}.metric{background:var(--card);padding:1rem 1.1rem}.metric .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em; color:var(--ink-3);margin-bottom:.35rem}.metric .v{font-family:var(--disp);font-weight:700;font-size:1.6rem;line-height:1.12; letter-spacing:-.025em;color:var(--ink)}.metric .n{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-top:.3rem; line-height:1.6}"
+  },
+  {
+   "stage": "s01",
+   "sid": "s01",
+   "kind": "html",
+   "ord": 3884,
+   "caption": "그림 1. 한국 본육 수입의 주요 원산지별 중량 비중 · 출처: 관세청 품목·국가별 수입, 2025년 HS 0201·0202, 2026년 10월 17일 재조회",
+   "alt": "그림 1. 한국 본육 수입의 주요 원산지별 중량 비중 · 출처: 관세청 품목·국가별 수입, 2025년 HS 0201·0202, 2026년 10월 17일 재조회",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 108\" width=\"100%\" role=\"img\" aria-label=\"한국 본육 수입의 주요 원산지별 중량 비중\">\n<text x=\"142\" y=\"20\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">미국</text>\n<rect x=\"150\" y=\"8\" width=\"370.0\" height=\"16\" fill=\"#1B3A5C\" fill-opacity=\".85\"/>\n<text x=\"526.0\" y=\"20\" font-size=\"9.5\" fill=\"#3F484E\">47.1%</text>\n<text x=\"142\" y=\"44\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">호주</text>\n<rect x=\"150\" y=\"32\" width=\"362.1\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"518.1\" y=\"44\" font-size=\"9.5\" fill=\"#3F484E\">46.1%</text>\n<text x=\"142\" y=\"68\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">뉴질랜드</text>\n<rect x=\"150\" y=\"56\" width=\"27.5\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"183.5\" y=\"68\" font-size=\"9.5\" fill=\"#3F484E\">3.5%</text>\n<text x=\"142\" y=\"92\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">캐나다</text>\n<rect x=\"150\" y=\"80\" width=\"20.4\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"176.4\" y=\"92\" font-size=\"9.5\" fill=\"#3F484E\">2.6%</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  },
+  {
+   "stage": "s02",
+   "sid": "s02",
+   "kind": "html",
+   "ord": 2066,
+   "caption": "그림 2. USDA PSD 수록 주요국의 소고기 생산량 · 출처: USDA PSD, 2025년 생산, 천 톤 CWE, 2026년 10월 7일 수집 판, E01",
+   "alt": "그림 2. USDA PSD 수록 주요국의 소고기 생산량 · 출처: USDA PSD, 2025년 생산, 천 톤 CWE, 2026년 10월 7일 수집 판, E01",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 108\" width=\"100%\" role=\"img\" aria-label=\"USDA PSD 수록 주요국의 소고기 생산량\">\n<text x=\"142\" y=\"20\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">브라질</text>\n<rect x=\"150\" y=\"8\" width=\"370.0\" height=\"16\" fill=\"#1B3A5C\" fill-opacity=\".85\"/>\n<text x=\"526.0\" y=\"20\" font-size=\"9.5\" fill=\"#3F484E\">12,605</text>\n<text x=\"142\" y=\"44\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">미국</text>\n<rect x=\"150\" y=\"32\" width=\"347.5\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"503.5\" y=\"44\" font-size=\"9.5\" fill=\"#3F484E\">11,837</text>\n<text x=\"142\" y=\"68\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">중국</text>\n<rect x=\"150\" y=\"56\" width=\"235.1\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"391.1\" y=\"68\" font-size=\"9.5\" fill=\"#3F484E\">8,010</text>\n<text x=\"142\" y=\"92\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">인도</text>\n<rect x=\"150\" y=\"80\" width=\"137.4\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"293.4\" y=\"92\" font-size=\"9.5\" fill=\"#3F484E\">4,680</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  },
+  {
+   "stage": "s03",
+   "sid": "s03",
+   "kind": "html",
+   "ord": 2962,
+   "caption": "그림 3. 한국 소고기의 국내산 생산과 수입 · 출처: KREI 『농업전망 2026』 제4장 표 4-4, 정육 기준, E03",
+   "alt": "그림 3. 한국 소고기의 국내산 생산과 수입 · 출처: KREI 『농업전망 2026』 제4장 표 4-4, 정육 기준, E03",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 250\" width=\"100%\" role=\"img\" aria-label=\"한국 소고기의 국내산 생산과 수입\">\n<line x1=\"56\" y1=\"210\" x2=\"632\" y2=\"210\" stroke=\"#BFC5BC\" stroke-width=\".8\"/>\n<rect x=\"165.0\" y=\"97.9\" width=\"32.0\" height=\"112.1\" fill=\"#1B3A5C\" fill-opacity=\".8\"/>\n<text x=\"181.0\" y=\"93.9\" text-anchor=\"middle\" font-size=\"8.5\" fill=\"#3F484E\">321</text>\n<rect x=\"199.0\" y=\"54.2\" width=\"32.0\" height=\"155.8\" fill=\"#8C3A1B\" fill-opacity=\".8\"/>\n<text x=\"215.0\" y=\"50.2\" text-anchor=\"middle\" font-size=\"8.5\" fill=\"#3F484E\">446</text>\n<text x=\"199.0\" y=\"224\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#3F484E\">2024년</text>\n<rect x=\"451.0\" y=\"100.7\" width=\"32.0\" height=\"109.3\" fill=\"#1B3A5C\" fill-opacity=\".8\"/>\n<text x=\"467.0\" y=\"96.7\" text-anchor=\"middle\" font-size=\"8.5\" fill=\"#3F484E\">313</text>\n<rect x=\"485.0\" y=\"46.5\" width=\"32.0\" height=\"163.5\" fill=\"#8C3A1B\" fill-opacity=\".8\"/>\n<text x=\"501.0\" y=\"42.5\" text-anchor=\"middle\" font-size=\"8.5\" fill=\"#3F484E\">468</text>\n<text x=\"485.0\" y=\"224\" text-anchor=\"middle\" font-size=\"9.5\" fill=\"#3F484E\">2025년(p)</text>\n<rect x=\"56\" y=\"236\" width=\"9\" height=\"9\" fill=\"#1B3A5C\"/><text x=\"69\" y=\"244\" font-size=\"9.5\" fill=\"#3F484E\">국내산 생산</text>\n<rect x=\"142\" y=\"236\" width=\"9\" height=\"9\" fill=\"#8C3A1B\"/><text x=\"155\" y=\"244\" font-size=\"9.5\" fill=\"#3F484E\">수입</text>\n<text x=\"50\" y=\"14\" text-anchor=\"end\" font-size=\"9\" fill=\"#6B757B\">천 톤</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  },
+  {
+   "stage": "s04",
+   "sid": "s04",
+   "kind": "html",
+   "ord": 3832,
+   "caption": "그림 4. 호주·미국산 본육 수입 중량의 1~8월 동일기간 비교 · 출처: 관세청 품목·국가별 수입, HS 0201·0202, 2026년 10월 17일 재조회",
+   "alt": "그림 4. 호주·미국산 본육 수입 중량의 1~8월 동일기간 비교 · 출처: 관세청 품목·국가별 수입, HS 0201·0202, 2026년 10월 17일 재조회",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 108\" width=\"100%\" role=\"img\" aria-label=\"호주·미국산 본육 수입 중량의 1~8월 동일기간 비교\">\n<text x=\"142\" y=\"20\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">호주 2025년 1~8월</text>\n<rect x=\"150\" y=\"8\" width=\"321.4\" height=\"16\" fill=\"#1B3A5C\" fill-opacity=\".85\"/>\n<text x=\"477.4\" y=\"20\" font-size=\"9.5\" fill=\"#3F484E\">164,170.362톤</text>\n<text x=\"142\" y=\"44\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">호주 2026년 1~8월</text>\n<rect x=\"150\" y=\"32\" width=\"370.0\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"526.0\" y=\"44\" font-size=\"9.5\" fill=\"#3F484E\">188,972.950톤(+15.1%)</text>\n<text x=\"142\" y=\"68\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">미국 2025년 1~8월</text>\n<rect x=\"150\" y=\"56\" width=\"315.7\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"471.7\" y=\"68\" font-size=\"9.5\" fill=\"#3F484E\">161,226.406톤</text>\n<text x=\"142\" y=\"92\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">미국 2026년 1~8월</text>\n<rect x=\"150\" y=\"80\" width=\"303.3\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"459.3\" y=\"92\" font-size=\"9.5\" fill=\"#3F484E\">154,908.161톤(−3.9%)</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  },
+  {
+   "stage": "s06",
+   "sid": "s06",
+   "kind": "html",
+   "ord": 1293,
+   "caption": "그림 5. USDA PSD 수록 주요국의 소고기 수출량 · 출처: USDA PSD, 2025년 수출, 천 톤 CWE, 인도는 물소고기 포함, E01",
+   "alt": "그림 5. USDA PSD 수록 주요국의 소고기 수출량 · 출처: USDA PSD, 2025년 수출, 천 톤 CWE, 인도는 물소고기 포함, E01",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 108\" width=\"100%\" role=\"img\" aria-label=\"USDA PSD 수록 주요국의 소고기 수출량\">\n<text x=\"142\" y=\"20\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">브라질</text>\n<rect x=\"150\" y=\"8\" width=\"370.0\" height=\"16\" fill=\"#1B3A5C\" fill-opacity=\".85\"/>\n<text x=\"526.0\" y=\"20\" font-size=\"9.5\" fill=\"#3F484E\">4,380</text>\n<text x=\"142\" y=\"44\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">호주</text>\n<rect x=\"150\" y=\"32\" width=\"186.5\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"342.5\" y=\"44\" font-size=\"9.5\" fill=\"#3F484E\">2,208</text>\n<text x=\"142\" y=\"68\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">인도</text>\n<rect x=\"150\" y=\"56\" width=\"142.6\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"298.6\" y=\"68\" font-size=\"9.5\" fill=\"#3F484E\">1,688</text>\n<text x=\"142\" y=\"92\" text-anchor=\"end\" font-size=\"10\" fill=\"#3F484E\">미국</text>\n<rect x=\"150\" y=\"80\" width=\"98.8\" height=\"16\" fill=\"#5D82A4\" fill-opacity=\".85\"/>\n<text x=\"254.8\" y=\"92\" font-size=\"9.5\" fill=\"#3F484E\">1,169</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  },
+  {
+   "stage": "s11",
+   "sid": "s11",
+   "kind": "html",
+   "ord": 8865,
+   "caption": "그림 6. 수입산 소고기가 한국 소비자에게 닿는 단계와 주체 유형 · 출처: 표 11-4",
+   "alt": "그림 6. 수입산 소고기가 한국 소비자에게 닿는 단계와 주체 유형 · 출처: 표 11-4",
+   "html": "<div class=\"fi\">\n\n<svg viewBox=\"0 0 640 130\" width=\"100%\" role=\"img\" aria-label=\"수입산 소고기가 한국 소비자에게 닿는 단계와 주체 유형\">\n<defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"4\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#6B757B\"/></marker></defs>\n<rect x=\"10.0\" y=\"20\" width=\"88.3\" height=\"88\" fill=\"#1B3A5C\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"54.2\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#FCFCFA\">해외 도축·정형</text>\n<text x=\"54.2\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">해외 수출 작업장</text>\n<line x1=\"100.3\" y1=\"64\" x2=\"113.3\" y2=\"64\" stroke=\"#6B757B\" stroke-width=\"1.4\" marker-end=\"url(#ah)\"/>\n<rect x=\"116.3\" y=\"20\" width=\"88.3\" height=\"88\" fill=\"#E2E9F0\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"160.5\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#14181B\">수출·국제 무역</text>\n<text x=\"160.5\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#14181B\">해외 가공사,</text>\n<text x=\"160.5\" y=\"88\" text-anchor=\"middle\" font-size=\"9\" fill=\"#14181B\">수출상, 선사</text>\n<line x1=\"206.7\" y1=\"64\" x2=\"219.7\" y2=\"64\" stroke=\"#6B757B\" stroke-width=\"1.4\" marker-end=\"url(#ah)\"/>\n<rect x=\"222.7\" y=\"20\" width=\"88.3\" height=\"88\" fill=\"#1B3A5C\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"266.8\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#FCFCFA\">수입·통관·검역</text>\n<text x=\"266.8\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">국내 수입업소,</text>\n<text x=\"266.8\" y=\"88\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">식약처, 검역당국,</text>\n<text x=\"266.8\" y=\"100\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">관세청</text>\n<line x1=\"313.0\" y1=\"64\" x2=\"326.0\" y2=\"64\" stroke=\"#6B757B\" stroke-width=\"1.4\" marker-end=\"url(#ah)\"/>\n<rect x=\"329.0\" y=\"20\" width=\"88.3\" height=\"88\" fill=\"#E2E9F0\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"373.2\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#14181B\">국내 가공</text>\n<text x=\"373.2\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#14181B\">포장처리, 절단,</text>\n<text x=\"373.2\" y=\"88\" text-anchor=\"middle\" font-size=\"9\" fill=\"#14181B\">양념, 식품</text>\n<text x=\"373.2\" y=\"100\" text-anchor=\"middle\" font-size=\"9\" fill=\"#14181B\">제조업체</text>\n<line x1=\"419.3\" y1=\"64\" x2=\"432.3\" y2=\"64\" stroke=\"#6B757B\" stroke-width=\"1.4\" marker-end=\"url(#ah)\"/>\n<rect x=\"435.3\" y=\"20\" width=\"88.3\" height=\"88\" fill=\"#1B3A5C\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"479.5\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#FCFCFA\">도매·유통</text>\n<text x=\"479.5\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">식육 도매상,</text>\n<text x=\"479.5\" y=\"88\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">식자재 유통사,</text>\n<text x=\"479.5\" y=\"100\" text-anchor=\"middle\" font-size=\"9\" fill=\"#FCFCFA\">물류업체</text>\n<line x1=\"525.7\" y1=\"64\" x2=\"538.7\" y2=\"64\" stroke=\"#6B757B\" stroke-width=\"1.4\" marker-end=\"url(#ah)\"/>\n<rect x=\"541.7\" y=\"20\" width=\"88.3\" height=\"88\" fill=\"#E2E9F0\" stroke=\"#1B3A5C\" stroke-width=\".8\"/>\n<text x=\"585.8\" y=\"42\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#14181B\">소매·외식</text>\n<text x=\"585.8\" y=\"76\" text-anchor=\"middle\" font-size=\"9\" fill=\"#14181B\">정육점, 마트,</text>\n<text x=\"585.8\" y=\"88\" text-anchor=\"middle\" font-size=\"9\" fill=\"#14181B\">식당, 급식업체</text>\n</svg>\n</div>",
+   "css": ":scope{--ink:#14181B;--paper-2:#EAECE6;color:var(--ink)}.fi{background:var(--paper-2);padding:1.5rem 1.4rem}"
+  }
+ ]
 }
