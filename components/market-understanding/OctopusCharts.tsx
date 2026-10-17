@@ -111,7 +111,7 @@ export function OctopusKoreaChart({ data }: { data: OctopusIndustryData }) {
   );
 }
 
-/** 위판 물량(막대)과 단가(선). 2026 은 1~6월 누계라 막대가 짧다. */
+/** 위판 물량(막대)과 단가(선). 2026 은 1~7월 누계라 막대가 짧다. */
 export function OctopusAuctionChart({ data }: { data: OctopusIndustryData }) {
   const animate = !useReducedMotion();
   return (
